@@ -1,5 +1,5 @@
-import Lottos from "../src/Lottos";
-import Lotto from "../src/Lotto";
+import Lottos from "../src/domain/Lottos.js";
+import Lotto from "../src/domain/Lotto.js";
 
 describe("Lotto 객체 단위테스트", () => {
   test("로또들의 점수를 비교하는 함수 테스트", () => {

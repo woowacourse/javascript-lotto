@@ -1,0 +1,321 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
+/*header*/
+
+#gameTitle {
+  width: 100%;
+  height: 64px;
+  background: #4e5ba6;
+  display: flex;
+  justify-content: center;
+}
+.title-name-wrap {
+  box-sizing: border-box;
+  position: relative;
+  width: 1440px;
+  height: 64px;
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+.title-name {
+  position: absolute;
+  width: 147px;
+  height: 36px;
+  left: 130px;
+  top: 14px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  display: flex;
+  align-items: flex-end;
+  color: #ffffff;
+}
+
+/*section*/
+
+#gameContents {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#gameContents .lotto-game-wrap {
+  width: 1440px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.contests-font {
+  font-family: "Roboto";
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+#gameContents .lotto-game {
+  position: relative;
+  width: 414px;
+  height: 727px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+#gameContents .lotto-game-title {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: #000000;
+  margin-top: 52px;
+  margin-bottom: 28px;
+}
+
+#gameContents .input-money-wrap {
+  margin-left: 16px;
+  margin-right: 16px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+#gameContents .input-money {
+  margin-top: 8px;
+  margin-right: 16px;
+  width: 294px;
+  height: 36px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #8b8b8b;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#gameContents .input-money-btn {
+  padding: 6px 6px 6px 8px;
+  width: 56px;
+  height: 36px;
+  background: #4e5ba6;
+  border-radius: 4px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: #ffffff;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button:disabled {
+  background-color: #a4a4a4 !important;
+}
+
+/*print lottos*/
+
+.hidden-area.show {
+  visibility: visible;
+}
+
+.hidden-area {
+  visibility: hidden;
+}
+
+.print-lottos {
+  margin-left: 16px;
+  margin-top: 30px;
+}
+
+.print-lottos .print-lottos-list {
+  width: 100%;
+  height: 280px;
+  overflow-y: auto;
+}
+
+.print-lottos .print-lottos-list li {
+  margin-top: 16px;
+}
+
+#winning-lotto-wrap {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 32px;
+  margin-left: 16px;
+}
+
+#input-winning-lotto .winning-lotto-number-wrap {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+#input-winning-lotto p {
+  margin-bottom: 16px;
+}
+
+.bonus-lotto-number input {
+  margin-left: 39px;
+}
+
+#input-winning-lotto input {
+  width: 24px;
+  height: 26px;
+  margin-right: 5px;
+}
+
+#input-winning-lotto .check-winning-lotto-btn {
+  margin-top: 30px;
+  padding: 6px 6px 6px 8px;
+  width: 382px;
+  height: 36px;
+  background: #4e5ba6;
+  border-radius: 4px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/*modal*/
+.close-modal {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  left: 85%;
+  right: 5%;
+  top: 3.2%;
+  bottom: 94%;
+  color: #000000;
+  cursor: pointer;
+  font-weight: 900;
+  text-align: center;
+}
+
+.lotto-result-wrap {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.lotto-result-wrap.show {
+  visibility: visible;
+}
+
+.lotto-result {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 500px;
+  padding: 40px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.lotto-result p:nth-child(2) {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: #000000;
+  margin-bottom: 35px;
+  margin-top: 10px;
+}
+
+#lotto-reward {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#lotto-reward tr {
+  border-top: 1px solid #bfbfbf;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+#lotto-reward th,
+td {
+  padding: 10px 5px;
+}
+
+#lotto-reward td {
+  padding: 10px 5px;
+}
+
+#lotto-reward th {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.result-message {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #000000;
+}
+
+.restart-btn {
+  width: 300px;
+  height: 36px;
+  background: #4e5ba6;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+/*footer*/
+
+#gameFooter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 80px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+#gameFooter .footer-contents {
+  text-align: center;
+  width: 1440px;
+  height: 16px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: #4e5ba6;
+}

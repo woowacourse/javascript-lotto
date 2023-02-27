@@ -1,8 +1,8 @@
 # 🚀 미션 - 로또 게임
 
-콘솔 기반의 로또 게임
+# [STEP1] 콘솔 기반의 로또 게임
 
-# 📈 구현 기능 목록
+## 📈 구현 기능 목록
 
 ### ✅ 입력
 
@@ -40,3 +40,20 @@
 - [x] 로또 번호를 출력 -OutputView
 - [x] 당첨 내역 출력 -OutputView
 - [x] 수익률 출력 -OutputView
+
+# [STEP2] 웹 기반의 로또 게임
+
+## 📈 구현 기능 목록
+
+### ✅ 웹 UI
+
+Main
+- [X] 로또 구입 금액 입력받는 기능 -WebController
+  - [ ] [예외처리] alert
+- [X] 구입한 갯수만큼 로또 번호를 출력 -WebController
+- [X] 당첨 번호와 보너스 번호를 입력받는 기능 -WebController
+
+Modal
+- [X] 당첨 내역 출력 -WebController
+- [X] 수익률 출력 -WebController
+- [X] 다시하기 클릭시 재시작하는 기능 -WebController

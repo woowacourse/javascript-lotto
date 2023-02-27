@@ -1,13 +1,12 @@
-import Console from "./utils/Console.js";
-import Validator from "../src/utils/Validator.js";
-import InputView from "./view/InputView.js";
-import Lotto from "./domain/Lotto.js";
-import Lottos from "./domain/Lottos.js";
-import Random from "./utils/Random.js";
-import OutputView from "./view/OutputView.js";
-import { MESSAGES, SETTINGS, ERROR_MESSAGE } from "../src/constants/Config.js";
+import Console from "../utils/Console.js";
+import Validator from "../utils/Validator.js";
+import { InputView, OutputView } from "../view/ConsoleView.js";
+import Lotto from "../domain/Lotto.js";
+import Lottos from "../domain/Lottos.js";
+import Random from "../utils/Random.js";
+import { MESSAGES, SETTINGS } from "../constants/Config.js";
 
-class App {
+class ConsoleController {
   #winningLotto;
   #bonusNumber;
   #lottoArray;
@@ -29,7 +28,7 @@ class App {
     const buyMoney = await InputView.inputMoney(MESSAGES.INPUT_MONEY);
     try {
       this.validateBuyMoney(buyMoney);
-      this.createLotto(parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE));
+      this.createLotto(parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE, 10));
       this.printLottos(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE);
     } catch (e) {
       Console.print(e);
@@ -50,15 +49,9 @@ class App {
   }
 
   validateBuyMoney(buyMoney) {
-    if (!Validator.isNumber(buyMoney)) {
-      throw new Error(ERROR_MESSAGE.NUMBER_TYPE);
-    }
-    if (!Validator.isDividedByThousand(buyMoney)) {
-      throw new Error(ERROR_MESSAGE.MONEY_UNIT);
-    }
-    if (!Validator.isPositiveInteger(buyMoney)) {
-      throw new Error(ERROR_MESSAGE.POSITIVE_INTEGER);
-    }
+    Validator.isNumber(buyMoney);
+    Validator.isDividedByThousand(buyMoney);
+    Validator.isPositiveInteger(buyMoney);
   }
 
   async getWinningNumbers() {
@@ -81,27 +74,17 @@ class App {
   }
 
   validateWinningNumbers() {
-    if (!Validator.isDuplicatedNumber(this.#winningLotto)) {
-      throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
-    }
-    if (Validator.isCorrectLength(this.#winningLotto)) {
-      throw new Error(ERROR_MESSAGE.WINNING_NUMBER_LENGTH);
-    }
+    Validator.isDuplicatedNumber(this.#winningLotto);
+    Validator.isCorrectLength(this.#winningLotto);
     for (let i = 0; i < this.#winningLotto.length; i++) {
       this.checkEachNumber(this.#winningLotto[i]);
     }
   }
 
   checkEachNumber(eachNumber) {
-    if (!Validator.isNumber(eachNumber)) {
-      throw new Error(ERROR_MESSAGE.NUMBER_TYPE);
-    }
-    if (!Validator.isCorrectRange(eachNumber)) {
-      throw new Error(ERROR_MESSAGE.CORRECT_NUMBER_RANGE);
-    }
-    if (!Validator.isPositiveInteger(eachNumber)) {
-      throw new Error(ERROR_MESSAGE.POSITIVE_INTEGER);
-    }
+    Validator.isNumber(eachNumber);
+    Validator.isCorrectRange(eachNumber);
+    Validator.isPositiveInteger(eachNumber);
   }
 
   async getBonusNumber() {
@@ -120,9 +103,7 @@ class App {
   }
 
   validateBonusNumber() {
-    if (Validator.hasBonusNumber(this.#bonusNumber, this.#winningLotto)) {
-      throw new Error(ERROR_MESSAGE.HAS_BONUS_NUMBER);
-    }
+    Validator.hasBonusNumber(this.#bonusNumber, this.#winningLotto);
   }
 
   compareLottos() {
@@ -148,29 +129,28 @@ class App {
   async getRetryInput() {
     const retryInput = await InputView.inputRetry(MESSAGES.INPUT_RETRY);
     try {
-      this.validateRetryInput(retryInput);
-      this.retryLottoGame(retryInput);
+      const retryInputCommand = retryInput.toLowerCase();
+      this.validateRetryInput(retryInputCommand);
+      this.retryLottoGame(retryInputCommand);
     } catch (e) {
       Console.print(e);
       await this.getRetryInput();
     }
   }
 
-  retryLottoGame(retryInput) {
-    if (retryInput.toLowerCase() === SETTINGS.RETRY_INPUT) {
-      const app = new App();
-      app.play();
+  retryLottoGame(retryInputCommand) {
+    if (retryInputCommand === SETTINGS.RETRY_INPUT) {
+      const consoleController = new ConsoleController();
+      consoleController.play();
     }
-    if (retryInput.toLowerCase() === SETTINGS.CLOSE_INPUT) {
+    if (retryInputCommand === SETTINGS.CLOSE_INPUT) {
       Console.close();
     }
   }
 
-  validateRetryInput(retryInput) {
-    if (!Validator.isCorrectRetryInput(retryInput)) {
-      throw new Error(ERROR_MESSAGE.CORRECT_RETRY_INPUT);
-    }
+  validateRetryInput(retryInputCommand) {
+    Validator.isCorrectRetryInput(retryInputCommand);
   }
 }
 
-export default App;
+export default ConsoleController;

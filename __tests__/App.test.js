@@ -1,5 +1,6 @@
-import Lottos from "../src/Lottos";
-import Lotto from "../src/Lotto";
+import Lottos from "../src/domain/Lottos.js";
+import Lotto from "../src/domain/Lotto.js";
+
 describe("로또 생성 테스트", () => {
   test("구입한 개수만큼 로또를 생성하는 기능 테스트", () => {
     const lottoAmount = 3;

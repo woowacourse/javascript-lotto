@@ -1,5 +1,27 @@
-import { MATCH, MESSAGES, SETTINGS } from "../constants/Config.js";
 import Console from "../utils/Console.js";
+import { MATCH, MESSAGES, SETTINGS } from "../constants/Config.js";
+
+const InputView = {
+  async inputMoney(query) {
+    const buyMoney = await Console.read(query);
+    return buyMoney;
+  },
+
+  async inputWinningNumbers(query) {
+    const winningNumbers = await Console.read(query);
+    return winningNumbers;
+  },
+
+  async inputBonusNumber(query) {
+    const bonusNumber = await Console.read(query);
+    return bonusNumber;
+  },
+
+  async inputRetry(query) {
+    const retryInput = await Console.read(query);
+    return retryInput;
+  },
+};
 
 const OutputView = {
   printLottoAmount(lottoAmount) {
@@ -39,4 +61,4 @@ const OutputView = {
   },
 };
 
-export default OutputView;
+export { InputView, OutputView };
