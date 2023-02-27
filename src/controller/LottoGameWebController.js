@@ -63,11 +63,14 @@ class LottoGameWebController {
   addEventListenerLottoInput = () => {
     $('#result-button').addEventListener('click', this.handleClickResultButton);
 
-    $$('.lotto-number-input').forEach((numberInput) => {
-      numberInput.addEventListener('keypress', (event) => {
-        if (event.key !== 'Enter') return;
-        this.handleClickResultButton(event);
-      });
+    $('#number-input-container').addEventListener('keypress', (event) => {
+      if (event.key !== 'Enter') return;
+
+      const numberInput = event.target.closest('.lotto-number-input');
+
+      if (!numberInput) return;
+
+      this.handleClickResultButton(event);
     });
   };
 
