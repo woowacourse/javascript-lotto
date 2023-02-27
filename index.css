@@ -202,6 +202,10 @@ footer > p {
     flex-direction: column;
 }
 
+#winning-numbers div {
+    margin-top: 12px;
+}
+
 #bonus-number {
     display: flex;
     flex-direction: column;
