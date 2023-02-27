@@ -101,6 +101,7 @@ const addEvents = {
   },
 };
 
+webView.focusMoneyAmount();
 addEvents.inputMoney();
 addEvents.closeModalClick();
 addEvents.closeModalKeydown();

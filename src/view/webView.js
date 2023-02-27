@@ -29,6 +29,10 @@ const webView = {
     }
   },
 
+  focusMoneyAmount: () => {
+    $('#moneyAmount').focus();
+  },
+
   getErrorMessage: (errorMessage) => {
     const errorDiv = document.createElement('div');
     errorDiv.classList.add('error-message');
@@ -70,7 +74,7 @@ const webView = {
     );
     $('#bonus').value = EMPTY;
     $('#moneyAmount').value = EMPTY;
-    $('#moneyAmount').focus();
+    webView.focusMoneyAmount();
   },
 
   showLottoAndWinningInput: () => {
