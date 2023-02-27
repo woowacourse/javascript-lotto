@@ -22,6 +22,7 @@ const addEvents = {
         webView.removeLottos();
         webView.removeError('#moneyError');
         webView.showLottoAndWinningInput();
+        webView.focusFirstWinningNumber();
 
         webView.printLottoCount(count);
         webView.printLotto(lottos);

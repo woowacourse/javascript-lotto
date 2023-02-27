@@ -29,6 +29,10 @@ const webView = {
     }
   },
 
+  focusFirstWinningNumber: () => {
+    $$('.winning-number')[0].focus();
+  },
+
   focusMoneyAmount: () => {
     $('#moneyAmount').focus();
   },
