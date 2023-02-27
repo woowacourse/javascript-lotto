@@ -71,6 +71,7 @@ export default class ViewModel {
   showModal(e) {
     e.preventDefault();
     const winningNumbers = this.getWinningNumbers();
+    console.log(winningNumbers);
 
     try {
       Validate.winningNumber(winningNumbers.join(','));
@@ -87,7 +88,12 @@ export default class ViewModel {
   }
 
   getWinningNumbers() {
-    return Array.from({ length: 6 }, (v, i) => Number($$('.winningNumber-input')[i].value));
+    let winningNumbers = [];
+    $$('.winningNumber-input').forEach((v) => {
+      winningNumbers.push(v.value);
+    });
+    return winningNumbers.map(Number);
+    // return Array.from({ length: 6 }, (_, i) => Number($$('.winningNumber-input')[i].value));
   }
 
   makeWinningStatistics(ranking) {
@@ -126,7 +132,7 @@ export default class ViewModel {
       e.target !== $('.printResultButton')
     ) {
       e.preventDefault();
-      $$('.winningNumber-input').forEach((value, i) => {
+      $$('.winningNumber-input').forEach((_, i) => {
         if (e.target === $$('.winningNumber-input')[i]) {
           i === 5 ? $('.bonusNumberInput').focus() : $$('.winningNumber-input')[i + 1].focus();
         }
