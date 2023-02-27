@@ -15,13 +15,13 @@ class LottoConsoleGame {
   }
 
   async play() {
-    const pruchaseAmount = await this.readPurchaseAmount();
-    this.buyLottos(pruchaseAmount);
+    const purchaseAmount = await this.readPurchaseAmount();
+    this.buyLottos(purchaseAmount);
     this.printLottos();
 
     const winningNumbers = await this.readWinningNumbers();
     const bonusNumber = await this.readBonusNumber(winningNumbers);
-    this.printStatistics(pruchaseAmount, this.makeRankings(winningNumbers, bonusNumber));
+    this.printStatistics(purchaseAmount, this.makeRankings(winningNumbers, bonusNumber));
 
     this.decideReplay(await this.readGameCommand());
   }
@@ -70,10 +70,10 @@ class LottoConsoleGame {
   }
 
   async readPurchaseAmount() {
-    const pruchaseAmount = await this.#io.read('\n> 구입금액을 입력해 주세요.');
+    const purchaseAmount = await this.#io.read('\n> 구입금액을 입력해 주세요.');
     try {
-      lottoGameValidator.checkPurchaseAmount(pruchaseAmount);
-      return Number(pruchaseAmount);
+      lottoGameValidator.checkPurchaseAmount(purchaseAmount);
+      return Number(purchaseAmount);
     } catch (error) {
       outputView.printErrorMessage(error);
       return this.readPurchaseAmount();

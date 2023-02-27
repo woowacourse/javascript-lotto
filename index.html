@@ -5,12 +5,102 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <p>🎱 행운의 로또</p>
+      </header>
+      <main>
+        <div class="box">
+          <h1>🎱 내 번호 당첨 확인 🎱</h1>
+          <section class="buy">
+            <p id="buy-message">구입할 금액을 입력해 주세요.</p>
+            <div class="input-area">
+              <input id="purchase-amount" type="number" placeholder="금액" />
+              <button id="buy-button">구입</button>
+            </div>
+          </section>
+          <div class="hidden-area">
+            <section class="lotto-output">
+              <p id="buy-count">총 1개를 구매하였습니다.</p>
+              <div id="lotto-numbers-area">
+                <p>11, 12, 13, 14, 15, 16</p>
+              </div>
+            </section>
+            <section class="lotto-input">
+              <p id="lotto-input-message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <div class="input-area">
+                <div class="winning-numbers">
+                  <p>당첨 번호</p>
+                  <input type="number" />
+                  <input type="number" />
+                  <input type="number" />
+                  <input type="number" />
+                  <input type="number" />
+                  <input type="number" />
+                </div>
+                <div class="bonus-number">
+                  <p>보너스 번호</p>
+                  <input type="number" />
+                </div>
+              </div>
+            </section>
+            <button id="result-button">결과 확인하기</button>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <p>
+          Copyright 2023.
+          <a href="http://chopper-wanted.s3-website.ap-northeast-2.amazonaws.com">chooper</a>
+        </p>
+      </footer>
+      <div class="modal" id="result-modal">
+        <div class="box">
+          <div id="out">✕</div>
+          <h1>🏆 당첨 통계 🏆</h1>
+          <table>
+            <tr>
+              <th>일치 갯수</th>
+              <th>당첨금</th>
+              <th>당첨 갯수</th>
+            </tr>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td id="ranking-5">n개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td id="ranking-4">n개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td id="ranking-3">n개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td id="ranking-2">n개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td id="ranking-1">n개</td>
+            </tr>
+          </table>
+          <p id="reward-rate">당신의 총 수익률은 %입니다.</p>
+          <button id="replay-button">다시 시작하기</button>
+        </div>
+      </div>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>

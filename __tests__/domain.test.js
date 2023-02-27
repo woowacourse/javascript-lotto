@@ -2,19 +2,21 @@ import lottoGameCalculator from '../src/domain/lottoGameCalculator';
 import Lotto from '../src/domain/models/Lotto';
 
 describe('Lotto 모델 테스트', () => {
-  const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-
   test.each([
     [[1, 2, 3, 4, 5, 6], 6],
     [[1, 2, 3, 4, 5, 44], 5],
     [[1, 2, 3, 4, 43, 44], 4],
     [[1, 2, 3, 42, 43, 44], 3],
     [[39, 40, 41, 42, 43, 44], 0],
-  ])('당첨 번호가 %p일 때 일치하는 숫자는 %d개이다.', (winningNumbers, expectedMatchCount) => {
-    const matchCount = lotto.calculateMatchCount(winningNumbers);
+  ])(
+    '로또가 1,2,3,4,5,6 이고 당첨 번호가 %p일 때 일치하는 숫자는 %d개이다.',
+    (winningNumbers, expectedMatchCount) => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      const matchCount = lotto.calculateMatchCount(winningNumbers);
 
-    expect(matchCount).toBe(expectedMatchCount);
-  });
+      expect(matchCount).toBe(expectedMatchCount);
+    }
+  );
 
   test.each([
     [6, 7, 1],
@@ -23,8 +25,9 @@ describe('Lotto 모델 테스트', () => {
     [4, 7, 4],
     [3, 7, 5],
   ])(
-    '일치하는 당첨 번호가 %d개이고 보너스 번호가 %d일 때 %d등이다.',
+    '로또가 1,2,3,4,5,6 이고 일치하는 당첨 번호가 %d개이고 보너스 번호가 %d일 때 %d등이다.',
     (matchCount, bonusNumber, expectedRanking) => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
       const ranking = lotto.calculateRanking(matchCount, bonusNumber);
 
       expect(ranking).toBe(expectedRanking);
