@@ -28,7 +28,7 @@ const benefit = new Benefit();
 
 purchaseButton.addEventListener('click', () => afterEnteredMoney());
 
-confirmButton.addEventListener('click', () => afterEnteredWinning());
+confirmButton.addEventListener('click', (e) => afterEnteredWinning(e));
 
 closeButton.addEventListener('click', () => {
   result.style.display = 'none';
@@ -45,7 +45,8 @@ const afterEnteredMoney = () => {
   renderWinningNumebersInput();
 };
 
-const afterEnteredWinning = () => {
+const afterEnteredWinning = (e) => {
+  e.preventDefault();
   saveWinning();
   const ranks = lottoMachine.getCollectedRanks();
   benefit.calculateRate(lottoMachine.getMoney().getAmount(), ranks);
@@ -54,7 +55,6 @@ const afterEnteredWinning = () => {
 
 const saveMoney = () => {
   try {
-    console.log(3);
     const money = new Money(Number(moneyInput.value));
     lottoMachine.setMoney(money);
     purchaseButton.setAttribute('disabled', 'disabled');
@@ -69,7 +69,7 @@ const saveMoney = () => {
 const saveWinning = () => {
   try {
     winning.setWinningNumbers(getWinningNumbersInput());
-    winning.setBonusNumber(Number(bonusNumberInput.value));
+    winning.setBonusNumber(bonusNumberInput.valueAsNumber);
     lottoMachine.setWinning(winning);
   } catch (error) {
     window.alert(error.message);
