@@ -3,9 +3,7 @@ const LottoGame = require("../domain/LottoGame");
 const Validation = require("../domain/Validation");
 const { DECIMAL } = require("../constant/Constant");
 const {
-  ID,
-  NAME,
-  CLASS,
+  HTML_ELEMENTS,
   ACTION,
   ATTRIBUTE,
 } = require("../constant/ElementConstant");
@@ -16,42 +14,41 @@ const ViewController = {
 
   play() {
     this.lottoGame = new LottoGame();
-    ID.MONEY_FORM.addEventListener(ACTION.SUBMIT, (event) => {
+    HTML_ELEMENTS.MONEY_FORM.addEventListener(ACTION.SUBMIT, (event) => {
       this.purchaseLotto(event, this.lottoGame);
     });
-    ID.WINNUM_FORM.addEventListener(ACTION.SUBMIT, (event) => {
+    HTML_ELEMENTS.WIN_FORM.addEventListener(ACTION.SUBMIT, (event) => {
       this.lotteryTicket(event, this.lottoGame);
     });
-    ID.BTN_CLOSE.addEventListener(ACTION.CLICK, () => {
-      ID.MODAL.style.display = ATTRIBUTE.NONE;
+    HTML_ELEMENTS.BTN_CLOSE.addEventListener(ACTION.CLICK, () => {
+      HTML_ELEMENTS.MODAL.style.display = ATTRIBUTE.NONE;
     });
-    ID.BTN_RESTART.addEventListener(ACTION.CLICK, () => {
+    HTML_ELEMENTS.BTN_RESTART.addEventListener(ACTION.CLICK, () => {
       window.location.reload();
     });
   },
 
   purchaseLotto(event, lottoGame) {
-    ID.BTN_MONEY.disabled = ATTRIBUTE.TRUE;
     event.preventDefault();
+    try {
+      lottoGame.lottos = this.readMoney();
 
-    lottoGame.lottos = this.readMoney();
+      LottoView.printLottoCount(lottoGame.lottoCount);
+      LottoView.printLottos(lottoGame.lottos);
 
-    LottoView.printLottoCount(lottoGame.lottoCount);
-    LottoView.printLottos(lottoGame.lottos);
-
-    ID.WIN_CONTENTS.classList.remove(CLASS.HIDDEN);
+      HTML_ELEMENTS.BTN_MONEY.disabled = ATTRIBUTE.TRUE;
+      HTML_ELEMENTS.WIN_CONTENTS.hidden = false;
+    } catch (e) {
+      LottoView.alertErrorMessage(e.message);
+      HTML_ELEMENTS.INPUT_MONEY.value = null;
+    }
   },
 
   readMoney() {
-    try {
-      const money = ID.INPUT_MONEY.value;
-      Validation.isWrongMoney(money);
+    const money = HTML_ELEMENTS.INPUT_MONEY.value;
+    Validation.isWrongMoney(money);
 
-      return money;
-    } catch (e) {
-      LottoView.alertErrorMessage(e.message);
-      window.location.reload();
-    }
+    return money;
   },
 
   lotteryTicket(event, lottoGame) {
@@ -59,24 +56,24 @@ const ViewController = {
 
     try {
       const winNumbers = this.readWinNumbers();
-      const bonusNumber = this.readBounsNumber(winNumbers);
+      const bonusNumber = this.readBonusNumber(winNumbers);
 
       lottoGame.makeWinLotto(winNumbers, bonusNumber);
-      this.winnigTicket();
+      this.winningTicket();
     } catch (e) {
-      NAME.WINNUM.forEach((winNum) => {
+      HTML_ELEMENTS.WINNUM.forEach((winNum) => {
         winNum.value = null;
       });
-      NAME.BONUSNUM.value = null;
+      HTML_ELEMENTS.BONUSNUM.value = null;
       LottoView.alertErrorMessage(e.message);
     }
   },
 
-  winnigTicket() {
+  winningTicket() {
     const rankResult = this.lottoGame.calculateRankResult();
     const revenue = this.lottoGame.calculateRevenueRate(rankResult);
 
-    ID.MODAL.style.display = ATTRIBUTE.BLOCK;
+    HTML_ELEMENTS.MODAL.style.display = ATTRIBUTE.BLOCK;
     LottoView.printRankResult(rankResult);
     LottoView.printRevenue(revenue);
   },
@@ -93,8 +90,8 @@ const ViewController = {
     return winNumbers;
   },
 
-  readBounsNumber(winNumbers) {
-    const bonusNumber = parseInt(NAME.BONUSNUM.value, DECIMAL);
+  readBonusNumber(winNumbers) {
+    const bonusNumber = parseInt(HTML_ELEMENTS.BONUSNUM.value, DECIMAL);
     Validation.isWrongBonusNumber(winNumbers, bonusNumber);
 
     return bonusNumber;
