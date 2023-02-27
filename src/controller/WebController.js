@@ -143,9 +143,9 @@ class WebController {
 
     $(".lotto-result-wrap").classList.add("show");
 
-    for (const [scoreName, score] of Object.entries(scoreBoard)) {
+    Object.entries(scoreBoard).forEach(([scoreName, score]) => {
       $(scoreName).innerHTML = `${lottos.getLottoRanking()[score]}개`;
-    }
+    });
 
     lottos.calculateBenefit();
     const totalBenefit = lottos.getBenefitRate($(".input-money").value);
@@ -158,9 +158,9 @@ class WebController {
   }
 
   resetScore(lottos) {
-    for (const lotto of lottos.getLottos()) {
+    lottos.getLottos().forEach((lotto) => {
       lotto.resetScore();
-    }
+    });
   }
 
   closeModal = () => {
