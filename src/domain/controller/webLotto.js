@@ -60,9 +60,17 @@ const addEvents = {
     });
   },
 
-  closeModal: () => {
+  closeModalClick: () => {
     $('#closeButton').addEventListener('click', () => {
       webView.hideResultModal();
+    });
+
+    $('#winningModal').addEventListener('click', () => {
+      webView.hideResultModal();
+    });
+
+    $('#winningScreen').addEventListener('click', (event) => {
+      event.stopPropagation();
     });
   },
 
@@ -83,10 +91,19 @@ const addEvents = {
       webView.controllWinningNumber($('#bonus'))
     );
   },
+
+  closeModalKeydown: () => {
+    document.addEventListener('keydown', (event) => {
+      if (event.code === 'Escape') {
+        webView.hideResultModal();
+      }
+    });
+  },
 };
 
 addEvents.inputMoney();
-addEvents.closeModal();
+addEvents.closeModalClick();
+addEvents.closeModalKeydown();
 addEvents.retry();
 addEvents.inputChange();
 webView.printCopyright();
