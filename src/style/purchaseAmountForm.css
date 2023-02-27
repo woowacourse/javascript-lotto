@@ -28,3 +28,7 @@
   width: 56px;
   height: 36px;
 }
+
+.button-disabled {
+  opacity: 0.6;
+}
