@@ -21,7 +21,7 @@ class App extends Component {
         this.lottoStore.getLottoList(),
         this.render.bind(this)
       );
-      new StatisticsModal();
+      new StatisticsModal(this.lottoStore.setState, this.lottoStore);
     }
   }
 
