@@ -6,7 +6,7 @@ export const MESSAGES = {
 };
 
 export const ERROR = {
-  MONEY_NOT_A_INTEGER: '로또 구매 금액은 0 이상의 정수를 입력해야 한다.',
+  MONEY_NOT_A_INTEGER: '로또 구매 금액은 0보다 큰 정수를 입력해야 한다.',
   INVALID_MONEY_UNIT: '1000원 단위로 금액을 주어야 합니다.',
   LOTTO_NOT_A_NUMBER: '로또 번호는 숫자로 이루어져 있어야 합니다.',
   INVALID_LOTTO_RANGE: '로또 번호는 1에서 45 사이의 숫자여야 합니다.',

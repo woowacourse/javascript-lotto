@@ -20,7 +20,7 @@ const Validation = {
   },
 
   validateMoney(money) {
-    if (!Validation.isNumeric(money) || money < 0) {
+    if (!Validation.isNumeric(money)) {
       throw new Error(ERROR.MONEY_NOT_A_INTEGER);
     }
     if (money % MONEY_UNIT !== 0 || money / MONEY_UNIT <= 0) {

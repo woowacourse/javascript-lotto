@@ -1,11 +1,8 @@
 {
-    "editor.formatOnSave": false,
-    "[javascript]": {
-        "editor.formatOnSave": true
-    },
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
-    "eslint.enable": true,
-    "jest.jestCommandLine": "npm run test --"
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.enable": true,
+  "jest.jestCommandLine": "npm run test --"
 }
