@@ -6,6 +6,14 @@
   align-items: center;
 }
 
+button {
+  transition: 0.5s color linear;
+}
+
+button:hover {
+  background: #4458ca;
+}
+
 .stop-scroll {
   overflow: hidden;
   position: fixed;
@@ -161,7 +169,13 @@ footer {
   align-self: end;
   position: absolute;
   top: 16px;
+  padding: 4px;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+.close-button:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .winning-screen {
