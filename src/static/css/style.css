@@ -1,0 +1,383 @@
+@import url('https://fonts.cdnfonts.com/css/roboto');
+
+:root {
+  --lotto-primary: #4e5ba6;
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000000;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+input:focus {
+  outline: 1px solid var(--lotto-primary);
+}
+
+input[type='number'] {
+  padding: 8px 8px;
+  gap: 10px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='button'] {
+  padding: 6px 6px 6px 8px;
+  width: 56px;
+  height: 36px;
+  background: var(--lotto-primary);
+  border-radius: 4px;
+  border: none;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: var(--lotto-greyscale-1);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--lotto-greyscale-2);
+  width: 100%;
+  min-height: 100%;
+
+  font-family: 'Roboto';
+  font-style: normal;
+
+  transition: all 1s ease;
+
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: var(--lotto-primary);
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+header > h1 {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  color: var(--lotto-greyscale-1);
+  margin-left: 130px;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.lotto-main {
+  margin-top: 69px;
+  margin-bottom: 58px;
+  width: 414px;
+  min-height: 727px;
+  background: var(--lotto-greyscale-1);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.lotto-inner {
+  width: 382px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lotto-title {
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lotto-title > p {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  color: var(--lotto-greyscale-5);
+}
+
+.lotto-purchase-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 28px;
+}
+
+.lotto-purchase-input > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.lotto-purchase-input > div > input[type='number'] {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  width: 310px;
+  height: 36px;
+}
+
+.lotto-purchase-input > div > input[type='number']::placeholder {
+  color: var(--lotto-greyscale-4);
+}
+
+.after-purchase {
+  width: 100%;
+  display: none;
+}
+
+.lotto-purchase-result {
+  margin-top: 28px;
+  margin-bottom: 24px;
+}
+
+.lotto-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.lotto-list li:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.lotto-list li p:first-of-type {
+  margin-right: 8px;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+}
+
+.lotto-list li p:nth-of-type(2) {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: var(--lotto-greyscale-5);
+  margin-bottom: 4px;
+}
+
+.input-info {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: var(--lotto-greyscale-5);
+  margin-bottom: 4px;
+}
+
+.lotto-winning-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 27px;
+}
+
+.input-winning {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.input-winning > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-winning > div > p {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: var(--lotto-greyscale-5);
+  margin-bottom: 8px;
+}
+
+.input-winning > div > div > input[type='number'] {
+  width: 34px;
+  height: 36px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.input-winNumber > div > input[type='number'] {
+  margin-right: 8px;
+}
+
+.input-bonus-number {
+  align-items: flex-end;
+}
+
+.result-button {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.result-button > input[type='button'] {
+  width: 100%;
+  height: 36px;
+}
+
+.result-modal-background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  /* backdrop-filter: blur(2px); */
+}
+
+.result-modal {
+  position: absolute;
+  width: 350px;
+  height: 500px;
+
+  background: var(--lotto-greyscale-1);
+  border-radius: 4px;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+}
+
+.result-modal-inner {
+  width: 318px;
+}
+
+#modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+}
+
+.modal-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 33px;
+}
+
+#result-title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: var(--lotto-greyscale-5);
+}
+
+table {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+  color: var(--lotto-greyscale-5);
+}
+
+td {
+  text-align: center;
+}
+
+.result-earn-rate {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 32px 0 32px 0;
+}
+
+.result-earn-rate > p {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+#restart-btn {
+  width: 318px;
+  height: 36px;
+}
+
+footer {
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  height: 80px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer > p {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: var(--lotto-primary);
+}

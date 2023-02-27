@@ -7,6 +7,7 @@
     "test": "jest --watch --no-cache",
     "build-step1": "webpack --config step1.config.js",
     "start-step1": "npm run build-step1 && node dist/step1-bundle.js",
+    "build-step2": "webpack --mode production --config step2.config.js",
     "start-step2": "webpack serve --open --config step2.config.js"
   },
   "devDependencies": {
@@ -22,6 +23,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "esm": "^3.2.25",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^29.3.1",
     "prettier": "^2.8.2",

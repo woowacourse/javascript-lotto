@@ -10,7 +10,6 @@ import {
   outputWinningStatistics,
 } from '../view/OutputView';
 import {
-  errorChecker,
   validateBonusNumber,
   validatePurchaseAmount,
   validateWinningNumbers,
@@ -39,7 +38,9 @@ class LottoController {
     const inputAmount = await inputPurchaseAmount();
     const purchaseAmount = Number(inputAmount);
 
-    const hasError = errorChecker(() => validatePurchaseAmount(purchaseAmount));
+    const hasError = this.errorChecker(() =>
+      validatePurchaseAmount(purchaseAmount)
+    );
     if (hasError) return this.readPurchaseAmount();
 
     this.setLottos(purchaseAmount);
@@ -60,7 +61,9 @@ class LottoController {
     const inputNumbers = await inputWinningNumber();
     const winningNumber = inputNumbers.split(',').map(Number);
 
-    const hasError = errorChecker(() => validateWinningNumbers(winningNumber));
+    const hasError = this.errorChecker(() =>
+      validateWinningNumbers(winningNumber)
+    );
     if (hasError) return this.readWinningNumber();
 
     await this.setWinNumber(winningNumber);
@@ -75,7 +78,7 @@ class LottoController {
     const inputNumber = await inputBonusNumber();
     const bonusNumber = Number(inputNumber);
 
-    const hasError = errorChecker(() =>
+    const hasError = this.errorChecker(() =>
       validateBonusNumber(bonusNumber, winNumber)
     );
     if (hasError) return this.readBonusNumber();
@@ -105,7 +108,7 @@ class LottoController {
   async readWhetherToRestart() {
     const isRestart = await inputWhetherToRestart();
 
-    const hasError = errorChecker(() => validateRestartInput(isRestart));
+    const hasError = this.errorChecker(() => validateRestartInput(isRestart));
     if (hasError) this.readWhetherToRestart();
 
     if (isRestart === NO) {
@@ -113,6 +116,17 @@ class LottoController {
       return;
     }
     this.init();
+  }
+
+  errorChecker(validator) {
+    try {
+      validator();
+    } catch (error) {
+      IO.output(error);
+      return true;
+    }
+
+    return false;
   }
 }
 
