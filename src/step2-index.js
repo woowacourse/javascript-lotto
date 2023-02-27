@@ -3,7 +3,6 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 import './css/style.css';
-import { selectDom, selectAllDom, createDom } from './utils/dom.js';
 import LottoWebController from './domain/LottoWebController.js';
 
 new LottoWebController();
