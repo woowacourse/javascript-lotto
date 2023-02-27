@@ -24,8 +24,8 @@ const webView = {
     if (Number(userValue) > LOTTO_NUMBER.lottoEnd) {
       inputNode.value = LOTTO_NUMBER.lottoEnd;
     }
-    if (Number(userValue) < LOTTO_NUMBER.lottoStart) {
-      inputNode.value = LOTTO_NUMBER.lottoStart;
+    if (Number(userValue) < 0) {
+      inputNode.value = 0;
     }
   },
 
