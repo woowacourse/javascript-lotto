@@ -50,26 +50,23 @@ paymentsContainer.addEventListener('submit', (e) => {
   e.preventDefault();
   try {
     handlePayments();
+    renderLottosContainer(webController.sendLottoNumbers());
+    changeCSSByPaymentsEvent();
   } catch (error) {
     window.alert(error.message);
     resetPaymentsInput();
-    return;
   }
-
-  renderLottosContainer(webController.sendLottoNumbers());
-  changeCSSByPaymentsEvent();
 });
 
 winningLottoContainer.addEventListener('submit', (e) => {
   e.preventDefault();
   try {
     handleWinningLottos();
+    renderResultTable(webController.sendStatstics());
+    changeCSSByResultBtnEvent();
   } catch (error) {
     window.alert(error.message);
-    return;
   }
-  renderResultTable(webController.sendStatstics());
-  changeCSSByResultBtnEvent();
 });
 
 const modalCloseBtn = modal.querySelector('.modal-close-btn');
