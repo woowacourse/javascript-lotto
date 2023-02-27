@@ -1,20 +1,20 @@
 import Component from './Component.js';
 import LottoMachine from '../../domain/LottoMachine.js';
 import { getId } from '../../utils/domHelper.js';
-import { AWARDS_ORDER, PRIZE } from '../../constant/constants.js';
+import { AWARDS_ORDER, PRIZE } from '../../constant/index.js';
 
 export default class StatisticsModal extends Component {
-  setter;
+  #setter;
   lottoList;
   statistics;
   earningRate;
 
   constructor({ setState, getLottoList, getStatistics, getEarningRate }) {
     super(getId('lotto-statistics-modal'));
-    this.setter = setState;
+    this.#setter = setState;
     this.lottoList = getLottoList();
 
-    this.setter({
+    this.#setter({
       statistics: LottoMachine.calculateStatistics(this.lottoList),
       earningRate: LottoMachine.calculateEarningRate(this.lottoList),
     });

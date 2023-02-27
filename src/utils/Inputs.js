@@ -1,4 +1,4 @@
-import { QUERY } from '../constant/constants.js';
+import { QUERY } from '../constant/index.js';
 import ValidationInputs from '../validator/ValidationInputs';
 import Console from './Console.js';
 

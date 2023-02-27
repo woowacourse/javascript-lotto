@@ -1,5 +1,5 @@
 import * as readlinePromises from 'node:readline/promises';
-import { ERROR } from '../constant/constants.js';
+import { ERROR } from '../constant/index.js';
 
 const rl = readlinePromises.createInterface({
   input: process.stdin,

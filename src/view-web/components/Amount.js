@@ -1,7 +1,7 @@
 import Component from './Component.js';
 import LottoMachine from '../../domain/LottoMachine.js';
 import { getId } from '../../utils/domHelper.js';
-import { ERROR, LOTTO } from '../../constant/constants.js';
+import { ERROR, LOTTO } from '../../constant/index.js';
 
 export default class Amount extends Component {
   setter;

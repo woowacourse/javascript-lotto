@@ -1,4 +1,4 @@
-import { ERROR } from '../../constant/constants.js';
+import { ERROR } from '../../constant/index.js';
 import lottoStore from '../../store/lottoStore.js';
 
 export default class Component {
