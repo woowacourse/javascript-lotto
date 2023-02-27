@@ -9,7 +9,7 @@ class Lotto {
     this._numbers = numbers;
   }
 
-  get _numbers() {
+  get numbers() {
     return this._numbers;
   }
 

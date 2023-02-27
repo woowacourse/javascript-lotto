@@ -38,7 +38,7 @@ class LottoSimulator {
   printPurchaseResult() {
     OutputView.printPurchaseCount(this.#lottos.length);
     this.#lottos.forEach((lotto) => {
-      OutputView.printLottoNumbers(lotto._numbers);
+      OutputView.printLottoNumbers(lotto.numbers);
     });
   }
 

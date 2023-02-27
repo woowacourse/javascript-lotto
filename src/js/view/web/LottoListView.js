@@ -13,7 +13,7 @@ const LottoListView = {
     $lottoList.innerHTML = lottos
       .map((lotto) => {
         return `<li class="purchased-lotto-numbers"><span class="purchased-lotto-icon">🎟️</span> ${[
-          ...lotto._numbers,
+          ...lotto.numbers,
         ]
           .sort((a, b) => a - b)
           .join(', ')}</li>`;
