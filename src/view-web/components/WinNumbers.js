@@ -6,10 +6,10 @@ export default class WinNumbers extends Component {
   lottoList;
   render;
 
-  constructor(setter, lottoList, render) {
+  constructor({ setState, getLottoList }, render) {
     super(getId('input-winning-number-form'));
-    this.setter = setter;
-    this.lottoList = lottoList;
+    this.setter = setState;
+    this.lottoList = getLottoList();
     this.render = render;
 
     this.addEvent('submit', this.submitDrawingNumbers.bind(this));

@@ -4,9 +4,9 @@ import { getId } from '../../utils/domHelper.js';
 export default class LottoList extends Component {
   lottoList;
 
-  constructor(lottoList) {
+  constructor({ getLottoList }) {
     super(getId('lotto-list-result-form'));
-    this.lottoList = lottoList;
+    this.lottoList = getLottoList();
 
     this.render();
   }

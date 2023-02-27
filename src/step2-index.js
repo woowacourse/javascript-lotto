@@ -12,16 +12,12 @@ class App extends Component {
   }
 
   mount() {
-    new Amount(this.lottoStore.setState, this.render.bind(this));
+    new Amount(this.lottoStore, this.render.bind(this));
 
     if (this.lottoStore.getLottoList().length !== 0) {
-      new LottoList(this.lottoStore.getLottoList());
-      new WinNumbers(
-        this.lottoStore.setState,
-        this.lottoStore.getLottoList(),
-        this.render.bind(this)
-      );
-      new StatisticsModal(this.lottoStore.setState, this.lottoStore);
+      new LottoList(this.lottoStore);
+      new WinNumbers(this.lottoStore, this.render.bind(this));
+      new StatisticsModal(this.lottoStore);
     }
   }
 

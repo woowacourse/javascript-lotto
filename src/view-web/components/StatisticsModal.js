@@ -5,17 +5,22 @@ import { AWARDS_ORDER, PRIZE } from '../../constant/constants.js';
 
 export default class StatisticsModal extends Component {
   setter;
-  lottoStore;
+  lottoList;
+  statistics;
+  earningRate;
 
-  constructor(setter, lottoStore) {
+  constructor({ setState, getLottoList, getStatistics, getEarningRate }) {
     super(getId('lotto-statistics-modal'));
-    this.setter = setter;
-    this.lottoStore = lottoStore;
+    this.setter = setState;
+    this.lottoList = getLottoList();
 
     this.setter({
-      statistics: LottoMachine.calculateStatistics(this.lottoStore.getLottoList()),
-      earningRate: LottoMachine.calculateEarningRate(this.lottoStore.getLottoList()),
+      statistics: LottoMachine.calculateStatistics(this.lottoList),
+      earningRate: LottoMachine.calculateEarningRate(this.lottoList),
     });
+
+    this.statistics = getStatistics();
+    this.earningRate = getEarningRate();
 
     this.render();
   }
@@ -38,10 +43,10 @@ export default class StatisticsModal extends Component {
           <td>당첨금</td>
           <td>당첨 갯수</td>
         </thead>
-        ${this.lottoStore.getStatistics() && this.getStatisticsRows()}
+        ${this.statistics && this.getStatisticsRows()}
       </table>
 
-      <div id="lotto-earning-rate">당신의 총 수익률은 ${this.lottoStore.getEarningRate()}%입니다.</div>
+      <div id="lotto-earning-rate">당신의 총 수익률은 ${this.earningRate}%입니다.</div>
     </section>
 
     <form id="lotto-retry-form" method="submit">
@@ -55,7 +60,7 @@ export default class StatisticsModal extends Component {
     const formatStatistics = AWARDS_ORDER.map((award) => ({
       award,
       prize: PRIZE[award],
-      count: this.lottoStore.getStatistics()[award] || 0,
+      count: this.statistics[award] || 0,
     }));
     return this.statisticsTemplate(formatStatistics);
   }

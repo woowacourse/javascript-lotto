@@ -7,9 +7,9 @@ export default class Amount extends Component {
   setter;
   render;
 
-  constructor(setter, render) {
+  constructor({ setState }, render) {
     super(getId('input-purchase-form'));
-    this.setter = setter;
+    this.setter = setState;
     this.render = render;
 
     this.addEvent('submit', this.submitAmount.bind(this));
