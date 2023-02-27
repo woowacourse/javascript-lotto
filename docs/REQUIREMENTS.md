@@ -90,3 +90,5 @@
 
 - [x] refactor: MVVM 패턴 적용
 - [x] refactor: 초기화면만 html파일에 담기
+- [x] refactor: keyCode 상수화
+- [ ] refactor: innerHTML 반복문 수정

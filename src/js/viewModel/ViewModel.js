@@ -1,3 +1,4 @@
+import { KEY_CODE } from '../constant/setting';
 import { lottoTemplate } from '../view/webView/View';
 import Comparer from './../domain/Comparer';
 import LottoMachine from './../domain/LottoMachine';
@@ -112,14 +113,14 @@ export default class ViewModel {
   }
 
   pressESC(e) {
-    if (e.keyCode === 27) {
+    if (e.keyCode === KEY_CODE.ESC) {
       $('.exit').click();
     }
   }
 
   moveToNextInput(e) {
     if (
-      e.keyCode === 13 &&
+      e.keyCode === KEY_CODE.ENTER &&
       e.target !== $('.bonusNumberInput') &&
       e.target !== $('.printResultButton')
     ) {
