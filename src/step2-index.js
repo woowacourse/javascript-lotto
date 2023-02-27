@@ -16,7 +16,11 @@ class App extends Component {
 
     if (this.lottoStore.getLottoList().length !== 0) {
       new LottoList(this.lottoStore.getLottoList());
-      new WinNumbers(this.setDrawingNumbers.bind(this));
+      new WinNumbers(
+        this.lottoStore.setState,
+        this.lottoStore.getLottoList(),
+        this.render.bind(this)
+      );
       new StatisticsModal();
     }
   }
