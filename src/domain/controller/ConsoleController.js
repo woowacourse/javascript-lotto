@@ -65,7 +65,7 @@ class ConsoleController {
       this.#lottoMachine.getWinning().setWinningNumbers(winningNumbers);
       this.readBonusNumber();
     } catch (error) {
-      errorHandler(error, () => this.readWinningNumbers());
+      errorHandler(error, this.readWinningNumbers);
     }
   };
 
@@ -75,12 +75,11 @@ class ConsoleController {
       const ranks = this.#lottoMachine.getCollectedRanks();
       const benefit = new Benefit();
       const money = this.#lottoMachine.getMoney();
-      console.log(money);
       benefit.calculateRate(money.getAmount(), ranks);
       this.#showResult(benefit, ranks);
       this.readRetryOption();
     } catch (error) {
-      errorHandler(error, () => this.readBonusNumber());
+      errorHandler(error, this.readBonusNumber);
     }
   };
 
