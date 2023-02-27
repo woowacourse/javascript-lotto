@@ -72,7 +72,6 @@
 
    - method
 
-     - 로또 프로그램을 시작한다. (play())
      - 로또 구매 금액 입력을 받는다. (readMoney())
      - 로또 당첨 번호를 입력 받는다. (readWinningNumbers())
      - 로또 보너스 번호를 입력 받는다. (readBonusNumber())

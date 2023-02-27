@@ -19,10 +19,6 @@ class ConsoleController {
     this.#lottoMachine = new LottoMachine();
   }
 
-  play() {
-    this.readMoney();
-  }
-
   readMoney() {
     inputHandler('> 구입금액을 입력해 주세요.', this.#afterReadMoney);
   }
@@ -116,7 +112,7 @@ class ConsoleController {
 
   #retry() {
     const consoleController = new ConsoleController();
-    consoleController.play();
+    consoleController.readMoney();
   }
 
   #quit() {
