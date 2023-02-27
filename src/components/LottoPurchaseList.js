@@ -7,7 +7,7 @@ function LottoPurchaseList({ $target }) {
   MyReact.call(this);
 
   this.template = () => {
-    const lottoCountHtml = `<li class="lotto-count space-y-3">총 ${store.state.buyLottos.length}개를 구입하였습니다.</li>`;
+    const lottoCountHtml = `<p class="lotto-count space-y-3">총 ${store.state.buyLottos.length}개를 구입하였습니다.</p>`;
     const lottoPurchaseHtml = store.state.buyLottos
       .map(
         (lotto) =>
