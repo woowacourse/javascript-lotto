@@ -34,6 +34,10 @@ const controller = new LottoWebController();
 
 // 구매 버튼 클릭시
 inputPurchaseButton.addEventListener('click', () => setLottos());
+inputAmountElement.addEventListener('keyup', (e) => {
+  e.preventDefault();
+  if (e.key === 'Enter') setLottos();
+});
 
 const setLottos = () => {
   resetLottoList();
