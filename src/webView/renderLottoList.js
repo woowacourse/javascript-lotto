@@ -20,7 +20,7 @@ const getTicketCount = (lottoList) => {
   return ticketMessage;
 };
 
-export const renderLottoList = (lottoList) => {
+export const renderLottoList = ($app, lottoList) => {
   const $ticketSection = createDomWith('section')({ id: 'lotto-issued' });
   const $ticketMessage = getTicketCount(lottoList);
   const $ticketContainer = createDomWith('div')({ id: 'ticket-list' });
@@ -28,5 +28,5 @@ export const renderLottoList = (lottoList) => {
   appendDomByList($ticketContainer)(lottoList)(makeTicketDom);
   $ticketSection.append($ticketMessage, $ticketContainer);
 
-  $('.app').appendChild($ticketSection);
+  $app.appendChild($ticketSection);
 };

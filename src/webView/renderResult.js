@@ -66,9 +66,9 @@ export const renderResult = (
   </div>`;
 
   $app.appendChild($modalBackground);
-  $('.close-button').onclick = () => {
+  $('.close-button').addEventListener('click', () => {
     $('.modal-background').remove();
-  };
+  });
 
   window.addEventListener('keydown', keyHandler($app, lottoGame));
 };

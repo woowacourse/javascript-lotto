@@ -11,49 +11,36 @@ const submitHandler = ($app, lottoGame) => (event) => {
     const resultBoard = lottoGame.setWinningLotto(winningNumbers, bonusNumber).getGameResult();
     renderResult($app, lottoGame, resultBoard);
   } catch (error) {
-    alert(error.message);
+    console.dir(error);
   }
 };
 
 export const renderWinningForm = ($app, lottoGame) => {
   const $winningSection = createDomWith('section')({ id: 'winning-lotto' });
+  $winningSection.innerHTML = `<p class="message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+  <form action="">
+  <div id="number-message" class="message">
+    <span>당첨 번호</span>
+    <span>보너스 번호</span>
+  </div>
+  <div id="number-box">
+    <div id="winning-numbers">
+      <input type="text" minlength="1" maxlength="2" />
+      <input type="text" minlength="1" maxlength="2" />
+      <input type="text" minlength="1" maxlength="2" />
+      <input type="text" minlength="1" maxlength="2" />
+      <input type="text" minlength="1" maxlength="2" />
+      <input type="text" minlength="1" maxlength="2" />
+    </div>
+    <div id="bonus-number">
+      <input type="text" />
+    </div>
+  </div>
+  <button id="result-button" type="submit">결과 확인하기</button>
+  </form>`;
 
-  const $message = createDomWith('p')({
-    class: 'message',
-    innerText: '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.',
-  });
-
-  const $form = document.createElement('form');
-  const $spanContainer = createDomWith('div')({ id: 'number-message', class: 'message' });
-
-  const $winningSpan = createDomWith('span')({ innerText: '당첨 번호' });
-  const $bonusSpan = createDomWith('span')({ innerText: '보너스 번호' });
-  $spanContainer.append($winningSpan, $bonusSpan);
-
-  const $lottoContainer = createDomWith('div')({ id: 'number-box' });
-  const $lottoWinningContainer = createDomWith('div')({ id: 'winning-numbers' });
-
-  appendDomByList($lottoWinningContainer)(Array.from({ length: 6 }))((_) =>
-    createDomWith('input')({ type: 'text', minlength: '1', maxlength: '2' })
-  );
-
-  const $lottoBonusContainer = createDomWith('div')({ id: 'bonus-number' });
-
-  const $bonusInput = createDomWith('input')({ type: 'text' });
-  $lottoBonusContainer.appendChild($bonusInput);
-
-  const $submitButton = createDomWith('button')({
-    id: 'result-button',
-    type: 'submit',
-    innerText: '결과 확인하기',
-  });
-
-  $lottoContainer.append($lottoWinningContainer, $lottoBonusContainer);
-  $form.append($spanContainer, $lottoContainer, $submitButton);
-  $winningSection.append($message, $form);
-  $('.app').append($winningSection);
+  $app.appendChild($winningSection);
 
   $('#purchasing-button').disabled = 'disabled';
-
-  $submitButton.addEventListener('click', submitHandler($app, lottoGame));
+  $('#result-button').addEventListener('click', submitHandler($app, lottoGame));
 };

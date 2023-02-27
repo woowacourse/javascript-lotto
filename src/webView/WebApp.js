@@ -12,5 +12,5 @@ class WebApp {
     addPurchasingEvent(this.$app, this.lottoGame);
   }
 }
-const webApp = new WebApp($('#app'), new LottoGame());
+const webApp = new WebApp($('.app'), new LottoGame());
 export default webApp;

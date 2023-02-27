@@ -7,10 +7,10 @@ const purchasingHandler = ($app, lottoGame) => (event) => {
   try {
     const money = Number($('#money').value);
     const lottoList = lottoGame.setLottos(money).getLottos();
-    renderLottoList(lottoList);
+    renderLottoList($app, lottoList);
     renderWinningForm($app, lottoGame);
   } catch (error) {
-    alert(error.message);
+    console.dir(error);
   }
 };
 
