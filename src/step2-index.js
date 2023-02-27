@@ -26,7 +26,7 @@ const purchaseLottoCount = document.getElementById('lotto-purchase-count');
 const winNumberElement = document.getElementsByClassName('winNumber');
 const bonusNumberElement = document.getElementById('bonusNumber');
 const modal = document.getElementsByClassName('result-modal-background')[0];
-const ranks = document.querySelectorAll('.rank');
+const ranks = document.getElementsByClassName('rank');
 const earnRateElement = document.getElementById('earnRate');
 const inputAmountElement = document.getElementById('input-purchase-amount');
 
