@@ -5,12 +5,12 @@ const WINNING_NUMBERS_FORM = `
     <div id="winning-numbers">
       <label for="winning-numbers">당첨 번호</label>
       <div id="numbers-input">
-        <input id="winning-number" type="number" />
-        <input id="winning-number" type="number" />
-        <input id="winning-number" type="number" />
-        <input id="winning-number" type="number" />
-        <input id="winning-number" type="number" />
-        <input id="winning-number" type="number" />
+        <input class="winning-number" type="number" />
+        <input class="winning-number" type="number" />
+        <input class="winning-number" type="number" />
+        <input class="winning-number" type="number" />
+        <input class="winning-number" type="number" />
+        <input class="winning-number" type="number" />
       </div>
     </div>
     <div id="bonus-number">

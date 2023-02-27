@@ -13,7 +13,7 @@ export default class WinningNumbersView {
   }
 
   setWinningNumbersInput() {
-    $$('#winning-number').forEach((dom) => {
+    $$('.winning-number').forEach((dom) => {
       this.#winningNumbers.push(Number(dom.value));
     });
     this.#bonusNumber = Number($('#bonus').value);
