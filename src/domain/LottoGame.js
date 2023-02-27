@@ -15,6 +15,10 @@ export default class LottoGame {
     this.#lottos.push(lotto);
   }
 
+  resetLottoGame() {
+    this.#lottos = [];
+  }
+
   generateLottoNumbers(lottoDigits) {
     const numbers = new Set();
 
@@ -56,16 +60,13 @@ export default class LottoGame {
 
   getYieldRatio(totalPrizeMoney) {
     const purchaseAmount = this.#lottos.length * LOTTO_CONDITION.lottoPrice;
+    const winRatio = (totalPrizeMoney / purchaseAmount) * 100;
 
-    return (totalPrizeMoney / purchaseAmount) * 100;
+    return winRatio.toFixed(1);
   }
 
   getLottoQuantity() {
     return this.#lottos.length;
-  }
-
-  getEachLottoNumbers() {
-    return this.#lottos.map((lotto) => lotto.getNumbers());
   }
 }
 
