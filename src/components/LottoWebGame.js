@@ -61,14 +61,11 @@ export default function LottoWebGame($app) {
   };
 
   const restart = () => {
-    console.log('restart');
     closeModal();
     this.play();
   };
 
   const closeHandler = () => {
-    console.log('close');
-
     closeModal();
     this.state.step = STEP.ENTER;
   };
