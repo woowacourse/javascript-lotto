@@ -146,7 +146,7 @@ td {
   text-align: center;
 }
 
-.modal-background {
+#modal-background-section {
   display: flex;
   position: fixed;
   top: 0;

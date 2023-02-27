@@ -1,5 +1,5 @@
 const $resultModalSection = document.getElementById('result-modal-section');
-const $modalBackground = document.getElementsByClassName('modal-background')[0];
+const $modalBackground = document.getElementById('modal-background-section');
 const $winningCountCells = document.getElementsByClassName('winning-count-cell');
 const $yieldRate = document.getElementById('yield-rate');
 

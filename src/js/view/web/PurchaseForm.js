@@ -3,7 +3,7 @@ const $budgetInput = document.getElementById('budget-input');
 const $purchaseButton = document.getElementById('purchase-button');
 const $winningNumberInputForm = document.getElementById('winning-number-input-form');
 const $winningNumberInputs = document.getElementsByClassName('winning-number-input');
-const $modalBackground = document.getElementsByClassName('modal-background')[0];
+const $modalBackground = document.getElementById('modal-background-section');
 const $modalCloseButton = document.getElementById('modal-close-button');
 const $retryButton = document.getElementById('retry-button');
 
