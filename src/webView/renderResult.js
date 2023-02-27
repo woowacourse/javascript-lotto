@@ -1,14 +1,15 @@
 import { createDomWith, $ } from './domUtils.js';
 import { renderPurchasing } from './renderPurchasing.js';
 
-const keyHandler = ($app, lottoGame) => (event) => {
+const keyHandler = (event) => {
   if (event.key === 'Escape') {
     $('.modal-background').remove();
-    window.removeEventListener('keydown', keyHandler($app, lottoGame));
+    window.removeEventListener('keydown', keyHandler);
   }
 
   if (event.key === 'Enter') {
-    renderPurchasing($app, lottoGame);
+    renderPurchasing($('.app'));
+    window.removeEventListener('keydown', keyHandler);
   }
 };
 
@@ -20,7 +21,7 @@ export const renderResult = (
   const $modalBackground = createDomWith('div')({ className: 'modal-background' });
 
   $modalBackground.innerHTML = `
-  <div id="result-modal">
+  <div id="result-modal" autofocus>
     <section id="result-title">
       🏆 당첨 통계 🏆
       <span class="close-button">X</span>
@@ -70,5 +71,9 @@ export const renderResult = (
     $('.modal-background').remove();
   });
 
-  window.addEventListener('keydown', keyHandler($app, lottoGame));
+  $('#retry-button').addEventListener('click', () => {
+    renderPurchasing($app, lottoGame);
+  });
+
+  window.addEventListener('keydown', keyHandler);
 };

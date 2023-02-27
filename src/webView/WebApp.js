@@ -3,14 +3,13 @@ import { $ } from './domUtils.js';
 import { addPurchasingEvent } from './renderPurchasing';
 
 class WebApp {
-  constructor($app, lottoGame) {
+  constructor($app) {
     this.$app = $app;
-    this.lottoGame = lottoGame;
   }
 
   play() {
-    addPurchasingEvent(this.$app, this.lottoGame);
+    addPurchasingEvent(this.$app, new LottoGame());
   }
 }
-const webApp = new WebApp($('.app'), new LottoGame());
+const webApp = new WebApp($('.app'));
 export default webApp;

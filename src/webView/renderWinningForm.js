@@ -1,4 +1,4 @@
-import { createDomWith, appendDomByList, $, all$ } from './domUtils.js';
+import { createDomWith, $, all$ } from './domUtils.js';
 import { renderResult } from './renderResult.js';
 
 const submitHandler = ($app, lottoGame) => (event) => {
@@ -11,14 +11,14 @@ const submitHandler = ($app, lottoGame) => (event) => {
     const resultBoard = lottoGame.setWinningLotto(winningNumbers, bonusNumber).getGameResult();
     renderResult($app, lottoGame, resultBoard);
   } catch (error) {
-    console.dir(error);
+    alert(error.message);
   }
 };
 
 export const renderWinningForm = ($app, lottoGame) => {
   const $winningSection = createDomWith('section')({ id: 'winning-lotto' });
   $winningSection.innerHTML = `<p class="message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-  <form action="">
+  <form>
   <div id="number-message" class="message">
     <span>당첨 번호</span>
     <span>보너스 번호</span>
