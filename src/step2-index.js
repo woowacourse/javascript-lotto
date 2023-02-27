@@ -29,7 +29,6 @@ purchaseButton.addEventListener('click', () => {
     validatePurchaseAmount(money);
   } catch (error) {
     alert(error.message);
-    moneyInput.value = '';
     return;
   }
 
