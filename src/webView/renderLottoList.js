@@ -23,7 +23,6 @@ const getTicketCount = (lottoList) => {
 export const renderLottoList = (lottoList) => {
   const $ticketSection = createDomWith('section')({ id: 'lotto-issued' });
   const $ticketMessage = getTicketCount(lottoList);
-
   const $ticketContainer = createDomWith('div')({ id: 'ticket-list' });
 
   appendDomByList($ticketContainer)(lottoList)(makeTicketDom);

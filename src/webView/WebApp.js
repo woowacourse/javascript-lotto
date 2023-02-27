@@ -1,26 +1,16 @@
 import LottoGame from '../domain/LottoGame.js';
 import { $ } from './domUtils.js';
-import { renderLottoList } from './renderLottoList.js';
-import { renderWinningForm } from './renderWinningForm.js';
+import { addPurchasingEvent } from './renderPurchasing';
 
-const lottoGame = new LottoGame();
+class WebApp {
+  constructor($app, lottoGame) {
+    this.$app = $app;
+    this.lottoGame = lottoGame;
+  }
 
-const WebApp = function () {
-  const purchasingHandler = (event) => {
-  event.preventDefault();
-  try {
-    const money = Number($('#money').value);
-      const lottoList = lottoGame.setLottos(money).getLottos();
-      renderLottoList(lottoList);
-      renderWinningForm(lottoGame);
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-
-  const purchasingButton = $('#purchasing-button');
-  purchasingButton.addEventListener('click', purchasingHandler);
-};
-
-const webApp = new WebApp();
+  play() {
+    addPurchasingEvent(this.lottoGame);
+  }
+}
+const webApp = new WebApp($('#app'), new LottoGame());
 export default webApp;
