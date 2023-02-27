@@ -52,14 +52,16 @@ const resetLottoList = () => {
 };
 
 const renderLottoList = (lottoList) => {
-  lottoList.map((lottoInfo) => {
-    const lottoElement = document.createElement('li');
+  lottoListWrap.append(
+    ...lottoList.map((lottoInfo) => {
+      const lottoElement = document.createElement('li');
 
-    createTextElementAndAppend(LOTTO_EMOJI, lottoElement);
-    createTextElementAndAppend(lottoInfo, lottoElement);
+      createTextElementAndAppend(LOTTO_EMOJI, lottoElement);
+      createTextElementAndAppend(lottoInfo, lottoElement);
 
-    lottoListWrap.append(lottoElement);
-  });
+      return lottoElement;
+    })
+  );
 };
 
 // 결과 버튼 클릭시
