@@ -32,3 +32,15 @@
 .button-disabled {
   opacity: 0.6;
 }
+
+.text-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.description {
+  font-size: 12px;
+  opacity: 0.6;
+  padding: 4px 0px;
+}
