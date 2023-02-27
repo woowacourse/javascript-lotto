@@ -15,7 +15,7 @@
         </header>
         <main>
           <div id="main_contents">
-            <div id="title">🎱 내 번호 당첨 확인 🎱</div>
+            <p id="title">🎱 내 번호 당첨 확인 🎱</p>
             <form id="money_form">
               구입할 금액을 입력해주세요
               <input id = "input_money" type="text" name="money" placeholder="금액">
@@ -26,8 +26,8 @@
               <p></p>
               <div id = "buy_lottos"></div>
             </div>
-            <div id="win_contents" class="hidden">
-              <form id = "winNum_form">
+            <div id="win_contents" hidden>
+              <form id = "win_form">
                 지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
                 <p></p>
                 <div class="container">
@@ -37,15 +37,15 @@
                 <p></p>
                 <div class="container">
                   <span>
-                    <input class = "input_number" type="text" name="winNum[]">
-                    <input class = "input_number" type="text" name="winNum[]">
-                    <input class = "input_number" type="text" name="winNum[]">
-                    <input class = "input_number" type="text" name="winNum[]">
-                    <input class = "input_number" type="text" name="winNum[]">
-                    <input class = "input_number" type="text" name="winNum[]">
+                    <input class = "input_number" type="number" min="1" max="45" name="winNum">
+                    <input class = "input_number" type="number" min="1" max="45" name="winNum">
+                    <input class = "input_number" type="number" min="1" max="45" name="winNum">
+                    <input class = "input_number" type="number" min="1" max="45" name="winNum">
+                    <input class = "input_number" type="number" min="1" max="45" name="winNum">
+                    <input class = "input_number" type="number" min="1" max="45" name="winNum">
                   </span>
                   <span>
-                    <input class = "input_number" type="text" name="bonusNum">
+                    <input class = "input_number" type="number" min="1" max="45" name="bonusNum">
                   </span>
                 </div>
                 <input id ="btn_win_lotto" type="submit" value="결과 확인하기">
@@ -86,7 +86,7 @@
                   <td id="first"></td>
                 </tr>
               </table>
-              <p id="revenue_text">당신의 총 수익률응 어쩌고 입니다.</p>
+              <p id="revenue_text"></p>
               <button id="btn_restart">다시 시작하기</button>
             </div>
           </div> 
