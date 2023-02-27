@@ -12,13 +12,13 @@ const renderLottoList = (lottoNumbers) => {
   const paymentsContainer = document.querySelector('.payments-container');
 
   const lottosContainer = document.createElement('section');
-  lottosContainer.className = 'lottos-container';
+  lottosContainer.classList.add('lottos-container');
 
   lottoNumbers.forEach((lottoNumber) => {
     const lottoElement = document.createElement('div');
     const lottoNumberElement = document.createElement('p');
 
-    lottoElement.className = 'lotto-numbers';
+    lottoElement.classList.add('lotto-numbers');
     lottoNumberElement.innerText = `🎟️ ${lottoNumber.join(', ')}`;
 
     lottoElement.append(lottoNumberElement);
@@ -50,7 +50,7 @@ const renderProfitRate = (profitRate) => {
   const resultProfitRate = document.createElement('p');
 
   resultProfitRate.innerText = `당신의 총 수익률은 ${profitRate.toFixed(2)}% 입니다.`;
-  resultProfitRate.className = 'profit-rate';
+  resultProfitRate.classList.add('profit-rate');
 
   resultTable.after(resultProfitRate);
 };
