@@ -1,39 +1,3 @@
-/* Global */
-
-:root {
-  /* Color */
-
-  --color-white: #ffffff;
-  --color-gray-1: #fcfcfd;
-  --color-gray-2: #b4b4b4;
-  --color-gray-3: #8b8b8b;
-  --color-black: #000000;
-  --color-divider-border-color: #d4d4d4;
-
-  --color-primary-blue: #4e5ba6;
-  --color-dark-blue-1: #313d87;
-  --color-dark-blue-2: #414d94;
-  --color-dark-red: #b31919;
-
-  /* Font size */
-  --font-large: 48px;
-  --font-medium: 28px;
-  --font-regular: 18px;
-  --font-small: 16px;
-  --font-micro: 14px;
-
-  /* Font weight */
-  --weight-bold: 700;
-  --weight-semi-bold: 600;
-  --weight-regular: 400;
-
-  /* Size */
-  --size-border-radius: 4px;
-
-  /* Animation */
-  --animation-duration: 300ms;
-}
-
 /* Universal tags */
 * {
   margin: 0;

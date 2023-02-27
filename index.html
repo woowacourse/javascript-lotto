@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="HTML, CSS, JavaScript" />
     <meta name="author" content="Ain" />
-    <!-- <link rel="stylesheet" href="style.css" /> -->
   </head>
 
   <body>
-    <div class="hide">
+    <div>
       <header>
         <div class="lotto__title">🎱 행운의 로또</div>
       </header>
@@ -41,37 +40,9 @@
 
           <!-- Purchased Lotto List -->
 
-          <section class="user__lotto hide">
+          <section class="user__lotto">
             <p id="purchased__user__lotto">총 개를 구매하였습니다.</p>
             <ul class="user__lotto__tickets">
-              <li>
-                <span class="lotto__img">🎟️</span>
-                <span class="lotto__numbers">1, 2, 3, 4, 5, 6</span>
-              </li>
-              <li>
-                <span class="lotto__img">🎟️</span>
-                <span class="lotto__numbers">1, 2, 3, 4, 5, 6</span>
-              </li>
-              <li>
-                <span class="lotto__img">🎟️</span>
-                <span class="lotto__numbers">1, 2, 3, 4, 5, 6</span>
-              </li>
-              <li>
-                <span class="lotto__img">🎟️</span>
-                <span class="lotto__numbers">1, 2, 3, 4, 5, 6</span>
-              </li>
-              <li>
-                <span class="lotto__img">🎟️</span>
-                <span class="lotto__numbers">1, 2, 3, 4, 5, 6</span>
-              </li>
-              <li>
-                <span class="lotto__img">🎟️</span>
-                <span class="lotto__numbers">1, 2, 3, 4, 5, 6</span>
-              </li>
-              <li>
-                <span class="lotto__img">🎟️</span>
-                <span class="lotto__numbers">1, 2, 3, 4, 5, 6</span>
-              </li>
               <li>
                 <span class="lotto__img">🎟️</span>
                 <span class="lotto__numbers">1, 2, 3, 4, 5, 6</span>
@@ -101,7 +72,7 @@
 
           <!-- WinningNumber & BonusNumber -->
 
-          <section class="winning__numbers__container hide">
+          <section class="winning__numbers__container">
             <p id="winning__numbers__info">
               지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
             </p>
@@ -109,7 +80,7 @@
               <div class="input__winning__number">
                 <label class="number__info">당첨 번호</label>
                 <div class="input__numbers__box">
-                  <input type="number" class="number__box" required />
+                  <input type="number" class="number__box number__box1" required />
                   <input type="number" class="number__box" required />
                   <input type="number" class="number__box" required />
                   <input type="number" class="number__box" required />
@@ -133,7 +104,7 @@
 
           <!-- Result__Button -->
 
-          <button type="submit" class="result__btn hide">결과 확인하기</button>
+          <button type="submit" class="result__btn">결과 확인하기</button>
         </div>
       </main>
       <footer id="copyright__container">
@@ -143,7 +114,7 @@
 
     <!-- Modal -->
 
-    <div class="lotto__statistics__container">
+    <div class="lotto__statistics__container hide">
       <div class="lotto__modal">
         <button class="close__btn">X</button>
         <span class="lotto__statistics__title">🏆 당첨 통계 🏆</span>
