@@ -31,7 +31,7 @@ class WebController {
       this.validateBuyMoney(buyMoney);
       const lottoAmount = parseInt(buyMoney / SETTINGS.DIVIDE_MONEY_VALUE, 10);
       this.createLotto(lottoAmount);
-      this.printLotto(lottoAmount);
+      this.renderingLotto(lottoAmount);
       $(".input-money-btn").disabled = true;
       $(".hidden-area").classList.add("show");
     } catch (e) {
@@ -53,7 +53,7 @@ class WebController {
     }
   }
 
-  printLotto(lottoAmount) {
+  renderingLotto(lottoAmount) {
     $(".purchase-amount").innerHTML = `총 ${lottoAmount}개를 구매하였습니다.`;
 
     const lottoList = this.#lottoArray
@@ -80,6 +80,7 @@ class WebController {
     } catch (e) {
       alert(e.message);
       this.#winningLotto = [];
+      this.compareLottos();
     }
   }
 
@@ -107,6 +108,7 @@ class WebController {
     } catch (e) {
       alert(e.message);
       this.#bonusNumber = 0;
+      this.compareLottos();
     }
   }
 
@@ -127,10 +129,10 @@ class WebController {
     });
 
     lottos.compareLottosScore();
-    this.printResult(lottos);
+    this.renderingResult(lottos);
   };
 
-  printResult(lottos) {
+  renderingResult(lottos) {
     const scoreBoard = {
       ".three": SCORE.THREE,
       ".four": SCORE.FOUR,
@@ -147,7 +149,9 @@ class WebController {
 
     lottos.calculateBenefit();
     const totalBenefit = lottos.getBenefitRate($(".input-money").value);
-    $(".result-message").innerHTML = `당신의 총 수익률은 ${totalBenefit}%입니다.`;
+    $(
+      ".result-message"
+    ).innerHTML = `당신의 총 수익률은 ${totalBenefit}%입니다.`;
 
     this.resetScore(lottos);
     this.#winningLotto = [];
@@ -170,7 +174,7 @@ class WebController {
     $(".hidden-area").classList.remove("show");
     $(".lotto-result-wrap").classList.remove("show");
     $(".input-money-btn").disabled = false;
-    
+
     for (var i = 0; i < $$(".winning-number").length; i++) {
       $$(".winning-number")[i].value = "";
     }
