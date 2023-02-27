@@ -1,11 +1,13 @@
+import { $ } from '../utils/dom';
+
 import { CONSOLE_MESSAGE } from '../constants/constants';
 import validator from '../domain/validation/validator';
+import PurchasedLottoTemplate from './components/PurchasedLotto';
 
 export default class PurchasePriceView {
   constructor() {
-    this.form = document.getElementById('purchase-lotto-form');
-    this.input = document.getElementById('price-input');
-    this.purchaseResultSection = document.getElementById('purchase-result');
+    this.form = $('#purchase-lotto-form');
+    this.input = $('#price-input');
   }
 
   addSubmitEvent(submitHandler) {
@@ -25,23 +27,15 @@ export default class PurchasePriceView {
   }
 
   renderPurchaseResult(lottoCount, lottos) {
-    const msg = CONSOLE_MESSAGE.showLottoCount(lottoCount);
-    const purchaseCountSpan = document.createElement('span');
-    purchaseCountSpan.setAttribute('id', 'purchase-count');
-    purchaseCountSpan.innerText = `${msg}`;
+    const lottoCountMsg = CONSOLE_MESSAGE.showLottoCount(lottoCount);
+    $('#purchase-count').innerText = `${lottoCountMsg}`;
 
-    const lottosDiv = document.createElement('div');
-    lottosDiv.setAttribute('id', 'lottos');
-
-    lottos.forEach((lotto) => {
-      const lottoSpan = document.createElement('span');
-      lottoSpan.innerText = `🎟️ ${lotto.getNumbers().join(', ')}`;
-      lottosDiv.appendChild(lottoSpan);
-      // console.log(`[${lotto.getNumbers().join(', ')}]`);
-    });
-
-    this.purchaseResultSection.appendChild(purchaseCountSpan);
-    this.purchaseResultSection.appendChild(lottosDiv);
+    lottos.forEach((lotto) =>
+      $('#lottos').insertAdjacentHTML(
+        'afterbegin',
+        PurchasedLottoTemplate(lotto)
+      )
+    );
   }
 
   resetInputValue() {
@@ -49,10 +43,8 @@ export default class PurchasePriceView {
   }
 
   resetPurchaseResult() {
-    const msgDiv = document.getElementById('purchase-result');
-    msgDiv.innerHTML = '';
-
-    const lottosDiv = document.getElementById('winning-lotto');
-    lottosDiv.innerHTML = '';
+    this.resetInputValue();
+    $('#purchase-count').innerText = '';
+    $('#lottos').innerHTML = '';
   }
 }
