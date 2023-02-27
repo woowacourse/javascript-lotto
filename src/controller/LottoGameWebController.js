@@ -10,6 +10,7 @@ class LottoGameWebController {
   }
 
   handleClickPurchaseButton = (event) => {
+    console.log(event);
     event.preventDefault();
     const money = View.getMoneyInput();
 

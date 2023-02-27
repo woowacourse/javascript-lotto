@@ -215,6 +215,10 @@ li {
   text-align: center;
 }
 
+#result-button {
+  margin-top: 16px;
+}
+
 /* 모달 창 */
 #modal-background {
   display: none;
