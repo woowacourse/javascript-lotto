@@ -121,11 +121,11 @@ main {
 
 #purchase-result {
   height: 300px;
+  overflow: auto;
 }
 
 #lottos {
   display: flex;
-  overflow: auto;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -173,14 +173,17 @@ main {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  visibility: hidden;
 }
 
+#modal-dialog h2 {
+  margin-bottom: 95%;
+}
 #modal-close-btn {
   position: relative;
   width: 30px;
   height: 30px;
   left: 45%;
-  bottom: 35%;
 }
 
 #modal-table {
@@ -193,10 +196,9 @@ main {
 }
 
 #modal-profit {
-  margin-top: 100px;
   font-weight: bold;
 }
 
 #modal-restart-btn {
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
