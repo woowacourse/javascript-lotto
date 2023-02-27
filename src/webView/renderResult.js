@@ -1,17 +1,22 @@
 import { createDomWith, $ } from './domUtils.js';
+import { renderPurchasing } from './renderPurchasing.js';
 
-const keyHandler = (event) => {
+const keyHandler = ($app, lottoGame) => (event) => {
   if (event.key === 'Escape') {
     $('.modal-background').remove();
-    window.removeEventListener('keydown', keyHandler);
+    window.removeEventListener('keydown', keyHandler($app, lottoGame));
   }
 
   if (event.key === 'Enter') {
-    window.location.reload();
+    renderPurchasing($app, lottoGame);
   }
 };
 
-export const renderResult = ({ first, second, third, fourth, fifth, lottoYield }) => {
+export const renderResult = (
+  $app,
+  lottoGame,
+  { first, second, third, fourth, fifth, lottoYield }
+) => {
   const $modalBackground = createDomWith('div')({ className: 'modal-background' });
 
   $modalBackground.innerHTML = `
@@ -60,10 +65,10 @@ export const renderResult = ({ first, second, third, fourth, fifth, lottoYield }
     </section>
   </div>`;
 
-  $('.app').appendChild($modalBackground);
+  $app.appendChild($modalBackground);
   $('.close-button').onclick = () => {
     $('.modal-background').remove();
   };
 
-  window.addEventListener('keydown', keyHandler);
+  window.addEventListener('keydown', keyHandler($app, lottoGame));
 };

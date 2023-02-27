@@ -9,7 +9,7 @@ class WebApp {
   }
 
   play() {
-    addPurchasingEvent(this.lottoGame);
+    addPurchasingEvent(this.$app, this.lottoGame);
   }
 }
 const webApp = new WebApp($('#app'), new LottoGame());

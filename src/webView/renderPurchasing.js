@@ -2,21 +2,21 @@ import { $ } from './domUtils.js';
 import { renderLottoList } from './renderLottoList.js';
 import { renderWinningForm } from './renderWinningForm.js';
 
-const purchasingHandler = (lottoGame) => (event) => {
+const purchasingHandler = ($app, lottoGame) => (event) => {
   event.preventDefault();
   try {
     const money = Number($('#money').value);
     const lottoList = lottoGame.setLottos(money).getLottos();
     renderLottoList(lottoList);
-    renderWinningForm(lottoGame);
+    renderWinningForm($app, lottoGame);
   } catch (error) {
-    console.dir(error);
+    alert(error.message);
   }
 };
 
-export const addPurchasingEvent = (lottoGame) => {
+export const addPurchasingEvent = ($app, lottoGame) => {
   const purchasingButton = $('#purchasing-button');
-  purchasingButton.addEventListener('click', purchasingHandler(lottoGame));
+  purchasingButton.addEventListener('click', purchasingHandler($app, lottoGame));
 };
 
 export const renderPurchasing = ($app, lottoGame) => {
@@ -28,5 +28,5 @@ export const renderPurchasing = ($app, lottoGame) => {
           <button id="purchasing-button" type="submit">구입</button>
         </form>
       </section>`;
-  addPurchasingEvent(lottoGame);
+  addPurchasingEvent($app, lottoGame);
 };

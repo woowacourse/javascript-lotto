@@ -1,7 +1,7 @@
 import { createDomWith, appendDomByList, $, all$ } from './domUtils.js';
 import { renderResult } from './renderResult.js';
 
-const submitHandler = (lottoGame) => (event) => {
+const submitHandler = ($app, lottoGame) => (event) => {
   event.preventDefault();
   try {
     const winningNumbers = Array.from(all$('#winning-numbers>input')).map((elem) =>
@@ -9,13 +9,13 @@ const submitHandler = (lottoGame) => (event) => {
     );
     const bonusNumber = Number($('#bonus-number>input').value);
     const resultBoard = lottoGame.setWinningLotto(winningNumbers, bonusNumber).getGameResult();
-    renderResult(resultBoard);
+    renderResult($app, lottoGame, resultBoard);
   } catch (error) {
-    alert(error);
+    alert(error.message);
   }
 };
 
-export const renderWinningForm = (lottoGame) => {
+export const renderWinningForm = ($app, lottoGame) => {
   const $winningSection = createDomWith('section')({ id: 'winning-lotto' });
 
   const $message = createDomWith('p')({
@@ -33,7 +33,7 @@ export const renderWinningForm = (lottoGame) => {
   const $lottoContainer = createDomWith('div')({ id: 'number-box' });
   const $lottoWinningContainer = createDomWith('div')({ id: 'winning-numbers' });
 
-  appendDomByList($lottoWinningContainer)(Array.from({ length: 6 }))((elem) =>
+  appendDomByList($lottoWinningContainer)(Array.from({ length: 6 }))((_) =>
     createDomWith('input')({ type: 'text', minlength: '1', maxlength: '2' })
   );
 
@@ -55,5 +55,5 @@ export const renderWinningForm = (lottoGame) => {
 
   $('#purchasing-button').disabled = 'disabled';
 
-  $submitButton.addEventListener('click', submitHandler(lottoGame));
+  $submitButton.addEventListener('click', submitHandler($app, lottoGame));
 };
