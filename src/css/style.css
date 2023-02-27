@@ -1,0 +1,256 @@
+:root {
+  /* font */
+  --title-font: 24px Roboto 800;
+  --subtitle-font: 20px Roboto 600;
+  --body-font: 15px Roboto 400;
+  --placeholder-font: 15px Roboto 400;
+  --caption-font: 14px Roboto 700;
+  --button-font: 14px Roboto 700;
+
+  /* color */
+  --primary-color: #4e5ba6;
+  --white: #ffffff;
+  --light-gray: #fcfcfd;
+  --gray: #b4b4b4;
+  --dark-gray: #8b8b8b;
+  --black: #000000;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font: var(--title-font);
+}
+
+body {
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+h1 {
+  margin-left: 130px;
+}
+
+footer {
+  display: flex;
+  height: 80px;
+  border-top: 1px solid var(--gray);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  width: 382px;
+  height: 36px;
+  margin: auto auto 28px auto;
+}
+
+.ticket {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.app {
+  width: 414px;
+  height: 727px;
+  margin: 84px auto 84px auto;
+  border: solid 1px var(--gray);
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+section {
+  margin: 1rem;
+}
+
+.message {
+  margin-bottom: 1rem;
+}
+
+#ticket-list {
+  height: 300px;
+  overflow: scroll;
+}
+
+#copyright {
+  font: var(--caption-font);
+  color: var(--primary-color);
+
+  line-height: 1rem;
+  text-align: center;
+}
+
+#number-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+#number-message {
+  display: flex;
+  justify-content: space-between;
+}
+#winning-numbers > input,
+#bonus-number > input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--gray);
+  margin: 0px 1px 1px 1px;
+  font: var(--placeholder-font);
+  text-align: center;
+}
+
+button,
+dialog {
+  all: unset;
+  box-sizing: border-box;
+
+  padding: 3px;
+  font: var(--button-font);
+  height: 2rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  letter-spacing: 0.1px;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+#money::placeholder {
+  font: var(--placeholder-font);
+}
+
+#money {
+  box-sizing: border-box;
+  height: 1.5rem;
+  padding: 3px;
+  height: 2rem;
+  flex-grow: 1;
+  margin-right: 10px;
+  padding: 0.5rem;
+}
+
+#money-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#result-button {
+  cursor: pointer;
+  margin: 2rem auto 1rem auto;
+  text-align: center;
+  width: 382px;
+}
+.ticket {
+  display: flex;
+  align-items: center;
+}
+
+.ticket > span {
+  font: var(--body-font);
+}
+
+#result-modal {
+  width: 500px;
+  height: 700px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: white;
+  border-radius: 4px;
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+#result-title {
+  margin: 40px 0;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+#result-table {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#result-head {
+  font-weight: bold;
+  border-top: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.result-row {
+  font-size: 1.2rem;
+  width: 100%;
+  height: 50px;
+
+  margin-bottom: 10px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.result-row > div {
+  width: 130px;
+  margin: 0px;
+}
+
+#result-earning {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#retry-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#retry-button {
+  font: var(--button-font);
+  cursor: pointer;
+  margin: 30px;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  letter-spacing: 1.25px;
+  z-index: 3;
+}
+
+.close-button {
+  cursor: pointer;
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+}

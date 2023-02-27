@@ -35,6 +35,10 @@ class LottoGame {
   }
 
   setLottos(money) {
+    if (Number.isNaN(money)) {
+      throw new Error(`\n[ERROR] 구입 금액은 숫자로만 입력 가능합니다. \n`);
+    }
+
     if (money < this.SETTINGS.price) {
       throw new Error(
         `\n[ERROR] 로또 가격은 ${this.SETTINGS.price}원 입니다. 최소 ${this.SETTINGS.price}워 이상 금액을 입력해주세요.\n`
