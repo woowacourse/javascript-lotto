@@ -5,9 +5,9 @@ import View from '../view/webView/View';
 class LottoGameWebController {
   #lottoGame = new LottoGame();
 
-  init = () => {
+  constructor() {
     this.bindEventListener();
-  };
+  }
 
   handleClickPurchaseButton = (event) => {
     event.preventDefault();
@@ -89,5 +89,4 @@ class LottoGameWebController {
   };
 }
 
-const controller = new LottoGameWebController();
-controller.init();
+new LottoGameWebController();
