@@ -55,7 +55,7 @@ const afterEnteredWinning = (e) => {
 
 const saveMoney = () => {
   try {
-    const money = new Money(Number(moneyInput.value));
+    const money = new Money(moneyInput.valueAsNumber);
     lottoMachine.setMoney(money);
     purchaseButton.setAttribute('disabled', 'disabled');
     moneyInput.classList.remove('invalid');
