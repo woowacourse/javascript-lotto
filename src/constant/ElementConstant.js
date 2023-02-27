@@ -34,8 +34,4 @@ const ATTRIBUTE = {
   TRUE: "true",
 };
 
-const ELEMENT = {
-  P: "p",
-};
-
-module.exports = { HTML_ELEMENTS, ACTION, ATTRIBUTE, ELEMENT };
+module.exports = { HTML_ELEMENTS, ACTION, ATTRIBUTE };

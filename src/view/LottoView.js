@@ -1,6 +1,5 @@
 const { MESSAGES } = require("../constant/Constant");
-const { HTML_ELEMENTS, ELEMENT } = require("../constant/ElementConstant");
-const { CREATE } = require("../util/DOM");
+const { HTML_ELEMENTS } = require("../constant/ElementConstant");
 
 const LottoView = {
   printLottoCount(lottoCount) {
@@ -9,13 +8,11 @@ const LottoView = {
   },
 
   printLottos(lottos) {
-    HTML_ELEMENTS.BUY_LOTTOS.innerHTML = "";
-    lottos.forEach((lotto) => {
-      const lottoDiv = CREATE(ELEMENT.P);
-      lottoDiv.innerText = `🎟️ ${lotto.numbers.join(", ")}`;
-
-      HTML_ELEMENTS.BUY_LOTTOS.appendChild(lottoDiv);
-    });
+    const result = lottos
+      .map((lotto) => `🎟️ ${lotto.numbers.join(", ")}\n\n`)
+      .join("");
+    const buyLottos = document.getElementById("buy_lottos");
+    buyLottos.innerText = result;
   },
 
   printRankResult(rankResult) {

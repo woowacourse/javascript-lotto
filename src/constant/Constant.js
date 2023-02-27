@@ -28,6 +28,17 @@ const RANK = {
   LOSER: 0,
 };
 
+const RANK_BY_CORRECT_COUNT = {
+  6: RANK.FIRST,
+  BONUS: RANK.SECOND,
+  5: RANK.THIRD,
+  4: RANK.FOURTH,
+  3: RANK.FIFTH,
+  2: RANK.LOSER,
+  1: RANK.LOSER,
+  0: RANK.LOSER,
+};
+
 const LOTTO = {
   MAX: 45,
   MIN: 1,
@@ -48,6 +59,7 @@ module.exports = {
   MESSAGES,
   ERROR_MESSAGES,
   RANK,
+  RANK_BY_CORRECT_COUNT,
   LOTTO,
   PRIZE,
   DECIMAL,
