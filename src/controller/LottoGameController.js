@@ -57,7 +57,6 @@ export default class LottoGameController {
     this.calculateRanks();
     const ranks = this.#model.lottos.getAllRanks();
     const profitRate = this.#model.lottos.getProfitRate();
-    console.log(ranks, profitRate);
 
     this.#view.gameResultView.render(ranks, profitRate);
     this.#view.gameResultView.addRestartClickEvent(
