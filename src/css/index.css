@@ -2,7 +2,7 @@
 
 :root {
   --base-color: #4E5BA6;
-  --color-whilt: #FFFFFF;
+  --color-white: #FFFFFF;
   --color-light-gray: #B4B4B4;
 }
 
@@ -34,13 +34,13 @@ header {
   left: 130px;
   top: 14px;
   font: normal 900 24px/36px 'Roboto';
-  color: var(--color-whilt);
+  color: var(--color-white);
 }
 
 #title {
   position: absolute;
   left: 50%;
-  top: 7%;
+  top: 3%;
   transform: translate(-50%, -7%);
   width: 231px;
   height: 24px;
@@ -70,7 +70,7 @@ header {
   border: none;
   border-radius: 4px;
   background: var(--base-color);
-  color: var(--color-whilt);
+  color: var(--color-white);
   font: normal 700 14px 'Roboto';
 }
 
@@ -120,12 +120,8 @@ header {
   border: none;
   border-radius: 4px;
   background: var(--base-color);
-  color: var(--color-whilt);
+  color: var(--color-white);
   font: normal 400 14px 'Roboto';
-}
-
-.hidden {
-  display: none;
 }
 
 footer {

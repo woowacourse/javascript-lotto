@@ -28,7 +28,7 @@ const Validation = {
       bonusNumber > LOTTO.MAX ||
       isNaN(bonusNumber)
     ) {
-      throw new Error(ERROR_MESSAGES.isOverRangeBouns);
+      throw new Error(ERROR_MESSAGES.isOverRangeBonus);
     }
     if (winLotto.includes(bonusNumber)) {
       throw new Error(ERROR_MESSAGES.isSameBonusNumber);
