@@ -29,13 +29,12 @@ body {
 
   font-weight: 700;
   font-size: 14px;
-  color: white;
+  color: #ffffff;
   letter-spacing: 1.25px;
 }
 
 .normal-font {
   font-family: 'Roboto';
-  font-weight: 400;
   font-size: 15px;
   letter-spacing: 0.5px;
 }
@@ -55,7 +54,7 @@ body {
 .home-wrapper {
   background: #f5f5f5;
   padding: 4rem;
-  height: 80vh;
+  overflow-x: hidden;
 }
 
 .home {
@@ -78,7 +77,6 @@ body {
 .sub-title {
   margin-bottom: 8px;
 
-  font-weight: 400;
   font-size: 15px;
   letter-spacing: 0.5px;
 }
@@ -157,7 +155,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  height: 130vh;
 
   position: absolute;
   top: 0;
@@ -221,8 +219,6 @@ body {
   width: 33%;
 
   text-align: center;
-
-  font-weight: 400;
   font-size: 15px;
 }
 
@@ -234,7 +230,6 @@ body {
 }
 
 .copy-right-wrapper {
-  width: 100vw;
   height: 4.5rem;
 
   background: #f5f5f5;
@@ -244,8 +239,9 @@ body {
   font-size: 14px;
   letter-spacing: 1.25px;
   color: #4e5ba6;
+  overflow-x: hidden;
 }
 
 .invalid {
-  border: 2px solid red;
+  border: 2px solid #ff0000;
 }
