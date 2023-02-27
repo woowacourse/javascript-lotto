@@ -23,7 +23,7 @@ const afterPurchaseShowElement =
   document.getElementsByClassName('after-purchase')[0];
 const lottoListWrap = document.getElementsByClassName('lotto-list')[0];
 const purchaseLottoCount = document.getElementById('lotto-purchase-count');
-const winNumberElement = document.getElementsByClassName('winNumber');
+const winNumberElement = [...document.getElementsByClassName('winNumber')];
 const bonusNumberElement = document.getElementById('bonusNumber');
 const modal = document.getElementsByClassName('result-modal-background')[0];
 const ranks = document.getElementsByClassName('rank');
@@ -72,9 +72,7 @@ const createTextElementAndAppend = (text, parent) => {
 checkResultButton.addEventListener('click', () => result());
 
 const result = () => {
-  const winNumber = Array.from(winNumberElement).map(
-    (element) => element.value
-  );
+  const winNumber = winNumberElement.map((element) => element.value);
   const bonusNumber = bonusNumberElement.value;
   controller.setWinNumber(winNumber, bonusNumber);
 
