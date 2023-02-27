@@ -33,8 +33,8 @@ const ViewController = {
     try {
       lottoGame.lottos = this.readMoney();
 
-      LottoView.printLottoCount(lottoGame.lottoCount);
-      LottoView.printLottos(lottoGame.lottos);
+      LottoView.showLottoCount(lottoGame.lottoCount);
+      LottoView.showLottos(lottoGame.lottos);
 
       HTML_ELEMENTS.BTN_MONEY.disabled = ATTRIBUTE.TRUE;
       HTML_ELEMENTS.WIN_CONTENTS.hidden = false;
@@ -74,8 +74,8 @@ const ViewController = {
     const revenue = this.lottoGame.calculateRevenueRate(rankResult);
 
     HTML_ELEMENTS.MODAL.style.display = ATTRIBUTE.BLOCK;
-    LottoView.printRankResult(rankResult);
-    LottoView.printRevenue(revenue);
+    LottoView.showRankResult(rankResult);
+    LottoView.showRevenue(revenue);
   },
 
   readWinNumbers() {

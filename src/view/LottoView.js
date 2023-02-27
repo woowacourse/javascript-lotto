@@ -2,12 +2,12 @@ const { MESSAGES } = require("../constant/Constant");
 const { HTML_ELEMENTS } = require("../constant/ElementConstant");
 
 const LottoView = {
-  printLottoCount(lottoCount) {
+  showLottoCount(lottoCount) {
     HTML_ELEMENTS.BUY_COUNT_TEXT.innerText =
       MESSAGES.total + lottoCount + MESSAGES.printLottoCount;
   },
 
-  printLottos(lottos) {
+  showLottos(lottos) {
     const result = lottos
       .map((lotto) => `🎟️ ${lotto.numbers.join(", ")}\n\n`)
       .join("");
@@ -15,15 +15,21 @@ const LottoView = {
     buyLottos.innerText = result;
   },
 
-  printRankResult(rankResult) {
-    HTML_ELEMENTS.FIRST.innerText = rankResult[1] + MESSAGES.pieces;
-    HTML_ELEMENTS.SECOND.innerText = rankResult[2] + MESSAGES.pieces;
-    HTML_ELEMENTS.THIRD.innerText = rankResult[3] + MESSAGES.pieces;
-    HTML_ELEMENTS.FOURTH.innerText = rankResult[4] + MESSAGES.pieces;
-    HTML_ELEMENTS.FIFTH.innerText = rankResult[5] + MESSAGES.pieces;
+  showRankResult(rankResult) {
+    const rankText = [
+      HTML_ELEMENTS.FIRST,
+      HTML_ELEMENTS.SECOND,
+      HTML_ELEMENTS.THIRD,
+      HTML_ELEMENTS.FOURTH,
+      HTML_ELEMENTS.FIFTH,
+    ];
+
+    rankText.forEach((rankText, i) => {
+      rankText.innerText = rankResult[i + 1] + MESSAGES.pieces;
+    });
   },
 
-  printRevenue(revenue) {
+  showRevenue(revenue) {
     HTML_ELEMENTS.REVENUE_TEXT.innerText =
       MESSAGES.printRevenue + revenue + MESSAGES.printFinal;
   },
