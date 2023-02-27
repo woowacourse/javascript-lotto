@@ -73,9 +73,9 @@ const webView = {
     $('#inputNumberContainer').classList.add(HIDDEN);
     $('#app').classList.remove(STOP_SCROLL);
     webView.removeLottos();
-    $$('.winning-number').forEach(
-      (winningInput) => (winningInput.value = EMPTY)
-    );
+    $$('.winning-number').forEach((winningInput) => {
+      winningInput.value = EMPTY;
+    });
     $('#bonus').value = EMPTY;
     $('#moneyAmount').value = EMPTY;
     webView.focusMoneyAmount();
