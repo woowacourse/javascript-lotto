@@ -1,4 +1,4 @@
-import LottoGame from '../src/domain/feature/LottoGame';
+import LottoGame from '../src/domain/lottoGame/LottoGame';
 import Validator from '../src/domain/Validator';
 
 describe('LottoGame 클래스 테스트', () => {
@@ -17,7 +17,7 @@ describe('LottoGame 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  test('로또 구매 금액이 1000원 단위가 아닐 경우 에러', () => {
+  test('로또 구매 금액이 1000원 단위가 아닐 경우 에러가 발생한다.', () => {
     expect(() => {
       const lottoGame = new LottoGame();
       lottoGame.purchaseLottos(1200);
@@ -33,7 +33,7 @@ describe('LottoGame 클래스 테스트', () => {
     }).toBeTruthy();
   });
 
-  test('재시작 명령어 입력 값은 "y" 혹은 "n"이 아닌 다른 값일 경우 에러', () => {
+  test('재시작 명령어 입력 값은 "y" 혹은 "n"이 아닌 다른 값일 경우 에러가 발생한다.', () => {
     expect(() => {
       const lottoGame = new LottoGame();
       lottoGame.determineRetry('a');

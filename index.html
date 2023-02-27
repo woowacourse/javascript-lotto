@@ -6,11 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h1>🎱 행운의 로또</h1>
+      </header>
+      <main>
+        <section id="game-container">
+          <h1>🎱 내 번호 당첨 확인 🎱</h1>
+          <div id="money-input-container">
+            <h3 class="game-message">구입할 금액을 입력해주세요.</h3>
+            <form id="purchase-form">
+              <input id="money-input" type="number" placeholder="금액" />
+              <button id="purchase-button" class="my-button">구입</button>
+            </form>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <div id="modal-background">
+      <section id="modal-container">
+        <button id="modal-close-button">✕</button>
+        <h1>🏆 당첨 통계 🏆</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>일치 개수</th>
+              <th>당첨금</th>
+              <th>당첨 갯수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td><span id="fifth-rank-count">0</span>개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td><span id="fourth-rank-count">0</span>개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td><span id="third-rank-count">0</span>개</td>
+            </tr>
+            <tr>
+              <td>5개 + 보너스볼</td>
+              <td>30,000,000</td>
+              <td><span id="second-rank-count">0</span>개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td><span id="first-rank-count">0</span>개</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>당신의 총 수익률은 <span id="profit-rate"></span>%입니다.</h3>
+        <button id="reset-button" class="my-button">다시 시작하기</button>
+      </section>
+    </div>
+    <template id="lotto-list-template">
+      <section id="lotto-list-container">
+        <h3 class="game-message">총 <span id="lotto-count">0</span>개를 구매하셨습니다.</h3>
+        <ul id="lotto-list"></ul>
+      </section>
+    </template>
+    <template id="winning-lotto-template">
+      <form id="winning-lotto-form">
+        <h3 class="game-message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h3>
+        <section id="number-input-container">
+          <article id="lotto-number-container" class="number-container">
+            <h3 class="game-message">당첨 번호</h3>
+            <div id="lotto-number-input-list">
+              <input id="first-number" class="lotto-number-input winning-number" type="number" />
+              <input id="second-number" class="lotto-number-input winning-number" type="number" />
+              <input id="third-number" class="lotto-number-input winning-number" type="number" />
+              <input id="fourth-number" class="lotto-number-input winning-number" type="number" />
+              <input id="fifth-number" class="lotto-number-input winning-number" type="number" />
+              <input id="sixth-number" class="lotto-number-input winning-number" type="number" />
+            </div>
+          </article>
+          <article id="bonus-number-container" class="number-container">
+            <h3 class="game-message">보너스 번호</h3>
+            <input id="bonus-number" class="lotto-number-input bonus-number" type="number" />
+          </article>
+        </section>
+        <button id="result-button" class="my-button">결과 확인하기</button>
+      </form>
+    </template>
   </body>
 </html>

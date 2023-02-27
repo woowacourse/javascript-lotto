@@ -1,5 +1,5 @@
-import { MESSAGE, MESSAGE_METHOD } from '../utils/constants.js';
-import readLine from '../utils/readLine.js';
+import { MESSAGE, MESSAGE_METHOD } from '../../utils/constants.js';
+import readLine from '../../utils/readLine.js';
 
 const OutputView = {
   printPurchasedLottoCount(count) {

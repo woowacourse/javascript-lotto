@@ -1,6 +1,6 @@
 import Validator from '../Validator.js';
-import Lotto from '../object/Lotto.js';
-import WinningLotto from '../object/WinningLotto.js';
+import Lotto from '../lotto/Lotto.js';
+import WinningLotto from '../lotto/WinningLotto.js';
 import { COMMAND, LOTTO_PRICE, PRIZE, LOTTO_NUMBER } from '../../utils/constants.js';
 
 class LottoGame {
@@ -52,6 +52,7 @@ class LottoGame {
   }
 
   #validateMoneyInput(money) {
+    Validator.validateIsEmpty(money);
     Validator.validateNumberType(money);
     Validator.validateExactUnit(money, LOTTO_PRICE);
   }

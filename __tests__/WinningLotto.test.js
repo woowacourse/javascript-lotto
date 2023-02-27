@@ -1,5 +1,5 @@
-import WinningLotto from '../src/domain/object/WinningLotto';
-import Lotto from '../src/domain/object/Lotto';
+import WinningLotto from '../src/domain/lotto/WinningLotto';
+import Lotto from '../src/domain/lotto/Lotto';
 import Validator from '../src/domain/Validator';
 
 describe('WinningLotto 클래스 테스트', () => {
@@ -22,7 +22,7 @@ describe('WinningLotto 클래스 테스트', () => {
     }).toBeTruthy();
   });
 
-  test('보너스 번호가 당첨번호와 중복될 경우 에러', () => {
+  test('보너스 번호가 당첨번호와 중복될 경우 에러가 발생한다.', () => {
     const lottoNumber = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 6;
 
@@ -31,7 +31,7 @@ describe('WinningLotto 클래스 테스트', () => {
     }).toThrow();
   });
 
-  test('보너스 번호가 1~45 사이의 숫자가 아니라면 예외 처리', () => {
+  test('보너스 번호가 1~45 사이의 숫자가 아니라면 에러가 발생한다.', () => {
     const lottoNumber = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 46;
 

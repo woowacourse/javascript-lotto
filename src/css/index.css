@@ -1,0 +1,300 @@
+/* reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  box-sizing: border-box;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* 레이아웃 */
+html,
+body {
+  height: 100%;
+
+  background: #fcfcfd;
+
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+header {
+  display: flex;
+
+  height: 64px;
+  padding: 0 12vw;
+
+  background: #4e5ba6;
+  align-items: center;
+}
+
+header > h1 {
+  color: #ffffff;
+}
+
+main {
+  display: flex;
+  min-height: calc(100% - 144px);
+
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  display: flex;
+
+  height: 80px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+
+  align-items: center;
+  justify-content: center;
+}
+
+footer > p {
+  font: 700 14px 'Roboto';
+  letter-spacing: 1.25px;
+  color: #4e5ba6;
+}
+
+/* 기본 태그 */
+h1 {
+  font: 700 24px 'Roboto';
+}
+
+h2 {
+  font: 600 20px 'Roboto';
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.my-button {
+  width: 100%;
+  height: 36px;
+
+  background: #4e5ba6;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
+
+  font-weight: 700;
+  font-size: 14px;
+  color: #ffffff;
+
+  cursor: pointer;
+}
+
+#app {
+  height: 100%;
+}
+
+#game-container {
+  display: flex;
+
+  min-width: 414px;
+  min-height: 727px;
+  margin: 30px;
+  padding: 32px 16px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+
+  background: #ffffff;
+
+  flex-direction: column;
+  gap: 28px;
+}
+
+#game-container > h1 {
+  text-align: center;
+}
+
+.game-message {
+  font: 400 15px/24px 'Roboto';
+}
+
+/* 구매 금액 입력 */
+#input-money-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#purchase-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#money-input {
+  width: 310px;
+  height: 36px;
+
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+
+  padding: 0 8px;
+}
+
+#purchase-form > button {
+  width: 56px;
+}
+
+/* 로또 리스트 */
+#lotto-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#lotto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ticket-emoji {
+  font-size: 34px;
+  line-height: 36px;
+}
+
+.lotto-number {
+  font: 400 15px/24px 'Roboto';
+  letter-spacing: 0.5px;
+}
+
+/* 로또 번호 입력 */
+#winning-lotto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.number-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#number-input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#lotto-number-input-list {
+  display: flex;
+  gap: 8px;
+}
+
+#bonus-number {
+  margin-left: auto;
+}
+
+.lotto-number-input {
+  width: 34px;
+  height: 36px;
+
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+
+  text-align: center;
+}
+
+#result-button {
+  margin-top: 16px;
+}
+
+/* 모달 창 */
+#modal-background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#modal-container {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 350px;
+  height: 500px;
+  padding: 32px 16px;
+  border-radius: 4px;
+
+  background-color: #ffffff;
+
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  transform: translate(-50%, -50%);
+}
+
+#modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+
+  width: 16px;
+  height: 16px;
+  border: 0;
+
+  background: none;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 8px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+  font: 600 15px/24px 'Roboto';
+}
+
+td {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  text-align: center;
+
+  font: 400 15px/24px 'Roboto';
+}
+
+#profit-message {
+  font: 600 15px/24px 'Roboto';
+}
+
+#lotto-template-target {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}

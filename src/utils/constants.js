@@ -5,6 +5,7 @@ export const ERROR = Object.freeze({
   BONUS_NUMBER_DUPLICATED: '[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.',
   BONUS_NUMBER_RANGE: '[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.',
   NUMBER_TYPE: '[ERROR] 입력 값은 숫자여야 합니다.',
+  IS_EMPTY: '[ERROR] 값을 입력해주세요.',
   RETRY_COMMAND: '[ERROR] y, n중에 명령어를 입력해야 합니다.',
 });
 

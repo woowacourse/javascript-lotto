@@ -1,6 +1,6 @@
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
-import LottoGame from '../domain/feature/LottoGame.js';
+import InputView from '../view/consoleView/InputView.js';
+import OutputView from '../view/consoleView/OutputView.js';
+import LottoGame from '../domain/lottoGame/LottoGame.js';
 
 class LottoGameConsoleController {
   #lottoGame;
@@ -42,7 +42,7 @@ class LottoGameConsoleController {
   async generateWinningLottoNumbers() {
     try {
       const winningLottoString = await InputView.readWinningLottoNumbers();
-      const winningLottoNumber = winningLottoString.split(',').map((number) => Number(number));
+      const winningLottoNumber = winningLottoString.split(',').map(Number);
       const bonusNumber = await InputView.readBonusLottoNumber();
       this.#lottoGame.generateWinningLotto(winningLottoNumber, bonusNumber);
     } catch (error) {

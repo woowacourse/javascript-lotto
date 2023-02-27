@@ -28,6 +28,10 @@ const Validator = {
       throw new Error(ERROR.BONUS_NUMBER_RANGE);
   },
 
+  validateIsEmpty(input) {
+    if (input === '' || input === 0) throw new Error(ERROR.IS_EMPTY);
+  },
+
   validateNumberType(input) {
     if (Number.isNaN(Number(input))) throw new Error(ERROR.NUMBER_TYPE);
   },
