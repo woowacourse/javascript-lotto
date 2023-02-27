@@ -150,7 +150,7 @@ body {
   text-align: center;
 }
 
-.number-input,
+.number-input::-webkit-inner-spin-button,
 .money-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
