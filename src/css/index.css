@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+:root {
+  --base-color: #4E5BA6;
+  --color-white: #FFFFFF;
+  --color-light-gray: #B4B4B4;
+}
+
+header {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 64px;
+  background: var(--base-color);
+  border-bottom: 1px solid var(--base-color);
+}
+
+#main_contents {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 414px;
+  height: 727px;
+  border: 1px solid #8B8B8B;
+}
+
+#head_title {
+  display: flex;
+  position: absolute;
+  align-items: flex-end;
+  left: 130px;
+  top: 14px;
+  font: normal 900 24px/36px 'Roboto';
+  color: var(--color-white);
+}
+
+#title {
+  position: absolute;
+  left: 50%;
+  top: 3%;
+  transform: translate(-50%, -7%);
+  width: 231px;
+  height: 24px;
+  font: normal 700 20px 'Roboto';
+}
+
+#money_form {
+  position: absolute;
+  left: 16px;
+  top: 104px;
+  width: 382px;
+  height: 64px;
+  font-size: 15px;
+}
+
+#input_money {
+  width: 308px;
+  height: 30px;
+  border: 1px solid var(--color-light-gray);
+  border-radius: 4px;
+  color: var(--color-light-gray);
+}
+
+#btn_money {
+  width: 60px;
+  height: 38px;
+  border: none;
+  border-radius: 4px;
+  background: var(--base-color);
+  color: var(--color-white);
+  font: normal 700 14px 'Roboto';
+}
+
+#buy_contents {
+  position: absolute;
+  width: 310px;
+  height: 320px;
+  left: 16px;
+  top: 180px;
+  font: normal 400 15px 'Roboto';
+}
+
+#buy_lottos {
+  height: 290px;
+  overflow: auto;
+}
+
+#win_form {
+  position: relative;
+  left: 16px;
+  top: 528px;
+  width: 390px;
+  height: 150px;
+  font: normal 400 15px 'Roboto';
+}
+
+.container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_number {
+  width: 30px;
+  height: 30px;
+  margin-left: 2px;
+  border: 1px solid var(--color-light-gray);
+  border-radius: 4px;
+}
+
+#btn_win_lotto {
+  flex-direction: row;
+  position: relative;
+  top: 30px;
+  width: 382px;
+  height: 40px;
+  padding: 6px 6px 6px 8px;
+  border: none;
+  border-radius: 4px;
+  background: var(--base-color);
+  color: var(--color-white);
+  font: normal 400 14px 'Roboto';
+}
+
+footer {
+  position : absolute;
+  bottom : 0;
+  width: 100%;
+  text-align: center;
+}
+
+hr {
+  color: var(--base-color);
+}
+
+footer p {
+  font: normal 700 14px/16px 'Roboto';
+  color: var(--base-color);
+  text-align: center;
+  letter-spacing: 1.25px;
+}

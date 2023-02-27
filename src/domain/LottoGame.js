@@ -6,6 +6,7 @@ const {
   RANK,
   RANK_BY_CORRECT_COUNT,
   LOTTO,
+  DECIMAL,
 } = require("../constant/Constant");
 
 const RANK_RESULT = {
@@ -33,7 +34,7 @@ class LottoGame {
   }
 
   set lottos(money) {
-    const lottoCount = parseInt(money / 1000, 10);
+    const lottoCount = parseInt(money / 1000, DECIMAL);
     Array.from({ length: lottoCount }, () => {
       const lottoOne = new Lotto(this.#LottoNumberGenerator());
       this.#lottos.push(lottoOne);
@@ -54,9 +55,9 @@ class LottoGame {
 
   calculateRank(numbers) {
     const winNumbers = this.#winLottos.numbers;
-
     const sameNumbers = numbers.filter((num) => winNumbers.includes(num));
     const correctCount = sameNumbers.length;
+
     if (correctCount === 5 && numbers.includes(this.#winLottos.bonusNumber)) {
       return RANK_BY_CORRECT_COUNT["BONUS"];
     }

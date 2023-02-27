@@ -1,13 +1,13 @@
 const { ERROR_MESSAGES, LOTTO } = require("../constant/Constant");
 
 const Validation = {
-  validateMoney(money) {
+  isWrongMoney(money) {
     if (money <= 0 || money % 1000 !== 0) {
       throw Error(ERROR_MESSAGES.isWrongMoney);
     }
   },
 
-  validateWinNumber(winNumbers) {
+  isWrongWinNumber(winNumbers) {
     if (
       winNumbers.some((num) => LOTTO.MIN > num || num > LOTTO.MAX || isNaN(num))
     ) {
@@ -22,22 +22,16 @@ const Validation = {
     }
   },
 
-  validateBonusNumber(winLotto, bonusNumber) {
+  isWrongBonusNumber(winLotto, bonusNumber) {
     if (
       bonusNumber < LOTTO.MIN ||
       bonusNumber > LOTTO.MAX ||
       isNaN(bonusNumber)
     ) {
-      throw new Error(ERROR_MESSAGES.isOverRangeBouns);
+      throw new Error(ERROR_MESSAGES.isOverRangeBonus);
     }
     if (winLotto.includes(bonusNumber)) {
       throw new Error(ERROR_MESSAGES.isSameBonusNumber);
-    }
-  },
-
-  validateRestartCommand(command) {
-    if (command !== "y" && command !== "n") {
-      throw new Error(ERROR_MESSAGES.isWrongCommand);
     }
   },
 };

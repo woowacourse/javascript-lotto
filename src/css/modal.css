@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+:root {
+  --base-color: #4E5BA6;
+  --color-whilt: #FFFFFF;
+  --color-black: #000000;
+  --color-light-gray: #B4B4B4;
+}
+
+#modal {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+
+#modal_body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 350px;
+  height: 500px;
+  padding: 10px;
+  background: var(--color-whilt);
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  text-align: center;
+}
+
+#btn_close {
+  float: right;
+}
+
+#result_title {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%) translateY(-10%);
+  color: var(--color-black);
+  font: normal 600 20px/24px 'Roboto';
+  text-align: center;
+  letter-spacing: 0.15px;
+}
+
+#result_contents {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-50%) translateY(-40%);
+  align-items: center;
+  width: 319px;
+  height: 247px;
+  border-top: 1px solid var(--color-light-gray);
+  border-collapse: collapse;
+  color: var(--color-black);
+  font: normal 400 14px/24px 'Roboto';
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+th {
+  align-items: center;
+  border-bottom: 1px solid var(--color-light-gray);
+  color: var(--color-black);
+  font: normal 600 15px/24px 'Roboto';
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+td {
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+#revenue_text {
+  position: absolute;
+  left: 50%;
+  top: 76%;
+  transform: translateX(-50%) translateY(-76%);
+  width: 350px;
+  color: var(--color-black);
+  font: normal 600 15px/24px 'Roboto';
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+#btn_restart {
+  flex-direction: row;
+  align-items: flex-start;
+  position: absolute;
+  left: 50%;
+  top: 93%;
+  transform: translateX(-50%) translateY(-93%);
+  width: 318px;
+  height: 40px;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  border: none;
+  background: var(--base-color);
+  color: var(--color-whilt);
+  font: normal 700 14px/16px 'Roboto';
+  text-align: center;
+}
