@@ -77,18 +77,26 @@ class LottoWebGame {
     render.restart();
   }
 
-  exitStatistics({ target }) {
+  exitStatistics() {
+    render.removeElement('#winning-statistics');
+    this.keydown = false;
+  }
+
+  handleClickExitButton({ target }) {
     if (!target.matches('#winning-statistics-out-button')) return;
 
-    render.removeElement('#winning-statistics');
+    this.exitStatistics();
   }
 
   handleKeydownEscape({ code }) {
     if (!this.keydown) return;
     if (code !== 'Escape') return;
 
-    render.removeElement('#winning-statistics');
-    this.keydown = false;
+    this.exitStatistics();
+  }
+
+  handleClickBackgound({ target }) {
+    if (target.matches('#winning-statistics-layout')) this.exitStatistics();
   }
 
   initAddEventListener() {
@@ -98,7 +106,8 @@ class LottoWebGame {
     );
     $('#winning-lotto-from').addEventListener('submit', this.handleSubmitWinningLotto.bind(this));
     $('#winning-statistics').addEventListener('click', this.restartLottoGame.bind(this));
-    $('#winning-statistics').addEventListener('click', this.exitStatistics.bind(this));
+    $('#winning-statistics').addEventListener('click', this.handleClickExitButton.bind(this));
+    $('#winning-statistics').addEventListener('click', this.handleClickBackgound.bind(this));
     document.addEventListener('keydown', this.handleKeydownEscape.bind(this));
   }
 }
