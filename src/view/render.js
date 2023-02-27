@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
-const renderLottoListTitle = (amount) => {
-  const paymentsContainer = document.querySelector('.payments-container');
+const paymentsContainer = document.querySelector('.payments-container');
 
+const renderLottoListTitle = (amount) => {
   const title = document.createElement('p');
   title.innerText = `총 ${amount}개를 구매했습니다.`;
 
@@ -9,8 +9,6 @@ const renderLottoListTitle = (amount) => {
 };
 
 const renderLottoList = (lottoNumbers) => {
-  const paymentsContainer = document.querySelector('.payments-container');
-
   const lottosContainer = document.createElement('section');
   lottosContainer.classList.add('lottos-container');
 
