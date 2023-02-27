@@ -48,11 +48,9 @@ class LottoMachine {
   getCollectedRanks() {
     const RANK_TEMPLATE = [0, 0, 0, 0, 0];
 
-    const ranks = this.#lottos.reduce((accumulator, lotto) => {
+    return this.#lottos.reduce((accumulator, lotto) => {
       return this.#getIncreasedRanks(lotto, accumulator);
     }, RANK_TEMPLATE);
-
-    return ranks;
   }
 
   #getComposedLottoNumbers() {
