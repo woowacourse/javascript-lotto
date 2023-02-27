@@ -62,9 +62,10 @@ export default class ViewModel {
       this.#lottoMachine.issueLotto(),
     );
 
-    this.#lottos.forEach((lotto) => {
-      $('.lottos').innerHTML += lottoTemplate(lotto);
-    });
+    $('.lottos').innerHTML = this.#lottos.reduce(
+      (sum, current) => sum + lottoTemplate(current),
+      ``,
+    );
   }
 
   showModal(e) {
