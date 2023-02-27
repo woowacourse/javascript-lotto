@@ -26,21 +26,9 @@ const lottoMachine = new LottoMachine();
 const winning = new Winning();
 const benefit = new Benefit();
 
-purchaseButton.addEventListener('click', () => {
-  saveMoney();
+purchaseButton.addEventListener('click', () => afterEnteredMoney());
 
-  lottoMachine.generateLottos();
-  renderLottoContent();
-  renderWinningNumebersInput();
-});
-
-confirmButton.addEventListener('click', () => {
-  saveWinning();
-
-  const ranks = lottoMachine.getCollectedRanks();
-  benefit.calculateRate(lottoMachine.getMoney().getAmount(), ranks);
-  renderResult(ranks);
-});
+confirmButton.addEventListener('click', () => afterEnteredWinning());
 
 closeButton.addEventListener('click', () => {
   result.style.display = 'none';
@@ -50,8 +38,23 @@ retryButton.addEventListener('click', () => {
   window.location.reload();
 });
 
+const afterEnteredMoney = () => {
+  saveMoney();
+  lottoMachine.generateLottos();
+  renderLottoContent();
+  renderWinningNumebersInput();
+};
+
+const afterEnteredWinning = () => {
+  saveWinning();
+  const ranks = lottoMachine.getCollectedRanks();
+  benefit.calculateRate(lottoMachine.getMoney().getAmount(), ranks);
+  renderResult(ranks);
+};
+
 const saveMoney = () => {
   try {
+    console.log(3);
     const money = new Money(Number(moneyInput.value));
     lottoMachine.setMoney(money);
     purchaseButton.setAttribute('disabled', 'disabled');
@@ -89,7 +92,7 @@ const renderLottoContent = () => {
       </div>`
     )
     .join('');
-  lottoContent.classList.remove('hidden');
+  lottoContent.removeAttribute('hidden');
 };
 
 const renderWinningNumebersInput = () => {
