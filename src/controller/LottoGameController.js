@@ -9,32 +9,34 @@ import GameResultView from '../view/GameResultView';
 const { PRICE_UNIT } = require('../constants/constants');
 
 export default class LottoGameController {
+  #model = {};
+
+  #view = {
+    purchasePriceView: new PurchasePriceView(),
+    winningNumbersView: new WinningNumbersView(),
+    gameResultView: GameResultView,
+  };
+
   constructor() {
-    this.model = {};
-    this.view = {
-      purchasePriceView: new PurchasePriceView(),
-      winningNumbersView: new WinningNumbersView(),
-      gameResultView: GameResultView,
-    };
     this.setEventHandler();
   }
 
   setEventHandler() {
-    this.view.purchasePriceView.addSubmitEvent(this.onSubmitPrice.bind(this));
+    this.#view.purchasePriceView.addSubmitEvent(this.onSubmitPrice.bind(this));
   }
 
   onSubmitPrice(purchasePriceInput) {
     const lottoCount = this.calculateLottoCount(purchasePriceInput);
 
-    this.model.lottos = new Lottos(lottoCount);
-    const lottos = this.model.lottos.getLottos();
-    this.view.purchasePriceView.renderPurchaseResult(lottoCount, lottos);
+    this.#model.lottos = new Lottos(lottoCount);
+    const lottos = this.#model.lottos.getLottos();
+    this.#view.purchasePriceView.renderPurchaseResult(lottoCount, lottos);
 
-    this.view.purchasePriceView.resetInputValue();
+    this.#view.purchasePriceView.resetInputValue();
 
-    this.view.winningNumbersView.render();
+    this.#view.winningNumbersView.render();
 
-    this.view.winningNumbersView.addSubmitEvent(
+    this.#view.winningNumbersView.addSubmitEvent(
       this.onSubmitWinningNumbers.bind(this)
     );
   }
@@ -44,7 +46,7 @@ export default class LottoGameController {
   }
 
   onSubmitWinningNumbers(winningNumbersInput, bonusNumberInput) {
-    this.model.winningNumbers = new WinningNumbers(
+    this.#model.winningNumbers = new WinningNumbers(
       winningNumbersInput,
       bonusNumberInput
     );
@@ -53,33 +55,33 @@ export default class LottoGameController {
 
   showGameResult() {
     this.calculateRanks();
-    const ranks = this.model.lottos.getAllRanks();
-    const profitRate = this.model.lottos.getProfitRate();
-    this.view.gameResultView.render(ranks, profitRate);
-    this.view.gameResultView.addRestartClickEvent(
+    const ranks = this.#model.lottos.getAllRanks();
+    const profitRate = this.#model.lottos.getProfitRate();
+    this.#view.gameResultView.render(ranks, profitRate);
+    this.#view.gameResultView.addRestartClickEvent(
       this.onClickRestartCommand.bind(this)
     );
-    this.view.gameResultView.addCloseClickEvent(
+    this.#view.gameResultView.addCloseClickEvent(
       this.onClickModalClose.bind(this)
     );
   }
 
   calculateRanks() {
-    this.model.lottos.calculateAllRanks(
-      this.model.winningNumbers.getWinningNumbers(),
-      this.model.winningNumbers.getBonusNumber()
+    this.#model.lottos.calculateAllRanks(
+      this.#model.winningNumbers.getWinningNumbers(),
+      this.#model.winningNumbers.getBonusNumber()
     );
   }
 
   onClickRestartCommand() {
-    this.model.lottos = null;
-    this.model.winningNumbers = null;
-    this.view.gameResultView.close();
-    this.view.purchasePriceView.resetPurchaseResult();
-    this.view.winningNumbersView.removeWinningNumbersForm();
+    this.#model.lottos = null;
+    this.#model.winningNumbers = null;
+    this.#view.gameResultView.close();
+    this.#view.purchasePriceView.resetPurchaseResult();
+    this.#view.winningNumbersView.removeWinningNumbersForm();
   }
 
   onClickModalClose() {
-    this.view.gameResultView.close();
+    this.#view.gameResultView.close();
   }
 }
