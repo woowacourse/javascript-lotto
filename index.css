@@ -119,16 +119,15 @@ main {
   margin-top: 16px;
 }
 
-#lottos {
+#purchase-result {
   height: 300px;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
 }
 
-#lottos span {
-  margin-top: 15px;
+#lottos {
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 #winning-lotto {
