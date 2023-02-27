@@ -8,9 +8,89 @@
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+    <header>
+      <p>🎱 행운의 로또</p>
+    </header>
+    <div class="mainPage">
+      <h1>🎱 내 번호 당첨 확인 🎱</h1>
+      <form class="inputAmountArea">
+        <label for="inputAmount">구입할 금액을 입력해주세요.</label>
+        <input id="inputAmount" value="금액" type="number" />
+        <button class="purchase" type="submit">구입</button>
+      </form>
+      <div id="inputAmountNext" style="display: none">
+        <div class="showRandomLottoArea">
+          <label for="randomLottoList">
+            총 <span class="randomLottoAmount">0</span>개를 구입했습니다.
+          </label>
+          <div id="randomLottoList"></div>
+        </div>
+        <form class="inputLottoBonusArea">
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div class="lottoNumber">
+            <label for="inputLottoNumber">당첨 번호</label>
+            <div id="inputLottoNumber">
+              <input class="eachInputLottoNumber" type="number"" />
+              <input class="eachInputLottoNumber" type="number" />
+              <input class="eachInputLottoNumber" type="number" />
+              <input class="eachInputLottoNumber" type="number" />
+              <input class="eachInputLottoNumber" type="number" />
+              <input class="eachInputLottoNumber" type="number" />
+            </div>
+          </div>
+          <div class="bonusNumber">
+            <label for="inputBonusNumber">보너스 번호</label>
+            <div id="inputBonusNumber">
+              <input class="eachInputBonusNumber" type="number" />
+            </div>
+          </div>
+          <button class="resultButton">결과 확인하기</button>
+        </form>
+      </div>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+
+    <!-- 모달창 -->
+    <dialog class="resultPage">
+      <h1>🏆 당첨 통계 🏆</h1>
+      <table class="resultTable">
+        <tr class="explainRow">
+          <th class="matchAmount">일치 개수</th>
+          <th class="reward">당첨금</th>
+          <th class="winAmount">당첨 개수</th>
+        </tr>
+        <tr class="row">
+          <td>3개</td>
+          <td>5,000</td>
+          <td><span class="fifth winnerCount">0</span>개</td>
+        </tr>
+        <tr class="row">
+          <td>4개</td>
+          <td>50,000</td>
+          <td><span class="fourth winnerCount">0</span>개</td>
+        </tr>
+        <tr class="row">
+          <td>5개</td>
+          <td>1,500,000</td>
+          <td><span class="third winnerCount">0</span>개</td>
+        </tr>
+        <tr class="row">
+          <td>5개+보너스볼</td>
+          <td>30,000,000</td>
+          <td><span class="second winnerCount">0</span>개</td>
+        </tr>
+        <tr class="row">
+          <td>6개</td>
+          <td>2,000,000,000</td>
+          <td><span class="first winnerCount">0</span>개</td>
+        </tr>
+      </table>
+      <div class="explainRate">
+        <p>당신의 총 수익률은 <span class="rate">0</span>%입니다.</p>
+      </div>
+      <button class="restartButton">다시 시작하기</button>
+    </dialog>
+    <footer>
+      <p>Copyright 2023. woowacourse</p>
+    </footer>
   </body>
 </html>

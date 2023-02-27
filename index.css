@@ -1,0 +1,165 @@
+header {
+  display: flex;
+  height: 80px;
+  padding-left: 10%;
+  background-color: #4e5ba6;
+}
+
+header > p {
+  color: #ffffff;
+  font-size: larger;
+}
+
+footer {
+  display: flex;
+  height: 80px;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+footer > p {
+  top: 35%;
+  margin: 0 auto;
+  color: #4e5ba6;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 40%;
+  height: auto;
+  min-height: 680px;
+  margin: 5% auto;
+  padding: 4%;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  position: relative;
+  top: 10px;
+}
+
+input {
+  width: 27px;
+  height: 27px;
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 4px;
+}
+
+.inputAmountArea,
+.inputLottoBonusArea {
+  position: relative;
+  bottom: 10px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 5%;
+}
+
+.inputAmountArea > label {
+  grid-column: 1/3;
+}
+
+#inputAmount {
+  width: 100%;
+  padding-left: 10px;
+}
+
+button {
+  color: #ffffff;
+  background-color: #4e5ba6;
+  border: 0;
+  border-radius: 4px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:focus,
+button:hover {
+  font-size: large;
+  border: 3px solid black;
+}
+
+#randomLottoList {
+  height: 300px;
+  overflow: scroll;
+}
+
+.lottoImg {
+  margin-right: 3%;
+  font-size: xx-large;
+}
+
+#randomLottoList > div {
+  display: flex;
+  align-items: center;
+}
+
+#inputLottoBonus {
+  display: grid;
+  grid-template-rows: 30%;
+  grid-template-columns: 2fr 1fr;
+}
+
+#inputLottoBonus > p,
+.inputLottoBonusArea > p,
+.resultButton {
+  grid-column: 1/3;
+}
+
+#inputBonusNumber {
+  float: right;
+  text-align: right;
+}
+
+.eachInputLottoNumber,
+.eachInputBonusNumber {
+  text-align: center;
+}
+
+.resultButton,
+.restartButton {
+  width: 100%;
+  height: 50px;
+  margin-top: 7%;
+}
+
+.resultPage {
+  position: relative;
+  top: 28%;
+  width: 30%;
+  height: 480px;
+  margin: 0 auto;
+  padding: 5%;
+  text-align: center;
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 4px;
+}
+
+table {
+  width: 90%;
+  height: 50%;
+  margin: 0 auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.explainRate {
+  margin: 5% 0 10% 0;
+  font-weight: bold;
+  font-size: larger;
+}

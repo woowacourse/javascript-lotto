@@ -1,4 +1,4 @@
-const { ERROR, NUMBER, COMMAND } = require("./constants");
+import { ERROR, NUMBER, COMMAND } from "./constants.js";
 
 const Validation = {
   purchaseAmount(amount) {
@@ -23,12 +23,12 @@ const Validation = {
   },
 
   lottoNumbers(numbers) {
-    this.lottoNumberSize(numbers);
-    this.isDuplicated(numbers);
     numbers.forEach((number) => {
       this.inputIsInteger(number);
       this.numberInRange(number);
     });
+    this.lottoNumberSize(numbers);
+    this.isDuplicated(numbers);
   },
 
   lottoNumberSize(numbers) {
@@ -59,4 +59,4 @@ const Validation = {
   },
 };
 
-module.exports = Validation;
+export default Validation;

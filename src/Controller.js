@@ -1,92 +1,58 @@
-const InputView = require("./view/InputView");
-const OutputView = require("./view/OutputView");
-const LottoGame = require("./domain/LottoGame");
-const Validation = require("./Validation");
-const { COMMAND } = require("./constants");
+import mainPage from "./view/mainPage.js";
+import resultPage from "./view/resultPage.js";
+import LottoGame from "./domain/LottoGame.js";
+import Validation from "./Validation.js";
 
 class Controller {
-  #lottoNumbers;
-  #bonusNumber;
-  #lottoGame;
+  lottoGame;
 
   constructor() {
-    this.inputPurchaseAmount();
+    this.mainPageAddEvent();
+    this.resultAddEvent();
   }
 
-  async inputPurchaseAmount() {
-    const amount = await InputView.readPurchaseAmount();
+  mainPageAddEvent() {
+    mainPage.addEvent(() => {
+      mainPage.clickInputAmount(this.amountTurnLotteries());
+    });
+  }
+
+  resultAddEvent() {
+    resultPage.addEvent(() => {
+      const result = this.inputLottoBonus(resultPage.getLottoBonus());
+      resultPage.clickResult(result);
+    });
+  }
+
+  amountTurnLotteries() {
+    const amount = +mainPage.getInputAmount();
     try {
-      Validation.purchaseAmount(+amount);
-      this.makeLottoGame(+amount);
+      Validation.purchaseAmount(amount);
+      return this.makeLottoGame(amount);
     } catch (error) {
-      OutputView.printError(error);
-      this.inputPurchaseAmount();
+      alert(error.message);
     }
   }
 
   makeLottoGame(amount) {
-    this.#lottoGame = new LottoGame(amount);
-    OutputView.printLotteries(this.#lottoGame.getLotteries());
-    this.inputLottoNumbers();
+    this.lottoGame = new LottoGame(amount);
+    return this.lottoGame.getLotteries();
   }
 
-  async inputLottoNumbers() {
-    const lottoNumbers = await InputView.readLottoNumbers();
+  inputLottoBonus([lotto, bonus]) {
     try {
-      this.convertLotto(lottoNumbers);
-      Validation.lottoNumbers(this.#lottoNumbers);
-      this.inputBonusNumber();
+      Validation.lottoNumbers(lotto);
+      Validation.bonusNumber(lotto, bonus);
+      return this.generateLottoGameResult(lotto, bonus);
     } catch (error) {
-      OutputView.printError(error);
-      this.inputLottoNumbers();
+      alert(error.message);
     }
   }
 
-  convertLotto(lottoNumbers) {
-    this.#lottoNumbers = lottoNumbers
-      .split(",")
-      .map((number) => +number.trim());
-  }
-
-  async inputBonusNumber() {
-    const bonusNumber = await InputView.readBonusNumber();
-    try {
-      Validation.bonusNumber(this.#lottoNumbers, +bonusNumber);
-      this.#bonusNumber = +bonusNumber;
-      this.generateLottoGameResult();
-    } catch (error) {
-      OutputView.printError(error);
-      this.inputBonusNumber();
-    }
-  }
-
-  generateLottoGameResult() {
-    const lottoResult = this.#lottoGame.getRankResult(
-      this.#lottoNumbers,
-      this.#bonusNumber
-    );
-    OutputView.printResult(lottoResult);
-    this.inputRestartCommand();
-  }
-
-  async inputRestartCommand() {
-    const command = await InputView.readRestartCommand();
-    try {
-      Validation.restartCommand(command);
-      this.checkRestartCommand(command);
-    } catch (error) {
-      OutputView.printError(error);
-      this.inputRestartCommand();
-    }
-  }
-
-  checkRestartCommand(command) {
-    if (command === COMMAND.RESTART) {
-      OutputView.printRestart();
-      this.inputPurchaseAmount();
-    }
-    if (command === COMMAND.QUIT) OutputView.printQuit();
+  //Note: lottoResult = [0,0,0,0,0,0] = 5등~1등, 수익률
+  generateLottoGameResult(lotto, bonus) {
+    return this.lottoGame.getRankResult(lotto, bonus);
   }
 }
 
-module.exports = Controller;
+export default Controller;
