@@ -13,7 +13,8 @@
     "operator-linebreak": "off",
     "function-paren-newline": "off",
     "arrow-body-style": "off",
-    "no-promise-executor-return": "off"
+    "no-promise-executor-return": "off",
+    "no-param-reassign": "off"
   },
   "env": {
     "browser": true,
