@@ -88,7 +88,7 @@ header {
   overflow: auto;
 }
 
-#win_contents {
+#win_form {
   position: relative;
   left: 16px;
   top: 528px;

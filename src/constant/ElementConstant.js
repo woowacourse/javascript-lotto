@@ -3,7 +3,6 @@ const HTML_ELEMENTS = {
   BTN_MONEY: document.getElementById("btn_money"),
   INPUT_MONEY: document.getElementById("input_money"),
 
-  WIN_CONTENTS: document.getElementById("win_contents"),
   WIN_FORM: document.getElementById("win_form"),
 
   BUY_COUNT_TEXT: document.getElementById("buy_count_text"),

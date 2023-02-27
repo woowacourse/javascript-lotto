@@ -37,7 +37,7 @@ const ViewController = {
       LottoView.showLottos(lottoGame.lottos);
 
       HTML_ELEMENTS.BTN_MONEY.disabled = ATTRIBUTE.TRUE;
-      HTML_ELEMENTS.WIN_CONTENTS.hidden = false;
+      HTML_ELEMENTS.WIN_FORM.hidden = false;
     } catch (e) {
       LottoView.alertErrorMessage(e.message);
       this.deleteValue(HTML_ELEMENTS.INPUT_MONEY);
