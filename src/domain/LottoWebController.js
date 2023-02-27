@@ -13,10 +13,10 @@ class LottoWebController {
 
   #lottos = [];
 
-  constructor() {
+  addEvent() {
     selectDom('.purchaseForm').addEventListener('submit', this.#purchase);
     selectDom('.resultButton').addEventListener('click', this.#showResult);
-    selectDom('.exitModal').addEventListener('click', this.#exit);
+    selectDom('.exitModal').addEventListener('click', this.#exitModal);
     selectDom('.restartButton').addEventListener('click', this.#restart);
   }
 
@@ -37,18 +37,16 @@ class LottoWebController {
 
     const matchResult = this.#calculateMatching();
     const benefit = this.#calculateBenefit(matchResult);
-    return View.resultView(matchResult, benefit);
+    View.resultView(matchResult, benefit);
   };
 
   #restart = () => {
     this.#winningNumber = { main: [], bonus: 0 };
     this.#lottos = [];
-    return View.clearView();
+    View.clearView();
   };
 
-  #exit = () => {
-    return View.closeModal();
-  };
+  #exitModal = () => View.closeModal();
 
   #calculateMatching() {
     const rankingCount = Array(LOTTO.prize.length).fill(0);

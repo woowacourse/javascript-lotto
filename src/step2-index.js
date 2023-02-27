@@ -5,4 +5,5 @@
 import './css/style.css';
 import LottoWebController from './domain/LottoWebController.js';
 
-new LottoWebController();
+const lottoWebController = new LottoWebController();
+lottoWebController.addEvent();
