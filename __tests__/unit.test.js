@@ -1,5 +1,5 @@
-const LottoMachine = require('../src/domain/LottoMachine');
-const RankedLotto = require('../src/domain/RankedLotto');
+import LottoMachine from '../src/domain/LottoMachine';
+import RankedLotto from '../src/domain/RankedLotto';
 
 test('로또는 1000원 단위로 발급이 된다', () => {
   const lottoMoney = '3000';

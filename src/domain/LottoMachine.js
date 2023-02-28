@@ -1,6 +1,6 @@
-const { NUMBER } = require('../utils/constant');
+import { NUMBER } from '../utils/constant.js';
 
-class LottoMachine {
+export default class LottoMachine {
   lottoNumber;
 
   constructor() {
@@ -54,5 +54,3 @@ class LottoMachine {
     return NUMBER.RANK_THIRD;
   }
 }
-
-module.exports = LottoMachine;
