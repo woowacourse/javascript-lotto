@@ -43,7 +43,7 @@ class ModalView {
   makeResultTable(result) {
     return PRIZE.map(
       (amount, idx) =>
-        `<tr>
+        `<tr id="inner-table">
         <td>${this.showMatchedCount(idx)}</td>
         <td>${amount.toLocaleString()}</td>
         <td>${result[idx]}개</td>
@@ -59,7 +59,7 @@ class ModalView {
 
   hiddenModal() {
     this.modal.style.display = "none";
-    this.modalTable.innerHTML = "";
+    this.modalTable.replaceChildren();
   }
 
   closeModalEscape(event) {

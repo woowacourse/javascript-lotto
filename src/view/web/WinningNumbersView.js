@@ -27,7 +27,7 @@ class WinningNumbersView {
 
   hideWinningContainer() {
     this.winningContainer.style.display = "none";
-    this.lotteryContainer.innerHTML = "";
+    this.lotteryContainer.replaceChildren();
   }
 }
 
