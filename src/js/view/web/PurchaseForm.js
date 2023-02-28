@@ -4,6 +4,7 @@ const $purchaseButton = document.getElementById('purchase-button');
 const $winningNumberInputForm = document.getElementById('winning-number-input-form');
 const $winningNumberInputs = document.getElementsByClassName('winning-number-input');
 const $modalBackground = document.getElementById('modal-background-section');
+const $resultModalSection = document.getElementById('result-modal-section');
 const $modalCloseButton = document.getElementById('modal-close-button');
 const $retryButton = document.getElementById('retry-button');
 
@@ -31,7 +32,7 @@ const PurchaseForm = {
       'click',
       (event) => event.target === $modalBackground && handler()
     );
-    document.addEventListener(
+    $resultModalSection.addEventListener(
       'keydown',
       (event) => (event.key === 'Escape' || event.key === 'Esc') && handler()
     );

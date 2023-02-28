@@ -15,6 +15,7 @@ const ResultView = {
   show() {
     $modalBackground.classList.remove('hide');
     $resultModalSection.classList.remove('hide');
+    $resultModalSection.focus();
   },
 
   hide() {
