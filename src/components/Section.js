@@ -23,7 +23,7 @@ const INPUT_MONEY_VIEW = `
 <h2>🎱 내 번호 당첨 확인 🎱</h2>
 <div class="texts">구입 할 금액을 입력해주세요.</div>
 <form class="divide-two-element">
-  <input type="number" placeholder="  금액" name="input-money" class="input-money" max="100000" min="1" />
+  <input type="number" placeholder="  금액" name="input-money-data" class="input-money" max="100000" min="1" />
   <button type="submit" name="input-money" class="purchase-button">구입</button>
 </form>
 </div>
@@ -53,17 +53,14 @@ class Section {
   purchaseLotto(e) {
     try {
       e.preventDefault();
-      // input value 가져오기
-      const inputMoney = Number(e.target.children[0].value);
+
+      const inputMoney = Number(e.target.elements['input-money-data'].value);
       const purchaseButton = document.querySelector('.purchase-button');
 
-      // validation
       this.checkZeroInput(inputMoney);
 
-      // model 업데이트
       this.#lottoGame.purchaseLottos(inputMoney);
 
-      // view 업데이트
       purchaseButton.disabled = true;
       this.renderInputLottos();
       this.renderPurchasedLottos();

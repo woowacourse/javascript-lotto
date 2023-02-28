@@ -64,7 +64,7 @@ class ResultModal {
 
   closeResultModal(e) {
     const modal = document.querySelector('.modal-view');
-    modal.className += ' modal-none';
+    modal.classList.add('modal-none');
   }
 
   restartGame(e) {
