@@ -14,8 +14,8 @@ export default class LottoGameController {
   }
 
   #initEvents() {
-    this.#view.onClickPurchaseAmountSubmitButton(this.#createLotto.bind(this));
-    this.#view.onClickWinningLottoSubmitButton(this.#compareLotto.bind(this));
+    this.#view.onSubmitPurchaseAmount(this.#createLotto.bind(this));
+    this.#view.onSubmitWinningLotto(this.#compareLotto.bind(this));
     this.#view.onClickRestartButton(this.#initLottos.bind(this));
     this.#view.onClickModalCloseButton();
   }

@@ -2,9 +2,13 @@ import { $, $$, disableElements, enableElements } from '../utils/dom.js';
 import { LOTTO_PRIZE_MONEY, PRIZE_MATCH_COUNT } from '../constants/condition.js';
 
 export default class View {
-  onClickPurchaseAmountSubmitButton(callback) {
+  onSubmitPurchaseAmount(callback) {
     $('.purchase-amount-form').addEventListener('submit', (e) => {
       e.preventDefault();
+
+      console.log('e.target : ', e.target);
+      console.log('e.target[0]: ', e.target[0]);
+      console.log('e.target.elements: ', e.target.elements);
 
       const purchaseAmountInput = $('.purchase-amount-input').value;
 
@@ -12,7 +16,7 @@ export default class View {
     });
   }
 
-  onClickWinningLottoSubmitButton(callback) {
+  onSubmitWinningLotto(callback) {
     $('.winning-lotto-form').addEventListener('submit', (e) => {
       e.preventDefault();
 
