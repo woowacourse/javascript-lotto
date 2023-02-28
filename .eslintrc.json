@@ -1,7 +1,7 @@
 {
   "env": {
     "es2021": true,
-    "node": true
+    "browser": true
   },
   "extends": "airbnb-base",
   "overrides": [],
@@ -14,10 +14,14 @@
     "no-console": "off",
     "max-depth": ["error", 1],
     "no-new": "off",
-    "max-lines-per-function": ["error", 10],
     "comma-dangle": "off",
     "consistent-return": "off",
     "import/no-unresolved": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "eslint-disable-next-line": "off",
+    "object-curly-newline": "off",
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": "off",
+    "no-alert": "off"
   }
 }

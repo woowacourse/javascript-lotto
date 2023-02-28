@@ -1,13 +1,13 @@
-const LottoMachine = require('./domain/LottoMachine');
-const WinningNumbers = require('./domain/WinningNumbers');
-const BonusNumber = require('./domain/BonusNumber');
-const LottoStatistics = require('./domain/LottoStatistics');
-const CorrectLotto = require('./domain/CorrectLotto');
+import LottoMachine from './domain/LottoMachine';
+import WinningNumbers from './domain/WinningNumbers';
+import BonusNumber from './domain/BonusNumber';
+import LottoStatistics from './domain/LottoStatistics';
+import CorrectLotto from './domain/CorrectLotto';
 
-const InputView = require('./view/InputView');
-const OutputView = require('./view/OutputView');
+import InputView from './view/InputView';
+import OutputView from './view/OutputView';
 
-const { errorCheckFor } = require('./utils/errorCheckFor');
+import errorCheckFor from './utils/errorCheckFor';
 
 class LottoGame {
   #lottoMachine;
@@ -116,4 +116,4 @@ class LottoGame {
   }
 }
 
-module.exports = LottoGame;
+export default LottoGame;

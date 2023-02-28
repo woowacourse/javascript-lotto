@@ -43,9 +43,4 @@ const LOTTO = Object.freeze({
   unitAmount: 1000,
 });
 
-module.exports = {
-  ALL_LOTTO_NUMBERS,
-  RANK,
-  LOTTO_PRIZE,
-  LOTTO,
-};
+export { ALL_LOTTO_NUMBERS, RANK, LOTTO_PRIZE, LOTTO };

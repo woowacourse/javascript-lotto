@@ -1,0 +1,74 @@
+/* margin 너비 설정 */
+.mgTop_1_rem {
+  margin-top: 1rem;
+}
+
+.mgTop_2_rem {
+  margin-top: 2rem;
+}
+
+.mgTop_3_rem {
+  margin-top: 3rem;
+}
+
+.mgTop_5_rem {
+  margin-top: 5rem;
+}
+
+.mgLeft_1_rem {
+  margin-left: 1rem;
+}
+
+.mgLeft_10_rem {
+  margin-left: 10rem;
+}
+
+.mgRight_1_rem {
+  margin-right: 1rem;
+}
+
+.mgBottom_1_rem {
+  margin-bottom: 1rem;
+}
+
+.mgBottom_5_rem {
+  margin-bottom: 5rem;
+}
+
+.mg_1_rem {
+  margin: 1rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+/* padding 너비 설정 */
+.pdTop_1_rem {
+  padding-top: 1rem;
+}
+
+.pdLeft_1_rem {
+  padding-left: 1rem;
+}
+
+.pdRight_1_rem {
+  padding-right: 1rem;
+}
+
+.pdBottom_1_rem {
+  padding-bottom: 1rem;
+}
+
+.pd_1_rem {
+  padding: 1rem;
+}
+
+/* 형제 결합 연산자 */
+.space-x-1 {
+  margin-left: 4px;
+}
+
+.space-y-3 {
+  margin-top: 12px;
+}

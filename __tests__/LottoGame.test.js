@@ -1,6 +1,6 @@
-const BonusNumber = require('../src/domain/BonusNumber');
-const WinningNumbers = require('../src/domain/WinningNumbers');
-const LottoGame = require('../src/LottoGame');
+import BonusNumber from '../src/domain/BonusNumber';
+import WinningNumbers from '../src/domain/WinningNumbers';
+import LottoGame from '../src/LottoGame';
 
 describe('LottoGame 클래스 테스트', () => {
   test.each([['n'], ['N']])('종료 명령어 입력 시 정상 동작.', (input) => {

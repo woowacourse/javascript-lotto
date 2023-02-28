@@ -1,4 +1,4 @@
-const OutputView = require('../view/OutputView');
+import OutputView from '../view/OutputView';
 
 const errorCheckFor = async (resolve, reject) => {
   try {
@@ -9,6 +9,4 @@ const errorCheckFor = async (resolve, reject) => {
   }
 };
 
-module.exports = {
-  errorCheckFor,
-};
+export default errorCheckFor;

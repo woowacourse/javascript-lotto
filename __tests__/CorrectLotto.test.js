@@ -1,6 +1,6 @@
-const BonusNumber = require('../src/domain/BonusNumber');
-const CorrectLotto = require('../src/domain/CorrectLotto');
-const WinningNumbers = require('../src/domain/WinningNumbers');
+import BonusNumber from '../src/domain/BonusNumber';
+import CorrectLotto from '../src/domain/CorrectLotto';
+import WinningNumbers from '../src/domain/WinningNumbers';
 
 describe('CorrectLotto 클래스 테스트', () => {
   test.each([['10'], ['23'], ['45']])(

@@ -1,4 +1,4 @@
-const { RANK, LOTTO_PRIZE, LOTTO } = require('./constants/index');
+import { RANK, LOTTO_PRIZE, LOTTO } from './constants/index';
 
 const LOTTO_RANK = {
   6: RANK.FIRST,
@@ -52,4 +52,4 @@ class LottoStatistics {
   }
 }
 
-module.exports = LottoStatistics;
+export default LottoStatistics;

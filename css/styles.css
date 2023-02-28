@@ -1,0 +1,149 @@
+#app {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 8rem;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+
+  height: 8rem;
+
+  background-color: var(--lotto-grayscale-1);
+  color: var(--lotto-primary);
+
+  border-top: 1px solid;
+  border-color: var(--lotto-grayscale-2);
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input {
+  padding: 1rem;
+}
+
+.lotto-header {
+  height: 6rem;
+
+  background-color: var(--lotto-primary);
+  color: var(--lotto-grayscale-1);
+}
+
+.lotto-card {
+  width: 40rem;
+  height: 80rem;
+
+  border: 1px solid;
+  border-color: var(--lotto-grayscale-3);
+}
+
+.lotto-card__title {
+  height: 2.4rem;
+}
+
+.lotto-card__money--input {
+  display: block;
+
+  height: 2.8rem;
+  border: 1px solid;
+  border-color: var(--lotto-grayscale-2);
+
+  margin-right: 0.5rem;
+  border-radius: 4px;
+}
+
+.button {
+  display: block;
+  background-color: var(--lotto-primary);
+
+  width: 6rem;
+  height: 3rem;
+
+  color: var(--lotto-grayscale-1);
+  border-radius: 4px;
+}
+
+.lotto-ticket {
+  width: 100%;
+  vertical-align: middle;
+}
+
+.lotto-tickets {
+  overflow: scroll;
+  height: 50%;
+}
+
+.lotto-ticket::before {
+  content: '🎟️';
+
+  font-size: 2.8rem;
+  line-height: 24px;
+  vertical-align: middle;
+
+  margin-right: 8px;
+}
+
+.lotto-card__winning--text {
+  display: block;
+}
+
+.lotto-card__lotto--input {
+  display: block;
+
+  width: 3.5rem;
+  height: 3.5rem;
+
+  border: 1px solid;
+  border-color: var(--lotto-grayscale-3);
+  border-radius: 4px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.modal {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal > div {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.statistics-container {
+  width: 35rem;
+  background-color: var(--lotto-grayscale-1);
+}
+
+.statistics-list__item {
+  height: 3rem;
+}
+
+.statistics-list__item__one {
+  width: 10rem;
+  height: 100%;
+}
+
+.statistics-list__item + .statistics-list__item {
+  border-top: 1px solid;
+  border-color: var(--lotto-grayscale-4);
+}
+
+.text--center {
+  text-align: center;
+}
