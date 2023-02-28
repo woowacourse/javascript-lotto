@@ -1,4 +1,4 @@
-const InputValidator = require('../src/validators/InputValidator');
+import InputValidator from '../src/validators/InputValidator';
 
 describe('구입금액의 유효성을 검사한다.', () => {
   test.each(['a', -1, undefined])('구입금액이 자연수가 아닌경우 에러가 발생한다.', () => {
