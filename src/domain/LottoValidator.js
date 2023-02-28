@@ -14,6 +14,14 @@ const LottoValidator = {
     });
     InputValidator.checkDuplicatedNumbers(numbers);
   },
+  checkWinningNumberWithBonus({ main, bonus }) {
+    main.forEach((number) => {
+      LottoValidator.checkLottoNumber(number);
+    });
+    InputValidator.checkDuplicatedNumbers(main);
+    LottoValidator.checkBonusNumber(bonus);
+    LottoValidator.checkLottoDuplicate({ main, bonus });
+  },
   checkLottoNumber(number) {
     InputValidator.checkNaturalNumber(number);
     if (number < LOTTO.min || number > LOTTO.max) {

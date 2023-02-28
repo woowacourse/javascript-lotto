@@ -15,8 +15,3 @@ export const RANKING = {
   5: (hasBonus) => (hasBonus ? 2 : 3),
   6: 1,
 };
-
-export const COMMAND = {
-  restart: 'y',
-  quit: 'n',
-};

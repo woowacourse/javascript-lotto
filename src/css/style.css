@@ -1,0 +1,243 @@
+:root {
+  --lotto-primary: #4e5ba6;
+}
+
+body {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button {
+  background-color: var(--lotto-primary);
+  border: black;
+  border-radius: 4px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: white;
+  cursor: pointer;
+}
+
+input {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.header {
+  height: 64px;
+  /* background-color: var(--lotto-primary); */
+  background-color: #4e5ba6;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 36px;
+
+  margin-left: 130px;
+  color: white;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: 16px;
+  width: 398px;
+  height: 727px;
+}
+
+.mainTitle {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.15px;
+}
+
+.lottoInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.lottoInputTitle {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  margin: 4px 0;
+}
+
+.lottoInput button {
+  height: 36px;
+  width: 56px;
+}
+
+.lottoInput input {
+  height: 36px;
+  width: 312px;
+  margin-right: 16px;
+}
+
+.lottoIssueView {
+  display: flex;
+  visibility: hidden;
+  flex-direction: column;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.lottoIssueViewTitle {
+  margin-bottom: 12px;
+}
+
+.ticketView {
+  height: 240px;
+  overflow: scroll;
+}
+
+.ticket {
+  display: flex;
+  align-items: center;
+}
+
+.ticketPicture {
+  font-size: 34px;
+  line-height: 36px;
+  margin-right: 8px;
+}
+
+.lottoResultView {
+  visibility: hidden;
+}
+
+.numberTitle {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+.numberInput {
+  display: flex;
+  justify-content: space-between;
+}
+
+.number {
+  width: 34px;
+  height: 36px;
+}
+
+.resultButton {
+  width: 100%;
+  height: 36px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 27px;
+
+  letter-spacing: 1.25px;
+}
+
+.footer {
+  display: flex;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 16px;
+
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 1.25px;
+  border-top: 1px solid #4e5ba633;
+
+  color: var(--lotto-primary);
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 4px;
+  background-color: white;
+  padding: 16px;
+  width: 350px;
+  z-index: 1;
+}
+
+.exitModal {
+  position: absolute;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  right: 16px;
+  top: 16px;
+  cursor: pointer;
+}
+
+.resultTitle {
+  margin: 24px 0;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.resultTable {
+  margin: 8px 0;
+  border-collapse: collapse;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.resultTable th {
+  padding: 8px 0;
+}
+
+.resultTable tr {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.resultTable td {
+  padding: 8px 0;
+}
+
+.resultExplain {
+  margin: 32px 0;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.restartButton {
+  height: 36px;
+  margin-bottom: 16px;
+}

@@ -1,5 +1,3 @@
-import { COMMAND, LOTTO } from '../constants/index.js';
-
 const InputValidator = {
   checkNaturalNumber(input) {
     const regExp = /^[0-9]+$/g;
@@ -15,11 +13,6 @@ const InputValidator = {
   checkDuplicatedNumbers(numbers) {
     if (new Set(numbers).size !== numbers.length) {
       throw new Error('중복된 숫자가 존재합니다.');
-    }
-  },
-  checkReadRetryCommand(input) {
-    if (!(input === COMMAND.restart || input === COMMAND.quit)) {
-      throw new Error(`입력값이 ${COMMAND.restart} 혹은 ${COMMAND.quit}이어야 합니다.`);
     }
   },
   checkArrayLength(arr, length) {
