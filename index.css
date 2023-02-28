@@ -1,0 +1,204 @@
+:root {
+  --title-font-size: 24px;
+  --title-font-weight: 800;
+  --subtitle-font-size: 20px;
+  --subtitle-font-weight: 600;
+  --body-font-size: 15px;
+  --caption-font-size: 14px;
+  --caption-font-weight: bold;
+
+  --white: #ffffff;
+  --gray-1: #fcfcfd;
+  --gray-2: #b4b4b4;
+  --gray-3: #8b8b8b;
+  --black: #000000;
+  --divider-border-color: #d4d4d4;
+
+  --primary-blue: #4e5ba6;
+  --dark-blue-1: #313d87;
+  --dark-blue-2: #414d94;
+  --dark-red: #b31919;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 32px;
+}
+
+h2 {
+  padding: var(--spacing-3);
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+}
+
+input[type='number'] {
+  padding: var(--spacing-2);
+  line-height: 16px;
+  border: 1px solid var(--gray-2);
+  border-radius: var(--spacing-1);
+}
+
+button {
+  padding: var(--spacing-2);
+  background: var(--primary-blue);
+  line-height: 16px;
+  color: var(--white);
+  border: 1px solid var(--primary-blue);
+  border-radius: var(--spacing-1);
+  outline: 0;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  background: var(--primary-blue);
+}
+
+header h2 {
+  padding: var(--spacing-3);
+  padding-left: 100px;
+  color: var(--white);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-container {
+  position: relative;
+  width: 420px;
+  height: 700px;
+  padding: var(--spacing-3);
+  border: 1px solid var(--divider-border-color);
+  border-radius: var(--spacing-1);
+}
+
+#title-wrapper h2 {
+  margin-bottom: var(--spacing-4);
+  text-align: center;
+}
+
+#purchase-lotto-form {
+  margin-bottom: var(--spacing-3);
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+#input-label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#price-input {
+  flex-grow: 1;
+}
+
+#purchase-button {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+#purchase-count {
+  margin-top: 16px;
+}
+
+#purchase-result {
+  height: 300px;
+  overflow: auto;
+}
+
+#lottos {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#winning-lotto {
+  margin-top: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}
+
+#winning-lotto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#winning-lottos-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+#winning-numbers-input {
+  display: grid;
+  grid-template-columns: repeat((6, 1fr));
+}
+
+#winning-numbers input,
+#bonus-number input {
+  width: 30px;
+  height: 32px;
+}
+
+#check-result-btn {
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+}
+
+#modal-dialog {
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  background: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  visibility: hidden;
+}
+
+#modal-dialog h2 {
+  margin-bottom: 95%;
+}
+#modal-close-btn {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  left: 45%;
+}
+
+#modal-table {
+  position: absolute;
+  width: 319px;
+  height: 247px;
+  margin-top: 100px;
+  border: 1px solid gray;
+  font-size: smaller;
+}
+
+#modal-profit {
+  font-weight: bold;
+}
+
+#modal-restart-btn {
+  margin-top: 10px;
+}

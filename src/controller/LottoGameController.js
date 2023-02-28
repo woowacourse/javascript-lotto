@@ -1,113 +1,88 @@
-const {
-  PRICE_UNIT,
-  RESTART_COMMAND,
-  ERROR_MESSAGE,
-} = require('../constants/constants');
-const Lottos = require('../domain/model/Lottos');
-const WinningNumbers = require('../domain/model/WinningNumbers');
-const exception = require('../utils/exception');
-const Console = require('../view/Console');
-const validator = require('../domain/validation/validator');
-const inputView = require('../view/inputView');
-const outputView = require('../view/outputView');
+// Domain
+import Lottos from '../domain/model/Lottos';
+import WinningNumbers from '../domain/model/WinningNumbers';
+// View
+import PurchasePriceView from '../view/PurchasePriceView';
+import WinningNumbersView from '../view/WinningNumbersView';
+import GameResultView from '../view/GameResultView';
 
-class LottoGameController {
-  #lottos;
+const { PRICE_UNIT } = require('../constants/constants');
 
-  #winningNumbers;
+export default class LottoGameController {
+  #model = {};
 
-  playGame() {
-    this.inputPurchasePrice();
+  #view = {
+    purchasePriceView: new PurchasePriceView(),
+    winningNumbersView: new WinningNumbersView(),
+    gameResultView: GameResultView,
+  };
+
+  constructor() {
+    this.setEventHandler();
   }
 
-  inputPurchasePrice() {
-    inputView.readPurchasePrice((purchasePriceInput) => {
-      try {
-        const lottoCount = this.calculateLottoCount(purchasePriceInput);
-        this.#lottos = new Lottos(lottoCount);
-        this.showPurchasedLottos();
-      } catch (error) {
-        Console.print(error.message);
-        this.inputPurchasePrice();
-      }
-    });
+  setEventHandler() {
+    this.#view.purchasePriceView.addSubmitEvent(this.onSubmitPrice.bind(this));
+  }
+
+  onSubmitPrice(purchasePriceInput) {
+    const lottoCount = this.calculateLottoCount(purchasePriceInput);
+
+    this.#model.lottos = new Lottos(lottoCount);
+    const lottos = this.#model.lottos.getLottos();
+    this.#view.purchasePriceView.renderPurchaseResult(lottoCount, lottos);
+
+    this.#view.purchasePriceView.resetInputValue();
+
+    this.#view.winningNumbersView.render();
+
+    this.#view.winningNumbersView.addSubmitEvent(
+      this.onSubmitWinningNumbers.bind(this)
+    );
   }
 
   calculateLottoCount(priceInput) {
-    exception.handlePurchasePrice(priceInput);
-
-    const price = Number(priceInput);
-
-    return Math.floor(price / PRICE_UNIT);
+    return Math.floor(Number(priceInput) / PRICE_UNIT);
   }
 
-  showPurchasedLottos() {
-    outputView.printLottoCount(this.#lottos.getLottos().length);
-    outputView.printLottoNumbers(this.#lottos.getLottos());
-
-    this.inputWinningNumbers();
-  }
-
-  inputWinningNumbers() {
-    inputView.readWinningNumbers((winningNumbersInput) => {
-      try {
-        exception.handleWinningNumbers(winningNumbersInput);
-        this.#winningNumbers = winningNumbersInput.split(',').map(Number);
-        this.inputBonusNumber();
-      } catch (error) {
-        Console.print(error.message);
-        this.inputWinningNumbers();
-      }
-    });
-  }
-
-  inputBonusNumber() {
-    inputView.readBonusNumber((bonusNumberInput) => {
-      try {
-        exception.handleBonusNumber(this.#winningNumbers, bonusNumberInput);
-        this.#winningNumbers = new WinningNumbers(
-          this.#winningNumbers,
-          Number(bonusNumberInput)
-        );
-
-        this.showResult();
-      } catch (error) {
-        Console.print(error.message);
-        this.inputBonusNumber();
-      }
-    });
-  }
-
-  showResult() {
-    this.#lottos.calculateAllRanks(
-      this.#winningNumbers.getWinningNumbers(),
-      this.#winningNumbers.getBonusNumber()
+  onSubmitWinningNumbers(winningNumbersInput, bonusNumberInput) {
+    this.#model.winningNumbers = new WinningNumbers(
+      winningNumbersInput,
+      bonusNumberInput
     );
-
-    outputView.printStatistics(this.#lottos.getAllRanks());
-    outputView.printProfitRate(this.#lottos.getProfitRate());
-
-    this.inputRestartCommand();
+    this.showGameResult();
   }
 
-  inputRestartCommand() {
-    inputView.readRestartCommand((restartCommandInput) => {
-      if (validator.isRestartCommandValid(restartCommandInput))
-        return restartCommandInput === RESTART_COMMAND.YES
-          ? this.restart()
-          : Console.close();
+  showGameResult() {
+    this.calculateRanks();
+    const ranks = this.#model.lottos.getAllRanks();
+    const profitRate = this.#model.lottos.getProfitRate();
 
-      Console.print(ERROR_MESSAGE.RESTART_COMMAND_ERROR);
-      this.inputRestartCommand();
-    });
+    this.#view.gameResultView.render(ranks, profitRate);
+    this.#view.gameResultView.addRestartClickEvent(
+      this.onClickRestartCommand.bind(this)
+    );
+    this.#view.gameResultView.addCloseClickEvent(
+      this.onClickModalClose.bind(this)
+    );
   }
 
-  restart() {
-    this.#winningNumbers = null;
-    this.#lottos = null;
+  calculateRanks() {
+    this.#model.lottos.calculateAllRanks(
+      this.#model.winningNumbers.getWinningNumbers(),
+      this.#model.winningNumbers.getBonusNumber()
+    );
+  }
 
-    this.playGame();
+  onClickRestartCommand() {
+    this.#model.lottos = null;
+    this.#model.winningNumbers = null;
+    this.#view.gameResultView.close();
+    this.#view.purchasePriceView.resetPurchaseResult();
+    this.#view.winningNumbersView.removeWinningNumbersForm();
+  }
+
+  onClickModalClose() {
+    this.#view.gameResultView.close();
   }
 }
-
-module.exports = LottoGameController;

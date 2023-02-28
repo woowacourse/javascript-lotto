@@ -1,6 +1,6 @@
 const {
-  LOTTO_NUMBER_RANGE,
   LOTTO_NUMBER_COUNT,
+  LOTTO_NUMBER_RANGE,
 } = require('../constants/constants');
 
 const generateRandomLotto = () => {

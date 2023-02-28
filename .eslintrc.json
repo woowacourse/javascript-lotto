@@ -15,19 +15,15 @@
     ],
     "indent": ["error", 2],
     "quotes": ["error", "single"],
-    "max-lines-per-function": ["error", 12], // 한 함수의 메서드 라인을 10줄로 제한함.
-    "max-depth": ["error", 2], // 들여쓰기(indent)를 2개로 제한함.
-    "no-else-return": ["error", { "allowElseIf": false }], // else , if else return 을 제한함.
-    "max-params": ["error", 3], // 함수의 매개변수 개수를 3개로 제한함.
+    "max-lines-per-function": ["error", 60],
+    "max-depth": ["error", 2],
+    "no-else-return": ["error", { "allowElseIf": false }],
+    "max-params": ["error", 3],
     "no-confusing-arrow": [
-      // 화살표 함수(=>)는 일부 비교 연산자(>, <=, >=)와 구문이 유사합니다.
-      //이 규칙은 비교 연산자와 혼동될 수 있는 위치에서 화살표 함수 구문을 사용하지 않도록 경고합니다.
       "error",
       { "allowParens": true, "onlyOneSimpleParam": false }
     ],
     "prefer-destructuring": [
-      //  X : var foo = object.foo;
-      //  O :  var { foo } = object;
       "error",
       {
         "array": true,
@@ -37,8 +33,8 @@
         "enforceForRenamedProperties": false
       }
     ],
-    "spaced-comment": ["error", "always", { "exceptions": ["-", "+"] }], // 주석 사용 시 한칸 공백 생성
-    "eol-last": ["error", "always"], // EOL https://github.com/airbnb/javascript#whitespace--newline-at-end
+    "spaced-comment": ["error", "always", { "exceptions": ["-", "+"] }],
+    "eol-last": ["error", "always"],
     "no-var": "error"
   }
 }

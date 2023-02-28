@@ -1,19 +1,29 @@
-const readline = require('readline');
-
-const PRICE_UNIT = 1_000;
-const REGEX = Object.freeze({
-  BLANK: /\s/,
-  RESTART_COMMAND: /y|n/,
-  PRICE_FORMAT: /\B(?=(\d{3})+(?!\d))/g,
+const CORRECT_COUNT_PER_RANK = Object.freeze({
+  FIRST_RANK: 6,
+  SECOND_RANK: 5,
+  THIRD_RANK: 5,
+  FOURTH_RANK: 4,
+  FIFTH_RANK: 3,
 });
 
 const EMPTY_STRING = '';
+
+const INDEX_TO_KEY_CONVERTER = Object.freeze([
+  'FIRST_RANK',
+  'SECOND_RANK',
+  'THIRD_RANK',
+  'FOURTH_RANK',
+  'FIFTH_RANK',
+]);
+
 const LOTTO_NUMBER_COUNT = 6;
 
 const LOTTO_NUMBER_RANGE = Object.freeze({
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
 });
+
+const PRICE_UNIT = 1_000;
 
 const PROFIT = Object.freeze({
   FIRST_RANK: 2_000_000_000,
@@ -39,44 +49,37 @@ const RANK = Object.freeze({
   FIFTH: 5,
 });
 
-const CORRECT_COUNT_PER_RANK = Object.freeze({
-  FIRST_RANK: 6,
-  SECOND_RANK: 5,
-  THIRD_RANK: 5,
-  FOURTH_RANK: 4,
-  FIFTH_RANK: 3,
+const REGEX = Object.freeze({
+  BLANK: /\s/,
+  RESTART_COMMAND: /y|n/,
+  PRICE_FORMAT: /\B(?=(\d{3})+(?!\d))/g,
+  NUMBER: /^[0-9]+$/,
 });
-
-const INDEX_TO_KEY_CONVERTER = Object.freeze([
-  'FIRST_RANK',
-  'SECOND_RANK',
-  'THIRD_RANK',
-  'FOURTH_RANK',
-  'FIFTH_RANK',
-]);
 
 const RESTART_COMMAND = Object.freeze({
   YES: 'y',
   NO: 'n',
 });
 
-const RL = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
 const CONSOLE_MESSAGE = Object.freeze({
   ASK_PURCHASE_PRICE: '> 구입금액을 입력해 주세요.',
-  showLottoCount: (lottoCount) => `${lottoCount}개를 구매했습니다.`,
+  showLottoCount: (lottoCount) => `총 ${lottoCount}개를 구매했습니다.`,
   ASK_WINNING_NUMBERS: '> 당첨 번호를 입력해 주세요. ',
   ASK_BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요. ',
-  RESULT_HEADER: '\n당첨 통계\n--------------------',
-  showProfitRate: (profitRate) => `총 수익률은 ${profitRate}%입니다.\n`,
+  RESULT_HEADER: '🏆당첨 통계🏆',
+  showProfitRate: (profitRate) => `당신의 총 수익률은 ${profitRate}%입니다.`,
   ASK_RESTART_COMMAND: '> 다시 시작하시겠습니까? (y/n)',
 });
 
 const ERROR_MESSAGE = Object.freeze({
-  PURCHASE_PRICE_ERROR: `구매 금액은 ${PRICE_UNIT}원 단위로 입력해주세요`,
+  BLANK: '공백 없이 입력해주세요.',
+  EMPTY: '아무것도 입력하지 않았습니다.',
+  NUMBER: '숫자만 입력해주세요.',
+  UNIT: `구매 금액은 ${PRICE_UNIT}원 단위로 입력해주세요`,
+  PRICE_RANGE: `구매 금액은 ${PRICE_UNIT}원 이상으로 입력해주세요.`,
+  COUNT: `당첨 번호는 ${LOTTO_NUMBER_COUNT}개로 입력해주세요.`,
+  LOTTO_RANGE: `당첨 번호는 ${LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER}부터 ${LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER}까지의 숫자만 입력해주세요.`,
+  DUPLICATE: '당첨 번호는 서로 중복되지 않게 입력해주세요.',
   WINNING_NUMBERS_ERROR: `당첨 번호는 ${LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER}부터 ${LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER}까지 ${LOTTO_NUMBER_COUNT}개의 숫자로 중복없이 입력해주세요.`,
   BONUS_NUMBER_ERROR: `보너스 번호는 ${LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER}부터 ${LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER}까지의 숫자로 당첨 번호와 중복없이 입력해주세요.`,
   RESTART_COMMAND_ERROR: `${RESTART_COMMAND.YES} 또는 ${RESTART_COMMAND.NO}으로만 입력해주세요.`,
@@ -93,7 +96,6 @@ module.exports = {
   PROFIT,
   PROFIT_PER_RANK,
   PRICE_UNIT,
-  RL,
   RANK,
   REGEX,
   RESTART_COMMAND,

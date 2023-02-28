@@ -1,81 +1,75 @@
-/* eslint-disable no-restricted-globals */
 const {
   EMPTY_STRING,
-  PRICE_UNIT,
+  ERROR_MESSAGE,
   LOTTO_NUMBER_RANGE,
   LOTTO_NUMBER_COUNT,
+  PRICE_UNIT,
   REGEX,
 } = require('../../constants/constants');
 
 const validator = {
-  isPurchasePriceValid(input) {
-    return (
-      !this.isEmptyOrBlankIncluded(input) &&
-      this.isNumber(input) &&
-      this.isValidUnit(input) &&
-      !this.isSmallerOrEqualThanZero(input)
-    );
+  purchasePrice(input) {
+    validator.isEmpty(input);
+    validator.isBlankIncluded(input);
+    validator.isNumber(input);
+    validator.isValidUnit(input);
+    validator.isSmallerOrEqualThanZero(input);
   },
 
-  isWinningNumbersValid(input) {
-    const winningNumbers = input.split(',').map(Number);
-    return (
-      !this.isEmptyOrBlankIncluded(input) &&
-      winningNumbers.every(this.isNumber) &&
-      this.isWinningNumberCountValid(input) &&
-      !this.isNumberDuplicated(winningNumbers) &&
-      winningNumbers.every(this.isNumberRangeValid)
-    );
+  winningNumbers(input) {
+    // const winningNumbers = input.map(Number);
+    input.map(validator.isEmpty);
+    input.map(validator.isNumber);
+    input.map(validator.isNumberRangeValid);
+    validator.isNumbersCountValid(input.length);
+    validator.isNumberDuplicated(input);
   },
 
-  isBonusNumberValid(winningNumbers, input) {
-    const bonusNumber = Number(input);
-
-    return (
-      !this.isEmptyOrBlankIncluded(bonusNumber) &&
-      this.isNumber(bonusNumber) &&
-      this.isNumberRangeValid(bonusNumber) &&
-      !this.isNumberDuplicated([...winningNumbers, bonusNumber])
-    );
-  },
-
-  isEmptyOrBlankIncluded(input) {
-    return this.isBlankIncluded(input) || this.isEmpty(input);
-  },
-
-  isNumber(input) {
-    return !isNaN(input);
+  bonusNumber(winningNumbers, input) {
+    validator.isEmpty(input);
+    validator.isBlankIncluded(input);
+    validator.isNumber(input);
+    validator.isNumberRangeValid(input);
+    validator.isNumberDuplicated([...winningNumbers, Number(input)]);
   },
 
   isBlankIncluded(input) {
-    return REGEX.BLANK.test(input);
+    if (REGEX.BLANK.test(input)) throw new Error(ERROR_MESSAGE.BLANK);
   },
 
   isEmpty(input) {
-    return input === EMPTY_STRING;
+    if (input === EMPTY_STRING) throw new Error(ERROR_MESSAGE.EMPTY);
   },
 
-  isSmallerOrEqualThanZero(input) {
-    return Number(input) <= 0;
+  isNumber(input) {
+    if (!REGEX.NUMBER.test(input)) throw new Error(ERROR_MESSAGE.NUMBER);
   },
 
   isValidUnit(input) {
-    return Number(input) % PRICE_UNIT === 0;
+    if (Number(input) % PRICE_UNIT !== 0) throw new Error(ERROR_MESSAGE.UNIT);
   },
 
-  isWinningNumberCountValid(input) {
-    return input.split(',').length === LOTTO_NUMBER_COUNT;
+  isSmallerOrEqualThanZero(input) {
+    if (Number(input) <= 0) throw new Error(ERROR_MESSAGE.PRICE_RANGE);
+  },
+
+  isNumbersCountValid(inputLength) {
+    if (inputLength !== LOTTO_NUMBER_COUNT)
+      throw new Error(ERROR_MESSAGE.COUNT);
   },
 
   isNumberRangeValid(number) {
-    return (
-      Number(number) <= LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER &&
-      Number(number) >= LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER
-    );
+    if (
+      number > LOTTO_NUMBER_RANGE.MAX_LOTTO_NUMBER ||
+      number < LOTTO_NUMBER_RANGE.MIN_LOTTO_NUMBER
+    )
+      throw new Error(ERROR_MESSAGE.LOTTO_RANGE);
   },
 
   isNumberDuplicated(numbers) {
-    return new Set(numbers).size !== numbers.length;
+    if (new Set(numbers).size !== numbers.length)
+      throw new Error(ERROR_MESSAGE.DUPLICATE);
+
   },
 
   isRestartCommandValid(input) {
