@@ -1,0 +1,32 @@
+
+#input-winning-number-title {
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+#winning-number-submit {
+  margin-top: 8px;
+}
+
+.ball-box {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #B4B4B4;
+  border-radius: 4px;
+  text-align: center;
+}
+
+#game-modal-open-button {
+  margin-top: 27px;
+  height: 36px;
+  margin-bottom: 32px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
