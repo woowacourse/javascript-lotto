@@ -1,12 +1,25 @@
-import Component from '../../Component.js';
-import generateMessages from '../../utils/generateMessages.js';
+import Component from './Component.js';
 
 export default class LottoList extends Component {
-  setUp({ lottoList }) {
-    this.lottoList = lottoList;
+  template() {
+    return `
+      <div class='lotto-list__lotto-amount'>
+        총 ${this.props.lottoList.length}개를 구매하였습니다.
+      </div>
+      <ul class='lotto-list__lotto-list'>
+        ${this.getLottoListTemplate()}
+      </ul>
+    `;
   }
 
-  template() {
-    return generateMessages.lottoList(this.lottoList);
+  getLottoListTemplate() {
+    const { lottoList } = this.props;
+
+    return lottoList
+      .map(
+        (lotto) =>
+          `<li class='lotto-list__lotto'> <span>🎟</span> ${lotto.getNumbers().join(', ')}</li>`
+      )
+      .join('');
   }
 }

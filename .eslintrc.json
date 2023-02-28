@@ -1,7 +1,8 @@
 {
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": "latest"
@@ -20,6 +21,8 @@
     "class-methods-use-this": "off",
     "import/extensions": "off",
     "no-unused-expressions": "off",
-    "no-return-await": "off"
+    "no-return-await": "off",
+    "no-new": "off",
+    "no-underscore-dangle": ["error", { "enforceInMethodNames": false, "allowAfterThis": true }]
   }
 }

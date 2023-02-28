@@ -15,9 +15,8 @@ export const LOTTO = Object.freeze({
 });
 
 export const AWARDS = Object.freeze({
-  BONUS: 'BONUS',
   FIRST_PLACE: 6,
-  SECOND_PLACE: 'BONUS',
+  SECOND_PLACE: '5개 + 보너스 볼',
   THIRD_PLACE: 5,
   FOURTH_PLACE: 4,
   FIFTH_PLACE: 3,

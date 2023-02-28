@@ -23,8 +23,6 @@ export class Lotto {
 
   setDrawingNumbers(drawingNumbers) {
     this.#drawingNumbers = drawingNumbers;
-
-    return this;
   }
 }
 
@@ -38,9 +36,9 @@ export const LottoStore = {
   draw(lotto) {
     const numbers = lotto.getNumbers();
     const { winningNumbers, bonusNumber } = lotto.getDrawingNumbers();
-    const awards = winningNumbers.filter((number) => numbers.includes(number));
 
-    return awards.length === AWARDS.THIRD_PLACE && numbers.includes(bonusNumber)
+    const awards = [...winningNumbers, bonusNumber].filter((number) => numbers.includes(number));
+    return awards.length === AWARDS.THIRD_PLACE && awards.includes(bonusNumber)
       ? AWARDS.SECOND_PLACE
       : awards.length;
   },
@@ -65,7 +63,8 @@ export const LottoStore = {
       (acc, [rank, count]) => (rank in PRIZE ? acc + PRIZE[rank] * count : acc),
       AWARDS.INITIAL_EARNING
     );
+    const earningRate = Number(((earning / (LOTTO.PRICE * TOTAL)) * 100).toFixed(1));
 
-    return ((earning / (LOTTO.PRICE * TOTAL)) * 100).toFixed(1);
+    return Number.isNaN(earningRate) ? 0 : earningRate;
   },
 };
