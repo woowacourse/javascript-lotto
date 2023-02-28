@@ -6,11 +6,7 @@ export default class View {
     $('.purchase-amount-form').addEventListener('submit', (e) => {
       e.preventDefault();
 
-      console.log('e.target : ', e.target);
-      console.log('e.target[0]: ', e.target[0]);
-      console.log('e.target.elements: ', e.target.elements);
-
-      const purchaseAmountInput = $('.purchase-amount-input').value;
+      const purchaseAmountInput = e.target.elements['purchase-amount'].value;
 
       callback(purchaseAmountInput);
     });
@@ -20,12 +16,12 @@ export default class View {
     $('.winning-lotto-form').addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const $$winningNumberInputNodeList = $$('.winning-number-input');
+      const $$winningNumberInputNodeList = e.target.elements['winning-number'];
       const winningNumbersInput = Array.from($$winningNumberInputNodeList, (node) => {
         return node.value.trim();
       });
 
-      const bonusNumberInput = $('.bonus-number-input').value;
+      const bonusNumberInput = e.target.elements['bonus-number'].value;
 
       callback({ winningNumbersInput, bonusNumberInput });
     });
