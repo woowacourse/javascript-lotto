@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
-import { ERROR_MESSAGE } from '../src/data/constants';
-import Lotto from '../src/domain/Lotto';
-import WinningLotto from '../src/domain/WinningLotto';
+import Lotto from '../src/js/domain/Lotto';
+import WinningLotto from '../src/js/domain/WinningLotto';
 
 test.each([['a'], ['가'], ['!'], [' ']])('보너스 번호는 숫자이다', (bonusNumber) => {
   expect(() => {

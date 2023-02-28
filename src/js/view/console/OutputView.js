@@ -1,5 +1,5 @@
-import { LOTTO_RANKING, PRINT_MESSAGE } from '../data/constants.js';
-import Console from '../utils/Console.js';
+import { LOTTO_RANKING, PRINT_MESSAGE } from '../../data/constants.js';
+import Console from '../../utils/Console.js';
 
 const OutputView = {
   printErrorMessage(message) {
