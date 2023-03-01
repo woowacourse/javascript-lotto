@@ -11,14 +11,11 @@ import WinningInput from './js/components/WinningInput';
 import LOTTO from './constants/lotto';
 import Modal from './js/components/Modal';
 import { validateBonusNumber, validateNumbers, validatePurchaseAmount } from './domain/validator';
+import { $, $$ } from './js/dom';
 
 const webController = new WebController();
 
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
-
 $('.lotto-container').insertAdjacentHTML('beforeend', Payment());
-
 
 $('#payment-form').addEventListener('submit', (event) => {
   event.preventDefault();
