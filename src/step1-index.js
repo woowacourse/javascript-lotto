@@ -1,5 +1,5 @@
-const LottoMachine = require('./domain/controller/LottoMachine');
+const ConsoleController = require('./domain/controller/ConsoleController');
 
-const lottoMachine = new LottoMachine();
+const consoleController = new ConsoleController();
 
-lottoMachine.play();
+consoleController.readMoney();

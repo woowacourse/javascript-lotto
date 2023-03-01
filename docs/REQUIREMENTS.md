@@ -19,7 +19,7 @@
 
 ---
 
-# 로또 미션 기능 목록
+# 1단계 - 콘솔 기반 로또 게임 기능 목록
 
 ## Domain
 
@@ -72,7 +72,6 @@
 
    - method
 
-     - 로또 프로그램을 시작한다. (play())
      - 로또 구매 금액 입력을 받는다. (readMoney())
      - 로또 당첨 번호를 입력 받는다. (readWinningNumbers())
      - 로또 보너스 번호를 입력 받는다. (readBonusNumber())
@@ -135,3 +134,37 @@
    - 매직넘버 (MAGIC_NUMBER)
    - 매직리터럴 (MAGIC_LITERAL)
    - 로또게임정보 (RANK_INFORMATIONS)
+
+# 2단계 - 웹 기반 로또 게임 기능 목록
+
+## html
+
+1. index.html
+
+- 웹 기반 로또 게임 ui에 필요한 html을 작성한다.
+
+## css
+
+1. styles.css
+
+- 웹 기반 로또 게임 ui에 사용하는 styles들을 정의한다.
+
+## javascript
+
+1. step2-index.js
+
+- event
+
+  1. 구입 버튼 클릭
+  2. 결과 확인 버틑 클릭
+  3. 다시 시작 버튼 클릭
+  4. X 버튼 클릭
+
+- 구입금액 입력값을 lottoMachine에 저장한다. (saveMoney())
+- 당첨 번호와 보너스 번호의 입력값을 lottoMachine에 저장한다. (saveWinning())
+
+- 생성된 로또들과 당첨 번호를 입력받는 부분을 렌더링한다. (renderLottoContent())
+- 당첨번호 input tag들을 렌더링한다. (renderWinningNumebersInput())
+- 당첨결과를 렌더링한다. (renderResult())
+
+- 당첨번호 입력값인 6개의 숫자들을 반환한다. (getWinningNumbersInput())
