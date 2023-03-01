@@ -1,5 +1,5 @@
-const Console = require("../utils/Console");
-const { MESSAGE } = require("../constants");
+import Console from "../../utils/Console";
+import { MESSAGE } from "../../constants";
 
 const InputView = {
   async readPurchaseAmount() {
@@ -23,4 +23,4 @@ const InputView = {
   },
 };
 
-module.exports = InputView;
+export default InputView;

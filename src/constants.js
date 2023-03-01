@@ -1,4 +1,4 @@
-const MESSAGE = {
+export const MESSAGE = {
   INPUT_PURCHASE_AMOUNT: "구입금액을 입력해 주세요.\n",
   INPUT_LOTTO_NUMBERS: "\n당첨 번호를 입력해 주세요.\n",
   INPUT_BONUS_NUMBER: "\n보너스 번호를 입력해 주세요.\n",
@@ -7,20 +7,20 @@ const MESSAGE = {
   QUIT: "\n게임을 종료합니다.\n",
 };
 
-const AMOUNT_OF_PURCHASE = (amount) => {
+export const AMOUNT_OF_PURCHASE = (amount) => {
   return `${amount}개를 구매했습니다.`;
 };
 
-const UNIT = 1_000;
-const LOTTO_RANGE = {
+export const UNIT = 1_000;
+export const LOTTO_RANGE = {
   MIN: 1,
   MAX: 45,
 };
 
-const NUM_OF_RANK = 5;
-const LOTTO_SIZE = 6;
+export const NUM_OF_RANK = 5;
+export const LOTTO_SIZE = 6;
 
-const ERROR = {
+export const ERROR = {
   NUMBER: "[ERROR] 숫자를 입력해주세요.",
   OVER_UNIT: (unit) => `[ERROR] ${unit} 원 이상 입력해주세요.`,
   SIZE: (size) => `[ERROR] 서로 다른 숫자 ${size}개를 입력해주세요.`,
@@ -31,7 +31,7 @@ const ERROR = {
   RESTART: "[ERROR] y 혹은 n으로 입력해주세요.",
 };
 
-const RESULT = (prize, lottoResult) => {
+export const RESULT = (prize, lottoResult) => {
   return `\n당첨 통계\n--------------------\n
 3개 일치 (${prize[0].toLocaleString()}원) - ${lottoResult[0]}개
 4개 일치 (${prize[1].toLocaleString()}원) - ${lottoResult[1]}개
@@ -41,12 +41,22 @@ const RESULT = (prize, lottoResult) => {
 총 수익률은 ${Number(lottoResult[5]).toLocaleString()}%입니다.`;
 };
 
-const COMMAND = {
+export const UNDER_SECOND = (idx) => {
+  return `${idx + 3}개`;
+};
+export const SECOND = (idx) => {
+  return `${idx + 2}개+보너스볼`;
+};
+export const FIRST = (idx) => {
+  return `${idx + 2}개`;
+};
+
+export const COMMAND = {
   RESTART: "y",
   QUIT: "n",
 };
 
-const MATCH = {
+export const MATCH = {
   ALL: 6,
   FIVE: 7,
   UNDER_THREE: 9,
@@ -54,18 +64,6 @@ const MATCH = {
   MATCH_INDEX: (matchNumber) => 9 - matchNumber,
 };
 
-const PRIZE = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
+export const PRIZE = [5_000, 50_000, 1_500_000, 30_000_000, 2_000_000_000];
 
-module.exports = {
-  RANK: NUM_OF_RANK,
-  LOTTO_RANGE,
-  LOTTO_SIZE,
-  UNIT,
-  MESSAGE,
-  ERROR,
-  AMOUNT_OF_PURCHASE,
-  COMMAND,
-  PRIZE,
-  RESULT,
-  MATCH,
-};
+export const LOCALE_STRING = /\B(?=(\d{3})+(?!\d))/g;

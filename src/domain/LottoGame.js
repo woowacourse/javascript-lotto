@@ -1,18 +1,19 @@
-const Lotto = require("./Lotto");
-const Random = require("../utils/Random");
-const {
+import Lotto from "./Lotto";
+import Random from "../utils/Random";
+
+import {
   UNIT,
-  RANK,
+  NUM_OF_RANK,
   PRIZE,
   LOTTO_SIZE,
   LOTTO_RANGE,
   MATCH,
-} = require("../constants");
+} from "../constants";
 
 class LottoGame {
   constructor(amount) {
     this.lotteries = [];
-    this.rank = new Array(RANK).fill(0);
+    this.rank = new Array(NUM_OF_RANK).fill(0);
     this.generateLotteries(amount / UNIT);
     this.getLotteries();
   }
@@ -50,7 +51,7 @@ class LottoGame {
 
   calculateRankResult(lottoNumbers, bonusNumber) {
     const matchResult = this.matchLotteries(lottoNumbers, bonusNumber);
-    const rankResult = new Array(RANK).fill(0);
+    const rankResult = new Array(NUM_OF_RANK).fill(0);
 
     matchResult.map((lotto) => {
       rankResult[this.calculateRank(lotto[0], lotto[1])] += 1;
@@ -79,4 +80,4 @@ class LottoGame {
   }
 }
 
-module.exports = LottoGame;
+export default LottoGame;

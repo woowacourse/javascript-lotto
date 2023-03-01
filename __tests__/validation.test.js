@@ -1,4 +1,5 @@
-const Validation = require("../src/Validation");
+import Validation from "../src/Validation";
+
 describe("사용자가 입력한 구매 금액에 대한 유효성 검사", () => {
   test.each([["a"], [""], ["%"]])(
     "구매 금액이 숫자가 아닌 경우 에러 발생 %#",

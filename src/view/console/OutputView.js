@@ -1,5 +1,5 @@
-const Console = require("../utils/Console");
-const { AMOUNT_OF_PURCHASE, MESSAGE, RESULT, PRIZE } = require("../constants");
+import Console from "../../utils/Console";
+import { AMOUNT_OF_PURCHASE, MESSAGE, RESULT, PRIZE } from ("../constants");
 
 const OutputView = {
   printError(error) {
@@ -25,4 +25,4 @@ const OutputView = {
   },
 };
 
-module.exports = OutputView;
+export default OutputView;
