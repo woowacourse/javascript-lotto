@@ -1,0 +1,13 @@
+#lotto-header {
+  width: 100%;
+  height: 6.4rem;
+  padding: 1.4rem 0;
+  border-bottom: 0.1rem solid var(--lotto-primary);
+
+  background: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}
+
+#header-title {
+  margin-left: 11%;
+}

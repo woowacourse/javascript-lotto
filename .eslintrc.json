@@ -15,16 +15,17 @@
     "sourceType": "module"
   },
   "rules": {
-    "max-depth": ["error", 1],
-    "max-params": ["error", 2],
-    "max-lines-per-function": ["error", 10],
-    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
+    "max-depth": ["warn", 1],
+    "max-params": ["warn", 2],
+    "max-lines-per-function": ["warn", 10],
+    "lines-between-class-members": ["warn", "always", { "exceptAfterSingleLine": true }]
   },
   "overrides": [
     {
-      "files": ["__tests__/**/*.js"],
+      "files": ["__tests__/**/*.js", "src/js/**/*.js"],
       "rules": {
-        "max-lines-per-function": "off"
+        "max-lines-per-function": "off",
+        "no-undef": "off"
       }
     }
   ]

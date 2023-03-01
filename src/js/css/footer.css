@@ -1,0 +1,24 @@
+#lotto-footer {
+  position: relative;
+  transform: translateY(-100%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 8rem;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+#lotto-footer > span {
+  height: 1.6rem;
+
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
+  text-align: center;
+
+  color: var(--lotto-primary);
+}

@@ -12,7 +12,9 @@ class WinningLotto {
   countMatch(lotto) {
     const match = this.#lotto.countMatch(lotto);
 
-    if (match === PRIZE.THIRD) return lotto.hasBonus(this.#bonusNumber) ? match + BONUS : match;
+    if (match === PRIZE.THIRD && lotto.hasBonus(this.#bonusNumber)) {
+      return match + BONUS;
+    }
 
     return match;
   }

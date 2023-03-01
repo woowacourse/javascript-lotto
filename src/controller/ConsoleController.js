@@ -20,7 +20,7 @@ class ConsoleController {
 
   async purchaseLottos() {
     const money = await InputView.readPurchaseAmount();
-    const lottoAmount = money / LOTTO.COST;
+    const lottoAmount = money / LOTTO.UNIT;
 
     this.#lottoService.purchaseLottos(lottoAmount);
     OutputView.printPurchaseAmount(lottoAmount);
@@ -36,7 +36,7 @@ class ConsoleController {
 
   printStatstics() {
     const statstics = this.#lottoService.getStatstics();
-    statstics.forEach((stat) => OutputView.printStatstics(stat));
+    statstics.forEach(OutputView.printStatstics);
     OutputView.printProfitRate(this.#lottoService.getProfitRate(statstics));
   }
 

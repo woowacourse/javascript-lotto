@@ -1,0 +1,18 @@
+#payment-form {
+  display: flex;
+  margin-top: 2.8rem;
+}
+
+.money-input {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  height: 3.6rem;
+}
+
+.purchase-button {
+  align-self: flex-end;
+  width: 5.6rem;
+  margin-left: 1.6rem;
+  height: 3.6rem;
+}

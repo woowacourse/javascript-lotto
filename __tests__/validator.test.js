@@ -1,5 +1,3 @@
-import COMMAND from '../src/constants/command';
-import { ERROR_LOTTO } from '../src/constants/error';
 import LOTTO from '../src/constants/lotto';
 import {
   validatePurchaseAmount,

@@ -1,0 +1,111 @@
+@import './reset.css';
+@import './constant.css';
+
+/* components */
+@import './header.css';
+@import './footer.css';
+@import './modal.css';
+@import './payment.css';
+@import './lottolist.css';
+@import './winninginput.css';
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+  height: 100vh;
+
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+
+  background-color: var(--lotto-greyscale-1);
+  color: var(--lotto-greyscale-5);
+}
+
+.title {
+  font-weight: 800;
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.015rem;
+}
+
+.placeholder {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  color: var(--lotto-greyscale-4);
+}
+
+.caption {
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 8rem;
+}
+
+span {
+  height: 2.4rem;
+}
+
+input {
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 0.4rem;
+}
+
+.lotto-container {
+  width: 41.6rem;
+  height: 72.9rem;
+  margin: 8.4rem 0 6.9rem 0;
+  padding: 3.2rem 1.6rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.lotto-title {
+  height: 2.4rem;
+  margin-top: 2rem;
+
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.015rem;
+  text-align: center;
+}
+
+.lotto-button {
+  border: 2px solid var(--lotto-primary);
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}
+
+.lotto-button:hover:enabled {
+  background-color: var(--lotto-greyscale-1);
+  color: var(--lotto-primary);
+  cursor: pointer;
+}
+
+.lotto-button:disabled {
+  background-color: var(--lotto-greyscale-4);
+  border: 2px solid var(--lotto-greyscale-4);
+}
