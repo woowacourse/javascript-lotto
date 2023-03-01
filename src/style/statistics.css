@@ -1,0 +1,79 @@
+#winning-statistics-layout {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#winning-statistics-wapper {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  background: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 16px;
+}
+
+#winning-statistics-out-button {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+}
+
+#winning-statistics-title {
+  margin: 40px 0px 33px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.15px;
+}
+
+#winning-statistics-layout th {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 8px 0px;
+}
+
+#winning-statistics-layout tr {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#winning-statistics-layout tr:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#winning-statistics-layout td {
+  text-align: center;
+  padding: 8px 0px;
+}
+
+#winning-statistics-reward-rate {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+#winning-statistics-layout button {
+  margin: 32px 16px;
+  padding: 10px 0px;
+  text-align: center;
+}

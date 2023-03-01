@@ -1,0 +1,28 @@
+#purchase-lotto {
+  flex: 1;
+  overflow: auto;
+  margin: 28px 16px 24px;
+}
+
+#lottos-count {
+  margin-bottom: 4px;
+}
+
+#purchase-lotto ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#purchase-lotto li {
+  display: flex;
+  margin: 2px 0px;
+  align-items: center;
+}
+
+#lotto-emoji {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 36px;
+  margin-right: 8px;
+}

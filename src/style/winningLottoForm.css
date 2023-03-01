@@ -1,0 +1,50 @@
+#winning-lotto-from {
+  margin: 0px 16px 32px;
+}
+
+#winning-lotto-from-title {
+  margin-bottom: 12px;
+}
+
+#winning-lotto-from-layout {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 37px;
+}
+
+#winning-numbers-inputs {
+  display: flex;
+}
+
+#winning-lotto-from input {
+  width: 34px;
+  height: 36px;
+}
+
+.winning-form-input-title {
+  margin-bottom: 8px;
+}
+
+#winning-numbers-inputs input {
+  margin-right: 8px;
+  text-align: center;
+}
+
+#bonusNumber-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#bonusNumber-input input {
+  text-align: center;
+}
+
+#winning-lotto-from button {
+  height: 36px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+}
