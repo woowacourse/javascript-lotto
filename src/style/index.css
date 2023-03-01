@@ -1,0 +1,313 @@
+@import './reset.css';
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  transition: 0.3s color linear;
+}
+
+button:hover {
+  background: #4458ca;
+}
+
+.stop-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  background-color: #4e5ba6;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  margin-left: 130px;
+}
+
+.lotto h2 {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.lotto h6 {
+  margin-bottom: 4px;
+}
+
+.buy-container {
+  display: flex;
+  justify-content: space-between;
+  height: 36px;
+  margin-bottom: 28px;
+}
+
+.buy-container input {
+  width: 310px;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.buy-container button {
+  width: 56px;
+  border-radius: 4px;
+}
+
+.lotto-number-container {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  overflow-y: auto;
+  height: 350px;
+  margin-top: 12px;
+}
+
+.lotto-number {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.lotto-number span:last-child {
+  position: relative;
+  bottom: 3px;
+}
+
+.winning {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.winning input {
+  width: 34px;
+  height: 36px;
+  margin-right: 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.winning input:last-child {
+  align-self: end;
+  margin-right: 0px;
+}
+
+.winning-numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-numbers span {
+  margin: 12px 0px 8px 0px;
+}
+
+.winning-numbers div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.check-result {
+  width: 100%;
+  margin-top: 27px;
+  padding: 10px 0;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.lotto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 414px;
+  height: 727px;
+  padding: 52px 16px 32px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+.imoticion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  font-size: 34px;
+}
+
+.winning-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.close-button {
+  align-self: end;
+  position: absolute;
+  top: 16px;
+  font-size: 28px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: 0.3s color linear;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.winning-screen {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 350px;
+  padding: 41px 16px 32px 16px;
+  border-radius: 4px;
+  background: white;
+}
+
+.lotto-result-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 8px 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.table:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.benefit-rate {
+  margin: 32px 0px;
+}
+
+.table span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.retry-button {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 4px;
+}
+
+.input-number-container input {
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.input-number-container input::-webkit-outer-spin-button,
+.input-number-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.text-title {
+  color: rgba(0, 0, 0, 0.87);
+  font: 800 24px system-ui, -apple-system;
+  line-height: 36px;
+}
+
+.text-subtitle {
+  color: rgba(0, 0, 0, 0.87);
+  font: 600 20px system-ui, -apple-system;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+}
+
+.text-subject {
+  color: rgba(0, 0, 0, 0.87);
+  font: 600 15px system-ui, -apple-system;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+}
+
+.text-body {
+  color: rgba(0, 0, 0, 0.87);
+  font: 400 15px system-ui, -apple-system;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+}
+
+.text-placeholder::placeholder {
+  color: #8b8b8b;
+  font: 400 15px system-ui, -apple-system;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+}
+
+.text-caption {
+  color: rgba(0, 0, 0, 0.87);
+  font: 700 14px system-ui, -apple-system;
+  letter-spacing: 1.25px;
+  line-height: 16px;
+}
+
+.text-black {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-blue {
+  color: #4e5ba6;
+}
+
+.bg-white {
+  background: #ffffff;
+}
+
+.bg-gray-100 {
+  background: #fcfcfd;
+}
+
+.bg-blue {
+  background: #4e5ba6;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.error-message {
+  margin: 8px 0;
+  color: red;
+  text-align: center;
+}

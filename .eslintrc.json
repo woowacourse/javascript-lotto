@@ -4,17 +4,20 @@
     "no-console": "off",
     "max-depth": ["error", 1],
     "no-new": "off",
-    "max-lines-per-function": ["error", 15],
-    "max-params": ["error", 2],
+    "max-lines-per-function": ["error", 20],
+    "max-params": ["error", 3],
     "eol-last": ["error", "always"],
     "comma-dangle": "off",
     "class-methods-use-this": "off",
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
     "function-paren-newline": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "no-promise-executor-return": "off",
+    "no-param-reassign": "off"
   },
   "env": {
+    "browser": true,
     "es6": true,
     "node": true,
     "jest": true

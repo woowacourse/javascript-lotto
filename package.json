@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "우아한테크코스 웹 프론트엔드 레벨1 로또 미션",
   "license": "MIT",
+  "homepage": "https://Gilpop8663.github.io/javascript-lotto",
   "scripts": {
     "test": "jest --watch --no-cache",
     "build-step1": "webpack --config step1.config.js",
+    "build-step2": "webpack --mode production --config step2.config.js",
     "start-step1": "npm run build-step1 && node dist/step1-bundle.js",
-    "start-step2": "webpack serve --open --config step2.config.js"
+    "start-step2": "webpack serve --open --config step2.config.js",
+    "predeploy": "npm run build-step2",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
@@ -27,6 +31,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "esm": "^3.2.25",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^29.3.1",
     "prettier": "^2.8.4",

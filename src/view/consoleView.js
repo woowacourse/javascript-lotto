@@ -6,31 +6,34 @@ const {
 } = require('../constant');
 const { addCommaToNumber } = require('../utils');
 
-const outputView = {
-  printLottoCount(count) {
+const consoleView = {
+  printLottoCount: (count) => {
     Console.print(`${count}개를 구매했습니다.`);
   },
 
-  printLotto(lotto) {
+  printLotto: (lotto) => {
     Console.print(`[${lotto.join(LOTTO_LITERAL.separator)}]`);
   },
 
-  printResultTitle() {
+  printResultTitle: () => {
     Console.print('당첨 통계\n--------------------\n');
   },
 
-  printResult(ranks) {
+  printResult: (ranks) => {
     const result = ranks.reduce((accumulator, rankCount, rankIndex) => {
-      return `${this.getResultLine(rankIndex, rankCount)}\n${accumulator}`;
+      return `${consoleView.getResultLine(
+        rankIndex,
+        rankCount
+      )}\n${accumulator}`;
     }, '');
     Console.print(result);
   },
 
-  printBenefit(rate) {
+  printBenefit: (rate) => {
     Console.print(`총 수익률은 ${addCommaToNumber(rate)}%입니다.`);
   },
 
-  getResultLine(rank, rankCount) {
+  getResultLine: (rank, rankCount) => {
     if (rank === LOTTO_NUMBER.secondRankIndex) {
       return `${
         RANK_INFORMATIONS[rank].matchedCount
@@ -44,4 +47,4 @@ const outputView = {
   },
 };
 
-module.exports = outputView;
+module.exports = consoleView;
