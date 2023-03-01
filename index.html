@@ -2,15 +2,72 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>🎱Lottery Simulator🎱</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <nav class="top-nav">
+          <h1 class="nav-title">🎱 행운의 로또</h1>
+        </nav>
+      </header>
+      <main>
+        <section>
+          <div class="box">
+            <h2 class="box-title">🎱내 번호 당첨 확인 🎱</h2>
+            <p>구입할 금액을 입력해주세요.</p>
+            <form action="." class="buy-form">
+              <input type="number" class="money-input" placeholder="금액">
+              <button type="submit" class="buy-btn">구입</button>
+              <p class="money-input-error-text hide"></p>
+            </form>
+            <div class="main-container hide">
+              <p class="lotto-length-text"></p>
+              <ul class="lotto-box">
+              </ul>
+              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+
+              <div class="number-inputs">
+                <div class="target-number-box">
+                  <p>당첨 번호</p>
+                  <p>보너스 번호</p>
+                </div>
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
+                <input type="number" class="square-input">
+
+                <input type="number" class="square-input last-input">
+              </div>
+              <p class="target-number-input-error-text hide"></p>
+              <button class="result-btn">결과 확인하기</button>
+            </div>
+            </div>
+        </section>
+      </main>
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="result-header">🏆당첨 통계🏆</h2>
+        <table>
+          <th>일치 갯수</th>
+          <th>당첨금</th>
+          <th>당첨 갯수</th>
+          <tbody id="myTableBody"></tbody>
+        </table>
+        <p class="rop-text"></p>
+        <button class="retry-btn">다시 시작하기</button>
+      </div>
+    </div>
+
   </body>
 </html>

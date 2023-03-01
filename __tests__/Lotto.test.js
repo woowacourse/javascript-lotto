@@ -1,6 +1,6 @@
 /* eslint-disable */
-import Lotto from '../src/model/Lotto';
-import { values } from '../src/constants/values';
+import Lotto from '../src/js/model/Lotto';
+import { values } from '../src/js/constants/values';
 
 describe('Lotto 단일 객체 테스트', () => {
   let lotto;

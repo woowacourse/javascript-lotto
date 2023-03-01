@@ -1,7 +1,8 @@
-import generateRandomNumber from '../utils/generateRandomNumber';
-import { values, correctCountsToMoney } from '../constants/values';
-import Lotto from './Lotto';
-import LottoResultCalculator from './LottoResultCalculator';
+import generateRandomNumber from '@lotto/utils/generateRandomNumber';
+import { values, correctCountsToMoney } from '@lotto/constants/values';
+import Lotto from '@lotto//model/Lotto';
+import LottoResultCalculator from '@lotto//model/LottoResultCalculator';
+import lotto from '@lotto//model/Lotto';
 
 class LottoMachine {
   #lottos;
@@ -56,7 +57,7 @@ class LottoMachine {
 
   computeCorrectCounts(winningNumber, lottoNumber) {
     return lottoNumber.reduce((acc, cur) => {
-      if (winningNumber.includes(cur)) return ++acc;
+      if (winningNumber.includes(cur.toString())) return ++acc;
       return acc;
     }, 0);
   }
@@ -69,6 +70,7 @@ class LottoMachine {
         `${lottoNumber.includes(targetNumber.bonusNumber) ? 0 : 1}`
       ].rank;
     }
+
     return correctCountsToMoney[correctCounts].rank;
   }
 

@@ -18,6 +18,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'import/no-import-module-exports': 'off',
     'no-console': 'off',
+    'import/no-unresolved': 'off',
   },
   parserOptions: {
     ecmaVersion: 13,
