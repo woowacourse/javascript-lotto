@@ -1,0 +1,342 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 전체 레이아웃 */
+
+#app {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    flex: 0 0 4rem;
+    background: #4E5BA6;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 84px 0 80px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 80px;
+    border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+/* header */
+
+header > h1 {
+    padding-left: 130px;
+    font-weight: 800;
+    font-size: 24px;
+    color: #FFF;
+}
+
+@media screen and (max-width: 820px) {
+    header {
+        justify-content: center;
+    }
+
+    header > h1 {
+        padding: 0;
+    }
+}
+
+/* footer */
+
+footer > p {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    color: #4E5BA6;
+}
+
+/* 로또 게임 */
+
+#lotto-game {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 16px 32px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;   
+    background: #FFF;
+}
+
+#lotto-game > h2 {
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+}
+
+/* 로또 구매 section */
+
+#lotto-purchase-section {
+    margin-top: 28px;
+}
+
+#user-budget-description {
+    margin-top: 2px;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: #8B8B8B;
+}
+
+#user-budget-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-budget-form > div {
+    display: flex;
+    margin-top: 4px;
+}
+
+#user-budget-input {
+    width: 310px;
+    height: 36px;
+    margin-right: 16px;
+    padding-left: 8px;
+    border: 1px solid #B4B4B4;
+    border-radius: 4px;
+}
+
+#user-budget-input::placeholder {
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    color: #8B8B8B;
+}
+
+#user-budget-submit {
+    width: 56px;
+    height: 36px;
+    border-radius: 4px;
+    border: none;
+    background: #4E5BA6;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    color: #FFF;
+    cursor: pointer;
+}
+
+/* 구매한 로또 리스트 section */
+
+#purchased-lotto-section {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 64px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+#purchased-lotto-section > p {
+    margin-bottom: 8px;
+}
+
+#purchased-lotto-container {
+    overflow: auto;
+    max-height: 216px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+#purchased-lotto-container::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+#purchased-lotto-container::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.3);
+}
+
+#purchased-lotto-container::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,.1);
+}
+
+#purchased-lotto-container > li {
+    line-height: 36px;
+}
+
+.lotto-emoji {
+    margin-right: 8px;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 36px;
+    vertical-align: middle;
+}
+
+.lotto-numbers {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 36px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+
+/* 당첨번호 입력 section */
+
+#winning-numbers-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+#winning-numbers {
+    display: flex;
+    flex-direction: column;
+}
+
+#winning-numbers div {
+    margin-top: 12px;
+}
+
+#bonus-number {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#lotto-number-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+#lotto-number-container label {
+    margin-bottom: 12px;
+}
+
+.lotto-number-input {
+    width: 34px;
+    height: 36px;
+    padding-left: 3px;
+    border: 1px solid #B4B4B4;
+    border-radius: 4px;
+}
+
+.lotto-number-input::-webkit-outer-spin-button,
+.lotto-number-input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+#result-button {
+    width: 382px;
+    height: 36px;
+    margin-top: 27px;
+    border-radius: 4px;
+    border: none;
+    background: #4E5BA6;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    color: #FFF;
+    cursor: pointer;
+}
+
+/* 당첨 통계 모달 */
+
+#modal.modal-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#modal-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 500px;
+    border-radius: 4px;
+    background: #FFF;
+}
+
+#modal-title > h2 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    text-align: center;
+}
+
+#modal-content {
+    padding: 33px 16px;
+}
+
+#modal-close-button {
+    align-self: flex-end;
+    margin: 16px 16px 8px 0;
+    border: none;
+    background-color: #FFF;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1.25px;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: pointer;
+}
+
+#modal-content > table { 
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#modal-content th, td {
+    line-height: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+#profit-rate {
+    margin-top: 32px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+#restart-button {
+    width: 318px;
+    height: 36px;   
+    margin-top: 32px;
+    border-radius: 4px;
+    border: none;
+    background: #4E5BA6;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    color: #FFF;
+    cursor: pointer;
+}
+
+/* 숨김 속성 */
+
+.hidden {
+    visibility: hidden;
+}

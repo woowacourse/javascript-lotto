@@ -50,6 +50,7 @@ class LottoGame {
 
   countLottoRank(rankName) {
     if (!rankName) return;
+
     this.#rankResult[rankName] += 1;
   }
 
@@ -63,6 +64,10 @@ class LottoGame {
     const userBudget = LOTTO.PRICE * this.#lottoTickets.length;
 
     return Converter.toFixedNumber((totalPrize / userBudget) * 100, 1);
+  }
+
+  initializeLottoRankResult() {
+    Object.keys(this.#rankResult).forEach((rankName) => (this.#rankResult[rankName] = 0));
   }
 }
 

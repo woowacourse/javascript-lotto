@@ -1,11 +1,12 @@
+import { LOTTO } from '../constants';
 import Random from '../util/Random';
 
 const generateLottoNumbers = () => {
-  const lottoNumbers = [];
-  while (new Set(lottoNumbers).size !== 6) {
-    lottoNumbers.push(Random.pickNumberInRange(1, 45));
+  const lottoNumbers = new Set();
+  while (lottoNumbers.size !== LOTTO.NUMBER_COUNT) {
+    lottoNumbers.add(Random.getNumberInRange(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER));
   }
-  return [...new Set(lottoNumbers)];
+  return [...lottoNumbers];
 };
 
 export default generateLottoNumbers;
