@@ -1,0 +1,24 @@
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.typo-button {
+  font-family: var(--fontFamilyPrimary);
+  font-size: var(--fontSizeCaption);
+  font-weight: var(--fontWeightCaption);
+}

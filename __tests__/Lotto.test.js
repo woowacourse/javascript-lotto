@@ -1,4 +1,4 @@
-const Lotto = require('../src/domain/Lotto');
+import Lotto from '../src/domain/Lotto';
 
 describe('Lotto 클래스 테스트', () => {
   test('로또 번호 6개를 인자로 받아 로또를 생성한다.', () => {

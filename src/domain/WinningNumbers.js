@@ -1,16 +1,15 @@
-const {
-  MIN_LOTTO_NUMBER,
-  MAX_LOTTO_NUMBER,
+import {
   LOTTO_NUMBERS_COUNT,
-} = require('./constants');
+  MAX_LOTTO_NUMBER,
+  MIN_LOTTO_NUMBER,
+} from './constants';
 
 class WinningNumbers {
   #numbers;
 
   #bonusNumber;
 
-  constructor(winningNumbersInput) {
-    const numbers = winningNumbersInput.split(',').map(Number);
+  constructor(numbers) {
     this.validateWinningNumbers(numbers);
     this.#numbers = numbers;
   }
@@ -41,9 +40,7 @@ class WinningNumbers {
     return new Set(numbers).size !== numbers.length;
   }
 
-  initBonusNumber(bonusNumberInput) {
-    const bonusNumber = Number(bonusNumberInput);
-
+  initBonusNumber(bonusNumber) {
     this.validateBonusNumber(bonusNumber);
     this.#bonusNumber = bonusNumber;
   }
@@ -72,4 +69,4 @@ class WinningNumbers {
   }
 }
 
-module.exports = WinningNumbers;
+export default WinningNumbers;

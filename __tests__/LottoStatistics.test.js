@@ -1,5 +1,5 @@
-const Lotto = require('../src/domain/Lotto');
-const LottoStatistics = require('../src/domain/LottoStatistics');
+import Lotto from '../src/domain/Lotto';
+import LottoStatistics from '../src/domain/LottoStatistics';
 
 describe('LottoStatistics 클래스 테스트', () => {
   test.each([

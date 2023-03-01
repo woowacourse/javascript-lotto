@@ -6,8 +6,9 @@ class Lotto {
   }
 
   calculateMatchCount(winningNumbers) {
-    return this.#numbers.filter((number, idx) => number === winningNumbers[idx])
-      .length;
+    return winningNumbers.filter((winningNumber) =>
+      this.#numbers.includes(winningNumber)
+    ).length;
   }
 
   isBonus(bonusNumber) {
@@ -19,4 +20,4 @@ class Lotto {
   }
 }
 
-module.exports = Lotto;
+export default Lotto;

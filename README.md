@@ -2,33 +2,53 @@
 <h2 align="middle">level1 - 행운의 로또</h2>
 <p align="middle">자바스크립트로 구현 하는 로또 어플리케이션</p>
 
-### 페어 : `유스`, `푸만능`
+## Demo
+[데모 페이지 링크](https://suyoungj.github.io/javascript-lotto-1/)
 
-### 실행 방법
+## 실행 방법
 
 ```
 // 저장소 클론
-git clone -b step1 --single-branch https://github.com/turtle601/javascript-lotto-1.git
+git clone -b step2 --single-branch https://github.com/suyoungj/javascript-lotto-1/tree/step2
 
 // 패키지 설치
 npm i
 
 // 어플리케이션 실행
-npm run start-step1
+npm run start-step2
+
+// 테스트 실행
+npm test
 
 ```
 
-### 실행 결과
+## 실행 화면
 
-<img width="504" alt="스크린샷 2023-02-16 오후 5 05 28" src="https://user-images.githubusercontent.com/78203399/219304614-ed7664a8-ec81-4087-98ae-fa71ee8537c9.png">
+![image](https://user-images.githubusercontent.com/19235163/220822459-635058aa-5615-4350-801d-367629508fd6.png)
 
-### 디렉터리 구조
+![image](https://user-images.githubusercontent.com/19235163/220822573-5bf4bbdc-12ff-48d8-b61c-bc18963df22b.png)
+
+![image](https://user-images.githubusercontent.com/19235163/220822582-b0c10b30-7c98-421d-9041-d0724dca4fa6.png)
+
+## 디렉터리 구조
+
 ```
 .
-├── LottoGame.js
+├── App.js
+│
+├── controller
+│   └── LottoGameController.js
+│
+├── css
+│   ├── app.css
+│   ├── index.css
+│   ├── modal.css
+│   ├── palette.css
+│   ├── reset.css
+│   ├── typo.css
+│   └── utils.css
 │
 ├── domain
-│   ├── BonusNumber.js
 │   ├── Lotto.js
 │   ├── LottoMachine.js
 │   ├── LottoStatistics.js
@@ -37,12 +57,21 @@ npm run start-step1
 │       └── index.js
 │
 ├── step1-index.js
+├── step2-index.js
 │
 ├── utils
-│   ├── Console.js
+│   ├── dom.js
 │   └── shuffle.js
 │
 └── view
-    ├── InputView.js
-    └── OutputView.js
+    ├── CheckWinningSection
+    │   ├── LottoPurchaseForm.js
+    │   ├── WinningNumbersSubmitForm.js
+    │   └── index.js
+    │
+    ├── HomePage
+    │   └── index.js
+    │
+    └── WinningStatModal
+        └── index.js
 ```

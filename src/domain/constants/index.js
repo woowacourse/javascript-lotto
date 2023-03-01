@@ -19,23 +19,23 @@ const RANK = Object.freeze({
 
 const LOTTO_PRIZE = [
   {
-    CONDITION: '6개 일치',
+    CONDITION: '6개',
     MONEY: 2_000_000_000,
   },
   {
-    CONDITION: '5개 일치, 보너스 볼 일치',
+    CONDITION: '5개 + 보너스 볼',
     MONEY: 30_000_000,
   },
   {
-    CONDITION: '5개 일치',
+    CONDITION: '5개',
     MONEY: 1_500_000,
   },
   {
-    CONDITION: '4개 일치',
+    CONDITION: '4개',
     MONEY: 50_000,
   },
   {
-    CONDITION: '3개 일치',
+    CONDITION: '3개',
     MONEY: 5_000,
   },
   {
@@ -47,7 +47,7 @@ const LOTTO_PRIZE = [
 const RESTART_COMMAND = 'y';
 const QUIT_COMMAND = 'n';
 
-module.exports = {
+export {
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
   LOTTO_NUMBERS_COUNT,

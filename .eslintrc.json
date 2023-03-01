@@ -14,10 +14,13 @@
     "no-console": "off",
     "max-depth": ["error", 1],
     "no-new": "off",
-    "max-lines-per-function": ["error", 10],
+    "no-undef": "off",
+    "no-alert": "off",
     "comma-dangle": "off",
     "consistent-return": "off",
     "import/no-unresolved": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": "off"
   }
 }
