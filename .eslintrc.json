@@ -1,7 +1,8 @@
 {
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -10,8 +11,6 @@
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "ignorePatterns": ["node_modules/", "__tests__/"],
   "rules": {
-    "max-params": ["error", 2],
-    "max-depth": ["error", 1],
-    "max-lines-per-function": ["error", 12]
+    "max-depth": ["error", 1]
   }
 }

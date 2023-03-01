@@ -67,6 +67,12 @@ const ERROR_MESSAGE = Object.freeze({
   NOT_INPUT_YES_OR_NO: `${YES} 또는 ${NO}만 입력하실 수 있습니다.`,
 });
 
+const STEP = Object.freeze({
+  INIT: 0,
+  ENTER: 1,
+  RESULT: 2,
+});
+
 export {
   PRIZE,
   MESSAGE,
@@ -82,4 +88,5 @@ export {
   YES,
   NO,
   CONVERT_RANK_TO_STRING,
+  STEP,
 };
