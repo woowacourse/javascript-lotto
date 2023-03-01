@@ -75,6 +75,8 @@ const mountWinningInput = () => {
 };
 
 const mountModal = () => {
+  if ($('.modal-window')) return;
+
   $('#modal').insertAdjacentHTML('beforeend', Modal(webController.getStatstics()));
   $('#modal').style.display = 'flex';
 
