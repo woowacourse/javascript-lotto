@@ -1,7 +1,7 @@
 const Modal = ({ statstics, profitRate }) => {
   return `
       <div class="modal-window">
-        <div class="modal-close-button">X</div>
+        <button id="modal-close-button" type="button">X</button>
           <div class="win-title subtitle">🏆 당첨 통계 🏆</div>
           <table class="win-statstics">
             <th>일치 갯수</th>

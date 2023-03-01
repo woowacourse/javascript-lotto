@@ -29,16 +29,20 @@
   border-radius: 0.4rem;
 }
 
-.modal-close-button {
+#modal-close-button {
   align-self: flex-end;
 
   width: 1.6rem;
   height: 1.6rem;
+  padding: 0;
 
   font-weight: 700;
   font-size: 2rem;
   line-height: 1.6rem;
   cursor: pointer;
+
+  border: none;
+  background-color: transparent;
 }
 
 .win-title {
