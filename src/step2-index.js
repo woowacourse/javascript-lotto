@@ -1,4 +1,18 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import './public/css/reset.css';
+import './public/css/index.css';
+import LottoGame from './domain/LottoGame';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Section from './components/Section';
+
+const header = document.querySelector('header');
+const section = document.querySelector('section');
+const footer = document.querySelector('footer');
+
+const renderHeader = new Header();
+const renderSection = new Section(new LottoGame());
+
+const renderFooter = new Footer();
+renderHeader.render(header);
+renderSection.render(section);
+renderFooter.render(footer);

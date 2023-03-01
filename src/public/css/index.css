@@ -1,0 +1,264 @@
+:root {
+  --lotto-header: #4e5ba6;
+  --lotto-primary: #4e5ba6;
+}
+#app {
+  height: 100vh;
+  z-index: 0;
+}
+
+header h1 {
+  margin-left: 100px;
+  line-height: 45px;
+  font-size: 1.5rem;
+}
+
+body {
+  background: #f5f5f5;
+}
+
+main {
+  width: 100%;
+}
+
+.section-split-main {
+  margin: 0 auto;
+  width: 414px;
+  height: 727px;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+
+  padding: 2%;
+}
+
+.disabled {
+  position: absolute;
+  background-color: #989898de;
+  width: 100%;
+  height: 100%;
+}
+
+.disabled-false {
+  position: absolute;
+  background-color: #989898de;
+  width: 100%;
+  height: 100%;
+}
+
+.section-split-main h2 {
+  margin-top: 40px;
+  text-align: center;
+  width: 382px;
+  height: 36px;
+  left: 16px;
+  top: 40px;
+}
+
+.section-split-main li {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+h1 {
+  height: 24px;
+  width: 382px;
+  left: 16px;
+  top: 52px;
+}
+footer {
+  height: 80px;
+  line-height: 80px;
+  align-items: center;
+  border-top: solid 1px #b4b4b4;
+  margin-top: 69px;
+  text-align: center;
+}
+
+button {
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  padding: 6px 6px 6px 8px;
+  color: #ffffff;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.close-button {
+  display: flex;
+  width: 90%;
+  justify-content: end;
+}
+
+.close-button button {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+header {
+  box-sizing: border-box;
+  width: 100%;
+  height: 45px;
+  background: var(--lotto-header);
+  margin-bottom: 84px;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-grow: 1, 2, 1;
+}
+
+.section-split-main ul {
+  height: 30vh;
+  overflow-y: scroll;
+}
+
+.texts {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.input-money {
+  border: 1px solid #b4b4b4;
+}
+
+.purchase-button:disabled {
+  background-color: #989898de;
+}
+
+.purchased-lotto-amount {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  letter-spacing: 0.5px;
+}
+
+.get-all-lotto-numbers input {
+  width: 34px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.get-result {
+  margin-top: 27px;
+}
+
+.get-all-lotto-numbers {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lotto-number-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-lotto-numbers {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+}
+
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.buy-lotto-list {
+  margin-bottom: 24px;
+}
+
+.get-all-lotto-numbers input {
+  text-align: center;
+}
+
+.divide-two-element {
+  left: 16px;
+  top: 104px;
+
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.divide-two-element input {
+  width: 80%;
+}
+header h1 {
+  color: white;
+}
+
+.modal-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  background-color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border: 1px solid #000000;
+  z-index: 300;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+}
+
+.modal-view h2 {
+  margin-top: -10%;
+}
+
+.lotto-list {
+  font-weight: 400;
+  font-size: 15px;
+  padding: 12px;
+  line-height: 24px;
+}
+
+.restart-button {
+  width: 80%;
+}
+
+.rank-result {
+  margin: 0 10px;
+  padding: 0 20px;
+}
+
+.rank-result td {
+  border-top: 1px solid #000000;
+  padding: 10px;
+}
+
+.rank-result th {
+  border-top: 1px solid #000000;
+  padding: 10px 0;
+}
+
+.modal-none {
+  display: none;
+}
