@@ -1,4 +1,6 @@
-.winning-lotto {
+.winning-form {
+  display: flex;
+  flex-direction: column;
   margin-top: 2.4rem;
 }
 
@@ -6,11 +8,6 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1.2rem;
-}
-
-.win-numbers {
-  display: flex;
-  flex-direction: column;
 }
 
 .winning-number-wrapper {

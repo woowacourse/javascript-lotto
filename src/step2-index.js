@@ -19,9 +19,10 @@ const $$ = (selector) => document.querySelectorAll(selector);
 
 $('.lotto-container').insertAdjacentHTML('beforeend', Payment());
 
-const purchaseButton = $('.purchase-button');
 
-purchaseButton.addEventListener('click', () => {
+$('#payment-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+
   const moneyInput = $('.money-input');
   const money = Number(moneyInput.value);
 
@@ -38,7 +39,7 @@ purchaseButton.addEventListener('click', () => {
   mountWinningInput();
 
   moneyInput.disabled = true;
-  purchaseButton.disabled = true;
+  $('.purchase-button').disabled = true;
 });
 
 const mountLottoList = () => {
@@ -51,14 +52,16 @@ const mountLottoList = () => {
 const mountWinningInput = () => {
   $('.lotto-container').insertAdjacentHTML('beforeend', WinningInput());
 
-  const submitButton = $('.submit-button');
+  const winningForm = $('.winning-form');
 
-  submitButton.addEventListener('click', function () {
+  winningForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
     const winNumbers = [];
 
     $$('.js-winning-number').forEach((node) => winNumbers.push(Number(node.value)));
 
-    const bonusNumber = Number($('.js-bonus-number').value);
+    const bonusNumber = Number($('#js-bonus-number').value);
 
     try {
       validateNumbers(winNumbers);
@@ -71,8 +74,6 @@ const mountWinningInput = () => {
     webController.setWinningLotto(winNumbers, bonusNumber);
 
     mountModal();
-
-    submitButton.disabled = true;
   });
 };
 
@@ -81,7 +82,11 @@ const mountModal = () => {
   $('#modal').style.display = 'flex';
 
   $('.restart-button').addEventListener('click', restart);
-  $('.modal-close-button').addEventListener('click', restart);
+  $('#modal-close-button').addEventListener('click', () => {
+    $('#modal').style.display = 'none';
+    $('.modal-window').remove();
+    document.body.style.overflow = 'visible';
+  });
 
   document.body.style.overflow = 'hidden';
 };
@@ -95,9 +100,8 @@ const restart = () => {
   moneyInput.disabled = false;
 
   $('.modal-window').remove();
-  $('.winning-lotto').remove();
-  $('.submit-button').remove();
   $('.lotto-list-wrapper').remove();
+  $('.winning-form').remove();
 
   document.body.style.overflow = 'visible';
 };
