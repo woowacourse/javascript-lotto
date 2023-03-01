@@ -1,3 +1,3 @@
-import App from './App.js';
+import App from './step1-js/App.js';
 
 new App().start();

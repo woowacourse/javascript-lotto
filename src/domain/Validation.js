@@ -1,8 +1,12 @@
-import { LOTTO_CONDITION, RESTART_COMMAND } from '../constants/condition.js';
+import { LOTTO_CONDITION, COMMAND } from '../constants/condition.js';
 import { ERROR_MESSAGE } from '../constants/message.js';
 
 const Validation = {
   validatePurchaseAmount(purchaseAmount) {
+    if (this.isEmpty(purchaseAmount)) {
+      throw new Error(ERROR_MESSAGE.emptyInput);
+    }
+
     if (!this.isNumber(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.invalidInputType);
     }
@@ -14,6 +18,10 @@ const Validation = {
     if (!this.isDivisibleByLottoPrice(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.indivisibleByLottoPrice);
     }
+  },
+
+  isEmpty(input) {
+    return input.length === 0;
   },
 
   isNumber(purchaseAmount) {
@@ -29,6 +37,10 @@ const Validation = {
   },
 
   validateWinningNumbers(winningNumbers) {
+    if (this.hasEmpty(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.emptyInput);
+    }
+
     if (!this.isValidWinningNumbersLength(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.invalidLottoNumberLength);
     }
@@ -37,9 +49,17 @@ const Validation = {
       throw new Error(ERROR_MESSAGE.invalidInputType);
     }
 
+    if (this.hasDuplicatedValue(winningNumbers)) {
+      throw new Error(ERROR_MESSAGE.duplicateLottoNumber);
+    }
+
     if (!this.isValidWinningNumberRange(winningNumbers)) {
       throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
     }
+  },
+
+  hasEmpty(winningNumbers) {
+    return winningNumbers.some(this.isEmpty);
   },
 
   isValidWinningNumbersLength(winningNumbers) {
@@ -47,18 +67,27 @@ const Validation = {
   },
 
   hasOnlyNumber(winningNumbers) {
-    return winningNumbers.every((winningNumber) => Number.isInteger(winningNumber));
+    return winningNumbers.every((winningNumber) => Number.isInteger(Number(winningNumber)));
+  },
+
+  hasDuplicatedValue(array) {
+    return array.length !== new Set(array).size;
   },
 
   isValidWinningNumberRange(winningNumbers) {
-    return winningNumbers.every(
-      (winningNumber) =>
-        LOTTO_CONDITION.lottoNumberMinRange <= winningNumber &&
-        winningNumber <= LOTTO_CONDITION.lottoNumberMaxRange
-    );
+    return winningNumbers.every((winningNumber) => {
+      return (
+        LOTTO_CONDITION.lottoNumberMinRange <= Number(winningNumber) &&
+        Number(winningNumber) <= LOTTO_CONDITION.lottoNumberMaxRange
+      );
+    });
   },
 
   validateBonusNumber(bonusNumber, winningNumbers) {
+    if (this.isEmpty(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.emptyInput);
+    }
+
     if (!this.isNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.invalidInputType);
     }
@@ -74,8 +103,8 @@ const Validation = {
 
   isValidBonusNumberRange(bonusNumber) {
     return (
-      LOTTO_CONDITION.lottoNumberMinRange <= bonusNumber &&
-      bonusNumber <= LOTTO_CONDITION.lottoNumberMaxRange
+      LOTTO_CONDITION.lottoNumberMinRange <= Number(bonusNumber) &&
+      Number(bonusNumber) <= LOTTO_CONDITION.lottoNumberMaxRange
     );
   },
 
@@ -87,7 +116,7 @@ const Validation = {
   },
 
   validateRestartCommand(command) {
-    const commands = [RESTART_COMMAND.restart, RESTART_COMMAND.quit];
+    const commands = [COMMAND.restart, COMMAND.quit];
 
     if (!commands.includes(command)) {
       throw new Error(ERROR_MESSAGE.invalidRestartCommand);
