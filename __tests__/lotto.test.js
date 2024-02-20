@@ -8,4 +8,14 @@ describe('로또 테스트', () => {
 
     expect(lotto.numberList).toEqual(RESULT_LOTTO);
   });
+
+  test('사용자가 구매한 로또 번호와 당첨 번호를 비교한다.', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
+    const WINNING_NUMBERS = [1, 2, 3, 4, 5, 6];
+    const BONUS_NUMBER = 7;
+
+    const result = lotto.getMatchedAmount(WINNING_NUMBERS, BONUS_NUMBER);
+    expect(result.matchedCount).toBe(5);
+    expect(result.isBonusMatched).toBeTruthy();
+  });
 });
