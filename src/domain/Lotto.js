@@ -1,4 +1,5 @@
 import MESSAGE from '../constants/message';
+import { NUMBER } from '../constants/number';
 
 class Lotto {
   #numbers;
@@ -16,14 +17,18 @@ class Lotto {
   #validateInNumbersRange(numbers = []) {
     numbers.forEach((numberString) => {
       const number = Number(numberString);
-      if (!Number.isInteger(number) || number > 45 || number < 1) {
+      if (
+        !Number.isInteger(number) ||
+        number > NUMBER.LOTTO_END_NUMBER ||
+        number < NUMBER.LOTTO_START_NUMBER
+      ) {
         throw new Error(MESSAGE.ERROR.NUMBERS_RANGE_ERROR);
       }
     });
   }
 
   #validateNumbersLength(numbers = []) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== NUMBER.LOTTO_LENGTH) {
       throw new Error(MESSAGE.ERROR.NUMBERS_LENGTH_ERROR);
     }
   }

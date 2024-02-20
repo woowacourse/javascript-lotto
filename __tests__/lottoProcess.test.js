@@ -16,7 +16,7 @@ describe('LottoProcess 클래스 검사', () => {
     const lottoProcess = new LottoProcess(lottos);
 
     expect(lottoProcess.getResult(winLotto, bonusNumber)).toEqual([
-      0, 0, 0, 0, 1,
+      1, 0, 0, 0, 0,
     ]);
   });
 });
