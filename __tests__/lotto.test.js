@@ -27,4 +27,10 @@ describe('Lotto 클래스 검사', () => {
       );
     }
   );
+
+  test('로또 숫자들이 오름차순으로 정렬', () => {
+    const numbers = [3, 1, 5, 2, 4, 6];
+    const lotto = new Lotto(numbers);
+    expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });

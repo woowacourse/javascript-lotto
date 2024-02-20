@@ -3,8 +3,8 @@ import MESSAGE from '../constants/message';
 class Lotto {
   #numbers;
   constructor(numbers = []) {
-    this.#numbers = numbers;
     this.#validate(numbers);
+    this.#numbers = this.sortNumbers(numbers);
   }
 
   #validate(numbers = []) {
@@ -33,6 +33,14 @@ class Lotto {
     if (uniqueNumbers.size !== numbers.length) {
       throw new Error(MESSAGE.ERROR.NUMBERS_DUPLICATION_ERROR);
     }
+  }
+
+  sortNumbers(numbers = []) {
+    return numbers.sort((a, b) => a - b);
+  }
+
+  getNumbers() {
+    return [...this.#numbers];
   }
 }
 
