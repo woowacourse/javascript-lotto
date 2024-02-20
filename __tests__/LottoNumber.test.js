@@ -16,4 +16,17 @@ describe('로또 번호 테스트', () => {
       expect(() => new LottoNumber(NOT_NUMBER)).toThrow('[Error]');
     },
   );
+
+  describe('입력한 숫자의 범위가', () => {
+    test.each(['46', '9999'])(
+      '45를 초과할 때, 에러를 발생시킨다.',
+      NOT_NUMBER => {
+        expect(() => new LottoNumber(NOT_NUMBER)).toThrow('[Error]');
+      },
+    );
+
+    test.each(['0', '-555'])('1미만 일 때, 에러를 발생시킨다.', NOT_NUMBER => {
+      expect(() => new LottoNumber(NOT_NUMBER)).toThrow('[Error]');
+    });
+  });
 });
