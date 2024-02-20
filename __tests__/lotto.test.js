@@ -18,4 +18,12 @@ describe('로또 기능 테스트', () => {
       new Lotto(lottoNumbers);
     }).not.toThrow(ERROR_MESSAGES.duplicate);
   });
+
+  test('로또 번호가 중복된 경우 에러를 반환', () => {
+    const lottoNumbers = [1, 1, 2, 3, 4, 5];
+
+    expect(() => {
+      new Lotto(lottoNumbers);
+    }).toThrow(ERROR_MESSAGES.duplicate);
+  });
 });
