@@ -1,30 +1,5 @@
-import CONDITION from '../src/constant/Condition.js';
-import ERROR from '../src/constant/Error.js';
-import LottoNumber from '../src/domain/entity/LottoNumber';
+import WinningLotto from '../src/domain/entity/WinningLotto.js';
 
-class WinningLotto {
-  #winningNumbers;
-
-  constructor(winningNumbersString) {
-    const winningNumberStringArray = winningNumbersString.split(',');
-    this.#validateLength(winningNumberStringArray);
-    this.#winningNumbers = this.#parse(winningNumberStringArray);
-  }
-
-  getNumbers() {
-    return this.#winningNumbers.map(lotto => lotto.getNumber());
-  }
-
-  #validateLength(winningNumberStringArray) {
-    if (winningNumberStringArray.length !== CONDITION.countOfNumberInTicket) {
-      throw new Error(ERROR.countOfWinningNumbers);
-    }
-  }
-
-  #parse(winningNumberStringArray) {
-    return winningNumberStringArray.map(numStr => new LottoNumber(numStr));
-  }
-}
 describe('정답 로또 테스트', () => {
   test('성공 케이스', () => {
     const WINNING_LOTTO_NUMBERS_STRING = '1,2,3,4,5,6';
@@ -43,4 +18,11 @@ describe('정답 로또 테스트', () => {
     );
   });
 
+  test('로또번호 배열을 인자로 받았을 때, 일치 개수를 반환한다.', () => {
+    const WINNING_NUMBERS_STRING = '1,2,3,4,5,6';
+    const winningLotto = new WinningLotto(WINNING_NUMBERS_STRING);
+    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
+
+    expect(winningLotto.getMatchNumberCount(LOTTO_NUMBERS)).toBe(6);
+  });
 });
