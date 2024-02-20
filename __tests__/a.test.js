@@ -24,6 +24,15 @@ describe("로또에 대한 유닛 테스트", () => {
       }
     );
 
+    test("로또 번호에 중복된 숫자가 포함될 시 예외 처리를 한다.", () => {
+      //Arrange
+      const numbers = [1, 2, 3, 4, 5, 5];
+      const createWrongLotto = () => new Lotto(numbers);
+
+      //Assert
+      expect(createWrongLotto).toThrow();
+    });
+
     test("오름차순으로 로또 번호를 정렬한다.", () => {
       const numbers = [6, 5, 4, 3, 2, 1];
       const expected = [1, 2, 3, 4, 5, 6];

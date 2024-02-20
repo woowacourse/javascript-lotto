@@ -6,14 +6,19 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#validateNumbersLength(numbers);
-    this.#validateNumbersInRange(numbers);
+    this.#validateNumbers(numbers);
 
     this.#numbers = this.#sortAscendingNumbers([...numbers]);
   }
 
   getNumbers() {
     return [...this.#numbers];
+  }
+
+  #validateNumbers(numbers) {
+    this.#validateNumbersLength(numbers);
+    this.#validateNumbersInRange(numbers);
+    this.#validateUniqueNumbers(numbers);
   }
 
   #validateNumbersLength(numbers) {
@@ -29,6 +34,12 @@ class Lotto {
   #validateNumberInRange(number) {
     if (number < Lotto.MIN_LOTTO_NUMBER || number > Lotto.MAX_LOTTO_NUMBER) {
       throw new Error("[ERROR] 유효한 범위 로또 숫자가 아닙니다.");
+    }
+  }
+
+  #validateUniqueNumbers(numbers) {
+    if (numbers.length !== new Set(numbers).size) {
+      throw new Error("[ERROR] 중복된 숫자가 포합됩니다.");
     }
   }
 
