@@ -4,6 +4,15 @@ import Condition from '../constants/Condition';
 
 const { LOTTO } = Condition;
 
+const REWARD = {
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000,
+  0: 0,
+};
+
 class LottoGame {
   #winningNumbers;
 
@@ -38,6 +47,12 @@ class LottoGame {
     return lottoTickets.map((lottoTicket) =>
       lottoTicket.calculatePrize(this.#winningNumbers, this.#bonusNumber),
     );
+  }
+
+  calculateReturnOnInvestment(prizes) {
+    const totalReward = prizes.reduce((acc, cur) => (acc += REWARD[cur]), 0);
+    const investment = prizes.length * 1000;
+    return Math.round((totalReward / investment) * 100 * 100) / 100;
   }
 }
 
