@@ -83,4 +83,19 @@ describe("WinningLotto에 대한 유닛 테스트", () => {
       expect(createWrongWinningLotto).toThrow();
     }
   );
+
+  test.each([
+    [[1, 2, 3, 4, 5, 6], 1],
+    [[1, 1, 2, 3, 4, 5], 7],
+    [[1, 1, 2, 3, 4, 5], 1],
+  ])(
+    "모든 번호(당첨 번호 및 보너스 번호) 중 중복이 존재할 경우 예외 처리를 한다.",
+    (numbers, bonusNumber) => {
+      const createWrongWinningLotto = () =>
+        new WinningLotto(numbers, bonusNumber);
+
+      //Assert
+      expect(createWrongWinningLotto).toThrow();
+    }
+  );
 });

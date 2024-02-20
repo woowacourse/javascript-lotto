@@ -2,12 +2,20 @@ import Lotto from "./Lotto";
 
 class WinningLotto {
   constructor(numbers, bonusNumber) {
-    this.#validateNumbersInRange(numbers);
-    this.#validateInteger(bonusNumber);
-    this.#validateNumberInRange(bonusNumber);
+    this.#validateNumbers(numbers);
+    this.#validateBonusNumber(bonusNumber);
+    this.#validateUniqueNumbers([...numbers, bonusNumber]);
+  }
 
+  #validateNumbers() {
     this.#validateNumbersLength(numbers);
     this.#validateIntegers(numbers);
+    this.#validateNumbersInRange(numbers);
+  }
+
+  #validateBonusNumber(bonusNumber) {
+    this.#validateInteger(bonusNumber);
+    this.#validateNumberInRange(bonusNumber);
   }
 
   #validateNumbersInRange(numbers) {
@@ -33,6 +41,12 @@ class WinningLotto {
   #validateInteger(number) {
     if (!Number.isInteger(number)) {
       throw new Error("[ERROR] 정수가 아닌 값입니다.");
+    }
+  }
+
+  #validateUniqueNumbers(numbers) {
+    if (numbers.length !== new Set(numbers).size) {
+      throw new Error("[ERROR] 중복된 숫자가 포합됩니다.");
     }
   }
 }
