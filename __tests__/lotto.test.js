@@ -26,4 +26,13 @@ describe('로또 기능 테스트', () => {
       new Lotto(lottoNumbers);
     }).toThrow(ERROR_MESSAGES.duplicate);
   });
+
+  test.each([[[1, 2, 3, 4, 5, 46]], [[0, 2, 3, 4, 15, 25]], [[1, 2, 13, 24, 35, 60]]])(
+    '로또 번호는 1에서 45사이의 숫자가 아니면 에러를 반환',
+    (lottoNumbers) => {
+      expect(() => {
+        new Lotto(lottoNumbers);
+      }).toThrow(ERROR_MESSAGES.lotto_number_range);
+    },
+  );
 });
