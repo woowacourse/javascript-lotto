@@ -1,6 +1,5 @@
 {
   "rules": {
-    "prettier/prettier": ["error"],
     "max-lines-per-function": ["error", { "max": 10 }],
     "max-depth": ["error", { "max": 1 }]
   },
@@ -21,5 +20,5 @@
       }
     }
   ],
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["airbnb-base", "eslint:recommended"]
 }
