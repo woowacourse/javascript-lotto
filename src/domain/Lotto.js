@@ -17,8 +17,19 @@ class Lotto {
 
   #validateNumbers(numbers) {
     this.#validateNumbersLength(numbers);
+    this.#validateIntegers(numbers);
     this.#validateNumbersInRange(numbers);
     this.#validateUniqueNumbers(numbers);
+  }
+
+  #validateIntegers(numbers) {
+    numbers.forEach((number) => this.#validateInteger(number));
+  }
+
+  #validateInteger(number) {
+    if (!Number.isInteger(number)) {
+      throw new Error("[ERROR] 정수가 아닌 값입니다.");
+    }
   }
 
   #validateNumbersLength(numbers) {
