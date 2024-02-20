@@ -12,4 +12,12 @@ describe('로또 기능 테스트', () => {
       new Lotto(numbers);
     }).toThrow();
   });
+
+  test('로또 번호가 중복되면 에러를 발생시킨다.', () => {
+    const numbers = [1, 2, 3, 4, 5, 5];
+
+    expect(() => {
+      new Lotto(numbers);
+    }).toThrow();
+  });
 });
