@@ -1,3 +1,4 @@
+import Lotto from '../src/domain/Lotto';
 describe('로또 기능 테스트', () => {
   test('로또 번호는 6개여야 한다.', () => {
     const numbers = [1, 2, 3, 4, 5, 6];
