@@ -1,7 +1,6 @@
 import LottoMachine from "../domain/LottoMachine.js";
+import LottoResult from "../domain/LottoResult.js";
 import WinningLotto from "../domain/WinningLotto.js";
-import bonusNumberValidator from "../validator/BonusNumberValidator.js";
-import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
@@ -21,6 +20,8 @@ class LottoGameController {
     const lottoList = lottoMachine.makeLottos();
     this.displayLottoList(lottoList);
     const winningLotto = await this.getWinningLotto();
+    const result = new LottoResult(lottoList, winningLotto);
+    result.getResult();
   }
 
   async getPurchaseAmount() {
@@ -43,7 +44,9 @@ class LottoGameController {
 
   async getWinningLotto() {
     const winningLotto = await this.#inputView.inputWinningLottoNumber();
-    const winningLottoNumbers = winningLotto.split(",");
+    const winningLottoNumbers = winningLotto
+      .split(",")
+      .map((number) => Number(number));
 
     const bonusNumber = await this.#inputView.inputBonusNumber();
 

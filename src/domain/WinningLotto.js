@@ -11,7 +11,15 @@ class WinningLotto {
     bonusNumberValidator.validateDuplication(numbers, bonusNumber);
 
     this.#numbers = numbers;
-    this.#bonusNumber = bonusNumber;
+    this.#bonusNumber = Number(bonusNumber);
+  }
+
+  getNumbers() {
+    return this.#numbers;
+  }
+
+  getBonusNumber() {
+    return this.#bonusNumber;
   }
 }
 export default WinningLotto;
