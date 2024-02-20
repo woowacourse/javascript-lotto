@@ -14,6 +14,10 @@ class Lotto {
     if (new Set(numbers).size !== numbers.length) {
       throw new Error('[ERROR] 로또 번호는 중복되어선 안 됩니다.');
     }
+
+    if (!numbers.every((number) => Number.isInteger(Number(number)))) {
+      throw new Error('[ERROR] 로또 번호는 전부 정수여야 합니다.');
+    }
   }
 
   getNumbers() {
