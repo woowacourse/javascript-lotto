@@ -35,4 +35,13 @@ describe('로또 기능 테스트', () => {
       }).toThrow(ERROR_MESSAGES.lotto_number_range);
     },
   );
+
+  test('로또 번호 오름차순 테스트', () => {
+    const lottoNumbers = [3, 2, 5, 6, 12, 18];
+    const ascendingLottoNumbers = lottoNumbers.sort((prevNumber, nextNumber) => prevNumber - nextNumber);
+    const lotto = new Lotto(lottoNumbers);
+    console.log(ascendingLottoNumbers);
+
+    expect(lotto.ascendingNumbers).toEqual(ascendingLottoNumbers);
+  });
 });
