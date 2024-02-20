@@ -11,8 +11,10 @@ describe('로또 게임 기능 테스트', () => {
 
   describe('로또 당첨 비교 기능 테스트', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
     const game = new LottoGame();
     game.createWinningNumbers(winningNumbers);
+    game.createBonusNumber(bonusNumber);
 
     test('사용자가 구매한 로또 번호와 당첨 번호를 비교하여 6개가 일치하면 1등이다.', () => {
       const lottoTicket = new Lotto(winningNumbers);
@@ -50,8 +52,8 @@ describe('로또 게임 기능 테스트', () => {
       [0, [7, 8, 9, 10, 11, 12]],
     ])(
       '사용자가 구매한 로또 번호와 당첨 번호를 비교하여 %s개가 일치하면 낙첨이다.',
-      (condition) => {
-        const lottoTicket = new Lotto(condition[1]);
+      (match, numbers) => {
+        const lottoTicket = new Lotto(numbers);
 
         expect(game.calculatePrize(lottoTicket)).toBe(0);
       },
