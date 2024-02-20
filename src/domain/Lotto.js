@@ -1,19 +1,14 @@
+import lottoNumberValidator from "../validator/LottoNumberValidator.js";
+
 class Lotto {
+  #numbers;
+
   constructor(numbers) {
-    this.#validateDuplicate(numbers);
-    this.#validateRange(numbers);
-  }
+    lottoNumberValidator.validateNumbersLength(numbers);
+    lottoNumberValidator.validateDuplicate(numbers);
+    lottoNumberValidator.validateRange(numbers);
 
-  #validateDuplicate(numbers) {
-    if (new Set(numbers).size !== 6) {
-      throw new Error("[ERROR]");
-    }
-  }
-
-  #validateRange(numbers) {
-    if (numbers.filter((number) => number < 1 || number > 45)) {
-      throw new Error("[ERROR]");
-    }
+    this.#numbers = numbers;
   }
 }
 export default Lotto;
