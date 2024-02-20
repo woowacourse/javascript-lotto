@@ -13,4 +13,10 @@ describe("Lotto 객체 테스트", () => {
 
     expect(() => new Lotto(INVALID_LOTTO_NUMBERS)).toThrow("[ERROR]");
   });
+
+  test("로또 번호는 6개여야한다.", () => {
+    const INVALID_LOTTO_LENGTH = [1, 2, 3, 4, 5];
+
+    expect(() => new Lotto(INVALID_LOTTO_LENGTH)).toThrow("[ERROR]");
+  });
 });
