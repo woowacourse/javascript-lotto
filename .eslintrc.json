@@ -1,11 +1,22 @@
 {
-  "rules": {},
+  "rules": {
+    "max-depth": ["error", 1],
+    "max-params": ["error", 2],
+    "class-methods-use-this": "off"
+  },
+  "overrides": [
+    {
+      "files": ["./src/*"],
+      "rules": { "max-lines-per-function": ["error", { "max": 10 }] }
+    }
+  ],
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["airbnb", "prettier"]
 }
