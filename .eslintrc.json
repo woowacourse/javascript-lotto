@@ -1,11 +1,29 @@
 {
-  "rules": {},
-  "env": {
-    "es6": true,
-    "node": true
-  },
+  "plugins": ["prettier"],
+
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": 7,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "jsx": false,
+    },
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+
+  "env": {
+    "browser": false,
+    "node": true,
+  },
+  "ignorePatterns": ["node_modules/"],
+
+  "rules": {
+    "prettier/prettier": "error",
+    "max-depth": ["error", 2],
+    "max-lines": ["warn", { "max": 10 }]
+  },
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false
+  },
 }
