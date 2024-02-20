@@ -9,6 +9,10 @@ export const LOTTO_RULE = Object.freeze({
   range: RANDOM_NUMBER_RULE.range,
   count: 6,
   price: 1_000,
+  numbersOfTickets: Object.freeze({
+    min: 1,
+    max: 20,
+  }),
 });
 
 export const BONUS_NUMBER_RULE = Object.freeze({
