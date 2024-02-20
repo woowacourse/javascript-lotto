@@ -2,7 +2,7 @@ export default class LottoNumber {
   #numbers;
 
   constructor(numbers) {
-    this.#numbers = numbers;
+    this.#numbers = numbers.sort((a, b) => a - b);
     this.#validLottoNumbers();
   }
 
@@ -30,5 +30,9 @@ export default class LottoNumber {
     if (this.#numbers.length !== 6) {
       throw new Error("❌");
     }
+  }
+
+  getLottoNumbers() {
+    return [...this.#numbers];
   }
 }
