@@ -1,4 +1,4 @@
-export default class Lotto {
+export default class LottoNumber {
   #numbers;
 
   constructor(numbers) {

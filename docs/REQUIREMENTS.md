@@ -2,30 +2,34 @@
 
 ### Domain
 
-1. [ ] Lotto
+1. Lotto Number
 
    1. 필드
       - LottoNumbers
-      - Rank
    2. Valid
       - [x] 1~45 숫자인지 확인하고, 중복 검사, 숫자가 6개인지 검사
 
-2. Lotto_machine
+2. Lotto
+
+   1. 필드
+      -Rank
+   2. [ ] 당첨 번호를 입력 받아서 몇 등인지 Rank에 저장. 당첨은 1등부터 5등까지 있다.
+
+3. Lotto_machine
+
+   1. 필드
+
+      - winLottoNumbers
+      - lottos
 
    1. [x] 구입 금액에 해당하는 만큼 로또를 발행
-   2. [x] 로또 1장의 가격은 1,000원이다.
+   1. [x] 로또 1장의 가격은 1,000원이다.
       - 최소 1000원 이상이어야 한다.
-   3. [x] Lotto 번호를 발행.( 1 ~ 45의 중복되지 않은 숫자를 발행한다.)
+   1. [x] Lotto 번호를 발행.( 1 ~ 45의 중복되지 않은 숫자를 발행한다.)
 
-3. Result_Handler
-
-   1. [ ] 필드
-      - winNumbers
-      - bonusNumber
-   2. [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 로또를 고르는 로직. 당첨은 1등부터 5등까지 있다.
-   3. [ ] 당첨 번호 입력 값을 통해 당첨 Lotto 발행.
-   4. [ ] bonusNumber에 대한 유효성 검증
-      - winNumbers에 중복이 없어야 한다.
+4. WinLottoNumbers
+   1. [ ] bonusNumber에 대한 유효성 검증
+      - winNumbers에 중복이 없어야 한다. 2.[ ] 당첨 번호 입력 값을 통해 WinLottoNumbers 발행.
 
 ### View
 
