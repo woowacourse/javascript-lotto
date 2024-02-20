@@ -1,11 +1,9 @@
 class LottoCalculator {
-  constructor(winningNumbers, lottoNumbers) {
-    this.compare(winningNumbers, lottoNumbers);
-  }
+  constructor(lottoNumbers, generatedLottos) {}
 
-  compare(winningNumbers, lottoNumbers) {
+  compare(winningNumbers, generatedLottos) {
     return winningNumbers.filter((winningNumber) =>
-      lottoNumbers.includes(winningNumber),
+      generatedLottos.includes(winningNumber),
     ).length;
   }
 }
