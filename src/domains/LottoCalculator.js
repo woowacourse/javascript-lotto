@@ -6,6 +6,10 @@ class LottoCalculator {
       generatedLottos.includes(winningNumber),
     ).length;
   }
+
+  isEqualBonusNumber(bonusNumber, generatedLottos) {
+    return generatedLottos.includes(bonusNumber);
+  }
 }
 
 export default LottoCalculator;
