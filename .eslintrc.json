@@ -1,8 +1,6 @@
 {
   "rules": {
-    "max-depth": ["error", 1],
-    "max-params": ["error", 2],
-    "prefer-const": "error"
+    "max-depth": ["error", 1]
   },
   "env": {
     "es6": true,
@@ -15,6 +13,5 @@
   "extends": [
     "eslint:recommended"
     // "plugin:prettier/recommended"
-  ],
-  "ignorePatterns": ["**/__tests__/**"]
+  ]
 }
