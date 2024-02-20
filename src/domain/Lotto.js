@@ -5,6 +5,7 @@ export default class Lotto {
 
   constructor() {
     this.#drawLottoNumbers();
+    this.#sortLottoNumbers();
   }
 
   #drawLottoNumbers() {
@@ -19,6 +20,10 @@ export default class Lotto {
     if (!this.#lottoNumbers.includes(randomNumber)) {
       this.#lottoNumbers.push(randomNumber);
     }
+  }
+
+  #sortLottoNumbers() {
+    this.#lottoNumbers = this.#lottoNumbers.sort((a, b) => a - b);
   }
 
   get lottoNumbers() {
