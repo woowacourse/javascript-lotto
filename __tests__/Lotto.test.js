@@ -21,7 +21,7 @@ describe("로또에 대한 유닛 테스트", () => {
       [Symbol(1), "symbol"],
       [BigInt(1), "BigInt"],
       [{}, "object"],
-    ])("%s(%i)이 포함될 경우 예외 처리한다.", (value) => {
+    ])("%s(%s)이 포함될 경우 예외 처리한다.", (value) => {
       const numbers = [1, 2, 3, 4, 5, value];
 
       const createWrongLotto = () => new Lotto(numbers);
