@@ -2,9 +2,10 @@ import LottoGame from '../src/controller/LottoGame';
 import Lotto from '../src/domain/Lotto';
 
 describe('로또 게임 기능 테스트', () => {
+  const game = new LottoGame();
+
   test('구입 금액에 해당하는 만큼 1장에 1,000원인 로또를 발행한다.', () => {
     const money = 5000;
-    const game = new LottoGame();
     const lottoTickets = game.createLotto(money);
     expect(lottoTickets.length).toBe(5);
   });
@@ -13,7 +14,6 @@ describe('로또 게임 기능 테스트', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
 
-    const game = new LottoGame();
     game.createWinningNumbers(winningNumbers);
     game.createBonusNumber(bonusNumber);
 
@@ -26,5 +26,11 @@ describe('로또 게임 기능 테스트', () => {
     ];
 
     expect(game.calculateAllPrize(lottoTickets)).toEqual([1, 2, 3, 4, 5]);
+  });
+
+  test('당첨 내역을 통해 수익률을 계산한다.', () => {
+    const prizes = [5, 0, 0, 0, 0, 0, 0, 0];
+
+    expect(game.calculateReturnOnInvestment(prizes)).toEqual(62.5);
   });
 });
