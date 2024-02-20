@@ -1,6 +1,6 @@
 import {
   isDivisibleByPrice,
-  isDuplicatedLottoNumber,
+  isNotDuplicatedLottoNumber,
   isInteger,
   isLottoNumberInRange,
   isNotInLottoNumber,
@@ -10,43 +10,36 @@ import {
 
 const Validator = {
   validateRandomNumber(number) {
-    const isValid = isInteger(number) && isLottoNumberInRange(number);
+    if (!isInteger(number)) throw new Error('정수가 아닙니다.');
 
-    if (!isValid) {
-      throw new Error('error');
-    }
+    if (!isLottoNumberInRange(number)) throw new Error('범위 초과');
   },
 
   validateLottoTickets(numbers) {
-    const isValid =
-      numbers.every((number) => {
-        this.validateRandomNumber(number);
-      }) &&
-      isValidLottoNumberCount(numbers) &&
-      isDuplicatedLottoNumber(numbers);
+    numbers.forEach((number) => this.validateRandomNumber(number));
 
-    if (!isValid) {
-      throw new Error('error');
-    }
+    if (!isValidLottoNumberCount(numbers))
+      throw new Error('로또 번호 개수 에러');
+
+    if (!isNotDuplicatedLottoNumber(numbers))
+      throw new Error('중복된 번호 있음');
   },
 
-  validateBonusNumber(lottoNumbers, number) {
-    validateRandomNumber(lottoNumbers);
+  validateBonusNumber(lottoNumbers, bonusNumber) {
+    this.validateRandomNumber(bonusNumber);
 
-    if (!isNotInLottoNumber(lottoNumbers, number)) {
-      throw new Error('error');
+    if (!isNotInLottoNumber(lottoNumbers, bonusNumber)) {
+      throw new Error('이미 있는 번호임');
     }
   },
 
   validatePaymentAmount(number) {
-    const isValid =
-      isInteger(number) &&
-      isDivisibleByPrice(number) &&
-      isValidNumbersOfTickets(number);
+    if (!isInteger(number)) throw new Error('정수가 아닙니다.');
 
-    if (!isValid) {
-      throw new Error('error');
-    }
+    if (!isDivisibleByPrice(number)) throw new Error('1000원 단위가 아닙니다.');
+
+    if (!isValidNumbersOfTickets(number))
+      throw new Error('구매할 수 없는 티켓 개수');
   },
 };
 

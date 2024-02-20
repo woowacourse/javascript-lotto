@@ -60,7 +60,7 @@ describe('validateLottoTickets 기능 테스트', () => {
   });
 });
 
-describe('validateBonuseNumber 기능 테스트', () => {
+describe('validateBonusNumber 기능 테스트', () => {
   test('보너스 번호는 정수로 이루어져야 한다.', () => {
     const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
     const BONUS_NUMBERS = [4.5, 's', ''];

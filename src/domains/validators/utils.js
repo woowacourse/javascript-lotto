@@ -1,7 +1,7 @@
-import { LOTTO_RULE } from '../../constants';
+import { LOTTO_RULE, RANDOM_NUMBER_RULE } from '../../constants';
 
 export const isInteger = (number) => {
-  return (number) => Number.isInteger(number);
+  return Number.isInteger(number);
 };
 
 // 로또 넘버
@@ -11,8 +11,8 @@ export const isValidLottoNumberCount = (numbers) => {
   return numbers.length === count;
 };
 
-export const isDuplicatedLottoNumber = (numbers) => {
-  return numbers.length !== new Set(numbers).size;
+export const isNotDuplicatedLottoNumber = (numbers) => {
+  return numbers.length === new Set(numbers).size;
 };
 
 export const isLottoNumberInRange = (number) => {
