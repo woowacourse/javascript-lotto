@@ -28,4 +28,12 @@ describe('로또 기능 테스트', () => {
       new Lotto(numbers);
     }).toThrow();
   });
+
+  test('로또 번호가 1에서 45 범위가 아닌 숫자가 포함됐을 때 에러를 발생시킨다.', () => {
+    const numbers = [0, 1, 2, 3, 4, 5];
+
+    expect(() => {
+      new Lotto(numbers);
+    }).toThrow();
+  });
 });
