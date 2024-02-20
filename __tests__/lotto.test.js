@@ -1,4 +1,5 @@
 /* eslint-disable */
+import Lotto from '../src/domain/lotto.js';
 
 describe('로또 기능 테스트', () => {
   test('로또 번호가 7개인 경우 에러를 반환', () => {
