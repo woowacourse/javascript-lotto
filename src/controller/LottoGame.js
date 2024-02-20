@@ -34,8 +34,10 @@ class LottoGame {
     this.#bonusNumber = number;
   }
 
-  calculatePrize(lottoTickets) {
-    // TODO:
+  calculateAllPrize(lottoTickets) {
+    return lottoTickets.map((lottoTicket) =>
+      lottoTicket.calculatePrize(this.#winningNumbers, this.#bonusNumber),
+    );
   }
 }
 
