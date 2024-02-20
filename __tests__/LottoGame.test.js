@@ -15,33 +15,33 @@ describe('로또 게임 기능 테스트', () => {
     game.createWinningNumbers(winningNumbers);
 
     test('사용자가 구매한 로또 번호와 당첨 번호를 비교하여 6개가 일치하면 1등이다.', () => {
-      const lottoTickets = [new Lotto(winningNumbers)];
+      const lottoTicket = new Lotto(winningNumbers);
 
-      expect(game.calculatePrize(lottoTickets)).toBe(1);
+      expect(game.calculatePrize(lottoTicket)).toBe(1);
     });
 
     test('사용자가 구매한 로또 번호와 당첨 번호를 비교하여 5개가 일치하고 보너스 번호가 일치하면 2등이다.', () => {
-      const lottoTickets = [new Lotto([2, 3, 4, 5, 6, 7])];
+      const lottoTicket = new Lotto([2, 3, 4, 5, 6, 7]);
 
-      expect(game.calculatePrize(lottoTickets)).toBe(2);
+      expect(game.calculatePrize(lottoTicket)).toBe(2);
     });
 
     test('사용자가 구매한 로또 번호와 당첨 번호를 비교하여 5개가 일치하고 보너스 번호가 일치하지 않으면 3등이다.', () => {
-      const lottoTickets = [new Lotto([2, 3, 4, 5, 6, 8])];
+      const lottoTicket = new Lotto([2, 3, 4, 5, 6, 8]);
 
-      expect(game.calculatePrize(lottoTickets)).toBe(3);
+      expect(game.calculatePrize(lottoTicket)).toBe(3);
     });
 
     test('사용자가 구매한 로또 번호와 당첨 번호를 비교하여 4개가 일치하면 4등이다.', () => {
-      const lottoTickets = [new Lotto([3, 4, 5, 6, 7, 8])];
+      const lottoTicket = new Lotto([3, 4, 5, 6, 7, 8]);
 
-      expect(game.calculatePrize(lottoTickets)).toBe(4);
+      expect(game.calculatePrize(lottoTicket)).toBe(4);
     });
 
     test('사용자가 구매한 로또 번호와 당첨 번호를 비교하여 3개가 일치하면 5등이다.', () => {
-      const lottoTickets = [new Lotto([4, 5, 6, 7, 8, 9])];
+      const lottoTicket = new Lotto([4, 5, 6, 7, 8, 9]);
 
-      expect(game.calculatePrize(lottoTickets)).toBe(5);
+      expect(game.calculatePrize(lottoTicket)).toBe(5);
     });
 
     test.each([
@@ -51,13 +51,9 @@ describe('로또 게임 기능 테스트', () => {
     ])(
       '사용자가 구매한 로또 번호와 당첨 번호를 비교하여 %s개가 일치하면 낙첨이다.',
       (condition) => {
-        const lottoTickets = [new Lotto(condition[1])];
+        const lottoTicket = new Lotto(condition[1]);
 
-        // when
-        const result = game.calculatePrize(lottoTickets);
-
-        // then
-        expect(result).toBe(0);
+        expect(game.calculatePrize(lottoTicket)).toBe(0);
       },
     );
   });
