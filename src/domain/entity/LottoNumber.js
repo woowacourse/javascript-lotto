@@ -9,6 +9,7 @@ class LottoNumber {
     this.#validateBlank(numStr);
     this.#validateNotNumber(numStr);
     this.#validateInRange(numStr);
+    this.#validateInteger(numStr);
   }
 
   #validateBlank(numStr) {
@@ -25,6 +26,11 @@ class LottoNumber {
   #validateInRange(numStr) {
     if (Number(numStr) > 45 || Number(numStr) < 1) {
       throw new Error(ERROR.beInRangeNumber);
+    }
+  }
+  #validateInteger(numStr) {
+    if (!Number.isInteger(Number(numStr))) {
+      throw new Error(ERROR.beInteger);
     }
   }
 }

@@ -29,4 +29,11 @@ describe('로또 번호 테스트', () => {
       expect(() => new LottoNumber(NOT_NUMBER)).toThrow('[Error]');
     });
   });
+
+  test.each(['1.2', '-3.3'])(
+    '정수형이 아닌 문자를 입력 받았을 때, 에러를 발생시킨다.',
+    NOT_INTEGER => {
+      expect(() => new LottoNumber(NOT_INTEGER)).toThrow('[Error]');
+    },
+  );
 });
