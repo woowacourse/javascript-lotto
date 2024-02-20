@@ -17,7 +17,8 @@
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "extends": ["eslint:recommended", "plugin:prettier/recommended"]
 }
