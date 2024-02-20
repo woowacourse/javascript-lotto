@@ -1,11 +1,12 @@
 import InputView from '../view/InputView';
+import LottoMachine from '../domain/LottoMachine';
 
-class LottoService {
+class LottoController {
 
   async start() {
     const temp = await InputView.readMoney();
-    console.log(temp);
+    const lottoMachine = new LottoMachine(8000);
   }
 }
 
-export default LottoService;
+export default LottoController;
