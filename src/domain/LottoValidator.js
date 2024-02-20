@@ -1,10 +1,12 @@
 import Message from '../constants/Message';
+import Condition from '../constants/Condition';
 
 const { ERROR } = Message;
+const { LOTTO } = Condition;
 
 const LottoValidator = {
   validateNumbersLength(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== LOTTO.NUMBER_LENGTH) {
       throw new Error(ERROR.LOTTO_NUMBERS_LENGTH);
     }
   },
@@ -22,7 +24,11 @@ const LottoValidator = {
   },
 
   validateNumbersRange(numbers) {
-    if (!numbers.every((number) => number >= 1 && number <= 45)) {
+    if (
+      !numbers.every(
+        (number) => number >= LOTTO.NUMBER_RANGE_MIN && number <= LOTTO.NUMBER_RANGE_MAX,
+      )
+    ) {
       throw new Error(ERROR.LOTTO_NUMBERS_RANGE);
     }
   },
