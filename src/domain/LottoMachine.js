@@ -1,20 +1,23 @@
+import LOTTO_RULE from '../constants/rules/lottoRule';
 class LottoMachine {
-  #money
-  #lottos
+  #lottos;
+  #count;
 
   constructor(money) {
-    this.#money = money;
-    this.#lottosDraw(money)
-
+    this.#count = money / LOTTO_RULE.LOTTO_MONEY_UNIT;
+    this.#lottosDraw();
   }
 
-  #lottosDraw(money){
-    const count = money / 1000
-    this.#lottos = Array(count).fill([]);
+  #lottosDraw() {
+    this.#lottos = Array(this.#count).fill([]);
   }
 
   get lottos() {
     return this.#lottos;
+  }
+
+  get count() {
+    return this.#count;
   }
 }
 

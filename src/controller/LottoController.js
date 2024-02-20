@@ -1,11 +1,12 @@
 import InputView from '../view/InputView';
 import LottoMachine from '../domain/LottoMachine';
+import OutputView from '../view/OutputView';
 
 class LottoController {
-
   async start() {
-    const temp = await InputView.readMoney();
-    const lottoMachine = new LottoMachine(8000);
+    const inputMoney = await InputView.readMoney();
+    const lottoMachine = new LottoMachine(inputMoney);
+    OutputView.printPurchasedLottoAmount(lottoMachine.count);
   }
 }
 
