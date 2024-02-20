@@ -7,6 +7,8 @@
    1. 필드
       - LottoNumbers
       - Rank
+   2. Valid
+      - [x] 1~45 숫자인지 확인하고, 중복 검사, 숫자가 6개인지 검사
 
 2. Lotto_machine
 
@@ -24,9 +26,6 @@
    3. [ ] 당첨 번호 입력 값을 통해 당첨 Lotto 발행.
    4. [ ] bonusNumber에 대한 유효성 검증
       - winNumbers에 중복이 없어야 한다.
-
-4. Valid
-   1. [ ] 1~45 숫자인지 확인하고, 중복 검사
 
 ### View
 

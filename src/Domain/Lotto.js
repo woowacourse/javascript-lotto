@@ -3,20 +3,32 @@ export default class Lotto {
 
   constructor(numbers) {
     this.#numbers = numbers;
-    // Lotto.validLottoNumbers();
+    this.#validLottoNumbers();
   }
 
-  // static validLottoNumbers() {
-  //   this.#validInRange(1, 45);
-  //   this.#validDuplicate();
-  // }
+  #validLottoNumbers() {
+    this.#validInRange(1, 45);
+    this.#validDuplicate();
+    this.#validLength();
+  }
 
-  // #validInRange(min, max) {
-  //   this.#numbers.forEach((number) => {
-  //     if (number < min || number > max) {
-  //     } // TODO: throw error
-  //   });
-  // }
+  #validInRange(min, max) {
+    this.#numbers.forEach((number) => {
+      if (number < min || number > max) {
+        throw new Error("❌");
+      }
+    });
+  }
 
-  // #validDuplicate() {}
+  #validDuplicate() {
+    if (new Set([...this.#numbers]).size !== this.#numbers.length) {
+      throw new Error("❌");
+    }
+  }
+
+  #validLength() {
+    if (this.#numbers.length !== 6) {
+      throw new Error("❌");
+    }
+  }
 }
