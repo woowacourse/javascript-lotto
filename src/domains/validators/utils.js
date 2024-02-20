@@ -21,6 +21,10 @@ export const isLottoNumberInRange = (number) => {
   return start <= number && number <= end;
 };
 
+export const isNotInLottoNumber = (lottoNumbers, bonusNumber) => {
+  return !lottoNumbers.includes(bonusNumber);
+};
+
 // 구매 금액
 export const isDivisibleByPrice = (money) => {
   return money % LOTTO_RULE.price === 0;

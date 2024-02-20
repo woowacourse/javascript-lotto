@@ -60,6 +60,39 @@ describe('validateLottoTickets 기능 테스트', () => {
   });
 });
 
+describe('validateBonuseNumber 기능 테스트', () => {
+  test('보너스 번호는 정수로 이루어져야 한다.', () => {
+    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
+    const BONUS_NUMBERS = [4.5, 's', ''];
+
+    BONUS_NUMBERS.forEach((bonusNumber) => {
+      expect(() =>
+        Validator.validateBonusNumber(LOTTO_NUMBERS, bonusNumber),
+      ).toThrow();
+    });
+  });
+
+  test('보너스 번호의 범위는 1~45까지다.', () => {
+    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
+    const BONUS_NUMBERS = [46, 0];
+
+    BONUS_NUMBERS.forEach((bonusNumber) => {
+      expect(() =>
+        Validator.validateBonusNumber(LOTTO_NUMBERS, bonusNumber),
+      ).toThrow();
+    });
+  });
+
+  test('보너스 번호는 로또 번호와 중복되지 않아야 한다.', () => {
+    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
+    const BONUS_NUMBER = 1;
+
+    expect(() =>
+      Validator.validateBonusNumber(LOTTO_NUMBERS, BONUS_NUMBER),
+    ).toThrow();
+  });
+});
+
 describe('validatePaymentAmount 기능 테스트', () => {
   test('구입 금액은 정수이어야 한다.', () => {
     const INPUTS = [1.1, 's', ''];

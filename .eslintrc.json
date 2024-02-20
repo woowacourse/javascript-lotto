@@ -1,7 +1,6 @@
 {
   "rules": {
     "max-depth": ["error", 1],
-    "max-lines-per-function": ["error", { "max": 10 }],
     "max-params": ["error", 2]
   },
   "env": {

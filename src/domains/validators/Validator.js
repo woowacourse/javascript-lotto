@@ -3,6 +3,7 @@ import {
   isDuplicatedLottoNumber,
   isInteger,
   isLottoNumberInRange,
+  isNotInLottoNumber,
   isValidLottoNumberCount,
   isValidNumbersOfTickets,
 } from './utils';
@@ -25,6 +26,14 @@ const Validator = {
       isDuplicatedLottoNumber(numbers);
 
     if (!isValid) {
+      throw new Error('error');
+    }
+  },
+
+  validateBonusNumber(lottoNumbers, number) {
+    validateRandomNumber(lottoNumbers);
+
+    if (!isNotInLottoNumber(lottoNumbers, number)) {
       throw new Error('error');
     }
   },
