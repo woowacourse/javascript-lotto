@@ -14,4 +14,11 @@ describe('로또 게임 기능 테스트', () => {
 
     expect(game.createWinningNumbers(numbers)).toEqual(numbers);
   });
+
+  test('보너스 번호가 정상적으로 생성된다.', () => {
+    const number = 7;
+    const game = new LottoGame();
+
+    expect(game.createBonusNumber(number)).toEqual(number);
+  });
 });
