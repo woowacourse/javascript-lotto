@@ -1,13 +1,12 @@
-import LottoService from './service/LottoService';
+import LottoController from './controller/LottoController';
 
 class App {
-  #lottoService;
+  #LottoController;
 
   async run() {
-     this.#lottoService = new LottoService();
+    this.#LottoController = new LottoController();
 
-    await this.#lottoService.start();
-
+    await this.#LottoController.start();
   }
 }
 

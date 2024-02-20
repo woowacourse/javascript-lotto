@@ -21,9 +21,9 @@ export default class Money {
 
   #isThousandUnit(amount) {
     if (amount % 1000 !== 0) {
-      throw new Error(ERROR_MESSAGE.NOT_THOUSAND_UNIT)
+      throw new Error(ERROR_MESSAGE.NOT_THOUSAND_UNIT);
     }
-  };
+  }
 
   get amount() {
     return this.#amount;

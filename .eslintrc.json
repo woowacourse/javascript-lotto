@@ -5,14 +5,16 @@
     "max-depth": ["warn", 1],
     "no-undef": 2,
     "eqeqeq": "warn",
-    "max-params" : ["warn", 2],
+    "max-params": ["warn", 2]
   },
   "env": {
     "es6": true,
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
+  "files": ["**/*.test.js"],
   "extends": ["eslint:recommended", "plugin:prettier/recommended"]
 }
