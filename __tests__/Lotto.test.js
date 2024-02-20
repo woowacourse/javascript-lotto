@@ -20,4 +20,12 @@ describe('로또 기능 테스트', () => {
       new Lotto(numbers);
     }).toThrow();
   });
+
+  test('로또 번호가 숫자가 아니면 에러를 발생시킨다.', () => {
+    const numbers = ['ㄱ', 2, 3, 4, 5, 6];
+
+    expect(() => {
+      new Lotto(numbers);
+    }).toThrow();
+  });
 });
