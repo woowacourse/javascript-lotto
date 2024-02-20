@@ -2,7 +2,8 @@
   "rules": {
     "max-depth": ["error", 1],
     "max-params": ["error", 2],
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-useless-constructor": "off"
   },
   "overrides": [
     {
