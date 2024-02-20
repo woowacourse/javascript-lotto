@@ -1,4 +1,5 @@
 import { generateRandomNumbers } from "../utils/generateRandomNumbers.js";
+import { sortNumbersAscend } from "../utils/sortNumbersAscend.js";
 
 const MIN_LOTTO_NUMBER = 1;
 const MAX_LOTTO_NUMBER = 45;
@@ -12,6 +13,8 @@ class Lotto {
     // NOTE: 생성자의 타입이 다양할 때 이렇게 조건문을 걸어서 판별하는게 옳을까요?
     if (typeof numbers === "string") this.#constructorWithNumStr(numbers);
     if (numbers === undefined) this.#constructorWithoutArg();
+
+    this.#numbers = sortNumbersAscend(this.#numbers);
   }
 
   // 오버로딩
