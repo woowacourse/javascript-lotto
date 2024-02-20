@@ -1,16 +1,16 @@
-const LOTTO_LENGTH = 6;
+export const LOTTO_LENGTH = 6;
 
 class Lotto {
-  #numbers;
+  _numbers;
 
   constructor(numbers) {
     this.#validateNumbers(numbers);
 
-    this.#numbers = numbers;
+    this._numbers = numbers;
   }
 
   get numbers() {
-    return [...this.#numbers];
+    return [...this._numbers];
   }
 
   #validateNumbers(numbers) {
