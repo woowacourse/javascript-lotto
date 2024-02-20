@@ -20,8 +20,6 @@ export const validateLotto = (numbers) => {
   if (!Validations.isCorrectLength(numbers)) throw new Error(ERROR_MESSAGES.incorrect_length);
   if (Validations.isDuplicate(numbers)) throw new Error(ERROR_MESSAGES.duplicate);
   numbers.forEach((number) => {
-    if (!Validations.isCorrectRange(number)) {
-      throw new Error(ERROR_MESSAGES.lotto_number_range);
-    }
+    if (!Validations.isCorrectRange(number)) throw new Error(ERROR_MESSAGES.lotto_number_range);
   });
 };
