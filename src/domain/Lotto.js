@@ -9,7 +9,11 @@ class Lotto {
     this.#validateNumbersLength(numbers);
     this.#validateNumbersInRange(numbers);
 
-    this.#numbers = [...numbers];
+    this.#numbers = this.#sortAscendingNumbers([...numbers]);
+  }
+
+  getNumbers() {
+    return [...this.#numbers];
   }
 
   #validateNumbersLength(numbers) {
@@ -26,6 +30,10 @@ class Lotto {
     if (number < Lotto.MIN_LOTTO_NUMBER || number > Lotto.MAX_LOTTO_NUMBER) {
       throw new Error("[ERROR] 유효한 범위 로또 숫자가 아닙니다.");
     }
+  }
+
+  #sortAscendingNumbers(numbers) {
+    return numbers.sort((a, b) => a - b);
   }
 }
 

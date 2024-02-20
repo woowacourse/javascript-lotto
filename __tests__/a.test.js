@@ -23,5 +23,14 @@ describe("로또에 대한 유닛 테스트", () => {
         expect(createWrongLotto).toThrow();
       }
     );
+
+    test("오름차순으로 로또 번호를 정렬한다.", () => {
+      const numbers = [6, 5, 4, 3, 2, 1];
+      const expected = [1, 2, 3, 4, 5, 6];
+
+      const lotto = new Lotto(numbers);
+
+      expect(lotto.getNumbers()).toEqual(expected);
+    });
   });
 });
