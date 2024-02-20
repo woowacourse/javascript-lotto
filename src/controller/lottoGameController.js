@@ -1,3 +1,4 @@
+import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import InputView from "../view/InputView.js";
 
 class LottoGameController {
@@ -7,9 +8,15 @@ class LottoGameController {
     this.#inputView = InputView;
   }
 
-  async getGameInfo() {
+  async play() {
+    const purchaseAmount = await this.getPurchaseAmount();
+  }
+
+  async getPurchaseAmount() {
     const puchaseAmount = await this.#inputView.inputPurchaseAmount();
-    console.log(puchaseAmount);
+    purchaseAmountValidator.validate(puchaseAmount);
+
+    return Number(puchaseAmount);
   }
 }
 
