@@ -12,7 +12,7 @@ const lottoNumberValidator = {
   },
 
   validateRange(numbers) {
-    if (numbers.filter((number) => number < 1 || number > 45)) {
+    if (numbers.some((number) => number < 1 || number > 45)) {
       throw new Error("[ERROR] 로또 번호로 1 ~ 45 사이의 숫자를 입력해주세요.");
     }
   },
