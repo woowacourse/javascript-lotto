@@ -16,6 +16,12 @@ const lottoNumberValidator = {
       throw new Error("[ERROR]");
     }
   },
+
+  validate(numbers) {
+    this.validateNumbersLength(numbers);
+    this.validateDuplicate(numbers);
+    this.validateRange(numbers);
+  },
 };
 
 export default lottoNumberValidator;

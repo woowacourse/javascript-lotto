@@ -4,9 +4,7 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    lottoNumberValidator.validateNumbersLength(numbers);
-    lottoNumberValidator.validateDuplicate(numbers);
-    lottoNumberValidator.validateRange(numbers);
+    lottoNumberValidator.validate(numbers);
 
     this.#numbers = numbers;
   }
