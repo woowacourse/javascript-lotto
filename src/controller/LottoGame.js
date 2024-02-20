@@ -4,16 +4,6 @@ import Condition from '../constants/Condition';
 
 const { LOTTO } = Condition;
 
-const PRIZE = {
-  6: 1,
-  5: 3,
-  4: 4,
-  3: 5,
-  2: 0,
-  1: 0,
-  0: 0,
-};
-
 class LottoGame {
   #winningNumbers;
 
@@ -44,17 +34,8 @@ class LottoGame {
     this.#bonusNumber = number;
   }
 
-  compareBonus(lottoTicket) {
-    return lottoTicket.getNumbers().includes(this.#bonusNumber) ? 2 : 3;
-  }
-
-  calculatePrize(lottoTicket) {
-    const prize =
-      PRIZE[
-        lottoTicket.getNumbers().filter((number) => this.#winningNumbers.includes(number)).length
-      ];
-
-    return prize === 3 ? this.compareBonus(lottoTicket) : prize;
+  calculatePrize(lottoTickets) {
+    // TODO:
   }
 }
 
