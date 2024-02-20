@@ -25,4 +25,13 @@ describe("WinningLotto 객체 테스트", () => {
       "[ERROR]",
     );
   });
+
+  test("당첨 로또 번호와 보너스 번호는 중복되면 안된다.", () => {
+    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
+    const BONUS_NUMBER = 6;
+
+    expect(() => new WinningLotto(LOTTO_NUMBERS, BONUS_NUMBER)).toThrow(
+      "[ERROR]",
+    );
+  });
 });
