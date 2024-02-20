@@ -5,5 +5,9 @@ export default class Lotto {
     if (numbers.length !== LOTTO_RULES.length) {
       throw new Error(ERROR_MESSAGES.incorrect_length);
     }
+
+    if (new Set(numbers).size !== numbers.length) {
+      throw new Error(ERROR_MESSAGES.duplicate);
+    }
   }
 }
