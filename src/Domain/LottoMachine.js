@@ -11,19 +11,12 @@ export default class LottoMachine {
   }
 
   #makeRandomNumbers() {
-    const returnValues = [];
-    for (let i = 0; i < 6; i += 1) {
-      const randomNumber = this.#makeRandomNumber(returnValues);
-      returnValues.push(randomNumber);
-    }
-    return returnValues;
-  }
+    const lottoSet = new Set();
 
-  #makeRandomNumber(numbers) {
-    const randomNum = Math.floor(Math.random() * 45);
-    if (numbers.includes(randomNum)) {
-      return this.#makeRandomNumber;
+    while (lottoSet.size !== 6) {
+      lottoSet.add(Math.ceil(Math.random() * 45));
     }
-    return this.#makeRandomNumber;
+
+    return [...lottoSet];
   }
 }
