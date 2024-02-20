@@ -43,12 +43,11 @@ class LottoGameController {
 
   async getWinningLotto() {
     const winningLotto = await this.#inputView.inputWinningLottoNumber();
-    lottoNumberValidator.validate(winningLotto);
+    const winningLottoNumbers = winningLotto.split(",");
 
     const bonusNumber = await this.#inputView.inputBonusNumber();
-    bonusNumberValidator.validateDuplication(winningLotto, bonusNumber);
 
-    return new WinningLotto(winningLotto, bonusNumber);
+    return new WinningLotto(winningLottoNumbers, bonusNumber);
   }
 }
 

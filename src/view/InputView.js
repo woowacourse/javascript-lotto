@@ -7,12 +7,12 @@ const InputView = {
   },
 
   async inputWinningLottoNumber() {
-    const input = await readLineAsync("> 당첨 번호를 입력해 주세요. ");
+    const input = await readLineAsync("\n> 당첨 번호를 입력해 주세요. ");
     return input;
   },
 
   async inputBonusNumber() {
-    const input = await readLineAsync("> 보너스 번호를 입력해 주세요. ");
+    const input = await readLineAsync("\n> 보너스 번호를 입력해 주세요. ");
     return input;
   },
 };
