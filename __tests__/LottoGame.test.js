@@ -1,3 +1,5 @@
+import LottoGame from '../src/controller/LottoGame';
+
 describe('로또 게임 기능 테스트', () => {
   test('구입 금액에 해당하는 만큼 1장에 1,000원인 로또를 발행한다.', () => {
     const money = 5000;
