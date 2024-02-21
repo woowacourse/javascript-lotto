@@ -9,7 +9,7 @@ class LottoSeller {
   }
 
   #calculateLottoCount(amount) {
-    return amount / LottoSeller.LOTTO_PRICE;
+    return Math.floor(amount / LottoSeller.LOTTO_PRICE);
   }
 
   #pickLottos(count) {
