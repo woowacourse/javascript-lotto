@@ -4,6 +4,8 @@ import { deepFreeze } from '../utils/object/object.js';
 import { INPUT_MESSAGE } from '../constants/messages/messages.js';
 
 import { BuyLottoPriceValidator, CommonValidator } from '../validator/index.js';
+import WinningNumberValidator from '../validator/winningNumber/WinningNumberValidator.js';
+import { SYMBOLS } from '../constants/symbols.js';
 
 /**
  * @module InputView
@@ -31,6 +33,16 @@ const InputView = deepFreeze({
     BuyLottoPriceValidator.check(inputBuyLottoPrice);
 
     return Number(inputBuyLottoPrice);
+  },
+
+  /**
+   * @returns {number[]} 검증된 구매 로또 금액의 Promise
+   */
+  async readWinningNumber() {
+    const inputWinningNumber = await this.read(INPUT_MESSAGE.winningNumber);
+    WinningNumberValidator.check(inputWinningNumber);
+
+    return inputWinningNumber.split(SYMBOLS.comma).map(Number);
   },
 });
 

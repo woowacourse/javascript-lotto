@@ -5,7 +5,15 @@ import OutputView from '../views/OutputView.js';
 
 class LottoGameController {
   async run() {
-    await this.#processBuyLotto();
+    const { buyLottoPrice, lottoNumbers } = await this.#processBuyLotto();
+
+    await this.#processDrawLottoResult({ buyLottoPrice, lottoNumbers });
+  }
+
+  async #processDrawLottoResult({ buyLottoPrice, lottoNumbers }) {
+    const winningNumber = await RetryHandler.errorWithLogging(() => InputView.readWinningNumber());
+
+    console.log(winningNumber);
   }
 
   async #processBuyLotto() {
@@ -15,6 +23,8 @@ class LottoGameController {
 
     OutputView.printLottoCount(lottoNumbers.length);
     OutputView.printLottoNumbers(lottoNumbers);
+
+    return { buyLottoPrice, lottoNumbers };
   }
 }
 
