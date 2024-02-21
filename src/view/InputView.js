@@ -1,4 +1,4 @@
-import Console from '../utils/Console.js';
+import Console from '../utils/Console';
 
 class InputView {
   static async readPurchaseAmount() {
