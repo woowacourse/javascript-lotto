@@ -10,4 +10,16 @@ export default class WinningLotto {
 
     this.#bonusNumber = bonusNumber;
   }
+
+  calculateWinner(numbers) {
+    return { correct: this.#correctCount(numbers), hasBonusNumber: this.#hasBonusNumber(numbers) };
+  }
+
+  #correctCount(numbers) {
+    return numbers.filter((number) => this.#lotto.getNumbers.includes(number)).length;
+  }
+
+  #hasBonusNumber(numbers) {
+    return numbers.includes(this.#bonusNumber);
+  }
 }
