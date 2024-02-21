@@ -1,32 +1,42 @@
-import Lotto from '../src/domain/Lotto';
+/* eslint-disable max-lines-per-function */
+import { ERROR_MESSAGE, VARIABLE_ALIAS } from '../src/constant/Messages.js';
+import OPTIONS from '../src/constant/Options.js';
 import LottoMachine from '../src/domain/LottoMachine';
 
-describe('구입 금액만큼 로또 발행', () => {
+describe('구입 금액에 따른 구입 가능 수량 계산 테스트', () => {
   let lottoMachine;
 
   beforeEach(() => {
     lottoMachine = new LottoMachine();
   });
 
+  test.each(['a', 1.1])(
+    '구입 금액이 정수가 아니라면 에러를 발생시킨다',
+    (purchaseAmount) => {
+      expect(() => lottoMachine.calculateIssueQuantity(purchaseAmount)).toThrow(
+        `${ERROR_MESSAGE.prefix}${ERROR_MESSAGE.isNotInteger(VARIABLE_ALIAS.purchaseAmount)}`
+      );
+    }
+  );
+
   test('구입 금액이 1000 미만이라면 에러를 발생시킨다.', () => {
     const purchaseAmount = 999;
 
-    expect(() => lottoMachine.publishLottos(purchaseAmount)).toThrow(
-      '구입금액은 1000 이상이어야 합니다.'
+    expect(() => lottoMachine.calculateIssueQuantity(purchaseAmount)).toThrow(
+      `${ERROR_MESSAGE.prefix}${ERROR_MESSAGE.isNotAtLeast(VARIABLE_ALIAS.purchaseAmount, OPTIONS.LOTTO.price)}`
     );
   });
 
   test.each([
     [1000, 1],
-    [2000, 2],
-    [3000, 3]
+    [1999, 1],
+    [2000, 2]
   ])(
-    '구입 금액이 1000 이상이라면 발행 수량만큼 로또를 발행한다.',
+    '구입 금액에 따른 발행 수량을 계산하여 반환한다.',
     (purchaseAmount, quantity) => {
-      const lottos = lottoMachine.publishLottos(purchaseAmount);
-
-      expect(lottos.length).toBe(quantity);
-      expect(lottos.every((lotto) => lotto instanceof Lotto)).toBe(true);
+      expect(lottoMachine.calculateIssueQuantity(purchaseAmount)).toBe(
+        quantity
+      );
     }
   );
 });
