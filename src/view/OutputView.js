@@ -1,5 +1,4 @@
-import { PRIZE } from "../constants/system.js";
-import formatNumber from "../utils/FormatNumber.js";
+import { OUTPUT_MESSAGE } from "../constants/system.js";
 
 const OutputView = {
   printError(error) {
@@ -7,7 +6,7 @@ const OutputView = {
   },
 
   printPurchaseMessage(purchaseAmount) {
-    console.log(`${purchaseAmount / 1000}개를 구매했습니다.`);
+    console.log(OUTPUT_MESSAGE.PURCHASE_NUMBER(purchaseAmount));
   },
 
   printLottos(lottoNumberArray) {
@@ -17,8 +16,7 @@ const OutputView = {
   },
 
   printResultHeader() {
-    console.log("\n당첨 통계");
-    console.log("---------");
+    console.log(OUTPUT_MESSAGE.RESULT_HEADER);
   },
 
   printResult(rank) {
@@ -26,16 +24,12 @@ const OutputView = {
     Object.keys(rank)
       .reverse()
       .forEach((key) => {
-        console.log(
-          `${PRIZE[key].matchCount}개 일치${PRIZE[key].bonus ? ", 보너스 볼 일치" : ""}(${formatNumber(
-            PRIZE[key].reward,
-          )}원)- ${rank[key]}개`,
-        );
+        console.log(OUTPUT_MESSAGE.RESULT(rank, key));
       });
   },
 
   printProfit(profit) {
-    console.log(`총 수익률은 ${formatNumber(profit)}%입니다.`);
+    console.log(OUTPUT_MESSAGE.PROFIT(profit));
   },
 };
 export default OutputView;

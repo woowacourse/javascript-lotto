@@ -106,7 +106,6 @@ class LottoGameController {
   getGameResult(lottoList, winningLotto) {
     const result = new LottoResult(lottoList, winningLotto);
     const rank = result.getTotalResult();
-    console.log(rank);
     const profit = result.getProfit(lottoList.length * 1000);
 
     OutputView.printResult(rank);
