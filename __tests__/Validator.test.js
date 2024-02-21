@@ -26,3 +26,16 @@ describe('[Validator] 당첨 번호 검증', () => {
     expect(validation).toThrow(errorMessage);
   });
 });
+
+describe('[Validator] 보너스 번호 검증', () => {
+  test.each`
+    title                                                | input      | winningNumbers        | errorMessage
+    ${'입력값은 공백이 아니여야 한다.'}                  | ${''}      | ${[1, 2, 3, 4, 5, 6]} | ${ERROR_MESSAGE.INPUT_IS_EMPTY}
+    ${'보너스 번호는 숫자로 입력되어야 한다.'}           | ${'bonus'} | ${[1, 2, 3, 4, 5, 6]} | ${ERROR_MESSAGE.BONUS_NUMBER_FORMAT}
+    ${'보너스 번호는 1~45 사이여야 한다.'}               | ${'46'}    | ${[1, 2, 3, 4, 5, 6]} | ${ERROR_MESSAGE.BONUS_NUMBER_RANGE}
+    ${'보너스 번호는 당첨 번호와 중복되지 않아야 한다.'} | ${'1'}     | ${[1, 2, 3, 4, 5, 6]} | ${ERROR_MESSAGE.BONUS_NUMBER_DUPLICATED}
+  `('$title', ({ input, winningNumbers, errorMessage }) => {
+    const validation = () => Validator.validateBonusNumber(input, winningNumbers);
+    expect(validation).toThrow(errorMessage);
+  });
+});
