@@ -1,4 +1,5 @@
 import LottoBuyer from '../domain/LottoBuyer/LottoBuyer.js';
+import RateOfReturnCalculator from '../domain/RateOfReturnCalculator/RateOfReturnCalculator.js';
 import WinningRank from '../domain/WinningRank/WinningRank.js';
 import RetryHandler from '../errors/RetryHandler/RetryHandler.js';
 import InputView from '../views/InputView.js';
@@ -19,6 +20,9 @@ class LottoGameController {
 
     const winningRank = new WinningRank({ winningNumber, bonusNumber, lottoNumbers });
     const winningRankDetail = winningRank.calculateRank();
+
+    const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankDetail });
+    const rateOfReturn = rateOfReturnCalculator.execute();
   }
 
   async #processBuyLotto() {
