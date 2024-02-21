@@ -43,6 +43,10 @@ const Output = {
         ),
       );
   },
+
+  printReturnOnInvestment(returnOnInvestment) {
+    console.log(`총 수익률은 ${returnOnInvestment}%입니다.`);
+  },
 };
 
 export default Output;

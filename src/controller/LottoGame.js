@@ -37,8 +37,10 @@ class LottoGame {
     this.createBonusNumber(bonusNumber);
 
     const prizes = this.calculateAllPrize(lottoTickets);
+    const returnOnInvestment = this.calculateReturnOnInvestment(prizes);
 
     Output.printPrizeDetails(prizes);
+    Output.printReturnOnInvestment(returnOnInvestment);
   }
 
   #validateMoney(money) {
