@@ -23,13 +23,19 @@ const OutputView = {
 
   printResult(rank) {
     this.printResultHeader();
-    Object.keys(rank).forEach((key) => {
-      console.log(
-        `${PRIZE[key].matchCount}개 일치${
-          PRIZE[key].bonus ? ", 보너스 볼 일치" : " "
-        }(${formatNumber(PRIZE[key].reward)}원) - ${rank[key]}개`,
-      );
-    });
+    Object.keys(rank)
+      .reverse()
+      .forEach((key) => {
+        console.log(
+          `${PRIZE[key].match}개 일치${PRIZE[key].bonus ? ", 보너스 볼 일치" : ""}(${
+            PRIZE[key].reward
+          }원)- ${rank[key]}개`,
+        );
+      });
+  },
+
+  printProfit(profit) {
+    console.log(`총 수익률은 ${profit}%입니다.`);
   },
 };
 export default OutputView;

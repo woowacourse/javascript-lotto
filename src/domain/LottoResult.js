@@ -1,3 +1,5 @@
+import { PRIZE } from "../constants/system.js";
+
 class LottoResult {
   #lottoList;
   #WinningLotto;
@@ -26,6 +28,19 @@ class LottoResult {
       },
       { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
     );
+  }
+
+  getTotalReward() {
+    const totalResult = this.getTotalResult();
+    return Object.keys(totalResult).reduce((acc, cur) => {
+      const prizeReward = PRIZE[cur].reward * totalResult[cur];
+      return acc + prizeReward;
+    }, 0);
+  }
+
+  getProfit(purchaseAmount) {
+    const totalReward = this.getTotalReward();
+    return (totalReward / purchaseAmount) * 100;
   }
 }
 export default LottoResult;

@@ -19,10 +19,7 @@ class LottoGameController {
 
     const winningLotto = await this.setWinningLotto();
 
-    const result = new LottoResult(lottoList, winningLotto);
-    const rank = result.getTotalResult();
-
-    OutputView.printResult(rank);
+    this.getGameResult(lottoList, winningLotto);
   }
 
   async executeOrRetryAsync(asyncFn) {
@@ -101,6 +98,16 @@ class LottoGameController {
       .map((number) => Number(number));
 
     return winningLottoNumbers;
+  }
+
+  getGameResult(lottoList, winningLotto) {
+    const result = new LottoResult(lottoList, winningLotto);
+    const rank = result.getTotalResult();
+    console.log(rank);
+    const profit = result.getProfit(lottoList.length * 1000);
+
+    OutputView.printResult(rank);
+    OutputView.printProfit(profit);
   }
 }
 
