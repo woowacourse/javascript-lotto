@@ -18,11 +18,17 @@ describe("Lotto 객체 테스트", () => {
     );
   });
 
-  test("로또 번호는 1 ~ 45 사이의 숫자여야 한다.", () => {
+  test("로또 번호는 1 ~ 45 사이의 숫자가 아니면 에러가 나야된다.", () => {
     const INVALID_LOTTO_NUMBERS = [0, 1, 2, 3, 4, 46];
 
     expect(() => new Lotto(INVALID_LOTTO_NUMBERS)).toThrow(
       "[ERROR] 로또 번호로 1 ~ 45 사이의 숫자를 입력해주세요.",
     );
+  });
+
+  test("로또 번호는 1 ~ 45 사이의 숫자면 에러가 나지 않는다.", () => {
+    const VALID_LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
+
+    expect(() => new Lotto(VALID_LOTTO_NUMBERS)).not.toThrow();
   });
 });
