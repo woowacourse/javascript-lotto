@@ -5,6 +5,7 @@ import Condition from '../constants/Condition';
 import Input from '../view/Input';
 import Output from '../view/Output';
 import Random from '../utils/Random';
+import retryUntilValid from '../utils/retryUntilValid';
 
 const { LOTTO } = Condition;
 
@@ -18,30 +19,28 @@ const REWARD = {
 };
 
 class LottoGame {
-  #winningNumbers;
-
-  #bonusNumber;
-
   async start() {
-    const money = await Input.readMoney();
-    this.#validateMoney(money);
+    while (true) {
+      const money = await retryUntilValid(this.getMoney, this);
 
-    const lottoTickets = this.createLotto(money);
+      const lottoTickets = this.createLotto(money);
 
-    Output.printLottoTicketsCount(lottoTickets);
-    Output.printAscendingOrderLottoTickets(lottoTickets);
+      Output.printLottoTicketsCount(lottoTickets);
+      Output.printAscendingOrderLottoTickets(lottoTickets);
 
-    const winningNumbers = await Input.readWinningNumbers();
-    this.createWinningNumbers(winningNumbers.split(',').map((number) => Number(number)));
+      const winningNumbers = await retryUntilValid(this.getWinningNumbers, this);
+      const bonusNumber = await retryUntilValid(() => this.getBonusNumber(winningNumbers), this);
 
-    const bonusNumber = await Input.readBonusNumber();
-    this.createBonusNumber(bonusNumber);
+      const prizes = this.calculateAllPrize(lottoTickets, winningNumbers, bonusNumber);
+      const returnOnInvestment = this.calculateReturnOnInvestment(prizes);
 
-    const prizes = this.calculateAllPrize(lottoTickets);
-    const returnOnInvestment = this.calculateReturnOnInvestment(prizes);
+      Output.printPrizeDetails(prizes);
+      Output.printReturnOnInvestment(returnOnInvestment);
 
-    Output.printPrizeDetails(prizes);
-    Output.printReturnOnInvestment(returnOnInvestment);
+      const input = Input.readRestartOrExit();
+
+      if (input === 'n') break;
+    }
   }
 
   #validateMoney(money) {
@@ -57,6 +56,30 @@ class LottoGame {
     LottoValidator.validateNumbersRange(numbers);
   }
 
+  async getMoney() {
+    const money = await Input.readMoney();
+
+    this.#validateMoney(money);
+
+    return money;
+  }
+
+  async getWinningNumbers() {
+    const winningNumbers = await Input.readWinningNumbers();
+    const separatedWinningNumbers = winningNumbers.split(',').map((number) => Number(number));
+
+    this.#validateNumbers(separatedWinningNumbers, LOTTO.NUMBER_LENGTH);
+
+    return separatedWinningNumbers;
+  }
+
+  async getBonusNumber(winningNumbers) {
+    const bonusNumber = Number(await Input.readBonusNumber());
+    this.#validateNumbers([...winningNumbers, bonusNumber], 7);
+
+    return bonusNumber;
+  }
+
   createLotto(money) {
     return Array.from({ length: money / 1000 }).map(() => {
       const numbers = Random.pickNumbersInRangeByRule({ start: 1, end: 45, count: 6 });
@@ -65,19 +88,9 @@ class LottoGame {
     });
   }
 
-  createWinningNumbers(numbers) {
-    this.#validateNumbers(numbers, LOTTO.NUMBER_LENGTH);
-    this.#winningNumbers = numbers;
-  }
-
-  createBonusNumber(number) {
-    this.#validateNumbers([...this.#winningNumbers, number], 7);
-    this.#bonusNumber = number;
-  }
-
-  calculateAllPrize(lottoTickets) {
+  calculateAllPrize(lottoTickets, winningNumbers, bonusNumber) {
     return lottoTickets.map((lottoTicket) =>
-      lottoTicket.calculatePrize(this.#winningNumbers, this.#bonusNumber),
+      lottoTicket.calculatePrize(winningNumbers, bonusNumber),
     );
   }
 
