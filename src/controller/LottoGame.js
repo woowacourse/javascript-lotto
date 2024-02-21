@@ -31,7 +31,10 @@ class LottoGame {
     Output.printAscendingOrderLottoTickets(lottoTickets);
 
     const winningNumbers = await Input.readWinningNumbers();
-    this.createWinningNumbers(winningNumbers);
+    this.createWinningNumbers(winningNumbers.split(','));
+
+    const bonusNumber = await Input.readBonusNumber();
+    this.createBonusNumber(bonusNumber);
   }
 
   #validateMoney(money) {
