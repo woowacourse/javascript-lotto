@@ -7,26 +7,24 @@ import { deepFreeze } from './object/object.js';
  */
 const Random = deepFreeze({
   /**
-   * @param {number[]} array - 임의의 숫자 배열
+   * @param {number[]} targetArray - 임의의 숫자 배열
    * @returns {number[]} 무작위로 섞인 숫자 배열
    */
-  shuffle(array) {
-    for (let currentIndex = array.length - 1; currentIndex > 0; currentIndex -= 1) {
+  shuffle(targetArray) {
+    for (let currentIndex = targetArray.length - 1; currentIndex > 0; currentIndex -= 1) {
       const randomIndex = Math.floor(Math.random() * (currentIndex + 1));
 
-      swap(array, currentIndex, randomIndex);
+      swap({ targetArray, indexA: currentIndex, indexB: randomIndex });
     }
 
-    return array;
+    return targetArray;
   },
 
   /**
-   * @param {number} start - 시작을 나타내는 숫자
-   * @param {number} end - 끝을 나타내는 숫자
-   * @param {number} count - 배열 길이
+   * @param {{start : number, end : number, count : number}} numberDetails - 시작 번호, 끝 번호, 배열 길이가 담긴 객체
    * @returns {number[]} start ~ end 사이의 랜덤 값이 담긴 배열
    */
-  pickUniqueNumbersInRange(start, end, count) {
+  pickUniqueNumbersInRange({ start, end, count }) {
     const rangeArray = Array.from({ length: end - start + 1 }, (_, index) => start + index);
 
     return this.shuffle(rangeArray).slice(0, count);

@@ -13,11 +13,11 @@ class Lotto {
   }
 
   createNumber() {
-    const lottoNumber = Random.pickUniqueNumbersInRange(
-      Lotto.LOTTO_DETAILS.min,
-      Lotto.LOTTO_DETAILS.max,
-      Lotto.LOTTO_DETAILS.count,
-    );
+    const lottoNumber = Random.pickUniqueNumbersInRange({
+      start: Lotto.LOTTO_DETAILS.min,
+      end: Lotto.LOTTO_DETAILS.max,
+      count: Lotto.LOTTO_DETAILS.count,
+    });
 
     return sortByAscending(lottoNumber);
   }
