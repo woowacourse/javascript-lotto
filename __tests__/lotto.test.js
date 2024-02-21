@@ -38,10 +38,9 @@ describe('로또 기능 테스트', () => {
 
   test('로또 번호 오름차순 테스트', () => {
     const lottoNumbers = [3, 2, 5, 6, 12, 18];
-    const ascendingLottoNumbers = lottoNumbers.sort((prevNumber, nextNumber) => prevNumber - nextNumber);
+    const result = [2, 3, 5, 6, 12, 18];
     const lotto = new Lotto(lottoNumbers);
-    console.log(ascendingLottoNumbers);
 
-    expect(lotto.ascendingNumbers).toEqual(ascendingLottoNumbers);
+    expect(lotto.getNumbers).toEqual(result);
   });
 });
