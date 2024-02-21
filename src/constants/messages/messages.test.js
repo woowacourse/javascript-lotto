@@ -1,12 +1,14 @@
+import { FORMAT_MESSAGE } from './messages.js';
+
 describe('로또 메시지 포맷팅 테스트', () => {
   const LOTTO_COUNT_TEST_CASE = [
     {
       lottoCount: 3,
-      expectedMessage: '3개를 구입했습니다.\n',
+      expectedMessage: '3개를 구매했습니다.',
     },
     {
       lottoCount: 5,
-      expectedMessage: '5개를 구입했습니다.\n',
+      expectedMessage: '5개를 구매했습니다.',
     },
   ];
   test.each(LOTTO_COUNT_TEST_CASE)(
