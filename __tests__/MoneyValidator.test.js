@@ -12,4 +12,10 @@ describe('구입 금액 기능 테스트', () => {
 
     expect(() => MoneyValidator.validateMoneyMinimum(money)).toThrow('[ERROR]');
   });
+
+  test('구입금액이 1000원 단위가 아니라면 에러를 발생시킨다.', () => {
+    const money = 1001;
+
+    expect(() => MoneyValidator.validateMoneyUnit(money)).toThrow('[ERROR]');
+  });
 });
