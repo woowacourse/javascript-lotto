@@ -35,7 +35,7 @@ const OutputView = {
   },
 
   printProfit(profit) {
-    console.log(`총 수익률은 ${profit}%입니다.`);
+    console.log(`총 수익률은 ${formatNumber(profit)}%입니다.`);
   },
 };
 export default OutputView;
