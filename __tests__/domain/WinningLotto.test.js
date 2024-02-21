@@ -30,8 +30,16 @@ describe("WinningLotto 객체 테스트", () => {
     const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
     const BONUS_NUMBER = 6;
 
-    expect(() => new WinningLotto(LOTTO_NUMBERS, BONUS_NUMBER)).toThrow(
-      "[ERROR]",
+    expect(() =>
+      new WinningLotto(LOTTO_NUMBERS).setBonusNumber(BONUS_NUMBER),
+    ).toThrow("[ERROR]");
+  });
+
+  test("당첨 로또 번호는 숫자만 입력할 수 있다.", () => {
+    const INVALID_LOTTO_NUMBERS = ["하나", 2, 3, 4, 5, 6];
+
+    expect(() => new WinningLotto(INVALID_LOTTO_NUMBERS)).toThrow(
+      "[ERROR] 로또 번호는 숫자로만 입력해주세요.",
     );
   });
 });

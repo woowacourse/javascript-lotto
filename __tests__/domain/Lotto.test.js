@@ -31,4 +31,12 @@ describe("Lotto 객체 테스트", () => {
 
     expect(() => new Lotto(VALID_LOTTO_NUMBERS)).not.toThrow();
   });
+
+  test("로또 번호는 숫자만 입력할 수 있다.", () => {
+    const INVALID_LOTTO_NUMBERS = ["하나", 2, 3, 4, 5, 6];
+
+    expect(() => new Lotto(INVALID_LOTTO_NUMBERS)).toThrow(
+      "[ERROR] 로또 번호는 숫자로만 입력해주세요.",
+    );
+  });
 });

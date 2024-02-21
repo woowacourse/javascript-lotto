@@ -17,10 +17,17 @@ const lottoNumberValidator = {
     }
   },
 
+  validateType(numbers) {
+    if (numbers.some((number) => !Number.isInteger(number))) {
+      throw new Error("[ERROR] 로또 번호는 숫자로만 입력해주세요.");
+    }
+  },
+
   validate(numbers) {
     this.validateNumbersLength(numbers);
     this.validateDuplicate(numbers);
     this.validateRange(numbers);
+    this.validateType(numbers);
   },
 };
 
