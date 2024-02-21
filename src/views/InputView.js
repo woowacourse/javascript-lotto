@@ -3,8 +3,13 @@ import { deepFreeze } from '../utils/object/object.js';
 
 import { INPUT_MESSAGE } from '../constants/messages/messages.js';
 
-import { BuyLottoPriceValidator, CommonValidator } from '../validator/index.js';
-import WinningNumberValidator from '../validator/winningNumber/WinningNumberValidator.js';
+import {
+  BuyLottoPriceValidator,
+  CommonValidator,
+  WinningNumberValidator,
+  BonusNumberValidator,
+} from '../validator/index.js';
+
 import { SYMBOLS } from '../constants/symbols.js';
 
 /**
@@ -43,6 +48,13 @@ const InputView = deepFreeze({
     WinningNumberValidator.check(inputWinningNumber);
 
     return inputWinningNumber.split(SYMBOLS.comma).map(Number);
+  },
+
+  async readBonusNumber(winningNumber) {
+    const inputBonusNumber = await this.read(INPUT_MESSAGE.bonusNumber);
+    BonusNumberValidator.check(inputBonusNumber, winningNumber);
+
+    return Number(inputBonusNumber);
   },
 });
 

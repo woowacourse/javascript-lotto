@@ -42,4 +42,17 @@
  * @property {CommonValidationType} isUnique - 입력된 당첨 번호 중 중복된 번호가 있는지 확인하는 객체
  */
 
+/**
+ * @typedef {object} BonusNumberValidationTypes
+ * @property {CommonValidationType} isTypeOfNumber - 입력된 보너스 번호가 자연수인지 확인하는 객체
+ * @property {CommonValidationType} isValidRange - 입력된 보너스 번호가 1 ~ 45의 숫자 번호를 갖는지 확인하는 객체
+ * @property {CommonValidationType} isUniqueBonusNumber - 입력된 보너스 번호가 당첨 번호 중 포함 되는 번호가 있는지 확인하는 객체
+ */
+
+/**
+ * @typedef {object} BonusNumberValidator
+ * @property {WinningNumberValidationTypes} validationTypes - 검사할 항목들에 대한 객체
+ * @property {(inputValue : string, winningNumber : number[]) => void} check - 유효성 검사를 진행하는 메서드
+ */
+
 export {};

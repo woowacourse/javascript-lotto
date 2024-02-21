@@ -12,8 +12,11 @@ class LottoGameController {
 
   async #processDrawLottoResult({ buyLottoPrice, lottoNumbers }) {
     const winningNumber = await RetryHandler.errorWithLogging(() => InputView.readWinningNumber());
+    const bonusNumber = await RetryHandler.errorWithLogging(() =>
+      InputView.readBonusNumber(winningNumber),
+    );
 
-    console.log(winningNumber);
+    console.log(winningNumber, bonusNumber);
   }
 
   async #processBuyLotto() {

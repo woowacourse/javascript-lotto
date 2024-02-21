@@ -3,6 +3,7 @@ import { SYMBOLS } from '../symbols.js';
 export const INPUT_MESSAGE = Object.freeze({
   buyLottoPrice: '> 구입금액을 입력해 주세요. ',
   winningNumber: '> 당첨 번호를 입력해 주세요. ',
+  bonusNumber: '> 보너스 번호를 입력해 주세요. ',
 });
 
 export const FORMAT_MESSAGE = Object.freeze({
