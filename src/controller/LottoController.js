@@ -7,9 +7,12 @@ import OutputView from '../view/OutputView';
 class LottoController {
   async start() {
     const purchaseAmount = await Console.errorHandler(this.setPurchaseAmount, this);
+    const purchaseCount = purchaseAmount / 1000;
+    OutputView.printPurchaseCount(purchaseCount);
     const lottoTickets = this.setLottoTicket(purchaseAmount);
     OutputView.printLottoTickets(lottoTickets);
   }
+
   async setPurchaseAmount() {
     const inputValue = await InputView.readPurchaseAmount();
     const convertedInputValue = Number(inputValue);
