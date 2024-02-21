@@ -20,4 +20,12 @@ describe('로또 당첨 번호 객체 테스트', () => {
       new WinningLotto(lotto, bonusNumber);
     }).toThrow();
   });
+
+  test('일치 개수와 보너스 숫자 포함 여부 반환 테스트', () => {
+    const numbers = [1, 2, 3, 11, 12, 7];
+    const winningLotto = new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), 7);
+    const result = { correct: 3, hasBonusNumber: true };
+
+    expect(winningLotto.calculateWinner(numbers)).toEqual(result);
+  });
 });
