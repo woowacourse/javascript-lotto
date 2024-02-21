@@ -1,6 +1,7 @@
 import Lotto from '../domain/Lotto';
 import LottoValidator from '../domain/LottoValidator';
 import MoneyValidator from '../domain/MoneyValidator';
+import SystemValidator from '../domain/SystemValidator';
 import Input from '../view/Input';
 import Output from '../view/Output';
 import Random from '../utils/Random';
@@ -17,29 +18,25 @@ const REWARD = {
 
 class LottoGame {
   async start() {
-    while (true) {
-      const money = await retryUntilValid(this.getMoney, this);
+    const money = await retryUntilValid(this.getMoney, this);
 
-      const lottoTickets = this.createLotto(money);
+    const lottoTickets = this.createLotto(money);
 
-      Output.printLottoTicketsCount(lottoTickets);
-      Output.printAscendingOrderLottoTickets(lottoTickets);
+    Output.printLottoTicketsCount(lottoTickets);
+    Output.printAscendingOrderLottoTickets(lottoTickets);
 
-      const winningNumbers = await retryUntilValid(this.getWinningNumbers, this);
-      const bonusNumber = await retryUntilValid(() => this.getBonusNumber(winningNumbers), this);
+    const winningNumbers = await retryUntilValid(this.getWinningNumbers, this);
+    const bonusNumber = await retryUntilValid(() => this.getBonusNumber(winningNumbers), this);
 
-      const winningLotto = { winningNumbers, bonusNumber };
+    const winningLotto = { winningNumbers, bonusNumber };
 
-      const prizes = this.calculateAllPrize(lottoTickets, winningLotto);
-      const returnOnInvestment = this.calculateReturnOnInvestment(prizes);
+    const prizes = this.calculateAllPrize(lottoTickets, winningLotto);
+    const returnOnInvestment = this.calculateReturnOnInvestment(prizes);
 
-      Output.printPrizeDetails(prizes);
-      Output.printReturnOnInvestment(returnOnInvestment);
+    Output.printPrizeDetails(prizes);
+    Output.printReturnOnInvestment(returnOnInvestment);
 
-      const input = Input.readRestartOrExit();
-
-      if (input === 'n') break;
-    }
+    const restartOption = await retryUntilValid(this.getRestartOption, this);
   }
 
   #validateMoney(money) {
@@ -80,6 +77,12 @@ class LottoGame {
     const bonusNumber = Number(await Input.readBonusNumber());
     this.#validateBonusNumber(winningNumbers, bonusNumber);
     return bonusNumber;
+  }
+
+  async getRestartOption() {
+    const restartOption = await Input.readRestartOrExit();
+    SystemValidator.validateOptionCharacter(restartOption);
+    return restartOption;
   }
 
   createLotto(money) {
