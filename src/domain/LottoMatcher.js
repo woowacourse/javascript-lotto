@@ -28,6 +28,10 @@ class LottoMatcher {
     if (hasBonusNumber) this.#matchingResult[String('5+보너스')] += 1;
     if (!hasBonusNumber) this.#matchingResult[matchCount] += 1;
   }
+
+  get matchingResult() {
+    return this.#matchingResult;
+  }
 }
 
 export default LottoMatcher;
