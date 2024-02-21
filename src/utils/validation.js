@@ -23,3 +23,7 @@ export const validateLotto = (numbers) => {
     if (!Validations.isCorrectRange(number)) throw new Error(ERROR_MESSAGES.lotto_number_range);
   });
 };
+
+export const validateBonusNumber = (bonusNumber) => {
+  if (!Validations.isCorrectRange(bonusNumber)) throw new Error(ERROR_MESSAGES.lotto_number_range);
+};
