@@ -4,14 +4,12 @@ import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 class WinningLotto {
   #numbers;
 
-  #bonusNumber;
+  #bonusNumber = 0;
 
-  constructor(numbers, bonusNumber) {
+  constructor(numbers) {
     lottoNumberValidator.validate(numbers);
-    bonusNumberValidator.validateDuplication(numbers, bonusNumber);
 
     this.#numbers = numbers;
-    this.#bonusNumber = Number(bonusNumber);
   }
 
   getNumbers() {
@@ -20,6 +18,11 @@ class WinningLotto {
 
   getBonusNumber() {
     return this.#bonusNumber;
+  }
+
+  setBonusNumber(bonusNumber) {
+    bonusNumberValidator.validateDuplication(this.#numbers, bonusNumber);
+    this.#bonusNumber = Number(bonusNumber);
   }
 }
 export default WinningLotto;

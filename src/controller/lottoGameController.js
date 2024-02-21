@@ -70,14 +70,22 @@ class LottoGameController {
   }
 
   async getWinningLotto() {
-    const winningLotto = await this.#inputView.inputWinningLottoNumber();
-    const winningLottoNumbers = winningLotto
+    const winningLottoNumbers = await this.getWinningNumber();
+    const winningLotto = new WinningLotto(winningLottoNumbers);
+
+    const bonusNumber = await this.#inputView.inputBonusNumber();
+    winningLotto.setBonusNumber(bonusNumber);
+
+    return winningLotto;
+  }
+
+  async getWinningNumber() {
+    const winningLottoInput = await this.#inputView.inputWinningLottoNumber();
+    const winningLottoNumbers = winningLottoInput
       .split(",")
       .map((number) => Number(number));
 
-    const bonusNumber = await this.#inputView.inputBonusNumber();
-
-    return new WinningLotto(winningLottoNumbers, bonusNumber);
+    return winningLottoNumbers;
   }
 }
 

@@ -21,14 +21,6 @@ class Lotto {
 
     const isBonus = this.#numbers.includes(winningLotto.getBonusNumber());
 
-    console.log(
-      numberMatchCount,
-      isBonus,
-      this.#numbers,
-      winningLotto.getNumbers(),
-      winningLotto.getBonusNumber(),
-    );
-
     return { numberMatchCount, isBonus };
   }
 
