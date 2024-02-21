@@ -20,5 +20,6 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "ignorePatterns": ["**/__tests__/*"],
   "extends": ["eslint:recommended", "plugin:prettier/recommended"]
 }
