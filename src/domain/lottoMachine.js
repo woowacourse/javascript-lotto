@@ -4,13 +4,19 @@ import { LOTTO_RULES } from '../constant/index.js';
 
 export default class LottoMachine {
   #cost;
+  #lottos;
 
   constructor(cost) {
     this.#cost = cost;
+    this.#makeLottos(this.getLottoCount);
   }
 
   get getLottoCount() {
     return this.#cost / LOTTO_RULES.cost;
+  }
+
+  get getLottoNumbers() {
+    return this.#lottos.map((lotto) => lotto.getNumbers);
   }
 
   #makeOneLotto() {
@@ -24,7 +30,7 @@ export default class LottoMachine {
     return lotto;
   }
 
-  makeLottos(count) {
-    return Array.from({ length: count }, () => this.#makeOneLotto());
+  #makeLottos(count) {
+    this.#lottos = Array.from({ length: count }, () => this.#makeOneLotto());
   }
 }
