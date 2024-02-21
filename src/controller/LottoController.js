@@ -6,9 +6,18 @@ import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import LottoValidation from '../validation/lottoValidation';
 import PurchaseAmountValidation from '../validation/purchaseAmount';
+import RestartResponseValidation from '../validation/responseValidation';
 
 class LottoController {
   async play() {
+    await this.buyLottos();
+    const restartResponse = await this.getValidateRestartResponse();
+    if (restartResponse === 'y') {
+      await this.play();
+    }
+  }
+
+  async buyLottos() {
     const lottoCount = await this.getValidateLottoAmount();
     const lottos = this.getLottos(lottoCount);
     const lottoProcess = new LottoProcess(lottos);
@@ -16,13 +25,19 @@ class LottoController {
 
     OutputView.printLottoCount(lottoCount);
     OutputView.printRandomLottos(lottosNumbers);
+    await this.showLottoResult(lottoProcess, lottoCount);
+  }
 
+  async showLottoResult(lottoProcess, lottoCount) {
     const winLotto = new Lotto(await this.getValidateWinNumbers());
     const winNumbers = winLotto.getNumbers();
-    const bonusNumber = await this.getValidateBonusNumber(winNumbers);
+    const bonusNumber = await this.validateBonusNumber(winNumbers);
     const result = lottoProcess.getResult(winLotto, bonusNumber);
+
     OutputView.printResultTitle();
     OutputView.printWinningStatistics(result);
+    const rateOfRevenue = this.getRateOfRevenue(result, lottoCount);
+    OutputView.printRateOfRevenue(rateOfRevenue);
   }
 
   async getValidateLottoAmount() {
@@ -53,18 +68,18 @@ class LottoController {
       LottoValidation.validateNumbers(winNumbers);
     } catch (error) {
       OutputView.printError(error.message);
-      await this.getValidateWinNumbers();
+      return this.getValidateWinNumbers();
     }
     return winNumbers;
   }
 
-  async getValidateBonusNumber(winNumbers) {
+  async validateBonusNumber(winNumbers) {
     const bonusNumber = await InputView.askBonusNumber();
     try {
       LottoValidation.validateBonusNumber(winNumbers, bonusNumber);
     } catch (error) {
       OutputView.printError(error.message);
-      await this.getValidateBonusNumber();
+      await this.validateBonusNumber();
     }
   }
 
@@ -79,6 +94,17 @@ class LottoController {
 
   getLottos(count) {
     return Array.from({ length: count }, () => new Lotto(this.getRandomNumbers()));
+  }
+
+  async getValidateRestartResponse() {
+    const restartResponse = await InputView.askRestart();
+    try {
+      RestartResponseValidation.validate(restartResponse);
+    } catch (error) {
+      OutputView.printError(error.message);
+      return this.getValidateRestartResponse();
+    }
+    return restartResponse;
   }
 }
 export default LottoController;
