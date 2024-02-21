@@ -20,7 +20,7 @@ class LottoGameController {
     const winningLotto = await this.setWinningLotto();
 
     const result = new LottoResult(lottoList, winningLotto);
-    result.getResult();
+    const rank = result.getTotalResult();
   }
 
   async executeOrRetryAsync(asyncFn) {

@@ -27,12 +27,12 @@ class Lotto {
   getRank(winningLotto) {
     const { numberMatchCount, isBonus } = this.getMatchCount(winningLotto);
 
-    if (numberMatchCount === 6) return PRIZE.FIRST;
-    if (numberMatchCount === 5 && isBonus) return PRIZE.SECOND;
-    if (numberMatchCount === 5) return PRIZE.THIRD;
-    if (numberMatchCount === 4) return PRIZE.FOURTH;
-    if (numberMatchCount === 3) return PRIZE.FIFTH;
-    return PRIZE.NONE;
+    if (numberMatchCount === 6) return 1;
+    if (numberMatchCount === 5 && isBonus) return 2;
+    if (numberMatchCount === 5) return 3;
+    if (numberMatchCount === 4) return 4;
+    if (numberMatchCount === 3) return 5;
+    return 6;
   }
 }
 export default Lotto;
