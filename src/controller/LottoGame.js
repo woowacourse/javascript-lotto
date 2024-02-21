@@ -1,5 +1,6 @@
 import Lotto from '../domain/Lotto';
 import LottoValidator from '../domain/LottoValidator';
+import MoneyValidator from '../domain/MoneyValidator';
 import Condition from '../constants/Condition';
 import Input from '../view/Input';
 
@@ -21,6 +22,15 @@ class LottoGame {
 
   async start() {
     const money = await Input.readMoney();
+    this.#validateMoney(money);
+
+    const lottoTickets = this.createLotto(money);
+  }
+
+  #validateMoney(money) {
+    MoneyValidator.validateMoneyType(money);
+    MoneyValidator.validateMoneyMinimum(money);
+    MoneyValidator.validateMoneyUnit(money);
   }
 
   #validateNumbers(numbers, length) {
