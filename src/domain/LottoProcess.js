@@ -1,14 +1,14 @@
-import { WINNER } from '../constants/number';
+import WINNER from '../constants/winner';
 
 class LottoProcess {
   #lottos;
 
-  constructor(lottos) {
+  constructor(lottos = []) {
     this.#lottos = lottos;
   }
 
   getResult(winLotto = {}, bonusNumber = 0) {
-    return this.#lottos.reduce(
+    const winningNubmer = this.#lottos.reduce(
       (acc, lotto) => {
         const matchCount = this.matchLottoNumbers(lotto, winLotto);
         if (matchCount >= WINNER.FIFTH.MATCH_COUNT) {
@@ -20,6 +20,18 @@ class LottoProcess {
       },
       [0, 0, 0, 0, 0]
     );
+    return this.mapWinningCountToPrizes(winningNubmer);
+  }
+
+  mapWinningCountToPrizes(winningCount = []) {
+    const RANK = ['FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH'];
+    return winningCount
+      .map((count, index) => {
+        const currentRank = RANK[index];
+        const { MATCH_COUNT, IS_BONUS, PRICE } = WINNER[currentRank];
+        return [MATCH_COUNT, IS_BONUS, PRICE, count];
+      })
+      .reverse();
   }
 
   matchLottoNumbers(lotto, winLotto) {
@@ -37,6 +49,10 @@ class LottoProcess {
 
   #hasBonus(lotto = {}, bonusNumber = 0) {
     return lotto.getNumbers().includes(bonusNumber);
+  }
+
+  getAllLottosNumbers() {
+    return [...this.#lottos.map((lotto) => lotto.getNumbers())];
   }
 }
 
