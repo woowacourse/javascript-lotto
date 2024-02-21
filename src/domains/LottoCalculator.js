@@ -56,6 +56,16 @@ class LottoCalculator {
     this.#lottoStatics.five++;
   }
 
+  calculateTotalProfit(lottoTickets) {
+    const totalPrice = Object.keys(LOTTO_STATICS).reduce(
+      (acc, key) => acc + LOTTO_STATICS[key].price * this.#lottoStatics[key],
+      0,
+    );
+
+    const totalProfit = (totalPrice / (lottoTickets * 1000)) * 0.01;
+    return Math.round(totalProfit * 100) / 100;
+  }
+
   get lottoStatics() {
     return this.#lottoStatics;
   }
