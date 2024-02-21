@@ -31,3 +31,6 @@ export const isValidNumbersOfTickets = (money) => {
 
   return tickets >= min && tickets <= max;
 };
+
+export const isValidWinningNumbersForm = (string) =>
+  /^(\d+,)*\d+$/.test(string);

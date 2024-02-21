@@ -6,6 +6,7 @@ import {
   isNotInLottoNumber,
   isValidLottoNumberCount,
   isValidNumbersOfTickets,
+  isValidWinningNumbersForm,
 } from './utils';
 
 const Validator = {
@@ -13,6 +14,11 @@ const Validator = {
     if (!isInteger(number)) throw new Error('정수가 아닙니다.');
 
     if (!isLottoNumberInRange(number)) throw new Error('범위 초과');
+  },
+
+  validateWinningNumbersForm(numbersInput) {
+    if (!isValidWinningNumbersForm(numbersInput))
+      throw new Error('유효하지 않은 당첨 번호 입력');
   },
 
   validateLottoTickets(numbers) {

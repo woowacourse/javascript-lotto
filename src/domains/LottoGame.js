@@ -25,6 +25,7 @@ class LottoGame {
 
   calculateMatchingResult() {
     this.#matchingResults = this.#lottoMachine.lottoTickets.map((lottoTicket) =>
+      // console.log(lottoTicket);
       this.#winningLotto.compareLotto(lottoTicket),
     );
   }

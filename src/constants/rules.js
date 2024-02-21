@@ -29,3 +29,8 @@ export const WINNING_RULE = Object.freeze(
     [1, { matchedCount: 6, isBonus: false, money: 2_000_000_000 }],
   ]),
 );
+
+export const RESTART_KEY = Object.freeze({
+  restart: 'y',
+  end: 'n',
+});
