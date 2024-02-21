@@ -6,9 +6,9 @@ export const isInteger = (number) => {
 
 // 로또 넘버
 export const isValidLottoNumberCount = (numbers) => {
-  const { count } = LOTTO_RULE;
+  const { matchedCount } = LOTTO_RULE;
 
-  return numbers.length === count;
+  return numbers.length === matchedCount;
 };
 
 export const isNotDuplicatedLottoNumber = (numbers) => {
