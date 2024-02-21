@@ -24,15 +24,13 @@ class LottoProcess {
 
   matchLottoNumbers(lotto, winLotto) {
     const lottoNumbers = lotto.getNumbers();
-    return lottoNumbers.filter((value) => winLotto.getNumbers().includes(value))
-      .length;
+    return lottoNumbers.filter((value) => winLotto.getNumbers().includes(value)).length;
   }
 
   #getRankIndex(matchCount, matchBonus) {
     if (matchCount === WINNER.FIFTH.MATCH_COUNT) return WINNER.FIFTH.INDEX;
     if (matchCount === WINNER.FOURTH.MATCH_COUNT) return WINNER.FOURTH.INDEX;
-    if (matchCount === WINNER.THIRD.MATCH_COUNT && matchBonus)
-      return WINNER.THIRD.INDEX;
+    if (matchCount === WINNER.THIRD.MATCH_COUNT && matchBonus) return WINNER.THIRD.INDEX;
     if (matchCount === WINNER.SECOND.MATCH_COUNT) return WINNER.SECOND.INDEX;
     return WINNER.FIRST.INDEX;
   }
