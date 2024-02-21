@@ -1,5 +1,6 @@
 import { isExpectedArrayLength } from "../utils/checkLength.js";
 import { generateRandomNumbers } from "../utils/generateRandomNumbers.js";
+import { isOverlapped } from "../utils/isOverlapped.js";
 import { sortNumbersAscend } from "../utils/sortNumbersAscend.js";
 import LottoNumber from "./LottoNumber.js";
 
@@ -44,10 +45,7 @@ class Lotto {
     if (!isExpectedArrayLength(numbers, Lotto.NUMBER_COUNT))
       throw new Error("[ERROR]");
 
-    const uniqueNumbers = new Set(numbers);
-
-    if (!isExpectedArrayLength([...uniqueNumbers], Lotto.NUMBER_COUNT))
-      throw new Error("[ERROR]");
+    if (isOverlapped(numbers)) throw new Error("[ERROR]");
   }
 }
 
