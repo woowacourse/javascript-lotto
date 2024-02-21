@@ -13,16 +13,14 @@ class LottoGameController {
   }
 
   async #processDrawLottoResult({ buyLottoPrice, lottoNumbers }) {
-    const winningNumber = await RetryHandler.errorWithLogging(() => InputView.readWinningNumber());
-    const bonusNumber = await RetryHandler.errorWithLogging(() =>
-      InputView.readBonusNumber(winningNumber),
-    );
-
+    const { winningNumber, bonusNumber } = await this.#requireWinningDetail();
     const winningRank = new WinningRank({ winningNumber, bonusNumber, lottoNumbers });
     const winningRankDetail = winningRank.calculateRank();
 
     const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankDetail });
     const rateOfReturn = rateOfReturnCalculator.execute();
+
+    OutputView.printWinningLottoResult({ rateOfReturn, winningRankDetail });
   }
 
   async #processBuyLotto() {
@@ -34,6 +32,15 @@ class LottoGameController {
     OutputView.printLottoNumbers(lottoNumbers);
 
     return { buyLottoPrice, lottoNumbers };
+  }
+
+  async #requireWinningDetail() {
+    const winningNumber = await RetryHandler.errorWithLogging(() => InputView.readWinningNumber());
+    const bonusNumber = await RetryHandler.errorWithLogging(() =>
+      InputView.readBonusNumber(winningNumber),
+    );
+
+    return { winningNumber, bonusNumber };
   }
 }
 
