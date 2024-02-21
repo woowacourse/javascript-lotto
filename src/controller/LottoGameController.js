@@ -47,6 +47,8 @@ class LottoGameController {
 
   async #processRetryGame() {
     const retryCommand = await RetryHandler.errorWithLogging(() => InputView.readRetryCommand());
+
+    if (retryCommand === 'y' || retryCommand === 'Y') await this.run();
   }
 }
 
