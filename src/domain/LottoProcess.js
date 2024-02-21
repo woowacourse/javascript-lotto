@@ -29,15 +29,11 @@ class LottoProcess {
   }
 
   #getRankIndex(matchCount, matchBonus) {
-    if (matchCount === WINNER.FIFTH.MATCH_COUNT) {
-      return WINNER.FIFTH.INDEX;
-    } else if (matchCount === WINNER.FOURTH.MATCH_COUNT) {
-      return WINNER.FOURTH.INDEX;
-    } else if (matchCount === WINNER.THIRD.MATCH_COUNT && matchBonus) {
+    if (matchCount === WINNER.FIFTH.MATCH_COUNT) return WINNER.FIFTH.INDEX;
+    if (matchCount === WINNER.FOURTH.MATCH_COUNT) return WINNER.FOURTH.INDEX;
+    if (matchCount === WINNER.THIRD.MATCH_COUNT && matchBonus)
       return WINNER.THIRD.INDEX;
-    } else if (matchCount === WINNER.SECOND.MATCH_COUNT) {
-      return WINNER.SECOND.INDEX;
-    }
+    if (matchCount === WINNER.SECOND.MATCH_COUNT) return WINNER.SECOND.INDEX;
     return WINNER.FIRST.INDEX;
   }
 
