@@ -20,9 +20,21 @@ describe('정답 로또 테스트', () => {
 
   test('로또번호 배열을 인자로 받았을 때, 일치 개수를 반환한다.', () => {
     const WINNING_NUMBERS_STRING = '1,2,3,4,5,6';
+    const BONUS_NUMBER_STRING = '7';
     const winningLotto = new WinningLotto(WINNING_NUMBERS_STRING);
+    winningLotto.setBonusNumber(BONUS_NUMBER_STRING);
     const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
 
-    expect(winningLotto.getMatchNumberCount(LOTTO_NUMBERS)).toBe(6);
+    expect(winningLotto.getMatchCounts(LOTTO_NUMBERS)).toEqual([6, 0]);
+  });
+
+  test('보너스 번호가 당첨 번호와 중복되었을 때, 에러를 발생시킨다.', () => {
+    const BONUS_NUMBER_STRING = '1';
+    const WINNING_NUMBERS_STRING = '1,2,3,4,5,6';
+    const winningLotto = new WinningLotto(WINNING_NUMBERS_STRING);
+
+    expect(() => winningLotto.setBonusNumber(BONUS_NUMBER_STRING)).toThrow(
+      '[Error]',
+    );
   });
 });

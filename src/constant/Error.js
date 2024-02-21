@@ -6,6 +6,9 @@ const ERROR = Object.freeze({
 
   beNotDuplication: '[Error] 로또 번호의 중복은 없어야합니다.',
   countOfWinningNumbers: '[Error] 당첨 번호의 갯수는 6개여야 합니다.',
+
+  bonusNumberDuplication:
+    '[Error] 보너스 번호는 당첨 번호와 중복되지 않아야합니다.',
 });
 
 export default ERROR;
