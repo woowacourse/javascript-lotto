@@ -22,11 +22,9 @@ const PRIZE_REWARD = {
 };
 
 const Output = {
-  printLottoTicketsCount(lottoTickets) {
+  printLottoTicketsPurchaseResult(lottoTickets) {
     console.log(`${lottoTickets.length}개를 구매했습니다.`);
-  },
 
-  printAscendingOrderLottoTickets(lottoTickets) {
     lottoTickets.forEach((lottoTicket) => {
       console.log(lottoTicket.getNumbers().sort((a, b) => a - b));
     });

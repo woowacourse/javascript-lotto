@@ -19,23 +19,16 @@ const REWARD = {
 class LottoGame {
   async start() {
     const money = await retryUntilValid(this.getMoney, this);
-
     const lottoTickets = this.createLotto(money);
-
-    Output.printLottoTicketsCount(lottoTickets);
-    Output.printAscendingOrderLottoTickets(lottoTickets);
-
+    Output.printLottoTicketsPurchaseResult(lottoTickets);
     const winningNumbers = await retryUntilValid(this.getWinningNumbers, this);
     const bonusNumber = await retryUntilValid(() => this.getBonusNumber(winningNumbers), this);
-
     const winningLotto = { winningNumbers, bonusNumber };
+    this.makePrizeStatistics(lottoTickets, winningLotto);
+    await this.restartOrExit();
+  }
 
-    const prizes = this.calculateAllPrize(lottoTickets, winningLotto);
-    const returnOnInvestment = this.calculateReturnOnInvestment(prizes);
-
-    Output.printPrizeDetails(prizes);
-    Output.printReturnOnInvestment(returnOnInvestment);
-
+  async restartOrExit() {
     const restartOption = await retryUntilValid(this.getRestartOption, this);
 
     if (restartOption === 'y') {
@@ -81,6 +74,13 @@ class LottoGame {
     const bonusNumber = Number(await Input.readBonusNumber());
     this.#validateBonusNumber(winningNumbers, bonusNumber);
     return bonusNumber;
+  }
+
+  makePrizeStatistics(lottoTickets, winningLotto) {
+    const prizes = this.calculateAllPrize(lottoTickets, winningLotto);
+    const returnOnInvestment = this.calculateReturnOnInvestment(prizes);
+    Output.printPrizeDetails(prizes);
+    Output.printReturnOnInvestment(returnOnInvestment);
   }
 
   async getRestartOption() {
