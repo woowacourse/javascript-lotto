@@ -1,3 +1,4 @@
+import { isExpectedArrayLength } from "../utils/checkLength.js";
 import { generateRandomNumbers } from "../utils/generateRandomNumbers.js";
 import { sortNumbersAscend } from "../utils/sortNumbersAscend.js";
 import LottoNumber from "./LottoNumber.js";
@@ -21,7 +22,7 @@ class Lotto {
   #constructorWithNumStr(numbers) {
     const parsedNumbers = numbers.split(Lotto.SEPARATOR).map(Number);
 
-    // 유
+    this.#validate(parsedNumbers);
 
     this.#numbers = parsedNumbers;
   }
@@ -36,6 +37,17 @@ class Lotto {
 
   get() {
     return this.#numbers.map((num) => num.get());
+  }
+
+  #validate(numbers) {
+    // 중복없이 6개가 아닌 로또 넘버가 들어온 경우와 중복있는 로또 넘버가 들어온 경우의 오류를 다르게 주기 위해
+    if (!isExpectedArrayLength(numbers, Lotto.NUMBER_COUNT))
+      throw new Error("[ERROR]");
+
+    const uniqueNumbers = new Set(numbers);
+
+    if (!isExpectedArrayLength([...uniqueNumbers], Lotto.NUMBER_COUNT))
+      throw new Error("[ERROR]");
   }
 }
 
