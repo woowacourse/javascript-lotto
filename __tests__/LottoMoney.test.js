@@ -17,4 +17,12 @@ describe("로또머니 클래스 기능 테스트", () => {
       expect(() => new LottoMoney(wrongMoney)).toThrow("[ERROR]");
     }
   );
+
+  test("구입 금액에 따라 로또 발행 개수를 반환한다.", () => {
+    const money = 3000;
+    const expectedCount = 3;
+    const lottoMoney = new LottoMoney(money);
+
+    expect(lottoMoney.getLottoCount()).toBe(expectedCount);
+  });
 });
