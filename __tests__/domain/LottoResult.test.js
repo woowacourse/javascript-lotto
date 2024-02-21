@@ -13,15 +13,30 @@ describe("LottoResult 객체 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 6]),
       new Lotto([1, 2, 3, 4, 8, 7]),
     ];
-    const lottoResult = new LottoResult(lottoList, winningLotto);
+    const lottoResult = new LottoResult(
+      lottoList,
+      winningLotto,
+    ).getTotalResult();
 
-    // expect(lottoResult.getdjWjrn()).toBe({
-    //   FIRST: 1,
-    //   SECONT: 1,
-    //   THIRD: 0,
-    //   FOURTH: 0,
-    //   FIFTH: 0,
-    //   NONE: 0,
-    // });
+    expect(lottoResult).toEqual({
+      1: 1,
+      2: 0,
+      3: 0,
+      4: 1,
+      5: 0,
+    });
+  });
+
+  test("구매한 로또의 수익률을 계산한다.", () => {
+    const winningLottoNumbers = [1, 2, 3, 4, 5, 6];
+    const winningLotto = new WinningLotto(winningLottoNumbers);
+    winningLotto.setBonusNumber(7);
+
+    const lottoList = [new Lotto([1, 2, 3, 11, 12, 13])];
+    const profitResult = new LottoResult(lottoList, winningLotto).getProfit(
+      lottoList.length * 1000,
+    );
+
+    expect(profitResult).toBe(500);
   });
 });
