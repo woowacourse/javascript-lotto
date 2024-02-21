@@ -22,6 +22,23 @@ describe("당첨 로또 클래스 기능 테스트", () => {
       );
     },
   );
+
+  test.each([
+    { bonusNumber: 1, expectedResult: true },
+    { bonusNumber: 7, expectedResult: false },
+  ])(
+    "보너스 번호가 로또 번호에 포함되는지 확인한다.",
+    ({ bonusNumber, expectedResult }) => {
+      const winningLotto = new WinningLotto(
+        [11, 12, 13, 14, 15, 16],
+        bonusNumber,
+      );
+
+      expect(winningLotto.isBonusNumberMatch(lottoNumbers)).toBe(
+        expectedResult,
+      );
+    },
+  );
 });
 
 describe("당첨 로또 클래스 생성자 테스트", () => {
