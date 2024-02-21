@@ -14,13 +14,17 @@ class LottoMoney {
     return Math.floor(this.#money / LottoMoney.LOTTO_PRICE);
   }
 
+  get() {
+    return this.#money;
+  }
+
   #validate(money) {
     if (isNaN(money)) throw new Error("[ERROR]");
 
     const moneyIsNotInRange = money < LottoMoney.MIN || money > LottoMoney.MAX;
 
-    if (!Number.isInteger(money)) throw new Error("[ERROR]");
     if (moneyIsNotInRange) throw new Error("[ERROR]");
+    if (!Number.isInteger(money)) throw new Error("[ERROR]");
   }
 }
 
