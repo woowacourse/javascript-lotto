@@ -4,10 +4,10 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ['airbnb-base', 'prettier', "plugin:jsdoc/recommended", 'plugin:jest/recommended'],
+  extends: ['airbnb-base', 'prettier', 'plugin:jsdoc/recommended', 'plugin:jest/recommended'],
   overrides: [
     {
-      files: ['*.test.js', 'ApplicationTest.js'],
+      files: ['*.test.js', 'ApplicationTest.js', 'console.js', 'object.js'],
       rules: {
         'max-lines-per-function': ['off'],
       },
@@ -33,5 +33,8 @@ module.exports = {
     'max-lines-per-function': ['error', { max: 10 }],
     // 함수 내 매개변수 갯수 제한
     'max-params': ['error', 2],
+    'import/no-unresolved': ['off'],
+    'class-methods-use-this': ['off'],
+    'no-param-reassign': ['off'],
   },
 };
