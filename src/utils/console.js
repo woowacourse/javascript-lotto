@@ -10,7 +10,7 @@ const Console = deepFreeze({
    * @param {string} query - 문자열
    * @returns {Promise<string>} 유저가 입력한 값의 Promise
    */
-  readLineAsync(query) {
+  readLineAsync(query = '') {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
         reject(new Error('arguments must be 1'));
