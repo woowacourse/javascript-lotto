@@ -7,7 +7,9 @@ class OutputView {
   }
 
   static async printLottoNumbers(lottoNumbers) {
-    Console.print(`[${lottoNumbers}]`);
+    const lottoNumbersToString = String(lottoNumbers).split(',').join(', ');
+
+    Console.print(`[${lottoNumbersToString}]`);
   }
 }
 
