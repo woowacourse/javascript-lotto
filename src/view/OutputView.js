@@ -1,4 +1,11 @@
+import { PRIZE } from "../constants/system.js";
+import formatNumber from "../utils/FormatNumber.js";
+
 const OutputView = {
+  printError(error) {
+    console.log(error);
+  },
+
   printPurchaseMessage(purchaseAmount) {
     console.log(`${purchaseAmount / 1000}개를 구매했습니다.`);
   },
@@ -9,8 +16,20 @@ const OutputView = {
     });
   },
 
-  printError(error) {
-    console.log(error);
+  printResultHeader() {
+    console.log("\n당첨 통계");
+    console.log("---------");
+  },
+
+  printResult(rank) {
+    this.printResultHeader();
+    Object.keys(rank).forEach((key) => {
+      console.log(
+        `${PRIZE[key].matchCount}개 일치${
+          PRIZE[key].bonus ? ", 보너스 볼 일치" : " "
+        }(${formatNumber(PRIZE[key].reward)}원) - ${rank[key]}개`,
+      );
+    });
   },
 };
 export default OutputView;

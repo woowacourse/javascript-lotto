@@ -21,6 +21,8 @@ class LottoGameController {
 
     const result = new LottoResult(lottoList, winningLotto);
     const rank = result.getTotalResult();
+
+    OutputView.printResult(rank);
   }
 
   async executeOrRetryAsync(asyncFn) {
