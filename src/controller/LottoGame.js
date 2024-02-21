@@ -29,6 +29,9 @@ class LottoGame {
 
     Output.printLottoTicketsCount(lottoTickets);
     Output.printAscendingOrderLottoTickets(lottoTickets);
+
+    const winningNumbers = await Input.readWinningNumbers();
+    this.createWinningNumbers(winningNumbers);
   }
 
   #validateMoney(money) {
