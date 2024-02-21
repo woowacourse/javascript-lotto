@@ -20,46 +20,49 @@ describe("로또 도메인 테스트", () => {
   );
 
   const LOTTOS = [
-    { numbers: [1, 7, 8, 9, 10, 11], expectedCount: 1 },
-    { numbers: [1, 2, 8, 9, 10, 11], expectedCount: 2 },
-    { numbers: [1, 2, 3, 9, 10, 11], expectedCount: 3 },
-    { numbers: [1, 2, 3, 4, 10, 11], expectedCount: 4 },
-    { numbers: [1, 2, 3, 4, 5, 11], expectedCount: 5 },
-    { numbers: [1, 2, 3, 4, 5, 6], expectedCount: 6 },
+    {
+      numbers: [1, 7, 8, 9, 10, 11],
+      expectedInfo: { matchedCount: 1, hasBonusNumber: true },
+    },
+    {
+      numbers: [1, 2, 8, 9, 10, 11],
+      expectedInfo: { matchedCount: 2, hasBonusNumber: false },
+    },
+    {
+      numbers: [1, 2, 3, 9, 10, 11],
+      expectedInfo: { matchedCount: 3, hasBonusNumber: false },
+    },
+    {
+      numbers: [1, 2, 3, 4, 10, 11],
+      expectedInfo: { matchedCount: 4, hasBonusNumber: false },
+    },
+    {
+      numbers: [1, 2, 3, 4, 5, 11],
+      expectedInfo: { matchedCount: 5, hasBonusNumber: false },
+    },
+    {
+      numbers: [1, 2, 3, 4, 5, 6],
+      expectedInfo: { matchedCount: 6, hasBonusNumber: false },
+    },
+    {
+      numbers: [1, 2, 3, 4, 5, 7],
+      expectedInfo: { matchedCount: 5, hasBonusNumber: true },
+    },
   ];
 
   test.each(LOTTOS)(
-    "사용자가 구매한 로또 번호와 당첨 번호를 비교한다.",
-    ({ numbers, expectedCount }) => {
+    "구매한 로또 번호와 당첨 번호의 일치 갯수와 보너스 번호의 일치 여부를 판단한다.",
+    ({ numbers, expectedInfo }) => {
       // given
       const ANSWER = [1, 2, 3, 4, 5, 6];
-      const lotto = new Lotto(numbers);
-
-      // when
-      const matchedNumber = lotto.countMatchedNumber(ANSWER);
-
-      // then
-      expect(matchedNumber).toBe(expectedCount);
-    }
-  );
-
-  const BONUS_TEST_CASE = [
-    { numbers: [1, 2, 3, 4, 5, 7], expectedResult: true },
-    { numbers: [1, 2, 3, 4, 5, 6], expectedResult: false },
-  ];
-
-  test.each(BONUS_TEST_CASE)(
-    "로또는 보너스 번호를 포함하는지 올바르게 판단한다.",
-    ({ numbers, expectedResult }) => {
-      //given
       const BONUS_NUMBER = 7;
       const lotto = new Lotto(numbers);
 
-      //when
-      const bonusResult = lotto.hasBonusNumber(BONUS_NUMBER);
+      // when
+      const matchedNumber = lotto.getMatchedInfo(ANSWER, BONUS_NUMBER);
 
-      //then
-      expect(bonusResult).toBe(expectedResult);
+      // then
+      expect(matchedNumber).toEqual(expectedInfo);
     }
   );
 });
