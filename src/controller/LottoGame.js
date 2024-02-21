@@ -37,6 +37,10 @@ class LottoGame {
     Output.printReturnOnInvestment(returnOnInvestment);
 
     const restartOption = await retryUntilValid(this.getRestartOption, this);
+
+    if (restartOption === 'y') {
+      await this.start();
+    }
   }
 
   #validateMoney(money) {
