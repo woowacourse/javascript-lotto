@@ -2,7 +2,10 @@
   "env": {
     "jest": true,
     "node": true,
-    "es2021": true
+    "es2022": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 13
   },
   "extends": ["airbnb", "plugin:prettier/recommended"],
   "rules": {
