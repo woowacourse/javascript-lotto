@@ -17,9 +17,7 @@ class LottoGameController {
   async play() {
     const lottoList = await this.setLotto();
 
-    const winningLotto = await this.executeOrRetryAsync(
-      this.getWinningLotto.bind(this),
-    );
+    const winningLotto = await this.setWinningLotto();
 
     const result = new LottoResult(lottoList, winningLotto);
     result.getResult();
@@ -69,10 +67,25 @@ class LottoGameController {
     this.#outputView.printLottos(lottoNumberList);
   }
 
+  async setWinningLotto() {
+    const winningLotto = await this.executeOrRetryAsync(
+      this.getWinningLotto.bind(this),
+    );
+    const WinningLottoWithBonusNumber = await this.executeOrRetryAsync(() =>
+      this.getBonusNumber(winningLotto),
+    );
+
+    return WinningLottoWithBonusNumber;
+  }
+
   async getWinningLotto() {
     const winningLottoNumbers = await this.getWinningNumber();
     const winningLotto = new WinningLotto(winningLottoNumbers);
 
+    return winningLotto;
+  }
+
+  async getBonusNumber(winningLotto) {
     const bonusNumber = await this.#inputView.inputBonusNumber();
     winningLotto.setBonusNumber(bonusNumber);
 

@@ -21,7 +21,10 @@ class WinningLotto {
   }
 
   setBonusNumber(bonusNumber) {
-    bonusNumberValidator.validateDuplication(this.#numbers, bonusNumber);
+    bonusNumberValidator.validateDuplication(
+      this.#numbers,
+      Number(bonusNumber),
+    );
     this.#bonusNumber = Number(bonusNumber);
   }
 }
