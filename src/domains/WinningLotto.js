@@ -3,14 +3,14 @@ import Validator from './validators/Validator';
 class WinningLotto {
   #lottoNumbers = [];
 
-  #bonusNumber;
+  #bonusNumber = 0;
 
-  constructor(lottoNumbers, bonusNumber) {
-    Validator.validateLottoTickets(lottoNumbers);
-    this.#lottoNumbers = lottoNumbers;
+  constructor(lottoNumbersInput, bonusNumberInput) {
+    Validator.validateLottoTickets(lottoNumbersInput);
+    this.#lottoNumbers = lottoNumbersInput;
 
-    Validator.validateBonusNumber(lottoNumbers, bonusNumber);
-    this.#bonusNumber = bonusNumber;
+    Validator.validateBonusNumber(lottoNumbersInput, bonusNumberInput);
+    this.#bonusNumber = bonusNumberInput;
   }
 
   #hasBonusNumber(lottoTicket) {
@@ -22,7 +22,7 @@ class WinningLotto {
       .length;
   }
 
-  compareLottos(lottoTicket) {
+  compareLotto(lottoTicket) {
     return {
       isBonus: this.#hasBonusNumber(lottoTicket),
       matchedCount: this.#countMatchedNumber(lottoTicket),

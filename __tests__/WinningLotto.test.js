@@ -21,7 +21,7 @@ describe('WinningLotto 기능 테스트', () => {
         BONUS_NUMBER,
       );
 
-      expect(winningLotto.compareLottos(lottoNumbers)).toEqual(result);
+      expect(winningLotto.compareLotto(lottoNumbers)).toEqual(result);
     },
   );
 });

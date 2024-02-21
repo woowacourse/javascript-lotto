@@ -33,7 +33,9 @@ const Validator = {
     }
   },
 
-  validatePaymentAmount(number) {
+  validatePaymentAmount(numberInput) {
+    const number = Number(numberInput);
+
     if (!isInteger(number)) throw new Error('정수가 아닙니다.');
 
     if (!isDivisibleByPrice(number)) throw new Error('1000원 단위가 아닙니다.');

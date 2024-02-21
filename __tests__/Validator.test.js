@@ -103,7 +103,7 @@ describe('validatePaymentAmount 기능 테스트', () => {
   });
 
   test('구입 가능한 로또는 최소 1장, 최대 20장이다.', () => {
-    const INPUTS = [999, 20001];
+    const INPUTS = ['999', '20001'];
 
     INPUTS.forEach((input) => {
       expect(() => Validator.validatePaymentAmount(input)).toThrow();
@@ -111,7 +111,7 @@ describe('validatePaymentAmount 기능 테스트', () => {
   });
 
   test('구입 금액은 1000원 단위로 나누어 떨어져야 한다.', () => {
-    const INPUTS = [1500, 1001];
+    const INPUTS = ['1500', '1001'];
 
     INPUTS.forEach((input) => {
       expect(() => Validator.validatePaymentAmount(input)).toThrow();
