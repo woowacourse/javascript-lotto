@@ -1,4 +1,3 @@
-import { PRIZE } from "../constants/system.js";
 import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 
 class Lotto {
