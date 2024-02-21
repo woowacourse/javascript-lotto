@@ -2,11 +2,11 @@ class WinningRank {
   #lottoDrawDetail;
 
   #winningRankDetail = {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
+    '1st': 0,
+    '2nd': 0,
+    '3rd': 0,
+    '4th': 0,
+    '5th': 0,
   };
 
   constructor({ winningNumber, lottoNumbers, bonusNumber }) {
@@ -26,11 +26,11 @@ class WinningRank {
   #determineRank(lottoNumber) {
     const matchCount = this.#countMatchingNumbers(lottoNumber);
 
-    if (matchCount === 6) return 1;
-    if (matchCount === 5 && this.#isIncludingBonusNumber(lottoNumber)) return 2;
-    if (matchCount === 5) return 3;
-    if (matchCount === 4) return 4;
-    if (matchCount === 3) return 5;
+    if (matchCount === 6) return '1st';
+    if (matchCount === 5 && this.#isIncludingBonusNumber(lottoNumber)) return '2nd';
+    if (matchCount === 5) return '3rd';
+    if (matchCount === 4) return '4th';
+    if (matchCount === 3) return '5th';
     return null;
   }
 
