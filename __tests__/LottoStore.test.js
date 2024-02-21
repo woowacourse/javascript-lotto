@@ -1,4 +1,5 @@
 import Lotto from "../src/domain/Lotto";
+import WinningLotto from "../src/domain/WinningLotto";
 import LottoStore from "../src/domain/LottoStore";
 
 describe("구매 가능한 로또 갯수를 반환한다.", () => {
@@ -131,3 +132,55 @@ describe("입력받은 배열의 길이만큼 로또를 발행한다.", () => {
     lottos.forEach((lotto) => expect(lotto).toBeInstanceOf(Lotto));
   });
 });
+
+test("당첨 로또를 생성한다.", () => {
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
+  const bonusNumber = 7;
+  const lottoStore = new LottoStore();
+
+  lottoStore.setWinningLotto(winningNumbers, bonusNumber);
+  const winningLotto = lottoStore.winningLotto;
+
+  expect(winningLotto).toBeInstanceOf(WinningLotto);
+});
+
+test.each([
+  { correctCount: 6, isBonusCorrect: true, expectedResult: 1 },
+  { correctCount: 6, isBonusCorrect: false, expectedResult: 1 },
+  { correctCount: 5, isBonusCorrect: true, expectedResult: 2 },
+  { correctCount: 5, isBonusCorrect: false, expectedResult: 3 },
+  { correctCount: 4, isBonusCorrect: true, expectedResult: 4 },
+  { correctCount: 4, isBonusCorrect: false, expectedResult: 4 },
+  { correctCount: 3, isBonusCorrect: true, expectedResult: 5 },
+  { correctCount: 3, isBonusCorrect: false, expectedResult: 5 },
+  { correctCount: 2, isBonusCorrect: true, expectedResult: 0 },
+  { correctCount: 2, isBonusCorrect: false, expectedResult: 0 },
+  { correctCount: 1, isBonusCorrect: true, expectedResult: 0 },
+  { correctCount: 1, isBonusCorrect: false, expectedResult: 0 },
+  { correctCount: 0, isBonusCorrect: true, expectedResult: 0 },
+  { correctCount: 0, isBonusCorrect: false, expectedResult: 0 },
+])(
+  "인자로 받은 일치 갯수와 보너스 일치 여부를 통해 순위를 확인한다.",
+  ({ correctCount, isBonusCorrect, expectedResult }) => {
+    const lottoStore = new LottoStore();
+
+    // Act
+    lottoStore.setWinningLotto([1, 2, 3, 4, 5, 6], 7);
+    const ranking = lottoStore.checkRanking(correctCount, isBonusCorrect);
+
+    expect(ranking).toBe(expectedResult);
+  },
+);
+
+test.each([
+  { rankings: [1, 2, 3, 4, 5], totalPorfitRate: 40_631_100 },
+  { rankings: [1, 3, 5], totalPorfitRate: 66_716_833.3 },
+  { rankings: [2, 4], totalPorfitRate: 1_502_500 },
+])(
+  "입력받은 순위 배열에 해당하는 총 수익률을 계산한다.",
+  ({ rankings, totalPorfitRate }) => {
+    const lottoStore = new LottoStore();
+
+    expect(lottoStore.getTotalProfitRate(rankings)).toBe(totalPorfitRate);
+  },
+);
