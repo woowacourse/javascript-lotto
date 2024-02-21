@@ -20,10 +20,10 @@ class Console {
     return await this.makeReadLineQuestion(query, rl);
   }
 
-  static async errorHandler(getFunc, context) {
+  static async errorHandler(method, context) {
     while (true) {
       try {
-        const result = await getFunc.call(context);
+        const result = await method.call(context);
         return result;
       } catch (err) {
         console.log(err.message);
