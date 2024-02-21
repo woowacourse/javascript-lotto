@@ -1,3 +1,5 @@
+import readline from 'readline';
+
 const Console = {
   readLineAsync(query = '') {
     const rl = readline.createInterface({
