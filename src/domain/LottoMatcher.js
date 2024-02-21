@@ -19,6 +19,10 @@ class LottoMatcher {
       this.updateMatchingResult(matchCount, hasBonusNumber);
     });
   }
+
+  compareBonusNumber(ticket, bonusNumber) {
+    return ticket.includes(bonusNumber);
+  }
 }
 
 export default LottoMatcher;
