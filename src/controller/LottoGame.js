@@ -31,10 +31,14 @@ class LottoGame {
     Output.printAscendingOrderLottoTickets(lottoTickets);
 
     const winningNumbers = await Input.readWinningNumbers();
-    this.createWinningNumbers(winningNumbers.split(','));
+    this.createWinningNumbers(winningNumbers.split(',').map((number) => Number(number)));
 
     const bonusNumber = await Input.readBonusNumber();
     this.createBonusNumber(bonusNumber);
+
+    const prizes = this.calculateAllPrize(lottoTickets);
+
+    Output.printPrizeDetails(prizes);
   }
 
   #validateMoney(money) {
