@@ -14,7 +14,6 @@ describe('당첨 번호와 발행 번호 비교하는 테스트', () => {
 
     const result = lottoCalculator.compare(
       lottoNumbers.winningNumbers,
-
       generatedLottos,
     );
 
@@ -42,24 +41,32 @@ describe('당첨 번호와 발행 번호 비교하는 테스트', () => {
   });
 });
 
-describe('로또 티켓이 1장일 때 당첨 통계를 올바른 lottoStatistics 객체로 반환하는지 확인하는 테스트', () => {
-  test('로또 번호 3개가 일치할 때 lottoStatistics 객체의 three 값에 1이 더해진다.', () => {
+describe('당첨 통계 테스트', () => {
+  test('전체 로또 티켓과 당첨 번호를 비교하여 당첨 통계 객체의 값을 올바르게 증가시킨다.', () => {
     const lottoNumbers = {
       winningNumbers: [1, 2, 3, 4, 5, 6],
       bonusNumber: 7,
     };
 
-    const generatedLottos = [1, 2, 3, 7, 8, 9];
+    const generatedLottos = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 7, 8],
+      [1, 2, 3, 7, 8, 9],
+      [1, 2, 7, 8, 9, 10],
+      [1, 7, 8, 9, 10, 11],
+    ];
+
     const lottoStatistics = {
       three: 1,
-      four: 0,
+      four: 1,
       five: 0,
-      fiveBonus: 0,
-      six: 0,
+      fiveBonus: 1,
+      six: 1,
     };
 
     const lottoCalculator = new LottoCalculator(lottoNumbers, generatedLottos);
-    lottoCalculator.increaseStaticsCount(3);
+
     expect(lottoCalculator.lottoStatics).toEqual(lottoStatistics);
   });
 });
