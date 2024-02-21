@@ -4,6 +4,7 @@ import MoneyValidator from '../domain/MoneyValidator';
 import Condition from '../constants/Condition';
 import Input from '../view/Input';
 import Output from '../view/Output';
+import Random from '../utils/Random';
 
 const { LOTTO } = Condition;
 
@@ -58,7 +59,7 @@ class LottoGame {
 
   createLotto(money) {
     return Array.from({ length: money / 1000 }).map(() => {
-      const numbers = [1, 2, 3, 4, 5, 6];
+      const numbers = Random.pickNumbersInRangeByRule({ start: 1, end: 45, count: 6 });
       this.#validateNumbers(numbers, LOTTO.NUMBER_LENGTH);
       return new Lotto(numbers);
     });
