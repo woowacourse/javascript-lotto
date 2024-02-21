@@ -15,7 +15,7 @@ export default class Money {
 
   #isPositiveInteger(amount) {
     if (isNaN(amount) || amount < 1) {
-      throw new Error(ERROR_MESSAGE.NOT_POSITIVE_INTEGER);
+      throw new Error(ERROR_MESSAGE.IS_NOT_POSITIVE_INTEGER);
     }
   }
 
