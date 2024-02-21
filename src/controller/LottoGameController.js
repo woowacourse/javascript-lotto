@@ -134,7 +134,17 @@ class LottoGameController {
   async play() {
     await this.#initBudget();
     this.#printLottoCount();
+<<<<<<< HEAD
 >>>>>>> 9d51723 (feat: 입력 금액에 따른 로또 발행 개수 출력 구현)
+=======
+    this.#printIssuedLottos();
+  }
+
+  #printIssuedLottos() {
+    OutputView.printIssuedLottoArray(
+      randomLottoArray(this.#calculateLottoCount())
+    );
+>>>>>>> 96abc2e (feat: 발행된 로또 번호 개별 출력 구현)
   }
 }
 

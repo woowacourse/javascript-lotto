@@ -17,6 +17,9 @@ const OutputView = {
   printProfits(profits) {
     console.log(OUTPUT_MESSAGE.formatProfits(profits));
   },
+  printIssuedLottoArray(lottoArray) {
+    console.log(OUTPUT_MESSAGE.lottoArrayToString(lottoArray));
+  },
 };
 
 export default OutputView;
