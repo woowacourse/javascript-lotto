@@ -1,12 +1,10 @@
 import { generateRandomNumbers } from "../utils/generateRandomNumbers.js";
 import { sortNumbersAscend } from "../utils/sortNumbersAscend.js";
-
-const MIN_LOTTO_NUMBER = 1;
-const MAX_LOTTO_NUMBER = 45;
-const LOTTO_NUMBER_COUNT = 6;
-const SEPARATOR = ",";
+import LottoNumber from "./LottoNumber.js";
 
 class Lotto {
+  static NUMBER_COUNT = 6;
+  static SEPARATOR = ",";
   #numbers;
 
   constructor(numbers) {
@@ -14,29 +12,31 @@ class Lotto {
     if (typeof numbers === "string") this.#constructorWithNumStr(numbers);
     if (numbers === undefined) this.#constructorWithoutArg();
 
-    this.#numbers = sortNumbersAscend(this.#numbers);
+    this.#numbers = sortNumbersAscend(this.#numbers).map(
+      (num) => new LottoNumber(num)
+    );
   }
 
   // 오버로딩
   #constructorWithNumStr(numbers) {
-    const parsedNumbers = numbers.split(SEPARATOR).map((num) => Number(num));
+    const parsedNumbers = numbers.split(Lotto.SEPARATOR).map(Number);
+
+    // 유
 
     this.#numbers = parsedNumbers;
   }
 
   #constructorWithoutArg() {
     this.#numbers = generateRandomNumbers(
-      MIN_LOTTO_NUMBER,
-      MAX_LOTTO_NUMBER,
-      LOTTO_NUMBER_COUNT
+      LottoNumber.MIN,
+      LottoNumber.MAX,
+      Lotto.NUMBER_COUNT
     );
   }
 
-  getNumbers() {
-    return this.#numbers;
+  get() {
+    return this.#numbers.map((num) => num.get());
   }
-
-  #validate(numbers) {}
 }
 
 export default Lotto;
