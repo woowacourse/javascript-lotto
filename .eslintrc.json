@@ -1,6 +1,25 @@
 {
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "prettier",
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "eslint:recommended"
+  ],
+  "plugins": ["import", "jest", "prettier"],
   "rules": {
-    "max-depth": ["error", 3],
     "max-lines-per-function": ["error", { "max": 10 }],
     "import/extensions": ["error", { "js": "ignorePackages" }],
     "import/order": [
@@ -38,14 +57,9 @@
           "caseInsensitive": true
         }
       }
-    ]
-  },
-  "env": {
-    "es6": true,
-    "node": true
-  },
-  "parserOptions": {
-    "ecmaVersion": "latest"
-  },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+    ],
+    "max-depth": ["error", { "max": 2 }],
+    "max-params": ["error", 3],
+    "class-methods-use-this": "off"
+  }
 }
