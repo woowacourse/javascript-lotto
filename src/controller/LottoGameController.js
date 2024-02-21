@@ -12,6 +12,7 @@ class LottoGameController {
   #budget;
   #winningLotto = {};
 
+<<<<<<< HEAD
   /*
    * 로또 구매와 관련된 메소드들
    */
@@ -114,6 +115,26 @@ class LottoGameController {
 
     const retryController = new RetryController(this.playGame.bind(this));
     retryController.retryGame();
+=======
+  constructor() {}
+
+  async #initBudget() {
+    const budgetInput = await getValidInput(InputView.readBudget);
+    this.#budget = Number(budgetInput);
+  }
+
+  #calculateLottoCount() {
+    return this.#budget / 1000;
+  }
+
+  #printLottoCount() {
+    OutputView.printLottoCount(this.#calculateLottoCount());
+  }
+
+  async play() {
+    await this.#initBudget();
+    this.#printLottoCount();
+>>>>>>> 9d51723 (feat: 입력 금액에 따른 로또 발행 개수 출력 구현)
   }
 }
 
