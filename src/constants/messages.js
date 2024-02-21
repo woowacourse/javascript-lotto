@@ -21,6 +21,5 @@ export const ERROR_MESSAGES = {
   invalidDividedUnit: '구입 금액은 1000원 단위로 나누어 떨어져야 합니다.',
   invalidLength: '6개의 숫자를 입력해 주세요.',
   invalidRange: '1 ~ 45 사이의 숫자만 입력해 주세요.',
-  duplicateNumber: '중복된 숫자는 입력할 수 없습니다.',
-  invalidBonusNumber: '보너스 번호는 당첨 번호와 중복되면 안됩니다.',
+  invalidUniqueNumber: '중복된 숫자는 입력할 수 없습니다.',
 };
