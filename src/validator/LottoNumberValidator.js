@@ -1,25 +1,27 @@
+import ERROR from "../constants/error.js";
+
 const lottoNumberValidator = {
   validateNumbersLength(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호로 6개를 입력해주세요.");
+      throw new Error(ERROR.INVALID_LOTTO_NUMBER_LENGTH);
     }
   },
 
   validateDuplicate(numbers) {
     if (new Set(numbers).size !== 6) {
-      throw new Error("[ERROR] 로또 번호에 중복된 숫자가 있습니다.ㄴ");
+      throw new Error(ERROR.INVALID_LOTTO_NUMBER_DUPLICATE);
     }
   },
 
   validateRange(numbers) {
     if (numbers.some((number) => number < 1 || number > 45)) {
-      throw new Error("[ERROR] 로또 번호로 1 ~ 45 사이의 숫자를 입력해주세요.");
+      throw new Error(ERROR.INVALID_LOTTO_NUMBER_RANGE);
     }
   },
 
   validateType(numbers) {
     if (numbers.some((number) => !Number.isInteger(number))) {
-      throw new Error("[ERROR] 로또 번호는 숫자로만 입력해주세요.");
+      throw new Error(ERROR.INVALID_LOTTO_NUMBER_TYPE);
     }
   },
 
