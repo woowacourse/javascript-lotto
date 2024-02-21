@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import ERROR from "../../src/constants/error.js";
+import ERROR_MESSAGE from "../../src/constants/error.js";
 import WinningLotto from "../../src/domain/WinningLotto.js";
 
 describe("WinningLotto 객체 테스트", () => {
@@ -7,7 +7,7 @@ describe("WinningLotto 객체 테스트", () => {
     const DUPLICATE_WINNING_LOTTO_NUMBERS = [1, 1, 2, 3, 4, 5];
 
     expect(() => new WinningLotto(DUPLICATE_WINNING_LOTTO_NUMBERS)).toThrow(
-      ERROR.INVALID_LOTTO_NUMBER_DUPLICATE,
+      ERROR_MESSAGE.INVALID_LOTTO_NUMBER_DUPLICATE,
     );
   });
 
@@ -15,7 +15,7 @@ describe("WinningLotto 객체 테스트", () => {
     const INVALID_WINNING_LOTTO_NUMBERS = [0, 1, 2, 3, 4, 46];
 
     expect(() => new WinningLotto(INVALID_WINNING_LOTTO_NUMBERS)).toThrow(
-      ERROR.INVALID_LOTTO_NUMBER_RANGE,
+      ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE,
     );
   });
 
@@ -23,7 +23,7 @@ describe("WinningLotto 객체 테스트", () => {
     const INVALID_WINNING_LOTTO_LENGTH = [1, 2, 3, 4, 5];
 
     expect(() => new WinningLotto(INVALID_WINNING_LOTTO_LENGTH)).toThrow(
-      ERROR.INVALID_LOTTO_NUMBER_LENGTH,
+      ERROR_MESSAGE.INVALID_LOTTO_NUMBER_LENGTH,
     );
   });
 
@@ -31,7 +31,7 @@ describe("WinningLotto 객체 테스트", () => {
     const INVALID_LOTTO_NUMBERS = ["하나", 2, 3, 4, 5, 6];
 
     expect(() => new WinningLotto(INVALID_LOTTO_NUMBERS)).toThrow(
-      ERROR.INVALID_LOTTO_NUMBER_TYPE,
+      ERROR_MESSAGE.INVALID_LOTTO_NUMBER_TYPE,
     );
   });
 
@@ -41,6 +41,6 @@ describe("WinningLotto 객체 테스트", () => {
 
     expect(() =>
       new WinningLotto(LOTTO_NUMBERS).setBonusNumber(BONUS_NUMBER),
-    ).toThrow(ERROR.INVALID_BONUS_NUMBER_DUPLICATE);
+    ).toThrow(ERROR_MESSAGE.INVALID_BONUS_NUMBER_DUPLICATE);
   });
 });

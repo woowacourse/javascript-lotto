@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import ERROR from "../../src/constants/error.js";
+import ERROR_MESSAGE from "../../src/constants/error.js";
 import Lotto from "../../src/domain/Lotto.js";
 
 describe("Lotto 객체 테스트", () => {
@@ -7,7 +7,7 @@ describe("Lotto 객체 테스트", () => {
     const INVALID_LOTTO_LENGTH = [1, 2, 3, 4, 5];
 
     expect(() => new Lotto(INVALID_LOTTO_LENGTH)).toThrow(
-      ERROR.INVALID_LOTTO_NUMBER_LENGTH,
+      ERROR_MESSAGE.INVALID_LOTTO_NUMBER_LENGTH,
     );
   });
 
@@ -15,7 +15,7 @@ describe("Lotto 객체 테스트", () => {
     const DUPLICATE_LOTTO_NUMBERS = [1, 1, 2, 3, 4, 5];
 
     expect(() => new Lotto(DUPLICATE_LOTTO_NUMBERS)).toThrow(
-      ERROR.DUPLICATE_LOTTO_NUMBER,
+      ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER,
     );
   });
 
@@ -23,7 +23,7 @@ describe("Lotto 객체 테스트", () => {
     const INVALID_LOTTO_NUMBERS = [0, 1, 2, 3, 4, 46];
 
     expect(() => new Lotto(INVALID_LOTTO_NUMBERS)).toThrow(
-      ERROR.INVALID_LOTTO_NUMBER_RANGE,
+      ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE,
     );
   });
 
@@ -31,7 +31,7 @@ describe("Lotto 객체 테스트", () => {
     const INVALID_LOTTO_NUMBERS = ["하나", 2, 3, 4, 5, 6];
 
     expect(() => new Lotto(INVALID_LOTTO_NUMBERS)).toThrow(
-      ERROR.INVALID_LOTTO_NUMBER_TYPE,
+      ERROR_MESSAGE.INVALID_LOTTO_NUMBER_TYPE,
     );
   });
 

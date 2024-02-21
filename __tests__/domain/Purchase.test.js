@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import ERROR from "../../src/constants/error.js";
+import ERROR_MESSAGE from "../../src/constants/error.js";
 import purchaseAmountValidator from "../../src/validator/PurchaseAmountValidator.js";
 
 describe("Purchase validate 테스트", () => {
@@ -8,7 +8,7 @@ describe("Purchase validate 테스트", () => {
 
     expect(() =>
       purchaseAmountValidator.validate(NO_NUMBER_PURCHASE_AMOUNT),
-    ).toThrow(ERROR.INVALID_PURCHASE_AMOUNT_TYPE);
+    ).toThrow(ERROR_MESSAGE.INVALID_PURCHASE_AMOUNT_TYPE);
   });
 
   test("구입 금액은 천원 이상이어야 한다.", () => {
@@ -16,7 +16,7 @@ describe("Purchase validate 테스트", () => {
 
     expect(() =>
       purchaseAmountValidator.validate(LESS_THAN_MIN_PURCHASE_AMOUNT),
-    ).toThrow(ERROR.INVALID_PURCHASE_AMOUNT_RANGE);
+    ).toThrow(ERROR_MESSAGE.INVALID_PURCHASE_AMOUNT_RANGE);
   });
 
   test("구입 금액은 천원 단위여야한다.", () => {
@@ -24,6 +24,6 @@ describe("Purchase validate 테스트", () => {
 
     expect(() =>
       purchaseAmountValidator.validate(CANT_DIVIDED_PURCHASE_AMOUNT),
-    ).toThrow(ERROR.INVALID_PURCHASE_AMOUNT_DIVIDED);
+    ).toThrow(ERROR_MESSAGE.INVALID_PURCHASE_AMOUNT_DIVIDED);
   });
 });
