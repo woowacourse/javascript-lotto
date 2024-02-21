@@ -20,6 +20,9 @@ class LottoGameController {
     const winningLotto = await this.setWinningLotto();
 
     this.getGameResult(lottoList, winningLotto);
+
+    const restart = await this.#inputView.inputRestartGame();
+    if (restart === "y") this.play();
   }
 
   async executeOrRetryAsync(asyncFn) {

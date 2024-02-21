@@ -27,9 +27,9 @@ const OutputView = {
       .reverse()
       .forEach((key) => {
         console.log(
-          `${PRIZE[key].match}개 일치${PRIZE[key].bonus ? ", 보너스 볼 일치" : ""}(${
-            PRIZE[key].reward
-          }원)- ${rank[key]}개`,
+          `${PRIZE[key].matchCount}개 일치${PRIZE[key].bonus ? ", 보너스 볼 일치" : ""}(${formatNumber(
+            PRIZE[key].reward,
+          )}원)- ${rank[key]}개`,
         );
       });
   },
