@@ -3,7 +3,6 @@ import LottoMachine from '../domain/LottoMachine';
 import OutputView from '../view/OutputView';
 import Money from '../domain/Money';
 import { retryOnInvalidInput } from '../util/retryOnInvalidInput';
-import Lotto from '../domain/Lotto';
 
 class LottoController {
   #lottoMachine;
@@ -23,6 +22,10 @@ class LottoController {
     await retryOnInvalidInput(async () => {
       await this.#insertWinnigNumbers();
     });
+
+    await retryOnInvalidInput(async () => {
+      await this.#insertBonusNumbers();
+    });
   }
 
   async #insertMoney() {
@@ -36,6 +39,12 @@ class LottoController {
     const inputWinningNumber = await InputView.readWinnigNumbers();
 
     this.#lottoMachine.winningLotto = inputWinningNumber;
+  }
+
+  async #insertBonusNumbers() {
+    const inputBonusNumber = await InputView.readBonusNumber();
+
+    this.#lottoMachine.bonusNumber = inputBonusNumber;
   }
 }
 

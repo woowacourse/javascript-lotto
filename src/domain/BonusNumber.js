@@ -5,8 +5,9 @@ class BonusNumber {
   #bonumNumber;
 
   constructor(number, winningLotto) {
-    this.#validataeBonusNumber(number, winningLotto);
-    this.#bonumNumber = number;
+    const parsedBonusNumber = Number(number);
+    this.#validataeBonusNumber(parsedBonusNumber, winningLotto);
+    this.#bonumNumber = parsedBonusNumber;
   }
 
   #validataeBonusNumber(number, winningLotto) {
@@ -17,7 +18,7 @@ class BonusNumber {
 
   #isPositiveNumber(number) {
     if (isNaN(number) || number < 1) {
-      throw new Error(ERROR_MESSAGE.NOT_POSITIVE_INTEGER);
+      throw new Error(ERROR_MESSAGE.IS_NOT_POSITIVE_INTEGER);
     }
   }
 
