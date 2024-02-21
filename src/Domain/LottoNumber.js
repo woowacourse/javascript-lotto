@@ -7,17 +7,22 @@ export default class LottoNumber {
   }
 
   #validLottoNumbers() {
+    this.#numbers.forEach((number) => {
+      this.#validInRange(number, { min: 1, max: 45 });
+    });
     this.#validInRange(1, 45);
     this.#validDuplicate();
     this.#validLength();
   }
 
-  #validInRange(min, max) {
-    this.#numbers.forEach((number) => {
-      if (number < min || number > max) {
-        throw new Error("❌");
-      }
-    });
+  #validInRange(number) {
+    if (number < 1 || number > 45) {
+      throw new Error("❌");
+    }
+  }
+
+  validInRangeWrapper(number) {
+    return this.#validInRange(number);
   }
 
   #validDuplicate() {
