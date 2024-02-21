@@ -3,6 +3,7 @@ import LottoValidator from '../domain/LottoValidator';
 import MoneyValidator from '../domain/MoneyValidator';
 import Condition from '../constants/Condition';
 import Input from '../view/Input';
+import Output from '../view/Output';
 
 const { LOTTO } = Condition;
 
@@ -25,6 +26,9 @@ class LottoGame {
     this.#validateMoney(money);
 
     const lottoTickets = this.createLotto(money);
+
+    Output.printLottoTicketsCount(lottoTickets);
+    Output.printAscendingOrderLottoTickets(lottoTickets);
   }
 
   #validateMoney(money) {
