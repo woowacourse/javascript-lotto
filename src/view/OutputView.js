@@ -9,14 +9,20 @@ const OutputView = {
     });
   },
   printResultTitle() {
-    console.log('당첨 통계');
+    console.log('\n당첨 통계');
     console.log('--------------------');
   },
   printWinningStatistics(result = []) {
     result.forEach((value) => {
       const [matchCount, isBonus, price, winCount] = value;
-      console.log(`${matchCount}개 일치${isBonus ? ', 보너스 볼 일치' : ''} (${price.toLocaleString()}원) - ${winCount}개`);
+      console.log(
+        `${matchCount}개 일치${isBonus ? ', 보너스 볼 일치' : ''} (${price.toLocaleString()}원) - ${winCount}개`
+      );
     });
+  },
+
+  printRateOfRevenue(rateOfRevenue = '') {
+    console.log(`총 수익률은 ${rateOfRevenue}%입니다.`);
   },
 
   printError(message) {
