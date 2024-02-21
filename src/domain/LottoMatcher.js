@@ -23,6 +23,11 @@ class LottoMatcher {
   compareBonusNumber(ticket, bonusNumber) {
     return ticket.includes(bonusNumber);
   }
+
+  updateMatchingResult(matchCount, hasBonusNumber) {
+    if (hasBonusNumber) this.#matchingResult[String('5+보너스')] += 1;
+    if (!hasBonusNumber) this.#matchingResult[matchCount] += 1;
+  }
 }
 
 export default LottoMatcher;
