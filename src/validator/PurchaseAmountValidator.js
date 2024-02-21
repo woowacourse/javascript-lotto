@@ -6,7 +6,7 @@ const purchaseAmountValidator = {
   },
 
   validateRange(price) {
-    if (Number(price) <= 1_000) {
+    if (Number(price) < 1_000) {
       throw new Error("[ERROR] 1,000원 이상의 값을 입력해주세요");
     }
   },

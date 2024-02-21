@@ -8,5 +8,9 @@ const OutputView = {
       console.log(lottoNumber.sort((a, b) => a - b));
     });
   },
+
+  printError(error) {
+    console.log(error);
+  },
 };
 export default OutputView;
