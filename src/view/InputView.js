@@ -1,3 +1,4 @@
+import MESSAGE from '../constant/Message.js';
 import WinningLotto from '../domain/entity/WinningLotto.js';
 import OutputView from './OutputView.js';
 import readline from 'readline';
@@ -9,7 +10,7 @@ const Private = {
         const inputString = await config.readline();
         return config.factory(inputString);
       } catch (e) {
-        config.errorHandler(e);
+        config.retryHandler(e);
       }
     }
   },
@@ -38,22 +39,34 @@ const Private = {
 };
 
 const InputView = {
-  async readWinningNumbers() {
+  async readPurchaseMoney() {
     const winningNumberConfig = {
-      readline: async () => await Private.readLineAsync('message'),
-      factory: input => new WinningLotto(input),
-      errorHandler: e => OutputView.print(e.message),
+      readline: async () =>
+        await Private.readLineAsync(MESSAGE.prompt.purchaseMoney),
+      factory: inputString => new WinningLotto(inputString),
+      retryHandler: e => OutputView.print(e.message),
     };
     return await Private.robustInput(winningNumberConfig);
   },
 
-  readBonusNumber(winningLotto) {
-    const bonusNumberConfig = {
-      readline: async () => await Private.readLineAsync(message),
-      factory: input => winningLotto.setBonusNumber(input),
-      errorHandler: e => OutputView.print(e.message),
+  async readWinningNumbers() {
+    const winningNumberConfig = {
+      readline: async () =>
+        await Private.readLineAsync(MESSAGE.prompt.winningNumber),
+      factory: inputString => new WinningLotto(inputString),
+      retryHandler: e => OutputView.print(e.message),
     };
-    return Private.robustInput(bonusNumberConfig);
+    return await Private.robustInput(winningNumberConfig);
+  },
+
+  async readBonusNumber(winningLotto) {
+    const bonusNumberConfig = {
+      readline: async () =>
+        await Private.readLineAsync(MESSAGE.prompt.bonusNumber),
+      factory: inputString => winningLotto.setBonusNumber(inputString),
+      retryHandler: e => OutputView.print(e.message),
+    };
+    return await Private.robustInput(bonusNumberConfig);
   },
 };
 

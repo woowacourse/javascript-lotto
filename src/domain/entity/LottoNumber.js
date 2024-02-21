@@ -27,7 +27,7 @@ class LottoNumber {
 
   #validateNotNumber(numStr) {
     if (Number.isNaN(Number(numStr))) {
-      throw new Error(ERROR.beNotNumber);
+      throw new Error(ERROR.beNumber);
     }
   }
   #validateInRange(numStr) {

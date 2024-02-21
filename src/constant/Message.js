@@ -1,4 +1,9 @@
 const MESSAGE = Object.freeze({
+  prompt: {
+    purchaseMoney: '구입금액을 입력해 주세요.',
+    winningNumber: '당첨 번호를 입력해 주세요.',
+    bonusNumber: '보너스 번호를 입력해 주세요.',
+  },
   winningCharacteristics: {
     3: '3개 일치 (5,000원)',
     4: '4개 일치 (50,000원)',
