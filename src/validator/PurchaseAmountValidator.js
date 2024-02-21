@@ -1,4 +1,5 @@
 import ERROR from "../constants/error.js";
+import { MIN_PURCHASE_AMOUNT } from "../constants/option.js";
 
 const purchaseAmountValidator = {
   validateType(price) {
@@ -8,13 +9,13 @@ const purchaseAmountValidator = {
   },
 
   validateRange(price) {
-    if (Number(price) < 1_000) {
+    if (Number(price) < MIN_PURCHASE_AMOUNT) {
       throw new Error(ERROR.INVALID_PURCHASE_AMOUNT_RANGE);
     }
   },
 
   validateDivided(price) {
-    if (price % 1_000 !== 0) {
+    if (price % MIN_PURCHASE_AMOUNT !== 0) {
       throw new Error(ERROR.INVALID_PURCHASE_AMOUNT_DIVIDED);
     }
   },

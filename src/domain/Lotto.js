@@ -1,3 +1,4 @@
+import { WINNING_RANK } from "../constants/option.js";
 import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 
 class Lotto {
@@ -26,12 +27,12 @@ class Lotto {
   getRank(winningLotto) {
     const { numberMatchCount, isBonus } = this.getMatchCount(winningLotto);
 
-    if (numberMatchCount === 6) return 1;
-    if (numberMatchCount === 5 && isBonus) return 2;
-    if (numberMatchCount === 5) return 3;
-    if (numberMatchCount === 4) return 4;
-    if (numberMatchCount === 3) return 5;
-    return 6;
+    if (numberMatchCount === 6) return WINNING_RANK.FIRST;
+    if (numberMatchCount === 5 && isBonus) return WINNING_RANK.SECOND;
+    if (numberMatchCount === 5) return WINNING_RANK.THIRD;
+    if (numberMatchCount === 4) return WINNING_RANK.FOURTH;
+    if (numberMatchCount === 3) return WINNING_RANK.FIFTH;
+    return WINNING_RANK.NONE;
   }
 }
 export default Lotto;

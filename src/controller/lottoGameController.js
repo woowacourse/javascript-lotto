@@ -1,3 +1,5 @@
+import { MIN_PURCHASE_AMOUNT, OPTION } from "../constants/option.js";
+import { RETRY_INPUT } from "../constants/system.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import WinningLotto from "../domain/WinningLotto.js";
@@ -22,7 +24,7 @@ class LottoGameController {
     this.getGameResult(lottoList, winningLotto);
 
     const restart = await this.#inputView.inputRestartGame();
-    if (restart === "y") this.play();
+    if (restart === RETRY_INPUT) this.play();
   }
 
   async executeOrRetryAsync(asyncFn) {
@@ -97,7 +99,7 @@ class LottoGameController {
   async getWinningNumber() {
     const winningLottoInput = await this.#inputView.inputWinningLottoNumber();
     const winningLottoNumbers = winningLottoInput
-      .split(",")
+      .split(OPTION.DELIMITER)
       .map((number) => Number(number));
 
     return winningLottoNumbers;
@@ -106,7 +108,7 @@ class LottoGameController {
   getGameResult(lottoList, winningLotto) {
     const result = new LottoResult(lottoList, winningLotto);
     const rank = result.getTotalResult();
-    const profit = result.getProfit(lottoList.length * 1000);
+    const profit = result.getProfit(lottoList.length * MIN_PURCHASE_AMOUNT);
 
     OutputView.printResult(rank);
     OutputView.printProfit(profit);

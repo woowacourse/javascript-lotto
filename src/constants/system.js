@@ -25,3 +25,5 @@ export const OUTPUT_MESSAGE = {
     }(${formatNumber(PRIZE[key].reward)}원) - ${rank[key]}개`,
   PROFIT: (profit) => `총 수익률은 ${formatNumber(profit)}%입니다.`,
 };
+
+export const RETRY_INPUT = "y";

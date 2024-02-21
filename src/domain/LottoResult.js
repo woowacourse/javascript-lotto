@@ -1,3 +1,4 @@
+import { PERCENTATION, WINNING_RANK } from "../constants/option.js";
 import { PRIZE } from "../constants/system.js";
 
 class LottoResult {
@@ -13,7 +14,7 @@ class LottoResult {
     const arr = [];
     this.#lottoList.forEach((lotto) => {
       const rank = lotto.getRank(this.#WinningLotto);
-      if (rank !== 6) arr.push(rank);
+      if (rank !== WINNING_RANK.NONE) arr.push(rank);
     });
 
     return arr;
@@ -40,7 +41,7 @@ class LottoResult {
 
   getProfit(purchaseAmount) {
     const totalReward = this.getTotalReward();
-    return (totalReward / purchaseAmount) * 100;
+    return (totalReward / purchaseAmount) * PERCENTATION;
   }
 }
 export default LottoResult;

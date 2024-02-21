@@ -4,12 +4,13 @@ import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 class WinningLotto {
   #numbers;
 
-  #bonusNumber = 0;
+  #bonusNumber;
 
   constructor(numbers) {
     lottoNumberValidator.validate(numbers);
 
     this.#numbers = numbers;
+    this.#bonusNumber = 0;
   }
 
   getNumbers() {
