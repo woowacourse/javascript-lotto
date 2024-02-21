@@ -22,4 +22,12 @@ export default class WinningLotto {
   #hasBonusNumber(numbers) {
     return numbers.includes(this.#bonusNumber);
   }
+
+  get getLottoNumbers() {
+    return this.#lotto.getNumbers;
+  }
+
+  get getBonusNumber() {
+    return this.#bonusNumber;
+  }
 }
