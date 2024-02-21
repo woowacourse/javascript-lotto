@@ -1,5 +1,4 @@
-import LottoMachine from '../src/service/LottoMachine';
-import { SETTING } from '../src/constant/setting';
+import LottoMachine from '../src/domain/LottoMachine';
 
 describe('[LottoMachine] 로또 번호 발행 기능 테스트', () => {
   test('인자로 넘어온 금액에 해당하는 숫자 만큼의 로또 번호들을 발행해야 한다.', () => {
@@ -8,9 +7,9 @@ describe('[LottoMachine] 로또 번호 발행 기능 테스트', () => {
 
     // when
     const lottoMachine = new LottoMachine(purchaseAmount);
-    const lottoNumbersList = lottoMachine.getLottoNumbersList();
+    const lottoNumberList = lottoMachine.getLottoNumberList();
 
     // then
-    expect(lottoNumbersList.length).toBe(purchaseAmount / SETTING.LOTTO_PRICE);
+    expect(lottoNumberList.length).toBe(purchaseAmount / 1000);
   });
 });
