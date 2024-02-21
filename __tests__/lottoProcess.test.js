@@ -16,7 +16,11 @@ describe('LottoProcess 클래스 검사', () => {
     const lottoProcess = new LottoProcess(lottos);
 
     expect(lottoProcess.getResult(winLotto, bonusNumber)).toEqual([
-      1, 0, 0, 0, 0,
+      [3, false, 5000, 0],
+      [4, false, 50000, 0],
+      [5, false, 1500000, 0],
+      [5, true, 30000000, 0],
+      [6, false, 2000000000, 1],
     ]);
   });
 });
