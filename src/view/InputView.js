@@ -7,6 +7,12 @@ class InputView {
 
     return input;
   }
+
+  static async readWinnigNumbers() {
+    const input = await Console.readLineAsync(PROGRESS_MESSAGES.READ_WINNIG_NUMBERS_MESSAGE);
+
+    return input;
+  }
 }
 
 export default InputView;

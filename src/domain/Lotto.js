@@ -1,5 +1,6 @@
 import generateRandomNumberInRange from '../util/generateRandomNumberInRange';
 import LOTTO_RULE from '../constants/rules/lottoRule';
+import ERROR_MESSAGE from '../constants/messages/errorMessage';
 
 export default class Lotto {
   #lottoNumbers = [];
@@ -12,6 +13,7 @@ export default class Lotto {
     this.#sortLottoNumbers();
   }
 
+  //TODO: validate 파일 분리?
   #validateLotto() {
     this.#isNotValidLottoNumberCount();
     this.#hasRedundentLottoNumber();
@@ -46,8 +48,9 @@ export default class Lotto {
   }
 
   #makeWinnigNumbers(lottoNumbers) {
-    lottoNumbers.forEach(num => {
-      this.#pushNotRedundantNumber(num);
+    const splitedLottoNumbers = lottoNumbers.split(',');
+    splitedLottoNumbers.forEach(num => {
+      this.#pushNotRedundantNumber(Number(num));
     });
   }
 

@@ -8,13 +8,6 @@ describe('lotto 테스트 - random number로 생성될 때', () => {
 });
 
 describe('lotto 테스트 - winnigLotto를 유저가 입력할 때', () => {
-  // test('입력한 winnigLotto가 모두 1부터 45범위 안에 있는가', () => {
-  //   const inputNumber = [1, 2, 3, 4, 5, 100];
-  //   const winnigLotto = new Lotto(inputNumber);
-
-  //   expect(winnigLotto.lottoNumbers).toEqual([1, 2, 3, 4, 5, 6]);
-  // });
-
   test('입력한 winnigLotto가 6개인가', () => {
     const inputNumber = [1, 2, 3, 4];
 
@@ -46,11 +39,4 @@ describe('lotto 테스트 - winnigLotto를 유저가 입력할 때', () => {
       new Lotto(inputNumber);
     }).toThrow();
   });
-
-  // test('입력한 winnigLotto가 중복되지 않은 6개의 수인가', () => {
-  //   const inputNumber = [1, 2, 3, 4, 5, 6];
-  //   const winnigLotto = new Lotto(inputNumber);
-
-  //   expect(winnigLotto.lottoNumbers).toEqual([1, 2, 3, 4, 5, 6]);
-  // });
 });

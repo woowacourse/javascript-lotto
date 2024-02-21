@@ -3,6 +3,7 @@ import Lotto from './Lotto';
 class LottoMachine {
   #lottos;
   #count;
+  #winningLotto;
 
   constructor(money) {
     //TODO: money.amount 리팩토링?
@@ -15,6 +16,10 @@ class LottoMachine {
     this.#lottos.forEach((_, idx) => {
       this.#lottos[idx] = new Lotto();
     });
+  }
+
+  set winningLotto(numbers) {
+    this.#winningLotto = new Lotto(numbers);
   }
 
   get lottos() {
