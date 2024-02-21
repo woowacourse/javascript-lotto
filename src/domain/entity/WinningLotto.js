@@ -14,6 +14,10 @@ class WinningLotto {
     return this.#winningLottoNumberList.getNumbers();
   }
 
-  getMatchNumberCount(lottoNumbers) {}
+  getMatchNumberCount(lottoNumbers) {
+    const winningNumbers = this.#winningLottoNumberList.getNumbers();
+    return winningNumbers.filter(number => lottoNumbers.includes(number))
+      .length;
+  }
 }
 export default WinningLotto;
