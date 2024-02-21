@@ -13,6 +13,5 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": ["airbnb-base", "prettier"],
-  "files": ["**/*.test.js"]
+  "extends": ["airbnb-base", "prettier"]
 }
