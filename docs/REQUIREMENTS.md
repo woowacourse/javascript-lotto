@@ -28,9 +28,8 @@
    1. [x] Lotto 번호를 발행.( 1 ~ 45의 중복되지 않은 숫자를 발행한다.)
 
 4. WinLottoNumbers
-   1. [ ] 당첨 번호 입력 값을 통해 WinLottoNumbers 발행.
+   1. [ ] 당첨 번호 입력 값을 통해 WinLottoNumbers에 대한 유효성 검증
    2. [ ] bonusNumber에 대한 유효성 검증
-      - winNumbers에 중복이 없어야 한다.
 
 ### View
 
