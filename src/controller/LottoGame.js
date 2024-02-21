@@ -1,6 +1,7 @@
 import Lotto from '../domain/Lotto';
 import LottoValidator from '../domain/LottoValidator';
 import Condition from '../constants/Condition';
+import Input from '../view/Input';
 
 const { LOTTO } = Condition;
 
@@ -17,6 +18,10 @@ class LottoGame {
   #winningNumbers;
 
   #bonusNumber;
+
+  async start() {
+    const money = await Input.readMoney();
+  }
 
   #validateNumbers(numbers, length) {
     LottoValidator.validateNumbersLength(numbers, length);
