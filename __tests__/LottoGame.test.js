@@ -14,8 +14,7 @@ describe('로또 게임 기능 테스트', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
 
-    game.createWinningNumbers(winningNumbers);
-    game.createBonusNumber(bonusNumber);
+    const winningLotto = { winningNumbers, bonusNumber };
 
     const lottoTickets = [
       new Lotto([1, 2, 3, 4, 5, 6]),
@@ -25,7 +24,7 @@ describe('로또 게임 기능 테스트', () => {
       new Lotto([4, 5, 6, 7, 8, 9]),
     ];
 
-    expect(game.calculateAllPrize(lottoTickets)).toEqual([1, 2, 3, 4, 5]);
+    expect(game.calculateAllPrize(lottoTickets, winningLotto)).toEqual([1, 2, 3, 4, 5]);
   });
 
   test('당첨 내역을 통해 수익률을 계산한다.', () => {
