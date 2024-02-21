@@ -5,14 +5,10 @@ export default class Lotto {
 
   constructor(numbers) {
     validateLotto(numbers);
-    this.#numbers = numbers;
+    this.#numbers = numbers.toSorted((prevNumber, nextNumber) => prevNumber - nextNumber);
   }
 
-  get ascendingNumbers() {
-    const ascendingNumbers = this.#numbers
-      .map((number) => number)
-      .sort((prevNumber, nextNumber) => prevNumber - nextNumber);
-
-    return ascendingNumbers;
+  get getNumbers() {
+    return this.#numbers;
   }
 }
