@@ -1,9 +1,11 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
+import BonusNumber from './BonusNumber';
 import Lotto from './Lotto';
 class LottoMachine {
   #lottos;
-  #count;
+  #count; //TODO: count 분리
   #winningLotto;
+  #bonusNumber;
 
   constructor(money) {
     //TODO: money.amount 리팩토링?
@@ -20,6 +22,10 @@ class LottoMachine {
 
   set winningLotto(numbers) {
     this.#winningLotto = new Lotto(numbers);
+  }
+
+  set bonusNumber(number) {
+    this.#bonusNumber = new BonusNumber(number, this.#winningLotto);
   }
 
   get lottos() {
