@@ -2,6 +2,7 @@ export const LOTTO_RULES = {
   length: 6,
   min_number: 1,
   max_number: 45,
+  cost: 1_000,
 };
 
 export const ERROR_MESSAGES = {

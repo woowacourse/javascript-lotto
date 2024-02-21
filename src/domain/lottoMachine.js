@@ -1,3 +1,5 @@
+import { LOTTO_RULES } from '../constant/index.js';
+
 export default class LottoMachine {
   #cost;
 
@@ -6,6 +8,6 @@ export default class LottoMachine {
   }
 
   get getLottoCount() {
-    return this.#cost / 1000;
+    return this.#cost / LOTTO_RULES.cost;
   }
 }
