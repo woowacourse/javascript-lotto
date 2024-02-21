@@ -1,4 +1,5 @@
 import LottoBuyer from '../domain/LottoBuyer/LottoBuyer.js';
+import WinningRank from '../domain/WinningRank/WinningRank.js';
 import RetryHandler from '../errors/RetryHandler/RetryHandler.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
@@ -16,7 +17,8 @@ class LottoGameController {
       InputView.readBonusNumber(winningNumber),
     );
 
-    console.log(winningNumber, bonusNumber);
+    const winningRank = new WinningRank({ winningNumber, bonusNumber, lottoNumbers });
+    const winningRankDetail = winningRank.calculateRank();
   }
 
   async #processBuyLotto() {
