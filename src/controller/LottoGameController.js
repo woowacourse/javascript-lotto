@@ -1,6 +1,7 @@
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 import getValidInput from "../utils/getValidInput.js";
+import randomLottoArray from "../domain/randomLottoMaker.js";
 
 class LottoGameController {
   #budget;
@@ -23,6 +24,13 @@ class LottoGameController {
   async play() {
     await this.#initBudget();
     this.#printLottoCount();
+    this.#printIssuedLottos();
+  }
+
+  #printIssuedLottos() {
+    OutputView.printIssuedLottoArray(
+      randomLottoArray(this.#calculateLottoCount())
+    );
   }
 }
 

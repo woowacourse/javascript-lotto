@@ -6,4 +6,7 @@ export const OUTPUT_MESSAGE = Object.freeze({
   lottoCount(lottoCount) {
     return `${lottoCount}개를 구매했습니다.`;
   },
+  lottoArrayToString(lottoArray) {
+    return lottoArray.map((numbers) => `[${numbers.join(", ")}]`).join("\n");
+  },
 });
