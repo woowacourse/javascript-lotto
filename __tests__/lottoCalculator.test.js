@@ -70,3 +70,26 @@ describe('당첨 통계 테스트', () => {
     expect(lottoCalculator.lottoStatics).toEqual(lottoStatistics);
   });
 });
+
+describe('수익률 계산 테스트', () => {
+  test('당첨 통계를 바탕으로 총 수익률을 계산한다.(소수점 셋째 자리에서 반올림 한다.)', () => {
+    const lottoNumbers = {
+      winningNumbers: [1, 2, 3, 4, 5, 6],
+      bonusNumber: 7,
+    };
+
+    const generatedLottos = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 7, 8],
+      [1, 2, 3, 7, 8, 9],
+      [1, 2, 7, 8, 9, 10],
+      [1, 7, 8, 9, 10, 11],
+    ];
+
+    const lottoCalculator = new LottoCalculator(lottoNumbers, generatedLottos);
+    const totalProfit = lottoCalculator.calculateTotalProfit(6);
+
+    expect(totalProfit).toEqual(3_383.43);
+  });
+});
