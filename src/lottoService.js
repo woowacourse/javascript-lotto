@@ -2,8 +2,8 @@ const lottoService = {
   pickLottoRank(matchedResult) {
     const MATCHED_RANK_COUNT = { 0: 6, 1: 6, 2: 6, 3: 5, 4: 4, 6: 1 };
     const { matchedCount, isBonusMatched } = matchedResult;
-    if (matchedCount !== 5) return MATCHED_RANK_COUNT[matchedCount];
-    return isBonusMatched ? 2 : 3;
+    if (matchedCount === 5) return isBonusMatched ? 2 : 3;
+    return MATCHED_RANK_COUNT[matchedCount];
   },
 
   calculateProfit(matchedResultList, purchaseAmount) {
