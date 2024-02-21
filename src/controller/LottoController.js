@@ -2,11 +2,13 @@ import PurchaseAmountValidator from '../validator/PurchaseAmountValidator';
 import InputView from '../view/InputView';
 import Console from '../utils/Console';
 import LottoTicket from '../domain/LottoTicket';
+import OutputView from '../view/OutputView';
 
 class LottoController {
   async start() {
     const purchaseAmount = await Console.errorHandler(this.setPurchaseAmount, this);
     const lottoTickets = this.setLottoTicket(purchaseAmount);
+    OutputView.printLottoTickets(lottoTickets);
   }
   async setPurchaseAmount() {
     const inputValue = await InputView.readPurchaseAmount();
