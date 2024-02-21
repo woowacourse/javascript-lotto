@@ -1,16 +1,28 @@
 import InputView from "../view/InputView.js";
-import BudgetValidation from "../validation/budgetValidation.js";
+import OutputView from "../view/OutputView.js";
 import getValidInput from "../utils/getValidInput.js";
 
 class LottoGameController {
   #budget;
 
-  constructor() {
-    this.#initBudget();
-  }
+  constructor() {}
 
   async #initBudget() {
     const budgetInput = await getValidInput(InputView.readBudget);
+    this.#budget = Number(budgetInput);
+  }
+
+  #calculateLottoCount() {
+    return this.#budget / 1000;
+  }
+
+  #printLottoCount() {
+    OutputView.printLottoCount(this.#calculateLottoCount());
+  }
+
+  async play() {
+    await this.#initBudget();
+    this.#printLottoCount();
   }
 }
 
