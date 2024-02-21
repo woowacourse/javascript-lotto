@@ -51,4 +51,33 @@ describe('로또 메시지 포맷팅 테스트', () => {
     // then
     expect(formattedLottoNumbers).toMatch(expectedMessage);
   });
+
+  // given
+  const WINNING_STATISTICS_TEST_CASES = [
+    {
+      lottoRankResult: {
+        '1st': 0,
+        '2nd': 0,
+        '3rd': 1,
+        '4th': 0,
+        '5th': 1,
+      },
+      expectedMessage: `3개 일치 (5,000원) - 1개
+4개 일치 (50,000원) - 0개
+5개 일치 (1,500,000원) - 1개
+5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+6개 일치 (2,000,000,000원) - 0개`,
+    },
+  ];
+
+  test.each(WINNING_STATISTICS_TEST_CASES)(
+    '로또 당첨 등수에 따라 올바른 결과를 출력해야 한다.',
+    ({ lottoRankResult, expectedMessage }) => {
+      // when
+      const formattedWinningStatistics = FORMAT_MESSAGE.winningStatisticsToString(lottoRankResult);
+
+      // then
+      expect(formattedWinningStatistics).toMatch(expectedMessage);
+    },
+  );
 });
