@@ -9,17 +9,22 @@ const Validator = {
 
   validateWinningNumbers(winningNumbers) {
     this.checkEmpty(winningNumbers);
-    this.checkNumbersLength(winningNumbers);
+    this.checkWinningNumbersLength(winningNumbers);
 
     const winningNumberList = winningNumbers.split(',').map((number) => number.trim());
-    this.checkNumbersDuplicated(winningNumberList);
+    this.checkWinningNumbersDuplicated(winningNumberList);
     winningNumberList.forEach((number) => {
-      this.checkLottoNotNumber(number);
-      this.checkNumbersRange(number);
+      this.checkWinningNumbersNotNumber(number);
+      this.checkWinningNumbersRange(number);
     });
   },
 
-  validateBonusNumber(bonusNumber, winningNumbers) {},
+  validateBonusNumber(bonusNumber, winningNumbers) {
+    this.checkEmpty(bonusNumber);
+    this.checkBonusNumberNotNumber(bonusNumber);
+    this.checkBonusNumberRange(bonusNumber);
+    this.checkBonusNumberDuplicated(bonusNumber, winningNumbers);
+  },
 
   validateRestartCommand(restartCommand) {},
 
@@ -41,28 +46,46 @@ const Validator = {
     }
   },
 
-  checkNumbersLength(input) {
+  checkWinningNumbersLength(input) {
     const numbers = input.split(',');
     if (numbers.length !== 6) {
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_LENGTH);
     }
   },
 
-  checkNumbersDuplicated(input) {
+  checkWinningNumbersDuplicated(input) {
     if (new Set(input).size !== 6) {
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATED);
     }
   },
 
-  checkLottoNotNumber(input) {
+  checkWinningNumbersNotNumber(input) {
     if (!Number.isInteger(Number(input))) {
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_FORMAT);
     }
   },
 
-  checkNumbersRange(input) {
+  checkWinningNumbersRange(input) {
     if (Number(input) < 1 || Number(input) > 45) {
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_RANGE);
+    }
+  },
+
+  checkBonusNumberNotNumber(input) {
+    if (!Number.isInteger(Number(input))) {
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_FORMAT);
+    }
+  },
+
+  checkBonusNumberRange(input) {
+    if (Number(input) < 1 || Number(input) > 45) {
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_RANGE);
+    }
+  },
+
+  checkBonusNumberDuplicated(bonusNumber, winningNumbers) {
+    if (winningNumbers.includes(parseInt(bonusNumber))) {
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_DUPLICATED);
     }
   },
 };
