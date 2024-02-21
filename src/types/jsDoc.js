@@ -55,4 +55,15 @@
  * @property {(inputValue : string, winningNumber : number[]) => void} check - 유효성 검사를 진행하는 메서드
  */
 
+/**
+ * @typedef {object} RetryCommandValidator
+ * @property {WinningNumberValidationTypes} validationTypes - 검사할 항목들에 대한 객체
+ * @property {(inputValue : string, winningNumber : number[]) => void} check - 유효성 검사를 진행하는 메서드
+ */
+
+/**
+ * @typedef {object} RetryCommandValidationTypes
+ * @property {CommonValidationType} isValidCommand - 입력한 재시작 명령어가 유효한지 확인하는 객체
+ */
+
 export {};

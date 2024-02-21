@@ -11,6 +11,7 @@ import {
 } from '../validator/index.js';
 
 import { SYMBOLS } from '../constants/symbols.js';
+import RetryCommandValidator from '../validator/retryCommand/RetryCommandValidator.js';
 
 /**
  * @module InputView
@@ -55,6 +56,14 @@ const InputView = deepFreeze({
     BonusNumberValidator.check(inputBonusNumber, winningNumber);
 
     return Number(inputBonusNumber);
+  },
+
+  async readRetryCommand() {
+    const inputRetryCommand = await this.read(INPUT_MESSAGE.retryCommand);
+
+    RetryCommandValidator.check(inputRetryCommand);
+
+    return inputRetryCommand;
   },
 });
 

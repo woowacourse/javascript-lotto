@@ -5,6 +5,7 @@ export const INPUT_MESSAGE = Object.freeze({
   buyLottoPrice: '> 구입금액을 입력해 주세요. ',
   winningNumber: '\n> 당첨 번호를 입력해 주세요. ',
   bonusNumber: '\n> 보너스 번호를 입력해 주세요. ',
+  retryCommand: '\n> 다시 시작하시겠습니까? (y/n) ',
 });
 
 export const OUTPUT_MESSAGE = Object.freeze({
