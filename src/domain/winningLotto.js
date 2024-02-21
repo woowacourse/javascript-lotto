@@ -6,12 +6,12 @@ export default class WinningLotto {
 
   constructor(lotto, bonusNumber) {
     this.#lotto = lotto;
-    this.validate(bonusNumber);
+    this.validate(this.#lotto.getNumbers, bonusNumber);
 
     this.#bonusNumber = bonusNumber;
   }
 
-  validate(bonusNumber) {
-    validateBonusNumber(bonusNumber);
+  validate(numbers, bonusNumber) {
+    validateBonusNumber(numbers, bonusNumber);
   }
 }

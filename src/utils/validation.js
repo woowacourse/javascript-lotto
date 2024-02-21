@@ -24,6 +24,7 @@ export const validateLotto = (numbers) => {
   });
 };
 
-export const validateBonusNumber = (bonusNumber) => {
+export const validateBonusNumber = (numbers, bonusNumber) => {
   if (!Validations.isCorrectRange(bonusNumber)) throw new Error(ERROR_MESSAGES.lotto_number_range);
+  if (numbers.includes(bonusNumber)) throw new Error('보너스 번호는 당첨번호와 중복되지 않아야 합니다.');
 };
