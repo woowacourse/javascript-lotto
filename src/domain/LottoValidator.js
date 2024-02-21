@@ -5,8 +5,8 @@ const { ERROR } = Message;
 const { LOTTO } = Condition;
 
 const LottoValidator = {
-  validateNumbersLength(numbers, length) {
-    if (numbers.length !== length) {
+  validateNumbersLength(numbers) {
+    if (numbers.length !== LOTTO.NUMBER_LENGTH) {
       throw new Error(ERROR.LOTTO_NUMBERS_LENGTH);
     }
   },
