@@ -1,3 +1,5 @@
+import Lotto from "./Lotto";
+
 class LottoStore {
   constructor() {}
 
@@ -13,6 +15,27 @@ class LottoStore {
 
     // TODO: 정상동작 테스트
     return Array.from({ length: lottoCount }).map(() => [1, 2, 3, 4, 5, 6]);
+  }
+
+  issueLottos(sixNumbersArray) {
+    // 2차원 배열의 이름 리뷰어는 어떻게 생각하시나요 ??
+    this.#validateSixNumbersArray(sixNumbersArray);
+
+    return sixNumbersArray.map((sixNumbers) => new Lotto(sixNumbers));
+  }
+
+  #validateSixNumbersArray(sixNumbersArray) {
+    if (!Array.isArray(sixNumbersArray)) {
+      throw new Error();
+    }
+
+    if (sixNumbersArray.length === 0) {
+      throw new Error();
+    }
+
+    if (sixNumbersArray.some((sixNumbers) => !Array.isArray(sixNumbers))) {
+      throw new Error();
+    }
   }
 
   #validatePurchaseAmount(purchaseAmount) {
