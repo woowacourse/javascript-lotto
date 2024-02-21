@@ -26,7 +26,6 @@ export default class Money {
   }
 
   get amount() {
-    //TODO: 필요한가? 테스트에서만 필요한가?
     return this.#amount;
   }
 }
