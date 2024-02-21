@@ -14,7 +14,7 @@ export default class Money {
   }
 
   #isPositiveInteger(amount) {
-    if (!Number.isInteger(amount) || amount < 1) {
+    if (isNaN(amount) || amount < 1) {
       throw new Error(ERROR_MESSAGE.NOT_POSITIVE_INTEGER);
     }
   }
@@ -26,6 +26,7 @@ export default class Money {
   }
 
   get amount() {
+    //TODO: 필요한가? 테스트에서만 필요한가?
     return this.#amount;
   }
 }

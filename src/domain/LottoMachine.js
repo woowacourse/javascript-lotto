@@ -5,7 +5,8 @@ class LottoMachine {
   #count;
 
   constructor(money) {
-    this.#count = money / LOTTO_RULE.LOTTO_MONEY_UNIT;
+    //TODO: money.amount 리팩토링?
+    this.#count = money.amount / LOTTO_RULE.LOTTO_MONEY_UNIT;
     this.#drawLottos();
   }
 
