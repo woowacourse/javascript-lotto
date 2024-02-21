@@ -1,13 +1,28 @@
 import Lotto from "./Lotto";
 
 export default class LottoMachine {
-  makeLottoByMoney(money) {
-    const CNT = Math.floor(money / 1000);
-    const returnValues = Array.from(
+  #money;
+
+  #lottos;
+
+  constructor(money) {
+    this.#money = money;
+    this.#validMoney();
+    this.#makeLottoByMoney();
+  }
+
+  #validMoney() {
+    if (this.#money < 1000) {
+      throw new Error("❌");
+    }
+  }
+
+  #makeLottoByMoney() {
+    const CNT = Math.floor(this.#money / 1000);
+    this.#lottos = Array.from(
       { length: CNT },
       () => new Lotto(this.#makeRandomNumbers())
     );
-    return returnValues;
   }
 
   #makeRandomNumbers() {
@@ -18,5 +33,9 @@ export default class LottoMachine {
     }
 
     return [...lottoSet];
+  }
+
+  getLottos() {
+    return [...this.#lottos];
   }
 }
