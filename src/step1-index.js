@@ -5,6 +5,4 @@
 
 import LottoGame from './controller/LottoGame';
 
-const game = new LottoGame();
-
-game.start();
+LottoGame.start();
