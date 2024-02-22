@@ -13,5 +13,8 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": ["airbnb-base", "prettier"]
+  "extends": ["airbnb-base", "prettier"],
+  "eslintConfig": {
+    "ignorePatterns": ["dist"]
+  }
 }
