@@ -23,6 +23,7 @@ export default class LottoNumber {
     this.#numbers.forEach((number) => {
       this.#validInRange(number);
     });
+    // TODO: 숫자형인지 검사
     this.#validDuplicate();
     this.#validLength();
   }

@@ -21,7 +21,7 @@ const stdObj = Object.freeze({
   output: process.stdout,
 });
 
-const InputView = {
+const InputView = Object.freeze({
   async readMoney() {
     const moneyInput = await this.readLineAsync(COMMON_MESSAGES.MONEY);
     this.validInput(moneyInput);
@@ -41,7 +41,7 @@ const InputView = {
     return Number(bonusNumberInput);
   },
 
-  async validInput(input) {
+  validInput(input) {
     if (!input) throw new Error(ERROR_MESSAGES.NO_INPUT);
   },
 
@@ -63,6 +63,6 @@ const InputView = {
       });
     });
   },
-};
+});
 
 export default InputView;

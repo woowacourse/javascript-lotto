@@ -43,6 +43,7 @@ export default class LottoMachine {
   }
 
   getLottos() {
+    // TODO: 왜 spread를 사용한 것인가?
     return [...this.#lottos];
   }
 

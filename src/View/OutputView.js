@@ -30,11 +30,9 @@ const RANK_TO_MESSAGE = Object.freeze({
   5: `${COUNT_UNIT} 일치`,
 });
 
-const COMMON_MESSAGES = {
-  RESULT_HEADER: '\n당첨 통계\n--------------------',
-};
+const RESULT_HEADER_MESSAGE = '\n당첨 통계\n--------------------';
 
-const OutputView = {
+const OutputView = Object.freeze({
   printBoughtLottos(boughtLottos) {
     this.printLottoLength(boughtLottos.length);
     boughtLottos.forEach((lotto) => this.printMessage(`[${lotto.getLottoNumbers().join(DIVIDED_SYMBOL)}]`));
@@ -45,7 +43,7 @@ const OutputView = {
   },
 
   printWinLottos(winLottos) {
-    this.printMessage(COMMON_MESSAGES.RESULT_HEADER);
+    this.printMessage(RESULT_HEADER_MESSAGE);
     const NUMBER_OF_RANK_TYPE = 5;
     for (let rank = NUMBER_OF_RANK_TYPE; rank > 0; rank -= 1) {
       const rankMessage = RANK_TO_MESSAGE[rank];
@@ -67,6 +65,6 @@ const OutputView = {
   printMessage(message) {
     console.log(message);
   },
-};
+});
 
 export default OutputView;
