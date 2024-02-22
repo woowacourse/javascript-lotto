@@ -1,5 +1,6 @@
 import Validator from "../utils/Validator";
 import Lotto from "./Lotto";
+
 class WinningLotto extends Lotto {
   #bonusNumber;
 

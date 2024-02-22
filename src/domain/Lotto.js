@@ -1,7 +1,5 @@
 import Validator from "../utils/Validator";
 
-export const LOTTO_LENGTH = 6;
-
 class Lotto {
   _numbers;
 
