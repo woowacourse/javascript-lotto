@@ -1,7 +1,18 @@
 {
   "rules": {
     "max-depth": ["error", 1],
-    "max-params": ["error", 2]
+    "max-params": ["error", 2],
+    "no-return-await": "off",
+    //"no-irregular-whitespace": "error",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   },
   "env": {
     "browser": true,
@@ -14,7 +25,5 @@
     "sourceType": "module"
   },
   "extends": ["airbnb-base", "prettier"],
-  "eslintConfig": {
-    "ignorePatterns": ["dist"]
-  }
+  "ignorePatterns": ["dist"]
 }
