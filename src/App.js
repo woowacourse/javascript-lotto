@@ -6,7 +6,7 @@ class App {
   async run() {
     this.#LottoController = new LottoController();
 
-    await this.#LottoController.start();
+    await this.#LottoController.lottoGameStart();
   }
 }
 

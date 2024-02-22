@@ -19,6 +19,12 @@ class InputView {
 
     return input;
   }
+
+  static async readRetryResponse() {
+    const input = await Console.readLineAsync(PROGRESS_MESSAGES.READ_RETRY_MESSAGE);
+
+    return input;
+  }
 }
 
 export default InputView;

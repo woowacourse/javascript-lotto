@@ -4,21 +4,20 @@ import OutputView from '../view/OutputView';
 import Money from '../domain/Money';
 import { retryOnInvalidInput } from '../util/retryOnInvalidInput';
 import calculateROI from '../util/calculateROI';
+import { retryGame } from '../util/retryGame';
 
 class LottoController {
   #lottoMachine;
   #money;
 
-  async start() {
+  async lottoGameStart() {
     await retryOnInvalidInput(async () => {
       await this.#insertMoney();
     });
 
     this.#lottoMachine = new LottoMachine(this.#money);
-    OutputView.printPurchasedLottoAmount(this.#lottoMachine.count);
-    this.#lottoMachine.lottos.forEach(lotto => {
-      OutputView.printLottoNumbers(lotto.lottoNumbers);
-    });
+
+    this.#printPurchasedLottos();
 
     await retryOnInvalidInput(async () => {
       await this.#insertWinnigNumbers();
@@ -28,15 +27,11 @@ class LottoController {
       await this.#insertBonusNumbers();
     });
 
-    const lottoRanks = this.#lottoMachine.countLottoRanks();
+    this.#calculateLottoResult();
 
-    OutputView.printResultNotice();
-    lottoRanks.forEach((lottoRank, idx) => {
-      OutputView.printLottoResult(lottoRank, idx);
+    await retryGame(async () => {
+      await this.lottoGameStart();
     });
-
-    const totalProfitRate = calculateROI(this.#money, lottoRanks);
-    OutputView.printTotalProfitRate(totalProfitRate);
   }
 
   async #insertMoney() {
@@ -56,6 +51,25 @@ class LottoController {
     const inputBonusNumber = await InputView.readBonusNumber();
 
     this.#lottoMachine.bonusNumber = inputBonusNumber;
+  }
+
+  #printPurchasedLottos() {
+    OutputView.printPurchasedLottoAmount(this.#lottoMachine.count);
+    this.#lottoMachine.lottos.forEach(lotto => {
+      OutputView.printLottoNumbers(lotto.lottoNumbers);
+    });
+  }
+
+  #calculateLottoResult() {
+    const lottoRanks = this.#lottoMachine.countLottoRanks();
+
+    OutputView.printResultNotice();
+    lottoRanks.forEach((lottoRank, idx) => {
+      OutputView.printLottoResult(lottoRank, idx);
+    });
+
+    const totalProfitRate = calculateROI(this.#money, lottoRanks);
+    OutputView.printTotalProfitRate(totalProfitRate);
   }
 }
 

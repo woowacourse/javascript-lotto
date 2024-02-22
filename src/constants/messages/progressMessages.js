@@ -6,6 +6,8 @@ const PROGRESS_MESSAGES = Object.freeze({
   READ_WINNIG_NUMBERS_MESSAGE: `${NEW_LINE}당첨 번호를 입력해 주세요. `,
   READ_BONUS_NUMBER_MESSAGE: `${NEW_LINE}보너스 번호를 입력해 주세요. `,
   PRINT_RESULT_NOTICE_MESSAGE: `${NEW_LINE}당첨 통계${NEW_LINE}--------------------`,
+  READ_RETRY_MESSAGE: `${NEW_LINE}다시 시작하시겠습니까? (y/n)`,
+  PRINT_EXIT_MESSAGE: `${NEW_LINE}로또 게임을 종료합니다.`,
 });
 
 export default PROGRESS_MESSAGES;

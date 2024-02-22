@@ -1,5 +1,4 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
-import returnOnInvestment from '../util/calculateROI';
 import BonusNumber from './BonusNumber';
 import Lotto from './Lotto';
 

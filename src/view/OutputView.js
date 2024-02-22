@@ -25,6 +25,10 @@ class OutputView {
   static async printTotalProfitRate(profitRate) {
     Console.print(`총 수익률은 ${profitRate}%입니다.`);
   }
+
+  static async printExitLotto() {
+    Console.print(PROGRESS_MESSAGES.PRINT_EXIT_MESSAGE);
+  }
 }
 
 export default OutputView;
