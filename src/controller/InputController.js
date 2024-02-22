@@ -10,7 +10,7 @@ const InputController = {
       return parseInt(purchaseAmount);
     } catch (error) {
       handleIO.print(error.message);
-      return inputPurchaseAmount();
+      return this.inputPurchaseAmount();
     }
   },
 
