@@ -1,6 +1,7 @@
 import bonusNumberValidator from '../src/validators/bonusNumberValidator';
 import numberValidator from '../src/validators/numberValidator';
 import purchaseAmountValidator from '../src/validators/purchaseAmountValidator';
+import restartValidator from '../src/validators/restartValidator';
 import winningNumbersValidator from '../src/validators/winningNumbersValidator';
 
 describe('유효성 검사 테스트', () => {
@@ -65,6 +66,18 @@ describe('유효성 검사 테스트', () => {
 
       const mockFn = () => {
         bonusNumberValidator.validateDuplicate(bonusNumber, winningNumbers);
+      };
+
+      expect(mockFn).toThrow('[ERROR]');
+    });
+  });
+
+  describe('재시작 입력 테스트', () => {
+    test('재시작 입력이 y 또는 n이 아닌 경우 예외를 발생시킨다.', () => {
+      const restartInput = 'yes';
+
+      const mockFn = () => {
+        restartValidator.validate(restartInput);
       };
 
       expect(mockFn).toThrow('[ERROR]');
