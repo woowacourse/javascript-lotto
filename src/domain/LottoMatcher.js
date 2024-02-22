@@ -3,11 +3,11 @@ class LottoMatcher {
 
   constructor(tickets, [winningNumber, bonusNumber]) {
     this.#matchingResult = {
-      6: 0,
-      '5+보너스': 0,
-      5: 0,
-      4: 0,
       3: 0,
+      4: 0,
+      5: 0,
+      '5+보너스': 0,
+      6: 0,
     };
     this.match(tickets, [winningNumber, bonusNumber]);
   }
@@ -16,7 +16,7 @@ class LottoMatcher {
     tickets.forEach((ticket) => {
       const matchCount = ticket.filter((number) => winningNumber.includes(number)).length;
       const hasBonusNumber = this.compareBonusNumber(ticket, bonusNumber);
-      this.updateMatchingResult(matchCount, hasBonusNumber);
+      if (matchCount >= 3) this.updateMatchingResult(matchCount, hasBonusNumber);
     });
   }
 
