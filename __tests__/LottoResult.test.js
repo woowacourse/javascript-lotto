@@ -28,7 +28,17 @@ describe("로또 결과 도메인 테스트", () => {
     );
 
     //then
-    expect(lottoResult.getRankBoard()).toEqual(EXPECTED_BOARDS);
+    const resultBoard = lottoResult.getRankBoard();
+    const lottoRanks = Object.keys(resultBoard);
+
+    const matchedCountBoard = lottoRanks.reduce((accBoard, currRank) => {
+      return {
+        ...accBoard,
+        [currRank]: resultBoard[currRank].matchedCount,
+      };
+    }, {});
+
+    expect(matchedCountBoard).toEqual(EXPECTED_BOARDS);
   });
 
   test("수익률을 계산한다.", () => {
