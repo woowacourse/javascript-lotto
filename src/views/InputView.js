@@ -1,7 +1,7 @@
+import { INPUT_MESSAGE } from '../constants/messages/messages.js';
+
 import Console from '../utils/console.js';
 import { deepFreeze } from '../utils/object/object.js';
-
-import { INPUT_MESSAGE } from '../constants/messages/messages.js';
 
 import {
   BuyLottoPriceValidator,

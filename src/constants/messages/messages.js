@@ -1,5 +1,4 @@
-import RateOfReturnCalculator from '../../domain/RateOfReturnCalculator/RateOfReturnCalculator.js';
-import WinningRank from '../../domain/WinningRank/WinningRank.js';
+import { RateOfReturnCalculator, WinningRank } from '../../domain/index.js';
 import { SYMBOLS } from '../symbols.js';
 
 export const INPUT_MESSAGE = Object.freeze({

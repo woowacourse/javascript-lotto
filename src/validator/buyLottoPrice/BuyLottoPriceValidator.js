@@ -1,8 +1,10 @@
 import LottoBuyer from '../../domain/LottoBuyer/LottoBuyer.js';
 
 import { startValidation } from '../startValidation.js';
-import { deepFreeze } from '../../utils/object/object.js';
+
 import { TYPE_OF_NUMBER_REGEXP } from '../../constants/regexp.js';
+
+import { deepFreeze } from '../../utils/object/object.js';
 
 const { BUY_LOTTO_PRICE_RANGE, LOTTO_PRICE_PER_UNIT } = LottoBuyer;
 

@@ -1,9 +1,7 @@
-import LottoBuyer from '../domain/LottoBuyer/LottoBuyer.js';
-import RateOfReturnCalculator from '../domain/RateOfReturnCalculator/RateOfReturnCalculator.js';
-import WinningRank from '../domain/WinningRank/WinningRank.js';
+import { LottoBuyer, RateOfReturnCalculator, WinningRank } from '../domain/index.js';
+import { InputView, OutputView } from '../views/index.js';
+
 import RetryHandler from '../errors/RetryHandler/RetryHandler.js';
-import InputView from '../views/InputView.js';
-import OutputView from '../views/OutputView.js';
 
 class LottoGameController {
   #retryCommands = ['Y', 'y'];

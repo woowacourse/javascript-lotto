@@ -1,4 +1,5 @@
 import { startValidation } from '../startValidation.js';
+
 import { deepFreeze } from '../../utils/object/object.js';
 
 /**
