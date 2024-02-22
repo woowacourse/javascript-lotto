@@ -7,6 +7,7 @@ import LottoTicket from '../domain/LottoTicket';
 import OutputView from '../view/OutputView';
 import LottoMatcher from '../domain/LottoMatcher';
 import RateOfReturnCalculator from '../utils/RateOfReturnCalculator';
+import RestartOrExitValidator from '../validator/RestartOrExitValidator';
 
 class LottoController {
   #winningNumber;
@@ -17,7 +18,6 @@ class LottoController {
     OutputView.printPurchaseCount(purchaseCount);
     const lottoTickets = this.setLottoTicket(purchaseAmount);
     OutputView.printLottoTickets(lottoTickets);
-
     this.#winningNumber = await Console.errorHandler(this.setWinningNumber, this);
     const bonusNumber = await Console.errorHandler(this.setBonusNumber, this);
     const matchingResult = await this.setMatchingResult(lottoTickets, [
@@ -27,6 +27,9 @@ class LottoController {
     OutputView.printWinningStats(matchingResult);
     const rateOfReturn = RateOfReturnCalculator(purchaseAmount, matchingResult);
     OutputView.printRateOfReturn(rateOfReturn);
+
+    const restart = await Console.errorHandler(this.setRestartOrExit, this);
+    if (restart === 'y') this.start();
   }
 
   async setPurchaseAmount() {
@@ -92,6 +95,11 @@ class LottoController {
     const matchingResult = new LottoMatcher(lottoTickets, [winningNumber, bonusNumber])
       .matchingResult;
     return matchingResult;
+  }
+
+  async setRestartOrExit() {
+    const inputValue = await InputView.readRestartOrExit();
+    return inputValue;
   }
 }
 
