@@ -17,29 +17,34 @@ const lottoController = {
   async game() {
     while (true) {
       const money = await catchReturn(this.getMoney);
-      const randomLottos = lottoGenerator.generateRandomLotto(
-        money.getLottoCount()
-      );
-      this.printRandomLottos(randomLottos);
+      const randomLottos = this.generateRandomLotto(money.getLottoCount());
       const winningLotto = await catchReturn(this.getWinningLotto);
       const bonusLottoNumber = await catchReturn(() =>
         this.getBonusLottoNumber(winningLotto)
       );
-      const ranks = getLottoRank({
+
+      const rank = this.calcRank({
         winningLotto,
         bonusLottoNumber,
         randomLottos,
       });
-      this.printRanks({ winningLotto, bonusLottoNumber, randomLottos });
-      this.printProfitRate(money.get(), ranks);
+      this.printProfitRate(money.get(), rank);
 
-      if (!(await catchReturn(this.getRestartGame))) break;
+      if (await catchReturn(this.isExitGame)) break;
     }
   },
 
   async getMoney() {
     const money = await InputView.readMoney();
     return new LottoMoney(money);
+  },
+
+  generateRandomLotto(money) {
+    const randomLottos = lottoGenerator.generateRandomLotto(money);
+
+    this.printRandomLottos(randomLottos);
+
+    return randomLottos;
   },
 
   printRandomLottos(randomLottos) {
@@ -60,9 +65,9 @@ const lottoController = {
     return bonusLottoNumber;
   },
 
-  async getRestartGame() {
-    const commandInput = await InputView.readRestartGame();
-    return Command.isRestart(commandInput);
+  async isExitGame() {
+    const commandInput = await InputView.readIsExitGame();
+    return Command.isExit(commandInput);
   },
 
   printRanks({ winningLotto, bonusLottoNumber, randomLottos }) {
@@ -79,6 +84,14 @@ const lottoController = {
     const profitRate = calculateProfitRate(totalPrize, money);
 
     OutputView.printProfitRate(profitRate);
+  },
+
+  calcRank({ winningLotto, bonusLottoNumber, randomLottos }) {
+    const rank = getLottoRank({ winningLotto, bonusLottoNumber, randomLottos });
+
+    this.printRanks({ winningLotto, bonusLottoNumber, randomLottos });
+
+    return rank;
   },
 };
 

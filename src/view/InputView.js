@@ -13,7 +13,7 @@ const InputView = {
     return await readLineAsync("보너스 번호를 입력해 주세요.");
   },
 
-  async readRestartGame() {
+  async readIsExitGame() {
     return await readLineAsync("다시 시작하시겠습니까? (y/n)");
   },
 };
