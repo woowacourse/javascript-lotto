@@ -30,10 +30,10 @@ export const FORMAT_MESSAGE = Object.freeze({
     return `${description} (${prize.toLocaleString()}원) - ${count}개\n`;
   },
 
-  winningStatisticsToString(winningRankDetail) {
+  winningStatisticsToString(winningRankResult) {
     return Object.entries(RateOfReturnCalculator.WINNING_PRIZE_DETAIL).reduceRight(
       (prevResult, [rank, prize]) => {
-        const count = winningRankDetail[rank] || 0;
+        const count = winningRankResult[rank] || 0;
 
         return prevResult + this.partialWinningStatisticsToString({ rank, prize, count });
       },

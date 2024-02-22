@@ -9,16 +9,16 @@ class RateOfReturnCalculator {
 
   #buyLottoPrice;
 
-  #winningRankDetail;
+  #winningRankResult;
 
-  constructor({ buyLottoPrice, winningRankDetail }) {
+  constructor({ buyLottoPrice, winningRankResult }) {
     this.#buyLottoPrice = buyLottoPrice;
-    this.#winningRankDetail = winningRankDetail;
+    this.#winningRankResult = winningRankResult;
   }
 
   #calculateTotalWinningAmount() {
-    const totalWinningAmount = Object.keys(this.#winningRankDetail).reduce((total, rank) => {
-      const count = this.#winningRankDetail[rank];
+    const totalWinningAmount = Object.keys(this.#winningRankResult).reduce((total, rank) => {
+      const count = this.#winningRankResult[rank];
       const prize = RateOfReturnCalculator.WINNING_PRIZE_DETAIL[rank];
 
       return total + count * prize;

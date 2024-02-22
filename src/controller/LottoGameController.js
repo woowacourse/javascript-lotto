@@ -28,12 +28,12 @@ class LottoGameController {
   async #processDrawLottoResult({ buyLottoPrice, lottoNumbers }) {
     const { winningNumber, bonusNumber } = await this.#requireWinningDetail();
     const winningRank = new WinningRank({ winningNumber, bonusNumber, lottoNumbers });
-    const winningRankDetail = winningRank.calculateRank();
+    const winningRankResult = winningRank.calculateRank();
 
-    const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankDetail });
+    const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankResult });
     const rateOfReturn = rateOfReturnCalculator.execute();
 
-    OutputView.printWinningLottoResult({ rateOfReturn, winningRankDetail });
+    OutputView.printWinningLottoResult({ rateOfReturn, winningRankResult });
   }
 
   async #requireWinningDetail() {

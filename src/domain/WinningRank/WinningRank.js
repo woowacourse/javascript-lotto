@@ -1,7 +1,7 @@
 class WinningRank {
   #lottoDrawDetail;
 
-  #winningRankDetail = {
+  #winningRankResult = {
     '1st': 0,
     '2nd': 0,
     '3rd': 0,
@@ -28,7 +28,7 @@ class WinningRank {
       return rank !== null
         ? { ...prevWinningRankDetail, [rank]: prevWinningRankDetail[rank] + 1 }
         : prevWinningRankDetail;
-    }, this.#winningRankDetail);
+    }, this.#winningRankResult);
   }
 
   #determineRank(lottoNumber) {

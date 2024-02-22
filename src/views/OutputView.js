@@ -11,11 +11,11 @@ const OutputView = Object.freeze({
     Console.print(FORMAT_MESSAGE.lottoNumbersToString(lottoNumbers));
   },
 
-  printWinningLottoResult({ rateOfReturn, winningRankDetail }) {
+  printWinningLottoResult({ rateOfReturn, winningRankResult }) {
     Console.print(OUTPUT_MESSAGE.winningLottoResultTitle);
 
     Console.print(
-      FORMAT_MESSAGE.winningStatisticsToString(winningRankDetail) +
+      FORMAT_MESSAGE.winningStatisticsToString(winningRankResult) +
         FORMAT_MESSAGE.rateOfReturnToString(rateOfReturn),
     );
   },
