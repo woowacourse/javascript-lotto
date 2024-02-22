@@ -5,6 +5,7 @@ import randomLottoArray from "../domain/randomLottoMaker.js";
 
 class LottoGameController {
   #budget;
+  #winningLotto = {};
 
   constructor() {}
 
@@ -13,12 +14,16 @@ class LottoGameController {
     this.#budget = Number(budgetInput);
   }
 
-  async #initWinningLottoNumbers() {
-    // 함수명 임시 이름임
-    const t = await getValidInput(InputView.readWinningLottoNumbers);
-    console.log(t);
-    //this.#budget = Number(budgetInput);
-    return t;
+  async #initWinningLotto() {
+    const winningLotto = await getValidInput(InputView.readWinningLottoNumbers);
+    this.#winningLotto["normalNumbers"] = winningLotto;
+  }
+
+  async #initWinningLottoBonus() {
+    const winningLottoBonus = await getValidInput(() =>
+      InputView.readWinningLottoBonus(this.#winningLotto["normalNumbers"]),
+    );
+    this.#winningLotto["bonusNumber"] = winningLottoBonus;
   }
 
   #calculateLottoCount() {
@@ -33,14 +38,8 @@ class LottoGameController {
     await this.#initBudget();
     this.#printLottoCount();
     this.#printIssuedLottos();
-    await this.#inittest();
-  }
-
-  async #inittest() {
-    const t = await getValidInput(InputView.readWinningLottoNumbers);
-    console.log(t);
-    //this.#budget = Number(budgetInput);
-    return t;
+    await this.#initWinningLotto();
+    await this.#initWinningLottoBonus();
   }
 
   #printIssuedLottos() {

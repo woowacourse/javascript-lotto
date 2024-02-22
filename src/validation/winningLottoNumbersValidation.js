@@ -1,18 +1,14 @@
 import ERROR_MESSAGE from "../constants/errorMessage.js";
 
+/**
+ * 로또 당첨 번호 배열의 유효성 검사
+ */
 const winningLottoNumbersValidation = {
   winningNumbers: {
     sixNumbers: {
       errorMessage: ERROR_MESSAGE.sixNumbers,
       isValid(input) {
         return input.length === 6;
-      },
-    },
-
-    outOfRange: {
-      errorMessage: ERROR_MESSAGE.outOfRange,
-      isValid(input) {
-        return input.every((number) => number >= 1 && number <= 45);
       },
     },
 
