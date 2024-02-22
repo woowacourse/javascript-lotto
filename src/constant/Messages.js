@@ -14,26 +14,26 @@ export const ERROR_MESSAGES = {
 };
 
 export const INPUT_MESSAGES = {
-  purchaseAmount: '> 구입금액을 입력해 주세요. ',
-  winningNumbers: '> 당첨 번호를 입력해 주세요. ',
-  bonusNumber: '> 보너스 번호를 입력해 주세요. ',
-  restartResponse: '> 다시 시작하시겠습니까? (y/n) '
+  purchaseAmount: '\n> 구입금액을 입력해 주세요. ',
+  winningNumbers: '\n> 당첨 번호를 입력해 주세요. ',
+  bonusNumber: '\n> 보너스 번호를 입력해 주세요. ',
+  restartResponse: '\n> 다시 시작하시겠습니까? (y/n) '
 };
 
 export const INPUT_HINTS = {
-  purchaseAmount: '\t[hint] 1000 이상의 금액을 입력하세요.',
-  winningNumber1: '\t[hint] 1부터 45 사이의 정수 6개를 ,(comma)로 구분하여 입력하세요.',
-  winningNumber2: '\t[hint] 중복은 허용하지 않습니다. ',
-  bonusNumber: '\t[hint] 1부터 45 사이의 정수 1개를 입력하세요.'
+  purchaseAmount: '  [hint] 1000 이상의 금액을 입력하세요.\n',
+  winningNumber1: '  [hint] 1부터 45 사이의 정수 6개를 ,(comma)로 구분하여 입력하세요.',
+  winningNumber2: '  [hint] 중복은 허용하지 않습니다.\n',
+  bonusNumber: '  [hint] 1부터 45 사이의 정수 1개를 입력하세요.\n'
 };
 
 export const OUTPUT_MESSAGES = {
-  issueQuantity: (count) => `${count}개를 구매했습니다.`,
-  lottoNumbers: (numbers) => `[${numbers.join(', ')}]`,
-  statisticsTitle: '당첨 통계',
-  dividingLine: '--------------------',
-  statisticsResult: (matchingCount, bounusMatch, prizeAmount, count) =>
-    `${matchingCount}개 일치${bounusMatch} (${prizeAmount}) - ${count}개`,
+  issueQuantity: (count) => `\n${count}개를 구매했습니다.`,
+  lottoNumbers: (numbers) => `\n[${numbers.join(', ')}]`,
+  statisticsTitle: '\n당첨 통계',
+  dividingLine: '\n--------------------',
+  statisticsResult: (matchingCount, bonusMatch, prizeAmount, count) =>
+    `${matchingCount}개 일치${bonusMatch} (${prizeAmount}원) - ${count}개`,
   bonusMatch: ', 보너스 볼 일치',
-  profitRate: (profitRate) => `총 수익률은 ${profitRate}%입니다.`
+  profitRate: (profitRate) => `\n총 수익률은 ${profitRate}%입니다.`
 };
