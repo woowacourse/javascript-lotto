@@ -23,7 +23,35 @@ npm run test
 ### 파일 구조
 
 ```
+📦src
+ ┣ 📂constant
+ ┃ ┣ 📜Messages.js
+ ┃ ┗ 📜Options.js
+ ┣ 📂controller
+ ┃ ┗ 📜LottoController.js
+ ┣ 📂domain
+ ┃ ┣ 📜Lotto.js
+ ┃ ┗ 📜LottoMachine.js
+ ┣ 📂util
+ ┃ ┣ 📂random
+ ┃ ┃ ┗ 📜Random.js
+ ┃ ┣ 📂readLine
+ ┃ ┃ ┗ 📜readLineAsync.js
+ ┃ ┗ 📂validation
+ ┃ ┃ ┣ 📜LottoNumbersValidator.js
+ ┃ ┃ ┣ 📜PurchaseAmountValidator.js
+ ┃ ┃ ┗ 📜Validation.js
+ ┣ 📂view
+ ┃ ┣ 📜InputView.js
+ ┃ ┗ 📜OutputView.js
+ ┣ 📜App.js
+ ┣ 📜step1-index.js
+ ┗ 📜step2-index.js
 
-
+📦__tests__
+ ┣ 📜.gitkeep
+ ┣ 📜Lotto.test.js
+ ┣ 📜LottoMachine.test.js
+ ┗ 📜Random.test.js
 
 ```
