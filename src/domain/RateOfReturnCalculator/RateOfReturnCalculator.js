@@ -16,25 +16,25 @@ class RateOfReturnCalculator {
     this.#winningRankResult = winningRankResult;
   }
 
-  #calculateTotalWinningAmount() {
-    const totalWinningAmount = Object.keys(this.#winningRankResult).reduce((total, rank) => {
+  execute() {
+    const totalPrize = this.#calculateTotalPrize();
+
+    return this.#formatTotalPrizeToRateOfReturn(totalPrize);
+  }
+
+  #calculateTotalPrize() {
+    const totalPrize = Object.keys(this.#winningRankResult).reduce((total, rank) => {
       const count = this.#winningRankResult[rank];
       const prize = RateOfReturnCalculator.WINNING_PRIZE_DETAIL[rank];
 
       return total + count * prize;
     }, 0);
 
-    return totalWinningAmount;
+    return totalPrize;
   }
 
-  #formatDecimal(totalWinningAmount) {
-    return ((totalWinningAmount / this.#buyLottoPrice) * 100).toFixed(1);
-  }
-
-  execute() {
-    const totalWinningAmount = this.#calculateTotalWinningAmount();
-
-    return this.#formatDecimal(totalWinningAmount);
+  #formatTotalPrizeToRateOfReturn(totalPrize) {
+    return ((totalPrize / this.#buyLottoPrice) * 100).toFixed(1);
   }
 }
 
