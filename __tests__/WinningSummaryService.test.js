@@ -1,18 +1,4 @@
-import LottoNumberList from '../src/domain/entity/LottoNumberList.js';
-
-class WinningSummaryService {
-  #lottos;
-  #winningLotto;
-
-  constructor(lottos, winningLotto) {
-    this.#lottos = lottos.map(lotto => new LottoNumberList(lotto));
-    this.#winningLotto = winningLotto;
-  }
-
-  getWinningCounts() {
-    return [1, 1, 1, 2, 1];
-  }
-}
+import WinningResultService from '../src/domain/service/WinningSummaryService.js';
 
 describe('당첨 통계 테스트', () => {
   test('로또들을 인자로 받았을 때, 당첨 개수들을 반환한다.', () => {
@@ -31,7 +17,7 @@ describe('당첨 통계 테스트', () => {
     };
 
     expect(
-      new WinningSummaryService(LOTTOS, WINNING_LOTTO).getWinningCounts(),
-    ).toEqual([1, 1, 1, 2, 1]);
+      new WinningResultService(LOTTOS, WINNING_LOTTO).getWinningResult(),
+    ).toEqual({ 3: 1, 4: 1, 5: 1, '5-1': 2, 6: 1 });
   });
 });

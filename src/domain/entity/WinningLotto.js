@@ -1,3 +1,4 @@
+import CONDITION from '../../constant/Condition.js';
 import ERROR from '../../constant/Error.js';
 import LottoNumber from './LottoNumber.js';
 import LottoNumberList from './LottoNumberList.js';
@@ -21,10 +22,20 @@ class WinningLotto {
   }
 
   getMatchCounts(lottoNumbers) {
-    return [
-      this.#getMatchLottoCount(lottoNumbers),
-      this.#getMatchBonusNumberCount(lottoNumbers),
-    ];
+    const results = [this.#getMatchLottoCount(lottoNumbers).toString()];
+    if (this.#isSecondPrize(lottoNumbers)) {
+      results.push(this.#getMatchBonusNumberCount(lottoNumbers));
+    }
+    return results.join('-');
+  }
+
+  #isSecondPrize(lottoNumbers) {
+    return (
+      this.#getMatchLottoCount(lottoNumbers) ===
+        CONDITION.secondPrizeMatchCount &&
+      this.#getMatchBonusNumberCount(lottoNumbers) ===
+        CONDITION.secondPrizeMatchBonusCount
+    );
   }
 
   setBonusNumber(bonusNumber) {
