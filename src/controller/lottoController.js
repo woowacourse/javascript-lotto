@@ -18,16 +18,9 @@ const lottoController = {
     while (true) {
       const money = await catchReturn(this.getMoney);
       const randomLottos = this.generateRandomLotto(money.getLottoCount());
-      const winningLotto = await catchReturn(this.getWinningLotto);
-      const bonusLottoNumber = await catchReturn(() =>
-        this.getBonusLottoNumber(winningLotto)
-      );
+      const { winningLotto, bonusLottoNumber } = await this.getWinningAndBonusLotto();
+      const rank = this.calcRank({ winningLotto, bonusLottoNumber, randomLottos });
 
-      const rank = this.calcRank({
-        winningLotto,
-        bonusLottoNumber,
-        randomLottos,
-      });
       this.printProfitRate(money.get(), rank);
 
       if (await catchReturn(this.isExitGame)) break;
@@ -45,6 +38,12 @@ const lottoController = {
     this.printRandomLottos(randomLottos);
 
     return randomLottos;
+  },
+
+  async getWinningAndBonusLotto() {
+    const winningLotto = await catchReturn(this.getWinningLotto);
+    const bonusLottoNumber = await catchReturn(() => this.getBonusLottoNumber(winningLotto));
+    return { winningLotto, bonusLottoNumber };
   },
 
   printRandomLottos(randomLottos) {
