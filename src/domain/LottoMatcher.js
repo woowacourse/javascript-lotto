@@ -3,11 +3,11 @@ class LottoMatcher {
 
   constructor(tickets, [winningNumber, bonusNumber]) {
     this.#matchingResult = {
+      1: 0,
+      2: 0,
       3: 0,
       4: 0,
       5: 0,
-      '5+보너스': 0,
-      6: 0,
     };
     this.match(tickets, [winningNumber, bonusNumber]);
   }
@@ -25,8 +25,15 @@ class LottoMatcher {
   }
 
   updateMatchingResult(matchCount, hasBonusNumber) {
-    if (hasBonusNumber) this.#matchingResult[String('5+보너스')] += 1;
-    if (!hasBonusNumber) this.#matchingResult[matchCount] += 1;
+    if (hasBonusNumber) this.#matchingResult[2] += 1;
+    if (!hasBonusNumber) this.updateMatchingLottoNumber(matchCount);
+  }
+
+  updateMatchingLottoNumber(matchCount) {
+    if (matchCount === 3) this.#matchingResult[5] += 1;
+    if (matchCount === 4) this.#matchingResult[4] += 1;
+    if (matchCount === 5) this.#matchingResult[3] += 1;
+    if (matchCount === 6) this.#matchingResult[1] += 1;
   }
 
   get matchingResult() {
