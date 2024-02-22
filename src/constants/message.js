@@ -14,6 +14,7 @@ const ERROR_MESSAGE = {
   NOT_A_NUMBER_INPUT: '[ERROR] 숫자로 입력해주세요.',
   OUT_OF_RANGE: '[ERROR] 1부터 45 사이의 값으로 입력해주세요.',
   PURCHASE_AMOUNT_UNIT: '[ERROR] 로또 구매 금액은 1000원 단위로 입력해주세요.',
+  LOTTO_LENGTH: '[ERROR] 당첨 번호는 6개를 입력해주세요.',
   WINNING_NUMBERS_DUPLICATE: '[ERROR] 당첨 번호는 서로 중복될 수 없습니다.',
   BONUS_NUMBER_DUPLICATE: '[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.',
   RESTART: '[ERROR] y 또는 n을 입력해주세요.',

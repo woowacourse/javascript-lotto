@@ -2,7 +2,12 @@
   "rules": {
     "lines-between-class-members": "off",
     "class-methods-use-this": "off",
-    "no-continue": "off"
+    "no-continue": "off",
+    "no-constant-condition": "off",
+    "no-await-in-loop": "off",
+    "no-console": "off",
+    "no-restricted-globals": "off",
+    "no-plusplus": "off"
   },
   "env": {
     "es6": true,
