@@ -1,5 +1,5 @@
 {
-  "rules": {},
+  "rules": { "max-lines-per-function": ["error", { "max": 10 }], "max-depth": ["error", 1] },
   "env": {
     "es6": true,
     "node": true
@@ -7,5 +7,5 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["airbnb-base", "eslint:recommended", "plugin:prettier/recommended"]
 }
