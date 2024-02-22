@@ -93,7 +93,7 @@ const Validator = {
   },
 
   checkRestartCommandFormat(input) {
-    if (input.toLowerCase() !== 'y' || input.toLowerCase() !== 'n') {
+    if (input.toLowerCase() !== 'y' && input.toLowerCase() !== 'n') {
       throw new Error(ERROR_MESSAGE.RESTART_COMMAND_FORMAT);
     }
   },
