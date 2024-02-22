@@ -52,9 +52,3 @@ class LottoMatcher {
 }
 
 export default LottoMatcher;
-
-const arr = [1, 2, 3, 4, 5, 6];
-const lotto = new LottoMatcher([1, 2, 3, 4, 22, 33], 6);
-
-lotto.processMatches(arr);
-console.log(lotto.matchingResult);
