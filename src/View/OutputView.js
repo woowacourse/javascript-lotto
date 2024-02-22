@@ -31,7 +31,7 @@ const RANK_TO_MESSAGE = {
 };
 
 const COMMON_MESSAGES = {
-  RESULT_HEADER: '당첨 통계\n--------------------',
+  RESULT_HEADER: '\n당첨 통계\n--------------------',
 };
 
 const OutputView = {
@@ -60,7 +60,8 @@ const OutputView = {
   },
 
   printError(message) {
-    this.printMessage(`❌ ${message}`);
+    const ERROR_MESSAGE_PREFIX = '❌';
+    this.printMessage(`${ERROR_MESSAGE_PREFIX} ${message}`);
   },
 
   printMessage(message) {

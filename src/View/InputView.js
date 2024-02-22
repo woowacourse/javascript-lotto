@@ -1,11 +1,11 @@
 import readLine from 'readline';
 
 const COMMON_MESSAGES = Object.freeze({
-  MONEY: '구입금액을 입력해 주세요.',
+  MONEY: '\n> 구입금액을 입력해 주세요.',
 
-  WIN_LOTTO: '당첨 번호를 입력해주세요.',
-  BONUS_NUMBER: '보너스 번호를 입력해주세요.',
-  RE_RUN: '다시 시작하시겠습니까? (y/n)',
+  WIN_LOTTO: '\n> 당첨 번호를 입력해주세요.',
+  BONUS_NUMBER: '\n> 보너스 번호를 입력해주세요.',
+  RE_RUN: '\n> 다시 시작하시겠습니까? (y/n)',
 });
 
 const RETRY_INPUT = ['y', 'Y'];

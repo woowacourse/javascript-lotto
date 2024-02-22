@@ -1,5 +1,7 @@
 import LottoNumber from './LottoNumber';
 
+const DUPLICATE_MESSAGE = '당첨번호에 중복된 숫자가 존재합니다.';
+
 export default class WinLottoNumber extends LottoNumber {
   #bonusNumber;
 
@@ -19,7 +21,7 @@ export default class WinLottoNumber extends LottoNumber {
 
   #validDuplicate() {
     if (this.getLottoNumbers().includes(this.#bonusNumber)) {
-      throw new Error('❌');
+      throw new Error(DUPLICATE_MESSAGE);
     }
   }
 
