@@ -5,14 +5,14 @@ import winningLottoValidation from "../validation/winningLottoValidation.js";
 import winningLottoNumbersValidation from "../validation/winningLottoNumbersValidation.js";
 import winningLottoBonusValidation from "../validation/winningLottoBonusValidation.js";
 import startValidation from "../validation/startValidation.js";
+import retryValidation from "../validation/retryValidation.js";
 
 const InputView = {
   async readBudget() {
     const budgetInput = await readLineAsync(VIEW_MESSAGE.budget);
-    const budget = Number(budgetInput);
-    startValidation(budgetValidation.categories, budget);
+    startValidation(budgetValidation.categories, Number(budgetInput));
 
-    return budget;
+    return budgetInput;
   },
 
   async readWinningLottoNumbers() {
@@ -40,6 +40,12 @@ const InputView = {
     startValidation(winningLottoBonusValidation.winningBonus, winningCombination);
 
     return winningLottoBonus;
+  },
+
+  async readRetryGame() {
+    const retryInput = await readLineAsync(VIEW_MESSAGE.retry);
+    startValidation(retryValidation.categories, retryInput);
+    return retryInput;
   },
 };
 

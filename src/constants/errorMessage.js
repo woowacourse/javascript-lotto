@@ -10,6 +10,7 @@ const ERROR_MESSAGE = Object.freeze({
   outOfRange: `${ERROR_PREFIX} 로또 번호는 1 ~ 45 범위의 수여야 합니다.`,
   notDuplicated: `${ERROR_PREFIX} 로또 번호는 중복될 수 없습니다.`,
   notInWinningNumbers: `${ERROR_PREFIX} 보너스 번호는 로또 당첨 번호와 중복될 수 없습니다.`,
+  yesOrNo: `${ERROR_PREFIX} 재시작 입력은 y 혹은 n만 가능합니다.`,
 });
 
 export default ERROR_MESSAGE;
