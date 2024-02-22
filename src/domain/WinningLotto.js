@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from "../constants/message";
 import Validator from "../utils/Validator";
 import Lotto from "./Lotto";
 
@@ -8,7 +9,7 @@ class WinningLotto extends Lotto {
     super(winningNumbers);
 
     if (!Validator.checkBonusNumber(winningNumbers, bonusNumber))
-      throw new Error();
+      throw new Error(ERROR_MESSAGE.invalidBonusNumber);
 
     this.#bonusNumber = bonusNumber;
   }

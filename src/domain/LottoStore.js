@@ -1,4 +1,5 @@
 import LOTTO_SYSTEM from "../constants/lottoSystem";
+import { ERROR_MESSAGE } from "../constants/message";
 import Validator from "../utils/Validator";
 import getRandomNumberInRange from "../utils/getRandomNumberInRange";
 import Lotto from "./Lotto";
@@ -10,7 +11,8 @@ class LottoStore {
   constructor() {}
 
   calculateLottoCount(purchaseAmount) {
-    if (!Validator.checkPurchaseAmount(purchaseAmount)) throw new Error();
+    if (!Validator.checkPurchaseAmount(purchaseAmount))
+      throw new Error(ERROR_MESSAGE.invalidPurchaseAmount);
 
     const lottoPrice = 1000;
 
@@ -33,7 +35,8 @@ class LottoStore {
   }
 
   generateRandomNumbers(lottoCount) {
-    if (!Validator.checkLottoCount(lottoCount)) throw new Error();
+    if (!Validator.checkLottoCount(lottoCount))
+      throw new Error(ERROR_MESSAGE.invalidLottoCount);
 
     return Array.from({ length: lottoCount }).map(() =>
       this.#generateUniqueRandomLottoNumbersInRange(),
@@ -64,7 +67,8 @@ class LottoStore {
 
   issueLottos(sixNumbersArray) {
     // 2차원 배열의 이름 리뷰어는 어떻게 생각하시나요 ??
-    if (!Validator.checkSixNumbersArray(sixNumbersArray)) throw new Error();
+    if (!Validator.checkSixNumbersArray(sixNumbersArray))
+      throw new Error(ERROR_MESSAGE.invalidSixNumbersArray);
 
     return sixNumbersArray.map((sixNumbers) => new Lotto(sixNumbers));
   }

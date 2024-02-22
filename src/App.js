@@ -21,19 +21,29 @@ class App {
   }
 
   async #purchaseLottos() {
-    const purchaseAmount = await InputView.readPurchaseAmount();
-    const lottoCount = this.#lottoStore.calculateLottoCount(purchaseAmount);
-    const randomNumbers = this.#lottoStore.generateRandomNumbers(lottoCount);
-    const lottos = this.#lottoStore.issueLottos(randomNumbers);
+    try {
+      const purchaseAmount = await InputView.readPurchaseAmount();
+      const lottoCount = this.#lottoStore.calculateLottoCount(purchaseAmount);
+      const randomNumbers = this.#lottoStore.generateRandomNumbers(lottoCount);
+      const lottos = this.#lottoStore.issueLottos(randomNumbers);
 
-    return lottos;
+      return lottos;
+    } catch (error) {
+      OutputView.print(error.message);
+      return this.#purchaseLottos();
+    }
   }
 
   async #generateWinningLotto() {
-    const winningNumbers = await InputView.readWinningNumber();
-    const bonusNumber = await InputView.readBonusNumber();
+    try {
+      const winningNumbers = await InputView.readWinningNumber();
+      const bonusNumber = await InputView.readBonusNumber();
 
-    this.#lottoStore.setWinningLotto(winningNumbers, bonusNumber);
+      this.#lottoStore.setWinningLotto(winningNumbers, bonusNumber);
+    } catch (error) {
+      OutputView.print(error.message);
+      return this.#generateWinningLotto();
+    }
   }
 
   #calculateProfitRate(lottos) {
