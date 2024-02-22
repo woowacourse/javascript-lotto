@@ -54,7 +54,7 @@ export default class Controller {
     // TODO: 당첨 내역 출력
     const winNumbersObj = this.#winLottoNumber.getWinLottoNumbers();
     const winLottos = this.#lottoMachine.getWinLottos(winNumbersObj);
-    // OutputView.printWinLottos(winLottos)
+    OutputView.printWinLottos(winLottos);
     // TODO: 수익률 출력
   }
 }

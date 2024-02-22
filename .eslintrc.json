@@ -7,7 +7,7 @@
   },
   "overrides": [
     {
-      "files": ["./src/*"],
+      "files": ["./src/**"],
       "rules": { "max-lines-per-function": ["error", { "max": 10 }] }
     }
   ],
