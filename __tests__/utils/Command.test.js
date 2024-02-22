@@ -11,7 +11,6 @@ describe("커맨드 확인 함수 테스트", () => {
   });
 
   test(`입력이 ${Command.Commands[1]}이면 거짓 반환`, () => {
-    const wrongCommand = "w";
     expect(Command.isRestart(Command.Commands[1])).toBe(false);
   });
 });
