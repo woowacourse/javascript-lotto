@@ -1,5 +1,6 @@
 import { MIN_PURCHASE_AMOUNT, OPTION } from "../constants/option.js";
 import { RETRY_INPUT } from "../constants/system.js";
+import Lotto from "../domain/Lotto.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import WinningLotto from "../domain/WinningLotto.js";
@@ -87,16 +88,19 @@ class LottoGameController {
     const winningLottoNumbers = winningLottoInput
       .split(OPTION.DELIMITER)
       .map((number) => Number(number));
-    const winningLotto = new WinningLotto(winningLottoNumbers);
+    const winningLotto = new Lotto(winningLottoNumbers);
 
     return winningLotto;
   }
 
   async #getBonusNumber(winningLotto) {
     const bonusNumber = await this.#inputView.inputBonusNumber();
-    winningLotto.setBonusNumber(bonusNumber);
+    const WinningLottoWithBonusNumber = new WinningLotto(
+      winningLotto,
+      Number(bonusNumber),
+    );
 
-    return winningLotto;
+    return WinningLottoWithBonusNumber;
   }
 
   #getGameResult(lottoList, winningLotto) {
