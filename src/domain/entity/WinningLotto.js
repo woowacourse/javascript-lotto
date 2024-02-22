@@ -20,6 +20,7 @@ class WinningLotto {
   getNumbers() {
     return this.#winningLottoNumberList.getNumbers();
   }
+
   getBonusNumber() {
     return this.#bonusNumber.getNumber();
   }
