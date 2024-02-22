@@ -37,7 +37,9 @@ const OutputView = {
   },
 
   formatStatisticsResult(ranking, count) {
-    if (ranking === 2)
+    const secondPlace = 2;
+
+    if (ranking === secondPlace)
       return OUTPUT_MESSAGE.winningStatisticsBonusResult(
         LOTTO_SYSTEM.correctCount[ranking],
         LOTTO_SYSTEM.lottoPrize[ranking],

@@ -44,8 +44,11 @@ class LottoStore {
   }
 
   checkRanking(correctCount, isBonusCorrect) {
-    if (LOTTO_SYSTEM.ranking[correctCount] === 3 && isBonusCorrect) {
-      return 2;
+    const secondPlace = 2;
+    const thirdPlace = 3;
+
+    if (LOTTO_SYSTEM.ranking[correctCount] === thirdPlace && isBonusCorrect) {
+      return secondPlace;
     }
 
     return LOTTO_SYSTEM.ranking[correctCount];
