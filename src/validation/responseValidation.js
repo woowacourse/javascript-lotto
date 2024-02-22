@@ -1,7 +1,9 @@
+import MESSAGE from '../constants/message';
+
 const RestartResponseValidation = {
   validate(response = '') {
-    if (response !== 'y' && response !== 'n') {
-      throw new Error('[ERROR]유효한 응답이 아닙니다. y/n으로 응답해 주세요.');
+    if (response !== MESSAGE.RESPONSE.RESTART.YES && response !== MESSAGE.RESPONSE.RESTART.NO) {
+      throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.RESTART_RESPONSE}`);
     }
   },
 };
