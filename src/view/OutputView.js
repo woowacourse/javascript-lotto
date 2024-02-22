@@ -7,7 +7,7 @@ const OutputView = {
     this.print(lottos.length + OUTPUT_MESSAGE.purchaseCount);
 
     lottos.forEach((lotto) => {
-      this.print(lotto.numbers.sort());
+      this.print(lotto.numbers.sort((a, b) => a - b));
     });
     this.print(SYMBOL.space);
   },
