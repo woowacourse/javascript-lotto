@@ -5,6 +5,7 @@ import InputView from '../view/InputView';
 import Console from '../utils/Console';
 import LottoTicket from '../domain/LottoTicket';
 import OutputView from '../view/OutputView';
+import LottoMatcher from '../domain/LottoMatcher';
 
 class LottoController {
   #winningNumber;
@@ -18,6 +19,11 @@ class LottoController {
 
     this.#winningNumber = await Console.errorHandler(this.setWinningNumber, this);
     const bonusNumber = await Console.errorHandler(this.setBonusNumber, this);
+    const matchingResult = await this.setMatchingResult(lottoTickets, [
+      this.#winningNumber,
+      bonusNumber,
+    ]);
+    OutputView.printWinningStats(matchingResult);
   }
 
   async setPurchaseAmount() {
@@ -77,6 +83,12 @@ class LottoController {
       throw new Error('[ERROR] 보너스 번호는 1 이상 45 이하여야 합니다.');
     if (BonusNumberValidator.isDuplicatedWinningNumber(inputValue, this.#winningNumber))
       throw new Error('[ERROR] 보너스 번호는 중복되지 않아야 합니다.');
+  }
+
+  async setMatchingResult(lottoTickets, [winningNumber, bonusNumber]) {
+    const matchingResult = new LottoMatcher(lottoTickets, [winningNumber, bonusNumber])
+      .matchingResult;
+    return matchingResult;
   }
 }
 
