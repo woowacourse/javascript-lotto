@@ -1,4 +1,5 @@
 import LottoNumber from "../src/domain/LottoNumber.js";
+import { ERROR_MESSAGE } from "../src/error/ErrorMessage.js";
 
 describe("로또 번호 유효성 테스트", () => {
   const strValue = [" ", "a"];
@@ -8,7 +9,7 @@ describe("로또 번호 유효성 테스트", () => {
   test.each([strValue, floatValue, ...boundaryValue])(
     "입력된 각 로또 번호는 1이상 45이하의 정수가 아니면 오류를 발생시킨다.",
     (wrongValue) => {
-      expect(() => new LottoNumber(wrongValue)).toThrow("[ERROR]");
+      expect(() => new LottoNumber(wrongValue)).toThrow(ERROR_MESSAGE.lottoNumberOutOfRange);
     }
   );
 });

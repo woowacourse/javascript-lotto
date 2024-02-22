@@ -1,3 +1,5 @@
+import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
+
 class LottoNumber {
   #number;
   static MIN = 1;
@@ -9,11 +11,11 @@ class LottoNumber {
   }
 
   #validate(number) {
-    if (isNaN(number)) throw new Error("[ERROR]");
+    if (isNaN(number)) throw new Error(ERROR_MESSAGE.lottoNumberNotNumber);
 
     const isOutOfRange = number < LottoNumber.MIN || number > LottoNumber.MAX;
 
-    if (isOutOfRange) throw new Error("[ERROR]");
+    if (isOutOfRange) throw new Error(ERROR_MESSAGE.lottoNumberOutOfRange);
   }
 
   get() {

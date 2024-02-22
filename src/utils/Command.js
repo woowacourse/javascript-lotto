@@ -1,3 +1,5 @@
+import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
+
 class Command {
   static COMMANDS = ["y", "n"];
 
@@ -8,7 +10,7 @@ class Command {
 
   static #validate(input) {
     const isInvalidCommand = !this.COMMANDS.includes(input);
-    if (isInvalidCommand) throw new Error("[ERROR]");
+    if (isInvalidCommand) throw new Error(ERROR_MESSAGE.commandNotInList);
   }
 }
 
