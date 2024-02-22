@@ -2,11 +2,10 @@ import LottoGenerator from '../domains/LottoGenerator';
 import LottoCalculator from '../domains/LottoCalculator';
 import InputView from '../views/InputView';
 import OutputView from '../views/OutputView';
-import Console from '../utils/Console';
 import LottoPaymentValidator from '../validators/LottoPaymentValidator';
 import LottoValidator from '../validators/LottoValidator';
-
-const { winningNumbersValidate, bonusNumberValidate } = LottoValidator;
+import executeWithRetry from '../utils/executeWithRetry';
+import LOTTO_RULES from '../constants/lotto-rules';
 
 class LottoController {
   #lottoNumbers = {};
@@ -58,54 +57,48 @@ class LottoController {
     OutputView.printTotalProfit(profit);
   }
 
-  getTicketCount(lottoPayment) {
-    return lottoPayment / 1000;
-  }
-
   async readLottoPayment() {
-    try {
+    return executeWithRetry(async () => {
       const lottoPayment = await InputView.lottoPayment();
       LottoPaymentValidator.validate(lottoPayment);
       return lottoPayment;
-    } catch (error) {
-      Console.print(error.message);
-      return this.readLottoPayment();
-    }
+    });
   }
 
   async readWinningNumbers() {
-    try {
-      const winningNumbers = this.splitInput(await InputView.winningNumbers());
-      winningNumbersValidate(winningNumbers);
-      return winningNumbers;
-    } catch (error) {
-      Console.print(error.message);
-      return this.readWinningNumbers();
-    }
+    return executeWithRetry(async () => {
+      const winningNumbers = await InputView.winningNumbers();
+      const splittedNumbers = this.splitInput(winningNumbers);
+      LottoValidator.winningNumbersValidate(splittedNumbers);
+      return splittedNumbers;
+    });
   }
 
   async readBonusNumber() {
-    try {
+    return executeWithRetry(async () => {
       const bonusNumber = Number(await InputView.bonusNumber());
-      bonusNumberValidate(this.#lottoNumbers.winningNumbers, bonusNumber);
+      LottoValidator.bonusNumberValidate(
+        this.#lottoNumbers.winningNumbers,
+        bonusNumber,
+      );
       return bonusNumber;
-    } catch (error) {
-      Console.print(error.message);
-      return await this.readBonusNumber();
-    }
-  }
-
-  splitInput(winningNumbers) {
-    return winningNumbers.split(',').map((number) => Number(number));
+    });
   }
 
   async reStartLotto() {
     OutputView.printNewLine();
-
     const reStart = await InputView.reStart();
     if (reStart === 'y') {
       this.run();
     }
+  }
+
+  getTicketCount(lottoPayment) {
+    return lottoPayment / LOTTO_RULES.lottoBaseTicketPrice;
+  }
+
+  splitInput(winningNumbers) {
+    return winningNumbers.split(',').map((number) => Number(number));
   }
 }
 
