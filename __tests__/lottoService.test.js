@@ -1,4 +1,4 @@
-import lottoService from '../src/lottoService';
+import lottoService from '../src/domain/services/lottoService';
 
 describe('등수 계산 테스트', () => {
   describe('당첨 번호를 비교한 결과로 1등부터 5등까지 뽑는다.', () => {

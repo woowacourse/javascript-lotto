@@ -1,4 +1,4 @@
-import LotteryMachine from '../src/LotteryMachine';
+import LotteryMachine from '../src/domain/services/LotteryMachine';
 
 describe('로또 발행 테스트', () => {
   test('구입 금액에 해당하는 만큼 로또를 발행한다.', () => {

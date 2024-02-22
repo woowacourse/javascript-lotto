@@ -1,4 +1,4 @@
-import Lotto from '../src/Lotto';
+import Lotto from '../src/domain/entities/Lotto';
 
 describe('로또 테스트', () => {
   test('오름차순으로 정렬된 로또 번호를 갖는다.', () => {
