@@ -1,34 +1,42 @@
-import Lotto from "./Lotto";
+import { ERROR_MESSAGES } from '../constants/message';
+import LOTTO_RULES from '../constants/rules';
+import InvalidInputException from '../exceptions/InvalidInputException';
+import Lotto from './Lotto';
 
 class LottoStore {
   static #validateAmountType(amount) {
     const regex = /^[1-9]\d*$/;
     if (!regex.test(amount)) {
-      throw new Error("[ERROR]");
+      throw new InvalidInputException(ERROR_MESSAGES.invalidPurchaseAmount);
     }
   }
 
   static #validateAmountDivision(amount) {
-    if (amount % 1000 !== 0) {
-      throw new Error("[ERROR]");
+    if (amount % LOTTO_RULES.price !== 0) {
+      throw new InvalidInputException(ERROR_MESSAGES.invalidPurchaseAmount);
     }
   }
 
   static #validatePurchaseAmount(amount) {
-    this.#validateAmountType(amount);
-    this.#validateAmountDivision(amount);
+    LottoStore.#validateAmountType(amount);
+    LottoStore.#validateAmountDivision(amount);
   }
 
   static #pickRandomNumberInRange(min, max) {
     return Math.floor(Math.random() * (max - min) + 1);
   }
 
+  static #processLottoNumber(numbers, randomNumber) {
+    if (numbers.includes(randomNumber)) return;
+
+    numbers.push(randomNumber);
+  }
+
   static #makeLottoNumbers() {
     const numbers = [];
-    while (numbers.length < 6) {
-      const randomNumber = this.#pickRandomNumberInRange(1, 45);
-      if (numbers.includes(randomNumber)) continue;
-      numbers.push(randomNumber);
+    while (numbers.length < LOTTO_RULES.length) {
+      const randomNumber = this.#pickRandomNumberInRange(LOTTO_RULES.minRandomNumber, LOTTO_RULES.maxRandomNumber);
+      LottoStore.#processLottoNumber(numbers, randomNumber);
     }
 
     return numbers;
@@ -36,9 +44,9 @@ class LottoStore {
 
   static purchaseLottos(amount) {
     const numericAmount = Number(amount);
-    this.#validatePurchaseAmount(numericAmount);
+    LottoStore.#validatePurchaseAmount(numericAmount);
 
-    const lottoCount = numericAmount / 1000;
+    const lottoCount = numericAmount / LOTTO_RULES.price;
     const lottos = Array.from({ length: lottoCount }).map(() => {
       const lottoNumbers = this.#makeLottoNumbers();
       return new Lotto(lottoNumbers);
