@@ -36,6 +36,8 @@ class LottoController {
 
     OutputView.printWinningStatics(lottoStatics);
     OutputView.printTotalProfit(profit);
+
+    await this.reStartLotto();
   }
 
   async readLottoPayment() {
@@ -76,6 +78,13 @@ class LottoController {
 
   splitInput(winningNumbers) {
     return winningNumbers.split(',').map((number) => Number(number));
+  }
+
+  async reStartLotto() {
+    const reStart = await InputView.reStart();
+    if (reStart === 'y') {
+      this.run();
+    }
   }
 }
 

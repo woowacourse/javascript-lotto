@@ -11,14 +11,18 @@ const InputView = {
 
   async winningNumbers() {
     return readLineAsync(
-      `${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.winningNumbers}`,
+      `${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.winningNumbers} `,
     );
   },
 
   async bonusNumber() {
     return readLineAsync(
-      `${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.bonusNumber}`,
+      `${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.bonusNumber} `,
     );
+  },
+
+  async reStart() {
+    return readLineAsync(`${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.reStart} `);
   },
 };
 
