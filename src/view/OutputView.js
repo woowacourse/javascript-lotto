@@ -10,14 +10,14 @@ const OutputView = {
   },
 
   printWinningResults(winningResults) {
-    handleIO.print(GAME_MESSAGE.LOTTO_WINNING_RESULT_TITLE);
+    handleIO.print(LOTTO_WINNING_RESULTS.LOTTO_WINNING_RESULT_TITLE);
     Object.entries(winningResults).forEach(([rank, winningCount]) => {
       handleIO.print(LOTTO_WINNING_RESULTS.WINNING_RESULT(rank, winningCount));
     });
   },
 
   printProfitRate(profitRate) {
-    handleIO.print(GAME_MESSAGE.LOTTO_PROFIT_RATE(profitRate));
+    handleIO.print(LOTTO_WINNING_RESULTS.PROFIT_RATE(profitRate));
   },
 
   printExitMessage() {
