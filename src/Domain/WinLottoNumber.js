@@ -3,8 +3,11 @@ import LottoNumber from "./LottoNumber";
 export default class WinLottoNumber extends LottoNumber {
   #bonusNumber;
 
-  constructor(numbers, bonusNumber) {
+  constructor(numbers) {
     super(numbers);
+  }
+
+  setBonusNumber(bonusNumber) {
     this.#bonusNumber = bonusNumber;
     this.#validBonusNumber();
   }

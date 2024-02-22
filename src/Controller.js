@@ -31,17 +31,21 @@ export default class Controller {
   }
 
   async #generateWinLottoNumber() {
-    const winLottoNumbers = this.#generateWinLottoNumbers();
-    const bonusNumber = this.#generateBonusNumber();
+    const winLottoNumbers = await this.#generateWinLottoNumbers();
+    this.#winLottoNumber = new WinLottoNumber(winLottoNumbers);
 
-    // this.#winLottoNumber = new WinLottoNumber(winLottoNumbers, bonusNumber);
+    const bonusNumber = await this.#generateBonusNumber();
+    this.#winLottoNumber.setBonusNumber(bonusNumber);
   }
 
-  #generateWinLottoNumbers() {
-    // TODO: 우승 로또 번호를 입력받고 반환한다.
+  async #generateWinLottoNumbers() {
+    const winLottoNumbers = await InputView.readWinLottoNumbers();
+
+    return winLottoNumbers;
   }
 
-  #generateBonusNumber() {
-    // TODO: 보너스 번호를 입력받고 반환한다.
+  async #generateBonusNumber() {
+    const bonusNumber = await InputView.readBonusNumber();
+    return bonusNumber;
   }
 }
