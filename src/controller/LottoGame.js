@@ -6,15 +6,9 @@ import Input from '../view/Input';
 import Output from '../view/Output';
 import Random from '../utils/Random';
 import retryUntilValid from '../utils/retryUntilValid';
+import Condition from '../constants/Condition';
 
-const REWARD = {
-  1: 2000000000,
-  2: 30000000,
-  3: 1500000,
-  4: 50000,
-  5: 5000,
-  0: 0,
-};
+const { PRIZE } = Condition;
 
 class LottoGame {
   async start() {
@@ -105,7 +99,10 @@ class LottoGame {
   }
 
   calculateReturnOnInvestment(prizes) {
-    const totalReward = prizes.reduce((acc, cur) => (acc += REWARD[cur]), 0);
+    const totalReward = prizes.reduce(
+      (acc, cur) => (acc += cur !== '0' ? PRIZE[cur].REWARD : 0),
+      0,
+    );
     const investment = prizes.length * 1000;
     return Math.round((totalReward / investment) * 100 * 100) / 100;
   }
