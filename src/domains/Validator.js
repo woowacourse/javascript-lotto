@@ -18,7 +18,7 @@ const Validator = {
    */
   checkWinningLottoNumbers(numbersInput) {
     if (!isValidWinningNumbersForm(numbersInput))
-      throw new Error(ERROR_MESSAGE.inValidwinningNumbersForm);
+      throw new Error(ERROR_MESSAGE.inValidWInningNumbersForm);
 
     const numbers = numbersInput
       .split(NUMBER_DELIMITER)
@@ -58,7 +58,7 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.inValidNumbersOfTickets);
   },
 
-  chaeckRestartForm(restartInput) {
+  checkRestartForm(restartInput) {
     if (!isValidRestartInputForm(restartInput))
       throw new Error(ERROR_MESSAGE.invalidRestartInputForm);
   },

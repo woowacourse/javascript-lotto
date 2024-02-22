@@ -1,5 +1,5 @@
 import { LOTTO_RULE } from '../constants';
-import RandomNumber from '../utils/RandomNumber';
+import {RandomNumber} from '../utils';
 import Validator from './Validator';
 
 class LottoMachine {

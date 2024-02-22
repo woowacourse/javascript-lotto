@@ -1,4 +1,4 @@
-import LottoMachine from '../src/domains/LottoMachine';
+import LottoMachine from '../src/domains';
 
 describe('LottoMachine 기능 테스트', () => {
   // TODO 통합 테스트(로또 게임 전반에 대한) 할때 만들자

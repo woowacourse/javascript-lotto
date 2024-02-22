@@ -1,5 +1,5 @@
-import Console from '../utils/Console';
 import { OUTPUT_MESSAGES, WINNING_RULE, NUMBER_DELIMITER } from '../constants';
+import Console from '../utils/Console';
 
 const OutputView = {
   printLottoTickets(lottoTickets) {
