@@ -8,7 +8,7 @@ import {
   isValidNumbersOfTickets,
   isValidWinningNumbersForm,
   isValidRestartInputForm,
-} from './utils';
+} from '../utils';
 
 const Validator = {
   /**

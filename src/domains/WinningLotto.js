@@ -1,4 +1,4 @@
-import Validator from './validators/Validator';
+import Validator from './Validator';
 
 class WinningLotto {
   /**

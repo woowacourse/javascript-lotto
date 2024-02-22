@@ -1,6 +1,6 @@
 import { LOTTO_RULE } from '../constants';
 import RandomNumber from '../utils/RandomNumber';
-import Validator from './validators/Validator';
+import Validator from './Validator';
 
 class LottoMachine {
   #lottoTickets = [];

@@ -1,4 +1,4 @@
-import Validator from './validators/Validator';
+import Validator from './Validator';
 import LottoGame from './LottoGame';
 import LottoMachine from './LottoMachine';
 import Statistics from './Statistics';

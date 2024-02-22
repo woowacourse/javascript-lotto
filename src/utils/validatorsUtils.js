@@ -1,9 +1,4 @@
-import {
-  LOTTO_RULE,
-  RANDOM_NUMBER_RULE,
-  RESTART_KEY,
-  r,
-} from '../../constants';
+import { LOTTO_RULE, RANDOM_NUMBER_RULE, RESTART_KEY, r } from '../constants';
 
 /**
  * @param {number} number
