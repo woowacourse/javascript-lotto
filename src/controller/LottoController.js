@@ -10,11 +10,11 @@ import RestartOrExitValidator from '../validator/RestartOrExitValidator';
 
 class LottoController {
   #PRIZE = {
-    3: 5000,
+    1: 2000000000,
+    2: 30000000,
+    3: 1500000,
     4: 50000,
-    5: 1500000,
-    '5+보너스': 30000000,
-    6: 2000000000,
+    5: 5000,
   };
 
   async start() {
