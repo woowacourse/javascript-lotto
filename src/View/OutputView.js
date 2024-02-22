@@ -53,8 +53,8 @@ const OutputView = Object.freeze({
   },
 
   printRateOfIncome(income) {
-    const RATE_OF_INCOME_MESSAGE = (rate) => `총 수익률은 ${rate}% 입니다.`;
-    this.printMessage(RATE_OF_INCOME_MESSAGE(income));
+    const rateOfIncomeMessage = (rate) => `총 수익률은 ${rate}% 입니다.`;
+    this.printMessage(rateOfIncomeMessage(income));
   },
 
   printError(message) {
