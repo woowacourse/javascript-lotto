@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from '../constants/message';
 import numberValidator from './numberValidator';
 
 const purchaseAmountValidator = {
@@ -8,7 +9,7 @@ const purchaseAmountValidator = {
 
   validateUnitAmount(purchaseAmount) {
     if (purchaseAmount % 1000 !== 0) {
-      throw new Error('[ERROR] 로또 구매 금액은 1000원 단위로 입력해주세요.');
+      throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_UNIT);
     }
   },
 };

@@ -1,8 +1,10 @@
+import { ERROR_MESSAGE } from '../constants/message';
+
 const restartValidator = {
   validate(restartInput) {
     const restart = restartInput.toLowerCase();
     if (!this.isValidInput(restart)) {
-      throw new Error('[ERROR] y 또는 n을 입력해주세요.');
+      throw new Error(ERROR_MESSAGE.RESTART);
     }
   },
 

@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from '../constants/message';
 import numberValidator from './numberValidator';
 
 const winningNumbersValidator = {
@@ -7,7 +8,7 @@ const winningNumbersValidator = {
 
   validateDuplicate(winningNumbers) {
     if (winningNumbers.length !== new Set(winningNumbers).size) {
-      throw new Error('[ERROR] 당첨 번호는 서로 중복될 수 없습니다.');
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBERS_DUPLICATE);
     }
   },
 
