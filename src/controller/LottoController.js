@@ -26,6 +26,7 @@ class LottoController {
     ]);
     OutputView.printWinningStats(matchingResult);
     const rateOfReturn = RateOfReturnCalculator(purchaseAmount, matchingResult);
+    OutputView.printRateOfReturn(rateOfReturn);
   }
 
   async setPurchaseAmount() {

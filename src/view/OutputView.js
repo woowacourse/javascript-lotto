@@ -19,6 +19,10 @@ const OutputView = {
     console.log(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${matchingResult['5+보너스']}개`);
     console.log(`6개 일치 (2,000,000,000원) - ${matchingResult['6']}개`);
   },
+
+  printRateOfReturn(rateOfReturn) {
+    console.log(`총 수익률은 ${rateOfReturn}%입니다.`);
+  },
 };
 
 export default OutputView;
