@@ -7,7 +7,7 @@ const BonusNumberValidator = {
     return !(inputValue >= 1 && inputValue <= 45);
   },
 
-  isDuplicatedWinningNumber(winningNumber, inputValue) {
+  isDuplicatedWinningNumber(inputValue, winningNumber) {
     return winningNumber.includes(inputValue);
   },
 };

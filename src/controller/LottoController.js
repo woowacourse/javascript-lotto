@@ -1,11 +1,14 @@
 import PurchaseAmountValidator from '../validator/PurchaseAmountValidator';
 import WinningNumberValidator from '../validator/WinningNumberValidator';
+import BonusNumberValidator from '../validator/BonusNumberValidator';
 import InputView from '../view/InputView';
 import Console from '../utils/Console';
 import LottoTicket from '../domain/LottoTicket';
 import OutputView from '../view/OutputView';
 
 class LottoController {
+  #winningNumber;
+
   async start() {
     const purchaseAmount = await Console.errorHandler(this.setPurchaseAmount, this);
     const purchaseCount = purchaseAmount / 1000;
@@ -13,7 +16,8 @@ class LottoController {
     const lottoTickets = this.setLottoTicket(purchaseAmount);
     OutputView.printLottoTickets(lottoTickets);
 
-    const winningNumber = await Console.errorHandler(this.setWinningNumber, this);
+    this.#winningNumber = await Console.errorHandler(this.setWinningNumber, this);
+    const bonusNumber = await Console.errorHandler(this.setBonusNumber, this);
   }
 
   async setPurchaseAmount() {
@@ -57,6 +61,22 @@ class LottoController {
       throw new Error('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
     if (WinningNumberValidator.isNotRange(inputValue))
       throw new Error('[ERROR] 로또 번호의 숫자 범위는 1에서 45까지의 수입니다.');
+  }
+
+  async setBonusNumber() {
+    const inputValue = await InputView.readBonusNumber();
+    const convertedInputValue = Number(inputValue);
+    this.validateBonusNumber(convertedInputValue);
+    return convertedInputValue;
+  }
+
+  validateBonusNumber(inputValue) {
+    if (BonusNumberValidator.isNotInteger(inputValue))
+      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
+    if (BonusNumberValidator.isInvalidRange(inputValue))
+      throw new Error('[ERROR] 보너스 번호는 1 이상 45 이하여야 합니다.');
+    if (BonusNumberValidator.isDuplicatedWinningNumber(inputValue, this.#winningNumber))
+      throw new Error('[ERROR] 보너스 번호는 중복되지 않아야 합니다.');
   }
 }
 
