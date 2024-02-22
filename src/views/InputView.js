@@ -1,20 +1,21 @@
 import Console from '../utils/Console';
+import { INPUT_MESSAGES } from '../constants';
 
 const InputView = {
-  readPaymentAmount() {
-    Console.readLineAsync();
+  async readPaymentAmount() {
+    return await Console.readLineAsync(INPUT_MESSAGES.paymentAmount);
   },
 
-  readWinningLottoNumbers() {
-    Console.readLineAsync();
+  async readWinningLottoNumbers() {
+    return await Console.readLineAsync(INPUT_MESSAGES.winningLottoNumbers);
   },
 
-  readBonusNumber() {
-    Console.readLineAsync();
+  async readBonusNumber() {
+    return await Console.readLineAsync(INPUT_MESSAGES.bonusNumber);
   },
 
-  readRestart() {
-    Console.readLineAsync();
+  async readRestart() {
+    return await Console.readLineAsync(INPUT_MESSAGES.restart);
   },
 };
 

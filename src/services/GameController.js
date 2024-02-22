@@ -1,13 +1,15 @@
 import { INPUT_MESSAGES, RESTART_KEY } from '../constants';
 import { LottoGame, Validator } from '../domains';
 import Console from '../utils/Console';
+import InputView from '../views/InputView';
+import InputController from './InputController';
 
 class GameController {
   #lottoGame = new LottoGame();
 
   async playGame() {
-    await this.getPaid();
-    await this.getWinningLotto();
+    await this.#getPaid();
+    await this.#generateWinning();
 
     this.#lottoGame.calculateMatchingResult();
     this.#lottoGame.calculateStatistics();
@@ -15,30 +17,43 @@ class GameController {
     await this.#restartLottoGame();
   }
 
-  async getPaid() {
-    const paymentAmountInput = await Console.readLineAsync(
-      INPUT_MESSAGES.paymentAmount,
-    );
+  async #getPaid() {
+    await InputController.retryOnInvalidInput(async () => {
+      const paymentAmountInput = await InputView.readPaymentAmount();
 
-    this.#lottoGame.insertMoney(paymentAmountInput);
+      this.#lottoGame.insertMoney(paymentAmountInput);
+    });
   }
 
-  async getWinningLotto() {
-    const lottoNumbersInput = await Console.readLineAsync(
-      INPUT_MESSAGES.winningLottoNumbers,
-    );
+  async #generateWinning() {
+    await this.#getValidWinningLottoNumbers();
+    await this.#getValidBonusNumber();
+  }
 
-    const bonusNumberInput = await Console.readLineAsync(
-      INPUT_MESSAGES.bonusNumber,
-    );
+  async #getValidWinningLottoNumbers() {
+    return await InputController.retryOnInvalidInput(async () => {
+      //입력값 가져오기
+      const lottoNumbersInput = await InputView.readWinningLottoNumbers();
+      // 유효성 검사
+      this.#lottoGame.winningLottoNumbers = lottoNumbersInput;
+    });
+  }
 
-    this.#lottoGame.generateWinningLotto(lottoNumbersInput, bonusNumberInput);
+  async #getValidBonusNumber() {
+    return await InputController.retryOnInvalidInput(async () => {
+      //입력값 가져오기
+      const bonusNumberInput = await InputView.readBonusNumber();
+      // 유효성 검사
+      this.#lottoGame.bonusNumber = bonusNumberInput;
+    });
   }
 
   async #restartLottoGame() {
-    const restartInput = await Console.readLineAsync(INPUT_MESSAGES.restart);
+    const restartInput = await InputController.retryOnInvalidInput(async () => {
+      const restartInput = await InputView.readRestart();
 
-    Validator.chaeckRestartForm(restartInput);
+      Validator.chaeckRestartForm(restartInput);
+    });
 
     if (restartInput === RESTART_KEY.restart) {
       this.#lottoGame = new LottoGame();
@@ -46,9 +61,5 @@ class GameController {
     }
   }
 }
-// 통계 출력
-// 통합 테스트
-// 파라미터, 속성 검사 ( max:2)
-// 리팩토링
-// 4시 pr
+
 export default GameController;
