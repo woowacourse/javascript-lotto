@@ -45,7 +45,7 @@ class LottoProcess {
         }
         return acc;
       },
-      [0, 0, 0, 0, 0]
+      Array.from({ length: Object.keys(WINNER).length }, () => 0)
     );
     return this.#mapWinningCountToPrizes(winningNubmer);
   }
