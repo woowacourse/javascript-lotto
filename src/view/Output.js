@@ -22,9 +22,10 @@ const Output = {
   },
 
   printPrizeDetails(prizes) {
-    PRIZE.forEach(([rank, detail]) =>
-      console.log(OUTPUT.PRIZE_DETAIL(detail, prizes.filter((prize) => prize === rank).length)),
-    );
+    PRIZE.forEach(([rank, detail]) => {
+      const prizeInfo = { rank, detail, count: prizes.filter((prize) => prize === rank).length };
+      console.log(OUTPUT.PRIZE_DETAIL(prizeInfo));
+    });
   },
 
   printReturnOnInvestment(returnOnInvestment) {

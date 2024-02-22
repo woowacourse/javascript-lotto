@@ -24,8 +24,10 @@ const INPUT = {
 
 const OUTPUT = {
   LOTTO_TICKETS_COUNT: (count) => `${count}개를 구매했습니다.`,
-  PRIZE_DETAIL: (detail, count) =>
-    `${detail.MATCH}개 일치 (${detail.REWARD.toLocaleString()}원) - ${count}개`,
+  PRIZE_DETAIL: (prizeInfo) =>
+    `${prizeInfo.detail.MATCH}개 일치${
+      prizeInfo.rank === '2' ? ', 보너스 볼 일치' : ''
+    } (${prizeInfo.detail.REWARD.toLocaleString()}원) - ${prizeInfo.count}개`,
   RETURN_ON_INVESTMENT: (returnOnInvestment) => `총 수익률은 ${returnOnInvestment}%입니다.`,
   PRIZE_STATISTICS_HEADER: '당첨 통계',
   PRIZE_STATISTICS_SEPARATOR: '--------------------',
