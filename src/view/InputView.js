@@ -9,19 +9,30 @@ import winningLottoNumbersValidation from "../validation/winningLottoNumbersVali
 
 const InputView = {
   async readBudget() {
+<<<<<<< HEAD
     const budgetInput = await readLineAsync(INPUT_MESSAGE.BUDGET);
     startValidation(budgetValidation.categories, Number(budgetInput));
+=======
+    const budgetInput = await readLineAsync(VIEW_MESSAGE.budget);
+    startValidation(Number(budgetInput)); // TODO : 수정하기
+>>>>>>> 47d5025 (feat: 로또 당첨 번호 입력 기능 구현)
 
     return budgetInput;
   },
 
   async readWinningLottoNumbers() {
+<<<<<<< HEAD
     const winningLottoNumbersInput = await readLineAsync(INPUT_MESSAGE.WINNING_LOTTO_NUMBERS);
     const winningLottoNumbers = InputView.convertInputToArray(winningLottoNumbersInput);
 
     winningLottoNumbers.forEach((number) => {
       startValidation(winningLottoValidation.winningCombination, number);
     });
+=======
+    const winningLottoNumbersInput = await readLineAsync(VIEW_MESSAGE.winningLottoNumbers);
+    const winningLottoNumbers = InputView.convertInputToArray(winningLottoNumbersInput);
+
+>>>>>>> 47d5025 (feat: 로또 당첨 번호 입력 기능 구현)
     startValidation(winningLottoNumbersValidation.winningNumbers, winningLottoNumbers);
 
     return winningLottoNumbers;
@@ -30,6 +41,7 @@ const InputView = {
   convertInputToArray(input) {
     return input.split(",").map(Number);
   },
+<<<<<<< HEAD
 
   async readWinningLottoBonus(winningNumbers) {
     const winningLottoBonusInput = await readLineAsync(INPUT_MESSAGE.WINNING_BONUS_NUMBER);
@@ -49,6 +61,8 @@ const InputView = {
     startValidation(retryValidation.categories, retryInput);
     return retryInput;
   },
+=======
+>>>>>>> 47d5025 (feat: 로또 당첨 번호 입력 기능 구현)
 };
 
 export default InputView;
