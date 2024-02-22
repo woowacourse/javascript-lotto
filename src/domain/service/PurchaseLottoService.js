@@ -34,14 +34,6 @@ class PurchaseLottoService {
   }
 
   #makeLotto() {
-    const lottoStrings = Array(...this.#makeLottoNums())
-      .map(num => num.toString())
-      .join(',');
-
-    return new LottoNumberList(lottoStrings);
-  }
-
-  #makeLottoNums() {
     const randoms = new Set([]);
     const min = CONDITION.lottoNumberMin;
     const max = CONDITION.lottoNumberMax;
@@ -49,7 +41,7 @@ class PurchaseLottoService {
     while (randoms.size < CONDITION.countOfNumberInTicket) {
       randoms.add(this.#makeRandom(min, max));
     }
-    return randoms;
+    return new LottoNumberList(randoms);
   }
 
   #makeLottos() {

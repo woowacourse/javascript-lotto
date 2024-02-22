@@ -6,11 +6,14 @@ class WinningLotto {
   #winningLottoNumberList;
   #bonusNumber;
 
-  constructor(winningNumbersString) {
-    const winningNumberStringArray = winningNumbersString.split(',');
-    this.#winningLottoNumberList = new LottoNumberList(
-      winningNumberStringArray,
-    );
+  constructor(winningNumbers) {
+    this.#winningLottoNumberList = new LottoNumberList(winningNumbers);
+  }
+  static fromString(winningNumbersString) {
+    const winningNumbers = winningNumbersString
+      .split(',')
+      .map(num => Number(num));
+    return new WinningLotto(winningNumbers);
   }
 
   getNumbers() {
@@ -24,17 +27,18 @@ class WinningLotto {
     ];
   }
 
-  setBonusNumber(bonusNumberString) {
-    this.validateBonusNumber(bonusNumberString);
-    this.#bonusNumber = new LottoNumber(bonusNumberString);
+  setBonusNumber(bonusNumber) {
+    this.validateBonusNumber(bonusNumber);
+    this.#bonusNumber = new LottoNumber(bonusNumber);
   }
 
-  validateBonusNumber(bonusNumberString) {
-    if (
-      this.#winningLottoNumberList
-        .getNumbers()
-        .includes(Number(bonusNumberString))
-    ) {
+  setBonusNumberString(bonusNumberString) {
+    this.validateBonusNumber(Number(bonusNumberString));
+    this.#bonusNumber = LottoNumber.fromString(bonusNumberString);
+  }
+
+  validateBonusNumber(bonusNumber) {
+    if (this.#winningLottoNumberList.getNumbers().includes(bonusNumber)) {
       throw new Error(ERROR.bonusNumberDuplication);
     }
   }

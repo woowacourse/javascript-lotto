@@ -3,33 +3,17 @@ import ERROR from '../../constant/Error.js';
 
 class LottoNumber {
   #number;
-  constructor(numStr) {
-    this.#validate(numStr);
-    this.#number = numStr;
+
+  constructor(num) {
+    this.#validateForNumber(num);
+    this.#number = num;
   }
 
-  #validate(numStr) {
-    this.#validateBlank(numStr);
-    this.#validateNotNumber(numStr);
+  #validateForNumber(numStr) {
     this.#validateInRange(numStr);
     this.#validateInteger(numStr);
   }
 
-  getNumber() {
-    return Number(this.#number);
-  }
-
-  #validateBlank(numStr) {
-    if (!numStr) {
-      throw new Error(ERROR.beNotBlank);
-    }
-  }
-
-  #validateNotNumber(numStr) {
-    if (Number.isNaN(Number(numStr))) {
-      throw new Error(ERROR.beNumber);
-    }
-  }
   #validateInRange(numStr) {
     if (
       Number(numStr) > CONDITION.lottoNumberMax ||
@@ -38,10 +22,32 @@ class LottoNumber {
       throw new Error(ERROR.beInRangeNumber);
     }
   }
+
   #validateInteger(numStr) {
     if (!Number.isInteger(Number(numStr))) {
       throw new Error(ERROR.beInteger);
     }
+  }
+
+  static fromString(numStr) {
+    LottoNumber.#validateBlank(numStr);
+    LottoNumber.#validateNotNumber(numStr);
+    return new LottoNumber(Number(numStr));
+  }
+  static #validateBlank(numStr) {
+    if (!numStr) {
+      throw new Error(ERROR.beNotBlank);
+    }
+  }
+
+  static #validateNotNumber(numStr) {
+    if (Number.isNaN(Number(numStr))) {
+      throw new Error(ERROR.beNumber);
+    }
+  }
+
+  getNumber() {
+    return Number(this.#number);
   }
 }
 

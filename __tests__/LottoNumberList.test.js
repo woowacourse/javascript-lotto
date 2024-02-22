@@ -5,7 +5,7 @@ describe('구매한 로또 테스트', () => {
     const LOTTO_NUMBERS = ['1', '2', '3', '4', '5', '6'];
     const EXPECTED_NUMBERS = [1, 2, 3, 4, 5, 6];
 
-    expect(new LottoNumberList(LOTTO_NUMBERS).getNumbers()).toEqual(
+    expect(LottoNumberList.fromString(LOTTO_NUMBERS).getNumbers()).toEqual(
       EXPECTED_NUMBERS,
     );
   });
@@ -13,6 +13,14 @@ describe('구매한 로또 테스트', () => {
   test('로또 번호에 중복이 있을 때, 에러를 발생시킨다.', () => {
     const LOTTO_NUMBERS = ['1', '2', '3', '4', '6', '6'];
 
-    expect(() => new LottoNumberList(LOTTO_NUMBERS)).toThrow('[Error]');
+    expect(() => LottoNumberList.fromString(LOTTO_NUMBERS)).toThrow('[Error]');
+  });
+
+  test('로또 번호에 중복이 있을 때, 에러를 발생시킨다.', () => {
+    const LOTTO_NUMBERS = ['1', '2', '4', '3', '5', '6'];
+
+    expect(LottoNumberList.fromString(LOTTO_NUMBERS).getNumbers()).toEqual([
+      1, 2, 3, 4, 5, 6,
+    ]);
   });
 });
