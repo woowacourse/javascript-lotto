@@ -14,6 +14,12 @@ const InputView = {
       `${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.winningNumbers}`,
     );
   },
+
+  async bonusNumber() {
+    return readLineAsync(
+      `${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.bonusNumber}`,
+    );
+  },
 };
 
 export default InputView;

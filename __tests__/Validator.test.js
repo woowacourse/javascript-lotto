@@ -1,5 +1,5 @@
 import LottoPaymentValidator from '../src/validators/LottoPaymentValidator';
-import LottoNumbersValidator from '../src/validators/LottoNumbersValidator';
+import LottoValidator from '../src/validators/LottoValidator';
 import { ERROR_MESSAGES } from '../src/constants/messages';
 
 describe('구입 금액 테스트', () => {
@@ -19,19 +19,19 @@ describe('구입 금액 테스트', () => {
 describe('당첨 번호 입력 테스트', () => {
   test('입력된 당첨 번호가 6개가 아닐 경우 에러를 발생한다.', () => {
     expect(() => {
-      LottoNumbersValidator.validateLength([1, 2, 3, 4, 5]);
+      LottoValidator.validateLength([1, 2, 3, 4, 5]);
     }).toThrow(ERROR_MESSAGES.invalidLength);
   });
 
   test('입력된 당첨 번호가 중복될 경우 에러를 발생한다.', () => {
     expect(() => {
-      LottoNumbersValidator.validateUniqueNumber([1, 2, 3, 4, 5, 5]);
+      LottoValidator.validateUniqueNumber([1, 2, 3, 4, 5, 5]);
     }).toThrow(ERROR_MESSAGES.invalidUniqueNumber);
   });
 
   test('입력된 당첨 번호가 1~45 사이의 숫자가 아닐 경우 에러를 발생한다.', () => {
     expect(() => {
-      LottoNumbersValidator.validateWinningNumbersRange([0, 2, 3, 4, 5, 5]);
+      LottoValidator.validateWinningNumbersRange([0, 2, 3, 4, 5, 5]);
     }).toThrow(ERROR_MESSAGES.invalidRange);
   });
 });
@@ -39,13 +39,13 @@ describe('당첨 번호 입력 테스트', () => {
 describe('보너스 번호 입력 테스트', () => {
   test('입력된 보너스 번호가 1~45 사이의 숫자가 아닐 경우 에러를 발생한다.', () => {
     expect(() => {
-      LottoNumbersValidator.validateRange('a');
+      LottoValidator.validateRange('a');
     }).toThrow(ERROR_MESSAGES.invalidRange);
   });
 
   test('입력된 보너스 번호가 당첨 번호와 중복될 경우 에러를 발생한다.', () => {
     expect(() => {
-      LottoNumbersValidator.validateUniqueNumber([1, 2, 3, 4, 5, 6, 6]);
+      LottoValidator.validateUniqueNumber([1, 2, 3, 4, 5, 6, 6]);
     }).toThrow(ERROR_MESSAGES.invalidUniqueNumber);
   });
 });

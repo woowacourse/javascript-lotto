@@ -1,15 +1,16 @@
 import { ERROR_MESSAGES } from '../constants/messages';
 
-const LottoNumbersValidator = {
+const LottoValidator = {
   winningNumbersValidate(numbers) {
     this.validateLength(numbers);
-    this.validateUniqueNumber(numbers, 6);
+    this.validateUniqueNumber(numbers);
     this.validateWinningNumbersRange(numbers);
   },
 
-  bonusNumberValidate(number) {
-    this.validateRange(number);
-    this.isValidUniqueNumber(number, 7);
+  bonusNumberValidate(winningNumbers, bonusNumber) {
+    const convertedBonusNumber = Number(bonusNumber);
+    this.validateRange(convertedBonusNumber);
+    this.validateUniqueNumber([...winningNumbers, convertedBonusNumber]);
   },
 
   isValidLength(numbers) {
@@ -47,4 +48,4 @@ const LottoNumbersValidator = {
   },
 };
 
-export default LottoNumbersValidator;
+export default LottoValidator;
