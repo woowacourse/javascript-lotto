@@ -1,7 +1,13 @@
-import { startValidation } from '../startValidation.js';
-import { deepFreeze } from '../../utils/object/object.js';
-import { SYMBOLS } from '../../constants/symbols.js';
 import Lotto from '../../domain/Lotto/Lotto.js';
+
+import { startValidation } from '../startValidation.js';
+
+import { SYMBOLS } from '../../constants/symbols.js';
+import { INPUT_LOTTO_NUMBER_REGEXP } from '../../constants/regexp.js';
+
+import { deepFreeze } from '../../utils/object/object.js';
+
+const { LOTTO_RULE } = Lotto;
 
 /**
  * @module WinningNumberValidator
@@ -16,35 +22,33 @@ const WinningNumberValidator = deepFreeze({
     isValidType: {
       errorMessage: '당첨 번호 입력의 형식이 올바르지 않습니다. 다시 입력해주세요.',
       isValid(inputValue) {
-        return /^([1-9]\d?)(,[1-9]\d?)*$/.test(inputValue);
+        return INPUT_LOTTO_NUMBER_REGEXP.test(inputValue);
       },
     },
 
     isValidLength: {
-      errorMessage: `당첨 번호는 ${Lotto.LOTTO_DETAILS.count}개여야 합니다. 다시 입력해주세요.`,
+      errorMessage: `당첨 번호는 ${LOTTO_RULE.count}개여야 합니다. 다시 입력해주세요.`,
       isValid(inputValue) {
         const numbers = inputValue.split(SYMBOLS.comma).map(Number);
-        return numbers.length === Lotto.LOTTO_DETAILS.count;
+        return numbers.length === LOTTO_RULE.count;
       },
     },
 
     isValidRange: {
-      errorMessage: `당첨 번호는 ${Lotto.LOTTO_DETAILS.min} ~ ${Lotto.LOTTO_DETAILS.max} 사이의 자연수여야 합니다. 다시 입력해주세요.`,
+      errorMessage: `당첨 번호는 ${LOTTO_RULE.min} ~ ${LOTTO_RULE.max} 사이의 자연수여야 합니다. 다시 입력해주세요.`,
       isValid(inputValue) {
         const numbers = inputValue.split(SYMBOLS.comma).map(Number);
-        return numbers.every(
-          (number) => number >= Lotto.LOTTO_DETAILS.min && number <= Lotto.LOTTO_DETAILS.max,
-        );
+        return numbers.every((number) => number >= LOTTO_RULE.min && number <= LOTTO_RULE.max);
       },
     },
 
     isUnique: {
       errorMessage: '당첨 번호는 서로 중복되지 않아야 합니다. 다시 입력해주세요.',
       isValid(inputValue) {
-        const numbers = inputValue.split(SYMBOLS.comma).map(Number);
-        const uniqueNumbers = new Set(numbers);
+        const winningNumber = inputValue.split(SYMBOLS.comma).map(Number);
+        const uniqueWinningNumber = new Set(winningNumber);
 
-        return uniqueNumbers.size === numbers.length;
+        return uniqueWinningNumber.size === winningNumber.length;
       },
     },
   },
