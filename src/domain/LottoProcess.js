@@ -12,7 +12,7 @@ class LottoProcess {
     return lottoNumbers.filter((value) => winLotto.getNumbers().includes(value)).length;
   }
 
-  #getRankIndex(matchCount, matchBonus) {
+  #getRankIndex(matchCount = 0, matchBonus = false) {
     if (matchCount === WINNER.FIFTH.MATCH_COUNT) return WINNER.FIFTH.INDEX;
     if (matchCount === WINNER.FOURTH.MATCH_COUNT) return WINNER.FOURTH.INDEX;
     if (matchCount === WINNER.THIRD.MATCH_COUNT && matchBonus) return WINNER.THIRD.INDEX;
