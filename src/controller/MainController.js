@@ -23,6 +23,7 @@ class MainController {
 
     const winningLotto = await InputView.readWinningNumbers();
     OutputView.print('');
+
     await InputView.readBonusNumber(winningLotto);
 
     const winningResult = this.#makeWinningResult(winningLotto, lottosNumbers);
