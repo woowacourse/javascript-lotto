@@ -14,6 +14,10 @@ class App {
     OutputView.printLottos(lottos);
 
     await this.#generateWinningLotto();
+
+    const { rankings, totalProfitRate } = this.#calculateProfitRate(lottos);
+    OutputView.printRankings(rankings);
+    OutputView.printTotalProfitRate(totalProfitRate);
   }
 
   async #purchaseLottos() {
@@ -30,6 +34,19 @@ class App {
     const bonusNumber = await InputView.readBonusNumber();
 
     this.#lottoStore.setWinningLotto(winningNumbers, bonusNumber);
+  }
+
+  #calculateProfitRate(lottos) {
+    const winningLottoCounts =
+      this.#lottoStore.calculateWinningLottoCount(lottos);
+    const rankings = winningLottoCounts.map(
+      ({ correctCount, isBonusCorrect }) =>
+        this.#lottoStore.checkRanking(correctCount, isBonusCorrect),
+    );
+
+    const totalProfitRate = this.#lottoStore.getTotalProfitRate(rankings);
+
+    return { rankings, totalProfitRate };
   }
 }
 
