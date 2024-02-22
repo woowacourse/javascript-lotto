@@ -1,17 +1,17 @@
 import { LOTTO_LENGTH, LOTTO_RANGE } from "../constants/option.js";
+import { LOTTO_PRICE } from "../constants/system.js";
 
 import Lotto from "./Lotto.js";
 
 class LottoMachine {
   #purchaseAmount;
-  #lottoList;
 
   constructor(purchaseAmount) {
     this.#purchaseAmount = purchaseAmount;
   }
 
   makeLottos() {
-    const lottoCount = this.#purchaseAmount / 1_000;
+    const lottoCount = this.#purchaseAmount / LOTTO_PRICE;
 
     const lottoList = Array.from(
       { length: lottoCount },

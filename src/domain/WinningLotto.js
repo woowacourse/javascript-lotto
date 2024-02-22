@@ -3,7 +3,6 @@ import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 
 class WinningLotto {
   #numbers;
-
   #bonusNumber;
 
   constructor(numbers) {

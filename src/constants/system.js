@@ -27,3 +27,5 @@ export const OUTPUT_MESSAGE = {
 };
 
 export const RETRY_INPUT = "y";
+
+export const LOTTO_PRICE = 1_000;
