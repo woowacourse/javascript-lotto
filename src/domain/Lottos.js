@@ -1,37 +1,45 @@
-import Lotto from './Lotto';
+import Lotto from './Lotto.js';
+import { RANKING } from '../constant/setting.js';
 
 class Lottos {
   #lottos;
+  #winningCriteria;
 
   constructor(lottoList) {
     this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
+    this.#winningCriteria = this.#initWinningCriteria();
   }
 
   getWinningResults(winningNumbers, bonusNumber) {
-    const initWinnningResults = {
-      FIRST: 0,
-      SECOND: 0,
-      THIRD: 0,
-      FOURTH: 0,
-      FIFTH: 0,
-    };
-
-    const ranking = {
-      3: 'FIFTH',
-      4: 'FOURTH',
-      5: 'THIRD',
-      6: 'FIRST',
-      7: 'SECOND',
-    };
-
+    const winningResults = this.#initWinningResults();
     this.#lottos.forEach((lotto) => {
-      const result = lotto.countMatchedNumbers(winningNumbers);
-      if (result >= 3) {
-        const key = result === 5 && lotto.hasNumber(bonusNumber) ? result + 2 : result;
-        initWinnningResults[ranking[key]] += 1;
-      }
+      const ranking = this.#getRanking(lotto, winningNumbers, bonusNumber);
+      if (ranking) winningResults[ranking] += 1;
     });
-    return initWinnningResults;
+    return winningResults;
+  }
+
+  #getRanking(lotto, winningNumbers, bonusNumber) {
+    const matchedNumbers = lotto.countMatchedNumbers(winningNumbers);
+    if (matchedNumbers === RANKING.SECOND.MATCHING_COUNT && lotto.hasNumber(bonusNumber)) {
+      return RANKING.SECOND.NAME;
+    }
+    return this.#winningCriteria[matchedNumbers >= 3 ? matchedNumbers : undefined];
+  }
+
+  #initWinningResults() {
+    return Object.values(RANKING).reduce((initRankingObject, { NAME }) => {
+      return { ...initRankingObject, [NAME]: 0 };
+    }, {});
+  }
+
+  #initWinningCriteria() {
+    return Object.values(RANKING).reduce((rankingMatchObject, { NAME, MATCHING_COUNT }) => {
+      if (NAME === RANKING.SECOND.NAME) {
+        return rankingMatchObject;
+      }
+      return { ...rankingMatchObject, [MATCHING_COUNT]: NAME };
+    }, {});
   }
 }
 
