@@ -14,6 +14,8 @@ export default class Controller {
 
     await this.#generateWinLottoNumber();
     this.#generateResult();
+
+    await this.#generateRetry();
   }
 
   async #generateLottoMoney() {
@@ -63,5 +65,15 @@ export default class Controller {
 
     const rateOfIncome = this.#lottoMachine.getRateOfIncome();
     OutputView.printRateOfIncome(rateOfIncome);
+  }
+
+  async #generateRetry() {
+    const isRetry = await InputView.readIsRetryRun();
+
+    if (isRetry) {
+      this.#lottoMachine = undefined;
+      this.#winLottoNumber = undefined;
+      await this.run();
+    }
   }
 }

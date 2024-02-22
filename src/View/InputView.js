@@ -5,6 +5,7 @@ const MESSAGE = Object.freeze({
   NO_INPUT: "입력 값을 적어주세요.",
   WIN_LOTTO: "당첨 번호를 입력해주세요.",
   BONUS_NUMBER: "보너스 번호를 입력해주세요.",
+  RE_RUN: "다시 시작하시겠습니까? (y/n)",
 });
 
 const InputView = {
@@ -29,6 +30,16 @@ const InputView = {
 
   async validInput(input) {
     if (!input) throw new Error(MESSAGE.NO_INPUT);
+  },
+
+  async readIsRetryRun() {
+    const retryInput = await this.readLineAsync(MESSAGE.RE_RUN);
+
+    if (retryInput === "y" || retryInput === "Y") return true;
+
+    if (retryInput === "n" || retryInput === "N") return false;
+
+    throw new Error("❌ y나 n만 입력해주세요.");
   },
 
   async readLineAsync(message) {
