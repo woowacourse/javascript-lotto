@@ -1,7 +1,11 @@
 import Lotto from "./Lotto";
 
+const PRIZE_MONEY = [null, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
+
 export default class LottoMachine {
   #money;
+
+  #income = 0;
 
   #lottos;
 
@@ -41,12 +45,22 @@ export default class LottoMachine {
 
   getWinLottos(winNumbersObj) {
     const returnValue = [null, ...Array.from({ length: 5 }, () => 0)];
-
     this.#lottos.forEach((lotto) => {
       lotto.calculateRank(winNumbersObj);
       const rank = lotto.getRank();
       if (rank) returnValue[rank] += 1;
     });
+    this.#calculateIncome(returnValue);
     return returnValue;
+  }
+
+  #calculateIncome(lottoRanks) {
+    lottoRanks.forEach((cnt, index) => {
+      this.#income += cnt * PRIZE_MONEY[index];
+    });
+  }
+
+  getRateOfIncome() {
+    return ((this.#income / this.#money) * 100).toFixed(1);
   }
 }

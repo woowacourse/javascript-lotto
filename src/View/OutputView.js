@@ -22,6 +22,10 @@ const OutputView = {
     this.printMessage(`6개 일치 (2,000,000,000원) - ${winLottos[1]}개`);
   },
 
+  printRateOfIncome(income) {
+    this.printMessage(`총 수익률은 ${income}% 입니다.`);
+  },
+
   printMessage(message) {
     console.log(message);
   },
