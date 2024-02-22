@@ -1,9 +1,8 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
 
-export default function calculateROI(money, lottoRanks) {
+export default function calculateROI(money, totalLottoRanks) {
   const moneyAmount = money.amount;
-  const totalMatchResultArray = Array.from(lottoRanks);
-  const totalProfit = totalMatchResultArray.reduce((profit, rankCount, idx) => {
+  const totalProfit = totalLottoRanks.reduce((profit, rankCount, idx) => {
     return (profit += rankCount[1] * LOTTO_RULE.PRIZE[idx]);
   }, 0);
 

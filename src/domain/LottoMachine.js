@@ -54,7 +54,9 @@ class LottoMachine {
       // TODO: lottoRanks를 리턴이 아닌 레퍼런스를 하고 있다.
     });
 
-    return lottoRanks;
+    const totalLottoRanks = Array.from(lottoRanks);
+
+    return totalLottoRanks;
   }
 
   #checkWinningLotto(lottoRanks, matchCount, isBonus) {

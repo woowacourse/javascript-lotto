@@ -3,6 +3,7 @@ import LottoMachine from '../domain/LottoMachine';
 import OutputView from '../view/OutputView';
 import Money from '../domain/Money';
 import { retryOnInvalidInput } from '../util/retryOnInvalidInput';
+import calculateROI from '../util/calculateROI';
 
 class LottoController {
   #lottoMachine;
@@ -27,7 +28,15 @@ class LottoController {
       await this.#insertBonusNumbers();
     });
 
-    this.#lottoMachine.countLottoRanks();
+    const lottoRanks = this.#lottoMachine.countLottoRanks();
+
+    OutputView.printResultNotice();
+    lottoRanks.forEach((lottoRank, idx) => {
+      OutputView.printLottoResult(lottoRank, idx);
+    });
+
+    const totalProfitRate = calculateROI(this.#money, lottoRanks);
+    OutputView.printTotalProfitRate(totalProfitRate);
   }
 
   async #insertMoney() {
