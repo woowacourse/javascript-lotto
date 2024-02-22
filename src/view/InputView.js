@@ -1,4 +1,4 @@
-import GAME_MESSAGE from '../constant/gameMessage.js';
+import { GAME_MESSAGE } from '../constant/gameMessage.js';
 import handleIO from '../util/handleIO.js';
 
 const InputView = {

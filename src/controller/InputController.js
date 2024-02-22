@@ -7,24 +7,18 @@ const InputController = {
     try {
       const purchaseAmount = await InputView.readPurchaseAmount();
       Validator.validatePurchaseAmount(purchaseAmount);
-      return parseInt(purchaseAmount, 10);
+      return parseInt(purchaseAmount);
     } catch (error) {
       handleIO.print(error.message);
-      return this.inputPurchaseAmount();
+      return inputPurchaseAmount();
     }
-  },
-
-  async inputWinningConditions() {
-    const winningNumbers = await this.inputWinningNumbers();
-    const bonusNumber = await this.inputBonusNumber(winningNumbers);
-    return { winningNumbers, bonusNumber };
   },
 
   async inputWinningNumbers() {
     try {
       const winningNumbers = await InputView.readWinningNumbers();
       Validator.validateWinningNumbers(winningNumbers);
-      return winningNumbers.split(',').map((number) => parseInt(number.trim(), 10));
+      return winningNumbers.split(',').map((number) => parseInt(number.trim()));
     } catch (error) {
       handleIO.print(error.message);
       return this.inputWinningNumbers();
@@ -35,7 +29,7 @@ const InputController = {
     try {
       const bonusNumber = await InputView.readBonusNumber();
       Validator.validateBonusNumber(bonusNumber, winningNumbers);
-      return parseInt(bonusNumber, 10);
+      return parseInt(bonusNumber);
     } catch (error) {
       handleIO.print(error.message);
       return this.inputBonusNumber(winningNumbers);
