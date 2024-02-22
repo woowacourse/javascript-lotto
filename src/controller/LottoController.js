@@ -1,12 +1,31 @@
-import Lotto from "../domain/Lotto.js";
+import LottoResultMaker from "../domain/LottoResultMaker.js";
 import LottoSeller from "../domain/LottoSeller.js";
 import LottoValidator from "../domain/LottoValidator.js";
+import WinningLotto from "../domain/WinningLotto.js";
 import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs.js";
 import InputView from "../view/InputVIew.js";
 import OutputView from "../view/OutputView.js";
 
 class LottoController {
+  #RETRY_YES = ["y", "Y"];
+  #RETRY_NO = ["n", "N"];
+
   async start() {
+    while (true) {
+      await this.#play();
+
+      OutputView.printBlankLine();
+
+      const retryChecker = await retryWhenErrorOccurs(
+        this.#readRetryChecker.bind(this)
+      );
+
+      if (!this.#isRetryYes(retryChecker)) break;
+      OutputView.printBlankLine();
+    }
+  }
+
+  async #play() {
     const buyAmount = await retryWhenErrorOccurs(
       this.#readBuyAmount.bind(this)
     );
@@ -18,10 +37,22 @@ class LottoController {
       this.#readWinningNumbers.bind(this)
     );
 
+    OutputView.printBlankLine();
+
     const bonusNumber = await retryWhenErrorOccurs(
       this.#readBonusNumber,
       winningNumbers
     );
+
+    const winningLotto = await retryWhenErrorOccurs(
+      () => new WinningLotto(winningNumbers, bonusNumber)
+    );
+
+    const lottoRanks = winningLotto.getLottosRanks(lottos);
+    const { rankResult, profitRate } =
+      LottoResultMaker.getLottoResult(lottoRanks);
+
+    OutputView.printLottoResult(rankResult, profitRate);
   }
 
   async #readWinningNumbers() {
@@ -52,7 +83,12 @@ class LottoController {
     return parsedBonusNumber;
   }
 
-  #validate() {}
+  async #readRetryChecker() {
+    const retryCheck = await InputView.readRetryCheck();
+    this.#validateRetryChecker(retryCheck);
+
+    return retryCheck;
+  }
 
   async #readBuyAmount() {
     const rawBuyAmount = await InputView.readBuyAmount();
@@ -66,10 +102,18 @@ class LottoController {
     return parsedBuyAmount;
   }
 
-  #validateUniqueNumbers(numbers) {
-    if (numbers.length !== new Set(numbers).size) {
-      throw new Error("[ERROR] 중복된 숫자가 존재합니다");
+  #validateRetryChecker(string) {
+    const RETRY_OPTION = [...this.#RETRY_YES, ...this.#RETRY_NO];
+
+    if (!RETRY_OPTION.includes(string)) {
+      throw new Error(
+        "[ERROR] 유효하지 않은 재시작 옵션입니다. (y/n 중 선택해주세요)"
+      );
     }
+  }
+
+  #isRetryYes(retryChecker) {
+    return this.#RETRY_YES.includes(retryChecker);
   }
 }
 

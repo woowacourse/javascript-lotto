@@ -13,6 +13,10 @@ class InputView {
     return await this.#readLineAsync("보너스 번호를 입력해 주세요. ");
   }
 
+  static async readRetryCheck() {
+    return await this.#readLineAsync("다시 시작하시겠습니까? (y/n)");
+  }
+
   static #readLineAsync(query) {
     const inputQuery = `> ${query}`;
     return new Promise((resolve, reject) => {
