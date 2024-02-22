@@ -1,55 +1,43 @@
+import calculateProfitRate from '../domain/CalculateProfitRate.js';
 import LottoMachine from '../domain/LottoMachine.js';
 import Lottos from '../domain/Lottos.js';
-import readInput from '../util/readInput.js';
-import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-import Validator from '../validator/Validator.js';
+import InputController from './InputController.js';
 
 class LottoGameController {
+  #purchaseAmount;
+
+  #lottos;
+
   async play() {
-    const purchaseAmount = await readInput(this.#readPurchaseAmount);
-    const lottoList = new LottoMachine(purchaseAmount).getLottoNumberList();
-    const lottos = new Lottos(lottoList);
-    OutputView.printPurchaseResult(lottoList);
+    this.#purchaseAmount = await InputController.inputPurchaseAmount();
+    this.#createRandomLottos();
 
-    const winningNumbers = await readInput(this.#readWinningNumbers);
-    const bonusNumber = await readInput(() => this.#readBonusNumber(winningNumbers));
-    const winningResults = lottos.getWinningResults(winningNumbers, bonusNumber);
-    OutputView.printWinningResults(winningResults);
+    const winningNumbers = await InputController.inputWinningNumbers();
+    const bonusNumber = await InputController.inputBonusNumber(winningNumbers);
+    this.#lottosWinningResult(winningNumbers, bonusNumber);
 
-    const restartCommand = await readInput(this.#readRestartCommand);
+    const restartCommand = await InputController.inputRestartCommand();
     this.#restartGame(restartCommand);
   }
 
-  async #readPurchaseAmount() {
-    const purchaseAmount = await InputView.readPurchaseAmount();
-    Validator.validatePurchaseAmount(purchaseAmount);
-    return parseInt(purchaseAmount);
+  #createRandomLottos() {
+    const lottoList = new LottoMachine(this.#purchaseAmount).getLottoNumberList();
+    this.#lottos = new Lottos(lottoList);
+    OutputView.printPurchaseResult(lottoList);
   }
 
-  async #readWinningNumbers() {
-    const winningNumbers = await InputView.readWinningNumbers();
-    Validator.validateWinningNumbers(winningNumbers);
-    return winningNumbers.split(',').map((number) => parseInt(number.trim()));
-  }
-
-  async #readBonusNumber(winningNumbers) {
-    const bonusNumber = await InputView.readBonusNumber();
-    Validator.validateBonusNumber(bonusNumber, winningNumbers);
-    return parseInt(bonusNumber);
-  }
-
-  async #readRestartCommand() {
-    const restartCommand = await InputView.readRestartCommand();
-    Validator.validateRestartCommand(restartCommand);
-    return restartCommand;
+  #lottosWinningResult(winningNumbers, bonusNumber) {
+    const winningResults = this.#lottos.getWinningResults(winningNumbers, bonusNumber);
+    OutputView.printWinningResults(winningResults);
+    OutputView.printProfitRate(calculateProfitRate(this.#purchaseAmount, winningResults));
   }
 
   #restartGame(restartCommand) {
-    if (restartCommand === 'y' || restartCommand === 'Y') {
+    if (restartCommand === 'y') {
       this.play();
     }
-    if (restartCommand === 'n' || restartCommand === 'N') {
+    if (restartCommand === 'n') {
       OutputView.printExitMessage();
       return;
     }
