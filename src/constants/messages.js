@@ -16,6 +16,8 @@ export const OUTPUT_MESSAGES = Object.freeze({
   moneyUnit: '원',
   countUnit: '개',
   profitUnit: '%',
+  restartGame: '\n---게임 재시작!🎮---\n',
+  endGame: '\n 게임 종료 👏👏👏',
 });
 
 const ERROR_PREFIX = '[ERROR]';

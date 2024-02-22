@@ -29,8 +29,12 @@ const OutputView = {
     );
   },
 
-  printRestartGuide() {
-    Console.print();
+  printRestartGameMessage() {
+    Console.print(OUTPUT_MESSAGES.restartGame);
+  },
+
+  printEndGameMessage() {
+    Console.print(OUTPUT_MESSAGES.endGame);
   },
 };
 

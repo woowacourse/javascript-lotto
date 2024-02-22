@@ -69,8 +69,11 @@ class GameController {
     Validator.checkRestartForm(restartInput);
 
     if (restartInput === RESTART_KEY.restart) {
+      OutputView.printRestartGameMessage();
       this.#lottoGame = new LottoGame();
       await this.playGame();
+    } else {
+      OutputView.printEndGameMessage();
     }
   }
 }
