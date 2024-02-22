@@ -1,10 +1,10 @@
-/* eslint-disable */
 import readline from 'readline';
+import { CONSTANTS } from '../constant/index.js';
 
 const ReadLine = {
   readLineAsync(query) {
     return new Promise((resolve, reject) => {
-      if (arguments.length !== 1) {
+      if (arguments.length !== CONSTANTS.one) {
         reject(new Error('arguments must be 1'));
       }
 

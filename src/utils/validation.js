@@ -1,4 +1,4 @@
-import { LOTTO_RULES, ERROR_MESSAGES } from '../constant/index.js';
+import { LOTTO_RULES, ERROR_MESSAGES, REGEXP, CONSTANTS } from '../constant/index.js';
 
 const Validations = {
   isCorrectLength(numbers) {
@@ -16,11 +16,11 @@ const Validations = {
   },
 
   isNumericPattern(number) {
-    return /^\d+$/.test(number);
+    return REGEXP.numericPattern.test(number);
   },
 
   isDivide(dividend, divisor) {
-    return dividend % divisor === 0;
+    return dividend % divisor === CONSTANTS.zero;
   },
 
   isGreaterThan(number, threshold) {
@@ -28,7 +28,7 @@ const Validations = {
   },
 
   isOnlyYorN(string) {
-    return string === 'y' || string === 'n';
+    return string === CONSTANTS.yes || CONSTANTS.no === 'n';
   },
 };
 
@@ -47,8 +47,8 @@ export const validateBonusNumber = (numbers, bonusNumber) => {
 
 export const validateCost = (cost) => {
   if (!Validations.isNumericPattern(cost)) throw new Error(ERROR_MESSAGES.positiveInteger);
-  if (!Validations.isDivide(cost, 1000)) throw new Error(ERROR_MESSAGES.divideThousand);
-  if (!Validations.isGreaterThan(cost, 1000)) throw new Error(ERROR_MESSAGES.greaterThanThousand);
+  if (!Validations.isDivide(cost, LOTTO_RULES.cost)) throw new Error(ERROR_MESSAGES.divideThousand);
+  if (!Validations.isGreaterThan(cost, LOTTO_RULES.cost)) throw new Error(ERROR_MESSAGES.greaterThanThousand);
 };
 
 export const validateRestartResponse = (restartResponse) => {
