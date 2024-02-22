@@ -1,4 +1,4 @@
-import { LOTTO_STATICS } from '../constant/lotto-statics.js';
+import { LOTTO_STATICS } from '../constants/lotto-statics.js';
 class LottoCalculator {
   #lottoStatics;
 
@@ -43,7 +43,7 @@ class LottoCalculator {
   }
 
   #calculateAllLottoStatics(lottoNumbers, generatedLottos) {
-    for (let i = 0; i < generatedLottos[0].length; i++) {
+    for (let i = 0; i < generatedLottos.length; i++) {
       this.#calculateLottoStatics(lottoNumbers, generatedLottos[i]);
     }
   }

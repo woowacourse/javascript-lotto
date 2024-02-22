@@ -20,3 +20,11 @@ export const LOTTO_STATICS = {
     number: 6,
   },
 };
+
+Object.values(LOTTO_STATICS).forEach((item) => {
+  if (item === LOTTO_STATICS.fiveBonus) {
+    item.message = `${item.number}개 일치, 보너스 일치 (${item.price.toLocaleString()}원)`;
+  } else {
+    item.message = `${item.number}개 일치 (${item.price.toLocaleString()}원)`;
+  }
+});

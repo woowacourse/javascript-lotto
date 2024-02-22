@@ -2,16 +2,40 @@ import InputView from '../views/InputView';
 import Console from '../utils/Console';
 import LottoPaymentValidator from '../validators/LottoPaymentValidator';
 import LottoValidator from '../validators/LottoValidator';
+import LottoCalculator from '../domains/LottoCalculator';
+import LottoGenerator from '../domains/LottoGenerator';
+import OutputView from '../views/OutputView';
 
 class LottoController {
-  #winningNumbers;
+  #lottoNumbers = {};
+
+  constructor() {
+    this.#lottoNumbers = {
+      winningNumbers: null,
+      bonusNumber: null,
+    };
+  }
+
   async run() {
-    await this.readLottoPayment();
-    this.#winningNumbers = await this.readWinningNumbers();
-    await this.readBonusNumber();
-    //보너스 번호 받기
-    //당첨 통계 출력
-    //수익률 출력
+    const tickets = await this.readLottoPayment();
+
+    const lottoGenerator = new LottoGenerator(tickets / 1000);
+    OutputView.printLottoPayment(tickets / 1000);
+
+    OutputView.printGeneratedLottos(lottoGenerator.generatedLottos);
+
+    this.#lottoNumbers.winningNumbers = await this.readWinningNumbers();
+    this.#lottoNumbers.bonusNumber = Number(await this.readBonusNumber());
+
+    const lottoCalculator = new LottoCalculator(
+      this.#lottoNumbers,
+      lottoGenerator.generatedLottos,
+    );
+    const lottoStatics = lottoCalculator.lottoStatics;
+    const profit = lottoCalculator.calculateTotalProfit(tickets / 1000);
+
+    OutputView.printWinningStatics(lottoStatics);
+    OutputView.printTotalProfit(profit);
   }
 
   async readLottoPayment() {
@@ -39,7 +63,10 @@ class LottoController {
   async readBonusNumber() {
     try {
       const bonusNumber = await InputView.bonusNumber();
-      LottoValidator.bonusNumberValidate(this.#winningNumbers, bonusNumber);
+      LottoValidator.bonusNumberValidate(
+        this.#lottoNumbers.winningNumbers,
+        bonusNumber,
+      );
       return bonusNumber;
     } catch (error) {
       Console.print(error.message);

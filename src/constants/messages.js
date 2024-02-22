@@ -7,7 +7,7 @@ export const INPUT_MESSAGES = {
 };
 
 export const OUTPUT_MESSAGES = {
-  buyCount(count) {
+  lottoPayment(count) {
     return `${count}개를 구매했습니다.`;
   },
   winningStatics: '당첨 통계',
