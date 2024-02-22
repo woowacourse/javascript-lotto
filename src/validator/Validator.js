@@ -26,7 +26,10 @@ const Validator = {
     this.checkBonusNumberDuplicated(bonusNumber, winningNumbers);
   },
 
-  validateRestartCommand(restartCommand) {},
+  validateRestartCommand(restartCommand) {
+    this.checkEmpty(restartCommand);
+    this.checkRestartCommandFormat(restartCommand);
+  },
 
   checkEmpty(input) {
     if (input.length === 0) {
@@ -86,6 +89,12 @@ const Validator = {
   checkBonusNumberDuplicated(bonusNumber, winningNumbers) {
     if (winningNumbers.includes(parseInt(bonusNumber))) {
       throw new Error(ERROR_MESSAGE.BONUS_NUMBER_DUPLICATED);
+    }
+  },
+
+  checkRestartCommandFormat(input) {
+    if (input.toLowerCase() !== 'y' || input.toLowerCase() !== 'n') {
+      throw new Error(ERROR_MESSAGE.RESTART_COMMAND_FORMAT);
     }
   },
 };
