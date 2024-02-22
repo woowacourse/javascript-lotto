@@ -4,6 +4,7 @@ import { isOverlapped } from "../utils/isOverlapped.js";
 import { sortNumbersAscend } from "../utils/sortNumbersAscend.js";
 import LottoNumber from "./LottoNumber.js";
 import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
+import CustomError from "../error/CustomError.js";
 class Lotto {
   static NUMBER_COUNT = 6;
   static SEPARATOR = ",";
@@ -14,7 +15,9 @@ class Lotto {
     if (typeof numbers === "string") this.#constructorWithNumStr(numbers);
     if (numbers === undefined) this.#constructorWithoutArg();
 
-    this.#numbers = sortNumbersAscend(this.#numbers).map((num) => new LottoNumber(num));
+    this.#numbers = sortNumbersAscend(this.#numbers).map(
+      (num) => new LottoNumber(num)
+    );
   }
 
   // 오버로딩
@@ -27,7 +30,11 @@ class Lotto {
   }
 
   #constructorWithoutArg() {
-    this.#numbers = generateRandomNumbers(LottoNumber.MIN, LottoNumber.MAX, Lotto.NUMBER_COUNT);
+    this.#numbers = generateRandomNumbers(
+      LottoNumber.MIN,
+      LottoNumber.MAX,
+      Lotto.NUMBER_COUNT
+    );
   }
 
   get() {
@@ -37,15 +44,19 @@ class Lotto {
   #validate(numbers) {
     // 중복없이 6개가 아닌 로또 넘버가 들어온 경우와 중복있는 로또 넘버가 들어온 경우의 오류를 다르게 주기 위해
     if (!isExpectedArrayLength(numbers, Lotto.NUMBER_COUNT))
-      throw new Error(ERROR_MESSAGE.lottoNumbersTooManyOrLess);
+      throw new CustomError(ERROR_MESSAGE.lottoNumbersTooManyOrLess);
 
-    if (isOverlapped(numbers)) throw new Error(ERROR_MESSAGE.lottoNumbersOverlapped);
+    if (isOverlapped(numbers))
+      throw new CustomError(ERROR_MESSAGE.lottoNumbersOverlapped);
   }
 
   checkHaveBonus(bonusLottoNumber) {
-    const isAlreadyHave = this.#numbers.some((num) => num.get() === bonusLottoNumber);
+    const isAlreadyHave = this.#numbers.some(
+      (num) => num.get() === bonusLottoNumber
+    );
 
-    if (isAlreadyHave) throw new Error(ERROR_MESSAGE.bonusNumberOverlapped);
+    if (isAlreadyHave)
+      throw new CustomError(ERROR_MESSAGE.bonusNumberOverlapped);
   }
 }
 

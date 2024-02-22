@@ -1,3 +1,4 @@
+import CustomError from "../error/CustomError.js";
 import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
 
 class LottoMoney {
@@ -21,12 +22,14 @@ class LottoMoney {
   }
 
   #validate(money) {
-    if (isNaN(money)) throw new Error(ERROR_MESSAGE.lottoMoneyNotNumber);
+    if (isNaN(money)) throw new CustomError(ERROR_MESSAGE.lottoMoneyNotNumber);
 
     const moneyIsNotInRange = money < LottoMoney.MIN || money > LottoMoney.MAX;
 
-    if (moneyIsNotInRange) throw new Error(ERROR_MESSAGE.lottoMoneyNotInRange);
-    if (!Number.isInteger(money)) throw new Error(ERROR_MESSAGE.lottoMoneyNotInteger);
+    if (moneyIsNotInRange)
+      throw new CustomError(ERROR_MESSAGE.lottoMoneyNotInRange);
+    if (!Number.isInteger(money))
+      throw new CustomError(ERROR_MESSAGE.lottoMoneyNotInteger);
   }
 }
 

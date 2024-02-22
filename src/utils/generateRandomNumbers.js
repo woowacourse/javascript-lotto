@@ -1,3 +1,4 @@
+import CustomError from "../error/CustomError.js";
 import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
 
 function generateRandomNumber(min, max) {
@@ -5,7 +6,8 @@ function generateRandomNumber(min, max) {
 }
 
 function generateRandomNumbers(min, max, count) {
-  if (max - min < count) throw new Error(ERROR_MESSAGE.generateRandomNumberInvalidRange);
+  if (max - min < count)
+    throw new CustomError(ERROR_MESSAGE.generateRandomNumberInvalidRange);
 
   const uniqueNumbers = new Set();
 

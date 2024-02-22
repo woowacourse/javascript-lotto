@@ -18,8 +18,13 @@ const lottoController = {
     while (true) {
       const money = await catchReturn(this.getMoney);
       const randomLottos = this.generateRandomLotto(money.getLottoCount());
-      const { winningLotto, bonusLottoNumber } = await this.getWinningAndBonusLotto();
-      const rank = this.calcRank({ winningLotto, bonusLottoNumber, randomLottos });
+      const { winningLotto, bonusLottoNumber } =
+        await this.getWinningAndBonusLotto();
+      const rank = this.calcRank({
+        winningLotto,
+        bonusLottoNumber,
+        randomLottos,
+      });
 
       this.printProfitRate(money.get(), rank);
 
@@ -42,7 +47,9 @@ const lottoController = {
 
   async getWinningAndBonusLotto() {
     const winningLotto = await catchReturn(this.getWinningLotto);
-    const bonusLottoNumber = await catchReturn(() => this.getBonusLottoNumber(winningLotto));
+    const bonusLottoNumber = await catchReturn(() =>
+      this.getBonusLottoNumber(winningLotto)
+    );
     return { winningLotto, bonusLottoNumber };
   },
 
@@ -60,7 +67,7 @@ const lottoController = {
     const bonusLottoNumberInput = await InputView.readBonusLottoNumber();
     const bonusLottoNumber = new LottoNumber(bonusLottoNumberInput);
 
-    winningLotto.checkHaveBonus(bonusLottoNumber);
+    winningLotto.checkHaveBonus(bonusLottoNumber.get());
 
     return bonusLottoNumber;
   },

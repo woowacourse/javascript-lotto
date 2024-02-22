@@ -1,3 +1,4 @@
+import CustomError from "../error/CustomError.js";
 import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
 
 class Command {
@@ -10,7 +11,7 @@ class Command {
 
   static #validate(input) {
     const isInvalidCommand = !this.COMMANDS.includes(input);
-    if (isInvalidCommand) throw new Error(ERROR_MESSAGE.commandNotInList);
+    if (isInvalidCommand) throw new CustomError(ERROR_MESSAGE.commandNotInList);
   }
 }
 
