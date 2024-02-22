@@ -1,27 +1,30 @@
+import { ERROR_MESSAGES } from '../constants/message';
+import InvalidInputException from '../exceptions/InvalidInputException';
+
 class WinningLotto {
   #winningLotto;
 
   #bonusNumber;
 
   constructor(winningLotto, bonusNumber) {
-    this.#validateDuplication(winningLotto, bonusNumber);
+    WinningLotto.#validateDuplication(winningLotto, bonusNumber);
     this.#winningLotto = winningLotto;
-    this.#validateBonusNumber(bonusNumber);
+    WinningLotto.#validateBonusNumber(bonusNumber);
     this.#bonusNumber = bonusNumber;
   }
 
-  #validateBonusNumber(bonusNumber) {
+  static #validateBonusNumber(bonusNumber) {
     const regex = /^(?:[1-9]|[1-3][0-9]|4[0-5])$/;
 
     if (!regex.test(bonusNumber)) {
-      throw new Error("[ERROR]");
+      throw new InvalidInputException(ERROR_MESSAGES.invalidBonusNumberType);
     }
   }
 
-  #validateDuplication(winningLotto, bonusNumber) {
+  static #validateDuplication(winningLotto, bonusNumber) {
     const numericBonusNumber = Number(bonusNumber);
     if (winningLotto.hasNumber(numericBonusNumber)) {
-      throw new Error("[ERROR]");
+      throw new InvalidInputException(ERROR_MESSAGES.invalidBonusNumberUniqueness);
     }
   }
 
