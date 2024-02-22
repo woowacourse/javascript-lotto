@@ -12,7 +12,9 @@ const LottoPaymentValidator = {
 
   validateDividedUnit(price) {
     if (!this.isDividedUnit(price)) {
-      throw new Error(ERROR_MESSAGES.invalidDividedUnit);
+      throw new Error(
+        `${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidDividedUnit}`,
+      );
     }
   },
 };

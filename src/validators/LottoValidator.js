@@ -19,7 +19,9 @@ const LottoValidator = {
 
   validateLength(numbers) {
     if (!this.isValidLength(numbers)) {
-      throw new Error(ERROR_MESSAGES.invalidLength);
+      throw new Error(
+        `${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidLength}`,
+      );
     }
   },
 
@@ -29,7 +31,9 @@ const LottoValidator = {
 
   validateUniqueNumber(numbers) {
     if (!this.isValidUniqueNumber(numbers)) {
-      throw new Error(ERROR_MESSAGES.invalidUniqueNumber);
+      throw new Error(
+        `${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidUniqueNumber}`,
+      );
     }
   },
 
@@ -39,7 +43,9 @@ const LottoValidator = {
 
   validateRange(number) {
     if (!this.isInRange(number)) {
-      throw new Error(ERROR_MESSAGES.invalidRange);
+      throw new Error(
+        `${ERROR_MESSAGES.prefix} ${ERROR_MESSAGES.invalidRange}`,
+      );
     }
   },
 

@@ -21,7 +21,7 @@ export const OUTPUT_MESSAGES = {
 
 export const ERROR_MESSAGES = {
   prefix: '[ERROR]',
-  invalidDividedUnit: `구입 금액은 ${LOTTO_RULES.lottoBaseTicketPrice} 단위로 나누어 떨어져야 합니다.`,
+  invalidDividedUnit: `구입 금액은 ${LOTTO_RULES.lottoBaseTicketPrice}원 단위로 나누어 떨어져야 합니다.`,
   invalidLength: `${LOTTO_RULES.winningNumbersLength}개의 숫자를 입력해 주세요.`,
   invalidRange: `${LOTTO_RULES.minLength} ~ ${LOTTO_RULES.maxLength} 사이의 숫자만 입력해 주세요.`,
   invalidUniqueNumber: '중복된 숫자는 입력할 수 없습니다.',
