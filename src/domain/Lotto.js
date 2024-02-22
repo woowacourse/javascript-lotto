@@ -6,12 +6,8 @@ class Lotto {
   }
 
   countMatchedNumbers(winningNumbers) {
-    return winningNumbers.reduce((result, winningNumber) => {
-      if (this.hasNumber(winningNumber)) {
-        result += 1;
-      }
-      return result;
-    }, 0);
+    const count = winningNumbers.filter((number) => this.hasNumber(number)).length;
+    return count;
   }
 
   hasNumber(number) {
