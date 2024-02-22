@@ -6,6 +6,8 @@ import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
 
 class LottoGameController {
+  #retryCommands = ['Y', 'y'];
+
   async run() {
     const { buyLottoPrice, lottoNumbers } = await this.#processBuyLotto();
 
@@ -48,7 +50,7 @@ class LottoGameController {
   async #processRetryGame() {
     const retryCommand = await RetryHandler.errorWithLogging(() => InputView.readRetryCommand());
 
-    if (retryCommand === 'y' || retryCommand === 'Y') await this.run();
+    if (this.#retryCommands.includes(retryCommand)) await this.run();
   }
 }
 
