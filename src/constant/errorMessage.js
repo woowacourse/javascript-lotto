@@ -9,7 +9,7 @@ const ERROR_MESSAGE = {
   INPUT_IS_EMPTY: generateErrorMessage('필수값입니다.'),
   INPUT_IS_NOT_NUMBER: generateErrorMessage('숫자로 입력해주셔야 합니다.'),
   PURCHASE_AMOUNT_NOT_DIVIDED: generateErrorMessage(`${SETTING.LOTTO_PRICE} 단위의 숫자여야 합니다.`),
-  LOTTO_NUMBER_LENGTH: generateErrorMessage(`쉼표로 구분되는 ${SETTING.LOTTO_LENGTH} 숫자여야 합니다.`),
+  LOTTO_NUMBER_LENGTH: generateErrorMessage(`쉼표로 구분되는 ${SETTING.LOTTO_LENGTH}개의 숫자여야 합니다.`),
   LOTTO_NUMBER_RANGE: generateErrorMessage(
     `각각의 숫자는 ${SETTING.MIN_LOTTO_NUMBER}~${SETTING.MAX_LOTTO_NUMBER} 사이의 숫자여야 합니다.`,
   ),
