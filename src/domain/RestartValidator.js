@@ -4,7 +4,7 @@ import Message from '../constants/Message';
 const { RESTART_OPTION } = Condition;
 const { ERROR } = Message;
 
-const SystemValidator = {
+const RestartValidator = {
   validateOptionCharacter(restartOption) {
     if (restartOption !== RESTART_OPTION.RESTART && restartOption !== RESTART_OPTION.EXIT) {
       throw new Error(ERROR.OPTION_CHARACTER);
@@ -12,4 +12,4 @@ const SystemValidator = {
   },
 };
 
-export default SystemValidator;
+export default RestartValidator;
