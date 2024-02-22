@@ -1,28 +1,30 @@
+import { OUTPUT_MESSAGES } from '../constant/index.js';
+
 const OutputView = {
   printBuyCount(count) {
-    console.log(`${count}개를 구매했습니다.\n`);
+    console.log(OUTPUT_MESSAGES.buyCount(count));
   },
 
   printLotto(lotto) {
-    console.log(`[${lotto.join(', ')}]`);
+    console.log(OUTPUT_MESSAGES.lotto(lotto));
   },
 
   printResult(results) {
-    console.log('당첨 통계');
-    console.log('--------------------');
-    OutputView.printMatchResult(results);
+    console.log(OUTPUT_MESSAGES.winningStatistics);
+    console.log(OUTPUT_MESSAGES.separate);
+    this.printMatchResult(results);
   },
 
   printMatchResult({ three, four, five, five_bonus, six }) {
-    console.log(`3개 일치, (5,000원) - ${three}개`);
-    console.log(`4개 일치, (5,0000원) - ${four}개`);
-    console.log(`5개 일치, (1,500,000원) - ${five}개`);
-    console.log(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${five_bonus}개`);
-    console.log(`6개 일치, (2,000,000,000원) - ${six}개`);
+    console.log(OUTPUT_MESSAGES.three(three));
+    console.log(OUTPUT_MESSAGES.four(four));
+    console.log(OUTPUT_MESSAGES.five(five));
+    console.log(OUTPUT_MESSAGES.five_bonus(five_bonus));
+    console.log(OUTPUT_MESSAGES.six(six));
   },
 
   printProfit(profit) {
-    console.log(`총 수익률은 ${profit}% 입니다.`);
+    console.log(OUTPUT_MESSAGES.profit(profit));
   },
 };
 

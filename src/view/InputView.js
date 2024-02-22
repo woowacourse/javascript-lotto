@@ -2,11 +2,12 @@ import Lotto from '../domain/lotto.js';
 import WinningLotto from '../domain/winningLotto.js';
 import ReadLine from '../utils/readLineAsync.js';
 import { validateCost, validateRestartResponse } from '../utils/validation.js';
+import { INPUT_MESSAGES } from '../constant/index.js';
 
 const InputView = {
   async readCost() {
     try {
-      const cost = Number(await ReadLine.readLineAsync('> 구입 금액을 입력해주세요'));
+      const cost = Number(await ReadLine.readLineAsync(INPUT_MESSAGES.cost));
       validateCost(cost);
       return cost;
     } catch (error) {
@@ -17,7 +18,7 @@ const InputView = {
 
   async readLotto() {
     try {
-      const numbers = (await ReadLine.readLineAsync('> 당첨 번호를 입력해주세요.'))
+      const numbers = (await ReadLine.readLineAsync(INPUT_MESSAGES.winningNumber))
         .split(',')
         .map((number) => Number(number));
 
@@ -29,7 +30,7 @@ const InputView = {
   },
 
   async readBonusNumber() {
-    const bonusNumber = Number(await ReadLine.readLineAsync('> 보너스 번호를 입력해주세요.'));
+    const bonusNumber = Number(await ReadLine.readLineAsync(INPUT_MESSAGES.bonusNumber));
 
     return bonusNumber;
   },
@@ -47,8 +48,7 @@ const InputView = {
 
   async readRestart() {
     try {
-      const restartResponse = await ReadLine.readLineAsync('> 다시 시작하시겠습니까? (y, n)');
-
+      const restartResponse = await ReadLine.readLineAsync(INPUT_MESSAGES.restart);
       validateRestartResponse(restartResponse);
 
       return restartResponse;
