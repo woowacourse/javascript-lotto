@@ -11,6 +11,10 @@ const ERROR_MESSAGE = {
   LOTTO_NUMBER_RANGE: generateErrorMessage('각각의 숫자는 1~45 사이의 숫자여야 합니다.'),
   LOTTO_NUMBER_FORMAT: generateErrorMessage('각각의 당첨 번호는 숫자여야 합니다.'),
   LOTTO_NUMBER_DUPLICATED: generateErrorMessage('서로 중복되지 않는 숫자여야 합니다.'),
+  BONUS_NUMBER_RANGE: generateErrorMessage('보너스 번호는 1~45 사이의 숫자여야 합니다.'),
+  BONUS_NUMBER_FORMAT: generateErrorMessage('보너스 번호는 숫자여야 합니다.'),
+  BONUS_NUMBER_DUPLICATED: generateErrorMessage('보너스 번호는 당첨 번호와 중복되지 않아야 합니다.'),
+  RESTART_COMMAND_FORMAT: generateErrorMessage('재시작 여부는 Y 또는 N으로만 입력하셔야 합니다.'),
 };
 
 export default ERROR_MESSAGE;
