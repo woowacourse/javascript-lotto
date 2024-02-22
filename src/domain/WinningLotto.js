@@ -1,3 +1,4 @@
+import Validator from "../utils/Validator";
 import Lotto from "./Lotto";
 class WinningLotto extends Lotto {
   #bonusNumber;
@@ -5,27 +6,10 @@ class WinningLotto extends Lotto {
   constructor(winningNumbers, bonusNumber) {
     super(winningNumbers);
 
-    this.#validateBonusNumber(bonusNumber);
+    if (!Validator.checkBonusNumber(winningNumbers, bonusNumber))
+      throw new Error();
 
     this.#bonusNumber = bonusNumber;
-  }
-
-  #validateBonusNumber(bonusNumber) {
-    if (typeof bonusNumber !== "number") {
-      throw new Error();
-    }
-
-    if (!Number.isInteger(bonusNumber)) {
-      throw new Error();
-    }
-
-    if (bonusNumber < 1 || bonusNumber > 45) {
-      throw new Error();
-    }
-
-    if (this._numbers.includes(bonusNumber)) {
-      throw new Error();
-    }
   }
 
   compareWinningNumbersWithLotto(lottoNumbers) {
