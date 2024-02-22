@@ -1,5 +1,4 @@
-import { SETTING } from '../constant/setting.js';
-import calculateProfitRate from '../domain/CalculateProfitRate.js';
+import { SETTING, RANKING } from '../constant/setting.js';
 import LottoMachine from '../domain/LottoMachine.js';
 import Lottos from '../domain/Lottos.js';
 import OutputView from '../view/OutputView.js';
@@ -7,7 +6,6 @@ import InputController from './InputController.js';
 
 class LottoGameController {
   #purchaseAmount;
-
   #lottos;
 
   async play() {
@@ -31,7 +29,14 @@ class LottoGameController {
   #lottosWinningResult(winningNumbers, bonusNumber) {
     const winningResults = this.#lottos.getWinningResults(winningNumbers, bonusNumber);
     OutputView.printWinningResults(winningResults);
-    OutputView.printProfitRate(calculateProfitRate(this.#purchaseAmount, winningResults));
+    OutputView.printProfitRate(this.#calculateProfitRate(winningResults));
+  }
+
+  #calculateProfitRate(winningResults) {
+    const totalProfit = Object.entries(winningResults).reduce((profit, [ranking, count]) => {
+      return (profit += RANKING[ranking].REWARD * count);
+    }, 0);
+    return ((totalProfit * 100) / this.#purchaseAmount).toLocaleString('ko-KR', { minimumFractionDigits: 1 });
   }
 
   #restartGame(restartCommand) {
