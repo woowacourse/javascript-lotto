@@ -7,8 +7,7 @@ class WinningLotto {
 
   constructor(numbers, bonusNumber) {
     LottoValidator.validateLottoNumbers(numbers);
-    LottoValidator.validateBonusNumber(bonusNumber);
-    LottoValidator.validateUniqueElements([...numbers, bonusNumber]);
+    LottoValidator.validateBonusNumber(bonusNumber, numbers);
 
     this.#setIsWinningNumber(numbers);
     this.#bonusNumber = bonusNumber;

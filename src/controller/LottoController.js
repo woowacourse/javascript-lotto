@@ -6,17 +6,6 @@ import InputView from "../view/InputVIew.js";
 import OutputView from "../view/OutputView.js";
 
 class LottoController {
-  #minBuyAmount;
-  #maxBuyAmount;
-
-  constructor(
-    minBuyAmount = LottoSeller.LOTTO_PRICE,
-    maxBuyAmount = Number.MAX_SAFE_INTEGER
-  ) {
-    this.#minBuyAmount = minBuyAmount;
-    this.#maxBuyAmount = maxBuyAmount;
-  }
-
   async start() {
     const buyAmount = await retryWhenErrorOccurs(
       this.#readBuyAmount.bind(this)
@@ -29,7 +18,10 @@ class LottoController {
       this.#readWinningNumbers.bind(this)
     );
 
-    // const bonusNumber = await retryWhenErrorOccurs();
+    const bonusNumber = await retryWhenErrorOccurs(
+      this.#readBonusNumber,
+      winningNumbers
+    );
   }
 
   async #readWinningNumbers() {
@@ -41,25 +33,35 @@ class LottoController {
       LottoValidator.validateLottoNumberString(string);
     });
 
-    this.#validateUniqueNumbers(winningNumberStrings);
+    const parsedWinningNumbers = winningNumberStrings.map(Number);
 
-    return winningNumberStrings.map(Number);
+    LottoValidator.validateLottoNumbers(parsedWinningNumbers);
+
+    return parsedWinningNumbers;
   }
 
-  async #readBonusNumber() {
+  async #readBonusNumber(winningNumbers) {
     const rawBonusNumber = await InputView.readBonusNumber();
 
     LottoValidator.validateNonNegativeIntegerString(rawBonusNumber);
 
-    LottoValidator.validateBonusNumber(Number(rawBonusNumber));
+    const parsedBonusNumber = Number(rawBonusNumber);
+
+    LottoValidator.validateBonusNumber(parsedBonusNumber, winningNumbers);
+
+    return parsedBonusNumber;
   }
+
+  #validate() {}
 
   async #readBuyAmount() {
     const rawBuyAmount = await InputView.readBuyAmount();
 
-    LottoValidator.validateNumberParsable(rawBuyAmount);
+    LottoValidator.validateNonNegativeIntegerString(rawBuyAmount);
+
     const parsedBuyAmount = Number(rawBuyAmount);
-    //this.#validateBuyAmount(parsedBuyAmount);
+
+    LottoValidator.validateBuyAmount(parsedBuyAmount);
 
     return parsedBuyAmount;
   }
