@@ -18,7 +18,7 @@ npm run start-step1
 
 ## 실행 결과
 
-<img src="./game.png" alt="로또 게임 실행 결과" width="500px">
+<img src="./lotto-game.png" alt="로또 게임 실행 결과" width="500px">
 
 ## 🏫 학습 목표
 
