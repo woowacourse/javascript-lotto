@@ -1,3 +1,4 @@
+import numberValidator from '../src/validators/numberValidator';
 import purchaseAmountValidator from '../src/validators/purchaseAmountValidator';
 
 describe('유효성 검사 테스트', () => {
@@ -16,7 +17,7 @@ describe('유효성 검사 테스트', () => {
       const input = '';
 
       const mockFn = () => {
-        purchaseAmountValidator.validateBlank(input);
+        numberValidator.validateBlank(input);
       };
 
       expect(mockFn).toThrow('[ERROR]');
@@ -26,7 +27,7 @@ describe('유효성 검사 테스트', () => {
       const input = 'fe';
 
       const mockFn = () => {
-        purchaseAmountValidator.validateNumber(input);
+        numberValidator.validateNumber(input);
       };
 
       expect(mockFn).toThrow('[ERROR]');
