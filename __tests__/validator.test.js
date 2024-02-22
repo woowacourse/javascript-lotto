@@ -21,5 +21,15 @@ describe('유효성 검사 테스트', () => {
 
       expect(mockFn).toThrow('[ERROR]');
     });
+
+    test('구매 금액이 숫자가 아닌 경우 예외를 발생시킨다.', () => {
+      const input = 'fe';
+
+      const mockFn = () => {
+        purchaseAmountValidator.validateNumber(input);
+      };
+
+      expect(mockFn).toThrow('[ERROR]');
+    });
   });
 });

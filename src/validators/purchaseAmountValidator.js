@@ -10,6 +10,12 @@ const purchaseAmountValidator = {
       throw new Error('[ERROR] 로또 구매 금액은 숫자로 입력해주세요.');
     }
   },
+
+  validateNumber(purchaseAmount) {
+    if (isNaN(purchaseAmount)) {
+      throw new Error('[ERROR] 로또 구매 금액은 숫자로 입력해주세요.');
+    }
+  },
 };
 
 export default purchaseAmountValidator;
