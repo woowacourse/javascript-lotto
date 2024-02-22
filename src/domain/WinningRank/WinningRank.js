@@ -1,4 +1,12 @@
 class WinningRank {
+  static RANK_RULE = {
+    '1st': { match: 6, hasBonus: false, description: '6개 일치' },
+    '2nd': { match: 5, hasBonus: true, description: '5개 일치, 보너스 볼 일치' },
+    '3rd': { match: 5, hasBonus: false, description: '5개 일치' },
+    '4th': { match: 4, hasBonus: false, description: '4개 일치' },
+    '5th': { match: 3, hasBonus: false, description: '3개 일치' },
+  };
+
   #lottoDrawDetail;
 
   #winningRankResult = {
@@ -7,14 +15,6 @@ class WinningRank {
     '3rd': 0,
     '4th': 0,
     '5th': 0,
-  };
-
-  static RANK_RULE = {
-    '1st': { match: 6, hasBonus: false, description: '6개 일치' },
-    '2nd': { match: 5, hasBonus: true, description: '5개 일치, 보너스 볼 일치' },
-    '3rd': { match: 5, hasBonus: false, description: '5개 일치' },
-    '4th': { match: 4, hasBonus: false, description: '4개 일치' },
-    '5th': { match: 3, hasBonus: false, description: '3개 일치' },
   };
 
   constructor({ winningNumber, lottoNumbers, bonusNumber }) {
