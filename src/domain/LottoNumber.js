@@ -1,3 +1,4 @@
+import CustomError from "../error/CustomError.js";
 import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
 
 class LottoNumber {
@@ -6,16 +7,20 @@ class LottoNumber {
   static MAX = 45;
 
   constructor(number) {
-    this.#validate(number);
-    this.#number = number;
+    const parsedNumber = Number(number);
+
+    this.#validate(parsedNumber);
+    this.#number = parsedNumber;
   }
 
   #validate(number) {
-    if (isNaN(number)) throw new Error(ERROR_MESSAGE.lottoNumberNotNumber);
+    if (isNaN(number))
+      throw new CustomError(ERROR_MESSAGE.lottoNumberNotNumber);
 
     const isOutOfRange = number < LottoNumber.MIN || number > LottoNumber.MAX;
 
-    if (isOutOfRange) throw new Error(ERROR_MESSAGE.lottoNumberOutOfRange);
+    if (isOutOfRange)
+      throw new CustomError(ERROR_MESSAGE.lottoNumberOutOfRange);
   }
 
   get() {
