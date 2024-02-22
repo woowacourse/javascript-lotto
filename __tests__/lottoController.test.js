@@ -1,6 +1,6 @@
 import LottoController from '../src/controller/LottoController';
 
-describe('lottoController 클래스 검사 ', () => {
+describe('lottoController 클래스 내 수익률을 계산하는 함수를 검사하는 테스트입니다.', () => {
   test.each([
     [[1, 0, 0, 0, 0], 8, '62.5'],
     [[0, 0, 0, 1, 0], 30, '100000.0'],
