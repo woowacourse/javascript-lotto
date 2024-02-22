@@ -21,6 +21,17 @@ class LottoGame {
     this.#lottoData.winningLotto.bonusNumber = bonusNumberInput;
   }
 
+  get lottoAnalytics() {
+    return {
+      profitRate: this.#lottoAnalytics.statistics.profitRate,
+      statisticsResult: this.#lottoAnalytics.statistics.statisticsResult,
+    };
+  }
+
+  get lottoData() {
+    return this.#lottoData;
+  }
+
   insertMoney(paymentAmountInput) {
     this.#lottoData.lottoMachine = new LottoMachine(paymentAmountInput);
   }

@@ -11,9 +11,9 @@ export const isInteger = (number) => Number.isInteger(number);
  * @param {number[]} numbers
  */
 export const isValidLottoNumberCount = (numbers) => {
-  const { matchedCount } = LOTTO_RULE;
+  const { length } = LOTTO_RULE;
 
-  return numbers.length === matchedCount;
+  return numbers.length === length;
 };
 /**
  * 로또 번호들이 중복되지 않는 지 여부

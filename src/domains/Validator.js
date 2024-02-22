@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE, NUMBER_DELIMITER } from '../constants';
 import {
   isDivisibleByPrice,
   isNotDuplicatedLottoNumber,
@@ -17,9 +18,11 @@ const Validator = {
    */
   checkWinningLottoNumbers(numbersInput) {
     if (!isValidWinningNumbersForm(numbersInput))
-      throw new Error('유효하지 않은 당첨 번호 입력');
+      throw new Error(ERROR_MESSAGE.inValidwinningNumbersForm);
 
-    const numbers = numbersInput.split(',').map((value) => Number(value));
+    const numbers = numbersInput
+      .split(NUMBER_DELIMITER)
+      .map((value) => Number(value));
 
     this.private_checkLottoNumbers(numbers);
   },
@@ -35,7 +38,7 @@ const Validator = {
     this.private_checkLottoNumber(bonusNumber);
 
     if (!isNotInLottoNumber(lottoNumbers, bonusNumber)) {
-      throw new Error('이미 있는 번호임');
+      throw new Error(ERROR_MESSAGE.alreadyInLottoNumber);
     }
   },
 
@@ -46,17 +49,18 @@ const Validator = {
   checkPaymentAmount(numberInput) {
     const number = Number(numberInput);
 
-    if (!isInteger(number)) throw new Error('정수가 아닙니다.');
+    if (!isInteger(number)) throw new Error(ERROR_MESSAGE.notInteger);
 
-    if (!isDivisibleByPrice(number)) throw new Error('1000원 단위가 아닙니다.');
+    if (!isDivisibleByPrice(number))
+      throw new Error(ERROR_MESSAGE.inDivisibleByPrice);
 
     if (!isValidNumbersOfTickets(number))
-      throw new Error('구매할 수 없는 티켓 개수');
+      throw new Error(ERROR_MESSAGE.inValidNumbersOfTickets);
   },
 
   chaeckRestartForm(restartInput) {
     if (!isValidRestartInputForm(restartInput))
-      throw new Error('재시작 입력값 오류');
+      throw new Error(ERROR_MESSAGE.invalidRestartInputForm);
   },
 
   /**
@@ -67,10 +71,10 @@ const Validator = {
     numbers.forEach((number) => this.private_checkLottoNumber(number));
 
     if (!isValidLottoNumberCount(numbers))
-      throw new Error('로또 번호 개수 에러');
+      throw new Error(ERROR_MESSAGE.invalidLottoNumberCount);
 
     if (!isNotDuplicatedLottoNumber(numbers))
-      throw new Error('중복된 번호 있음');
+      throw new Error(ERROR_MESSAGE.duplicatedLottoNumber);
   },
 
   /**
@@ -78,10 +82,10 @@ const Validator = {
    * @param {number} number
    */
   private_checkLottoNumber(number) {
-    if (!isInteger(number))
-      throw new Error(`정수가 아닙니다.: ${number} ${typeof number}`);
+    if (!isInteger(number)) throw new Error(ERROR_MESSAGE.notInteger);
 
-    if (!isLottoNumberInRange(number)) throw new Error('범위 초과');
+    if (!isLottoNumberInRange(number))
+      throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
   },
 };
 

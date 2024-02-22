@@ -30,7 +30,7 @@ class LottoMachine {
     const numbersOfTickets = this.#paymentAmount / price;
 
     this.#lottoTickets = Array.from({ length: numbersOfTickets }, () =>
-      RandomNumber.pickUniqueNumbersInRange(range, LOTTO_RULE.matchedCount),
+      RandomNumber.pickUniqueNumbersInRange(range, LOTTO_RULE.length),
     );
   }
 }

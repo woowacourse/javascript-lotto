@@ -1,3 +1,4 @@
+import { NUMBER_DELIMITER } from '../constants';
 import Validator from './Validator';
 
 class WinningLotto {
@@ -12,7 +13,7 @@ class WinningLotto {
     Validator.checkWinningLottoNumbers(lottoNumbersInput);
 
     this.#lottoNumbers = lottoNumbersInput
-      .split(',')
+      .split(NUMBER_DELIMITER)
       .map((lottoNumberInput) => Number(lottoNumberInput));
   }
 

@@ -1,7 +1,8 @@
-import { INPUT_MESSAGES, RESTART_KEY } from '../constants';
+import { RESTART_KEY, OUTPUT_MESSAGES, WINNING_RULE } from '../constants';
 import { LottoGame, Validator } from '../domains';
-import Console from '../utils/Console';
+import { Console } from '../utils';
 import InputView from '../views/InputView';
+import OutputView from '../views/OutputView';
 import InputController from './InputController';
 
 class GameController {
@@ -9,14 +10,25 @@ class GameController {
 
   async playGame() {
     await this.#getPaid();
+
+    const { lottoTickets } = this.#lottoGame.lottoData.lottoMachine;
+    OutputView.printLottoTickets(lottoTickets);
+
     await this.#generateWinning();
 
     this.#lottoGame.calculateMatchingResult();
     this.#lottoGame.calculateStatistics();
 
     // 출력
+    this.#printStatistics();
 
     await this.#restartLottoGame();
+  }
+
+  #printStatistics() {
+    const { statisticsResult, profitRate } = this.#lottoGame.lottoAnalytics;
+    OutputView.printStatistics(statisticsResult);
+    OutputView.printProfitRate(profitRate);
   }
 
   async #getPaid() {
