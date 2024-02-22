@@ -1,39 +1,49 @@
+import { RANK } from '../constant/rank.js';
+
 class LottoMatcher {
   #matchingResult;
 
-  constructor(tickets, [winningNumber, bonusNumber]) {
+  constructor(winningNumber, bonusNumber) {
+    this.winningNumber = winningNumber;
+    this.bonusNumber = bonusNumber;
     this.#matchingResult = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
+      FIRST: 0,
+      SECOND: 0,
+      THIRD: 0,
+      FOURTH: 0,
+      FIFTH: 0,
     };
-    this.match(tickets, [winningNumber, bonusNumber]);
   }
 
-  match(tickets, [winningNumber, bonusNumber]) {
-    tickets.forEach((ticket) => {
-      const matchCount = ticket.filter((number) => winningNumber.includes(number)).length;
-      const hasBonusNumber = this.compareBonusNumber(ticket, bonusNumber);
-      if (matchCount >= 3) this.updateMatchingResult(matchCount, hasBonusNumber);
-    });
+  checkMatchAndBonus(tickets) {
+    const matchCount = tickets.filter((ticket) => this.winningNumber.includes(ticket)).length;
+    const hasBonusNumber = tickets.some((ticket) => ticket === this.bonusNumber);
+
+    return { matchCount, hasBonusNumber };
   }
 
-  compareBonusNumber(ticket, bonusNumber) {
-    return ticket.includes(bonusNumber);
+  processMatches(tickets) {
+    const { matchCount, hasBonusNumber } = this.checkMatchAndBonus(tickets);
+
+    if (this.findRankByMatchCount(matchCount)) {
+      this.updateResult(matchCount, hasBonusNumber);
+    }
   }
 
-  updateMatchingResult(matchCount, hasBonusNumber) {
-    if (hasBonusNumber) this.#matchingResult[2] += 1;
-    if (!hasBonusNumber) this.updateMatchingLottoNumber(matchCount);
+  findRankByMatchCount(matchCount) {
+    for (const rank in RANK) {
+      if (RANK[rank].MATCHING_COUNT === matchCount) {
+        return rank;
+      }
+    }
+    //return null;
   }
 
-  updateMatchingLottoNumber(matchCount) {
-    if (matchCount === 3) this.#matchingResult[5] += 1;
-    if (matchCount === 4) this.#matchingResult[4] += 1;
-    if (matchCount === 5) this.#matchingResult[3] += 1;
-    if (matchCount === 6) this.#matchingResult[1] += 1;
+  updateResult(matchCount, hasBonusNumber) {
+    if (hasBonusNumber) return (this.#matchingResult.SECOND += 1);
+
+    const rank = this.findRankByMatchCount(matchCount);
+    this.#matchingResult.rank += 1;
   }
 
   get matchingResult() {
@@ -42,3 +52,9 @@ class LottoMatcher {
 }
 
 export default LottoMatcher;
+
+const arr = [1, 2, 3, 4, 5, 6];
+const lotto = new LottoMatcher([1, 2, 3, 4, 22, 33], 6);
+
+lotto.processMatches(arr);
+console.log(lotto.matchingResult);
