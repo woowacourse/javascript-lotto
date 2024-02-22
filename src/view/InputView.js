@@ -1,7 +1,7 @@
 import Lotto from '../domain/lotto.js';
 import WinningLotto from '../domain/winningLotto.js';
 import ReadLine from '../utils/readLineAsync.js';
-import { validateCost } from '../utils/validation.js';
+import { validateCost, validateRestartResponse } from '../utils/validation.js';
 
 const InputView = {
   async readCost() {
@@ -46,11 +46,16 @@ const InputView = {
   },
 
   async readRestart() {
-    const restartResponse = await ReadLine.readLineAsync('> 다시 시작하시겠습니까? (y, n)');
+    try {
+      const restartResponse = await ReadLine.readLineAsync('> 다시 시작하시겠습니까? (y, n)');
 
-    // TODO: 예외 처리 추가
+      validateRestartResponse(restartResponse);
 
-    return restartResponse;
+      return restartResponse;
+    } catch (error) {
+      console.log(error.message);
+      return this.readRestart();
+    }
   },
 };
 

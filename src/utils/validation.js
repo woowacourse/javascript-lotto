@@ -26,6 +26,10 @@ const Validations = {
   isGreaterThan(number, threshold) {
     return number >= threshold;
   },
+
+  isOnlyYorN(string) {
+    return string === 'y' || string === 'n';
+  },
 };
 
 export const validateLotto = (numbers) => {
@@ -45,4 +49,8 @@ export const validateCost = (cost) => {
   if (!Validations.isNumericPattern(cost)) throw new Error('양의 정수를 입력해주세요');
   if (!Validations.isDivide(cost, 1000)) throw new Error('1000원 단위로 입력가능합니다.');
   if (!Validations.isGreaterThan(cost, 1000)) throw new Error('1000원 이상의 금액을 입력해주세요.');
+};
+
+export const validateRestartResponse = (restartResponse) => {
+  if (!Validations.isOnlyYorN(restartResponse)) throw new Error('y 또는 n만 입력 가능합니다.');
 };
