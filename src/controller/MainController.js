@@ -17,14 +17,14 @@ class MainController {
   async playLottoGameOnce() {
     const purchaseLottoService = await InputView.readPurchaseMoney();
     const purchaseCount = purchaseLottoService.getPurchaseCount();
-    OutputView.printPurchaseCount(purchaseCount);
     const lottosNumbers = purchaseLottoService.getLottos();
+    OutputView.printPurchaseCount(purchaseCount);
     this.#showPurchasedLotto(lottosNumbers);
 
     const winningLotto = await InputView.readWinningNumbers();
     OutputView.print('');
-
     await InputView.readBonusNumber(winningLotto);
+
     const winningResult = this.#makeWinningResult(winningLotto, lottosNumbers);
     this.#showWinningSummary(winningResult, purchaseCount);
   }
