@@ -9,6 +9,14 @@ class WinningRank {
     '5th': 0,
   };
 
+  static RANK_RULE = {
+    '1st': { match: 6, hasBonus: false, description: '6개 일치' },
+    '2nd': { match: 5, hasBonus: true, description: '5개 일치, 보너스 볼 일치' },
+    '3rd': { match: 5, hasBonus: false, description: '5개 일치' },
+    '4th': { match: 4, hasBonus: false, description: '4개 일치' },
+    '5th': { match: 3, hasBonus: false, description: '3개 일치' },
+  };
+
   constructor({ winningNumber, lottoNumbers, bonusNumber }) {
     this.#lottoDrawDetail = { winningNumber, lottoNumbers, bonusNumber };
   }
@@ -26,12 +34,12 @@ class WinningRank {
   #determineRank(lottoNumber) {
     const matchCount = this.#countMatchingNumbers(lottoNumber);
 
-    if (matchCount === 6) return '1st';
-    if (matchCount === 5 && this.#isIncludingBonusNumber(lottoNumber)) return '2nd';
-    if (matchCount === 5) return '3rd';
-    if (matchCount === 4) return '4th';
-    if (matchCount === 3) return '5th';
-    return null;
+    const [rank] = Object.entries(WinningRank.RANK_RULE).find(
+      ([, { match, hasBonus }]) =>
+        matchCount === match && this.#isIncludingBonusNumber(lottoNumber) === hasBonus,
+    );
+
+    return rank ?? null;
   }
 
   #countMatchingNumbers(lottoNumber) {

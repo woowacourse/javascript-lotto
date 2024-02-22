@@ -1,4 +1,5 @@
 import RateOfReturnCalculator from '../../domain/RateOfReturnCalculator/RateOfReturnCalculator.js';
+import WinningRank from '../../domain/WinningRank/WinningRank.js';
 import { SYMBOLS } from '../symbols.js';
 
 export const INPUT_MESSAGE = Object.freeze({
@@ -23,18 +24,10 @@ export const FORMAT_MESSAGE = Object.freeze({
       .join('\n');
   },
 
-  rankToString(rank) {
-    if (rank === '1st') return '6개 일치';
-    if (rank === '2nd') return '5개 일치, 보너스 볼 일치';
-    if (rank === '3rd') return '5개 일치';
-    if (rank === '4th') return '4개 일치';
-    if (rank === '5th') return '3개 일치';
-
-    return null;
-  },
-
   partialWinningStatisticsToString({ rank, prize, count }) {
-    return `${this.rankToString(rank)} (${prize.toLocaleString()}원) - ${count}개\n`;
+    const { description } = WinningRank.RANK_RULE[rank];
+
+    return `${description} (${prize.toLocaleString()}원) - ${count}개\n`;
   },
 
   winningStatisticsToString(winningRankDetail) {
