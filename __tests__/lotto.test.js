@@ -1,7 +1,7 @@
 import MESSAGE from '../src/constants/message';
 import Lotto from '../src/domain/Lotto';
 
-describe('Lotto 클래스 검사', () => {
+describe('Lotto 클래스 생성시 생성자 내부에서 호출된 함수들이 정상 작동하는지 확인하는 테스트 입니다.', () => {
   const TOO_SMALL_NUMBER = 0;
   const TOO_LARGE_NUMBER = 46;
   const PAIR_COUNT = 1;
