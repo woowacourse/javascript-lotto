@@ -17,7 +17,7 @@ const InputView = {
   async readWinLottoNumbers() {
     const winLottoInput = await this.readLineAsync(MESSAGE.WIN_LOTTO);
     this.validInput(winLottoInput);
-    return winLottoInput.split(",");
+    return winLottoInput.split(",").map(Number);
   },
 
   async readBonusNumber() {

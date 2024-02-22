@@ -38,4 +38,15 @@ export default class LottoMachine {
   getLottos() {
     return [...this.#lottos];
   }
+
+  getWinLottos(winNumbersObj) {
+    const returnValue = [null, ...Array.from({ length: 5 }, () => 0)];
+
+    this.#lottos.forEach((lotto) => {
+      lotto.calculateRank(winNumbersObj);
+      const rank = lotto.getRank();
+      if (rank) returnValue[rank] += 1;
+    });
+    return returnValue;
+  }
 }

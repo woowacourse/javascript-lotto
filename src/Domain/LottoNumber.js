@@ -8,7 +8,7 @@ export default class LottoNumber {
 
   #validLottoNumbers() {
     this.#numbers.forEach((number) => {
-      this.#validInRange(number, { min: 1, max: 45 });
+      this.#validInRange(number);
     });
     this.#validInRange(1, 45);
     this.#validDuplicate();

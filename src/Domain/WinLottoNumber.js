@@ -22,4 +22,11 @@ export default class WinLottoNumber extends LottoNumber {
       throw new Error("❌");
     }
   }
+
+  getWinLottoNumbers() {
+    return {
+      winNumbers: this.getLottoNumbers(),
+      bonusNumber: this.#bonusNumber,
+    };
+  }
 }
