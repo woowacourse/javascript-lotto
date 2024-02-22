@@ -1,5 +1,17 @@
 import LottoNumber from "./LottoNumber";
 
+const COUNT_TO_RANK_OBJ = {
+  6: 1,
+  4: 4,
+  3: 5,
+};
+
+const POTENTIAL_2_OR_3_COUNT = 5;
+const POTENTIAL_2_OR_3_RANK = {
+  true: 2,
+  false: 3,
+};
+
 export default class Lotto extends LottoNumber {
   #rank;
 
@@ -29,17 +41,20 @@ export default class Lotto extends LottoNumber {
 
   #compareBonusNumber(bonusNumber) {
     const thisLottoNumbers = this.getLottoNumbers();
-    if (this.#winCount === 5 && thisLottoNumbers.includes(bonusNumber)) {
+    if (
+      this.#winCount === POTENTIAL_2_OR_3_COUNT &&
+      thisLottoNumbers.includes(bonusNumber)
+    ) {
       this.#isBonus = true;
     }
   }
 
   #setRankByfield() {
-    if (this.#winCount === 6) this.#rank = 1;
-    if (this.#winCount === 5 && this.#isBonus) this.#rank = 2;
-    if (this.#winCount === 5 && !this.#isBonus) this.#rank = 3;
-    if (this.#winCount === 4) this.#rank = 4;
-    if (this.#winCount === 3) this.#rank = 5;
+    if (this.#winCount === POTENTIAL_2_OR_3_COUNT) {
+      this.#rank = POTENTIAL_2_OR_3_RANK[this.#isBonus];
+      return;
+    }
+    this.#rank = COUNT_TO_RANK_OBJ[this.#winCount];
   }
 
   getRank() {

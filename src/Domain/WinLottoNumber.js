@@ -1,4 +1,4 @@
-import LottoNumber from "./LottoNumber";
+import LottoNumber from './LottoNumber';
 
 export default class WinLottoNumber extends LottoNumber {
   #bonusNumber;
@@ -19,7 +19,7 @@ export default class WinLottoNumber extends LottoNumber {
 
   #validDuplicate() {
     if (this.getLottoNumbers().includes(this.#bonusNumber)) {
-      throw new Error("❌");
+      throw new Error('❌');
     }
   }
 

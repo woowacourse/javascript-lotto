@@ -1,6 +1,8 @@
-import Lotto from "./Lotto";
+import Lotto from './Lotto';
+import { LOTTO_NUMBER_RANGE, LOTTO_LENGTH } from './LottoNumber';
 
 const PRIZE_MONEY = [null, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
+const LOTTO_PRICE = 1_000;
 
 export default class LottoMachine {
   #money;
@@ -16,13 +18,13 @@ export default class LottoMachine {
   }
 
   #validMoney() {
-    if (this.#money < 1000) {
-      throw new Error("❌");
+    if (this.#money < LOTTO_PRICE) {
+      throw new Error('❌');
     }
   }
 
   #makeLottoByMoney() {
-    const CNT = Math.floor(this.#money / 1000);
+    const CNT = Math.floor(this.#money / LOTTO_PRICE);
     this.#lottos = Array.from({ length: CNT }, () => {
       const numbers = this.#makeRandomNumbers();
       return new Lotto(numbers);
@@ -32,10 +34,9 @@ export default class LottoMachine {
   #makeRandomNumbers() {
     const lottoSet = new Set();
 
-    while (lottoSet.size !== 6) {
-      lottoSet.add(Math.ceil(Math.random() * 45));
+    while (lottoSet.size !== LOTTO_LENGTH) {
+      lottoSet.add(Math.ceil(Math.random() * LOTTO_NUMBER_RANGE.MAX));
     }
-
     return [...lottoSet];
   }
 
@@ -44,14 +45,21 @@ export default class LottoMachine {
   }
 
   getWinLottos(winNumbersObj) {
-    const returnValue = [null, ...Array.from({ length: 5 }, () => 0)];
+    const NUMBER_OF_RANK_TYPE = 5;
+    const resultRankCounts = [null, ...Array.from({ length: NUMBER_OF_RANK_TYPE }, () => 0)];
     this.#lottos.forEach((lotto) => {
-      lotto.calculateRank(winNumbersObj);
-      const rank = lotto.getRank();
-      if (rank) returnValue[rank] += 1;
+      const rank = this.#calculateIndividualLotto(lotto, winNumbersObj);
+      if (rank) resultRankCounts[rank] += 1;
     });
-    this.#calculateIncome(returnValue);
-    return returnValue;
+    this.#calculateIncome(resultRankCounts);
+    return resultRankCounts;
+  }
+
+  #calculateIndividualLotto(lotto, winNumbersObj) {
+    lotto.calculateRank(winNumbersObj);
+    const rank = lotto.getRank();
+
+    return rank;
   }
 
   #calculateIncome(lottoRanks) {
@@ -61,6 +69,7 @@ export default class LottoMachine {
   }
 
   getRateOfIncome() {
-    return ((this.#income / this.#money) * 100).toFixed(1);
+    const NUMBER_OF_DECIMAL_PLACES = 1;
+    return Number(((this.#income / this.#money) * 100).toFixed(NUMBER_OF_DECIMAL_PLACES)).toLocaleString();
   }
 }

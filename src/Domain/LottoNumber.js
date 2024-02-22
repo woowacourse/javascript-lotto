@@ -1,3 +1,10 @@
+export const LOTTO_NUMBER_RANGE = Object.freeze({
+  MIN: 1,
+  MAX: 45,
+});
+
+export const LOTTO_LENGTH = 6;
+
 export default class LottoNumber {
   #numbers;
 
@@ -10,14 +17,13 @@ export default class LottoNumber {
     this.#numbers.forEach((number) => {
       this.#validInRange(number);
     });
-    this.#validInRange(1, 45);
     this.#validDuplicate();
     this.#validLength();
   }
 
   #validInRange(number) {
-    if (number < 1 || number > 45) {
-      throw new Error("❌");
+    if (number < LOTTO_NUMBER_RANGE.MIN || number > LOTTO_NUMBER_RANGE.MAX) {
+      throw new Error('❌');
     }
   }
 
@@ -27,13 +33,13 @@ export default class LottoNumber {
 
   #validDuplicate() {
     if (new Set([...this.#numbers]).size !== this.#numbers.length) {
-      throw new Error("❌");
+      throw new Error('❌');
     }
   }
 
   #validLength() {
-    if (this.#numbers.length !== 6) {
-      throw new Error("❌");
+    if (this.#numbers.length !== LOTTO_LENGTH) {
+      throw new Error('❌');
     }
   }
 
