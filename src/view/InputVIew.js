@@ -1,20 +1,21 @@
 import readline from "readline";
+import MESSAGES from "../constants/MESSAGES.js";
 
 class InputView {
   static async readBuyAmount() {
-    return await this.#readLineAsync("구입금액을 입력해 주세요.");
+    return await this.#readLineAsync(MESSAGES.INPUT.buyAmount);
   }
 
   static async readWinningNumbers() {
-    return await this.#readLineAsync("당첨 번호를 입력해 주세요. ");
+    return await this.#readLineAsync(MESSAGES.INPUT.winningNumbers);
   }
 
   static async readBonusNumber() {
-    return await this.#readLineAsync("보너스 번호를 입력해 주세요. ");
+    return await this.#readLineAsync(MESSAGES.INPUT.bonusNumber);
   }
 
-  static async readRetryCheck() {
-    return await this.#readLineAsync("다시 시작하시겠습니까? (y/n)");
+  static async readRetryChecker() {
+    return await this.#readLineAsync(MESSAGES.INPUT.retryChecker);
   }
 
   static #readLineAsync(query) {

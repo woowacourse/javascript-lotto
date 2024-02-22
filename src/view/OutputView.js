@@ -1,13 +1,20 @@
+import MESSAGES from "../constants/messages.js";
+
 class OutputView {
   static printBoughtLottos(lottoNumbersArray) {
-    this.#printMessage(`${lottoNumbersArray.length}개를 구매했습니다.`);
+    this.#printMessage(
+      `${lottoNumbersArray.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
+    );
     lottoNumbersArray.forEach((lottoNumbers) =>
       this.#printMessage(this.formatArrayString(lottoNumbers))
     );
+    this.printBlankLine();
   }
 
   static formatArrayString(array) {
-    return `[${array.join(", ")}]`;
+    return `${MESSAGES.OUTPUT.arrayFormatHead}${array.join(
+      MESSAGES.OUTPUT.arrayFormatSeparator
+    )}${MESSAGES.OUTPUT.arrayFormatTail}`;
   }
 
   static printBlankLine() {
@@ -15,15 +22,53 @@ class OutputView {
   }
 
   static printLottoResult(rankResult, profitRate) {
+    this.printBlankLine(MESSAGES.OUTPUT.lottoResultIntro);
+    this.#printMessage(MESSAGES.OUTPUT.lottoResultHorizontalLine);
+    this.#printRankResult(rankResult);
+    this.#printProfitRate(profitRate);
     this.printBlankLine();
-    this.#printMessage("당첨 통계");
-    this.#printMessage("--------------------");
-    this.#printMessage(`3개 일치 (5,000원) - ${rankResult.fifth}개
-4개 일치 (50,000원) - ${rankResult.fourth}개
-5개 일치 (1,500,000원) - ${rankResult.third}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankResult.second}개
-6개 일치 (2,000,000,000원) - ${rankResult.first}개
-총 수익률은 ${profitRate.toFixed(1)}%입니다.`);
+  }
+
+  static #printRankResult(rankResult) {
+    this.#printFifthRankCount(rankResult.fifth);
+    this.#printFourthRankCount(rankResult.fourth);
+    this.#printThirdRankCount(rankResult.third);
+    this.#printSecondRankCount(rankResult.second);
+    this.#printFirstRankCount(rankResult.first);
+  }
+
+  static #printProfitRate(profitRate) {
+    this.#printMessage(
+      `${MESSAGES.OUTPUT.profitRateHead}${profitRate.toFixed(1)}${
+        MESSAGES.OUTPUT.profitRateTail
+      }`
+    );
+  }
+
+  static #printFirstRankCount(count) {
+    this.#printMessage(
+      `${MESSAGES.OUTPUT.firstRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
+    );
+  }
+  static #printSecondRankCount(count) {
+    this.#printMessage(
+      `${MESSAGES.OUTPUT.secondRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
+    );
+  }
+  static #printThirdRankCount(count) {
+    this.#printMessage(
+      `${MESSAGES.OUTPUT.thirdRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
+    );
+  }
+  static #printFourthRankCount(count) {
+    this.#printMessage(
+      `${MESSAGES.OUTPUT.fourthRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
+    );
+  }
+  static #printFifthRankCount(count) {
+    this.#printMessage(
+      `${MESSAGES.OUTPUT.fifthRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
+    );
   }
 
   static #printMessage(...args) {
