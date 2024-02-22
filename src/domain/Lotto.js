@@ -48,7 +48,7 @@ class Lotto {
     if (isOverlapped(numbers)) throw new Error("[ERROR]");
   }
 
-  isAlreadyHave(bonusLottoNumber) {
+  checkHaveBonus(bonusLottoNumber) {
     const isAlreadyHave = this.#numbers.some(
       (num) => num.get() === bonusLottoNumber
     );
