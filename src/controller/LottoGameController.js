@@ -1,41 +1,55 @@
-import { SETTING } from '../constant/setting';
-import InputController from './InputController';
-import Lotto from '../domain/Lotto';
-import LottoMachine from '../service/LottoMachine';
-import WinningResultService from '../service/WinningResultService';
-import OutputView from '../view/OutputView';
+import LottoMachine from '../domain/LottoMachine.js';
+import Lottos from '../domain/Lottos.js';
+import readInput from '../util/readInput.js';
+import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
+import Validator from '../validator/Validator.js';
 
 class LottoGameController {
-  #lottos;
-
   async play() {
-    const purchaseAmount = await InputController.inputPurchaseAmount();
-    this.#purchaseLottos(purchaseAmount);
+    const purchaseAmount = await readInput(this.#readPurchaseAmount);
+    const lottoList = new LottoMachine(purchaseAmount).getLottoNumberList();
+    const lottos = new Lottos(lottoList);
+    OutputView.printPurchaseResult(lottoList);
 
-    const { winningNumbers, bonusNumber } = await InputController.inputWinningConditions();
-    this.#processWinningResult(winningNumbers, bonusNumber);
+    const winningNumbers = await readInput(this.#readWinningNumbers);
+    const bonusNumber = await readInput(() => this.#readBonusNumber(winningNumbers));
+    const winningResults = lottos.getWinningResults(winningNumbers, bonusNumber);
+    OutputView.printWinningResults(winningResults);
 
-    const restartCommand = await InputController.inputRestartCommand();
+    const restartCommand = await readInput(this.#readRestartCommand);
     this.#restartGame(restartCommand);
   }
 
-  #purchaseLottos(purchaseAmount) {
-    const lottoList = new LottoMachine(purchaseAmount).getLottoNumbersList();
-    this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
-    OutputView.printPurchaseResult(lottoList);
+  async #readPurchaseAmount() {
+    const purchaseAmount = await InputView.readPurchaseAmount();
+    Validator.validatePurchaseAmount(purchaseAmount);
+    return parseInt(purchaseAmount);
   }
 
-  #processWinningResult(winningNumbers, bonusNumber) {
-    const winningResultService = new WinningResultService([...this.#lottos], { winningNumbers, bonusNumber });
-    OutputView.printWinningResult(winningResultService.getWinningResult());
-    OutputView.printProfitRate(winningResultService.getProfitRate());
+  async #readWinningNumbers() {
+    const winningNumbers = await InputView.readWinningNumbers();
+    Validator.validateWinningNumbers(winningNumbers);
+    return winningNumbers.split(',').map((number) => parseInt(number.trim()));
+  }
+
+  async #readBonusNumber(winningNumbers) {
+    const bonusNumber = await InputView.readBonusNumber();
+    Validator.validateBonusNumber(bonusNumber, winningNumbers);
+    return parseInt(bonusNumber);
+  }
+
+  async #readRestartCommand() {
+    const restartCommand = await InputView.readRestartCommand();
+    Validator.validateRestartCommand(restartCommand);
+    return restartCommand;
   }
 
   #restartGame(restartCommand) {
-    if (restartCommand === SETTING.RESTART_COMMAND) {
+    if (restartCommand === 'y' || restartCommand === 'Y') {
       this.play();
     }
-    if (restartCommand === SETTING.EXIT_COMMAND) {
+    if (restartCommand === 'n' || restartCommand === 'N') {
       OutputView.printExitMessage();
     }
   }
