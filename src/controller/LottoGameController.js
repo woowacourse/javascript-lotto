@@ -33,7 +33,7 @@ class LottoGameController {
     const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankResult });
     const rateOfReturn = rateOfReturnCalculator.execute();
 
-    OutputView.printWinningLottoResult({ rateOfReturn, winningRankResult });
+    OutputView.printDrawLottoResult({ rateOfReturn, winningRankResult });
   }
 
   async #requireWinningDetail() {

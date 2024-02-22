@@ -10,7 +10,7 @@ export const INPUT_MESSAGE = Object.freeze({
 });
 
 export const OUTPUT_MESSAGE = Object.freeze({
-  winningLottoResultTitle: '\n당첨 통계\n--------------------',
+  winningStatisticsTitle: '\n당첨 통계\n--------------------',
 });
 
 export const FORMAT_MESSAGE = Object.freeze({
