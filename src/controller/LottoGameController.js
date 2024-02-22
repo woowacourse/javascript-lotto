@@ -16,8 +16,8 @@ class LottoGameController {
 
   async #processBuyLotto() {
     const buyLottoPrice = await RetryHandler.errorWithLogging(() => InputView.readBuyLottoPrice());
-
-    const lottoNumbers = LottoBuyer.from().purchase(buyLottoPrice);
+    const lottoBuyer = new LottoBuyer(buyLottoPrice);
+    const lottoNumbers = lottoBuyer.purchase(buyLottoPrice);
 
     OutputView.printLottoCount(lottoNumbers.length);
     OutputView.printLottoNumbers(lottoNumbers);
