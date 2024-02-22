@@ -20,12 +20,12 @@ export default class LottoNumber {
   }
 
   #validLottoNumbers() {
+    // TODO: 숫자형인지 검사
+    this.#validLength();
+    this.#validDuplicate();
     this.#numbers.forEach((number) => {
       this.#validInRange(number);
     });
-    // TODO: 숫자형인지 검사
-    this.#validDuplicate();
-    this.#validLength();
   }
 
   #validInRange(number) {
@@ -39,7 +39,7 @@ export default class LottoNumber {
   }
 
   #validDuplicate() {
-    if (new Set([...this.#numbers]).size !== this.#numbers.length) {
+    if (new Set(this.#numbers).size !== this.#numbers.length) {
       throw new Error(ERROR_MESSAGES.DUPLICATE);
     }
   }
