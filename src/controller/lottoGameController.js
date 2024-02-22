@@ -83,7 +83,10 @@ class LottoGameController {
   }
 
   async #getWinningLotto() {
-    const winningLottoNumbers = await this.#getWinningNumber();
+    const winningLottoInput = await this.#inputView.inputWinningLottoNumber();
+    const winningLottoNumbers = winningLottoInput
+      .split(OPTION.DELIMITER)
+      .map((number) => Number(number));
     const winningLotto = new WinningLotto(winningLottoNumbers);
 
     return winningLotto;
@@ -94,15 +97,6 @@ class LottoGameController {
     winningLotto.setBonusNumber(bonusNumber);
 
     return winningLotto;
-  }
-
-  async #getWinningNumber() {
-    const winningLottoInput = await this.#inputView.inputWinningLottoNumber();
-    const winningLottoNumbers = winningLottoInput
-      .split(OPTION.DELIMITER)
-      .map((number) => Number(number));
-
-    return winningLottoNumbers;
   }
 
   #getGameResult(lottoList, winningLotto) {
