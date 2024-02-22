@@ -1,21 +1,5 @@
 {
-  "rules": {
-    "max-depth": ["error", 1],
-    "max-params": ["error", 2],
-    "lines-between-class-members": "off",
-    "import/extensions": ["error", "never"],
-    "class-methods-use-this": "off"
-  },
-  "overrides": [
-    {
-      "files": ["./src/**"],
-      "rules": {
-        "max-lines-per-function": ["error", {
-          "max": 10
-        }]
-      }
-    }
-  ],
+  "rules": { "max-lines-per-function": ["error", { "max": 10 }], "max-depth": ["error", 1] },
   "env": {
     "es6": true,
     "node": true,
@@ -24,5 +8,5 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["airbnb", "prettier"]
+  "extends": ["airbnb-base", "eslint:recommended", "plugin:prettier/recommended"]
 }
