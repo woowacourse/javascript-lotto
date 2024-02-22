@@ -5,6 +5,9 @@ const LOTTO_SYSTEM = Object.freeze({
   ]),
   lottoPrice: 1000,
   correctCount: [0, 6, 5, 5, 4, 3],
+  lottoRangeMinimum: 1,
+  lottoRangeMaximum: 45,
+  lottoDigitCount: 6,
 });
 
 export default LOTTO_SYSTEM;

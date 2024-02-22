@@ -1,5 +1,6 @@
 import LOTTO_SYSTEM from "../constants/lottoSystem";
 import Validator from "../utils/Validator";
+import getRandomNumberInRange from "../utils/getRandomNumberInRange";
 import Lotto from "./Lotto";
 import WinningLotto from "./WinningLotto";
 
@@ -16,11 +17,27 @@ class LottoStore {
     return purchaseAmount / lottoPrice;
   }
 
+  #generateUniqueRandomLottoNumbersInRange() {
+    const lottoNumbers = [];
+
+    while (lottoNumbers.length < LOTTO_SYSTEM.lottoDigitCount) {
+      const randomNumber = getRandomNumberInRange(
+        LOTTO_SYSTEM.lottoRangeMinimum,
+        LOTTO_SYSTEM.lottoRangeMaximum,
+      );
+
+      !lottoNumbers.includes(randomNumber) && lottoNumbers.push(randomNumber);
+    }
+
+    return lottoNumbers;
+  }
+
   generateRandomNumbers(lottoCount) {
     if (!Validator.checkLottoCount(lottoCount)) throw new Error();
 
-    // TODO: 정상동작 테스트
-    return Array.from({ length: lottoCount }).map(() => [1, 2, 3, 4, 5, 6]);
+    return Array.from({ length: lottoCount }).map(() =>
+      this.#generateUniqueRandomLottoNumbersInRange(),
+    );
   }
 
   checkRanking(correctCount, isBonusCorrect) {
