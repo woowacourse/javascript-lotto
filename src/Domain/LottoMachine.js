@@ -1,7 +1,7 @@
 import Lotto from './Lotto';
 import { LOTTO_NUMBER_RANGE, LOTTO_LENGTH } from './LottoNumber';
 
-const PRIZE_MONEY = [null, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
+const PRIZE_MONEY = Object.freeze([null, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000]);
 const LOTTO_PRICE = 1_000;
 
 const INVALID_MONEY_MESSAGE = `로또 구입 금액은 최소 ${LOTTO_PRICE.toLocaleString()}원입니다.`;

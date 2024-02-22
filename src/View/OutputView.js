@@ -6,29 +6,29 @@ const MESSAGE = Object.freeze({
   BUYING: `${COUNT_UNIT}를 구매했습니다.`,
 });
 
-const RANK_TO_COUNT = {
+const RANK_TO_COUNT = Object.freeze({
   1: 6,
   2: 5,
   3: 5,
   4: 4,
   5: 3,
-};
+});
 
-const RANK_TO_PRIZE_MONEY_STRINGS = {
+const RANK_TO_PRIZE_MONEY_STRINGS = Object.freeze({
   1: '2,000,000,000원',
   2: '30,000,000원',
   3: '1,500,000원',
   4: '50,000원',
   5: '5,000원',
-};
+});
 
-const RANK_TO_MESSAGE = {
+const RANK_TO_MESSAGE = Object.freeze({
   1: `${COUNT_UNIT} 일치`,
   2: `${COUNT_UNIT} 일치, 보너스 볼 일치`,
   3: `${COUNT_UNIT} 일치`,
   4: `${COUNT_UNIT} 일치`,
   5: `${COUNT_UNIT} 일치`,
-};
+});
 
 const COMMON_MESSAGES = {
   RESULT_HEADER: '\n당첨 통계\n--------------------',
@@ -55,7 +55,7 @@ const OutputView = {
   },
 
   printRateOfIncome(income) {
-    const RATE_OF_INCOME_MESSAGE = (rate) => `총 수익률은 ${rate.toLocaleString()}% 입니다.`;
+    const RATE_OF_INCOME_MESSAGE = (rate) => `총 수익률은 ${rate}% 입니다.`;
     this.printMessage(RATE_OF_INCOME_MESSAGE(income));
   },
 

@@ -5,11 +5,11 @@ export const LOTTO_NUMBER_RANGE = Object.freeze({
 
 export const LOTTO_LENGTH = 6;
 
-const ERROR_MESSAGES = {
+const ERROR_MESSAGES = Object.freeze({
   OUT_OF_RANGE: `${LOTTO_NUMBER_RANGE.MIN} 이상, ${LOTTO_NUMBER_RANGE.MAX} 이하의 숫자여야합니다.`,
   DUPLICATE: '중복된 숫자가 존재합니다.',
   INVALID_LENGTH: '로또의 숫자는 6개여야합니다.',
-};
+});
 
 export default class LottoNumber {
   #numbers;

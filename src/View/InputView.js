@@ -2,25 +2,24 @@ import readLine from 'readline';
 
 const COMMON_MESSAGES = Object.freeze({
   MONEY: '\n> 구입금액을 입력해 주세요.',
-
   WIN_LOTTO: '\n> 당첨 번호를 입력해주세요.',
   BONUS_NUMBER: '\n> 보너스 번호를 입력해주세요.',
   RE_RUN: '\n> 다시 시작하시겠습니까? (y/n)',
 });
 
-const RETRY_INPUT = ['y', 'Y'];
-const NO_RETRY_INPUT = ['n', 'N'];
+const RETRY_INPUT = Object.freeze(['y', 'Y']);
+const NO_RETRY_INPUT = Object.freeze(['n', 'N']);
 const DIVIDED_SYMBOL = ',';
 
-const ERROR_MESSAGES = {
+const ERROR_MESSAGES = Object.freeze({
   NO_INPUT: '입력 값을 적어주세요.',
   INVALID_RETRY_INPUT: `${RETRY_INPUT.join(',')}, ${NO_RETRY_INPUT.join(',')}을 입력해주세요.`,
-};
+});
 
-const stdObj = {
+const stdObj = Object.freeze({
   input: process.stdin,
   output: process.stdout,
-};
+});
 
 const InputView = {
   async readMoney() {
