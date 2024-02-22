@@ -11,10 +11,7 @@ class LottoMachine {
   }
 
   issueLottos(issueQuantity) {
-    return Array.from(
-      { length: issueQuantity },
-      () => new Lotto(this.#pickLottoNumbers())
-    );
+    return Array.from({ length: issueQuantity }, () => new Lotto(this.#pickLottoNumbers()));
   }
 
   #pickLottoNumbers() {
@@ -23,6 +20,43 @@ class LottoMachine {
       OPTIONS.LOTTO.maxNumber,
       OPTIONS.LOTTO.combination
     );
+  }
+
+  determineLottoRanks(lottos, winningNumbers, bonusNumber) {
+    const winningResult = OPTIONS.WINNING_RESULT;
+
+    lottos.forEach((lotto) => {
+      const rank = lotto.determineRank(winningNumbers, bonusNumber);
+      winningResult[rank] += 1;
+    });
+
+    return winningResult;
+  }
+
+  calculateProfitRate(winningResult) {
+    const totalPrizeAmount = this.#calculateTotalPrizeAmount(winningResult);
+    const totalPurchaseAmount = this.#calculateTotalPurchaseAmount(winningResult);
+    const profitRate = this.#caclulateProfitRate(totalPrizeAmount, totalPurchaseAmount);
+
+    return profitRate;
+  }
+
+  #calculateTotalPrizeAmount(winningResult) {
+    return Object.entries(winningResult).reduce((totalPrizeAmount, [rank, count]) => {
+      return totalPrizeAmount + count * OPTIONS.PRIZE_BY_RANK[rank];
+    }, 0);
+  }
+
+  #calculateTotalPurchaseAmount(winningResult) {
+    return (
+      Object.values(winningResult).reduce((sum, count) => {
+        return sum + count;
+      }) * OPTIONS.LOTTO.price
+    );
+  }
+
+  #caclulateProfitRate(totalPrizeAmount, totalPurchaseAmount) {
+    return (totalPrizeAmount / totalPurchaseAmount) * 100;
   }
 }
 
