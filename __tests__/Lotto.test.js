@@ -77,22 +77,16 @@ describe('Lotto 단위테스트', () => {
     test.each([
       [[1, 2, 3, 4, 44, 45], 6, 4],
       [[1, 2, 3, 4, 44, 45], 7, 4]
-    ])(
-      '4개의 번호가 일치하면 4등을 반환한다.',
-      (winningNumbers, bonusNumber, rank) => {
-        expect(lotto.determineRank(winningNumbers, bonusNumber)).toBe(rank);
-      }
-    );
+    ])('4개의 번호가 일치하면 4등을 반환한다.', (winningNumbers, bonusNumber, rank) => {
+      expect(lotto.determineRank(winningNumbers, bonusNumber)).toBe(rank);
+    });
 
     test.each([
       [[1, 2, 3, 43, 44, 45], 6, 5],
       [[1, 2, 3, 43, 44, 45], 7, 5]
-    ])(
-      '3개의 번호가 일치하면 5등을 반환한다.',
-      (winningNumbers, bonusNumber, rank) => {
-        expect(lotto.determineRank(winningNumbers, bonusNumber)).toBe(rank);
-      }
-    );
+    ])('3개의 번호가 일치하면 5등을 반환한다.', (winningNumbers, bonusNumber, rank) => {
+      expect(lotto.determineRank(winningNumbers, bonusNumber)).toBe(rank);
+    });
 
     test.each([
       [[1, 2, 42, 43, 44, 45], 6, 6],
@@ -101,11 +95,8 @@ describe('Lotto 단위테스트', () => {
       [[1, 41, 42, 43, 44, 45], 7, 6],
       [[40, 41, 42, 43, 44, 45], 6, 6],
       [[40, 41, 42, 43, 44, 45], 7, 6]
-    ])(
-      '3개 미만의 번호가 일치하면 다음기회에^^.',
-      (winningNumbers, bonusNumber, rank) => {
-        expect(lotto.determineRank(winningNumbers, bonusNumber)).toBe(rank);
-      }
-    );
+    ])('3개 미만의 번호가 일치하면 다음기회에^^.', (winningNumbers, bonusNumber, rank) => {
+      expect(lotto.determineRank(winningNumbers, bonusNumber)).toBe(rank);
+    });
   });
 });

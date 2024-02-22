@@ -20,6 +20,13 @@
   ],
   "plugins": ["import", "jest", "prettier"],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "printWidth": 100
+      }
+    ],
     "max-lines-per-function": ["error", { "max": 10 }],
     "import/extensions": ["error", { "js": "ignorePackages" }],
     "import/order": [
