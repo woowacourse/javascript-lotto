@@ -1,56 +1,4 @@
-import ERROR from '../src/constant/Error.js';
-import CONDITION from '../src/constant/Condition.js';
-
-class PurchaseLottoService {
-  #purchaseCount;
-  #lottos;
-
-  constructor(purchaseMoneyString) {
-    this.#validate(purchaseMoneyString);
-    this.#purchaseCount = this.#calcPurchaseCount(purchaseMoneyString);
-    // TODO
-    // this.#makeLottos();
-  }
-
-  #validate(moneyString) {
-    this.#validateNotNumber(moneyString);
-    this.#validateMultiple(moneyString);
-  }
-
-  #validateNotNumber(moneyString) {
-    if (isNaN(moneyString)) {
-      throw new Error(ERROR.beNumber);
-    }
-  }
-
-  #validateMultiple(moneyString) {
-    if (Number(moneyString) % CONDITION.pricePerLotto !== 0) {
-      throw new Error(ERROR.beMultiple);
-    }
-  }
-
-  #calcPurchaseCount(moneyString) {
-    return Number(moneyString) / CONDITION.pricePerLotto;
-  }
-
-  #makeLotto() {
-    const randoms = new Set([]);
-    const min = CONDITION.lottoNumberMin;
-    const max = CONDITION.lottoNumberMax;
-
-    while (randoms.size < CONDITION.countOfNumberInTicket) {
-      randoms.add(this.#makeRandom(min, max));
-    }
-    return Array(...randoms);
-  }
-
-  #makeRandom(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  getPurchaseCount() {
-    return this.#purchaseCount;
-  }
-}
+import PurchaseLottoService from '../src/domain/service/PurchaseLottoService.js';
 
 describe('로또 구매 클래스 테스트', () => {
   test('성공 케이스', () => {
@@ -85,4 +33,9 @@ describe('로또 구매 클래스 테스트', () => {
       expect(() => new PurchaseLottoService(MONEY_STRING)).toThrow('[Error]');
     },
   );
+
+  test('구매 금액을 받았을 때, 로또를 해당 장수만큼 생성한다.', () => {
+    const PURCHASE_MONEY = '7000';
+    expect(new PurchaseLottoService(PURCHASE_MONEY).getLottos().length).toBe(7);
+  });
 });
