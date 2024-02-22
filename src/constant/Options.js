@@ -1,4 +1,8 @@
 const OPTIONS = {
+  INPUT: {
+    winningNumbersDelimiter: ','
+  },
+
   LOTTO: {
     price: 1000,
     minNumber: 1,
