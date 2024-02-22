@@ -1,4 +1,5 @@
 import PurchaseAmountValidator from '../validator/PurchaseAmountValidator';
+import WinningNumberValidator from '../validator/WinningNumberValidator';
 import InputView from '../view/InputView';
 import Console from '../utils/Console';
 import LottoTicket from '../domain/LottoTicket';
@@ -11,6 +12,8 @@ class LottoController {
     OutputView.printPurchaseCount(purchaseCount);
     const lottoTickets = this.setLottoTicket(purchaseAmount);
     OutputView.printLottoTickets(lottoTickets);
+
+    const winningNumber = await Console.errorHandler(this.setWinningNumber, this);
   }
 
   async setPurchaseAmount() {
@@ -36,6 +39,24 @@ class LottoController {
       tickets.push(new LottoTicket().ticket);
     });
     return tickets;
+  }
+
+  async setWinningNumber() {
+    const inputValue = await InputView.readWinningNumber();
+    const convertedInputValue = inputValue.split(',').map((value) => Number(value));
+    this.validateWinningNumber(convertedInputValue);
+    return convertedInputValue;
+  }
+
+  validateWinningNumber(inputValue) {
+    if (WinningNumberValidator.isNotValidCount(inputValue))
+      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+    if (WinningNumberValidator.isNotNumber(inputValue))
+      throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
+    if (WinningNumberValidator.isNotUnique(inputValue))
+      throw new Error('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
+    if (WinningNumberValidator.isNotRange(inputValue))
+      throw new Error('[ERROR] 로또 번호의 숫자 범위는 1에서 45까지의 수입니다.');
   }
 }
 

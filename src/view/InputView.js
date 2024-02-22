@@ -6,11 +6,7 @@ class InputView {
   }
 
   static async readWinningNumber() {
-    return await Console.readLineAsync('당첨 번호를 입력해 주세요. ');
-  }
-
-  static async readBonusNumber() {
-    return await Console.readLineAsync('보너스 번호를 입력해 주세요. ');
+    return await Console.readLineAsync('\n당첨 번호를 입력해 주세요. ');
   }
 }
 
