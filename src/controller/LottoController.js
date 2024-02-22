@@ -6,37 +6,37 @@ import RetryOrEnd from '../utils/RetryOrEnd';
 import LottoTicket from '../domain/LottoTicket';
 import OutputView from '../view/OutputView';
 import LottoMatcher from '../domain/LottoMatcher';
-import RateOfReturnCalculator from '../utils/RateOfReturnCalculator';
 import RestartOrExitValidator from '../validator/RestartOrExitValidator';
 
 class LottoController {
-  #winningNumber;
+  #PRIZE = {
+    3: 5000,
+    4: 50000,
+    5: 1500000,
+    '5+보너스': 30000000,
+    6: 2000000000,
+  };
 
   async start() {
-    const purchaseAmount = await RetryOrEnd(this.setPurchaseAmount, this);
-    const purchaseCount = purchaseAmount / 1000;
-    OutputView.printPurchaseCount(purchaseCount);
-    const lottoTickets = this.setLottoTicket(purchaseAmount);
-    OutputView.printLottoTickets(lottoTickets);
-    this.#winningNumber = await RetryOrEnd(this.setWinningNumber, this);
-    const bonusNumber = await RetryOrEnd(this.setBonusNumber, this);
-    const matchingResult = await this.setMatchingResult(lottoTickets, [
-      this.#winningNumber,
+    const purchaseAmount = await RetryOrEnd([this.processPurchaseAmount, this]);
+    const lottoTickets = this.processLottoTicket(purchaseAmount);
+    const winningNumber = await RetryOrEnd([this.processWinningNumber, this]);
+    const bonusNumber = await RetryOrEnd([this.processBonusNumber, this], winningNumber);
+    const matchingResult = await this.processMatchingResult(lottoTickets, [
+      winningNumber,
       bonusNumber,
     ]);
-    OutputView.printWinningStats(matchingResult);
-    const rateOfReturn = RateOfReturnCalculator(purchaseAmount, matchingResult);
-    OutputView.printRateOfReturn(rateOfReturn);
-
-    const restart = await RetryOrEnd(this.setRestartOrExit, this);
+    this.processRateOfReturn(purchaseAmount, matchingResult);
+    const restart = await RetryOrEnd([this.processRestartOrExit, this]);
     if (restart === 'y') this.start();
   }
 
-  async setPurchaseAmount() {
+  async processPurchaseAmount() {
     const inputValue = await InputView.readPurchaseAmount();
-    const convertedInputValue = Number(inputValue);
-    this.validatePurchaseAmount(convertedInputValue);
-    return convertedInputValue;
+    const purchaseAmount = Number(inputValue);
+    this.validatePurchaseAmount(purchaseAmount);
+    OutputView.printPurchaseCount(purchaseAmount / 1000);
+    return purchaseAmount;
   }
 
   validatePurchaseAmount(inputValue) {
@@ -48,20 +48,21 @@ class LottoController {
       throw new Error('[ERROR] 최소 구매 금액은 1000원 입니다');
   }
 
-  setLottoTicket(purchaseAmount) {
+  processLottoTicket(purchaseAmount) {
     const lottoTicketCount = purchaseAmount / 1000;
     const tickets = [];
     Array.from({ length: lottoTicketCount }).forEach(() => {
       tickets.push(new LottoTicket().ticket);
     });
+    OutputView.printLottoTickets(tickets);
     return tickets;
   }
 
-  async setWinningNumber() {
+  async processWinningNumber() {
     const inputValue = await InputView.readWinningNumber();
-    const convertedInputValue = inputValue.split(',').map((value) => Number(value));
-    this.validateWinningNumber(convertedInputValue);
-    return convertedInputValue;
+    const winningNumber = inputValue.split(',').map((value) => Number(value));
+    this.validateWinningNumber(winningNumber);
+    return winningNumber;
   }
 
   validateWinningNumber(inputValue) {
@@ -75,29 +76,40 @@ class LottoController {
       throw new Error('[ERROR] 로또 번호의 숫자 범위는 1에서 45까지의 수입니다.');
   }
 
-  async setBonusNumber() {
+  async processBonusNumber(winningNumber) {
     const inputValue = await InputView.readBonusNumber();
-    const convertedInputValue = Number(inputValue);
-    this.validateBonusNumber(convertedInputValue);
-    return convertedInputValue;
+    const bonusNumber = Number(inputValue);
+    this.validateBonusNumber(bonusNumber, winningNumber);
+    return bonusNumber;
   }
 
-  validateBonusNumber(inputValue) {
+  validateBonusNumber(inputValue, winningNumber) {
     if (BonusNumberValidator.isNotInteger(inputValue))
       throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
     if (BonusNumberValidator.isInvalidRange(inputValue))
       throw new Error('[ERROR] 보너스 번호는 1 이상 45 이하여야 합니다.');
-    if (BonusNumberValidator.isDuplicatedWinningNumber(inputValue, this.#winningNumber))
+    if (BonusNumberValidator.isDuplicatedWinningNumber(inputValue, winningNumber))
       throw new Error('[ERROR] 보너스 번호는 중복되지 않아야 합니다.');
   }
 
-  async setMatchingResult(lottoTickets, [winningNumber, bonusNumber]) {
+  async processMatchingResult(lottoTickets, [winningNumber, bonusNumber]) {
     const matchingResult = new LottoMatcher(lottoTickets, [winningNumber, bonusNumber])
       .matchingResult;
+    OutputView.printWinningStats(matchingResult);
     return matchingResult;
   }
 
-  async setRestartOrExit() {
+  processRateOfReturn(purchaseAmount, matchStats) {
+    const totalPrizeMoney = Object.keys(this.#PRIZE).reduce(
+      (acc, cur) => acc + this.#PRIZE[cur] * matchStats[cur],
+      0,
+    );
+    const rate = (totalPrizeMoney / purchaseAmount) * 100;
+    const rateOfReturn = (Math.round(rate * 10) / 10).toFixed(1);
+    OutputView.printRateOfReturn(rateOfReturn);
+  }
+
+  async processRestartOrExit() {
     const inputValue = await InputView.readRestartOrExit();
     this.validateRestartOrExit(inputValue);
     return inputValue;
