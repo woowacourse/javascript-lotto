@@ -12,6 +12,8 @@ class App {
   async play() {
     const lottos = await this.#purchaseLottos();
     OutputView.printLottos(lottos);
+
+    await this.#generateWinningLotto();
   }
 
   async #purchaseLottos() {
@@ -21,6 +23,13 @@ class App {
     const lottos = this.#lottoStore.issueLottos(randomNumbers);
 
     return lottos;
+  }
+
+  async #generateWinningLotto() {
+    const winningNumbers = await InputView.readWinningNumber();
+    const bonusNumber = await InputView.readBonusNumber();
+
+    this.#lottoStore.setWinningLotto(winningNumbers, bonusNumber);
   }
 }
 
