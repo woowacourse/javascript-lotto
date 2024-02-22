@@ -11,15 +11,22 @@ class Statistics {
   get profitRate() {
     return this.#reward.profitRate;
   }
-  
+  // eslint-disable-next-line
+  #makeInitialStatisticsResult() {
+    const initialStatisticsResult = {};
+
+    WINNING_RULE.forEach((_, key) => {
+      initialStatisticsResult[key] = 0;
+    });
+
+    return initialStatisticsResult;
+  }
+
   get statisticsResult() {
-    return this.#ranks.reduce(
-      (acc, rank) => {
-        acc[rank] += 1;
-        return acc;
-      },
-      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
-    );
+    return this.#ranks.reduce((acc, rank) => {
+      acc[rank] += 1;
+      return acc;
+    }, this.#makeInitialStatisticsResult());
   }
 
   checkTickets(results) {

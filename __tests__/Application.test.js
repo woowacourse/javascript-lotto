@@ -58,7 +58,6 @@ describe('로또 게임 통합 테스트', () => {
     await gameApp.run();
 
     RESULTS.forEach((result) => {
-      console.log('result', result, logSpy);
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(result));
     });
   });
