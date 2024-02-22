@@ -10,7 +10,6 @@ const OutputView = {
   },
 
   printWinningStats(matchingResult) {
-    console.log(matchingResult);
     console.log('\n당첨 통계');
     console.log('--------------------');
     console.log(`3개 일치 (5,000원) - ${matchingResult['3']}개`);

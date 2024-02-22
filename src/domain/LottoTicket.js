@@ -23,7 +23,7 @@ class LottoTicket {
     if (!this.#ticket.includes(pickNumber)) this.#ticket.push(pickNumber);
   }
 
-  get lottoTicket() {
+  get ticket() {
     return this.#ticket.sort((prevNumber, nextNumber) => prevNumber - nextNumber);
   }
 }
