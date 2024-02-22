@@ -18,6 +18,14 @@ const InputView = {
 
     return bonusNumber;
   },
+
+  async readRestart() {
+    const restartResponse = await ReadLine.readLineAsync('> 다시 시작하시겠습니까? (y, n)');
+
+    // TODO: 예외 처리 추가
+
+    return restartResponse;
+  },
 };
 
 export default InputView;

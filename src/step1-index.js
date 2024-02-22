@@ -6,8 +6,24 @@ import InputView from './view/InputView.js';
 import Controller from './controller/controller.js';
 
 class App {
+  #controller;
+
+  constructor() {
+    this.#controller = new Controller();
+  }
+
   async play() {
-    new Controller().start();
+    await this.#controller.start();
+    this.replay();
+  }
+
+  async replay() {
+    const restartResponse = await InputView.readRestart();
+
+    if (restartResponse === 'y') {
+      this.#controller = new Controller();
+      await this.play();
+    }
   }
 }
 
