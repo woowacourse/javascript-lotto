@@ -7,12 +7,13 @@ import OutputView from '../view/OutputView';
 import LottoValidation from '../validation/lottoValidation';
 import PurchaseAmountValidation from '../validation/purchaseAmount';
 import RestartResponseValidation from '../validation/responseValidation';
+import MESSAGE from '../constants/message';
 
 class LottoController {
   async play() {
     await this.buyLottos();
     const restartResponse = await this.getValidateRestartResponse();
-    if (restartResponse === 'y') {
+    if (restartResponse === MESSAGE.RESPONSE.RESTART.YES) {
       await this.play();
     }
   }
@@ -29,8 +30,8 @@ class LottoController {
   }
 
   async showLottoResult(lottoProcess, lottoCount) {
-    const winLotto = new Lotto(await this.getValidateWinNumbers());
-    const winNumbers = winLotto.getNumbers();
+    const winNumbers = await this.getValidateWinNumbers();
+    const winLotto = new Lotto(winNumbers);
     const bonusNumber = await this.validateBonusNumber(winNumbers);
     const result = lottoProcess.getResult(winLotto, bonusNumber);
 
@@ -46,7 +47,7 @@ class LottoController {
       PurchaseAmountValidation.validate(purchaseAmount);
     } catch (error) {
       OutputView.printError(error.message);
-      await this.getValidateLottoAmount();
+      return this.getValidateLottoAmount();
     }
     return Number.parseInt(purchaseAmount / NUMBER.LOTTO_PRICE, 10);
   }
@@ -79,8 +80,9 @@ class LottoController {
       LottoValidation.validateBonusNumber(winNumbers, bonusNumber);
     } catch (error) {
       OutputView.printError(error.message);
-      await this.validateBonusNumber();
+      return this.validateBonusNumber();
     }
+    return bonusNumber;
   }
 
   getRateOfRevenue(result = 0, lottoCount = 0) {
