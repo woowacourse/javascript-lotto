@@ -25,12 +25,19 @@ const OutputView = {
   printWinningResult(winningResult) {
     this.printMessage("당첨 통계");
     this.printMessage("--------------------");
-    this.printMessage(`
-    3개 일치 (5,000원) - ${winningResult.fifth}개\n
-    4개 일치 (50,000원) - ${winningResult.fourth}개\n
-    5개 일치 (1,500,000원) - ${winningResult.third}개\n
-    5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningResult.second}개\n
-    6개 일치 (2,000,000,000원) - ${winningResult.first}개`);
+    const ranks = Object.keys(winningResult);
+    ranks.forEach((rank) => {
+      const { reward, rule, matchedCount } = winningResult[rank];
+      if (rank === "second") {
+        this.printMessage(
+          `${rule}개 일치, 보너스 볼 일치 (${reward.toLocaleString()}원) - ${matchedCount}개`
+        );
+        return;
+      }
+      this.printMessage(
+        `${rule}개 일치 (${reward.toLocaleString()}원) - ${matchedCount}개`
+      );
+    });
   },
 };
 
