@@ -8,7 +8,7 @@ import Random from '../utils/Random';
 import retryUntilValid from '../utils/retryUntilValid';
 import Condition from '../constants/Condition';
 
-const { PRIZE } = Condition;
+const { RANK, PRIZE, LOTTO, MONEY, FORMATTING, BLANK } = Condition;
 
 class LottoGame {
   async start() {
@@ -34,6 +34,7 @@ class LottoGame {
     MoneyValidator.validateMoneyType(money);
     MoneyValidator.validateMoneyMinimum(money);
     MoneyValidator.validateMoneyUnit(money);
+    return money;
   }
 
   #validateLottoNumbers(numbers) {
@@ -41,33 +42,34 @@ class LottoGame {
     LottoValidator.validateNumbersDuplicate(numbers);
     LottoValidator.validateNumbersType(numbers);
     LottoValidator.validateNumbersRange(numbers);
+    return numbers;
   }
 
   #validateBonusNumber(winningNumbers, number) {
     LottoValidator.validateNumbersDuplicate([...winningNumbers, number]);
     LottoValidator.validateNumbersType([number]);
     LottoValidator.validateNumbersRange([number]);
+    return number;
   }
 
   async getMoney() {
-    const money = await Input.readMoney();
-    this.#validateMoney(money);
+    const money = this.#validateMoney(await Input.readMoney());
     return money;
   }
 
   async getWinningNumbers() {
     const winningNumbers = await Input.readWinningNumbers();
-    const separatedWinningNumbers = winningNumbers.split(',').map((number) => Number(number));
 
-    this.#validateLottoNumbers(separatedWinningNumbers);
+    const separatedWinningNumbers = this.#validateLottoNumbers(
+      winningNumbers.split(',').map((number) => Number(number)),
+    );
 
     return separatedWinningNumbers;
   }
 
   async getBonusNumber(winningNumbers) {
     const bonusNumber = Number(await Input.readBonusNumber());
-    this.#validateBonusNumber(winningNumbers, bonusNumber);
-    return bonusNumber;
+    return this.#validateBonusNumber(winningNumbers, bonusNumber);
   }
 
   makePrizeStatistics(lottoTickets, winningLotto) {
@@ -84,10 +86,13 @@ class LottoGame {
   }
 
   createLotto(money) {
-    return Array.from({ length: money / 1000 }).map(() => {
-      const numbers = Random.pickNumbersInRangeByRule({ start: 1, end: 45, count: 6 });
-      this.#validateLottoNumbers(numbers);
-      return new Lotto(numbers);
+    return Array.from({ length: money / MONEY.UNIT }).map(() => {
+      const numbers = Random.pickNumbersInRangeByRule({
+        start: LOTTO.NUMBER_RANGE_MIN,
+        end: LOTTO.NUMBER_RANGE_MAX,
+        count: LOTTO.NUMBER_LENGTH,
+      });
+      return new Lotto(this.#validateLottoNumbers(numbers));
     });
   }
 
@@ -100,11 +105,13 @@ class LottoGame {
 
   calculateReturnOnInvestment(prizes) {
     const totalReward = prizes.reduce(
-      (acc, cur) => (acc += cur !== '0' ? PRIZE[cur].REWARD : 0),
+      (acc, cur) =>
+        (acc += cur !== RANK.LAST_PLACE ? PRIZE.find(([rank]) => rank === cur)[1].REWARD : BLANK),
       0,
     );
-    const investment = prizes.length * 1000;
-    return Math.round((totalReward / investment) * 100 * 100) / 100;
+
+    const { PERCENT, ROUND } = FORMATTING;
+    return Math.round((totalReward / (prizes.length * MONEY.UNIT)) * PERCENT * ROUND) / ROUND;
   }
 }
 

@@ -1,10 +1,12 @@
 import Condition from '../constants/Condition';
+import Message from '../constants/Message';
 
 const { PRIZE } = Condition;
+const { OUTPUT } = Message;
 
 const Output = {
   printLottoTicketsPurchaseResult(lottoTickets) {
-    console.log(`${lottoTickets.length}개를 구매했습니다.`);
+    console.log(OUTPUT.LOTTO_TICKETS_COUNT(lottoTickets.length));
 
     lottoTickets.forEach((lottoTicket) => {
       console.log(lottoTicket.getNumbers().sort((a, b) => a - b));
@@ -12,19 +14,13 @@ const Output = {
   },
 
   printPrizeDetails(prizes) {
-    Object.entries(PRIZE)
-      .reverse()
-      .forEach(([rank, detail]) =>
-        console.log(
-          `${detail.MATCH}개 일치 (${detail.REWARD}원) - ${
-            prizes.filter((prize) => prize === rank).length
-          }개`,
-        ),
-      );
+    PRIZE.forEach(([rank, detail]) =>
+      console.log(OUTPUT.PRIZE_DETAIL(detail, prizes.filter((prize) => prize === rank).length)),
+    );
   },
 
   printReturnOnInvestment(returnOnInvestment) {
-    console.log(`총 수익률은 ${returnOnInvestment}%입니다.`);
+    console.log(OUTPUT.RETURN_ON_INVESTMENT(returnOnInvestment));
   },
 };
 

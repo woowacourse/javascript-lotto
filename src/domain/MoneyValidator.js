@@ -1,19 +1,25 @@
+import Message from '../constants/Message';
+import Condition from '../constants/Condition';
+
+const { MONEY } = Condition;
+const { ERROR } = Message;
+
 const MoneyValidator = {
   validateMoneyType(money) {
     if (Number.isNaN(Number(money))) {
-      throw new Error('[ERROR] 구입 금액은 숫자여야 합니다.');
+      throw new Error(ERROR.MONEY_TYPE);
     }
   },
 
   validateMoneyMinimum(money) {
-    if (money <= 0) {
-      throw new Error('[ERROR] 구입 금액은 0보다 커야합니다.');
+    if (money <= MONEY.MIN) {
+      throw new Error(ERROR.MONEY_MINIMUM);
     }
   },
 
   validateMoneyUnit(money) {
-    if (money % 1000 !== 0) {
-      throw new Error('[ERROR] 구입 금액은 1000원 단위여야 합니다.');
+    if (money % MONEY.UNIT !== 0) {
+      throw new Error(ERROR.MONEY_UNIT);
     }
   },
 };

@@ -1,7 +1,13 @@
+import Condition from '../constants/Condition';
+import Message from '../constants/Message';
+
+const { RESTART_OPTION } = Condition;
+const { ERROR } = Message;
+
 const SystemValidator = {
   validateOptionCharacter(restartOption) {
-    if (restartOption !== 'y' && restartOption !== 'n') {
-      throw new Error('[ERROR] 재시작/종료 여부는 y 또는 n 이어야 합니다.');
+    if (restartOption !== RESTART_OPTION.RESTART && restartOption !== RESTART_OPTION.EXIT) {
+      throw new Error(ERROR.OPTION_CHARACTER);
     }
   },
 };
