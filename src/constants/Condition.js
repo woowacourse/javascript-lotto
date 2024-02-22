@@ -30,24 +30,10 @@ const RESTART_OPTION = {
 
 const PRIZE = [
   [
-    RANK.FIRST_PLACE,
+    RANK.FIFTH_PLACE,
     {
-      MATCH: 6,
-      REWARD: 2000000000,
-    },
-  ],
-  [
-    RANK.SECOND_PLACE,
-    {
-      MATCH: 5,
-      REWARD: 30000000,
-    },
-  ],
-  [
-    RANK.THIRD_PLACE,
-    {
-      MATCH: 5,
-      REWARD: 1500000,
+      MATCH: 3,
+      REWARD: 5000,
     },
   ],
   [
@@ -58,10 +44,24 @@ const PRIZE = [
     },
   ],
   [
-    RANK.FIFTH_PLACE,
+    RANK.THIRD_PLACE,
     {
-      MATCH: 3,
-      REWARD: 5000,
+      MATCH: 5,
+      REWARD: 1500000,
+    },
+  ],
+  [
+    RANK.SECOND_PLACE,
+    {
+      MATCH: 5,
+      REWARD: 30000000,
+    },
+  ],
+  [
+    RANK.FIRST_PLACE,
+    {
+      MATCH: 6,
+      REWARD: 2000000000,
     },
   ],
 ];
