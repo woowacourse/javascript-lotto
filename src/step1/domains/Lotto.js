@@ -1,22 +1,38 @@
+import { ERROR_MESSAGES } from '../constants/message';
+import LOTTO_RULES from '../constants/rules';
+import InvalidInputException from '../exceptions/InvalidInputException';
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#validate(numbers);
+    Lotto.#validate(numbers);
     this.#numbers = numbers;
   }
 
-  #validate(numbers) {
+  static #validate(numbers) {
+    Lotto.#validateNumbersType(numbers);
+    Lotto.#validateLength(numbers);
+    Lotto.#validateUniqueness(numbers);
+  }
+
+  static #validateNumbersType(numbers) {
     const regex = /^(?:[1-9]|[1-3][0-9]|4[0-5])$/;
 
     if (!numbers.every((number) => regex.test(number))) {
-      throw new Error("[ERROR]");
+      throw new InvalidInputException(ERROR_MESSAGES.invalidNumbersType);
     }
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR]");
+  }
+
+  static #validateLength(numbers) {
+    if (numbers.length !== LOTTO_RULES.length) {
+      throw new InvalidInputException(ERROR_MESSAGES.invalidLottoLength);
     }
+  }
+
+  static #validateUniqueness(numbers) {
     if (new Set(numbers).size !== numbers.length) {
-      throw new Error("[ERROR]");
+      throw new InvalidInputException(ERROR_MESSAGES.invalidLottoUniqueness);
     }
   }
 

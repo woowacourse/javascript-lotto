@@ -1,12 +1,21 @@
 class LottoResult {
   #rankBoard;
 
+  static #LOTTO_RANKS = {
+    first: 'first',
+    second: 'second',
+    third: 'third',
+    fourth: 'fourth',
+    fifth: 'fifth',
+    nothing: 'nothing',
+  };
+
   static #LOTTO_REWARDS = {
-    first: 2_000_000_000,
-    second: 30_000_000,
-    third: 1_500_000,
-    fourth: 50_000,
-    fifth: 5_000,
+    [LottoResult.#LOTTO_RANKS.first]: 2_000_000_000,
+    [LottoResult.#LOTTO_RANKS.second]: 30_000_000,
+    [LottoResult.#LOTTO_RANKS.third]: 1_500_000,
+    [LottoResult.#LOTTO_RANKS.fourth]: 50_000,
+    [LottoResult.#LOTTO_RANKS.fifth]: 5_000,
   };
 
   static #MATCHED_COUNT = {
@@ -46,18 +55,17 @@ class LottoResult {
     };
   }
 
-  #getLottoRank(matchedCount, hasBonusNumber) {
-    if (matchedCount === LottoResult.#MATCHED_COUNT.six) return "first";
-    if (matchedCount === LottoResult.#MATCHED_COUNT.five && hasBonusNumber)
-      return "second";
-    if (matchedCount === LottoResult.#MATCHED_COUNT.five) return "third";
-    if (matchedCount === LottoResult.#MATCHED_COUNT.four) return "fourth";
-    if (matchedCount === LottoResult.#MATCHED_COUNT.three) return "fifth";
-    return "nothing";
+  static #getLottoRank(matchedCount, hasBonusNumber) {
+    if (matchedCount === LottoResult.#MATCHED_COUNT.six) return LottoResult.#LOTTO_RANKS.first;
+    if (matchedCount === LottoResult.#MATCHED_COUNT.five && hasBonusNumber) return LottoResult.#LOTTO_RANKS.second;
+    if (matchedCount === LottoResult.#MATCHED_COUNT.five) return LottoResult.#LOTTO_RANKS.third;
+    if (matchedCount === LottoResult.#MATCHED_COUNT.four) return LottoResult.#LOTTO_RANKS.fourth;
+    if (matchedCount === LottoResult.#MATCHED_COUNT.three) return LottoResult.#LOTTO_RANKS.fifth;
+    return LottoResult.#LOTTO_RANKS.nothing;
   }
 
   #updateRankBoard(rank) {
-    if (rank === "nothing") {
+    if (rank === LottoResult.#LOTTO_RANKS.nothing) {
       return;
     }
 
@@ -67,34 +75,22 @@ class LottoResult {
   #calculateTotalReward() {
     const ranks = Object.keys(this.#rankBoard);
 
-    return ranks.reduce(
-      (accReward, currRank) =>
-        accReward +
-        this.#rankBoard[currRank].matchedCount *
-          LottoResult.#LOTTO_REWARDS[currRank],
-      0
-    );
+    return ranks.reduce((accReward, currRank) => accReward + this.#rankBoard[currRank].matchedCount * LottoResult.#LOTTO_REWARDS[currRank], 0);
   }
 
   generateResult(lottos, winningInfo) {
     const { answer, bonusNumber } = winningInfo.getWinningInfo();
 
     lottos.forEach((lotto) => {
-      const { matchedCount, hasBonusNumber } = lotto.getMatchedInfo(
-        answer,
-        bonusNumber
-      );
-      const lottoRank = this.#getLottoRank(matchedCount, hasBonusNumber);
+      const { matchedCount, hasBonusNumber } = lotto.getMatchedInfo(answer, bonusNumber);
+      const lottoRank = LottoResult.#getLottoRank(matchedCount, hasBonusNumber);
       this.#updateRankBoard(lottoRank);
     });
   }
 
   calculateReturnRate(amount) {
     const totalReward = this.#calculateTotalReward();
-    console.log(totalReward);
-    const returnRate = Number(
-      Math.ceil((totalReward / amount) * 100).toFixed(2)
-    );
+    const returnRate = Number(Math.ceil((totalReward / amount) * 100).toFixed(2));
 
     return returnRate;
   }
