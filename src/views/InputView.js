@@ -24,7 +24,6 @@ const InputView = deepFreeze({
    */
   async read(message) {
     const inputValue = await Console.readLineAsync(message);
-
     CommonValidator.check(inputValue);
 
     return inputValue;
@@ -35,14 +34,13 @@ const InputView = deepFreeze({
    */
   async readBuyLottoPrice() {
     const inputBuyLottoPrice = await this.read(INPUT_MESSAGE.buyLottoPrice);
-
     BuyLottoPriceValidator.check(inputBuyLottoPrice);
 
     return Number(inputBuyLottoPrice);
   },
 
   /**
-   * @returns {number[]} 검증된 구매 로또 금액의 Promise
+   * @returns {Promise<number[]>} 검증된 구매 로또 금액의 Promise
    */
   async readWinningNumber() {
     const inputWinningNumber = await this.read(INPUT_MESSAGE.winningNumber);
@@ -51,6 +49,10 @@ const InputView = deepFreeze({
     return inputWinningNumber.split(SYMBOLS.comma).map(Number);
   },
 
+  /**
+   * @param {number[]} winningNumber - 당첨 번호의 string 형태
+   * @returns {Promise<number>} 유효성 검증이 완료 된 보너스 번호의 Promise
+   */
   async readBonusNumber(winningNumber) {
     const inputBonusNumber = await this.read(INPUT_MESSAGE.bonusNumber);
     BonusNumberValidator.check(inputBonusNumber, winningNumber);
@@ -58,9 +60,11 @@ const InputView = deepFreeze({
     return Number(inputBonusNumber);
   },
 
+  /**
+   * @returns {Promise<string>} - 입력된 재시작 여부 (y/n)
+   */
   async readRetryCommand() {
     const inputRetryCommand = await this.read(INPUT_MESSAGE.retryCommand);
-
     RetryCommandValidator.check(inputRetryCommand);
 
     return inputRetryCommand;

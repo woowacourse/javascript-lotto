@@ -66,4 +66,50 @@
  * @property {CommonValidationType} isValidCommand - 입력한 재시작 명령어가 유효한지 확인하는 객체
  */
 
+/**
+ * @typedef {object} BuyLottoDetail
+ * @property {number} buyLottoPrice - 로또 구입 금액
+ * @property {LottoNumber[]} lottoNumbers - 로또 번호들
+ */
+
+/**
+ * @typedef {object} LottoDrawDetail
+ * @property {number[]} winningNumber - 당첨 번호
+ * @property {LottoNumber[]} lottoNumbers - 구입한 로또 번호들
+ * @property {number} bonusNumber - 보너스 번호
+ */
+
+/**
+ * @typedef {object} WinningRankResult
+ * @property {number} '1st' - 1등 당첨 횟수
+ * @property {number} '2nd' - 2등 당첨 횟수
+ * @property {number} '3rd' - 3등 당첨 횟수
+ * @property {number} '4th' - 4등 당첨 횟수
+ * @property {number} '5th' - 5등 당첨 횟수
+ */
+
+/**
+ * @typedef {'1st' | '2nd' | '3rd' | '4th' | '5th'} Rank
+ */
+
+/**
+ * @typedef {object} RankRuleDetail
+ * @property {number} match - 당첨 된 횟수
+ * @property {boolean} hasBonus - 보너스 번호 포함 여부
+ * @property {string} description - 당첨 정보에 대한 설명
+ */
+
+/**
+ * @typedef {object} RankRule
+ * @property {RankRuleDetail} '1st' - 1등 당첨 횟수
+ * @property {RankRuleDetail} '2nd' - 2등 당첨 횟수
+ * @property {RankRuleDetail} '3rd' - 3등 당첨 횟수
+ * @property {RankRuleDetail} '4th' - 4등 당첨 횟수
+ * @property {RankRuleDetail} '5th' - 5등 당첨 횟수
+ */
+
+/**
+ * @typedef {[number, number, number, number, number, number]} LottoNumber
+ */
+
 export {};

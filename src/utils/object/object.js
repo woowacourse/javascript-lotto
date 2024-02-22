@@ -1,3 +1,7 @@
+/**
+ * @param {object} object - 객체
+ * @returns {object} 동결된 객체
+ */
 export const deepFreeze = (object) => {
   const propNames = Object.getOwnPropertyNames(object);
 
