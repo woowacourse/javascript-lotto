@@ -1,5 +1,6 @@
-import { INPUT_MESSAGES } from '../constants/messages';
 import Console from '../utils/Console';
+import { INPUT_MESSAGES } from '../constants/messages';
+
 const { readLineAsync } = Console;
 
 const InputView = {

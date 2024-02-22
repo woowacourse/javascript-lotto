@@ -1,5 +1,5 @@
-import { OUTPUT_MESSAGES } from '../constants/messages';
 import Console from '../utils/Console';
+import { OUTPUT_MESSAGES } from '../constants/messages';
 import { LOTTO_STATICS } from '../constants/lotto-statics';
 
 const OutputView = {

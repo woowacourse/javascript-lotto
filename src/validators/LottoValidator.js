@@ -8,9 +8,8 @@ const LottoValidator = {
   },
 
   bonusNumberValidate(winningNumbers, bonusNumber) {
-    const convertedBonusNumber = Number(bonusNumber);
-    this.validateRange(convertedBonusNumber);
-    this.validateUniqueNumber([...winningNumbers, convertedBonusNumber]);
+    this.validateRange(bonusNumber);
+    this.validateUniqueNumber([...winningNumbers, bonusNumber]);
   },
 
   isValidLength(numbers) {

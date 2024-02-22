@@ -1,10 +1,12 @@
+import LottoGenerator from '../domains/LottoGenerator';
+import LottoCalculator from '../domains/LottoCalculator';
 import InputView from '../views/InputView';
+import OutputView from '../views/OutputView';
 import Console from '../utils/Console';
 import LottoPaymentValidator from '../validators/LottoPaymentValidator';
 import LottoValidator from '../validators/LottoValidator';
-import LottoCalculator from '../domains/LottoCalculator';
-import LottoGenerator from '../domains/LottoGenerator';
-import OutputView from '../views/OutputView';
+
+const { winningNumbersValidate, bonusNumberValidate } = LottoValidator;
 
 class LottoController {
   #lottoNumbers = {};
@@ -41,7 +43,7 @@ class LottoController {
     this.#lottoNumbers.winningNumbers = await this.readWinningNumbers();
     OutputView.printNewLine();
 
-    this.#lottoNumbers.bonusNumber = Number(await this.readBonusNumber());
+    this.#lottoNumbers.bonusNumber = await this.readBonusNumber();
     OutputView.printNewLine();
   }
 
@@ -74,7 +76,7 @@ class LottoController {
   async readWinningNumbers() {
     try {
       const winningNumbers = this.splitInput(await InputView.winningNumbers());
-      LottoValidator.winningNumbersValidate(winningNumbers);
+      winningNumbersValidate(winningNumbers);
       return winningNumbers;
     } catch (error) {
       Console.print(error.message);
@@ -84,11 +86,8 @@ class LottoController {
 
   async readBonusNumber() {
     try {
-      const bonusNumber = await InputView.bonusNumber();
-      LottoValidator.bonusNumberValidate(
-        this.#lottoNumbers.winningNumbers,
-        bonusNumber,
-      );
+      const bonusNumber = Number(await InputView.bonusNumber());
+      bonusNumberValidate(this.#lottoNumbers.winningNumbers, bonusNumber);
       return bonusNumber;
     } catch (error) {
       Console.print(error.message);
