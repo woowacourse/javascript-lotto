@@ -9,7 +9,7 @@ const MESSAGE = Object.freeze({
   }),
   QUERY: Object.freeze({
     PURCHASE_AMOUNT: '> 구입금액을 입력해 주세요.',
-    WIN_NUMBERS: '\n> 당첨번호를 입력해 주세요.',
+    WIN_NUMBERS: '\n> 당첨번호를 입력해 주세요.(,로 숫자를 구분하여 입력해주세요)',
     BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요.',
     RESTART: '\n> 다시 시작하시겠습니까? (y/n)',
   }),
