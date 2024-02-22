@@ -39,3 +39,14 @@ describe('[Validator] 보너스 번호 검증', () => {
     expect(validation).toThrow(errorMessage);
   });
 });
+
+describe('[Validator] 재시작 여부 입력값 검증', () => {
+  test.each`
+    title                                                 | input  | errorMessage
+    ${'입력값은 공백이 아니여야 한다.'}                   | ${''}  | ${ERROR_MESSAGE.INPUT_IS_EMPTY}
+    ${'입력값은 대/소문자로 Y 또는 N만 입력되어야 한다.'} | ${'a'} | ${ERROR_MESSAGE.RESTART_COMMAND_FORMAT}
+  `('$title', ({ input, errorMessage }) => {
+    const validation = () => Validator.validateRestartCommand(input);
+    expect(validation).toThrow(errorMessage);
+  });
+});
