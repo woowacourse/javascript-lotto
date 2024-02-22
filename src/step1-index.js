@@ -1,10 +1,14 @@
-import LottoController from './LottoController';
+import CONFIG from './constants/config';
 import InputView from './views/InputView';
+import LottoController from './controllers/LottoController';
 
 const app = {
   async play() {
     const purchaseAmount = await InputView.readPurchaseAmount();
-    new LottoController(purchaseAmount).run();
+    const lottoController = new LottoController(purchaseAmount);
+    await lottoController.run();
+    const retry = await InputView.readRestart();
+    if (retry === CONFIG.RESTART_YES) this.play();
   },
 };
 
