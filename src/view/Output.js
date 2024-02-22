@@ -1,25 +1,6 @@
-const PRIZE_REWARD = {
-  1: {
-    MATCH: 6,
-    REWARD: 2000000000,
-  },
-  2: {
-    MATCH: 5,
-    REWARD: 30000000,
-  },
-  3: {
-    MATCH: 5,
-    REWARD: 1500000,
-  },
-  4: {
-    MATCH: 4,
-    REWARD: 50000,
-  },
-  5: {
-    MATCH: 3,
-    REWARD: 5000,
-  },
-};
+import Condition from '../constants/Condition';
+
+const { PRIZE } = Condition;
 
 const Output = {
   printLottoTicketsPurchaseResult(lottoTickets) {
@@ -31,12 +12,12 @@ const Output = {
   },
 
   printPrizeDetails(prizes) {
-    Object.entries(PRIZE_REWARD)
+    Object.entries(PRIZE)
       .reverse()
       .forEach(([rank, detail]) =>
         console.log(
           `${detail.MATCH}개 일치 (${detail.REWARD}원) - ${
-            prizes.filter((prize) => prize === Number(rank)).length
+            prizes.filter((prize) => prize === rank).length
           }개`,
         ),
       );
