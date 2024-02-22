@@ -18,32 +18,31 @@ class Lotto {
     return this.#numbers;
   }
 
-  // TODO: 리팩터링 (메서드 depth 1, 매직넘버)
-  // eslint-disable-next-line max-lines-per-function
   determineRank(winningNumbers, bonusNumber) {
     const matchingCount = this.#countMatchingNumbers(winningNumbers);
     const bonusMatch = this.#hasBonusNumber(bonusNumber);
 
-    for (let rank = 1; rank <= 5; rank += 1) {
-      if (this.#checkRankCondition(rank, matchingCount, bonusMatch)) {
-        return rank;
-      }
-    }
+    const rank = OPTIONS.RANK.find((rank_) =>
+      this.#checkRankCondition(rank_, matchingCount, bonusMatch)
+    );
 
-    return 6;
+    return rank;
   }
 
-  // eslint-disable-next-line max-lines-per-function
   #checkRankCondition(rank, matchingCount, bonusMatch) {
-    const {
-      matchingCount: matchingCountCondition,
-      bonusMatch: bonusMatchCondition
-    } = OPTIONS.RANK_CONDITION[rank];
-
     return (
-      matchingCountCondition === matchingCount &&
-      (!bonusMatchCondition || bonusMatchCondition === bonusMatch)
+      this.#isMatchingCountEqual(rank, matchingCount) && this.#isBonusMatchEqual(rank, bonusMatch)
     );
+  }
+
+  #isMatchingCountEqual(rank, matchingCount) {
+    const condition = OPTIONS.RANK_CONDITION[rank].matchingCount;
+    return condition === undefined || condition === matchingCount;
+  }
+
+  #isBonusMatchEqual(rank, bonusMatch) {
+    const condition = OPTIONS.RANK_CONDITION[rank].bonusMatch;
+    return condition === undefined || condition === bonusMatch;
   }
 
   #countMatchingNumbers(winningNumbers) {
