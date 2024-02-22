@@ -1,27 +1,27 @@
-import { GAME_MESSAGE, LOTTO_WINNING_RESULTS } from '../constant/gameMessage';
-import handleIO from '../util/handleIO';
+import GAME_MESSAGE from '../constant/gameMessage.js';
+import handleIO from '../util/handleIO.js';
 
 const OutputView = {
-  printPurchaseResult(lottoList) {
-    handleIO.print(GAME_MESSAGE.PURCHASE_RESULT_TEXT(lottoList.length));
-    lottoList.forEach((lotto) => {
+  printPurchaseResult(purchaseAmount) {
+    handleIO.print(GAME_MESSAGE.PURCHASE_RESULT_TEXT(purchaseAmount));
+  },
+
+  printLottoItems(lottos) {
+    lottos.forEach((lotto) => {
       handleIO.print(GAME_MESSAGE.LOTTO_ITEM(lotto));
     });
   },
 
-  printWinningResult(winningResult) {
-    handleIO.print(LOTTO_WINNING_RESULTS.LOTTO_WINNING_RESULT_TITLE);
-    Object.entries(winningResult).forEach(([rank, winningCount]) => {
-      handleIO.print(LOTTO_WINNING_RESULTS.WINNING_RESULT(rank, winningCount));
-    });
+  printWinningResultTitle() {
+    handleIO.print(GAME_MESSAGE.LOTTO_WINNING_RESULT_TITLE);
+  },
+
+  printWinningResults(match, reward, count) {
+    handleIO.print(GAME_MESSAGE.LOTTO_WINNING_RESULTS(match, reward, count));
   },
 
   printProfitRate(profitRate) {
-    handleIO.print(LOTTO_WINNING_RESULTS.PROFIT_RATE(profitRate));
-  },
-
-  printExitMessage() {
-    handleIO.print(GAME_MESSAGE.EXIT);
+    handleIO.print(GAME_MESSAGE.LOTTO_PROFIT_RATE(profitRate));
   },
 };
 
