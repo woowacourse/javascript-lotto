@@ -14,11 +14,7 @@ const winningLottoNumbersValidation = {
     },
 
     notDuplicated: {
-<<<<<<< HEAD
       errorMessage: ERROR_MESSAGE.UNIQUE_NUMBER,
-=======
-      errorMessage: ERROR_MESSAGE.notDuplicated,
->>>>>>> 47d5025 (feat: 로또 당첨 번호 입력 기능 구현)
       isValid(input) {
         const uniqueNumbers = new Set(input);
         return uniqueNumbers.size === input.length;
