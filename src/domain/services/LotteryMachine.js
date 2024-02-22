@@ -1,10 +1,11 @@
-import Lotto from './Lotto';
+import Lotto from '../entities/Lotto';
+import CONFIG from '../../constants/config';
 
 class LotteryMachine {
   #amount;
 
   constructor(purchaseAmount) {
-    this.#amount = parseInt(purchaseAmount, 10) / 1000;
+    this.#amount = parseInt(purchaseAmount, 10) / CONFIG.PURCHASE_UNIT;
   }
 
   makeLottery() {
@@ -13,8 +14,8 @@ class LotteryMachine {
 
   makeLotto() {
     const lotto = [];
-    while (lotto.length < 6) {
-      const randomNumber = Math.ceil(Math.random() * 45);
+    while (lotto.length < CONFIG.LOTTO_RANK_LENGTH) {
+      const randomNumber = Math.ceil(Math.random() * CONFIG.MAX_LOTTO_NUMBER);
       if (lotto.includes(randomNumber)) continue;
       lotto.push(randomNumber);
     }

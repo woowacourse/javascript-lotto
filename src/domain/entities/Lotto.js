@@ -2,8 +2,12 @@ class Lotto {
   #numberList;
 
   constructor(numberList) {
-    numberList.sort((a, b) => a - b);
     this.#numberList = numberList;
+    this.#sortLottoNumbers();
+  }
+
+  #sortLottoNumbers() {
+    this.#numberList.sort((a, b) => a - b);
   }
 
   getMatchedAmount(winningNumbers, bonusNumber) {

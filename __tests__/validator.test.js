@@ -57,6 +57,16 @@ describe('유효성 검사 테스트', () => {
 
       expect(mockFn).toThrow('[ERROR]');
     });
+
+    test('당첨 번호가 6개가 아닌 경우 예외를 발생시킨다.', () => {
+      const winningNumbers = [1, 2, 3, 4, 5];
+
+      const mockFn = () => {
+        winningNumbersValidator.validateLength(winningNumbers.length);
+      };
+
+      expect(mockFn).toThrow('[ERROR]');
+    });
   });
 
   describe('보너스 번호 테스트', () => {
