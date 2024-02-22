@@ -9,16 +9,10 @@ import winningLottoNumbersValidation from "../validation/winningLottoNumbersVali
 
 const InputView = {
   async readBudget() {
-<<<<<<< HEAD
     const budgetInput = await readLineAsync(INPUT_MESSAGE.BUDGET);
     startValidation(budgetValidation.categories, Number(budgetInput));
-=======
-    const budgetInput = await readLineAsync(VIEW_MESSAGE.budget);
-    const budget = Number(budgetInput);
-    startValidation(budgetValidation.categories, budget);
->>>>>>> bd91b0d (fix: budgetValidation camelCase로 수정 및 readBudget 메서드 수정)
 
-    return budget;
+    return budgetInput;
   },
 
   async readWinningLottoNumbers() {
