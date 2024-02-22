@@ -1,12 +1,17 @@
-import Lotto from "../domains/Lotto";
-import LottoResult from "../domains/LottoResult";
-import LottoStore from "../domains/LottoStore";
-import WinningLotto from "../domains/WinningLotto";
-import InputView from "../views/InputView";
-import OutputView from "../views/OutputView";
+import { ERROR_MESSAGES } from '../constants/message';
+import RETRY_SIGN from '../constants/retry-sign';
+import LOTTO_RULES from '../constants/rules';
+import Lotto from '../domains/Lotto';
+import LottoResult from '../domains/LottoResult';
+import LottoStore from '../domains/LottoStore';
+import WinningLotto from '../domains/WinningLotto';
+import InvalidInputException from '../exceptions/InvalidInputException';
+import InputView from '../views/InputView';
+import OutputView from '../views/OutputView';
 
 class LottoController {
   #lottos;
+
   #winningLotto;
 
   constructor() {
@@ -18,8 +23,7 @@ class LottoController {
     const lottoAmount = await InputView.readPurchaseAmount();
 
     try {
-      const lottos = LottoStore.purchaseLottos(lottoAmount);
-      this.#lottos = lottos;
+      this.#lottos = LottoStore.purchaseLottos(lottoAmount);
     } catch (error) {
       OutputView.printMessage(error.message);
       await this.#purchaseLottos();
@@ -28,9 +32,7 @@ class LottoController {
 
   async #getWinningLotto() {
     const winningNumber = await InputView.readWinningLotto();
-    const winningNumberArray = winningNumber
-      .split(",")
-      .map((winningNumber) => Number(winningNumber));
+    const winningNumberArray = winningNumber.split(',').map((winningNumber) => Number(winningNumber));
 
     try {
       return new Lotto(winningNumberArray);
@@ -64,32 +66,32 @@ class LottoController {
     const lottoResultBoard = lottoResult.getRankBoard();
     OutputView.printWinningResult(lottoResultBoard);
 
-    const returnRate = lottoResult.calculateReturnRate(
-      this.#lottos.length * 1000
-    );
+    const returnRate = lottoResult.calculateReturnRate(this.#lottos.length * LOTTO_RULES.price);
     OutputView.printReturnRate(returnRate);
   }
 
-  async #askRestart() {
-    const retrySign = await InputView.readRetrySign();
-
-    if (retrySign === "n") {
-      return;
+  #validateRetrySign(sign) {
+    if (sign !== RETRY_SIGN.yes && sign !== RETRY_SIGN.no) {
+      throw new InvalidInputException(ERROR_MESSAGES.invalidRetrySign);
     }
-
-    if (retrySign === "y") {
-      return await this.run();
-    }
-
-    throw new Error("[ERROR]");
   }
 
-  async #handleRestart() {
+  async #handleRetry(sign) {
+    if (sign === RETRY_SIGN.yes) {
+      await this.run();
+    }
+  }
+
+  async #processRetrySign() {
+    const retrySign = await InputView.readRetrySign();
+    const formattedRetrySign = retrySign.trim().toLowerCase();
+
     try {
-      await this.#askRestart();
+      this.#validateRetrySign(formattedRetrySign);
+      this.#handleRetry(formattedRetrySign);
     } catch (error) {
       OutputView.printMessage(error.message);
-      await this.#handleRestart();
+      await this.#handleRetry();
     }
   }
 
@@ -99,9 +101,9 @@ class LottoController {
 
     const winningLotto = await this.#getWinningLotto();
     await this.#configWinningLotto(winningLotto);
-
     this.#printWinningResult();
-    this.#handleRestart();
+
+    this.#processRetrySign();
   }
 }
 
