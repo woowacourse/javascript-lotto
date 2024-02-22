@@ -101,6 +101,11 @@ class LottoController {
     const inputValue = await InputView.readRestartOrExit();
     return inputValue;
   }
+
+  validateRestartOrExit(inputValue) {
+    if (RestartOrExitValidator.isNotRestartOrExitKeyword(inputValue))
+      throw new Error('[ERROR] y(재시작) 또는 n(종료)을 입력하여야 합니다.');
+  }
 }
 
 export default LottoController;
