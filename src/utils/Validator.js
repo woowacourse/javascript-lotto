@@ -12,6 +12,10 @@ const ValidatorCondition = {
     return array.every((element) => typeof element === type);
   },
 
+  checkIsNotNaN(array) {
+    return array.every((element) => !Number.isNaN(element));
+  },
+
   checkArrayElementInteger(array) {
     return array.every((element) => Number.isInteger(element));
   },
@@ -97,6 +101,7 @@ const Validator = {
     const maxPurchaseAmount = 100000;
 
     return (
+      ValidatorCondition.checkIsNotNaN([purchaseAmount]) &&
       ValidatorCondition.checkArrayElementType(
         [purchaseAmount],
         purchaseAmountType,
