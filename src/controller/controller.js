@@ -17,8 +17,7 @@ export default class Controller {
       OutputView.printLotto(numbers);
     });
 
-    const winningNumbers = await InputView.readWinningNumbers();
-    const lotto = new Lotto(winningNumbers);
+    const lotto = await InputView.readLotto();
 
     const bonusNumber = await InputView.readBonusNumber();
     const winningLotto = new WinningLotto(lotto, bonusNumber);

@@ -1,3 +1,4 @@
+import Lotto from '../domain/lotto.js';
 import ReadLine from '../utils/readLineAsync.js';
 import { validateCost } from '../utils/validation.js';
 
@@ -13,10 +14,17 @@ const InputView = {
     }
   },
 
-  async readWinningNumbers() {
-    const winningNumbers = await ReadLine.readLineAsync('> 당첨 번호를 입력해주세요.');
+  async readLotto() {
+    try {
+      const numbers = (await ReadLine.readLineAsync('> 당첨 번호를 입력해주세요.'))
+        .split(',')
+        .map((number) => Number(number));
 
-    return winningNumbers.split(',').map((number) => Number(number));
+      return new Lotto(numbers);
+    } catch (error) {
+      console.log(error.message);
+      return this.readLotto();
+    }
   },
 
   async readBonusNumber() {
