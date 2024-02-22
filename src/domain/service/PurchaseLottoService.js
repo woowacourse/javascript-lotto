@@ -33,7 +33,7 @@ class PurchaseLottoService {
     return Number(moneyString) / CONDITION.pricePerLotto;
   }
 
-  #makeLotto() {
+  #getLotto() {
     const randoms = new Set([]);
     const min = CONDITION.lottoNumberMin;
     const max = CONDITION.lottoNumberMax;
@@ -41,15 +41,15 @@ class PurchaseLottoService {
     while (randoms.size < CONDITION.countOfNumberInTicket) {
       randoms.add(this.#makeRandom(min, max));
     }
-    return new LottoNumberList(randoms);
+    return new LottoNumberList([...randoms]);
   }
 
   #makeLottos() {
-    this.#lottos = new Array(this.#purchaseCount).map(() => this.#makeLotto());
+    this.#lottos = [...Array(this.#purchaseCount)].map(() => this.#getLotto());
   }
 
   getLottos() {
-    return this.#lottos;
+    return this.#lottos.map(lotto => lotto.getNumbers());
   }
 
   #makeRandom(min, max) {

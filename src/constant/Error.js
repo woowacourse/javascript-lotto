@@ -11,6 +11,8 @@ const ERROR = Object.freeze({
     '[Error] 보너스 번호는 당첨 번호와 중복되지 않아야합니다.',
 
   beMultiple: '[Error] 구입금액은 1000의 배수여야 합니다.',
+
+  retryYN: '[Error] 재시도 여부는 y나 n값이어야 합니다.',
 });
 
 export default ERROR;

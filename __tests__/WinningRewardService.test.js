@@ -1,31 +1,4 @@
-import CONDITION from '../src/constant/Condition.js';
-
-class WinningRewardService {
-  #winningResult;
-  #purchasedCount;
-
-  constructor(winningResult, purchasedCount) {
-    this.#winningResult = winningResult;
-    this.#purchasedCount = purchasedCount;
-  }
-
-  getWinningPrice() {
-    return Object.entries(this.#winningResult).reduce(
-      (total, [matched, count]) =>
-        total + CONDITION.winningPrice[matched] * count,
-      0,
-    );
-  }
-
-  getReturnRate() {
-    const PERCENT_UNIT = 100;
-    return (
-      (this.getWinningPrice() /
-        (this.#purchasedCount * CONDITION.pricePerLotto)) *
-      PERCENT_UNIT
-    );
-  }
-}
+import WinningRewardService from '../src/domain/service/WinningRewardService.js';
 
 describe('당청금 및 수익률 계산 테스트', () => {
   test('당첨 개수들을 인자로 받았을 때, 당첨금을 반환한다.', () => {

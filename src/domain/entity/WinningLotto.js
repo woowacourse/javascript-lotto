@@ -20,6 +20,9 @@ class WinningLotto {
   getNumbers() {
     return this.#winningLottoNumberList.getNumbers();
   }
+  getBonusNumber() {
+    return this.#bonusNumber.getNumber();
+  }
 
   getMatchCounts(lottoNumbers) {
     const results = [this.#getMatchLottoCount(lottoNumbers).toString()];

@@ -3,6 +3,7 @@ import WinningResultService from '../src/domain/service/WinningResultService.js'
 describe('당첨 통계 테스트', () => {
   test('로또들을 인자로 받았을 때, 당첨 개수들을 반환한다.', () => {
     const LOTTOS = [
+      [1, 7, 8, 9, 10, 11],
       [1, 2, 3, 8, 9, 10],
       [1, 2, 3, 4, 9, 10],
       [1, 2, 3, 4, 5, 10],

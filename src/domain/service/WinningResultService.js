@@ -16,6 +16,7 @@ class WinningResultService {
 
     this.#lottos
       .map(lotto => this.#winningLotto.getMatchCounts(lotto.getNumbers()))
+      .filter(numStr => Object.keys(result).includes(numStr))
       .forEach(matched => {
         result[matched] += 1;
       });

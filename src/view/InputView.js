@@ -1,5 +1,7 @@
 import MESSAGE from '../constant/Message.js';
+import IsRetry from '../domain/entity/IsRetry.js';
 import WinningLotto from '../domain/entity/WinningLotto.js';
+import PurchaseLottoService from '../domain/service/PurchaseLottoService.js';
 import OutputView from './OutputView.js';
 import readline from 'readline';
 
@@ -8,7 +10,7 @@ const Private = {
     while (true) {
       try {
         const inputString = await config.readline();
-        return config.factory(inputString);
+        return await config.factory(inputString);
       } catch (e) {
         config.retryHandler(e);
       }
@@ -40,20 +42,20 @@ const Private = {
 
 const InputView = {
   async readPurchaseMoney() {
-    const winningNumberConfig = {
+    const purchaseMoneyConfig = {
       readline: async () =>
         await Private.readLineAsync(MESSAGE.prompt.purchaseMoney),
-      factory: inputString => new WinningLotto(inputString),
+      factory: inputString => new PurchaseLottoService(inputString),
       retryHandler: e => OutputView.print(e.message),
     };
-    return await Private.robustInput(winningNumberConfig);
+    return await Private.robustInput(purchaseMoneyConfig);
   },
 
   async readWinningNumbers() {
     const winningNumberConfig = {
       readline: async () =>
         await Private.readLineAsync(MESSAGE.prompt.winningNumber),
-      factory: inputString => new WinningLotto(inputString),
+      factory: inputString => WinningLotto.fromString(inputString),
       retryHandler: e => OutputView.print(e.message),
     };
     return await Private.robustInput(winningNumberConfig);
@@ -63,7 +65,16 @@ const InputView = {
     const bonusNumberConfig = {
       readline: async () =>
         await Private.readLineAsync(MESSAGE.prompt.bonusNumber),
-      factory: inputString => winningLotto.setBonusNumber(inputString),
+      factory: inputString => winningLotto.setBonusNumberString(inputString),
+      retryHandler: e => OutputView.print(e.message),
+    };
+    return await Private.robustInput(bonusNumberConfig);
+  },
+
+  async readIsRetry() {
+    const bonusNumberConfig = {
+      readline: async () => await Private.readLineAsync(MESSAGE.prompt.retry),
+      factory: inputString => new IsRetry(inputString).get(),
       retryHandler: e => OutputView.print(e.message),
     };
     return await Private.robustInput(bonusNumberConfig);

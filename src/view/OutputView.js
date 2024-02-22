@@ -12,14 +12,21 @@ const OutputView = {
       '[' + LottoNumbers.map(number => number.toString()).join(', ') + ']',
     );
   },
-  printWinningCharacteristic(winningCounts) {
-    this.print();
+  printWinningCharacteristic(winningResult) {
+    this.print('');
+    this.print(MESSAGE.winningCharacteristicsHeader);
+    this.print(MESSAGE.lineSplitter);
     this.print(
-      winningCounts
-        .map((num, i) => `${MESSAGE.winningCharacteristics[i]} - ${num}개`)
+      Object.entries(winningResult)
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .map(
+          ([matched, count]) =>
+            `${MESSAGE.winningCharacteristics[matched]} - ${count}개`,
+        )
         .join('\n'),
     );
   },
+
   printReturnRate(returnRate) {
     this.print(`총 수익률은 ${returnRate.toFixed(1)}%입니다.`);
   },
