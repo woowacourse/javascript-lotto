@@ -9,22 +9,50 @@ class LottoResult {
     fifth: 5_000,
   };
 
+  static #MATCHED_COUNT = {
+    six: 6,
+    five: 5,
+    four: 4,
+    three: 3,
+  };
+
   constructor() {
     this.#rankBoard = {
-      first: 0,
-      second: 0,
-      third: 0,
-      fourth: 0,
-      fifth: 0,
+      first: {
+        reward: LottoResult.#LOTTO_REWARDS.first,
+        rule: LottoResult.#MATCHED_COUNT.six,
+        matchedCount: 0,
+      },
+      second: {
+        reward: LottoResult.#LOTTO_REWARDS.second,
+        rule: LottoResult.#MATCHED_COUNT.five,
+        matchedCount: 0,
+      },
+      third: {
+        reward: LottoResult.#LOTTO_REWARDS.third,
+        rule: LottoResult.#MATCHED_COUNT.five,
+        matchedCount: 0,
+      },
+      fourth: {
+        reward: LottoResult.#LOTTO_REWARDS.fourth,
+        rule: LottoResult.#MATCHED_COUNT.four,
+        matchedCount: 0,
+      },
+      fifth: {
+        reward: LottoResult.#LOTTO_REWARDS.fifth,
+        rule: LottoResult.#MATCHED_COUNT.three,
+        matchedCount: 0,
+      },
     };
   }
 
   #getLottoRank(matchedCount, hasBonusNumber) {
-    if (matchedCount === 6) return "first";
-    if (matchedCount === 5 && hasBonusNumber) return "second";
-    if (matchedCount === 5) return "third";
-    if (matchedCount === 4) return "fourth";
-    if (matchedCount === 3) return "fifth";
+    if (matchedCount === LottoResult.#MATCHED_COUNT.six) return "first";
+    if (matchedCount === LottoResult.#MATCHED_COUNT.five && hasBonusNumber)
+      return "second";
+    if (matchedCount === LottoResult.#MATCHED_COUNT.five) return "third";
+    if (matchedCount === LottoResult.#MATCHED_COUNT.four) return "fourth";
+    if (matchedCount === LottoResult.#MATCHED_COUNT.three) return "fifth";
     return "nothing";
   }
 
@@ -33,7 +61,7 @@ class LottoResult {
       return;
     }
 
-    this.#rankBoard[rank] += 1;
+    this.#rankBoard[rank].matchedCount += 1;
   }
 
   #calculateTotalReward() {
@@ -42,7 +70,8 @@ class LottoResult {
     return ranks.reduce(
       (accReward, currRank) =>
         accReward +
-        this.#rankBoard[currRank] * LottoResult.#LOTTO_REWARDS[currRank],
+        this.#rankBoard[currRank].matchedCount *
+          LottoResult.#LOTTO_REWARDS[currRank],
       0
     );
   }
@@ -60,10 +89,11 @@ class LottoResult {
     });
   }
 
-  calculateReturnRate(lottosCount) {
+  calculateReturnRate(amount) {
     const totalReward = this.#calculateTotalReward();
+    console.log(totalReward);
     const returnRate = Number(
-      Math.ceil((totalReward / lottosCount) * 100).toFixed(2)
+      Math.ceil((totalReward / amount) * 100).toFixed(2)
     );
 
     return returnRate;
