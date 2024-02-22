@@ -1,4 +1,5 @@
 import Lotto from "../src/domain/Lotto.js";
+import LottoNumber from "../src/domain/LottoNumber.js";
 
 describe("로또 기능 테스트", () => {
   test("숫자 6개를 가진 로또를 생성한다.", () => {
@@ -12,5 +13,14 @@ describe("로또 기능 테스트", () => {
     const expectNumbers = [1, 9, 12, 15, 28, 45];
 
     expect(lotto.get()).toEqual(expectNumbers);
+  });
+
+  test("이미 정답 번호에 포함되어있는 번호가 보너스 번호로 선택되면 에러를 반환한다.", () => {
+    const winningLotto = new Lotto("1,2,3,4,5,6");
+    const bonusLottoNumber = new LottoNumber(6);
+
+    expect(() => winningLotto.isAlreadyHave(bonusLottoNumber.get())).toThrow(
+      "[ERROR]"
+    );
   });
 });
