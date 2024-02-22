@@ -1,3 +1,4 @@
+import INPUT_QUERY from "../constants/input-query";
 import Console from "../utils/Console";
 
 const InputView = {
@@ -8,19 +9,19 @@ const InputView = {
   },
 
   async readPurchaseAmount() {
-    return await this.readInput("> 구입금액을 입력해 주세요.");
+    return await this.readInput(INPUT_QUERY.purchaseAmount);
   },
 
   async readWinningLotto() {
-    return await this.readInput("> 당첨 번호를 입력해 주세요.");
+    return await this.readInput(INPUT_QUERY.winningLotto);
   },
 
   async readBonusNumber() {
-    return await this.readInput("> 보너스 번호를 입력해 주세요.");
+    return await this.readInput(INPUT_QUERY.bonusNumber);
   },
 
   async readRetrySign() {
-    return await this.readInput("> 다시 시작하시겠습니까?(y/n)");
+    return await this.readInput(INPUT_QUERY.retrySign);
   },
 };
 
