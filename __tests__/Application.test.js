@@ -1,3 +1,4 @@
+import { OUTPUT_MESSAGES } from '../src/constants';
 import GameApp from '../src/GameApp';
 import { Console, RandomNumber } from '../src/utils';
 
@@ -60,5 +61,40 @@ describe('로또 게임 통합 테스트', () => {
     RESULTS.forEach((result) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(result));
     });
+  });
+  test('당첨 통계와 수익을 출력 후 재시작 입력값을 입력하면 게임이 재시작 된다..', async () => {
+    const INPUTS = [
+      '4000',
+      '1,2,3,4,5,6',
+      '7',
+      'y',
+      '4000',
+      '1,2,3,4,5,6',
+      '7',
+      'n',
+    ];
+    const RANDOM_NUMBERS = [
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
+      [7, 11, 16, 35, 36, 44],
+      [1, 8, 11, 31, 41, 42],
+      [13, 14, 16, 38, 42, 45],
+      [7, 11, 30, 40, 42, 43],
+      [2, 13, 22, 32, 38, 45],
+      [1, 3, 5, 14, 22, 45],
+    ];
+
+    const logSpy = getLogSpy();
+
+    mockQuestions(INPUTS);
+    mockRandoms(RANDOM_NUMBERS);
+
+    const gameApp = new GameApp();
+
+    await gameApp.run();
+
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(OUTPUT_MESSAGES.restartGame),
+    );
   });
 });
