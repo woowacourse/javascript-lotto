@@ -1,4 +1,4 @@
-import WinningResultService from '../src/domain/service/WinningSummaryService.js';
+import WinningResultService from '../src/domain/service/WinningResultService.js';
 
 describe('당첨 통계 테스트', () => {
   test('로또들을 인자로 받았을 때, 당첨 개수들을 반환한다.', () => {
