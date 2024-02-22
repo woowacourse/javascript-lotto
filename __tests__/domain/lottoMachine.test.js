@@ -1,4 +1,3 @@
-import LOTTO_RULE from '../../src/constants/rules/lottoRule';
 import Lotto from '../../src/domain/Lotto';
 import LottoMachine from '../../src/domain/LottoMachine';
 import Money from '../../src/domain/Money';

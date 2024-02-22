@@ -17,7 +17,7 @@ class LottoController {
 
     this.#lottoMachine = new LottoMachine(this.#money);
 
-    this.#printPurchasedLottos();
+    this.#printPurchasedLottos(this.#money.count);
 
     await retryOnInvalidInput(async () => {
       await this.#insertWinnigNumbers();
@@ -53,8 +53,8 @@ class LottoController {
     this.#lottoMachine.bonusNumber = inputBonusNumber;
   }
 
-  #printPurchasedLottos() {
-    OutputView.printPurchasedLottoAmount(this.#lottoMachine.count);
+  #printPurchasedLottos(count) {
+    OutputView.printPurchasedLottoAmount(count);
     this.#lottoMachine.lottos.forEach(lotto => {
       OutputView.printLottoNumbers(lotto.lottoNumbers);
     });

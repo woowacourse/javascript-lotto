@@ -1,11 +1,14 @@
 import ERROR_MESSAGE from '../constants/messages/errorMessage';
+import LOTTO_RULE from '../constants/rules/lottoRule';
 
 export default class Money {
   #amount;
+  #count;
 
   constructor(amount) {
     this.#validateMoney(amount);
     this.#amount = amount;
+    this.#count = amount / LOTTO_RULE.LOTTO_MONEY_UNIT;
   }
 
   #validateMoney(amount) {
@@ -27,5 +30,9 @@ export default class Money {
 
   get amount() {
     return this.#amount;
+  }
+
+  get count() {
+    return this.#count;
   }
 }

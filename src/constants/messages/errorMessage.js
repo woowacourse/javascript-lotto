@@ -1,5 +1,7 @@
 const PREFIX_ERROR = '[ERROR]';
 
+//TODO: error outputview
+
 const ERROR_MESSAGE = Object.freeze({
   IS_NOT_POSITIVE_INTEGER: `${PREFIX_ERROR} 양의 정수가 아닙니다.`,
   IS_NOT_THOUSAND_UNIT: `${PREFIX_ERROR} 1000 단위가 아닙니다.`,
