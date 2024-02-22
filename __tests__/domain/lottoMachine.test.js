@@ -11,7 +11,7 @@ describe('로또 머신 테스트', () => {
     expect(lottoMachine.lottos.length).toBe(8);
   });
 
-  test('countLottoRanks 테스트', () => {
+  test('당첨된 로또 등수 내역 테스트', () => {
     const money = new Money(2000);
     const lottoMachine = new LottoMachine(money);
     const myCustomLotto = [
