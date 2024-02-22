@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, NUMBER_DELIMITER } from '../constants';
+import { ERROR_MESSAGES, NUMBER_DELIMITER } from '../constants';
 import {
   isDivisibleByPrice,
   isNotDuplicatedLottoNumber,
@@ -9,6 +9,7 @@ import {
   isValidNumbersOfTickets,
   isValidWinningNumbersForm,
   isValidRestartInputForm,
+  isDefinedInputValue,
 } from '../utils';
 
 const Validator = {
@@ -17,6 +18,8 @@ const Validator = {
    * @param {string} numbersInput
    */
   checkWinningLottoNumbers(numbersInput) {
+    this.private_checkDefinedInputValue(numbersInput);
+
     if (!isValidWinningNumbersForm(numbersInput))
       throw new Error(ERROR_MESSAGES.inValidWInningNumbersForm);
 
@@ -33,6 +36,8 @@ const Validator = {
    * @param {string} bonusNumberInput
    */
   checkBonusNumber(lottoNumbers, bonusNumberInput) {
+    this.private_checkDefinedInputValue(bonusNumberInput);
+
     const bonusNumber = Number(bonusNumberInput);
 
     this.private_checkLottoNumber(bonusNumber);
@@ -47,6 +52,8 @@ const Validator = {
    * @param {string} numberInput
    */
   checkPaymentAmount(numberInput) {
+    this.private_checkDefinedInputValue(numberInput);
+
     const number = Number(numberInput);
 
     if (!isInteger(number)) throw new Error(ERROR_MESSAGES.notInteger);
@@ -59,10 +66,19 @@ const Validator = {
   },
 
   checkRestartForm(restartInput) {
+    this.private_checkDefinedInputValue(restartInput);
+
     if (!isValidRestartInputForm(restartInput))
       throw new Error(ERROR_MESSAGES.invalidRestartInputForm);
   },
-
+  /**
+   * 입력값이 존재하는 지 여부 검사
+   * @param {string} inputValue
+   */
+  private_checkDefinedInputValue(inputValue) {
+    if (!isDefinedInputValue(inputValue))
+      throw new Error(ERROR_MESSAGES.isUndefinedInputValue);
+  },
   /**
    * 당첨 번호에 대한 유효성 검사
    * @param {number[]} numbers

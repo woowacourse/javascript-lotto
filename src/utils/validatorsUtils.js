@@ -1,5 +1,6 @@
 import { LOTTO_RULE, RANDOM_NUMBER_RULE, RESTART_KEY } from '../constants';
 
+export const isDefinedInputValue = (string) => !!string;
 /**
  * @param {number} number
  */
