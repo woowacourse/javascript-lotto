@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { ERROR_MESSAGE, VARIABLE_ALIAS } from '../src/constant/Messages.js';
+import { ERROR_MESSAGES, VARIABLE_ALIAS } from '../src/constant/Messages.js';
 import OPTIONS from '../src/constant/Options.js';
 import Lotto from '../src/domain/Lotto.js';
 import LottoMachine from '../src/domain/LottoMachine';
@@ -17,7 +17,7 @@ describe('LottoMachine 단위테스트', () => {
       '구입 금액(%s)이 정수가 아니라면 에러를 발생시킨다.',
       (purchaseAmount) => {
         expect(() => lottoMachine.calculateIssueQuantity(purchaseAmount)).toThrow(
-          `${ERROR_MESSAGE.prefix}${ERROR_MESSAGE.isNotInteger(VARIABLE_ALIAS.purchaseAmount)}`
+          `${ERROR_MESSAGES.prefix}${ERROR_MESSAGES.isNotInteger(VARIABLE_ALIAS.purchaseAmount)}`
         );
       }
     );
@@ -26,7 +26,7 @@ describe('LottoMachine 단위테스트', () => {
       const purchaseAmount = 999;
 
       expect(() => lottoMachine.calculateIssueQuantity(purchaseAmount)).toThrow(
-        `${ERROR_MESSAGE.prefix}${ERROR_MESSAGE.isNotAtLeast(VARIABLE_ALIAS.purchaseAmount, OPTIONS.LOTTO.price)}`
+        `${ERROR_MESSAGES.prefix}${ERROR_MESSAGES.isNotAtLeast(VARIABLE_ALIAS.purchaseAmount, OPTIONS.LOTTO.price)}`
       );
     });
 

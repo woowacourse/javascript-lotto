@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { VARIABLE_ALIAS, ERROR_MESSAGE } from '../src/constant/Messages.js';
+import { VARIABLE_ALIAS, ERROR_MESSAGES } from '../src/constant/Messages.js';
 import OPTIONS from '../src/constant/Options.js';
 import Lotto from '../src/domain/Lotto.js';
 
@@ -9,7 +9,7 @@ describe('Lotto 단위테스트', () => {
       '로또 번호(%s)가 6개가 아니면 에러를 발생한다.',
       (numbers) => {
         expect(() => new Lotto(numbers)).toThrow(
-          `${ERROR_MESSAGE.prefix}${ERROR_MESSAGE.hasNotLength(VARIABLE_ALIAS.lottoNumbers, OPTIONS.LOTTO.combination)}`
+          `${ERROR_MESSAGES.prefix}${ERROR_MESSAGES.hasNotLength(VARIABLE_ALIAS.lottoNumbers, OPTIONS.LOTTO.combination)}`
         );
       }
     );
