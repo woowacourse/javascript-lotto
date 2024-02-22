@@ -1,38 +1,29 @@
 import { INPUT_MESSAGES, RESTART_KEY } from '../constants';
-import LottoGame from '../domains/LottoGame';
+import { LottoGame, Validator } from '../domains';
 import Console from '../utils/Console';
 
 class GameController {
   #lottoGame = new LottoGame();
 
-  // 역할
-  // LottoGame을 실행한다.
-  // 게임 종료 후 게임 재시작/종료 입력을 받는다.
-  // 게임 재시작/종료 입력값에 따라서 재시작/종료 여부를 결정한다.
+  async playGame() {
+    await this.getPaid();
+    await this.getWinningLotto();
 
-  async #restartLottoGame() {
-    const resetInput = await Console.readLineAsync(INPUT_MESSAGES.restart);
-    // 유효성
-    const { restart, end } = RESTART_KEY;
-    const regex = new RegExp(`[${restart}${end}]`);
-    const isValidInput = regex.test(resetInput);
+    this.#lottoGame.calculateMatchingResult();
+    this.#lottoGame.calculateStatistics();
 
-    if (!isValidInput) throw new Error('재시작 입력값 오류');
-
-    // restart
-    if (resetInput === restart) {
-      this.#lottoGame = new LottoGame();
-      this.playGame();
-    }
+    await this.#restartLottoGame();
   }
 
-  async playGame() {
+  async getPaid() {
     const paymentAmountInput = await Console.readLineAsync(
       INPUT_MESSAGES.paymentAmount,
     );
 
     this.#lottoGame.insertMoney(paymentAmountInput);
+  }
 
+  async getWinningLotto() {
     const lottoNumbersInput = await Console.readLineAsync(
       INPUT_MESSAGES.winningLottoNumbers,
     );
@@ -42,13 +33,22 @@ class GameController {
     );
 
     this.#lottoGame.generateWinningLotto(lottoNumbersInput, bonusNumberInput);
+  }
 
-    this.#lottoGame.calculateMatchingResult();
+  async #restartLottoGame() {
+    const restartInput = await Console.readLineAsync(INPUT_MESSAGES.restart);
 
-    this.#lottoGame.calculateStatistics();
+    Validator.chaeckRestartForm(restartInput);
 
-    await this.#restartLottoGame();
+    if (restartInput === RESTART_KEY.restart) {
+      this.#lottoGame = new LottoGame();
+      await this.playGame();
+    }
   }
 }
-
+// 통계 출력
+// 통합 테스트
+// 파라미터, 속성 검사 ( max:2)
+// 리팩토링
+// 4시 pr
 export default GameController;

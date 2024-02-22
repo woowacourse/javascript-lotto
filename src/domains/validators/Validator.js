@@ -7,6 +7,7 @@ import {
   isValidLottoNumberCount,
   isValidNumbersOfTickets,
   isValidWinningNumbersForm,
+  isValidRestartInputForm,
 } from './utils';
 
 const Validator = {
@@ -51,6 +52,11 @@ const Validator = {
 
     if (!isValidNumbersOfTickets(number))
       throw new Error('구매할 수 없는 티켓 개수');
+  },
+
+  chaeckRestartForm(restartInput) {
+    if (!isValidRestartInputForm(restartInput))
+      throw new Error('재시작 입력값 오류');
   },
 
   /**

@@ -1,4 +1,9 @@
-import { LOTTO_RULE, RANDOM_NUMBER_RULE } from '../../constants';
+import {
+  LOTTO_RULE,
+  RANDOM_NUMBER_RULE,
+  RESTART_KEY,
+  r,
+} from '../../constants';
 
 /**
  * @param {number} number
@@ -62,3 +67,10 @@ export const isValidNumbersOfTickets = (money) => {
  */
 export const isValidWinningNumbersForm = (numberInput) =>
   /^(\d+,)*\d+$/.test(numberInput);
+
+export const isValidRestartInputForm = (restartInput) => {
+  const { restart, end } = RESTART_KEY;
+  const regex = new RegExp(`[${restart}${end}]`);
+
+  return regex.test(restartInput);
+};
