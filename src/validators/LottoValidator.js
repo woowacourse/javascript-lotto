@@ -1,4 +1,5 @@
 import { ERROR_MESSAGES } from '../constants/messages';
+import LOTTO_RULES from '../constants/lotto-rules';
 
 const LottoValidator = {
   winningNumbersValidate(numbers) {
@@ -13,7 +14,7 @@ const LottoValidator = {
   },
 
   isValidLength(numbers) {
-    return numbers.length === 6;
+    return numbers.length === LOTTO_RULES.winningNumbersLength;
   },
 
   validateLength(numbers) {
@@ -33,7 +34,7 @@ const LottoValidator = {
   },
 
   isInRange(number) {
-    return number >= 1 && number <= 45;
+    return number >= LOTTO_RULES.minLength && number <= LOTTO_RULES.maxLength;
   },
 
   validateRange(number) {

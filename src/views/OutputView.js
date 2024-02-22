@@ -1,6 +1,6 @@
 import Console from '../utils/Console';
+import LOTTO_STATICS from '../constants/lotto-statics';
 import { OUTPUT_MESSAGES } from '../constants/messages';
-import { LOTTO_STATICS } from '../constants/lotto-statics';
 
 const OutputView = {
   printLottoPayment(count) {

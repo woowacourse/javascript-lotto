@@ -1,6 +1,4 @@
-const LOTTO_MIN_LENGTH = 1;
-const LOTTO_MAX_LENGTH = 45;
-const LOTTO_COUNT = 6;
+import LOTTO_RULES from '../constants/lotto-rules';
 
 class LottoGenerator {
   #generatedLottos;
@@ -11,13 +9,14 @@ class LottoGenerator {
 
   #makeRandomNumber() {
     return Math.floor(
-      Math.random() * (LOTTO_MAX_LENGTH - LOTTO_MIN_LENGTH) + LOTTO_MIN_LENGTH,
+      Math.random() * (LOTTO_RULES.maxLength - LOTTO_RULES.minLength) +
+        LOTTO_RULES.minLength,
     );
   }
 
   generateRandomLotto() {
     const lottoSet = new Set();
-    while (lottoSet.size < LOTTO_COUNT) {
+    while (lottoSet.size < LOTTO_RULES.winningNumbersLength) {
       const randomNumber = this.#makeRandomNumber();
       lottoSet.add(randomNumber);
     }

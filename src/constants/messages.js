@@ -1,3 +1,5 @@
+import LOTTO_RULES from './lotto-rules';
+
 export const INPUT_MESSAGES = {
   prefix: '>',
   lottoPayment: '구입금액을 입력해 주세요.',
@@ -19,8 +21,8 @@ export const OUTPUT_MESSAGES = {
 
 export const ERROR_MESSAGES = {
   prefix: '[ERROR]',
-  invalidDividedUnit: '구입 금액은 1000원 단위로 나누어 떨어져야 합니다.',
-  invalidLength: '6개의 숫자를 입력해 주세요.',
-  invalidRange: '1 ~ 45 사이의 숫자만 입력해 주세요.',
+  invalidDividedUnit: `구입 금액은 ${LOTTO_RULES.lottoBaseTicketPrice} 단위로 나누어 떨어져야 합니다.`,
+  invalidLength: `${LOTTO_RULES.winningNumbersLength}개의 숫자를 입력해 주세요.`,
+  invalidRange: `${LOTTO_RULES.minLength} ~ ${LOTTO_RULES.maxLength} 사이의 숫자만 입력해 주세요.`,
   invalidUniqueNumber: '중복된 숫자는 입력할 수 없습니다.',
 };

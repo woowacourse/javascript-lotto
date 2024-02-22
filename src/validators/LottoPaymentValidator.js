@@ -1,4 +1,5 @@
 import { ERROR_MESSAGES } from '../constants/messages';
+import LOTTO_RULES from '../constants/lotto-rules';
 
 const LottoPaymentValidator = {
   validate(price) {
@@ -6,7 +7,7 @@ const LottoPaymentValidator = {
   },
 
   isDividedUnit(price) {
-    return price % 1000 === 0;
+    return price % LOTTO_RULES.lottoBaseTicketPrice === 0;
   },
 
   validateDividedUnit(price) {

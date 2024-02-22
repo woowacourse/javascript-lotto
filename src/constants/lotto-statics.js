@@ -1,4 +1,4 @@
-export const LOTTO_STATICS = {
+const LOTTO_STATICS = {
   three: {
     price: 5_000,
     number: 3,
@@ -28,3 +28,5 @@ Object.values(LOTTO_STATICS).forEach((item) => {
     item.message = `${item.number}개 일치 (${item.price.toLocaleString()}원)`;
   }
 });
+
+export default LOTTO_STATICS;

@@ -1,4 +1,5 @@
-import { LOTTO_STATICS } from '../constants/lotto-statics.js';
+import LOTTO_STATICS from '../constants/lotto-statics.js';
+import LOTTO_RULES from '../constants/lotto-rules.js';
 class LottoCalculator {
   #lottoStatics;
 
@@ -35,7 +36,7 @@ class LottoCalculator {
     const { winningNumbers, bonusNumber } = lottoNumbers;
     const count = this.compare(winningNumbers, generatedLotto);
 
-    if (count === 5) {
+    if (count === LOTTO_RULES.bonusMatchCount) {
       this.#increaseFiveOrBonus(bonusNumber, generatedLotto);
       return;
     }
@@ -48,22 +49,30 @@ class LottoCalculator {
     }
   }
 
-  #increaseFiveOrBonus(bonusNumber, generatedLottos) {
-    if (this.isEqualBonusNumber(bonusNumber, generatedLottos)) {
+  #increaseFiveOrBonus(bonusNumber, generatedLotto) {
+    if (this.isEqualBonusNumber(bonusNumber, generatedLotto)) {
       this.#lottoStatics.fiveBonus++;
       return;
     }
     this.#lottoStatics.five++;
   }
 
-  calculateTotalProfit(lottoTickets) {
+  #calculateTotalPrice() {
     const totalPrice = Object.keys(LOTTO_STATICS).reduce(
       (acc, key) => acc + LOTTO_STATICS[key].price * this.#lottoStatics[key],
       0,
     );
+    return totalPrice;
+  }
 
-    const totalProfit = (totalPrice / (lottoTickets * 1000)) * 0.01;
-    return Math.round(totalProfit * 100) / 100;
+  calculateTotalProfit(lottoTickets) {
+    const totalPrice = this.#calculateTotalPrice();
+    const totalProfit =
+      (totalPrice / (lottoTickets * LOTTO_RULES.lottoBaseTicketPrice)) * 0.01;
+    return (
+      Math.round(totalProfit * LOTTO_RULES.roundingStandard) /
+      LOTTO_RULES.roundingStandard
+    );
   }
 
   get lottoStatics() {
