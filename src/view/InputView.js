@@ -1,4 +1,5 @@
 import Lotto from '../domain/lotto.js';
+import WinningLotto from '../domain/winningLotto.js';
 import ReadLine from '../utils/readLineAsync.js';
 import { validateCost } from '../utils/validation.js';
 
@@ -10,7 +11,7 @@ const InputView = {
       return cost;
     } catch (error) {
       console.log(error.message);
-      return InputView.readCost();
+      return this.readCost();
     }
   },
 
@@ -31,6 +32,17 @@ const InputView = {
     const bonusNumber = Number(await ReadLine.readLineAsync('> 보너스 번호를 입력해주세요.'));
 
     return bonusNumber;
+  },
+
+  async readWinningLotto() {
+    try {
+      const lotto = await this.readLotto();
+      const bonusNumber = await this.readBonusNumber();
+      return new WinningLotto(lotto, bonusNumber);
+    } catch (error) {
+      console.log(error.message);
+      return this.readWinningLotto();
+    }
   },
 
   async readRestart() {

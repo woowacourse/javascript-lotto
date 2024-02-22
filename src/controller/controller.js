@@ -17,15 +17,12 @@ export default class Controller {
       OutputView.printLotto(numbers);
     });
 
-    const lotto = await InputView.readLotto();
-
-    const bonusNumber = await InputView.readBonusNumber();
-    const winningLotto = new WinningLotto(lotto, bonusNumber);
+    const winningLotto = await InputView.readWinningLotto();
 
     const statistics = new Statistics({
       lottos: this.#lottoMachine.getLottoNumbers,
       winningLotto: winningLotto.getLottoNumbers,
-      bonusNumber,
+      bonusNumber: winningLotto.getBonusNumber,
       cost,
     });
     OutputView.printResult(statistics.getResult);
