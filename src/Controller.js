@@ -17,13 +17,13 @@ export default class Controller {
   }
 
   async #generateLottoMoney() {
-    // try {
-    const money = await InputView.readMoney();
-    this.#lottoMachine = new LottoMachine(money);
-    // } catch (err) {
-    //   console.error(err);
-    //   await this.#generateLottoMoney();
-    // }
+    try {
+      const money = await InputView.readMoney();
+      this.#lottoMachine = new LottoMachine(money);
+    } catch (err) {
+      OutputView.printError(err.message);
+      await this.#generateLottoMoney();
+    }
   }
 
   #generateLottos() {
@@ -32,30 +32,35 @@ export default class Controller {
   }
 
   async #generateWinLottoNumber() {
-    const winLottoNumbers = await this.#generateWinLottoNumbers();
-    this.#winLottoNumber = new WinLottoNumber(winLottoNumbers);
-
-    const bonusNumber = await this.#generateBonusNumber();
-    this.#winLottoNumber.setBonusNumber(bonusNumber);
+    await this.#generateWinLottoNumbers();
+    await this.#generateBonusNumber();
   }
 
   async #generateWinLottoNumbers() {
-    const winLottoNumbers = await InputView.readWinLottoNumbers();
-
-    return winLottoNumbers;
+    try {
+      const winLottoNumbers = await InputView.readWinLottoNumbers();
+      this.#winLottoNumber = new WinLottoNumber(winLottoNumbers);
+    } catch (err) {
+      OutputView.printError(err.message);
+      await this.#generateWinLottoNumbers();
+    }
   }
 
   async #generateBonusNumber() {
-    const bonusNumber = await InputView.readBonusNumber();
-    return bonusNumber;
+    try {
+      const bonusNumber = await InputView.readBonusNumber();
+      this.#winLottoNumber.setBonusNumber(bonusNumber);
+    } catch (err) {
+      OutputView.printError(err.message);
+      await this.#generateBonusNumber();
+    }
   }
 
   #generateResult() {
-    // TODO: 당첨 내역 출력
     const winNumbersObj = this.#winLottoNumber.getWinLottoNumbers();
     const winLottos = this.#lottoMachine.getWinLottos(winNumbersObj);
     OutputView.printWinLottos(winLottos);
-    // TODO: 수익률 출력
+
     const rateOfIncome = this.#lottoMachine.getRateOfIncome();
     OutputView.printRateOfIncome(rateOfIncome);
   }

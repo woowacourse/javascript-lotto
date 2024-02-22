@@ -26,6 +26,10 @@ const OutputView = {
     this.printMessage(`총 수익률은 ${income}% 입니다.`);
   },
 
+  printError(message) {
+    this.printMessage(`❌${message}`);
+  },
+
   printMessage(message) {
     console.log(message);
   },
