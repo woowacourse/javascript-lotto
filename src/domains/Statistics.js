@@ -12,10 +12,6 @@ class Statistics {
     return this.#reward.profitRate;
   }
 
-  // get totalPrizes() {
-  //   return this.#reward.totalPrizes;
-  // }
-
   get statisticsResult() {
     return this.#ranks.reduce(
       (acc, rank) => {

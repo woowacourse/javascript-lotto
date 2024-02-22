@@ -19,7 +19,6 @@ class GameController {
     this.#lottoGame.calculateMatchingResult();
     this.#lottoGame.calculateStatistics();
 
-    // 출력
     this.#printStatistics();
 
     await this.#restartLottoGame();
@@ -46,18 +45,16 @@ class GameController {
 
   async #getValidWinningLottoNumbers() {
     return await InputController.retryOnInvalidInput(async () => {
-      //입력값 가져오기
       const lottoNumbersInput = await InputView.readWinningLottoNumbers();
-      // 유효성 검사
+
       this.#lottoGame.winningLottoNumbers = lottoNumbersInput;
     });
   }
 
   async #getValidBonusNumber() {
     return await InputController.retryOnInvalidInput(async () => {
-      //입력값 가져오기
       const bonusNumberInput = await InputView.readBonusNumber();
-      // 유효성 검사
+
       this.#lottoGame.bonusNumber = bonusNumberInput;
     });
   }
