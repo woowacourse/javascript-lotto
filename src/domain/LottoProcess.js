@@ -7,33 +7,6 @@ class LottoProcess {
     this.#lottos = lottos;
   }
 
-  getResult(winLotto = {}, bonusNumber = 0) {
-    const winningNubmer = this.#lottos.reduce(
-      (acc, lotto) => {
-        const matchCount = this.matchLottoNumbers(lotto, winLotto);
-        if (matchCount >= WINNER.FIFTH.MATCH_COUNT) {
-          const hasBonus = this.#hasBonus(lotto, bonusNumber);
-          const rankIndex = this.#getRankIndex(matchCount, hasBonus);
-          acc[rankIndex] += 1;
-        }
-        return acc;
-      },
-      [0, 0, 0, 0, 0]
-    );
-    return this.mapWinningCountToPrizes(winningNubmer);
-  }
-
-  mapWinningCountToPrizes(winningCount = []) {
-    const RANK = ['FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH'];
-    return winningCount
-      .map((count, index) => {
-        const currentRank = RANK[index];
-        const { MATCH_COUNT, IS_BONUS, PRICE } = WINNER[currentRank];
-        return [MATCH_COUNT, IS_BONUS, PRICE, count];
-      })
-      .reverse();
-  }
-
   matchLottoNumbers(lotto, winLotto) {
     const lottoNumbers = lotto.getNumbers();
     return lottoNumbers.filter((value) => winLotto.getNumbers().includes(value)).length;
@@ -49,6 +22,32 @@ class LottoProcess {
 
   #hasBonus(lotto = {}, bonusNumber = 0) {
     return lotto.getNumbers().includes(bonusNumber);
+  }
+
+  #mapWinningCountToPrizes(winningCount = []) {
+    const RANK = ['FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH'];
+    return winningCount
+      .map((count, index) => {
+        const currentRank = RANK[index];
+        const { MATCH_COUNT, IS_BONUS, PRICE } = WINNER[currentRank];
+        return [MATCH_COUNT, IS_BONUS, PRICE, count];
+      })
+      .reverse();
+  }
+
+  getResult(winLotto = {}, bonusNumber = 0) {
+    const winningNubmer = this.#lottos.reduce(
+      (acc, lotto) => {
+        const matchCount = this.matchLottoNumbers(lotto, winLotto);
+        if (matchCount >= WINNER.FIFTH.MATCH_COUNT) {
+          const rankIndex = this.#getRankIndex(matchCount, this.#hasBonus(lotto, bonusNumber));
+          acc[rankIndex] += 1;
+        }
+        return acc;
+      },
+      [0, 0, 0, 0, 0]
+    );
+    return this.#mapWinningCountToPrizes(winningNubmer);
   }
 
   getAllLottosNumbers() {
