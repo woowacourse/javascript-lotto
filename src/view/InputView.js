@@ -1,5 +1,5 @@
-import { GAME_MESSAGE } from '../constant/gameMessage';
-import handleIO from '../util/handleIO';
+import GAME_MESSAGE from '../constant/gameMessage.js';
+import handleIO from '../util/handleIO.js';
 
 const InputView = {
   async readPurchaseAmount() {
