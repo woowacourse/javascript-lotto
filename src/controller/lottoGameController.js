@@ -17,34 +17,34 @@ class LottoGameController {
   }
 
   async play() {
-    const lottoList = await this.setLotto();
+    const lottoList = await this.#setLotto();
 
-    const winningLotto = await this.setWinningLotto();
+    const winningLotto = await this.#setWinningLotto();
 
-    this.getGameResult(lottoList, winningLotto);
+    this.#getGameResult(lottoList, winningLotto);
 
     const restart = await this.#inputView.inputRestartGame();
     if (restart === RETRY_INPUT) this.play();
   }
 
-  async executeOrRetryAsync(asyncFn) {
+  async #executeOrRetryAsync(asyncFn) {
     try {
       return await asyncFn();
     } catch (error) {
       OutputView.printError(error.message);
-      return this.executeOrRetryAsync(asyncFn);
+      return this.#executeOrRetryAsync(asyncFn);
     }
   }
 
-  async setLotto() {
-    const purchaseAmount = await this.executeOrRetryAsync(
-      this.getPurchaseAmount.bind(this),
+  async #setLotto() {
+    const purchaseAmount = await this.#executeOrRetryAsync(
+      this.#getPurchaseAmount.bind(this),
     );
 
-    return this.getLottoList(purchaseAmount);
+    return this.#getLottoList(purchaseAmount);
   }
 
-  async getPurchaseAmount() {
+  async #getPurchaseAmount() {
     const puchaseAmount = await this.#inputView.inputPurchaseAmount();
     purchaseAmountValidator.validate(puchaseAmount);
 
@@ -52,16 +52,16 @@ class LottoGameController {
     return Number(puchaseAmount);
   }
 
-  async getLottoList(purchaseAmount) {
+  async #getLottoList(purchaseAmount) {
     const lottoMachine = new LottoMachine(purchaseAmount);
     const lottoList = lottoMachine.makeLottos();
 
-    this.displayLottoList(lottoList);
+    this.#displayLottoList(lottoList);
 
     return lottoList;
   }
 
-  displayLottoList(lottoList) {
+  #displayLottoList(lottoList) {
     const lottoNumberList = lottoList.reduce((acc, cur) => {
       const numbers = cur.getNumbers();
       acc.push(numbers);
@@ -71,32 +71,32 @@ class LottoGameController {
     this.#outputView.printLottos(lottoNumberList);
   }
 
-  async setWinningLotto() {
-    const winningLotto = await this.executeOrRetryAsync(
-      this.getWinningLotto.bind(this),
+  async #setWinningLotto() {
+    const winningLotto = await this.#executeOrRetryAsync(
+      this.#getWinningLotto.bind(this),
     );
-    const WinningLottoWithBonusNumber = await this.executeOrRetryAsync(() =>
-      this.getBonusNumber(winningLotto),
+    const WinningLottoWithBonusNumber = await this.#executeOrRetryAsync(() =>
+      this.#getBonusNumber(winningLotto),
     );
 
     return WinningLottoWithBonusNumber;
   }
 
-  async getWinningLotto() {
-    const winningLottoNumbers = await this.getWinningNumber();
+  async #getWinningLotto() {
+    const winningLottoNumbers = await this.#getWinningNumber();
     const winningLotto = new WinningLotto(winningLottoNumbers);
 
     return winningLotto;
   }
 
-  async getBonusNumber(winningLotto) {
+  async #getBonusNumber(winningLotto) {
     const bonusNumber = await this.#inputView.inputBonusNumber();
     winningLotto.setBonusNumber(bonusNumber);
 
     return winningLotto;
   }
 
-  async getWinningNumber() {
+  async #getWinningNumber() {
     const winningLottoInput = await this.#inputView.inputWinningLottoNumber();
     const winningLottoNumbers = winningLottoInput
       .split(OPTION.DELIMITER)
@@ -105,13 +105,13 @@ class LottoGameController {
     return winningLottoNumbers;
   }
 
-  getGameResult(lottoList, winningLotto) {
+  #getGameResult(lottoList, winningLotto) {
     const result = new LottoResult(lottoList, winningLotto);
     const rank = result.getTotalResult();
     const profit = result.getProfit(lottoList.length * MIN_PURCHASE_AMOUNT);
 
-    OutputView.printResult(rank);
-    OutputView.printProfit(profit);
+    this.#outputView.printResult(rank);
+    this.#outputView.printProfit(profit);
   }
 }
 

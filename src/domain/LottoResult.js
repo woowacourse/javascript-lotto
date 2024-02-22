@@ -31,7 +31,7 @@ class LottoResult {
     );
   }
 
-  getTotalReward() {
+  #getTotalReward() {
     const totalResult = this.getTotalResult();
     return Object.keys(totalResult).reduce((acc, cur) => {
       const prizeReward = PRIZE[cur].reward * totalResult[cur];
@@ -40,8 +40,9 @@ class LottoResult {
   }
 
   getProfit(purchaseAmount) {
-    const totalReward = this.getTotalReward();
+    const totalReward = this.#getTotalReward();
     return (totalReward / purchaseAmount) * PERCENTATION;
   }
 }
+
 export default LottoResult;
