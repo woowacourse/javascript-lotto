@@ -1,6 +1,8 @@
+import MESSAGE from '../constants/message';
+
 const OutputView = {
   printLottoCount(count = 0) {
-    console.log(`\n${count}개를 구매했습니다.`);
+    console.log(`\n${count}${MESSAGE.OUTPUT.LOTTO_PURCHASED}`);
   },
 
   printRandomLottos(numbersArray = []) {
@@ -9,20 +11,23 @@ const OutputView = {
     });
   },
   printResultTitle() {
-    console.log('\n당첨 통계');
-    console.log('--------------------');
+    console.log(MESSAGE.OUTPUT.WINNING_STATISTICS_TITLE);
   },
   printWinningStatistics(result = []) {
     result.forEach((value) => {
       const [matchCount, isBonus, price, winCount] = value;
       console.log(
-        `${matchCount}개 일치${isBonus ? ', 보너스 볼 일치' : ''} (${price.toLocaleString()}원) - ${winCount}개`
+        `${matchCount}${MESSAGE.OUTPUT.MATCH_COUNT}${
+          isBonus ? MESSAGE.OUTPUT.BONUS_MATCH : ''
+        }${MESSAGE.OUTPUT.WIN_PRICE(price.toLocaleString())} ${MESSAGE.OUTPUT.HYPEN} ${winCount}${
+          MESSAGE.OUTPUT.WIN_COUNT
+        }`
       );
     });
   },
 
   printRateOfRevenue(rateOfRevenue = '') {
-    console.log(`총 수익률은 ${rateOfRevenue}%입니다.`);
+    console.log(MESSAGE.OUTPUT.RATE_OF_REVENUE(rateOfRevenue));
   },
 
   printError(message) {
