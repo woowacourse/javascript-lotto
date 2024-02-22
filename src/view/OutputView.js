@@ -5,9 +5,10 @@ const MESSAGES = {
   count: (count) => `${count}개를 구매했습니다.`,
   borderLine: "--------------------",
   matchResult: "당첨 통계",
-  profitRate: (rate) => `총 수익률은 ${rate}입니다.`,
+  profitRate: (rate) => `총 수익률은 ${rate}%입니다.`,
   matchReference: ({ matchCount, prize, rank }) => `${matchCount}개 일치 (${prize}원) - ${rank}개`, // TODO: 리펙이 필요하다.
-  bonusMatchReference: ({ matchCount, prize, rank }) => `${matchCount}개 일치, 보너스 볼 일치 (${prize}원) - ${rank}개`, // TODO: 리펙이 필요하다.
+  bonusMatchReference: ({ matchCount, prize, rank }) =>
+    `${matchCount}개 일치, 보너스 볼 일치 (${prize}원) - ${rank}개`, // TODO: 리펙이 필요하다.
   lotto: (numbers) => `[ ${numbers.join(", ")} ]`,
 };
 
