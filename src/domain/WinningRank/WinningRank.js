@@ -33,13 +33,13 @@ class WinningRank {
 
   #determineRank(lottoNumber) {
     const matchCount = this.#countMatchingNumbers(lottoNumber);
-
-    const [rank] = Object.entries(WinningRank.RANK_RULE).find(
+    const targetRankRule = Object.entries(WinningRank.RANK_RULE).find(
       ([, { match, hasBonus }]) =>
         matchCount === match && this.#isIncludingBonusNumber(lottoNumber) === hasBonus,
     );
 
-    return rank ?? null;
+    const rank = targetRankRule ? targetRankRule[0] : null;
+    return rank;
   }
 
   #countMatchingNumbers(lottoNumber) {
