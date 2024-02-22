@@ -1,4 +1,4 @@
-import Console from "../utils/Console";
+import Console from '../utils/Console';
 
 const OutputView = {
   printMessage(message) {
@@ -23,20 +23,14 @@ const OutputView = {
   },
 
   printWinningResult(winningResult) {
-    this.printMessage("당첨 통계");
-    this.printMessage("--------------------");
+    this.printMessage('당첨 통계');
+    this.printMessage('--------------------');
     const ranks = Object.keys(winningResult);
     ranks.forEach((rank) => {
       const { reward, rule, matchedCount } = winningResult[rank];
-      if (rank === "second") {
-        this.printMessage(
-          `${rule}개 일치, 보너스 볼 일치 (${reward.toLocaleString()}원) - ${matchedCount}개`
-        );
-        return;
-      }
-      this.printMessage(
-        `${rule}개 일치 (${reward.toLocaleString()}원) - ${matchedCount}개`
-      );
+      rank === 'second'
+        ? this.printMessage(`${rule}개 일치, 보너스 볼 일치 (${reward.toLocaleString()}원) - ${matchedCount}개`)
+        : this.printMessage(`${rule}개 일치 (${reward.toLocaleString()}원) - ${matchedCount}개`);
     });
   },
 };
