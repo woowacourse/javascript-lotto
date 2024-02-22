@@ -3,7 +3,6 @@
     "max-depth": ["error", 1],
     "max-params": ["error", 2],
     "no-return-await": "off",
-    //"no-irregular-whitespace": "error",
     "import/order": [
       "error",
       {
