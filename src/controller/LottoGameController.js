@@ -1,3 +1,4 @@
+import { SETTING } from '../constant/setting.js';
 import calculateProfitRate from '../domain/CalculateProfitRate.js';
 import LottoMachine from '../domain/LottoMachine.js';
 import Lottos from '../domain/Lottos.js';
@@ -34,10 +35,10 @@ class LottoGameController {
   }
 
   #restartGame(restartCommand) {
-    if (restartCommand === 'y') {
+    if (restartCommand === SETTING.RESTART_COMMAND) {
       this.play();
     }
-    if (restartCommand === 'n') {
+    if (restartCommand === SETTING.EXIT_COMMAND) {
       OutputView.printExitMessage();
       return;
     }
