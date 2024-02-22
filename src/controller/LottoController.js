@@ -27,7 +27,7 @@ class LottoController {
       await this.#insertBonusNumbers();
     });
 
-    this.#lottoMachine.judgeLottoGame();
+    this.#lottoMachine.countLottoRanks();
   }
 
   async #insertMoney() {

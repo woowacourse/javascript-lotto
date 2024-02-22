@@ -1,4 +1,5 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
+import returnOnInvestment from '../util/returnOnInvestment';
 import BonusNumber from './BonusNumber';
 import Lotto from './Lotto';
 
@@ -21,35 +22,53 @@ class LottoMachine {
     });
   }
 
-  /**
-   *
-   * @param {Array [Lotto]} lotto 인스턴스의 배열
-   * @returns {Object {lottoIndex : { matchCount : number, isBonus : boolean}} 전체 로또의 매칭 결과
-   */
-  // TODO: 이거 괜찮은 방법인가? 테스트를 위해서 기존 코드에서 바꿔주었다.
-  judgeLottoGame(lottos = this.#lottos) {
-    const totalMatchResult = new Map();
-    lottos.forEach((lotto, idx) => {
-      const [matchCount, isBonus] = this.#matchSingleLotto(lotto);
-      const singleLottoMatchResult = new Map();
+  initRanks() {
+    const lottoRanks = new Map();
 
-      totalMatchResult.set(`lotto${idx + 1}`, singleLottoMatchResult.set(`matchCount`, matchCount));
-      totalMatchResult.set(`lotto${idx + 1}`, singleLottoMatchResult.set('isBonus', isBonus));
+    LOTTO_RULE.RANK.forEach(rank => {
+      lottoRanks.set(rank, 0);
     });
 
-    return totalMatchResult;
+    return lottoRanks;
   }
 
-  #matchSingleLotto(lotto) {
-    const lottoValues = lotto.lottoNumbers;
-    const winningLottoValues = this.#winningLotto.lottoNumbers;
-    const bonusNumber = this.#bonusNumber.value;
-    const mergeLottoAndWinningLotto = [...lottoValues, ...winningLottoValues, bonusNumber];
+  #increaseRankCount(ranks, string) {
+    const lottoRanksValue = ranks.get(string);
+    ranks.set(string, lottoRanksValue + 1);
+  }
 
-    const matchCount = mergeLottoAndWinningLotto.length - new Set(mergeLottoAndWinningLotto).size;
-    const isBonus = lottoValues.includes(bonusNumber);
+  // TODO: 이거 괜찮은 방법인가? 테스트를 위해서 기존 코드에서 바꿔주었다.
+  countLottoRanks(lottos = this.#lottos) {
+    const lottoRanks = this.initRanks();
 
-    return [matchCount, isBonus];
+    lottos.forEach(lotto => {
+      const lottoValues = lotto.lottoNumbers;
+      const winningLottoValues = this.#winningLotto.lottoNumbers;
+      const bonusNumber = this.#bonusNumber.value;
+      const isBonus = lottoValues.includes(bonusNumber);
+
+      const mergeLottoAndWinningLotto = [...lottoValues, ...winningLottoValues];
+      const matchCount = mergeLottoAndWinningLotto.length - new Set(mergeLottoAndWinningLotto).size;
+
+      this.#checkWinningLotto(lottoRanks, matchCount, isBonus);
+      // TODO: lottoRanks를 리턴이 아닌 레퍼런스를 하고 있다.
+    });
+
+    return lottoRanks;
+  }
+
+  #checkWinningLotto(lottoRanks, matchCount, isBonus) {
+    if (matchCount === 6) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[0]);
+    } else if (matchCount === 5 && isBonus) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[1]);
+    } else if (matchCount === 5) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[2]);
+    } else if (matchCount === 4) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[3]);
+    } else if (matchCount === 3) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[4]);
+    }
   }
 
   set winningLotto(numbers) {
