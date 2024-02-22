@@ -26,6 +26,8 @@ class LottoController {
     await retryOnInvalidInput(async () => {
       await this.#insertBonusNumbers();
     });
+
+    this.#lottoMachine.judgeLottoGame();
   }
 
   async #insertMoney() {

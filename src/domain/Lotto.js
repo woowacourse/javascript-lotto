@@ -8,7 +8,7 @@ export default class Lotto {
   constructor(lottoNumbers = []) {
     const needRandomGenerating = lottoNumbers.length === 0 ? true : false;
 
-    needRandomGenerating ? this.#drawLottoNumbers() : this.#makeWinnigNumbers(lottoNumbers);
+    needRandomGenerating ? this.#drawAutoLottoNumbers() : this.#makeCustomLottoNumbers(lottoNumbers);
     this.#validateLotto();
     this.#sortLottoNumbers();
   }
@@ -47,14 +47,14 @@ export default class Lotto {
     }
   }
 
-  #makeWinnigNumbers(lottoNumbers) {
+  #makeCustomLottoNumbers(lottoNumbers) {
     const splitedLottoNumbers = lottoNumbers.split(',');
     splitedLottoNumbers.forEach(num => {
       this.#pushNotRedundantNumber(Number(num));
     });
   }
 
-  #drawLottoNumbers() {
+  #drawAutoLottoNumbers() {
     while (this.#lottoNumbers.length !== 6) {
       const randomNumber = generateRandomNumberInRange();
 
