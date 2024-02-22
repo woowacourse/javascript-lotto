@@ -48,7 +48,6 @@ const BonusNumberValidator = deepFreeze({
    * 사용자의 입력 보너스 번호에 대한 유효성 검사 실행
    * @param {string} inputValue - 사용자의 입력 값
    * @param {number[]} winningNumber - 당첨 번호 목록
-   * @throws {AppError} 유효성을 만족하지 않을 경우 에러 발생
    * @returns {void}
    */
   check(inputValue, winningNumber) {
