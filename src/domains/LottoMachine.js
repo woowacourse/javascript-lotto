@@ -11,7 +11,7 @@ class LottoMachine {
    * @param {string} paymentAmount
    */
   constructor(paymentAmountInput) {
-    Validator.validatePaymentAmount(paymentAmountInput);
+    Validator.checkPaymentAmount(paymentAmountInput);
 
     this.#paymentAmount = Number(paymentAmountInput);
     this.#issueLottoTickets();

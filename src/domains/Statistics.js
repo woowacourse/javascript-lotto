@@ -34,12 +34,13 @@ class Statistics {
       const { matchedCount, isBonus } = value;
 
       const checkBonusMatch = matchedCount === 5;
+      const isMatchingCount = matchedCount === result.matchedCount;
+      const isMatchingOnlyCount = !checkBonusMatch && isMatchingCount;
+      const isMatchingBonusAndCount =
+        checkBonusMatch && isBonus === result.isBonus;
 
-      if (matchedCount !== result.matchedCount) return;
-
-      if (checkBonusMatch && isBonus === result.isBonus) {
-        this.#ranks.push(key);
-      } else if (!checkBonusMatch) {
+      if (!isMatchingCount) return;
+      if (isMatchingOnlyCount || isMatchingBonusAndCount) {
         this.#ranks.push(key);
       }
     });

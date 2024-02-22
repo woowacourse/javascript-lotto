@@ -5,21 +5,14 @@ class WinningLotto {
 
   #bonusNumber = 0;
 
-  // TODO: Validator를 숫자를 검사할건지, 문자를 검사할 건지 정해야 한다. (파라미터 타입 통일)
   constructor(lottoNumbersInput, bonusNumberInput) {
-    Validator.validateWinningNumbersForm(lottoNumbersInput);
-
-    const lottoNumbers = lottoNumbersInput
+    Validator.checkWinningLottoNumbers(lottoNumbersInput);
+    this.#lottoNumbers = lottoNumbersInput
       .split(',')
-      .map((numberInput) => Number(numberInput));
+      .map((lottoNumberInput) => Number(lottoNumberInput));
 
-    Validator.validateLottoTickets(lottoNumbers);
-    this.#lottoNumbers = lottoNumbers;
-
-    const bonuseNumber = Number(bonusNumberInput);
-    Validator.validateBonusNumber(lottoNumbers, bonuseNumber);
-
-    this.#bonusNumber = bonuseNumber;
+    Validator.checkBonusNumber(this.#lottoNumbers, bonusNumberInput);
+    this.#bonusNumber = Number(bonusNumberInput);
   }
 
   // {number[]}lottoTicket
