@@ -1,4 +1,4 @@
-import LottoSeller from "./LottoSeller";
+import LottoSeller from "./LottoSeller.js";
 
 class LottoResultMaker {
   static RANK = Object.freeze({

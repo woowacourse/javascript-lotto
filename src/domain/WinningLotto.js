@@ -1,15 +1,16 @@
-import Lotto from "./Lotto";
+import Lotto from "./Lotto.js";
+import LottoValidator from "./LottoValidator.js";
 
 class WinningLotto {
-  #lottoBoardTmp;
+  #isWinningNumber;
   #bonusNumber;
 
   constructor(numbers, bonusNumber) {
-    this.#validateNumbers(numbers);
-    this.#validateBonusNumber(bonusNumber);
-    this.#validateUniqueNumbers([...numbers, bonusNumber]);
+    LottoValidator.validateLottoNumbers(numbers);
+    LottoValidator.validateBonusNumber(bonusNumber);
+    LottoValidator.validateUniqueElements([...numbers, bonusNumber]);
 
-    this.#setLottoBoardTmp(numbers);
+    this.#setIsWinningNumber(numbers);
     this.#bonusNumber = bonusNumber;
   }
 
@@ -40,58 +41,15 @@ class WinningLotto {
     return lotto
       .getNumbers()
       .reduce(
-        (count, number) => count + (this.#lottoBoardTmp[number] ? 1 : 0),
+        (count, number) => count + (this.#isWinningNumber[number] ? 1 : 0),
         0
       );
   }
 
-  #setLottoBoardTmp(numbers) {
-    this.#lottoBoardTmp = new Array(Lotto.MAX_LOTTO_NUMBER + 1).fill(false);
+  #setIsWinningNumber(numbers) {
+    this.#isWinningNumber = new Array(Lotto.MAX_LOTTO_NUMBER + 1).fill(false);
 
-    numbers.forEach((number) => (this.#lottoBoardTmp[number] = true));
-  }
-
-  #validateNumbers(numbers) {
-    this.#validateNumbersLength(numbers);
-    this.#validateIntegers(numbers);
-    this.#validateNumbersInRange(numbers);
-  }
-
-  #validateBonusNumber(bonusNumber) {
-    this.#validateInteger(bonusNumber);
-    this.#validateNumberInRange(bonusNumber);
-  }
-
-  #validateNumbersInRange(numbers) {
-    numbers.forEach((number) => this.#validateNumberInRange(number));
-  }
-
-  #validateNumberInRange(number) {
-    if (number < Lotto.MIN_LOTTO_NUMBER || number > Lotto.MAX_LOTTO_NUMBER) {
-      throw new Error("[ERROR] 유효한 범위 로또 숫자가 아닙니다.");
-    }
-  }
-
-  #validateNumbersLength(numbers) {
-    if (numbers.length !== Lotto.NUMBERS_LENGTH) {
-      throw new Error("[ERROR] 유효한 개수의 로또 숫자가 아닙니다");
-    }
-  }
-
-  #validateIntegers(numbers) {
-    numbers.forEach((number) => this.#validateInteger(number));
-  }
-
-  #validateInteger(number) {
-    if (!Number.isInteger(number)) {
-      throw new Error("[ERROR] 정수가 아닌 값입니다.");
-    }
-  }
-
-  #validateUniqueNumbers(numbers) {
-    if (numbers.length !== new Set(numbers).size) {
-      throw new Error("[ERROR] 중복된 숫자가 포합됩니다.");
-    }
+    numbers.forEach((number) => (this.#isWinningNumber[number] = true));
   }
 }
 

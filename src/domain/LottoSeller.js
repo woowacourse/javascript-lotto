@@ -1,27 +1,27 @@
-import Lotto from "./Lotto";
+import Lotto from "./Lotto.js";
 
 class LottoSeller {
   static LOTTO_PRICE = 1000;
 
-  sellLottos(amount) {
+  static sellLottos(amount) {
     const lottoCount = this.#calculateLottoCount(amount);
     return this.#pickLottos(lottoCount);
   }
 
-  #calculateLottoCount(amount) {
+  static #calculateLottoCount(amount) {
     return Math.floor(amount / LottoSeller.LOTTO_PRICE);
   }
 
-  #pickLottos(count) {
+  static #pickLottos(count) {
     return new Array(count).fill().map((_) => this.#pickLotto());
   }
 
-  #pickLotto() {
+  static #pickLotto() {
     const numbers = this.#pickRandomNumbers();
     return new Lotto(numbers);
   }
 
-  #pickRandomNumbers() {
+  static #pickRandomNumbers() {
     const wholeNumbers = new Array(Lotto.MAX_LOTTO_NUMBER)
       .fill()
       .map((_, index) => index + 1);
