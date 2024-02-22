@@ -18,7 +18,8 @@ const Validator = {
     if (!isValidWinningNumbersForm(numbersInput))
       throw new Error('유효하지 않은 당첨 번호 입력');
 
-    const numbers = numbersInput.split(',');
+    const numbers = numbersInput.split(',').map((value) => Number(value));
+
     this.private_checkLottoNumbers(numbers);
   },
 
@@ -71,7 +72,8 @@ const Validator = {
    * @param {number} number
    */
   private_checkLottoNumber(number) {
-    if (!isInteger(number)) throw new Error('정수가 아닙니다.');
+    if (!isInteger(number))
+      throw new Error(`정수가 아닙니다.: ${number} ${typeof number}`);
 
     if (!isLottoNumberInRange(number)) throw new Error('범위 초과');
   },

@@ -1,10 +1,16 @@
 import Validator from './validators/Validator';
 
 class WinningLotto {
+  /**
+   * @property {number[]}
+   */
   #lottoNumbers = [];
 
   #bonusNumber = 0;
-
+  /**
+   * @param {string} lottoNumbersInput
+   * @param {string} bonusNumberInput
+   */
   constructor(lottoNumbersInput, bonusNumberInput) {
     Validator.checkWinningLottoNumbers(lottoNumbersInput);
     this.#lottoNumbers = lottoNumbersInput
@@ -15,20 +21,26 @@ class WinningLotto {
     this.#bonusNumber = Number(bonusNumberInput);
   }
 
-  // {number[]}lottoTicket
-  #hasBonusNumber(lottoTicket) {
-    return lottoTicket.includes(this.#bonusNumber);
+  /**
+   * @param {number[]} lottoNumbers
+   */
+  #hasBonusNumber(lottoNumbers) {
+    return lottoNumbers.includes(this.#bonusNumber);
   }
-
-  #countMatchedNumber(lottoTicket) {
-    return lottoTicket.filter((number) => this.#lottoNumbers.includes(number))
+  /**
+   *  @param {number[]} lottoNumbers
+   */
+  #countMatchedNumber(lottoNumbers) {
+    return lottoNumbers.filter((number) => this.#lottoNumbers.includes(number))
       .length;
   }
-
-  compareLotto(lottoTicket) {
+  /**
+   *  @param {number[]} lottoNumbers
+   */
+  compareLotto(lottoNumbers) {
     return {
-      isBonus: this.#hasBonusNumber(lottoTicket),
-      matchedCount: this.#countMatchedNumber(lottoTicket),
+      isBonus: this.#hasBonusNumber(lottoNumbers),
+      matchedCount: this.#countMatchedNumber(lottoNumbers),
     };
   }
 }
