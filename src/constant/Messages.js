@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 export const VARIABLE_ALIAS = {
   purchaseAmount: '구입 금액',
   lottoNumbers: '로또 번호'
@@ -24,4 +25,15 @@ export const INPUT_HINTS = {
   winningNumber1: '\t[hint] 1부터 45 사이의 정수 6개를 ,(comma)로 구분하여 입력하세요.',
   winningNumber2: '\t[hint] 중복은 허용하지 않습니다. ',
   bonusNumber: '\t[hint] 1부터 45 사이의 정수 1개를 입력하세요.'
+};
+
+export const OUTPUT_MESSAGES = {
+  issueQuantity: (count) => `${count}개를 구매했습니다.`,
+  lottoNumbers: (numbers) => `[${numbers.join(', ')}]`,
+  statisticsTitle: '당첨 통계',
+  dividingLine: '--------------------',
+  statisticsResult: (matchingCount, bounusMatch, prizeAmount, count) =>
+    `${matchingCount}개 일치${bounusMatch} (${prizeAmount}) - ${count}개`,
+  bonusMatch: ', 보너스 볼 일치',
+  profitRate: (profitRate) => `총 수익률은 ${profitRate}%입니다.`
 };

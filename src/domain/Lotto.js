@@ -14,10 +14,6 @@ class Lotto {
     return numbers.sort();
   }
 
-  getNumbers() {
-    return this.#numbers;
-  }
-
   determineRank(winningNumbers, bonusNumber) {
     const matchingCount = this.#countMatchingNumbers(winningNumbers);
     const bonusMatch = this.#hasBonusNumber(bonusNumber);
@@ -53,6 +49,10 @@ class Lotto {
 
   #hasBonusNumber(bonusNumber) {
     return this.#numbers.includes(bonusNumber);
+  }
+
+  getNumbers() {
+    return this.#numbers;
   }
 }
 
