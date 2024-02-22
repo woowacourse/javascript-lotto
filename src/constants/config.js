@@ -1,0 +1,9 @@
+const CONFIG = {
+  MATCHED_RANK_COUNT: { 0: 6, 1: 6, 2: 6, 3: 5, 4: 4, 6: 1 },
+  PRIZE: { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000, 6: 0 },
+  SECOND_PRIZE: 2,
+  THIRD_PRIZE: 3,
+  SECOND_PRIZE_CONDITION: 5,
+};
+
+export default CONFIG;
