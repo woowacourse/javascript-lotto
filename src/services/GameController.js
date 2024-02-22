@@ -14,6 +14,8 @@ class GameController {
     this.#lottoGame.calculateMatchingResult();
     this.#lottoGame.calculateStatistics();
 
+    // 출력
+
     await this.#restartLottoGame();
   }
 
@@ -49,11 +51,14 @@ class GameController {
   }
 
   async #restartLottoGame() {
-    const restartInput = await InputController.retryOnInvalidInput(async () => {
-      const restartInput = await InputView.readRestart();
+    await InputController.retryOnInvalidInput(
+      async () => await this.#restartLottoGameAction(),
+    );
+  }
 
-      Validator.chaeckRestartForm(restartInput);
-    });
+  async #restartLottoGameAction() {
+    const restartInput = await InputView.readRestart();
+    Validator.chaeckRestartForm(restartInput);
 
     if (restartInput === RESTART_KEY.restart) {
       this.#lottoGame = new LottoGame();

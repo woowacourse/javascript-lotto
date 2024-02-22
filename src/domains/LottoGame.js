@@ -3,40 +3,43 @@ import Statistics from './Statistics';
 import WinningLotto from './WinningLotto';
 
 class LottoGame {
-  // 관리하는 데이터 - paymentAmount : number, lottoTickets:number[]
-  #lottoMachine;
+  #lottoData = {
+    lottoMachine: undefined,
+    winningLotto: new WinningLotto(),
+  };
 
-  // 관리하는 데이터 - lottoNumbers :number[], bonuseNumber:number
-  #winningLotto = new WinningLotto();
-
-  // 관리하는 데이터 - {isBonus:boolean, matchedCoung:number}[]
-  #matchingResults;
-
-  // 관리하는 데이터 - totalPrizes:number, profitRate:number
-  #statistics;
+  #lottoAnalytics = {
+    matchingResults: undefined,
+    statistics: undefined,
+  };
 
   set winningLottoNumbers(lottoNumbersInput) {
-    this.#winningLotto.lottoNumbers = lottoNumbersInput;
+    this.#lottoData.winningLotto.lottoNumbers = lottoNumbersInput;
   }
 
   set bonusNumber(bonusNumberInput) {
-    this.#winningLotto.bonusNumber = bonusNumberInput;
+    this.#lottoData.winningLotto.bonusNumber = bonusNumberInput;
   }
 
   insertMoney(paymentAmountInput) {
-    this.#lottoMachine = new LottoMachine(paymentAmountInput);
+    this.#lottoData.lottoMachine = new LottoMachine(paymentAmountInput);
   }
 
   calculateMatchingResult() {
-    this.#matchingResults = this.#lottoMachine.lottoTickets.map((lottoTicket) =>
-      this.#winningLotto.compareLotto(lottoTicket),
-    );
+    this.#lottoAnalytics.matchingResults =
+      this.#lottoData.lottoMachine.lottoTickets.map((lottoTicket) =>
+        this.#lottoData.winningLotto.compareLotto(lottoTicket),
+      );
   }
 
   calculateStatistics() {
-    this.#statistics = new Statistics();
-    this.#statistics.checkTickets(this.#matchingResults);
-    this.#statistics.calculateProfitRate(this.#lottoMachine.paymentAmount);
+    this.#lottoAnalytics.statistics = new Statistics();
+    this.#lottoAnalytics.statistics.checkTickets(
+      this.#lottoAnalytics.matchingResults,
+    );
+    this.#lottoAnalytics.statistics.calculateProfitRate(
+      this.#lottoData.lottoMachine.paymentAmount,
+    );
   }
 }
 

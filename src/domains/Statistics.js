@@ -3,16 +3,17 @@ import { WINNING_RULE } from '../constants';
 class Statistics {
   #ranks = [];
 
-  #totalPrizes = 0;
-
-  #profitRate = 0;
+  #reward = {
+    totalPrizes: 0,
+    profitRate: 0,
+  };
 
   get profitRate() {
-    return this.#profitRate;
+    return this.#reward.profitRate;
   }
 
   get totalPrizes() {
-    return this.#totalPrizes;
+    return this.#reward.totalPrizes;
   }
 
   get statisticsResult() {
@@ -48,13 +49,13 @@ class Statistics {
 
   calculateProfitRate(paymentAmount) {
     this.#calculateTotalPrize();
-    this.#profitRate = Number(
-      ((this.#totalPrizes / paymentAmount) * 100).toFixed(1),
+    this.#reward.profitRate = Number(
+      ((this.#reward.totalPrizes / paymentAmount) * 100).toFixed(1),
     );
   }
 
   #calculateTotalPrize() {
-    this.#totalPrizes = this.#ranks.reduce(
+    this.#reward.totalPrizes = this.#ranks.reduce(
       (totalPrizes, rank) => totalPrizes + WINNING_RULE.get(rank).money,
       0,
     );
