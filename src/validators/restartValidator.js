@@ -1,15 +1,15 @@
+import CONFIG from '../constants/config';
 import { ERROR_MESSAGE } from '../constants/message';
 
 const restartValidator = {
   validate(restartInput) {
-    const restart = restartInput.toLowerCase();
-    if (!this.isValidInput(restart)) {
+    if (!this.isValidInput(restartInput)) {
       throw new Error(ERROR_MESSAGE.RESTART);
     }
   },
 
   isValidInput(restart) {
-    return restart === 'y' || restart === 'n';
+    return restart === CONFIG.RESTART_YES || restart === CONFIG.RESTART_NO;
   },
 };
 

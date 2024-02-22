@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from '../constants/message';
+import CONFIG from '../constants/config';
 
 const numberValidator = {
   validate(number) {
@@ -25,7 +26,7 @@ const numberValidator = {
   },
 
   isValidRange(number) {
-    return number >= 1 && number <= 45;
+    return number >= CONFIG.MIN_LOTTO_NUMBER && number <= CONFIG.MAX_LOTTO_NUMBER;
   },
 };
 

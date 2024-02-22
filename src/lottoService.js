@@ -3,12 +3,12 @@ import CONFIG from './constants/config';
 const lottoService = {
   calculateProfit(matchedResultList, purchaseAmount) {
     const rankCounts = this.calculateRankCounts(matchedResultList);
-    const totalPrice = Array.from({ length: 6 }, (_, i) => i + 1).reduce(
+    const totalPrice = Array.from({ length: CONFIG.LOTTO_RANK_LENGTH }, (_, i) => i + 1).reduce(
       (acc, rank) => acc + rankCounts[rank] * CONFIG.PRIZE[rank],
       0,
     );
 
-    return ((totalPrice / purchaseAmount) * 100).toFixed(1);
+    return ((totalPrice / purchaseAmount) * 100).toFixed(CONFIG.PROFIT_DECIMAL_PLACE);
   },
 
   calculateRankCounts(matchedResultList) {
