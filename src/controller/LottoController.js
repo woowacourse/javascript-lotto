@@ -6,6 +6,7 @@ import Console from '../utils/Console';
 import LottoTicket from '../domain/LottoTicket';
 import OutputView from '../view/OutputView';
 import LottoMatcher from '../domain/LottoMatcher';
+import RateOfReturnCalculator from '../utils/RateOfReturnCalculator';
 
 class LottoController {
   #winningNumber;
@@ -24,6 +25,7 @@ class LottoController {
       bonusNumber,
     ]);
     OutputView.printWinningStats(matchingResult);
+    const rateOfReturn = RateOfReturnCalculator(purchaseAmount, matchingResult);
   }
 
   async setPurchaseAmount() {
