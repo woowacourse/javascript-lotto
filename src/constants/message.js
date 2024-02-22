@@ -2,6 +2,7 @@ export const INPUT_MESSAGE = Object.freeze({
   purchaseAmount: "> 구입금액을 입력해 주세요.",
   winningNumbers: "> 당첨 번호를 입력해 주세요.",
   bonusNumber: "> 보너스 번호를 입력해 주세요.",
+  retryGame: "> 다시 시작하시겠습니까? (y/n) ",
 });
 
 export const OUTPUT_MESSAGE = Object.freeze({

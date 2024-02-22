@@ -22,6 +22,12 @@ const InputView = {
 
     return Number(input);
   },
+
+  async readRetry() {
+    const input = await readLineAsync(INPUT_MESSAGE.retryGame);
+
+    return input.toLowerCase();
+  },
 };
 
 export default InputView;

@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from "./constants/message";
 import LottoStore from "./domain/LottoStore";
 import InputView from "./view/InputView";
 import OutputView from "./view/OutputView";
@@ -18,6 +19,21 @@ class App {
     const { rankings, totalProfitRate } = this.#calculateProfitRate(lottos);
     OutputView.printRankings(rankings);
     OutputView.printTotalProfitRate(totalProfitRate);
+
+    this.retryGame();
+  }
+
+  async retryGame() {
+    const retryYes = "y";
+    const retryNo = "n";
+    const isRetry = await InputView.readRetry();
+
+    if (isRetry !== retryYes && isRetry !== retryNo) {
+      OutputView.print(ERROR_MESSAGE.invalidInput);
+      return this.retryGame();
+    }
+
+    if (isRetry === "y") return this.play();
   }
 
   async #purchaseLottos() {
