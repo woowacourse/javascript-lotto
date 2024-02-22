@@ -1,4 +1,4 @@
-import LottoMachine from '../src/domains/LottoMachine';
+import { LottoMachine } from '../src/domains';
 
 describe('LottoMachine 기능 테스트', () => {
   test('발행한 로또 개수는 구매 금액에 의해 정해진다.', () => {

@@ -1,4 +1,4 @@
-import Console from '../utils/Console';
+import { Console } from '../utils';
 import { OUTPUT_MESSAGES, WINNING_RULE, NUMBER_DELIMITER } from '../constants';
 
 const OutputView = {

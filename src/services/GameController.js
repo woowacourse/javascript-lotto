@@ -1,8 +1,7 @@
-import { RESTART_KEY, OUTPUT_MESSAGES, WINNING_RULE } from '../constants';
+import { RESTART_KEY } from '../constants';
 import { LottoGame, Validator } from '../domains';
-import { Console } from '../utils';
-import InputView from '../views/InputView';
-import OutputView from '../views/OutputView';
+import { InputView, OutputView } from '../views';
+
 import InputController from './InputController';
 
 class GameController {
