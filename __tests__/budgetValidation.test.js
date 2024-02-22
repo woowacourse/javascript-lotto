@@ -1,10 +1,10 @@
-import BudgetValidation from "../src/validation/budgetValidation.js";
+import budgetValidation from "../src/validation/budgetValidation.js";
 import startValidation from "../src/validation/startValidation.js";
 import ERROR_MESSAGE from "../src/constants/errorMessage.js";
 
 describe("로또 구입 금액 유효성 검사 테스트", () => {
   const executeValidation = (input) => () =>
-    startValidation(BudgetValidation.categories, input);
+    startValidation(budgetValidation.categories, input);
   describe("예외 테스트", () => {
     test.each([
       {

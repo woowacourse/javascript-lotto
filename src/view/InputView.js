@@ -1,6 +1,6 @@
 import readLineAsync from "../utils/readLineAsync.js";
 import { VIEW_MESSAGE } from "../constants/viewMessage.js";
-import BudgetValidation from "../validation/budgetValidation.js";
+import budgetValidation from "../validation/budgetValidation.js";
 import winningLottoValidation from "../validation/winningLottoValidation.js";
 import winningLottoNumbersValidation from "../validation/winningLottoNumbersValidation.js";
 import winningLottoBonusValidation from "../validation/winningLottoBonusValidation.js";
@@ -9,9 +9,10 @@ import startValidation from "../validation/startValidation.js";
 const InputView = {
   async readBudget() {
     const budgetInput = await readLineAsync(VIEW_MESSAGE.budget);
-    startValidation(Number(budgetInput)); // TODO : 수정하기
+    const budget = Number(budgetInput);
+    startValidation(budgetValidation.categories, budget);
 
-    return budgetInput;
+    return budget;
   },
 
   async readWinningLottoNumbers() {

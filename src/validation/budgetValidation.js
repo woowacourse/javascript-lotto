@@ -1,6 +1,6 @@
 import ERROR_MESSAGE from "../constants/errorMessage.js";
 
-const BudgetValidation = {
+const budgetValidation = {
   categories: {
     typeIsInteger: {
       errorMessage: ERROR_MESSAGE.typeIsInteger,
@@ -25,4 +25,4 @@ const BudgetValidation = {
   },
 };
 
-export default BudgetValidation;
+export default budgetValidation;

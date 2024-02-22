@@ -10,8 +10,8 @@ class LottoGameController {
   constructor() {}
 
   async #initBudget() {
-    const budgetInput = await getValidInput(InputView.readBudget);
-    this.#budget = Number(budgetInput);
+    const budget = await getValidInput(InputView.readBudget);
+    this.#budget = Number(budget); // TODO
   }
 
   async #initWinningLotto() {
