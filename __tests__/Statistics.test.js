@@ -14,7 +14,7 @@ describe('Statistics 기능 테스트', () => {
     const PAYMENT_AMOUNT = RESULTS.length * 1_000;
 
     const statistics = new Statistics(PAYMENT_AMOUNT);
-    statistics.checkTickets(RESULTS);
+    statistics.matchResultsToRank(RESULTS);
 
     expect(statistics.statisticsResult).toEqual(RANKS);
   });
@@ -25,7 +25,7 @@ describe('Statistics 기능 테스트', () => {
     const PROFIT_RATE = 5000;
 
     const statistics = new Statistics();
-    statistics.checkTickets(RESULTS);
+    statistics.matchResultsToRank(RESULTS);
     statistics.calculateProfitRate(PAYMENT_AMOUNT);
 
     expect(statistics.profitRate).toBe(PROFIT_RATE);

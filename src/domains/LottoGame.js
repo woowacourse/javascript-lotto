@@ -45,7 +45,7 @@ class LottoGame {
 
   calculateStatistics() {
     this.#lottoAnalytics.statistics = new Statistics();
-    this.#lottoAnalytics.statistics.checkTickets(
+    this.#lottoAnalytics.statistics.matchResultsToRank(
       this.#lottoAnalytics.matchingResults,
     );
     this.#lottoAnalytics.statistics.calculateProfitRate(

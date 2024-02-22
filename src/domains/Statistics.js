@@ -29,11 +29,11 @@ class Statistics {
     }, this.#makeInitialStatisticsResult());
   }
 
-  checkTickets(results) {
-    results.forEach((result) => this.#checkTicket(result));
+  matchResultsToRank(results) {
+    results.forEach((result) => this.#matchResultToRank(result));
   }
 
-  #checkTicket(result) {
+  #matchResultToRank(result) {
     WINNING_RULE.forEach((value, key) => {
       const { matchedCount, isBonus } = value;
 

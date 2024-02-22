@@ -4,10 +4,10 @@ import { LOTTO_RULE, RESTART_KEY } from './rules';
 const INPUT_QUERY_PREFIX = '> ';
 
 export const INPUT_MESSAGES = Object.freeze({
-  paymentAmount: `${INPUT_QUERY_PREFIX}구입금액을 입력해 주세요.`,
-  winningLottoNumbers: `\n${INPUT_QUERY_PREFIX}당첨 번호를 입력해 주세요.`,
-  bonusNumber: `\n${INPUT_QUERY_PREFIX}보너스 번호를 입력해 주세요.`,
-  restart: `\n${INPUT_QUERY_PREFIX}다시 시작하시겠습니까? (y/n)`,
+  paymentAmount: `\n${INPUT_QUERY_PREFIX}구입금액을 입력해 주세요.\n`,
+  winningLottoNumbers: `\n${INPUT_QUERY_PREFIX}당첨 번호를 입력해 주세요.\n`,
+  bonusNumber: `\n${INPUT_QUERY_PREFIX}보너스 번호를 입력해 주세요.\n`,
+  restart: `\n${INPUT_QUERY_PREFIX}다시 시작하시겠습니까? (${RESTART_KEY.restart}/${RESTART_KEY.end})\n`,
 });
 
 export const OUTPUT_MESSAGES = Object.freeze({
@@ -20,7 +20,7 @@ export const OUTPUT_MESSAGES = Object.freeze({
 
 const ERROR_PREFIX = '[ERROR]';
 
-export const ERROR_MESSAGE = Object.freeze({
+export const ERROR_MESSAGES = Object.freeze({
   inValidWInningNumbersForm: `${ERROR_PREFIX} 당첨 번호 숫자를 쉼표("${NUMBER_DELIMITER}")로 구분하여 입력해 주세요.\n`,
   alreadyInLottoNumber: `${ERROR_PREFIX} 보너스 번호는 당첨 번호에 없는 번호여야 합니다.\n`,
   notInteger: `${ERROR_PREFIX} 정수가 아닙니다.\n`,

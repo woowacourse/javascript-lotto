@@ -3,7 +3,8 @@ import Console from '../utils/Console';
 
 const OutputView = {
   printLottoTickets(lottoTickets) {
-    lottoTickets.forEach((lottoNumber) => {
+    lottoTickets.forEach((lottoNumber, index) => {
+      if (!index) Console.print('');
       Console.print(
         `[${lottoNumber.sort((a, b) => a - b).join(`${NUMBER_DELIMITER} `)}]`,
       );

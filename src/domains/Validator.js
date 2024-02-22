@@ -18,7 +18,7 @@ const Validator = {
    */
   checkWinningLottoNumbers(numbersInput) {
     if (!isValidWinningNumbersForm(numbersInput))
-      throw new Error(ERROR_MESSAGE.inValidWInningNumbersForm);
+      throw new Error(ERROR_MESSAGES.inValidWInningNumbersForm);
 
     const numbers = numbersInput
       .split(NUMBER_DELIMITER)
@@ -38,7 +38,7 @@ const Validator = {
     this.private_checkLottoNumber(bonusNumber);
 
     if (!isNotInLottoNumber(lottoNumbers, bonusNumber)) {
-      throw new Error(ERROR_MESSAGE.alreadyInLottoNumber);
+      throw new Error(ERROR_MESSAGES.alreadyInLottoNumber);
     }
   },
 
@@ -49,18 +49,18 @@ const Validator = {
   checkPaymentAmount(numberInput) {
     const number = Number(numberInput);
 
-    if (!isInteger(number)) throw new Error(ERROR_MESSAGE.notInteger);
+    if (!isInteger(number)) throw new Error(ERROR_MESSAGES.notInteger);
 
     if (!isDivisibleByPrice(number))
-      throw new Error(ERROR_MESSAGE.inDivisibleByPrice);
+      throw new Error(ERROR_MESSAGES.inDivisibleByPrice);
 
     if (!isValidNumbersOfTickets(number))
-      throw new Error(ERROR_MESSAGE.inValidNumbersOfTickets);
+      throw new Error(ERROR_MESSAGES.inValidNumbersOfTickets);
   },
 
   checkRestartForm(restartInput) {
     if (!isValidRestartInputForm(restartInput))
-      throw new Error(ERROR_MESSAGE.invalidRestartInputForm);
+      throw new Error(ERROR_MESSAGES.invalidRestartInputForm);
   },
 
   /**
@@ -71,10 +71,10 @@ const Validator = {
     numbers.forEach((number) => this.private_checkLottoNumber(number));
 
     if (!isValidLottoNumberCount(numbers))
-      throw new Error(ERROR_MESSAGE.invalidLottoNumberCount);
+      throw new Error(ERROR_MESSAGES.invalidLottoNumberCount);
 
     if (!isNotDuplicatedLottoNumber(numbers))
-      throw new Error(ERROR_MESSAGE.duplicatedLottoNumber);
+      throw new Error(ERROR_MESSAGES.duplicatedLottoNumber);
   },
 
   /**
@@ -82,10 +82,10 @@ const Validator = {
    * @param {number} number
    */
   private_checkLottoNumber(number) {
-    if (!isInteger(number)) throw new Error(ERROR_MESSAGE.notInteger);
+    if (!isInteger(number)) throw new Error(ERROR_MESSAGES.notInteger);
 
     if (!isLottoNumberInRange(number))
-      throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
+      throw new Error(ERROR_MESSAGES.invalidLottoNumberRange);
   },
 };
 
