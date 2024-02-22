@@ -15,9 +15,9 @@ const OutputView = {
     Console.print(lottoTickets);
     Console.print(divider);
 
-    WINNING_RULE.forEach(({ matchedCount, money }, key) => {
+    WINNING_RULE.forEach(({ matchedCount, isBonus, money }, key) => {
       Console.print(
-        `${matchedCount}${countUnit} 일치 (${money.toLocaleString('ko-KR')}${moneyUnit}) - ${statisticsResult[key]}${countUnit}`,
+        `${matchedCount}${countUnit} 일치${isBonus ? ', 보너스 볼 일치' : ''} (${money.toLocaleString('ko-KR')}${moneyUnit}) - ${statisticsResult[key]}${countUnit}`,
       );
     });
   },
