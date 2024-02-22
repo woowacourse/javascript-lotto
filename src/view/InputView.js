@@ -12,7 +12,7 @@ const Private = {
         const inputString = await config.readline();
         return await config.factory(inputString);
       } catch (e) {
-        config.retryHandler(e);
+        config.errorHandler(e);
       }
     }
   },
@@ -46,7 +46,7 @@ const InputView = {
       readline: async () =>
         await Private.readLineAsync(MESSAGE.prompt.purchaseMoney),
       factory: inputString => new PurchaseLottoService(inputString),
-      retryHandler: e => OutputView.print(e.message),
+      errorHandler: e => OutputView.print(e.message),
     };
     return await Private.robustInput(purchaseMoneyConfig);
   },
@@ -56,7 +56,7 @@ const InputView = {
       readline: async () =>
         await Private.readLineAsync(MESSAGE.prompt.winningNumber),
       factory: inputString => WinningLotto.fromString(inputString),
-      retryHandler: e => OutputView.print(e.message),
+      errorHandler: e => OutputView.print(e.message),
     };
     return await Private.robustInput(winningNumberConfig);
   },
@@ -66,7 +66,7 @@ const InputView = {
       readline: async () =>
         await Private.readLineAsync(MESSAGE.prompt.bonusNumber),
       factory: inputString => winningLotto.setBonusNumberString(inputString),
-      retryHandler: e => OutputView.print(e.message),
+      errorHandler: e => OutputView.print(e.message),
     };
     return await Private.robustInput(bonusNumberConfig);
   },
@@ -75,7 +75,7 @@ const InputView = {
     const bonusNumberConfig = {
       readline: async () => await Private.readLineAsync(MESSAGE.prompt.retry),
       factory: inputString => new IsRetry(inputString).get(),
-      retryHandler: e => OutputView.print(e.message),
+      errorHandler: e => OutputView.print(e.message),
     };
     return await Private.robustInput(bonusNumberConfig);
   },
