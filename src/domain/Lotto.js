@@ -9,11 +9,11 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  getNumbers() {
-    return this.#numbers;
+  getSortedNumbersAscending() {
+    return this.#numbers.sort((a, b) => a - b);
   }
 
-  compareBonus(bonusNumber) {
+  compareBonusNumber(bonusNumber) {
     return this.#numbers.includes(bonusNumber) ? RANK.SECOND_PLACE : RANK.THIRD_PLACE;
   }
 
@@ -23,7 +23,7 @@ class Lotto {
 
     if (prize === undefined) return RANK.LAST_PLACE;
 
-    return prize[0] === RANK.SECOND_PLACE ? this.compareBonus(bonusNumber) : prize[0];
+    return prize[0] === RANK.SECOND_PLACE ? this.compareBonusNumber(bonusNumber) : prize[0];
   }
 }
 

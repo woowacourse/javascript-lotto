@@ -9,8 +9,6 @@ const MONEY = {
   MIN: 0,
 };
 
-const BLANK = 0;
-
 const FORMATTING = {
   PERCENT: 100,
   ROUND: 100,
@@ -68,12 +66,14 @@ const PRIZE = [
   ],
 ];
 
+const BLANK = 0;
+
 export default {
   LOTTO,
-  RANK,
-  PRIZE,
   MONEY,
   FORMATTING,
+  RANK,
+  PRIZE,
   BLANK,
   RESTART_OPTION,
 };
