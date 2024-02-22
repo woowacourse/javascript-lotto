@@ -11,6 +11,7 @@ function getRankIndex(matchCount, isBonus) {
   return matchCount - 3;
 }
 
+// TODO: 리팩토링 해야한다.
 function getLottoRank({ winningLotto, bonusLottoNumber, randomLottos }) {
   const ranks = Array.from({ length: 5 }, () => 0);
 
