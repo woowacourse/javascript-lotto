@@ -11,5 +11,15 @@ describe('유효성 검사 테스트', () => {
 
       expect(mockFn).toThrow('[ERROR]');
     });
+
+    test('구매 금액이 공백인 경우 예외를 발생시킨다.', () => {
+      const input = '';
+
+      const mockFn = () => {
+        purchaseAmountValidator.validateBlank(input);
+      };
+
+      expect(mockFn).toThrow('[ERROR]');
+    });
   });
 });
