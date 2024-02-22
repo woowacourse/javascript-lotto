@@ -9,8 +9,16 @@ const Output = {
     console.log(OUTPUT.LOTTO_TICKETS_COUNT(lottoTickets.length));
 
     lottoTickets.forEach((lottoTicket) => {
-      console.log(lottoTicket.getNumbers().sort((a, b) => a - b));
+      console.log(lottoTicket.getSortedNumbersAscending());
     });
+
+    console.log(OUTPUT.NEW_LINE);
+  },
+
+  printPrizeStatisticsHeader() {
+    console.log(OUTPUT.NEW_LINE);
+    console.log(OUTPUT.PRIZE_STATISTICS_HEADER);
+    console.log(OUTPUT.PRIZE_STATISTICS_SEPARATOR);
   },
 
   printPrizeDetails(prizes) {
@@ -21,6 +29,7 @@ const Output = {
 
   printReturnOnInvestment(returnOnInvestment) {
     console.log(OUTPUT.RETURN_ON_INVESTMENT(returnOnInvestment));
+    console.log(OUTPUT.NEW_LINE);
   },
 };
 
