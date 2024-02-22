@@ -36,7 +36,7 @@ class LottoMachine {
   calculateProfitRate(winningResult) {
     const totalPrizeAmount = this.#calculateTotalPrizeAmount(winningResult);
     const totalPurchaseAmount = this.#calculateTotalPurchaseAmount(winningResult);
-    const profitRate = this.#caclulateProfitRate(totalPrizeAmount, totalPurchaseAmount);
+    const profitRate = this.#calculateProfitRate(totalPrizeAmount, totalPurchaseAmount);
 
     return profitRate;
   }
@@ -55,7 +55,7 @@ class LottoMachine {
     );
   }
 
-  #caclulateProfitRate(totalPrizeAmount, totalPurchaseAmount) {
+  #calculateProfitRate(totalPrizeAmount, totalPurchaseAmount) {
     return (totalPrizeAmount / totalPurchaseAmount) * 100;
   }
 }

@@ -29,7 +29,7 @@ export const INPUT_HINTS = {
 
 export const OUTPUT_MESSAGES = {
   issueQuantity: (count) => `\n${count}개를 구매했습니다.`,
-  lottoNumbers: (numbers) => `\n[${numbers.join(', ')}]`,
+  lottoNumbers: (numbers) => `[${numbers.join(', ')}]`,
   statisticsTitle: '\n당첨 통계',
   dividingLine: '\n--------------------',
   statisticsResult: (matchingCount, bonusMatch, prizeAmount, count) =>

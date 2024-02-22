@@ -11,8 +11,8 @@ class LottoController {
   }
 
   async inputPurchaseAmount() {
-    const purchaseAmount = await InputView.inputPurchaseAmount().trim();
-    return purchaseAmount;
+    const purchaseAmount = await InputView.inputPurchaseAmount();
+    return parseInt(purchaseAmount.trim());
   }
 
   async inputWinningNumbers() {
@@ -23,17 +23,21 @@ class LottoController {
   }
 
   async inputBonusNumber() {
-    const bonusNumber = await InputView.inputBonusNumber().trim();
-    return bonusNumber;
+    const bonusNumber = await InputView.inputBonusNumber();
+    return bonusNumber.trim();
   }
 
   async inputRestartResponse() {
-    const restartResponse = await InputView.inputRestartResponse().trim();
-    return restartResponse;
+    const restartResponse = await InputView.inputRestartResponse();
+    return restartResponse.trim();
   }
 
   displayIssueQuantity(issueQuantity) {
     OutputView.printIssueQuantity(issueQuantity);
+  }
+
+  issueLottos(issueQuantity) {
+    return this.#lottoMachine.issueLottos(issueQuantity);
   }
 
   displayLottoNumbersList(lottos) {
