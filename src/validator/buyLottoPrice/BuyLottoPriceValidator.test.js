@@ -33,7 +33,7 @@ describe('구입 로또 금액 유효성 검사', () => {
   ];
   describe('예외 테스트', () => {
     test.each(ERROR_CASES)(
-      '입력값이 "$input"원 일 때 "$expectedErrorMessage" 메세지와 함께 에러가 발생해야 한다.',
+      '입력값이 "$input" 일 때 "$expectedErrorMessage" 메세지와 함께 에러가 발생해야 한다.',
       ({ input, expectedErrorMessage }) => {
         // when - then
         expect(() => validateLottoPrice(input)).toThrow(new AppError(expectedErrorMessage));
@@ -44,7 +44,7 @@ describe('구입 로또 금액 유효성 검사', () => {
   describe('정상 작동 테스트', () => {
     // given
     const SUCCESS_CASES = [{ input: '1000' }, { input: '5000' }, { input: '10000' }];
-    test.each(SUCCESS_CASES)('입력값이 "$input"원 일 때 에러가 발생하지 않는다.', ({ input }) => {
+    test.each(SUCCESS_CASES)('입력값이 "$input" 일 때 에러가 발생하지 않는다.', ({ input }) => {
       // when - then
       expect(() => validateLottoPrice(input)).not.toThrow();
     });
