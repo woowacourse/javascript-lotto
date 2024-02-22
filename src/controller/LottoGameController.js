@@ -13,6 +13,14 @@ class LottoGameController {
     this.#budget = Number(budgetInput);
   }
 
+  async #initWinningLottoNumbers() {
+    // 함수명 임시 이름임
+    const t = await getValidInput(InputView.readWinningLottoNumbers);
+    console.log(t);
+    //this.#budget = Number(budgetInput);
+    return t;
+  }
+
   #calculateLottoCount() {
     return this.#budget / 1000;
   }
@@ -25,12 +33,18 @@ class LottoGameController {
     await this.#initBudget();
     this.#printLottoCount();
     this.#printIssuedLottos();
+    await this.#inittest();
+  }
+
+  async #inittest() {
+    const t = await getValidInput(InputView.readWinningLottoNumbers);
+    console.log(t);
+    //this.#budget = Number(budgetInput);
+    return t;
   }
 
   #printIssuedLottos() {
-    OutputView.printIssuedLottoArray(
-      randomLottoArray(this.#calculateLottoCount())
-    );
+    OutputView.printIssuedLottoArray(randomLottoArray(this.#calculateLottoCount()));
   }
 }
 

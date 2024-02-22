@@ -1,5 +1,6 @@
 export const VIEW_MESSAGE = Object.freeze({
   budget: "구입 금액을 입력해 주세요.",
+  winningLottoNumbers: "당첨 번호를 입력해 주세요.",
 });
 
 export const OUTPUT_MESSAGE = Object.freeze({
