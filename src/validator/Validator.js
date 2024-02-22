@@ -1,4 +1,5 @@
 import ERROR_MESSAGE from '../constant/errorMessage';
+import { SETTING } from '../constant/setting';
 
 const Validator = {
   validatePurchaseAmount(purchaseAmount) {
@@ -44,20 +45,20 @@ const Validator = {
   },
 
   purchaseAmountNotDivided(input) {
-    if (input === 0 || input % 1000 !== 0) {
+    if (input === 0 || input % SETTING.LOTTO_PRICE !== 0) {
       throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_NOT_DIVIDED);
     }
   },
 
   checkWinningNumbersLength(input) {
     const numbers = input.split(',');
-    if (numbers.length !== 6) {
+    if (numbers.length !== SETTING.LOTTO_LENGTH) {
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_LENGTH);
     }
   },
 
   checkWinningNumbersDuplicated(input) {
-    if (new Set(input).size !== 6) {
+    if (new Set(input).size !== SETTING.LOTTO_LENGTH) {
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATED);
     }
   },
@@ -69,7 +70,7 @@ const Validator = {
   },
 
   checkWinningNumbersRange(input) {
-    if (Number(input) < 1 || Number(input) > 45) {
+    if (Number(input) < SETTING.MIN_LOTTO_NUMBER || Number(input) > SETTING.MAX_LOTTO_NUMBER) {
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_RANGE);
     }
   },
@@ -81,7 +82,7 @@ const Validator = {
   },
 
   checkBonusNumberRange(input) {
-    if (Number(input) < 1 || Number(input) > 45) {
+    if (Number(input) < SETTING.MIN_LOTTO_NUMBER || Number(input) > SETTING.MAX_LOTTO_NUMBER) {
       throw new Error(ERROR_MESSAGE.BONUS_NUMBER_RANGE);
     }
   },
@@ -93,7 +94,7 @@ const Validator = {
   },
 
   checkRestartCommandFormat(input) {
-    if (input.toLowerCase() !== 'y' && input.toLowerCase() !== 'n') {
+    if (input.toLowerCase() !== SETTING.RESTART_COMMAND && input.toLowerCase() !== SETTING.EXIT_COMMAND) {
       throw new Error(ERROR_MESSAGE.RESTART_COMMAND_FORMAT);
     }
   },
