@@ -40,6 +40,10 @@ const OutputView = {
   printTotalProfit(profit) {
     Console.print(OUTPUT_MESSAGES.totalProfit(profit));
   },
+
+  printNewLine() {
+    Console.print('');
+  },
 };
 
 export default OutputView;

@@ -17,27 +17,47 @@ class LottoController {
   }
 
   async run() {
+    const tickets = await this.initTicketCount();
+    const lottoGenerator = await this.initLottoGenerator(tickets);
+    await this.initLottoNumbers();
+    await this.initLottoCalculator(tickets, lottoGenerator);
+    await this.reStartLotto();
+  }
+
+  async initTicketCount() {
     const tickets = await this.readLottoPayment();
+    return this.getTicketCount(tickets);
+  }
 
-    const lottoGenerator = new LottoGenerator(tickets / 1000);
-    OutputView.printLottoPayment(tickets / 1000);
-
+  async initLottoGenerator(tickets) {
+    const lottoGenerator = new LottoGenerator(tickets);
+    OutputView.printLottoPayment(tickets);
     OutputView.printGeneratedLottos(lottoGenerator.generatedLottos);
+    OutputView.printNewLine();
+    return lottoGenerator;
+  }
 
+  async initLottoNumbers() {
     this.#lottoNumbers.winningNumbers = await this.readWinningNumbers();
-    this.#lottoNumbers.bonusNumber = Number(await this.readBonusNumber());
+    OutputView.printNewLine();
 
+    this.#lottoNumbers.bonusNumber = Number(await this.readBonusNumber());
+    OutputView.printNewLine();
+  }
+
+  async initLottoCalculator(tickets, lottoGenerator) {
     const lottoCalculator = new LottoCalculator(
       this.#lottoNumbers,
       lottoGenerator.generatedLottos,
     );
     const lottoStatics = lottoCalculator.lottoStatics;
-    const profit = lottoCalculator.calculateTotalProfit(tickets / 1000);
-
+    const profit = lottoCalculator.calculateTotalProfit(tickets);
     OutputView.printWinningStatics(lottoStatics);
     OutputView.printTotalProfit(profit);
+  }
 
-    await this.reStartLotto();
+  getTicketCount(lottoPayment) {
+    return lottoPayment / 1000;
   }
 
   async readLottoPayment() {
@@ -81,6 +101,8 @@ class LottoController {
   }
 
   async reStartLotto() {
+    OutputView.printNewLine();
+
     const reStart = await InputView.reStart();
     if (reStart === 'y') {
       this.run();
