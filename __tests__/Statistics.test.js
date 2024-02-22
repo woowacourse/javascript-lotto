@@ -1,4 +1,4 @@
-import Statistics from '../src/domains/Statistics';
+import { Statistics } from '../src/domains';
 
 describe('Statistics 기능 테스트', () => {
   test('여러 장의 티켓의 비교 결과', () => {

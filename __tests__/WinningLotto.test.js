@@ -1,4 +1,4 @@
-import WinningLotto from '../src/domains/WinningLotto';
+import { WinningLotto } from '../src/domains';
 
 describe('WinningLotto 기능 테스트', () => {
   test.each([
@@ -16,10 +16,9 @@ describe('WinningLotto 기능 테스트', () => {
       const WINNING_LOTTO_NUMBERS = '1,2,3,4,5,6';
       const BONUS_NUMBER = '7';
 
-      const winningLotto = new WinningLotto(
-        WINNING_LOTTO_NUMBERS,
-        BONUS_NUMBER,
-      );
+      const winningLotto = new WinningLotto();
+      winningLotto.lottoNumbers = WINNING_LOTTO_NUMBERS;
+      winningLotto.bonusNumber = BONUS_NUMBER;
 
       expect(winningLotto.compareLotto(comparedLottoNumbers)).toEqual(result);
     },
