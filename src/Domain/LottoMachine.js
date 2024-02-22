@@ -19,10 +19,10 @@ export default class LottoMachine {
 
   #makeLottoByMoney() {
     const CNT = Math.floor(this.#money / 1000);
-    this.#lottos = Array.from(
-      { length: CNT },
-      () => new Lotto(this.#makeRandomNumbers())
-    );
+    this.#lottos = Array.from({ length: CNT }, () => {
+      const numbers = this.#makeRandomNumbers();
+      return new Lotto(numbers);
+    });
   }
 
   #makeRandomNumbers() {

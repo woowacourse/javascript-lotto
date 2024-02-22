@@ -1,4 +1,5 @@
 import InputView from "./View/InputView";
+import OutputView from "./View/OutputView";
 import LottoMachine from "./Domain/LottoMachine";
 import WinLottoNumber from "./Domain/WinLottoNumber";
 
@@ -7,27 +8,33 @@ export default class Controller {
 
   #winLottoNumber;
 
-  run() {
-    this.#generateLottoMoney();
+  async run() {
+    await this.#generateLottoMoney();
+    this.#generateLottos();
 
-    this.#generateWinLottoNumber();
+    await this.#generateWinLottoNumber();
   }
 
   async #generateLottoMoney() {
-    try {
-      const money = await InputView.readMoney();
-      this.#lottoMachine = new LottoMachine(money);
-    } catch (err) {
-      console.error(err);
-      await this.#generateLottoMoney();
-    }
+    // try {
+    const money = await InputView.readMoney();
+    this.#lottoMachine = new LottoMachine(money);
+    // } catch (err) {
+    //   console.error(err);
+    //   await this.#generateLottoMoney();
+    // }
+  }
+
+  #generateLottos() {
+    const boughtLottos = this.#lottoMachine.getLottos();
+    OutputView.printBoughtLottos(boughtLottos);
   }
 
   async #generateWinLottoNumber() {
     const winLottoNumbers = this.#generateWinLottoNumbers();
     const bonusNumber = this.#generateBonusNumber();
 
-    this.#winLottoNumber = new WinLottoNumber(winLottoNumbers, bonusNumber);
+    // this.#winLottoNumber = new WinLottoNumber(winLottoNumbers, bonusNumber);
   }
 
   #generateWinLottoNumbers() {
