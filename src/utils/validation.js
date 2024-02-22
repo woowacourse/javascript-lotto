@@ -14,6 +14,18 @@ const Validations = {
   isCorrectRange(number) {
     return LOTTO_RULES.min_number <= number && number <= LOTTO_RULES.max_number;
   },
+
+  isNumericPattern(number) {
+    return /^\d+$/.test(number);
+  },
+
+  isDivide(dividend, divisor) {
+    return dividend % divisor === 0;
+  },
+
+  isGreaterThan(number, threshold) {
+    return number >= threshold;
+  },
 };
 
 export const validateLotto = (numbers) => {
@@ -27,4 +39,10 @@ export const validateLotto = (numbers) => {
 export const validateBonusNumber = (numbers, bonusNumber) => {
   if (!Validations.isCorrectRange(bonusNumber)) throw new Error(ERROR_MESSAGES.lotto_number_range);
   if (numbers.includes(bonusNumber)) throw new Error('보너스 번호는 당첨번호와 중복되지 않아야 합니다.');
+};
+
+export const validateCost = (cost) => {
+  if (!Validations.isNumericPattern(cost)) throw new Error('양의 정수를 입력해주세요');
+  if (!Validations.isDivide(cost, 1000)) throw new Error('1000원 단위로 입력가능합니다.');
+  if (!Validations.isGreaterThan(cost, 1000)) throw new Error('1000원 이상의 금액을 입력해주세요.');
 };

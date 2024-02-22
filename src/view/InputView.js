@@ -1,10 +1,16 @@
 import ReadLine from '../utils/readLineAsync.js';
+import { validateCost } from '../utils/validation.js';
 
 const InputView = {
   async readCost() {
-    const cost = Number(await ReadLine.readLineAsync('> 구입 금액을 입력해주세요'));
-
-    return cost;
+    try {
+      const cost = Number(await ReadLine.readLineAsync('> 구입 금액을 입력해주세요'));
+      validateCost(cost);
+      return cost;
+    } catch (error) {
+      console.log(error.message);
+      return InputView.readCost();
+    }
   },
 
   async readWinningNumbers() {
