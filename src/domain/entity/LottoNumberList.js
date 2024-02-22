@@ -6,7 +6,7 @@ class LottoNumberList {
   #lottoNumbers;
 
   constructor(numbers) {
-    LottoNumberList.#validate(numbers);
+    this.#validate(numbers);
     this.#lottoNumbers = numbers
       .map(num => new LottoNumber(num))
       .sort((a, b) => a.getNumber() - b.getNumber());
@@ -20,18 +20,18 @@ class LottoNumberList {
     return this.#lottoNumbers.map(lottoNumber => lottoNumber.getNumber());
   }
 
-  static #validate(numbers) {
-    LottoNumberList.#validateDuplication(numbers);
-    LottoNumberList.#validateLength(numbers);
+  #validate(numbers) {
+    this.#validateDuplication(numbers);
+    this.#validateLength(numbers);
   }
 
-  static #validateDuplication(numbers) {
+  #validateDuplication(numbers) {
     if (numbers.length !== new Set(numbers).size) {
       throw new Error(ERROR.beNotDuplication);
     }
   }
 
-  static #validateLength(numbers) {
+  #validateLength(numbers) {
     if (numbers.length !== CONDITION.countOfNumberInTicket) {
       throw new Error(ERROR.countOfWinningNumbers);
     }

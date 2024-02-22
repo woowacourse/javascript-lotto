@@ -55,6 +55,7 @@ class PurchaseLottoService {
   #makeRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+  
   getPurchaseCount() {
     return this.#purchaseCount;
   }

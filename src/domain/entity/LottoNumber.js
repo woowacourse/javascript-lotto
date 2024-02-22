@@ -34,6 +34,7 @@ class LottoNumber {
     LottoNumber.#validateNotNumber(numStr);
     return new LottoNumber(Number(numStr));
   }
+  
   static #validateBlank(numStr) {
     if (!numStr) {
       throw new Error(ERROR.beNotBlank);
