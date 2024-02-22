@@ -47,7 +47,8 @@ const lottoController = {
   },
 
   printRandomLottos(randomLottos) {
-    randomLottos.forEach((lotto) => OutputView.printLotto(lotto.get()));
+    const randomLottosUnpack = randomLottos.map((lotto) => lotto.get());
+    OutputView.printLotto(randomLottos.length, randomLottosUnpack);
   },
 
   async getWinningLotto() {
