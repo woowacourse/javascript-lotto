@@ -1,3 +1,4 @@
+import { makeRandom } from '../../Utils/Utils.js';
 import CONDITION from '../../constant/Condition.js';
 import ERROR from '../../constant/Error.js';
 import LottoNumberList from '../entity/LottoNumberList.js';
@@ -13,11 +14,11 @@ class PurchaseLottoService {
   }
 
   #validate(moneyString) {
-    this.#validateNotNumber(moneyString);
+    this.#validateNumber(moneyString);
     this.#validateMultiple(moneyString);
   }
 
-  #validateNotNumber(moneyString) {
+  #validateNumber(moneyString) {
     if (isNaN(moneyString)) {
       throw new Error(ERROR.beNumber);
     }
@@ -39,7 +40,7 @@ class PurchaseLottoService {
     const max = CONDITION.lottoNumberMax;
 
     while (randoms.size < CONDITION.countOfNumberInTicket) {
-      randoms.add(this.#makeRandom(min, max));
+      randoms.add(makeRandom.number(min, max));
     }
     return new LottoNumberList([...randoms]);
   }
@@ -52,10 +53,6 @@ class PurchaseLottoService {
     return this.#lottos.map(lotto => lotto.getNumbers());
   }
 
-  #makeRandom(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  
   getPurchaseCount() {
     return this.#purchaseCount;
   }

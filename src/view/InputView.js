@@ -1,5 +1,5 @@
-import MESSAGE from '../constant/Message.js';
-import IsRetry from '../domain/entity/IsRetry.js';
+import MESSAGE from '../constant/Message';
+import RetryAnswer from '../domain/entity/RetryAnswer.js';
 import WinningLotto from '../domain/entity/WinningLotto.js';
 import PurchaseLottoService from '../domain/service/PurchaseLottoService.js';
 import OutputView from './OutputView.js';
@@ -71,10 +71,10 @@ const InputView = {
     return await Private.robustInput(bonusNumberConfig);
   },
 
-  async readIsRetry() {
+  async readRetryAnswer() {
     const bonusNumberConfig = {
       readline: async () => await Private.readLineAsync(MESSAGE.prompt.retry),
-      factory: inputString => new IsRetry(inputString).get(),
+      factory: inputString => new RetryAnswer(inputString).get(),
       retryHandler: e => OutputView.print(e.message),
     };
     return await Private.robustInput(bonusNumberConfig);

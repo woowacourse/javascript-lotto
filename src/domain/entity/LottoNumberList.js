@@ -27,7 +27,7 @@ class LottoNumberList {
 
   #validateDuplication(numbers) {
     if (numbers.length !== new Set(numbers).size) {
-      throw new Error(ERROR.beNotDuplication);
+      throw new Error(ERROR.beNotDuplicated);
     }
   }
 

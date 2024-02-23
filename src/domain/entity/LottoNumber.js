@@ -34,7 +34,7 @@ class LottoNumber {
     LottoNumber.#validateNotNumber(numStr);
     return new LottoNumber(Number(numStr));
   }
-  
+
   static #validateBlank(numStr) {
     if (!numStr) {
       throw new Error(ERROR.beNotBlank);
@@ -42,7 +42,7 @@ class LottoNumber {
   }
 
   static #validateNotNumber(numStr) {
-    if (Number.isNaN(Number(numStr))) {
+    if (isNaN(numStr)) {
       throw new Error(ERROR.beNumber);
     }
   }

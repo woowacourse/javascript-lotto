@@ -1,4 +1,4 @@
-const CONDITION = Object.freeze({
+const CONDITION = {
   lottoNumberMax: 45,
   lottoNumberMin: 1,
   countOfNumberInTicket: 6,
@@ -14,6 +14,6 @@ const CONDITION = Object.freeze({
 
   secondPrizeMatchCount: 5,
   secondPrizeMatchBonusCount: 1,
-});
+};
 
 export default CONDITION;
