@@ -4,7 +4,7 @@ class RandomUniquePositiveIntegersPicker {
 
   #upper;
   #maxCount;
-  #itUsedBooleans;
+  #isUsedBooleans;
 
   constructor(upper) {
     if (typeof upper !== "number")
@@ -16,7 +16,7 @@ class RandomUniquePositiveIntegersPicker {
     this.#upper = upper;
     this.#maxCount = Math.floor(this.#upper / 2);
 
-    this.#itUsedBooleans = new Array(1 + upper).fill(false);
+    this.#isUsedBooleans = new Array(1 + upper).fill(false);
   }
 
   getRandomUniquePositiveIntegers(count) {
@@ -34,7 +34,7 @@ class RandomUniquePositiveIntegersPicker {
 
     const randomNumbers = this.#getRandomNumbers(count);
 
-    randomNumbers.forEach((number) => (this.#itUsedBooleans[number] = false));
+    randomNumbers.forEach((number) => (this.#isUsedBooleans[number] = false));
 
     return randomNumbers;
   }
@@ -45,8 +45,8 @@ class RandomUniquePositiveIntegersPicker {
     let nowIndex = 0;
     while (nowIndex < count) {
       const nowNumber = this.#getRandomNumber();
-      if (this.#itUsedBooleans[nowNumber]) continue;
-      this.#itUsedBooleans[nowNumber] = true;
+      if (this.#isUsedBooleans[nowNumber]) continue;
+      this.#isUsedBooleans[nowNumber] = true;
       randomNumbers[nowIndex++] = nowNumber;
     }
     return randomNumbers;
