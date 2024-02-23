@@ -5,16 +5,19 @@ import Random from '../utils/Random';
 
 const { LOTTO, MONEY } = Condition;
 
+function createOneLottoTicket() {
+  const numbers = Random.pickNumbersInRangeByRule({
+    start: LOTTO.NUMBER_RANGE_MIN,
+    end: LOTTO.NUMBER_RANGE_MAX,
+    count: LOTTO.NUMBER_LENGTH,
+  });
+  Validator.validateLottoNumbers(numbers);
+  return new Lotto(numbers);
+}
+
 const LottoGenerator = {
   createLotto(money) {
-    return Array.from({ length: Math.floor(money / MONEY.UNIT) }).map(() => {
-      const numbers = Random.pickNumbersInRangeByRule({
-        start: LOTTO.NUMBER_RANGE_MIN,
-        end: LOTTO.NUMBER_RANGE_MAX,
-        count: LOTTO.NUMBER_LENGTH,
-      });
-      return new Lotto(Validator.validateLottoNumbers(numbers));
-    });
+    return Array.from({ length: Math.floor(money / MONEY.UNIT) }).map(() => createOneLottoTicket());
   },
 };
 
