@@ -23,8 +23,7 @@ const winningNumbersValidator = {
 
   validateRange(winningNumbers) {
     winningNumbers.forEach(winningNumber => {
-      numberValidator.validate(winningNumber);
-      numberValidator.validateRange(winningNumber);
+      numberValidator.validateLottoNumber(winningNumber);
     });
   },
 };

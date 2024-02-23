@@ -1,7 +1,9 @@
 import { ERROR_MESSAGE } from '../constants/message';
+import numberValidator from './numberValidator';
 
 const bonusNumberValidator = {
   validate(bonusNumber, winningNumbers) {
+    numberValidator.validateLottoNumber(bonusNumber);
     this.validateDuplicate(bonusNumber, winningNumbers);
   },
 

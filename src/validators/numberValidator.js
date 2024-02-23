@@ -7,6 +7,11 @@ const numberValidator = {
     this.validateNumber(number);
   },
 
+  validateLottoNumber(number){
+    this.validate(number);
+    this.validateRange(number);
+  },
+
   validateBlank(number) {
     if (number.length === 0) {
       throw new Error(ERROR_MESSAGE.BLANK_INPUT);
