@@ -10,8 +10,7 @@ const OutputView = {
   },
 
   printMatchedLottos(matchedLotto) {
-    console.log(OUTPUT_MESSAGE.statistics);
-    console.log(OUTPUT_MESSAGE.symbolDash);
+    console.log(OUTPUT_MESSAGE.RESULT_TITLE);
     OUTPUT_MESSAGE.formatResults(matchedLotto).forEach((result) => console.log(result));
   },
 
