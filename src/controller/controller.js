@@ -1,7 +1,4 @@
-/* eslint-disable */
-import Lotto from '../domain/lotto.js';
 import LottoMachine from '../domain/lottoMachine.js';
-import WinningLotto from '../domain/winningLotto.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import Statistics from '../domain/statistics.js';
