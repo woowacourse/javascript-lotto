@@ -4,7 +4,7 @@ import OutputView from "../view/OutputView.js";
 import Lotto from "../domain/Lotto.js";
 import LottoMoney from "../domain/LottoMoney.js";
 import LottoNumber from "../domain/LottoNumber.js";
-import lottoGenerator from "../domain/LottoGenerator.js";
+import lottoGenerator from "../domain/lottoGenerator.js";
 
 import Command from "../utils/Command.js";
 
