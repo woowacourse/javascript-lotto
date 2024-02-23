@@ -27,16 +27,10 @@ class WinningLotto {
     };
   }
 
-  /**
-   * @param {number[]} lottoNumbers
-   */
   #isBonusNumber(lottoNumbers) {
     return lottoNumbers.includes(this.#bonusNumber);
   }
 
-  /**
-   *  @param {number[]} lottoNumbers
-   */
   #getMatchedCount(lottoNumbers) {
     return lottoNumbers.filter((lottoNumber) =>
       this.#lotto.numbers.includes(lottoNumber),
