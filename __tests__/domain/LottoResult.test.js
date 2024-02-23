@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { WINNING_RANK } from "../../src/constants/lotto-constants.js";
+import { WINNING_RANK } from "../../src/constants/system.js";
 import Lotto from "../../src/domain/Lotto.js";
 import LottoResult from "../../src/domain/LottoResult.js";
 import WinningLotto from "../../src/domain/WinningLotto.js";
