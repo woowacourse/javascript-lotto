@@ -1,7 +1,9 @@
 {
   "rules": {
-    "import/extensions": "off",
-    "class-methods-use-this": "off"
+    "import/extensions": "off", // .js로 import 가능하도록
+    "class-methods-use-this": "off", // static으로 빼는 것이 가독성이 좋지 않음
+    "no-await-in-loop": "off",
+    "no-constant-condition": "off" // while (true) 사용 위함
   },
   "overrides": [
     {
