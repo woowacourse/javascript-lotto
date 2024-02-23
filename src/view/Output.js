@@ -1,16 +1,14 @@
-import Condition from '../constants/Condition';
 import Message from '../constants/Message';
 
-const { PRIZE } = Condition;
 const { OUTPUT } = Message;
 
 const Output = {
-  printLottoTicketsPurchaseResult(lottoTickets) {
-    console.log(OUTPUT.LOTTO_TICKETS_COUNT(lottoTickets.length));
+  printLottoTickesCount(lottoTicketsCount) {
+    console.log(lottoTicketsCount);
+  },
 
-    lottoTickets.forEach((lottoTicket) => {
-      console.log(lottoTicket.getSortedNumbersAscending());
-    });
+  printPurchaseResultDetail(purchaseResultDetails) {
+    purchaseResultDetails.forEach((detail) => console.log(detail));
 
     console.log(OUTPUT.NEW_LINE);
   },
@@ -21,15 +19,12 @@ const Output = {
     console.log(OUTPUT.PRIZE_STATISTICS_SEPARATOR);
   },
 
-  printPrizeDetails(prizes) {
-    PRIZE.forEach(([rank, detail]) => {
-      const prizeInfo = { rank, detail, count: prizes.filter((prize) => prize === rank).length };
-      console.log(OUTPUT.PRIZE_DETAIL(prizeInfo));
-    });
+  printPrizeDetails(prizeDetails) {
+    prizeDetails.forEach((prizeDetail) => console.log(prizeDetail));
   },
 
   printReturnOnInvestment(returnOnInvestment) {
-    console.log(OUTPUT.RETURN_ON_INVESTMENT(returnOnInvestment));
+    console.log(returnOnInvestment);
     console.log(OUTPUT.NEW_LINE);
   },
 };

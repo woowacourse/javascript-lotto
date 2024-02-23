@@ -5,13 +5,14 @@ import Input from '../view/Input';
 import Output from '../view/Output';
 import retryUntilValid from '../utils/retryUntilValid';
 import Condition from '../constants/Condition';
+import MessageGenerator from './MessageGenerator';
 
-const { RESTART_OPTION } = Condition;
+const { RESTART_OPTION, PRIZE } = Condition;
 
 const LottoGame = {
   async start() {
     const lottoTickets = await this.purchaseLottoTickets();
-    Output.printLottoTicketsPurchaseResult(lottoTickets);
+    this.showLottoTicketsPurchaseResult(lottoTickets);
 
     const winningLotto = await this.makeWinningLotto();
     this.showPrizeStatistics(lottoTickets, winningLotto);
@@ -67,11 +68,29 @@ const LottoGame = {
 
   showPrizeStatistics(lottoTickets, winningLotto) {
     const prizes = StatisticsGenerator.calculateAllPrize(lottoTickets, winningLotto);
-    const returnOnInvestment = StatisticsGenerator.calculateReturnOnInvestment(prizes);
+
+    this.showPrizeDetails(prizes);
+    this.showReturnOnInvestment(prizes);
+  },
+
+  showPrizeDetails(prizes) {
+    const prizeDetail = PRIZE.map(([rank, detail]) => {
+      const prizeInfo = { rank, detail, count: prizes.filter((prize) => prize === rank).length };
+      return MessageGenerator.prizeDetail(prizeInfo);
+    });
 
     Output.printPrizeStatisticsHeader();
-    Output.printPrizeDetails(prizes);
-    Output.printReturnOnInvestment(returnOnInvestment);
+    Output.printPrizeDetails(prizeDetail);
+  },
+
+  showReturnOnInvestment(prizes) {
+    const returnOnInvestment = StatisticsGenerator.calculateReturnOnInvestment(prizes);
+    Output.printReturnOnInvestment(MessageGenerator.returnOnInvestment(returnOnInvestment));
+  },
+
+  showLottoTicketsPurchaseResult(lottoTickets) {
+    Output.printLottoTickesCount(MessageGenerator.lottoTicketsCount(lottoTickets.length));
+    Output.printPurchaseResultDetail(MessageGenerator.purchaseResultDetail(lottoTickets));
   },
 };
 
