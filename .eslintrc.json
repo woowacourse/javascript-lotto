@@ -1,11 +1,27 @@
 {
-  "rules": { "max-lines-per-function": ["error", { "max": 10 }], "max-depth": ["error", 1] },
+  "rules": {
+    "max-depth": ["error", 1],
+    "max-params": ["error", 2],
+    "lines-between-class-members": "off",
+    "import/extensions": ["error", "never"]
+  },
+  "overrides": [
+    {
+      "files": ["./src/**"],
+      "rules": {
+        "max-lines-per-function": ["error", {
+          "max": 10
+        }]
+      }
+    }
+  ],
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["airbnb-base", "eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["airbnb", "prettier"]
 }
