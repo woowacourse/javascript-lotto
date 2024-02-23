@@ -45,7 +45,6 @@ class LottoGameController {
     }
     if (restartCommand === SETTING.EXIT_COMMAND) {
       OutputView.printExitMessage();
-      return;
     }
   }
 }
