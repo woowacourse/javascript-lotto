@@ -4,6 +4,22 @@ import getValidInput from "../utils/getValidInput.js";
 import randomLottoArray from "../domain/randomLottoMaker.js";
 import lottoStatistics from "../domain/lottoStatistics.js";
 
+/**
+ * @returns {Number}
+ */
+async function handleBudget() {
+  const budget = await getValidInput(() => InputView.readBudget());
+  return budget;
+}
+
+const LottoController = {
+  async start() {
+    // budget 저장해줘
+    const budget = await handleBudget();
+
+  },
+};
+
 class LottoGameController {
   #budget;
   #winningLotto = {};
@@ -20,7 +36,7 @@ class LottoGameController {
 
   async #initWinningLottoBonus() {
     const winningLottoBonus = await getValidInput(() =>
-      InputView.readWinningLottoBonus(this.#winningLotto["normalNumbers"]),
+      InputView.readWinningLottoBonus(this.#winningLotto["normalNumbers"])
     );
     this.#winningLotto["bonusNumber"] = winningLottoBonus;
   }
@@ -88,7 +104,7 @@ class LottoGameController {
         }
         return ranks;
       },
-      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
     );
   }
 
@@ -145,4 +161,5 @@ class LottoGameController {
   }
 }
 
-export default LottoGameController;
+// export default LottoGameController;
+export default LottoController;
