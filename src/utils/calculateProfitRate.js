@@ -5,7 +5,7 @@ function calculateProfitRate(totalPrize, money) {
 
   const rate = ((totalPrize / money) * 100).toFixed(DECIMAL_PLACES);
 
-  return Number(rate);
+  return rate;
 }
 
 export { calculateProfitRate };
