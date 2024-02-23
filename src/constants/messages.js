@@ -1,17 +1,19 @@
+const addErrorPrefix = (message) => `[ERROR] ${message}`;
+
 const ERROR = {
   invalidRetryChecker:
-    "[ERROR] 유효하지 않은 재시작 옵션입니다. (y/n 중 선택해주세요)",
-  notInLottoNumberRange: "[ERROR] 유효한 범위 로또 숫자가 아닙니다.",
-  hasDuplicateElements: "[ERROR] 중복된 요소가 포합됩니다.",
+  addErrorPrefix("유효하지 않은 재시작 옵션입니다. (y/n 중 선택해주세요)"),
+  notInLottoNumberRange: addErrorPrefix("유효한 범위 로또 숫자가 아닙니다."),
+  hasDuplicateElements: addErrorPrefix("중복된 요소가 포합됩니다."),
   nonNegativeIntegerString:
-    "[ERROR] 10진수 양의 정수로 변환되는 숫자가 아닙니다",
-  invalidLottoNumbersLength: "[ERROR] 유효한 개수의 로또 숫자가 아닙니다",
-  notInteger: "[ERROR] 정수가 아닌 값입니다.",
+  addErrorPrefix("10진수 양의 정수로 변환되는 숫자가 아닙니다"),
+  invalidLottoNumbersLength: addErrorPrefix("유효한 개수의 로또 숫자가 아닙니다"),
+  notInteger: addErrorPrefix("정수가 아닌 값입니다."),
 
-  undividableByLottoPriceHead: "[ERROR] 로또 금액(",
+  undividableByLottoPriceHead: addErrorPrefix("로또 금액("),
   undividableByLottoPriceTail: ")으로 나눠지지 않는 금액입니다.",
 
-  invalidBuyAmountRangeHead: "[ERROR] 유효한 구입 금액 범위(",
+  invalidBuyAmountRangeHead: addErrorPrefix("유효한 구입 금액 범위("),
   invalidBuyAmountRangeMiddle: " ~ ",
   invalidBuyAmountRangeTail: ")를 벗어났습니다.",
 };
