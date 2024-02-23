@@ -1,9 +1,12 @@
-import { LOTTO_RULE, RANDOM_NUMBER_RULE, RESTART_KEY, r } from '../constants';
+import { LOTTO_RULE, RANDOM_NUMBER_RULE, RESTART_KEY } from '../constants';
 
 /**
  * @param {number} number
  */
 export const isInteger = (number) => Number.isInteger(number);
+
+export const isIntegers = (numbers) =>
+  numbers.every((number) => Number.isInteger(number));
 
 /**
  * 번호 배열의 갯수가 로또 번호들의 갯수과 같은지 여부
@@ -30,6 +33,11 @@ export const isLottoNumberInRange = (number) => {
   const { start, end } = RANDOM_NUMBER_RULE.range;
 
   return start <= number && number <= end;
+};
+
+export const isLottoNumbersInRange = (numbers) => {
+  const { start, end } = RANDOM_NUMBER_RULE.range;
+  return numbers.every((number) => start <= number && number <= end);
 };
 
 /**
