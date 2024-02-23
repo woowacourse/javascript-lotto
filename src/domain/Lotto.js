@@ -5,39 +5,29 @@ import { sortNumbersAscend } from "../utils/sortNumbersAscend.js";
 import LottoNumber from "./LottoNumber.js";
 import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
 import CustomError from "../error/CustomError.js";
+
 class Lotto {
   static NUMBER_COUNT = 6;
   static SEPARATOR = ",";
   #numbers;
 
-  constructor(numbers) {
-    // NOTE: 생성자의 타입이 다양할 때 이렇게 조건문을 걸어서 판별하는게 옳을까요?
-    this.#numbers = typeof numberString === 'string' ? this.#convertToNumbers(numberString) : this.#generateRandomNumbers(
+  constructor(inputNumbers) {
+    this.#numbers = typeof inputNumbers === 'string' ? this.#convertToNumbers(inputNumbers) : generateRandomNumbers(
       LottoNumber.MIN,
       LottoNumber.MAX,
       Lotto.NUMBER_COUNT
     );
-
     this.#numbers = sortNumbersAscend(this.#numbers).map(
       (num) => new LottoNumber(num)
     );
   }
 
-  // 오버로딩
-  #convertToNumbers(numbers) {
-    const parsedNumbers = numbers.split(Lotto.SEPARATOR).map(Number);
+  #convertToNumbers(inputString) {
+    const parsedNumbers = inputString.split(Lotto.SEPARATOR).map(Number);
 
     this.#validate(parsedNumbers);
 
-    this.#numbers = parsedNumbers;
-  }
-
-  #generateRandomNumbers() {
-    this.#numbers = generateRandomNumbers(
-      LottoNumber.MIN,
-      LottoNumber.MAX,
-      Lotto.NUMBER_COUNT
-    );
+    return parsedNumbers;
   }
 
   get() {
