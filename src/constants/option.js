@@ -17,6 +17,6 @@ export const WINNING_RANK = {
   NONE: 0,
 };
 
-export const OPTION = {
+export const SYMBOL = {
   DELIMITER: ",",
 };
