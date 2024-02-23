@@ -7,7 +7,7 @@ module.exports = {
   extends: ['airbnb-base', 'plugin:jsdoc/recommended', 'plugin:jest/recommended', 'prettier'],
   overrides: [
     {
-      files: ['*.test.js', 'console.js', 'object.js'],
+      files: ['*.test.js', 'console.js', 'object.js', 'random.js'],
       rules: {
         'max-lines-per-function': ['off'],
       },
