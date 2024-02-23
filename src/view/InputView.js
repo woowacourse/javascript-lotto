@@ -2,7 +2,7 @@ import Lotto from '../domain/lotto.js';
 import WinningLotto from '../domain/winningLotto.js';
 import ReadLine from '../utils/readLineAsync.js';
 import { validateCost, validateRestartResponse } from '../utils/validation.js';
-import { INPUT_MESSAGES, CONSTANTS } from '../constant/index.js';
+import { INPUT_MESSAGES } from '../constant/index.js';
 
 const InputView = {
   async readCost() {
@@ -19,7 +19,7 @@ const InputView = {
   async readLotto() {
     try {
       const numbers = (await ReadLine.readLineAsync(INPUT_MESSAGES.winning_number))
-        .split(CONSTANTS.comma)
+        .split(',')
         .map((number) => Number(number));
 
       return new Lotto(numbers);

@@ -20,7 +20,7 @@ const Validations = {
   },
 
   isDivide(dividend, divisor) {
-    return dividend % divisor === CONSTANTS.zero;
+    return dividend % divisor === 0;
   },
 
   isGreaterThan(number, threshold) {
@@ -28,7 +28,7 @@ const Validations = {
   },
 
   isOnlyYorN(string) {
-    return string === CONSTANTS.yes || CONSTANTS.no === 'n';
+    return string === CONSTANTS.yes || string === CONSTANTS.no;
   },
 };
 

@@ -1,14 +1,6 @@
 export const CONSTANTS = {
-  zero: 0,
-  one: 1,
-  three: 3,
-  four: 4,
-  five: 5,
-  six: 6,
-  hundred: 100,
   yes: 'y',
   no: 'n',
-  comma: ',',
 };
 
 // 숫자인지를 판단하는 정규표현식
