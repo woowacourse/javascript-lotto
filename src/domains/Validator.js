@@ -58,11 +58,11 @@ const Validator = {
 
     if (!isInteger(number)) throw new Error(ERROR_MESSAGES.notInteger);
 
-    if (!isDivisibleByPrice(number))
-      throw new Error(ERROR_MESSAGES.inDivisibleByPrice);
-
     if (!isValidNumbersOfTickets(number))
       throw new Error(ERROR_MESSAGES.inValidNumbersOfTickets);
+
+    if (!isDivisibleByPrice(number))
+      throw new Error(ERROR_MESSAGES.inDivisibleByPrice);
   },
 
   checkRestartForm(restartInput) {
