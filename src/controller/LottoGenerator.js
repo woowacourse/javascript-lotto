@@ -7,7 +7,7 @@ const { LOTTO, MONEY } = Condition;
 
 const LottoGenerator = {
   createLotto(money) {
-    return Array.from({ length: money / MONEY.UNIT }).map(() => {
+    return Array.from({ length: Math.floor(money / MONEY.UNIT) }).map(() => {
       const numbers = Random.pickNumbersInRangeByRule({
         start: LOTTO.NUMBER_RANGE_MIN,
         end: LOTTO.NUMBER_RANGE_MAX,
