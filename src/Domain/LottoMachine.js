@@ -10,29 +10,30 @@ const MESSAGES = {
 };
 
 export default class LottoMachine {
-  #money;
-
-  #income = 0;
+  #money = {
+    invest: undefined,
+    income: 0,
+  };
 
   #lottos;
 
   constructor(money) {
-    this.#money = money;
+    this.#money.invest = money;
     this.#validateMoney();
     this.#makeLottoByMoney();
   }
 
   #validateMoney() {
-    if (Number.isNaN(this.#money)) {
+    if (Number.isNaN(this.#money.invest)) {
       throw new Error(MESSAGES.NOT_NUMBER);
     }
-    if (this.#money < LOTTO_PRICE) {
+    if (this.#money.invest < LOTTO_PRICE) {
       throw new Error(MESSAGES.INVALID_MONEY_MESSAGE);
     }
   }
 
   #makeLottoByMoney() {
-    const CNT = Math.floor(this.#money / LOTTO_PRICE);
+    const CNT = Math.floor(this.#money.invest / LOTTO_PRICE);
     this.#lottos = Array.from({ length: CNT }, () => {
       const numbers = this.#makeRandomNumbers();
       return new Lotto(numbers);
@@ -69,12 +70,12 @@ export default class LottoMachine {
 
   #calculateIncome(lottoRanks) {
     lottoRanks.forEach((cnt, index) => {
-      this.#income += cnt * PRIZE_MONEY[index];
+      this.#money.income += cnt * PRIZE_MONEY[index];
     });
   }
 
   getRateOfIncome() {
     const NUMBER_OF_DECIMAL_PLACES = 1;
-    return Number(((this.#income / this.#money) * 100).toFixed(NUMBER_OF_DECIMAL_PLACES)).toLocaleString();
+    return Number(((this.#money.income / this.#money.invest) * 100).toFixed(NUMBER_OF_DECIMAL_PLACES)).toLocaleString();
   }
 }
