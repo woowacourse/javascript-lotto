@@ -59,8 +59,8 @@
 - [ ] 클래스를 사용하는 경우, 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.
 
 코드리뷰
-- [ ] `npm run start`, `npm run test` 되기
-- [ ] `message.js` 소문자로 만들기
+- [x] `npm run start`, `npm run test` 되기
+- [x] `message.js` 소문자로 만들기
 - [ ] `start`와 `retry` 분리
 - [ ] `sellLottos` 인자 `price로 바꾸기
 - [ ] `arrayFormat` 상수말고 매직넘버로 변경하기

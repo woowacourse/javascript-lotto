@@ -1,5 +1,5 @@
 import readline from "readline";
-import MESSAGES from "../constants/MESSAGES.js";
+import MESSAGES from "../constants/messages.js";
 
 class InputView {
   static async readBuyAmount() {
