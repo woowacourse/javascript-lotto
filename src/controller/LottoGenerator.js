@@ -13,6 +13,7 @@ const LottoGenerator = {
         end: LOTTO.NUMBER_RANGE_MAX,
         count: LOTTO.NUMBER_LENGTH,
       });
+
       return new Lotto(Validator.validateLottoNumbers(numbers));
     });
   },
