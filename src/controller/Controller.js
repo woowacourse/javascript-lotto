@@ -1,5 +1,7 @@
+import { SYMBOL } from "../constants/condition";
 import { ERROR_MESSAGE } from "../constants/message";
 import LottoStore from "../domain/LottoStore";
+import Validator from "../utils/Validator";
 import InputView from "../view/InputView";
 import OutputView from "../view/OutputView";
 
@@ -52,17 +54,14 @@ class Controller {
   }
 
   async retryGame() {
-    const retryYes = "y";
-    const retryNo = "n";
     const isRetry = await InputView.readRetry();
 
-    if (isRetry !== retryYes && isRetry !== retryNo) {
+    if (!Validator.checkRetryInput(isRetry)) {
       OutputView.print(ERROR_MESSAGE.invalidInput);
       return this.retryGame();
     }
 
-    if (isRetry === "y") return true;
-    return false;
+    return isRetry === SYMBOL.yes ? true : false;
   }
 }
 

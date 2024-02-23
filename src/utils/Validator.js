@@ -43,6 +43,10 @@ const ValidatorCondition = {
   checkIsDivisible(number, divisor) {
     return number % divisor === 0;
   },
+
+  checkIsYOrN(str) {
+    return str === "y" || str === "Y" || str === "n" || str === "N";
+  },
 };
 
 const Validator = {
@@ -128,6 +132,10 @@ const Validator = {
         maxLottoCount,
       )
     );
+  },
+
+  checkRetryInput(isRetry) {
+    return ValidatorCondition.checkIsYOrN(isRetry);
   },
 };
 

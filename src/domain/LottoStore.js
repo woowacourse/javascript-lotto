@@ -14,9 +14,7 @@ class LottoStore {
     if (!Validator.checkPurchaseAmount(purchaseAmount))
       throw new Error(ERROR_MESSAGE.invalidPurchaseAmount);
 
-    const lottoPrice = 1000;
-
-    return purchaseAmount / lottoPrice;
+    return purchaseAmount / LOTTO_SYSTEM.lottoPrice;
   }
 
   #generateUniqueRandomLottoNumbersInRange() {
