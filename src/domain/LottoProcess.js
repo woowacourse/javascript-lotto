@@ -39,15 +39,19 @@ class LottoProcess {
     const winningNubmer = this.#lottos.reduce(
       (acc, lotto) => {
         const matchCount = this.matchLottoNumbers(lotto, winLotto);
-        if (matchCount >= WINNER.FIFTH.MATCH_COUNT) {
-          const rankIndex = this.#getRankIndex(matchCount, this.#hasBonus(lotto, bonusNumber));
-          acc[rankIndex] += 1;
-        }
+        this.#increaseLottoResult({ matchCount, lotto, bonusNumber, acc });
         return acc;
       },
       Array.from({ length: Object.keys(WINNER).length }, () => 0)
     );
     return this.#mapWinningCountToPrizes(winningNubmer);
+  }
+
+  #increaseLottoResult({ matchCount, lotto, bonusNumber, acc }) {
+    if (matchCount >= WINNER.FIFTH.MATCH_COUNT) {
+      const rankIndex = this.#getRankIndex(matchCount, this.#hasBonus(lotto, bonusNumber));
+      acc[rankIndex] += 1;
+    }
   }
 
   getAllLottosNumbers() {
