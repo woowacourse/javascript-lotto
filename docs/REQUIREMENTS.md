@@ -1,6 +1,11 @@
 # 우아한테크코스 - level1 - 행운의 로또
 
----
+✅ 실행 방법
+
+```
+cd src
+npm run start-step1
+```
 
 - 로또
 
