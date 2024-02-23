@@ -4,6 +4,7 @@ import getValidInput from "../utils/getValidInput.js";
 import randomLottoArray from "../domain/randomLottoMaker.js";
 import lottoStatistics from "../domain/lottoStatistics.js";
 import Lotto from "../domain/Lotto.js";
+import WinningLotto from "../domain/WinningLotto.js";
 
 /**
  * @returns {Number}
@@ -11,6 +12,22 @@ import Lotto from "../domain/Lotto.js";
 async function handleBudget() {
   const budget = await getValidInput(() => InputView.readBudget());
   return budget;
+}
+
+/**
+ * @returns {Array}
+ */
+async function handleWinningNumbers() {
+  const winningNumbers = await getValidInput(() => InputView.readWinningLottoNumbers());
+  return winningNumbers;
+}
+
+/**
+ * @returns {number}
+ */
+async function handleWinningBonus() {
+  const winningBonus = await getValidInput(() => InputView.readWinningLottoBonus());
+  return winningBonus;
 }
 
 const LottoController = {
@@ -26,6 +43,11 @@ const LottoController = {
     // 로또 배열 만들고 출력해줘
     const issuedLottoArray = lotto.IssuedLotto(issuedLottoCount);
     OutputView.printIssuedLottoArray(issuedLottoArray);
+
+    // 당첨 번호와 로또 번호 저장해줘
+    const winningNumbers = await handleWinningNumbers();
+    const winningBonus = await handleWinningBonus();
+    const winningLotto = new WinningLotto(winningNumbers, winningBonus);
   },
 };
 

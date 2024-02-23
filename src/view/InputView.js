@@ -29,15 +29,15 @@ const InputView = {
     return input.split(",").map(Number);
   },
 
-  async readWinningLottoBonus(winningNumbers) {
+  async readWinningLottoBonus() {
     const winningLottoBonusInput = await readLineAsync(VIEW_MESSAGE.winningLottoBonus);
     const winningLottoBonus = Number(winningLottoBonusInput);
-    const winningCombination = {
-      normalNumbers: winningNumbers,
-      bonusNumber: winningLottoBonus,
-    };
+    // const winningCombination = {
+    //   normalNumbers: winningNumbers,
+    //   bonusNumber: winningLottoBonus,
+    // };
     startValidation(winningLottoValidation.winningCombination, winningLottoBonus);
-    startValidation(winningLottoBonusValidation.winningBonus, winningCombination);
+    // startValidation(winningLottoBonusValidation.winningBonus, winningCombination);
 
     return winningLottoBonus;
   },
