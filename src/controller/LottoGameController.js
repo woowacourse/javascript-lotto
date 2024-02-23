@@ -23,9 +23,9 @@ const LottoController = {
     const issuedLottoCount = lotto.calculateIssuedLottoCount();
     OutputView.printLottoCount(issuedLottoCount);
 
-    // 로또 배열 만들어줘
+    // 로또 배열 만들고 출력해줘
     const issuedLottoArray = lotto.IssuedLotto(issuedLottoCount);
-    
+    OutputView.printIssuedLottoArray(issuedLottoArray);
   },
 };
 
