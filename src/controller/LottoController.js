@@ -2,7 +2,8 @@ import OPTIONS from '../constant/Options.js';
 import LottoMachine from '../domain/LottoMachine.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-
+import PurchaseAmountValidator from '../util/validation/PurchaseAmountValidator.js';
+import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
 class LottoController {
   #lottoMachine;
 
@@ -11,8 +12,18 @@ class LottoController {
   }
 
   async inputPurchaseAmount() {
-    const purchaseAmount = await InputView.inputPurchaseAmount();
-    return parseInt(purchaseAmount.trim());
+    let amount;
+    while (true) {
+      try {
+        const purchaseAmount = await InputView.inputPurchaseAmount();
+        amount = parseInt(purchaseAmount.trim());
+        PurchaseAmountValidator.validate(amount);
+        break;
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+    return amount;
   }
 
   async inputWinningNumbers() {
