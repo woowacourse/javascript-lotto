@@ -2,6 +2,7 @@
   "rules": {
     "max-depth": ["error", 1],
     "max-params": ["error", 2],
+    "no-return-assign": "off",
     "no-return-await": "off",
     "import/order": [
       "error",

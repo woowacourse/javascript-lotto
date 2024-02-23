@@ -15,7 +15,7 @@ class Lotto {
   }
 
   get numbers() {
-    return [...this.#numbers];
+    return [...this.#numbers].sort((a, b) => a - b);
   }
 
   has(number) {

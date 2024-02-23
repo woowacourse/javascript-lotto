@@ -1,37 +1,52 @@
-import { LOTTO_RULE } from '../constants';
-import { RandomNumber } from '../utils';
-import Validator from './Validator';
+import { ERROR_MESSAGE, LOTTO_RULE } from '../constants';
+import {
+  RandomNumber,
+  isDivisibleByPrice,
+  isInteger,
+  isValidNumbersOfTickets,
+} from '../utils';
+
+// TODO: Lotto[]와 WinningLotto를 저장하는 것으로 변경.
 
 class LottoMachine {
-  #lottoTickets = [];
-
-  #paymentAmount = 0;
+  #lottos = [];
 
   /**
    * @param {string} paymentAmount
    */
   constructor(paymentAmountInput) {
-    Validator.checkPaymentAmount(paymentAmountInput);
+    this.#validatePaymentAmount(paymentAmountInput);
 
-    this.#paymentAmount = Number(paymentAmountInput);
-    this.#issueLottoTickets();
+    this.#lottos = this.#generateLottoTickets(Number(paymentAmountInput));
   }
 
-  get lottoTickets() {
-    return this.#lottoTickets;
+  get lottos() {
+    return this.#lottos.map((lotto) => lotto.numbers);
   }
 
   get paymentAmount() {
-    return this.#paymentAmount;
+    return this.#lottos.length * LOTTO_RULE.price;
   }
 
-  #issueLottoTickets() {
-    const { range, price } = LOTTO_RULE;
-    const numbersOfTickets = this.#paymentAmount / price;
+  #generateLottoTickets(paymentAmount) {
+    const { range, price, length } = LOTTO_RULE;
+    const numbersOfTickets = paymentAmount / price;
 
-    this.#lottoTickets = Array.from({ length: numbersOfTickets }, () =>
-      RandomNumber.pickUniqueNumbersInRange(range, LOTTO_RULE.length),
+    return Array.from({ length: numbersOfTickets }, () =>
+      RandomNumber.pickUniqueNumbersInRange(range, length),
     );
+  }
+
+  #validatePaymentAmount(paymentAmountInput) {
+    const paymentAmount = Number(paymentAmountInput);
+
+    if (!isInteger(paymentAmount)) throw new Error(ERROR_MESSAGE.notInteger);
+
+    if (!isDivisibleByPrice(paymentAmount))
+      throw new Error(ERROR_MESSAGE.inDivisibleByPrice);
+
+    if (!isValidNumbersOfTickets(paymentAmount))
+      throw new Error(ERROR_MESSAGE.inValidNumbersOfTickets);
   }
 }
 
