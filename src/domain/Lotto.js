@@ -12,8 +12,11 @@ class Lotto {
 
   constructor(numbers) {
     // NOTE: 생성자의 타입이 다양할 때 이렇게 조건문을 걸어서 판별하는게 옳을까요?
-    if (typeof numbers === "string") this.#constructorWithNumStr(numbers);
-    if (numbers === undefined) this.#constructorWithoutArg();
+    this.#numbers = typeof numberString === 'string' ? this.#convertToNumbers(numberString) : this.#generateRandomNumbers(
+      LottoNumber.MIN,
+      LottoNumber.MAX,
+      Lotto.NUMBER_COUNT
+    );
 
     this.#numbers = sortNumbersAscend(this.#numbers).map(
       (num) => new LottoNumber(num)
@@ -21,7 +24,7 @@ class Lotto {
   }
 
   // 오버로딩
-  #constructorWithNumStr(numbers) {
+  #convertToNumbers(numbers) {
     const parsedNumbers = numbers.split(Lotto.SEPARATOR).map(Number);
 
     this.#validate(parsedNumbers);
@@ -29,7 +32,7 @@ class Lotto {
     this.#numbers = parsedNumbers;
   }
 
-  #constructorWithoutArg() {
+  #generateRandomNumbers() {
     this.#numbers = generateRandomNumbers(
       LottoNumber.MIN,
       LottoNumber.MAX,
