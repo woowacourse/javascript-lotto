@@ -68,12 +68,19 @@ export default class Controller {
   }
 
   async #executeRetry() {
-    const isRetry = await InputView.readIsRetryRun();
-
-    if (isRetry) {
-      this.#lottoMachine = undefined;
-      this.#winLottoNumber = undefined;
-      await this.run();
+    try {
+      const isRetry = await InputView.readIsRetryRun();
+      await this.#initializeApp(isRetry);
+    } catch (error) {
+      OutputView.printError(error.message);
+      await this.#executeRetry();
     }
+  }
+
+  async #initializeApp(isRetry) {
+    if (!isRetry) return;
+    this.#lottoMachine = undefined;
+    this.#winLottoNumber = undefined;
+    await this.run();
   }
 }
