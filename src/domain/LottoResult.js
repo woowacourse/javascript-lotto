@@ -15,37 +15,38 @@ class LottoResult {
   }
 
   getTotalResult() {
-    const initialResult = { ...this.#initializeResultObject() };
+    const initialResult = this.#initializeResultObject();
 
-    return this.#lottoList.reduce((acc, lotto) => {
+    const totalResult = this.#lottoList.reduce((acc, lotto) => {
       const rank = lotto.getRank(this.#winningLotto);
-      if (rank !== WINNING_RANK.NONE) {
-        acc[rank] = (acc[rank] || 0) + 1;
+      if (rank !== "NONE_PLACE") {
+        initialResult[rank] += 1;
       }
+
       return acc;
     }, initialResult);
+
+    return totalResult;
   }
 
   #initializeResultObject() {
-    const initialResultObject = Object.values(WINNING_RANK).reduce(
-      (acc, rank) => {
-        if (rank !== WINNING_RANK.NONE) {
-          acc[rank] = 0;
-        }
-        return acc;
-      },
-      {},
-    );
+    const initialResult = Object.keys(PRIZE).reduce((acc, key) => {
+      acc[key] = 0;
+      return acc;
+    }, {});
 
-    return initialResultObject;
+    initialResult["NONE_PLACE"] = 0;
+
+    return initialResult;
   }
 
   #getTotalReward() {
     const totalResult = this.getTotalResult();
-    return Object.keys(totalResult).reduce((acc, cur) => {
-      const prizeReward = PRIZE[cur].reward * totalResult[cur];
+    const totalReward = Object.keys(totalResult).reduce((acc, cur) => {
+      const prizeReward = PRIZE[cur] ? PRIZE[cur].reward * totalResult[cur] : 0;
       return acc + prizeReward;
     }, 0);
+    return totalReward;
   }
 
   getProfit(purchaseAmount) {

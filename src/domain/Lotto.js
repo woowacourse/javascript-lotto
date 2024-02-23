@@ -1,4 +1,4 @@
-import { WINNING_RANK } from "../constants/prize-constants.js";
+import { PRIZE } from "../constants/prize-constants.js";
 import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 
 class Lotto {
@@ -27,12 +27,13 @@ class Lotto {
   getRank(winningLotto) {
     const { numberMatchCount, isBonus } = this.getMatchCount(winningLotto);
 
-    if (numberMatchCount === 6) return WINNING_RANK.FIRST;
-    if (numberMatchCount === 5 && isBonus) return WINNING_RANK.SECOND;
-    if (numberMatchCount === 5) return WINNING_RANK.THIRD;
-    if (numberMatchCount === 4) return WINNING_RANK.FOURTH;
-    if (numberMatchCount === 3) return WINNING_RANK.FIFTH;
-    return WINNING_RANK.NONE;
+    const entry = Object.entries(PRIZE).find(
+      ([_, value]) =>
+        value.matchCount === numberMatchCount && value.isBonus === isBonus,
+    );
+
+    const rank = entry !== undefined ? entry[0] : "NONE_PLACE";
+    return rank;
   }
 }
 export default Lotto;

@@ -105,11 +105,11 @@ class LottoGameController {
   }
 
   #getGameResult(lottoList, winningLotto) {
-    const result = new LottoResult(lottoList, winningLotto);
-    const rank = result.getTotalResult();
-    const profit = result.getProfit(lottoList.length * LOTTO_PRICE);
+    const lottoResult = new LottoResult(lottoList, winningLotto);
+    const totalResult = lottoResult.getTotalResult();
+    const profit = lottoResult.getProfit(lottoList.length * LOTTO_PRICE);
 
-    this.#outputView.printResult(rank);
+    this.#outputView.printResult(totalResult);
     this.#outputView.printProfit(profit);
   }
 }

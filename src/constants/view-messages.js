@@ -13,10 +13,12 @@ export const OUTPUT_MESSAGE = {
   PURCHASE_NUMBER: (purchaseAmount) =>
     `${purchaseAmount / LOTTO_PRICE}개를 구매했습니다.`,
   RESULT_HEADER: "\n당첨 통계\n--------------------",
-  RESULT: (rank, key) =>
-    `${PRIZE[key].matchCount}개 일치${
-      PRIZE[key].bonus ? ", 보너스 볼 일치 " : " "
-    }(${formatNumber(PRIZE[key].reward)}원) - ${rank[key]}개`,
+
+  RESULT: (totalResult, rank) =>
+    `${PRIZE[rank].matchCount}개 일치${
+      PRIZE[rank].bonus ? ", 보너스 볼 일치 " : " "
+    }(${formatNumber(PRIZE[rank].reward)}원) - ${totalResult[rank]}개`,
+
   PROFIT: (profit) => `총 수익률은 ${formatNumber(profit)}%입니다.`,
 };
 
