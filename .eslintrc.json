@@ -1,11 +1,21 @@
 {
-  "rules": {},
+  "rules": {
+    "import/extensions": "off",
+    "class-methods-use-this": "off"
+  },
+  "overrides": [
+    {
+      "files": ["./src/**"]
+    }
+  ],
+
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["airbnb", "prettier"]
 }
