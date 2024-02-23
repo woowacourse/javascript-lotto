@@ -1,8 +1,9 @@
-import MESSAGE from '../constants/message';
+import { OUTPUT_MESSAGE } from '../constants/message';
+import WINNER from '../constants/winner';
 
 const OutputView = {
   printLottoCount(count = 0) {
-    console.log(`\n${count}${MESSAGE.OUTPUT.LOTTO_PURCHASED}`);
+    console.log(OUTPUT_MESSAGE.LOTTO_PURCHASED(count));
   },
 
   printRandomLottos(numbersArray = []) {
@@ -11,17 +12,15 @@ const OutputView = {
     });
   },
   printResultTitle() {
-    console.log(MESSAGE.OUTPUT.WINNING_STATISTICS_TITLE);
+    console.log(OUTPUT_MESSAGE.WINNING_STATISTICS_TITLE);
   },
   printWinningStatistics(result = []) {
-    result.forEach((value) => {
-      const [matchCount, isBonus, price, winCount] = value;
+    result.forEach((winCount, index) => {
+      // const [, isBonus, , winCount] = value;
       console.log(
-        `${matchCount}${MESSAGE.OUTPUT.MATCH_COUNT}${
-          isBonus ? MESSAGE.OUTPUT.BONUS_MATCH : ''
-        }${MESSAGE.OUTPUT.WIN_PRICE(price.toLocaleString())} ${MESSAGE.OUTPUT.HYPEN} ${winCount}${
-          MESSAGE.OUTPUT.WIN_COUNT
-        }`
+        `${OUTPUT.MATCH_COUNT(prizeIndex)}${
+          WINNER[index + 1].IS_BONUS && OUTPUT_MESSAGE.BONUS_MATCH
+        }${OUTPUT_MESSAGE.WIN_PRICE(prizeIndex)}${OUTPUT_MESSAGE(winCount)}`
       );
     });
   },

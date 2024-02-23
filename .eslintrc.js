@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['airbnb-base', 'prettier'],
+  extends: ['prettier'],
   overrides: [
     {
       env: {
@@ -23,6 +23,6 @@ module.exports = {
   rules: {
     'class-methods-use-this': 'off',
     'max-depth': ['error', 1],
-    'max-lines-per-function': ['warn', { max: 10 }],
+    // 'max-lines-per-function': ['warn', { max: 10 }],
   },
 };

@@ -1,5 +1,5 @@
-import MESSAGE from '../constants/message';
-import NUMBER from '../constants/number';
+import MESSAGE from '../constants/message.js';
+import NUMBER from '../constants/number.js';
 
 const LottoValidation = {
   validateNumbers(numbers = []) {

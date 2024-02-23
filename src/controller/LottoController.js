@@ -11,31 +11,61 @@ import MESSAGE from '../constants/message';
 
 class LottoController {
   async play() {
-    await this.buyLottos();
+    //로또를 산다.
+    const lottos = await this.buyLottos();
+    const lottosNumbers = lottos.map((lotto) => lotto.getNumbers());
+    //로또들의 정보를 반환한다.
+    this.showLottosInfo(lottoCount, lottosNumbers);
+    //우승 로또와 보너스 넘버를 받는다.
+    const [winNumbers, bonusNumber] = await this.makeWinningNumbers(lottoProcess);
+    //로또의 당첨여부를 받는다.
+    const lottoProcess = new LottoProcess(lottos);
+    const result = lottoProcess.getResult(winLotto, bonusNumber);
+    await this.showLottoResult(lottoProcess, lottoCount);
     const restartResponse = await this.getValidateRestartResponse();
     if (restartResponse === MESSAGE.RESPONSE.RESTART.YES) {
       await this.play();
     }
   }
 
+  //로또를 산다
+  // 로또들을 반환한다.
   async buyLottos() {
     const lottoCount = await this.getValidateLottoAmount();
-    const lottos = this.getLottos(lottoCount);
-    const lottoProcess = new LottoProcess(lottos);
-    const lottosNumbers = lottoProcess.getAllLottosNumbers();
+    const lottos = this.publishRandomLottos(lottoCount);
+    return lottos;
+  }
 
+  publishRandomLottos(count) {
+    const lottoNumbers = [];
+    const lottos = [];
+    for (let i = 0; i < lottoCount; i++) {
+      const randomNumbers = this.getRandomNumbers();
+      lottoNumbers.push(randomNumbers);
+      lottos.push(new Lotto(randomNumbers));
+      return Array.from({ length: count }, () => new Lotto(this.getRandomNumbers()));
+    }
+    return lottos;
+  }
+
+  showLottosInfo(lottoCount, lottosNumbers) {
     OutputView.printLottoCount(lottoCount);
     OutputView.printRandomLottos(lottosNumbers);
-    await this.showLottoResult(lottoProcess, lottoCount);
+  }
+
+  async makeWinningNumbers() {
+    const winNumbers = await this.getValidateWinNumbers();
+    // const winLotto = new Lotto(winNumbers);
+    const bonusNumber = await this.validateBonusNumber(winNumbers);
+    return [winNumbers, bonusNumber];
+    //const result = lottoProcess.getResult(winLotto, bonusNumber);
+
+    // await this.showLottoResult(lottoProcess, lottoCount);
   }
 
   async showLottoResult(lottoProcess, lottoCount) {
-    const winNumbers = await this.getValidateWinNumbers();
-    const winLotto = new Lotto(winNumbers);
-    const bonusNumber = await this.validateBonusNumber(winNumbers);
-    const result = lottoProcess.getResult(winLotto, bonusNumber);
-
     OutputView.printResultTitle();
+    const result = [0, 0, 0, 0, 0];
     OutputView.printWinningStatistics(result);
     const rateOfRevenue = this.getRateOfRevenue(result, lottoCount);
     OutputView.printRateOfRevenue(rateOfRevenue);
@@ -92,10 +122,6 @@ class LottoController {
     }, 0);
 
     return ((revenue / (lottoCount * NUMBER.LOTTO_PRICE)) * 100).toFixed(1);
-  }
-
-  getLottos(count) {
-    return Array.from({ length: count }, () => new Lotto(this.getRandomNumbers()));
   }
 
   async getValidateRestartResponse() {
