@@ -21,11 +21,11 @@ const Private = {
   readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
-        reject(new Error('arguments must be 1'));
+        reject(new Error('readAsync함수의 인자는 반드시 1개여야 합니다.'));
       }
 
       if (typeof query !== 'string') {
-        reject(new Error('query must be string'));
+        reject(new Error('query prompt는 문자열 이어야합니다.'));
       }
 
       const rl = readline.createInterface({
