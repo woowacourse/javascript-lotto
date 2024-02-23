@@ -5,14 +5,14 @@ describe("LottoResultMaker에 대한 유닛 테스트", () => {
     const ranks = [-1, 1, 2, 5];
 
     expect(LottoResultMaker.getLottoResult(ranks)).toEqual({
-      rankResult: Object.freeze({
+      rankResult: {
         first: 1,
         second: 1,
         third: 0,
         fourth: 0,
         fifth: 1,
         none: 1,
-      }),
+      },
       profitRate: (2_030_005_000 / 4000) * 100,
     });
   });

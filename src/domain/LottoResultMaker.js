@@ -1,14 +1,14 @@
 import LottoSeller from "./LottoSeller.js";
 
 class LottoResultMaker {
-  static RANK = Object.freeze({
+  static RANK = {
     1: "first",
     2: "second",
     3: "third",
     4: "fourth",
     5: "fifth",
     [-1]: "none",
-  });
+  };
 
   static PRIZE_OF_LOTTO = {
     [LottoResultMaker.RANK[-1]]: 0,
