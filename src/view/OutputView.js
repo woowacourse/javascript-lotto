@@ -1,11 +1,7 @@
-import ERROR_MESSAGE from "../constants/error.js";
-import { OUTPUT_MESSAGE } from "../constants/system.js";
+import ERROR_MESSAGE from "../constants/error-messages.js";
+import { OUTPUT_MESSAGE } from "../constants/view-messages.js";
 
 const OutputView = {
-  printError(error) {
-    console.log(`${ERROR_MESSAGE.PREFIX} ${error}`);
-  },
-
   printPurchaseMessage(purchaseAmount) {
     console.log(OUTPUT_MESSAGE.PURCHASE_NUMBER(purchaseAmount));
   },

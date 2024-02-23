@@ -1,6 +1,9 @@
 /* eslint-disable max-lines-per-function */
-import ERROR_MESSAGE from "../../src/constants/error.js";
-import { LOTTO_LENGTH, LOTTO_RANGE } from "../../src/constants/option.js";
+import ERROR_MESSAGE from "../../src/constants/error-messages.js";
+import {
+  LOTTO_LENGTH,
+  LOTTO_NUMBER_RANGE,
+} from "../../src/constants/lotto-constants.js";
 import Lotto from "../../src/domain/Lotto.js";
 import WinningLotto from "../../src/domain/WinningLotto.js";
 
@@ -13,7 +16,7 @@ describe("WinningLotto 객체 테스트", () => {
     );
   });
 
-  test(`당첨 로또 번호가 ${LOTTO_RANGE.MIN} ~ ${LOTTO_RANGE.MAX} 사이의 숫자가 아니면 오류를 던진다.`, () => {
+  test(`당첨 로또 번호가 ${LOTTO_NUMBER_RANGE.MIN} ~ ${LOTTO_NUMBER_RANGE.MAX} 사이의 숫자가 아니면 오류를 던진다.`, () => {
     const INVALID_WINNING_LOTTO_NUMBERS = [0, 1, 2, 3, 4, 46];
 
     expect(() => new Lotto(INVALID_WINNING_LOTTO_NUMBERS)).toThrow(

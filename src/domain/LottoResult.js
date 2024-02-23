@@ -1,34 +1,26 @@
-import { PERCENTATION, WINNING_RANK } from "../constants/option.js";
-import { PRIZE } from "../constants/system.js";
+import { WINNING_RANK } from "../constants/lotto-constants";
+import { PERCENTATION, PRIZE } from "../constants/system";
 
 class LottoResult {
   #lottoList;
   #winningLotto;
+  #initializeResultObject = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 
   constructor(lottoList, WinningLotto) {
     this.#lottoList = lottoList;
     this.#winningLotto = WinningLotto;
   }
 
-  #getResult() {
-    const arr = [];
-    this.#lottoList.forEach((lotto) => {
-      const rank = lotto.getRank(this.#winningLotto);
-      if (rank !== WINNING_RANK.NONE) arr.push(rank);
-    });
-
-    return arr;
-  }
-
   getTotalResult() {
-    const results = this.#getResult();
-    return results.reduce(
-      (acc, cur) => {
-        acc[cur] += 1;
-        return acc;
-      },
-      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
-    );
+    const initialResult = { ...this.#initializeResultObject };
+
+    return this.#lottoList.reduce((acc, lotto) => {
+      const rank = lotto.getRank(this.#winningLotto);
+      if (rank !== WINNING_RANK.NONE) {
+        acc[rank] = (acc[rank] || 0) + 1;
+      }
+      return acc;
+    }, initialResult);
   }
 
   #getTotalReward() {

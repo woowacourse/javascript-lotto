@@ -1,22 +1,24 @@
-import ERROR from "../constants/error.js";
-import { MIN_PURCHASE_AMOUNT } from "../constants/option.js";
+import ERROR from "../constants/error-messages.js";
+import { LOTTO_PRICE } from "../constants/lotto-constants.js";
+
+import AppError from "../utils/Error.js";
 
 const purchaseAmountValidator = {
   validateType(price) {
     if (Number.isNaN(Number(price))) {
-      throw new Error(ERROR.INVALID_PURCHASE_AMOUNT_TYPE);
+      throw new AppError(ERROR.INVALID_PURCHASE_AMOUNT_TYPE);
     }
   },
 
   validateRange(price) {
-    if (Number(price) < MIN_PURCHASE_AMOUNT) {
-      throw new Error(ERROR.INVALID_PURCHASE_AMOUNT_RANGE);
+    if (Number(price) < LOTTO_PRICE) {
+      throw new AppError(ERROR.INVALID_PURCHASE_AMOUNT_RANGE);
     }
   },
 
   validateDivided(price) {
-    if (price % MIN_PURCHASE_AMOUNT !== 0) {
-      throw new Error(ERROR.INVALID_PURCHASE_AMOUNT_DIVIDED);
+    if (price % LOTTO_PRICE !== 0) {
+      throw new AppError(ERROR.INVALID_PURCHASE_AMOUNT_DIVIDED);
     }
   },
 

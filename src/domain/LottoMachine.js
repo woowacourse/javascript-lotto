@@ -1,5 +1,8 @@
-import { LOTTO_LENGTH, LOTTO_RANGE } from "../constants/option.js";
-import { LOTTO_PRICE } from "../constants/system.js";
+import {
+  LOTTO_NUMBER_LENGTH,
+  LOTTO_NUMBER_RANGE,
+  LOTTO_PRICE,
+} from "../constants/lotto-constants.js";
 import createUniqueNumbersInRange from "../utils/createUniqueNumbersInRange.js";
 
 import Lotto from "./Lotto.js";
@@ -19,9 +22,9 @@ class LottoMachine {
       () =>
         new Lotto(
           createUniqueNumbersInRange({
-            start: LOTTO_RANGE.MIN,
-            end: LOTTO_RANGE.MAX,
-            count: LOTTO_LENGTH,
+            start: LOTTO_NUMBER_RANGE.MIN,
+            end: LOTTO_NUMBER_RANGE.MAX,
+            count: LOTTO_NUMBER_LENGTH,
           }),
         ),
     );

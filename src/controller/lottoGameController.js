@@ -1,5 +1,6 @@
-import { MIN_PURCHASE_AMOUNT, OPTION, SYMBOL } from "../constants/option.js";
-import { RETRY_INPUT } from "../constants/system.js";
+import { LOTTO_PRICE } from "../constants/lotto-constants.js";
+import { RETRY_INPUT } from "../constants/view-messages.js";
+import { SYMBOL } from "../constants/symbol.js";
 import Lotto from "../domain/Lotto.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
@@ -32,7 +33,7 @@ class LottoGameController {
     try {
       return await asyncFn();
     } catch (error) {
-      OutputView.printError(error.message);
+      console.log(error.message);
       return this.#executeOrRetryAsync(asyncFn);
     }
   }
@@ -106,7 +107,7 @@ class LottoGameController {
   #getGameResult(lottoList, winningLotto) {
     const result = new LottoResult(lottoList, winningLotto);
     const rank = result.getTotalResult();
-    const profit = result.getProfit(lottoList.length * MIN_PURCHASE_AMOUNT);
+    const profit = result.getProfit(lottoList.length * LOTTO_PRICE);
 
     this.#outputView.printResult(rank);
     this.#outputView.printProfit(profit);

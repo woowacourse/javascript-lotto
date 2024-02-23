@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+import { WINNING_RANK } from "../../src/constants/lotto-constants.js";
 import Lotto from "../../src/domain/Lotto.js";
 import LottoResult from "../../src/domain/LottoResult.js";
 import WinningLotto from "../../src/domain/WinningLotto.js";
@@ -19,11 +20,11 @@ describe("LottoResult 객체 테스트", () => {
     ).getTotalResult();
 
     expect(lottoResult).toEqual({
-      1: 1,
-      2: 0,
-      3: 0,
-      4: 1,
-      5: 0,
+      [WINNING_RANK.FIRST]: 1,
+      [WINNING_RANK.SECOND]: 0,
+      [WINNING_RANK.THIRD]: 0,
+      [WINNING_RANK.FOURTH]: 1,
+      [WINNING_RANK.FIFTH]: 0,
     });
   });
 

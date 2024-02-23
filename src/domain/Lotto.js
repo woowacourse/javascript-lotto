@@ -1,4 +1,4 @@
-import { WINNING_RANK } from "../constants/option.js";
+import { WINNING_RANK } from "../constants/lotto-constants.js";
 import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 
 class Lotto {

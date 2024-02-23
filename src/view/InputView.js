@@ -1,4 +1,4 @@
-import { INPUT_MESSAGE } from "../constants/system.js";
+import { INPUT_MESSAGE } from "../constants/view-messages.js";
 import readLineAsync from "../utils/ReadLine.js";
 
 const InputView = {

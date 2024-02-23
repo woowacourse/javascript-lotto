@@ -22,4 +22,5 @@ class WinningLotto {
     return this.#bonusNumber;
   }
 }
+
 export default WinningLotto;
