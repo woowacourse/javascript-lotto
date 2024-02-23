@@ -11,15 +11,20 @@ const StatisticsGenerator = {
     );
   },
 
-  calculateReturnOnInvestment(prizes) {
-    const totalReward = prizes.reduce(
+  calculateTotalReward(prizes) {
+    return prizes.reduce(
       (acc, cur) =>
         (acc += cur !== RANK.LAST_PLACE ? PRIZE.find(([rank]) => rank === cur)[1].REWARD : BLANK),
       0,
     );
+  },
 
-    const { PERCENT, ROUND } = FORMATTING;
-    return Math.round((totalReward / (prizes.length * MONEY.UNIT)) * PERCENT * ROUND) / ROUND;
+  calculateReturnOnInvestment(prizes) {
+    const totalReward = this.calculateTotalReward(prizes);
+    const investment = prizes.length * MONEY.UNIT;
+    const returnOnInvestment = (totalReward / investment) * FORMATTING.PERCENT;
+
+    return Math.round(returnOnInvestment * FORMATTING.ROUND) / FORMATTING.ROUND;
   },
 };
 
