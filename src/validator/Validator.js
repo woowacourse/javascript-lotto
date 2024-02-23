@@ -15,15 +15,15 @@ const Validator = {
     const winningNumberList = winningNumbers.split(',').map((number) => number.trim());
     this.checkWinningNumbersDuplicated(winningNumberList);
     winningNumberList.forEach((number) => {
-      this.checkWinningNumbersNotNumber(number);
-      this.checkWinningNumbersRange(number);
+      this.checkNotNumber(number);
+      this.checkLottoNumberRange(number);
     });
   },
 
   validateBonusNumber(bonusNumber, winningNumbers) {
     this.checkEmpty(bonusNumber);
-    this.checkBonusNumberNotNumber(bonusNumber);
-    this.checkBonusNumberRange(bonusNumber);
+    this.checkNotNumber(bonusNumber);
+    this.checkLottoNumberRange(bonusNumber);
     this.checkBonusNumberDuplicated(bonusNumber, winningNumbers);
   },
 
@@ -53,37 +53,19 @@ const Validator = {
   checkWinningNumbersLength(input) {
     const numbers = input.split(',');
     if (numbers.length !== SETTING.LOTTO_LENGTH) {
-      throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_LENGTH);
+      throw new Error(ERROR_MESSAGE.WINNING_LOTTO_NUMBERS_LENGTH);
     }
   },
 
   checkWinningNumbersDuplicated(input) {
     if (new Set(input).size !== SETTING.LOTTO_LENGTH) {
-      throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_DUPLICATED);
+      throw new Error(ERROR_MESSAGE.WINNING_LOTTO_NUMBERS_DUPLICATED);
     }
   },
 
-  checkWinningNumbersNotNumber(input) {
-    if (!Number.isInteger(Number(input))) {
-      throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_FORMAT);
-    }
-  },
-
-  checkWinningNumbersRange(input) {
+  checkLottoNumberRange(input) {
     if (Number(input) < SETTING.MIN_LOTTO_NUMBER || Number(input) > SETTING.MAX_LOTTO_NUMBER) {
       throw new Error(ERROR_MESSAGE.LOTTO_NUMBER_RANGE);
-    }
-  },
-
-  checkBonusNumberNotNumber(input) {
-    if (!Number.isInteger(Number(input))) {
-      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_FORMAT);
-    }
-  },
-
-  checkBonusNumberRange(input) {
-    if (Number(input) < SETTING.MIN_LOTTO_NUMBER || Number(input) > SETTING.MAX_LOTTO_NUMBER) {
-      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_RANGE);
     }
   },
 
