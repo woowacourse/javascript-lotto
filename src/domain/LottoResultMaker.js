@@ -1,5 +1,5 @@
 const LottoResultMaker = (issuedLottoArray, winningCombination) => ({
-  checkLottoResult: () =>
+  calculateLottoResult: () =>
     issuedLottoArray.map((issuedLotto) => {
       const { winningNumbers, winningBonus } = winningCombination;
       return issuedLotto.reduce(
