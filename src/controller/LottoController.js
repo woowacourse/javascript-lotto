@@ -14,65 +14,56 @@ class LottoController {
   }
 
   async inputPurchaseAmount() {
-    let amount;
     while (true) {
       try {
         const purchaseAmount = await InputView.inputPurchaseAmount();
-        amount = parseInt(purchaseAmount.trim());
+        const amount = parseInt(purchaseAmount.trim());
         PurchaseAmountValidator.validate(amount);
-        break;
+        return amount;
       } catch (error) {
         console.error(error.message);
       }
     }
-    return amount;
   }
 
   async inputWinningNumbers() {
-    let numbers;
     while (true) {
       try {
         const winningNumbers = await InputView.inputWinningNumbers();
-        numbers = winningNumbers
+        const numbers = winningNumbers
           .split(OPTIONS.INPUT.winningNumbersDelimiter)
           .map((number) => Number(number.trim()));
         LottoNumbersValidator.validate(numbers);
-        break;
+        return numbers;
       } catch (error) {
         console.error(error.message);
       }
     }
-
-    return numbers;
   }
 
   async inputBonusNumber(winningNumbers) {
-    let bonusNumber;
     while (true) {
       try {
         const input = await InputView.inputBonusNumber();
-        bonusNumber = Number(input.trim());
+        const bonusNumber = Number(input.trim());
         BonusNumberValidator.validate(bonusNumber, winningNumbers);
-        break;
+        return bonusNumber;
       } catch (error) {
         console.error(error.message);
       }
     }
-    return bonusNumber;
   }
 
   async inputRestartResponse() {
-    let restartResponse;
     while (true) {
       try {
-        restartResponse = await InputView.inputRestartResponse();
+        const restartResponse = await InputView.inputRestartResponse();
         RestartValidator.validateIsIncluded(restartResponse);
-        break;
+        return restartResponse.toLowerCase() === 'y';
       } catch (error) {
         console.error(error.message);
       }
     }
-    return restartResponse.toLowerCase() === 'y';
   }
 
   displayIssueQuantity(issueQuantity) {
@@ -102,6 +93,37 @@ class LottoController {
 
   calculateProfitRate(winningResult) {
     return this.#lottoMachine.calculateProfitRate(winningResult);
+  }
+
+  async runGame() {
+    let restart;
+    do {
+      const lottos = await this.#purchaseLottos();
+
+      const winningNumbers = await this.inputWinningNumbers();
+      const bonusNumber = await this.inputBonusNumber(winningNumbers);
+
+      this.#showWinningResult(lottos, winningNumbers, bonusNumber);
+
+      restart = await this.inputRestartResponse();
+    } while (restart);
+  }
+
+  async #purchaseLottos() {
+    const purchaseAmount = await this.inputPurchaseAmount();
+    const issueQuantity = this.calculateIssueQuantity(purchaseAmount);
+    const lottos = this.issueLottos(issueQuantity);
+
+    this.displayIssueQuantity(issueQuantity);
+    this.displayLottoNumbersList(lottos);
+
+    return lottos;
+  }
+
+  #showWinningResult(lottos, winningNumbers, bonusNumber) {
+    const winningResult = this.determineLottoRanks(lottos, winningNumbers, bonusNumber);
+    const profitRate = this.calculateProfitRate(winningResult);
+    this.displayWinningResult(winningResult, profitRate);
   }
 }
 
