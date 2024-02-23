@@ -1,8 +1,8 @@
 export const INPUT_MESSAGE = Object.freeze({
-  budget: "구입 금액을 입력해 주세요.",
-  winningLottoNumbers: "당첨 번호를 입력해 주세요.",
-  winningLottoBonus: "보너스 당첨 번호를 입력해 주세요.",
-  retry: "다시 시작하시겠습니까? (y/n) ",
+  BUDGET: "구입 금액을 입력해 주세요.",
+  WINNING_LOTTO_NUMBERS: "당첨 번호를 입력해 주세요.",
+  WINNING_BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
+  RETRY: "다시 시작하시겠습니까? (y/n) ",
 });
 
 export const PRIZE = {
@@ -14,8 +14,7 @@ export const PRIZE = {
 };
 
 export const OUTPUT_MESSAGE = Object.freeze({
-  statistics: "\n당첨 통계",
-  symbolDash: "--------------------",
+  RESULT_TITLE: "\n당첨 통계\n--------------------",
 
   formatLottoCount(lottoCount) {
     return `${lottoCount}개를 구매했습니다.`;
@@ -27,7 +26,6 @@ export const OUTPUT_MESSAGE = Object.freeze({
     return matchingResult.map((result, i) => result[i].normalNumbers);
   },
 
-  // 이미 여기서 콘솔 찍고 있네 .. 수정필요
   formatResults(matchedLotto) {
     return Object.keys(matchedLotto)
       .sort((a, b) => b - a)

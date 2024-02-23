@@ -6,14 +6,14 @@ import ERROR_MESSAGE from "../constants/errorMessage.js";
 const winningLottoNumbersValidation = {
   winningNumbers: {
     sixNumbers: {
-      errorMessage: ERROR_MESSAGE.sixNumbers,
+      errorMessage: ERROR_MESSAGE.SIX_LENGTH,
       isValid(input) {
         return input.length === 6;
       },
     },
 
     notDuplicated: {
-      errorMessage: ERROR_MESSAGE.notDuplicated,
+      errorMessage: ERROR_MESSAGE.UNIQUE_NUMBER,
       isValid(input) {
         const uniqueNumbers = new Set(input);
         return uniqueNumbers.size === input.length;

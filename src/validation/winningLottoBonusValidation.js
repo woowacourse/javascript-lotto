@@ -6,7 +6,7 @@ import ERROR_MESSAGE from "../constants/errorMessage.js";
 const winningLottoBonusValidation = {
   winningBonus: {
     notInWinningNumbers: {
-      errorMessage: ERROR_MESSAGE.notInWinningNumbers,
+      errorMessage: ERROR_MESSAGE.UNIQUE_BONUS_NUMBER,
       isValid(winningCombination) {
         const winningNumbers = winningCombination["normalNumbers"];
         const winningBonus = winningCombination["bonusNumber"];
