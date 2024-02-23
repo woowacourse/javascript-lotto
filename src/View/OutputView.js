@@ -62,8 +62,8 @@ const OutputView = Object.freeze({
     this.printMessage(`${ERROR_MESSAGE_PREFIX} ${message}`);
   },
 
-  printMessage(message) {
-    console.log(message);
+  printMessage(...messages) {
+    console.log(...messages);
   },
 });
 
