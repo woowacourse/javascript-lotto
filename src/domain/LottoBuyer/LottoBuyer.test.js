@@ -5,11 +5,11 @@ describe('로또 구입 기능 테스트', () => {
   const TEST_CASES = [
     {
       buyLottoPrice: 3000,
-      expectedLottoCount: 3,
+      expectedLottoCount: 3000 / LottoBuyer.LOTTO_PRICE_PER_UNIT,
     },
     {
       buyLottoPrice: 5000,
-      expectedLottoCount: 5,
+      expectedLottoCount: 5000 / LottoBuyer.LOTTO_PRICE_PER_UNIT,
     },
   ];
 
