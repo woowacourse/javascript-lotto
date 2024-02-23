@@ -4,10 +4,10 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ['airbnb-base', 'prettier', 'plugin:jsdoc/recommended', 'plugin:jest/recommended'],
+  extends: ['airbnb-base', 'plugin:jsdoc/recommended', 'plugin:jest/recommended', 'prettier'],
   overrides: [
     {
-      files: ['*.test.js', 'ApplicationTest.js', 'console.js', 'object.js'],
+      files: ['*.test.js', 'console.js', 'object.js'],
       rules: {
         'max-lines-per-function': ['off'],
       },
