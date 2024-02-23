@@ -4,7 +4,6 @@ import getValidInput from "../utils/getValidInput.js";
 import randomLottoArray from "../domain/randomLottoMaker.js";
 import lottoStatistics from "../domain/lottoStatistics.js";
 import Lotto from "../domain/Lotto.js";
-import WinningLotto from "../domain/WinningLotto.js";
 import LottoResultMaker from "../domain/LottoResultMaker.js";
 import LottoRankMaker from "../domain/lottoRankMaker.js";
 import ProfitCalculator from "../domain/ProfitCalculator.js";
@@ -33,6 +32,11 @@ async function handleWinningBonus() {
   return winningBonus;
 }
 
+async function retryGame() {
+  const retryInput = await getValidInput(InputView.readRetryGame);
+  return retryInput === "y";
+}
+
 const LottoController = {
   async start() {
     // budget 저장해줘
@@ -54,17 +58,21 @@ const LottoController = {
       winningNumbers: winningNumbers,
       winningBonus: winningBonus,
     };
-    // const winningLotto = new WinningLotto(winningCombination);
 
     // 각 로또별 당첨 번호, 보너스 번호와 몇 개 일치한지 확인해줘
     const lottoResult = LottoResultMaker.calculateLottoResult(issuedLottoArray, winningCombination);
 
-    //일치하는 개수에 따라 등수별 로또가 몇 장 있는지 계산해줘
+    //일치하는 개수에 따라 등수별 로또가 몇 장 있는지 계산하고 출력해줘
     const lottoRankResult = LottoRankMaker.calculateLottoRank(lottoResult);
+    OutputView.printMatchedLottos(lottoRankResult);
 
     // 수익률 계산하고 출력해줘
     const profit = ProfitCalculator.calculateProfit(lottoRankResult, budget);
     OutputView.printResultStatistics(profit);
+
+    // 재시작!
+    if (await retryGame()) return LottoController.start();
+    return;
   },
 };
 
