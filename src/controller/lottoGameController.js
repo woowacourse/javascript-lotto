@@ -4,6 +4,7 @@ import Lotto from "../domain/Lotto.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import WinningLotto from "../domain/WinningLotto.js";
+import executeOrRetryAsync from "../utils/RetryFunc.js";
 import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
@@ -28,17 +29,8 @@ class LottoGameController {
     if (restart === RETRY_INPUT) this.play();
   }
 
-  async #executeOrRetryAsync(asyncFn) {
-    try {
-      return await asyncFn();
-    } catch (error) {
-      OutputView.printError(error.message);
-      return this.#executeOrRetryAsync(asyncFn);
-    }
-  }
-
   async #setLotto() {
-    const purchaseAmount = await this.#executeOrRetryAsync(
+    const purchaseAmount = await executeOrRetryAsync(
       this.#getPurchaseAmount.bind(this),
     );
 
@@ -72,10 +64,10 @@ class LottoGameController {
   }
 
   async #setWinningLotto() {
-    const winningLotto = await this.#executeOrRetryAsync(
+    const winningLotto = await executeOrRetryAsync(
       this.#getWinningLotto.bind(this),
     );
-    const WinningLottoWithBonusNumber = await this.#executeOrRetryAsync(() =>
+    const WinningLottoWithBonusNumber = await executeOrRetryAsync(() =>
       this.#getBonusNumber(winningLotto),
     );
 
