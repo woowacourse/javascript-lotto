@@ -24,7 +24,7 @@ const ERROR_PREFIX = '[ERROR]';
 
 export const ERROR_MESSAGES = Object.freeze({
   isUndefinedInputValue: `${ERROR_PREFIX} 입력값이 없습니다.`,
-  inValidWInningNumbersForm: `${ERROR_PREFIX} 당첨 번호 숫자를 쉼표("${NUMBER_DELIMITER}")로 구분하여 입력해 주세요.\n`,
+  inValidWInningNumbersForm: `${ERROR_PREFIX} 당첨 번호는 쉼표("${NUMBER_DELIMITER}")로 구분하여 입력해 주세요.\n`,
   alreadyInLottoNumber: `${ERROR_PREFIX} 보너스 번호는 당첨 번호에 없는 번호여야 합니다.\n`,
   notInteger: `${ERROR_PREFIX} 정수가 아닙니다.\n`,
   inDivisibleByPrice: `${ERROR_PREFIX} 구매 금액이 ${LOTTO_RULE.price.toLocaleString('ko-KR')}${OUTPUT_MESSAGES.moneyUnit} 단위가 아닙니다.\n`,
