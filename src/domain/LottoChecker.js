@@ -16,8 +16,8 @@ class LottoChecker {
     return lotto.getNumbers().includes(bonusNumber);
   }
 
-  getResult(winLotto = {}, bonusNumber = 0) {
-    const winningNumber = this.#lottos.reduce(
+  getResult(winLotto = {}, lottos, bonusNumber = 0) {
+    const winningNumber = lottos.reduce(
       (acc, lotto) => {
         const matchCount = this.matchLottoNumbers(lotto, winLotto);
         if (matchCount >= WINNER.FIFTH.MATCH_COUNT) {
@@ -31,8 +31,8 @@ class LottoChecker {
     return winningNumber.reverse();
   }
 
-  getAllLottosNumbers() {
-    return [...this.#lottos.map((lotto) => lotto.getNumbers())];
+  getAllLottosNumbers(lottos) {
+    return [lottos.map((lotto) => lotto.getNumbers())];
   }
 }
 
