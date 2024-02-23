@@ -1,5 +1,5 @@
 import CustomError from "../error/CustomError.js";
-import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
+import ERROR_MESSAGE from "../error/errorMessage.js";
 
 function generateRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -18,4 +18,4 @@ function generateRandomNumbers(min, max, count) {
   return [...uniqueNumbers];
 }
 
-export { generateRandomNumbers };
+export default generateRandomNumbers;
