@@ -1,4 +1,5 @@
 import readline from 'readline';
+
 import { deepFreeze } from './object/object.js';
 
 /**
@@ -33,11 +34,20 @@ const Console = deepFreeze({
   },
 
   /**
-   * @param {string} message - 전달 받은 문자열
+   * @param {unknown[]} args - 인자로 받은 값들
    * @returns {void}
    */
-  print(message) {
-    console.log(message);
+  print(...args) {
+    if (args.length === 0) return;
+
+    const [first, ...rest] = args;
+
+    if (rest.length === 0) {
+      console.log(first);
+      return;
+    }
+
+    console.log(...args);
   },
 });
 
