@@ -24,7 +24,7 @@ export default class WinningLotto {
   }
 
   get getLottoNumbers() {
-    return this.#lotto.getNumbers;
+    return [...this.#lotto.getNumbers];
   }
 
   get getBonusNumber() {

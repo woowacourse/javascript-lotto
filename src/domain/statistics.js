@@ -53,7 +53,7 @@ export default class Statistics {
   }
 
   get getResult() {
-    return this.#result;
+    return { ...this.#result };
   }
 
   get getProfit() {

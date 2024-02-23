@@ -9,6 +9,6 @@ export default class Lotto {
   }
 
   get getNumbers() {
-    return this.#numbers;
+    return [...this.#numbers];
   }
 }
