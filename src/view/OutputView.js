@@ -1,4 +1,5 @@
-import { GAME_MESSAGE, LOTTO_WINNING_RESULTS } from '../constant/gameMessage.js';
+import { GAME_MESSAGE } from '../constant/gameMessage.js';
+import { RANKING } from '../constant/setting.js';
 import handleIO from '../util/handleIO.js';
 
 const OutputView = {
@@ -10,9 +11,9 @@ const OutputView = {
   },
 
   printWinningResults(winningResults) {
-    handleIO.print(LOTTO_WINNING_RESULTS.LOTTO_WINNING_RESULT_TITLE);
-    Object.entries(winningResults).forEach(([rank, winningCount]) => {
-      handleIO.print(LOTTO_WINNING_RESULTS.WINNING_RESULT(rank, winningCount));
+    handleIO.print(GAME_MESSAGE.LOTTO_WINNING_RESULT_TITLE);
+    Object.entries(RANKING).forEach(([matchedKey, { TITILE, REWARD }]) => {
+      handleIO.print(`${TITILE} (${REWARD.toLocaleString()}원) - ${winningResults[matchedKey]}개`);
     });
   },
 
