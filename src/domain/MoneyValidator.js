@@ -1,8 +1,7 @@
-import Message from '../constants/Message';
+import ERROR from '../constants/ErrorMessage';
 import Condition from '../constants/Condition';
 
 const { MONEY } = Condition;
-const { ERROR } = Message;
 
 const MoneyValidator = {
   validateMoneyType(money) {

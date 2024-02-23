@@ -1,7 +1,6 @@
-import Message from '../constants/Message';
 import Condition from '../constants/Condition';
+import ERROR from '../constants/ErrorMessage';
 
-const { ERROR } = Message;
 const { LOTTO } = Condition;
 
 const LottoValidator = {

@@ -1,8 +1,7 @@
 import Condition from '../constants/Condition';
-import Message from '../constants/Message';
+import ERROR from '../constants/ErrorMessage';
 
 const { RESTART_OPTION } = Condition;
-const { ERROR } = Message;
 
 const RestartValidator = {
   validateOptionCharacter(restartOption) {
