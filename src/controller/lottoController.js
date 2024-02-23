@@ -14,7 +14,7 @@ import { calculateProfitRate } from "../utils/calculateProfitRate.js";
 import getLottoRank from "../domain/getLottoRank.js";
 
 const lottoController = {
-  async game() {
+  async lottoGamePlay() {
     while (true) {
       const money = await catchReturn(this.getMoney);
       const randomLottos = this.generateRandomLotto(money.getLottoCount());
