@@ -34,9 +34,10 @@ const InputView = {
 
   async readBonusNumber(winningNumbers) {
     try {
-      const result = await readLineAsync(MESSAGE.BONUS_NUMBER_INPUT);
-      bonusNumberValidator.validate(result, winningNumbers);
-      return parseInt(result, 10);
+      const bonusNumberInput = await readLineAsync(MESSAGE.BONUS_NUMBER_INPUT);
+      const bonusNumber = parseInt(bonusNumberInput, 10);
+      bonusNumberValidator.validate(bonusNumber, winningNumbers);
+      return bonusNumber;
     } catch (error) {
       OutputView.print(error.message);
       return this.readBonusNumber(winningNumbers);
