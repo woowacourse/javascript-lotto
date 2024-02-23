@@ -2,8 +2,6 @@ import Lotto from '../../domain/Lotto/Lotto.js';
 
 import { startValidation } from '../startValidation.js';
 
-import { TYPE_OF_NUMBER_REGEXP } from '../../constants/regexp.js';
-
 import { deepFreeze } from '../../utils/object/object.js';
 
 const { LOTTO_RULE } = Lotto;
@@ -21,7 +19,9 @@ const BonusNumberValidator = deepFreeze({
     isTypeOfNumber: {
       errorMessage: '보너스 번호의 형식이 유효하지 않습니다. 다시 입력해 주세요.',
       isValid({ inputValue }) {
-        return TYPE_OF_NUMBER_REGEXP.test(inputValue);
+        const bonusNumber = Number(inputValue);
+
+        return !Number.isNaN(bonusNumber) && Number.isInteger(bonusNumber) && bonusNumber >= 0;
       },
     },
 

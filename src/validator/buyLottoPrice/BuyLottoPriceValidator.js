@@ -2,8 +2,6 @@ import LottoBuyer from '../../domain/LottoBuyer/LottoBuyer.js';
 
 import { startValidation } from '../startValidation.js';
 
-import { TYPE_OF_NUMBER_REGEXP } from '../../constants/regexp.js';
-
 import { deepFreeze } from '../../utils/object/object.js';
 
 const { BUY_LOTTO_PRICE_RANGE, LOTTO_PRICE_PER_UNIT } = LottoBuyer;
@@ -21,7 +19,11 @@ const BuyLottoPriceValidator = deepFreeze({
     isTypeOfNumber: {
       errorMessage: '로또 구입 금액의 형식이 올바르지 않습니다. 다시 입력해주세요.',
       isValid(inputValue) {
-        return TYPE_OF_NUMBER_REGEXP.test(inputValue);
+        const buyLottoPrice = Number(inputValue);
+
+        return (
+          !Number.isNaN(buyLottoPrice) && Number.isInteger(buyLottoPrice) && buyLottoPrice >= 0
+        );
       },
     },
 
