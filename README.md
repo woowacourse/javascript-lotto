@@ -16,7 +16,11 @@ npm run test
 
 ### 실행 화면
 
-<img src="" alt="실행화면" width="450">
+<img src="./lotto-step1.png" alt="실행화면" width="450">
+
+### 테스트 실행 화면
+
+<img src="./lotto-step1-test.png" alt="테스트 실행화면" width="300">
 
 ### 도메인 로직
 
@@ -24,11 +28,11 @@ npm run test
 
 ```
 📦src
- ┣ 📂constant
- ┃ ┣ 📜Messages.js
- ┃ ┗ 📜Options.js
+ ┣ 📂constant : 상수 관리
+ ┃ ┣ 📜Messages.js : 입력, 입력힌트, 출력, 에러 메세지 관리
+ ┃ ┗ 📜Options.js : 로또 가격, 로또 범위 최소, 최대 숫자, 상금, 게임 결과 등 관리
  ┣ 📂controller
- ┃ ┗ 📜LottoController.js
+ ┃ ┗ 📜LottoController.js : 로또 게임 진행
  ┣ 📂domain
  ┃ ┣ 📜Lotto.js
  ┃ ┗ 📜LottoMachine.js
