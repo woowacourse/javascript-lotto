@@ -14,5 +14,7 @@ const ERROR_MESSAGE = {
   INVALID_LOTTO_NUMBER_TYPE: "로또 번호는 숫자로만 입력해주세요.",
   INVALID_BONUS_NUMBER_DUPLICATE:
     "보너스 번호는 당첨 로또 번호와 중복되면 안됩니다.",
+  INVALID_BONUS_NUMBER_RANGE: `"보너스 번호로 ${LOTTO_RANGE.MIN} ~ ${LOTTO_RANGE.MAX} 사이의 숫자를 입력해주세요.`,
+  INVALID_BONUS_NUMBER_TYPE: "보너스 번호는 숫자로만 입력해주세요.",
 };
 export default ERROR_MESSAGE;

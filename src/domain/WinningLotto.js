@@ -5,10 +5,7 @@ class WinningLotto {
   #bonusNumber;
 
   constructor(LottoNumbers, bonusNumber) {
-    bonusNumberValidator.validateDuplication(
-      LottoNumbers.getNumbers(),
-      bonusNumber,
-    );
+    bonusNumberValidator(LottoNumbers.getNumbers(), bonusNumber);
 
     this.#numbers = LottoNumbers.getNumbers();
     this.#bonusNumber = bonusNumber;

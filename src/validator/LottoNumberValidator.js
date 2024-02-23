@@ -1,7 +1,7 @@
 import ERROR from "../constants/error.js";
 import { LOTTO_LENGTH, LOTTO_RANGE } from "../constants/option.js";
 
-const lottoNumberValidator = {
+const validate = {
   validateNumbersLength(numbers) {
     if (numbers.length !== LOTTO_LENGTH) {
       throw new Error(ERROR.INVALID_LOTTO_NUMBER_LENGTH);
@@ -29,13 +29,11 @@ const lottoNumberValidator = {
       throw new Error(ERROR.INVALID_LOTTO_NUMBER_TYPE);
     }
   },
-
-  validate(numbers) {
-    this.validateNumbersLength(numbers);
-    this.validateDuplicate(numbers);
-    this.validateRange(numbers);
-    this.validateType(numbers);
-  },
 };
 
-export default lottoNumberValidator;
+export default function lottoNumberValidator(numbers) {
+  validate.validateNumbersLength(numbers);
+  validate.validateDuplicate(numbers);
+  validate.validateRange(numbers);
+  validate.validateType(numbers);
+}

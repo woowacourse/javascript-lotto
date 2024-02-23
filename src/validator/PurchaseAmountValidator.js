@@ -1,7 +1,7 @@
 import ERROR from "../constants/error.js";
 import { MIN_PURCHASE_AMOUNT } from "../constants/option.js";
 
-const purchaseAmountValidator = {
+const validate = {
   validateType(price) {
     if (Number.isNaN(Number(price))) {
       throw new Error(ERROR.INVALID_PURCHASE_AMOUNT_TYPE);
@@ -19,12 +19,10 @@ const purchaseAmountValidator = {
       throw new Error(ERROR.INVALID_PURCHASE_AMOUNT_DIVIDED);
     }
   },
-
-  validate(price) {
-    this.validateType(price);
-    this.validateRange(price);
-    this.validateDivided(price);
-  },
 };
 
-export default purchaseAmountValidator;
+export default function purchaseAmountValidator(price) {
+  validate.validateType(price);
+  validate.validateRange(price);
+  validate.validateDivided(price);
+}
