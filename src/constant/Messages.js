@@ -31,7 +31,7 @@ export const OUTPUT_MESSAGES = {
   issueQuantity: (count) => `\n${count}개를 구매했습니다.`,
   lottoNumbers: (numbers) => `[${numbers.join(', ')}]`,
   statisticsTitle: '\n당첨 통계',
-  dividingLine: '\n--------------------',
+  dividingLine: '--------------------',
   statisticsResult: (matchingCount, bonusMatch, prizeAmount, count) =>
     `${matchingCount}개 일치${bonusMatch} (${prizeAmount}원) - ${count}개`,
   bonusMatch: ', 보너스 볼 일치',

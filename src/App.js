@@ -31,7 +31,7 @@ class App {
   #showWinningResult(lottos, winningNumbers, bonusNumber) {
     const winningResult = this.#controller.determineLottoRanks(lottos, winningNumbers, bonusNumber);
     const profitRate = this.#controller.calculateProfitRate(winningResult);
-    this.#controller.displayWinningResult(winningNumbers, profitRate);
+    this.#controller.displayWinningResult(winningResult, profitRate);
   }
 }
 

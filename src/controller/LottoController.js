@@ -19,7 +19,7 @@ class LottoController {
     const winningNumbers = await InputView.inputWinningNumbers();
     return winningNumbers
       .split(OPTIONS.INPUT.winningNumbersDelimiter)
-      .map((number) => number.trim());
+      .map((number) => Number(number.trim()));
   }
 
   async inputBonusNumber() {
