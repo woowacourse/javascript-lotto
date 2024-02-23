@@ -38,12 +38,9 @@ describe('로또 당첨 기능테스트', () => {
     [2, [5, 6, 7, 8, 9, 10]],
     [1, [6, 7, 8, 9, 10, 11]],
     [0, [7, 8, 9, 10, 11, 12]],
-  ])(
-    '사용자가 구매한 로또 번호와 당첨 번호를 비교하여 %s개가 일치하면 낙첨이다.',
-    (match, numbers) => {
-      const lottoTicket = new Lotto(numbers);
+  ])('사용자가 구매한 로또 번호와 당첨 번호를 비교하여 %s개가 일치하면 낙첨이다.', (_, numbers) => {
+    const lottoTicket = new Lotto(numbers);
 
-      expect(lottoTicket.calculatePrize(winningNumbers, bonusNumber)).toBe('0');
-    },
-  );
+    expect(lottoTicket.calculatePrize(winningNumbers, bonusNumber)).toBe('0');
+  });
 });
