@@ -1,4 +1,5 @@
 import Lotto from "./Lotto.js";
+import LottoNumber from "./LottoNumber.js";
 
 class LottoSeller {
   static LOTTO_PRICE = 1000;
@@ -22,7 +23,7 @@ class LottoSeller {
   }
 
   static #pickRandomNumbers() {
-    const wholeNumbers = new Array(Lotto.MAX_LOTTO_NUMBER)
+    const wholeNumbers = new Array(LottoNumber.MAX_LOTTO_NUMBER)
       .fill()
       .map((_, index) => index + 1);
 

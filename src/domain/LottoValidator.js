@@ -1,6 +1,7 @@
 import Lotto from "./Lotto.js";
 import LottoSeller from "./LottoSeller.js";
 import MESSAGES from "../constants/messages.js";
+import LottoNumber from "./LottoNumber.js";
 
 class LottoValidator {
   static validateBuyAmount(number) {
@@ -27,7 +28,10 @@ class LottoValidator {
   }
 
   static validateNumberInLottoRange(number) {
-    if (number < Lotto.MIN_LOTTO_NUMBER || number > Lotto.MAX_LOTTO_NUMBER) {
+    if (
+      number < LottoNumber.MIN_LOTTO_NUMBER ||
+      number > LottoNumber.MAX_LOTTO_NUMBER
+    ) {
       throw new Error(MESSAGES.ERROR.notInLottoNumberRange);
     }
   }

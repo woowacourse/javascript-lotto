@@ -1,4 +1,5 @@
 import Lotto from "./Lotto.js";
+import LottoNumber from "./LottoNumber.js";
 import LottoValidator from "./LottoValidator.js";
 
 class WinningLotto {
@@ -46,7 +47,9 @@ class WinningLotto {
   }
 
   #setIsWinningNumber(numbers) {
-    this.#isWinningNumber = new Array(Lotto.MAX_LOTTO_NUMBER + 1).fill(false);
+    this.#isWinningNumber = new Array(LottoNumber.MAX_LOTTO_NUMBER + 1).fill(
+      false
+    );
 
     numbers.forEach((number) => (this.#isWinningNumber[number] = true));
   }
