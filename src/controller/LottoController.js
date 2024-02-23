@@ -1,5 +1,7 @@
 import OPTIONS from '../constant/Options.js';
 import LottoMachine from '../domain/LottoMachine.js';
+import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
+import PurchaseAmountValidator from '../util/validation/PurchaseAmountValidator.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 
@@ -11,25 +13,27 @@ class LottoController {
   }
 
   async inputPurchaseAmount() {
-    const purchaseAmount = await InputView.inputPurchaseAmount().trim();
-    return purchaseAmount;
+    const purchaseAmount = await InputView.inputPurchaseAmount();
+    PurchaseAmountValidator.validate(purchaseAmount);
+    return Number(purchaseAmount.trim());
   }
 
   async inputWinningNumbers() {
-    const winningNumbers = await InputView.inputWinningNumbers()
+    const winningNumbers = await InputView.inputWinningNumbers();
+    LottoNumbersValidator.validate(winningNumbers);
+    return winningNumbers
       .split(OPTIONS.INPUT.winningNumbersDelimiter)
-      .map((number) => number.trim());
-    return winningNumbers;
+      .map((number) => Number(number.trim()));
   }
 
   async inputBonusNumber() {
-    const bonusNumber = await InputView.inputBonusNumber().trim();
-    return bonusNumber;
+    const bonusNumber = await InputView.inputBonusNumber();
+    return Number(bonusNumber.trim());
   }
 
   async inputRestartResponse() {
-    const restartResponse = await InputView.inputRestartResponse().trim();
-    return restartResponse;
+    const restartResponse = await InputView.inputRestartResponse();
+    return restartResponse.trim();
   }
 
   displayIssueQuantity(issueQuantity) {
@@ -55,6 +59,10 @@ class LottoController {
 
   calculateProfitRate(winningResult) {
     return this.#lottoMachine.calculateProfitRate(winningResult);
+  }
+
+  issueLottos(issueQuantity) {
+    return this.#lottoMachine.issueLottos(issueQuantity);
   }
 }
 
