@@ -48,7 +48,7 @@ const LottoGame = {
 
   async makeWinningLotto() {
     const winningNumbers = await this.makeWinningNumbers();
-    const bonusNumber = await this.makeBonusNumber();
+    const bonusNumber = await this.makeBonusNumber(winningNumbers);
 
     return { winningNumbers, bonusNumber };
   },
