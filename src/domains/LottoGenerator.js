@@ -20,15 +20,15 @@ class LottoGenerator {
       const randomNumber = this.#makeRandomNumber();
       lottoSet.add(randomNumber);
     }
-    return Array.from(lottoSet);
+
+    return Array.from(lottoSet).sort((a, b) => a - b);
   }
 
   #generateRandomLottos(lottoTickets) {
     const generatedLottos = [];
     for (let ticket = 0; ticket < lottoTickets; ticket++) {
-      generatedLottos.push(this.generateRandomLotto().sort());
+      generatedLottos.push(this.generateRandomLotto());
     }
-
     return generatedLottos;
   }
 
