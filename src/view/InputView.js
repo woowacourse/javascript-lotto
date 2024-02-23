@@ -17,34 +17,18 @@ const InputView = {
     }
   },
 
-  async readLotto() {
-    try {
-      const numbers = (await ReadLine.readLineAsync(INPUT_MESSAGES.winningNumber))
-        .split(SYMBOL.delimiter)
-        .map((number) => Number(number));
+  async readWinningNumbers() {
+    const numbers = (await ReadLine.readLineAsync(INPUT_MESSAGES.winningNumber))
+      .split(SYMBOL.delimiter)
+      .map((number) => Number(number));
 
-      return new Lotto(numbers);
-    } catch (error) {
-      console.log(error.message);
-      return this.readLotto();
-    }
+    return numbers;
   },
 
   async readBonusNumber() {
     const bonusNumber = Number(await ReadLine.readLineAsync(INPUT_MESSAGES.bonusNumber));
 
     return bonusNumber;
-  },
-
-  async readWinningLotto() {
-    try {
-      const lotto = await this.readLotto();
-      const bonusNumber = await this.readBonusNumber();
-      return new WinningLotto(lotto, bonusNumber);
-    } catch (error) {
-      console.log(error.message);
-      return this.readWinningLotto();
-    }
   },
 
   async readRestart() {
