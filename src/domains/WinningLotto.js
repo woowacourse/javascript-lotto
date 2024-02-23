@@ -1,42 +1,45 @@
-import { NUMBER_DELIMITER } from '../constants';
-import Validator from './Validator';
+import { ERROR_MESSAGES, NUMBER_DELIMITER } from '../constants';
+import { checkDefinedInputValue, isValidWinningNumbersForm } from '../utils';
+import Lotto from './Lotto';
 
+// TODO -  보너스 번호와 winningLotto를 가지는 모듈 필요
 class WinningLotto {
   /**
    * @property {number[]}
    */
   #lottoNumbers = [];
 
-  #bonusNumber = 0;
+  #bonus;
 
-  set lottoNumbers(lottoNumbersInput) {
-    Validator.checkWinningLottoNumbers(lottoNumbersInput);
-
-    this.#lottoNumbers = lottoNumbersInput
-      .split(NUMBER_DELIMITER)
-      .map((lottoNumberInput) => Number(lottoNumberInput));
+  /**
+   * @param {string} lottoNumbersInput
+   */
+  constructor(lottoNumbersInput) {
+    this.#validateWinningLottoNumbers(lottoNumbersInput);
   }
 
-  set bonusNumber(bonusNumberInput) {
-    Validator.checkBonusNumber(this.#lottoNumbers, bonusNumberInput);
-    this.#bonusNumber = Number(bonusNumberInput);
-  }
+  // set lottoNumbers(lottoNumbersInput) {
+  //   Validator.checkWinningLottoNumbers(lottoNumbersInput);
+
+  //   this.#lottoNumbers = lottoNumbersInput
+  //     .split(NUMBER_DELIMITER)
+  //     .map((lottoNumberInput) => Number(lottoNumberInput));
+  // }
+
+  // set bonus(bonusNumberInput) {
+  //   Validator.checkBonusNumber(this.#lottoNumbers, bonusNumberInput);
+  //   this.#bonus = Number(bonusNumberInput);
+  // }
 
   /**
    *  @param {number[]} lottoNumbers
+   * @param {Bonus} bonus
    */
-  compareLotto(lottoNumbers) {
+  compareLotto(lottoNumbers, bonus) {
     return {
-      isBonus: this.#hasBonusNumber(lottoNumbers),
+      isBonus: bonus.isMatchingNumber(lottoNumbers),
       matchedCount: this.#countMatchedNumber(lottoNumbers),
     };
-  }
-
-  /**
-   * @param {number[]} lottoNumbers
-   */
-  #hasBonusNumber(lottoNumbers) {
-    return lottoNumbers.includes(this.#bonusNumber);
   }
 
   /**
@@ -45,6 +48,19 @@ class WinningLotto {
   #countMatchedNumber(lottoNumbers) {
     return lottoNumbers.filter((number) => this.#lottoNumbers.includes(number))
       .length;
+  }
+
+  #validateWinningLottoNumbers(lottoNumbersInput) {
+    checkDefinedInputValue(lottoNumbersInput);
+
+    if (!isValidWinningNumbersForm(lottoNumbersInput))
+      throw new Error(ERROR_MESSAGES.inValidWInningNumbersForm);
+
+    const numbers = lottoNumbersInput
+      .split(NUMBER_DELIMITER)
+      .map((value) => Number(value));
+
+    this.#lottoNumbers = new Lotto(numbers).numbers;
   }
 }
 

@@ -1,8 +1,17 @@
-import { LOTTO_RULE } from '../constants';
-import {RandomNumber} from '../utils';
-import Validator from './Validator';
+import { ERROR_MESSAGES, LOTTO_RULE } from '../constants';
+import {
+  RandomNumber,
+  checkDefinedInputValue,
+  isDivisibleByPrice,
+  isInteger,
+  isValidNumbersOfTickets,
+} from '../utils';
 
 class LottoMachine {
+  /**
+   * 발행되는 로또 번호의 이중배열
+   * @property {number[][]|[]}
+   */
   #lottoTickets = [];
 
   #paymentAmount = 0;
@@ -11,9 +20,7 @@ class LottoMachine {
    * @param {string} paymentAmount
    */
   constructor(paymentAmountInput) {
-    Validator.checkPaymentAmount(paymentAmountInput);
-
-    this.#paymentAmount = Number(paymentAmountInput);
+    this.#validatePaymentAmount(paymentAmountInput);
     this.#issueLottoTickets();
   }
 
@@ -23,6 +30,22 @@ class LottoMachine {
 
   get paymentAmount() {
     return this.#paymentAmount;
+  }
+
+  #validatePaymentAmount(paymentAmountInput) {
+    checkDefinedInputValue(paymentAmountInput);
+
+    const number = Number(paymentAmountInput);
+
+    if (!isInteger(number)) throw new Error(ERROR_MESSAGES.notInteger);
+
+    if (!isValidNumbersOfTickets(number))
+      throw new Error(ERROR_MESSAGES.inValidNumbersOfTickets);
+
+    if (!isDivisibleByPrice(number))
+      throw new Error(ERROR_MESSAGES.inDivisibleByPrice);
+
+    this.#paymentAmount = number;
   }
 
   #issueLottoTickets() {
