@@ -10,7 +10,7 @@ const OutputView = {
   },
 
   printLotto(LottoNumbers) {
-    this.print(`[${LottoNumbers.map((number) => number.toString()).join(', ')}]`);
+    this.print(`[${LottoNumbers.join(', ')}]`);
   },
 
   printWinningCharacteristic(winningResult) {
