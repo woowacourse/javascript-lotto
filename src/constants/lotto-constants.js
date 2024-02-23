@@ -6,7 +6,6 @@ export const LOTTO_NUMBER_RANGE = {
   MIN: 1,
   MAX: 45,
 };
-export const PERCENTATION = 100;
 
 export const WINNING_RANK = {
   FIRST: 1,
