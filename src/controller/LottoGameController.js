@@ -50,10 +50,11 @@ class LottoGameController {
     const matchingResult = this.#lottoMatcher(randomLottos);
 
     const matchedLotto = this.countRanks(matchingResult);
-    console.log(matchedLotto);
 
     // 발행된 로또와 입력된 로또 번호를 비교하여 당첨 통계 계산
+    OutputView.printMatchedLottos(matchedLotto);
     const resultStatistics = lottoStatistics(matchedLotto);
+
     this.#printResultStatistics(this.#calculateProfits(resultStatistics));
     this.#retryGame();
   }
@@ -118,10 +119,6 @@ class LottoGameController {
       return lottoCounts;
     });
     return lottoCountsArray;
-  }
-
-  #printMatchedLotto(matchedLotto) {
-    OutputView.printMatchedLottos(matchedLotto);
   }
 
   #printResultStatistics(resultStatistics) {

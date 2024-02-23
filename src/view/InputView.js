@@ -1,4 +1,4 @@
-import { VIEW_MESSAGE } from "../constants/viewMessage.js";
+import { INPUT_MESSAGE } from "../constants/viewMessage.js";
 
 import readLineAsync from "../utils/readLineAsync.js";
 import startValidation from "../validation/startValidation.js";
@@ -10,14 +10,14 @@ import winningLottoNumbersValidation from "../validation/winningLottoNumbersVali
 
 const InputView = {
   async readBudget() {
-    const budgetInput = await readLineAsync(VIEW_MESSAGE.budget);
+    const budgetInput = await readLineAsync(INPUT_MESSAGE.budget);
     startValidation(budgetValidation.categories, Number(budgetInput));
 
     return budgetInput;
   },
 
   async readWinningLottoNumbers() {
-    const winningLottoNumbersInput = await readLineAsync(VIEW_MESSAGE.winningLottoNumbers);
+    const winningLottoNumbersInput = await readLineAsync(INPUT_MESSAGE.winningLottoNumbers);
     const winningLottoNumbers = InputView.convertInputToArray(winningLottoNumbersInput);
 
     winningLottoNumbers.forEach((number) => {
@@ -33,7 +33,7 @@ const InputView = {
   },
 
   async readWinningLottoBonus(winningNumbers) {
-    const winningLottoBonusInput = await readLineAsync(VIEW_MESSAGE.winningLottoBonus);
+    const winningLottoBonusInput = await readLineAsync(INPUT_MESSAGE.winningLottoBonus);
     const winningLottoBonus = Number(winningLottoBonusInput);
     const winningCombination = {
       normalNumbers: winningNumbers,
@@ -46,7 +46,7 @@ const InputView = {
   },
 
   async readRetryGame() {
-    const retryInput = await readLineAsync(VIEW_MESSAGE.retry);
+    const retryInput = await readLineAsync(INPUT_MESSAGE.retry);
     startValidation(retryValidation.categories, retryInput);
     return retryInput;
   },
