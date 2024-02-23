@@ -13,12 +13,15 @@ class LottoProcess {
   }
 
   #getRankIndex(matchCount = 0, matchBonus = false) {
-    if (matchCount === WINNER.FIFTH.MATCH_COUNT) return WINNER.FIFTH.INDEX;
-    if (matchCount === WINNER.FOURTH.MATCH_COUNT) return WINNER.FOURTH.INDEX;
-    if (matchCount === WINNER.THIRD.MATCH_COUNT && matchBonus) return WINNER.THIRD.INDEX;
-    if (matchCount === WINNER.SECOND.MATCH_COUNT) return WINNER.SECOND.INDEX;
-    return WINNER.FIRST.INDEX;
+    switch (matchCount) {
+      case WINNER.FIFTH.MATCH_COUNT:  return WINNER.FIFTH.INDEX;
+      case WINNER.FOURTH.MATCH_COUNT: return WINNER.FOURTH.INDEX;
+      case WINNER.THIRD.MATCH_COUNT:  return matchBonus ? WINNER.THIRD.INDEX : WINNER.FIRST.INDEX; // THIRD 등수는 보너스 일치 여부에 따라 결정
+      case WINNER.SECOND.MATCH_COUNT: return WINNER.SECOND.INDEX;
+      default:  return WINNER.FIRST.INDEX;
+    }
   }
+
 
   #hasBonus(lotto = {}, bonusNumber = 0) {
     return lotto.getNumbers().includes(bonusNumber);
@@ -36,10 +39,9 @@ class LottoProcess {
   }
 
   getResult(winLotto = {}, bonusNumber = 0) {
-    const winningNubmer = this.#lottos.reduce(
-      (acc, lotto) => {
+    const winningNubmer = this.#lottos.reduce((acc, lotto) => {
         const matchCount = this.matchLottoNumbers(lotto, winLotto);
-        this.#increaseLottoResult({ matchCount, lotto, bonusNumber, acc });
+        this.increaseLottoResult({matchCount, lotto, bonusNumber, acc})
         return acc;
       },
       Array.from({ length: Object.keys(WINNER).length }, () => 0)
@@ -47,7 +49,7 @@ class LottoProcess {
     return this.#mapWinningCountToPrizes(winningNubmer);
   }
 
-  #increaseLottoResult({ matchCount, lotto, bonusNumber, acc }) {
+  increaseLottoResult({matchCount, lotto, bonusNumber, acc}) {
     if (matchCount >= WINNER.FIFTH.MATCH_COUNT) {
       const rankIndex = this.#getRankIndex(matchCount, this.#hasBonus(lotto, bonusNumber));
       acc[rankIndex] += 1;
