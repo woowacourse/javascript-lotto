@@ -1,5 +1,5 @@
-function isIncludingValue(array = [], value) {
+function isIncludingValue(array, value) {
   return array.some((el) => el === value);
 }
 
-export { isIncludingValue };
+export default isIncludingValue;

@@ -3,4 +3,4 @@ function isOverlapped(array) {
   return uniqueArray.size !== array.length;
 }
 
-export { isOverlapped };
+export default isOverlapped;

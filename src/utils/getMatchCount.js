@@ -6,4 +6,4 @@ function getMatchCount(arr1, arr2) {
   return totalLength - uniqueArr.size;
 }
 
-export { getMatchCount };
+export default getMatchCount;
