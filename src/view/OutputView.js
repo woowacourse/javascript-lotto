@@ -1,5 +1,3 @@
-import { PRIZE } from "../constants/viewMessage.js";
-import { VIEW_MESSAGE } from "../constants/viewMessage.js";
 import { OUTPUT_MESSAGE } from "../constants/viewMessage.js";
 
 const OutputView = {
@@ -13,7 +11,9 @@ const OutputView = {
 
   printMatchedLottos(matchedLotto) {
     console.log(OUTPUT_MESSAGE.RESULT_TITLE);
-    OUTPUT_MESSAGE.formatResults(matchedLotto).forEach((result) => console.log(result));
+    OUTPUT_MESSAGE.formatResults(matchedLotto).forEach((result) =>
+      console.log(result)
+    );
   },
 
   printProfits(profits) {
@@ -21,22 +21,19 @@ const OutputView = {
   },
 
   printIssuedLottoArray(lottoArray) {
-    console.log(OUTPUT_MESSAGE.lottoArrayToString(lottoArray));
+    console.log(OUTPUT_MESSAGE.formatLottoArrayToString(lottoArray));
   },
 
   printMatchedLottos(matchedLotto) {
-    console.log(VIEW_MESSAGE.statistics);
-    console.log(VIEW_MESSAGE.symbolDash);
-
-    Object.keys(matchedLotto)
-      .sort((a, b) => b - a)
-      .forEach((key) => {
-        console.log(`${PRIZE[key]} - ${matchedLotto[key]}개`);
-      });
+    console.log(OUTPUT_MESSAGE.statistics);
+    console.log(OUTPUT_MESSAGE.symbolDash);
+    OUTPUT_MESSAGE.formatResults(matchedLotto).forEach((result) =>
+      console.log(result)
+    );
   },
 
-  printResultStatistics(profits) {
-    console.log(`총 수익률은 ${profits}%입니다.\n`);
+  printResultStatistics(profit) {
+    console.log(OUTPUT_MESSAGE.formatProfit(profit));
   },
 };
 
