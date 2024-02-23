@@ -27,7 +27,7 @@ class LottoBuyer {
   purchase() {
     const lottoCount = this.#budget / LottoBuyer.LOTTO_PRICE_PER_UNIT;
 
-    return Array.from({ length: lottoCount }, () => Lotto.from().createNumber());
+    return Array.from({ length: lottoCount }, () => new Lotto().createNumber());
   }
 }
 
