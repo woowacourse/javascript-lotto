@@ -12,8 +12,8 @@ const MoneyValidator = {
   },
 
   validateRange(money) {
-    if (money <= MONEY.MIN) {
-      throw new Error(ERROR.MONEY_MINIMUM);
+    if (money <= MONEY.MIN || money > MONEY.MAX) {
+      throw new Error(ERROR.MONEY_RANGE);
     }
   },
 

@@ -7,6 +7,7 @@ const LOTTO = {
 const MONEY = {
   UNIT: 1000,
   MIN: 0,
+  MAX: 1000000000,
 };
 
 const FORMATTING = {
