@@ -7,8 +7,7 @@ const MESSAGES = {
   matchResult: "당첨 통계",
   profitRate: (rate) => `총 수익률은 ${rate}%입니다.`,
   matchReference: ({ matchCount, prize, rank }) => `${matchCount}개 일치 (${prize}원) - ${rank}개`, // TODO: 리펙이 필요하다.
-  bonusMatchReference: ({ matchCount, prize, rank }) =>
-    `${matchCount}개 일치, 보너스 볼 일치 (${prize}원) - ${rank}개`, // TODO: 리펙이 필요하다.
+  bonusMatchReference: ({ matchCount, prize, rank }) => `${matchCount}개 일치, 보너스 볼 일치 (${prize}원) - ${rank}개`, // TODO: 리펙이 필요하다.
   lotto: (numbers) => `[ ${numbers.join(", ")} ]`,
 };
 
@@ -20,7 +19,7 @@ const OutputView = {
 
   printMatchResultTitle() {
     print(MESSAGES.matchResult);
-    print(borderLine);
+    print(MESSAGES.borderLine);
   },
 
   printProfitRate(rate) {
@@ -32,13 +31,19 @@ const OutputView = {
     if (i < PRIZE.length - 2) {
       print(MESSAGES.matchReference({ matchCount: i + 3, prize: PRIZE[i], rank })); // 보통
     } else if (i === PRIZE.length - 2) {
-      print(MESSAGES.bonusMatchReference({ matchCount: i + 3, prize: PRIZE[i], rank })); // 보너스
+      print(
+        MESSAGES.bonusMatchReference({
+          matchCount: i + 3,
+          prize: PRIZE[i],
+          rank,
+        })
+      ); // 보너스
     } else if (i === PRIZE.length - 1) {
       print(MESSAGES.matchReference({ matchCount: i + 2, prize: PRIZE[i], rank })); // 1등
     }
   },
 
-  printMatchCounts(ranks) {
+  printRanks(ranks) {
     ranks.forEach((rank, i) => this.printMatchCount(rank, i));
   },
 };
