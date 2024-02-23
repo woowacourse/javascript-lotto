@@ -3,9 +3,8 @@ import Lotto from '../src/domain/lotto.js';
 import WinningLotto from '../src/domain/winningLotto.js';
 
 describe('로또 당첨 번호 객체 테스트', () => {
-  test('보너스 번호가 1이상 45이하가 아니면 에러 발생', () => {
+  test.each([0, 46])('보너스 번호가 1이상 45이하가 아니면 에러 발생', (bonusNumber) => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-    const bonusNumber = 46;
 
     expect(() => {
       new WinningLotto(lotto, bonusNumber);
