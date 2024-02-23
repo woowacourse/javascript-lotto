@@ -13,13 +13,14 @@ class LotteryMachine {
   }
 
   makeLotto() {
-    const lotto = [];
-    while (lotto.length < CONFIG.LOTTO_RANK_LENGTH) {
-      const randomNumber = Math.ceil(Math.random() * CONFIG.MAX_LOTTO_NUMBER);
-      if (lotto.includes(randomNumber)) continue;
-      lotto.push(randomNumber);
-    }
+    const lotto = this.#pickUniqueLottoNumbers();
     return new Lotto(lotto);
+  }
+
+  #pickUniqueLottoNumbers() {
+    const numberList = Array.from({ length: CONFIG.MAX_LOTTO_NUMBER }, (_, i) => i + 1);
+    numberList.sort(() => Math.random() - 0.5);
+    return numberList.slice(0, CONFIG.LOTTO_LENGTH);
   }
 }
 
