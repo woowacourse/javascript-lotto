@@ -1,5 +1,5 @@
+import { CONFIG } from '../../constants';
 import Lotto from '../entities/Lotto';
-import CONFIG from '../../constants/config';
 
 class LotteryMachine {
   #amount;

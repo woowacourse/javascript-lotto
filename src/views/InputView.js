@@ -1,5 +1,4 @@
-import CONFIG from '../constants/config';
-import { MESSAGE } from '../constants/message';
+import { CONFIG, MESSAGE } from '../constants';
 import readLineAsync from '../utils/readLineAsync';
 import {
   bonusNumberValidator,

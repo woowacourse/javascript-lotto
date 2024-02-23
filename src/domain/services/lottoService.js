@@ -1,5 +1,4 @@
-import CONFIG from '../../constants/config';
-import PRIZE from '../../constants/prize';
+import { CONFIG, PRIZE } from '../../constants';
 
 const lottoService = {
   calculateProfit(matchedResultList, purchaseAmount) {
