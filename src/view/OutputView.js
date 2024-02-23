@@ -13,21 +13,17 @@ const OutputView = {
   printResultTitle() {
     console.log(MESSAGE.OUTPUT.WINNING_STATISTICS_TITLE);
   },
+
   printWinningStatistics(result = []) {
     result.forEach((value) => {
       const [matchCount, isBonus, price, winCount] = value;
-      console.log(
-        `${matchCount}${MESSAGE.OUTPUT.MATCH_COUNT}${
-          isBonus ? MESSAGE.OUTPUT.BONUS_MATCH : ''
-        }${MESSAGE.OUTPUT.WIN_PRICE(price.toLocaleString())} ${MESSAGE.OUTPUT.HYPEN} ${winCount}${
-          MESSAGE.OUTPUT.WIN_COUNT
-        }`
-      );
+      const bonusMatch = isBonus ? ', 보너스 볼 일치' : '';
+      console.log(`${matchCount}개 일치${bonusMatch} (${price.toLocaleString()}) -  ${winCount}개`);
     });
   },
 
   printRateOfRevenue(rateOfRevenue = '') {
-    console.log(MESSAGE.OUTPUT.RATE_OF_REVENUE(rateOfRevenue));
+    console.log(`총 수익률은 ${rateOfRevenue}%입니다`);
   },
 
   printError(message) {

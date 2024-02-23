@@ -11,7 +11,7 @@ const MESSAGE = Object.freeze({
     PURCHASE_AMOUNT: '> 구입금액을 입력해 주세요.',
     WIN_NUMBERS: '\n> 당첨번호를 입력해 주세요.(,로 숫자를 구분하여 입력해주세요)',
     BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요.',
-    RESTART: '\n> 다시 시작하시겠습니까? (y/n)',
+    RESTART: '\n> 다시 시작하시겠습니까? (y/n)\n',
   }),
 
   RESPONSE: Object.freeze({
@@ -24,13 +24,6 @@ const MESSAGE = Object.freeze({
   OUTPUT: Object.freeze({
     LOTTO_PURCHASED: `개를 구매했습니다.`,
     WINNING_STATISTICS_TITLE: `\n당첨 통계\n--------------------`,
-    MATCH_COUNT: `개 일치`,
-    BONUS_MATCH: `, 보너스 볼 일치`,
-    WIN_COUNT: `개`,
-    EMPTY: ``,
-    HYPEN: '-',
-    RATE_OF_REVENUE: (result) => `총 수익률은 ${result}%입니다.`,
-    WIN_PRICE: (price) => `(${price})원)`,
   }),
 });
 
