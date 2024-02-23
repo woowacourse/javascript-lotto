@@ -7,13 +7,13 @@ import OutputView from '../view/OutputView';
 import LottoValidation from '../validation/lottoValidation';
 import PurchaseAmountValidation from '../validation/purchaseAmount';
 import RestartResponseValidation from '../validation/responseValidation';
-import MESSAGE from '../constants/message';
+import { RESPONSE_MESSAGE } from '../constants/message';
 
 class LottoController {
   async play() {
     await this.buyLottos();
     const restartResponse = await this.getValidateRestartResponse();
-    if (restartResponse === MESSAGE.RESPONSE.RESTART.YES) {
+    if (restartResponse === RESPONSE_MESSAGE.RESTART.YES) {
       await this.play();
     }
   }
@@ -22,22 +22,32 @@ class LottoController {
     const lottoCount = await this.getValidateLottoAmount();
     const lottos = this.getLottos(lottoCount);
     const lottoProcess = new LottoProcess(lottos);
+
+    await this.showRnadomLottos(lottoCount, lottoProcess);
+  }
+
+  async showRnadomLottos(lottoCount = 0, lottoProcess = {}) {
     const lottosNumbers = lottoProcess.getAllLottosNumbers();
 
     OutputView.printLottoCount(lottoCount);
     OutputView.printRandomLottos(lottosNumbers);
-    await this.showLottoResult(lottoProcess, lottoCount);
+    await this.inputUserLottoInfo(lottoProcess, lottoCount);
   }
 
-  async showLottoResult(lottoProcess, lottoCount) {
+  async inputUserLottoInfo(lottoProcess = {}, lottoCount = 0) {
     const winNumbers = await this.getValidateWinNumbers();
     const winLotto = new Lotto(winNumbers);
     const bonusNumber = await this.validateBonusNumber(winNumbers);
     const result = lottoProcess.getResult(winLotto, bonusNumber);
 
+    this.showLottoResult(result, lottoCount);
+  }
+
+  showLottoResult(result = [], lottoCount = 0) {
+    const rateOfRevenue = this.getRateOfRevenue(result, lottoCount);
+
     OutputView.printResultTitle();
     OutputView.printWinningStatistics(result);
-    const rateOfRevenue = this.getRateOfRevenue(result, lottoCount);
     OutputView.printRateOfRevenue(rateOfRevenue);
   }
 
@@ -53,14 +63,12 @@ class LottoController {
   }
 
   getRandomNumbers() {
-    const lottoNumbers = [];
-    while (lottoNumbers.length < NUMBER.LOTTO_LENGTH) {
-      lottoNumbers.push(Random.pickNumberInRange(NUMBER.LOTTO_START_NUMBER, NUMBER.LOTTO_END_NUMBER));
+    const numbers = new Set();
+    while (numbers.size < NUMBER.LOTTO_LENGTH) {
+      const randomNum = Random.pickNumberInRange(NUMBER.LOTTO_START_NUMBER, NUMBER.LOTTO_END_NUMBER);
+      numbers.add(randomNum);
     }
-    if (new Set(lottoNumbers).size !== NUMBER.LOTTO_LENGTH) {
-      return this.getRandomNumbers();
-    }
-    return [...lottoNumbers];
+    return Array.from(numbers);
   }
 
   async getValidateWinNumbers() {

@@ -18,7 +18,7 @@ const OutputView = {
     result.forEach((value) => {
       const [matchCount, isBonus, price, winCount] = value;
       const bonusMatch = isBonus ? ', 보너스 볼 일치' : '';
-      console.log(`${matchCount}개 일치${bonusMatch} (${price.toLocaleString()}) -  ${winCount}개`);
+      console.log(`${matchCount}개 일치${bonusMatch} (${price.toLocaleString()}) - ${winCount}개`);
     });
   },
 
