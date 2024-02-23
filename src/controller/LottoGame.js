@@ -31,7 +31,13 @@ const LottoGame = {
 
   async getWinningNumbers() {
     const winningNumbers = await Input.readWinningNumbers();
-    return Validator.validateLottoNumbers(winningNumbers.split(',').map(Number));
+
+    return Validator.validateLottoNumbers(
+      winningNumbers
+        .split(',')
+        .filter((number) => number !== '' && number !== undefined && number !== null)
+        .map(Number),
+    );
   },
 
   async getBonusNumber(winningNumbers) {
