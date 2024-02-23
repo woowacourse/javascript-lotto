@@ -33,9 +33,10 @@ class LottoGameController {
   }
 
   #calculateProfitRate(winningResults) {
-    const totalProfit = Object.entries(winningResults).reduce((profit, [ranking, count]) => {
-      return (profit += RANKING[ranking].REWARD * count);
-    }, 0);
+    const totalProfit = Object.entries(winningResults).reduce(
+      (profit, [ranking, count]) => profit + RANKING[ranking].REWARD * count,
+      0,
+    );
     return ((totalProfit * 100) / this.#purchaseAmount).toLocaleString('ko-KR', { minimumFractionDigits: 1 });
   }
 
@@ -45,7 +46,6 @@ class LottoGameController {
     }
     if (restartCommand === SETTING.EXIT_COMMAND) {
       OutputView.printExitMessage();
-      return;
     }
   }
 }
