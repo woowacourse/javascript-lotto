@@ -7,10 +7,10 @@ class WinningResultService {
 
   #winningLotto;
 
-  constructor(lottos, winningLottoObj) {
+  constructor(lottos, winningLottoCondition) {
     this.#lottos = lottos.map((lotto) => new Lotto(lotto));
-    this.#winningLotto = new WinningLotto(winningLottoObj.numbers);
-    this.#winningLotto.setBonusNumber(winningLottoObj.bonusNumber);
+    this.#winningLotto = new WinningLotto(winningLottoCondition.numbers);
+    this.#winningLotto.setBonusNumber(winningLottoCondition.bonusNumber);
   }
 
   getWinningResult() {
