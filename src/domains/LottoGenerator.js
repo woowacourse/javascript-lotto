@@ -1,3 +1,4 @@
+import makeRandomInRange from '../utils/makeRandomNumber';
 import LOTTO_RULES from '../constants/lotto-rules';
 
 class LottoGenerator {
@@ -7,20 +8,14 @@ class LottoGenerator {
     this.#generatedLottos = this.#generateRandomLottos(lottoTickets);
   }
 
-  #makeRandomNumber() {
-    return Math.floor(
-      Math.random() * (LOTTO_RULES.maxLength - LOTTO_RULES.minLength) +
-        LOTTO_RULES.minLength,
-    );
-  }
-
   generateRandomLotto() {
+    const { winningNumbersLength, minLength, maxLength } = LOTTO_RULES;
     const lottoSet = new Set();
-    while (lottoSet.size < LOTTO_RULES.winningNumbersLength) {
-      const randomNumber = this.#makeRandomNumber();
+
+    while (lottoSet.size < winningNumbersLength) {
+      const randomNumber = makeRandomInRange(minLength, maxLength);
       lottoSet.add(randomNumber);
     }
-
     return Array.from(lottoSet).sort((a, b) => a - b);
   }
 
