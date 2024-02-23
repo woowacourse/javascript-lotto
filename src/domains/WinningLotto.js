@@ -1,24 +1,19 @@
-import { NUMBER_DELIMITER } from '../constants';
-import Validator from './Validator';
+import { ERROR_MESSAGE } from '../constants';
+import { isInteger, isLottoNumberInRange, isNotInLottoNumber } from '../utils';
 
 class WinningLotto {
+  #lotto;
+
+  #bonusNumber;
+
   /**
-   * @property {number[]}
+   * @param {Lotto} lotto
+   * @param {string} bonusNumberInput
    */
-  #lottoNumbers = [];
+  constructor(lotto, bonusNumberInput) {
+    this.#lotto = lotto;
 
-  #bonusNumber = 0;
-
-  set lottoNumbers(lottoNumbersInput) {
-    Validator.checkWinningLottoNumbers(lottoNumbersInput);
-
-    this.#lottoNumbers = lottoNumbersInput
-      .split(NUMBER_DELIMITER)
-      .map((lottoNumberInput) => Number(lottoNumberInput));
-  }
-
-  set bonusNumber(bonusNumberInput) {
-    Validator.checkBonusNumber(this.#lottoNumbers, bonusNumberInput);
+    this.#validateBonusNumber(bonusNumberInput);
     this.#bonusNumber = Number(bonusNumberInput);
   }
 
@@ -27,24 +22,38 @@ class WinningLotto {
    */
   compareLotto(lottoNumbers) {
     return {
-      isBonus: this.#hasBonusNumber(lottoNumbers),
-      matchedCount: this.#countMatchedNumber(lottoNumbers),
+      isBonus: this.#isBonusNumber(lottoNumbers),
+      matchedCount: this.#getMatchedCount(lottoNumbers),
     };
   }
 
   /**
    * @param {number[]} lottoNumbers
    */
-  #hasBonusNumber(lottoNumbers) {
+  #isBonusNumber(lottoNumbers) {
     return lottoNumbers.includes(this.#bonusNumber);
   }
 
   /**
    *  @param {number[]} lottoNumbers
    */
-  #countMatchedNumber(lottoNumbers) {
-    return lottoNumbers.filter((number) => this.#lottoNumbers.includes(number))
-      .length;
+  #getMatchedCount(lottoNumbers) {
+    return lottoNumbers.filter((lottoNumber) =>
+      this.#lotto.numbers.includes(lottoNumber),
+    ).length;
+  }
+
+  #validateBonusNumber(bonusNumberInput) {
+    const bonusNumber = Number(bonusNumberInput);
+
+    if (!isInteger(bonusNumber)) throw new Error(ERROR_MESSAGE.notInteger);
+
+    if (!isLottoNumberInRange(bonusNumber))
+      throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
+
+    if (!isNotInLottoNumber(this.#lotto.numbers, bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.alreadyInLottoNumber);
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 import { WinningLotto } from '../src/domains';
+import Lotto from '../src/domains/Lotto';
 
 describe('WinningLotto 기능 테스트', () => {
   test.each([
@@ -11,14 +12,15 @@ describe('WinningLotto 기능 테스트', () => {
       result: { isBonus: true, matchedCount: 3 },
     },
   ])(
-    '추첨 로또와 당첨 로또의 비교 결과를 반환한다.',
+    'compareLotto - 추첨 로또와 당첨 로또의 비교 결과를 반환한다.',
     ({ comparedLottoNumbers, result }) => {
-      const WINNING_LOTTO_NUMBERS = '1,2,3,4,5,6';
-      const BONUS_NUMBER = '7';
+      const WINNING_LOTTO_NUMBERS = new Lotto([1, 2, 3, 4, 5, 6]);
+      const BONUS_NUMBER_INPUT = '7';
 
-      const winningLotto = new WinningLotto();
-      winningLotto.lottoNumbers = WINNING_LOTTO_NUMBERS;
-      winningLotto.bonusNumber = BONUS_NUMBER;
+      const winningLotto = new WinningLotto(
+        WINNING_LOTTO_NUMBERS,
+        BONUS_NUMBER_INPUT,
+      );
 
       expect(winningLotto.compareLotto(comparedLottoNumbers)).toEqual(result);
     },
