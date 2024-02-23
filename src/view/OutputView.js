@@ -26,7 +26,7 @@ class OutputView {
 
     Object.entries(winningResult)
       .reverse()
-      .splice(1)
+      .slice(1)
       .forEach(([rank, count]) => {
         const { matchingCount, bonusMatch } = OPTIONS.RANK_CONDITION[rank];
         const bonusMessage = bonusMatch ? MESSAGES.bonusMatch : '';

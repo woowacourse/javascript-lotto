@@ -6,19 +6,19 @@ const HINTS = INPUT_HINTS;
 
 class InputView {
   static async inputPurchaseAmount() {
-    const input = await readLineAsync([MESSAGES.purchaseAmount, HINTS.purchaseAmount].join('\n'));
+    const input = await readLineAsync([MESSAGES.purchaseAmount, HINTS.purchaseAmount].join(''));
     return input;
   }
 
   static async inputWinningNumbers() {
     const input = await readLineAsync(
-      [MESSAGES.winningNumbers, HINTS.winningNumber1, HINTS.winningNumber2].join('\n')
+      [MESSAGES.winningNumbers, HINTS.winningNumber1, HINTS.winningNumber2].join('')
     );
     return input;
   }
 
   static async inputBonusNumber() {
-    const input = await readLineAsync([MESSAGES.bonusNumber, HINTS.bonusNumber].join('\n'));
+    const input = await readLineAsync([MESSAGES.bonusNumber, HINTS.bonusNumber].join(''));
     return input;
   }
 
