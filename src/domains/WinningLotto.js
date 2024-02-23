@@ -2,14 +2,13 @@ import { ERROR_MESSAGES, NUMBER_DELIMITER } from '../constants';
 import { checkDefinedInputValue, isValidWinningNumbersForm } from '../utils';
 import Lotto from './Lotto';
 
-// TODO -  보너스 번호와 winningLotto를 가지는 모듈 필요
+// 역할 : 당첨 번호 입력값-> 유효성 검사 -> 당첨 번호 생성
+// 보너스를 파라미터로 받아서 당첨 번호와 로또 번호를 비교한  일치 개수 반환
 class WinningLotto {
   /**
    * @property {number[]}
    */
   #lottoNumbers = [];
-
-  #bonus;
 
   /**
    * @param {string} lottoNumbersInput

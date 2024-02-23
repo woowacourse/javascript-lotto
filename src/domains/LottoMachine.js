@@ -6,7 +6,7 @@ import {
   isInteger,
   isValidNumbersOfTickets,
 } from '../utils';
-
+// 역할: 구매금액 - 유효성검사 -> 로또 발행
 class LottoMachine {
   /**
    * 발행되는 로또 번호의 이중배열

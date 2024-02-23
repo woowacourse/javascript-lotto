@@ -8,9 +8,18 @@ class Statistics {
     profitRate: 0,
   };
 
-  get profitRate() {
-    return this.#reward.profitRate;
+  constructor(matchingResults, paymentAmount) {
+    this.#matchResultsToRank(matchingResults);
+    this.#calculateProfitRate(paymentAmount);
   }
+
+  get lottoAnalytics() {
+    return {
+      profitRate: this.#reward.profitRate,
+      statisticsResult: this.#getStatisticsResult(),
+    };
+  }
+
   // eslint-disable-next-line
   #makeInitialStatisticsResult() {
     const initialStatisticsResult = {};
@@ -22,17 +31,29 @@ class Statistics {
     return initialStatisticsResult;
   }
 
-  get statisticsResult() {
+  /**
+   *
+   * @returns {1:number, 2:number ,3:number, 4:number, 5:number}
+   */
+  #getStatisticsResult() {
     return this.#ranks.reduce((acc, rank) => {
       acc[rank] += 1;
       return acc;
     }, this.#makeInitialStatisticsResult());
   }
 
-  matchResultsToRank(results) {
+  /**
+   *
+   * @param {{isBonus:boolean, matchedCount:number}[]} result
+   */
+  #matchResultsToRank(results) {
     results.forEach((result) => this.#matchResultToRank(result));
   }
 
+  /**
+   *
+   * @param {{isBonus:boolean, matchedCount:number}} result
+   */
   #matchResultToRank(result) {
     WINNING_RULE.forEach((value, key) => {
       const { matchedCount, isBonus } = value;
@@ -50,7 +71,7 @@ class Statistics {
     });
   }
 
-  calculateProfitRate(paymentAmount) {
+  #calculateProfitRate(paymentAmount) {
     this.#calculateTotalPrize();
     this.#reward.profitRate = Number(
       ((this.#reward.totalPrizes / paymentAmount) * 100).toFixed(1),
