@@ -4,10 +4,10 @@ import { LOTTO_NUMBER_RANGE, LOTTO_LENGTH } from './LottoNumber';
 const PRIZE_MONEY = Object.freeze([null, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000]);
 const LOTTO_PRICE = 1_000;
 
-const MESSAGES = {
+const MESSAGES = Object.freeze({
   NOT_NUMBER: '숫자만 입력해주세요.',
-  INVALID_MONEY_MESSAGE: `로또 구입 금액은 최소 ${LOTTO_PRICE.toLocaleString()}원입니다.`,
-};
+  INVALID_MONEY: `로또 구입 금액은 최소 ${LOTTO_PRICE.toLocaleString()}원입니다.`,
+});
 
 export default class LottoMachine {
   #money = {
@@ -28,7 +28,7 @@ export default class LottoMachine {
       throw new Error(MESSAGES.NOT_NUMBER);
     }
     if (this.#money.invest < LOTTO_PRICE) {
-      throw new Error(MESSAGES.INVALID_MONEY_MESSAGE);
+      throw new Error(MESSAGES.INVALID_MONEY);
     }
   }
 
