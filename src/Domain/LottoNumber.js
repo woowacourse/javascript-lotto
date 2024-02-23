@@ -29,7 +29,7 @@ export default class LottoNumber {
   }
 
   #validateEachNumber(number) {
-    if (Number.isNaN(number)) {
+    if (typeof number !== 'number' || Number.isNaN(number)) {
       throw new Error(ERROR_MESSAGES.NOT_NUMBER);
     }
     if (number < LOTTO_NUMBER_RANGE.MIN || number > LOTTO_NUMBER_RANGE.MAX) {
