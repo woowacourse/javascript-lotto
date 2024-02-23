@@ -16,9 +16,9 @@ npm run start-step1
 
 #### controller : 실행흐름, 입출력 담당
 
-- MainController : 두 컨트롤러를 관리. + 재시작 담당
-- PurchaseLottoController : 로또구매 담당
-- WinningLottoController : 당첨 결과 실행흐름/입출력 담당
+- MainController : 두 컨트롤러를 관리. + 게임끝난후 재시작흐름 담당
+- PurchaseLottoController : 로또구매 실행흐름 담당
+- WinningLottoController : 당첨 결과 실행흐름/입출력 실행흐름 담당
 
 #### domain/entity
 
