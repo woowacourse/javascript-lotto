@@ -1,4 +1,4 @@
-import { isOverlapped } from "../../src/utils/isOverlapped.js";
+import isOverlapped from "../../src/utils/isOverlapped.js";
 
 describe("배열 중복값 유뮤 확인 유틸 함수 테스트", () => {
   test("중복 값이 존재하면 참을 반환한다.", () => {

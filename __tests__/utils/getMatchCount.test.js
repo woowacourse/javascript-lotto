@@ -1,4 +1,4 @@
-import { getMatchCount } from "../../src/utils/getMatchCount.js";
+import getMatchCount from "../../src/utils/getMatchCount.js";
 
 describe("두 배열의 값이 몇 개 일치하는지 확인하는 유틸 함수 테스트", () => {
   test("두 배열의 일치하는 요소 개수를 반환한다.", () => {

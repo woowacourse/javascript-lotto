@@ -1,4 +1,4 @@
-import { sortNumbersAscend } from "../../src/utils/sortNumbersAscend.js";
+import sortNumbersAscend from "../../src/utils/sortNumbersAscend.js";
 
 describe("숫자 배열 정렬 테스트", () => {
   test("숫자 배열을 오름차순으로 정렬한다.", () => {
