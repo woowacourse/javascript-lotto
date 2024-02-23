@@ -2,9 +2,12 @@ import bonusNumberValidator from "../validator/BonusNumberValidator.js";
 
 class WinningLotto {
   #numbers;
+
   #bonusNumber;
 
   constructor(LottoNumbers, bonusNumber) {
+    bonusNumberValidator.validate(bonusNumber);
+
     bonusNumberValidator.validateDuplication(
       LottoNumbers.getNumbers(),
       bonusNumber,
