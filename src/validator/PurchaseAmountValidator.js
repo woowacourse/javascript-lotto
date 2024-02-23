@@ -3,8 +3,8 @@ import { LOTTO_PRICE } from "../constants/lotto-constants.js";
 import AppError from "../utils/Error.js";
 
 const purchaseAmountValidator = {
-  validateType(formatedPrice) {
-    if (Number.isNaN(formatedPrice)) {
+  validateIsNumber(formatedPrice) {
+    if (!Number.isInteger(formatedPrice)) {
       throw new AppError(ERROR.INVALID_PURCHASE_AMOUNT_TYPE);
     }
   },
@@ -23,7 +23,7 @@ const purchaseAmountValidator = {
 
   validate(price) {
     const formatedPrice = Number(price);
-    this.validateType(formatedPrice);
+    this.validateIsNumber(formatedPrice);
     this.validateRange(formatedPrice);
     this.validateDivided(formatedPrice);
   },

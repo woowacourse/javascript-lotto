@@ -29,7 +29,7 @@ const lottoNumberValidator = {
     }
   },
 
-  validateType(numbers) {
+  validateIsNumber(numbers) {
     if (numbers.some((number) => !Number.isInteger(number))) {
       throw new AppError(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_TYPE);
     }
@@ -39,7 +39,7 @@ const lottoNumberValidator = {
     this.validateNumbersLength(numbers);
     this.validateDuplicate(numbers);
     this.validateRange(numbers);
-    this.validateType(numbers);
+    this.validateIsNumber(numbers);
   },
 };
 
