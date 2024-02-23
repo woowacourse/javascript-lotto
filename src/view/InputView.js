@@ -6,7 +6,7 @@ const InputView = {
   },
 
   async readWinningNumbers() {
-    await Console.readLineAsync('\n> 당첨 번호를 입력해 주세요. ');
+    return await Console.readLineAsync('\n> 당첨 번호를 입력해 주세요. ');
   },
 
   async readBonusNumber() {

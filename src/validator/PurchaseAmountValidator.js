@@ -1,14 +1,14 @@
 const PurchaseAmountValidator = {
-  isNotNumber(inputValue) {
-    return !Number.isInteger(inputValue);
+  isNumber(inputValue) {
+    return !Number.isNaN(inputValue);
   },
 
-  isNotUnit(inputValue) {
-    return inputValue % 100 !== 0;
+  isValidUnit(inputValue) {
+    return inputValue % 1000 === 0;
   },
 
-  isNotMinRange(inputValue) {
-    return inputValue < 1000;
+  isValidMinRange(inputValue) {
+    return inputValue > 1000;
   },
 };
 

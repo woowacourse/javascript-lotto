@@ -1,18 +1,18 @@
 const WinningNumbersValidator = {
-  isNotValidCount(inputValue) {
-    return inputValue.length !== 6;
+  isValidCount(inputValue) {
+    return inputValue.length === 6;
   },
 
-  isNotNumber(inputValue) {
-    return inputValue.some((number) => !Number.isInteger(number));
+  isNumber(inputValue) {
+    return inputValue.every((number) => !Number.isNaN(number));
   },
 
-  isNotUnique(inputValue) {
-    return new Set(inputValue).size !== inputValue.length;
+  isUniqueNumbers(inputValue) {
+    return new Set(inputValue).size === inputValue.length;
   },
 
-  isNotRange(inputValue) {
-    return inputValue.some((number) => number < 1 || number > 45);
+  isValidRange(inputValue) {
+    return inputValue.every((number) => number >= 1 && number <= 45);
   },
 };
 

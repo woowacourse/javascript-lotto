@@ -40,11 +40,11 @@ class LottoController {
   }
 
   validatePurchaseAmount(inputValue) {
-    if (PurchaseAmountValidator.isNotNumber(inputValue))
+    if (!PurchaseAmountValidator.isNumber(inputValue))
       throw new Error('[ERROR] 구매 금액은 숫자여야 합니다.');
-    if (PurchaseAmountValidator.isNotUnit(inputValue))
+    if (!PurchaseAmountValidator.isValidUnit(inputValue))
       throw new Error('[ERROR] 구매 금액은 1000원 단위여야 합니다.');
-    if (PurchaseAmountValidator.isNotMinRange(inputValue))
+    if (!PurchaseAmountValidator.isValidMinRange(inputValue))
       throw new Error('[ERROR] 최소 구매 금액은 1000원 입니다');
   }
 
@@ -66,13 +66,13 @@ class LottoController {
   }
 
   validateWinningNumbers(inputValue) {
-    if (WinningNumbersValidator.isNotValidCount(inputValue))
+    if (!WinningNumbersValidator.isValidCount(inputValue))
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    if (WinningNumbersValidator.isNotNumber(inputValue))
+    if (!WinningNumbersValidator.isNumber(inputValue))
       throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
-    if (WinningNumbersValidator.isNotUnique(inputValue))
+    if (!WinningNumbersValidator.isUniqueNumbers(inputValue))
       throw new Error('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
-    if (WinningNumbersValidator.isNotRange(inputValue))
+    if (!WinningNumbersValidator.isValidRange(inputValue))
       throw new Error('[ERROR] 로또 번호의 숫자 범위는 1에서 45까지의 수입니다.');
   }
 
@@ -84,11 +84,11 @@ class LottoController {
   }
 
   validateBonusNumber(inputValue, winningNumbers) {
-    if (BonusNumberValidator.isNotInteger(inputValue))
+    if (!BonusNumberValidator.isNumber(inputValue))
       throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
-    if (BonusNumberValidator.isInvalidRange(inputValue))
+    if (!BonusNumberValidator.isValidRange(inputValue))
       throw new Error('[ERROR] 보너스 번호는 1 이상 45 이하여야 합니다.');
-    if (BonusNumberValidator.isDuplicatedWinningNumbers(inputValue, winningNumbers))
+    if (!BonusNumberValidator.isUniqueBonusNumber(inputValue, winningNumbers))
       throw new Error('[ERROR] 보너스 번호는 중복되지 않아야 합니다.');
   }
 
@@ -116,7 +116,7 @@ class LottoController {
   }
 
   validateRestartOrExit(inputValue) {
-    if (RestartOrExitValidator.isNotRestartOrExitKeyword(inputValue))
+    if (!RestartOrExitValidator.isValidRestartOrExitKeyword(inputValue))
       throw new Error('[ERROR] y(재시작) 또는 n(종료)을 입력하여야 합니다.');
   }
 }

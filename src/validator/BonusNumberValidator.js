@@ -1,14 +1,14 @@
 const BonusNumberValidator = {
-  isNotInteger(inputValue) {
-    return !Number.isInteger(inputValue);
+  isNumber(inputValue) {
+    return !Number.isNaN(inputValue);
   },
 
-  isInvalidRange(inputValue) {
-    return !(inputValue >= 1 && inputValue <= 45);
+  isValidRange(inputValue) {
+    return inputValue >= 1 && inputValue <= 45;
   },
 
-  isDuplicatedWinningNumbers(inputValue, winningNumbers) {
-    return winningNumbers.includes(inputValue);
+  isUniqueBonusNumber(inputValue, winningNumbers) {
+    return !winningNumbers.includes(inputValue);
   },
 };
 
