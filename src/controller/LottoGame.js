@@ -21,7 +21,8 @@ const LottoGame = {
   },
 
   async getMoney() {
-    const money = Validator.validateMoney(await Input.readMoney());
+    const money = await Input.readMoney();
+    Validator.checkReadMoney(money);
     return money;
   },
 
@@ -33,17 +34,17 @@ const LottoGame = {
 
   async getWinningNumbers() {
     const winningNumbers = await Input.readWinningNumbers();
-
-    const separatedWinningNumbers = Validator.validateLottoNumbers(
-      winningNumbers.split(',').map((number) => Number(number)),
-    );
+    const separatedWinningNumbers = winningNumbers.split(',').map((number) => Number(number));
+    Validator.checkLottoNumbers(separatedWinningNumbers);
 
     return separatedWinningNumbers;
   },
 
   async getBonusNumber(winningNumbers) {
     const bonusNumber = Number(await Input.readBonusNumber());
-    return Validator.validateBonusNumber(winningNumbers, bonusNumber);
+    Validator.checkReadBonusNumber(winningNumbers, bonusNumber);
+
+    return bonusNumber;
   },
 
   async makeWinningLotto() {
@@ -65,7 +66,8 @@ const LottoGame = {
 
   async getRestartOption() {
     const restartOption = await Input.readRestartOrExit();
-    return Validator.validateRestartOption(restartOption);
+    Validator.checkReadRestartOrExit(restartOption);
+    return restartOption;
   },
 
   async restartOrExit() {

@@ -11,7 +11,7 @@ function createOneLottoTicket() {
     end: LOTTO.NUMBER_RANGE_MAX,
     count: LOTTO.NUMBER_LENGTH,
   });
-  Validator.validateLottoNumbers(numbers);
+  Validator.checkLottoNumbers(numbers);
   return new Lotto(numbers);
 }
 
