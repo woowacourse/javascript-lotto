@@ -29,7 +29,7 @@ export default class Statistics {
 
   #calculateResult({ lottos, winningLotto, bonusNumber }) {
     lottos.forEach((lotto) => {
-      const correctNumber = this.#correctCount(lotto, winningLotto);
+      const correctNumber = this.#getCorrectCount(lotto, winningLotto);
       const hasBonusNumber = this.#hasBonusNumber(lotto, bonusNumber);
 
       this.#addResult(correctNumber, hasBonusNumber);
@@ -44,7 +44,7 @@ export default class Statistics {
     else if (correctNumber === SYMBOL.six) this.#result.six += SYMBOL.one;
   }
 
-  #correctCount(lotto, winningLotto) {
+  #getCorrectCount(lotto, winningLotto) {
     return lotto.filter((number) => winningLotto.includes(number)).length;
   }
 
