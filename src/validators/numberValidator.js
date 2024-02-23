@@ -7,7 +7,7 @@ const numberValidator = {
     this.validateNumber(number);
   },
 
-  validateLottoNumber(number){
+  validateLottoNumber(number) {
     this.validate(number);
     this.validateRange(number);
   },
