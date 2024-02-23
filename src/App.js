@@ -12,7 +12,7 @@ class App {
     const lottos = await this.#purchaseLottos();
 
     const winningNumbers = await this.#controller.inputWinningNumbers();
-    const bonusNumber = await this.#controller.inputBonusNumber();
+    const bonusNumber = await this.#controller.inputBonusNumber(winningNumbers);
 
     this.#showWinningResult(lottos, winningNumbers, bonusNumber);
   }

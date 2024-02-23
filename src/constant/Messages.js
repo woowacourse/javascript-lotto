@@ -1,7 +1,8 @@
 /* eslint-disable max-params */
 export const VARIABLE_ALIAS = {
   purchaseAmount: '구입 금액',
-  lottoNumbers: '당첨 번호'
+  lottoNumbers: '당첨 번호',
+  bonusNumber: '보너스 번호'
 };
 
 export const ERROR_MESSAGES = {

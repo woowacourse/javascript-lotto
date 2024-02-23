@@ -4,6 +4,7 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import PurchaseAmountValidator from '../util/validation/PurchaseAmountValidator.js';
 import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
+import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
 class LottoController {
   #lottoMachine;
 
@@ -40,12 +41,23 @@ class LottoController {
         console.error(error.message);
       }
     }
+
     return numbers;
   }
 
-  async inputBonusNumber() {
-    const bonusNumber = await InputView.inputBonusNumber();
-    return bonusNumber.trim();
+  async inputBonusNumber(winningNumbers) {
+    let bonusNumber;
+    while (true) {
+      try {
+        const input = await InputView.inputBonusNumber();
+        bonusNumber = Number(input.trim());
+        BonusNumberValidator.validate(bonusNumber, winningNumbers);
+        break;
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+    return bonusNumber;
   }
 
   async inputRestartResponse() {

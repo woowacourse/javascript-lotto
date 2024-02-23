@@ -18,6 +18,10 @@ class Validation {
   static isUnique(array) {
     return array.length === new Set(array).size;
   }
+
+  static isIncluded(array, value) {
+    return array.includes(value);
+  }
 }
 
 export default Validation;
