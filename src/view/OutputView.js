@@ -12,7 +12,6 @@ const MESSAGES = {
   lotto: (numbers) => `[ ${numbers.join(", ")} ]`,
 };
 
-// TODO: 메서드를 묶어놓은 객체의 이름을 카멜케이스로 지어야하나요, 파스탈로 지어야하나요?
 const OutputView = {
   printLotto(count, lottos) {
     print(MESSAGES.count(count));
