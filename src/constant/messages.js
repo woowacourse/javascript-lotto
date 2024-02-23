@@ -12,11 +12,11 @@ export const OUTPUT_MESSAGES = {
   lotto: (lotto) => `[${lotto.join(`${SYMBOL.delimiter + SYMBOL.space}`)}]`,
   winningStatistics: '당첨 통계',
   separate: '--------------------',
-  three: (three) => `3개 일치, (5,000원) - ${three}개`,
-  four: (four) => `4개 일치, (50,000원) - ${four}개`,
-  five: (five) => `5개 일치, (1,500,000원) - ${five}개`,
-  five_bonus: (five) => `5개 일치, 보너스 . 볼일치 (30,000,000원) - ${five}개`,
-  six: (six) => `6개 일치, (2,000,000,000원) - ${six}개`,
+  three: (count) => `3개 일치, (5,000원) - ${count}개`,
+  four: (count) => `4개 일치, (50,000원) - ${count}개`,
+  five: (count) => `5개 일치, (1,500,000원) - ${count}개`,
+  five_bonus: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
+  six: (count) => `6개 일치, (2,000,000,000원) - ${count}개`,
   profit: (profit) => `총 수익률은 ${profit}% 입니다.`,
 };
 
