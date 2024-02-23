@@ -62,8 +62,8 @@
 - [x] `npm run start`, `npm run test` 되기
 - [x] `message.js` 소문자로 만들기
 - [x] `start`와 `retry` 분리
-- [ ] `sellLottos` 인자 `price로 바꾸기
-- [ ] `arrayFormat` 상수말고 매직넘버로 변경하기
+- [x] `sellLottos` 인자 `price로 바꾸기
+- [x] `arrayFormat` 상수말고 매직넘버로 변경하기
 - [ ] 에러 메시지 사용자 친화적으로 작성하기
 - [ ] `LottoController`에서 `parsed` 제거하기
 - [ ] 테스트에서 예외 처리시 예외 문구 확인

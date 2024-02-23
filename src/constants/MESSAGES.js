@@ -26,10 +26,6 @@ const INPUT = {
 const OUTPUT = {
   boughtLottosCompletedTail: "개를 구매했습니다.",
 
-  arrayFormatHead: "[",
-  arrayFormatTail: "]",
-  arrayFormatSeparator: ", ",
-
   lottoResultIntro: "당첨 통계",
   lottoResultHorizontalLine: "--------------------",
 

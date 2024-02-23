@@ -5,16 +5,16 @@ class OutputView {
     this.#printMessage(
       `${lottoNumbersArray.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
     );
-    lottoNumbersArray.forEach((lottoNumbers) =>
-      this.#printMessage(this.formatArrayString(lottoNumbers))
-    );
+    const lottoNumberArrayString = lottoNumbersArray
+      .map((lottoNumbers) => this.formatArrayString(lottoNumbers))
+      .join("\n");
+
+    this.#printMessage(lottoNumberArrayString);
     this.printBlankLine();
   }
 
   static formatArrayString(array) {
-    return `${MESSAGES.OUTPUT.arrayFormatHead}${array.join(
-      MESSAGES.OUTPUT.arrayFormatSeparator
-    )}${MESSAGES.OUTPUT.arrayFormatTail}`;
+    return `[${array.join(",")}]`;
   }
 
   static printBlankLine() {
