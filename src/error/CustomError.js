@@ -1,4 +1,6 @@
-import { PREFIX } from "./ErrorMessage.js";
+const PREFIX = {
+  error: "[ERROR]",
+};
 
 class CustomError extends Error {
   constructor(message) {
