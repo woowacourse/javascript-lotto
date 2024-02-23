@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { OUTPUT_MESSAGES } from '../constant/Messages.js';
 import OPTIONS from '../constant/Options.js';
 
@@ -19,7 +18,6 @@ class OutputView {
     });
   }
 
-  // eslint-disable-next-line max-lines-per-function
   static printWinningResult(winningResult, profitRate) {
     this.print(MESSAGES.statisticsTitle);
     this.print(MESSAGES.dividingLine);
@@ -32,12 +30,12 @@ class OutputView {
         const bonusMessage = bonusMatch ? MESSAGES.bonusMatch : '';
 
         this.print(
-          MESSAGES.statisticsResult(
+          MESSAGES.statisticsResult({
             matchingCount,
-            bonusMessage,
-            OPTIONS.PRIZE_BY_RANK[rank].toLocaleString(),
+            bonusMatch: bonusMessage,
+            prizeAmount: OPTIONS.PRIZE_BY_RANK[rank].toLocaleString(),
             count
-          )
+          })
         );
       });
 

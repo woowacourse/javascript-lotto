@@ -1,4 +1,3 @@
-/* eslint-disable max-params */
 export const VARIABLE_ALIAS = {
   purchaseAmount: '구입 금액',
   lottoNumbers: '당첨 번호',
@@ -11,6 +10,7 @@ export const ERROR_MESSAGES = {
   isNotInteger: (name) => `${name}(은)는 정수 값이어야 합니다.`,
   isNotAtLeast: (name, threshold) => `${name}(은)는 ${threshold} 이상이어야 합니다.`,
   hasNotLength: (name, length) => `${name}의 길이는 ${length}이어야 합니다.`,
+  // eslint-disable-next-line max-params
   isNotInRange: (name, min, max) => `${name}(은)는 [${min} ~ ${max}] 범위 이내의 값이어야 합니다.`,
   isNotUnique: (name) => `${name}(은)는 중복된 요소를 갖지 않아야 합니다.`,
   isNotRestart: (name, arr) => `${name} 옵션은 [ ${arr} ]에서 선택해야 합니다.`
@@ -35,7 +35,7 @@ export const OUTPUT_MESSAGES = {
   lottoNumbers: (numbers) => `[${numbers.join(', ')}]`,
   statisticsTitle: '\n당첨 통계',
   dividingLine: '--------------------',
-  statisticsResult: (matchingCount, bonusMatch, prizeAmount, count) =>
+  statisticsResult: ({ matchingCount, bonusMatch, prizeAmount, count }) =>
     `${matchingCount}개 일치${bonusMatch} (${prizeAmount}원) - ${count}개`,
   bonusMatch: ', 보너스 볼 일치',
   profitRate: (profitRate) => `\n총 수익률은 ${profitRate}%입니다.`
