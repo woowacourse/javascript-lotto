@@ -8,6 +8,7 @@ import LottoValidation from '../validation/lottoValidation';
 import PurchaseAmountValidation from '../validation/purchaseAmount';
 import RestartResponseValidation from '../validation/responseValidation';
 import MESSAGE from '../constants/message';
+import LottoPublisher from '../domain/LottoPublisher';
 
 class LottoController {
   async play() {
@@ -32,19 +33,8 @@ class LottoController {
   // 로또들을 반환한다.
   async buyLottos() {
     const lottoCount = await this.getValidateLottoAmount();
-    const lottos = this.publishRandomLottos(lottoCount);
-    return lottos;
-  }
-
-  publishRandomLottos(count) {
-    const lottoNumbers = [];
-    const lottos = [];
-    for (let i = 0; i < lottoCount; i++) {
-      const randomNumbers = this.getRandomNumbers();
-      lottoNumbers.push(randomNumbers);
-      lottos.push(new Lotto(randomNumbers));
-      return Array.from({ length: count }, () => new Lotto(this.getRandomNumbers()));
-    }
+    const lottoPublisher = new LottoPublisher();
+    const lottos = lottoPublisher.publishRandomLottos(lottoCount);
     return lottos;
   }
 
@@ -71,6 +61,15 @@ class LottoController {
     OutputView.printRateOfRevenue(rateOfRevenue);
   }
 
+  getRateOfRevenue(result = 0, lottoCount = 0) {
+    const revenue = result.reduce((acc, cur) => {
+      const [, , price, winCount] = cur;
+      return acc + price * winCount;
+    }, 0);
+
+    return ((revenue / (lottoCount * NUMBER.LOTTO_PRICE)) * 100).toFixed(1);
+  }
+
   async getValidateLottoAmount() {
     const purchaseAmount = await InputView.askPurchaseAmount();
     try {
@@ -80,17 +79,6 @@ class LottoController {
       return this.getValidateLottoAmount();
     }
     return Number.parseInt(purchaseAmount / NUMBER.LOTTO_PRICE, 10);
-  }
-
-  getRandomNumbers() {
-    const lottoNumbers = [];
-    while (lottoNumbers.length < NUMBER.LOTTO_LENGTH) {
-      lottoNumbers.push(Random.pickNumberInRange(NUMBER.LOTTO_START_NUMBER, NUMBER.LOTTO_END_NUMBER));
-    }
-    if (new Set(lottoNumbers).size !== NUMBER.LOTTO_LENGTH) {
-      return this.getRandomNumbers();
-    }
-    return [...lottoNumbers];
   }
 
   async getValidateWinNumbers() {
@@ -113,15 +101,6 @@ class LottoController {
       return this.validateBonusNumber();
     }
     return bonusNumber;
-  }
-
-  getRateOfRevenue(result = 0, lottoCount = 0) {
-    const revenue = result.reduce((acc, cur) => {
-      const [, , price, winCount] = cur;
-      return acc + price * winCount;
-    }, 0);
-
-    return ((revenue / (lottoCount * NUMBER.LOTTO_PRICE)) * 100).toFixed(1);
   }
 
   async getValidateRestartResponse() {
