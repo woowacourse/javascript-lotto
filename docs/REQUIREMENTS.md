@@ -48,4 +48,4 @@
 
 ## 💡 Utils
 
-- `pickUniqueNumbersInRange`: 입력한 최소와 최대 숫자를 중복 없이 입력한 개수만큼 반환하는 함수
+- `getRandomArray`: 입력한 최소와 최대 숫자를 중복 없이 입력한 개수만큼 반환하는 함수
