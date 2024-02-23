@@ -1,9 +1,9 @@
-import ERROR from '../constants/ErrorMessage';
-import Condition from '../constants/Condition';
+import ERROR from '../../constants/ErrorMessage';
+import Condition from '../../constants/Condition';
 
 const { MONEY } = Condition;
 
-const MoneyValidator = {
+const Money = {
   validateMoneyType(money) {
     if (Number.isNaN(Number(money))) {
       throw new Error(ERROR.MONEY_TYPE);
@@ -23,4 +23,4 @@ const MoneyValidator = {
   },
 };
 
-export default MoneyValidator;
+export default Money;

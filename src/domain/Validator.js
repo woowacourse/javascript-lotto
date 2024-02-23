@@ -1,29 +1,27 @@
-import MoneyValidator from './MoneyValidator';
-import LottoValidator from './LottoValidator';
-import RestartValidator from './RestartValidator';
+import { Lotto, Restart, Money } from './validator/index';
 
 const Validator = {
   checkReadMoney(money) {
-    MoneyValidator.validateMoneyType(money);
-    MoneyValidator.validateMoneyMinimum(money);
-    MoneyValidator.validateMoneyUnit(money);
+    Money.validateMoneyType(money);
+    Money.validateMoneyMinimum(money);
+    Money.validateMoneyUnit(money);
   },
 
   checkLottoNumbers(numbers) {
-    LottoValidator.validateNumbersLength(numbers);
-    LottoValidator.validateNumbersDuplicate(numbers);
-    LottoValidator.validateNumbersType(numbers);
-    LottoValidator.validateNumbersRange(numbers);
+    Lotto.validateNumbersLength(numbers);
+    Lotto.validateNumbersDuplicate(numbers);
+    Lotto.validateNumbersType(numbers);
+    Lotto.validateNumbersRange(numbers);
   },
 
   checkReadBonusNumber(winningNumbers, number) {
-    LottoValidator.validateNumbersDuplicate([...winningNumbers, number]);
-    LottoValidator.validateNumbersType([number]);
-    LottoValidator.validateNumbersRange([number]);
+    Lotto.validateNumbersDuplicate([...winningNumbers, number]);
+    Lotto.validateNumbersType([number]);
+    Lotto.validateNumbersRange([number]);
   },
 
   checkReadRestartOrExit(restartOption) {
-    RestartValidator.validateOptionCharacter(restartOption);
+    Restart.validateOptionCharacter(restartOption);
   },
 };
 

@@ -1,9 +1,9 @@
-import Condition from '../constants/Condition';
-import ERROR from '../constants/ErrorMessage';
+import Condition from '../../constants/Condition';
+import ERROR from '../../constants/ErrorMessage';
 
 const { LOTTO } = Condition;
 
-const LottoValidator = {
+const Lotto = {
   validateNumbersLength(numbers) {
     if (numbers.length !== LOTTO.NUMBER_LENGTH) {
       throw new Error(ERROR.LOTTO_NUMBERS_LENGTH);
@@ -33,4 +33,4 @@ const LottoValidator = {
   },
 };
 
-export default LottoValidator;
+export default Lotto;
