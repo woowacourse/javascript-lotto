@@ -12,27 +12,27 @@ class LottoValidator {
   static validateLottoNumbers(numbers) {
     this.#validateLottoNumbersLength(numbers);
     this.#validateIntegers(numbers);
-    this.validateNumbersInLottoRange(numbers);
-    this.validateUniqueElements(numbers);
+    this.#validateNumbersInLottoRange(numbers);
+    this.#validateUniqueElements(numbers);
   }
 
   static validateBonusNumber(bonusNumber, winningNumbers) {
     this.#validateInteger(bonusNumber);
-    this.validateNumberInLottoRange(bonusNumber);
-    this.validateUniqueElements([...winningNumbers, bonusNumber]);
+    this.#validateNumberInLottoRange(bonusNumber);
+    this.#validateUniqueElements([...winningNumbers, bonusNumber]);
   }
 
-  static validateNumbersInLottoRange(numbers) {
-    numbers.forEach((number) => this.validateNumberInLottoRange(number));
+  static #validateNumbersInLottoRange(numbers) {
+    numbers.forEach((number) => this.#validateNumberInLottoRange(number));
   }
 
-  static validateNumberInLottoRange(number) {
+  static #validateNumberInLottoRange(number) {
     if (number < Lotto.MIN_LOTTO_NUMBER || number > Lotto.MAX_LOTTO_NUMBER) {
       throw new Error(MESSAGES.ERROR.notInLottoNumberRange);
     }
   }
 
-  static validateUniqueElements(array) {
+  static #validateUniqueElements(array) {
     if (array.length !== new Set(array).size) {
       throw new Error(MESSAGES.ERROR.hasDuplicateElements);
     }
@@ -40,7 +40,7 @@ class LottoValidator {
 
   static validateLottoNumberString(string) {
     this.validateNonNegativeIntegerString(string);
-    this.validateNumberInLottoRange(Number(string));
+    this.#validateNumberInLottoRange(Number(string));
   }
 
   static validateNonNegativeIntegerString(string) {
