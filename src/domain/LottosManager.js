@@ -4,11 +4,11 @@ import { SETTING, RANKING } from '../constant/setting.js';
 class LottosManager {
   #lottos;
   #winningResults = {
-    6: { title: 'FIRST', count: 0 },
-    B5: { title: 'SECOND', count: 0 },
-    5: { title: 'THIRD', count: 0 },
-    4: { title: 'FOURTH', count: 0 },
-    3: { title: 'FIFTH', count: 0 },
+    6: 0,
+    B5: 0,
+    5: 0,
+    4: 0,
+    3: 0,
   };
 
   constructor(lottoList) {
@@ -26,8 +26,8 @@ class LottosManager {
 
   #updateWinningResults(matchedNumbers, isBonusMatched) {
     if (matchedNumbers >= SETTING.MIN_RANKING_MATCHING_NUMBER) {
-      const ranking = matchedNumbers === RANKING.SECOND.MATCHING_COUNT && isBonusMatched ? 'B5' : matchedNumbers;
-      this.#winningResults[ranking].count += 1;
+      const matchedKey = matchedNumbers === RANKING.B5.MATCHING_COUNT && isBonusMatched ? 'B5' : matchedNumbers;
+      this.#winningResults[matchedKey] += 1;
     }
   }
 }
