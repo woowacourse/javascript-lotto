@@ -5,24 +5,43 @@ import Statistics from '../domain/statistics.js';
 
 export default class Controller {
   #lottoMachine;
+  #winningLotto;
+  #statistics;
 
   async start() {
     const cost = await InputView.readCost();
+
+    this.#buy(cost);
+    this.#winningLotto = await InputView.readWinningLotto();
+    this.#calculateStatistics(cost);
+  }
+
+  #buy(cost) {
     this.#lottoMachine = new LottoMachine(cost);
+
+    this.#printLottoTickets();
+  }
+
+  #printLottoTickets() {
     OutputView.printBuyCount(this.#lottoMachine.getLottoCount);
     this.#lottoMachine.getLottoNumbers.forEach((numbers) => {
       OutputView.printLotto(numbers);
     });
+  }
 
-    const winningLotto = await InputView.readWinningLotto();
-
-    const statistics = new Statistics({
+  #calculateStatistics(cost) {
+    this.#statistics = new Statistics({
       lottos: this.#lottoMachine.getLottoNumbers,
-      winningLotto: winningLotto.getLottoNumbers,
-      bonusNumber: winningLotto.getBonusNumber,
+      winningLotto: this.#winningLotto.getLottoNumbers,
+      bonusNumber: this.#winningLotto.getBonusNumber,
       cost,
     });
-    OutputView.printResult(statistics.getResult);
-    OutputView.printProfit(statistics.getProfit);
+
+    this.#printStatistics();
+  }
+
+  #printStatistics() {
+    OutputView.printResult(this.#statistics.getResult);
+    OutputView.printProfit(this.#statistics.getProfit);
   }
 }
