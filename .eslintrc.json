@@ -15,5 +15,6 @@
     "max-lines-per-function": ["error", 10],
     "no-magic-numbers": "error",
     "import/extensions": "off"
-  }
+  },
+  "ignorePatterns": ["*.test.js"]
 }
