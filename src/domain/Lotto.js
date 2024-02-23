@@ -1,4 +1,5 @@
 import LottoValidator from "./LottoValidator.js";
+import { sortAscendingNumbers } from "../utils/sortAscendingNumbers.js";
 
 class Lotto {
   static NUMBERS_LENGTH = 6;
@@ -10,16 +11,13 @@ class Lotto {
   constructor(numbers) {
     LottoValidator.validateLottoNumbers(numbers);
 
-    this.#numbers = this.#sortAscendingNumbers([...numbers]);
+    this.#numbers = sortAscendingNumbers([...numbers]);
   }
 
   getNumbers() {
     return [...this.#numbers];
   }
 
-  #sortAscendingNumbers(numbers) {
-    return numbers.sort((a, b) => a - b);
-  }
 }
 
 export default Lotto;
