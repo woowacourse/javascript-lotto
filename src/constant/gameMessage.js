@@ -1,4 +1,4 @@
-import { RANKING } from './setting.js';
+import { RANKING } from './setting';
 
 const PROMPT_PREFIX = '\n>';
 const generatePromptMessage = (message) => `${PROMPT_PREFIX} ${message}`;

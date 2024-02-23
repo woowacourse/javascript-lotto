@@ -1,5 +1,5 @@
-import { GAME_MESSAGE, LOTTO_WINNING_RESULTS } from '../constant/gameMessage.js';
-import handleIO from '../util/handleIO.js';
+import { GAME_MESSAGE, LOTTO_WINNING_RESULTS } from '../constant/gameMessage';
+import handleIO from '../util/handleIO';
 
 const OutputView = {
   printPurchaseResult(lottoList) {
