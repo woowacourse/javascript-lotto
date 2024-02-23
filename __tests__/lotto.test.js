@@ -3,9 +3,7 @@ import Lotto from '../src/domain/lotto.js';
 import { ERROR_MESSAGES } from '../src/constant/index.js';
 
 describe('로또 기능 테스트', () => {
-  test('로또 번호가 7개인 경우 에러를 반환', () => {
-    const lottoNumbers = [1, 2, 3, 4, 5, 6, 7];
-
+  test.each([[[1, 2, 3, 4, 5]], [[1, 2, 3, 4, 5, 6, 7]]])('로또 번호가 6개가 아닌 경우 에러를 반환', (lottoNumbers) => {
     expect(() => {
       new Lotto(lottoNumbers);
     }).toThrow(ERROR_MESSAGES.incorrect_length);
@@ -27,7 +25,7 @@ describe('로또 기능 테스트', () => {
     }).toThrow(ERROR_MESSAGES.duplicate);
   });
 
-  test.each([[[1, 2, 3, 4, 5, 46]], [[0, 2, 3, 4, 15, 25]], [[1, 2, 13, 24, 35, 60]]])(
+  test.each([[[1, 2, 3, 4, 5, 46]], [[0, 2, 3, 4, 15, 25]]])(
     '로또 번호는 1에서 45사이의 숫자가 아니면 에러를 반환',
     (lottoNumbers) => {
       expect(() => {
