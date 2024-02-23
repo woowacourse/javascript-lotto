@@ -9,56 +9,56 @@ export default class Controller {
   #winLottoNumber;
 
   async run() {
-    await this.#handleLottoMoney();
-    this.#handleLottos();
+    await this.#executeLottoMoney();
+    this.#executeLottos();
 
-    await this.#handleWinLottoNumber();
-    this.#handleResult();
+    await this.#executeWinLottoNumber();
+    this.#executeResult();
 
-    await this.#handleRetry();
+    await this.#executeRetry();
   }
 
-  async #handleLottoMoney() {
+  async #executeLottoMoney() {
     try {
       const money = await InputView.readMoney();
       this.#lottoMachine = new LottoMachine(money);
     } catch (err) {
       OutputView.printError(err.message);
-      await this.#handleLottoMoney();
+      await this.#executeLottoMoney();
     }
   }
 
-  #handleLottos() {
+  #executeLottos() {
     const boughtLottos = this.#lottoMachine.getLottos();
     OutputView.printBoughtLottos(boughtLottos);
   }
 
-  async #handleWinLottoNumber() {
-    await this.#handleWinLottoNumbers();
-    await this.#handleBonusNumber();
+  async #executeWinLottoNumber() {
+    await this.#executeWinLottoNumbers();
+    await this.#executeBonusNumber();
   }
 
-  async #handleWinLottoNumbers() {
+  async #executeWinLottoNumbers() {
     try {
       const winLottoNumbers = await InputView.readWinLottoNumbers();
       this.#winLottoNumber = new WinLottoNumber(winLottoNumbers);
     } catch (err) {
       OutputView.printError(err.message);
-      await this.#handleWinLottoNumbers();
+      await this.#executeWinLottoNumbers();
     }
   }
 
-  async #handleBonusNumber() {
+  async #executeBonusNumber() {
     try {
       const bonusNumber = await InputView.readBonusNumber();
       this.#winLottoNumber.setBonusNumber(bonusNumber);
     } catch (err) {
       OutputView.printError(err.message);
-      await this.#handleBonusNumber();
+      await this.#executeBonusNumber();
     }
   }
 
-  #handleResult() {
+  #executeResult() {
     const winNumbersObj = this.#winLottoNumber.getWinLottoNumbers();
     const winLottos = this.#lottoMachine.getWinLottos(winNumbersObj);
     OutputView.printWinLottos(winLottos);
@@ -67,7 +67,7 @@ export default class Controller {
     OutputView.printRateOfIncome(rateOfIncome);
   }
 
-  async #handleRetry() {
+  async #executeRetry() {
     const isRetry = await InputView.readIsRetryRun();
 
     if (isRetry) {
