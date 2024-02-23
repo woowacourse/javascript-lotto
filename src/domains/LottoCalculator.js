@@ -19,11 +19,12 @@ class LottoCalculator {
       generatedLotto.includes(winningNumber),
     ).length;
   }
+  // 뭐하는건지 더 자세히 메서드 명 쓰기
 
   isEqualBonusNumber(bonusNumber, generatedLotto) {
     return generatedLotto.includes(bonusNumber);
   }
-
+  // 이거 네이밍 어케하지
   #increaseLottoCount(number) {
     Object.keys(LOTTO_STATICS).forEach((key) => {
       if (LOTTO_STATICS[key].number === number) {

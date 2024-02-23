@@ -1,9 +1,9 @@
-import Console from '../utils/Console';
+import console from '../utils/console';
 import { INPUT_MESSAGES } from '../constants/messages';
 
-const { readLineAsync } = Console;
+const { readLineAsync } = console;
 
-const InputView = {
+const inputView = {
   async lottoPayment() {
     return readLineAsync(
       `${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.lottoPayment} `,
@@ -27,4 +27,4 @@ const InputView = {
   },
 };
 
-export default InputView;
+export default inputView;

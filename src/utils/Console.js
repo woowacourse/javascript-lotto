@@ -1,6 +1,7 @@
+/* eslint-disable max-lines-per-function */
 import readline from 'readline';
 
-const Console = {
+const console = {
   readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (typeof query !== 'string') {
@@ -24,4 +25,4 @@ const Console = {
   },
 };
 
-export default Console;
+export default console;

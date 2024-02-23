@@ -1,7 +1,7 @@
 import LottoGenerator from '../domains/LottoGenerator';
 import LottoCalculator from '../domains/LottoCalculator';
-import InputView from '../views/InputView';
-import OutputView from '../views/OutputView';
+import inputView from '../views/inputView';
+import outputView from '../views/outputView';
 import LottoPaymentValidator from '../validators/LottoPaymentValidator';
 import LottoValidator from '../validators/LottoValidator';
 import executeWithRetry from '../utils/executeWithRetry';
@@ -32,18 +32,19 @@ class LottoController {
 
   async initLottoGenerator(tickets) {
     const lottoGenerator = new LottoGenerator(tickets);
-    OutputView.printLottoPayment(tickets);
-    OutputView.printGeneratedLottos(lottoGenerator.generatedLottos);
-    OutputView.printNewLine();
+    outputView.printLottoPayment(tickets);
+    outputView.printGeneratedLottos(lottoGenerator.generatedLottos);
+    outputView.printNewLine();
     return lottoGenerator;
+    //generateRandomLottos 만 return 하면 될듯, 그리고 여기에 out이 있느게 어색..
   }
 
   async initLottoNumbers() {
     this.#lottoNumbers.winningNumbers = await this.readWinningNumbers();
-    OutputView.printNewLine();
+    outputView.printNewLine();
 
     this.#lottoNumbers.bonusNumber = await this.readBonusNumber();
-    OutputView.printNewLine();
+    outputView.printNewLine();
   }
 
   async initLottoCalculator(tickets, lottoGenerator) {
@@ -53,13 +54,13 @@ class LottoController {
     );
     const lottoStatics = lottoCalculator.lottoStatics;
     const profit = lottoCalculator.calculateTotalProfit(tickets);
-    OutputView.printWinningStatics(lottoStatics);
-    OutputView.printTotalProfit(profit);
+    outputView.printWinningStatics(lottoStatics);
+    outputView.printTotalProfit(profit);
   }
 
   async readLottoPayment() {
     return executeWithRetry(async () => {
-      const lottoPayment = await InputView.lottoPayment();
+      const lottoPayment = await inputView.lottoPayment();
       LottoPaymentValidator.validate(lottoPayment);
       return lottoPayment;
     });
@@ -67,7 +68,7 @@ class LottoController {
 
   async readWinningNumbers() {
     return executeWithRetry(async () => {
-      const winningNumbers = await InputView.winningNumbers();
+      const winningNumbers = await inputView.winningNumbers();
       const splittedNumbers = this.splitInput(winningNumbers);
       LottoValidator.winningNumbersValidate(splittedNumbers);
       return splittedNumbers;
@@ -76,7 +77,7 @@ class LottoController {
 
   async readBonusNumber() {
     return executeWithRetry(async () => {
-      const bonusNumber = Number(await InputView.bonusNumber());
+      const bonusNumber = Number(await inputView.bonusNumber());
       LottoValidator.bonusNumberValidate(
         this.#lottoNumbers.winningNumbers,
         bonusNumber,
@@ -86,8 +87,8 @@ class LottoController {
   }
 
   async reStartLotto() {
-    OutputView.printNewLine();
-    const reStart = await InputView.reStart();
+    outputView.printNewLine();
+    const reStart = await inputView.reStart();
     if (reStart === 'y') {
       this.run();
     }
