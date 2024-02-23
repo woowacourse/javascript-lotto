@@ -18,10 +18,10 @@ class Lotto {
   }
 
   calculatePrize(winningNumbers, bonusNumber) {
-    const match = this.#numbers.filter((number) => winningNumbers.includes(number)).length;
-    const prize = PRIZE.find(([, detail]) => detail.MATCH === match);
+    const matchCount = this.#numbers.filter((number) => winningNumbers.includes(number)).length;
+    const prize = PRIZE.find(([_, detail]) => detail.MATCH === matchCount);
 
-    if (prize === undefined) return RANK.LAST_PLACE;
+    if (!prize) return RANK.LAST_PLACE;
 
     return prize[0] === RANK.THIRD_PLACE ? this.#compareBonusNumber(bonusNumber) : prize[0];
   }

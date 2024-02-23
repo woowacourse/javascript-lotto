@@ -5,19 +5,19 @@ const { MONEY } = Condition;
 const { ERROR } = Message;
 
 const MoneyValidator = {
-  validateMoneyType(money) {
+  validateType(money) {
     if (Number.isNaN(Number(money))) {
       throw new Error(ERROR.MONEY_TYPE);
     }
   },
 
-  validateMoneyMinimum(money) {
+  validateRange(money) {
     if (money <= MONEY.MIN) {
       throw new Error(ERROR.MONEY_MINIMUM);
     }
   },
 
-  validateMoneyUnit(money) {
+  validateUnit(money) {
     if (money % MONEY.UNIT !== 0) {
       throw new Error(ERROR.MONEY_UNIT);
     }

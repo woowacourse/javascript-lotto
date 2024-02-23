@@ -1,12 +1,12 @@
 import MoneyValidator from './MoneyValidator';
 import LottoValidator from './LottoValidator';
-import RestartValidator from './RestartValidator';
+import RestartOptionValidator from './RestartOptionValidator';
 
 const Validator = {
   validateMoney(money) {
-    MoneyValidator.validateMoneyType(money);
-    MoneyValidator.validateMoneyMinimum(money);
-    MoneyValidator.validateMoneyUnit(money);
+    MoneyValidator.validateType(money);
+    MoneyValidator.validateRange(money);
+    MoneyValidator.validateUnit(money);
     return money;
   },
 
@@ -26,7 +26,7 @@ const Validator = {
   },
 
   validateRestartOption(restartOption) {
-    RestartValidator.validateOptionCharacter(restartOption);
+    RestartOptionValidator.validateCharacter(restartOption);
     return restartOption;
   },
 };
