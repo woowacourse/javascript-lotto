@@ -6,6 +6,7 @@ import lottoStatistics from "../domain/lottoStatistics.js";
 import Lotto from "../domain/Lotto.js";
 import WinningLotto from "../domain/WinningLotto.js";
 import LottoResultMaker from "../domain/LottoResultMaker.js";
+import LottoRankMaker from "../domain/lottoRankMaker.js";
 
 /**
  * @returns {Number}
@@ -55,9 +56,10 @@ const LottoController = {
     // const winningLotto = new WinningLotto(winningCombination);
 
     // 각 로또별 당첨 번호, 보너스 번호와 몇 개 일치한지 확인해줘
-    const lottoResult = LottoResultMaker(issuedLottoArray, winningCombination).calculateLottoResult();
+    const lottoResult = LottoResultMaker.calculateLottoResult(issuedLottoArray, winningCombination);
 
     //일치하는 개수에 따라 등수별 로또가 몇 장 있는지 계산해줘
+    const lottoRankResult = LottoRankMaker.calculateLottoRank(lottoResult);
   },
 };
 
