@@ -17,7 +17,7 @@ class LotteryMachine {
     return new Lotto(lotto);
   }
 
-  pickRandomLottoNumbers(){
+  pickRandomLottoNumbers() {
     const lottoRangeList = Array.from({ length: CONFIG.MAX_LOTTO_NUMBER }, (_, i) => i + 1);
     lottoRangeList.sort(() => Math.random() - 0.5);
     return lottoRangeList.slice(0, CONFIG.LOTTO_LENGTH);
