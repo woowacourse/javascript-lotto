@@ -54,7 +54,7 @@ const LottoGame = {
   async restartOrExit() {
     const restartOption = await retryUntilValid(() => this.getRestartOption());
 
-    if (restartOption === RESTART_OPTION.RESTART) {
+    if (restartOption.toLowerCase() === RESTART_OPTION.RESTART) {
       await this.start();
     }
   },

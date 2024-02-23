@@ -6,7 +6,10 @@ const { ERROR } = Message;
 
 const RestartOptionValidator = {
   validateCharacter(restartOption) {
-    if (restartOption !== RESTART_OPTION.RESTART && restartOption !== RESTART_OPTION.EXIT) {
+    if (
+      restartOption.toLowerCase() !== RESTART_OPTION.RESTART &&
+      restartOption.toLowerCase() !== RESTART_OPTION.EXIT
+    ) {
       throw new Error(ERROR.OPTION_CHARACTER);
     }
   },
