@@ -35,7 +35,6 @@ class Lotto {
   }
 
   #validate(numbers) {
-    // 중복없이 6개가 아닌 로또 넘버가 들어온 경우와 중복있는 로또 넘버가 들어온 경우의 오류를 다르게 주기 위해
     if (!isExpectedArrayLength(numbers, Lotto.NUMBER_COUNT))
       throw new CustomError(ERROR_MESSAGE.lottoNumbersTooManyOrLess);
 

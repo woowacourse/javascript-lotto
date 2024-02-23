@@ -8,11 +8,10 @@ const MESSAGES = {
   profitRate: (rate) => `총 수익률은 ${rate}%입니다.`,
   matchReference: ({ matchCount, prize, rank }) => `${matchCount}개 일치 (${prize}원) - ${rank}개`, // TODO: 리펙이 필요하다.
   bonusMatchReference: ({ matchCount, prize, rank }) =>
-    `${matchCount}개 일치, 보너스 볼 일치 (${prize}원) - ${rank}개`, // TODO: 리펙이 필요하다.
+    `${matchCount}개 일치, 보너스 볼 일치 (${prize}원) - ${rank}개`,
   lotto: (numbers) => `[ ${numbers.join(", ")} ]`,
 };
 
-// TODO: 메서드를 묶어놓은 객체의 이름을 카멜케이스로 지어야하나요, 파스탈로 지어야하나요?
 const OutputView = {
   printLotto(count, lottos) {
     print(MESSAGES.count(count));
@@ -28,7 +27,6 @@ const OutputView = {
     print(MESSAGES.profitRate(rate));
   },
 
-  // TODO: 리펙토링 해야한다.
   printMatchCount(rank, i) {
     if (i < PRIZE.length - 2) {
       print(MESSAGES.matchReference({ matchCount: i + 3, prize: PRIZE[i], rank })); // 보통
