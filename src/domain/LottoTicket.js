@@ -7,19 +7,19 @@ class LottoTicket {
   }
 
   #pickRandomNumberInRange() {
-    return Math.floor(Math.random() * 45) + 1;
+    const pickNumber = Math.floor(Math.random() * 45) + 1;
+    this.#hasDuplicatedNumber(pickNumber);
   }
 
   #publishTicket() {
     const emptyArr = Array.from({ length: 6 }).fill(0);
     emptyArr.forEach(() => {
-      this.#checkDuplicated();
+      this.#hasDuplicatedNumber();
     });
   }
 
-  #checkDuplicated() {
-    const pickNumber = this.#pickRandomNumberInRange();
-    if (this.#ticket.includes(pickNumber)) this.#checkDuplicated();
+  #hasDuplicatedNumber(pickNumber) {
+    if (this.#ticket.includes(pickNumber)) this.#pickRandomNumberInRange();
     if (!this.#ticket.includes(pickNumber)) this.#ticket.push(pickNumber);
   }
 
