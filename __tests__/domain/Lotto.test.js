@@ -14,7 +14,7 @@ describe("Lotto 객체 테스트", () => {
     );
   });
 
-  test("로또 번호는 중복되면 안된다.", () => {
+  test("로또 번호 배열에 똑같은 숫자가 있으면 오류를 던진다.", () => {
     const DUPLICATE_LOTTO_NUMBERS = [1, 1, 2, 3, 4, 5];
 
     expect(createLottoWithNumbers(DUPLICATE_LOTTO_NUMBERS)).toThrow(
