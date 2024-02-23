@@ -1,5 +1,6 @@
 {
   "rules": {
+    "linebreak-style": 0,
     "max-lines-per-function": ["error", { "max": 10 }],
     "max-depth": ["error", { "max": 1 }]
   },
