@@ -1,8 +1,8 @@
-import { SETTING, RANKING } from '../constant/setting.js';
-import LottoMachine from '../domain/LottoMachine.js';
-import Lottos from '../domain/Lottos.js';
-import OutputView from '../view/OutputView.js';
-import InputController from './InputController.js';
+import { SETTING, RANKING } from '../constant/setting';
+import LottoMachine from '../domain/LottoMachine';
+import Lottos from '../domain/Lottos';
+import OutputView from '../view/OutputView';
+import InputController from './InputController';
 
 class LottoGameController {
   #purchaseAmount;

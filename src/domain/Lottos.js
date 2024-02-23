@@ -1,5 +1,5 @@
-import Lotto from './Lotto.js';
-import { SETTING, RANKING } from '../constant/setting.js';
+import Lotto from './Lotto';
+import { SETTING, RANKING } from '../constant/setting';
 
 class Lottos {
   #lottos;
@@ -30,9 +30,7 @@ class Lottos {
   }
 
   #initWinningResults() {
-    return Object.values(RANKING).reduce((initRankingObject, { NAME }) => {
-      return { ...initRankingObject, [NAME]: 0 };
-    }, {});
+    return Object.values(RANKING).reduce((initRankingObject, { NAME }) => ({ ...initRankingObject, [NAME]: 0 }), {});
   }
 
   #initWinningCriteria() {
