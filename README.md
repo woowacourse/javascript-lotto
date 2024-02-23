@@ -11,6 +11,30 @@ npm run start-step1
 
 감사합니다 !
 
+
+### 폴더구조 간결요약
+
+#### controller : 실행흐름, 입출력 담당
+
+- MainController : 두 컨트롤러를 관리. + 재시작 담당
+- PurchaseLottoController : 로또구매 담당
+- WinningLottoController : 당첨 결과 실행흐름/입출력 담당
+
+#### domain/entity
+
+- IsRetry : 게임 다시시작 원시값래핑. 검증
+- LottoNumber : 로또 번호 원시값 래핑. 검증
+- Lotto : 로또 번호의 일급 컬렉션. 검증.
+- WInningLotto : 당첨로또 자료형. 검증.
+
+#### domain/service : 비즈니스로직. 계산
+
+- PurchaseLottoService : 로또 구매. 구매한 로또 반환 담당
+- WinningResultService : 당첨 통계 계산 담당
+- WInningRewardService : 수익률 계산 담당
+
+
+
 # 고민한 사항 및 코드 의도
 
 ## 가장 중요시 한 것
@@ -76,23 +100,3 @@ npm run start-step1
 - 또, 이번에는
 - 메소드 단위로 커밋을 하기도 하고, 클래스 단위(기능단위)로 커밋을하기도하였는데, 커밋은 작게하는 것이 좋다고는 하지만 너무 자주하기엔 커밋메세지작성이 오래걸리는거같습니다. 케빈은 보통 커밋 빈도를 어느정도로 맞추는 편인지 궁금합니다.
 
-### 폴더구조 간결요약
-
-#### controller : 실행흐름, 입출력 담당
-
-- MainController : 두 컨트롤러를 관리. + 재시작 담당
-- PurchaseLottoController : 로또구매 담당
-- WinningLottoController : 당첨 결과 실행흐름/입출력 담당
-
-#### domain/entity
-
-- IsRetry : 게임 다시시작 원시값래핑. 검증
-- LottoNumber : 로또 번호 원시값 래핑. 검증
-- Lotto : 로또 번호의 일급 컬렉션. 검증.
-- WInningLotto : 당첨로또 자료형. 검증.
-
-#### domain/service : 비즈니스로직. 계산
-
-- PurchaseLottoService : 로또 구매. 구매한 로또 반환 담당
-- WinningResultService : 당첨 통계 계산 담당
-- WInningRewardService : 수익률 계산 담당
