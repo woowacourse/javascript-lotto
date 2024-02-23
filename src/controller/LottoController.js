@@ -27,10 +27,20 @@ class LottoController {
   }
 
   async inputWinningNumbers() {
-    const winningNumbers = await InputView.inputWinningNumbers();
-    return winningNumbers
-      .split(OPTIONS.INPUT.winningNumbersDelimiter)
-      .map((number) => Number(number.trim()));
+    let numbers;
+    while (true) {
+      try {
+        const winningNumbers = await InputView.inputWinningNumbers();
+        numbers = winningNumbers
+          .split(OPTIONS.INPUT.winningNumbersDelimiter)
+          .map((number) => Number(number.trim()));
+        LottoNumbersValidator.validate(numbers);
+        break;
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+    return numbers;
   }
 
   async inputBonusNumber() {

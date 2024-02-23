@@ -19,7 +19,7 @@ class LottoNumbersValidator {
   }
 
   static validateIsInteger(numbers) {
-    if (!numbers.every((number) => Validation.isInteger(number))) {
+    if (!numbers.every((number) => Validation.isInteger(number) && !isNaN(number))) {
       throw new Error(`${ERROR_MESSAGES.prefix}${ERROR_MESSAGES.isNotInteger(this.name)}`);
     }
   }
