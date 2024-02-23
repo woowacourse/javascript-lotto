@@ -80,15 +80,15 @@ npm run start-step1
 
 #### controller : 실행흐름, 입출력 담당
 
-- MainController : 두 컨트롤러를 관리 & 재시작여부
+- MainController : 두 컨트롤러를 관리. + 재시작 담당
 - PurchaseLottoController : 로또구매 담당
 - WinningLottoController : 당첨 결과 실행흐름/입출력 담당
 
 #### domain/entity
 
 - IsRetry : 게임 다시시작 원시값래핑. 검증
-- LottoNumber : 로또 번호 원시값래핑. 검증
-- LottoNumberList : 로또 번호의 일급 컬렉션. 검증
+- LottoNumber : 로또 번호 원시값 래핑. 검증
+- Lotto : 로또 번호의 일급 컬렉션. 검증.
 - WInningLotto : 당첨로또 자료형. 검증.
 
 #### domain/service : 비즈니스로직. 계산
