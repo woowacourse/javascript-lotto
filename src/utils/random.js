@@ -1,12 +1,9 @@
 const Random = {
-  pickUniqueNumbersInRange({ minNumber, maxNumber, count }) {
+  pickUniqueNumbersInRange({ minNumber, maxNumber, count = 1 }) {
     if (count > maxNumber - minNumber + 1) throw new Error('Cannot generate unique numbers. Count exceeds range.');
-    const uniqueNumbers = new Set();
+    const arr = Array.from({ length: maxNumber - minNumber + 1 }, (_, index) => index + minNumber);
 
-    while (uniqueNumbers.size < count)
-      uniqueNumbers.add(Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber);
-
-    return Array.from(uniqueNumbers);
+    return arr.toSorted(() => Math.random() - 0.5).slice(0, count);
   },
 };
 
