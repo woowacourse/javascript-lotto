@@ -7,10 +7,10 @@ import PurchaseLottoService from '../domain/service/PurchaseLottoService';
 import OutputView from './OutputView';
 
 const Private = {
-  async robustInput(readlineAsync, factory) {
+  async robustInput(readline, factory) {
     while (true) {
       try {
-        const inputString = await readlineAsync();
+        const inputString = await readline();
         return factory(inputString);
       } catch (e) {
         OutputView.print(e.message);
