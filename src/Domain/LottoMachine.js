@@ -35,7 +35,6 @@ export default class LottoMachine {
 
   #makeRandomNumbers() {
     const lottoSet = new Set();
-
     while (lottoSet.size !== LOTTO_LENGTH) {
       lottoSet.add(Math.ceil(Math.random() * LOTTO_NUMBER_RANGE.MAX));
     }
@@ -43,7 +42,6 @@ export default class LottoMachine {
   }
 
   getLottos() {
-    // TODO: 왜 spread를 사용한 것인가?
     return [...this.#lottos];
   }
 
@@ -60,9 +58,7 @@ export default class LottoMachine {
 
   #calculateIndividualLotto(lotto, winNumbersObj) {
     lotto.calculateRank(winNumbersObj);
-    const rank = lotto.getRank();
-
-    return rank;
+    return lotto.getRank();
   }
 
   #calculateIncome(lottoRanks) {

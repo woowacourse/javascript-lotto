@@ -1,7 +1,7 @@
-import InputView from "./View/InputView";
-import OutputView from "./View/OutputView";
-import LottoMachine from "./Domain/LottoMachine";
-import WinLottoNumber from "./Domain/WinLottoNumber";
+import InputView from './View/InputView';
+import OutputView from './View/OutputView';
+import LottoMachine from './Domain/LottoMachine';
+import WinLottoNumber from './Domain/WinLottoNumber';
 
 export default class Controller {
   #lottoMachine;
@@ -9,56 +9,56 @@ export default class Controller {
   #winLottoNumber;
 
   async run() {
-    await this.#generateLottoMoney();
-    this.#generateLottos();
+    await this.#handleLottoMoney();
+    this.#handleLottos();
 
-    await this.#generateWinLottoNumber();
-    this.#generateResult();
+    await this.#handleWinLottoNumber();
+    this.#handleResult();
 
-    await this.#generateRetry();
+    await this.#handleRetry();
   }
 
-  async #generateLottoMoney() {
+  async #handleLottoMoney() {
     try {
       const money = await InputView.readMoney();
       this.#lottoMachine = new LottoMachine(money);
     } catch (err) {
       OutputView.printError(err.message);
-      await this.#generateLottoMoney();
+      await this.#handleLottoMoney();
     }
   }
 
-  #generateLottos() {
+  #handleLottos() {
     const boughtLottos = this.#lottoMachine.getLottos();
     OutputView.printBoughtLottos(boughtLottos);
   }
 
-  async #generateWinLottoNumber() {
-    await this.#generateWinLottoNumbers();
-    await this.#generateBonusNumber();
+  async #handleWinLottoNumber() {
+    await this.#handleWinLottoNumbers();
+    await this.#handleBonusNumber();
   }
 
-  async #generateWinLottoNumbers() {
+  async #handleWinLottoNumbers() {
     try {
       const winLottoNumbers = await InputView.readWinLottoNumbers();
       this.#winLottoNumber = new WinLottoNumber(winLottoNumbers);
     } catch (err) {
       OutputView.printError(err.message);
-      await this.#generateWinLottoNumbers();
+      await this.#handleWinLottoNumbers();
     }
   }
 
-  async #generateBonusNumber() {
+  async #handleBonusNumber() {
     try {
       const bonusNumber = await InputView.readBonusNumber();
       this.#winLottoNumber.setBonusNumber(bonusNumber);
     } catch (err) {
       OutputView.printError(err.message);
-      await this.#generateBonusNumber();
+      await this.#handleBonusNumber();
     }
   }
 
-  #generateResult() {
+  #handleResult() {
     const winNumbersObj = this.#winLottoNumber.getWinLottoNumbers();
     const winLottos = this.#lottoMachine.getWinLottos(winNumbersObj);
     OutputView.printWinLottos(winLottos);
@@ -67,7 +67,7 @@ export default class Controller {
     OutputView.printRateOfIncome(rateOfIncome);
   }
 
-  async #generateRetry() {
+  async #handleRetry() {
     const isRetry = await InputView.readIsRetryRun();
 
     if (isRetry) {
