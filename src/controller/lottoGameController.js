@@ -1,4 +1,4 @@
-import { MIN_PURCHASE_AMOUNT, OPTION } from "../constants/option.js";
+import { MIN_PURCHASE_AMOUNT, OPTION, SYMBOL } from "../constants/option.js";
 import { RETRY_INPUT } from "../constants/system.js";
 import Lotto from "../domain/Lotto.js";
 import LottoMachine from "../domain/LottoMachine.js";
@@ -46,11 +46,11 @@ class LottoGameController {
   }
 
   async #getPurchaseAmount() {
-    const puchaseAmount = await this.#inputView.inputPurchaseAmount();
-    purchaseAmountValidator.validate(puchaseAmount);
+    const purchaseAmount = await this.#inputView.inputPurchaseAmount();
+    purchaseAmountValidator.validate(purchaseAmount);
 
-    this.#outputView.printPurchaseMessage(puchaseAmount);
-    return Number(puchaseAmount);
+    this.#outputView.printPurchaseMessage(purchaseAmount);
+    return Number(purchaseAmount);
   }
 
   async #getLottoList(purchaseAmount) {
@@ -86,7 +86,7 @@ class LottoGameController {
   async #getWinningLotto() {
     const winningLottoInput = await this.#inputView.inputWinningLottoNumber();
     const winningLottoNumbers = winningLottoInput
-      .split(OPTION.DELIMITER)
+      .split(SYMBOL.DELIMITER)
       .map((number) => Number(number));
     const winningLotto = new Lotto(winningLottoNumbers);
 
