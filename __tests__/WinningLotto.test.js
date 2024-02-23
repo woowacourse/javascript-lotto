@@ -1,3 +1,4 @@
+import ERROR from '../src/constant/Error.js';
 import WinningLotto from '../src/domain/entity/WinningLotto.js';
 
 describe('정답 로또 테스트', () => {
@@ -5,16 +6,16 @@ describe('정답 로또 테스트', () => {
     const WINNING_LOTTO_NUMBERS_STRING = '1,2,3,4,5,6';
     const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
 
-    expect(
-      WinningLotto.fromString(WINNING_LOTTO_NUMBERS_STRING).getNumbers(),
-    ).toEqual(LOTTO_NUMBERS);
+    expect(WinningLotto.fromString(WINNING_LOTTO_NUMBERS_STRING).getNumbers()).toEqual(
+      LOTTO_NUMBERS,
+    );
   });
 
   test('6개가 아닌 숫자들을 입력받았을 때, 에러를 발생시킨다.', () => {
     const WINNING_LOTTO_NUMBERS_STRING = '1,2,3,4,5,6,7';
 
     expect(() => WinningLotto.fromString(WINNING_LOTTO_NUMBERS_STRING)).toThrow(
-      '[Error]',
+      ERROR.messageStartWith,
     );
   });
 
@@ -38,8 +39,8 @@ describe('정답 로또 테스트', () => {
     const WINNING_NUMBERS_STRING = '1,2,3,4,5,6';
     const winningLotto = WinningLotto.fromString(WINNING_NUMBERS_STRING);
 
-    expect(() =>
-      winningLotto.setBonusNumberString(BONUS_NUMBER_STRING),
-    ).toThrow('[Error]');
+    expect(() => winningLotto.setBonusNumberString(BONUS_NUMBER_STRING)).toThrow(
+      ERROR.messageStartWith,
+    );
   });
 });
