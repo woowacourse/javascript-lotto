@@ -94,9 +94,9 @@ class LottoController {
   }
 
   getRateOfRevenue(result = 0, lottoCount = 0) {
-    const revenue = result.reduce((acc, cur) => {
-      const [, , price, winCount] = cur;
-      return acc + price * winCount;
+    const revenue = result.reduce((totalRevenue, eachResult) => {
+      const [, , price, winCount] = eachResult;
+      return totalRevenue + price * winCount;
     }, 0);
 
     return ((revenue / (lottoCount * NUMBER.LOTTO_PRICE)) * 100).toFixed(1);
