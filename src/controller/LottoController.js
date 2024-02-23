@@ -5,6 +5,7 @@ import OutputView from '../view/OutputView.js';
 import PurchaseAmountValidator from '../util/validation/PurchaseAmountValidator.js';
 import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
 import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
+import RestartValidator from '../util/validation/RestartValidator.js';
 class LottoController {
   #lottoMachine;
 
@@ -61,8 +62,17 @@ class LottoController {
   }
 
   async inputRestartResponse() {
-    const restartResponse = await InputView.inputRestartResponse();
-    return restartResponse.trim();
+    let restartResponse;
+    while (true) {
+      try {
+        restartResponse = await InputView.inputRestartResponse();
+        RestartValidator.validateIsIncluded(restartResponse);
+        break;
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+    return restartResponse.toLowerCase() === 'y';
   }
 
   displayIssueQuantity(issueQuantity) {

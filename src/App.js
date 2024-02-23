@@ -8,13 +8,26 @@ class App {
   }
 
   // eslint-disable-next-line max-lines-per-function
+  // async run() {
+  //   const lottos = await this.#purchaseLottos();
+
+  //   const winningNumbers = await this.#controller.inputWinningNumbers();
+  //   const bonusNumber = await this.#controller.inputBonusNumber(winningNumbers);
+
+  //   this.#showWinningResult(lottos, winningNumbers, bonusNumber);
+  // }
   async run() {
-    const lottos = await this.#purchaseLottos();
+    let restart;
+    do {
+      const lottos = await this.#purchaseLottos();
 
-    const winningNumbers = await this.#controller.inputWinningNumbers();
-    const bonusNumber = await this.#controller.inputBonusNumber(winningNumbers);
+      const winningNumbers = await this.#controller.inputWinningNumbers();
+      const bonusNumber = await this.#controller.inputBonusNumber(winningNumbers);
 
-    this.#showWinningResult(lottos, winningNumbers, bonusNumber);
+      this.#showWinningResult(lottos, winningNumbers, bonusNumber);
+
+      restart = await this.#controller.inputRestartResponse();
+    } while (restart);
   }
 
   async #purchaseLottos() {
