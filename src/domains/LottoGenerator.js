@@ -5,10 +5,10 @@ class LottoGenerator {
   #generatedLottos;
 
   constructor(lottoTickets) {
-    this.#generatedLottos = this.#generateRandomLottos(lottoTickets);
+    this.#generatedLottos = this.#generateLottosByTicketCount(lottoTickets);
   }
 
-  generateRandomLotto() {
+  generateLotto() {
     const { winningNumbersLength, minLength, maxLength } = LOTTO_RULES;
     const lottoSet = new Set();
 
@@ -19,10 +19,10 @@ class LottoGenerator {
     return Array.from(lottoSet).sort((a, b) => a - b);
   }
 
-  #generateRandomLottos(lottoTickets) {
+  #generateLottosByTicketCount(lottoTickets) {
     const generatedLottos = [];
     for (let ticket = 0; ticket < lottoTickets; ticket++) {
-      generatedLottos.push(this.generateRandomLotto());
+      generatedLottos.push(this.generateLotto());
     }
     return generatedLottos;
   }
