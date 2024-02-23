@@ -1,8 +1,8 @@
 class Lotto {
-  #numbers;
+  #lotto;
 
-  constructor(numbers) {
-    this.#numbers = numbers;
+  constructor(lotto) {
+    this.#lotto = lotto;
   }
 
   countMatchedNumbers(winningNumbers) {
@@ -11,7 +11,7 @@ class Lotto {
   }
 
   hasNumber(number) {
-    return this.#numbers.includes(number);
+    return this.#lotto.includes(number);
   }
 }
 
