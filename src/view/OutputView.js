@@ -19,7 +19,7 @@ const OutputView = {
     this.print(MESSAGE.lineSplitter);
     this.print(
       Object.entries(winningResult)
-        .sort((a, b) => Number(a[0]) - Number(b[0]))
+        .sort((a, b) => a[0].localeCompare(b[0]))
         .map(([matched, count]) => `${MESSAGE.winningCharacteristics[matched]} - ${count}개`)
         .join('\n'),
     );
