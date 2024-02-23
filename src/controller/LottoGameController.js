@@ -34,11 +34,9 @@ class LottoGameController {
 
   #calculateProfitRate(winningResults) {
     const totalProfit = Object.entries(winningResults).reduce((profit, [matchedKey, count]) => {
-      console.log(RANKING[matchedKey].REWARD * count);
-      return (profit += RANKING[matchedKey].REWARD * count);
+      return profit + RANKING[matchedKey].REWARD * count;
     }, 0);
-    return 100;
-    // return ((totalProfit * 100) / this.#purchaseAmount).toLocaleString('ko-KR', { minimumFractionDigits: 1 });
+    return ((totalProfit * 100) / this.#purchaseAmount).toLocaleString('ko-KR', { minimumFractionDigits: 1 });
   }
 
   #restartGame(restartCommand) {
