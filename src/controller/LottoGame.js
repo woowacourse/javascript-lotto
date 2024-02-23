@@ -25,9 +25,8 @@ const LottoGame = {
   },
 
   async purchaseLottoTickets() {
-    const money = await retryUntilValid(this.getMoney, this);
-    const lottoTickets = LottoGenerator.createLotto(money);
-    return lottoTickets;
+    const money = await retryUntilValid(() => this.getMoney());
+    return LottoGenerator.createLotto(money);
   },
 
   async getWinningNumbers() {
@@ -46,8 +45,8 @@ const LottoGame = {
   },
 
   async makeWinningLotto() {
-    const winningNumbers = await retryUntilValid(this.getWinningNumbers, this);
-    const bonusNumber = await retryUntilValid(() => this.getBonusNumber(winningNumbers), this);
+    const winningNumbers = await retryUntilValid(() => this.getWinningNumbers());
+    const bonusNumber = await retryUntilValid(() => this.getBonusNumber(winningNumbers));
 
     return { winningNumbers, bonusNumber };
   },
@@ -58,7 +57,7 @@ const LottoGame = {
   },
 
   async restartOrExit() {
-    const restartOption = await retryUntilValid(this.getRestartOption, this);
+    const restartOption = await retryUntilValid(() => this.getRestartOption());
 
     if (restartOption === RESTART_OPTION.RESTART) {
       await this.start();
