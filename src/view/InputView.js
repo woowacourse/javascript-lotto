@@ -1,11 +1,12 @@
-import readLineAsync from "../utils/readLineAsync.js";
 import { VIEW_MESSAGE } from "../constants/viewMessage.js";
-import budgetValidation from "../validation/budgetValidation.js";
-import winningLottoValidation from "../validation/winningLottoValidation.js";
-import winningLottoNumbersValidation from "../validation/winningLottoNumbersValidation.js";
-import winningLottoBonusValidation from "../validation/winningLottoBonusValidation.js";
+
+import readLineAsync from "../utils/readLineAsync.js";
 import startValidation from "../validation/startValidation.js";
 import retryValidation from "../validation/retryValidation.js";
+import budgetValidation from "../validation/budgetValidation.js";
+import winningLottoValidation from "../validation/winningLottoValidation.js";
+import winningLottoBonusValidation from "../validation/winningLottoBonusValidation.js";
+import winningLottoNumbersValidation from "../validation/winningLottoNumbersValidation.js";
 
 const InputView = {
   async readBudget() {
@@ -19,7 +20,9 @@ const InputView = {
     const winningLottoNumbersInput = await readLineAsync(VIEW_MESSAGE.winningLottoNumbers);
     const winningLottoNumbers = InputView.convertInputToArray(winningLottoNumbersInput);
 
-    winningLottoNumbers.forEach((number) => startValidation(winningLottoValidation.winningCombination, number));
+    winningLottoNumbers.forEach((number) => {
+      startValidation(winningLottoValidation.winningCombination, number);
+    });
     startValidation(winningLottoNumbersValidation.winningNumbers, winningLottoNumbers);
 
     return winningLottoNumbers;

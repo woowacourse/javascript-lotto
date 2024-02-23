@@ -4,7 +4,7 @@ async function getValidInput(readFunction) {
   } catch (error) {
     console.log(error.message);
 
-    return getValidInput(readFunction);
+    return await getValidInput(readFunction);
   }
 }
 

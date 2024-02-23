@@ -6,7 +6,7 @@ import ERROR_MESSAGE from "../constants/errorMessage.js";
 const winningLottoValidation = {
   winningCombination: {
     outOfRange: {
-      errorMessage: ERROR_MESSAGE.outOfRange,
+      errorMessage: ERROR_MESSAGE.outOfRangeLottoNumber,
       isValid(input) {
         return input >= 1 && input <= 45;
       },

@@ -10,7 +10,7 @@ const budgetValidation = {
     },
 
     outOfRange: {
-      errorMessage: ERROR_MESSAGE.outOfRange,
+      errorMessage: ERROR_MESSAGE.outOfRangeBudget,
       isValid(input) {
         return input >= 1000 && input <= 100000;
       },
