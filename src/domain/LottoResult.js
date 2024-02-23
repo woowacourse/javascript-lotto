@@ -11,13 +11,11 @@ class LottoResult {
   }
 
   #getResult() {
-    const arr = [];
-    this.#lottoList.forEach((lotto) => {
-      const rank = lotto.getRank(this.#WinningLotto);
-      if (rank !== WINNING_RANK.NONE) arr.push(rank);
-    });
+    const ranks = this.#lottoList
+      .map((lotto) => lotto.getRank(this.#WinningLotto))
+      .filter((rank) => rank !== WINNING_RANK.NONE);
 
-    return arr;
+    return ranks;
   }
 
   getTotalResult() {

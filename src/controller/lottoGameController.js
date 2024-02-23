@@ -65,8 +65,7 @@ class LottoGameController {
   #displayLottoList(lottoList) {
     const lottoNumberList = lottoList.reduce((acc, cur) => {
       const numbers = cur.getNumbers();
-      acc.push(numbers);
-      return acc;
+      return [...acc, numbers];
     }, []);
 
     this.#outputView.printLottos(lottoNumberList);
