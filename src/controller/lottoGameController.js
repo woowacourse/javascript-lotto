@@ -4,7 +4,7 @@ import Lotto from "../domain/Lotto.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import WinningLotto from "../domain/WinningLotto.js";
-import executeOrRetryAsync from "../utils/RetryFunc.js";
+import RetryFunc from "../utils/RetryFunc.js";
 import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
@@ -18,19 +18,24 @@ class LottoGameController {
     this.#outputView = OutputView;
   }
 
-  async play() {
-    const lottoList = await this.#setLotto();
-
-    const winningLotto = await this.#setWinningLotto();
-
-    this.#getGameResult(lottoList, winningLotto);
-
+  async start() {
+    await this.play();
     const restart = await this.#inputView.inputRestartGame();
-    if (restart === RETRY_INPUT) this.play();
+    if (restart === RETRY_INPUT) this.start();
+  }
+
+  async play() {
+    try {
+      const lottoList = await this.#setLotto();
+      const winningLotto = await this.#setWinningLotto();
+      this.#getGameResult(lottoList, winningLotto);
+    } catch (error) {
+      this.#outputView.printMaxRetry(error.message);
+    }
   }
 
   async #setLotto() {
-    const purchaseAmount = await executeOrRetryAsync(
+    const purchaseAmount = await RetryFunc.executeUntillMaxTry(
       this.#getPurchaseAmount.bind(this),
     );
 
@@ -64,11 +69,11 @@ class LottoGameController {
   }
 
   async #setWinningLotto() {
-    const winningLotto = await executeOrRetryAsync(
+    const winningLotto = await RetryFunc.executeUntillMaxTry(
       this.#getWinningLotto.bind(this),
     );
-    const WinningLottoWithBonusNumber = await executeOrRetryAsync(() =>
-      this.#getBonusNumber(winningLotto),
+    const WinningLottoWithBonusNumber = await RetryFunc.executeUntillMaxTry(
+      () => this.#getBonusNumber(winningLotto),
     );
 
     return WinningLottoWithBonusNumber;
