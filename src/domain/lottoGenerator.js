@@ -8,7 +8,7 @@ function generateWinningLotto(numbers) {
   return new Lotto(parsedNumbers);
 }
 
-function generateRandomLotto(count) {
+function generateRandomLottos(count) {
   return new Array(count).fill().map(() => {
     const randomLotto = generateRandomNumbers(
       LOTTO_NUMBER.min,
@@ -20,4 +20,4 @@ function generateRandomLotto(count) {
   });
 }
 
-export { generateWinningLotto, generateRandomLotto };
+export { generateWinningLotto, generateRandomLottos };
