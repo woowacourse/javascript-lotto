@@ -18,7 +18,7 @@ const InputView = {
 
   async readLotto() {
     try {
-      const numbers = (await ReadLine.readLineAsync(INPUT_MESSAGES.winningNumber))
+      const numbers = (await ReadLine.readLineAsync(INPUT_MESSAGES.winning_number))
         .split(CONSTANTS.comma)
         .map((number) => Number(number));
 
@@ -30,7 +30,7 @@ const InputView = {
   },
 
   async readBonusNumber() {
-    const bonusNumber = Number(await ReadLine.readLineAsync(INPUT_MESSAGES.bonusNumber));
+    const bonusNumber = Number(await ReadLine.readLineAsync(INPUT_MESSAGES.bonus_number));
 
     return bonusNumber;
   },

@@ -44,13 +44,13 @@ export const ERROR_MESSAGES = {
 
 export const INPUT_MESSAGES = {
   cost: '> 구입 금액을 입력해주세요.',
-  winningNumber: '> 당첨 번호를 입력해주세요.',
-  bonusNumber: '> 보너스 번호를 입력해주세요.',
+  winning_number: '> 당첨 번호를 입력해주세요.',
+  bonus_number: '> 보너스 번호를 입력해주세요.',
   restart: '> 다시 시작하시겠습니까? (y, n)',
 };
 
 export const OUTPUT_MESSAGES = {
-  winningStatistics: '당첨 통계',
+  winning_statistics: '당첨 통계',
   separate: '--------------------',
 };
 

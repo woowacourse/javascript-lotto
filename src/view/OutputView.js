@@ -10,7 +10,7 @@ const OutputView = {
   },
 
   printResult(results) {
-    console.log(OUTPUT_MESSAGES.winningStatistics);
+    console.log(OUTPUT_MESSAGES.winning_statistics);
     console.log(OUTPUT_MESSAGES.separate);
     this.printMatchResult(results);
   },
