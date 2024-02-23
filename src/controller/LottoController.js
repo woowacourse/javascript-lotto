@@ -52,7 +52,6 @@ class LottoController {
     );
 
     const lottos = LottoSeller.sellLottos(buyAmount);
-
     return lottos;
   }
 

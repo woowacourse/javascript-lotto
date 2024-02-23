@@ -1,15 +1,19 @@
+import RandomUniquePositiveIntegersPicker from "../utils/RandomNumbersPicker.js";
 import Lotto from "./Lotto.js";
 
 class LottoSeller {
   static LOTTO_PRICE = 1000;
+  static #randomNumbersPicker = new RandomUniquePositiveIntegersPicker(
+    Lotto.MAX_LOTTO_NUMBER
+  );
 
   static sellLottos(amount) {
     const lottoCount = this.#calculateLottoCount(amount);
     return this.#pickLottos(lottoCount);
   }
 
-  static #calculateLottoCount(amount) {
-    return Math.floor(amount / LottoSeller.LOTTO_PRICE);
+  static #calculateLottoCount(price) {
+    return Math.floor(price / LottoSeller.LOTTO_PRICE);
   }
 
   static #pickLottos(count) {
@@ -22,13 +26,7 @@ class LottoSeller {
   }
 
   static #pickRandomNumbers() {
-    const wholeNumbers = new Array(Lotto.MAX_LOTTO_NUMBER)
-      .fill()
-      .map((_, index) => index + 1);
-
-    const shuffledNumbers = wholeNumbers.sort(() => Math.random() - 0.5);
-
-    return shuffledNumbers.slice(0, Lotto.NUMBERS_LENGTH);
+    return this.#randomNumbersPicker.getRandomUniquePositiveIntegers(6);
   }
 }
 

@@ -8,17 +8,11 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    LottoValidator.validateLottoNumbers(numbers);
-
-    this.#numbers = this.#sortAscendingNumbers([...numbers]);
+    this.#numbers = numbers;
   }
 
-  getNumbers() {
-    return [...this.#numbers];
-  }
-
-  #sortAscendingNumbers(numbers) {
-    return numbers.sort((a, b) => a - b);
+  getCopyAscendingNumbers() {
+    return [...this.#numbers].sort((a, b) => a - b);
   }
 }
 
