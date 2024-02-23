@@ -17,11 +17,15 @@ const LottoController = {
   async start() {
     // budget 저장해줘
     const budget = await handleBudget();
+
     // 로또 장 수 계산하고 출력해줘
     const lotto = new Lotto(budget);
     const issuedLottoCount = lotto.calculateIssuedLottoCount();
     OutputView.printLottoCount(issuedLottoCount);
-    //
+
+    // 로또 배열 만들어줘
+    const issuedLottoArray = lotto.IssuedLotto(issuedLottoCount);
+    
   },
 };
 
