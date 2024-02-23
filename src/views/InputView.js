@@ -52,9 +52,10 @@ const InputView = {
 
   async readBonusNumber(winningNumbers) {
     try {
-      const result = await Private.readBonusNumber();
-      bonusNumberValidator.validate(result, winningNumbers);
-      return parseInt(result, 10);
+      const bonusNumberInput = await Private.readBonusNumber();
+      const bonusNumber = parseInt(bonusNumberInput, 10);
+      bonusNumberValidator.validate(bonusNumber, winningNumbers);
+      return bonusNumber;
     } catch (error) {
       OutputView.print(error.message);
       return this.readBonusNumber(winningNumbers);
