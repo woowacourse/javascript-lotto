@@ -10,7 +10,7 @@ class Lotto {
   }
 
   getSortedNumbersAscending() {
-    return this.#numbers.sort((a, b) => a - b);
+    return [...this.#numbers].sort((a, b) => a - b);
   }
 
   compareBonusNumber(bonusNumber) {
