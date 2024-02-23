@@ -5,50 +5,82 @@ class LottoNumber {
   #number;
 
   constructor(num) {
-    this.#validateForNumber(num);
+    this.#validateForNumber(
+      num,
+    );
     this.#number = num;
   }
 
   #validateForNumber(numStr) {
-    this.#validateInRange(numStr);
-    this.#validateInteger(numStr);
+    this.#validateInRange(
+      numStr,
+    );
+    this.#validateInteger(
+      numStr,
+    );
   }
 
   #validateInRange(numStr) {
     if (
-      Number(numStr) > CONDITION.lottoNumberMax ||
-      Number(numStr) < CONDITION.lottoNumberMin
+      Number(numStr) >
+        CONDITION.lottoNumberMax ||
+      Number(numStr) <
+        CONDITION.lottoNumberMin
     ) {
-      throw new Error(ERROR.beInRangeNumber);
+      throw new Error(
+        ERROR.beInRangeNumber,
+      );
     }
   }
 
   #validateInteger(numStr) {
-    if (!Number.isInteger(Number(numStr))) {
-      throw new Error(ERROR.beInteger);
+    if (
+      !Number.isInteger(
+        Number(numStr),
+      )
+    ) {
+      throw new Error(
+        ERROR.beInteger,
+      );
     }
   }
 
   static fromString(numStr) {
-    LottoNumber.#validateBlank(numStr);
-    LottoNumber.#validateNotNumber(numStr);
-    return new LottoNumber(Number(numStr));
+    LottoNumber.#validateBlank(
+      numStr,
+    );
+    LottoNumber.#validateNotNumber(
+      numStr,
+    );
+    return new LottoNumber(
+      Number(numStr),
+    );
   }
 
-  static #validateBlank(numStr) {
+  static #validateBlank(
+    numStr,
+  ) {
     if (!numStr) {
-      throw new Error(ERROR.beNotBlank);
+      throw new Error(
+        ERROR.beNotBlank,
+      );
     }
   }
 
-  static #validateNotNumber(numStr) {
+  static #validateNotNumber(
+    numStr,
+  ) {
     if (isNaN(numStr)) {
-      throw new Error(ERROR.beNumber);
+      throw new Error(
+        ERROR.beNumber,
+      );
     }
   }
 
   getNumber() {
-    return Number(this.#number);
+    return Number(
+      this.#number,
+    );
   }
 }
 

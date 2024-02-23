@@ -7,54 +7,106 @@ class PurchaseLottoService {
   #purchaseCount;
   #lottos;
 
-  constructor(purchaseMoneyString) {
-    this.#validate(purchaseMoneyString);
-    this.#purchaseCount = this.#calcPurchaseCount(purchaseMoneyString);
+  constructor(
+    purchaseMoneyString,
+  ) {
+    this.#validate(
+      purchaseMoneyString,
+    );
+    this.#purchaseCount =
+      this.#calcPurchaseCount(
+        purchaseMoneyString,
+      );
     this.#makeLottos();
   }
 
   #validate(moneyString) {
-    this.#validateNumber(moneyString);
-    this.#validateMultiple(moneyString);
+    this.#validateNumber(
+      moneyString,
+    );
+    this.#validateMultiple(
+      moneyString,
+    );
   }
 
-  #validateNumber(moneyString) {
+  #validateNumber(
+    moneyString,
+  ) {
     if (isNaN(moneyString)) {
-      throw new Error(ERROR.beNumber);
+      throw new Error(
+        ERROR.beNumber,
+      );
     }
   }
 
-  #validateMultiple(moneyString) {
-    if (Number(moneyString) % CONDITION.pricePerLotto !== 0) {
-      throw new Error(ERROR.beMultiple);
+  #validateMultiple(
+    moneyString,
+  ) {
+    if (
+      Number(moneyString) %
+        CONDITION.pricePerLotto !==
+      0
+    ) {
+      throw new Error(
+        ERROR.beMultiple,
+      );
     }
   }
 
-  #calcPurchaseCount(moneyString) {
-    return Number(moneyString) / CONDITION.pricePerLotto;
+  #calcPurchaseCount(
+    moneyString,
+  ) {
+    return (
+      Number(moneyString) /
+      CONDITION.pricePerLotto
+    );
   }
 
   #getLotto() {
-    const randoms = new Set([]);
-    const min = CONDITION.lottoNumberMin;
-    const max = CONDITION.lottoNumberMax;
+    const randoms = new Set(
+      [],
+    );
+    const min =
+      CONDITION.lottoNumberMin;
+    const max =
+      CONDITION.lottoNumberMax;
 
-    while (randoms.size < CONDITION.countOfNumberInTicket) {
-      randoms.add(makeRandom.number(min, max));
+    while (
+      randoms.size <
+      CONDITION.countOfNumberInTicket
+    ) {
+      randoms.add(
+        makeRandom.number(
+          min,
+          max,
+        ),
+      );
     }
-    return new LottoNumberList([...randoms]);
+    return new LottoNumberList(
+      [...randoms],
+    );
   }
 
   #makeLottos() {
-    this.#lottos = [...Array(this.#purchaseCount)].map(() => this.#getLotto());
+    this.#lottos = [
+      ...Array(
+        this.#purchaseCount,
+      ),
+    ].map(() =>
+      this.#getLotto(),
+    );
   }
 
   getLottos() {
-    return this.#lottos.map(lotto => lotto.getNumbers());
+    return this.#lottos.map(
+      lotto =>
+        lotto.getNumbers(),
+    );
   }
 
   getPurchaseCount() {
-    return this.#purchaseCount;
+    return this
+      .#purchaseCount;
   }
 }
 
