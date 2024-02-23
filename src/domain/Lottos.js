@@ -14,7 +14,7 @@ class Lottos {
     const winningResults = this.#initWinningResults();
     this.#lottos.forEach((lotto) => {
       const ranking = this.#getRanking(lotto, winningNumbers, bonusNumber);
-      if (winningResults.hasOwnProperty(ranking)) {
+      if (ranking in winningResults) {
         winningResults[ranking] += 1;
       }
     });
