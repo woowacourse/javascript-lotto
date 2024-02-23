@@ -18,8 +18,8 @@ class Lotto {
   }
 
   calculatePrize(winningNumbers, bonusNumber) {
-    const match = this.#numbers.filter((number) => winningNumbers.includes(number)).length;
-    const prize = PRIZE.find(([, detail]) => detail.MATCH === match);
+    const matchCount = this.#numbers.filter((number) => winningNumbers.includes(number)).length;
+    const prize = PRIZE.find(([, detail]) => detail.MATCH === matchCount);
 
     if (prize === undefined) return RANK.LAST_PLACE;
 
