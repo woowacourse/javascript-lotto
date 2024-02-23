@@ -53,13 +53,18 @@ export default class LottoMachine {
   }
 
   getWinLottos(winNumbersObj) {
+    const resultRankCounts = this.#makeLottoRanks(winNumbersObj);
+    this.#calculateIncome(resultRankCounts);
+    return resultRankCounts;
+  }
+
+  #makeLottoRanks(winNumbersObj) {
     const NUMBER_OF_RANK_TYPE = 5;
     const resultRankCounts = [null, ...Array.from({ length: NUMBER_OF_RANK_TYPE }, () => 0)];
     this.#lottos.forEach((lotto) => {
       const rank = this.#calculateIndividualLotto(lotto, winNumbersObj);
       if (rank) resultRankCounts[rank] += 1;
     });
-    this.#calculateIncome(resultRankCounts);
     return resultRankCounts;
   }
 
