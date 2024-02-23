@@ -7,11 +7,11 @@ class Lottos {
 
   constructor(lottoList) {
     this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
-    this.#winningCriteria = this.#initWinningCriteria();
+    this.#winningCriteria = this.#createWinningCriteria();
   }
 
   getWinningResults(winningNumbers, bonusNumber) {
-    const winningResults = this.#initWinningResults();
+    const winningResults = this.#createWinningResults();
     this.#lottos.forEach((lotto) => {
       const ranking = this.#getRanking(lotto, winningNumbers, bonusNumber);
       if (ranking in winningResults) {
@@ -29,11 +29,11 @@ class Lottos {
     return this.#winningCriteria[matchedNumbers >= SETTING.MIN_RANKING_MATCHING_NUMBER ? matchedNumbers : ''];
   }
 
-  #initWinningResults() {
+  #createWinningResults() {
     return Object.values(RANKING).reduce((initRankingObject, { NAME }) => ({ ...initRankingObject, [NAME]: 0 }), {});
   }
 
-  #initWinningCriteria() {
+  #createWinningCriteria() {
     return Object.values(RANKING).reduce((rankingMatchObject, { NAME, MATCHING_COUNT }) => {
       if (NAME === RANKING.SECOND.NAME) {
         return rankingMatchObject;
