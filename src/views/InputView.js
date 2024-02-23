@@ -7,28 +7,10 @@ import OutputView from './OutputView';
 import restartValidator from '../validators/restartValidator';
 import winningNumbersValidator from '../validators/winningNumbersValidator';
 
-const Private = {
-  readPurchaseAmount() {
-    return readLineAsync(MESSAGE.PURCHASE_AMOUNT_INPUT);
-  },
-
-  readWinningNumbers() {
-    return readLineAsync(MESSAGE.WINNING_NUMBERS_INPUT);
-  },
-
-  readBonusNumber() {
-    return readLineAsync(MESSAGE.BONUS_NUMBER_INPUT);
-  },
-
-  readRestart() {
-    return readLineAsync(MESSAGE.RESTART);
-  },
-};
-
 const InputView = {
   async readPurchaseAmount() {
     try {
-      const purchaseAmountInput = await Private.readPurchaseAmount();
+      const purchaseAmountInput = await readLineAsync(MESSAGE.PURCHASE_AMOUNT_INPUT);
       const purchaseAmount = purchaseAmountInput.trim();
       purchaseAmountValidator.validate(purchaseAmount);
       return purchaseAmount;
@@ -40,7 +22,7 @@ const InputView = {
 
   async readWinningNumbers() {
     try {
-      const winningNumbersInput = await Private.readWinningNumbers();
+      const winningNumbersInput = await readLineAsync(MESSAGE.WINNING_NUMBERS_INPUT);
       const winningNumbers = winningNumbersInput.split(CONFIG.SEPARATOR).map(number => parseInt(number.trim(), 10));
       winningNumbersValidator.validate(winningNumbers);
       return winningNumbers;
@@ -52,7 +34,7 @@ const InputView = {
 
   async readBonusNumber(winningNumbers) {
     try {
-      const result = await Private.readBonusNumber();
+      const result = await readLineAsync(MESSAGE.BONUS_NUMBER_INPUT);
       bonusNumberValidator.validate(result, winningNumbers);
       return parseInt(result, 10);
     } catch (error) {
@@ -63,7 +45,7 @@ const InputView = {
 
   async readRestart() {
     try {
-      const restartInput = await Private.readRestart();
+      const restartInput = await readLineAsync(MESSAGE.RESTART);
       const restart = restartInput.toLowerCase();
       restartValidator.validate(restart);
       return restart;
