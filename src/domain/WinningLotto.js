@@ -18,9 +18,10 @@ class WinningLotto {
   }
 
   #getLottoRank(lotto) {
-    const matchCount = this.#getMatchCount(lotto);
+    const lottoNumbers = lotto.getCopyAscendingNumbers();
+    const matchCount = this.#getMatchCount(lottoNumbers);
 
-    const hasBonusNumber = lotto.getNumbers().includes(this.#bonusNumber);
+    const hasBonusNumber = lottoNumbers.includes(this.#bonusNumber);
 
     return this.#getLottoRankByMatchCountAndHasBonusNumber(
       matchCount,
@@ -36,13 +37,12 @@ class WinningLotto {
     if (matchCount === 5 && hasBonusNumber) return 2;
     if (matchCount === 6) return 1;
   }
-  #getMatchCount(lotto) {
-    return lotto
-      .getNumbers()
-      .reduce(
-        (count, number) => count + (this.#isWinningNumber[number] ? 1 : 0),
-        0
-      );
+
+  #getMatchCount(lottoNumbers) {
+    return lottoNumbers.reduce(
+      (count, number) => count + (this.#isWinningNumber[number] ? 1 : 0),
+      0
+    );
   }
 
   #setIsWinningNumber(numbers) {

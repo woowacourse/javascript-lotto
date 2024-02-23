@@ -1,5 +1,3 @@
-import LottoValidator from "./LottoValidator.js";
-
 class Lotto {
   static NUMBERS_LENGTH = 6;
   static MIN_LOTTO_NUMBER = 1;

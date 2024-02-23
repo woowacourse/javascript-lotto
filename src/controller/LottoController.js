@@ -21,12 +21,14 @@ class LottoController {
   }
 
   async #play() {
-    const lottos = await this.#readLottos();
-    //OutputView.printBoughtLottos(lottos.map((lotto) => lotto.getNumbers()));
+    const lottosNumbers = await this.#readLottos();
+    OutputView.printBoughtLottos(
+      lottosNumbers.map((lotto) => lotto.getCopyAscendingNumbers())
+    );
 
     const winningLotto = await this.#readWinningLotto();
 
-    const lottoRanks = winningLotto.getLottosRanks(lottos);
+    const lottoRanks = winningLotto.getLottosRanks(lottosNumbers);
     const { rankResult, profitRate } =
       LottoResultMaker.getLottoResult(lottoRanks);
 
