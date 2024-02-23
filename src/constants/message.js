@@ -1,4 +1,4 @@
-import WINNER from './winner';
+import { addPriceComma } from '../util/NumberHelper';
 
 const ERROR_MESSAGE = Object.freeze({
   PREFIX: '[ERROR]',
@@ -22,9 +22,9 @@ const NEW_LINE = '\n';
 const OUTPUT_MESSAGE = Object.freeze({
   LOTTO_PURCHASED: (count) => `${count}개를 구매했습니다.`,
   WINNING_STATISTICS_TITLE: `당첨 통계` + NEW_LINE + `--------------------`,
-  MATCH_COUNT: (prizeNumber) => `${WINNER[prizeNumber].MATCH_COUNT}개 일치`,
+  MATCH_COUNT: (matchCount) => `${matchCount}개 일치`,
   BONUS_MATCH: `, 보너스 볼 일치`,
-  WIN_PRICE: (prizeNumber) => `(${WINNER[prizeNumber].PRICE})원)`,
+  WIN_PRICE: (price) => `(${addPriceComma(price)})원)`,
   WIN_COUNT: (count) => ` - ${count}개`,
   RATE_OF_REVENUE: (result) => `총 수익률은 ${result}%입니다.`,
   EMPTY: ``,

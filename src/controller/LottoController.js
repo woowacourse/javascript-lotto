@@ -10,27 +10,20 @@ import LottoProcess from '../domain/LottoProcess';
 
 class LottoController {
   async play() {
-    //로또를 산다.
     const lottoCount = await this.getValidateLottoAmount();
     const [lottos, lottosNumbers] = await this.buyRandomLottos(lottoCount);
-    //로또들의 정보를 반환한다.
     this.showLottosInfo(lottoCount, lottosNumbers);
 
-    // //우승 로또와 보너스 넘버를 받는다.
     const winLotto = await this.makeWinLotto();
-    // //로또의 당첨여부를 받는다.
     const lottoProcess = new LottoProcess();
-    lottoProcess.getResult(lottos, winLotto);
-
-    // const result = lottoProcess.getResult(winLotto, bonusNumber);
-    // await this.showLottoResult(lottoProcess, lottoCount);
+    const winResult = lottoProcess.getResult(lottos, winLotto).reverse();
+    this.showLottoResult(winResult, lottoCount);
     const restartResponse = await this.getValidateRestartResponse();
     if (restartResponse === MESSAGE.RESPONSE.RESTART.YES) {
       await this.play();
     }
   }
-  //로또를 산다
-  // 로또들을 반환한다.
+
   async buyRandomLottos(lottoCount) {
     const lottoPublisher = new LottoPublisher(lottoCount, []);
     const lottos = lottoPublisher.publishLottos();
@@ -70,11 +63,10 @@ class LottoController {
     return winLotto;
   }
 
-  async showLottoResult(lottoProcess, lottoCount) {
+  showLottoResult(winResult, lottoCount) {
     OutputView.printResultTitle();
-    const result = [0, 0, 0, 0, 0];
-    OutputView.printWinningStatistics(result);
-    const rateOfRevenue = this.getRateOfRevenue(result, lottoCount);
+    OutputView.printWinningStatistics(winResult);
+    const rateOfRevenue = this.getRateOfRevenue(winResult, lottoCount);
     OutputView.printRateOfRevenue(rateOfRevenue);
   }
 
