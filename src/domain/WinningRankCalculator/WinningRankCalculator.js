@@ -2,7 +2,7 @@
  * @module WinningRank
  * 로또 번호와 당첨 번호 및 보너스 번호를 비교하여 당첨 등수를 계산하는 역할의 모듈
  */
-class WinningRank {
+class WinningRankCalculator {
   /**
    * @type {import("../../types/jsDoc").RankRule}
    */
@@ -37,7 +37,7 @@ class WinningRank {
   /**
    * @returns {import("../../types/jsDoc").WinningRankResult} - 1 ~ 5등의 당첨 횟수가 담긴 객체
    */
-  calculateRank() {
+  execute() {
     return this.#lottoDrawDetail.lottoNumbersArray.reduce((prevWinningRankDetail, lottoNumbers) => {
       const rank = this.#determineRank(lottoNumbers);
 
@@ -53,7 +53,7 @@ class WinningRank {
    */
   #determineRank(lottoNumbers) {
     const matchCount = this.#countMatchingNumbers(lottoNumbers);
-    const targetRankRule = Object.entries(WinningRank.RANK_RULE).find(
+    const targetRankRule = Object.entries(WinningRankCalculator.RANK_RULE).find(
       ([, { match, hasBonus }]) =>
         matchCount === match && this.#isIncludingBonusNumber(lottoNumbers) === hasBonus,
     );
@@ -84,4 +84,4 @@ class WinningRank {
   }
 }
 
-export default WinningRank;
+export default WinningRankCalculator;

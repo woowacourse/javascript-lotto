@@ -1,4 +1,4 @@
-import { RateOfReturnCalculator, WinningRank } from '../../domain/index.js';
+import { RateOfReturnCalculator, WinningRankCalculator } from '../../domain/index.js';
 import { SYMBOLS } from '../symbols.js';
 
 export const INPUT_MESSAGE = Object.freeze({
@@ -24,7 +24,7 @@ export const FORMAT_MESSAGE = Object.freeze({
   },
 
   partialWinningStatisticsToString({ rank, prize, count }) {
-    const { description } = WinningRank.RANK_RULE[rank];
+    const { description } = WinningRankCalculator.RANK_RULE[rank];
 
     return `${description} (${prize.toLocaleString()}원) - ${count}개\n`;
   },

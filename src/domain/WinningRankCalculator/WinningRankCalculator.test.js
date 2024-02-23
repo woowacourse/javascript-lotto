@@ -1,4 +1,4 @@
-import WinningRank from './WinningRank.js';
+import WinningRankCalculator from './WinningRankCalculator.js';
 
 describe('당첨 등수 계산 테스트', () => {
   // given
@@ -59,14 +59,14 @@ describe('당첨 등수 계산 테스트', () => {
   test.each(TEST_CASES)(
     '예상 등수는 $expectedWinningRank와 같아야 한다.',
     ({ lottoNumbersArray, expectedWinningRank }) => {
-      const winningRank = new WinningRank({
+      const winningRankCalculator = new WinningRankCalculator({
         lottoNumbersArray,
         winningNumbers: TEST_WINNING_NUMBER,
         bonusNumber: TEST_BONUS_NUMBER,
       });
 
       // when
-      const winningRankDetail = winningRank.calculateRank();
+      const winningRankDetail = winningRankCalculator.execute();
 
       // then
       expect(winningRankDetail).toStrictEqual(expectedWinningRank);

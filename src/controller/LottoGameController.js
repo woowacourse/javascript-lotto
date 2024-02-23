@@ -1,4 +1,4 @@
-import { LottoBuyer, RateOfReturnCalculator, WinningRank } from '../domain/index.js';
+import { LottoBuyer, RateOfReturnCalculator, WinningRankCalculator } from '../domain/index.js';
 import { InputView, OutputView } from '../views/index.js';
 
 import RetryHandler from '../errors/RetryHandler/RetryHandler.js';
@@ -41,8 +41,12 @@ class LottoGameController {
    */
   async #processRaffleLottoResult({ buyLottoPrice, lottoNumbersArray }) {
     const { winningNumbers, bonusNumber } = await this.#requireWinningDetail();
-    const winningRank = new WinningRank({ winningNumbers, bonusNumber, lottoNumbersArray });
-    const winningRankResult = winningRank.calculateRank();
+    const winningRankCalculator = new WinningRankCalculator({
+      winningNumbers,
+      bonusNumber,
+      lottoNumbersArray,
+    });
+    const winningRankResult = winningRankCalculator.execute();
 
     const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankResult });
     const rateOfReturn = rateOfReturnCalculator.execute();
