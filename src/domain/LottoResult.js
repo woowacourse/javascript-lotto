@@ -3,17 +3,17 @@ import { PRIZE } from "../constants/system.js";
 
 class LottoResult {
   #lottoList;
-  #WinningLotto;
+  #winningLotto;
 
   constructor(lottoList, WinningLotto) {
     this.#lottoList = lottoList;
-    this.#WinningLotto = WinningLotto;
+    this.#winningLotto = WinningLotto;
   }
 
   #getResult() {
     const arr = [];
     this.#lottoList.forEach((lotto) => {
-      const rank = lotto.getRank(this.#WinningLotto);
+      const rank = lotto.getRank(this.#winningLotto);
       if (rank !== WINNING_RANK.NONE) arr.push(rank);
     });
 
