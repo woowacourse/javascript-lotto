@@ -2,24 +2,20 @@ import { INPUT_MESSAGE } from "../constants/system.js";
 import readLineAsync from "../utils/ReadLine.js";
 
 const InputView = {
-  async inputPurchaseAmount() {
-    const input = await readLineAsync(INPUT_MESSAGE.PURCHASE_AMOUNT);
-    return input;
+  inputPurchaseAmount() {
+    return readLineAsync(INPUT_MESSAGE.PURCHASE_AMOUNT);
   },
 
-  async inputWinningLottoNumber() {
-    const input = await readLineAsync(INPUT_MESSAGE.WINNING_LOTTO);
-    return input;
+  inputWinningLottoNumber() {
+    return readLineAsync(INPUT_MESSAGE.WINNING_LOTTO);
   },
 
-  async inputBonusNumber() {
-    const input = await readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
-    return input;
+  inputBonusNumber() {
+    return readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
   },
 
-  async inputRestartGame() {
-    const input = await readLineAsync(INPUT_MESSAGE.RESTART_GAME);
-    return input;
+  inputRestartGame() {
+    return readLineAsync(INPUT_MESSAGE.RESTART_GAME);
   },
 };
 
