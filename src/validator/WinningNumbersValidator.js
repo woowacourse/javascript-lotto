@@ -1,4 +1,4 @@
-const WinningNumberValidator = {
+const WinningNumbersValidator = {
   isNotValidCount(inputValue) {
     return inputValue.length !== 6;
   },
@@ -16,4 +16,4 @@ const WinningNumberValidator = {
   },
 };
 
-export default WinningNumberValidator;
+export default WinningNumbersValidator;

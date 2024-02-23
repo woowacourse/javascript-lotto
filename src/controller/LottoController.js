@@ -1,5 +1,5 @@
 import PurchaseAmountValidator from '../validator/PurchaseAmountValidator';
-import WinningNumberValidator from '../validator/WinningNumberValidator';
+import WinningNumbersValidator from '../validator/WinningNumbersValidator';
 import BonusNumberValidator from '../validator/BonusNumberValidator';
 import InputView from '../view/InputView';
 import RetryOrEnd from '../utils/RetryOrEnd';
@@ -20,10 +20,10 @@ class LottoController {
   async start() {
     const purchaseAmount = await RetryOrEnd([this.processPurchaseAmount, this]);
     const lottoTickets = this.processLottoTicket(purchaseAmount);
-    const winningNumber = await RetryOrEnd([this.processWinningNumber, this]);
-    const bonusNumber = await RetryOrEnd([this.processBonusNumber, this], winningNumber);
+    const winningNumbers = await RetryOrEnd([this.processWinningNumbers, this]);
+    const bonusNumber = await RetryOrEnd([this.processBonusNumber, this], winningNumbers);
     const matchingResult = await this.processMatchingResult(lottoTickets, [
-      winningNumber,
+      winningNumbers,
       bonusNumber,
     ]);
     this.processRateOfReturn(purchaseAmount, matchingResult);
@@ -58,37 +58,37 @@ class LottoController {
     return tickets;
   }
 
-  async processWinningNumber() {
-    const inputValue = await InputView.readWinningNumber();
-    const winningNumber = inputValue.split(',').map((value) => Number(value));
-    this.validateWinningNumber(winningNumber);
-    return winningNumber;
+  async processWinningNumbers() {
+    const inputValue = await InputView.readWinningNumbers();
+    const winningNumbers = inputValue.split(',').map((value) => Number(value));
+    this.validateWinningNumbers(winningNumbers);
+    return winningNumbers;
   }
 
-  validateWinningNumber(inputValue) {
-    if (WinningNumberValidator.isNotValidCount(inputValue))
+  validateWinningNumbers(inputValue) {
+    if (WinningNumbersValidator.isNotValidCount(inputValue))
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    if (WinningNumberValidator.isNotNumber(inputValue))
+    if (WinningNumbersValidator.isNotNumber(inputValue))
       throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
-    if (WinningNumberValidator.isNotUnique(inputValue))
+    if (WinningNumbersValidator.isNotUnique(inputValue))
       throw new Error('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
-    if (WinningNumberValidator.isNotRange(inputValue))
+    if (WinningNumbersValidator.isNotRange(inputValue))
       throw new Error('[ERROR] 로또 번호의 숫자 범위는 1에서 45까지의 수입니다.');
   }
 
-  async processBonusNumber(winningNumber) {
+  async processBonusNumber(winningNumbers) {
     const inputValue = await InputView.readBonusNumber();
     const bonusNumber = Number(inputValue);
-    this.validateBonusNumber(bonusNumber, winningNumber);
+    this.validateBonusNumber(bonusNumber, winningNumbers);
     return bonusNumber;
   }
 
-  validateBonusNumber(inputValue, winningNumber) {
+  validateBonusNumber(inputValue, winningNumbers) {
     if (BonusNumberValidator.isNotInteger(inputValue))
       throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
     if (BonusNumberValidator.isInvalidRange(inputValue))
       throw new Error('[ERROR] 보너스 번호는 1 이상 45 이하여야 합니다.');
-    if (BonusNumberValidator.isDuplicatedWinningNumber(inputValue, winningNumber))
+    if (BonusNumberValidator.isDuplicatedWinningNumbers(inputValue, winningNumbers))
       throw new Error('[ERROR] 보너스 번호는 중복되지 않아야 합니다.');
   }
 

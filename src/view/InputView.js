@@ -5,7 +5,7 @@ class InputView {
     return await Console.readLineAsync('> 구입금액을 입력해 주세요.');
   }
 
-  static async readWinningNumber() {
+  static async readWinningNumbers() {
     return await Console.readLineAsync('\n> 당첨 번호를 입력해 주세요. ');
   }
 
