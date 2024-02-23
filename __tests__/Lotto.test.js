@@ -15,7 +15,7 @@ describe('로또 테스트', () => {
     expect(() => Lotto.fromString(LOTTO_NUMBERS)).toThrow(ERROR.messageStartWith);
   });
 
-  test('로또 번호에 중복이 있을 때, 에러를 발생시킨다.', () => {
+  test('로또 번호는 정렬된 상태로 반환되어야 한다.', () => {
     const LOTTO_NUMBERS = ['1', '2', '4', '3', '5', '6'];
 
     expect(Lotto.fromString(LOTTO_NUMBERS).getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
