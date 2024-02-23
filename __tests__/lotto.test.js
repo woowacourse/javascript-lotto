@@ -1,6 +1,6 @@
 /* eslint-disable */
 import Lotto from '../src/domain/lotto.js';
-import { ERROR_MESSAGES } from '../src/constant/index.js';
+import { ERROR_MESSAGES } from '../src/constant/messages.js';
 
 describe('로또 기능 테스트', () => {
   test.each([[[1, 2, 3, 4, 5]], [[1, 2, 3, 4, 5, 6, 7]]])('로또 번호가 6개가 아닌 경우 에러를 반환', (lottoNumbers) => {

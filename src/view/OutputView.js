@@ -1,4 +1,4 @@
-import { OUTPUT_MESSAGES } from '../constant/index.js';
+import { OUTPUT_MESSAGES } from '../constant/messages.js';
 
 const OutputView = {
   printBuyCount(count) {

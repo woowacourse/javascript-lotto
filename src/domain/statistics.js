@@ -1,20 +1,20 @@
-import { CONSTANTS, PRIZE } from '../constant/index.js';
+import { PRIZE, SYMBOL } from '../constant/constants.js';
 
 export default class Statistics {
   #result = {
-    three: CONSTANTS.zero,
-    four: CONSTANTS.zero,
-    five: CONSTANTS.zero,
-    five_bonus: CONSTANTS.zero,
-    six: CONSTANTS.zero,
+    three: 0,
+    four: 0,
+    five: 0,
+    five_bonus: 0,
+    six: 0,
   };
 
-  #profit = CONSTANTS.zero;
+  #profit = 0;
 
   constructor({ lottos, winningLotto, bonusNumber, cost }) {
     this.#calculateResult({ lottos, winningLotto, bonusNumber, cost });
 
-    this.#profit = ((this.#calculateTotal() / cost) * CONSTANTS.hundred).toFixed(CONSTANTS.one);
+    this.#profit = ((this.#calculateTotal() / cost) * SYMBOL.hundred).toFixed(SYMBOL.one);
   }
 
   #calculateTotal() {
@@ -37,11 +37,11 @@ export default class Statistics {
   }
 
   #addResult(correctNumber, hasBonusNumber) {
-    if (correctNumber === CONSTANTS.three) this.#result.three += CONSTANTS.one;
-    else if (correctNumber === CONSTANTS.four) this.#result.four += CONSTANTS.one;
-    else if (correctNumber === CONSTANTS.five && hasBonusNumber) this.#result.five_bonus += CONSTANTS.one;
-    else if (correctNumber === CONSTANTS.five) this.#result.five += CONSTANTS.one;
-    else if (correctNumber === CONSTANTS.six) this.#result.six += CONSTANTS.one;
+    if (correctNumber === SYMBOL.three) this.#result.three += SYMBOL.one;
+    else if (correctNumber === SYMBOL.four) this.#result.four += SYMBOL.one;
+    else if (correctNumber === SYMBOL.five && hasBonusNumber) this.#result.five_bonus += SYMBOL.one;
+    else if (correctNumber === SYMBOL.five) this.#result.five += SYMBOL.one;
+    else if (correctNumber === SYMBOL.six) this.#result.six += SYMBOL.one;
   }
 
   #correctCount(lotto, winningLotto) {

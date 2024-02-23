@@ -1,6 +1,6 @@
 import Random from '../utils/random.js';
 import Lotto from './lotto.js';
-import { LOTTO_RULES } from '../constant/index.js';
+import { LOTTO_RULES } from '../constant/constants.js';
 
 export default class LottoMachine {
   #cost;

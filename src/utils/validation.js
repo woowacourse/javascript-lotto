@@ -1,4 +1,5 @@
-import { LOTTO_RULES, ERROR_MESSAGES, REGEXP, CONSTANTS } from '../constant/index.js';
+import { LOTTO_RULES, REGEXP } from '../constant/constants.js';
+import { ERROR_MESSAGES } from '../constant/messages.js';
 
 const Validations = {
   isCorrectLength(numbers) {
@@ -20,7 +21,7 @@ const Validations = {
   },
 
   isDivide(dividend, divisor) {
-    return dividend % divisor === CONSTANTS.zero;
+    return dividend % divisor === 0;
   },
 
   isGreaterThan(number, threshold) {
@@ -28,7 +29,7 @@ const Validations = {
   },
 
   isOnlyYorN(string) {
-    return string === CONSTANTS.yes || CONSTANTS.no === 'n';
+    return string === LOTTO_RULES.restart || string === LOTTO_RULES.stop;
   },
 };
 

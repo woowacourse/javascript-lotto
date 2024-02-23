@@ -1,10 +1,9 @@
 import readline from 'readline';
-import { CONSTANTS } from '../constant/index.js';
 
 const ReadLine = {
   readLineAsync(query) {
     return new Promise((resolve, reject) => {
-      if (arguments.length !== CONSTANTS.one) {
+      if (arguments.length !== 1) {
         reject(new Error('arguments must be 1'));
       }
 
