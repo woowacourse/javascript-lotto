@@ -8,7 +8,7 @@ const InputView = {
   },
   async askWinNumbers() {
     const winNumbers = await Console.readLineAsync(QUERY_MESSAGE.WIN_NUMBERS);
-    return winNumbers.split(',').map((value) => Number(value));
+    return winNumbers;
   },
   async askBonusNumber() {
     const bonusNumber = await Console.readLineAsync(QUERY_MESSAGE.BONUS_NUMBER);

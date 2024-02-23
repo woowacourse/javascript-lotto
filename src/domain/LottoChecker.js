@@ -16,13 +16,15 @@ class LottoChecker {
     return lotto.getNumbers().includes(bonusNumber);
   }
 
-  getResult(winLotto = {}, lottos, bonusNumber = 0) {
+  getResult(lottos = [], winLotto = {}) {
     const winningNumber = lottos.reduce(
-      (acc, lotto) => {
+      (winResult, lotto) => {
         const matchCount = this.matchLottoNumbers(lotto, winLotto);
         if (matchCount >= WINNER.FIFTH.MATCH_COUNT) {
-          const rankIndex = this.#getRankIndex(matchCount, this.#hasBonus(lotto, bonusNumber));
-          acc[rankIndex] += 1;
+          const bonusNumber = lotto.bonusNumber;
+          const hasBonus = lotto.getNumbers.includes(bonusNumber);
+          const rankIndex = this.#getRankIndex(matchCount, hasBonus);
+          winResult[rankIndex] += 1;
         }
         return acc;
       },

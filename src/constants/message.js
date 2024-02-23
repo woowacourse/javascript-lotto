@@ -12,16 +12,16 @@ const ERROR_MESSAGE = Object.freeze({
 
 const QUERY_MESSAGE = Object.freeze({
   PURCHASE_AMOUNT: '> 구입금액을 입력해 주세요.',
-  WIN_NUMBERS: NEW_LINE + '> 당첨번호를 입력해 주세요.',
-  BONUS_NUMBER: NEW_LINE + '> 보너스 번호를 입력해 주세요.',
-  RESTART: NEW_LINE + '> 다시 시작하시겠습니까? (y/n)',
+  WIN_NUMBERS: `> 당첨번호를 입력해 주세요.`,
+  BONUS_NUMBER: '> 보너스 번호를 입력해 주세요.',
+  RESTART: '> 다시 시작하시겠습니까? (y/n)',
 });
 
 const NEW_LINE = '\n';
 
 const OUTPUT_MESSAGE = Object.freeze({
-  LOTTO_PURCHASED: (count) => NEW_LINE + `${count}개를 구매했습니다.`,
-  WINNING_STATISTICS_TITLE: NEW_LINE + `당첨 통계` + NEW_LINE + `--------------------`,
+  LOTTO_PURCHASED: (count) => `${count}개를 구매했습니다.`,
+  WINNING_STATISTICS_TITLE: `당첨 통계` + NEW_LINE + `--------------------`,
   MATCH_COUNT: (prizeNumber) => `${WINNER[prizeNumber].MATCH_COUNT}개 일치`,
   BONUS_MATCH: `, 보너스 볼 일치`,
   WIN_PRICE: (prizeNumber) => `(${WINNER[prizeNumber].PRICE})원)`,
