@@ -1,5 +1,3 @@
-import formatNumber from "../utils/FormatNumber.js";
-
 export const PRIZE = {
   5: { reward: 5_000, matchCount: 3, bonus: false },
   4: { reward: 50_000, matchCount: 4, bonus: false },
@@ -22,8 +20,8 @@ export const OUTPUT_MESSAGE = {
   RESULT: (rank, key) =>
     `${PRIZE[key].matchCount}개 일치${
       PRIZE[key].bonus ? ", 보너스 볼 일치 " : " "
-    }(${formatNumber(PRIZE[key].reward)}원) - ${rank[key]}개`,
-  PROFIT: (profit) => `총 수익률은 ${formatNumber(profit)}%입니다.`,
+    }(${PRIZE[key].reward.toLocaleString()}원) - ${rank[key]}개`,
+  PROFIT: (profit) => `총 수익률은 ${profit.toLocaleString()}%입니다.`,
 };
 
 export const RETRY_INPUT = "y";
