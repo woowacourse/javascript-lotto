@@ -20,13 +20,13 @@ export default class LottoMachine {
   }
 
   #makeOneLotto() {
-    const lotto = new Lotto(
-      Random.pickUniqueNumbersInRange({
-        minNumber: LOTTO_RULES.min_number,
-        maxNumber: LOTTO_RULES.max_number,
-        count: LOTTO_RULES.length,
-      }),
-    );
+    const randomNumbers = Random.pickUniqueNumbersInRange({
+      minNumber: LOTTO_RULES.min_number,
+      maxNumber: LOTTO_RULES.max_number,
+      count: LOTTO_RULES.length,
+    });
+    const lotto = new Lotto(randomNumbers);
+
     return lotto;
   }
 
