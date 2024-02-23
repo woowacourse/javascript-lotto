@@ -12,12 +12,14 @@ class LottoController {
   #RETRY_NO = ["n", "N"];
 
   async start() {
-    await this.#play();
-    const retryChecker = await retryWhenErrorOccurs(
-      this.#readRetryChecker.bind(this)
-    );
-    if (this.#isRetryYes(retryChecker)) await this.start();
-    OutputView.printBlankLine();
+    while (true) {
+      await this.#play();
+      const retryChecker = await retryWhenErrorOccurs(
+        this.#readRetryChecker.bind(this)
+      );
+      if (!this.#isRetryYes(retryChecker)) return;
+      OutputView.printBlankLine();
+    }
   }
 
   async #play() {
