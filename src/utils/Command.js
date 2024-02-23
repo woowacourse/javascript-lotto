@@ -1,5 +1,5 @@
 import CustomError from "../error/CustomError.js";
-import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
+import ERROR_MESSAGE from "../error/errorMessage.js";
 
 class Command {
   static COMMANDS = ["y", "n"];
