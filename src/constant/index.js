@@ -11,6 +11,7 @@ export const CONSTANTS = {
   comma: ',',
 };
 
+// 숫자인지를 판단하는 정규표현식
 export const REGEXP = {
   numericPattern: /^\d+$/,
 };
@@ -49,10 +50,13 @@ export const INPUT_MESSAGES = {
 };
 
 export const OUTPUT_MESSAGES = {
-  buyCount: (count) => `${count}개를 구매했습니다.\n`,
-  lotto: (lotto) => `[${lotto.join(', ')}]`,
   winningStatistics: '당첨 통계',
   separate: '--------------------',
+};
+
+export const CREATE_OUTPUT_MESSAGES = {
+  buyCount: (count) => `${count}개를 구매했습니다.\n`,
+  lotto: (lotto) => `[${lotto.join(', ')}]`,
   three: (three) => `3개 일치, (5,000원) - ${three}개`,
   four: (four) => `4개 일치, (50,000원) - ${four}개`,
   five: (five) => `5개 일치, (1,500,000원) - ${five}개`,
