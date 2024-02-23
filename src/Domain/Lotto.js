@@ -24,6 +24,7 @@ export default class Lotto extends LottoNumber {
   }
 
   calculateRank(winNumbersObject) {
+    if (this.#winCount) return; // 중복 계산을 하지 않게 하기 위해서. winCount가 0인 경우에는 또 계산 하더라도 0인 것이 확신하기 때문에 넘어간다.
     const { winNumbers, bonusNumber } = winNumbersObject;
     this.#compareWinNumber(winNumbers);
     this.#compareBonusNumber(bonusNumber);

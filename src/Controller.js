@@ -63,7 +63,7 @@ export default class Controller {
     const winLottos = this.#lottoMachine.getWinLottos(winNumbersObj);
     OutputView.printWinLottos(winLottos);
 
-    const rateOfIncome = this.#lottoMachine.getRateOfIncome();
+    const rateOfIncome = this.#lottoMachine.getRateOfIncome(winNumbersObj);
     OutputView.printRateOfIncome(rateOfIncome);
   }
 
