@@ -13,8 +13,9 @@ const InputView = {
   async readWinningNumber() {
     const input = await readLineAsync(INPUT_MESSAGE.winningNumbers);
     const refinedInput = splitByDelimiter(input, SYMBOL.delimiter);
+    const inputNumbers = refinedInput.map((value) => Number(value));
 
-    return refinedInput;
+    return inputNumbers;
   },
 
   async readBonusNumber() {
