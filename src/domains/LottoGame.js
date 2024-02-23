@@ -13,6 +13,10 @@ class LottoGame {
     statistics: undefined,
   };
 
+  constructor(paymentAmountInput) {
+    this.#insertMoney(paymentAmountInput);
+  }
+
   set winningLottoNumbers(lottoNumbersInput) {
     this.#lottoData.winningLotto.lottoNumbers = lottoNumbersInput;
   }
@@ -32,7 +36,7 @@ class LottoGame {
     return this.#lottoData;
   }
 
-  insertMoney(paymentAmountInput) {
+  #insertMoney(paymentAmountInput) {
     this.#lottoData.lottoMachine = new LottoMachine(paymentAmountInput);
   }
 

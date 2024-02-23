@@ -4,7 +4,7 @@ import { InputView, OutputView } from '../views';
 import InputController from './InputController';
 
 class GameController {
-  #lottoGame = new LottoGame();
+  #lottoGame;
 
   async playGame() {
     await this.#getPaid();
@@ -33,7 +33,7 @@ class GameController {
     await InputController.retryOnInvalidInput(async () => {
       const paymentAmountInput = await InputView.readPaymentAmount();
 
-      this.#lottoGame.insertMoney(paymentAmountInput);
+      this.#lottoGame = new LottoGame(paymentAmountInput);
     });
   }
 
@@ -43,7 +43,7 @@ class GameController {
   }
 
   async #getValidWinningLottoNumbers() {
-    return await InputController.retryOnInvalidInput(async () => {
+    await InputController.retryOnInvalidInput(async () => {
       const lottoNumbersInput = await InputView.readWinningLottoNumbers();
 
       this.#lottoGame.winningLottoNumbers = lottoNumbersInput;
@@ -51,7 +51,7 @@ class GameController {
   }
 
   async #getValidBonusNumber() {
-    return await InputController.retryOnInvalidInput(async () => {
+    await InputController.retryOnInvalidInput(async () => {
       const bonusNumberInput = await InputView.readBonusNumber();
 
       this.#lottoGame.bonusNumber = bonusNumberInput;
@@ -70,7 +70,6 @@ class GameController {
 
     if (restartInput === RESTART_KEY.restart) {
       OutputView.printRestartGameMessage();
-      this.#lottoGame = new LottoGame();
       await this.playGame();
     } else {
       OutputView.printEndGameMessage();
