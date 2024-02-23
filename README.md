@@ -33,6 +33,9 @@ npm run start-step1
 - WinningResultService : 당첨 통계 계산 담당
 - WInningRewardService : 수익률 계산 담당
 
+#### view : 입출력
+- InputView : 입력 담당. 무한 입력도 담당
+- OutputView : 출력 담당.
 
 
 # 고민한 사항 및 코드 의도
