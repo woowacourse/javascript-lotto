@@ -1,5 +1,4 @@
 /* eslint-disable max-lines-per-function */
-import ERROR_MESSAGE from "../../src/constants/error-messages.js";
 import {
   LOTTO_NUMBER_LENGTH,
   LOTTO_NUMBER_RANGE,

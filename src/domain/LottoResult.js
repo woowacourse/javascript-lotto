@@ -1,4 +1,8 @@
-import { PERCENTATION, PRIZE, WINNING_RANK } from "../constants/system";
+import {
+  PERCENTATION,
+  PRIZE,
+  WINNING_RANK,
+} from "../constants/prize-constants";
 
 class LottoResult {
   #lottoList;

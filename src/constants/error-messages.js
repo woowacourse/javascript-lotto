@@ -1,6 +1,6 @@
 import formatNumber from "../utils/FormatNumber.js";
 import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE } from "./lotto-constants.js";
-import { LOTTO_PRICE } from "./system.js";
+import { LOTTO_PRICE } from "./prize-constants.js";
 
 const ERROR_MESSAGE = {
   INVALID_PURCHASE_AMOUNT_TYPE: "구입 금액은 숫자로 입력해주세요.",
