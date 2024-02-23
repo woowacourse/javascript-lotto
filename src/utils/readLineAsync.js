@@ -1,5 +1,4 @@
 import readline from 'readline';
-import { CONSTANTS } from '../constant/index.js';
 
 const ReadLine = {
   readLineAsync(query) {

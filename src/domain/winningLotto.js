@@ -2,6 +2,7 @@ import { validateBonusNumber } from '../utils/validation.js';
 
 export default class WinningLotto {
   #lotto;
+
   #bonusNumber;
 
   constructor(lotto, bonusNumber) {

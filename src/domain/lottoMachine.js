@@ -4,6 +4,7 @@ import { LOTTO_RULES } from '../constant/index.js';
 
 export default class LottoMachine {
   #cost;
+
   #lottos;
 
   constructor(cost) {
