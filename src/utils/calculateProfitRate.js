@@ -8,4 +8,4 @@ function calculateProfitRate(totalPrize, money) {
   return rate;
 }
 
-export { calculateProfitRate };
+export { calculateProfitRate, DECIMAL_PLACES };
