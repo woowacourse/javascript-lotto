@@ -23,7 +23,7 @@ class LottoNumber {
       throw new CustomError(ERROR_MESSAGE.lottoNumberOutOfRange);
   }
 
-  get() {
+  getLottoNumber() {
     return this.#number;
   }
 }

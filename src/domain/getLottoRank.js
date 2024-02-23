@@ -11,8 +11,8 @@ function getRankIndex(matchCount, isBonus) {
 }
 
 function calcMatchCountAndBonus({ winningLotto, bonusLottoNumber, randomLotto }) {
-  const matchCount = getMatchCount(randomLotto.get(), winningLotto.get());
-  const isBonus = randomLotto.get().includes(bonusLottoNumber.get());
+  const matchCount = getMatchCount(randomLotto.getLotto(), winningLotto.getLotto());
+  const isBonus = randomLotto.getLotto().includes(bonusLottoNumber.getLotto());
 
   return { matchCount, isBonus };
 }

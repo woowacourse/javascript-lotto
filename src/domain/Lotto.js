@@ -30,8 +30,8 @@ class Lotto {
     return parsedNumbers;
   }
 
-  get() {
-    return this.#numbers.map((num) => num.get());
+  getLotto() {
+    return this.#numbers.map((num) => num.getLottoNumber());
   }
 
   #validate(numbers) {
@@ -44,7 +44,7 @@ class Lotto {
 
   checkHaveBonus(bonusLottoNumber) {
     const isAlreadyHave = this.#numbers.some(
-      (num) => num.get() === bonusLottoNumber
+      (num) => num.getLottoNumber() === bonusLottoNumber
     );
 
     if (isAlreadyHave)

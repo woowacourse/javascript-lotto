@@ -17,7 +17,7 @@ class LottoMoney {
     return Math.floor(this.#money / LottoMoney.LOTTO_PRICE);
   }
 
-  get() {
+  getLottoMoney() {
     return this.#money;
   }
 

@@ -26,7 +26,7 @@ const lottoController = {
         randomLottos,
       });
 
-      this.printProfitRate(money.get(), rank);
+      this.printProfitRate(money.getLottoMoney(), rank);
 
       if (await catchReturn(this.isExitGame)) break;
     }
@@ -54,7 +54,7 @@ const lottoController = {
   },
 
   printRandomLottos(randomLottos) {
-    const randomLottosUnpack = randomLottos.map((lotto) => lotto.get());
+    const randomLottosUnpack = randomLottos.map((lotto) => lotto.getLotto());
     OutputView.printLotto(randomLottos.length, randomLottosUnpack);
   },
 
@@ -67,7 +67,7 @@ const lottoController = {
     const bonusLottoNumberInput = await InputView.readBonusLottoNumber();
     const bonusLottoNumber = new LottoNumber(bonusLottoNumberInput);
 
-    winningLotto.checkHaveBonus(bonusLottoNumber.get());
+    winningLotto.checkHaveBonus(bonusLottoNumber.getLottoNumber());
 
     return bonusLottoNumber;
   },
