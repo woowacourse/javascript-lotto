@@ -13,29 +13,29 @@ class LottoController {
 
   async run() {
     const lottery = new LotteryMachine(this.#purchaseAmount).makeLottery();
-    this.showPurchaseLottoResult(lottery);
-    const matchedResultList = await this.calculateMatchedResultList(lottery);
-    this.processLottoResult(matchedResultList);
-    this.processProfit(matchedResultList);
+    this.#showPurchaseLottoResult(lottery);
+    const matchedResultList = await this.#calculateMatchedResultList(lottery);
+    this.#processLottoResult(matchedResultList);
+    this.#processProfit(matchedResultList);
   }
 
-  showPurchaseLottoResult(lottery) {
+  #showPurchaseLottoResult(lottery) {
     const lottoCount = this.#purchaseAmount / CONFIG.PURCHASE_UNIT;
     OutputView.printLottoCount(lottoCount);
     OutputView.printLottery(lottery);
   }
 
-  processLottoResult(matchedResultList) {
+  #processLottoResult(matchedResultList) {
     const rankList = lottoService.calculateRankCounts(matchedResultList);
     OutputView.printLottoResult(rankList);
   }
 
-  processProfit(matchedResultList) {
+  #processProfit(matchedResultList) {
     const profit = lottoService.calculateProfit(matchedResultList, this.#purchaseAmount);
     OutputView.printProfit(profit);
   }
 
-  async calculateMatchedResultList(lottery) {
+  async #calculateMatchedResultList(lottery) {
     const winningNumbers = await InputView.readWinningNumbers();
     const bonusNumber = await InputView.readBonusNumber(winningNumbers);
     return lottery.map(lotto => lotto.getMatchedAmount(winningNumbers, bonusNumber));
