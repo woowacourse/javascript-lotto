@@ -1,6 +1,6 @@
-import { OUTPUT_MESSAGE } from "../constants/viewMessage.js";
-import { VIEW_MESSAGE } from "../constants/viewMessage.js";
 import { PRIZE } from "../constants/viewMessage.js";
+import { VIEW_MESSAGE } from "../constants/viewMessage.js";
+import { OUTPUT_MESSAGE } from "../constants/viewMessage.js";
 
 const OutputView = {
   printLottoCount(lottoCount) {
