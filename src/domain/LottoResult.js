@@ -2,8 +2,8 @@ import { PERCENTATION, PRIZE, WINNING_RANK } from "../constants/system";
 
 class LottoResult {
   #lottoList;
+
   #winningLotto;
-  #initializeResultObject = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 
   constructor(lottoList, WinningLotto) {
     this.#lottoList = lottoList;
@@ -11,7 +11,7 @@ class LottoResult {
   }
 
   getTotalResult() {
-    const initialResult = { ...this.#initializeResultObject };
+    const initialResult = { ...this.#initializeResultObject() };
 
     return this.#lottoList.reduce((acc, lotto) => {
       const rank = lotto.getRank(this.#winningLotto);
@@ -20,6 +20,20 @@ class LottoResult {
       }
       return acc;
     }, initialResult);
+  }
+
+  #initializeResultObject() {
+    const initialResultObject = Object.values(WINNING_RANK).reduce(
+      (acc, rank) => {
+        if (rank !== WINNING_RANK.NONE) {
+          acc[rank] = 0;
+        }
+        return acc;
+      },
+      {},
+    );
+
+    return initialResultObject;
   }
 
   #getTotalReward() {
