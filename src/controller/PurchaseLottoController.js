@@ -4,8 +4,6 @@ import OutputView from '../view/OutputView';
 class PurchaseLottoController {
   #purchaseLottoService;
 
-  constructor() {}
-
   async run() {
     await this.#purchase();
     this.#printPurchaseCount();

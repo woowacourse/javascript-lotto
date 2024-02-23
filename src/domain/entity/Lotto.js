@@ -2,18 +2,18 @@ import CONDITION from '../../constant/Condition';
 import ERROR from '../../constant/Error';
 import LottoNumber from './LottoNumber';
 
-class LottoNumberList {
+class Lotto {
   #lottoNumbers;
 
   constructor(numbers) {
-    LottoNumberList.#validate(numbers);
+    Lotto.#validate(numbers);
     this.#lottoNumbers = numbers
       .map((num) => new LottoNumber(num))
       .sort((a, b) => a.getNumber() - b.getNumber());
   }
 
   static fromString(numberStrings) {
-    return new LottoNumberList(numberStrings.map((numStr) => Number(numStr)));
+    return new Lotto(numberStrings.map((numStr) => Number(numStr)));
   }
 
   getNumbers() {
@@ -21,8 +21,8 @@ class LottoNumberList {
   }
 
   static #validate(numbers) {
-    LottoNumberList.#validateDuplication(numbers);
-    LottoNumberList.#validateLength(numbers);
+    Lotto.#validateDuplication(numbers);
+    Lotto.#validateLength(numbers);
   }
 
   static #validateDuplication(numbers) {
@@ -38,4 +38,4 @@ class LottoNumberList {
   }
 }
 
-export default LottoNumberList;
+export default Lotto;

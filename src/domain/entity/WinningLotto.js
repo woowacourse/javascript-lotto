@@ -1,7 +1,7 @@
 import CONDITION from '../../constant/Condition';
 import ERROR from '../../constant/Error';
 import LottoNumber from './LottoNumber';
-import LottoNumberList from './LottoNumberList';
+import Lotto from './Lotto';
 
 class WinningLotto {
   #winningLottoNumberList;
@@ -9,13 +9,11 @@ class WinningLotto {
   #bonusNumber;
 
   constructor(winningNumbers) {
-    this.#winningLottoNumberList = new LottoNumberList(winningNumbers);
+    this.#winningLottoNumberList = new Lotto(winningNumbers);
   }
 
   static fromString(winningNumbersString) {
-    const winningNumbers = winningNumbersString
-      .split(',')
-      .map((num) => Number(num));
+    const winningNumbers = winningNumbersString.split(',').map((num) => Number(num));
     return new WinningLotto(winningNumbers);
   }
 
@@ -37,10 +35,8 @@ class WinningLotto {
 
   #isSecondPrize(lottoNumbers) {
     return (
-      this.#getMatchLottoCount(lottoNumbers)
-        === CONDITION.secondPrizeMatchCount
-      && this.#getMatchBonusNumberCount(lottoNumbers)
-        === CONDITION.secondPrizeMatchBonusCount
+      this.#getMatchLottoCount(lottoNumbers) === CONDITION.secondPrizeMatchCount &&
+      this.#getMatchBonusNumberCount(lottoNumbers) === CONDITION.secondPrizeMatchBonusCount
     );
   }
 
@@ -61,15 +57,13 @@ class WinningLotto {
   }
 
   #getMatchBonusNumberCount(lottoNumbers) {
-    return lottoNumbers.filter(
-      (lottoNumber) => lottoNumber === this.#bonusNumber.getNumber(),
-    ).length;
+    return lottoNumbers.filter((lottoNumber) => lottoNumber === this.#bonusNumber.getNumber())
+      .length;
   }
 
   #getMatchLottoCount(lottoNumbers) {
     const winningNumbers = this.#winningLottoNumberList.getNumbers();
-    return winningNumbers.filter((number) => lottoNumbers.includes(number))
-      .length;
+    return winningNumbers.filter((number) => lottoNumbers.includes(number)).length;
   }
 }
 export default WinningLotto;

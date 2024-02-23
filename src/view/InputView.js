@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import readline from 'readline';
 import MESSAGE from '../constant/Message';
 import IsRetry from '../domain/entity/IsRetry';
@@ -6,13 +7,13 @@ import PurchaseLottoService from '../domain/service/PurchaseLottoService';
 import OutputView from './OutputView';
 
 const Private = {
-  async robustInput(config) {
+  async robustInput(readlineAsync, factory) {
     while (true) {
       try {
-        const inputString = await config.readline();
-        return await config.factory(inputString);
+        const inputString = await readlineAsync();
+        return factory(inputString);
       } catch (e) {
-        config.errorHandler(e);
+        OutputView.print(e.message);
       }
     }
   },
@@ -42,39 +43,27 @@ const Private = {
 
 const InputView = {
   async readPurchaseMoney() {
-    const purchaseMoneyConfig = {
-      readline: async () => await Private.readLineAsync(MESSAGE.prompt.purchaseMoney),
-      factory: (inputString) => new PurchaseLottoService(inputString),
-      errorHandler: (e) => OutputView.print(e.message),
-    };
-    return await Private.robustInput(purchaseMoneyConfig);
+    const readline = () => Private.readLineAsync(MESSAGE.prompt.purchaseMoney);
+    const factory = (inputString) => new PurchaseLottoService(inputString);
+    return Private.robustInput(readline, factory);
   },
 
-  async readWinningNumbers() {
-    const winningNumberConfig = {
-      readline: async () => await Private.readLineAsync(MESSAGE.prompt.winningNumber),
-      factory: (inputString) => WinningLotto.fromString(inputString),
-      errorHandler: (e) => OutputView.print(e.message),
-    };
-    return await Private.robustInput(winningNumberConfig);
+  readWinningNumbers() {
+    const readline = () => Private.readLineAsync(MESSAGE.prompt.winningNumber);
+    const factory = (inputString) => WinningLotto.fromString(inputString);
+    return Private.robustInput(readline, factory);
   },
 
-  async readBonusNumber(winningLotto) {
-    const bonusNumberConfig = {
-      readline: async () => await Private.readLineAsync(MESSAGE.prompt.bonusNumber),
-      factory: (inputString) => winningLotto.setBonusNumberString(inputString),
-      errorHandler: (e) => OutputView.print(e.message),
-    };
-    return await Private.robustInput(bonusNumberConfig);
+  readBonusNumber(winningLotto) {
+    const readline = () => Private.readLineAsync(MESSAGE.prompt.bonusNumber);
+    const factory = (inputString) => winningLotto.setBonusNumberString(inputString);
+    return Private.robustInput(readline, factory);
   },
 
-  async readIsRetry() {
-    const bonusNumberConfig = {
-      readline: async () => await Private.readLineAsync(MESSAGE.prompt.retry),
-      factory: (inputString) => new IsRetry(inputString).get(),
-      errorHandler: (e) => OutputView.print(e.message),
-    };
-    return await Private.robustInput(bonusNumberConfig);
+  readIsRetry() {
+    const readline = () => Private.readLineAsync(MESSAGE.prompt.retry);
+    const factory = (inputString) => new IsRetry(inputString).get();
+    return Private.robustInput(readline, factory);
   },
 };
 

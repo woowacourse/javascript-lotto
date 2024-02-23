@@ -20,9 +20,7 @@ class WinningRewardService {
   getReturnRate() {
     const PERCENT_UNIT = 100;
     return (
-      (this.getWinningPrice()
-        / (this.#purchasedCount * CONDITION.pricePerLotto))
-      * PERCENT_UNIT
+      (this.getWinningPrice() / (this.#purchasedCount * CONDITION.pricePerLotto)) * PERCENT_UNIT
     );
   }
 }

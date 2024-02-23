@@ -5,15 +5,18 @@ import WinningLottoController from './WinningLottoController';
 class MainController {
   async run() {
     while (true) {
-      await this.playLottoGameOnce();
-      const isRetry = await InputView.readIsRetry();
-      if (!isRetry) {
+      await this.#playLottoGameOnce();
+      if (!(await this.#isRetryGame())) {
         return;
       }
     }
   }
 
-  async playLottoGameOnce() {
+  #isRetryGame() {
+    return InputView.readIsRetry();
+  }
+
+  async #playLottoGameOnce() {
     const purchaseLottoController = new PurchaseLottoController();
     await purchaseLottoController.run();
 

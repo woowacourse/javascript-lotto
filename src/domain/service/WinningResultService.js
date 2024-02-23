@@ -1,5 +1,5 @@
 /* eslint-disable arrow-parens */
-import LottoNumberList from '../entity/LottoNumberList';
+import Lotto from '../entity/Lotto';
 import WinningLotto from '../entity/WinningLotto';
 
 class WinningResultService {
@@ -8,7 +8,7 @@ class WinningResultService {
   #winningLotto;
 
   constructor(lottos, winningLottoObj) {
-    this.#lottos = lottos.map(lotto => new LottoNumberList(lotto));
+    this.#lottos = lottos.map((lotto) => new Lotto(lotto));
     this.#winningLotto = new WinningLotto(winningLottoObj.numbers);
     this.#winningLotto.setBonusNumber(winningLottoObj.bonusNumber);
   }
@@ -23,9 +23,9 @@ class WinningResultService {
     };
 
     this.#lottos
-      .map(lotto => this.#winningLotto.getMatchCounts(lotto.getNumbers()))
-      .filter(numStr => Object.keys(result).includes(numStr))
-      .forEach(matched => {
+      .map((lotto) => this.#winningLotto.getMatchCounts(lotto.getNumbers()))
+      .filter((numStr) => Object.keys(result).includes(numStr))
+      .forEach((matched) => {
         result[matched] += 1;
       });
     return result;

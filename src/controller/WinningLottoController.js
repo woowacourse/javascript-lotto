@@ -26,10 +26,7 @@ class WinningLottoController {
       bonusNumber: winningLotto.getBonusNumber(),
     };
 
-    return new WinningResultService(
-      this.#lottosNumbers,
-      winningLottoObject,
-    ).getWinningResult();
+    return new WinningResultService(this.#lottosNumbers, winningLottoObject).getWinningResult();
   }
 
   #printWinningCharacteristic(winningResult) {
@@ -39,10 +36,7 @@ class WinningLottoController {
   #printReturnRate(winningResult) {
     const purchaseCount = this.#lottosNumbers.length;
 
-    const winningRewardService = new WinningRewardService(
-      winningResult,
-      purchaseCount,
-    );
+    const winningRewardService = new WinningRewardService(winningResult, purchaseCount);
     const returnRate = winningRewardService.getReturnRate();
     OutputView.printReturnRate(returnRate);
   }

@@ -1,6 +1,6 @@
 import CONDITION from '../../constant/Condition';
 import ERROR from '../../constant/Error';
-import LottoNumberList from '../entity/LottoNumberList';
+import Lotto from '../entity/Lotto';
 
 class PurchaseLottoService {
   #purchaseCount;
@@ -9,7 +9,7 @@ class PurchaseLottoService {
 
   constructor(purchaseMoneyString) {
     this.#validate(purchaseMoneyString);
-    this.#purchaseCount = this.#calcPurchaseCount(purchaseMoneyString);
+    this.#purchaseCount = this.#calcPurchaseCount(Number(purchaseMoneyString));
     this.#makeLottos();
   }
 
@@ -19,7 +19,7 @@ class PurchaseLottoService {
   }
 
   #validateNotNumber(moneyString) {
-    if (isNaN(moneyString)) {
+    if (Number.isNaN(moneyString)) {
       throw new Error(ERROR.beNumber);
     }
   }
@@ -30,8 +30,16 @@ class PurchaseLottoService {
     }
   }
 
-  #calcPurchaseCount(moneyString) {
-    return Number(moneyString) / CONDITION.pricePerLotto;
+  getPurchaseCount() {
+    return this.#purchaseCount;
+  }
+
+  #calcPurchaseCount(money) {
+    return money / CONDITION.pricePerLotto;
+  }
+
+  getLottos() {
+    return this.#lottos.map((lotto) => lotto.getNumbers());
   }
 
   #getLotto() {
@@ -42,23 +50,15 @@ class PurchaseLottoService {
     while (randoms.size < CONDITION.countOfNumberInTicket) {
       randoms.add(this.#makeRandom(min, max));
     }
-    return new LottoNumberList([...randoms]);
+    return new Lotto([...randoms]);
   }
 
   #makeLottos() {
     this.#lottos = [...Array(this.#purchaseCount)].map(() => this.#getLotto());
   }
 
-  getLottos() {
-    return this.#lottos.map((lotto) => lotto.getNumbers());
-  }
-
   #makeRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  getPurchaseCount() {
-    return this.#purchaseCount;
   }
 }
 
