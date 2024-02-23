@@ -5,7 +5,7 @@ import Lotto from "../../src/domain/Lotto.js";
 import WinningLotto from "../../src/domain/WinningLotto.js";
 
 describe("WinningLotto 객체 테스트", () => {
-  test("당첨 로또 번호는 중복되면 안된다.", () => {
+  test("당첨 로또 번호 배열에 중복된 숫자가 있으면 오류를 던진다.", () => {
     const DUPLICATE_WINNING_LOTTO_NUMBERS = [1, 1, 2, 3, 4, 5];
 
     expect(() => new Lotto(DUPLICATE_WINNING_LOTTO_NUMBERS)).toThrow(
@@ -13,7 +13,7 @@ describe("WinningLotto 객체 테스트", () => {
     );
   });
 
-  test(`당첨 로또 번호는 ${LOTTO_RANGE.MIN} ~ ${LOTTO_RANGE.MAX} 사이의 숫자여야 한다.`, () => {
+  test(`당첨 로또 번호가 ${LOTTO_RANGE.MIN} ~ ${LOTTO_RANGE.MAX} 사이의 숫자가 아니면 오류를 던진다.`, () => {
     const INVALID_WINNING_LOTTO_NUMBERS = [0, 1, 2, 3, 4, 46];
 
     expect(() => new Lotto(INVALID_WINNING_LOTTO_NUMBERS)).toThrow(
@@ -21,7 +21,7 @@ describe("WinningLotto 객체 테스트", () => {
     );
   });
 
-  test(`당첨 로또 번호는 ${LOTTO_LENGTH}개여야한다.`, () => {
+  test(`입력한 당첨 로또 번호가 ${LOTTO_LENGTH}개가 아니면 오류를 던진다.`, () => {
     const INVALID_WINNING_LOTTO_LENGTH = [1, 2, 3, 4, 5];
 
     expect(() => new Lotto(INVALID_WINNING_LOTTO_LENGTH)).toThrow(
@@ -29,7 +29,7 @@ describe("WinningLotto 객체 테스트", () => {
     );
   });
 
-  test("당첨 로또 번호는 숫자만 입력할 수 있다.", () => {
+  test("당첨 로또 번호에 숫자가 아닌 값을 입력하면 오류를 던진다.", () => {
     const INVALID_LOTTO_NUMBERS = ["하나", 2, 3, 4, 5, 6];
 
     expect(() => new Lotto(INVALID_LOTTO_NUMBERS)).toThrow(
@@ -37,7 +37,7 @@ describe("WinningLotto 객체 테스트", () => {
     );
   });
 
-  test("당첨 로또 번호와 보너스 번호는 중복되면 안된다.", () => {
+  test("당첨 로또 번호와 보너스 번호가 중복이면 오류를 던진다.", () => {
     const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
     const BONUS_NUMBER = 6;
 

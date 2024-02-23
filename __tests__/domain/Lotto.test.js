@@ -30,7 +30,7 @@ describe("Lotto 객체 테스트", () => {
     );
   });
 
-  test("로또 번호는 숫자만 입력할 수 있다.", () => {
+  test("로또 번호가 숫자가 아니면 오류를 던진다.", () => {
     const INVALID_LOTTO_NUMBERS = ["하나", 2, 3, 4, 5, 6];
 
     expect(createLottoWithNumbers(INVALID_LOTTO_NUMBERS)).toThrow(
