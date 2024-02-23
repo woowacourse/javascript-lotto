@@ -47,10 +47,20 @@ const LottoGame = {
   },
 
   async makeWinningLotto() {
-    const winningNumbers = await retryUntilValid(this.getWinningNumbers, this);
-    const bonusNumber = await retryUntilValid(() => this.getBonusNumber(winningNumbers), this);
+    const winningNumbers = await this.makeWinningNumbers();
+    const bonusNumber = await this.makeBonusNumber();
 
     return { winningNumbers, bonusNumber };
+  },
+
+  async makeWinningNumbers() {
+    const winningNumbers = await retryUntilValid(this.getWinningNumbers, this);
+    return winningNumbers;
+  },
+
+  async makeBonusNumber(winningNumbers) {
+    const bonusNumber = await retryUntilValid(() => this.getBonusNumber(winningNumbers), this);
+    return bonusNumber;
   },
 
   async getRestartOption() {
