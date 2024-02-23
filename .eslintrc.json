@@ -27,6 +27,16 @@
         "printWidth": 100
       }
     ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "max-depth": ["error", { "max": 2 }],
+    "max-params": ["error", { "max": 2 }],
+    "class-methods-use-this": "off",
     "max-lines-per-function": ["error", { "max": 10 }],
     "import/extensions": ["error", { "js": "ignorePackages" }],
     "import/order": [
@@ -64,9 +74,6 @@
           "caseInsensitive": true
         }
       }
-    ],
-    "max-depth": ["error", { "max": 2 }],
-    "max-params": ["error", 3],
-    "class-methods-use-this": "off"
+    ]
   }
 }
