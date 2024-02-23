@@ -1,37 +1,58 @@
 import Lotto from '../src/domain/Lotto';
 import LottoProcess from '../src/domain/LottoProcess';
+import WinLotto from '../src/domain/WinLotto';
 
-describe.skip('LottoProcess 클래스 검사', () => {
-  test('당첨 번호와 로또 번호가 몇개 일치하는지 확인', () => {
-    const lottos = [new Lotto([1, 2, 3, 4, 5, 6])];
-    const winLotto = new Lotto([1, 2, 3, 4, 5, 6]);
-    const lottoProcess = new LottoProcess(lottos);
-    expect(lottoProcess.matchLottoNumbers(lottos[0], winLotto)).toBe(6);
-  });
+test('6개의 숫자를 맞추면 1등 인덱스가 +1 된다.', () => {
+  const lottos = [new Lotto([1, 2, 3, 4, 5, 6])];
+  const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
+  const bonusNumber = 7;
 
-  test('당첨결과를 배열로 반환', () => {
-    const lottos = [new Lotto([1, 2, 3, 4, 5, 6])];
-    const winLotto = new Lotto([1, 2, 3, 4, 5, 6]);
-    const bonusNumber = 7;
-    const lottoProcess = new LottoProcess(lottos);
+  const winLotto = new WinLotto(lottoWithWinNumbers, bonusNumber);
+  const lottoProcess = new LottoProcess();
 
-    expect(lottoProcess.getResult(winLotto, bonusNumber)).toEqual([
-      [3, false, 5_000, 0],
-      [4, false, 50_000, 0],
-      [5, false, 1_500_000, 0],
-      [5, true, 30_000_000, 0],
-      [6, false, 2_000_000_000, 1],
-    ]);
-  });
+  expect(lottoProcess.getResult(lottos, winLotto)).toEqual([1, 0, 0, 0, 0]);
+});
 
-  test('모든 로또의 숫자를 배열로 잘 반환하는지 확인', () => {
-    const lotto1 = new Lotto([1, 2, 3, 4, 5, 6]);
-    const lotto2 = new Lotto([5, 10, 15, 20, 25, 30]);
-    const lottoProcess = new LottoProcess([lotto1, lotto2]);
+test('5개의 숫자를 맞추고 보너스를 맞추면 2등 인덱스가 +1 된다.', () => {
+  const lottos = [new Lotto([1, 2, 3, 4, 5, 10])];
+  const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
+  const bonusNumber = 10;
 
-    expect(lottoProcess.getAllLottosNumbers()).toEqual([
-      [1, 2, 3, 4, 5, 6],
-      [5, 10, 15, 20, 25, 30],
-    ]);
-  });
+  const winLotto = new WinLotto(lottoWithWinNumbers, bonusNumber);
+  const lottoProcess = new LottoProcess();
+
+  expect(lottoProcess.getResult(lottos, winLotto)).toEqual([0, 1, 0, 0, 0]);
+});
+
+test('5개의 숫자를 맞추면 3등 인덱스가 +1 된다.', () => {
+  const lottos = [new Lotto([1, 2, 3, 4, 5, 10])];
+  const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
+  const bonusNumber = 7;
+
+  const winLotto = new WinLotto(lottoWithWinNumbers, bonusNumber);
+  const lottoProcess = new LottoProcess();
+
+  expect(lottoProcess.getResult(lottos, winLotto)).toEqual([0, 0, 1, 0, 0]);
+});
+
+test('4개의 숫자를 맞추면 4등 인덱스가 +1 된다.', () => {
+  const lottos = [new Lotto([1, 2, 3, 4, 10, 20])];
+  const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
+  const bonusNumber = 7;
+
+  const winLotto = new WinLotto(lottoWithWinNumbers, bonusNumber);
+  const lottoProcess = new LottoProcess();
+
+  expect(lottoProcess.getResult(lottos, winLotto)).toEqual([0, 0, 0, 1, 0]);
+});
+
+test('3개의 숫자를 맞추면 5등 인덱스가 +1 된다.', () => {
+  const lottos = [new Lotto([1, 2, 3, 10, 20, 30])];
+  const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
+  const bonusNumber = 7;
+
+  const winLotto = new WinLotto(lottoWithWinNumbers, bonusNumber);
+  const lottoProcess = new LottoProcess();
+
+  expect(lottoProcess.getResult(lottos, winLotto)).toEqual([0, 0, 0, 0, 1]);
 });

@@ -1,5 +1,4 @@
 import NUMBER from '../constants/number';
-import LottoProcess from '../domain/LottoProcess';
 import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import LottoValidation from '../validation/lottoValidation';
@@ -7,7 +6,7 @@ import RestartResponseValidation from '../validation/responseValidation';
 import LottoPublisher from '../domain/LottoPublisher';
 import MoneyValidation from '../validation/MoneyValidation';
 import WinLotto from '../domain/WinLotto';
-import LottoChecker from '../domain/LottoChecker';
+import LottoProcess from '../domain/LottoProcess';
 
 class LottoController {
   async play() {
@@ -20,9 +19,9 @@ class LottoController {
     // //우승 로또와 보너스 넘버를 받는다.
     const winLotto = await this.makeWinLotto();
     // //로또의 당첨여부를 받는다.
-    const lottoChecker = new LottoChecker();
-    // lottoChecker.getResult(lottos, winLotto);
-    // const lottoProcess = new LottoProcess(lottos);
+    const lottoProcess = new LottoProcess();
+    lottoProcess.getResult(lottos, winLotto);
+
     // const result = lottoProcess.getResult(winLotto, bonusNumber);
     // await this.showLottoResult(lottoProcess, lottoCount);
     const restartResponse = await this.getValidateRestartResponse();
