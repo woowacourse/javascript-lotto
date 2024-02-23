@@ -16,35 +16,35 @@ export default class LottoNumber {
 
   constructor(numbers) {
     this.#numbers = numbers.sort((a, b) => a - b);
-    this.#validLottoNumbers();
+    this.#validateLottoNumbers();
   }
 
-  #validLottoNumbers() {
+  #validateLottoNumbers() {
     // TODO: 숫자형인지 검사
-    this.#validLength();
-    this.#validDuplicate();
+    this.#validateLength();
+    this.#validateDuplicate();
     this.#numbers.forEach((number) => {
-      this.#validInRange(number);
+      this.#validateInRange(number);
     });
   }
 
-  #validInRange(number) {
+  #validateInRange(number) {
     if (number < LOTTO_NUMBER_RANGE.MIN || number > LOTTO_NUMBER_RANGE.MAX) {
       throw new Error(ERROR_MESSAGES.OUT_OF_RANGE);
     }
   }
 
-  validInRangeWrapper(number) {
-    return this.#validInRange(number);
+  validateInRangeWrapper(number) {
+    return this.#validateInRange(number);
   }
 
-  #validDuplicate() {
+  #validateDuplicate() {
     if (new Set(this.#numbers).size !== this.#numbers.length) {
       throw new Error(ERROR_MESSAGES.DUPLICATE);
     }
   }
 
-  #validLength() {
+  #validateLength() {
     if (this.#numbers.length !== LOTTO_LENGTH) {
       throw new Error(ERROR_MESSAGES.INVALID_LENGTH);
     }

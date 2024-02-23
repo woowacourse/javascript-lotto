@@ -11,16 +11,16 @@ export default class WinLottoNumber extends LottoNumber {
 
   setBonusNumber(bonusNumber) {
     this.#bonusNumber = bonusNumber;
-    this.#validBonusNumber();
+    this.#validateBonusNumber();
   }
 
-  #validBonusNumber() {
+  #validateBonusNumber() {
     // TODO: 숫자형에 대한 검사
-    this.validInRangeWrapper(this.#bonusNumber);
-    this.#validDuplicate();
+    this.validateInRangeWrapper(this.#bonusNumber);
+    this.#validateDuplicate();
   }
 
-  #validDuplicate() {
+  #validateDuplicate() {
     if (this.getLottoNumbers().includes(this.#bonusNumber)) {
       throw new Error(DUPLICATE_MESSAGE);
     }

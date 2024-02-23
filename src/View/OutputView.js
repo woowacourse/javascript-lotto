@@ -57,9 +57,9 @@ const OutputView = Object.freeze({
     this.printMessage(rateOfIncomeMessage(income));
   },
 
-  printError(message) {
+  printError(...messages) {
     const ERROR_MESSAGE_PREFIX = '❌';
-    this.printMessage(`${ERROR_MESSAGE_PREFIX} ${message}`);
+    this.printMessage(ERROR_MESSAGE_PREFIX, ...messages);
   },
 
   printMessage(...messages) {

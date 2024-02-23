@@ -15,11 +15,11 @@ export default class LottoMachine {
 
   constructor(money) {
     this.#money = money;
-    this.#validMoney();
+    this.#validateMoney();
     this.#makeLottoByMoney();
   }
 
-  #validMoney() {
+  #validateMoney() {
     if (this.#money < LOTTO_PRICE) {
       throw new Error(INVALID_MONEY_MESSAGE);
     }

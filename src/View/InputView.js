@@ -24,24 +24,24 @@ const stdObj = Object.freeze({
 const InputView = Object.freeze({
   async readMoney() {
     const moneyInput = await this.readLineAsync(COMMON_MESSAGES.MONEY);
-    this.validInput(moneyInput);
+    this.validateInput(moneyInput);
     return Number(moneyInput);
   },
 
   async readWinLottoNumbers() {
     const winLottoInput = await this.readLineAsync(COMMON_MESSAGES.WIN_LOTTO);
-    this.validInput(winLottoInput);
+    this.validateInput(winLottoInput);
     return winLottoInput.split(DIVIDED_SYMBOL).map(Number);
   },
 
   async readBonusNumber() {
     const bonusNumberInput = await this.readLineAsync(COMMON_MESSAGES.BONUS_NUMBER);
-    this.validInput(bonusNumberInput);
+    this.validateInput(bonusNumberInput);
 
     return Number(bonusNumberInput);
   },
 
-  validInput(input) {
+  validateInput(input) {
     if (!input) throw new Error(ERROR_MESSAGES.NO_INPUT);
   },
 
