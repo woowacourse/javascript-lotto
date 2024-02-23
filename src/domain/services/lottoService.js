@@ -1,10 +1,11 @@
 import CONFIG from '../../constants/config';
+import PRIZE from '../../constants/prize';
 
 const lottoService = {
   calculateProfit(matchedResultList, purchaseAmount) {
     const rankCounts = this.calculateRankCounts(matchedResultList);
     const totalPrice = Array.from({ length: CONFIG.LOTTO_RANK_LENGTH }, (_, i) => i + 1).reduce(
-      (acc, rank) => acc + rankCounts[rank] * CONFIG.PRIZE[rank],
+      (acc, rank) => acc + rankCounts[rank] * PRIZE.AMOUNT[rank],
       0,
     );
 
@@ -22,10 +23,10 @@ const lottoService = {
 
   pickLottoRank(matchedResult) {
     const { matchedCount, isBonusMatched } = matchedResult;
-    if (matchedCount === CONFIG.SECOND_PRIZE_CONDITION) {
-      return isBonusMatched ? CONFIG.SECOND_PRIZE : CONFIG.THIRD_PRIZE;
+    if (matchedCount === PRIZE.SECOND_PRIZE_CONDITION) {
+      return isBonusMatched ? PRIZE.SECOND : PRIZE.THIRD;
     }
-    return CONFIG.MATCHED_RANK_COUNT[matchedCount];
+    return PRIZE.MATCHED_RANK_COUNT[matchedCount];
   },
 };
 

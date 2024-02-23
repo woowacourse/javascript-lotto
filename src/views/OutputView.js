@@ -1,5 +1,6 @@
 import { MESSAGE } from '../constants/message';
 import CONFIG from '../constants/config';
+import PRIZE from '../constants/prize';
 
 const OutputView = {
   print(message = '') {
@@ -22,11 +23,13 @@ const OutputView = {
 
   printLottoResult(rankList) {
     this.print(MESSAGE.LOTTO_RESULT);
-    this.print(`3개 일치 (${CONFIG.PRIZE[5].toLocaleString('ko-KR')}원) - ${rankList[5]}개`);
-    this.print(`4개 일치 (${CONFIG.PRIZE[4].toLocaleString('ko-KR')}원) - ${rankList[4]}개`);
-    this.print(`5개 일치 (${CONFIG.PRIZE[3].toLocaleString('ko-KR')}원) - ${rankList[3]}개`);
-    this.print(`5개 일치, 보너스 볼 일치 (${CONFIG.PRIZE[2].toLocaleString('ko-KR')}원) - ${rankList[2]}개`);
-    this.print(`6개 일치 (${CONFIG.PRIZE[1].toLocaleString('ko-KR')}원) - ${rankList[1]}개`);
+    this.print(`3개 일치 (${PRIZE.AMOUNT[PRIZE.FIFTH].toLocaleString('ko-KR')}원) - ${rankList[PRIZE.FIFTH]}개`);
+    this.print(`4개 일치 (${PRIZE.AMOUNT[PRIZE.FORTH].toLocaleString('ko-KR')}원) - ${rankList[PRIZE.FORTH]}개`);
+    this.print(`5개 일치 (${PRIZE.AMOUNT[PRIZE.THIRD].toLocaleString('ko-KR')}원) - ${rankList[PRIZE.THIRD]}개`);
+    this.print(
+      `5개 일치, 보너스 볼 일치 (${PRIZE.AMOUNT[PRIZE.SECOND].toLocaleString('ko-KR')}원) - ${rankList[PRIZE.SECOND]}개`,
+    );
+    this.print(`6개 일치 (${PRIZE.AMOUNT[PRIZE.FIRST].toLocaleString('ko-KR')}원) - ${rankList[PRIZE.FIRST]}개`);
   },
 
   printProfit(profit) {

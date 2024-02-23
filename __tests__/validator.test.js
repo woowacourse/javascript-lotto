@@ -1,8 +1,10 @@
-import bonusNumberValidator from '../src/validators/bonusNumberValidator';
-import numberValidator from '../src/validators/numberValidator';
-import purchaseAmountValidator from '../src/validators/purchaseAmountValidator';
-import restartValidator from '../src/validators/restartValidator';
-import winningNumbersValidator from '../src/validators/winningNumbersValidator';
+import {
+  bonusNumberValidator,
+  numberValidator,
+  purchaseAmountValidator,
+  restartValidator,
+  winningNumbersValidator,
+} from '../src/validators';
 
 describe('유효성 검사 테스트', () => {
   describe('구매 금액 테스트', () => {
