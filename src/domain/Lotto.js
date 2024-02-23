@@ -11,7 +11,7 @@ class Lotto {
   }
 
   #sortNumbersAscending(numbers) {
-    return numbers.sort();
+    return numbers.sort((a, b) => a - b);
   }
 
   determineRank(winningNumbers, bonusNumber) {
