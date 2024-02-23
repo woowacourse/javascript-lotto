@@ -1,6 +1,6 @@
-import InputView from './views/InputView';
-import LottoController from './controllers/LottoController';
 import { CONFIG } from './constants';
+import { InputView } from './views';
+import LottoController from './controllers/LottoController';
 
 const app = {
   async play() {
