@@ -6,7 +6,7 @@ const MESSAGES = {
   borderLine: "--------------------",
   matchResult: "당첨 통계",
   profitRate: (rate) => `총 수익률은 ${rate}%입니다.`,
-  matchReference: ({ matchCount, prize, rank }) => `${matchCount}개 일치 (${prize}원) - ${rank}개`, // TODO: 리펙이 필요하다.
+  matchReference: ({ matchCount, prize, rank }) => `${matchCount}개 일치 (${prize}원) - ${rank}개`,
   bonusMatchReference: ({ matchCount, prize, rank }) =>
     `${matchCount}개 일치, 보너스 볼 일치 (${prize}원) - ${rank}개`,
   lotto: (numbers) => `[ ${numbers.join(", ")} ]`,
