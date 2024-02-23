@@ -20,6 +20,7 @@ class LottoGenerator {
       const randomNumber = this.#makeRandomNumber();
       lottoSet.add(randomNumber);
     }
+
     return Array.from(lottoSet);
   }
 
