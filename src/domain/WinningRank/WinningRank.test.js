@@ -6,7 +6,7 @@ describe('당첨 등수 계산 테스트', () => {
   const TEST_BONUS_NUMBER = 7;
   const TEST_CASES = [
     {
-      lottoNumbers: [[1, 2, 3, 4, 5, 6]],
+      lottoNumbersArray: [[1, 2, 3, 4, 5, 6]],
       expectedWinningRank: {
         '1st': 1,
         '2nd': 0,
@@ -16,7 +16,7 @@ describe('당첨 등수 계산 테스트', () => {
       },
     },
     {
-      lottoNumbers: [[1, 2, 3, 4, 5, 7]],
+      lottoNumbersArray: [[1, 2, 3, 4, 5, 7]],
       expectedWinningRank: {
         '1st': 0,
         '2nd': 1,
@@ -26,7 +26,7 @@ describe('당첨 등수 계산 테스트', () => {
       },
     },
     {
-      lottoNumbers: [[1, 2, 3, 4, 5, 8]],
+      lottoNumbersArray: [[1, 2, 3, 4, 5, 8]],
       expectedWinningRank: {
         '1st': 0,
         '2nd': 0,
@@ -36,7 +36,7 @@ describe('당첨 등수 계산 테스트', () => {
       },
     },
     {
-      lottoNumbers: [[1, 2, 3, 4, 11, 22]],
+      lottoNumbersArray: [[1, 2, 3, 4, 11, 22]],
       expectedWinningRank: {
         '1st': 0,
         '2nd': 0,
@@ -46,7 +46,7 @@ describe('당첨 등수 계산 테스트', () => {
       },
     },
     {
-      lottoNumbers: [[1, 2, 3, 10, 20, 30]],
+      lottoNumbersArray: [[1, 2, 3, 10, 20, 30]],
       expectedWinningRank: {
         '1st': 0,
         '2nd': 0,
@@ -58,10 +58,10 @@ describe('당첨 등수 계산 테스트', () => {
   ];
   test.each(TEST_CASES)(
     '예상 등수는 $expectedWinningRank와 같아야 한다.',
-    ({ lottoNumbers, expectedWinningRank }) => {
+    ({ lottoNumbersArray, expectedWinningRank }) => {
       const winningRank = new WinningRank({
-        lottoNumbers,
-        winningNumber: TEST_WINNING_NUMBER,
+        lottoNumbersArray,
+        winningNumbers: TEST_WINNING_NUMBER,
         bonusNumber: TEST_BONUS_NUMBER,
       });
 

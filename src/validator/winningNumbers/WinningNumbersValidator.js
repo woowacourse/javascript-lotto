@@ -14,7 +14,7 @@ const { LOTTO_RULE } = Lotto;
  * @type {import('../../types/jsDoc.js').WinningNumberValidator}
  * 당첨 번호 입력에 대한 유효성 검사를 수행하는 모듈
  */
-const WinningNumberValidator = deepFreeze({
+const WinningNumbersValidator = deepFreeze({
   /**
    * @type {import('../../types/jsDoc.js').WinningNumberValidationTypes}
    */
@@ -45,10 +45,10 @@ const WinningNumberValidator = deepFreeze({
     isUnique: {
       errorMessage: '당첨 번호는 서로 중복되지 않아야 합니다. 다시 입력해주세요.',
       isValid(inputValue) {
-        const winningNumber = inputValue.split(SYMBOLS.comma).map(Number);
-        const uniqueWinningNumber = new Set(winningNumber);
+        const winningNumbers = inputValue.split(SYMBOLS.comma).map(Number);
+        const uniqueWinningNumber = new Set(winningNumbers);
 
-        return uniqueWinningNumber.size === winningNumber.length;
+        return uniqueWinningNumber.size === winningNumbers.length;
       },
     },
   },
@@ -63,4 +63,4 @@ const WinningNumberValidator = deepFreeze({
   },
 });
 
-export default WinningNumberValidator;
+export default WinningNumbersValidator;

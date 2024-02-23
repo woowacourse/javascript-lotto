@@ -3,8 +3,8 @@ import BonusNumberValidator from './BonusNumberValidator.js';
 
 describe('보너스 번호 유효성 검사', () => {
   // given
-  const validateBonusNumber = (inputValue, winningNumber) =>
-    BonusNumberValidator.check(inputValue, winningNumber);
+  const validateBonusNumber = (inputValue, winningNumbers) =>
+    BonusNumberValidator.check(inputValue, winningNumbers);
 
   const ERROR_CASES = [
     {

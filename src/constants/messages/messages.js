@@ -3,7 +3,7 @@ import { SYMBOLS } from '../symbols.js';
 
 export const INPUT_MESSAGE = Object.freeze({
   buyLottoPrice: '> 구입금액을 입력해 주세요. ',
-  winningNumber: '\n> 당첨 번호를 입력해 주세요. ',
+  winningNumbers: '\n> 당첨 번호를 입력해 주세요. ',
   bonusNumber: '\n> 보너스 번호를 입력해 주세요. ',
   retryCommand: '\n> 다시 시작하시겠습니까? (y/n) ',
 });
@@ -17,9 +17,9 @@ export const FORMAT_MESSAGE = Object.freeze({
     return `${lottoCount}개를 구매했습니다.`;
   },
 
-  lottoNumbersToString(lottoNumbers) {
-    return lottoNumbers
-      .map((lottoNumber) => `[${lottoNumber.join(`${SYMBOLS.comma} `)}]`)
+  lottoNumbersArrayToString(lottoNumbersArray) {
+    return lottoNumbersArray
+      .map((lottoNumbers) => `[${lottoNumbers.join(`${SYMBOLS.comma} `)}]`)
       .join('\n');
   },
 

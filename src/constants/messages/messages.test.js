@@ -46,7 +46,7 @@ describe('로또 메시지 포맷팅 테스트', () => {
 
   test.each(LOTTO_NUMBER_TEST_CASES)('$description', ({ lottoNumbers, expectedMessage }) => {
     // when
-    const formattedLottoNumbers = FORMAT_MESSAGE.lottoNumbersToString(lottoNumbers);
+    const formattedLottoNumbers = FORMAT_MESSAGE.lottoNumbersArrayToString(lottoNumbers);
 
     // then
     expect(formattedLottoNumbers).toMatch(expectedMessage);

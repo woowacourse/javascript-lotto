@@ -11,16 +11,16 @@ const OutputView = Object.freeze({
   },
 
   /**
-   * @param {import('../types/jsDoc.js').LottoNumber[]} lottoNumbers - 로또 번호들
+   * @param {import('../types/jsDoc.js').LottoNumber[]} lottoNumbersArray - 로또 번호들
    */
-  printLottoNumbers(lottoNumbers) {
-    Console.print(FORMAT_MESSAGE.lottoNumbersToString(lottoNumbers));
+  printLottoNumbersArray(lottoNumbersArray) {
+    Console.print(FORMAT_MESSAGE.lottoNumbersArrayToString(lottoNumbersArray));
   },
 
   /**
    * @param {{rateOfReturn : number, winningRankResult : import('../types/jsDoc.js').WinningRankResult}} params - 수익률과 각 등수 별 당첨 횟수 객체가 담긴 객체
    */
-  printDrawLottoResult({ rateOfReturn, winningRankResult }) {
+  printRaffleLottoResult({ rateOfReturn, winningRankResult }) {
     Console.print(OUTPUT_MESSAGE.winningStatisticsTitle);
 
     Console.print(

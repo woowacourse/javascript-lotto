@@ -14,9 +14,9 @@ class LottoGameController {
    * @returns {Promise<void>}
    */
   async run() {
-    const { buyLottoPrice, lottoNumbers } = await this.#processBuyLotto();
+    const { buyLottoPrice, lottoNumbersArray } = await this.#processBuyLotto();
 
-    await this.#processDrawLottoResult({ buyLottoPrice, lottoNumbers });
+    await this.#processRaffleLottoResult({ buyLottoPrice, lottoNumbersArray });
 
     await this.#processRetryGame();
   }
@@ -27,39 +27,41 @@ class LottoGameController {
   async #processBuyLotto() {
     const buyLottoPrice = await RetryHandler.errorWithLogging(() => InputView.readBuyLottoPrice());
     const lottoBuyer = new LottoBuyer(buyLottoPrice);
-    const lottoNumbers = lottoBuyer.purchase(buyLottoPrice);
+    const lottoNumbersArray = lottoBuyer.purchase(buyLottoPrice);
 
-    OutputView.printLottoCount(lottoNumbers.length);
-    OutputView.printLottoNumbers(lottoNumbers);
+    OutputView.printLottoCount(lottoNumbersArray.length);
+    OutputView.printLottoNumbersArray(lottoNumbersArray);
 
-    return { buyLottoPrice, lottoNumbers };
+    return { buyLottoPrice, lottoNumbersArray };
   }
 
   /**
    * @param {import('../types/jsDoc.js').BuyLottoDetail} buyLottoDetail - 로또 구입 금액과 로또 번호
    * @returns {Promise<void>}
    */
-  async #processDrawLottoResult({ buyLottoPrice, lottoNumbers }) {
-    const { winningNumber, bonusNumber } = await this.#requireWinningDetail();
-    const winningRank = new WinningRank({ winningNumber, bonusNumber, lottoNumbers });
+  async #processRaffleLottoResult({ buyLottoPrice, lottoNumbersArray }) {
+    const { winningNumbers, bonusNumber } = await this.#requireWinningDetail();
+    const winningRank = new WinningRank({ winningNumbers, bonusNumber, lottoNumbersArray });
     const winningRankResult = winningRank.calculateRank();
 
     const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankResult });
     const rateOfReturn = rateOfReturnCalculator.execute();
 
-    OutputView.printDrawLottoResult({ rateOfReturn, winningRankResult });
+    OutputView.printRaffleLottoResult({ rateOfReturn, winningRankResult });
   }
 
   /**
    * @returns {Promise<Omit<import('../types/jsDoc.js').LottoDrawDetail, 'lottoNumbers'>>} - 당첨 번호와 보너스 번호 속성이 있는 객체의 Promise
    */
   async #requireWinningDetail() {
-    const winningNumber = await RetryHandler.errorWithLogging(() => InputView.readWinningNumber());
+    const winningNumbers = await RetryHandler.errorWithLogging(() =>
+      InputView.readWinningNumbers(),
+    );
     const bonusNumber = await RetryHandler.errorWithLogging(() =>
-      InputView.readBonusNumber(winningNumber),
+      InputView.readBonusNumber(winningNumbers),
     );
 
-    return { winningNumber, bonusNumber };
+    return { winningNumbers, bonusNumber };
   }
 
   /**

@@ -36,10 +36,10 @@ const BonusNumberValidator = deepFreeze({
 
     isUniqueBonusNumber: {
       errorMessage: '보너스 번호는 당첨 번호에 포함되지 않은 번호여야 합니다. 다시 입력해 주세요.',
-      isValid({ inputValue, winningNumber }) {
+      isValid({ inputValue, winningNumbers }) {
         const bonusNumber = Number(inputValue);
 
-        return !winningNumber.includes(bonusNumber);
+        return !winningNumbers.includes(bonusNumber);
       },
     },
   },
@@ -50,8 +50,8 @@ const BonusNumberValidator = deepFreeze({
    * @param {number[]} winningNumber - 당첨 번호 목록
    * @returns {void}
    */
-  check(inputValue, winningNumber) {
-    startValidation(this.validationTypes, { inputValue, winningNumber });
+  check(inputValue, winningNumbers) {
+    startValidation(this.validationTypes, { inputValue, winningNumbers });
   },
 });
 

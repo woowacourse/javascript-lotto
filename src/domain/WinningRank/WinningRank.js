@@ -30,16 +30,16 @@ class WinningRank {
   /**
    * @param {import("../../types/jsDoc").LottoDrawDetail} lottoDrawDetail - 당첨 번호, 보너스 번호, 로또 번호의 속성으로 이루어진 객체
    */
-  constructor({ winningNumber, lottoNumbers, bonusNumber }) {
-    this.#lottoDrawDetail = { winningNumber, lottoNumbers, bonusNumber };
+  constructor({ winningNumbers, lottoNumbersArray, bonusNumber }) {
+    this.#lottoDrawDetail = { winningNumbers, lottoNumbersArray, bonusNumber };
   }
 
   /**
    * @returns {import("../../types/jsDoc").WinningRankResult} - 1 ~ 5등의 당첨 횟수가 담긴 객체
    */
   calculateRank() {
-    return this.#lottoDrawDetail.lottoNumbers.reduce((prevWinningRankDetail, lottoNumber) => {
-      const rank = this.#determineRank(lottoNumber);
+    return this.#lottoDrawDetail.lottoNumbersArray.reduce((prevWinningRankDetail, lottoNumbers) => {
+      const rank = this.#determineRank(lottoNumbers);
 
       return rank !== null
         ? { ...prevWinningRankDetail, [rank]: prevWinningRankDetail[rank] + 1 }
@@ -48,14 +48,14 @@ class WinningRank {
   }
 
   /**
-   * @param {import("../../types/jsDoc").LottoNumber} lottoNumber - 로또 번호
+   * @param {import("../../types/jsDoc").LottoNumber} lottoNumbers - 로또 번호
    * @returns {import("../../types/jsDoc").Rank | null} 등수 정보 또는 null
    */
-  #determineRank(lottoNumber) {
-    const matchCount = this.#countMatchingNumbers(lottoNumber);
+  #determineRank(lottoNumbers) {
+    const matchCount = this.#countMatchingNumbers(lottoNumbers);
     const targetRankRule = Object.entries(WinningRank.RANK_RULE).find(
       ([, { match, hasBonus }]) =>
-        matchCount === match && this.#isIncludingBonusNumber(lottoNumber) === hasBonus,
+        matchCount === match && this.#isIncludingBonusNumber(lottoNumbers) === hasBonus,
     );
 
     const rank = targetRankRule ? targetRankRule[0] : null;
@@ -66,11 +66,11 @@ class WinningRank {
    * @param {import("../../types/jsDoc").LottoNumber} lottoNumber - 로또 번호
    * @returns {number} 로또 번호에 당첨 번호 일치 갯수
    */
-  #countMatchingNumbers(lottoNumber) {
-    const winningNumberSet = new Set(this.#lottoDrawDetail.winningNumber);
+  #countMatchingNumbers(lottoNumbers) {
+    const winningNumbersSet = new Set(this.#lottoDrawDetail.winningNumbers);
 
-    return lottoNumber.reduce(
-      (count, number) => (winningNumberSet.has(number) ? count + 1 : count),
+    return lottoNumbers.reduce(
+      (count, number) => (winningNumbersSet.has(number) ? count + 1 : count),
       0,
     );
   }

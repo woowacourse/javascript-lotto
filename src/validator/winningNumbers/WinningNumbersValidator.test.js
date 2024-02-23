@@ -1,38 +1,38 @@
-import WinningNumberValidator from './WinningNumberValidator.js';
+import WinningNumbersValidator from './WinningNumbersValidator.js';
 import AppError from '../../errors/AppError/AppError.js';
 
 describe('당첨 번호 유효성 검사', () => {
   // given
-  const validateWinningNumber = (inputValue) => WinningNumberValidator.check(inputValue);
+  const validateWinningNumber = (inputValue) => WinningNumbersValidator.check(inputValue);
 
   const ERROR_CASES = [
     {
       input: 'a,b,c,d,e,f',
-      expectedErrorMessage: WinningNumberValidator.validationTypes.isValidType.errorMessage,
+      expectedErrorMessage: WinningNumbersValidator.validationTypes.isValidType.errorMessage,
     },
     {
       input: '1.2,3,4,5,6',
-      expectedErrorMessage: WinningNumberValidator.validationTypes.isValidType.errorMessage,
+      expectedErrorMessage: WinningNumbersValidator.validationTypes.isValidType.errorMessage,
     },
     {
       input: '1,2,3,4,5,-6',
-      expectedErrorMessage: WinningNumberValidator.validationTypes.isValidType.errorMessage,
+      expectedErrorMessage: WinningNumbersValidator.validationTypes.isValidType.errorMessage,
     },
     {
       input: '1,2',
-      expectedErrorMessage: WinningNumberValidator.validationTypes.isValidLength.errorMessage,
+      expectedErrorMessage: WinningNumbersValidator.validationTypes.isValidLength.errorMessage,
     },
     {
       input: '33',
-      expectedErrorMessage: WinningNumberValidator.validationTypes.isValidLength.errorMessage,
+      expectedErrorMessage: WinningNumbersValidator.validationTypes.isValidLength.errorMessage,
     },
     {
       input: '1,2,3,4,5,60',
-      expectedErrorMessage: WinningNumberValidator.validationTypes.isValidRange.errorMessage,
+      expectedErrorMessage: WinningNumbersValidator.validationTypes.isValidRange.errorMessage,
     },
     {
       input: '1,1,2,3,4,5',
-      expectedErrorMessage: WinningNumberValidator.validationTypes.isUnique.errorMessage,
+      expectedErrorMessage: WinningNumbersValidator.validationTypes.isUnique.errorMessage,
     },
   ];
 

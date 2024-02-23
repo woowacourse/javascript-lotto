@@ -6,7 +6,7 @@ import { deepFreeze } from '../utils/object/object.js';
 import {
   BuyLottoPriceValidator,
   CommonValidator,
-  WinningNumberValidator,
+  WinningNumbersValidator,
   BonusNumberValidator,
 } from '../validator/index.js';
 
@@ -42,20 +42,20 @@ const InputView = deepFreeze({
   /**
    * @returns {Promise<number[]>} 검증된 구매 로또 금액의 Promise
    */
-  async readWinningNumber() {
-    const inputWinningNumber = await this.read(INPUT_MESSAGE.winningNumber);
-    WinningNumberValidator.check(inputWinningNumber);
+  async readWinningNumbers() {
+    const inputWinningNumbers = await this.read(INPUT_MESSAGE.winningNumbers);
+    WinningNumbersValidator.check(inputWinningNumbers);
 
-    return inputWinningNumber.split(SYMBOLS.comma).map(Number);
+    return inputWinningNumbers.split(SYMBOLS.comma).map(Number);
   },
 
   /**
-   * @param {number[]} winningNumber - 당첨 번호의 string 형태
+   * @param {number[]} winningNumbers - 당첨 번호의 string 형태
    * @returns {Promise<number>} 유효성 검증이 완료 된 보너스 번호의 Promise
    */
-  async readBonusNumber(winningNumber) {
+  async readBonusNumber(winningNumbers) {
     const inputBonusNumber = await this.read(INPUT_MESSAGE.bonusNumber);
-    BonusNumberValidator.check(inputBonusNumber, winningNumber);
+    BonusNumberValidator.check(inputBonusNumber, winningNumbers);
 
     return Number(inputBonusNumber);
   },
