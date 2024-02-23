@@ -9,6 +9,7 @@ const ERROR_MESSAGES = Object.freeze({
   OUT_OF_RANGE: `${LOTTO_NUMBER_RANGE.MIN} 이상, ${LOTTO_NUMBER_RANGE.MAX} 이하의 숫자여야합니다.`,
   DUPLICATE: '중복된 숫자가 존재합니다.',
   INVALID_LENGTH: '로또의 숫자는 6개여야합니다.',
+  NOT_NUMBER: '숫자만 입력해주세요.',
 });
 
 export default class LottoNumber {
@@ -20,22 +21,24 @@ export default class LottoNumber {
   }
 
   #validateLottoNumbers() {
-    // TODO: 숫자형인지 검사
     this.#validateLength();
     this.#validateDuplicate();
     this.#numbers.forEach((number) => {
-      this.#validateInRange(number);
+      this.#validateEachNumber(number);
     });
   }
 
-  #validateInRange(number) {
+  #validateEachNumber(number) {
+    if (Number.isNaN(number)) {
+      throw new Error(ERROR_MESSAGES.NOT_NUMBER);
+    }
     if (number < LOTTO_NUMBER_RANGE.MIN || number > LOTTO_NUMBER_RANGE.MAX) {
       throw new Error(ERROR_MESSAGES.OUT_OF_RANGE);
     }
   }
 
   validateInRangeWrapper(number) {
-    return this.#validateInRange(number);
+    return this.#validateEachNumber(number);
   }
 
   #validateDuplicate() {
