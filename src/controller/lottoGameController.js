@@ -38,11 +38,11 @@ class LottoGameController {
   }
 
   async #getPurchaseAmount() {
-    const puchaseAmount = await this.#inputView.inputPurchaseAmount();
-    purchaseAmountValidator(puchaseAmount);
+    const purchaseAmount = await this.#inputView.inputPurchaseAmount();
+    purchaseAmountValidator(purchaseAmount);
 
-    this.#outputView.printPurchaseMessage(puchaseAmount);
-    return Number(puchaseAmount);
+    this.#outputView.printPurchaseMessage(purchaseAmount);
+    return Number(purchaseAmount);
   }
 
   async #getLottoList(purchaseAmount) {

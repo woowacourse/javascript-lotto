@@ -3,16 +3,16 @@ import { PRIZE } from "../constants/system.js";
 
 class LottoResult {
   #lottoList;
-  #WinningLotto;
+  #winningLotto;
 
   constructor(lottoList, WinningLotto) {
     this.#lottoList = lottoList;
-    this.#WinningLotto = WinningLotto;
+    this.#winningLotto = WinningLotto;
   }
 
   #getResult() {
     const ranks = this.#lottoList
-      .map((lotto) => lotto.getRank(this.#WinningLotto))
+      .map((lotto) => lotto.getRank(this.#winningLotto))
       .filter((rank) => rank !== WINNING_RANK.NONE);
 
     return ranks;
