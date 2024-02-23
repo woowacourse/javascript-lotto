@@ -1,6 +1,7 @@
 import Validator from '../domain/Validator';
 import StatisticsGenerator from './StatisticsGenerator';
 import LottoGenerator from './LottoGenerator';
+import MessageGenerator from './MessageGenerator';
 import Input from '../view/Input';
 import Output from '../view/Output';
 import retryUntilValid from '../utils/retryUntilValid';
@@ -11,7 +12,8 @@ const { RESTART_OPTION } = Condition;
 const LottoGame = {
   async start() {
     const lottoTickets = await this.purchaseLottoTickets();
-    Output.printLottoTicketsPurchaseResult(lottoTickets);
+    Output.printLottoTicketsCount(lottoTickets);
+    Output.printLottoTicketsDetail(lottoTickets);
 
     const winningLotto = await this.makeWinningLotto();
     this.showPrizeStatistics(lottoTickets, winningLotto);
@@ -70,7 +72,7 @@ const LottoGame = {
     const returnOnInvestment = StatisticsGenerator.calculateReturnOnInvestment(prizes);
 
     Output.printPrizeStatisticsHeader();
-    Output.printPrizeDetails(prizes);
+    Output.printPrizeDetails(MessageGenerator.makePrizeDetailPhrases(prizes));
     Output.printReturnOnInvestment(returnOnInvestment);
   },
 };

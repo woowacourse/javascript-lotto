@@ -1,13 +1,13 @@
-import Condition from '../constants/Condition';
 import Message from '../constants/Message';
 
-const { PRIZE } = Condition;
 const { OUTPUT } = Message;
 
 const Output = {
-  printLottoTicketsPurchaseResult(lottoTickets) {
-    console.log(OUTPUT.LOTTO_TICKETS_COUNT(lottoTickets.length));
+  printLottoTicketsCount(lottoTickets) {
+    console.log(`${lottoTickets.length} ${OUTPUT.LOTTO_TICKETS_COUNT}`);
+  },
 
+  printLottoTicketsDetail(lottoTickets) {
     lottoTickets.forEach((lottoTicket) => {
       console.log(lottoTicket.getSortedNumbersAscending());
     });
@@ -21,15 +21,14 @@ const Output = {
     console.log(OUTPUT.PRIZE_STATISTICS_SEPARATOR);
   },
 
-  printPrizeDetails(prizes) {
-    PRIZE.forEach(([rank, detail]) => {
-      const prizeInfo = { rank, detail, count: prizes.filter((prize) => prize === rank).length };
-      console.log(OUTPUT.PRIZE_DETAIL(prizeInfo));
-    });
+  printPrizeDetails(prizeDetailMessages) {
+    prizeDetailMessages.forEach((message) => console.log(message));
   },
 
   printReturnOnInvestment(returnOnInvestment) {
-    console.log(OUTPUT.RETURN_ON_INVESTMENT(returnOnInvestment));
+    console.log(
+      `${OUTPUT.RETURN_ON_INVESTMENT_HEADER} ${returnOnInvestment} ${OUTPUT.RETURN_ON_INVESTMENT_FOOTER}`,
+    );
     console.log(OUTPUT.NEW_LINE);
   },
 };
