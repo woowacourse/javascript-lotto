@@ -45,7 +45,6 @@ const ValidatorCondition = {
   },
 };
 
-// 도메인 느낌
 const Validator = {
   checkLottoNumbers(lottoNumbers) {
     const lottoCount = 6;
