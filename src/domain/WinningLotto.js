@@ -1,7 +1,5 @@
 class WinningLotto {
-  constructor(winningNumbers, winningBonus) {}
-  
-
+  constructor(winningCombination) {}
 }
 
 export default WinningLotto;

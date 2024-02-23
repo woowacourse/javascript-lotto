@@ -5,6 +5,7 @@ import randomLottoArray from "../domain/randomLottoMaker.js";
 import lottoStatistics from "../domain/lottoStatistics.js";
 import Lotto from "../domain/Lotto.js";
 import WinningLotto from "../domain/WinningLotto.js";
+import LottoResultMaker from "../domain/LottoResultMaker.js";
 
 /**
  * @returns {Number}
@@ -47,7 +48,14 @@ const LottoController = {
     // 당첨 번호와 로또 번호 저장해줘
     const winningNumbers = await handleWinningNumbers();
     const winningBonus = await handleWinningBonus();
-    const winningLotto = new WinningLotto(winningNumbers, winningBonus);
+    const winningCombination = {
+      winningNumbers: winningNumbers,
+      winningBonus: winningBonus,
+    };
+    // const winningLotto = new WinningLotto(winningCombination);
+
+    // 각 로또별 당첨 번호, 보너스 번호와 몇 개 일치한지 확인해줘
+    const lottoResult = LottoResultMaker(issuedLottoArray, winningCombination).checkLottoResult();
   },
 };
 
