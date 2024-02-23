@@ -1,5 +1,6 @@
 import { LOTTO_LENGTH, LOTTO_RANGE } from "../constants/option.js";
 import { LOTTO_PRICE } from "../constants/system.js";
+import createUniqueNumbersInRange from "../utils/createUniqueNumbersInRange.js";
 
 import Lotto from "./Lotto.js";
 
@@ -15,21 +16,17 @@ class LottoMachine {
 
     const lottoList = Array.from(
       { length: lottoCount },
-      () => new Lotto(this.#generateLotto()),
+      () =>
+        new Lotto(
+          createUniqueNumbersInRange({
+            start: LOTTO_RANGE.MIN,
+            end: LOTTO_RANGE.MAX,
+            count: LOTTO_LENGTH,
+          }),
+        ),
     );
 
     return lottoList;
-  }
-
-  #generateLotto() {
-    const range = Array.from({ length: LOTTO_RANGE.MAX }, (_, i) => i + 1);
-    const shuffled = range
-      .map((value) => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value)
-      .slice(0, LOTTO_LENGTH);
-
-    return shuffled;
   }
 }
 export default LottoMachine;
