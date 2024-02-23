@@ -1,5 +1,9 @@
 {
-  "rules": {},
+  "rules": {
+    "linebreak-style": 0,
+    "max-lines-per-function": ["error", { "max": 10 }],
+    "max-depth": ["error", { "max": 1 }]
+  },
   "env": {
     "es6": true,
     "node": true
@@ -7,5 +11,15 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "overrides": [
+    {
+      "files": ["*.test.js"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "max-depth": "off",
+        "no-undef": "off"
+      }
+    }
+  ],
+  "extends": ["airbnb-base", "eslint:recommended"]
 }
