@@ -7,6 +7,7 @@ import Lotto from "../domain/Lotto.js";
 import WinningLotto from "../domain/WinningLotto.js";
 import LottoResultMaker from "../domain/LottoResultMaker.js";
 import LottoRankMaker from "../domain/lottoRankMaker.js";
+import ProfitCalculator from "../domain/ProfitCalculator.js";
 
 /**
  * @returns {Number}
@@ -60,6 +61,10 @@ const LottoController = {
 
     //일치하는 개수에 따라 등수별 로또가 몇 장 있는지 계산해줘
     const lottoRankResult = LottoRankMaker.calculateLottoRank(lottoResult);
+
+    // 수익률 계산하고 출력해줘
+    const profit = ProfitCalculator.calculateProfit(lottoRankResult, budget);
+    OutputView.printResultStatistics(profit);
   },
 };
 
