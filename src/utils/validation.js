@@ -1,19 +1,23 @@
 import { LOTTO_RULES, REGEXP } from '../constant/constants.js';
 import { ERROR_MESSAGES } from '../constant/messages.js';
 
-const Validations = {
-  isCorrectLength(numbers) {
-    return numbers.length === LOTTO_RULES.length;
+const ValidationConditions = {
+  hasCorrectLength(array, expectedLength) {
+    return array.length === expectedLength;
   },
 
-  isDuplicate(array) {
-    const uniqueArray = new Set(array);
+  isUnique(array) {
+    const uniqueSet = new Set(array);
 
-    return uniqueArray.size !== array.length;
+    return uniqueSet.size === array.length;
   },
 
-  isCorrectRange(number) {
-    return LOTTO_RULES.min_number <= number && number <= LOTTO_RULES.max_number;
+  isWithinRange({ number, min, max }) {
+    return min <= number && number <= max;
+  },
+
+  isAllNumbersInRange({ numbers, min, max }) {
+    return numbers.every((number) => min <= number && number <= max);
   },
 
   isNumericPattern(number) {
@@ -34,24 +38,33 @@ const Validations = {
 };
 
 export const validateLotto = (numbers) => {
-  if (!Validations.isCorrectLength(numbers)) throw new Error(ERROR_MESSAGES.incorrect_length);
-  if (Validations.isDuplicate(numbers)) throw new Error(ERROR_MESSAGES.duplicate);
-  numbers.forEach((number) => {
-    if (!Validations.isCorrectRange(number)) throw new Error(ERROR_MESSAGES.lotto_number_range);
-  });
+  const { min_number, max_number } = LOTTO_RULES;
+
+  if (!ValidationConditions.hasCorrectLength(numbers, LOTTO_RULES.length))
+    throw new Error(ERROR_MESSAGES.incorrect_length);
+  if (!ValidationConditions.isUnique(numbers)) throw new Error(ERROR_MESSAGES.duplicate);
+  if (!ValidationConditions.isAllNumbersInRange({ numbers, min: min_number, max: max_number }))
+    throw new Error(ERROR_MESSAGES.lotto_number_range);
 };
 
 export const validateBonusNumber = (numbers, bonusNumber) => {
-  if (!Validations.isCorrectRange(bonusNumber)) throw new Error(ERROR_MESSAGES.lotto_number_range);
+  const { min_number, max_number } = LOTTO_RULES;
+
+  if (!ValidationConditions.isWithinRange({ number: bonusNumber, min: min_number, max: max_number }))
+    throw new Error(ERROR_MESSAGES.lotto_number_range);
   if (numbers.includes(bonusNumber)) throw new Error(ERROR_MESSAGES.bonus_number_duplicate);
 };
 
 export const validateCost = (cost) => {
-  if (!Validations.isNumericPattern(cost)) throw new Error(ERROR_MESSAGES.positiveInteger);
-  if (!Validations.isDivide(cost, LOTTO_RULES.cost)) throw new Error(ERROR_MESSAGES.divideThousand);
-  if (!Validations.isGreaterThan(cost, LOTTO_RULES.cost)) throw new Error(ERROR_MESSAGES.greaterThanThousand);
+  if (!ValidationConditions.isNumericPattern(cost)) throw new Error(ERROR_MESSAGES.positiveInteger);
+  if (!ValidationConditions.isDivide(cost, LOTTO_RULES.cost)) throw new Error(ERROR_MESSAGES.divideThousand);
+  if (!ValidationConditions.isGreaterThan(cost, LOTTO_RULES.cost)) throw new Error(ERROR_MESSAGES.greaterThanThousand);
+};
+
+export const validateNumber = (number) => {
+  if (!ValidationConditions.isNumericPattern(number)) throw new Error(ERROR_MESSAGES.positiveInteger);
 };
 
 export const validateRestartResponse = (restartResponse) => {
-  if (!Validations.isOnlyYorN(restartResponse)) throw new Error(ERROR_MESSAGES.only_y_or_n);
+  if (!ValidationConditions.isOnlyYorN(restartResponse)) throw new Error(ERROR_MESSAGES.only_y_or_n);
 };
