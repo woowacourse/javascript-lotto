@@ -2,7 +2,7 @@ import ERROR from '../src/constant/Error.js';
 import Lotto from '../src/domain/entity/Lotto.js';
 
 describe('로또 테스트', () => {
-  test('성공하는 경우 테스트', () => {
+  test('성공 케이스', () => {
     const LOTTO_NUMBERS = ['1', '2', '3', '4', '5', '6'];
     const EXPECTED_NUMBERS = [1, 2, 3, 4, 5, 6];
 
