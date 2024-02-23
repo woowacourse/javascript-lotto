@@ -1,5 +1,4 @@
 import { getMatchCount } from "../utils/getMatchCount.js";
-import { isIncludingValue } from "../utils/isIncludingValue.js";
 import Lotto from "./Lotto.js";
 
 const prize = [1, 2, 3, 4, 5];
@@ -13,7 +12,7 @@ function getRankIndex(matchCount, isBonus) {
 
 function calcMatchCountAndBonus({ winningLotto, bonusLottoNumber, randomLotto }) {
   const matchCount = getMatchCount(randomLotto.get(), winningLotto.get());
-  const isBonus = isIncludingValue(randomLotto.get(), bonusLottoNumber.get());
+  const isBonus = randomLotto.get().includes(bonusLottoNumber.get());
 
   return { matchCount, isBonus };
 }
