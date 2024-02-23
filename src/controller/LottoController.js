@@ -76,13 +76,13 @@ class LottoController {
   }
 
   async #readBonusNumber(winningNumbers) {
-    const rawBonusNumber = await InputView.readBonusNumber();
-    LottoValidator.validateNonNegativeIntegerString(rawBonusNumber);
+    const bonusNumberString = await InputView.readBonusNumber();
+    LottoValidator.validateNonNegativeIntegerString(bonusNumberString);
 
-    const parsedBonusNumber = Number(rawBonusNumber);
-    LottoValidator.validateBonusNumber(parsedBonusNumber, winningNumbers);
+    const bonusNumber = Number(bonusNumberString);
+    LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
 
-    return parsedBonusNumber;
+    return bonusNumber;
   }
 
   async #readRetryChecker() {

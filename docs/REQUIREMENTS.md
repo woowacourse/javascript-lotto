@@ -64,10 +64,10 @@
 - [x] `start`와 `retry` 분리
 - [x] `sellLottos` 인자 `price로 바꾸기
 - [x] `arrayFormat` 상수말고 매직넘버로 변경하기
-- [ ] 에러 메시지 사용자 친화적으로 작성하기
-- [ ] `LottoController`에서 `parsed` 제거하기
-- [ ] 테스트에서 예외 처리시 예외 문구 확인
+- [x] `LottoController`에서 `parsed` 제거하기
 - [ ] `isWinningNumber` 변수 명 처리
+- [ ] 에러 메시지 사용자 친화적으로 작성하기
+- [ ] 테스트에서 예외 처리시 예외 문구 확인
 - [ ] 객체 분리하기
 
 ## 실행 예시
