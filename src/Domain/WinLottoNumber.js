@@ -15,7 +15,7 @@ export default class WinLottoNumber extends LottoNumber {
   }
 
   #validateBonusNumber() {
-    this.validateInRangeWrapper(this.#bonusNumber);
+    this.validateInRangeProtected(this.#bonusNumber);
     this.#validateDuplicate();
   }
 

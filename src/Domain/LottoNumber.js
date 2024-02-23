@@ -37,7 +37,7 @@ export default class LottoNumber {
     }
   }
 
-  validateInRangeWrapper(number) {
+  validateInRangeProtected(number) {
     return this.#validateEachNumber(number);
   }
 
