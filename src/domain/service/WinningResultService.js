@@ -1,8 +1,10 @@
-import LottoNumberList from '../entity/LottoNumberList.js';
-import WinningLotto from '../entity/WinningLotto.js';
+/* eslint-disable arrow-parens */
+import LottoNumberList from '../entity/LottoNumberList';
+import WinningLotto from '../entity/WinningLotto';
 
 class WinningResultService {
   #lottos;
+
   #winningLotto;
 
   constructor(lottos, winningLottoObj) {
@@ -12,7 +14,13 @@ class WinningResultService {
   }
 
   getWinningResult() {
-    const result = { 3: 0, 4: 0, 5: 0, '5-1': 0, 6: 0 };
+    const result = {
+      3: 0,
+      4: 0,
+      5: 0,
+      '5-1': 0,
+      6: 0,
+    };
 
     this.#lottos
       .map(lotto => this.#winningLotto.getMatchCounts(lotto.getNumbers()))

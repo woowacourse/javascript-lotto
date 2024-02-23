@@ -1,4 +1,4 @@
-import ERROR from '../../constant/Error.js';
+import ERROR from '../../constant/Error';
 
 class IsRetry {
   #isRetry;

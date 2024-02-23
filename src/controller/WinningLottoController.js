@@ -1,7 +1,7 @@
-import WinningResultService from '../domain/service/WinningResultService.js';
-import WinningRewardService from '../domain/service/WinningRewardService.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+import WinningResultService from '../domain/service/WinningResultService';
+import WinningRewardService from '../domain/service/WinningRewardService';
+import InputView from '../view/InputView';
+import OutputView from '../view/OutputView';
 
 class WinningLottoController {
   #lottosNumbers;

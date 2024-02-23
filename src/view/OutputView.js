@@ -1,4 +1,4 @@
-import MESSAGE from '../constant/Message.js';
+import MESSAGE from '../constant/Message';
 
 const OutputView = {
   print(message) {
@@ -8,9 +8,7 @@ const OutputView = {
     this.print(`${count}개를 구매했습니다.`);
   },
   printLotto(LottoNumbers) {
-    this.print(
-      '[' + LottoNumbers.map(number => number.toString()).join(', ') + ']',
-    );
+    this.print(`[${LottoNumbers.map((number) => number.toString()).join(', ')}]`);
   },
   printWinningCharacteristic(winningResult) {
     this.print('');
@@ -20,8 +18,7 @@ const OutputView = {
       Object.entries(winningResult)
         .sort((a, b) => a[0].localeCompare(b[0]))
         .map(
-          ([matched, count]) =>
-            `${MESSAGE.winningCharacteristics[matched]} - ${count}개`,
+          ([matched, count]) => `${MESSAGE.winningCharacteristics[matched]} - ${count}개`,
         )
         .join('\n'),
     );

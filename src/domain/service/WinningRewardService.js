@@ -1,7 +1,8 @@
-import CONDITION from '../../constant/Condition.js';
+import CONDITION from '../../constant/Condition';
 
 class WinningRewardService {
   #winningResult;
+
   #purchasedCount;
 
   constructor(winningResult, purchasedCount) {
@@ -11,8 +12,7 @@ class WinningRewardService {
 
   getWinningPrice() {
     return Object.entries(this.#winningResult).reduce(
-      (total, [matched, count]) =>
-        total + CONDITION.winningPrice[matched] * count,
+      (total, [matched, count]) => total + CONDITION.winningPrice[matched] * count,
       0,
     );
   }
@@ -20,9 +20,9 @@ class WinningRewardService {
   getReturnRate() {
     const PERCENT_UNIT = 100;
     return (
-      (this.getWinningPrice() /
-        (this.#purchasedCount * CONDITION.pricePerLotto)) *
-      PERCENT_UNIT
+      (this.getWinningPrice()
+        / (this.#purchasedCount * CONDITION.pricePerLotto))
+      * PERCENT_UNIT
     );
   }
 }

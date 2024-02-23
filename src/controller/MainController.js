@@ -1,9 +1,6 @@
-import WinningResultService from '../domain/service/WinningResultService.js';
-import WinningRewardService from '../domain/service/WinningRewardService.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
-import PurchaseLottoController from './PurchaseLottoController.js';
-import WinningLottoController from './WinningLottoController.js';
+import InputView from '../view/InputView';
+import PurchaseLottoController from './PurchaseLottoController';
+import WinningLottoController from './WinningLottoController';
 
 class MainController {
   async run() {

@@ -1,5 +1,5 @@
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+import InputView from '../view/InputView';
+import OutputView from '../view/OutputView';
 
 class PurchaseLottoController {
   #purchaseLottoService;
@@ -26,7 +26,7 @@ class PurchaseLottoController {
   }
 
   #printPurchasedLotto() {
-    this.getLottos().forEach(lotto => OutputView.printLotto(lotto));
+    this.getLottos().forEach((lotto) => OutputView.printLotto(lotto));
     OutputView.print('');
   }
 }

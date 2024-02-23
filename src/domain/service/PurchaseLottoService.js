@@ -1,9 +1,10 @@
-import CONDITION from '../../constant/Condition.js';
-import ERROR from '../../constant/Error.js';
-import LottoNumberList from '../entity/LottoNumberList.js';
+import CONDITION from '../../constant/Condition';
+import ERROR from '../../constant/Error';
+import LottoNumberList from '../entity/LottoNumberList';
 
 class PurchaseLottoService {
   #purchaseCount;
+
   #lottos;
 
   constructor(purchaseMoneyString) {
@@ -49,12 +50,13 @@ class PurchaseLottoService {
   }
 
   getLottos() {
-    return this.#lottos.map(lotto => lotto.getNumbers());
+    return this.#lottos.map((lotto) => lotto.getNumbers());
   }
 
   #makeRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+
   getPurchaseCount() {
     return this.#purchaseCount;
   }

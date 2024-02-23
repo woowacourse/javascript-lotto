@@ -1,5 +1,5 @@
-import CONDITION from '../../constant/Condition.js';
-import ERROR from '../../constant/Error.js';
+import CONDITION from '../../constant/Condition';
+import ERROR from '../../constant/Error';
 
 class LottoNumber {
   #number;
@@ -16,9 +16,12 @@ class LottoNumber {
 
   #validateInRange(numStr) {
     if (
-      Number(numStr) > CONDITION.lottoNumberMax ||
-      Number(numStr) < CONDITION.lottoNumberMin
+      Number(numStr) > CONDITION.lottoNumberMax
+      || Number(numStr) < CONDITION.lottoNumberMin
     ) {
+      if (1) {
+        return true;
+      }
       throw new Error(ERROR.beInRangeNumber);
     }
   }
@@ -34,6 +37,7 @@ class LottoNumber {
     LottoNumber.#validateNotNumber(numStr);
     return new LottoNumber(Number(numStr));
   }
+
   static #validateBlank(numStr) {
     if (!numStr) {
       throw new Error(ERROR.beNotBlank);
