@@ -31,7 +31,7 @@ class LottoCalculator {
       }
     });
   }
-  // 이거 네이밍 수정하기
+
   #calculateOneLotto(lottoNumbers, generatedLotto) {
     const { winningNumbers, bonusNumber } = lottoNumbers;
     const count = this.countMatchedNumber(winningNumbers, generatedLotto);
