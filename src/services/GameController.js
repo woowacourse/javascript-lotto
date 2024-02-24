@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE, RESTART_KEY } from '../constants';
 import { LottoGame } from '../domains';
-import { isValidRestartInputForm } from '../utils';
+import { isValidRestartInputForm } from '../domains/validator/validators';
 import { InputView, OutputView } from '../views';
 
 import InputController from './InputController';
@@ -50,11 +50,6 @@ class GameController {
     }
   }
 
-  #validateRestartForm(restartInput) {
-    if (!isValidRestartInputForm(restartInput))
-      throw new Error(ERROR_MESSAGE.invalidRestartInputForm);
-  }
-
   #printLottoTickets() {
     const { lottoTickets } = this.#lottoGame;
     OutputView.printLottoTickets(lottoTickets);
@@ -64,6 +59,11 @@ class GameController {
     const { statisticsResult, profitRate } = this.#lottoGame.lottoAnalytics;
     OutputView.printStatistics(statisticsResult);
     OutputView.printProfitRate(profitRate);
+  }
+
+  #validateRestartForm(restartInput) {
+    if (!isValidRestartInputForm(restartInput))
+      throw new Error(ERROR_MESSAGE.invalidRestartInputForm);
   }
 }
 

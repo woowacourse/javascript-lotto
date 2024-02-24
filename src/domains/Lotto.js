@@ -3,7 +3,7 @@ import {
   isIntegers,
   isLottoNumbersInRange,
   isValidLottoNumberCount,
-} from '../utils';
+} from './validator/validators';
 
 class Lotto {
   #numbers;
