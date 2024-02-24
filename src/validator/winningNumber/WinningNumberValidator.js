@@ -61,6 +61,10 @@ const WinningNumberValidator = deepFreeze({
   check(inputValue) {
     startValidation(this.validationTypes, inputValue);
   },
+
+  checkWinningNumber(winningNumber) {
+    startValidation(this.validationTypes, winningNumber.join(SYMBOLS.comma));
+  },
 });
 
 export default WinningNumberValidator;

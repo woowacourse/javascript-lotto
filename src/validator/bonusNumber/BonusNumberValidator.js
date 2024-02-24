@@ -53,6 +53,10 @@ const BonusNumberValidator = deepFreeze({
   check(inputValue, winningNumber) {
     startValidation(this.validationTypes, { inputValue, winningNumber });
   },
+
+  checkBonusNumber(bonusNumber, winningNumber) {
+    startValidation(this.validationTypes, { inputValue: String(bonusNumber), winningNumber });
+  },
 });
 
 export default BonusNumberValidator;

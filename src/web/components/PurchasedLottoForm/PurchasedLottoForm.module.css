@@ -22,17 +22,10 @@ purchased-lotto-form > form {
   height: 3.6rem;
   border: 1px solid #b4b4b4;
   padding: 0.8rem 0rem 0.4rem 0.4rem;
-  -moz-appearance: textfield;
 }
 
 .purchasedLottoPriceInput::placeholder {
   color: #8b8b8b;
-}
-
-.purchasedLottoPriceInput::-webkit-outer-spin-button,
-.purchasedLottoPriceInput::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 .purchasedButton {
