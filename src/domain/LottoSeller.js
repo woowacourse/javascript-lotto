@@ -1,15 +1,15 @@
 import UniquePositivesPicker from "../utils/UniquePositivesPicker.js";
-import Lotto from "./Lotto.js";
+import NUMBERS from "./constants/numbers.js";
 
 class LottoSeller {
   static LOTTO_PRICE = 1000;
-  static #randomNumbersPicker = new UniquePositivesPicker(
-    () => 1 + Math.floor(Math.random() * Lotto.MAX_LOTTO_NUMBER),
-    Lotto.MAX_LOTTO_NUMBER
+  static #lottoPicker = new UniquePositivesPicker(
+    () => 1 + Math.floor(Math.random() * NUMBERS.maxLottoNumber),
+    NUMBERS.maxLottoNumber
   );
 
-  static sellLottos(amount) {
-    const lottoCount = this.#calculateLottoCount(amount);
+  static sellLottos(price) {
+    const lottoCount = this.#calculateLottoCount(price);
     return this.#pickLottos(lottoCount);
   }
 
@@ -18,17 +18,12 @@ class LottoSeller {
   }
 
   static #pickLottos(count) {
-    return new Array(count).fill().map((_) => this.#pickLotto());
-  }
-
-  static #pickLotto() {
-    const numbers = this.#pickRandomNumbers();
-    return new Lotto(numbers);
+    return Array.from({ length: count }).map(() => this.#pickRandomNumbers());
   }
 
   static #pickRandomNumbers() {
-    return this.#randomNumbersPicker.getUniquePositiveIntegers(
-      Lotto.NUMBERS_LENGTH
+    return this.#lottoPicker.getUniquePositiveIntegers(
+      NUMBERS.lottoNumbersLength
     );
   }
 }

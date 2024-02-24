@@ -5,7 +5,7 @@ import WinningLotto from "../domain/WinningLotto.js";
 import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs.js";
 import InputView from "../view/InputVIew.js";
 import OutputView from "../view/OutputView.js";
-import MESSAGES from "../constants/messages.js";
+import MESSAGES from "../view/constants/messages.js";
 
 class LottoController {
   #RETRY_YES = ["y", "Y"];
@@ -25,7 +25,7 @@ class LottoController {
   async #play() {
     const lottosNumbers = await this.#readLottos();
     OutputView.printBoughtLottos(
-      lottosNumbers.map((lotto) => lotto.getCopyAscendingNumbers())
+      lottosNumbers.map((lotto) => lotto.sort((a, b) => a - b))
     );
 
     const winningLotto = await this.#readWinningLotto();

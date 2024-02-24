@@ -1,4 +1,4 @@
-import Lotto from "./Lotto.js";
+import NUMBERS from "./constants/numbers.js";
 
 class WinningLotto {
   #isWinningNumberBooleans;
@@ -14,10 +14,9 @@ class WinningLotto {
   }
 
   #getLottoRank(lotto) {
-    const lottoNumbers = lotto.getCopyAscendingNumbers();
-    const matchCount = this.#getMatchCount(lottoNumbers);
+    const matchCount = this.#getMatchCount(lotto);
 
-    const hasBonusNumber = lottoNumbers.includes(this.#bonusNumber);
+    const hasBonusNumber = lotto.includes(this.#bonusNumber);
 
     return this.#getLottoRankByMatchCountAndHasBonusNumber(
       matchCount,
@@ -43,7 +42,7 @@ class WinningLotto {
   }
 
   #setIsWinningNumber(numbers) {
-    this.#isWinningNumberBooleans = new Array(Lotto.MAX_LOTTO_NUMBER + 1).fill(
+    this.#isWinningNumberBooleans = new Array(NUMBERS.maxLottoNumber + 1).fill(
       false
     );
 

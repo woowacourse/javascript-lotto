@@ -1,8 +1,7 @@
-import MESSAGES from "../constants/messages.js";
+import MESSAGES from "./constants/messages.js";
 
 class OutputView {
   static printBoughtLottos(lottoNumbersArray) {
-    this.#printMessage(MESSAGES.OUTPUT.lottoResultIntro);
     this.#printMessage(
       `${lottoNumbersArray.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
     );
@@ -23,7 +22,8 @@ class OutputView {
   }
 
   static printLottoResult(rankResult, profitRate) {
-    this.printBlankLine(MESSAGES.OUTPUT.lottoResultIntro);
+    this.printBlankLine();
+    this.#printMessage(MESSAGES.OUTPUT.lottoResultIntro);
     this.#printMessage(MESSAGES.OUTPUT.lottoResultHorizontalLine);
     this.#printRankResult(rankResult);
     this.#printProfitRate(profitRate);

@@ -1,6 +1,6 @@
-import Lotto from "./Lotto.js";
 import LottoSeller from "./LottoSeller.js";
-import MESSAGES from "../constants/messages.js";
+import MESSAGES from "../view/constants/messages.js";
+import NUMBERS from "./constants/numbers.js";
 
 class LottoValidator {
   static validateBuyAmount(number) {
@@ -27,7 +27,7 @@ class LottoValidator {
   }
 
   static #validateNumberInLottoRange(number) {
-    if (number < Lotto.MIN_LOTTO_NUMBER || number > Lotto.MAX_LOTTO_NUMBER) {
+    if (number < NUMBERS.minLottoNumber || number > NUMBERS.maxLottoNumber) {
       throw new Error(MESSAGES.ERROR.notInLottoNumberRange);
     }
   }
@@ -50,7 +50,7 @@ class LottoValidator {
   }
 
   static #validateLottoNumbersLength(numbers) {
-    if (numbers.length !== Lotto.NUMBERS_LENGTH) {
+    if (numbers.length !== NUMBERS.lottoNumbersLength) {
       throw new Error(MESSAGES.ERROR.invalidLottoNumbersLength);
     }
   }
