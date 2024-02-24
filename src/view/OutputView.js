@@ -1,4 +1,4 @@
-import { OUTPUT_MESSAGE } from '../constants/message';
+import { NEW_LINE, OUTPUT_MESSAGE } from '../constants/message';
 import WINNER from '../constants/winner';
 
 const OutputView = {

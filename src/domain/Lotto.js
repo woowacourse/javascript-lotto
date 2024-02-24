@@ -11,10 +11,10 @@ class Lotto {
 
   constructor(numbers = []) {
     LottoValidation.validateNumbers(numbers);
-    this.#numbers = this.sortNumbers(numbers);
+    this.#numbers = this.#sortNumbers(numbers);
   }
 
-  sortNumbers(numbers = []) {
+  #sortNumbers(numbers = []) {
     return numbers.sort((a, b) => a - b);
   }
 
