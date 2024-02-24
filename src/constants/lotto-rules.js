@@ -8,7 +8,7 @@ const LOTTO_RULES = {
   lottoBaseTicketPrice: 1000,
   roundingStandard: 100,
 
-  reStart: 'y',
+  restart: 'y',
 };
 
 export default LOTTO_RULES;

@@ -24,10 +24,13 @@ class LottoController {
 
   async run() {
     const ticketCount = await this.initTicketCount();
-    const generatedLottos = await this.initLottoGenerator(ticketCount);
-    await this.initLottoNumbers();
-    await this.initLottoCalculator(ticketCount, generatedLottos);
-    await this.reStartLotto();
+    const lottoGenerator = new LottoGenerator(ticketCount);
+    const generatedLottos = lottoGenerator.generatedLottos;
+    this.showGeneratedLottoInfo(ticketCount, generatedLottos);
+
+    await this.#setLottoNumbers();
+    await this.calculateAndShowResults(ticketCount, generatedLottos);
+    await this.restartLotto();
   }
 
   async initTicketCount() {
@@ -35,31 +38,18 @@ class LottoController {
     return this.getTicketCount(lottoPurchasePrice);
   }
 
-  async initLottoGenerator(tickets) {
-    const lottoGenerator = new LottoGenerator(tickets);
-    OutputView.printTicketCount(tickets);
-    OutputView.printGeneratedLottos(lottoGenerator.generatedLottos);
-    OutputView.printNewLine();
-    return lottoGenerator;
-  }
-
-  async initLottoNumbers() {
+  async #setLottoNumbers() {
     this.#lottoNumbers.winningNumbers = await this.readWinningNumbers();
-    OutputView.printNewLine();
-
     this.#lottoNumbers.bonusNumber = await this.readBonusNumber();
-    OutputView.printNewLine();
   }
 
-  async initLottoCalculator(tickets, lottoGenerator) {
+  async calculateAndShowResults(ticketCount, generatedLottos) {
     const lottoCalculator = new LottoCalculator(
       this.#lottoNumbers,
-      lottoGenerator.generatedLottos,
+      generatedLottos,
     );
-    const lottoStatics = lottoCalculator.lottoStatics;
-    const profit = lottoCalculator.calculateTotalProfit(tickets);
-    OutputView.printWinningStatics(lottoStatics);
-    OutputView.printTotalProfit(profit);
+
+    this.showLottoResult(ticketCount, lottoCalculator);
   }
 
   async readLottoPurchasePrice() {
@@ -90,16 +80,30 @@ class LottoController {
     });
   }
 
-  async reStartLotto() {
+  async restartLotto() {
     OutputView.printNewLine();
-    const reStart = await InputView.reStart();
-    if (reStart === LOTTO_RULES.reStart) {
+    const restart = await InputView.restart();
+    if (restart === LOTTO_RULES.restart) {
       this.run();
     }
   }
 
   getTicketCount(lottoPurchasePrice) {
     return lottoPurchasePrice / LOTTO_RULES.lottoBaseTicketPrice;
+  }
+
+  showGeneratedLottoInfo(ticketCount, generatedLottos) {
+    OutputView.printTicketCount(ticketCount);
+    OutputView.printGeneratedLottos(generatedLottos);
+    OutputView.printNewLine();
+  }
+
+  showLottoResult(ticketCount, lottoCalculator) {
+    const lottoStatics = lottoCalculator.lottoStatics;
+    const profit = lottoCalculator.calculateTotalProfit(ticketCount);
+
+    OutputView.printWinningStatics(lottoStatics);
+    OutputView.printTotalProfit(profit);
   }
 }
 

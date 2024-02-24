@@ -22,8 +22,8 @@ const InputView = {
     );
   },
 
-  async reStart() {
-    return readLineAsync(`${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.reStart} `);
+  async restart() {
+    return readLineAsync(`${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.restart} `);
   },
 };
 
