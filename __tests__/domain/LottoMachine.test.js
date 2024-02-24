@@ -1,6 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import lottoMachine from '../../src/domain/LottoMachine.js';
-import LottoMachine from '../../src/domain/LottoMachine.js';
+import lottoMachine from '../../src/domain/lottoMachine.js';
 
 describe('LottoMachine 객체 테스트', () => {
   describe('구입금액만큼 로또 인스턴스를 만들어낸다.', () => {

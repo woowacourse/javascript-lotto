@@ -1,4 +1,4 @@
-import formatNumber from '../utils/FormatNumber.js';
+import formatNumber from '../utils/formatNumber.js';
 
 import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from './lotto-constants.js';
 

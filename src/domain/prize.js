@@ -1,4 +1,4 @@
-import { NO_MATCH_PLACE, PRIZE } from '../constants/prize-constants';
+import { NO_MATCH_PLACE, PRIZE } from '../constants/prize-constants.js';
 
 const prize = {
   findMatchCountByRank: (rank) => PRIZE[rank].matchCount,

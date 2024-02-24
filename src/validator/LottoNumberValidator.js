@@ -1,6 +1,6 @@
 import ERROR_MESSAGE from '../constants/error-messages.js';
 import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE } from '../constants/lotto-constants.js';
-import AppError from '../utils/Error.js';
+import AppError from '../utils/appError.js';
 
 const lottoNumberValidator = {
   validateNumbersLength(numbers) {

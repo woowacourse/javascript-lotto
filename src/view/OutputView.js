@@ -1,7 +1,7 @@
 import { OUTPUT_MESSAGE } from '../constants/view-messages.js';
 import ascendingOrderSort from '../utils/ascendingSortArr.js';
 
-const OutputView = {
+const outputView = {
   printPurchaseMessage(purchaseAmount) {
     console.log(OUTPUT_MESSAGE.PURCHASE_NUMBER(purchaseAmount));
   },
@@ -27,4 +27,4 @@ const OutputView = {
     console.log(OUTPUT_MESSAGE.PROFIT(profit));
   },
 };
-export default OutputView;
+export default outputView;

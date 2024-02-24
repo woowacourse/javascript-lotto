@@ -1,6 +1,6 @@
 import ERROR from '../constants/error-messages.js';
 import { LOTTO_PRICE } from '../constants/lotto-constants.js';
-import AppError from '../utils/Error.js';
+import AppError from '../utils/appError.js';
 
 const purchaseAmountValidator = {
   validateIsNumber(formatedPrice) {

@@ -1,12 +1,12 @@
 import executeOrRetryAsync from '../utils/executeOrRetryAsync.js';
-import bonusNumberValidator from '../validator/BonusNumberValidator.js';
-import commonValidator from '../validator/CommonValidator.js';
-import lottoNumberValidator from '../validator/LottoNumberValidator.js';
-import InputView from '../view/InputView.js';
+import bonusNumberValidator from '../validator/bonusNumberValidator.js';
+import commonValidator from '../validator/commonValidator.js';
+import lottoNumberValidator from '../validator/lottoNumberValidator.js';
+import inputView from '../view/inputView.js';
 
 class WinningLottoGenerator {
   async #readAndValidateWinningLottoNumbers() {
-    const winningLottoNumbersInput = await InputView.readWinningLottoNumber();
+    const winningLottoNumbersInput = await inputView.readWinningLottoNumber();
     commonValidator.validate(winningLottoNumbersInput);
     lottoNumberValidator.validate(winningLottoNumbersInput);
 
@@ -14,7 +14,7 @@ class WinningLottoGenerator {
   }
 
   async #readAndValidateBonusNumber(winningLottoNumbers) {
-    const bonusNumberInput = await InputView.readBonusNumber();
+    const bonusNumberInput = await inputView.readBonusNumber();
     commonValidator.validate(bonusNumberInput.trim());
     bonusNumberValidator.validate({
       winningLottoNumbers,

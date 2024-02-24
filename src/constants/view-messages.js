@@ -1,5 +1,5 @@
 import prize from '../domain/prize.js';
-import formatNumber from '../utils/FormatNumber.js';
+import formatNumber from '../utils/formatNumber.js';
 
 import { LOTTO_PRICE } from './lotto-constants.js';
 

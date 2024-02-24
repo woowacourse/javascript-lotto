@@ -1,8 +1,8 @@
 import SYMBOL from '../constants/symbol.js';
 import { INPUT_MESSAGE } from '../constants/view-messages.js';
-import readLineAsync from '../utils/ReadLine.js';
+import readLineAsync from '../utils/readLine.js';
 
-const InputView = {
+const inputView = {
   async readPurchaseAmount() {
     const input = await readLineAsync(INPUT_MESSAGE.PURCHASE_AMOUNT);
     return input;
@@ -24,4 +24,4 @@ const InputView = {
   },
 };
 
-export default InputView;
+export default inputView;

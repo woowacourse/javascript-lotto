@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
-import Lotto from '../../src/domain/Lotto.js';
-import LottoResultCalculator from '../../src/domain/LottoResultCalculator.js';
+import Lotto from '../../src/domain/lotto.js';
+import LottoResultCalculator from '../../src/domain/lottoResultCalculator.js';
 
 describe('LottoResultCalculator 객체 테스트', () => {
   const WINNING_LOTTO = {

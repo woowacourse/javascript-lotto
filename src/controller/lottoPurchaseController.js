@@ -1,15 +1,15 @@
 import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/lotto-constants.js';
-import Lotto from '../domain/Lotto.js';
+import Lotto from '../domain/lotto.js';
 import createUniqueNumbersInRange from '../utils/createUniqueNumbersInRange.js';
 import executeOrRetryAsync from '../utils/executeOrRetryAsync.js';
-import CommonValidator from '../validator/CommonValidator.js';
-import purchaseAmountValidator from '../validator/PurchaseAmountValidator.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+import CommonValidator from '../validator/commonValidator.js';
+import purchaseAmountValidator from '../validator/purchaseAmountValidator.js';
+import inputView from '../view/inputView.js';
+import outputView from '../view/outputView.js';
 
 class LottoPurchaseController {
   async #readAndValidatePurchaseAmount() {
-    const purchaseAmountInput = await InputView.readPurchaseAmount();
+    const purchaseAmountInput = await inputView.readPurchaseAmount();
     CommonValidator.validate(purchaseAmountInput);
     purchaseAmountValidator.validate(purchaseAmountInput);
 
@@ -32,7 +32,7 @@ class LottoPurchaseController {
 
   #displayLottoTickets(lottoTickets) {
     lottoTickets.forEach((lotto) => {
-      OutputView.printLottoNumber(lotto.getNumbers());
+      outputView.printLottoNumber(lotto.getNumbers());
     });
   }
 
@@ -41,7 +41,7 @@ class LottoPurchaseController {
       asyncFn: this.#readAndValidatePurchaseAmount,
       handleError: console.log,
     });
-    OutputView.printPurchaseMessage(purchaseAmount);
+    outputView.printPurchaseMessage(purchaseAmount);
     const lottoTickets = this.#createLottoTickets(purchaseAmount);
     this.#displayLottoTickets(lottoTickets);
     return lottoTickets;

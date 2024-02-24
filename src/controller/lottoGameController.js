@@ -1,9 +1,8 @@
 import { LOTTO_PRICE } from '../constants/lotto-constants.js';
-
 import RETRY_INPUT from '../constants/system.js';
-import LottoResultCalculator from '../domain/LottoResultCalculator.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+import LottoResultCalculator from '../domain/lottoResultCalculator.js';
+import inputView from '../view/inputView.js';
+import outputView from '../view/outputView.js';
 
 import LottoPurchaseController from './lottoPurchaseController.js';
 import WinningLottoGenerator from './winningLottoGenerator.js';
@@ -13,8 +12,8 @@ class LottoGameController {
   #outputView;
 
   constructor() {
-    this.#inputView = InputView;
-    this.#outputView = OutputView;
+    this.#inputView = inputView;
+    this.#outputView = outputView;
   }
 
   async play() {

@@ -1,6 +1,6 @@
 import ERROR_MESSAGE from '../constants/error-messages.js';
 import SYMBOL from '../constants/symbol.js';
-import AppError from '../utils/Error.js';
+import AppError from '../utils/appError.js';
 
 const { EMPTY_INPUT, SPACE_IN_INPUT, INCLUDES_EMPTY_INPUT } = ERROR_MESSAGE;
 

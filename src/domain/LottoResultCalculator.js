@@ -1,6 +1,7 @@
 import { NO_MATCH_PLACE, PERCENTATION } from '../constants/prize-constants.js';
 import excludeKeyFromObject from '../utils/excludeKeyFromObject.js';
 import roundToSecondDecimalPlace from '../utils/roundToSecondDecimalPlace.js';
+
 import prize from './prize.js';
 
 class LottoResultCalculator {

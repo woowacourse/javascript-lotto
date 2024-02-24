@@ -1,7 +1,7 @@
 import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/lotto-constants.js';
 import createUniqueNumbersInRange from '../utils/createUniqueNumbersInRange.js';
 
-import Lotto from './Lotto.js';
+import Lotto from './lotto.js';
 
 const lottoMachine = {
   makeLottos: (purchaseAmount) => {
