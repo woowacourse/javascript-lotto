@@ -1,39 +1,23 @@
-import Lotto from "../src/Domain/Lotto";
+import Lotto from '../src/Domain/Lotto';
 
-describe("로또 클래스 테스트", () => {
+describe('6개의 숫자를 관리하는 로또 클래스 테스트', () => {
+  test('정상적으로 6개의 숫자를 가진 배열이 입력 되면, 해당 값을 필드 값으로 가질 수 있다.', () => {
+    const validInput = [1, 2, 3, 4, 5, 6];
+    const lotto = new Lotto(validInput);
+    expect(lotto.getLottoNumbers()).toEqual(validInput);
+  });
+
+  test('중복 된 숫자를 가진 배열이 Lotto 클래스의 인스턴스가 된다면 예외처리 한다.', () => {
+    const invalidInput = [1, 2, 2, 4, 5, 6];
+    expect(() => new Lotto(invalidInput)).toThrow();
+  });
+
   test.each([
-    {
-      numbers: [1, 2, 3, 4, 5, 6],
-      winObj: { winNumbers: [1, 2, 3, 4, 5, 6], bonusNumber: 7 },
-      rankExpected: 1,
-    },
-    {
-      numbers: [1, 2, 3, 4, 5, 6],
-      winObj: { winNumbers: [1, 2, 3, 4, 5, 7], bonusNumber: 6 },
-      rankExpected: 2,
-    },
-    {
-      numbers: [1, 2, 3, 4, 5, 45],
-      winObj: { winNumbers: [1, 2, 3, 4, 5, 7], bonusNumber: 6 },
-      rankExpected: 3,
-    },
-    {
-      numbers: [11, 23, 33, 41, 44, 45],
-      winObj: { winNumbers: [11, 23, 41, 42, 43, 44], bonusNumber: 6 },
-      rankExpected: 4,
-    },
-    {
-      numbers: [1, 2, 3, 7, 8, 9],
-      winObj: { winNumbers: [1, 2, 3, 10, 15, 22], bonusNumber: 45 },
-      rankExpected: 5,
-    },
-  ])(
-    "로또 당첨번호를 입력받아서 $rankExpected 등수를 계산한다",
-    ({ numbers, winObj, rankExpected }) => {
-      const lotto = new Lotto(numbers);
-
-      lotto.calculateRank(winObj);
-      expect(lotto.getRank()).toBe(rankExpected);
-    }
-  );
+    [
+      [0, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 46],
+    ],
+  ])('1 이상 45 이하가 아닌 번호가 Lotto 클래스의 인스턴스가 됐을 시에 예외 처리한다.', (invalidInput) => {
+    expect(() => new Lotto(invalidInput)).toThrow();
+  });
 });
