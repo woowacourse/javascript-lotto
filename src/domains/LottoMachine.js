@@ -26,9 +26,11 @@ class LottoMachine {
   issueWinningLotto(lottoNumbersInput, bonusNumberInput) {
     this.#validateLottoNumbersForm(lottoNumbersInput);
 
-    const numbers = lottoNumbersInput.split(',').map(Number);
-
-    this.#winningLotto = new WinningLotto(new Lotto(numbers), bonusNumberInput);
+    const lottoNumbers = lottoNumbersInput.split(',').map(Number);
+    this.#winningLotto = new WinningLotto(
+      new Lotto(lottoNumbers),
+      bonusNumberInput,
+    );
   }
 
   get lottos() {

@@ -16,10 +16,7 @@ class LottoGame {
 
   calculateStatistics() {
     const { matchingResults, paymentAmount } = this.#lottoMachine;
-
-    this.#statistics = new Statistics();
-    this.#statistics.checkTickets(matchingResults);
-    this.#statistics.calculateProfitRate(paymentAmount);
+    this.#statistics = new Statistics(matchingResults, paymentAmount);
   }
 
   get lottoTickets() {
