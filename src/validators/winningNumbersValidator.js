@@ -1,4 +1,4 @@
-import CONFIG from '../constants/config';
+import { CONFIG_LOTTO } from '../constants/config';
 import { ERROR_MESSAGE } from '../constants/message';
 import numberValidator from './numberValidator';
 
@@ -16,7 +16,7 @@ const winningNumbersValidator = {
   },
 
   validateLength(length) {
-    if (length !== CONFIG.LOTTO_LENGTH) {
+    if (length !== CONFIG_LOTTO.LOTTO_LENGTH) {
       throw new Error(ERROR_MESSAGE.LOTTO_LENGTH);
     }
   },

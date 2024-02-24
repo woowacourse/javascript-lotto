@@ -1,28 +1,28 @@
-const CONFIG_LOTTO = {
+const CONFIG_LOTTO = Object.freeze({
   LOTTO_LENGTH: 6,
   LOTTO_RANK_LENGTH: 6,
   PURCHASE_UNIT: 1000,
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,
-};
+});
 
-const CONFIG_RESULT = {
+const CONFIG_RESULT = Object.freeze({
   MATCHED_RANK_COUNT: { 0: 6, 1: 6, 2: 6, 3: 5, 4: 4, 6: 1 },
   PRIZE: { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000, 6: 0 },
-  SECOND_PRIZE: 2,
-  THIRD_PRIZE: 3,
+  SECOND: 2,
+  THIRD: 3,
   SECOND_PRIZE_CONDITION: 5,
   PROFIT_DECIMAL_PLACE: 1,
-};
+});
 
-const CONFIG_RESTART = {
+const CONFIG_RESTART = Object.freeze({
   YES: 'y',
   NO: 'n',
-};
+});
 
-const CONFIG_FORMAT = {
+const CONFIG_FORMAT = Object.freeze({
   SEPARATOR: ',',
   JOIN_SEPARATOR: ', ',
-};
+});
 
-export default { CONFIG_LOTTO, CONFIG_RESULT, CONFIG_RESTART, CONFIG_FORMAT };
+export { CONFIG_LOTTO, CONFIG_RESULT, CONFIG_RESTART, CONFIG_FORMAT };

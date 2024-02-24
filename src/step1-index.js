@@ -1,4 +1,4 @@
-import CONFIG from './constants/config';
+import { CONFIG_RESTART } from './constants/config';
 import InputView from './views/InputView';
 import LottoController from './controllers/LottoController';
 
@@ -8,7 +8,7 @@ const app = {
     const lottoController = new LottoController(purchaseAmount);
     await lottoController.run();
     const retry = await InputView.readRestart();
-    if (retry === CONFIG.RESTART_YES) this.play();
+    if (retry === CONFIG_RESTART.YES) this.play();
   },
 };
 

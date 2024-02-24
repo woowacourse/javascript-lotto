@@ -1,4 +1,4 @@
-import CONFIG from '../constants/config';
+import { CONFIG_RESTART } from '../constants/config';
 import { ERROR_MESSAGE } from '../constants/message';
 
 const restartValidator = {
@@ -9,7 +9,7 @@ const restartValidator = {
   },
 
   isValidInput(restart) {
-    return restart === CONFIG.RESTART_YES || restart === CONFIG.RESTART_NO;
+    return restart === CONFIG_RESTART.YES || restart === CONFIG_RESTART.NO;
   },
 };
 

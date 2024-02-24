@@ -1,4 +1,4 @@
-import CONFIG from '../constants/config';
+import { CONFIG_LOTTO } from '../constants/config';
 import { ERROR_MESSAGE } from '../constants/message';
 import numberValidator from './numberValidator';
 
@@ -9,7 +9,7 @@ const purchaseAmountValidator = {
   },
 
   validateUnitAmount(purchaseAmount) {
-    if (purchaseAmount % CONFIG.PURCHASE_UNIT !== 0) {
+    if (purchaseAmount % CONFIG_LOTTO.PURCHASE_UNIT !== 0) {
       throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_UNIT);
     }
   },
