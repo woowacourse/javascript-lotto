@@ -22,7 +22,14 @@ class LottoController {
     const generatedLottos = await this.initLottoGenerator(ticketCount);
     await this.initLottoNumbers();
     await this.initLottoCalculator(ticketCount, generatedLottos);
+
     await this.reStartLotto();
+  }
+
+  outputGeneratedLotto(tickets, generatedLottos) {
+    outputView.printLottoPayment(tickets);
+    outputView.printGeneratedLottos(generatedLottos);
+    outputView.printNewLine();
   }
 
   async initTicketCount() {
@@ -33,11 +40,10 @@ class LottoController {
   async initLottoGenerator(tickets) {
     const lottoGenerator = new LottoGenerator(tickets);
     const generatedLottos = lottoGenerator.generatedLottos;
-    outputView.printLottoPayment(tickets);
-    outputView.printGeneratedLottos(generatedLottos);
-    outputView.printNewLine();
+
+    this.outputGeneratedLotto(tickets, generatedLottos);
+
     return generatedLottos;
-    //generateRandomLottos 만 return 하면 될듯, 그리고 여기에 out이 있느게 어색..
   }
 
   async initLottoNumbers() {
@@ -55,6 +61,10 @@ class LottoController {
     );
     const lottoStatistics = lottoCalculator.lottoStatistics;
     const profit = lottoCalculator.calculateTotalProfit(tickets);
+    this.outputCalculatedLotto(lottoStatistics, profit);
+  }
+
+  outputCalculatedLotto(lottoStatistics, profit) {
     outputView.printWinningStatistics(lottoStatistics);
     outputView.printTotalProfit(profit);
   }
