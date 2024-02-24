@@ -32,7 +32,6 @@ async function handleWinningCombination(winningNumbers) {
 }
 
 /**
- *
  * @returns {Boolean}
  */
 async function retryGame() {
@@ -42,36 +41,28 @@ async function retryGame() {
 
 const lottoController = {
   async start() {
-    // budget 저장해줘
     const budget = await handleBudget();
 
-    // 로또 장 수 계산하고 출력해줘
     const lotto = new Lotto(budget);
     const issuedLottoCount = lotto.calculateIssuedLottoCount();
     OutputView.printLottoCount(issuedLottoCount);
 
-    // 로또 배열 만들고 출력해줘
     const issuedLottoArray = lotto.IssuedLotto(issuedLottoCount);
     OutputView.printIssuedLottoArray(issuedLottoArray);
 
-    // 당첨 번호와 로또 번호 저장해줘
     const winningNumbers = await handleWinningNumbers();
     OutputView.printSpace();
     const winningCombination = await handleWinningCombination(winningNumbers);
     OutputView.printSpace();
 
-    // 각 로또별 당첨 번호, 보너스 번호와 몇 개 일치한지 확인해줘
     const lottoResult = lottoResultMaker.calculateLottoResult(issuedLottoArray, winningCombination);
 
-    //일치하는 개수에 따라 등수별 로또가 몇 장 있는지 계산하고 출력해줘
     const lottoRankResult = lottoRankMaker.calculateLottoRank(lottoResult);
     OutputView.printMatchedLottos(lottoRankResult);
 
-    // 수익률 계산하고 출력해줘
     const profit = profitCalculator.calculateProfit(lottoRankResult, budget);
     OutputView.printResultStatistics(profit);
 
-    // 재시작!
     if (await retryGame()) return lottoController.start();
     return;
   },
