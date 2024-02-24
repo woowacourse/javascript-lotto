@@ -1,4 +1,4 @@
-const LottoRankMaker = {
+const lottoRankMaker = {
   calculateLottoRank(lottoResult) {
     return lottoResult.reduce(
       (ranks, result) => {
@@ -21,4 +21,4 @@ const LottoRankMaker = {
     );
   },
 };
-export default LottoRankMaker;
+export default lottoRankMaker;

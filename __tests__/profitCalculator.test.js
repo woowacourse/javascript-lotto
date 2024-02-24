@@ -1,6 +1,6 @@
-import ProfitCalculator, { AMOUNT } from "../src/domain/ProfitCalculator.js";
+import profitCalculator from "../src/domain/profitCalculator.js";
 
-describe("ProfitCalculator 테스트", () => {
+describe("profitCalculator 테스트", () => {
   const testCases = [
     {
       lottoRankResult: { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 },
@@ -22,7 +22,7 @@ describe("ProfitCalculator 테스트", () => {
   test.each(testCases)(
     "lottoRankResult가 '$lottoRankResult'이고 budget이 '$budget'일 때 calculateProfit은 '$expectedProfit'이어야 한다.",
     ({ lottoRankResult, budget, expectedProfit }) => {
-      const profit = ProfitCalculator.calculateProfit(lottoRankResult, budget);
+      const profit = profitCalculator.calculateProfit(lottoRankResult, budget);
       expect(profit).toBe(expectedProfit);
     }
   );

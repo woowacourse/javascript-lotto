@@ -3,23 +3,23 @@ import startValidation from "../src/validation/startValidation.js";
 import ERROR_MESSAGE from "../src/constants/errorMessage.js";
 
 describe("로또 당첨 번호와 보너스 번호 유효성 검사 테스트", () => {
-  const executeValidation = (input) => () => startValidation(winningLottoValidation.winningCombination, input);
+  const executeValidation = (input) => () => startValidation(winningLottoValidation.commonCategories, input);
 
   describe("예외 테스트", () => {
     test.each([
       {
         input: 0,
-        expectedErrorMessage: ERROR_MESSAGE.outOfRange,
+        expectedErrorMessage: ERROR_MESSAGE.outOfRangeLotto,
       },
       {
         input: 46,
-        expectedErrorMessage: ERROR_MESSAGE.outOfRange,
+        expectedErrorMessage: ERROR_MESSAGE.outOfRangeLotto,
       },
     ])(
       '입력값이 "$input"일 때 "$expectedErrorMessage" 메시지와 함께 에러가 발생해야 한다.',
       ({ input, expectedErrorMessage }) => {
         expect(executeValidation(input)).toThrow(expectedErrorMessage);
-      },
+      }
     );
   });
 

@@ -1,6 +1,6 @@
 import { PRIZE_AMOUNT } from "../constants/lottoConstants";
 
-const ProfitCalculator = {
+const profitCalculator = {
   calculateProfit(lottoRankResult, budget) {
     return Number(
       (Object.keys(lottoRankResult).reduce((total, key) => {
@@ -12,4 +12,4 @@ const ProfitCalculator = {
   },
 };
 
-export default ProfitCalculator;
+export default profitCalculator;

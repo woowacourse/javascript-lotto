@@ -1,4 +1,4 @@
-const LottoResultMaker = {
+const lottoResultMaker = {
   calculateLottoResult(issuedLottoArray, winningCombination) {
     return issuedLottoArray.map((issuedLotto) => {
       const { normalNumbers, bonusNumber } = winningCombination;
@@ -18,4 +18,4 @@ const LottoResultMaker = {
   },
 };
 
-export default LottoResultMaker;
+export default lottoResultMaker;
