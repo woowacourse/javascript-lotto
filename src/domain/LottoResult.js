@@ -2,7 +2,7 @@ import {
   NO_MATCH_PLACE,
   PERCENTATION,
   PRIZE,
-} from "../constants/prize-constants";
+} from "../constants/prize-constants.js";
 
 class LottoResult {
   #lottoList;
@@ -35,7 +35,7 @@ class LottoResult {
       return acc;
     }, {});
 
-    initialResult["NONE_PLACE"] = 0;
+    initialResult[NO_MATCH_PLACE] = 0;
 
     return initialResult;
   }

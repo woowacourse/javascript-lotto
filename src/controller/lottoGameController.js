@@ -1,14 +1,14 @@
 import { LOTTO_PRICE } from "../constants/lotto-constants.js";
+import SYMBOL from "../constants/symbol.js";
 import { RETRY_INPUT } from "../constants/view-messages.js";
-import { SYMBOL } from "../constants/symbol.js";
 import Lotto from "../domain/Lotto.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import WinningLotto from "../domain/WinningLotto.js";
+import executeOrRetryAsync from "../utils/executeOrRetryAsync.js";
 import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import executeOrRetryAsync from "../utils/executeOrRetryAsync.js";
 
 class LottoGameController {
   #inputView;
@@ -68,18 +68,32 @@ class LottoGameController {
   }
 
   async #setWinningLotto() {
-    const winningLotto = await executeOrRetryAsync({
+    const winningLottoWithoutBonusNumber =
+      await this.#setWinningLottoWithoutBonusNumber();
+    const winningLotto = await this.#setWinningLottoBonusNumber(
+      winningLottoWithoutBonusNumber,
+    );
+
+    return winningLotto;
+  }
+
+  async #setWinningLottoWithoutBonusNumber() {
+    const winningLottoWithoutBonusNumber = await executeOrRetryAsync({
       asyncFn: this.#getWinningLotto.bind(this),
       handleError: console.log,
       retryLimit: 3,
     });
-    const WinningLottoWithBonusNumber = await executeOrRetryAsync({
-      asyncFn: () => this.#getBonusNumber(winningLotto),
+
+    return winningLottoWithoutBonusNumber;
+  }
+
+  async #setWinningLottoBonusNumber(winningLottoWithoutBonusNumber) {
+    const winningLottoWithBonusNumber = await executeOrRetryAsync({
+      asyncFn: () => this.#getBonusNumber(winningLottoWithoutBonusNumber),
       handleError: console.log,
       retryLimit: 3,
     });
-
-    return WinningLottoWithBonusNumber;
+    return winningLottoWithBonusNumber;
   }
 
   async #getWinningLotto() {

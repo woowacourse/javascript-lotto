@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import readline from "readline";
-import AppError from "./Error";
+
+import AppError from "./Error.js";
 
 export default function readLineAsync(query) {
   return new Promise((resolve, reject) => {

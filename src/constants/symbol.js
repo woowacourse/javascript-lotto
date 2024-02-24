@@ -1,3 +1,5 @@
-export const SYMBOL = {
+const SYMBOL = {
   DELIMITER: ",",
 };
+
+export default SYMBOL;

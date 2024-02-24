@@ -1,4 +1,4 @@
-import AppError from "./Error";
+import AppError from "./Error.js";
 
 export default async function executeOrRetryAsync({
   asyncFn,
@@ -11,7 +11,7 @@ export default async function executeOrRetryAsync({
       return await asyncFn();
     } catch (error) {
       handleError(error.message);
-      attempts++;
+      attempts += 1;
     }
   }
   throw new AppError("재시도 횟수를 초과했습니다.");

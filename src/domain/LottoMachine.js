@@ -16,7 +16,6 @@ class LottoMachine {
 
   makeLottos() {
     const lottoCount = this.#purchaseAmount / LOTTO_PRICE;
-
     const lottoList = Array.from(
       { length: lottoCount },
       () =>
@@ -28,7 +27,6 @@ class LottoMachine {
           }),
         ),
     );
-
     return lottoList;
   }
 }

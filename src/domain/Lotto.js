@@ -26,7 +26,6 @@ class Lotto {
 
   getRank(winningLotto) {
     const { numberMatchCount, isBonus } = this.getMatchCount(winningLotto);
-
     const entry = Object.entries(PRIZE).find(
       ([_, value]) =>
         value.matchCount === numberMatchCount && value.isBonus === isBonus,

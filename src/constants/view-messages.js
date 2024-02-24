@@ -1,6 +1,7 @@
-import formatNumber from "../utils/FormatNumber";
-import { LOTTO_PRICE } from "./lotto-constants";
-import { PRIZE } from "./prize-constants";
+import formatNumber from "../utils/FormatNumber.js";
+
+import { LOTTO_PRICE } from "./lotto-constants.js";
+import { PRIZE } from "./prize-constants.js";
 
 export const INPUT_MESSAGE = {
   PURCHASE_AMOUNT: "> 구입금액을 입력해 주세요. ",
