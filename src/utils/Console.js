@@ -1,10 +1,11 @@
 import readline from 'readline';
+import { GAME_SYMBOL } from '../constant/symbols';
 
 class Console {
   static makeReadLineQuestion(query, rl) {
     return new Promise((resolve, reject) => {
       rl.question(query, (input) => {
-        if (input === '') reject(new Error('[ERROR]'));
+        if (input === '') reject(new Error(GAME_SYMBOL.ERROR));
         rl.close();
         resolve(input);
       });

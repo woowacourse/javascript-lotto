@@ -7,15 +7,16 @@ import LottoTicket from '../domain/LottoTicket';
 import OutputView from '../view/OutputView';
 import WinningStatsMaker from '../domain/WinningStatsMaker';
 import RestartOrExitValidator from '../validator/RestartOrExitValidator';
+import {
+  BONUS_NUMBER_INPUT_ERROR,
+  PURCHASE_AMOUT_INPUT_ERROR,
+  RESTART_OR_EXIT_INPUT_ERROR,
+  WINNING_NUMBER_INPUT_ERROR,
+} from '../constant/messages';
+import { GAME_SYMBOL, LOTTO_SYMBOL, PURCHASE_SYMBOL } from '../constant/symbols';
 
 class LottoController {
-  #PRIZE = {
-    1: 2000000000,
-    2: 30000000,
-    3: 1500000,
-    4: 50000,
-    5: 5000,
-  };
+  #PRIZE = LOTTO_SYMBOL.PRIZE;
 
   async start() {
     const purchaseAmount = await RetryOrEnd([this.processPurchaseAmount, this]);
@@ -28,28 +29,28 @@ class LottoController {
     });
     this.processRateOfReturn(purchaseAmount, winningStats);
     const restart = await RetryOrEnd([this.processRestartOrExit, this]);
-    if (restart === 'y') this.start();
+    if (restart === GAME_SYMBOL.RESTART) this.start();
   }
 
   async processPurchaseAmount() {
     const inputValue = await InputView.readPurchaseAmount();
     const purchaseAmount = Number(inputValue);
     this.validatePurchaseAmount(purchaseAmount);
-    OutputView.printPurchaseCount(purchaseAmount / 1000);
+    OutputView.printPurchaseCount(purchaseAmount / PURCHASE_SYMBOL.UNIT);
     return purchaseAmount;
   }
 
   validatePurchaseAmount(inputValue) {
     if (!PurchaseAmountValidator.isNumber(inputValue))
-      throw new Error('[ERROR] 구매 금액은 숫자여야 합니다.');
+      throw new Error(PURCHASE_AMOUT_INPUT_ERROR.TYPE);
     if (!PurchaseAmountValidator.isValidUnit(inputValue))
-      throw new Error('[ERROR] 구매 금액은 1000원 단위여야 합니다.');
+      throw new Error(PURCHASE_AMOUT_INPUT_ERROR.UNIT);
     if (!PurchaseAmountValidator.isValidMinRange(inputValue))
-      throw new Error('[ERROR] 최소 구매 금액은 1000원 입니다');
+      throw new Error(PURCHASE_AMOUT_INPUT_ERROR.RANGE);
   }
 
   processLottoTicket(purchaseAmount) {
-    const lottoTicketCount = purchaseAmount / 1000;
+    const lottoTicketCount = purchaseAmount / PURCHASE_SYMBOL.UNIT;
     const tickets = [];
     Array.from({ length: lottoTicketCount }).forEach(() => {
       tickets.push(new LottoTicket().publishTicket());
@@ -67,13 +68,13 @@ class LottoController {
 
   validateWinningNumbers(inputValue) {
     if (!WinningNumbersValidator.isValidCount(inputValue))
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(WINNING_NUMBER_INPUT_ERROR.LENGTH);
     if (!WinningNumbersValidator.isNumber(inputValue))
-      throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
+      throw new Error(WINNING_NUMBER_INPUT_ERROR.TYPE);
     if (!WinningNumbersValidator.isUniqueNumbers(inputValue))
-      throw new Error('[ERROR] 로또 번호는 중복되지 않아야 합니다.');
+      throw new Error(WINNING_NUMBER_INPUT_ERROR.UNIQUE);
     if (!WinningNumbersValidator.isValidRange(inputValue))
-      throw new Error('[ERROR] 로또 번호의 숫자 범위는 1에서 45까지의 수입니다.');
+      throw new Error(WINNING_NUMBER_INPUT_ERROR.RANGE);
   }
 
   async processBonusNumber(winningNumbers) {
@@ -84,12 +85,11 @@ class LottoController {
   }
 
   validateBonusNumber(inputValue, winningNumbers) {
-    if (!BonusNumberValidator.isNumber(inputValue))
-      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
+    if (!BonusNumberValidator.isNumber(inputValue)) throw new Error(BONUS_NUMBER_INPUT_ERROR.TYPE);
     if (!BonusNumberValidator.isValidRange(inputValue))
-      throw new Error('[ERROR] 보너스 번호는 1 이상 45 이하여야 합니다.');
+      throw new Error(BONUS_NUMBER_INPUT_ERROR.RANGE);
     if (!BonusNumberValidator.isUniqueBonusNumber(inputValue, winningNumbers))
-      throw new Error('[ERROR] 보너스 번호는 중복되지 않아야 합니다.');
+      throw new Error(BONUS_NUMBER_INPUT_ERROR.UNIQUE);
   }
 
   async processWinningStatst(lottoTickets, { winningNumbers, bonusNumber }) {
@@ -119,7 +119,7 @@ class LottoController {
 
   validateRestartOrExit(inputValue) {
     if (!RestartOrExitValidator.isValidRestartOrExitKeyword(inputValue))
-      throw new Error('[ERROR] y(재시작) 또는 n(종료)을 입력하여야 합니다.');
+      throw new Error(RESTART_OR_EXIT_INPUT_ERROR.RESTART_OR_EXIT_INPUT_ERROR);
   }
 }
 

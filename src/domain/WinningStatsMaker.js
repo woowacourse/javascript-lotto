@@ -1,11 +1,11 @@
 class WinningStatsMaker {
   makeWinningStats(tickets, { winningNumbers, bonusNumber }) {
     const winningStats = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
       5: 0,
+      4: 0,
+      3: 0,
+      2: 0,
+      1: 0,
     };
     tickets.forEach((ticket) => {
       const rank = this.judgeWinning(ticket, { winningNumbers, bonusNumber });
@@ -30,7 +30,7 @@ class WinningStatsMaker {
   }
 
   #updateWinningStats(rank, winningStats) {
-    if (rank < 7) winningStats[rank] += 1;
+    if (rank < 6) winningStats[rank] += 1;
   }
 }
 

@@ -1,10 +1,12 @@
+import { LOTTO_SYMBOL } from '../constant/symbols';
+
 const BonusNumberValidator = {
   isNumber(inputValue) {
     return !Number.isNaN(inputValue);
   },
 
   isValidRange(inputValue) {
-    return inputValue >= 1 && inputValue <= 45;
+    return inputValue >= LOTTO_SYMBOL.RANGE_MIN && inputValue <= LOTTO_SYMBOL.RANGE_MAX;
   },
 
   isUniqueBonusNumber(inputValue, winningNumbers) {

@@ -1,20 +1,21 @@
+import { INPUT_INFO } from '../constant/messages';
 import Console from '../utils/Console';
 
 const InputView = {
   async readPurchaseAmount() {
-    return await Console.readLineAsync('> 구입금액을 입력해 주세요.');
+    return await Console.readLineAsync(INPUT_INFO.PURCHASE);
   },
 
   async readWinningNumbers() {
-    return await Console.readLineAsync('\n> 당첨 번호를 입력해 주세요. ');
+    return await Console.readLineAsync(INPUT_INFO.WINNING_NUMBER);
   },
 
   async readBonusNumber() {
-    return await Console.readLineAsync('\n> 보너스 번호를 입력해 주세요. ');
+    return await Console.readLineAsync(INPUT_INFO.BONUS_NUMBER);
   },
 
   async readRestartOrExit() {
-    return await Console.readLineAsync('\n> 다시 시작하시겠습니까? (y/n) ');
+    return await Console.readLineAsync(INPUT_INFO.RESTART_OR_EXIT);
   },
 };
 
