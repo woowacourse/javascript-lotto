@@ -32,13 +32,13 @@ class Lotto {
   }
 
   #isMatchingCountEqual(rank, matchingCount) {
-    const condition = OPTIONS.RANK_CONDITION[rank].matchingCount;
-    return condition === undefined || condition === matchingCount;
+    const condition = OPTIONS.RANK_CONDITION[rank].matchingCount ?? matchingCount;
+    return condition === matchingCount;
   }
 
   #isBonusMatchEqual(rank, bonusMatch) {
-    const condition = OPTIONS.RANK_CONDITION[rank].bonusMatch;
-    return condition === undefined || condition === bonusMatch;
+    const condition = OPTIONS.RANK_CONDITION[rank].bonusMatch ?? bonusMatch;
+    return condition === bonusMatch;
   }
 
   #countMatchingNumbers(winningNumbers) {
