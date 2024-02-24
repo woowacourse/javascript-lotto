@@ -33,7 +33,7 @@ export const OUTPUT_MESSAGE = Object.freeze({
         return `${PRIZE[key]} - ${matchedLotto[key]}개`;
       });
   },
-  formatProfit(profit) {
-    return `총 수익률은 ${profit}%입니다.\n`;
+  formatProfits(profits) {
+    return `총 수익률은 ${profits}%입니다.\n`;
   },
 });

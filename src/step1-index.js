@@ -5,5 +5,5 @@
 
 import LottoGameController from "./controller/LottoGameController.js";
 
-const test = new LottoGameController();
-test.play();
+const lottoGame = new LottoGameController();
+lottoGame.playGame();

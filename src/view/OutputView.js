@@ -14,8 +14,8 @@ const OutputView = {
     OUTPUT_MESSAGE.formatResults(matchedLotto).forEach((result) => console.log(result));
   },
 
-  printResultStatistics(profit) {
-    console.log(OUTPUT_MESSAGE.formatProfit(profit));
+  printProfits(profits) {
+    console.log(OUTPUT_MESSAGE.formatProfits(profits));
   },
 };
 
