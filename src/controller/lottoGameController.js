@@ -1,5 +1,5 @@
 import { LOTTO_PRICE } from "../constants/lotto-constants.js";
-import { RETRY_INPUT } from "../constants/view-messages.js";
+import RETRY_INPUT from "../constants/system.js";
 
 import LottoResultCalculator from "../domain/LottoResultCalculator.js";
 import InputView from "../view/InputView.js";
@@ -23,8 +23,13 @@ class LottoGameController {
 
     this.#getGameResult({ lottoList, winningLottoNumbers, bonusNumber });
 
-    const restart = await this.#inputView.readRestartGame();
-    if (restart === RETRY_INPUT) this.play();
+    this.#restart();
+  }
+
+  async #restart() {
+    const retryAnswer = await this.#inputView.readRestartGame();
+
+    if (RETRY_INPUT.YES.includes(retryAnswer.trim())) this.play();
   }
 
   async #createValidatedWinningLotto() {
