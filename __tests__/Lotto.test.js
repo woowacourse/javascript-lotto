@@ -1,9 +1,18 @@
 import Lotto from "../src/domain/Lotto";
 
 describe("로또에 대한 유닛 테스트", () => {
-  test("로또 번호는 6개 미만이면 예외 처리를 한다.", () => {
+  test("로또 번호가 6개 미만이면 예외 처리를 한다.", () => {
     //Arrange
     const numbers = [1, 2, 3, 4, 5];
+    const createWrongLotto = () => new Lotto(numbers);
+
+    //Assert
+    expect(createWrongLotto).toThrow();
+  });
+
+  test("로또 번호가 6개 초과이면 예외 처리를 한다.", () => {
+    //Arrange
+    const numbers = [1, 2, 3, 4, 5, 6, 7];
     const createWrongLotto = () => new Lotto(numbers);
 
     //Assert
