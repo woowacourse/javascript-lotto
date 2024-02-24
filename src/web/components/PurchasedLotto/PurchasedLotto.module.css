@@ -1,0 +1,14 @@
+.purchasedLotto {
+  display: flex;
+  align-items: center;
+}
+
+.lottoNumber {
+  margin-left: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.ticketIcon {
+  padding-bottom: 0.2em;
+  font-size: 2rem;
+}

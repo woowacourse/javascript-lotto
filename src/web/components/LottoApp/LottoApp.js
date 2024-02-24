@@ -10,13 +10,13 @@ class LottoApp extends BaseComponent {
         <main class=${styles.mainContainer}>
           <header class="${styles.mainHeader} title">🎱 내 번호 당첨 확인 🎱</header>
           <purchased-lotto-form></purchased-lotto-form>
-          <purchased-lotto-section></purchased-lotto-section>
-          <winning-detail-form></winning-detail-form>
+          <purchased-lotto-section class="close"></purchased-lotto-section>
+          <winning-detail-form class="close"></winning-detail-form>
         </main>
         <footer class=${styles.footer}>
           <p class="caption">Copyright 2023. woowacourse</p>
         </footer>
-        <winning-statistics-modal class="open"></winning-statistics-modal>
+        <winning-statistics-modal class="close"></winning-statistics-modal>
     `;
   }
 }
