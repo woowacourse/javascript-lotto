@@ -4,7 +4,7 @@ import AppError from "./Error.js";
 export default async function executeOrRetryAsync({
   asyncFn,
   handleError,
-  retryLimit = 3,
+  retryLimit = 10,
 }) {
   let attempts = 0;
   while (attempts < retryLimit) {
