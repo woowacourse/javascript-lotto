@@ -5,11 +5,12 @@ const OutputView = {
     console.log(`\n${count}${OUTPUT_MESSAGE.LOTTO_PURCHASED}`);
   },
 
-  printRandomLottos(numbersArray = []) {
-    numbersArray.forEach((numbers) => {
-      console.log(`[${numbers.join(', ')}]`);
+  printRandomLottos(lottos = []) {
+    lottos.forEach((lotto) => {
+      console.log(`[${lotto.getNumbers().join(', ')}]`);
     });
   },
+  
   printResultTitle() {
     console.log(OUTPUT_MESSAGE.WINNING_STATISTICS_TITLE);
   },
@@ -26,8 +27,8 @@ const OutputView = {
     console.log(`총 수익률은 ${rateOfRevenue}%입니다`);
   },
 
-  printError(message) {
-    console.log(message);
+  printError(error = {}) {
+    console.log(error.message);
   },
 };
 
