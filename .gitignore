@@ -1,2 +1,9 @@
 node_modules/
+<<<<<<< HEAD
 dist/
+=======
+dist/
+
+.vscode
+package-lock.json
+>>>>>>> e0fd8cc ([1단계 - 콘솔 기반 로또 게임] 파란(안영훈) 미션 제출합니다. (#279))
