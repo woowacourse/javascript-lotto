@@ -62,16 +62,20 @@ src
  ┃ ┣ messages.js : 입출력 관련 상수 관리
  ┃ ┗ rules.js : 게임 룰에 관련 된 상수 관리
  ┣ domains
+ ┃ ┣ Bonus.js : 보너스 번호에 대한 유효성 검사 및 로또 번호에 보너스 번호가 있는 지 여부를 확인하는 모듈
+ ┃ ┣ GameRestartChecker.js : 게임 재시작 입력값에 대한 유효성 검사와 게임 재시작 여부를 확인하는 모듈
  ┃ ┣ index.js
- ┃ ┣ LottoGame.js : 로또 게임의 도메인 로직들(LottoMachine, Statistics, WinningLotto)을 전반적으로 관리하는 모듈
+ ┃ ┣ Lotto.js :로또 번호들에 대한 유효성 검사를 진행하고 유효한 로또 번호들을 관리하는 모듈
  ┃ ┣ LottoMachine.js : 구입 금액에 따른 로또들을 발행하고 구입금액과 발행된 로또들을 관리하는 모듈
+ ┃ ┣ LottoNumber.js :한 개의 로또 번호에 대한 유효성 검사를 진행하고 유효한 로또 번호를 관리하는 모듈
+ ┃ ┣ LottoResultsHelper.js : LottoMachine,WinningLotto,Bonus 모듈을 관리하는 상위 모듈로, 이들을 실행시켜서 발행된 로또 티켓 모두에 대한 당첨번호와 보너스 번호화의 일치 결과를 계산하는 모듈
  ┃ ┣ Statistics.js : 당첨 번호,보너스 번호와 발행된 로또 번호의 일치 여부 결과를 이용해 통계(등수별 일치 개수)와 수익률을 계산하는 모듈
- ┃ ┣ Validator.js : 유효성 검사를 관리하는 모듈
- ┃ ┗ WinningLotto.js : 당첨 번호와 보너스 번호에 대한 사용자의 입력값으로 당첨 로또와 보너스 번호를 생성해 당첨 번호,보너스 번화와 발행된 로또를 비교하는 모듈
+ ┃ ┗ WinningLotto.js : 유효성 검사 유틸함수와 Lotto를 활용해 당첨 로또 번호들에 대한 유효성 검사를 진행하며 유효한 당첨 번호들 관리하하고 발행된 로또 티켓 한 장에 대한 당첨 번호와 보너스 번호를 비교하는 모듈
  ┣ services
- ┃ ┣ GameController.js :UI와 도메인 사이에서 InputController 를 통해 입력값을 받아와 LottoGame을 실행하고 해당 결과들을 UI에게 넘겨서 로또 미션의 전반적인 기능이 돌아가도록 하는 모듈
+ ┃ ┣ GameManager.js :LottoGame의 상위 모듈로, LottoGame를 실행 게임을 시작하고 GameRestartChecker를 통해 게임 재시작과 종료를 관리하는 모듈
  ┃ ┣ index.js
- ┃ ┗ InputController.js
+ ┃ ┣ InputController.js
+ ┃ ┗ LottoGame.js :InputController와 LottoResultHelper,Statistics를 실행해 로또 게임을 진행하는 모듈로
  ┣ utils
  ┃ ┣ Console.js : 콘솔 입출력에 대한 모듈
  ┃ ┣ index.js
@@ -81,11 +85,22 @@ src
  ┃ ┣ index.js
  ┃ ┣ InputView.js
  ┃ ┗ OutputView.js
- ┣ GameApp.js : 게임 실행 시, GameController을 실행 해 게임을 진행하는 모듈
+ ┣ GameApp.js : 게임 실행 시,  GameManager을 실행 해 게임을 진행하는 모듈
  ┣ step1-index.js
  ┗ step2-index.js
 
 ```
+
+</div>
+</details>
+
+### 로또 미션 순서도 및 구조
+
+<details>
+<summary>🔍 로또 미션 순서도 및 구조 보기</summary>
+<div markdown="1">
+
+<img src="./로또미션_순서도_구조.png" alt="로또 미션 순서도 및 구조">
 
 </div>
 </details>

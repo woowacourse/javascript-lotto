@@ -56,6 +56,6 @@
 - [x] 로또 숫자 -> Lotto
 - [x] 보너스 번호 -> Bonus
       [x] WinningLotto : 당첨 번호
-      [] LottoResultHelper
+      [x] LottoResultsHelper
   - 필드 : lottoMachine , winningLotto
   -
