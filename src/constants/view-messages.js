@@ -17,7 +17,7 @@ export const OUTPUT_MESSAGE = {
 
   RESULT: (totalResult, rank) =>
     `${PRIZE[rank].matchCount}개 일치${
-      PRIZE[rank].bonus ? ", 보너스 볼 일치 " : " "
+      PRIZE[rank].isBonus ? ", 보너스 볼 일치 " : " "
     }(${formatNumber(PRIZE[rank].reward)}원) - ${totalResult[rank]}개`,
 
   PROFIT: (profit) => `총 수익률은 ${formatNumber(profit)}%입니다.`,
