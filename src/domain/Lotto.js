@@ -25,7 +25,7 @@ class Lotto {
       bonusNumber,
     });
 
-    const rank = prize.getRankByMatchCountAndBonus({ numberMatchCount, isBonus });
+    const rank = prize.findRankByMatchCountAndBonus({ numberMatchCount, isBonus });
 
     return rank;
   }

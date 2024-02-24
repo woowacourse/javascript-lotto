@@ -15,9 +15,9 @@ export const OUTPUT_MESSAGE = {
   RESULT_HEADER: '\n당첨 통계\n--------------------',
 
   RESULT: (totalResult, rank) =>
-    `${prize.getMatchCountByRank(rank)}개 일치${
-      prize.getIsBonusByRank(rank) ? ', 보너스 볼 일치 ' : ' '
-    }(${formatNumber(prize.getRewarByRank(rank))}원) - ${totalResult[rank]}개`,
+    `${prize.findMatchCountByRank(rank)}개 일치${
+      prize.findIsBonusByRank(rank) ? ', 보너스 볼 일치 ' : ' '
+    }(${formatNumber(prize.findRewardByRank(rank))}원) - ${totalResult[rank]}개`,
 
   PROFIT: (profit) => `총 수익률은 ${formatNumber(profit)}%입니다.`,
 };

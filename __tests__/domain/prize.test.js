@@ -10,7 +10,7 @@ describe('prize 객체 테스트', () => {
       { rank: 'FOURTH_PLACE', expectedMatchCount: 4 },
       { rank: 'FIFTH_PLACE', expectedMatchCount: 3 },
     ])('rank가 $rank일 때 matchCount는 $expectedMatchCount이다.', ({ rank, expectedMatchCount }) => {
-      const matchCount = prize.getMatchCountByRank(rank);
+      const matchCount = prize.findMatchCountByRank(rank);
 
       expect(matchCount).toBe(expectedMatchCount);
     });
@@ -24,7 +24,7 @@ describe('prize 객체 테스트', () => {
       { rank: 'FOURTH_PLACE', expectedReward: 50_000 },
       { rank: 'FIFTH_PLACE', expectedReward: 5_000 },
     ])('등수가 $rank일 때 reward는 $expectedReward이다.', ({ rank, expectedReward }) => {
-      const matchCount = prize.getRewarByRank(rank);
+      const matchCount = prize.findRewardByRank(rank);
 
       expect(matchCount).toBe(expectedReward);
     });
@@ -38,7 +38,7 @@ describe('prize 객체 테스트', () => {
       { rank: 'FOURTH_PLACE', expectedIsBonus: false },
       { rank: 'FIFTH_PLACE', expectedIsBonus: false },
     ])('등수가 $rank일 때 reward는 $expectedReward이다.', ({ rank, expectedIsBonus }) => {
-      const isBonus = prize.getIsBonusByRank(rank);
+      const isBonus = prize.findIsBonusByRank(rank);
 
       expect(isBonus).toBe(expectedIsBonus);
     });
@@ -54,7 +54,7 @@ describe('prize 객체 테스트', () => {
     ])(
       'matchCount가 $numberMatchCount고 isBonus가 $isBonus일 때 rank는 $expectedRank이다.',
       ({ numberMatchCount, isBonus, expectedRank }) => {
-        const rank = prize.getRankByMatchCountAndBonus({ numberMatchCount, isBonus });
+        const rank = prize.findRankByMatchCountAndBonus({ numberMatchCount, isBonus });
 
         expect(rank).toBe(expectedRank);
       },
@@ -62,7 +62,7 @@ describe('prize 객체 테스트', () => {
   });
 
   test('', () => {
-    const initailResultObject = prize.getInitiallResultObject();
+    const initailResultObject = prize.generateInitiallResultObject();
     const expectedInitialResultObject = {
       FIRST_PLACE: 0,
       SECOND_PLACE: 0,

@@ -1,13 +1,13 @@
 import { NO_MATCH_PLACE, PRIZE } from '../constants/prize-constants';
 
 const prize = {
-  getMatchCountByRank: (rank) => PRIZE[rank].matchCount,
+  findMatchCountByRank: (rank) => PRIZE[rank].matchCount,
 
-  getIsBonusByRank: (rank) => PRIZE[rank].isBonus,
+  findIsBonusByRank: (rank) => PRIZE[rank].isBonus,
 
-  getRewarByRank: (rank) => PRIZE[rank].reward,
+  findRewardByRank: (rank) => PRIZE[rank].reward,
 
-  getRankByMatchCountAndBonus: ({ numberMatchCount, isBonus }) => {
+  findRankByMatchCountAndBonus: ({ numberMatchCount, isBonus }) => {
     const entry = Object.entries(PRIZE).find(
       ([_, value]) => value.matchCount === numberMatchCount && value.isBonus === isBonus,
     );
@@ -15,7 +15,7 @@ const prize = {
     return entry ? entry[0] : NO_MATCH_PLACE;
   },
 
-  getInitiallResultObject: () => {
+  generateInitiallResultObject: () => {
     const initialResult = Object.keys(PRIZE).reduce((acc, key) => {
       acc[key] = 0;
       return acc;
