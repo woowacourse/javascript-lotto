@@ -1,4 +1,4 @@
-export const AMOUNT = {
+export const REWARD_TABLE = {
   1: 2000000000,
   2: 30000000,
   3: 1500000,
