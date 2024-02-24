@@ -6,21 +6,29 @@ import winningLottoNumbersValidation from "../validation/winningLottoNumbersVali
 import winningLottoBonusValidation from "../validation/winningLottoBonusValidation.js";
 import startValidation from "../validation/startValidation.js";
 import retryValidation from "../validation/retryValidation.js";
+import commonInputValidation from "../validation/commonInputValidation.js";
 
 const InputView = {
-  async readBudget() {
-    const budgetInput = await readLineAsync(VIEW_MESSAGE.budget);
-    startValidation(budgetValidation.categories, Number(budgetInput));
+  async read(message) {
+    const input = await readLineAsync(message);
+    startValidation(commonInputValidation.categories, input);
+    return input;
+  },
 
-    return budgetInput;
+  async readBudget() {
+    const budgetInput = await this.read(VIEW_MESSAGE.budget);
+    const budget = Number(budgetInput);
+    startValidation(budgetValidation.categories, budget);
+
+    return budget;
   },
 
   async readWinningLottoNumbers() {
-    const winningLottoNumbersInput = await readLineAsync(VIEW_MESSAGE.winningLottoNumbers);
+    const winningLottoNumbersInput = await this.read(VIEW_MESSAGE.winningLottoNumbers);
     const winningLottoNumbers = InputView.convertInputToArray(winningLottoNumbersInput);
 
-    winningLottoNumbers.forEach((number) => startValidation(winningLottoValidation.winningCombination, number));
     startValidation(winningLottoNumbersValidation.winningNumbers, winningLottoNumbers);
+    winningLottoNumbers.forEach((number) => startValidation(winningLottoValidation.commonCategories, number));
 
     return winningLottoNumbers;
   },
@@ -29,17 +37,18 @@ const InputView = {
     return input.split(",").map(Number);
   },
 
-  async readWinningLottoBonus() {
-    const winningLottoBonusInput = await readLineAsync(VIEW_MESSAGE.winningLottoBonus);
+  async readWinningLottoBonus(winningNumbers) {
+    const winningLottoBonusInput = await this.read(VIEW_MESSAGE.winningLottoBonus);
     const winningLottoBonus = Number(winningLottoBonusInput);
-    // const winningCombination = {
-    //   normalNumbers: winningNumbers,
-    //   bonusNumber: winningLottoBonus,
-    // };
-    startValidation(winningLottoValidation.winningCombination, winningLottoBonus);
-    // startValidation(winningLottoBonusValidation.winningBonus, winningCombination);
+    const winningCombination = {
+      normalNumbers: winningNumbers,
+      bonusNumber: winningLottoBonus,
+    };
 
-    return winningLottoBonus;
+    startValidation(winningLottoValidation.commonCategories, winningLottoBonus);
+    startValidation(winningLottoBonusValidation.winningBonus, winningCombination);
+
+    return winningCombination;
   },
 
   async readRetryGame() {

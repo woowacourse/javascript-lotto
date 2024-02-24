@@ -8,9 +8,8 @@ const winningLottoBonusValidation = {
     notInWinningNumbers: {
       errorMessage: ERROR_MESSAGE.notInWinningNumbers,
       isValid(winningCombination) {
-        const winningNumbers = winningCombination["normalNumbers"];
-        const winningBonus = winningCombination["bonusNumber"];
-        return !winningNumbers.includes(winningBonus);
+        const { normalNumbers, bonusNumber } = winningCombination;
+        return !normalNumbers.includes(bonusNumber);
       },
     },
   },
