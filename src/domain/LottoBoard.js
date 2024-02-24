@@ -31,8 +31,8 @@ class LottoBoard {
     if (matchCount === 6) return 1;
   }
 
-  #getMatchCount(lottoNumbers) {
-    return lottoNumbers.reduce(
+  #getMatchCount(lotto) {
+    return lotto.reduce(
       (count, number) =>
         count + (this.#isWinningNumberBooleans[number] ? 1 : 0),
       0

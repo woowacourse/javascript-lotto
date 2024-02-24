@@ -75,6 +75,8 @@
   - [x] `LottoResult` 분리
   - [x] `LottoValidator` 분리 및 로직 변경
   - [x] `retry` 로직 분리
+  - [ ] 객체 분리 이후 테스트하기
+- [x] 숫자 6개가 담긴 배열을 `lotto`로 명칭 통일
 
 - [ ] esLint 적용
 - [ ] 에러 메시지 분리 

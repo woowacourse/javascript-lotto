@@ -9,8 +9,8 @@ class LottoValidator {
     this.#validateInBuyAmountRange(number);
   }
 
-  static validateLottoNumbers(numbers) {
-    this.#validateLottoNumbersLength(numbers);
+  static validateLotto(numbers) {
+    this.#validateLottoLength(numbers);
     this.#validateNumbersInLottoRange(numbers);
     this.#validateUniqueElements(numbers);
   }
@@ -43,7 +43,7 @@ class LottoValidator {
     }
   }
 
-  static #validateLottoNumbersLength(numbers) {
+  static #validateLottoLength(numbers) {
     if (numbers.length !== NUMBERS.lottoNumbersLength) {
       throw new Error(MESSAGES.ERROR.invalidLottoNumbersLength);
     }
