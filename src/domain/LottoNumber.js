@@ -2,8 +2,8 @@ import MESSAGES from "../constants/messages.js";
 import { validateTypeInteger } from "../utils/validator.js";
 
 export default class LottoNumber {
-  static MIN_LOTTO_NUMBER = 1;
-  static MAX_LOTTO_NUMBER = 45;
+  static MIN = 1;
+  static MAX = 45;
 
   #number;
 
@@ -24,10 +24,7 @@ export default class LottoNumber {
   }
 
   #validateInLottoNumberRange(number) {
-    if (
-      number < LottoNumber.MIN_LOTTO_NUMBER ||
-      number > LottoNumber.MAX_LOTTO_NUMBER
-    ) {
+    if (number < LottoNumber.MIN || number > LottoNumber.MAX) {
       throw new Error(MESSAGES.ERROR.notInLottoNumberRange);
     }
   }
