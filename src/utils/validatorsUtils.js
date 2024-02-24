@@ -87,7 +87,7 @@ export const isValidWinningNumbersForm = (numberInput) => {
 
 export const isValidRestartInputForm = (restartInput) => {
   const { restart, end } = RESTART_KEY;
-  const regex = new RegExp(`[${restart}${end}]`);
+  const regex = new RegExp(`^[${restart}${end}]{1}$`);
 
   return regex.test(restartInput);
 };
