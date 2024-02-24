@@ -1,4 +1,4 @@
-import Message from '../constants/Message';
+import Message from '../../constants/Message';
 
 const { OUTPUT } = Message;
 

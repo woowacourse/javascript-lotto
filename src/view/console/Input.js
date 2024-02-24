@@ -1,5 +1,5 @@
-import Console from '../utils/Console';
-import Message from '../constants/Message';
+import Console from '../../utils/Console';
+import Message from '../../constants/Message';
 
 const { INPUT } = Message;
 
