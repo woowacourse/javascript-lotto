@@ -1,19 +1,19 @@
 import { SYMBOL } from '../constant/constants.js';
 import { INPUT_MESSAGES } from '../constant/messages.js';
-import Lotto from '../domain/lotto.js';
-import WinningLotto from '../domain/winningLotto.js';
 import ReadLine from '../utils/readLineAsync.js';
-import { validateCost, validateRestartResponse } from '../utils/validation.js';
+import { validateRestartResponse } from '../utils/validation.js';
 
 const InputView = {
-  async readCost() {
+  async readNumber(message, validate) {
     try {
-      const cost = Number(await ReadLine.readLineAsync(INPUT_MESSAGES.cost));
-      validateCost(cost);
-      return cost;
+      const number = Number(await ReadLine.readLineAsync(message));
+
+      validate(number);
+
+      return number;
     } catch (error) {
       console.log(error.message);
-      return this.readCost();
+      return this.readNumber(message, validate);
     }
   },
 
@@ -23,12 +23,6 @@ const InputView = {
       .map((number) => Number(number));
 
     return numbers;
-  },
-
-  async readBonusNumber() {
-    const bonusNumber = Number(await ReadLine.readLineAsync(INPUT_MESSAGES.bonusNumber));
-
-    return bonusNumber;
   },
 
   async readRestart() {

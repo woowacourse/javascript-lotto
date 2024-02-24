@@ -4,6 +4,8 @@ import WinningLotto from '../domain/winningLotto.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import Statistics from '../domain/statistics.js';
+import { INPUT_MESSAGES } from '../constant/messages.js';
+import { validateCost, validateNumber } from '../utils/validation.js';
 
 export default class Controller {
   #lottoMachine;
@@ -11,7 +13,7 @@ export default class Controller {
   #statistics;
 
   async start() {
-    const cost = await InputView.readCost();
+    const cost = await InputView.readNumber(INPUT_MESSAGES.cost, validateCost);
 
     this.#buy(cost);
     this.#winningLotto = await this.#generateWinningLotto();
@@ -32,7 +34,7 @@ export default class Controller {
   async #generateWinningLotto() {
     try {
       const lotto = await this.#generateLotto();
-      const bonusNumber = await InputView.readBonusNumber();
+      const bonusNumber = await InputView.readNumber(INPUT_MESSAGES.bonusNumber, validateNumber);
 
       return new WinningLotto(lotto, bonusNumber);
     } catch (error) {
