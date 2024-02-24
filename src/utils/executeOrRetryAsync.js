@@ -5,15 +5,21 @@ export default async function executeOrRetryAsync({
   asyncFn,
   handleError,
   retryLimit = 10,
+  attempts = 0,
 }) {
-  let attempts = 0;
-  while (attempts < retryLimit) {
-    try {
-      return await asyncFn();
-    } catch (error) {
-      handleError(error.message);
-      attempts += 1;
+  try {
+    return await asyncFn();
+  } catch (error) {
+    handleError(error.message);
+    if (attempts < retryLimit) {
+      return await executeOrRetryAsync({
+        asyncFn,
+        handleError,
+        retryLimit,
+        attempts: attempts + 1,
+      });
+    } else {
+      throw new AppError(ERROR_MESSAGE.OVER_RETRY_LIMIT);
     }
   }
-  throw new AppError(ERROR_MESSAGE.OVER_RETRY_LIMIT);
 }
