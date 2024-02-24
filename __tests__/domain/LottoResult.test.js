@@ -121,7 +121,6 @@ describe("LottoResult 객체 테스트", () => {
         lottoList,
         WINNING_LOTTO,
       ).getTotalResult();
-      console.log({ lottoResult });
 
       expect(lottoResult).toEqual(expectedResults);
     },
