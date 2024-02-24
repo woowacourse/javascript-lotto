@@ -32,25 +32,8 @@ export const INPUT = {
 };
 
 export const OUTPUT = {
-  boughtLottosCompletedTail: "개를 구매했습니다.",
-
-  arrayFormatHead: "[",
-  arrayFormatTail: "]",
-  arrayFormatSeparator: ", ",
-
-  lottoResultIntro: "당첨 통계",
-  lottoResultHorizontalLine: "--------------------",
-
-  fifthRankCountHead: "3개 일치 (5,000원) - ",
-  fourthRankCountHead: "4개 일치 (50,000원) - ",
-  thirdRankCountHead: "5개 일치 (1,500,000원) - ",
-  secondRankCountHead: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-  firstRankCountHead: "6개 일치 (2,000,000,000원) - ",
-
-  lottoUnit: "개",
-
-  profitRateHead: "총 수익률은 ",
-  profitRateTail: "%입니다.",
+  // lottoResultIntro: "당첨 통계",
+  // lottoResultHorizontalLine: "--------------------",
 };
 
 export const outputMessageFormatter = {
@@ -58,6 +41,8 @@ export const outputMessageFormatter = {
   array: (array) => `[${array.join(", ")}]`,
   lottoResult: (rankResult, profitRate) =>
     `
+당첨 통계
+--------------------
 3개 일치 (5,000원) - ${rankResult[LOTTO_RANK.fifth]}개
 4개 일치 (50,000원) - ${rankResult[LOTTO_RANK.fourth]}개
 5개 일치 (1,500,000원) - ${rankResult[LOTTO_RANK.third]}개
