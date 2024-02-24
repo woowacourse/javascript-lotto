@@ -1,6 +1,8 @@
 import NUMBERS from "./constants/numbers.js";
 
-class WinningLotto {
+class LottoBoard {
+  static LAST_RANK = 5;
+
   #isWinningNumberBooleans;
   #bonusNumber;
 
@@ -9,11 +11,7 @@ class WinningLotto {
     this.#bonusNumber = bonusNumber;
   }
 
-  getLottosRanks(lottos) {
-    return lottos.map((lotto) => this.#getLottoRank(lotto));
-  }
-
-  #getLottoRank(lotto) {
+  getLottoRank(lotto) {
     const matchCount = this.#getMatchCount(lotto);
 
     const hasBonusNumber = lotto.includes(this.#bonusNumber);
@@ -25,7 +23,7 @@ class WinningLotto {
   }
 
   #getLottoRankByMatchCountAndHasBonusNumber(matchCount, hasBonusNumber) {
-    if (matchCount < 3) return -1;
+    if (matchCount < 3) return 0;
     if (matchCount === 3) return 5;
     if (matchCount === 4) return 4;
     if (matchCount === 5 && !hasBonusNumber) return 3;
@@ -47,7 +45,9 @@ class WinningLotto {
     );
 
     numbers.forEach((number) => (this.#isWinningNumberBooleans[number] = true));
+
+    Object.freeze(this.#isWinningNumberBooleans);
   }
 }
 
-export default WinningLotto;
+export default LottoBoard;

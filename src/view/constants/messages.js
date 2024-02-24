@@ -29,11 +29,14 @@ const OUTPUT = {
   lottoResultIntro: "당첨 통계",
   lottoResultHorizontalLine: "--------------------",
 
-  fifthRankCountHead: "3개 일치 (5,000원) - ",
-  fourthRankCountHead: "4개 일치 (50,000원) - ",
-  thirdRankCountHead: "5개 일치 (1,500,000원) - ",
-  secondRankCountHead: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-  firstRankCountHead: "6개 일치 (2,000,000,000원) - ",
+  rankCountHead: [
+    null,
+    "6개 일치 (2,000,000,000원) - ",
+    "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+    "5개 일치 (1,500,000원) - ",
+    "4개 일치 (50,000원) - ",
+    "3개 일치 (5,000원) - ",
+  ],
 
   lottoUnit: "개",
 

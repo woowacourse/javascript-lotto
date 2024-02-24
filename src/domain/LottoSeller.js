@@ -18,7 +18,11 @@ class LottoSeller {
   }
 
   static #pickLottos(count) {
-    return Array.from({ length: count }).map(() => this.#pickRandomNumbers());
+    return Array.from({ length: count }).map(() => {
+      const lotto = this.#pickRandomNumbers();
+      lotto.sort((a, b) => a - b);
+      return lotto;
+    });
   }
 
   static #pickRandomNumbers() {

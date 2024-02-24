@@ -1,10 +1,12 @@
-import LottoResultMaker from "../domain/LottoResultMaker.js";
 import LottoSeller from "../domain/LottoSeller.js";
 import LottoValidator from "../domain/LottoValidator.js";
-import WinningLotto from "../domain/WinningLotto.js";
-import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs.js";
+import LottoBoard from "../domain/LottoBoard.js";
+import LottoResultMaker from "../domain/LottoResultMaker.js";
 import InputView from "../view/InputVIew.js";
 import OutputView from "../view/OutputView.js";
+
+import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs.js";
+
 import MESSAGES from "../view/constants/messages.js";
 
 class LottoController {
@@ -23,18 +25,17 @@ class LottoController {
   }
 
   async #play() {
-    const lottosNumbers = await this.#readLottos();
-    OutputView.printBoughtLottos(
-      lottosNumbers.map((lotto) => lotto.sort((a, b) => a - b))
-    );
+    const lottos = await this.#readLottos();
+    OutputView.printBoughtLottos(lottos.map((lotto) => lotto.slice()));
 
     const winningLotto = await this.#readWinningLotto();
 
-    const lottoRanks = winningLotto.getLottosRanks(lottosNumbers);
-    const { rankResult, profitRate } =
-      LottoResultMaker.getLottoResult(lottoRanks);
+    const lottoResult = LottoResultMaker.getLottoResult(lottos, winningLotto);
 
-    OutputView.printLottoResult(rankResult, profitRate);
+    OutputView.printLottoResult(
+      lottoResult.getRankArray(),
+      lottoResult.getProfitRate()
+    );
   }
 
   async #readWinningNumbers() {
@@ -69,7 +70,7 @@ class LottoController {
       winningNumbers
     );
     const winningLotto = await retryWhenErrorOccurs(
-      () => new WinningLotto(winningNumbers, bonusNumber)
+      () => new LottoBoard(winningNumbers, bonusNumber)
     );
 
     return winningLotto;

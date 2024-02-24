@@ -21,21 +21,22 @@ class OutputView {
     this.#printMessage();
   }
 
-  static printLottoResult(rankResult, profitRate) {
+  static printLottoResultIntro() {
     this.printBlankLine();
     this.#printMessage(MESSAGES.OUTPUT.lottoResultIntro);
+  }
+
+  static printLottoResult(rankCounts, profitRate) {
     this.#printMessage(MESSAGES.OUTPUT.lottoResultHorizontalLine);
-    this.#printRankResult(rankResult);
+    this.#printRankResult(rankCounts);
     this.#printProfitRate(profitRate);
     this.printBlankLine();
   }
 
-  static #printRankResult(rankResult) {
-    this.#printFifthRankCount(rankResult.fifth);
-    this.#printFourthRankCount(rankResult.fourth);
-    this.#printThirdRankCount(rankResult.third);
-    this.#printSecondRankCount(rankResult.second);
-    this.#printFirstRankCount(rankResult.first);
+  static #printRankResult(rankCounts) {
+    for (let rank = 5; rank >= 1; rank--) {
+      this.#printRankCount(rank, rankCounts[rank]);
+    }
   }
 
   static #printProfitRate(profitRate) {
@@ -46,29 +47,9 @@ class OutputView {
     );
   }
 
-  static #printFirstRankCount(count) {
+  static #printRankCount(rank, count) {
     this.#printMessage(
-      `${MESSAGES.OUTPUT.firstRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
-    );
-  }
-  static #printSecondRankCount(count) {
-    this.#printMessage(
-      `${MESSAGES.OUTPUT.secondRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
-    );
-  }
-  static #printThirdRankCount(count) {
-    this.#printMessage(
-      `${MESSAGES.OUTPUT.thirdRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
-    );
-  }
-  static #printFourthRankCount(count) {
-    this.#printMessage(
-      `${MESSAGES.OUTPUT.fourthRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
-    );
-  }
-  static #printFifthRankCount(count) {
-    this.#printMessage(
-      `${MESSAGES.OUTPUT.fifthRankCountHead}${count}${MESSAGES.OUTPUT.lottoUnit}`
+      `${MESSAGES.OUTPUT.rankCountHead[rank]}${count}${MESSAGES.OUTPUT.lottoUnit}`
     );
   }
 
