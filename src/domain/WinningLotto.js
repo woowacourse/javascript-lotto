@@ -1,6 +1,7 @@
-import { ERROR_MESSAGE } from "../constants/message";
-import Validator from "../utils/Validator";
 import Lotto from "./Lotto";
+import Validator from "../utils/Validator";
+import LOTTO_SYSTEM from "../constants/lottoSystem";
+import { ERROR_MESSAGE } from "../constants/message";
 
 class WinningLotto extends Lotto {
   #bonusNumber;
@@ -8,7 +9,7 @@ class WinningLotto extends Lotto {
   constructor(winningNumbers, bonusNumber) {
     super(winningNumbers);
 
-    if (!Validator.checkBonusNumber(winningNumbers, bonusNumber))
+    if (!this.#isValidBonusNumber(bonusNumber))
       throw new Error(ERROR_MESSAGE.invalidBonusNumber);
 
     this.#bonusNumber = bonusNumber;
@@ -23,6 +24,23 @@ class WinningLotto extends Lotto {
 
   isBonusNumberMatch(lottoNumbers) {
     return lottoNumbers.includes(this.#bonusNumber);
+  }
+
+  #isValidBonusNumber(bonusNumber) {
+    const bonusNumberType = "number";
+    const lottoMinNumber = LOTTO_SYSTEM.lottoRangeMinimum;
+    const lottoMaxNumber = LOTTO_SYSTEM.lottoRangeMaximum;
+
+    return (
+      Validator.checkArrayElementType([bonusNumber], bonusNumberType) &&
+      Validator.checkArrayElementInteger([bonusNumber]) &&
+      Validator.checkRangeNumbers(
+        [bonusNumber],
+        lottoMinNumber,
+        lottoMaxNumber,
+      ) &&
+      Validator.checkNumberNotInArray(this._numbers, bonusNumber)
+    );
   }
 }
 

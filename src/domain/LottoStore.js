@@ -1,17 +1,12 @@
+import Lotto from "./Lotto";
+import Validator from "../utils/Validator";
+import Random from "../utils/Random";
 import LOTTO_SYSTEM from "../constants/lottoSystem";
 import { ERROR_MESSAGE } from "../constants/message";
-import Validator from "../utils/Validator";
-import getRandomNumberInRange from "../utils/getRandomNumberInRange";
-import Lotto from "./Lotto";
-import WinningLotto from "./WinningLotto";
 
 class LottoStore {
-  #winningLotto;
-
-  constructor() {}
-
   calculateLottoCount(purchaseAmount) {
-    if (!Validator.checkPurchaseAmount(purchaseAmount))
+    if (!this.#isValidPurchaseAmount(purchaseAmount))
       throw new Error(ERROR_MESSAGE.invalidPurchaseAmount);
 
     const lottoPrice = 1000;
@@ -19,78 +14,70 @@ class LottoStore {
     return purchaseAmount / lottoPrice;
   }
 
-  #generateUniqueRandomLottoNumbersInRange() {
-    const lottoNumbers = [];
-
-    while (lottoNumbers.length < LOTTO_SYSTEM.lottoDigitCount) {
-      const randomNumber = getRandomNumberInRange(
-        LOTTO_SYSTEM.lottoRangeMinimum,
-        LOTTO_SYSTEM.lottoRangeMaximum,
-      );
-
-      !lottoNumbers.includes(randomNumber) && lottoNumbers.push(randomNumber);
-    }
-
-    return lottoNumbers;
-  }
-
-  generateRandomNumbers(lottoCount) {
-    if (!Validator.checkLottoCount(lottoCount))
+  generateLottosNumbers(lottoCount) {
+    if (!this.#isValidLottoCount(lottoCount))
       throw new Error(ERROR_MESSAGE.invalidLottoCount);
 
     return Array.from({ length: lottoCount }).map(() =>
-      this.#generateUniqueRandomLottoNumbersInRange(),
+      this.#generateLottoNumbers(),
     );
-  }
-
-  checkRanking(correctCount, isBonusCorrect) {
-    const secondPlace = 2;
-    const thirdPlace = 3;
-
-    if (LOTTO_SYSTEM.ranking[correctCount] === thirdPlace && isBonusCorrect) {
-      return secondPlace;
-    }
-
-    return LOTTO_SYSTEM.ranking[correctCount];
-  }
-
-  getTotalProfitRate(rankings) {
-    const { lottoPrize, lottoPrice } = LOTTO_SYSTEM;
-    const purchaseAmount = lottoPrice * rankings.length;
-
-    const totalProfit = rankings.reduce((acc, ranking) => {
-      acc += lottoPrize[ranking];
-      return acc;
-    }, 0);
-
-    const totalProfitRate = (totalProfit / purchaseAmount) * 100;
-
-    return Number(totalProfitRate.toFixed(1));
   }
 
   issueLottos(sixNumbersArray) {
     // 2차원 배열의 이름 리뷰어는 어떻게 생각하시나요 ??
-    if (!Validator.checkSixNumbersArray(sixNumbersArray))
+    if (!this.#isValidSixNumbersArray(sixNumbersArray))
       throw new Error(ERROR_MESSAGE.invalidSixNumbersArray);
 
     return sixNumbersArray.map((sixNumbers) => new Lotto(sixNumbers));
   }
 
-  setWinningLotto(winningNumbers, bonusNumber) {
-    this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+  #generateLottoNumbers() {
+    const { lottoRangeMinimum, lottoRangeMaximum, lottoDigitCount } =
+      LOTTO_SYSTEM;
+
+    return Random.generateUniqueRandomNumbersInRange(
+      lottoRangeMinimum,
+      lottoRangeMaximum,
+      lottoDigitCount,
+    );
   }
 
-  get winningLotto() {
-    return this.#winningLotto;
+  #isValidSixNumbersArray(sixNumbersArray) {
+    return (
+      Validator.checkIsArray(sixNumbersArray) &&
+      Validator.checkArrayNotEmpty(sixNumbersArray) &&
+      Validator.checkArrayElementArray(sixNumbersArray)
+    );
   }
 
-  calculateWinningLottoCount(lottos) {
-    return lottos.map((lotto) => ({
-      correctCount: this.#winningLotto.compareWinningNumbersWithLotto(
-        lotto.numbers,
-      ),
-      isBonusCorrect: this.#winningLotto.isBonusNumberMatch(lotto.numbers),
-    }));
+  #isValidPurchaseAmount(purchaseAmount) {
+    const purchaseAmountType = "number";
+    const lottoPrice = 1000;
+    const minPurchaseAmount = 1000;
+    const maxPurchaseAmount = 100000;
+
+    return (
+      Validator.checkIsNotNaN([purchaseAmount]) &&
+      Validator.checkArrayElementType([purchaseAmount], purchaseAmountType) &&
+      Validator.checkIsDivisible(purchaseAmount, lottoPrice) &&
+      Validator.checkRangeNumbers(
+        [purchaseAmount],
+        minPurchaseAmount,
+        maxPurchaseAmount,
+      )
+    );
+  }
+
+  #isValidLottoCount(lottoCount) {
+    const lottoCountType = "number";
+    const minLottoCount = 1;
+    const maxLottoCount = 100;
+
+    return (
+      Validator.checkArrayElementType([lottoCount], lottoCountType) &&
+      Validator.checkArrayElementInteger([lottoCount]) &&
+      Validator.checkRangeNumbers([lottoCount], minLottoCount, maxLottoCount)
+    );
   }
 }
 
