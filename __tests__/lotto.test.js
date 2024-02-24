@@ -9,7 +9,7 @@ describe('로또 테스트', () => {
     expect(lotto.numberList).toEqual(RESULT_LOTTO);
   });
 
-  test('사용자가 구매한 로또 번호와 당첨 번호를 비교한다.', () => {
+  test('사용자가 구매한 로또 번호와 당첨 번호를 비교해서 당첨 번호에서 맞은 개수와 보너스 번호 일치 여부를 객체로 반환한다.', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
     const WINNING_NUMBERS = [1, 2, 3, 4, 5, 6];
     const BONUS_NUMBER = 7;
