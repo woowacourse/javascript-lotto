@@ -1,63 +1,40 @@
-import LottoNumber from "./LottoNumber";
+import LOTTO_SETTING from '../Constants/lottoSetting';
+import ERROR_MESSAGE from '../Constants/Messages/errorMessage';
+import AppError from '../Error/AppError';
 
-const COUNT_TO_RANK_OBJ = {
-  6: 1,
-  4: 4,
-  3: 5,
-};
-
-const POTENTIAL_2_OR_3_COUNT = 5;
-const POTENTIAL_2_OR_3_RANK = {
-  true: 2,
-  false: 3,
-};
-
-export default class Lotto extends LottoNumber {
-  #rank;
-
-  #winCount = 0;
-
-  #isBonus = false;
+export default class Lotto {
+  #numbers;
 
   constructor(numbers) {
-    super(numbers);
+    this.#numbers = numbers.sort((a, b) => a - b);
+    this.#validateLottoNumbers();
   }
 
-  calculateRank(winNumbersObject) {
-    const { winNumbers, bonusNumber } = winNumbersObject;
-    this.#compareWinNumber(winNumbers);
-    this.#compareBonusNumber(bonusNumber);
-    this.#setRankByfield();
+  #validateLottoNumbers() {
+    this.#validateLottoNumberRange();
+    this.#validateDuplication();
+    this.#validateLottoLength();
   }
 
-  #compareWinNumber(winNumbers) {
-    const thisLottoNumbers = this.getLottoNumbers();
-    winNumbers.forEach((winNumber) => {
-      if (thisLottoNumbers.includes(winNumber)) {
-        this.#winCount += 1;
-      }
-    });
-  }
-
-  #compareBonusNumber(bonusNumber) {
-    const thisLottoNumbers = this.getLottoNumbers();
-    if (
-      this.#winCount === POTENTIAL_2_OR_3_COUNT &&
-      thisLottoNumbers.includes(bonusNumber)
-    ) {
-      this.#isBonus = true;
+  #validateLottoNumberRange() {
+    if (!this.#numbers.every((number) => number >= LOTTO_SETTING.MIN_NUM && number <= LOTTO_SETTING.MAX_NUM)) {
+      throw new AppError(ERROR_MESSAGE.OUT_OF_RANGE);
     }
   }
 
-  #setRankByfield() {
-    if (this.#winCount === POTENTIAL_2_OR_3_COUNT) {
-      this.#rank = POTENTIAL_2_OR_3_RANK[this.#isBonus];
-      return;
+  #validateDuplication() {
+    if (new Set([...this.#numbers]).size !== LOTTO_SETTING.VALID_LENGTH) {
+      throw new AppError(ERROR_MESSAGE.HAVE_DUPLICATION_OF_LOTTO_NUMBER);
     }
-    this.#rank = COUNT_TO_RANK_OBJ[this.#winCount];
   }
 
-  getRank() {
-    return this.#rank;
+  #validateLottoLength() {
+    if (this.#numbers.length !== LOTTO_SETTING.VALID_LENGTH) {
+      throw new AppError(ERROR_MESSAGE.INVALID_LENGTH);
+    }
+  }
+
+  getLottoNumbers() {
+    return [...this.#numbers];
   }
 }
