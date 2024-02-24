@@ -1,4 +1,4 @@
-import { LOTTO_LENGTH, LOTTO_RANGE } from "../constants/option.js";
+import { LOTTO_LENGTH, LOTTO_RANGE, OPTION } from "../constants/option.js";
 import { LOTTO_PRICE } from "../constants/system.js";
 
 import Lotto from "./Lotto.js";
@@ -19,6 +19,15 @@ class LottoMachine {
     );
 
     return lottoList;
+  }
+
+  makeWinningLotto(winningLottoNumber) {
+    const winningLottoNumbers = winningLottoNumber
+      .split(OPTION.DELIMITER)
+      .map((number) => Number(number));
+    const winningLotto = new Lotto(winningLottoNumbers);
+
+    return winningLotto;
   }
 
   #generateLotto() {
