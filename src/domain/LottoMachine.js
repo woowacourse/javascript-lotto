@@ -3,8 +3,8 @@ import createUniqueNumbersInRange from '../utils/createUniqueNumbersInRange.js';
 
 import Lotto from './Lotto.js';
 
-const LottoMachine = () => {
-  const makeLottos = (purchaseAmount) => {
+const lottoMachine = {
+  makeLottos: (purchaseAmount) => {
     return Array.from(
       { length: purchaseAmount / LOTTO_PRICE },
       () =>
@@ -16,10 +16,7 @@ const LottoMachine = () => {
           }),
         ),
     );
-  };
-
-  return {
-    makeLottos,
-  };
+  },
 };
-export default LottoMachine;
+
+export default lottoMachine;

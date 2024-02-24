@@ -1,14 +1,12 @@
-/* eslint-disable max-lines-per-function */ import Lotto from "../../src/domain/Lotto.js";
-import LottoResult from "../../src/domain/LottoResult.js";
-import WinningLotto from "../../src/domain/WinningLotto.js";
+/* eslint-disable max-lines-per-function */
+import Lotto from "../../src/domain/Lotto.js";
+import LottoResultCalculator from "../../src/domain/LottoResultCalculator.js";
 
-describe("LottoResult 객체 테스트", () => {
-  let WINNING_LOTTO;
-
-  beforeEach(() => {
-    const WINNING_LOTTO_NO_BONUS_NUMBER = new Lotto([1, 2, 3, 4, 5, 6]);
-    WINNING_LOTTO = new WinningLotto(WINNING_LOTTO_NO_BONUS_NUMBER, 7);
-  });
+describe("LottoResultCalculator 객체 테스트", () => {
+  const WINNING_LOTTO = {
+    winningLottoNumbers: [1, 2, 3, 4, 5, 6],
+    bonusNumber: 7,
+  };
 
   const hasBonusNumberWhatever = "상관없이";
 
@@ -117,25 +115,24 @@ describe("LottoResult 객체 테스트", () => {
       const lotto = new Lotto(lottoNumbers);
       const lottoList = [lotto];
 
-      const lottoResult = new LottoResult(
+      const lottoResult = new LottoResultCalculator({
         lottoList,
-        WINNING_LOTTO,
-      ).getTotalResult();
+        winningLottoNumbers: WINNING_LOTTO.winningLottoNumbers,
+        bonusNumber: WINNING_LOTTO.bonusNumber,
+      }).getTotalResult();
 
       expect(lottoResult).toEqual(expectedResults);
     },
   );
 
   test("구매한 로또의 수익률을 계산한다.", () => {
-    const WINNING_LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
-    const WINNING_LOTTO = new Lotto(WINNING_LOTTO_NUMBERS);
-    const WINNING_LOTTO_WITH_BONUS_NUMBER = new WinningLotto(WINNING_LOTTO, 7);
     const LOTTO_LIST = [new Lotto([1, 2, 3, 11, 12, 13])];
 
-    const profitResult = new LottoResult(
-      LOTTO_LIST,
-      WINNING_LOTTO_WITH_BONUS_NUMBER,
-    ).getProfit(LOTTO_LIST.length * 1000);
+    const profitResult = new LottoResultCalculator({
+      lottoList: LOTTO_LIST,
+      winningLottoNumbers: WINNING_LOTTO.winningLottoNumbers,
+      bonusNumber: WINNING_LOTTO.bonusNumber,
+    }).getProfit(LOTTO_LIST.length * 1000);
 
     expect(profitResult).toBe(500);
   });

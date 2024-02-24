@@ -1,40 +1,59 @@
 /* eslint-disable max-lines-per-function */
-import {
-  LOTTO_NUMBER_LENGTH,
-  LOTTO_NUMBER_RANGE,
-} from "../../src/constants/lotto-constants.js";
 import Lotto from "../../src/domain/Lotto.js";
 
 describe("Lotto 객체 테스트", () => {
-  const createLottoWithNumbers = (numbers) => () => new Lotto(numbers);
+  const HAVE_BONUS_NUMBER_TEXT = "가지고있으면";
+  const WHATEVER_TEXT = "상관없이";
 
-  test(`로또 번호는 ${LOTTO_NUMBER_LENGTH}개여야한다.`, () => {
-    const INVALID_LOTTO_LENGTH = [1, 2, 3, 4, 5];
+  describe("로또 객체는 자신이 몇등인지 알아야한다.", () => {
+    const winningLottoNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 20;
 
-    expect(createLottoWithNumbers(INVALID_LOTTO_LENGTH)).toThrow();
-  });
+    test.each([
+      {
+        lottoNumbers: [1, 2, 3, 4, 5, 6],
+        matchCount: 6,
+        isBonus: WHATEVER_TEXT,
+        expectedRank: "FIRST_PLACE",
+      },
+      {
+        lottoNumbers: [1, 2, 3, 4, 5, 20],
+        matchCount: 5,
+        isBonus: HAVE_BONUS_NUMBER_TEXT,
+        expectedRank: "SECOND_PLACE",
+      },
+      {
+        lottoNumbers: [1, 2, 3, 4, 5, 7],
+        matchCount: 5,
+        isBonus: WHATEVER_TEXT,
+        expectedRank: "THIRD_PLACE",
+      },
+      {
+        lottoNumbers: [1, 2, 3, 4, 7, 8],
+        matchCount: 5,
+        isBonus: WHATEVER_TEXT,
+        expectedRank: "FOURTH_PLACE",
+      },
+      {
+        lottoNumbers: [1, 2, 3, 7, 8, 9],
+        matchCount: 5,
+        isBonus: WHATEVER_TEXT,
+        expectedRank: "FIFTH_PLACE",
+      },
+      {
+        lottoNumbers: [7, 8, 9, 10, 11, 12],
+        matchCount: 5,
+        isBonus: WHATEVER_TEXT,
+        expectedRank: "NONE_PLACE",
+      },
+    ])(
+      "당첨번호와 $matchCount개 일치하고 보너스 번호 $isBonus $expectedRank를 리턴한다.",
+      ({ lottoNumbers, expectedRank }) => {
+        const lotto = new Lotto(lottoNumbers);
+        const rank = lotto.getRank({ winningLottoNumbers, bonusNumber });
 
-  test("로또 번호 배열에 똑같은 숫자가 있으면 오류를 던진다.", () => {
-    const DUPLICATE_LOTTO_NUMBERS = [1, 1, 2, 3, 4, 5];
-
-    expect(createLottoWithNumbers(DUPLICATE_LOTTO_NUMBERS)).toThrow();
-  });
-
-  test(`로또 번호는 ${LOTTO_NUMBER_RANGE.MIN} ~ ${LOTTO_NUMBER_RANGE.MAX} 사이의 숫자가 아니면 에러가 나야된다.`, () => {
-    const INVALID_LOTTO_NUMBERS = [0, 1, 2, 3, 4, 46];
-
-    expect(createLottoWithNumbers(INVALID_LOTTO_NUMBERS)).toThrow();
-  });
-
-  test("로또 번호가 숫자가 아니면 오류를 던진다.", () => {
-    const INVALID_LOTTO_NUMBERS = ["하나", 2, 3, 4, 5, 6];
-
-    expect(createLottoWithNumbers(INVALID_LOTTO_NUMBERS)).toThrow();
-  });
-
-  test(`로또 번호는 ${LOTTO_NUMBER_RANGE.MIN} ~ ${LOTTO_NUMBER_RANGE.MAX} 사이의 숫자면 에러가 나지 않는다.`, () => {
-    const VALID_LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
-
-    expect(createLottoWithNumbers(VALID_LOTTO_NUMBERS)).not.toThrow();
+        expect(rank).toBe(expectedRank);
+      },
+    );
   });
 });

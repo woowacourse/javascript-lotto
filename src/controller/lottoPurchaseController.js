@@ -1,30 +1,21 @@
-import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/lotto-constants';
-import Lotto from '../domain/Lotto';
-import createUniqueNumbersInRange from '../utils/createUniqueNumbersInRange';
-import executeOrRetryAsync from '../utils/executeOrRetryAsync';
-import CommonValidator from '../validator/CommonValidator';
-import purchaseAmountValidator from '../validator/PurchaseAmountValidator';
-import InputView from '../view/InputView';
-import OutputView from '../view/OutputView';
+import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/lotto-constants.js';
+import Lotto from '../domain/Lotto.js';
+import createUniqueNumbersInRange from '../utils/createUniqueNumbersInRange.js';
+import executeOrRetryAsync from '../utils/executeOrRetryAsync.js';
+import CommonValidator from '../validator/CommonValidator.js';
+import purchaseAmountValidator from '../validator/PurchaseAmountValidator.js';
+import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
 
-const LottoPurchaseController = () => {
+/* eslint-disable max-lines-per-function */
+// LottoPurchaseController 내부 함수들은 15줄을 넘지 않습니다.
+const lottoPurchaseController = () => {
   const readAndValidatePurchaseAmount = async () => {
     const purchaseAmountInput = await InputView.readPurchaseAmount();
     CommonValidator.validate(purchaseAmountInput);
     purchaseAmountValidator.validate(purchaseAmountInput);
 
     return Number(purchaseAmountInput);
-  };
-
-  const processPurchaseLotto = async () => {
-    const purchaseAmount = await executeOrRetryAsync({
-      asyncFn: readAndValidatePurchaseAmount,
-      handleError: console.log,
-    });
-    OutputView.printPurchaseMessage(purchaseAmount);
-    const lottoTickets = createLottoTickets(purchaseAmount);
-    displayLottoTickets(lottoTickets);
-    return lottoTickets;
   };
 
   const createLottoTickets = (purchaseAmount) => {
@@ -47,9 +38,20 @@ const LottoPurchaseController = () => {
     });
   };
 
+  const processPurchaseLotto = async () => {
+    const purchaseAmount = await executeOrRetryAsync({
+      asyncFn: readAndValidatePurchaseAmount,
+      handleError: console.log,
+    });
+    OutputView.printPurchaseMessage(purchaseAmount);
+    const lottoTickets = createLottoTickets(purchaseAmount);
+    displayLottoTickets(lottoTickets);
+    return lottoTickets;
+  };
+
   return {
     processPurchaseLotto,
   };
 };
 
-export default LottoPurchaseController;
+export default lottoPurchaseController;

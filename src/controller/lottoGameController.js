@@ -4,7 +4,7 @@ import LottoResultCalculator from '../domain/LottoResultCalculator.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 
-import LottoPurchaseController from './LottoPurchaseController.js';
+import lottoPurchaseController from './lottoPurchaseController.js';
 import WinningLottoGenerator from './winningLottoGenerator.js';
 
 class LottoGameController {
@@ -39,7 +39,7 @@ class LottoGameController {
   }
 
   async #getPurchasedLottoTickets() {
-    const lottoPurchaseController = LottoPurchaseController();
+    const lottoPurchaseController = lottoPurchaseController();
     const lottoTickets = await lottoPurchaseController.processPurchaseLotto();
 
     return lottoTickets;

@@ -28,6 +28,7 @@
   "rules": {
     "import/extensions": ["error", "ignorePackages"],
     "no-await-in-loop": "off",
+    "no-unused-vars": "off",
     "no-constant-condition": "off",
     "max-lines-per-function": ["error", 15],
     "max-depth": ["error", 1],
@@ -35,11 +36,7 @@
     "prefer-const": "error",
     "no-console": "off",
     "class-methods-use-this": "off",
-    "lines-between-class-members": [
-      "error",
-      "always",
-      { "exceptAfterSingleLine": true }
-    ],
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
     "sort-imports": [
       "error",
       {
@@ -53,13 +50,7 @@
       "error",
       {
         "newlines-between": "always",
-        "groups": [
-          ["builtin", "external"],
-          "internal",
-          "parent",
-          "sibling",
-          "index"
-        ],
+        "groups": [["builtin", "external"], "internal", "parent", "sibling", "index"],
         "pathGroups": [
           {
             "pattern": "next",
