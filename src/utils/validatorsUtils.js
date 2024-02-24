@@ -84,8 +84,10 @@ export const isValidWinningNumbersForm = (numbersInput) =>
  * @param {string} restartInput
  */
 export const isValidRestartInputForm = (restartInput) => {
-  const { restart, end } = RESTART_KEY;
-  const regex = new RegExp(`[${restart}${end}]`);
+  const { restart, end, restartCapital, endCapital } = RESTART_KEY;
+  const regex = new RegExp(
+    `^[${restart}|${end}|${restartCapital}|${endCapital}]$`,
+  );
 
   return regex.test(restartInput);
 };

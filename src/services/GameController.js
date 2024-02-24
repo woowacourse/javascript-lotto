@@ -17,10 +17,11 @@ class GameController {
     );
 
     this.#lottoGame.calculateStatistics();
-
     this.#printStatistics();
 
-    await this.#restartLottoGame();
+    await InputController.retryOnInvalidInput(
+      async () => await this.#restartLottoGame(),
+    );
   }
 
   async #getPaid() {
@@ -36,14 +37,8 @@ class GameController {
   }
 
   async #restartLottoGame() {
-    await InputController.retryOnInvalidInput(
-      async () => await this.#restartLottoGameAction(),
-    );
-  }
-
-  async #restartLottoGameAction() {
     const restartInput = await InputView.readRestart();
-    Validator.chaeckRestartForm(restartInput);
+    Validator.checkRestartForm(restartInput);
 
     if (restartInput === RESTART_KEY.restart) {
       this.#lottoGame = new LottoGame();

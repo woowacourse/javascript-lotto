@@ -98,3 +98,16 @@ describe('checkPaymentAmount 기능 테스트', () => {
     });
   });
 });
+
+describe('checkRestartForm 기능 테스트', () => {
+  test.each(['yes y', 'never'])(
+    '재시작 여부는 y 또는 n으로 입력되어야 한다.: %s',
+    (input) => {
+      expect(() => Validator.checkRestartForm(input)).toThrow();
+    },
+  );
+
+  test.each(['Y', 'N'])('대문자 입력은 유효하다.: %s', (input) => {
+    expect(() => Validator.checkRestartForm(input)).not.toThrow();
+  });
+});

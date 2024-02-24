@@ -58,7 +58,7 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.inValidNumbersOfTickets);
   },
 
-  chaeckRestartForm(restartInput) {
+  checkRestartForm(restartInput) {
     if (!isValidRestartInputForm(restartInput))
       throw new Error(ERROR_MESSAGE.invalidRestartInputForm);
   },
