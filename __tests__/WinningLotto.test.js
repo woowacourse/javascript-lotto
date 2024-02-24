@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from '../src/constants';
+import { ERROR_MESSAGES, NUMBER_DELIMITER } from '../src/constants';
 import { WinningLotto, Bonus } from '../src/domains';
 
 describe('WinningLotto 테스트', () => {
@@ -63,6 +63,10 @@ describe('WinningLotto 테스트', () => {
   describe('WinningLotto 기능 테스트', () => {
     test('추첨 로또와 당첨 로또의 비교 결과를 반환한다.', () => {
       const LOTTO_NUMBERS_INPUT = '1,2,3,4,5,6';
+      const LOTTO_NUMBERS = LOTTO_NUMBERS_INPUT.split(NUMBER_DELIMITER).map(
+        (value) => Number(value),
+      );
+
       const TEST_TARGETS = [
         {
           comparedLottoNumbers: [1, 2, 3, 9, 8, 10],
@@ -74,7 +78,7 @@ describe('WinningLotto 테스트', () => {
         },
       ];
 
-      const bonus = new Bonus('7');
+      const bonus = new Bonus('7', LOTTO_NUMBERS);
       const winningLotto = new WinningLotto(LOTTO_NUMBERS_INPUT);
 
       TEST_TARGETS.forEach((target) => {
