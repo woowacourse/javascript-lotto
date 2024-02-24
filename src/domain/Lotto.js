@@ -18,13 +18,6 @@ class Lotto {
     this.#lottoNumbers = lottoNumbers;
   }
 
-  has(lottoNumber) {
-    const numbers = this.getNumbers();
-    const comparedNumber = lottoNumber.getNumber();
-
-    return numbers.includes(comparedNumber);
-  }
-
   compare(targetLotto) {
     const numbers = this.getNumbers();
     const targetNumbers = targetLotto.getNumbers();
@@ -34,6 +27,13 @@ class Lotto {
     ).length;
 
     return matchedCount;
+  }
+
+  has(lottoNumber) {
+    const numbers = this.getNumbers();
+    const comparedNumber = lottoNumber.getNumber();
+
+    return numbers.includes(comparedNumber);
   }
 
   getNumbers() {
