@@ -5,16 +5,16 @@ export default class LottoNumber {
   static MIN = 1;
   static MAX = 45;
 
-  #number;
+  #value;
 
   constructor(number) {
     this.#validateLottoNumber(number);
 
-    this.#number = number;
+    this.#value = number;
   }
 
-  getNumber() {
-    return this.#number;
+  getValue() {
+    return this.#value;
   }
 
   #validateLottoNumber(value) {
