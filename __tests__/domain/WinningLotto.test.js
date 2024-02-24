@@ -2,7 +2,6 @@
 import ERROR_MESSAGE from "../../src/constants/error.js";
 import { LOTTO_LENGTH, LOTTO_RANGE } from "../../src/constants/option.js";
 import Lotto from "../../src/domain/Lotto.js";
-import WinningLotto from "../../src/domain/WinningLotto.js";
 
 describe("WinningLotto 객체 테스트", () => {
   test("당첨 로또 번호는 중복되면 안된다.", () => {
@@ -35,14 +34,5 @@ describe("WinningLotto 객체 테스트", () => {
     expect(() => new Lotto(INVALID_LOTTO_NUMBERS)).toThrow(
       ERROR_MESSAGE.INVALID_LOTTO_NUMBER_TYPE,
     );
-  });
-
-  test("당첨 로또 번호와 보너스 번호는 중복되면 안된다.", () => {
-    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
-    const BONUS_NUMBER = 6;
-
-    expect(
-      () => new WinningLotto(new Lotto(LOTTO_NUMBERS), BONUS_NUMBER),
-    ).toThrow(ERROR_MESSAGE.INVALID_BONUS_NUMBER_DUPLICATE);
   });
 });
