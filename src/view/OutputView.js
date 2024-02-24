@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from "../constants/error-messages.js";
+import { NO_MATCH_PLACE } from "../constants/prize-constants.js";
 import { OUTPUT_MESSAGE } from "../constants/view-messages.js";
 
 const OutputView = {
@@ -17,12 +17,11 @@ const OutputView = {
   },
 
   printResult(totalResult) {
-    console.log("printResult", totalResult);
     this.printResultHeader();
     Object.keys(totalResult)
       .reverse()
       .forEach((rank) => {
-        rank !== "NONE_PLACE" &&
+        rank !== NO_MATCH_PLACE &&
           console.log(OUTPUT_MESSAGE.RESULT(totalResult, rank));
       });
   },
