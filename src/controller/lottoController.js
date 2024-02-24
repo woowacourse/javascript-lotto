@@ -62,10 +62,10 @@ const lottoController = {
   },
 
   async setBonusNumber(winningLotto) {
-    const bonusLottoNumberInput = await InputView.readBonusLottoNumber();
-    const bonusLottoNumber = new LottoNumber(bonusLottoNumberInput);
+    const bonusNumberInput = await InputView.readBonusNumber();
+    const bonusNumber = new LottoNumber(bonusNumberInput);
 
-    winningLotto.setBonusNumber(bonusLottoNumber);
+    winningLotto.setBonusNumber(bonusNumber);
   },
 
   async isExitGame() {
