@@ -10,7 +10,7 @@ const OutputView = {
       console.log(`[${lotto.getNumbers().join(', ')}]`);
     });
   },
-  
+
   printResultTitle() {
     console.log(OUTPUT_MESSAGE.WINNING_STATISTICS_TITLE);
   },
