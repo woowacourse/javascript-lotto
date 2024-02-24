@@ -21,11 +21,11 @@ class PurchasedLottoForm extends BaseComponent {
   setEvent() {
     this.querySelector('#purchased-lotto-form').addEventListener(
       'submit',
-      this.#submitBuyLottoPrice.bind(this),
+      this.#handleSubmitBuyLottoPrice.bind(this),
     );
   }
 
-  #submitBuyLottoPrice(event) {
+  #handleSubmitBuyLottoPrice(event) {
     try {
       event.preventDefault();
 
@@ -33,6 +33,9 @@ class PurchasedLottoForm extends BaseComponent {
       BuyLottoPriceValidator.check(purchasedLottoPrice);
 
       this.#removeErrorMessage();
+
+      this.querySelector('#purchased-lotto-input').value = '';
+
       this.emit('buyLottoPrice', Number(purchasedLottoPrice));
     } catch (error) {
       if (error instanceof AppError) {
