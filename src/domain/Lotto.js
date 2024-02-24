@@ -5,18 +5,20 @@ class Lotto {
 
   constructor(numbers) {
     this.#numbers = numbers.map((number) => Number(number));
+    console.log("lotto", this.#numbers);
   }
 
   getNumbers() {
     return this.#numbers;
   }
 
-  getMatchCount(winningLottoNumbers) {
+  getMatchCount({ winningLottoNumbers, bonusNumber }) {
+    console.log("lotto안의 winningLottoNumbers", winningLottoNumbers);
     const numberMatchCount = this.#numbers.filter((number) =>
       winningLottoNumbers.includes(number),
     ).length;
 
-    const isBonus = this.#numbers.includes(winningLottoNumbers);
+    const isBonus = this.#numbers.includes(bonusNumber);
 
     return { numberMatchCount, isBonus };
   }

@@ -6,10 +6,8 @@ const OutputView = {
     console.log(OUTPUT_MESSAGE.PURCHASE_NUMBER(purchaseAmount));
   },
 
-  printLottos(lottoNumberArray) {
-    lottoNumberArray.forEach((lottoNumber) => {
-      console.log(lottoNumber.sort((a, b) => a - b));
-    });
+  printLottoNumber(lottoNumbers) {
+    console.log(lottoNumbers.sort((a, b) => b - a));
   },
 
   printResultHeader() {
