@@ -2,8 +2,6 @@ import { ERROR_MESSAGES, NUMBER_DELIMITER } from '../constants';
 import { checkDefinedInputValue, isValidWinningNumbersForm } from '../utils';
 import Lotto from './Lotto';
 
-// 역할 : 당첨 번호 입력값-> 유효성 검사 -> 당첨 번호 생성
-// 보너스를 파라미터로 받아서 당첨 번호와 로또 번호를 비교한  일치 개수 반환
 class WinningLotto {
   /**
    * @property {number[]}
@@ -17,21 +15,12 @@ class WinningLotto {
     this.#validateWinningLottoNumbers(lottoNumbersInput);
   }
 
-  // set lottoNumbers(lottoNumbersInput) {
-  //   Validator.checkWinningLottoNumbers(lottoNumbersInput);
-
-  //   this.#lottoNumbers = lottoNumbersInput
-  //     .split(NUMBER_DELIMITER)
-  //     .map((lottoNumberInput) => Number(lottoNumberInput));
-  // }
-
-  // set bonus(bonusNumberInput) {
-  //   Validator.checkBonusNumber(this.#lottoNumbers, bonusNumberInput);
-  //   this.#bonus = Number(bonusNumberInput);
-  // }
+  get lottoNumbers() {
+    return this.#lottoNumbers;
+  }
 
   /**
-   *  @param {number[]} lottoNumbers
+   * @param {number[]} lottoNumbers
    * @param {Bonus} bonus
    */
   compareLotto(lottoNumbers, bonus) {
@@ -49,6 +38,9 @@ class WinningLotto {
       .length;
   }
 
+  /**
+   * @param {string} lottoNumbersInput
+   */
   #validateWinningLottoNumbers(lottoNumbersInput) {
     checkDefinedInputValue(lottoNumbersInput);
 

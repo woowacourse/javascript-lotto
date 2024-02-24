@@ -4,6 +4,9 @@ import { isInteger, isLottoNumberInRange } from '../utils';
 class LottoNumber {
   #number;
 
+  /**
+   * @param {number} number
+   */
   constructor(number) {
     this.#validateLottoNumber(number);
   }
@@ -12,6 +15,9 @@ class LottoNumber {
     return this.#number;
   }
 
+  /**
+   * @param {number} number
+   */
   #validateLottoNumber(number) {
     if (!isInteger(number)) throw new Error(ERROR_MESSAGES.notInteger);
 

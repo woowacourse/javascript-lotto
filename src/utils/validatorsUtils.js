@@ -44,7 +44,7 @@ export const isLottoNumberInRange = (number) => {
 /**
  * 보너스 번호가 로또 번호들 다른 지 여부
  * @param {number[]} lottoNumbers
- * @param {number[]} bonusNumbers
+ * @param {number} bonusNumber
  */
 export const isNotInLottoNumber = (lottoNumbers, bonusNumber) =>
   !lottoNumbers.includes(bonusNumber);
@@ -72,11 +72,10 @@ export const isValidNumbersOfTickets = (money) => {
  * @param {string} numberInput
  */
 export const isValidWinningNumbersForm = (numberInput) => {
-  // 쉼표가 없을 경우 false 반환
   if (!numberInput.includes(NUMBER_DELIMITER)) {
     return false;
   }
-  // 쉼표가 있다는 가정하에 진행
+
   const numbersOfDelimiter = [...numberInput.matchAll(NUMBER_DELIMITER)].length;
 
   const isValidNumberDelimiter =
@@ -84,7 +83,10 @@ export const isValidWinningNumbersForm = (numberInput) => {
 
   return isValidNumberDelimiter;
 };
-
+/**
+ * 게임 재시작 여부에 대한 입력값이 게임 재시작 키값들과 같은 지 여부
+ * @param {string} numberInput
+ */
 export const isValidRestartInputForm = (restartInput) => {
   const { restart, end } = RESTART_KEY;
   const regex = new RegExp(`^[${restart}${end}]{1}$`);

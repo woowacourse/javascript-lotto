@@ -1,4 +1,5 @@
-import { checkDefinedInputValue } from '../utils';
+import { ERROR_MESSAGES } from '../constants';
+import { checkDefinedInputValue, isNotInLottoNumber } from '../utils';
 import LottoNumber from './LottoNumber';
 
 class Bonus {
@@ -6,15 +7,25 @@ class Bonus {
 
   /**
    * @param {string} bonusNumberInput
+   * @param {number[]} winningLottoNumbers
    */
-  constructor(bonusNumberInput) {
-    this.#validateBonusNumber(bonusNumberInput);
+  constructor(bonusNumberInput, winningLottoNumbers) {
+    console.log('m', winningLottoNumbers);
+    this.#validateBonusNumber(bonusNumberInput, winningLottoNumbers);
   }
 
-  #validateBonusNumber(bonusNumberInput) {
+  /**
+   * @param {string} bonusNumberInput
+   * @param {number[]} WinningLottoNumbers
+   */
+  #validateBonusNumber(bonusNumberInput, winningLottoNumbers) {
     checkDefinedInputValue(bonusNumberInput);
 
     const { number } = new LottoNumber(Number(bonusNumberInput));
+
+    if (!isNotInLottoNumber(winningLottoNumbers, number)) {
+      throw new Error(ERROR_MESSAGES.alreadyInLottoNumber);
+    }
 
     this.#number = new LottoNumber(number).number;
   }

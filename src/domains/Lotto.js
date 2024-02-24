@@ -6,7 +6,6 @@ class Lotto {
   #numbers;
 
   /**
-   *
    * @param {number[]} numbers
    */
   constructor(numbers) {
@@ -19,6 +18,9 @@ class Lotto {
     );
   }
 
+  /**
+   * @param {number[]} numbers
+   */
   #validateLottoNumbers(numbers) {
     const lottoNumbers = numbers.map(
       (number) => new LottoNumber(number).number,

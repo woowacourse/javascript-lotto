@@ -2,6 +2,9 @@ import { OUTPUT_MESSAGES, WINNING_RULE, NUMBER_DELIMITER } from '../constants';
 import Console from '../utils/Console';
 
 const OutputView = {
+  /**
+   * @param {number[][]} lottoTickets
+   */
   printLottoTickets(lottoTickets) {
     Console.print(OUTPUT_MESSAGES.purchasedLottoTickets);
 
@@ -11,7 +14,9 @@ const OutputView = {
       );
     });
   },
-
+  /**
+   * @param { @returns {1:number, 2:number ,3:number, 4:number, 5:number}} statisticsResult
+   */
   printStatistics(statisticsResult) {
     const { lottoTickets, divider, moneyUnit, countUnit } = OUTPUT_MESSAGES;
     Console.print(lottoTickets);
@@ -23,7 +28,10 @@ const OutputView = {
       );
     });
   },
-
+  /**
+   *
+   * @param {number} profitRate
+   */
   printProfitRate(profitRate) {
     Console.print(
       `\n총 수익률은 ${profitRate}${OUTPUT_MESSAGES.profitUnit}입니다.`,
@@ -38,7 +46,6 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGES.endGame);
   },
   /**
-   *
    * @param {Error} error
    */
   printErrorMessage(error) {

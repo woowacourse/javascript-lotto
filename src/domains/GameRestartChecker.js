@@ -5,7 +5,6 @@ class GameRestartChecker {
   #restartKey = '';
 
   /**
-   *
    * @param {string} restartInput
    */
   constructor(restartInput) {
@@ -17,7 +16,6 @@ class GameRestartChecker {
   }
 
   /**
-   *
    * @param {string} restartInput
    */
   #validateRestartInput(restartInput) {

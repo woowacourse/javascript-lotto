@@ -8,6 +8,10 @@ class Statistics {
     profitRate: 0,
   };
 
+  /**
+   * @param {{isBonus: boolean,matchedCount: number}[]} matchingResults
+   * @param {number} paymentAmount
+   */
   constructor(matchingResults, paymentAmount) {
     this.#matchResultsToRank(matchingResults);
     this.#calculateProfitRate(paymentAmount);
@@ -19,7 +23,10 @@ class Statistics {
       statisticsResult: this.#getStatisticsResult(),
     };
   }
-
+  /**
+   *
+   * @returns  {{l:0, 2:0,3:0,4:0,5:0}}
+   */
   // eslint-disable-next-line
   #makeInitialStatisticsResult() {
     const initialStatisticsResult = {};
@@ -32,8 +39,7 @@ class Statistics {
   }
 
   /**
-   *
-   * @returns {1:number, 2:number ,3:number, 4:number, 5:number}
+   * @returns {{1:number, 2:number ,3:number, 4:number, 5:number}}
    */
   #getStatisticsResult() {
     return this.#ranks.reduce((acc, rank) => {
@@ -71,6 +77,9 @@ class Statistics {
     });
   }
 
+  /**
+   * @param {number} paymentAmount
+   */
   #calculateProfitRate(paymentAmount) {
     this.#calculateTotalPrize();
     this.#reward.profitRate = Number(
