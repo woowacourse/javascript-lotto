@@ -1,13 +1,13 @@
 const LottoResultMaker = {
   calculateLottoResult(issuedLottoArray, winningCombination) {
     return issuedLottoArray.map((issuedLotto) => {
-      const { winningNumbers, winningBonus } = winningCombination;
+      const { normalNumbers, bonusNumber } = winningCombination;
       return issuedLotto.reduce(
         (result, number) => {
-          if (winningNumbers.includes(number)) {
+          if (normalNumbers.includes(number)) {
             result.normalNumber += 1;
           }
-          if (number === winningBonus) {
+          if (number === bonusNumber) {
             result.bonusNumber += 1;
           }
           return result;
