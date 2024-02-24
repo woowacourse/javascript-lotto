@@ -11,7 +11,7 @@ describe("LottoResultMaker에 대한 유닛 테스트", () => {
     ];
 
     const result = {
-      rankResult: LottoResultMaker.arrangeRankResult(GIVEN_RANKS),
+      rankResult: LottoResultMaker.arrangeRanks(GIVEN_RANKS),
       profitRate: LottoResultMaker.calculateProfitRate(GIVEN_RANKS),
     };
 

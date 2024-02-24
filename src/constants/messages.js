@@ -1,4 +1,4 @@
-import { LOTTO_RANK } from "./lotto";
+import { LOTTO_RANK } from "./lotto.js";
 
 const addErrorPrefix = (message) => `[ERROR] ${message}`;
 
@@ -63,7 +63,7 @@ export const outputMessageFormatter = {
 5개 일치 (1,500,000원) - ${rankResult[LOTTO_RANK.third]}개
 5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankResult[LOTTO_RANK.second]}개
 6개 일치 (2,000,000,000원) - ${rankResult[LOTTO_RANK.first]}개
-총 수익률은 ${profitRate}%입니다.
+총 수익률은 ${profitRate.toLocaleString()}%입니다.
   `,
 };
 

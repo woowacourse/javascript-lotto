@@ -14,8 +14,8 @@ import { parseNumber } from "../utils/parseNumber.js";
 import MESSAGES from "../constants/messages.js";
 
 class LottoController {
-  #RETRY_YES = ["y", "Y"];
-  #RETRY_NO = ["n", "N"];
+  static #RETRY_YES = ["y", "Y"];
+  static #RETRY_NO = ["n", "N"];
 
   async init() {
     const boughtLottos = await this.#processBuyingLottos();
@@ -25,7 +25,7 @@ class LottoController {
 
     const retryChecker = await retryOnError(this.#readRetryChecker.bind(this));
 
-    if (this.#RETRY_YES.includes(retryChecker)) await this.init();
+    if (LottoController.#RETRY_YES.includes(retryChecker)) await this.init();
   }
 
   async #processBuyingLottos() {
@@ -54,7 +54,7 @@ class LottoController {
   async #processShowingLottoResult(boughtLottos, winningLotto) {
     const lottoRanks = winningLotto.rankLottos(boughtLottos);
 
-    const rankResult = LottoResultMaker.arrangeRankResult(lottoRanks);
+    const rankResult = LottoResultMaker.arrangeRanks(lottoRanks);
     const profitRate = LottoResultMaker.calculateProfitRate(lottoRanks);
 
     OutputView.printBlankLine();
@@ -104,7 +104,10 @@ class LottoController {
   }
 
   #validateRetryChecker(string) {
-    const RETRY_OPTION = [...this.#RETRY_YES, ...this.#RETRY_NO];
+    const RETRY_OPTION = [
+      ...LottoController.#RETRY_YES,
+      ...LottoController.#RETRY_NO,
+    ];
 
     if (!RETRY_OPTION.includes(string)) {
       throw new Error(MESSAGES.ERROR.invalidRetryChecker);

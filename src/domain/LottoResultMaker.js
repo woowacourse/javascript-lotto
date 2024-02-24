@@ -6,7 +6,7 @@ import {
 } from "../constants/lotto.js";
 
 class LottoResultMaker {
-  static arrangeRankResult(ranks) {
+  static arrangeRanks(ranks) {
     return ranks.reduce((result, rank) => {
       const COUNT_INCREMENT = 1;
       result[rank] += COUNT_INCREMENT;
@@ -16,7 +16,7 @@ class LottoResultMaker {
   }
 
   static calculateProfitRate(ranks) {
-    const rankResult = this.getRankResult(ranks);
+    const rankResult = this.arrangeRanks(ranks);
     const lottoCount = ranks.length;
 
     const prizeAmount = this.#sumPrizeAmount(rankResult);
