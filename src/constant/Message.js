@@ -12,12 +12,12 @@ const MESSAGE = {
     return '[' + lottoNumbers.map(number => number.toString()).join(', ') + ']';
   },
   blank: '',
-  winningCharacteristics(winningResult) {
+  winningCharacteristicsResult(winningResult) {
     return Object.entries(winningResult)
       .sort((a, b) => a[0].localeCompare(b[0]))
       .map(
         ([matched, count]) =>
-          `${MESSAGE.winningCharacteristics[matched]} - ${count}개`,
+          `${this.winningCharacteristics[matched]} - ${count}개`,
       )
       .join('\n');
   },

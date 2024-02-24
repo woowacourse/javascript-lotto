@@ -1,4 +1,4 @@
-import ERROR from '../../constant/Error.js';
+import ERROR from '../../constant/Error';
 
 class RetryAnswer {
   #isRetry;
@@ -13,7 +13,7 @@ class RetryAnswer {
   }
 
   #validate(answer) {
-    if (!['y', 'Y', 'n', 'N'].includes(isRetry)) {
+    if (!['y', 'Y', 'n', 'N'].includes(answer)) {
       throw new Error(ERROR.retryYN);
     }
   }

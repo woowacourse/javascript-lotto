@@ -1,4 +1,4 @@
-import CONDITION from '../../constant/Condition.js';
+import CONDITION from '../../constant/Condition';
 
 class WinningRewardService {
   #winningResult;

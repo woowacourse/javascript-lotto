@@ -1,6 +1,6 @@
-import CONDITION from '../../constant/Condition.js';
-import ERROR from '../../constant/Error.js';
-import LottoNumber from './LottoNumber.js';
+import CONDITION from '../../constant/Condition';
+import ERROR from '../../constant/Error';
+import LottoNumber from './LottoNumber';
 
 class LottoNumberList {
   #lottoNumbers;
@@ -8,12 +8,8 @@ class LottoNumberList {
   constructor(numbers) {
     this.#validate(numbers);
     this.#lottoNumbers = numbers
-      .map(num => new LottoNumber(num))
+      .map(num => LottoNumber.fromString(num))
       .sort((a, b) => a.getNumber() - b.getNumber());
-  }
-
-  static fromString(numberStrings) {
-    return new LottoNumberList(numberStrings.map(numStr => Number(numStr)));
   }
 
   getNumbers() {

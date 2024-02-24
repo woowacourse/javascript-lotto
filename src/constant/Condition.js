@@ -14,6 +14,9 @@ const CONDITION = {
 
   secondPrizeMatchCount: 5,
   secondPrizeMatchBonusCount: 1,
+
+  lottosNumbersIndex: 0,
+  purchaseCountIndex: 1,
 };
 
 export default CONDITION;

@@ -1,7 +1,7 @@
-import CONDITION from '../../constant/Condition.js';
-import ERROR from '../../constant/Error.js';
-import LottoNumber from './LottoNumber.js';
-import LottoNumberList from './LottoNumberList.js';
+import CONDITION from '../../constant/Condition';
+import ERROR from '../../constant/Error';
+import LottoNumber from './LottoNumber';
+import LottoNumberList from './LottoNumberList';
 
 class WinningLotto {
   #winningLottoNumberList;
