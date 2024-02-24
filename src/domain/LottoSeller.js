@@ -7,14 +7,14 @@ class LottoSeller {
   static LOTTO_PRICE = 1000;
 
   static sell(money) {
-    this.#validateMoney(money);
+    this.#validateLottoMoney(money);
 
     const lottoCount = this.#calculateLottoCount(money);
 
     return this.#pickLottos(lottoCount);
   }
 
-  static #validateMoney(money) {
+  static #validateLottoMoney(money) {
     this.#validateTypeMoney(money);
     this.validateMinimumAmount(money);
   }
