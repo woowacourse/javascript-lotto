@@ -26,7 +26,7 @@ class WinningStatsMaker {
     if (matchCount === 5 && !hasBonusNumber) return 3;
     if (matchCount === 4) return 4;
     if (matchCount === 3) return 5;
-    if (matchCount < 3) return 7;
+    if (matchCount < 3) return 6;
   }
 
   #updateWinningStats(rank, winningStats) {
