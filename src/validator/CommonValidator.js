@@ -4,7 +4,7 @@ import AppError from "../utils/Error.js";
 
 const { EMPTY_INPUT, SPACE_IN_INPUT, INCLUDES_EMPTY_INPUT } = ERROR_MESSAGE;
 
-const CommonValidator = {
+const commonValidator = {
   validateEmpty(input) {
     const isEmptyString = typeof input === "string" && input === SYMBOL.BLANK;
     const isEmptyArray = Array.isArray(input) && input.includes(SYMBOL.BLANK);
@@ -30,4 +30,4 @@ const CommonValidator = {
   },
 };
 
-export default CommonValidator;
+export default commonValidator;
