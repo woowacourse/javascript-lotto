@@ -23,7 +23,7 @@ class Lotto {
 
     if (prize === undefined) return RANK.LAST_PLACE;
 
-    return prize[0] === RANK.SECOND_PLACE ? this.decideSecondPlace(bonusNumber) : prize[0];
+    return prize[0] === RANK.THIRD_PLACE ? this.decideSecondPlace(bonusNumber) : prize[0];
   }
 }
 
