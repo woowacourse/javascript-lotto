@@ -3,6 +3,7 @@ module.exports = {
     es2021: true,
     node: true,
     jest: true,
+    browser: true,
   },
   extends: ['airbnb-base', 'plugin:jsdoc/recommended', 'plugin:jest/recommended', 'prettier'],
   overrides: [
@@ -10,6 +11,14 @@ module.exports = {
       files: ['*.test.js', 'console.js', 'object.js', 'random.js'],
       rules: {
         'max-lines-per-function': ['off'],
+      },
+    },
+    {
+      files: ['src/components/**/*.js'],
+      rules: {
+        'max-lines-per-function': ['off'],
+        'max-params': ['off'],
+        'max-depth': ['off'],
       },
     },
     {
