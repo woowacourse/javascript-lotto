@@ -1,77 +1,83 @@
+import LOTTO_SETTING from '../Constants/lottoSetting';
+import ERROR_MESSAGE from '../Constants/Messages/errorMessage';
+import generateRandomNumberFromRange from '../Utils/generateRandomNumberFromRange';
+import RewardGenerator from './RewardGenerator';
+import AppError from '../Error/AppError';
 import Lotto from './Lotto';
-import { LOTTO_NUMBER_RANGE, LOTTO_LENGTH } from './LottoNumber';
-
-const PRIZE_MONEY = [null, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
-const LOTTO_PRICE = 1_000;
-
-const INVALID_MONEY_MESSAGE = `로또 구입 금액은 최소 ${LOTTO_PRICE.toLocaleString()}원입니다.`;
+import LOTTO_REWARD from '../Constants/lottoReward';
 
 export default class LottoMachine {
   #money;
 
-  #income = 0;
+  #totalPrize = 0;
 
-  #lottos;
+  #boughtLottos;
+
+  #rewardGenerator;
 
   constructor(money) {
+    this.#rewardGenerator = new RewardGenerator();
     this.#money = money;
-    this.#validMoney();
+    this.#validateMoney();
     this.#makeLottoByMoney();
   }
 
-  #validMoney() {
-    if (this.#money < LOTTO_PRICE) {
-      throw new Error(INVALID_MONEY_MESSAGE);
+  #validateMoney() {
+    if (this.#money < LOTTO_SETTING.MIN_PRICE) {
+      throw new AppError(ERROR_MESSAGE.INVALID_MIN_MONEY);
     }
   }
 
   #makeLottoByMoney() {
-    const CNT = Math.floor(this.#money / LOTTO_PRICE);
-    this.#lottos = Array.from({ length: CNT }, () => {
-      const numbers = this.#makeRandomNumbers();
-      return new Lotto(numbers);
+    const totalBoughtLottoCount = Math.floor(this.#money / LOTTO_SETTING.MIN_PRICE);
+
+    this.#boughtLottos = Array.from({ length: totalBoughtLottoCount }, () => {
+      const newLotto = this.#makeNewLotto();
+      return new Lotto(newLotto).getLottoNumbers();
     });
   }
 
-  #makeRandomNumbers() {
+  #makeNewLotto() {
     const lottoSet = new Set();
 
-    while (lottoSet.size !== LOTTO_LENGTH) {
-      lottoSet.add(Math.ceil(Math.random() * LOTTO_NUMBER_RANGE.MAX));
+    while (lottoSet.size !== LOTTO_SETTING.VALID_LENGTH) {
+      const randomLottoNumber = generateRandomNumberFromRange(LOTTO_SETTING.MIN_NUM, LOTTO_SETTING.MAX_NUM);
+      lottoSet.add(randomLottoNumber);
     }
     return [...lottoSet];
   }
 
   getLottos() {
-    return [...this.#lottos];
+    return [...this.#boughtLottos];
   }
 
-  getWinLottos(winNumbersObj) {
-    const NUMBER_OF_RANK_TYPE = 5;
-    const resultRankCounts = [null, ...Array.from({ length: NUMBER_OF_RANK_TYPE }, () => 0)];
-    this.#lottos.forEach((lotto) => {
-      const rank = this.#calculateIndividualLotto(lotto, winNumbersObj);
-      if (rank) resultRankCounts[rank] += 1;
+  /**
+   * 당첨 번호와 보너스 번호를 담은 객체를 인자로 받아서, 전체적인 등수 로직을 실행합니다.
+   * @param { object{} } totalWinningLottoInfo
+   * @returns { rewardResult[] }
+   */
+
+  getRewardResult(totalWinningLottoInfo) {
+    this.#boughtLottos.forEach((lottoNumber) => {
+      this.#rewardGenerator.calculateRewardRank(lottoNumber, totalWinningLottoInfo);
     });
-    this.#calculateIncome(resultRankCounts);
-    return resultRankCounts;
+
+    const totalRewardResult = this.#rewardGenerator.getTotalRewardResult();
+
+    this.#calculateTotalPrize(totalRewardResult);
+
+    return totalRewardResult;
   }
 
-  #calculateIndividualLotto(lotto, winNumbersObj) {
-    lotto.calculateRank(winNumbersObj);
-    const rank = lotto.getRank();
-
-    return rank;
-  }
-
-  #calculateIncome(lottoRanks) {
-    lottoRanks.forEach((cnt, index) => {
-      this.#income += cnt * PRIZE_MONEY[index];
+  #calculateTotalPrize(totalRewardResult) {
+    totalRewardResult.forEach((rewardResult) => {
+      if (rewardResult.count) {
+        this.#totalPrize += LOTTO_REWARD[rewardResult.rank].prize;
+      }
     });
   }
 
   getRateOfIncome() {
-    const NUMBER_OF_DECIMAL_PLACES = 1;
-    return Number(((this.#income / this.#money) * 100).toFixed(NUMBER_OF_DECIMAL_PLACES)).toLocaleString();
+    return Number(((this.#totalPrize / this.#money) * 100).toFixed(1)).toLocaleString();
   }
 }
