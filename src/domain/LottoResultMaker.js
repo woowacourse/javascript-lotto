@@ -1,11 +1,12 @@
 import LottoSeller from "./LottoSeller.js";
+
 import {
   LOTTO_RANK_INITIAL_RESULT,
   LOTTO_RANK_TO_PRIZE,
 } from "../constants/lotto.js";
 
 class LottoResultMaker {
-  static getRankResult(ranks) {
+  static arrangeRankResult(ranks) {
     return ranks.reduce((result, rank) => {
       const COUNT_INCREMENT = 1;
       result[rank] += COUNT_INCREMENT;
@@ -14,14 +15,21 @@ class LottoResultMaker {
     }, this.#getInitialRankResult());
   }
 
-  static getProfitRate(rankResult, lottoCount) {
-    const prizeAmount = this.#getPrizeAmount(rankResult);
+  static calculateProfitRate(ranks) {
+    const rankResult = this.getRankResult(ranks);
+    const lottoCount = ranks.length;
+
+    const prizeAmount = this.#sumPrizeAmount(rankResult);
     const purchaseAmount = lottoCount * LottoSeller.LOTTO_PRICE;
 
     return (prizeAmount / purchaseAmount) * 100;
   }
 
-  static #getPrizeAmount(rankResult) {
+  static #getInitialRankResult() {
+    return { ...LOTTO_RANK_INITIAL_RESULT };
+  }
+
+  static #sumPrizeAmount(rankResult) {
     const ranks = Object.keys(rankResult);
 
     return ranks.reduce((prizeTotal, rank) => {
@@ -30,10 +38,6 @@ class LottoResultMaker {
 
       return prizeTotal + prizeAmount;
     }, 0);
-  }
-
-  static #getInitialRankResult() {
-    return { ...LOTTO_RANK_INITIAL_RESULT };
   }
 }
 

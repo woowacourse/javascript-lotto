@@ -1,5 +1,6 @@
-import MESSAGES from "../constants/messages.js";
 import { validateTypeInteger } from "../utils/validator.js";
+
+import MESSAGES from "../constants/messages.js";
 
 export default class LottoNumber {
   static MIN = 1;

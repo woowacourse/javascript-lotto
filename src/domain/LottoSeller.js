@@ -1,7 +1,8 @@
-import Random from "../utils/random.js";
-import Lotto from "./Lotto.js";
-import LottoNumber from "./LottoNumber.js";
 import Money from "./Money.js";
+import LottoNumber from "./LottoNumber.js";
+import Lotto from "./Lotto.js";
+
+import Random from "../utils/random.js";
 
 class LottoSeller {
   static LOTTO_PRICE = 1000;

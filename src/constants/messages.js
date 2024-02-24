@@ -1,3 +1,5 @@
+import { LOTTO_RANK } from "./lotto";
+
 const addErrorPrefix = (message) => `[ERROR] ${message}`;
 
 export const ERROR = {
@@ -13,16 +15,14 @@ export const ERROR = {
     "유효한 개수의 로또 숫자가 아닙니다"
   ),
   notInteger: addErrorPrefix("정수가 아닌 값입니다."),
-
-  undividableByLottoPriceHead: addErrorPrefix("로또 금액("),
-  undividableByLottoPriceTail: ")으로 나눠지지 않는 금액입니다.",
-
-  invalidBuyAmountRangeHead: addErrorPrefix("유효한 구입 금액 범위("),
-  invalidBuyAmountRangeMiddle: " ~ ",
-  invalidBuyAmountRangeTail: ")를 벗어났습니다.",
 };
 
-export const messageFormatter = {};
+export const errorMessageFormatter = {
+  undividableByLottoPrice: (price) =>
+    `로또 금액(${price})으로 나눠지지 않는 금액입니다.`,
+  invalidBuyAmountRange: (min, max) =>
+    `유효한 구입 금액 범위(${min} ~ ${max})를 벗어났습니다.`,
+};
 
 export const INPUT = {
   buyAmount: "구입금액을 입력해 주세요.",
@@ -51,6 +51,20 @@ export const OUTPUT = {
 
   profitRateHead: "총 수익률은 ",
   profitRateTail: "%입니다.",
+};
+
+export const outputMessageFormatter = {
+  boughtLottosCompleted: (count) => `${count}개를 구매했습니다.`,
+  array: (array) => `[${array.join(", ")}]`,
+  lottoResult: (rankResult, profitRate) =>
+    `
+3개 일치 (5,000원) - ${rankResult[LOTTO_RANK.fifth]}개
+4개 일치 (50,000원) - ${rankResult[LOTTO_RANK.fourth]}개
+5개 일치 (1,500,000원) - ${rankResult[LOTTO_RANK.third]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankResult[LOTTO_RANK.second]}개
+6개 일치 (2,000,000,000원) - ${rankResult[LOTTO_RANK.first]}개
+총 수익률은 ${profitRate}%입니다.
+  `,
 };
 
 const MESSAGES = { ERROR, INPUT, OUTPUT };

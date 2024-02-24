@@ -10,7 +10,12 @@ describe("LottoResultMaker에 대한 유닛 테스트", () => {
       LOTTO_RANK.fifth,
     ];
 
-    expect(LottoResultMaker.getLottoResult(GIVEN_RANKS)).toEqual({
+    const result = {
+      rankResult: LottoResultMaker.arrangeRankResult(GIVEN_RANKS),
+      profitRate: LottoResultMaker.calculateProfitRate(GIVEN_RANKS),
+    };
+
+    expect(result).toEqual({
       rankResult: {
         first: 1,
         second: 1,
@@ -19,7 +24,6 @@ describe("LottoResultMaker에 대한 유닛 테스트", () => {
         fifth: 1,
         none: 1,
       },
-
       profitRate: (2_030_005_000 / 4000) * 100,
     });
   });

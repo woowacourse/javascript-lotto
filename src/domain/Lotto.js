@@ -1,5 +1,6 @@
-import { sortAscending } from "../utils/sortAscending.js";
 import LottoNumber from "./LottoNumber.js";
+
+import { sortAscending } from "../utils/sortAscending.js";
 import {
   validateUniqueElements,
   validateLengthEqual,

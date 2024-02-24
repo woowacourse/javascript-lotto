@@ -54,8 +54,8 @@ class LottoController {
   async #processShowingLottoResult(boughtLottos, winningLotto) {
     const lottoRanks = winningLotto.rankLottos(boughtLottos);
 
-    const rankResult = LottoResultMaker.getRankResult(lottoRanks);
-    const profitRate = LottoResultMaker.getProfitRate(lottoRanks);
+    const rankResult = LottoResultMaker.arrangeRankResult(lottoRanks);
+    const profitRate = LottoResultMaker.calculateProfitRate(lottoRanks);
 
     OutputView.printBlankLine();
     OutputView.printLottoResult(rankResult, profitRate);
