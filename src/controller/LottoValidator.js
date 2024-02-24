@@ -1,6 +1,6 @@
-import LottoSeller from "./LottoSeller.js";
+import LottoSeller from "../domain/LottoSeller.js";
 import MESSAGES from "../view/constants/messages.js";
-import NUMBERS from "./constants/numbers.js";
+import NUMBERS from "../domain/constants/numbers.js";
 
 class LottoValidator {
   static validateBuyAmount(number) {
@@ -11,7 +11,6 @@ class LottoValidator {
 
   static validateLottoNumbers(numbers) {
     this.#validateLottoNumbersLength(numbers);
-    this.#validateIntegers(numbers);
     this.#validateNumbersInLottoRange(numbers);
     this.#validateUniqueElements(numbers);
   }
@@ -20,11 +19,6 @@ class LottoValidator {
     this.#validateInteger(bonusNumber);
     this.#validateNumberInLottoRange(bonusNumber);
     this.#validateUniqueElements([...winningNumbers, bonusNumber]);
-  }
-
-  static validateLottoNumberString(string) {
-    this.validateNonNegativeIntegerString(string);
-    this.#validateNumberInLottoRange(Number(string));
   }
 
   static validateNonNegativeIntegerString(string) {
@@ -38,7 +32,7 @@ class LottoValidator {
   }
 
   static #validateNumberInLottoRange(number) {
-    if (number < NUMBERS.minLottoNumber || number > NUMBERS.maxLottoNumber) {
+    if (number < NUMBERS.minLottoNumber || NUMBERS.maxLottoNumber < number) {
       throw new Error(MESSAGES.ERROR.notInLottoNumberRange);
     }
   }
@@ -53,10 +47,6 @@ class LottoValidator {
     if (numbers.length !== NUMBERS.lottoNumbersLength) {
       throw new Error(MESSAGES.ERROR.invalidLottoNumbersLength);
     }
-  }
-
-  static #validateIntegers(numbers) {
-    numbers.forEach((number) => this.#validateInteger(number));
   }
 
   static #validateInteger(number) {
@@ -74,13 +64,13 @@ class LottoValidator {
   }
   static #validateInBuyAmountRange(number) {
     const MIN_BUY_AMOUNT = LottoSeller.LOTTO_PRICE;
-    const MAX_BUY_AMOUNT = Number.MAX_SAFE_INTEGER;
+    const MAX_BUY_AMOUNT = LottoSeller.LOTTO_PRICE * 1000000;
 
     const isInRange = MIN_BUY_AMOUNT <= number && number <= MAX_BUY_AMOUNT;
 
     if (!isInRange) {
       throw new Error(
-        `${MESSAGES.ERROR.invalidBuyAmountRangeHead}${MIN_BUY_AMOUNT}${MESSAGES.ERROR.invalidBuyAmountRangeMiddle}${MESSAGES.ERROR.invalidBuyAmountRangeTail}`
+        `${MESSAGES.ERROR.invalidBuyAmountRangeHead}${MIN_BUY_AMOUNT}${MESSAGES.ERROR.invalidBuyAmountRangeMiddle}${MAX_BUY_AMOUNT}${MESSAGES.ERROR.invalidBuyAmountRangeTail}`
       );
     }
   }

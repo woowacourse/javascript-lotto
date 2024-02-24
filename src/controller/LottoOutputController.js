@@ -5,10 +5,10 @@ class LottoOutputController {
     this.#outputView = outputView;
   }
 
-  printBoughtLotto(lottos) {
+  printBoughtLottos(lottos) {
     const lottosCopy = lottos.map((lotto) => lotto.slice());
 
-    this.#outputView.printBoughtLotto(lottos);
+    this.#outputView.printBoughtLottos(lottosCopy);
   }
 
   printLottoResult(lottoResult) {

@@ -1,4 +1,4 @@
-import LottoValidator from "../domain/LottoValidator";
+import LottoValidator from "./LottoValidator";
 import LottoSeller from "../domain/LottoSeller";
 
 import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs";
@@ -52,13 +52,13 @@ class LottoInputController {
     const rawWinningNumbers = await this.#inputView.readWinningNumbers();
     const winningNumberStrings = rawWinningNumbers.split(",");
     winningNumberStrings.forEach((string) => {
-      LottoValidator.validateLottoNumberString(string);
+      LottoValidator.validateNonNegativeIntegerString(string);
     });
 
-    const parsedWinningNumbers = winningNumberStrings.map(Number);
-    LottoValidator.validateLottoNumbers(parsedWinningNumbers);
+    const winningNumbers = winningNumberStrings.map(Number);
+    LottoValidator.validateLottoNumbers(winningNumbers);
 
-    return parsedWinningNumbers;
+    return winningNumbers;
   }
 
   async #readBonusNumber(winningNumbers) {

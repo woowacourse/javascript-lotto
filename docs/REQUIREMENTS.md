@@ -70,6 +70,11 @@
 - [x] 에러 메시지 사용자 친화적으로 작성하기
 - [ ] 테스트에서 예외 처리시 예외 문구 확인
 - [ ] 객체 분리하기
+  - [x] `inputControll` 분리
+  - [x] `outputControll` 분리
+  - [x] `LottoResult` 분리
+  - [ ] `LottoValidator` 분리 및 로직 변경
+  - [ ] `retry` 로직 분리
 
 - [ ] esLint 적용
 - [ ] 에러 메시지 분리 

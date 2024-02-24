@@ -33,10 +33,9 @@ class LottoController {
   async #play() {
     const lottos = await this.#inputController.readLottos();
 
-    OutputView.printBoughtLottos(lottos);
+    this.#outputController.printBoughtLottos(lottos);
 
     const lottoBoard = await this.#inputController.readLottoBoard();
-
     const lottoResult = LottoResultMaker.getLottoResult(lottos, lottoBoard);
 
     this.#outputController.printLottoResult(lottoResult);
