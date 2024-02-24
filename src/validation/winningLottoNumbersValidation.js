@@ -1,4 +1,5 @@
 import ERROR_MESSAGE from "../constants/errorMessage.js";
+import { LOTTO_SETTING } from "../constants/lottoConstants.js";
 
 /**
  * 로또 당첨 번호 배열의 유효성 검사
@@ -8,7 +9,7 @@ const winningLottoNumbersValidation = {
     sixNumbers: {
       errorMessage: ERROR_MESSAGE.SIX_LENGTH,
       isValid(input) {
-        return input.length === 6;
+        return input.length === LOTTO_SETTING.LENGTH;
       },
     },
 

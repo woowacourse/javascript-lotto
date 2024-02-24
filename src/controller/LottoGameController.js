@@ -5,6 +5,7 @@ import rankCounter from "../domain/rankCounter.js";
 import getLottoPrizeMoney from "../domain/getLottoPrizeMoney.js";
 import getRandomLottoArray from "../domain/getRandomLottoArray.js";
 import { calculator } from "../domain/calculator.js";
+import { LOTTO_SETTING } from "../constants/lottoConstants.js";
 
 class LottoGameController {
   #budget;
@@ -21,7 +22,7 @@ class LottoGameController {
   async #buyLotto() {
     await this.#initBudget();
 
-    const lottoCount = calculator.getQuotient(this.#budget, 1000);
+    const lottoCount = calculator.getQuotient(this.#budget, LOTTO_SETTING.PRICE);
     return lottoCount;
   }
 

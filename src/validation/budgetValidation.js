@@ -1,3 +1,4 @@
+import { LOTTO_SETTING } from "../constants/lottoConstants.js";
 import ERROR_MESSAGE from "../constants/errorMessage.js";
 
 const budgetValidation = {
@@ -12,14 +13,14 @@ const budgetValidation = {
     outOfRange: {
       errorMessage: ERROR_MESSAGE.BUDGET_RANGE,
       isValid(input) {
-        return input >= 1000 && input <= 100000;
+        return input >= LOTTO_SETTING.PRICE && input <= LOTTO_SETTING.MAX_PRICE;
       },
     },
 
     divisibleByMinimumPrice: {
       errorMessage: ERROR_MESSAGE.DIVISIBLE_BY_MIN_PRICE,
       isValid(input) {
-        return input % 1000 === 0;
+        return input % LOTTO_SETTING.PRICE === 0;
       },
     },
   },

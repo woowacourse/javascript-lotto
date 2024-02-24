@@ -5,3 +5,12 @@ export const AMOUNT = {
   4: 50000,
   5: 5000,
 };
+
+export const LOTTO_SETTING = {
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
+  LENGTH: 6,
+
+  PRICE: 1000,
+  MAX_PRICE: 100000,
+};
