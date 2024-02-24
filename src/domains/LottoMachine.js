@@ -1,9 +1,8 @@
 import { ERROR_MESSAGE, LOTTO_RULE } from '../constants';
-import { RandomNumber } from '../utils';
+import { isInteger, RandomNumber } from '../utils';
 import Lotto from './Lotto';
 import {
   isDivisibleByPrice,
-  isInteger,
   isValidNumbersOfTickets,
   isValidWinningNumbersForm,
 } from './validator/validators';

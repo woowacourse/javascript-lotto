@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE } from '../constants';
+import { isIntegers } from '../utils';
 import {
-  isIntegers,
   isLottoNumbersInRange,
   isValidLottoNumberCount,
 } from './validator/validators';
