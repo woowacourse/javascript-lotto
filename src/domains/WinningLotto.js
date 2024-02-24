@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from '../constants';
-import { isInteger } from '../utils';
+import { isEmptyInput, isInteger } from '../utils';
 import {
   isLottoNumberInRange,
   isNotInLottoNumber,
@@ -43,6 +43,9 @@ class WinningLotto {
 
   #validateBonusNumber(bonusNumberInput) {
     const bonusNumber = Number(bonusNumberInput);
+
+    if (isEmptyInput(bonusNumberInput))
+      throw new Error(ERROR_MESSAGE.emptyInput);
 
     if (!isInteger(bonusNumber)) throw new Error(ERROR_MESSAGE.notInteger);
 

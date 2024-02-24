@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE, LOTTO_RULE } from '../constants';
-import { isInteger, RandomNumber } from '../utils';
+import { isEmptyInput, isInteger, RandomNumber } from '../utils';
 import Lotto from './Lotto';
 import {
   isDivisibleByPrice,
@@ -62,6 +62,9 @@ class LottoMachine {
   #validatePaymentAmount(paymentAmountInput) {
     const paymentAmount = Number(paymentAmountInput);
 
+    if (isEmptyInput(paymentAmountInput))
+      throw new Error(ERROR_MESSAGE.emptyInput);
+
     if (!isInteger(paymentAmount)) throw new Error(ERROR_MESSAGE.notInteger);
 
     if (!isDivisibleByPrice(paymentAmount))
@@ -72,6 +75,8 @@ class LottoMachine {
   }
 
   #validateLottoNumbersForm(numbersInput) {
+    if (isEmptyInput(numbersInput)) throw new Error(ERROR_MESSAGE.emptyInput);
+
     if (!isValidWinningNumbersForm(numbersInput))
       throw new Error(ERROR_MESSAGE.inValidwinningNumbersForm);
   }
