@@ -58,7 +58,7 @@ class WinningDetailForm extends BaseComponent {
 
       this.#removeErrorMessage();
 
-      const params = this.#createWinningResultParams();
+      const params = this.#createWinningResultParams({ winningNumber, bonusNumber });
       const { winningRankResult, rateOfReturn } = WinningResultService.createWinningResult(params);
 
       this.emit('openModal', { winningRankResult, rateOfReturn });
@@ -85,8 +85,12 @@ class WinningDetailForm extends BaseComponent {
     return { winningNumber, bonusNumber };
   }
 
-  #createWinningResultParams() {
-    return document.querySelector('purchased-lotto-section').getBuyLottoDetails();
+  #createWinningResultParams({ winningNumber, bonusNumber }) {
+    const { buyLottoPrice, lottoNumbers } = document
+      .querySelector('purchased-lotto-section')
+      .getBuyLottoDetails();
+
+    return { winningNumber, bonusNumber, buyLottoPrice, lottoNumbers };
   }
 
   render() {

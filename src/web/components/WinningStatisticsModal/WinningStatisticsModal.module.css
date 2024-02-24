@@ -1,0 +1,101 @@
+winning-statistics-modal {
+  opacity: 1;
+  visibility: visible;
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.25s ease;
+  z-index: 2;
+}
+
+.modalInner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 35rem;
+  transition: top 0.25s ease;
+  height: 50rem;
+  margin: auto;
+  overflow: auto;
+  background: #fff;
+  border-radius: 0.5rem;
+  position: relative;
+  padding: 0rem 1.6rem;
+}
+
+.modalCloseButton {
+  padding: 0;
+  margin: 2rem;
+  width: 2rem;
+  position: absolute;
+  right: 0rem;
+  top: 0rem;
+  cursor: pointer;
+}
+
+.modalCloseIcon {
+  stroke: #000000;
+  fill: transparent;
+  stroke-width: 5;
+}
+
+svg {
+  display: block;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.title {
+  padding-bottom: 2rem;
+}
+
+.tableContainer {
+  justify-content: center;
+  display: flex;
+}
+
+.resultTable {
+  width: 31.8rem;
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.rateOfReturnMessage {
+  text-align: center;
+  margin: 3.2rem 0rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.resetButton {
+  height: 3.6rem;
+  border-radius: 0.4rem;
+  background-color: #4e5ba6;
+  color: #ffffff;
+}
+
+tbody,
+thead {
+  width: 100%;
+}
+
+th,
+td {
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+th {
+  border-top: 0.1rem solid #dcdcdc;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
