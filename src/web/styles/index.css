@@ -1,0 +1,32 @@
+html {
+  font-size: 10px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 2.4rem;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.body,
+.placeholder {
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.button,
+.caption {
+  line-height: 0.125rem;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.error-message {
+  color: red;
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+}

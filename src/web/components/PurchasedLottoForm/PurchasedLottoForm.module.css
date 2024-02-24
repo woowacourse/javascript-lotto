@@ -1,0 +1,44 @@
+purchased-lotto-form {
+  margin-top: 2.8rem;
+}
+
+purchased-lotto-form > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputContainer {
+  margin-top: 0.4rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.purchasedLottoPriceInput {
+  margin-right: 1.3rem;
+  width: 31rem;
+  border-radius: 0.4rem;
+  height: 3.6rem;
+  border: 1px solid #b4b4b4;
+  padding: 0.8rem 0rem 0.4rem 0.4rem;
+  -moz-appearance: textfield;
+}
+
+.purchasedLottoPriceInput::placeholder {
+  color: #8b8b8b;
+}
+
+.purchasedLottoPriceInput::-webkit-outer-spin-button,
+.purchasedLottoPriceInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.purchasedButton {
+  width: 5.6rem;
+  height: 3.6rem;
+  background-color: #4e5ba6;
+  border-radius: 0.4rem;
+  color: #ffffff;
+}
