@@ -1,4 +1,4 @@
-class UniquePositivePicker {
+class UniquePositivesPicker {
   #MAX_UPPER = 100000;
   #MIN_UPPER = 1;
 
@@ -63,4 +63,4 @@ class UniquePositivePicker {
   }
 }
 
-export default UniquePositivePicker;
+export default UniquePositivesPicker;
