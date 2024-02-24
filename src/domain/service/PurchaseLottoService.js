@@ -1,4 +1,3 @@
-import { MakeRandom } from '../../Utils/Utils';
 import CONDITION from '../../constant/Condition';
 import ERROR from '../../constant/Error';
 import LottoNumberList from '../entity/LottoNumberList';
