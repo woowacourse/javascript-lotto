@@ -8,10 +8,17 @@ import OutputView from "../view/OutputView.js";
 import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs.js";
 
 import MESSAGES from "../view/constants/messages.js";
+import LottoInputController from "./LottoInputController.js";
 
 class LottoController {
   #RETRY_YES = ["y", "Y"];
   #RETRY_NO = ["n", "N"];
+  #outputController;
+  #inputController;
+
+  constructor(outputView = OutputView, inputView = InputView) {
+    this.#inputController = new LottoInputController(inputView, outputView);
+  }
 
   async start() {
     while (true) {
@@ -25,12 +32,13 @@ class LottoController {
   }
 
   async #play() {
-    const lottos = await this.#readLottos();
-    OutputView.printBoughtLottos(lottos.map((lotto) => lotto.slice()));
+    const lottos = await this.#inputController.readLottos();
 
-    const winningLotto = await this.#readWinningLotto();
+    OutputView.printBoughtLottos(lottos);
 
-    const lottoResult = LottoResultMaker.getLottoResult(lottos, winningLotto);
+    const lottoBoard = await this.#inputController.readLottoBoard();
+
+    const lottoResult = LottoResultMaker.getLottoResult(lottos, lottoBoard);
 
     OutputView.printLottoResult(
       lottoResult.getRankArray(),
@@ -38,69 +46,11 @@ class LottoController {
     );
   }
 
-  async #readWinningNumbers() {
-    const rawWinningNumbers = await InputView.readWinningNumbers();
-    const winningNumberStrings = rawWinningNumbers.split(",");
-    winningNumberStrings.forEach((string) => {
-      LottoValidator.validateLottoNumberString(string);
-    });
-
-    const parsedWinningNumbers = winningNumberStrings.map(Number);
-    LottoValidator.validateLottoNumbers(parsedWinningNumbers);
-
-    return parsedWinningNumbers;
-  }
-
-  async #readLottos() {
-    const buyAmount = await retryWhenErrorOccurs(
-      this.#readBuyAmount.bind(this)
-    );
-
-    const lottos = LottoSeller.sellLottos(buyAmount);
-    return lottos;
-  }
-
-  async #readWinningLotto() {
-    const winningNumbers = await retryWhenErrorOccurs(
-      this.#readWinningNumbers.bind(this)
-    );
-    OutputView.printBlankLine();
-    const bonusNumber = await retryWhenErrorOccurs(
-      this.#readBonusNumber,
-      winningNumbers
-    );
-    const winningLotto = await retryWhenErrorOccurs(
-      () => new LottoBoard(winningNumbers, bonusNumber)
-    );
-
-    return winningLotto;
-  }
-
-  async #readBonusNumber(winningNumbers) {
-    const bonusNumberString = await InputView.readBonusNumber();
-    LottoValidator.validateNonNegativeIntegerString(bonusNumberString);
-
-    const bonusNumber = Number(bonusNumberString);
-    LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
-
-    return bonusNumber;
-  }
-
   async #readRetryChecker() {
     const retryCheck = await InputView.readRetryChecker();
     this.#validateRetryChecker(retryCheck);
 
     return retryCheck;
-  }
-
-  async #readBuyAmount() {
-    const rawBuyAmount = await InputView.readBuyAmount();
-    LottoValidator.validateNonNegativeIntegerString(rawBuyAmount);
-
-    const parsedBuyAmount = Number(rawBuyAmount);
-    LottoValidator.validateBuyAmount(parsedBuyAmount);
-
-    return parsedBuyAmount;
   }
 
   #validateRetryChecker(string) {

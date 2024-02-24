@@ -22,6 +22,17 @@ class LottoValidator {
     this.#validateUniqueElements([...winningNumbers, bonusNumber]);
   }
 
+  static validateLottoNumberString(string) {
+    this.validateNonNegativeIntegerString(string);
+    this.#validateNumberInLottoRange(Number(string));
+  }
+
+  static validateNonNegativeIntegerString(string) {
+    const isNonNegativeInteger = /^[0-9]+$/.test(string);
+    if (!isNonNegativeInteger)
+      throw new Error(MESSAGES.ERROR.nonNegativeIntegerString);
+  }
+
   static #validateNumbersInLottoRange(numbers) {
     numbers.forEach((number) => this.#validateNumberInLottoRange(number));
   }
@@ -36,17 +47,6 @@ class LottoValidator {
     if (array.length !== new Set(array).size) {
       throw new Error(MESSAGES.ERROR.hasDuplicateElements);
     }
-  }
-
-  static validateLottoNumberString(string) {
-    this.validateNonNegativeIntegerString(string);
-    this.#validateNumberInLottoRange(Number(string));
-  }
-
-  static validateNonNegativeIntegerString(string) {
-    const isNonNegativeInteger = /^[0-9]+$/.test(string);
-    if (!isNonNegativeInteger)
-      throw new Error(MESSAGES.ERROR.nonNegativeIntegerString);
   }
 
   static #validateLottoNumbersLength(numbers) {
