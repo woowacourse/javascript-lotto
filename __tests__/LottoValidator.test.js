@@ -1,4 +1,4 @@
-import LottoValidator from '../src/domain/LottoValidator';
+import Lotto from '../src/domain/validator/Lotto';
 import Condition from '../src/constants/Condition';
 
 const { LOTTO } = Condition;
@@ -8,7 +8,7 @@ describe('로또 기능 테스트', () => {
     const numbers = [1, 2, 3, 4, 5, 6, 7];
 
     expect(() => {
-      LottoValidator.validateNumbersLength(numbers, LOTTO.NUMBER_LENGTH);
+      Lotto.validateNumbersLength(numbers, LOTTO.NUMBER_LENGTH);
     }).toThrow();
   });
 
@@ -16,7 +16,7 @@ describe('로또 기능 테스트', () => {
     const numbers = [1, 2, 3, 4, 5, 5];
 
     expect(() => {
-      LottoValidator.validateNumbersDuplicate(numbers);
+      Lotto.validateNumbersDuplicate(numbers);
     }).toThrow();
   });
 
@@ -24,7 +24,7 @@ describe('로또 기능 테스트', () => {
     const numbers = ['ㄱ', 2, 3, 4, 5, 6];
 
     expect(() => {
-      LottoValidator.validateNumbersType(numbers);
+      Lotto.validateNumbersType(numbers);
     }).toThrow();
   });
 
@@ -32,7 +32,7 @@ describe('로또 기능 테스트', () => {
     const numbers = [0, 1, 2, 3, 4, 5];
 
     expect(() => {
-      LottoValidator.validateNumbersRange(numbers);
+      Lotto.validateNumbersRange(numbers);
     }).toThrow();
   });
 });
