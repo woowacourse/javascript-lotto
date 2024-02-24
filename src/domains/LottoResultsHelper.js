@@ -47,7 +47,7 @@ class LottoResultsHelper {
   generateBonus(bonusNumberInput) {
     this.#winningData.bonus = new Bonus(
       bonusNumberInput,
-      this.#winningData.lottoNumbers,
+      this.#winningData.winningLotto.lottoNumbers,
     );
   }
 

@@ -10,7 +10,6 @@ class Bonus {
    * @param {number[]} winningLottoNumbers
    */
   constructor(bonusNumberInput, winningLottoNumbers) {
-    console.log('m', winningLottoNumbers);
     this.#validateBonusNumber(bonusNumberInput, winningLottoNumbers);
   }
 
