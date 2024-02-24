@@ -3,55 +3,68 @@ import LottoNumber from "./LottoNumber.js";
 import LottoValidator from "./LottoValidator.js";
 
 class WinningLotto {
-  #isWinningNumber;
+  #lotto;
   #bonusNumber;
 
-  constructor(numbers, bonusNumber) {
-    LottoValidator.validateLottoNumbers(numbers);
-    LottoValidator.validateBonusNumber(bonusNumber, numbers);
+  static LOTTO_RANK_STANDARDS = [
+    { rank: 5, matchCount: 3, hasBonusNumber: false },
+    { rank: 4, matchCount: 4, hasBonusNumber: false },
+    { rank: 3, matchCount: 5, hasBonusNumber: false },
+    { rank: 2, matchCount: 5, hasBonusNumber: true },
+    { rank: 1, matchCount: 6, hasBonusNumber: false },
+  ];
 
-    this.#setIsWinningNumber(numbers);
+  constructor(lotto, bonusNumber) {
+    this.#validateIsIntanceofLotto(lotto);
+    this.#validateIsInstanceofLottoNumber(bonusNumber);
+
+    this.#validateUniqueBonusNumber(lotto, bonusNumber);
+
+    this.#lotto = lotto;
     this.#bonusNumber = bonusNumber;
   }
 
-  getLottosRanks(lottos) {
-    return lottos.map((lotto) => this.#getLottoRank(lotto));
+  getRanks(lottos) {
+    return lottos.map((lotto) => this.#getRank(lotto));
   }
 
-  #getLottoRank(lotto) {
-    const matchCount = this.#getMatchCount(lotto);
+  #validateIsIntanceofLotto(lotto) {
+    if (!(lotto instanceof Lotto)) {
+      throw new Error("[ERROR] 로또 인스턴스만 입력 가능합니다.");
+    }
+  }
 
-    const hasBonusNumber = lotto.getNumbers().includes(this.#bonusNumber);
+  #validateIsInstanceofLottoNumber(bonusNumber) {
+    if (!(bonusNumber instanceof LottoNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 로또 번호 타입이어야 합니다.");
+    }
+  }
 
-    return this.#getLottoRankByMatchCountAndHasBonusNumber(
+  #validateUniqueBonusNumber(lotto, bonusNumber) {
+    if (lotto.has(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+  }
+
+  #getRank(lotto) {
+    const matchCount = lotto.compare(this.#lotto);
+
+    const hasBonusNumber = lotto.has(this.#bonusNumber);
+
+    return this.#getRankByMatchCountAndHasBonusNumber(
       matchCount,
       hasBonusNumber
     );
   }
 
-  #getLottoRankByMatchCountAndHasBonusNumber(matchCount, hasBonusNumber) {
-    if (matchCount < 3) return -1;
-    if (matchCount === 3) return 5;
-    if (matchCount === 4) return 4;
-    if (matchCount === 5 && !hasBonusNumber) return 3;
-    if (matchCount === 5 && hasBonusNumber) return 2;
-    if (matchCount === 6) return 1;
-  }
-  #getMatchCount(lotto) {
-    return lotto
-      .getNumbers()
-      .reduce(
-        (count, number) => count + (this.#isWinningNumber[number] ? 1 : 0),
-        0
-      );
-  }
-
-  #setIsWinningNumber(numbers) {
-    this.#isWinningNumber = new Array(LottoNumber.MAX_LOTTO_NUMBER + 1).fill(
-      false
+  #getRankByMatchCountAndHasBonusNumber(matchCount, hasBonusNumber) {
+    const rankStandard = WinningLotto.LOTTO_RANK_STANDARDS.find(
+      (standard) =>
+        standard.matchCount === matchCount &&
+        standard.hasBonusNumber === hasBonusNumber
     );
 
-    numbers.forEach((number) => (this.#isWinningNumber[number] = true));
+    return rankStandard?.rank || -1;
   }
 }
 

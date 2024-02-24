@@ -1,4 +1,5 @@
 import Lotto from "../src/domain/Lotto";
+import LottoNumber from "../src/domain/LottoNumber";
 import WinningLotto from "../src/domain/WinningLotto";
 
 describe("WinningLotto에 대한 유닛 테스트", () => {
@@ -11,9 +12,13 @@ describe("WinningLotto에 대한 유닛 테스트", () => {
 
     const lotto1 = new Lotto(lottoNumbers1);
     const lotto2 = new Lotto(lottoNumbers2);
-    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-    expect(winningLotto.getLottosRanks([lotto1, lotto2])).toEqual([4, 2]);
+    const winningLotto = new WinningLotto(
+      new Lotto(winningNumbers),
+      new LottoNumber(bonusNumber)
+    );
+
+    expect(winningLotto.getRanks([lotto1, lotto2])).toEqual([4, 2]);
   });
 
   test.each([[[1, 2, 3, 4, 5]], [[1, 2, 3, 4, 5, 6, 7]]])(
@@ -21,9 +26,8 @@ describe("WinningLotto에 대한 유닛 테스트", () => {
     (numbers) => {
       const bonusNumber = 8;
       const createWrongWinningLotto = () =>
-        new WinningLotto(numbers, bonusNumber);
+        new WinningLotto(new Lotto(numbers), new LottoNumber(bonusNumber));
 
-      //Assert
       expect(createWrongWinningLotto).toThrow();
     }
   );
@@ -42,7 +46,7 @@ describe("WinningLotto에 대한 유닛 테스트", () => {
     const numbers = [1, 2, 3, 4, 5, value];
     const bonusNumber = 7;
     const createWrongWinningLotto = () =>
-      new WinningLotto(numbers, bonusNumber);
+      new WinningLotto(new Lotto(numbers), new LottoNumber(bonusNumber));
 
     //Assert
     expect(createWrongWinningLotto).toThrow();
@@ -64,35 +68,7 @@ describe("WinningLotto에 대한 유닛 테스트", () => {
       const numbers = [1, 2, 3, 4, 5, 6];
 
       const createWrongWinningLotto = () =>
-        new WinningLotto(numbers, wrongBonusNumber);
-
-      //Assert
-      expect(createWrongWinningLotto).toThrow();
-    }
-  );
-
-  test.each([0, 46])(
-    "당첨 번호는 1 ~ 45 사이의 정수가 아니면 예외 처리를 한다.",
-    (number) => {
-      const wrongNumbers = [1, 2, 3, 4, 5, number];
-      const bonusNumber = 6;
-
-      const createWrongWinningLotto = () =>
-        new WinningLotto(wrongNumbers, bonusNumber);
-
-      //Assert
-      expect(createWrongWinningLotto).toThrow();
-    }
-  );
-
-  test.each([0, 46])(
-    "당첨 번호는 1 ~ 45 사이의 정수가 아니면 예외 처리를 한다.",
-    (number) => {
-      const numbers = [1, 2, 3, 4, 5, 6];
-      const wrongBonus = number;
-
-      const createWrongWinningLotto = () =>
-        new WinningLotto(numbers, wrongBonus);
+        new WinningLotto(new Lotto(numbers), new LottoNumber(wrongBonusNumber));
 
       //Assert
       expect(createWrongWinningLotto).toThrow();
@@ -101,15 +77,14 @@ describe("WinningLotto에 대한 유닛 테스트", () => {
 
   test.each([
     [[1, 2, 3, 4, 5, 6], 1],
-    [[1, 1, 2, 3, 4, 5], 7],
+    [[1, 2, 2, 3, 4, 5], 7],
     [[1, 1, 2, 3, 4, 5], 1],
   ])(
     "모든 번호(당첨 번호 및 보너스 번호) 중 중복이 존재할 경우 예외 처리를 한다.",
     (numbers, bonusNumber) => {
       const createWrongWinningLotto = () =>
-        new WinningLotto(numbers, bonusNumber);
+        new WinningLotto(new Lotto(numbers), new LottoNumber(bonusNumber));
 
-      //Assert
       expect(createWrongWinningLotto).toThrow();
     }
   );

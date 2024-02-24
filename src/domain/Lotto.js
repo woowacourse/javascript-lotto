@@ -8,18 +8,38 @@ import {
 class Lotto {
   static NUMBERS_LENGTH = 6;
 
-  #numbers = [];
+  #lottoNumbers = [];
 
   constructor(numbers = []) {
     this.#validateLottoNumbers(numbers);
 
     const lottoNumbers = this.#convertToLottoNumbers(sortAscending(numbers));
 
-    this.#numbers = lottoNumbers;
+    this.#lottoNumbers = lottoNumbers;
+  }
+
+  has(lottoNumber) {
+    const numbers = this.getNumbers();
+    const comparedNumber = lottoNumber.getNumber();
+
+    return numbers.includes(comparedNumber);
+  }
+
+  compare(targetLotto) {
+    const numbers = this.getNumbers();
+    const targetNumbers = targetLotto.getNumbers();
+
+    const matchedCount = targetNumbers.filter((targetNumber) =>
+      numbers.includes(targetNumber)
+    ).length;
+
+    return matchedCount;
   }
 
   getNumbers() {
-    return this.#numbers.map((lottoNumber) => lottoNumber.getNumber()).slice();
+    return this.#lottoNumbers
+      .map((lottoNumber) => lottoNumber.getNumber())
+      .slice();
   }
 
   #validateLottoNumbers(numbers) {

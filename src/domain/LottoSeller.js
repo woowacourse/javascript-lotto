@@ -19,6 +19,7 @@ class LottoSeller {
 
   static #pickLotto() {
     const numbers = this.#pickRandomNumbers();
+
     return new Lotto(numbers);
   }
 
