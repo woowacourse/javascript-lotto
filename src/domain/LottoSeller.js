@@ -1,9 +1,10 @@
-import RandomUniquePositiveIntegersPicker from "../utils/RandomNumbersPicker.js";
+import UniquePositivePicker from "../utils/UniquePositivePicker.js";
 import Lotto from "./Lotto.js";
 
 class LottoSeller {
   static LOTTO_PRICE = 1000;
-  static #randomNumbersPicker = new RandomUniquePositiveIntegersPicker(
+  static #randomNumbersPicker = new UniquePositivePicker(
+    () => 1 + Math.floor(Math.random() * Lotto.MAX_LOTTO_NUMBER),
     Lotto.MAX_LOTTO_NUMBER
   );
 
@@ -26,7 +27,9 @@ class LottoSeller {
   }
 
   static #pickRandomNumbers() {
-    return this.#randomNumbersPicker.getRandomUniquePositiveIntegers(6);
+    return this.#randomNumbersPicker.getUniquePositiveIntegers(
+      Lotto.NUMBERS_LENGTH
+    );
   }
 }
 
