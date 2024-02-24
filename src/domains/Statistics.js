@@ -3,13 +3,11 @@ import { WINNING_RULE } from '../constants';
 class Statistics {
   #ranks = [];
 
-  #reward = {
-    totalPrizes: 0,
-    profitRate: 0,
-  };
+  #profitRate;
 
-  get profitRate() {
-    return this.#reward.profitRate;
+  constructor(matchingResults, paymentAmount) {
+    this.#calculateRanks(matchingResults);
+    this.#calculateProfitRate(paymentAmount);
   }
 
   get statisticsResult() {
@@ -22,7 +20,18 @@ class Statistics {
     );
   }
 
-  checkTickets(results) {
+  get totalPrizes() {
+    return this.#ranks.reduce(
+      (totalPrizes, rank) => totalPrizes + WINNING_RULE.get(rank).money,
+      0,
+    );
+  }
+
+  get profitRate() {
+    return this.#profitRate;
+  }
+
+  #calculateRanks(results) {
     results.forEach((result) => this.#checkTicket(result));
   }
 
@@ -43,17 +52,9 @@ class Statistics {
     });
   }
 
-  calculateProfitRate(paymentAmount) {
-    this.#calculateTotalPrize();
-    this.#reward.profitRate = Number(
-      ((this.#reward.totalPrizes / paymentAmount) * 100).toFixed(1),
-    );
-  }
-
-  #calculateTotalPrize() {
-    this.#reward.totalPrizes = this.#ranks.reduce(
-      (totalPrizes, rank) => totalPrizes + WINNING_RULE.get(rank).money,
-      0,
+  #calculateProfitRate(paymentAmount) {
+    this.#profitRate = Number(
+      ((this.totalPrizes / paymentAmount) * 100).toFixed(1),
     );
   }
 }
