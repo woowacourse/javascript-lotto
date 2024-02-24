@@ -17,13 +17,22 @@ class LottoController {
   }
 
   async getInputAndValidate(inputFunction, validateFunction) {
-    while (true) {
-      try {
-        const input = await inputFunction();
-        return validateFunction(input) ?? input;
-      } catch (error) {
-        console.error(error.message);
-      }
+    const input = await this.tryInput(inputFunction, validateFunction);
+
+    if (input) {
+      return input;
+    }
+
+    return this.getInputAndValidate(inputFunction, validateFunction);
+  }
+
+  async tryInput(inputFunction, validateFunction) {
+    try {
+      const input = await inputFunction();
+      return validateFunction(input) ?? input;
+    } catch (error) {
+      console.error(error.message);
+      return null;
     }
   }
 
@@ -67,11 +76,11 @@ class LottoController {
       InputView.inputRestartResponse,
       (input) => {
         RestartValidator.validateIsIncluded(input);
-        return input.toLowerCase() === 'y';
+        return input.toLowerCase();
       }
     );
 
-    return restartResponse;
+    return restartResponse === 'y';
   }
 
   displayIssueQuantity(issueQuantity) {
