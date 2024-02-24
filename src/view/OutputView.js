@@ -1,7 +1,7 @@
 import MESSAGES from "../constants/messages.js";
 
 class OutputView {
-  static printBoughtLottos(lottoNumbersArray) {
+  static printBoughtLottoNumbers(lottoNumbersArray) {
     this.#printMessage(
       `${lottoNumbersArray.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
     );
