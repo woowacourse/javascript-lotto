@@ -1,9 +1,11 @@
 import { LOTTO_PRICE } from '../constants/lotto-constants.js';
+import { NO_MATCH_PLACE } from '../constants/prize-constants.js';
+
 import RETRY_INPUT from '../constants/system.js';
 import LottoResultCalculator from '../domain/LottoResultCalculator.js';
+import excludeKeyFromObject from '../utils/excludeKeyFromObject.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-
 import LottoPurchaseController from './lottoPurchaseController.js';
 import WinningLottoGenerator from './winningLottoGenerator.js';
 
@@ -54,7 +56,11 @@ class LottoGameController {
     const totalResult = lottoResult.getTotalResult();
     const profit = lottoResult.getProfit(lottoList.length * LOTTO_PRICE);
 
-    this.#outputView.printResult(totalResult);
+    const withoutNonePlaceTotalResult = excludeKeyFromObject({
+      object: totalResult,
+      removeKey: NO_MATCH_PLACE,
+    });
+    this.#outputView.printResult(withoutNonePlaceTotalResult);
     this.#outputView.printProfit(profit);
   }
 }

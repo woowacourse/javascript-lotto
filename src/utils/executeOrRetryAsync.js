@@ -1,5 +1,6 @@
-import AppError from './Error.js';
 import ERROR_MESSAGE from '../constants/error-messages.js';
+
+import AppError from './Error.js';
 
 /* eslint-disable max-lines-per-function */
 /* eslint-disable max-depth */

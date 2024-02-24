@@ -15,12 +15,12 @@ const OutputView = {
     console.log(OUTPUT_MESSAGE.RESULT_HEADER);
   },
 
-  printResult(totalResult) {
+  printResult(totalResultWithoutNonePlace) {
     this.printResultHeader();
-    Object.keys(totalResult)
+    Object.keys(totalResultWithoutNonePlace)
       .reverse()
       .forEach((rank) => {
-        rank !== NO_MATCH_PLACE && console.log(OUTPUT_MESSAGE.RESULT(totalResult, rank));
+        console.log(OUTPUT_MESSAGE.RESULT(totalResultWithoutNonePlace, rank));
       });
   },
 
