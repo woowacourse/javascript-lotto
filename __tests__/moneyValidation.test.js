@@ -1,6 +1,5 @@
 import { ERROR_MESSAGE } from '../src/constants/message';
 import MoneyValidation from '../src/validation/MoneyValidation';
-import RestartResponseValidation from '../src/validation/responseValidation';
 
 describe('구입 금액 유효성 테스트', () => {
   test.each([['0'], ['999'], ['-1000'], ['1000.5']])(

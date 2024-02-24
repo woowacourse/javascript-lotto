@@ -1,9 +1,10 @@
+import WINNER from '../src/constants/winner';
 import Lotto from '../src/domain/Lotto';
 import LottoProcess from '../src/domain/LottoProcess';
 import WinLotto from '../src/domain/WinLotto';
 
 describe('로또 프로세스 도메인 테스트', () => {
-  test('6개의 숫자를 맞추면 1등 인덱스가 +1 된다.', () => {
+  test(`${WINNER[1].MATCH_COUNT}개의 숫자를 맞추면 1등 인덱스가 +1 된다.`, () => {
     const lottos = [new Lotto([1, 2, 3, 4, 5, 6])];
     const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonusNumber = 7;
@@ -14,7 +15,7 @@ describe('로또 프로세스 도메인 테스트', () => {
     expect(lottoProcess.getResult(lottos, winLotto)).toEqual([1, 0, 0, 0, 0]);
   });
 
-  test('5개의 숫자를 맞추고 보너스를 맞추면 2등 인덱스가 +1 된다.', () => {
+  test(`${WINNER[2].MATCH_COUNT}개의 숫자를 맞추고 보너스를 맞추면 2등 인덱스가 +1 된다.`, () => {
     const lottos = [new Lotto([1, 2, 3, 4, 5, 10])];
     const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonusNumber = 10;
@@ -25,7 +26,7 @@ describe('로또 프로세스 도메인 테스트', () => {
     expect(lottoProcess.getResult(lottos, winLotto)).toEqual([0, 1, 0, 0, 0]);
   });
 
-  test('5개의 숫자를 맞추면 3등 인덱스가 +1 된다.', () => {
+  test(`${WINNER[3].MATCH_COUNT}개의 숫자를 맞추면 3등 인덱스가 +1 된다.`, () => {
     const lottos = [new Lotto([1, 2, 3, 4, 5, 10])];
     const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonusNumber = 7;
@@ -35,7 +36,7 @@ describe('로또 프로세스 도메인 테스트', () => {
 
     expect(lottoProcess.getResult(lottos, winLotto)).toEqual([0, 0, 1, 0, 0]);
   });
-  test('4개의 숫자를 맞추면 4등 인덱스가 +1 된다.', () => {
+  test(`${WINNER[4].MATCH_COUNT}개의 숫자를 맞추면 4등 인덱스가 +1 된다.`, () => {
     const lottos = [new Lotto([1, 2, 3, 4, 10, 20])];
     const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonusNumber = 7;
@@ -46,7 +47,7 @@ describe('로또 프로세스 도메인 테스트', () => {
     expect(lottoProcess.getResult(lottos, winLotto)).toEqual([0, 0, 0, 1, 0]);
   });
 
-  test('3개의 숫자를 맞추면 5등 인덱스가 +1 된다.', () => {
+  test(`${WINNER[5].MATCH_COUNT}개의 숫자를 맞추면 5등 인덱스가 +1 된다.`, () => {
     const lottos = [new Lotto([1, 2, 3, 10, 20, 30])];
     const lottoWithWinNumbers = new Lotto([1, 2, 3, 4, 5, 6]);
     const bonusNumber = 7;

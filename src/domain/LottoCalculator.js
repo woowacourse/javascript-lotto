@@ -8,8 +8,8 @@ import WINNER from '../constants/winner';
 class LottoCalculator {
   /**
    *
-   * @param {array} 1~5등까지의 당첨 숫자를 담은 결과 배열을 전달합니다.
-   * @param {number} 로또를 구매한 개수입니다.
+   * @param {array} result 1~5등까지의 당첨 숫자를 담은 결과 배열을 전달합니다.
+   * @param {number} lottosCount 로또를 구매한 개수입니다.
    * @returns 로또의 최종 수익률을 계산해 반환합니다.
    */
   getRateOfRevenue(result, lottosCount) {
@@ -17,7 +17,7 @@ class LottoCalculator {
     const rateOfRevenue = this.#calculateRateOfRevenue(revenue, lottosCount);
     return rateOfRevenue;
   }
-  #caculateAllRevenue(result = 0) {
+  #caculateAllRevenue(result) {
     return result.reduce((totalRevenue, prizeWinCount, index) => {
       const prizeMoney = WINNER[index + 1].PRICE;
       return (totalRevenue += prizeWinCount * prizeMoney);

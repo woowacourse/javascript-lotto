@@ -11,7 +11,7 @@ class LottoProcess {
    * @param {Lotto} 우승 로또의 인스턴스입니다.
    * @returns 최종적으로 모든 등수에서 몇개에 당첨되었는지를 계산하여 숫자로 1등부터 배열로 반환합니다.
    */
-  getResult(lottos = [], winLotto = {}) {
+  getResult(lottos, winLotto) {
     const winResults = lottos.reduce(
       (winResult, lotto) => {
         const matchCount = this.#matchLottoNumbers(lotto, winLotto);
@@ -37,7 +37,7 @@ class LottoProcess {
     });
   }
 
-  #hasBonus(lotto = {}, bonusNumber = 0) {
+  #hasBonus(lotto, bonusNumber) {
     return lotto.numbers.includes(bonusNumber);
   }
 }

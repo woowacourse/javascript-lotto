@@ -46,7 +46,7 @@ class LottoController {
       const [lottoWithWinNumbers] = winLottoPublisher.publishLottos();
       return await this.getValidateBonusNumber(lottoWithWinNumbers);
     } catch (error) {
-      OutputView.printError(error.message);
+      console.log(error.message);
       return this.makeWinLotto();
     }
   }
@@ -69,7 +69,7 @@ class LottoController {
     try {
       MoneyValidation.validate(purchaseAmount);
     } catch (error) {
-      OutputView.printError(error.message);
+      console.log(error.message);
       return this.getValidateLottoAmount();
     }
     return Number.parseInt(purchaseAmount / NUMBER.LOTTO_PRICE, 10);
@@ -80,7 +80,7 @@ class LottoController {
     try {
       LottoValidation.validateNumbers(winNumbers);
     } catch (error) {
-      OutputView.printError(error.message);
+      console.log(error.message);
       return this.getValidateWinNumbers();
     }
     return winNumbers;
@@ -92,7 +92,7 @@ class LottoController {
       const bonusNumberInput = await InputView.askBonusNumber();
       winLotto = new WinLotto(lottoWithWinNumbers, Number(bonusNumberInput));
     } catch (error) {
-      OutputView.printError(error.message);
+      console.log(error.message);
       return this.getValidateBonusNumber(lottoWithWinNumbers);
     }
     return winLotto;
@@ -103,7 +103,7 @@ class LottoController {
     try {
       RestartResponseValidation.validate(restartResponse);
     } catch (error) {
-      OutputView.printError(error.message);
+      console.log(error.message);
       return this.getValidateRestartResponse();
     }
     return restartResponse;

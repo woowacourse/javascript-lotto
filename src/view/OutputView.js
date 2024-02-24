@@ -30,10 +30,6 @@ const OutputView = {
   printRateOfRevenue(rateOfRevenue = '') {
     console.log(OUTPUT_MESSAGE.RATE_OF_REVENUE(rateOfRevenue));
   },
-
-  printError(message) {
-    console.log(message);
-  },
 };
 
 export default OutputView;
