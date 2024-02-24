@@ -10,6 +10,10 @@ import LottoProcess from '../domain/LottoProcess';
 import LottoCalculator from '../domain/LottoCalculator';
 import { RESPONSE } from '../constants/input';
 
+/**
+ * @module LottoController 로또의 관련 도메인과 뷰를 연결하여 게임을 컨트롤하는 컨트롤러 모듈입니다.
+ */
+
 class LottoController {
   async play() {
     const lottoCount = await this.getValidateLottoAmount();

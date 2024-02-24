@@ -5,8 +5,11 @@ import Lotto from './Lotto';
 /**
  * @module LottoPublisher 숫자로 로또를 개수만큼 발행하는 클래스입니다. 랜덤 숫자를
  * 돌려서 랜덤 숫자의 로또를 발행합니다.
- * @constructor count 발행하고 싶은 로또의 개수를 입력합니다.
+ * @constructor
+ * @param count - {number} 발행하고 싶은 로또의 개수를 입력합니다.
+ * @param lottoNumbers - {Array<number[]>} 발행하고 싶은 로또의 숫자를 배열로 입력합니다.빈배열일시 랜덤 로또가 발행됩니다.
  */
+
 class LottoPublisher {
   #count;
   #lottoNumbers;

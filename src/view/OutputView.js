@@ -13,7 +13,7 @@ const OutputView = {
   },
 
   printResultTitle() {
-    console.log(OUTPUT_MESSAGE.WINNING_STATISTICS_TITLE);
+    console.log(`${NEW_LINE}${OUTPUT_MESSAGE.WINNING_STATISTICS_TITLE}`);
   },
 
   printWinningStatisticsReverse(result = []) {
