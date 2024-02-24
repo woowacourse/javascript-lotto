@@ -1,4 +1,4 @@
-import makeRandomInRange from '../utils/makeRandomNumber';
+import makeRandomInRange from '../utils/makeRandomInRange';
 import LOTTO_RULES from '../constants/lotto-rules';
 
 class LottoGenerator {
