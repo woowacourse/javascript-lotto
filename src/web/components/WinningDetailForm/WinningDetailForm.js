@@ -1,6 +1,7 @@
 import Lotto from '../../../domain/Lotto/Lotto.js';
 import BaseComponent from '../BaseComponent/BaseComponent.js';
 import styles from './WinningDetailForm.module.css';
+import WinningResultService from '../../../service/WinningResultService.js';
 import AppError from '../../../errors/AppError/AppError.js';
 import { showErrorMessage } from '../../utils/showErrorMessage.js';
 import { BonusNumberValidator, WinningNumberValidator } from '../../../validator/index.js';
@@ -54,12 +55,25 @@ class WinningDetailForm extends BaseComponent {
       const { winningNumber, bonusNumber } = this.#createWinningDetail();
       WinningNumberValidator.checkWinningNumber(winningNumber);
       BonusNumberValidator.checkBonusNumber(bonusNumber, winningNumber);
+
+      this.#removeErrorMessage();
+
+      const params = this.#createWinningResultParams();
+      const { winningRankResult, rateOfReturn } = WinningResultService.createWinningResult(params);
+
+      this.emit('openModal', { winningRankResult, rateOfReturn });
     } catch (error) {
       if (error instanceof AppError) {
         const nonPrefixErrorMessage = error.message.replace('[ERROR]', '');
         showErrorMessage(nonPrefixErrorMessage, '#winning-detail-form');
       }
     }
+  }
+
+  #removeErrorMessage() {
+    const errorMessageElement = this.querySelector('.error-message');
+
+    if (errorMessageElement) errorMessageElement.remove();
   }
 
   #createWinningDetail() {
@@ -69,6 +83,10 @@ class WinningDetailForm extends BaseComponent {
     const bonusNumber = Number(this.querySelector('.bonus-number')?.value);
 
     return { winningNumber, bonusNumber };
+  }
+
+  #createWinningResultParams() {
+    return document.querySelector('purchased-lotto-section').getBuyLottoDetails();
   }
 
   render() {

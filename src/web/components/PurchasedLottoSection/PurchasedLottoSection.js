@@ -51,6 +51,10 @@ class PurchasedLottoSection extends BaseComponent {
       return `${prevLottosTemplate}\n${lottoElement.getTemplate()}`;
     }, '');
   }
+
+  getBuyLottoDetails() {
+    return { lottoNumbers: this.#lottoNumbers, buyLottoPrice: this.#buyLottoPrice };
+  }
 }
 
 customElements.define('purchased-lotto-section', PurchasedLottoSection);
