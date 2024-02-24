@@ -26,7 +26,7 @@ class Controller {
     }
   }
 
-  async generateWinningLotto() {
+  async issueWinningLotto() {
     try {
       const winningNumbers = await InputView.readWinningNumber();
       const bonusNumber = await InputView.readBonusNumber();
@@ -34,7 +34,7 @@ class Controller {
       this.#lottoStore.setWinningLotto(winningNumbers, bonusNumber);
     } catch (error) {
       OutputView.print(error.message);
-      return this.generateWinningLotto();
+      return this.issueWinningLotto();
     }
   }
 
