@@ -1,9 +1,10 @@
-import MESSAGE from '../constants/message';
+import { RESPONSE } from '../constants/input';
+import MESSAGE, { ERROR_MESSAGE } from '../constants/message';
 
 const RestartResponseValidation = {
   validate(response = '') {
-    if (response !== MESSAGE.RESPONSE.RESTART.YES && response !== MESSAGE.RESPONSE.RESTART.NO) {
-      throw new Error(`${MESSAGE.ERROR.PREFIX} ${MESSAGE.RESTART_RESPONSE}`);
+    if (response !== RESPONSE.RESTART.YES && response !== RESPONSE.RESTART.NO) {
+      throw new Error(`${ERROR_MESSAGE.PREFIX} ${ERROR_MESSAGE.RESTART_RESPONSE}}`);
     }
   },
 };

@@ -1,19 +1,20 @@
 import { ERROR_MESSAGE } from '../src/constants/message';
+import NUMBER from '../src/constants/number';
 import Lotto from '../src/domain/Lotto';
 
-describe.skip('Lotto 클래스 검사', () => {
+describe('Lotto 클래스 검사', () => {
   const TOO_SMALL_NUMBER = 0;
   const TOO_LARGE_NUMBER = 46;
   const PAIR_COUNT = 1;
   test.each([[[1, 2, 3, 4, 5, TOO_LARGE_NUMBER]], [[TOO_SMALL_NUMBER, 1, 2, 3, 4, 5]]])(
-    'Lotto 유효성 검사: 1 ~ 45범위의 정수가 아닐 때, 에러 발생',
+    `Lotto 유효성 검사: ${NUMBER.LOTTO_START_NUMBER} ~ ${NUMBER.LOTTO_END_NUMBER}범위의 정수가 아닐 때, 에러 발생`,
     (numbers) => {
       expect(() => new Lotto(numbers)).toThrow(ERROR_MESSAGE.NUMBERS_RANGE);
     }
   );
 
   test.each([[[1, 2, 3, 4, 5, 6, 7]], [[1, 2, 3, 4, 5]]])(
-    'Lotto 유효성 검사: 입렵받은 숫자가 6개가 아닐 때 에러 발생',
+    `Lotto 유효성 검사: 입력받은 숫자가 ${NUMBER.LOTTO_LENGTH}개가 아닐 때 에러 발생`,
     (numbers) => {
       expect(() => new Lotto(numbers)).toThrow(ERROR_MESSAGE.NUMBERS_LENGTH);
     }
@@ -23,7 +24,7 @@ describe.skip('Lotto 클래스 검사', () => {
     expect(() => new Lotto([PAIR_COUNT, PAIR_COUNT, 2, 3, 4, 5])).toThrow(ERROR_MESSAGE.NUMBERS_DUPLICATION);
   });
 
-  test('로또 숫자들이 오름차순으로 정렬', () => {
+  test('로또 숫자들이 오름차순으로 정렬되어 나온다.', () => {
     const numbers = [3, 1, 5, 2, 4, 6];
     const lotto = new Lotto(numbers);
     expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);

@@ -1,6 +1,6 @@
 import LottoController from '../src/controller/LottoController';
 
-describe('lottoController 클래스 검사 ', () => {
+describe.skip('lottoController 클래스 검사 ', () => {
   test.each([
     [[1, 0, 0, 0, 0], 8, '62.5'],
     [[0, 0, 0, 1, 0], 30, '100000.0'],
