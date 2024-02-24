@@ -117,7 +117,7 @@ class LottoController {
     const winningNumbers = await this.inputWinningNumbers();
     const bonusNumber = await this.inputBonusNumber(winningNumbers);
 
-    return { winningNumbers: [winningNumbers], bonusNumber: [bonusNumber] };
+    return { winningNumbers, bonusNumber };
   }
 
   #showResult({ lottos, winningNumbers, bonusNumber }) {
