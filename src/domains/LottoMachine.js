@@ -5,6 +5,7 @@ import {
   isInteger,
   isValidNumbersOfTickets,
 } from '../utils';
+import Lotto from './Lotto';
 
 // TODO: Lotto[]와 WinningLotto를 저장하는 것으로 변경.
 
@@ -32,9 +33,13 @@ class LottoMachine {
     const { range, price, length } = LOTTO_RULE;
     const numbersOfTickets = paymentAmount / price;
 
-    return Array.from({ length: numbersOfTickets }, () =>
-      RandomNumber.pickUniqueNumbersInRange(range, length),
-    );
+    return Array.from({ length: numbersOfTickets }, () => {
+      const uniqueNumbers = RandomNumber.pickUniqueNumbersInRange(
+        range,
+        length,
+      );
+      return new Lotto(uniqueNumbers);
+    });
   }
 
   #validatePaymentAmount(paymentAmountInput) {

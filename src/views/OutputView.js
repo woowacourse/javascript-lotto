@@ -1,12 +1,10 @@
-import { Console } from '../utils';
 import { OUTPUT_MESSAGES, WINNING_RULE, NUMBER_DELIMITER } from '../constants';
+import { Console } from '../utils';
 
 const OutputView = {
   printLottoTickets(lottoTickets) {
-    lottoTickets.forEach((lottoNumber) => {
-      Console.print(
-        `[${lottoNumber.sort((a, b) => a - b).join(`${NUMBER_DELIMITER} `)}]`,
-      );
+    lottoTickets.forEach((lottoTicket) => {
+      Console.print(`[${lottoTicket.join(`${NUMBER_DELIMITER} `)}]`);
     });
   },
 

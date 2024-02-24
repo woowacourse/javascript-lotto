@@ -10,23 +10,16 @@ class GameController {
   async playGame() {
     await this.#getPaid();
 
-    const { lottoTickets } = this.#lottoGame.lottoData.lottoMachine;
-    OutputView.printLottoTickets(lottoTickets);
+    this.#printLottoTickets();
 
-    await this.#generateWinning();
+    // await this.#generateWinning();
 
-    this.#lottoGame.calculateMatchingResult();
-    this.#lottoGame.calculateStatistics();
+    // this.#lottoGame.calculateMatchingResult();
+    // this.#lottoGame.calculateStatistics();
 
-    this.#printStatistics();
+    // this.#printStatistics();
 
-    await this.#restartLottoGame();
-  }
-
-  #printStatistics() {
-    const { statisticsResult, profitRate } = this.#lottoGame.lottoAnalytics;
-    OutputView.printStatistics(statisticsResult);
-    OutputView.printProfitRate(profitRate);
+    // await this.#restartLottoGame();
   }
 
   async #getPaid() {
@@ -72,6 +65,17 @@ class GameController {
       this.#lottoGame = new LottoGame();
       await this.playGame();
     }
+  }
+
+  #printLottoTickets() {
+    const { lottoTickets } = this.#lottoGame;
+    OutputView.printLottoTickets(lottoTickets);
+  }
+
+  #printStatistics() {
+    const { statisticsResult, profitRate } = this.#lottoGame.lottoAnalytics;
+    OutputView.printStatistics(statisticsResult);
+    OutputView.printProfitRate(profitRate);
   }
 }
 

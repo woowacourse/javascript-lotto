@@ -3,54 +3,47 @@ import Statistics from './Statistics';
 import WinningLotto from './WinningLotto';
 
 class LottoGame {
-  #lottoData = {
-    lottoMachine: undefined,
-    winningLotto: new WinningLotto(),
-  };
+  #lottoMachine;
 
-  #lottoAnalytics = {
-    matchingResults: undefined,
-    statistics: undefined,
-  };
+  #winningLotto;
+
+  #matchingResults;
+
+  #statistics;
+
+  insertMoney(paymentAmountInput) {
+    this.#lottoMachine = new LottoMachine(paymentAmountInput);
+  }
+
+  calculateMatchingResult() {
+    this.matchingResults = this.lottoMachine.lottoTickets.map((lottoTicket) =>
+      this.winningLotto.compareLotto(lottoTicket),
+    );
+  }
+
+  calculateStatistics() {
+    this.#statistics = new Statistics();
+    this.#statistics.checkTickets(this.#matchingResults);
+    this.#statistics.calculateProfitRate(this.#lottoMachine.paymentAmount);
+  }
 
   set winningLottoNumbers(lottoNumbersInput) {
-    this.#lottoData.winningLotto.lottoNumbers = lottoNumbersInput;
+    this.#winningLotto.lottoNumbers = lottoNumbersInput;
   }
 
   set bonusNumber(bonusNumberInput) {
-    this.#lottoData.winningLotto.bonusNumber = bonusNumberInput;
+    this.#winningLotto.bonusNumber = bonusNumberInput;
+  }
+
+  get lottoTickets() {
+    return this.#lottoMachine.lottos;
   }
 
   get lottoAnalytics() {
     return {
-      profitRate: this.#lottoAnalytics.statistics.profitRate,
-      statisticsResult: this.#lottoAnalytics.statistics.statisticsResult,
+      profitRate: this.#statistics.profitRate,
+      statisticsResult: this.#statistics.statisticsResult,
     };
-  }
-
-  get lottoData() {
-    return this.#lottoData;
-  }
-
-  insertMoney(paymentAmountInput) {
-    this.#lottoData.lottoMachine = new LottoMachine(paymentAmountInput);
-  }
-
-  calculateMatchingResult() {
-    this.#lottoAnalytics.matchingResults =
-      this.#lottoData.lottoMachine.lottoTickets.map((lottoTicket) =>
-        this.#lottoData.winningLotto.compareLotto(lottoTicket),
-      );
-  }
-
-  calculateStatistics() {
-    this.#lottoAnalytics.statistics = new Statistics();
-    this.#lottoAnalytics.statistics.checkTickets(
-      this.#lottoAnalytics.matchingResults,
-    );
-    this.#lottoAnalytics.statistics.calculateProfitRate(
-      this.#lottoData.lottoMachine.paymentAmount,
-    );
   }
 }
 
