@@ -1,6 +1,3 @@
-import LottoSeller from "../domain/LottoSeller.js";
-import LottoValidator from "../domain/LottoValidator.js";
-import LottoBoard from "../domain/LottoBoard.js";
 import LottoResultMaker from "../domain/LottoResultMaker.js";
 import InputView from "../view/InputVIew.js";
 import OutputView from "../view/OutputView.js";
@@ -9,6 +6,7 @@ import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs.js";
 
 import MESSAGES from "../view/constants/messages.js";
 import LottoInputController from "./LottoInputController.js";
+import LottoOutputController from "./LottoOutputController.js";
 
 class LottoController {
   #RETRY_YES = ["y", "Y"];
@@ -17,6 +15,7 @@ class LottoController {
   #inputController;
 
   constructor(outputView = OutputView, inputView = InputView) {
+    this.#outputController = new LottoOutputController(outputView);
     this.#inputController = new LottoInputController(inputView, outputView);
   }
 
@@ -40,10 +39,7 @@ class LottoController {
 
     const lottoResult = LottoResultMaker.getLottoResult(lottos, lottoBoard);
 
-    OutputView.printLottoResult(
-      lottoResult.getRankArray(),
-      lottoResult.getProfitRate()
-    );
+    this.#outputController.printLottoResult(lottoResult);
   }
 
   async #readRetryChecker() {
