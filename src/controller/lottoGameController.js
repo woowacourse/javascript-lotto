@@ -1,11 +1,10 @@
 import { LOTTO_PRICE } from '../constants/lotto-constants.js';
-import { NO_MATCH_PLACE } from '../constants/prize-constants.js';
 
 import RETRY_INPUT from '../constants/system.js';
 import LottoResultCalculator from '../domain/LottoResultCalculator.js';
-import excludeKeyFromObject from '../utils/excludeKeyFromObject.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
+
 import LottoPurchaseController from './lottoPurchaseController.js';
 import WinningLottoGenerator from './winningLottoGenerator.js';
 
@@ -22,7 +21,7 @@ class LottoGameController {
     const lottoList = await this.#getPurchasedLottoTickets();
     const { winningLottoNumbers, bonusNumber } = await this.#createValidatedWinningLotto();
 
-    this.#getGameResult({ lottoList, winningLottoNumbers, bonusNumber });
+    this.#displayGameResult({ lottoList, winningLottoNumbers, bonusNumber });
 
     this.#restart();
   }
@@ -47,7 +46,7 @@ class LottoGameController {
     return lottoTickets;
   }
 
-  #getGameResult({ lottoList, winningLottoNumbers, bonusNumber }) {
+  #displayGameResult({ lottoList, winningLottoNumbers, bonusNumber }) {
     const lottoResult = new LottoResultCalculator({
       lottoList,
       winningLottoNumbers,
@@ -56,11 +55,7 @@ class LottoGameController {
     const totalResult = lottoResult.getTotalResult();
     const profit = lottoResult.getProfit(lottoList.length * LOTTO_PRICE);
 
-    const withoutNonePlaceTotalResult = excludeKeyFromObject({
-      object: totalResult,
-      removeKey: NO_MATCH_PLACE,
-    });
-    this.#outputView.printResult(withoutNonePlaceTotalResult);
+    this.#outputView.printResult(totalResult);
     this.#outputView.printProfit(profit);
   }
 }

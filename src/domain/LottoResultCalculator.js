@@ -1,4 +1,5 @@
 import { NO_MATCH_PLACE, PERCENTATION, PRIZE } from '../constants/prize-constants.js';
+import excludeKeyFromObject from '../utils/excludeKeyFromObject.js';
 
 class LottoResultCalculator {
   #lottoList;
@@ -12,17 +13,15 @@ class LottoResultCalculator {
 
   getTotalResult() {
     const initialResult = this.#initializeResultObject();
-
     const totalResult = this.#lottoList.reduce((acc, lotto) => {
       const rank = lotto.getRank(this.#winningLotto);
       if (rank !== NO_MATCH_PLACE) {
         initialResult[rank] += 1;
       }
-
       return acc;
     }, initialResult);
 
-    return totalResult;
+    return excludeKeyFromObject({ object: totalResult, removeKey: NO_MATCH_PLACE });
   }
 
   #initializeResultObject() {
