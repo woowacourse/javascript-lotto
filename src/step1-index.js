@@ -1,4 +1,10 @@
-import LottoController from "./controller/LottoController.js";
+import AsyncRetryPlayer from "./controller/asyncRetryPlayer.js";
+import LottoMainController from "./controller/LottoMainController.js";
+import InputView from "./view/InputVIew.js";
+import OutputView from "./view/OutputView.js";
 
-const lottoController = new LottoController();
-lottoController.start();
+const lottoController = new LottoMainController(OutputView, InputView);
+
+const lottoRetryPlayer = new AsyncRetryPlayer(lottoController, InputView);
+
+lottoRetryPlayer.start();
