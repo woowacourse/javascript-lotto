@@ -17,10 +17,10 @@ class LottoOutputController {
   }
 
   printLottoResult(lottoResult) {
-    const rankArray = lottoResult.getRanks();
+    const rankCounts = lottoResult.getRankCounts();
     const getProfitRate = lottoResult.getProfitRate();
 
-    this.#outputView.printLottoResult(rankArray, getProfitRate);
+    this.#outputView.printLottoResult(rankCounts, getProfitRate);
   }
 
   #getSlicedCopiedLottos(lottos) {
