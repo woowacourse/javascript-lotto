@@ -9,6 +9,7 @@ const OutputView = {
 
   printIssuedLottoArray(lottoArray) {
     console.log(OUTPUT_MESSAGE.lottoArrayToString(lottoArray));
+    console.log(VIEW_MESSAGE.symbolSpace);
   },
 
   printMatchedLottos(matchedLotto) {
@@ -24,6 +25,10 @@ const OutputView = {
 
   printResultStatistics(profits) {
     console.log(`총 수익률은 ${profits}%입니다.\n`);
+  },
+
+  printSpace() {
+    console.log(VIEW_MESSAGE.symbolSpace);
   },
 };
 

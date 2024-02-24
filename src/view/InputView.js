@@ -52,7 +52,7 @@ const InputView = {
   },
 
   async readRetryGame() {
-    const retryInput = await readLineAsync(VIEW_MESSAGE.retry);
+    const retryInput = await this.read(VIEW_MESSAGE.retry);
     startValidation(retryValidation.categories, retryInput);
     return retryInput;
   },
