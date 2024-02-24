@@ -33,6 +33,7 @@ const MESSAGE = {
     '5-1': '5개 일치, 보너스 볼 일치 (30,000,000원)',
     6: '6개 일치 (2,000,000,000원)',
   },
+  errorCharacter: '[Error]',
 };
 
 export default MESSAGE;
