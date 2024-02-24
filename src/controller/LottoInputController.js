@@ -6,6 +6,7 @@ import LottoBoard from "../domain/LottoBoard";
 
 class LottoInputController {
   #inputView;
+
   #outputView;
 
   constructor(inputView, outputView) {
@@ -21,19 +22,31 @@ class LottoInputController {
   }
 
   async readLottoBoard() {
-    const winningNumbers = await retryWhenErrorOccurs(
+    const winningNumbers = await this.#readWinningNumbersUntilOccurError();
+    this.#outputView.printBlankLine();
+    const bonusNumber = await this.#readBonusNumberUntilOccurError(
+      winningNumbers
+    );
+    const lottoBoard = new LottoBoard(winningNumbers, bonusNumber);
+
+    return lottoBoard;
+  }
+
+  async #readWinningNumbersUntilOccurError() {
+    const winningNumber = await retryWhenErrorOccurs(
       this.#readWinningNumbers.bind(this)
     );
-    this.#outputView.printBlankLine();
+
+    return winningNumber;
+  }
+
+  async #readBonusNumberUntilOccurError(winningNumbers) {
     const bonusNumber = await retryWhenErrorOccurs(
       this.#readBonusNumber.bind(this),
       winningNumbers
     );
-    const lottoBoard = await retryWhenErrorOccurs(
-      () => new LottoBoard(winningNumbers, bonusNumber)
-    );
 
-    return lottoBoard;
+    return bonusNumber;
   }
 
   async #readBuyPrice() {
@@ -52,10 +65,8 @@ class LottoInputController {
     winningNumberStrings.forEach((string) => {
       LottoValidator.validateNonNegativeIntegerString(string);
     });
-
     const winningNumbers = winningNumberStrings.map(Number);
     LottoValidator.validateLotto(winningNumbers);
-
     return winningNumbers;
   }
 

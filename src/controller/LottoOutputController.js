@@ -1,5 +1,6 @@
 class LottoOutputController {
   static LOTTO_PRINT_LIMIT = 100;
+
   #outputView;
 
   constructor(outputView) {
@@ -8,7 +9,7 @@ class LottoOutputController {
 
   printBoughtLottos(lottos) {
     const sliced = this.#getSlicedCopiedLottos(lottos);
-    const LOTTO_PRINT_LIMIT = LottoOutputController.LOTTO_PRINT_LIMIT;
+    const { LOTTO_PRINT_LIMIT } = LottoOutputController;
 
     if (LOTTO_PRINT_LIMIT < lottos.length)
       this.#outputView.printBoughtSlicedLottos(sliced, lottos.length);

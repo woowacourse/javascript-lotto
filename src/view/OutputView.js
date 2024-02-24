@@ -1,23 +1,17 @@
 import MESSAGES from "./constants/messages.js";
 
 class OutputView {
-  static printBoughtLottos(lottosArray) {
+  static printBoughtLottos(lottos) {
     this.#printMessage(
-      `${lottosArray.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
+      `${lottos.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
     );
-    const lottoNumberArrayString = lottosArray
-      .map((lotto) => {
-        const sortedLotto = lotto.sort((a, b) => a - b);
-        return this.#formatArrayString(sortedLotto);
-      })
-      .join("\n");
-
+    const lottoNumberArrayString = this.#getLottoNumberArrayString(lottos);
     this.#printMessage(lottoNumberArrayString);
     this.printBlankLine();
   }
 
-  static printBoughtSlicedLottos(lottosArray, originalNumberOfLotto) {
-    OutputView.printBoughtLottos(lottosArray);
+  static printBoughtSlicedLottos(lottos, originalNumberOfLotto) {
+    OutputView.printBoughtLottos(lottos);
     this.#printMessage(
       `${MESSAGES.OUTPUT.boughtContractedOuttroHead}${originalNumberOfLotto}${MESSAGES.OUTPUT.boughtContractedOuttroTail}`
     );
@@ -44,7 +38,7 @@ class OutputView {
   }
 
   static #printRankResult(rankCounts) {
-    for (let rank = 5; rank >= 1; rank--) {
+    for (let rank = 5; rank >= 1; rank -= 1) {
       this.#printRankCount(rank, rankCounts[rank]);
     }
   }
@@ -65,6 +59,15 @@ class OutputView {
 
   static #printMessage(...args) {
     console.log(...args);
+  }
+
+  static #getLottoNumberArrayString(lottos) {
+    return lottos
+      .map((lotto) => {
+        const sortedLotto = lotto.sort((a, b) => a - b);
+        return this.#formatArrayString(sortedLotto);
+      })
+      .join("\n");
   }
 }
 

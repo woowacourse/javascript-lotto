@@ -20,7 +20,6 @@ describe("WinningLotto에 대한 유닛 테스트", () => {
     [[1, 2, 43, 44, 45, notBonusNumber], 0],
   ])("배열을 입력받아 각 로또의 등수를 반환한다", (lotto, rank) => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
-    const bonusNumber = 7;
 
     const lottoBoard = new LottoBoard(winningNumbers, bonusNumber);
 

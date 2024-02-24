@@ -62,12 +62,11 @@ class LottoValidator {
       );
     }
   }
+
   static #validateInBuyPriceRange(number) {
     const MIN_BUY_PRICE = LottoSeller.LOTTO_PRICE;
     const MAX_BUY_PRICE = LottoSeller.LOTTO_PRICE * 10_000_000;
-
     const isInRange = MIN_BUY_PRICE <= number && number <= MAX_BUY_PRICE;
-
     if (!isInRange) {
       throw new Error(
         `${MESSAGES.ERROR.invalidBuyPriceRangeHead}${MIN_BUY_PRICE}${MESSAGES.ERROR.invalidBuyPriceRangeMiddle}${MAX_BUY_PRICE}${MESSAGES.ERROR.invalidBuyPriceRangeTail}`

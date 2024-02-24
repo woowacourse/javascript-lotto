@@ -6,6 +6,7 @@ import LottoOutputController from "./LottoOutputController.js";
 
 class LottoMainController {
   #outputController;
+
   #inputController;
 
   constructor(outputView = OutputView, inputView = InputView) {
