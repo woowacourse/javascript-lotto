@@ -14,6 +14,7 @@
     "max-params": ["error", 2],
     "max-lines-per-function": ["error", 10],
     "no-magic-numbers": "error",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "lines-between-class-members": "off"
   }
 }
