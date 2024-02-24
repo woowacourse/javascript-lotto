@@ -17,7 +17,7 @@ class LottoGameController {
   }
 
   async play() {
-    const lottoList = await this.dd();
+    const lottoList = await this.#getPurchasedLottoTickets();
     const { winningLottoNumbers, bonusNumber } =
       await this.#createValidatedWinningLotto();
 
@@ -35,7 +35,7 @@ class LottoGameController {
     return { winningLottoNumbers, bonusNumber };
   }
 
-  async dd() {
+  async #getPurchasedLottoTickets() {
     const lottoPurchaseController = LottoPurchaseController();
     const lottoTickets = await lottoPurchaseController.processPurchaseLotto();
 
