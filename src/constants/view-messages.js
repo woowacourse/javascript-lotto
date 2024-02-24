@@ -22,5 +22,3 @@ export const OUTPUT_MESSAGE = {
 
   PROFIT: (profit) => `총 수익률은 ${formatNumber(profit)}%입니다.`,
 };
-
-export const RETRY_INPUT = "y";
