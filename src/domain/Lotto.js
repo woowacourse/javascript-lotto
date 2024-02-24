@@ -19,6 +19,10 @@ class Lotto {
   matchLottoNumbers(winLotto = []) {
     return this.#numbers.filter((value) => winLotto.getNumbers().includes(value)).length;
   }
+
+  hasBonus(bonusNumber = 0) {
+    return this.#numbers.includes(bonusNumber);
+  }
 }
 
 export default Lotto;
