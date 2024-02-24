@@ -1,15 +1,11 @@
-import {
-  LOTTO_NUMBER_LENGTH,
-  LOTTO_NUMBER_RANGE,
-  LOTTO_PRICE,
-} from "../constants/lotto-constants";
-import Lotto from "../domain/Lotto";
-import createUniqueNumbersInRange from "../utils/createUniqueNumbersInRange";
-import executeOrRetryAsync from "../utils/executeOrRetryAsync";
-import CommonValidator from "../validator/CommonValidator";
-import purchaseAmountValidator from "../validator/PurchaseAmountValidator";
-import InputView from "../view/InputView";
-import OutputView from "../view/OutputView";
+import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/lotto-constants';
+import Lotto from '../domain/Lotto';
+import createUniqueNumbersInRange from '../utils/createUniqueNumbersInRange';
+import executeOrRetryAsync from '../utils/executeOrRetryAsync';
+import CommonValidator from '../validator/CommonValidator';
+import purchaseAmountValidator from '../validator/PurchaseAmountValidator';
+import InputView from '../view/InputView';
+import OutputView from '../view/OutputView';
 
 const LottoPurchaseController = () => {
   const readAndValidatePurchaseAmount = async () => {

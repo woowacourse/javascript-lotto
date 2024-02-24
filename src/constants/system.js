@@ -1,5 +1,5 @@
 const RETRY_INPUT = {
-  YES: ["Y", "y"],
+  YES: ['Y', 'y'],
 };
 
 export default RETRY_INPUT;

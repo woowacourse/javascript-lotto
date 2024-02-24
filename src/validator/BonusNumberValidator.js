@@ -1,6 +1,6 @@
-import ERROR_MESSAGE from "../constants/error-messages.js";
-import { LOTTO_NUMBER_RANGE } from "../constants/lotto-constants.js";
-import AppError from "../utils/Error.js";
+import ERROR_MESSAGE from '../constants/error-messages.js';
+import { LOTTO_NUMBER_RANGE } from '../constants/lotto-constants.js';
+import AppError from '../utils/Error.js';
 
 const bonusNumberValidator = {
   validateDuplication({ winningLottoNumbers, bonusNumber }) {
@@ -10,10 +10,7 @@ const bonusNumberValidator = {
   },
 
   validateRange(bonusNumber) {
-    if (
-      bonusNumber < LOTTO_NUMBER_RANGE.MIN ||
-      bonusNumber > LOTTO_NUMBER_RANGE.MAX
-    ) {
+    if (bonusNumber < LOTTO_NUMBER_RANGE.MIN || bonusNumber > LOTTO_NUMBER_RANGE.MAX) {
       throw new AppError(ERROR_MESSAGE.INVALID_BONUS_NUMBER_RANGE);
     }
   },

@@ -1,16 +1,16 @@
 /* eslint-disable max-lines-per-function */
-import readline from "readline";
+import readline from 'readline';
 
-import AppError from "./Error.js";
+import AppError from './Error.js';
 
 export default function readLineAsync(query) {
   return new Promise((resolve, reject) => {
     if (arguments.length !== 1) {
-      reject(new AppError("arguments must be 1"));
+      reject(new AppError('arguments must be 1'));
     }
 
-    if (typeof query !== "string") {
-      reject(new AppError("query must be string"));
+    if (typeof query !== 'string') {
+      reject(new AppError('query must be string'));
     }
 
     const rl = readline.createInterface({

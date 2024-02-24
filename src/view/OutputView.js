@@ -1,6 +1,6 @@
-import { NO_MATCH_PLACE } from "../constants/prize-constants.js";
-import { OUTPUT_MESSAGE } from "../constants/view-messages.js";
-import ascendingOrderSort from "../utils/ascendingSortArr.js";
+import { NO_MATCH_PLACE } from '../constants/prize-constants.js';
+import { OUTPUT_MESSAGE } from '../constants/view-messages.js';
+import ascendingOrderSort from '../utils/ascendingSortArr.js';
 
 const OutputView = {
   printPurchaseMessage(purchaseAmount) {
@@ -20,8 +20,7 @@ const OutputView = {
     Object.keys(totalResult)
       .reverse()
       .forEach((rank) => {
-        rank !== NO_MATCH_PLACE &&
-          console.log(OUTPUT_MESSAGE.RESULT(totalResult, rank));
+        rank !== NO_MATCH_PLACE && console.log(OUTPUT_MESSAGE.RESULT(totalResult, rank));
       });
   },
 

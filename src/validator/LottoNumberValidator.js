@@ -1,9 +1,6 @@
-import ERROR_MESSAGE from "../constants/error-messages.js";
-import {
-  LOTTO_NUMBER_LENGTH,
-  LOTTO_NUMBER_RANGE,
-} from "../constants/lotto-constants.js";
-import AppError from "../utils/Error.js";
+import ERROR_MESSAGE from '../constants/error-messages.js';
+import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE } from '../constants/lotto-constants.js';
+import AppError from '../utils/Error.js';
 
 const lottoNumberValidator = {
   validateNumbersLength(numbers) {
@@ -19,12 +16,7 @@ const lottoNumberValidator = {
   },
 
   validateRange(numbers) {
-    if (
-      numbers.some(
-        (number) =>
-          number < LOTTO_NUMBER_RANGE.MIN || number > LOTTO_NUMBER_RANGE.MAX,
-      )
-    ) {
+    if (numbers.some((number) => number < LOTTO_NUMBER_RANGE.MIN || number > LOTTO_NUMBER_RANGE.MAX)) {
       throw new AppError(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
     }
   },

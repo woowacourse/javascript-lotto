@@ -1,6 +1,6 @@
-import SYMBOL from "../constants/symbol.js";
-import { INPUT_MESSAGE } from "../constants/view-messages.js";
-import readLineAsync from "../utils/ReadLine.js";
+import SYMBOL from '../constants/symbol.js';
+import { INPUT_MESSAGE } from '../constants/view-messages.js';
+import readLineAsync from '../utils/ReadLine.js';
 
 const InputView = {
   async readPurchaseAmount() {

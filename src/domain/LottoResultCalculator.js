@@ -1,8 +1,4 @@
-import {
-  NO_MATCH_PLACE,
-  PERCENTATION,
-  PRIZE,
-} from "../constants/prize-constants.js";
+import { NO_MATCH_PLACE, PERCENTATION, PRIZE } from '../constants/prize-constants.js';
 
 class LottoResultCalculator {
   #lottoList;

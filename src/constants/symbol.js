@@ -1,7 +1,7 @@
 const SYMBOL = {
-  DELIMITER: ",",
-  SPACE: " ",
-  BLANK: "",
+  DELIMITER: ',',
+  SPACE: ' ',
+  BLANK: '',
 };
 
 export default SYMBOL;

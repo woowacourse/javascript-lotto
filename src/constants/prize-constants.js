@@ -6,6 +6,6 @@ export const PRIZE = {
   FIRST_PLACE: { reward: 2_000_000_000, matchCount: 6, isBonus: false },
 };
 
-export const NO_MATCH_PLACE = "NONE_PLACE";
+export const NO_MATCH_PLACE = 'NONE_PLACE';
 
 export const PERCENTATION = 100;
