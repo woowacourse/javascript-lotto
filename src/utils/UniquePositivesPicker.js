@@ -26,7 +26,7 @@ class UniquePositivesPicker {
     // 유효성 검사를 최대한 적은 시간안에 수행하도록 만들고자 해당 방식을 사용함
     if (!(this.#maxCount > count))
       throw new Error(
-        `[ERROR] count는 최대 값의 절반 이하(${maxCount})인 Number형이여야 함`
+        `[ERROR] count는 최대 값의 20% 이하(${maxCount})인 Number형이여야 함`
       );
 
     const uniquePositives = this.#getUniquePositives(count);
