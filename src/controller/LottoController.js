@@ -45,8 +45,11 @@ class LottoController {
 
     const lottoRanks = winningLotto.rankLottos(boughtLottos);
 
-    const { rankResult, profitRate } =
-      LottoResultMaker.getLottoResult(lottoRanks);
+    const rankResult = LottoResultMaker.getRankResult(lottoRanks);
+    const profitRate = LottoResultMaker.getProfitRate(
+      rankResult,
+      boughtLottos.length
+    );
 
     OutputView.printLottoResult(rankResult, profitRate);
   }

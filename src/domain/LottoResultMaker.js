@@ -5,14 +5,7 @@ import {
 } from "../constants/lotto.js";
 
 class LottoResultMaker {
-  static getLottoResult(ranks) {
-    const rankResult = this.#getRankResult(ranks);
-    const profitRate = this.#getProfitRate(rankResult, ranks.length);
-
-    return { rankResult, profitRate };
-  }
-
-  static #getRankResult(ranks) {
+  static getRankResult(ranks) {
     return ranks.reduce((result, rank) => {
       const COUNT_INCREMENT = 1;
       result[rank] += COUNT_INCREMENT;
@@ -21,7 +14,7 @@ class LottoResultMaker {
     }, this.#getInitialRankResult());
   }
 
-  static #getProfitRate(rankResult, lottoCount) {
+  static getProfitRate(rankResult, lottoCount) {
     const prizeAmount = this.#getPrizeAmount(rankResult);
     const purchaseAmount = lottoCount * LottoSeller.LOTTO_PRICE;
 
