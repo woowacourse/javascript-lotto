@@ -3,21 +3,21 @@ import { MAX_RETRY } from "../constants/option.js";
 import OutputView from "../view/OutputView.js";
 
 const RetryFunc = {
-  async executeOrRetryAsync(asyncFn, retry) {
+  async executeOrRetryAsync(asyncFn, retryCount) {
     try {
       const result = await asyncFn();
       return result;
     } catch (error) {
       OutputView.printError(error.message);
-      return this.executeUntillMaxTry(asyncFn, retry + 1);
+      return this.executeUntillMaxTry(asyncFn, retryCount + 1);
     }
   },
 
-  executeUntillMaxTry(asyncFn, retry = 0) {
-    if (retry > MAX_RETRY) {
+  executeUntillMaxTry(asyncFn, retryCount = 0) {
+    if (retryCount > MAX_RETRY) {
       throw new Error(ERROR_MESSAGE.MAX_RETRY_EXCEEDED);
     }
-    return this.executeOrRetryAsync(asyncFn, retry);
+    return this.executeOrRetryAsync(asyncFn, retryCount);
   },
 };
 export default RetryFunc;

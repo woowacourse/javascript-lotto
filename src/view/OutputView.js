@@ -6,8 +6,8 @@ const OutputView = {
     console.log(`${ERROR_MESSAGE.PREFIX} ${error}`);
   },
 
-  printMaxRetry(error) {
-    console.log(error);
+  printExceedMaxRetry(exceedMaxRetry) {
+    console.log(exceedMaxRetry);
   },
 
   printPurchaseMessage(purchaseAmount) {

@@ -30,7 +30,7 @@ class LottoGameController {
       const winningLotto = await this.#setWinningLotto();
       this.#getGameResult(lottoList, winningLotto);
     } catch (error) {
-      this.#outputView.printMaxRetry(error.message);
+      this.#outputView.printExceedMaxRetry(error.message);
     }
   }
 
