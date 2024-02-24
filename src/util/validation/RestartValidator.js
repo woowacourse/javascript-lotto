@@ -3,6 +3,7 @@ import Validation from './Validation';
 
 class RestartValidator {
   static name = VARIABLE_ALIAS.restartVar;
+
   static restartArray = ['y', 'Y', 'n', 'N'];
 
   static validateIsIncluded(restartInput) {

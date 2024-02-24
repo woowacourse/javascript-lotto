@@ -1,11 +1,15 @@
+/* eslint-disable max-params */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-constant-condition */
 import OPTIONS from '../constant/Options.js';
 import LottoMachine from '../domain/LottoMachine.js';
+import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
+import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
+import PurchaseAmountValidator from '../util/validation/PurchaseAmountValidator.js';
+import RestartValidator from '../util/validation/RestartValidator.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-import PurchaseAmountValidator from '../util/validation/PurchaseAmountValidator.js';
-import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
-import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
-import RestartValidator from '../util/validation/RestartValidator.js';
+
 class LottoController {
   #lottoMachine;
 
@@ -13,57 +17,57 @@ class LottoController {
     this.#lottoMachine = new LottoMachine();
   }
 
-  async inputPurchaseAmount() {
+  async getInputAndValidate(inputFunction, validateFunction) {
     while (true) {
       try {
-        const purchaseAmount = await InputView.inputPurchaseAmount();
-        const amount = parseInt(purchaseAmount.trim());
-        PurchaseAmountValidator.validate(amount);
-        return amount;
+        const input = await inputFunction();
+        return validateFunction(input) ?? input;
       } catch (error) {
         console.error(error.message);
       }
     }
   }
 
+  async inputPurchaseAmount() {
+    const purchaseAmount = await this.getInputAndValidate(InputView.inputPurchaseAmount, (input) =>
+      PurchaseAmountValidator.validate(parseInt(input.trim(), 10))
+    );
+    return parseInt(purchaseAmount.trim(), 10);
+  }
+
+  // eslint-disable-next-line max-lines-per-function
   async inputWinningNumbers() {
-    while (true) {
-      try {
-        const winningNumbers = await InputView.inputWinningNumbers();
-        const numbers = winningNumbers
+    const winningNumbers = await this.getInputAndValidate(
+      InputView.inputWinningNumbers,
+      (input) => {
+        const numbers = input
           .split(OPTIONS.INPUT.winningNumbersDelimiter)
           .map((number) => Number(number.trim()));
         LottoNumbersValidator.validate(numbers);
         return numbers;
-      } catch (error) {
-        console.error(error.message);
       }
-    }
+    );
+    return winningNumbers;
   }
 
   async inputBonusNumber(winningNumbers) {
-    while (true) {
-      try {
-        const input = await InputView.inputBonusNumber();
-        const bonusNumber = Number(input.trim());
-        BonusNumberValidator.validate(bonusNumber, winningNumbers);
-        return bonusNumber;
-      } catch (error) {
-        console.error(error.message);
-      }
-    }
+    const inputBonusNumber = await this.getInputAndValidate(InputView.inputBonusNumber, (input) => {
+      const bonusNumber = Number(input.trim());
+      BonusNumberValidator.validate(bonusNumber, winningNumbers);
+      return bonusNumber;
+    });
+    return inputBonusNumber;
   }
 
   async inputRestartResponse() {
-    while (true) {
-      try {
-        const restartResponse = await InputView.inputRestartResponse();
-        RestartValidator.validateIsIncluded(restartResponse);
-        return restartResponse.toLowerCase() === 'y';
-      } catch (error) {
-        console.error(error.message);
+    const restartResponse = await this.getInputAndValidate(
+      InputView.inputRestartResponse,
+      (input) => {
+        RestartValidator.validateIsIncluded(input);
+        return input.toLowerCase() === 'y';
       }
-    }
+    );
+    return restartResponse;
   }
 
   displayIssueQuantity(issueQuantity) {
@@ -99,14 +103,26 @@ class LottoController {
     let restart;
     do {
       const lottos = await this.#purchaseLottos();
-
-      const winningNumbers = await this.inputWinningNumbers();
-      const bonusNumber = await this.inputBonusNumber(winningNumbers);
-
-      this.#showWinningResult(lottos, winningNumbers, bonusNumber);
-
+      const { winningNumbers, bonusNumber } = await this.#getNumbers();
+      this.#showResult(lottos, winningNumbers, bonusNumber);
       restart = await this.inputRestartResponse();
     } while (restart);
+  }
+
+  async #getNumbers() {
+    const winningNumbers = await this.inputWinningNumbers();
+    const bonusNumber = await this.inputBonusNumber(winningNumbers);
+    return { winningNumbers: [winningNumbers], bonusNumber: [bonusNumber] };
+  }
+
+  #showResult(lottos, winningNumbers, bonusNumber) {
+    this.#showWinningResult(lottos, winningNumbers, bonusNumber);
+  }
+
+  #showWinningResult(lottos, winningNumbers, bonusNumber) {
+    const winningResult = this.determineLottoRanks(lottos, winningNumbers, bonusNumber);
+    const profitRate = this.calculateProfitRate(winningResult);
+    this.displayWinningResult(winningResult, profitRate);
   }
 
   async #purchaseLottos() {
@@ -118,12 +134,6 @@ class LottoController {
     this.displayLottoNumbersList(lottos);
 
     return lottos;
-  }
-
-  #showWinningResult(lottos, winningNumbers, bonusNumber) {
-    const winningResult = this.determineLottoRanks(lottos, winningNumbers, bonusNumber);
-    const profitRate = this.calculateProfitRate(winningResult);
-    this.displayWinningResult(winningResult, profitRate);
   }
 }
 
