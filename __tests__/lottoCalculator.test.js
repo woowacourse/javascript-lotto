@@ -11,7 +11,7 @@ describe('당첨 번호와 발행 번호 비교하는 테스트', () => {
 
     const lottoCalculator = new LottoCalculator(lottoNumbers, generatedLottos);
 
-    const result = lottoCalculator.compare(
+    const result = lottoCalculator.countMatchedNumber(
       lottoNumbers.winningNumbers,
       generatedLottos[0],
     );

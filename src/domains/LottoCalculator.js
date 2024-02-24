@@ -14,17 +14,16 @@ class LottoCalculator {
     this.#calculateAllLottoStatistics(lottoNumbers, generatedLottos);
   }
 
-  compare(winningNumbers, generatedLotto) {
+  countMatchedNumber(winningNumbers, generatedLotto) {
     return winningNumbers.filter((winningNumber) =>
       generatedLotto.includes(winningNumber),
     ).length;
   }
-  // 뭐하는건지 더 자세히 메서드 명 쓰기
 
   isEqualBonusNumber(bonusNumber, generatedLotto) {
     return generatedLotto.includes(bonusNumber);
   }
-  // 이거 네이밍 어케하지
+
   #increaseLottoCount(number) {
     Object.keys(LOTTO_STATISTICS).forEach((key) => {
       if (LOTTO_STATISTICS[key].number === number) {
@@ -33,9 +32,9 @@ class LottoCalculator {
     });
   }
   // 이거 네이밍 수정하기
-  #calculateLottoStatistics(lottoNumbers, generatedLotto) {
+  #calculateOneLotto(lottoNumbers, generatedLotto) {
     const { winningNumbers, bonusNumber } = lottoNumbers;
-    const count = this.compare(winningNumbers, generatedLotto);
+    const count = this.countMatchedNumber(winningNumbers, generatedLotto);
 
     if (count === LOTTO_RULES.bonusMatchCount) {
       this.#increaseFiveOrBonus(bonusNumber, generatedLotto);
@@ -46,7 +45,7 @@ class LottoCalculator {
 
   #calculateAllLottoStatistics(lottoNumbers, generatedLottos) {
     for (let i = 0; i < generatedLottos.length; i++) {
-      this.#calculateLottoStatistics(lottoNumbers, generatedLottos[i]);
+      this.#calculateOneLotto(lottoNumbers, generatedLottos[i]);
     }
   }
 
@@ -71,6 +70,7 @@ class LottoCalculator {
     const totalPrice = this.#calculateTotalPrice();
     const totalProfit =
       (totalPrice / (lottoTickets * LOTTO_RULES.lottoBaseTicketPrice)) * 0.01;
+
     return (
       Math.round(totalProfit * LOTTO_RULES.roundingStandard) /
       LOTTO_RULES.roundingStandard
