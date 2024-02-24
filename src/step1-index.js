@@ -1,4 +1,15 @@
-/**
- * step 1의 시작점이 되는 파일입니다.
- * 브라우저 환경에서 사용하는 css 파일 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import { CONFIG } from './constants';
+import { InputView } from './views';
+import LottoController from './controllers/LottoController';
+
+const app = {
+  async play() {
+    const purchaseAmount = await InputView.readPurchaseAmount();
+    const lottoController = new LottoController(purchaseAmount);
+    await lottoController.run();
+    const retry = await InputView.readRestart();
+    if (retry === CONFIG.RESTART_YES) this.play();
+  },
+};
+
+app.play();

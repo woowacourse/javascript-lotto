@@ -1,0 +1,12 @@
+const PRIZE = {
+  AMOUNT: { 1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000, 6: 0 },
+  MATCHED_RANK_COUNT: { 0: 6, 1: 6, 2: 6, 3: 5, 4: 4, 6: 1 },
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FORTH: 4,
+  FIFTH: 5,
+  SECOND_PRIZE_CONDITION: 5,
+};
+
+export default PRIZE;
