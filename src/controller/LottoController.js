@@ -17,17 +17,18 @@ class LottoController {
   #RETRY_YES = ["y", "Y"];
   #RETRY_NO = ["n", "N"];
 
-  async start() {
-    await this.#play();
+  async init() {
+    const boughtLottos = await this.#processBuyingLottos();
+    const winningLotto = await this.#processGettingWinningLotto();
+
+    await this.#processShowingLottoResult(boughtLottos, winningLotto);
 
     const retryChecker = await retryOnError(this.#readRetryChecker.bind(this));
 
-    if (this.#isRetryYes(retryChecker)) await this.start();
-
-    OutputView.printBlankLine();
+    if (this.#RETRY_YES.includes(retryChecker)) await this.init();
   }
 
-  async #play() {
+  async #processBuyingLottos() {
     const boughtLottos = await retryOnError(this.#buyLottos.bind(this));
 
     OutputView.printBoughtLottoNumbers(
@@ -35,6 +36,10 @@ class LottoController {
     );
     OutputView.printBlankLine();
 
+    return boughtLottos;
+  }
+
+  async #processGettingWinningLotto() {
     const lottoWithWinningNumbers = await retryOnError(this.#readLotto);
 
     OutputView.printBlankLine();
@@ -43,14 +48,16 @@ class LottoController {
       lottoWithWinningNumbers
     );
 
+    return winningLotto;
+  }
+
+  async #processShowingLottoResult(boughtLottos, winningLotto) {
     const lottoRanks = winningLotto.rankLottos(boughtLottos);
 
     const rankResult = LottoResultMaker.getRankResult(lottoRanks);
-    const profitRate = LottoResultMaker.getProfitRate(
-      rankResult,
-      boughtLottos.length
-    );
+    const profitRate = LottoResultMaker.getProfitRate(lottoRanks);
 
+    OutputView.printBlankLine();
     OutputView.printLottoResult(rankResult, profitRate);
   }
 
@@ -102,10 +109,6 @@ class LottoController {
     if (!RETRY_OPTION.includes(string)) {
       throw new Error(MESSAGES.ERROR.invalidRetryChecker);
     }
-  }
-
-  #isRetryYes(retryChecker) {
-    return this.#RETRY_YES.includes(retryChecker);
   }
 }
 
