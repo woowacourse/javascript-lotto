@@ -1,4 +1,4 @@
-const RetryOrEnd = async ([method, context], prams) => {
+const retryOrEnd = async ([method, context], prams) => {
   while (true) {
     try {
       const result = await method.call(context, prams);
@@ -9,4 +9,4 @@ const RetryOrEnd = async ([method, context], prams) => {
   }
 };
 
-export default RetryOrEnd;
+export default retryOrEnd;
