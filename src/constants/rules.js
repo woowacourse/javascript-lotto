@@ -28,6 +28,4 @@ export const WINNING_RULE = Object.freeze(
 export const RESTART_KEY = Object.freeze({
   restart: 'y',
   end: 'n',
-  restartCapital: 'Y',
-  endCapital: 'N',
 });

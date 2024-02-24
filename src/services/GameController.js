@@ -1,21 +1,24 @@
-import { RESTART_KEY } from '../constants';
-import { LottoGame, Validator } from '../domains';
+import { ERROR_MESSAGE, RESTART_KEY } from '../constants';
+import { LottoGame } from '../domains';
+import { isValidRestartInputForm } from '../utils';
 import { InputView, OutputView } from '../views';
 
 import InputController from './InputController';
 
 class GameController {
-  #lottoGame = new LottoGame();
+  #lottoGame;
+
+  constructor() {
+    this.#lottoGame = new LottoGame();
+  }
 
   async playGame() {
     await InputController.retryOnInvalidInput(async () => this.#getPaid());
-
     this.#printLottoTickets();
 
     await InputController.retryOnInvalidInput(async () =>
       this.#generateWinningLotto(),
     );
-
     this.#lottoGame.calculateStatistics();
     this.#printStatistics();
 
@@ -37,13 +40,19 @@ class GameController {
   }
 
   async #restartLottoGame() {
-    const restartInput = await InputView.readRestart();
-    Validator.checkRestartForm(restartInput);
+    const restartInput = (await InputView.readRestart()).toLowerCase();
+    this.#validateRestartForm(restartInput);
 
-    if (restartInput === RESTART_KEY.restart) {
+    const { restart } = RESTART_KEY;
+    if (restartInput === restart) {
       this.#lottoGame = new LottoGame();
       await this.playGame();
     }
+  }
+
+  #validateRestartForm(restartInput) {
+    if (!isValidRestartInputForm(restartInput))
+      throw new Error(ERROR_MESSAGE.invalidRestartInputForm);
   }
 
   #printLottoTickets() {
