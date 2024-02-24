@@ -1,3 +1,4 @@
+import ERROR_MESSAGE from "../constants/error-messages.js";
 import AppError from "./Error.js";
 
 export default async function executeOrRetryAsync({
@@ -14,5 +15,5 @@ export default async function executeOrRetryAsync({
       attempts += 1;
     }
   }
-  throw new AppError("재시도 횟수를 초과했습니다.");
+  throw new AppError(ERROR_MESSAGE.OVER_RETRY_LIMIT);
 }
