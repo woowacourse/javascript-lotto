@@ -14,7 +14,7 @@ class LottoCalculator {
     this.#calculateAllLottoStatics(lottoNumbers, generatedLottos);
   }
 
-  compare(winningNumbers, generatedLotto) {
+  getMatchedNumbersLength(winningNumbers, generatedLotto) {
     return winningNumbers.filter((winningNumber) =>
       generatedLotto.includes(winningNumber),
     ).length;
@@ -24,7 +24,7 @@ class LottoCalculator {
     return generatedLotto.includes(bonusNumber);
   }
 
-  #increaseLottoCount(number) {
+  #increaseMatchedNumber(number) {
     Object.keys(LOTTO_STATISTICS).forEach((key) => {
       if (LOTTO_STATISTICS[key].number === number) {
         this.#lottoStatics[key]++;
@@ -32,29 +32,29 @@ class LottoCalculator {
     });
   }
 
-  #calculateLottoStatics(lottoNumbers, generatedLotto) {
-    const { winningNumbers, bonusNumber } = lottoNumbers;
-    const count = this.compare(winningNumbers, generatedLotto);
-
-    if (count === LOTTO_RULES.bonusMatchCount) {
-      this.#increaseFiveOrBonus(bonusNumber, generatedLotto);
+  #increaseMatchedFiveOrBonusNumber(bonusNumber, generatedLotto) {
+    if (this.isEqualBonusNumber(bonusNumber, generatedLotto)) {
+      this.#lottoStatics.fiveBonus++;
       return;
     }
-    this.#increaseLottoCount(count);
+    this.#lottoStatics.five++;
+  }
+
+  #calculateLottoStatics(lottoNumbers, generatedLotto) {
+    const { winningNumbers, bonusNumber } = lottoNumbers;
+    const count = this.getMatchedNumbersLength(winningNumbers, generatedLotto);
+
+    if (count === LOTTO_RULES.bonusMatchCount) {
+      this.#increaseMatchedFiveOrBonusNumber(bonusNumber, generatedLotto);
+      return;
+    }
+    this.#increaseMatchedNumber(count);
   }
 
   #calculateAllLottoStatics(lottoNumbers, generatedLottos) {
     for (let i = 0; i < generatedLottos.length; i++) {
       this.#calculateLottoStatics(lottoNumbers, generatedLottos[i]);
     }
-  }
-
-  #increaseFiveOrBonus(bonusNumber, generatedLotto) {
-    if (this.isEqualBonusNumber(bonusNumber, generatedLotto)) {
-      this.#lottoStatics.fiveBonus++;
-      return;
-    }
-    this.#lottoStatics.five++;
   }
 
   #calculateTotalPrice() {
