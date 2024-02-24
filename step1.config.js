@@ -28,4 +28,7 @@ module.exports = {
   plugins: [new CleanWebpackPlugin()],
   devtool: "inline-source-map",
   target: "node",
+  experiments: {
+    topLevelAwait: true,
+  },
 };
