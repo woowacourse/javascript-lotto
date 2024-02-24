@@ -2,6 +2,10 @@ import BaseComponent from '../BaseComponent/BaseComponent.js';
 import styles from './LottoApp.module.css';
 
 class LottoApp extends BaseComponent {
+  setEvent() {
+    this.on({ target: document, eventName: 'reset' }, () => this.render());
+  }
+
   render() {
     this.innerHTML = `
         <header class=${styles.navBar}>

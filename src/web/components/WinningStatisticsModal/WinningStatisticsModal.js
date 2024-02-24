@@ -19,6 +19,10 @@ class WinningStatisticsModal extends BaseComponent {
 
       const modalCloseButton = this.querySelector('#modal-close-button');
       this.on({ target: modalCloseButton, eventName: 'click' }, () => this.classList.add('close'));
+
+      this.on({ target: this.querySelector('#reset-button'), eventName: 'click' }, () =>
+        this.emit('reset'),
+      );
     });
   }
 
@@ -94,7 +98,9 @@ class WinningStatisticsModal extends BaseComponent {
             <p class="${styles.rateOfReturnMessage}">
                 당신의 총 수익률은 <span id="profit">${this.#rateOfReturn ?? 0}</span>% 입니다.
             </p>
-            <button type="reset" class="${styles.resetButton} caption">다시 시작하기</button>
+            <button id="reset-button" type="reset" class="${
+              styles.resetButton
+            } caption">다시 시작하기</button>
         </div>
     `;
   }
