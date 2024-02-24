@@ -1,5 +1,6 @@
 import { NO_MATCH_PLACE } from "../constants/prize-constants.js";
 import { OUTPUT_MESSAGE } from "../constants/view-messages.js";
+import ascendingOrderSort from "../utils/ascendingSortArr.js";
 
 const OutputView = {
   printPurchaseMessage(purchaseAmount) {
@@ -7,7 +8,7 @@ const OutputView = {
   },
 
   printLottoNumber(lottoNumbers) {
-    console.log(lottoNumbers.sort((a, b) => b - a));
+    console.log(ascendingOrderSort(lottoNumbers));
   },
 
   printResultHeader() {
