@@ -6,7 +6,7 @@ import {
 } from "../utils/validator.js";
 
 class Lotto {
-  static NUMBERS_LENGTH = 6;
+  static NUMBER_COUNT = 6;
 
   #lottoNumbers = [];
 
@@ -43,7 +43,7 @@ class Lotto {
   }
 
   #validateLottoNumbers(numbers) {
-    validateLengthEqual(numbers.length, Lotto.NUMBERS_LENGTH);
+    validateLengthEqual(numbers.length, Lotto.NUMBER_COUNT);
     validateUniqueElements(numbers);
   }
 
