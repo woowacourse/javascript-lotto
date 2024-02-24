@@ -3,6 +3,7 @@ import { Console } from '../utils';
 
 const OutputView = {
   printLottoTickets(lottoTickets) {
+    Console.print(`${lottoTickets.length}개를 구매했습니다.`);
     lottoTickets.forEach((lottoTicket) => {
       Console.print(`[${lottoTicket.join(`${NUMBER_DELIMITER} `)}]`);
     });
