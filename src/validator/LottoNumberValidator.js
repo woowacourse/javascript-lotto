@@ -36,10 +36,11 @@ const lottoNumberValidator = {
   },
 
   validate(numbers) {
-    this.validateNumbersLength(numbers);
-    this.validateDuplicate(numbers);
-    this.validateRange(numbers);
-    this.validateIsNumber(numbers);
+    const formatedNumbers = numbers.map(Number);
+    this.validateNumbersLength(formatedNumbers);
+    this.validateDuplicate(formatedNumbers);
+    this.validateRange(formatedNumbers);
+    this.validateIsNumber(formatedNumbers);
   },
 };
 

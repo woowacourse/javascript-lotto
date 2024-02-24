@@ -1,6 +1,4 @@
 import { NO_MATCH_PLACE, PRIZE } from "../constants/prize-constants.js";
-import CommonValidator from "../validator/CommonValidator.js";
-import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 
 class Lotto {
   #numbers;
@@ -13,12 +11,12 @@ class Lotto {
     return this.#numbers;
   }
 
-  getMatchCount(winningLotto) {
+  getMatchCount(winningLottoNumbers) {
     const numberMatchCount = this.#numbers.filter((number) =>
-      winningLotto.getNumbers().includes(number),
+      winningLottoNumbers.includes(number),
     ).length;
 
-    const isBonus = this.#numbers.includes(winningLotto.getBonusNumber());
+    const isBonus = this.#numbers.includes(winningLottoNumbers);
 
     return { numberMatchCount, isBonus };
   }

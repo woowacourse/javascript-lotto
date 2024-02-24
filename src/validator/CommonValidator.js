@@ -9,7 +9,6 @@ const CommonValidator = {
     const isEmptyString = typeof input === "string" && input === SYMBOL.BLANK;
     const isEmptyArray = Array.isArray(input) && input.includes(SYMBOL.BLANK);
 
-    console.log("input,isEmptyString", input, isEmptyString);
     if (isEmptyString) {
       throw new AppError(EMPTY_INPUT);
     }
@@ -26,6 +25,7 @@ const CommonValidator = {
   },
 
   validate(input) {
+    console.log("input", input);
     this.validateEmpty(input);
     this.validateExistSpace(input);
   },

@@ -9,9 +9,9 @@ class LottoResult {
 
   #winningLotto;
 
-  constructor(lottoList, WinningLotto) {
+  constructor({ lottoList, winningLottoNumbers, bonusNumber }) {
     this.#lottoList = lottoList;
-    this.#winningLotto = WinningLotto;
+    this.#winningLotto = { winningLottoNumbers, bonusNumber };
   }
 
   getTotalResult() {
