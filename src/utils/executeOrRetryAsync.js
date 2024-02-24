@@ -10,13 +10,13 @@ export default async function executeOrRetryAsync({ asyncFn, handleError, retryL
   } catch (error) {
     handleError(error.message);
     if (attempts < retryLimit) {
-      const dd = await executeOrRetryAsync({
+      const retryResult = await executeOrRetryAsync({
         asyncFn,
         handleError,
         retryLimit,
         attempts: attempts + 1,
       });
-      return dd;
+      return retryResult;
     }
     throw new AppError(ERROR_MESSAGE.OVER_RETRY_LIMIT);
   }
