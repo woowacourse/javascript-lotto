@@ -1,4 +1,4 @@
-class LottoMatcher {
+class WinningStatsMaker {
   makeWinningStats(tickets, { winningNumbers, bonusNumber }) {
     const winningStats = {
       1: 0,
@@ -34,4 +34,4 @@ class LottoMatcher {
   }
 }
 
-export default LottoMatcher;
+export default WinningStatsMaker;

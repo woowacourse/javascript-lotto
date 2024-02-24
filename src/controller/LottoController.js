@@ -5,7 +5,7 @@ import InputView from '../view/InputView';
 import RetryOrEnd from '../utils/RetryOrEnd';
 import LottoTicket from '../domain/LottoTicket';
 import OutputView from '../view/OutputView';
-import LottoMatcher from '../domain/LottoMatcher';
+import WinningStatsMaker from '../domain/WinningStatsMaker';
 import RestartOrExitValidator from '../validator/RestartOrExitValidator';
 
 class LottoController {
@@ -93,7 +93,7 @@ class LottoController {
   }
 
   async processWinningStatst(lottoTickets, { winningNumbers, bonusNumber }) {
-    const winningStats = new LottoMatcher().makeWinningStats(lottoTickets, {
+    const winningStats = new WinningStatsMaker().makeWinningStats(lottoTickets, {
       winningNumbers,
       bonusNumber,
     });
