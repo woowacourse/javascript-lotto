@@ -5,7 +5,10 @@ import Lotto from './Lotto';
 
 const LottoService = {
   getLottos(count = 0) {
-    return Array.from({ length: count }, () => new Lotto(
+    return Array.from(
+      { length: count },
+      () =>
+        new Lotto(
           Random.pickUniqueNumbersInRange({
             from: NUMBER.LOTTO_START_NUMBER,
             to: NUMBER.LOTTO_END_NUMBER,
@@ -41,7 +44,7 @@ const LottoService = {
       .reverse();
   },
 
-  getResult({randomLottos = [], winLotto = {}, bonusNumber = 0}) {
+  getResult({ randomLottos = [], winLotto = {}, bonusNumber = 0 }) {
     const winningNubmer = randomLottos.reduce(
       (acc, lotto) => {
         const matchCount = lotto.matchLottoNumbers(winLotto);
@@ -69,12 +72,12 @@ const LottoService = {
     return ((revenue / (lottoCount * NUMBER.LOTTO_PRICE)) * 100).toFixed(1);
   },
 
-  calculateResult({randomLottos, winLotto, bonusNumber, lottoCount}){
-    const result = LottoService.getResult({randomLottos, winLotto, bonusNumber});
+  calculateResult({ randomLottos, winLotto, bonusNumber, lottoCount }) {
+    const result = LottoService.getResult({ randomLottos, winLotto, bonusNumber });
     const rateOfRevenue = LottoService.getRateOfRevenue(result, lottoCount);
 
     return [result, rateOfRevenue];
-  }
+  },
 };
 
 export default LottoService;

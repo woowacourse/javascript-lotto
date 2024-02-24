@@ -13,7 +13,7 @@ class LottoController {
   async play() {
     const [randomLottos, lottoCount] = await this.buyRandomLottos();
     const [winLotto, bonusNumber] = await this.inputWinnerInfo();
-    const [result, rateOfRevenue] = LottoService.calculateResult({randomLottos, winLotto, bonusNumber, lottoCount})
+    const [result, rateOfRevenue] = LottoService.calculateResult({ randomLottos, winLotto, bonusNumber, lottoCount });
     this.showLottoResult(result, rateOfRevenue);
     const restartResponse = await retryErrorCatch(() => this.getValidateRestartResponse());
     if (restartResponse === RESPONSE_MESSAGE.RESTART.YES) {
@@ -47,7 +47,7 @@ class LottoController {
   async getValidateLottoAmount() {
     const purchaseAmount = await InputView.askPurchaseAmount();
     PurchaseAmountValidation.validate(purchaseAmount);
-    
+
     return Number.parseInt(purchaseAmount / NUMBER.LOTTO_PRICE, 10);
   }
 
@@ -55,7 +55,7 @@ class LottoController {
     const winNumbersString = await InputView.askWinNumbers();
     const winNumbers = winNumbersString.split(',').map((number) => Number(number));
     LottoValidation.validateNumbers(winNumbers);
-    
+
     return winNumbers;
   }
 
