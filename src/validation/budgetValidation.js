@@ -1,3 +1,4 @@
+import { LOTTO_SETTING } from "../constants/lottoConstants.js";
 import ERROR_MESSAGE from "../constants/errorMessage.js";
 import { LOTTO_SETTING } from "../constants/lottoConstants.js";
 
