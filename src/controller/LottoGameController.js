@@ -1,11 +1,12 @@
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
+import RetryController from "./RetryController.js";
 import getValidInput from "../utils/getValidInput.js";
 import rankCounter from "../domain/rankCounter.js";
 import getLottoPrizeMoney from "../domain/getLottoPrizeMoney.js";
 import getRandomLottoArray from "../domain/getRandomLottoArray.js";
-import { calculator } from "../domain/calculator.js";
 import { LOTTO_SETTING } from "../constants/lottoConstants.js";
+import { calculator } from "../domain/calculator.js";
 
 class LottoGameController {
   #budget;
@@ -111,16 +112,8 @@ class LottoGameController {
 
     await this.#displayGameResult(rankData);
 
-    this.#retryGame();
-  }
-
-  #checkRetryGame(retryInput) {
-    if (retryInput === "y") return this.playGame();
-  }
-
-  async #retryGame() {
-    const retryInput = await getValidInput(InputView.readRetryGame);
-    this.#checkRetryGame(retryInput);
+    const retryController = new RetryController(this.playGame.bind(this));
+    retryController.retryGame();
   }
 }
 
