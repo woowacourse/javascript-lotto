@@ -1,10 +1,7 @@
 import { LOTTO_PRICE } from "../constants/lotto-constants.js";
 import { RETRY_INPUT } from "../constants/view-messages.js";
-import LottoMachine from "../domain/LottoMachine.js";
-import LottoResult from "../domain/LottoResult.js";
-import executeOrRetryAsync from "../utils/executeOrRetryAsync.js";
-import CommonValidator from "../validator/CommonValidator.js";
-import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
+
+import LottoResultCalculator from "../domain/LottoResultCalculator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 import LottoPurchaseController from "./LottoPurchaseController.js";
@@ -46,7 +43,7 @@ class LottoGameController {
   }
 
   #getGameResult({ lottoList, winningLottoNumbers, bonusNumber }) {
-    const lottoResult = new LottoResult({
+    const lottoResult = new LottoResultCalculator({
       lottoList,
       winningLottoNumbers,
       bonusNumber,

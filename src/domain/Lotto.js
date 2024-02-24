@@ -5,7 +5,6 @@ class Lotto {
 
   constructor(numbers) {
     this.#numbers = numbers.map((number) => Number(number));
-    console.log("lotto", this.#numbers);
   }
 
   getNumbers() {
@@ -13,7 +12,6 @@ class Lotto {
   }
 
   getMatchCount({ winningLottoNumbers, bonusNumber }) {
-    console.log("lotto안의 winningLottoNumbers", winningLottoNumbers);
     const numberMatchCount = this.#numbers.filter((number) =>
       winningLottoNumbers.includes(number),
     ).length;

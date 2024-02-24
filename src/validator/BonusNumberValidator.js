@@ -4,7 +4,6 @@ import AppError from "../utils/Error.js";
 
 const bonusNumberValidator = {
   validateDuplication({ winningLottoNumbers, bonusNumber }) {
-    console.log({ winningLottoNumbers, bonusNumber });
     if (winningLottoNumbers.includes(bonusNumber)) {
       throw new AppError(ERROR_MESSAGE.INVALID_BONUS_NUMBER_DUPLICATE);
     }

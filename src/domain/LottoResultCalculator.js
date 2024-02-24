@@ -4,7 +4,7 @@ import {
   PRIZE,
 } from "../constants/prize-constants.js";
 
-class LottoResult {
+class LottoResultCalculator {
   #lottoList;
 
   #winningLotto;
@@ -55,4 +55,4 @@ class LottoResult {
   }
 }
 
-export default LottoResult;
+export default LottoResultCalculator;

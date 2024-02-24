@@ -25,7 +25,6 @@ const CommonValidator = {
   },
 
   validate(input) {
-    console.log("input", input);
     this.validateEmpty(input);
     this.validateExistSpace(input);
   },
