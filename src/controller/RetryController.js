@@ -17,11 +17,7 @@ class RetryController {
     const retryInput = await getValidInput(InputView.readRetryGame);
 
     if (this.#isRetry(retryInput)) {
-<<<<<<< HEAD
       this.#retryFunction();
-=======
-      this.retryFunction();
->>>>>>> 4f82b7a (refactor: 게임 재시작 로직 별도 컨트롤러로 분리)
     }
   }
 }
