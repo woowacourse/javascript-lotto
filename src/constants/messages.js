@@ -2,14 +2,14 @@ import LOTTO_RULES from './lotto-rules';
 
 export const INPUT_MESSAGES = {
   prefix: '>',
-  lottoPayment: '구입금액을 입력해 주세요.',
+  lottoPurchasePrice: '구입금액을 입력해 주세요.',
   winningNumbers: '당첨 번호를 입력해 주세요.',
   bonusNumber: '보너스 번호를 입력해 주세요.',
   reStart: '다시 시작하시겠습니까? (y/n)',
 };
 
 export const OUTPUT_MESSAGES = {
-  lottoPayment(count) {
+  ticketCount(count) {
     return `${count}개를 구매했습니다.`;
   },
   winningStatics: '당첨 통계',

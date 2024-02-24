@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES } from '../constants/messages';
 import LOTTO_RULES from '../constants/lotto-rules';
 
-const LottoPaymentValidator = {
+const LottoPurchasePriceValidator = {
   validate(price) {
     this.validateDividedUnit(price);
   },
@@ -19,4 +19,4 @@ const LottoPaymentValidator = {
   },
 };
 
-export default LottoPaymentValidator;
+export default LottoPurchasePriceValidator;

@@ -1,10 +1,13 @@
 import LottoGenerator from '../domains/LottoGenerator';
 import LottoCalculator from '../domains/LottoCalculator';
+
 import InputView from '../views/InputView';
 import OutputView from '../views/OutputView';
-import LottoPaymentValidator from '../validators/LottoPaymentValidator';
+
+import LottoPurchasePriceValidator from '../validators/LottoPurchasePriceValidator';
 import LottoValidator from '../validators/LottoValidator';
 import executeWithRetry from '../utils/executeWithRetry';
+
 import LOTTO_RULES from '../constants/lotto-rules';
 
 class LottoController {
@@ -18,21 +21,21 @@ class LottoController {
   }
 
   async run() {
-    const tickets = await this.initTicketCount();
-    const lottoGenerator = await this.initLottoGenerator(tickets);
+    const ticketCount = await this.initTicketCount();
+    const generatedLottos = await this.initLottoGenerator(ticketCount);
     await this.initLottoNumbers();
-    await this.initLottoCalculator(tickets, lottoGenerator);
+    await this.initLottoCalculator(ticketCount, generatedLottos);
     await this.reStartLotto();
   }
 
   async initTicketCount() {
-    const tickets = await this.readLottoPayment();
-    return this.getTicketCount(tickets);
+    const lottoPurchasePrice = await this.readLottoPurchasePrice();
+    return this.getTicketCount(lottoPurchasePrice);
   }
 
   async initLottoGenerator(tickets) {
     const lottoGenerator = new LottoGenerator(tickets);
-    OutputView.printLottoPayment(tickets);
+    OutputView.printTicketCount(tickets);
     OutputView.printGeneratedLottos(lottoGenerator.generatedLottos);
     OutputView.printNewLine();
     return lottoGenerator;
@@ -57,11 +60,11 @@ class LottoController {
     OutputView.printTotalProfit(profit);
   }
 
-  async readLottoPayment() {
+  async readLottoPurchasePrice() {
     return executeWithRetry(async () => {
-      const lottoPayment = await InputView.lottoPayment();
-      LottoPaymentValidator.validate(lottoPayment);
-      return lottoPayment;
+      const lottoPurchasePrice = await InputView.lottoPurchasePrice();
+      LottoPurchasePriceValidator.validate(lottoPurchasePrice);
+      return lottoPurchasePrice;
     });
   }
 
@@ -88,13 +91,13 @@ class LottoController {
   async reStartLotto() {
     OutputView.printNewLine();
     const reStart = await InputView.reStart();
-    if (reStart === 'y') {
+    if (reStart === LOTTO_RULES.reStart) {
       this.run();
     }
   }
 
-  getTicketCount(lottoPayment) {
-    return lottoPayment / LOTTO_RULES.lottoBaseTicketPrice;
+  getTicketCount(lottoPurchasePrice) {
+    return lottoPurchasePrice / LOTTO_RULES.lottoBaseTicketPrice;
   }
 
   splitInput(winningNumbers) {

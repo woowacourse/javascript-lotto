@@ -3,8 +3,8 @@ import LOTTO_STATICS from '../constants/lotto-statics';
 import { OUTPUT_MESSAGES } from '../constants/messages';
 
 const OutputView = {
-  printLottoPayment(count) {
-    Console.print(OUTPUT_MESSAGES.lottoPayment(count));
+  printTicketCount(count) {
+    Console.print(OUTPUT_MESSAGES.ticketCount(count));
   },
 
   printGeneratedLottos(lottos) {

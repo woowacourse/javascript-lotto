@@ -4,9 +4,9 @@ import { INPUT_MESSAGES } from '../constants/messages';
 const { readLineAsync } = Console;
 
 const InputView = {
-  async lottoPayment() {
+  async lottoPurchasePrice() {
     return readLineAsync(
-      `${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.lottoPayment} `,
+      `${INPUT_MESSAGES.prefix} ${INPUT_MESSAGES.lottoPurchasePrice} `,
     );
   },
 
