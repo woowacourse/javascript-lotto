@@ -7,18 +7,16 @@ import purchaseAmountValidator from '../validator/PurchaseAmountValidator.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 
-/* eslint-disable max-lines-per-function */
-// LottoPurchaseController 내부 함수들은 15줄을 넘지 않습니다.
-const lottoPurchaseController = () => {
-  const readAndValidatePurchaseAmount = async () => {
+class LottoPurchaseController {
+  async #readAndValidatePurchaseAmount() {
     const purchaseAmountInput = await InputView.readPurchaseAmount();
     CommonValidator.validate(purchaseAmountInput);
     purchaseAmountValidator.validate(purchaseAmountInput);
 
     return Number(purchaseAmountInput);
-  };
+  }
 
-  const createLottoTickets = (purchaseAmount) => {
+  #createLottoTickets(purchaseAmount) {
     return Array.from(
       { length: purchaseAmount / LOTTO_PRICE },
       () =>
@@ -30,28 +28,24 @@ const lottoPurchaseController = () => {
           }),
         ),
     );
-  };
+  }
 
-  const displayLottoTickets = (lottoTickets) => {
+  #displayLottoTickets(lottoTickets) {
     lottoTickets.forEach((lotto) => {
       OutputView.printLottoNumber(lotto.getNumbers());
     });
-  };
+  }
 
-  const processPurchaseLotto = async () => {
+  async processPurchaseLotto() {
     const purchaseAmount = await executeOrRetryAsync({
-      asyncFn: readAndValidatePurchaseAmount,
+      asyncFn: this.#readAndValidatePurchaseAmount,
       handleError: console.log,
     });
     OutputView.printPurchaseMessage(purchaseAmount);
-    const lottoTickets = createLottoTickets(purchaseAmount);
-    displayLottoTickets(lottoTickets);
+    const lottoTickets = this.#createLottoTickets(purchaseAmount);
+    this.#displayLottoTickets(lottoTickets);
     return lottoTickets;
-  };
+  }
+}
 
-  return {
-    processPurchaseLotto,
-  };
-};
-
-export default lottoPurchaseController;
+export default LottoPurchaseController;
