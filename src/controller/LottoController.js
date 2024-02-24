@@ -22,11 +22,11 @@ class LottoController {
     const lottoTickets = this.processLottoTicket(purchaseAmount);
     const winningNumbers = await RetryOrEnd([this.processWinningNumbers, this]);
     const bonusNumber = await RetryOrEnd([this.processBonusNumber, this], winningNumbers);
-    const matchingResult = await this.processMatchingResult(lottoTickets, {
+    const winningStats = await this.processWinningStatst(lottoTickets, {
       winningNumbers,
       bonusNumber,
     });
-    this.processRateOfReturn(purchaseAmount, matchingResult);
+    this.processRateOfReturn(purchaseAmount, winningStats);
     const restart = await RetryOrEnd([this.processRestartOrExit, this]);
     if (restart === 'y') this.start();
   }
@@ -92,10 +92,13 @@ class LottoController {
       throw new Error('[ERROR] 보너스 번호는 중복되지 않아야 합니다.');
   }
 
-  async processMatchingResult(lottoTickets, { winningNumbers, bonusNumber }) {
-    const matchingResult = new LottoMatcher().match(lottoTickets, { winningNumbers, bonusNumber });
-    OutputView.printWinningStats(matchingResult);
-    return matchingResult;
+  async processWinningStatst(lottoTickets, { winningNumbers, bonusNumber }) {
+    const winningStats = new LottoMatcher().makeWinningStats(lottoTickets, {
+      winningNumbers,
+      bonusNumber,
+    });
+    OutputView.printWinningStats(winningStats);
+    return winningStats;
   }
 
   processRateOfReturn(purchaseAmount, matchStats) {

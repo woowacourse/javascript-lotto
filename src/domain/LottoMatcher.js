@@ -1,6 +1,6 @@
 class LottoMatcher {
-  match(tickets, { winningNumbers, bonusNumber }) {
-    const matchingResult = {
+  makeWinningStats(tickets, { winningNumbers, bonusNumber }) {
+    const winningStats = {
       1: 0,
       2: 0,
       3: 0,
@@ -8,23 +8,29 @@ class LottoMatcher {
       5: 0,
     };
     tickets.forEach((ticket) => {
-      const matchCount = ticket.filter((number) => winningNumbers.includes(number)).length;
-      const hasBonusNumber = this.#compareBonusNumber(ticket, bonusNumber);
-      this.#updateMatchingResult(matchingResult, { matchCount, hasBonusNumber });
+      const rank = this.judgeWinning(ticket, { winningNumbers, bonusNumber });
+      this.#updateWinningStats(rank, winningStats);
     });
-    return matchingResult;
+    return winningStats;
   }
 
   #compareBonusNumber(ticket, bonusNumber) {
     return ticket.includes(bonusNumber);
   }
 
-  #updateMatchingResult(matchingResult, { matchCount, hasBonusNumber }) {
-    if (matchCount === 6) matchingResult[1] += 1;
-    if (matchCount === 5 && hasBonusNumber) matchingResult[2] += 1;
-    if (matchCount === 5 && !hasBonusNumber) matchingResult[3] += 1;
-    if (matchCount === 4) matchingResult[4] += 1;
-    if (matchCount === 3) matchingResult[5] += 1;
+  judgeWinning(ticket, { winningNumbers, bonusNumber }) {
+    const matchCount = ticket.filter((number) => winningNumbers.includes(number)).length;
+    const hasBonusNumber = this.#compareBonusNumber(ticket, bonusNumber);
+    if (matchCount === 6) return 1;
+    if (matchCount === 5 && hasBonusNumber) return 2;
+    if (matchCount === 5 && !hasBonusNumber) return 3;
+    if (matchCount === 4) return 4;
+    if (matchCount === 3) return 5;
+    if (matchCount < 3) return 7;
+  }
+
+  #updateWinningStats(rank, winningStats) {
+    if (rank < 7) winningStats[rank] += 1;
   }
 }
 
