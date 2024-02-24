@@ -24,7 +24,7 @@ class LottoResultsHelper {
   }
 
   get lottoTickets() {
-    return this.#lottoMachine.lottoTickets;
+    return JSON.parse(JSON.stringify(this.#lottoMachine.lottoTickets));
   }
 
   /**

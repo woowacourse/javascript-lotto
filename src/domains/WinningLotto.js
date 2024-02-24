@@ -16,7 +16,7 @@ class WinningLotto {
   }
 
   get lottoNumbers() {
-    return this.#lottoNumbers;
+    return [...this.#lottoNumbers];
   }
 
   /**

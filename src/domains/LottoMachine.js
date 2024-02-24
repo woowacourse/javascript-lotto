@@ -25,7 +25,7 @@ class LottoMachine {
   }
 
   get lottoTickets() {
-    return this.#lottoTickets;
+    return JSON.parse(JSON.stringify(this.#lottoTickets));
   }
 
   get paymentAmount() {

@@ -13,9 +13,7 @@ class Lotto {
   }
 
   get numbers() {
-    return this.#numbers.sort(
-      (prevNumber, currentNumber) => prevNumber - currentNumber,
-    );
+    return [...this.#numbers];
   }
 
   /**
