@@ -1,7 +1,7 @@
-import Condition from '../constants/Condition';
-import Lotto from '../domain/Lotto';
-import Validator from '../domain/Validator';
-import Random from '../utils/Random';
+import Condition from '../../constants/Condition';
+import Lotto from '../../domain/Lotto';
+import Validator from '../../domain/Validator';
+import Random from '../../utils/Random';
 
 const { LOTTO, MONEY } = Condition;
 

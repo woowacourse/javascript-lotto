@@ -1,4 +1,4 @@
-import Condition from '../constants/Condition';
+import Condition from '../../constants/Condition';
 
 const { RANK } = Condition;
 

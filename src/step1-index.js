@@ -4,5 +4,20 @@
  */
 
 import LottoGame from './controller/LottoGame';
+import Input from './view/Input';
+import Output from './view/Output';
+import { LottoGenerator, StatisticsGenerator, MessageGenerator } from './controller/generator/index';
 
-LottoGame.start();
+const views = {
+  input: Input,
+  output: Output,
+};
+
+const controllers = {
+  lotto: LottoGenerator,
+  statistics: StatisticsGenerator,
+  message: MessageGenerator,
+};
+
+const lottoGame = new LottoGame(views, controllers);
+lottoGame.start();
