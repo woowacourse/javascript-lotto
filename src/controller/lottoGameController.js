@@ -8,14 +8,6 @@ import LottoPurchaseController from './lottoPurchaseController.js';
 import WinningLottoGenerator from './winningLottoGenerator.js';
 
 class LottoGameController {
-  #inputView;
-  #outputView;
-
-  constructor() {
-    this.#inputView = inputView;
-    this.#outputView = outputView;
-  }
-
   async play() {
     const lottoList = await this.#getPurchasedLottoTickets();
     const { winningLottoNumbers, bonusNumber } = await this.#createValidatedWinningLotto();
@@ -26,7 +18,7 @@ class LottoGameController {
   }
 
   async #restart() {
-    const retryAnswer = await this.#inputView.readRestartGame();
+    const retryAnswer = await inputView.readRestartGame();
 
     if (RETRY_INPUT.YES.includes(retryAnswer.trim())) this.play();
   }
@@ -54,8 +46,8 @@ class LottoGameController {
     const totalResult = lottoResult.getTotalResult();
     const profit = lottoResult.getProfit(lottoList.length * LOTTO_PRICE);
 
-    this.#outputView.printResult(totalResult);
-    this.#outputView.printProfit(profit);
+    outputView.printResult(totalResult);
+    outputView.printProfit(profit);
   }
 }
 
