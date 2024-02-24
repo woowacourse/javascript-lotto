@@ -8,6 +8,7 @@ import getRandomLottoArray from "../domain/getRandomLottoArray.js";
 import { LOTTO_SETTING } from "../constants/lottoConstants.js";
 import { calculator } from "../domain/calculator.js";
 import { LOTTO_SETTING } from "../constants/lottoConstants.js";
+import { calculator } from "../domain/calculator.js";
 
 class LottoGameController {
   #budget;
