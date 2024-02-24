@@ -1,21 +1,21 @@
 import readline from "readline";
-import MESSAGES from "../constants/messages.js";
+import { INPUT_MESSAGE } from "../constants/messages.js";
 
 class InputView {
   static async readBuyAmount() {
-    return await this.#readLineAsync(MESSAGES.INPUT.buyAmount);
+    return await this.#readLineAsync(INPUT_MESSAGE.buyAmount);
   }
 
   static async readWinningNumbers() {
-    return await this.#readLineAsync(MESSAGES.INPUT.winningNumbers);
+    return await this.#readLineAsync(INPUT_MESSAGE.winningNumbers);
   }
 
   static async readBonusNumber() {
-    return await this.#readLineAsync(MESSAGES.INPUT.bonusNumber);
+    return await this.#readLineAsync(INPUT_MESSAGE.bonusNumber);
   }
 
   static async readRetryChecker() {
-    return await this.#readLineAsync(MESSAGES.INPUT.retryChecker);
+    return await this.#readLineAsync(INPUT_MESSAGE.retryChecker);
   }
 
   static #readLineAsync(query) {

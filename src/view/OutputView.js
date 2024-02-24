@@ -1,4 +1,4 @@
-import MESSAGES, { outputMessageFormatter } from "../constants/messages.js";
+import { outputMessageFormatter } from "../constants/messages.js";
 
 class OutputView {
   static printBoughtLottoNumbers(lottoNumbersArray) {
@@ -11,14 +11,14 @@ class OutputView {
     );
   }
 
-  static printBlankLine() {
-    this.#printMessage();
-  }
-
   static printLottoResult(rankResult, profitRate) {
     this.#printMessage(
       outputMessageFormatter.lottoResult(rankResult, profitRate)
     );
+  }
+
+  static printBlankLine() {
+    this.#printMessage();
   }
 
   static #printMessage(...args) {

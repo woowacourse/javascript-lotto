@@ -11,7 +11,7 @@ import OutputView from "../view/OutputView.js";
 import { retryOnError } from "../utils/retryOnError.js";
 import { parseNumber } from "../utils/parseNumber.js";
 
-import MESSAGES from "../constants/messages.js";
+import { ERROR_MESSAGE } from "../constants/messages.js";
 
 class LottoController {
   static #RETRY_YES = ["y", "Y"];
@@ -110,7 +110,7 @@ class LottoController {
     ];
 
     if (!RETRY_OPTION.includes(string)) {
-      throw new Error(MESSAGES.ERROR.invalidRetryChecker);
+      throw new Error(ERROR_MESSAGE.invalidRetryChecker);
     }
   }
 }

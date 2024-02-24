@@ -2,7 +2,7 @@ import { LOTTO_RANK } from "./lotto.js";
 
 const addErrorPrefix = (message) => `[ERROR] ${message}`;
 
-export const ERROR = {
+export const ERROR_MESSAGE = {
   invalidRetryChecker: addErrorPrefix(
     "유효하지 않은 재시작 옵션입니다. (y/n 중 선택해주세요)"
   ),
@@ -24,16 +24,11 @@ export const errorMessageFormatter = {
     `유효한 구입 금액 범위(${min} ~ ${max})를 벗어났습니다.`,
 };
 
-export const INPUT = {
+export const INPUT_MESSAGE = {
   buyAmount: "구입금액을 입력해 주세요.",
   winningNumbers: "당첨 번호를 입력해 주세요. ",
   bonusNumber: "보너스 번호를 입력해 주세요. ",
   retryChecker: "다시 시작하시겠습니까? (y/n) ",
-};
-
-export const OUTPUT = {
-  // lottoResultIntro: "당첨 통계",
-  // lottoResultHorizontalLine: "--------------------",
 };
 
 export const outputMessageFormatter = {
@@ -51,7 +46,3 @@ export const outputMessageFormatter = {
 총 수익률은 ${profitRate.toLocaleString()}%입니다.
   `,
 };
-
-const MESSAGES = { ERROR, INPUT, OUTPUT };
-
-export default MESSAGES;
