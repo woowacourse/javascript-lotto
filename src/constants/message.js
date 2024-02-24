@@ -1,12 +1,12 @@
 const NEW_LINE = '\r\n';
 
 const MESSAGE = {
-  PURCHASE_AMOUNT_INPUT: '> 구입금액을 입력해 주세요.',
+  PURCHASE_AMOUNT_INPUT: '> 구입금액을 입력해 주세요 (1000원 단위로만 입력 가능). ',
   LOTTO_COUNT: '개를 구매했습니다.',
-  WINNING_NUMBERS_INPUT: `${NEW_LINE}> 당첨 번호를 입력해 주세요. `,
-  BONUS_NUMBER_INPUT: `${NEW_LINE}> 보너스 번호를 입력해 주세요. `,
+  WINNING_NUMBERS_INPUT: `${NEW_LINE}> 당첨 번호를 입력해 주세요 (1~45 사이의 값 6개를 ','로 구분). `,
+  BONUS_NUMBER_INPUT: `${NEW_LINE}> 보너스 번호를 입력해 주세요 (1~45 사이의 값). `,
   LOTTO_RESULT: `${NEW_LINE}당첨 통계${NEW_LINE}--------------------`,
-  RESTART: `${NEW_LINE}> 다시 시작하시겠습니까? (y/n)`,
+  RESTART: `${NEW_LINE}> 다시 시작하시겠습니까? (y/n) `,
 };
 
 const ERROR_MESSAGE = {
