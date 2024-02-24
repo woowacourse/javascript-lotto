@@ -1,4 +1,3 @@
-import { NO_MATCH_PLACE } from '../constants/prize-constants.js';
 import { OUTPUT_MESSAGE } from '../constants/view-messages.js';
 import ascendingOrderSort from '../utils/ascendingSortArr.js';
 

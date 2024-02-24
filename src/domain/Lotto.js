@@ -1,4 +1,4 @@
-import { NO_MATCH_PLACE, PRIZE } from '../constants/prize-constants.js';
+import prize from './prize.js';
 
 class Lotto {
   #numbers;
@@ -24,11 +24,9 @@ class Lotto {
       winningLottoNumbers,
       bonusNumber,
     });
-    const entry = Object.entries(PRIZE).find(
-      ([_, value]) => value.matchCount === numberMatchCount && value.isBonus === isBonus,
-    );
 
-    const rank = entry !== undefined ? entry[0] : NO_MATCH_PLACE;
+    const rank = prize.getRankByMatchCountAndBonus({ numberMatchCount, isBonus });
+
     return rank;
   }
 }
