@@ -22,10 +22,9 @@ const winningNumbersValidator = {
   },
 
   validateRange(winningNumbers) {
-    for (let i = 0; i < winningNumbers.length; i++) {
-      numberValidator.validate(winningNumbers[i]);
-      numberValidator.validateRange(winningNumbers[i]);
-    }
+    winningNumbers.forEach(number => {
+      numberValidator.validateWinningNumber(number);
+    });
   },
 };
 
