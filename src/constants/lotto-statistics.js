@@ -1,4 +1,4 @@
-const LOTTO_STATICS = {
+const LOTTO_STATISTICS = {
   three: {
     price: 5_000,
     number: 3,
@@ -21,4 +21,4 @@ const LOTTO_STATICS = {
   },
 };
 
-export default LOTTO_STATICS;
+export default LOTTO_STATISTICS;

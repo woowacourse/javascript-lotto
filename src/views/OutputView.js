@@ -1,5 +1,5 @@
 import Console from '../utils/Console';
-import LOTTO_STATICS from '../constants/lotto-statics';
+import LOTTO_STATISTICS from '../constants/lotto-statistics';
 import { OUTPUT_MESSAGES } from '../constants/messages';
 import createWinningResult from '../utils/createWinningResult';
 
@@ -21,7 +21,7 @@ const OutputView = {
   },
 
   printStatics(statics) {
-    const keys = Object.keys(LOTTO_STATICS);
+    const keys = Object.keys(LOTTO_STATISTICS);
 
     keys.forEach((key) => {
       const message = createWinningResult(key, statics[key]);

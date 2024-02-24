@@ -1,4 +1,4 @@
-import LOTTO_STATICS from '../constants/lotto-statics.js';
+import LOTTO_STATISTICS from '../constants/lotto-statistics.js';
 import LOTTO_RULES from '../constants/lotto-rules.js';
 class LottoCalculator {
   #lottoStatics;
@@ -25,8 +25,8 @@ class LottoCalculator {
   }
 
   #increaseLottoCount(number) {
-    Object.keys(LOTTO_STATICS).forEach((key) => {
-      if (LOTTO_STATICS[key].number === number) {
+    Object.keys(LOTTO_STATISTICS).forEach((key) => {
+      if (LOTTO_STATISTICS[key].number === number) {
         this.#lottoStatics[key]++;
       }
     });
@@ -58,8 +58,8 @@ class LottoCalculator {
   }
 
   #calculateTotalPrice() {
-    const totalPrice = Object.keys(LOTTO_STATICS).reduce(
-      (acc, key) => acc + LOTTO_STATICS[key].price * this.#lottoStatics[key],
+    const totalPrice = Object.keys(LOTTO_STATISTICS).reduce(
+      (acc, key) => acc + LOTTO_STATISTICS[key].price * this.#lottoStatics[key],
       0,
     );
     return totalPrice;
