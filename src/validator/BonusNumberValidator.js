@@ -28,7 +28,10 @@ const bonusNumberValidator = {
     const formatedBonusNumber = Number(bonusNumber);
     this.validateIsNumber(formatedBonusNumber);
     this.validateRange(formatedBonusNumber);
-    this.validateDuplication({ winningLottoNumbers, bonusNumber });
+    this.validateDuplication({
+      winningLottoNumbers,
+      bonusNumber: formatedBonusNumber,
+    });
   },
 };
 

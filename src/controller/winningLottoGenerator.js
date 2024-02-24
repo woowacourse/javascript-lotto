@@ -1,5 +1,6 @@
 import executeOrRetryAsync from "../utils/executeOrRetryAsync";
 import bonusNumberValidator from "../validator/BonusNumberValidator";
+import commonValidator from "../validator/CommonValidator";
 import CommonValidator from "../validator/CommonValidator";
 import lottoNumberValidator from "../validator/LottoNumberValidator";
 import InputView from "../view/InputView";
@@ -15,6 +16,7 @@ const WinningLottoGenerator = () => {
 
   const readAndValidateBonusNumber = async (winningLottoNumbers) => {
     const bonusNumberInput = await InputView.readBonusNumber();
+    commonValidator.validate(bonusNumberInput.trim());
     bonusNumberValidator.validate({
       winningLottoNumbers,
       bonusNumber: bonusNumberInput,
