@@ -145,30 +145,30 @@ test("당첨 로또를 생성한다.", () => {
 });
 
 test.each([
-  { correctCount: 6, isBonusCorrect: true, expectedResult: 1 },
-  { correctCount: 6, isBonusCorrect: false, expectedResult: 1 },
-  { correctCount: 5, isBonusCorrect: true, expectedResult: 2 },
-  { correctCount: 5, isBonusCorrect: false, expectedResult: 3 },
-  { correctCount: 4, isBonusCorrect: true, expectedResult: 4 },
-  { correctCount: 4, isBonusCorrect: false, expectedResult: 4 },
-  { correctCount: 3, isBonusCorrect: true, expectedResult: 5 },
-  { correctCount: 3, isBonusCorrect: false, expectedResult: 5 },
-  { correctCount: 2, isBonusCorrect: true, expectedResult: 0 },
-  { correctCount: 2, isBonusCorrect: false, expectedResult: 0 },
-  { correctCount: 1, isBonusCorrect: true, expectedResult: 0 },
-  { correctCount: 1, isBonusCorrect: false, expectedResult: 0 },
-  { correctCount: 0, isBonusCorrect: true, expectedResult: 0 },
-  { correctCount: 0, isBonusCorrect: false, expectedResult: 0 },
+  { lottoNumber: [10, 11, 12, 13, 14, 15], expectedResult: [0] },
+  { lottoNumber: [7, 11, 12, 13, 14, 15], expectedResult: [0] },
+  { lottoNumber: [1, 11, 12, 13, 14, 15], expectedResult: [0] },
+  { lottoNumber: [1, 7, 11, 12, 13, 14], expectedResult: [0] },
+  { lottoNumber: [1, 2, 11, 12, 13, 14], expectedResult: [0] },
+  { lottoNumber: [1, 2, 7, 11, 12, 13], expectedResult: [0] },
+  { lottoNumber: [1, 2, 3, 11, 12, 13], expectedResult: [5] },
+  { lottoNumber: [1, 2, 3, 7, 11, 12], expectedResult: [5] },
+  { lottoNumber: [1, 2, 3, 4, 11, 12], expectedResult: [4] },
+  { lottoNumber: [1, 2, 3, 4, 7, 8], expectedResult: [4] },
+  { lottoNumber: [1, 2, 3, 4, 5, 8], expectedResult: [3] },
+  { lottoNumber: [1, 2, 3, 4, 5, 7], expectedResult: [2] },
+  { lottoNumber: [1, 2, 3, 4, 5, 6], expectedResult: [1] },
 ])(
   "인자로 받은 일치 갯수와 보너스 일치 여부를 통해 순위를 확인한다.",
-  ({ correctCount, isBonusCorrect, expectedResult }) => {
+  ({ lottoNumber, expectedResult }) => {
     const lottoStore = new LottoStore();
 
     // Act
     lottoStore.setWinningLotto([1, 2, 3, 4, 5, 6], 7);
-    const ranking = lottoStore.checkRanking(correctCount, isBonusCorrect);
+    lottoStore.issueLottos([lottoNumber]);
 
-    expect(ranking).toBe(expectedResult);
+    console.log(lottoStore.checkRanking(), expectedResult);
+    expect(lottoStore.checkRanking()).toEqual(expectedResult);
   },
 );
 

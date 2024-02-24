@@ -35,6 +35,15 @@ class LottoStore {
     return lottoNumbers;
   }
 
+  #calculateWinningLottoCount() {
+    return this.#lottos.map((lotto) => ({
+      correctCount: this.#winningLotto.compareWinningNumbersWithLotto(
+        lotto.numbers,
+      ),
+      isBonusCorrect: this.#winningLotto.isBonusNumberMatch(lotto.numbers),
+    }));
+  }
+
   generateRandomNumbers(lottoCount) {
     if (!Validator.checkLottoCount(lottoCount))
       throw new Error(ERROR_MESSAGE.invalidLottoCount);
@@ -44,15 +53,18 @@ class LottoStore {
     );
   }
 
-  checkRanking(correctCount, isBonusCorrect) {
+  checkRanking() {
     const secondPlace = 2;
     const thirdPlace = 3;
 
-    if (LOTTO_SYSTEM.ranking[correctCount] === thirdPlace && isBonusCorrect) {
-      return secondPlace;
-    }
+    return this.#calculateWinningLottoCount().map(
+      ({ correctCount, isBonusCorrect }) => {
+        if (LOTTO_SYSTEM.ranking[correctCount] === thirdPlace && isBonusCorrect)
+          return secondPlace;
 
-    return LOTTO_SYSTEM.ranking[correctCount];
+        return LOTTO_SYSTEM.ranking[correctCount];
+      },
+    );
   }
 
   getTotalProfitRate(rankings) {
@@ -82,15 +94,6 @@ class LottoStore {
 
   get winningLotto() {
     return this.#winningLotto;
-  }
-
-  calculateWinningLottoCount() {
-    return this.#lottos.map((lotto) => ({
-      correctCount: this.#winningLotto.compareWinningNumbersWithLotto(
-        lotto.numbers,
-      ),
-      isBonusCorrect: this.#winningLotto.isBonusNumberMatch(lotto.numbers),
-    }));
   }
 
   get lottos() {

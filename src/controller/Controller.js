@@ -39,12 +39,7 @@ class Controller {
   }
 
   calculateProfitRate() {
-    const winningLottoCounts = this.#lottoStore.calculateWinningLottoCount();
-    const rankings = winningLottoCounts.map(
-      ({ correctCount, isBonusCorrect }) =>
-        this.#lottoStore.checkRanking(correctCount, isBonusCorrect),
-    );
-
+    const rankings = this.#lottoStore.checkRanking();
     const totalProfitRate = this.#lottoStore.getTotalProfitRate(rankings);
 
     OutputView.printRankings(rankings);
