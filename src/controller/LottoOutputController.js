@@ -16,7 +16,7 @@ class LottoOutputController {
   }
 
   printLottoResult(lottoResult) {
-    const rankArray = lottoResult.getRankArray();
+    const rankArray = lottoResult.getRanks();
     const getProfitRate = lottoResult.getProfitRate();
 
     this.#outputView.printLottoResult(rankArray, getProfitRate);

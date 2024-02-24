@@ -11,13 +11,13 @@ const ERROR = {
   undividableByLottoPriceHead: "[ERROR] 로또 금액(",
   undividableByLottoPriceTail: ")으로 나눠지지 않는 금액입니다.",
 
-  invalidBuyAmountRangeHead: "[ERROR] 유효한 구입 금액 범위(",
-  invalidBuyAmountRangeMiddle: " ~ ",
-  invalidBuyAmountRangeTail: ")를 벗어났습니다.",
+  invalidBuyPriceRangeHead: "[ERROR] 유효한 구입 금액 범위(",
+  invalidBuyPriceRangeMiddle: " ~ ",
+  invalidBuyPriceRangeTail: ")를 벗어났습니다.",
 };
 
 const INPUT = {
-  buyAmount: "구입금액을 입력해 주세요.",
+  buyPrice: "구입금액을 입력해 주세요.",
   winningNumbers: "당첨 번호를 입력해 주세요. ",
   bonusNumber: "보너스 번호를 입력해 주세요. ",
   retryChecker: "다시 시작하시겠습니까? (y/n) ",

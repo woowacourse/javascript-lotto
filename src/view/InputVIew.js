@@ -2,8 +2,8 @@ import readline from "readline";
 import MESSAGES from "./constants/messages";
 
 class InputView {
-  static async readBuyAmount() {
-    return await this.#readLineAsync(MESSAGES.INPUT.buyAmount);
+  static async readBuyPrice() {
+    return await this.#readLineAsync(MESSAGES.INPUT.buyPrice);
   }
 
   static async readWinningNumbers() {

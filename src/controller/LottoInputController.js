@@ -14,11 +14,9 @@ class LottoInputController {
   }
 
   async readLottos() {
-    const buyAmount = await retryWhenErrorOccurs(
-      this.#readBuyAmount.bind(this)
-    );
+    const buyPrice = await retryWhenErrorOccurs(this.#readBuyPrice.bind(this));
 
-    const lottos = LottoSeller.sellLottos(buyAmount);
+    const lottos = LottoSeller.sellLottos(buyPrice);
     return lottos;
   }
 
@@ -38,14 +36,14 @@ class LottoInputController {
     return lottoBoard;
   }
 
-  async #readBuyAmount() {
-    const buyAmountString = await this.#inputView.readBuyAmount();
-    LottoValidator.validateNonNegativeIntegerString(buyAmountString);
+  async #readBuyPrice() {
+    const buyPriceString = await this.#inputView.readBuyPrice();
+    LottoValidator.validateNonNegativeIntegerString(buyPriceString);
 
-    const buyAmount = Number(buyAmountString);
-    LottoValidator.validateBuyAmount(buyAmount);
+    const buyPrice = Number(buyPriceString);
+    LottoValidator.validateBuyPrice(buyPrice);
 
-    return buyAmount;
+    return buyPrice;
   }
 
   async #readWinningNumbers() {
@@ -56,7 +54,7 @@ class LottoInputController {
     });
 
     const winningNumbers = winningNumberStrings.map(Number);
-    LottoValidator.validateLottoNumbers(winningNumbers);
+    LottoValidator.validateLotto(winningNumbers);
 
     return winningNumbers;
   }

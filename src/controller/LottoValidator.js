@@ -3,10 +3,10 @@ import MESSAGES from "../view/constants/messages.js";
 import NUMBERS from "../domain/constants/numbers.js";
 
 class LottoValidator {
-  static validateBuyAmount(number) {
+  static validateBuyPrice(number) {
     this.#validateInteger(number);
     this.#validateDividableByLottoPrice(number);
-    this.#validateInBuyAmountRange(number);
+    this.#validateInBuyPriceRange(number);
   }
 
   static validateLotto(numbers) {
@@ -62,15 +62,15 @@ class LottoValidator {
       );
     }
   }
-  static #validateInBuyAmountRange(number) {
-    const MIN_BUY_AMOUNT = LottoSeller.LOTTO_PRICE;
-    const MAX_BUY_AMOUNT = LottoSeller.LOTTO_PRICE * 10_000_000;
+  static #validateInBuyPriceRange(number) {
+    const MIN_BUY_PRICE = LottoSeller.LOTTO_PRICE;
+    const MAX_BUY_PRICE = LottoSeller.LOTTO_PRICE * 10_000_000;
 
-    const isInRange = MIN_BUY_AMOUNT <= number && number <= MAX_BUY_AMOUNT;
+    const isInRange = MIN_BUY_PRICE <= number && number <= MAX_BUY_PRICE;
 
     if (!isInRange) {
       throw new Error(
-        `${MESSAGES.ERROR.invalidBuyAmountRangeHead}${MIN_BUY_AMOUNT}${MESSAGES.ERROR.invalidBuyAmountRangeMiddle}${MAX_BUY_AMOUNT}${MESSAGES.ERROR.invalidBuyAmountRangeTail}`
+        `${MESSAGES.ERROR.invalidBuyPriceRangeHead}${MIN_BUY_PRICE}${MESSAGES.ERROR.invalidBuyPriceRangeMiddle}${MAX_BUY_PRICE}${MESSAGES.ERROR.invalidBuyPriceRangeTail}`
       );
     }
   }
