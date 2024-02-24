@@ -1,4 +1,4 @@
-import CONFIG from '../constants/config';
+import { CONFIG_LOTTO } from '../constants/config';
 import LotteryMachine from '../domain/services/LotteryMachine';
 import lottoService from '../domain/services/lottoService';
 import InputView from '../views/InputView';
@@ -13,12 +13,24 @@ class LottoController {
 
   async run() {
     const lottery = new LotteryMachine(this.#purchaseAmount).makeLottery();
-    const lottoCount = this.#purchaseAmount / CONFIG.PURCHASE_UNIT;
+    this.#showPurchaseResult(lottery);
+    const matchedResultList = await this.calculateMatchedResultList(lottery);
+    this.#processLottoResult(matchedResultList);
+    this.#processProfit(matchedResultList);
+  }
+
+  #showPurchaseResult(lottery) {
+    const lottoCount = this.#purchaseAmount / CONFIG_LOTTO.PURCHASE_UNIT;
     OutputView.printLottoCount(lottoCount);
     OutputView.printLottery(lottery);
-    const matchedResultList = await this.calculateMatchedResultList(lottery);
+  }
+
+  #processLottoResult(matchedResultList) {
     const rankList = lottoService.calculateRankCounts(matchedResultList);
     OutputView.printLottoResult(rankList);
+  }
+
+  #processProfit(matchedResultList) {
     const profit = lottoService.calculateProfit(matchedResultList, this.#purchaseAmount);
     OutputView.printProfit(profit);
   }
