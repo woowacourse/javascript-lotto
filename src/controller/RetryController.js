@@ -1,24 +1,23 @@
+import RETRY from "../constants/retryConstants.js";
 import InputView from "../view/InputView.js";
 import getValidInput from "../utils/getValidInput.js";
 
 class RetryController {
-  retryFunction = null;
-  #YES = "y";
+  #retryFunction = null;
 
   constructor(retryFunction) {
-    this.retryFunction = retryFunction;
-    this.#YES = "y";
+    this.#retryFunction = retryFunction;
   }
 
   #isRetry(retryInput) {
-    return retryInput === this.#YES;
+    return retryInput === RETRY.YES;
   }
 
   async retryGame() {
     const retryInput = await getValidInput(InputView.readRetryGame);
 
     if (this.#isRetry(retryInput)) {
-      this.retryFunction();
+      this.#retryFunction();
     }
   }
 }

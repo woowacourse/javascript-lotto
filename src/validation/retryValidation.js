@@ -1,3 +1,4 @@
+import RETRY from "../constants/retryConstants.js";
 import ERROR_MESSAGE from "../constants/errorMessage.js";
 
 const retryValidation = {
@@ -5,7 +6,7 @@ const retryValidation = {
     yesOrNo: {
       errorMessage: ERROR_MESSAGE.YES_OR_NO,
       isValid(input) {
-        return input === "y" || input === "n";
+        return input === RETRY.YES || input === RETRY.NO;
       },
     },
   },
