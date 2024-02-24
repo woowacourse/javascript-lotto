@@ -1,10 +1,16 @@
-import LottoResultMaker from "../domain/LottoResultMaker.js";
-import LottoSeller from "../domain/LottoSeller.js";
-import LottoValidator from "../domain/LottoValidator.js";
+import Money from "../domain/Money.js";
+import Lotto from "../domain/Lotto.js";
+import LottoNumber from "../domain/LottoNumber.js";
 import WinningLotto from "../domain/WinningLotto.js";
-import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs.js";
+import LottoSeller from "../domain/LottoSeller.js";
+import LottoResultMaker from "../domain/LottoResultMaker.js";
+
 import InputView from "../view/InputVIew.js";
 import OutputView from "../view/OutputView.js";
+
+import { retryOnError } from "../utils/retryOnError.js";
+import { parseNumber } from "../utils/parseNumber.js";
+
 import MESSAGES from "../constants/messages.js";
 
 class LottoController {
@@ -13,90 +19,78 @@ class LottoController {
 
   async start() {
     await this.#play();
-    const retryChecker = await retryWhenErrorOccurs(
-      this.#readRetryChecker.bind(this)
-    );
+
+    const retryChecker = await retryOnError(this.#readRetryChecker.bind(this));
+
     if (this.#isRetryYes(retryChecker)) await this.start();
+
     OutputView.printBlankLine();
   }
 
   async #play() {
-    const lottos = await this.#readLottos();
-    OutputView.printBoughtLottos(lottos.map((lotto) => lotto.getNumbers()));
+    const boughtLottos = await retryOnError(this.#buyLottos.bind(this));
 
-    const winningLotto = await this.#readWinningLotto();
+    OutputView.printBoughtLottoNumbers(
+      boughtLottos.map((lotto) => lotto.getNumbers())
+    );
+    OutputView.printBlankLine();
 
-    const lottoRanks = winningLotto.getLottosRanks(lottos);
+    const lottoWithWinningNumbers = await retryOnError(this.#readLotto);
+
+    OutputView.printBlankLine();
+    const winningLotto = await retryOnError(
+      this.#getWinningLotto.bind(this),
+      lottoWithWinningNumbers
+    );
+
+    const lottoRanks = winningLotto.rankLottos(boughtLottos);
+
     const { rankResult, profitRate } =
       LottoResultMaker.getLottoResult(lottoRanks);
 
     OutputView.printLottoResult(rankResult, profitRate);
   }
 
-  async #readWinningNumbers() {
-    const rawWinningNumbers = await InputView.readWinningNumbers();
-    const winningNumberStrings = rawWinningNumbers.split(",");
-    winningNumberStrings.forEach((string) => {
-      LottoValidator.validateLottoNumberString(string);
-    });
+  async #buyLottos() {
+    const money = await this.#readMoney();
 
-    const parsedWinningNumbers = winningNumberStrings.map(Number);
-    LottoValidator.validateLottoNumbers(parsedWinningNumbers);
-
-    return parsedWinningNumbers;
-  }
-
-  async #readLottos() {
-    const buyAmount = await retryWhenErrorOccurs(
-      this.#readBuyAmount.bind(this)
-    );
-
-    const lottos = LottoSeller.sellLottos(buyAmount);
+    const lottos = LottoSeller.sell(money);
 
     return lottos;
   }
 
-  async #readWinningLotto() {
-    const winningNumbers = await retryWhenErrorOccurs(
-      this.#readWinningNumbers.bind(this)
-    );
-    OutputView.printBlankLine();
-    const bonusNumber = await retryWhenErrorOccurs(
-      this.#readBonusNumber,
-      winningNumbers
-    );
-    const winningLotto = await retryWhenErrorOccurs(
-      () => new WinningLotto(winningNumbers, bonusNumber)
-    );
-
-    return winningLotto;
+  async #getWinningLotto(lotto) {
+    const bonusNumber = await this.#readLottoNumber();
+    return new WinningLotto(lotto, bonusNumber);
   }
 
-  async #readBonusNumber(winningNumbers) {
-    const rawBonusNumber = await InputView.readBonusNumber();
-    LottoValidator.validateNonNegativeIntegerString(rawBonusNumber);
+  async #readMoney() {
+    const rawAmount = await InputView.readBuyAmount();
 
-    const parsedBonusNumber = Number(rawBonusNumber);
-    LottoValidator.validateBonusNumber(parsedBonusNumber, winningNumbers);
+    return new Money(parseNumber(rawAmount));
+  }
 
-    return parsedBonusNumber;
+  async #readLotto() {
+    const rawLottoNumbers = await InputView.readWinningNumbers();
+    const lottoNumberStrings = rawLottoNumbers.split(",");
+    const lottoNumbers = lottoNumberStrings.map(parseNumber);
+
+    return new Lotto(lottoNumbers);
+  }
+
+  async #readLottoNumber() {
+    const rawNumber = await InputView.readBonusNumber();
+    const number = Number(rawNumber);
+
+    return new LottoNumber(number);
   }
 
   async #readRetryChecker() {
     const retryCheck = await InputView.readRetryChecker();
+
     this.#validateRetryChecker(retryCheck);
 
     return retryCheck;
-  }
-
-  async #readBuyAmount() {
-    const rawBuyAmount = await InputView.readBuyAmount();
-    LottoValidator.validateNonNegativeIntegerString(rawBuyAmount);
-
-    const parsedBuyAmount = Number(rawBuyAmount);
-    LottoValidator.validateBuyAmount(parsedBuyAmount);
-
-    return parsedBuyAmount;
   }
 
   #validateRetryChecker(string) {

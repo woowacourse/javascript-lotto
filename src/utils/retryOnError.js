@@ -1,4 +1,4 @@
-async function retryOnError(callback, ...args) {
+export const retryOnError = async (callback, ...args) => {
   while (true) {
     try {
       return await callback(...args);
@@ -6,5 +6,4 @@ async function retryOnError(callback, ...args) {
       console.log(error.message);
     }
   }
-}
-export default retryOnError;
+};

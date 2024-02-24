@@ -5,7 +5,7 @@ export const ERROR = {
     "유효하지 않은 재시작 옵션입니다. (y/n 중 선택해주세요)"
   ),
   notInLottoNumberRange: addErrorPrefix("유효한 범위 로또 숫자가 아닙니다."),
-  hasDuplicateElements: addErrorPrefix("중복된 요소가 포합됩니다."),
+  hasDuplicateElements: addErrorPrefix("중복된 요소가 포함됩니다."),
   nonNegativeIntegerString: addErrorPrefix(
     "10진수 양의 정수로 변환되는 숫자가 아닙니다"
   ),

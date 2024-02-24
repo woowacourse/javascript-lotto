@@ -8,7 +8,6 @@ class OutputView {
     lottoNumbersArray.forEach((lottoNumbers) =>
       this.#printMessage(this.formatArrayString(lottoNumbers))
     );
-    this.printBlankLine();
   }
 
   static formatArrayString(array) {
@@ -22,7 +21,7 @@ class OutputView {
   }
 
   static printLottoResult(rankResult, profitRate) {
-    this.printBlankLine(MESSAGES.OUTPUT.lottoResultIntro);
+    this.#printMessage(MESSAGES.OUTPUT.lottoResultIntro);
     this.#printMessage(MESSAGES.OUTPUT.lottoResultHorizontalLine);
     this.#printRankResult(rankResult);
     this.#printProfitRate(profitRate);

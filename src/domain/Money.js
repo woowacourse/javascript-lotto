@@ -1,4 +1,4 @@
-import { validateTypeInteger } from "../utils/validator";
+import { validateTypeInteger } from "../utils/validator.js";
 
 export default class Money {
   static MIN_AMOUNT = 1;

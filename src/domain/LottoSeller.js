@@ -5,6 +5,7 @@ import Money from "./Money.js";
 
 class LottoSeller {
   static LOTTO_PRICE = 1000;
+  static MAX_LOTTO_COUNT = 100;
 
   static sell(money) {
     this.#validateLottoMoney(money);
@@ -16,7 +17,8 @@ class LottoSeller {
 
   static #validateLottoMoney(money) {
     this.#validateTypeMoney(money);
-    this.validateMinimumAmount(money);
+    this.#validateMinAmount(money);
+    this.#validateMaxAmount(money);
   }
 
   static #validateTypeMoney(value) {
@@ -25,10 +27,18 @@ class LottoSeller {
     }
   }
 
-  static validateMinimumAmount(money) {
+  static #validateMinAmount(money) {
     if (money.getAmount() < this.LOTTO_PRICE) {
       throw new Error(
         `[ERROR] 투입 금액은 최소 로또 한 개 가격(${this.LOTTO_PRICE}) 이상이어야 합니다.`
+      );
+    }
+  }
+
+  static #validateMaxAmount(money) {
+    if (money.getAmount() > this.MAX_LOTTO_COUNT * this.LOTTO_PRICE) {
+      throw new Error(
+        `[ERROR] 로또는 최대 ${this.MAX_LOTTO_COUNT}개까지 구매 가능합니다.`
       );
     }
   }
