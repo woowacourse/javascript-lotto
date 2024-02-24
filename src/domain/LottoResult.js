@@ -7,6 +7,7 @@ class LottoResult {
   ];
 
   #rankCounts = new Array(LottoBoard.LAST_RANK + 1).fill(0);
+
   #numberOfLotto = 0;
 
   countRank(rank) {
@@ -14,7 +15,7 @@ class LottoResult {
     this.#numberOfLotto += 1;
   }
 
-  getRanks() {
+  getRankCounts() {
     return [...this.#rankCounts];
   }
 
