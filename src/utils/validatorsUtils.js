@@ -1,6 +1,7 @@
 import { LOTTO_RULE, RANDOM_NUMBER_RULE, RESTART_KEY } from '../constants';
 
 /**
+ * 전달된 숫자가 정수인지 여부
  * @param {number} number
  */
 export const isInteger = (number) => Number.isInteger(number);
@@ -35,6 +36,11 @@ export const isLottoNumberInRange = (number) => {
   return start <= number && number <= end;
 };
 
+/**
+ * 로또 번호 배열의 숫자들이 유효한 범위 안에 있는지 여부
+ * @param {number[]} numbers
+ * @returns
+ */
 export const isLottoNumbersInRange = (numbers) => {
   const { start, end } = RANDOM_NUMBER_RULE.range;
   return numbers.every((number) => start <= number && number <= end);
@@ -70,8 +76,8 @@ export const isValidNumbersOfTickets = (money) => {
  * 당첨번호에 대한 입력값이 숫자들로 이루어지며 숫자들이 쉼표로 구분되저 있는지 여부
  * @param {string} numberInput
  */
-export const isValidWinningNumbersForm = (numberInput) =>
-  /^(\d+,)*\d+$/.test(numberInput);
+export const isValidWinningNumbersForm = (numbersInput) =>
+  /^(\d+,)*\d+$/.test(numbersInput);
 
 /**
  * 재시작 여부 입력으로 y 또는 n이 입력되었는지 여부

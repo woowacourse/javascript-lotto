@@ -1,13 +1,8 @@
 import LottoMachine from './LottoMachine';
 import Statistics from './Statistics';
-import WinningLotto from './WinningLotto';
 
 class LottoGame {
   #lottoMachine;
-
-  #winningLotto;
-
-  #matchingResults;
 
   #statistics;
 
@@ -15,24 +10,16 @@ class LottoGame {
     this.#lottoMachine = new LottoMachine(paymentAmountInput);
   }
 
-  calculateMatchingResult() {
-    this.matchingResults = this.lottoMachine.lottoTickets.map((lottoTicket) =>
-      this.winningLotto.compareLotto(lottoTicket),
-    );
+  issueWinningLotto(lottoNumbersInput, bonusNumberInput) {
+    this.#lottoMachine.issueWinningLotto(lottoNumbersInput, bonusNumberInput);
   }
 
   calculateStatistics() {
+    const { matchingResults, paymentAmount } = this.#lottoMachine;
+
     this.#statistics = new Statistics();
-    this.#statistics.checkTickets(this.#matchingResults);
-    this.#statistics.calculateProfitRate(this.#lottoMachine.paymentAmount);
-  }
-
-  set winningLottoNumbers(lottoNumbersInput) {
-    this.#winningLotto.lottoNumbers = lottoNumbersInput;
-  }
-
-  set bonusNumber(bonusNumberInput) {
-    this.#winningLotto.bonusNumber = bonusNumberInput;
+    this.#statistics.checkTickets(matchingResults);
+    this.#statistics.calculateProfitRate(paymentAmount);
   }
 
   get lottoTickets() {

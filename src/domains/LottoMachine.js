@@ -4,13 +4,15 @@ import {
   isDivisibleByPrice,
   isInteger,
   isValidNumbersOfTickets,
+  isValidWinningNumbersForm,
 } from '../utils';
 import Lotto from './Lotto';
-
-// TODO: Lotto[]와 WinningLotto를 저장하는 것으로 변경.
+import WinningLotto from './WinningLotto';
 
 class LottoMachine {
   #lottos = [];
+
+  #winningLotto;
 
   /**
    * @param {string} paymentAmount
@@ -21,12 +23,26 @@ class LottoMachine {
     this.#lottos = this.#generateLottoTickets(Number(paymentAmountInput));
   }
 
+  issueWinningLotto(lottoNumbersInput, bonusNumberInput) {
+    this.#validateLottoNumbersForm(lottoNumbersInput);
+
+    const numbers = lottoNumbersInput.split(',').map(Number);
+
+    this.#winningLotto = new WinningLotto(new Lotto(numbers), bonusNumberInput);
+  }
+
   get lottos() {
     return this.#lottos.map((lotto) => lotto.numbers);
   }
 
   get paymentAmount() {
     return this.#lottos.length * LOTTO_RULE.price;
+  }
+
+  get matchingResults() {
+    return this.#lottos.map((lotto) =>
+      this.#winningLotto.compareLotto(lotto.numbers),
+    );
   }
 
   #generateLottoTickets(paymentAmount) {
@@ -52,6 +68,11 @@ class LottoMachine {
 
     if (!isValidNumbersOfTickets(paymentAmount))
       throw new Error(ERROR_MESSAGE.inValidNumbersOfTickets);
+  }
+
+  #validateLottoNumbersForm(numbersInput) {
+    if (!isValidWinningNumbersForm(numbersInput))
+      throw new Error(ERROR_MESSAGE.inValidwinningNumbersForm);
   }
 }
 
