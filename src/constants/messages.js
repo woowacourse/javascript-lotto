@@ -11,13 +11,14 @@ export const INPUT_MESSAGES = Object.freeze({
 });
 
 export const OUTPUT_MESSAGES = Object.freeze({
-  lottoTickets: '\n당첨 통계',
+  purchasedLottoTickets: '\n<구매 내역>\n',
+  lottoTickets: '\n<당첨 통계>',
   divider: '--------------------',
   moneyUnit: '원',
   countUnit: '개',
   profitUnit: '%',
-  restartGame: '\n---게임 재시작!🎮---\n',
-  endGame: '\n 게임 종료 👏👏👏',
+  restartGame: '\n---게임 재시작! 😚🎮---\n',
+  endGame: '\n---게임 종료 🤗---',
 });
 
 const ERROR_PREFIX = '[ERROR]';
