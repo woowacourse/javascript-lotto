@@ -1,16 +1,16 @@
 import CustomError from "../error/CustomError.js";
 import ERROR_MESSAGE from "../error/errorMessage.js";
+import COMMANDS from "../constants/commands.js";
 
 class Command {
-  static COMMANDS = ["y", "n"];
-
   static isExit(input) {
     this.#validate(input);
-    return this.COMMANDS[1] === input;
+    return COMMANDS.false === input;
   }
 
   static #validate(input) {
-    const isInvalidCommand = !this.COMMANDS.includes(input);
+    const isInvalidCommand = !Object.entries(COMMANDS).some(([_, value]) => input === value);
+
     if (isInvalidCommand) throw new CustomError(ERROR_MESSAGE.commandNotInList);
   }
 }
