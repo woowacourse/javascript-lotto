@@ -4,17 +4,16 @@ import commonValidator from '../validator/CommonValidator.js';
 import lottoNumberValidator from '../validator/LottoNumberValidator.js';
 import InputView from '../view/InputView.js';
 
-/* eslint-disable max-lines-per-function */
-const WinningLottoGenerator = () => {
-  const readAndValidateWinningLottoNumbers = async () => {
+class WinningLottoGenerator {
+  async #readAndValidateWinningLottoNumbers() {
     const winningLottoNumbersInput = await InputView.readWinningLottoNumber();
     commonValidator.validate(winningLottoNumbersInput);
     lottoNumberValidator.validate(winningLottoNumbersInput);
 
     return winningLottoNumbersInput.map(Number);
-  };
+  }
 
-  const readAndValidateBonusNumber = async (winningLottoNumbers) => {
+  async #readAndValidateBonusNumber(winningLottoNumbers) {
     const bonusNumberInput = await InputView.readBonusNumber();
     commonValidator.validate(bonusNumberInput.trim());
     bonusNumberValidator.validate({
@@ -23,24 +22,20 @@ const WinningLottoGenerator = () => {
     });
 
     return Number(bonusNumberInput);
-  };
+  }
 
-  const createWinningLotto = async () => {
+  async createWinningLotto() {
     const winningLottoNumbers = await executeOrRetryAsync({
-      asyncFn: readAndValidateWinningLottoNumbers,
+      asyncFn: this.#readAndValidateWinningLottoNumbers,
       handleError: console.log,
     });
     const bonusNumber = await executeOrRetryAsync({
-      asyncFn: () => readAndValidateBonusNumber(winningLottoNumbers),
+      asyncFn: () => this.#readAndValidateBonusNumber(winningLottoNumbers),
       handleError: console.log,
     });
 
     return { winningLottoNumbers, bonusNumber };
-  };
-
-  return {
-    createWinningLotto,
-  };
-};
+  }
+}
 
 export default WinningLottoGenerator;

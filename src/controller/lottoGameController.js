@@ -33,7 +33,7 @@ class LottoGameController {
   }
 
   async #createValidatedWinningLotto() {
-    const winningLottoGenerator = WinningLottoGenerator();
+    const winningLottoGenerator = new WinningLottoGenerator();
     const { winningLottoNumbers, bonusNumber } = await winningLottoGenerator.createWinningLotto();
 
     return { winningLottoNumbers, bonusNumber };
