@@ -1,5 +1,6 @@
 import { NO_MATCH_PLACE, PERCENTATION, PRIZE } from '../constants/prize-constants.js';
 import excludeKeyFromObject from '../utils/excludeKeyFromObject.js';
+import roundToSecondDecimalPlace from '../utils/roundToSecondDecimalPlace.js';
 
 class LottoResultCalculator {
   #lottoList;
@@ -46,7 +47,8 @@ class LottoResultCalculator {
 
   getProfit(purchaseAmount) {
     const totalReward = this.#getTotalReward();
-    return (totalReward / purchaseAmount) * PERCENTATION;
+
+    return roundToSecondDecimalPlace(totalReward / purchaseAmount) * PERCENTATION;
   }
 }
 
