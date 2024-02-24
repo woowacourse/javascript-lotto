@@ -1,3 +1,4 @@
+import SYMBOL from "../constants/symbol.js";
 import { INPUT_MESSAGE } from "../constants/view-messages.js";
 import readLineAsync from "../utils/ReadLine.js";
 
@@ -9,7 +10,7 @@ const InputView = {
 
   async readWinningLottoNumber() {
     const input = await readLineAsync(INPUT_MESSAGE.WINNING_LOTTO);
-    return input;
+    return input.split(SYMBOL.DELIMITER);
   },
 
   async readBonusNumber() {
