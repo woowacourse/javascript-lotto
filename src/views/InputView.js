@@ -1,7 +1,7 @@
-import console from '../utils/console';
+import Console from '../utils/Console';
 import { INPUT_MESSAGES } from '../constants/messages';
 
-const { readLineAsync } = console;
+const { readLineAsync } = Console;
 
 const inputView = {
   async lottoPayment() {

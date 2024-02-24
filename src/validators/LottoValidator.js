@@ -2,13 +2,13 @@ import { ERROR_MESSAGES } from '../constants/messages';
 import LOTTO_RULES from '../constants/lotto-rules';
 
 const LottoValidator = {
-  winningNumbersValidate(numbers) {
+  validateWinningNumbers(numbers) {
     this.validateLength(numbers);
     this.validateUniqueNumber(numbers);
     this.validateWinningNumbersRange(numbers);
   },
 
-  bonusNumberValidate(winningNumbers, bonusNumber) {
+  validateBonusNumber(winningNumbers, bonusNumber) {
     this.validateRange(bonusNumber);
     this.validateUniqueNumber([...winningNumbers, bonusNumber]);
   },

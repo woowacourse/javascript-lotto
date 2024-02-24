@@ -1,10 +1,10 @@
-import console from './console';
+import Console from './Console';
 
 async function executeWithRetry(asyncFunc) {
   try {
     return await asyncFunc();
   } catch (error) {
-    console.print(error.message);
+    Console.print(error.message);
     return executeWithRetry(asyncFunc);
   }
 }
