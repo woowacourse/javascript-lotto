@@ -1,4 +1,5 @@
 import Bonus from './Bonus';
+import GameRestartChecker from './GameRestartChecker';
 import Lotto from './Lotto';
 import LottoGame from './LottoGame';
 import LottoMachine from './LottoMachine';
@@ -10,6 +11,7 @@ import WinningLotto from './WinningLotto';
 
 export {
   Bonus,
+  GameRestartChecker,
   Lotto,
   LottoNumber,
   Validator,
