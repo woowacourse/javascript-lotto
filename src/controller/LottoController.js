@@ -6,7 +6,9 @@ import OutputView from '../views/OutputView';
 
 import LottoPurchasePriceValidator from '../validators/LottoPurchasePriceValidator';
 import LottoValidator from '../validators/LottoValidator';
+
 import executeWithRetry from '../utils/executeWithRetry';
+import splitInput from '../utils/splitInput';
 
 import LOTTO_RULES from '../constants/lotto-rules';
 
@@ -71,7 +73,7 @@ class LottoController {
   async readWinningNumbers() {
     return executeWithRetry(async () => {
       const winningNumbers = await InputView.winningNumbers();
-      const splittedNumbers = this.splitInput(winningNumbers);
+      const splittedNumbers = splitInput(winningNumbers);
       LottoValidator.winningNumbersValidate(splittedNumbers);
       return splittedNumbers;
     });
@@ -98,10 +100,6 @@ class LottoController {
 
   getTicketCount(lottoPurchasePrice) {
     return lottoPurchasePrice / LOTTO_RULES.lottoBaseTicketPrice;
-  }
-
-  splitInput(winningNumbers) {
-    return winningNumbers.split(',').map((number) => Number(number));
   }
 }
 
