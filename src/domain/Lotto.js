@@ -16,11 +16,9 @@ class Lotto {
 
   getMatchCount(winningLotto) {
     const numberMatchCount = this.#numbers.filter((number) =>
-      winningLotto.getWinningLotto().numbers.includes(number),
+      winningLotto.numbers.includes(number),
     ).length;
-    const isBonus = this.#numbers.includes(
-      winningLotto.getWinningLotto().bonusNumber,
-    );
+    const isBonus = this.#numbers.includes(winningLotto.bonusNumber);
 
     return { numberMatchCount, isBonus };
   }
