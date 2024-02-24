@@ -18,7 +18,7 @@ class LottoController {
 
     const winLotto = await this.makeWinLotto();
     const lottoProcess = new LottoProcess();
-    const winResult = lottoProcess.getResult(lottos, winLotto).reverse();
+    const winResult = lottoProcess.getResult(lottos, winLotto);
 
     this.showLottoResult(winResult, lottoCount);
     const restartResponse = await this.getValidateRestartResponse();
@@ -34,29 +34,27 @@ class LottoController {
     return [lottos, lottoNumbers];
   }
 
+  async makeWinLotto() {
+    try {
+      const winNumbersInput = await InputView.askWinNumbers();
+      const winNumbers = winNumbersInput.split(',').map((e) => Number(e));
+      const winLottoPublisher = new LottoPublisher(1, [winNumbers]);
+      const [lottoWithWinNumbers] = winLottoPublisher.publishLottos();
+      return await this.getValidateBonusNumber(lottoWithWinNumbers);
+    } catch (error) {
+      OutputView.printError(error.message);
+      return this.makeWinLotto();
+    }
+  }
+
   showLottosInfo(lottoCount, lottosNumbers) {
     OutputView.printLottoCount(lottoCount);
     OutputView.printRandomLottos(lottosNumbers);
   }
 
-  async makeWinLotto() {
-    let winLotto;
-    try {
-      const winNumbersInput = await InputView.askWinNumbers();
-      const winNumbers = winNumbersInput.split(',').map((e) => Number(e));
-      const winLottoPublisher = new LottoPublisher(1, [winNumbers]);
-      const lottoWithWinNumbers = winLottoPublisher.publishLottos()[0];
-      winLotto = await this.getValidateBonusNumber(lottoWithWinNumbers);
-    } catch (error) {
-      OutputView.printError(error.message);
-      return this.makeWinLotto();
-    }
-    return winLotto;
-  }
-
   showLottoResult(winResult, lottoCount) {
     OutputView.printResultTitle();
-    OutputView.printWinningStatistics(winResult);
+    OutputView.printWinningStatisticsReverse(winResult);
     const lottoCalculator = new LottoCalculator();
     const rateOfRevenue = lottoCalculator.getRateOfRevenue(winResult, lottoCount);
     OutputView.printRateOfRevenue(rateOfRevenue);

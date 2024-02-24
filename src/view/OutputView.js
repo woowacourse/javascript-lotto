@@ -11,19 +11,22 @@ const OutputView = {
       console.log(`[${numbers.join(', ')}]`);
     });
   },
+
   printResultTitle() {
     console.log(OUTPUT_MESSAGE.WINNING_STATISTICS_TITLE);
   },
-  printWinningStatistics(result = []) {
-    result.reverse().forEach((winCount, index) => {
+
+  printWinningStatisticsReverse(result = []) {
+    result.forEach((_, index) => {
       const rankIndex = Math.abs(5 - index);
       console.log(
         `${OUTPUT_MESSAGE.MATCH_COUNT(WINNER[rankIndex].MATCH_COUNT)}${
           WINNER[rankIndex].IS_BONUS ? OUTPUT_MESSAGE.BONUS_MATCH : ''
-        }${OUTPUT_MESSAGE.WIN_PRICE(WINNER[rankIndex].PRICE)}${OUTPUT_MESSAGE.WIN_COUNT(winCount)}`
+        }${OUTPUT_MESSAGE.WIN_PRICE(WINNER[rankIndex].PRICE)}${OUTPUT_MESSAGE.WIN_COUNT(result[rankIndex - 1])}`
       );
     });
   },
+
   printRateOfRevenue(rateOfRevenue = '') {
     console.log(OUTPUT_MESSAGE.RATE_OF_REVENUE(rateOfRevenue));
   },
