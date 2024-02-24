@@ -127,9 +127,9 @@ describe("입력받은 배열의 길이만큼 로또를 발행한다.", () => {
     ];
     const lottoStore = new LottoStore();
 
-    const lottos = lottoStore.issueLottos(sixNumbersArray);
+    lottoStore.issueLottos(sixNumbersArray);
 
-    lottos.forEach((lotto) => expect(lotto).toBeInstanceOf(Lotto));
+    expect(lottoStore.lottos.length).toBe(3);
   });
 });
 

@@ -17,10 +17,9 @@ class Controller {
       const purchaseAmount = await InputView.readPurchaseAmount();
       const lottoCount = this.#lottoStore.calculateLottoCount(purchaseAmount);
       const randomNumbers = this.#lottoStore.generateRandomNumbers(lottoCount);
-      const lottos = this.#lottoStore.issueLottos(randomNumbers);
-      OutputView.printLottos(lottos);
+      this.#lottoStore.issueLottos(randomNumbers);
 
-      return lottos;
+      OutputView.printLottos(this.#lottoStore.lottos);
     } catch (error) {
       OutputView.print(error.message);
       return this.purchaseLottos();
@@ -39,9 +38,8 @@ class Controller {
     }
   }
 
-  calculateProfitRate(lottos) {
-    const winningLottoCounts =
-      this.#lottoStore.calculateWinningLottoCount(lottos);
+  calculateProfitRate() {
+    const winningLottoCounts = this.#lottoStore.calculateWinningLottoCount();
     const rankings = winningLottoCounts.map(
       ({ correctCount, isBonusCorrect }) =>
         this.#lottoStore.checkRanking(correctCount, isBonusCorrect),

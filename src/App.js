@@ -8,9 +8,9 @@ class App {
   }
 
   async play() {
-    const lottos = await this.#controller.purchaseLottos();
+    await this.#controller.purchaseLottos();
     await this.#controller.generateWinningLotto();
-    await this.#controller.calculateProfitRate(lottos);
+    await this.#controller.calculateProfitRate();
     const isRetry = await this.#controller.retryGame();
 
     if (isRetry) return this.play();

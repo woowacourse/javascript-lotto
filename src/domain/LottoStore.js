@@ -7,8 +7,11 @@ import WinningLotto from "./WinningLotto";
 
 class LottoStore {
   #winningLotto;
+  #lottos;
 
-  constructor() {}
+  constructor() {
+    this.#lottos = [];
+  }
 
   calculateLottoCount(purchaseAmount) {
     if (!Validator.checkPurchaseAmount(purchaseAmount))
@@ -70,7 +73,7 @@ class LottoStore {
     if (!Validator.checkSixNumbersArray(sixNumbersArray))
       throw new Error(ERROR_MESSAGE.invalidSixNumbersArray);
 
-    return sixNumbersArray.map((sixNumbers) => new Lotto(sixNumbers));
+    this.#lottos = sixNumbersArray.map((sixNumbers) => new Lotto(sixNumbers));
   }
 
   setWinningLotto(winningNumbers, bonusNumber) {
@@ -81,13 +84,17 @@ class LottoStore {
     return this.#winningLotto;
   }
 
-  calculateWinningLottoCount(lottos) {
-    return lottos.map((lotto) => ({
+  calculateWinningLottoCount() {
+    return this.#lottos.map((lotto) => ({
       correctCount: this.#winningLotto.compareWinningNumbersWithLotto(
         lotto.numbers,
       ),
       isBonusCorrect: this.#winningLotto.isBonusNumberMatch(lotto.numbers),
     }));
+  }
+
+  get lottos() {
+    return [...this.#lottos];
   }
 }
 
