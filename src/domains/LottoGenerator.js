@@ -4,8 +4,8 @@ import LOTTO_RULES from '../constants/lotto-rules';
 class LottoGenerator {
   #generatedLottos;
 
-  constructor(lottoTickets) {
-    this.#generatedLottos = this.#generateLottosByTicketCount(lottoTickets);
+  constructor(ticketCount) {
+    this.#generatedLottos = this.#generateLottosByTicketCount(ticketCount);
   }
 
   generateLotto() {
@@ -19,12 +19,8 @@ class LottoGenerator {
     return Array.from(lottoSet).sort((a, b) => a - b);
   }
 
-  #generateLottosByTicketCount(lottoTickets) {
-    const generatedLottos = [];
-    for (let ticket = 0; ticket < lottoTickets; ticket++) {
-      generatedLottos.push(this.generateLotto());
-    }
-    return generatedLottos;
+  #generateLottosByTicketCount(ticketCount) {
+    return Array.from({ length: ticketCount }, () => this.generateLotto());
   }
 
   get generatedLottos() {
