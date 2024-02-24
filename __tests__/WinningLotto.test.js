@@ -18,7 +18,7 @@ describe("WinningLotto에 대한 유닛 테스트", () => {
       new LottoNumber(bonusNumber)
     );
 
-    expect(winningLotto.getRanks([lotto1, lotto2])).toEqual([4, 2]);
+    expect(winningLotto.rankLottos([lotto1, lotto2])).toEqual([4, 2]);
   });
 
   test.each([[[1, 2, 3, 4, 5]], [[1, 2, 3, 4, 5, 6, 7]]])(

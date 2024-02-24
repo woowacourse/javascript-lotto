@@ -1,6 +1,5 @@
 import Lotto from "./Lotto.js";
 import LottoNumber from "./LottoNumber.js";
-import LottoValidator from "./LottoValidator.js";
 
 class WinningLotto {
   #lotto;
@@ -24,8 +23,8 @@ class WinningLotto {
     this.#bonusNumber = bonusNumber;
   }
 
-  getRanks(lottos) {
-    return lottos.map((lotto) => this.#getRank(lotto));
+  rankLottos(lottos) {
+    return lottos.map((lotto) => this.#rank(lotto));
   }
 
   #validateIsIntanceofLotto(lotto) {
@@ -46,18 +45,14 @@ class WinningLotto {
     }
   }
 
-  #getRank(lotto) {
+  #rank(lotto) {
     const matchCount = lotto.compare(this.#lotto);
-
     const hasBonusNumber = lotto.has(this.#bonusNumber);
 
-    return this.#getRankByMatchCountAndHasBonusNumber(
-      matchCount,
-      hasBonusNumber
-    );
+    return this.#findRank(matchCount, hasBonusNumber);
   }
 
-  #getRankByMatchCountAndHasBonusNumber(matchCount, hasBonusNumber) {
+  #findRank(matchCount, hasBonusNumber) {
     const rankStandard = WinningLotto.LOTTO_RANK_STANDARDS.find(
       (standard) =>
         standard.matchCount === matchCount &&
