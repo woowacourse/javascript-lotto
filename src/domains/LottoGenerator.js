@@ -7,7 +7,7 @@ class LottoGenerator {
   #generatedLottos;
 
   constructor(lottoTickets) {
-    this.#generatedLottos = this.#generateRandomLottos(lottoTickets);
+    this.#generatedLottos = this.#generateAllLottos(lottoTickets);
   }
 
   generateRandomLotto() {
@@ -20,10 +20,10 @@ class LottoGenerator {
     return Array.from(lottoSet).sort((a, b) => a - b);
   }
 
-  #generateRandomLottos(lottoTickets) {
+  #generateAllLottos(lottoTickets) {
     const generatedLottos = [];
     for (let ticket = 0; ticket < lottoTickets; ticket++) {
-      generatedLottos.push(this.generateRandomLotto());
+      generatedLottos.push(this.generateLotto());
     }
 
     return generatedLottos;
