@@ -32,8 +32,8 @@ const OutputView = {
     );
   },
 
-  printResultStatistics(profit) {
-    console.log(OUTPUT_MESSAGE.formatProfit(profit));
+  printProfits(profits) {
+    console.log(OUTPUT_MESSAGE.formatProfits(profits));
   },
 };
 
