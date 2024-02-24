@@ -1,9 +1,13 @@
+import { validateTypeInteger } from "../utils/validator";
+
 export default class Money {
   static MIN_AMOUNT = 1;
 
   #amount = 0;
 
   constructor(amount = 0) {
+    validateTypeInteger(amount);
+
     this.#validateOverMinAmount(amount);
 
     this.#amount = amount;
