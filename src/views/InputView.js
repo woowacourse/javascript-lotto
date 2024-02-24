@@ -28,8 +28,8 @@ const InputView = {
     try {
       const winningNumbersInput = await this.readWithMessage(MESSAGE.WINNING_NUMBERS_INPUT);
       let winningNumbers = winningNumbersInput.split(CONFIG_FORMAT.SEPARATOR);
-      winningNumbers = winningNumbers.map(number => parseInt(number.trim(), 10));
       winningNumbersValidator.validate(winningNumbers);
+      winningNumbers = winningNumbers.map(number => parseInt(number.trim(), 10));
       return winningNumbers;
     } catch (error) {
       OutputView.print(error.message);
