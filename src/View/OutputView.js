@@ -1,67 +1,30 @@
-const DIVIDED_SYMBOL = ', ';
-
-const COUNT_UNIT = '개';
-
-const MESSAGE = Object.freeze({
-  BUYING: `${COUNT_UNIT}를 구매했습니다.`,
-});
-
-const RANK_TO_COUNT = {
-  1: 6,
-  2: 5,
-  3: 5,
-  4: 4,
-  5: 3,
-};
-
-const RANK_TO_PRIZE_MONEY_STRINGS = {
-  1: '2,000,000,000원',
-  2: '30,000,000원',
-  3: '1,500,000원',
-  4: '50,000원',
-  5: '5,000원',
-};
-
-const RANK_TO_MESSAGE = {
-  1: `${COUNT_UNIT} 일치`,
-  2: `${COUNT_UNIT} 일치, 보너스 볼 일치`,
-  3: `${COUNT_UNIT} 일치`,
-  4: `${COUNT_UNIT} 일치`,
-  5: `${COUNT_UNIT} 일치`,
-};
-
-const COMMON_MESSAGES = {
-  RESULT_HEADER: '\n당첨 통계\n--------------------',
-};
+import DELIMITER from '../Constants/delimiter';
+import PROGRESS_MESSAGE from '../Constants/Messages/progressMessage';
+import LOTTO_REWARD from '../Constants/lottoReward';
 
 const OutputView = {
+  printBoughtLottoLength(lottoCount) {
+    this.printMessage(`${lottoCount}${PROGRESS_MESSAGE.BUY_LOTTO}`);
+  },
+
   printBoughtLottos(boughtLottos) {
-    this.printLottoLength(boughtLottos.length);
-    boughtLottos.forEach((lotto) => this.printMessage(`[${lotto.getLottoNumbers().join(DIVIDED_SYMBOL)}]`));
+    boughtLottos.forEach((lotto) => this.printMessage(`[${lotto.join(DELIMITER.LOTTO_NUMBER_SEPERATOR + ' ')}]`));
   },
 
-  printLottoLength(lottoCount) {
-    this.printMessage(`${lottoCount}${MESSAGE.BUYING}`);
+  printRewardResult(rewardResult) {
+    const sortedResult = rewardResult.sort((a, b) => b.rank - a.rank);
+
+    sortedResult.forEach((result) => {
+      this.printMessage(`${LOTTO_REWARD[result.rank].message}${result.count}개`);
+    });
   },
 
-  printWinLottos(winLottos) {
-    this.printMessage(COMMON_MESSAGES.RESULT_HEADER);
-    const NUMBER_OF_RANK_TYPE = 5;
-    for (let rank = NUMBER_OF_RANK_TYPE; rank > 0; rank -= 1) {
-      const rankMessage = RANK_TO_MESSAGE[rank];
-      const message = `${RANK_TO_COUNT[rank]}${rankMessage} (${RANK_TO_PRIZE_MONEY_STRINGS[rank]}) - ${winLottos[rank]}${COUNT_UNIT}`;
-      this.printMessage(message);
-    }
+  printRewardResultHeader() {
+    this.printMessage(PROGRESS_MESSAGE.RESULT_HEADER);
   },
 
-  printRateOfIncome(income) {
-    const RATE_OF_INCOME_MESSAGE = (rate) => `총 수익률은 ${rate.toLocaleString()}% 입니다.`;
-    this.printMessage(RATE_OF_INCOME_MESSAGE(income));
-  },
-
-  printError(message) {
-    const ERROR_MESSAGE_PREFIX = '❌';
-    this.printMessage(`${ERROR_MESSAGE_PREFIX} ${message}`);
+  printRateOfReturn(rateOfReturn) {
+    this.printMessage(PROGRESS_MESSAGE.RATE_OF_RETURN_MESSAGE(rateOfReturn));
   },
 
   printMessage(message) {
