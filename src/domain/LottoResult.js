@@ -1,4 +1,8 @@
-import { PERCENTATION, WINNING_RANK } from "../constants/option.js";
+import {
+  MIN_PURCHASE_AMOUNT,
+  PERCENTATION,
+  WINNING_RANK,
+} from "../constants/option.js";
 import { PRIZE } from "../constants/system.js";
 
 class LottoResult {
@@ -10,16 +14,17 @@ class LottoResult {
     this.#winningLotto = WinningLotto;
   }
 
-  #getResult() {
-    const ranks = this.#lottoList
-      .map((lotto) => lotto.getRank(this.#winningLotto))
-      .filter((rank) => rank !== WINNING_RANK.NONE);
+  getResult() {
+    const rank = this.#getTotalResult();
+    const profit = this.#getProfit(
+      this.#lottoList.length * MIN_PURCHASE_AMOUNT,
+    );
 
-    return ranks;
+    return { rank, profit };
   }
 
-  getTotalResult() {
-    const results = this.#getResult();
+  #getTotalResult() {
+    const results = this.#getRankResult();
     return results.reduce(
       (acc, cur) => {
         acc[cur] += 1;
@@ -29,17 +34,25 @@ class LottoResult {
     );
   }
 
+  #getRankResult() {
+    const ranks = this.#lottoList
+      .map((lotto) => lotto.getRank(this.#winningLotto))
+      .filter((rank) => rank !== WINNING_RANK.NONE);
+
+    return ranks;
+  }
+
+  #getProfit(purchaseAmount) {
+    const totalReward = this.#getTotalReward();
+    return (totalReward / purchaseAmount) * PERCENTATION;
+  }
+
   #getTotalReward() {
-    const totalResult = this.getTotalResult();
+    const totalResult = this.#getTotalResult();
     return Object.keys(totalResult).reduce((acc, cur) => {
       const prizeReward = PRIZE[cur].reward * totalResult[cur];
       return acc + prizeReward;
     }, 0);
-  }
-
-  getProfit(purchaseAmount) {
-    const totalReward = this.#getTotalReward();
-    return (totalReward / purchaseAmount) * PERCENTATION;
   }
 }
 
