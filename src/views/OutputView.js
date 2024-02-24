@@ -3,8 +3,9 @@ import Console from '../utils/Console';
 
 const OutputView = {
   printLottoTickets(lottoTickets) {
-    lottoTickets.forEach((lottoNumber, index) => {
-      if (!index) Console.print('');
+    Console.print(OUTPUT_MESSAGES.purchasedLottoTickets);
+
+    lottoTickets.forEach((lottoNumber) => {
       Console.print(
         `[${lottoNumber.sort((a, b) => a - b).join(`${NUMBER_DELIMITER} `)}]`,
       );
@@ -35,6 +36,13 @@ const OutputView = {
 
   printEndGameMessage() {
     Console.print(OUTPUT_MESSAGES.endGame);
+  },
+  /**
+   *
+   * @param {Error} error
+   */
+  printErrorMessage(error) {
+    Console.print(error.message);
   },
 };
 
