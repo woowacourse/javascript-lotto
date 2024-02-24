@@ -24,6 +24,9 @@ export const OUTPUT_MESSAGE = {
   PROFIT: (profit) => `총 수익률은 ${profit.toLocaleString()}%입니다.`,
 };
 
-export const RETRY_INPUT = "y";
+export const RETRY_INPUT = {
+  lower: "y",
+  upper: "Y",
+};
 
 export const LOTTO_PRICE = 1_000;
