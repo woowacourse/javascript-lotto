@@ -7,12 +7,7 @@ class LottoProcess {
     this.#lottos = lottos;
   }
 
-  matchLottoNumbers(lotto, winLotto) {
-    const lottoNumbers = lotto.getNumbers();
-    return lottoNumbers.filter((value) => winLotto.getNumbers().includes(value)).length;
-  }
-
-  #getRankIndex(matchCount = 0, matchBonus = false) {
+  getRankIndex(matchCount = 0, matchBonus = false) {
     switch (matchCount) {
       case WINNER.FIFTH.MATCH_COUNT:  return WINNER.FIFTH.INDEX;
       case WINNER.FOURTH.MATCH_COUNT: return WINNER.FOURTH.INDEX;
@@ -27,7 +22,7 @@ class LottoProcess {
     return lotto.getNumbers().includes(bonusNumber);
   }
 
-  #mapWinningCountToPrizes(winningCount = []) {
+  mapWinningCountToPrizes(winningCount = []) {
     const RANK = ['FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH'];
     return winningCount
       .map((count, index) => {
@@ -40,18 +35,18 @@ class LottoProcess {
 
   getResult(winLotto = {}, bonusNumber = 0) {
     const winningNubmer = this.#lottos.reduce((acc, lotto) => {
-        const matchCount = this.matchLottoNumbers(lotto, winLotto);
+        const matchCount = lotto.matchLottoNumbers(winLotto);
         this.increaseLottoResult({matchCount, lotto, bonusNumber, acc})
         return acc;
       },
       Array.from({ length: Object.keys(WINNER).length }, () => 0)
     );
-    return this.#mapWinningCountToPrizes(winningNubmer);
+    return this.mapWinningCountToPrizes(winningNubmer);
   }
 
   increaseLottoResult({matchCount, lotto, bonusNumber, acc}) {
     if (matchCount >= WINNER.FIFTH.MATCH_COUNT) {
-      const rankIndex = this.#getRankIndex(matchCount, this.#hasBonus(lotto, bonusNumber));
+      const rankIndex = this.getRankIndex(matchCount, this.#hasBonus(lotto, bonusNumber));
       acc[rankIndex] += 1;
     }
   }
