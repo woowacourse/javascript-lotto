@@ -5,7 +5,7 @@ describe("LottoSeller에 대한 유닛 테스트", () => {
     [5000, 5],
     [1000, 1],
   ])("구입 금액에 맞는 수의 로또 발행 (%i원 %i장)", (amount, count) => {
-    const lottos = LottoSeller.sellLottos(amount);
+    const lottos = LottoSeller.sell(amount);
 
     expect(lottos.length).toBe(count);
   });
@@ -16,7 +16,7 @@ describe("LottoSeller에 대한 유닛 테스트", () => {
   ])(
     "구입 금액에 맞는 수의 로또 발행(천원 단위의 금액이 아닌 경우 버림한다) ",
     (amount, count) => {
-      const lottos = LottoSeller.sellLottos(amount);
+      const lottos = LottoSeller.sell(amount);
 
       expect(lottos.length).toBe(count);
     }
