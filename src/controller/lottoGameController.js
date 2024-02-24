@@ -20,28 +20,26 @@ class LottoGameController {
   }
 
   async play() {
-    const lottoList = await this.#setLotto();
-
+    const lottoList = await this.#setupLotto();
     const winningLotto = await this.#setWinningLotto();
 
     this.#getGameResult(lottoList, winningLotto);
 
-    const restart = await this.#inputView.inputRestartGame();
+    const restart = await this.#inputView.readRestartGame();
     if (restart === RETRY_INPUT) this.play();
   }
 
-  async #setLotto() {
+  async #setupLotto() {
     const purchaseAmount = await executeOrRetryAsync({
       asyncFn: this.#getPurchaseAmount.bind(this),
       handleError: console.log,
-      retryLimit: 3,
     });
 
     return this.#getLottoList(purchaseAmount);
   }
 
   async #getPurchaseAmount() {
-    const purchaseAmount = await this.#inputView.inputPurchaseAmount();
+    const purchaseAmount = await this.#inputView.readPurchaseAmount();
     purchaseAmountValidator.validate(purchaseAmount);
 
     this.#outputView.printPurchaseMessage(purchaseAmount);
@@ -81,7 +79,6 @@ class LottoGameController {
     const winningLottoWithoutBonusNumber = await executeOrRetryAsync({
       asyncFn: this.#getWinningLotto.bind(this),
       handleError: console.log,
-      retryLimit: 3,
     });
 
     return winningLottoWithoutBonusNumber;
@@ -91,13 +88,12 @@ class LottoGameController {
     const winningLottoWithBonusNumber = await executeOrRetryAsync({
       asyncFn: () => this.#getBonusNumber(winningLottoWithoutBonusNumber),
       handleError: console.log,
-      retryLimit: 3,
     });
     return winningLottoWithBonusNumber;
   }
 
   async #getWinningLotto() {
-    const winningLottoInput = await this.#inputView.inputWinningLottoNumber();
+    const winningLottoInput = await this.#inputView.readWinningLottoNumber();
     const winningLottoNumbers = winningLottoInput
       .split(SYMBOL.DELIMITER)
       .map((number) => Number(number));
@@ -107,7 +103,7 @@ class LottoGameController {
   }
 
   async #getBonusNumber(winningLotto) {
-    const bonusNumber = await this.#inputView.inputBonusNumber();
+    const bonusNumber = await this.#inputView.readBonusNumber();
     const WinningLottoWithBonusNumber = new WinningLotto(
       winningLotto,
       Number(bonusNumber),
