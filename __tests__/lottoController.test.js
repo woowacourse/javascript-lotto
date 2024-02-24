@@ -1,4 +1,4 @@
-import LottoController from '../src/controller/LottoController';
+
 import LottoService from '../src/domain/LottoService';
 
 describe('lottoController 클래스 내 수익률을 계산하는 함수를 검사하는 테스트입니다.', () => {
