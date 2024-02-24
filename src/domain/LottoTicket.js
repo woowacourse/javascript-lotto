@@ -8,15 +8,15 @@ class LottoTicket {
     const emptyArr = Array.from({ length: 6 }).fill(0);
     const ticket = [];
     emptyArr.forEach(() => {
-      this.#hasDuplicatedNumber(ticket);
+      this.#putUniqueNumber(ticket);
     });
     return this.#sortWinningNumbers(ticket);
   }
 
-  #hasDuplicatedNumber(ticket) {
+  #putUniqueNumber(ticket) {
     const randomNumber = this.#pickRandomNumberInRange();
     if (ticket.includes(randomNumber)) {
-      this.#hasDuplicatedNumber(ticket);
+      this.#putUniqueNumber(ticket);
     } else {
       ticket.push(randomNumber);
     }
