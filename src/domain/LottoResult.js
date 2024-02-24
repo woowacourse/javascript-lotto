@@ -1,7 +1,7 @@
 import {
+  NO_MATCH_PLACE,
   PERCENTATION,
   PRIZE,
-  WINNING_RANK,
 } from "../constants/prize-constants";
 
 class LottoResult {
@@ -19,7 +19,7 @@ class LottoResult {
 
     const totalResult = this.#lottoList.reduce((acc, lotto) => {
       const rank = lotto.getRank(this.#winningLotto);
-      if (rank !== "NONE_PLACE") {
+      if (rank !== NO_MATCH_PLACE) {
         initialResult[rank] += 1;
       }
 

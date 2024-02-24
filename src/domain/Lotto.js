@@ -1,4 +1,4 @@
-import { PRIZE } from "../constants/prize-constants.js";
+import { NO_MATCH_PLACE, PRIZE } from "../constants/prize-constants.js";
 import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 
 class Lotto {
@@ -32,7 +32,7 @@ class Lotto {
         value.matchCount === numberMatchCount && value.isBonus === isBonus,
     );
 
-    const rank = entry !== undefined ? entry[0] : "NONE_PLACE";
+    const rank = entry !== undefined ? entry[0] : NO_MATCH_PLACE;
     return rank;
   }
 }
