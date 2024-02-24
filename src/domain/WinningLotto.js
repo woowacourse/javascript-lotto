@@ -1,17 +1,10 @@
+import { LOTTO_RANK, LOTTO_RANK_STANDARDS } from "../constants/lotto.js";
 import Lotto from "./Lotto.js";
 import LottoNumber from "./LottoNumber.js";
 
 class WinningLotto {
   #lotto;
   #bonusNumber;
-
-  static LOTTO_RANK_STANDARDS = [
-    { rank: 5, matchCount: 3, hasBonusNumber: false },
-    { rank: 4, matchCount: 4, hasBonusNumber: false },
-    { rank: 3, matchCount: 5, hasBonusNumber: false },
-    { rank: 2, matchCount: 5, hasBonusNumber: true },
-    { rank: 1, matchCount: 6, hasBonusNumber: false },
-  ];
 
   constructor(lotto, bonusNumber) {
     this.#validateIsIntanceofLotto(lotto);
@@ -53,13 +46,13 @@ class WinningLotto {
   }
 
   #findRank(matchCount, hasBonusNumber) {
-    const rankStandard = WinningLotto.LOTTO_RANK_STANDARDS.find(
+    const rankStandard = LOTTO_RANK_STANDARDS.find(
       (standard) =>
         standard.matchCount === matchCount &&
         standard.hasBonusNumber === hasBonusNumber
     );
 
-    return rankStandard?.rank || -1;
+    return rankStandard?.rank || LOTTO_RANK.none;
   }
 }
 

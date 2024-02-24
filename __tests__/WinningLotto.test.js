@@ -1,9 +1,10 @@
+import { LOTTO_RANK, RANK } from "../src/constants/lotto";
 import Lotto from "../src/domain/Lotto";
 import LottoNumber from "../src/domain/LottoNumber";
 import WinningLotto from "../src/domain/WinningLotto";
 
 describe("WinningLotto에 대한 유닛 테스트", () => {
-  test("Lotto 배열을 입력받아 각 로또의 등수가 배열을 반환한다", () => {
+  test("Lotto 배열을 입력받아 각 로또의 등수가 담긴 배열을 반환한다", () => {
     const lottoNumbers1 = [1, 2, 3, 4, 5, 6];
     const lottoNumbers2 = [1, 2, 3, 4, 40, 42];
 
@@ -18,7 +19,10 @@ describe("WinningLotto에 대한 유닛 테스트", () => {
       new LottoNumber(bonusNumber)
     );
 
-    expect(winningLotto.rankLottos([lotto1, lotto2])).toEqual([4, 2]);
+    expect(winningLotto.rankLottos([lotto1, lotto2])).toEqual([
+      LOTTO_RANK.fourth,
+      LOTTO_RANK.second,
+    ]);
   });
 
   test.each([[[1, 2, 3, 4, 5]], [[1, 2, 3, 4, 5, 6, 7]]])(
