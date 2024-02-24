@@ -36,7 +36,7 @@ class LottoResultCalculator {
   getProfit(purchaseAmount) {
     const totalReward = this.#getTotalReward();
 
-    return roundToSecondDecimalPlace(totalReward / purchaseAmount) * PERCENTATION;
+    return roundToSecondDecimalPlace(totalReward / purchaseAmount) * 100;
   }
 }
 
