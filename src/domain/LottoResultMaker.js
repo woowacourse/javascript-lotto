@@ -5,14 +5,14 @@ const LottoResultMaker = {
       return issuedLotto.reduce(
         (result, number) => {
           if (normalNumbers.includes(number)) {
-            result.normalNumber += 1;
+            result.normalResult += 1;
           }
           if (number === bonusNumber) {
-            result.bonusNumber += 1;
+            result.bonusResult += 1;
           }
           return result;
         },
-        { normalNumber: 0, bonusNumber: 0 }
+        { normalResult: 0, bonusResult: 0 }
       );
     });
   },
