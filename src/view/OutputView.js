@@ -1,19 +1,29 @@
 import MESSAGES from "./constants/messages.js";
 
 class OutputView {
-  static printBoughtLottos(lottoNumbersArray) {
+  static printBoughtLottos(lottosArray) {
     this.#printMessage(
-      `${lottoNumbersArray.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
+      `${lottosArray.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
     );
-    const lottoNumberArrayString = lottoNumbersArray
-      .map((lottoNumbers) => this.formatArrayString(lottoNumbers))
+    const lottoNumberArrayString = lottosArray
+      .map((lotto) => {
+        const sortedLotto = lotto.sort((a, b) => a - b);
+        return this.#formatArrayString(sortedLotto);
+      })
       .join("\n");
 
     this.#printMessage(lottoNumberArrayString);
     this.printBlankLine();
   }
 
-  static formatArrayString(array) {
+  static printBoughtSlicedLottos(lottosArray, originalNumberOfLotto) {
+    OutputView.printBoughtLottos(lottosArray);
+    this.#printMessage(
+      `${MESSAGES.OUTPUT.boughtContractedOuttroHead}${originalNumberOfLotto}${MESSAGES.OUTPUT.boughtContractedOuttroTail}`
+    );
+  }
+
+  static #formatArrayString(array) {
     return `[${array.join(",")}]`;
   }
 

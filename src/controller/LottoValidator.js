@@ -64,7 +64,7 @@ class LottoValidator {
   }
   static #validateInBuyAmountRange(number) {
     const MIN_BUY_AMOUNT = LottoSeller.LOTTO_PRICE;
-    const MAX_BUY_AMOUNT = LottoSeller.LOTTO_PRICE * 1000000;
+    const MAX_BUY_AMOUNT = LottoSeller.LOTTO_PRICE * 10_000_000;
 
     const isInRange = MIN_BUY_AMOUNT <= number && number <= MAX_BUY_AMOUNT;
 

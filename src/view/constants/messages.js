@@ -26,6 +26,9 @@ const INPUT = {
 const OUTPUT = {
   boughtLottosCompletedTail: "개를 구매했습니다.",
 
+  boughtContractedOuttroHead: "... 등 총 ",
+  boughtContractedOuttroTail: "개의 로또를 구매하였습니다.",
+
   lottoResultIntro: "당첨 통계",
   lottoResultHorizontalLine: "--------------------",
 
