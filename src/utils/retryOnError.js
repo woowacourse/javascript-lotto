@@ -1,4 +1,4 @@
-async function retryWhenErrorOccurs(callback, ...args) {
+async function retryOnError(callback, ...args) {
   while (true) {
     try {
       return await callback(...args);
@@ -7,4 +7,4 @@ async function retryWhenErrorOccurs(callback, ...args) {
     }
   }
 }
-export default retryWhenErrorOccurs;
+export default retryOnError;
