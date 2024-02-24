@@ -22,6 +22,10 @@ const ERROR_MESSAGE = {
   INVALID_BONUS_NUMBER_TYPE: "보너스 번호는 숫자로만 입력해주세요.",
 
   OVER_RETRY_LIMIT: "재시도 횟수를 초과했습니다.",
+
+  EMPTY_INPUT: "아무것도 입력하지 않으셨습니다.",
+  SPACE_IN_INPUT: "입력하신 값에 공백이 포함되어있습니다.",
+  INCLUDES_EMPTY_INPUT: "입력한 값 중 공백이 있습니다.",
 };
 
 export default ERROR_MESSAGE;

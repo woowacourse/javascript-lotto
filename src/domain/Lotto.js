@@ -1,13 +1,12 @@
 import { NO_MATCH_PLACE, PRIZE } from "../constants/prize-constants.js";
+import CommonValidator from "../validator/CommonValidator.js";
 import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    lottoNumberValidator.validate(numbers);
-
-    this.#numbers = numbers;
+    this.#numbers = numbers.map((number) => Number(number));
   }
 
   getNumbers() {

@@ -1,11 +1,12 @@
 import { LOTTO_PRICE } from "../constants/lotto-constants.js";
-import SYMBOL from "../constants/symbol.js";
 import { RETRY_INPUT } from "../constants/view-messages.js";
 import Lotto from "../domain/Lotto.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import WinningLotto from "../domain/WinningLotto.js";
 import executeOrRetryAsync from "../utils/executeOrRetryAsync.js";
+import CommonValidator from "../validator/CommonValidator.js";
+import lottoNumberValidator from "../validator/LottoNumberValidator.js";
 import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
@@ -40,6 +41,7 @@ class LottoGameController {
 
   async #getPurchaseAmount() {
     const purchaseAmount = await this.#inputView.readPurchaseAmount();
+    CommonValidator.validate(purchaseAmount);
     purchaseAmountValidator.validate(purchaseAmount);
 
     this.#outputView.printPurchaseMessage(purchaseAmount);
@@ -93,10 +95,9 @@ class LottoGameController {
   }
 
   async #getWinningLotto() {
-    const winningLottoInput = await this.#inputView.readWinningLottoNumber();
-    const winningLottoNumbers = winningLottoInput
-      .split(SYMBOL.DELIMITER)
-      .map((number) => Number(number));
+    const winningLottoNumbers = await this.#inputView.readWinningLottoNumber();
+    CommonValidator.validate(winningLottoNumbers);
+    lottoNumberValidator.validate(winningLottoNumbers);
     const winningLotto = new Lotto(winningLottoNumbers);
 
     return winningLotto;
