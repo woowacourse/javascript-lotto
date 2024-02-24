@@ -23,8 +23,11 @@ class LottoResultsHelper {
     return this.#lottoMachine.paymentAmount;
   }
 
+  get lottoTickets() {
+    return this.#lottoMachine.lottoTickets;
+  }
+
   /**
-   *
    * @param {string} paymentAmountInput
    */
   generateLottoMachine(paymentAmountInput) {
@@ -51,7 +54,10 @@ class LottoResultsHelper {
    */
   calculateMatchingResults() {
     return this.#lottoMachine.lottoTickets.map((lottoTicket) =>
-      this.#winningData.winningLotto.compareLotto(lottoTicket),
+      this.#winningData.winningLotto.compareLotto(
+        lottoTicket,
+        this.#winningData.bonus,
+      ),
     );
   }
 }
