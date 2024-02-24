@@ -15,14 +15,14 @@ class LottoMachine {
   }
 
   #pickLottoNumbers() {
-    return Random.pickCombination(
-      OPTIONS.LOTTO.minNumber,
-      OPTIONS.LOTTO.maxNumber,
-      OPTIONS.LOTTO.combination
-    );
+    return Random.pickCombination({
+      min: OPTIONS.LOTTO.minNumber,
+      max: OPTIONS.LOTTO.maxNumber,
+      count: OPTIONS.LOTTO.combination
+    });
   }
 
-  determineLottoRanks(lottos, winningNumbers, bonusNumber) {
+  determineLottoRanks({ lottos, winningNumbers, bonusNumber }) {
     const winningResult = OPTIONS.WINNING_RESULT;
 
     lottos.forEach((lotto) => {

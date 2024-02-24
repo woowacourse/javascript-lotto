@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { OUTPUT_MESSAGES } from '../constant/Messages.js';
 import OPTIONS from '../constant/Options.js';
 

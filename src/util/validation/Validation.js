@@ -11,7 +11,7 @@ class Validation {
     return array.length === length;
   }
 
-  static isInRange(value, min, max) {
+  static isInRange({ value, min, max }) {
     return value >= min && value <= max;
   }
 

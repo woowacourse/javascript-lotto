@@ -7,7 +7,11 @@ class BonusNumberValidator {
 
   static validate(bonusNumber, winningNumbers) {
     this.validateIsInteger(bonusNumber);
-    this.validateIsInRange(bonusNumber, OPTIONS.LOTTO.minNumber, OPTIONS.LOTTO.maxNumber);
+    this.validateIsInRange({
+      number: bonusNumber,
+      min: OPTIONS.LOTTO.minNumber,
+      max: OPTIONS.LOTTO.maxNumber
+    });
     this.validateIsNotIncluded(bonusNumber, winningNumbers);
   }
 
@@ -17,10 +21,10 @@ class BonusNumberValidator {
     }
   }
 
-  static validateIsInRange(number, min, max) {
-    if (!Validation.isInRange(number, min, max)) {
+  static validateIsInRange({ number, min, max }) {
+    if (!Validation.isInRange({ value: number, min, max })) {
       throw new Error(
-        `${ERROR_MESSAGES.prefix}${ERROR_MESSAGES.isNotInRange(this.name, min, max)}`
+        `${ERROR_MESSAGES.prefix}${ERROR_MESSAGES.isNotInRange({ name: this.name, min, max })}`
       );
     }
   }

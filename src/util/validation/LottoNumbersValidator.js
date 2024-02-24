@@ -8,7 +8,7 @@ class LottoNumbersValidator {
   static validate(numbers) {
     this.validateHasLength(numbers, OPTIONS.LOTTO.combination);
     this.validateIsInteger(numbers);
-    this.validateIsInRange(numbers, OPTIONS.LOTTO.minNumber, OPTIONS.LOTTO.maxNumber);
+    this.validateIsInRange({ numbers, min: OPTIONS.LOTTO.minNumber, max: OPTIONS.LOTTO.maxNumber });
     this.validateIsUnique(numbers);
   }
 
@@ -24,10 +24,10 @@ class LottoNumbersValidator {
     }
   }
 
-  static validateIsInRange(numbers, min, max) {
-    if (!numbers.every((number) => Validation.isInRange(number, min, max))) {
+  static validateIsInRange({ numbers, min, max }) {
+    if (!numbers.every((number) => Validation.isInRange({ value: number, min, max }))) {
       throw new Error(
-        `${ERROR_MESSAGES.prefix}${ERROR_MESSAGES.isNotInRange(this.name, min, max)}`
+        `${ERROR_MESSAGES.prefix}${ERROR_MESSAGES.isNotInRange({ name: this.name, min, max })}`
       );
     }
   }

@@ -6,7 +6,6 @@ class Lotto {
 
   constructor(numbers) {
     LottoNumbersValidator.validate(numbers);
-
     this.#numbers = this.#sortNumbersAscending(numbers);
   }
 
@@ -17,15 +16,14 @@ class Lotto {
   determineRank(winningNumbers, bonusNumber) {
     const matchingCount = this.#countMatchingNumbers(winningNumbers);
     const bonusMatch = this.#hasBonusNumber(bonusNumber);
-
     const rank = OPTIONS.RANK.find((rank_) =>
-      this.#checkRankCondition(rank_, matchingCount, bonusMatch)
+      this.#checkRankCondition({ rank: rank_, matchingCount, bonusMatch })
     );
 
     return rank;
   }
 
-  #checkRankCondition(rank, matchingCount, bonusMatch) {
+  #checkRankCondition({ rank, matchingCount, bonusMatch }) {
     return (
       this.#isMatchingCountEqual(rank, matchingCount) && this.#isBonusMatchEqual(rank, bonusMatch)
     );
@@ -33,11 +31,13 @@ class Lotto {
 
   #isMatchingCountEqual(rank, matchingCount) {
     const condition = OPTIONS.RANK_CONDITION[rank].matchingCount ?? matchingCount;
+
     return condition === matchingCount;
   }
 
   #isBonusMatchEqual(rank, bonusMatch) {
     const condition = OPTIONS.RANK_CONDITION[rank].bonusMatch ?? bonusMatch;
+
     return condition === bonusMatch;
   }
 

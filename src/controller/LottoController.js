@@ -1,4 +1,3 @@
-/* eslint-disable max-params */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-constant-condition */
 import OPTIONS from '../constant/Options.js';
@@ -32,6 +31,7 @@ class LottoController {
     const purchaseAmount = await this.getInputAndValidate(InputView.inputPurchaseAmount, (input) =>
       PurchaseAmountValidator.validate(parseInt(input.trim(), 10))
     );
+
     return parseInt(purchaseAmount.trim(), 10);
   }
 
@@ -47,6 +47,7 @@ class LottoController {
         return numbers;
       }
     );
+
     return winningNumbers;
   }
 
@@ -56,9 +57,11 @@ class LottoController {
       BonusNumberValidator.validate(bonusNumber, winningNumbers);
       return bonusNumber;
     });
+
     return inputBonusNumber;
   }
 
+  // eslint-disable-next-line max-lines-per-function
   async inputRestartResponse() {
     const restartResponse = await this.getInputAndValidate(
       InputView.inputRestartResponse,
@@ -67,6 +70,7 @@ class LottoController {
         return input.toLowerCase() === 'y';
       }
     );
+
     return restartResponse;
   }
 
@@ -91,8 +95,8 @@ class LottoController {
     return this.#lottoMachine.calculateIssueQuantity(purchaseAmount);
   }
 
-  determineLottoRanks(lottos, winningNumbers, bonusNumber) {
-    return this.#lottoMachine.determineLottoRanks(lottos, winningNumbers, bonusNumber);
+  determineLottoRanks({ lottos, winningNumbers, bonusNumber }) {
+    return this.#lottoMachine.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
   }
 
   calculateProfitRate(winningResult) {
@@ -104,7 +108,7 @@ class LottoController {
     do {
       const lottos = await this.#purchaseLottos();
       const { winningNumbers, bonusNumber } = await this.#getNumbers();
-      this.#showResult(lottos, winningNumbers, bonusNumber);
+      this.#showResult({ lottos, winningNumbers, bonusNumber });
       restart = await this.inputRestartResponse();
     } while (restart);
   }
@@ -112,15 +116,16 @@ class LottoController {
   async #getNumbers() {
     const winningNumbers = await this.inputWinningNumbers();
     const bonusNumber = await this.inputBonusNumber(winningNumbers);
+
     return { winningNumbers: [winningNumbers], bonusNumber: [bonusNumber] };
   }
 
-  #showResult(lottos, winningNumbers, bonusNumber) {
-    this.#showWinningResult(lottos, winningNumbers, bonusNumber);
+  #showResult({ lottos, winningNumbers, bonusNumber }) {
+    this.#showWinningResult({ lottos, winningNumbers, bonusNumber });
   }
 
-  #showWinningResult(lottos, winningNumbers, bonusNumber) {
-    const winningResult = this.determineLottoRanks(lottos, winningNumbers, bonusNumber);
+  #showWinningResult({ lottos, winningNumbers, bonusNumber }) {
+    const winningResult = this.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
     const profitRate = this.calculateProfitRate(winningResult);
     this.displayWinningResult(winningResult, profitRate);
   }
