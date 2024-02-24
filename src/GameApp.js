@@ -1,10 +1,10 @@
-import GameController from './services/GameController';
+import GameManager from './services/GameManager';
 
 class GameApp {
-  #gameController = new GameController();
+  #gameManager = new GameManager();
 
   async run() {
-    await this.#gameController.playGame();
+    await this.#gameManager.playGame();
   }
 }
 

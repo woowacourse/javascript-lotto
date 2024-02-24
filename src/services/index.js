@@ -1,5 +1,5 @@
-import GameController from "./GameController";
-import InputController from "./InputController";
+import GameManager from './GameManager';
+import InputController from './InputController';
+import LottoGame from './LottoGame';
 
-
-export {GameController, InputController}
+export { GameManager, InputController, LottoGame };
