@@ -31,10 +31,16 @@ describe("로또 구입 금액 유효성 검사 테스트", () => {
       },
       ERROR_MESSAGE.DIVISIBLE_BY_MIN_PRICE,
     ],
+<<<<<<< HEAD
   ])(
     '입력값이 %o 일 때 "%s" 메시지와 함께 에러가 발생해야 한다.',
     ({ input }, expectedErrorMessage) => {
       expect(executeValidation(input)).toThrow(expectedErrorMessage);
     }
   );
+=======
+  ])('입력값이 %o 일 때 "%s" 메시지와 함께 에러가 발생해야 한다.', ({ input }, expectedErrorMessage) => {
+    expect(executeValidation(input)).toThrow(expectedErrorMessage);
+  });
+>>>>>>> da85556 (test: 프로덕션 코드 리팩토링에 따른 테스트 리팩토링 및 생성)
 });
