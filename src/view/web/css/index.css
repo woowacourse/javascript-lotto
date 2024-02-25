@@ -12,6 +12,7 @@ body {
 :root {
   /* color */
   --primary: #4E5BA6;
+  --primary-opacity-20: #4E5BA633;
   --grayscale1: #FFFFFF;
   --grayscale2: #FCFCFD;
   --grayscale3: #B4B4B4;
@@ -54,4 +55,28 @@ body {
   font-weight: var(--title-weight);
   line-height: var(--title-line-height);
   color: var(--grayscale1);
+}
+
+#app .content {
+  width: 100%;
+  height: 100%;
+  background-color: var(--grayscale1);
+}
+
+#app .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 8rem;
+  border-top: 0.1rem solid var(--primary-opacity-20);
+}
+
+#app .footer h1 {
+  font-size: var(--caption-size);
+  font-weight: var(--caption-weight);
+  line-height: var(--caption-line-height);
+  letter-spacing: var(--caption-letter);
+  color: var(--primary);
 }
