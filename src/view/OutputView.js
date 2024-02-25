@@ -1,6 +1,6 @@
 import PROGRESS_MESSAGES from '../constants/messages/progressMessages';
 import Console from '../util/Console';
-import { lottoResultMessageGenerator } from '../util/lottoResultMessageGenerator';
+import { lottoResultMessageGenerator } from '../domain/lottoResultMessageGenerator';
 
 class OutputView {
   static async printPurchasedLottoAmount(amount) {

@@ -4,8 +4,12 @@ import ERROR_MESSAGE from '../constants/messages/errorMessage';
 export default class Lotto {
   #lottoNumbers;
 
-  constructor(lottoInputs) {
-    this.#lottoNumbers = lottoInputs.map(input => Number(input));
+  /**
+   *
+   * @param {number[]} lottoNumbers
+   */
+  constructor(lottoNumbers) {
+    this.#lottoNumbers = lottoNumbers;
     this.#validateLotto();
     this.#sortLottoNumbers();
   }

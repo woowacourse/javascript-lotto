@@ -5,6 +5,10 @@ export default class Money {
   #amount;
   #count;
 
+  /**
+   *
+   * @param {string} amount
+   */
   constructor(amount) {
     this.#amount = Number(amount);
     this.#validateMoney();

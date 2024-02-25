@@ -4,6 +4,11 @@ import LOTTO_RULE from '../constants/rules/lottoRule';
 class BonusNumber {
   #bonumNumber;
 
+  /**
+   *
+   * @param {string} bonusNumberInput
+   * @param {Object} winningLotto - Lotto
+   */
   constructor(bonusNumberInput, winningLotto) {
     this.#bonumNumber = Number(bonusNumberInput);
     this.#validateBonusNumber(winningLotto);

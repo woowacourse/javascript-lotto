@@ -8,6 +8,10 @@ class LottoMachine {
   #winningLotto;
   #bonusNumber;
 
+  /**
+   *
+   * @param {Object} money - Money
+   */
   constructor(money) {
     this.#drawLottos(money.count);
   }
