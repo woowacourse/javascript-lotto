@@ -4,29 +4,31 @@ import { SETTING, RANKING } from '../constant/setting';
 class Lottos {
   #lottos;
   #winningCriteria;
+  #winningResults;
 
   constructor(lottoList) {
     this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
     this.#winningCriteria = this.#createWinningCriteria();
+    this.#winningResults = this.#createWinningResults();
   }
 
   getWinningResults(winningNumbers, bonusNumber) {
-    const winningResults = this.#createWinningResults();
     this.#lottos.forEach((lotto) => {
-      const ranking = this.#getRanking(lotto, winningNumbers, bonusNumber);
-      if (ranking in winningResults) {
-        winningResults[ranking] += 1;
-      }
+      const matchedNumbers = lotto.countMatchedNumbers(winningNumbers);
+      const hasBonusNumber = lotto.hasNumber(bonusNumber);
+      this.#updateRanking(matchedNumbers, hasBonusNumber);
     });
-    return winningResults;
+    return { ...this.#winningResults };
   }
 
-  #getRanking(lotto, winningNumbers, bonusNumber) {
-    const matchedNumbers = lotto.countMatchedNumbers(winningNumbers);
-    if (matchedNumbers === RANKING.SECOND.MATCHING_COUNT && lotto.hasNumber(bonusNumber)) {
-      return RANKING.SECOND.NAME;
+  #updateRanking(matchedNumbers, hasBonusNumber) {
+    if (matchedNumbers >= SETTING.MIN_RANKING_MATCHING_NUMBER) {
+      const rankingKey =
+        matchedNumbers === RANKING.SECOND.MATCHING_COUNT && hasBonusNumber
+          ? RANKING.SECOND.NAME
+          : this.#winningCriteria[matchedNumbers];
+      this.#winningResults[rankingKey] += 1;
     }
-    return this.#winningCriteria[matchedNumbers >= SETTING.MIN_RANKING_MATCHING_NUMBER ? matchedNumbers : ''];
   }
 
   #createWinningResults() {
