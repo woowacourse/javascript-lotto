@@ -55,7 +55,7 @@ class LottoMachine {
     }
   }
 
-  initRanks() {
+  #initRanks() {
     const lottoRanks = new Map();
 
     LOTTO_RULE.RANK.forEach((rank) => {
@@ -66,43 +66,45 @@ class LottoMachine {
   }
 
   #increaseRankCount(ranks, string) {
-    const lottoRanksValue = ranks.get(string);
-    ranks.set(string, lottoRanksValue + 1);
+    const newRanks = new Map(ranks);
+    const lottoRanksValue = newRanks.get(string);
+    newRanks.set(string, lottoRanksValue + 1);
+    return newRanks;
   }
 
   countLottoRanks() {
-    const lottoRanks = this.initRanks();
+    const initialLottoRanks = this.#initRanks();
 
-    this.#lottos.forEach((lotto) => {
-      const lottoValues = lotto;
+    const updatedRanks = this.#lottos.reduce((accumulator, lotto) => {
       const winningLottoValues = this.#winningLotto.lottoNumbers;
-      const bonusNumber = this.#bonusNumber.value;
-      const isBonus = lottoValues.includes(bonusNumber);
+      const isBonus = lotto.includes(this.#bonusNumber.value);
 
-      const mergeLottoAndWinningLotto = [...lottoValues, ...winningLottoValues];
+      const mergeLottoAndWinningLotto = [...lotto, ...winningLottoValues];
       const matchCount = mergeLottoAndWinningLotto.length - new Set(mergeLottoAndWinningLotto).size;
 
-      this.#checkWinningLotto(lottoRanks, matchCount, isBonus);
-      // TODO: lottoRanks를 리턴이 아닌 레퍼런스를 하고 있다.
-    });
+      return this.#checkWinningLotto(accumulator, matchCount, isBonus);
+    }, initialLottoRanks);
 
-    const totalLottoRanks = Array.from(lottoRanks);
-
-    return totalLottoRanks;
+    return Array.from(updatedRanks);
   }
 
-  #checkWinningLotto(lottoRanks, matchCount, isBonus) {
+  #checkWinningLotto(ranks, matchCount, isBonus) {
     if (matchCount === 6) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[0]);
-    } else if (matchCount === 5 && isBonus) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[1]);
-    } else if (matchCount === 5) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[2]);
-    } else if (matchCount === 4) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[3]);
-    } else if (matchCount === 3) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[4]);
+      return this.#increaseRankCount(ranks, LOTTO_RULE.RANK[0]);
     }
+    if (matchCount === 5 && isBonus) {
+      return this.#increaseRankCount(ranks, LOTTO_RULE.RANK[1]);
+    }
+    if (matchCount === 5) {
+      return this.#increaseRankCount(ranks, LOTTO_RULE.RANK[2]);
+    }
+    if (matchCount === 4) {
+      return this.#increaseRankCount(ranks, LOTTO_RULE.RANK[3]);
+    }
+    if (matchCount === 3) {
+      return this.#increaseRankCount(ranks, LOTTO_RULE.RANK[4]);
+    }
+    return ranks;
   }
 
   set winningLotto(numbers) {
