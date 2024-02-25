@@ -1,5 +1,5 @@
 import CONFIG from '../constants/config.js';
-import MESSAGE from '../constants/message.js';
+import { MESSAGE } from '../constants/message.js';
 import readLineAsync from '../utils/readLineAsync.js';
 import bonusNumberValidator from '../validators/bonusNumberValidator.js';
 import purchaseAmountValidator from '../validators/purchaseAmountValidator.js';

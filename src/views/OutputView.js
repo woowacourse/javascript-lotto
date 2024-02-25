@@ -1,4 +1,4 @@
-import MESSAGE from '../constants/message.js';
+import { MESSAGE } from '../constants/message.js';
 import CONFIG from '../constants/config.js';
 import PRIZE from '../constants/prize.js';
 
