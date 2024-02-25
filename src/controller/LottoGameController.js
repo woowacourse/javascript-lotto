@@ -1,4 +1,5 @@
 import { SETTING, RANKING } from '../constant/setting';
+import Lotto from '../domain/Lotto';
 import LottoMachine from '../domain/LottoMachine';
 import Lottos from '../domain/Lottos';
 import OutputView from '../view/OutputView';
@@ -21,12 +22,13 @@ class LottoGameController {
 
   #createRandomLottos() {
     const lottoList = new LottoMachine(this.#purchaseAmount).getLottoNumbersList();
-    this.#lottos = new Lottos(lottoList);
+    this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
     OutputView.printPurchaseResult(lottoList);
   }
 
   #lottosWinningResult(winningNumbers, bonusNumber) {
-    const winningResults = this.#lottos.getWinningResults(winningNumbers, bonusNumber);
+    const lottos = new Lottos([...this.#lottos]);
+    const winningResults = lottos.getWinningResults(winningNumbers, bonusNumber);
     OutputView.printWinningResults(winningResults);
     OutputView.printProfitRate(this.#calculateProfitRate(winningResults));
   }

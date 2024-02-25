@@ -1,4 +1,3 @@
-import Lotto from './Lotto';
 import { SETTING, RANKING } from '../constant/setting';
 
 class Lottos {
@@ -6,8 +5,9 @@ class Lottos {
   #winningCriteria;
   #winningResults;
 
-  constructor(lottoList) {
-    this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
+  constructor(lottos) {
+    // this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
+    this.#lottos = lottos;
     this.#winningCriteria = this.#createWinningCriteria();
     this.#winningResults = this.#createWinningResults();
   }
