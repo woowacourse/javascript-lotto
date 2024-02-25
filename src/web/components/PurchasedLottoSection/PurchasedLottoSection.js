@@ -1,55 +1,65 @@
-import LottoBuyer from '../../../domain/LottoBuyer/LottoBuyer.js';
 import BaseComponent from '../BaseComponent/BaseComponent.js';
 import PurchasedLotto from '../PurchasedLotto/PurchasedLotto.js';
+
 import styles from './PurchasedLottoSection.module.css';
 
+import BuyLottoService from '../../../service/BuyLottoService.js';
+
+import { CUSTOM_EVENT_TYPE } from '../../../constants/webApplication.js';
+
 class PurchasedLottoSection extends BaseComponent {
-  #buyLottoPrice;
+  #buyLottoPrice = 0;
 
-  #lottoNumbers;
+  #lottoNumbers = [];
 
-  setEvent() {
-    document.addEventListener('buyLottoPrice', this.#handleRenderLottoNumbers.bind(this));
-  }
-
-  #handleRenderLottoNumbers(event) {
-    this.#buyLottoPrice = event?.detail;
-
-    this.classList.remove('close');
-
-    this.render();
-  }
+  #lottosTemplate = '';
 
   render() {
-    this.#updateLottoNumbers();
-
-    const lottosTemplate = this.#createLottosTemplate();
-
     this.innerHTML = `
         <section>
           <p class="${styles.purchasedMessage} body">총 ${
-      this.#lottoNumbers.length
+      this.#lottoNumbers?.length
     }개를 구매하였습니다.</p>
           <ul class="${styles.purchasedLottos}">
-            ${lottosTemplate}
+            ${this.#lottosTemplate}
           </ul>
         </section>
     `;
   }
 
-  #updateLottoNumbers() {
-    const lottoBuyer = new LottoBuyer(this.#buyLottoPrice);
-    const lottoNumbers = lottoBuyer.purchase();
+  setEvent() {
+    this.on(
+      { target: document, eventName: CUSTOM_EVENT_TYPE.buyLottoPrice },
+      this.#handleRenderPurchasedLottoSection.bind(this),
+    );
+  }
 
+  #handleRenderPurchasedLottoSection(event) {
+    this.#updateBuyLottoDetail(event);
+
+    this.#lottosTemplate = this.#createLottosTemplate();
+
+    this.classList.remove('close');
+
+    this.connectedCallback();
+  }
+
+  #updateBuyLottoDetail(event) {
+    this.#buyLottoPrice = event?.detail;
+
+    const lottoNumbers = BuyLottoService.createLottoNumbers(this.#buyLottoPrice);
     this.#lottoNumbers = lottoNumbers;
   }
 
   #createLottosTemplate() {
-    return this.#lottoNumbers.reduce((prevLottosTemplate, lottoNumber) => {
-      const lottoElement = new PurchasedLotto(lottoNumber);
+    return this.#lottoNumbers.reduce(this.#createLottoTemplate, '');
+  }
 
-      return `${prevLottosTemplate}\n${lottoElement.getTemplate()}`;
-    }, '');
+  #createLottoTemplate(prevLottosTemplate, lottoNumber) {
+    const lottoElement = new PurchasedLotto(lottoNumber);
+    const addedLottoTemplate = `${prevLottosTemplate}\n${lottoElement.getTemplate()}`;
+
+    return addedLottoTemplate;
   }
 
   getBuyLottoDetails() {
