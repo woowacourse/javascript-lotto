@@ -17,6 +17,11 @@ const RESULT = {
   FIFTH: `3개 일치 (5,000원) - `,
 };
 
+const RESTART = {
+  YES: 'y',
+  NO: 'n',
+};
+
 const PREFIX = '[ERROR]';
 
 const ERROR = {
@@ -31,4 +36,4 @@ const ERROR = {
   RESTART_OR_EXIT: `${PREFIX} y(재시작) 또는 n(종료)을 입력하여야 합니다.`,
 };
 
-export { MESSAGE, RESULT, ERROR };
+export { MESSAGE, RESULT, RESTART, ERROR };
