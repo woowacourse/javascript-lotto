@@ -135,6 +135,7 @@ input::placeholder {
     flex-direction: column;
     gap: 15px;
     flex-basis: 50%;
+    overflow-y: scroll;
 }
 
 #winningNumberSection {
