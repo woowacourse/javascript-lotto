@@ -1,8 +1,8 @@
 import LottoMatcher from '../../src/domain/LottoMatcher';
 
 describe('로또 매칭 테스트', () => {
-  test('발행된 로또 티켓마다 당첨 번호와 보너스 번호를 비교한 총 결과를 확인한다.', () => {
-    const tickets = [
+  test('발행된 로또와 당첨 번호, 보너스 번호를 비교하여 당첨 결과(1등 ~ 5등)를 확인한다.', () => {
+    const lottoTicketsArray = [
       [5, 8, 9, 12, 18, 24],
       [1, 2, 4, 12, 18, 42],
       [1, 4, 12, 18, 24, 28],
@@ -11,15 +11,17 @@ describe('로또 매칭 테스트', () => {
     ];
     const winningNumber = [2, 4, 12, 18, 24, 28];
     const bonusNumber = 29;
-    const answer = {
-      6: 1,
-      '5+보너스': 1,
-      5: 1,
-      4: 1,
-      3: 1,
+    const result = {
+      FIRST: 0,
+      SECOND: 0,
+      THIRD: 0,
+      FOURTH: 0,
+      FIFTH: 0,
     };
 
-    const matchingResult = new LottoMatcher(tickets, [winningNumber, bonusNumber]).matchingResult;
-    expect(matchingResult).toEqual(answer);
+    const lottoMatcher = new LottoMatcher(winningNumber, bonusNumber);
+    lottoMatcher.processMatches(lottoTicketsArray);
+
+    expect(lottoMatcher.matchingResult).toEqual(result);
   });
 });
