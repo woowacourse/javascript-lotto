@@ -6,27 +6,27 @@ export default class Lotto {
   #lottoNumbers = [];
 
   constructor(lottoNumbers = []) {
-    const needRandomGenerating = lottoNumbers.length === 0 ? true : false;
+    const needRandomGenerating = lottoNumbers.length === 0;
 
     needRandomGenerating ? this.#drawAutoLottoNumbers() : this.#makeCustomLottoNumbers(lottoNumbers);
     this.#validateLotto();
     this.#sortLottoNumbers();
   }
 
-  //TODO: validate 파일 분리?
+  // TODO: validate 파일 분리?
   #validateLotto() {
-    this.#isNotValidLottoNumberCount();
+    this.#isInvalidLottoNumberCount();
     this.#hasRedundentLottoNumber();
 
-    this.#lottoNumbers.forEach(lottoNumber => {
+    this.#lottoNumbers.forEach((lottoNumber) => {
       this.#isNotNumber(lottoNumber);
       this.#isInvalidLottoNumberRange(lottoNumber);
     });
   }
 
-  #isNotValidLottoNumberCount() {
+  #isInvalidLottoNumberCount() {
     if (this.#lottoNumbers.length !== 6) {
-      throw new Error(ERROR_MESSAGE.IS_NOT_VALID_LOTTO_NUMBER_COUNT);
+      throw new Error(ERROR_MESSAGE.IS_INVALID_LOTTO_NUMBER_COUNT);
     }
   }
 
@@ -41,6 +41,7 @@ export default class Lotto {
       throw new Error(ERROR_MESSAGE.IS_NOT_NUMBER);
     }
   }
+
   #isInvalidLottoNumberRange(lottoNumber) {
     if (lottoNumber > LOTTO_RULE.RANDOM_NUMBER_TO || lottoNumber < LOTTO_RULE.RANDOM_NUMBER_FROM) {
       throw new Error(ERROR_MESSAGE.IS_INVALID_LOTTO_NUMBER_RANGE);
@@ -49,7 +50,7 @@ export default class Lotto {
 
   #makeCustomLottoNumbers(lottoNumbers) {
     const splitedLottoNumbers = lottoNumbers.split(',');
-    splitedLottoNumbers.forEach(num => {
+    splitedLottoNumbers.forEach((num) => {
       this.#pushNotRedundantNumber(Number(num));
     });
   }
