@@ -18,8 +18,8 @@ npm run start-step1
 
 ## 실행 결과
 
-<img src="./game1.png" alt="로또 게임 실행 결과" width="300px">
-<img src="./game2.png" alt="로또 게임 실행 결과" width="300px">
+<img src="./console_lotto_game1.png" alt="로또 게임 실행 결과1" width="300px"/>
+<img src="./console_lotto_game2.png" alt="로또 게임 실행 결과2" width="300px"/>
 
 ## 🏫 학습 목표
 
