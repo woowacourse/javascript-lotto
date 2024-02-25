@@ -10,10 +10,10 @@ class PurchasedLottoForm extends BaseComponent {
     this.innerHTML = `
         <form id="purchased-lotto-form">
           <label for="purchased-lotto-input" class="body">구입할 금액을 입력해주세요.</label>
-          <section id="input-container" class=${styles.inputContainer}>
+          <div id="input-container" class=${styles.inputContainer}>
             <input id="purchased-lotto-input" type="number" class="${styles.purchasedLottoPriceInput} placeholder" placeholder="금액"/>
-            <button class="${styles.purchasedButton} caption">구입</button>
-          </section>
+            <button type="submit" class="${styles.purchasedButton} caption">구입</button>
+          </div>
         </form>
     `;
   }
