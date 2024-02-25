@@ -12,12 +12,16 @@ const Validator = {
     this.checkEmpty(winningNumbers);
     this.checkWinningNumbersLength(winningNumbers);
 
-    const winningNumberList = winningNumbers.split(',').map((number) => number.trim());
-    this.checkWinningNumbersDuplicated(winningNumberList);
-    winningNumberList.forEach((number) => {
-      this.checkWinningNumbersNotNumber(number);
-      this.checkWinningNumbersRange(number);
+    const winningNumbersList = winningNumbers.split(',').map((number) => number.trim());
+    this.checkWinningNumbersDuplicated(winningNumbersList);
+    winningNumbersList.forEach((winningNumber) => {
+      this.validateWinningNumber(winningNumber);
     });
+  },
+
+  validateWinningNumber(winningNumber) {
+    this.checkWinningNumbersNotNumber(winningNumber);
+    this.checkWinningNumbersRange(winningNumber);
   },
 
   validateBonusNumber(bonusNumber, winningNumbers) {
