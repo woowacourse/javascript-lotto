@@ -70,7 +70,7 @@ export default class Lotto {
   }
 
   #sortLottoNumbers() {
-    this.#lottoNumbers = this.#lottoNumbers.sort((a, b) => a - b);
+    this.#lottoNumbers = this.#lottoNumbers.toSorted((a, b) => a - b);
   }
 
   get lottoNumbers() {
