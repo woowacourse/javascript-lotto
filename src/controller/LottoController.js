@@ -58,7 +58,7 @@ class LottoController {
 
   showLottoResult(winResult, lottoCount) {
     OutputView.printResultTitle();
-    OutputView.printWinningStatisticsReverse(winResult);
+    OutputView.printWinningStatistics(winResult);
     const lottoCalculator = new LottoCalculator();
     const rateOfRevenue = lottoCalculator.getRateOfRevenue(winResult, lottoCount);
     OutputView.printRateOfRevenue(rateOfRevenue);
