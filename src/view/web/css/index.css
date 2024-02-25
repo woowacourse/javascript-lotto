@@ -5,6 +5,10 @@ html {
   font-size: 62.5%;
 }
 
+body {
+  font-family: 'Roboto' sans-serif;
+}
+
 :root {
   /* color */
   --primary: #4E5BA6;
@@ -15,8 +19,39 @@ html {
   --grayscale5: #000000;
 
   /* typography */
-  --title: 800 2.4rem/3.6rem 'Roboto' sans-serif;
-  --subtitle: 600 2rem/2.4rem 'Roboto' sans-serif 0.015rem;
-  --body: 400 1.5rem/2.4rem 'Roboto' sans-serif 0.05rem;
-  --caption: 700 1.4rem/1.6rem 'Roboto' sans-serif 0.125rem;
+  --title-size: 2.4rem;
+  --subtitle-size: 2rem;
+  --body-size: 1.5rem;
+  --caption-size: 1.4rem;
+
+  --title-weight: 800;
+  --subtitle-weight: 600;
+  --body-weight: 400;
+  --caption-weight: 700;
+
+  --title-line-height: 3.6rem;
+  --subtitle-line-height: 2.4rem;
+  --body-line-height: 2.4rem;
+  --caption-line-height: 1.6rem;
+
+  --title-letter: 0;
+  --subtitle-letter: 0.015rem;
+  --body-letter: 0.05rem;
+  --caption-letter: 0.125rem;
+}
+
+#app .header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 6.4rem;
+  background-color: var(--primary);
+}
+
+#app .header h1 {
+  margin-left: 13rem;
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line-height);
+  color: var(--grayscale1);
 }
