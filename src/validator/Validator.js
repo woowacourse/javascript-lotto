@@ -76,7 +76,7 @@ const Validator = {
   },
 
   checkRestartCommandFormat(input) {
-    if (input.toLowerCase() !== SETTING.RESTART_COMMAND && input.toLowerCase() !== SETTING.EXIT_COMMAND) {
+    if (input !== SETTING.RESTART_COMMAND && input !== SETTING.EXIT_COMMAND) {
       throw new Error(ERROR_MESSAGE.RESTART_COMMAND_FORMAT);
     }
   },

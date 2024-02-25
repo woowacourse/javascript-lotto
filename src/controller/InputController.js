@@ -39,7 +39,7 @@ const InputController = {
   async inputRestartCommand() {
     try {
       const restartCommand = await InputView.readRestartCommand();
-      Validator.validateRestartCommand(restartCommand);
+      Validator.validateRestartCommand(restartCommand.toLowerCase());
       return restartCommand.toLowerCase();
     } catch (error) {
       handleIO.print(error.message);
