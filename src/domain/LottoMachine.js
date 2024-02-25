@@ -2,6 +2,7 @@ import LOTTO_RULE from '../constants/rules/lottoRule';
 import BonusNumber from './BonusNumber';
 import Lotto from './Lotto';
 import generateRandomNumberInRange from '../util/generateRandomNumberInRange';
+import parseStringToNumber from '../util/parseStringToNumber';
 
 class LottoMachine {
   #lottos;
@@ -25,7 +26,6 @@ class LottoMachine {
     } else {
       const lottos = autoLottos;
       this.#lottos = lottos.map((ticket) => {
-        console.log('custom ticket: ', ticket);
         const customLotto = this.#makeCustomLottoNumbers(ticket);
         const lotto = new Lotto(customLotto);
         return lotto.lottoNumbers;
@@ -53,7 +53,6 @@ class LottoMachine {
   #pushNotRedundantNumber(lotto, number) {
     if (!lotto.includes(number)) {
       lotto.push(number);
-      // return lotto;
     }
   }
 
@@ -108,9 +107,7 @@ class LottoMachine {
   }
 
   set winningLotto(numbers) {
-    const winningLotto = numbers.split(',').map((num) => {
-      return Number(num);
-    });
+    const winningLotto = parseStringToNumber(numbers);
     this.#winningLotto = new Lotto(winningLotto);
   }
 
