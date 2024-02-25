@@ -1,24 +1,23 @@
 import { SETTING, RANKING } from '../constant/setting';
 
-class Lottos {
+class WinningResultService {
   #lottos;
   #winningCriteria;
-  #winningResults;
+  #winningResult;
 
   constructor(lottos) {
-    // this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
     this.#lottos = lottos;
     this.#winningCriteria = this.#createWinningCriteria();
-    this.#winningResults = this.#createWinningResults();
+    this.#winningResult = this.#createWinningResult();
   }
 
-  getWinningResults(winningNumbers, bonusNumber) {
+  getWinningResult(winningNumbers, bonusNumber) {
     this.#lottos.forEach((lotto) => {
       const matchedNumbers = lotto.countMatchedNumbers(winningNumbers);
       const hasBonusNumber = lotto.hasNumber(bonusNumber);
       this.#updateRanking(matchedNumbers, hasBonusNumber);
     });
-    return { ...this.#winningResults };
+    return { ...this.#winningResult };
   }
 
   #updateRanking(matchedNumbers, hasBonusNumber) {
@@ -27,11 +26,11 @@ class Lottos {
         matchedNumbers === RANKING.SECOND.MATCHING_COUNT && hasBonusNumber
           ? RANKING.SECOND.NAME
           : this.#winningCriteria[matchedNumbers];
-      this.#winningResults[rankingKey] += 1;
+      this.#winningResult[rankingKey] += 1;
     }
   }
 
-  #createWinningResults() {
+  #createWinningResult() {
     return Object.values(RANKING).reduce((initRankingObject, { NAME }) => ({ ...initRankingObject, [NAME]: 0 }), {});
   }
 
@@ -45,4 +44,4 @@ class Lottos {
   }
 }
 
-export default Lottos;
+export default WinningResultService;

@@ -1,9 +1,9 @@
 import { SETTING, RANKING } from '../constant/setting';
-import Lotto from '../domain/Lotto';
-import LottoMachine from '../domain/LottoMachine';
-import Lottos from '../domain/Lottos';
-import OutputView from '../view/OutputView';
 import InputController from './InputController';
+import Lotto from '../domain/Lotto';
+import LottoMachine from '../service/LottoMachine';
+import WinningResultService from '../service/WinningResultService';
+import OutputView from '../view/OutputView';
 
 class LottoGameController {
   #lottos;
@@ -26,14 +26,13 @@ class LottoGameController {
   }
 
   #lottosWinningResult(winningNumbers, bonusNumber) {
-    const lottos = new Lottos([...this.#lottos]);
-    const winningResults = lottos.getWinningResults(winningNumbers, bonusNumber);
-    OutputView.printWinningResults(winningResults);
-    OutputView.printProfitRate(this.#calculateProfitRate(winningResults));
+    const winningResult = new WinningResultService([...this.#lottos]).getWinningResult(winningNumbers, bonusNumber);
+    OutputView.printWinningResult(winningResult);
+    OutputView.printProfitRate(this.#calculateProfitRate(winningResult));
   }
 
-  #calculateProfitRate(winningResults) {
-    const totalProfit = Object.entries(winningResults).reduce(
+  #calculateProfitRate(winningResult) {
+    const totalProfit = Object.entries(winningResult).reduce(
       (profit, [ranking, count]) => profit + RANKING[ranking].REWARD * count,
       0,
     );
