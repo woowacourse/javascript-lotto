@@ -18,7 +18,10 @@ const InputController = {
     try {
       const winningNumbers = await InputView.readWinningNumbers();
       Validator.validateWinningNumbers(winningNumbers);
-      return winningNumbers.split(',').map((number) => parseInt(number.trim()));
+      return winningNumbers
+        .split(',')
+        .filter((item) => item.trim() !== '')
+        .map(Number);
     } catch (error) {
       handleIO.print(error.message);
       return this.inputWinningNumbers();

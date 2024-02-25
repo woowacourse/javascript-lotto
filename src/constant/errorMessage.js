@@ -12,6 +12,7 @@ const ERROR_MESSAGE = {
 
   // 구매 금액
   PURCHASE_AMOUNT_NOT_DIVIDED: generateErrorMessage(`${SETTING.LOTTO_PRICE} 단위의 숫자여야 합니다.`),
+  PURCHASE_AMOUNT_RANGE: generateErrorMessage(`최대 100000000까지 입력할 수 있습니다.`),
 
   // 당첨 번호, 보너스 번호
   LOTTO_NUMBER_RANGE: generateErrorMessage(
