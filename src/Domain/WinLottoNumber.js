@@ -9,11 +9,6 @@ export default class WinLottoNumber extends LottoNumber {
     super(numbers);
   }
 
-  setBonusNumber(bonusNumber) {
-    this.#bonusNumber = bonusNumber;
-    this.#validateBonusNumber();
-  }
-
   #validateBonusNumber() {
     this.validateInRangeProtected(this.#bonusNumber);
     this.#validateDuplicate();
@@ -23,6 +18,11 @@ export default class WinLottoNumber extends LottoNumber {
     if (this.getLottoNumbers().includes(this.#bonusNumber)) {
       throw new Error(DUPLICATE_MESSAGE);
     }
+  }
+
+  setBonusNumber(bonusNumber) {
+    this.#bonusNumber = bonusNumber;
+    this.#validateBonusNumber();
   }
 
   getWinLottoNumbers() {

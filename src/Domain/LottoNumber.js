@@ -37,10 +37,6 @@ export default class LottoNumber {
     }
   }
 
-  validateInRangeProtected(number) {
-    return this.#validateEachNumber(number);
-  }
-
   #validateDuplicate() {
     if (new Set(this.#numbers).size !== this.#numbers.length) {
       throw new Error(ERROR_MESSAGES.DUPLICATE);
@@ -51,6 +47,10 @@ export default class LottoNumber {
     if (this.#numbers.length !== LOTTO_LENGTH) {
       throw new Error(ERROR_MESSAGES.INVALID_LENGTH);
     }
+  }
+
+  validateInRangeProtected(number) {
+    return this.#validateEachNumber(number);
   }
 
   getLottoNumbers() {

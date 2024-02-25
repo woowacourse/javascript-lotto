@@ -45,15 +45,6 @@ export default class LottoMachine {
     return [...lottoSet];
   }
 
-  getLottos() {
-    return [...this.#lottos];
-  }
-
-  getWinLottos(winNumbersObj) {
-    const resultRankCounts = this.#makeLottoRanks(winNumbersObj);
-    return resultRankCounts;
-  }
-
   #makeLottoRanks(winNumbersObj) {
     const NUMBER_OF_RANK_TYPE = 5;
     const resultRankCounts = [0, ...Array.from({ length: NUMBER_OF_RANK_TYPE }, () => 0)];
@@ -69,17 +60,26 @@ export default class LottoMachine {
     return lotto.getRank();
   }
 
-  getRateOfIncome(winNumbersObj) {
-    const NUMBER_OF_DECIMAL_PLACES = 1;
-    const income = this.#calculateIncome(winNumbersObj);
-    return Number(((income / this.#money) * 100).toFixed(NUMBER_OF_DECIMAL_PLACES)).toLocaleString();
-  }
-
   #calculateIncome(winNumbersObj) {
     const resultRankCounts = this.#makeLottoRanks(winNumbersObj);
     return resultRankCounts.reduce((accumulate, currentCount, index) => {
       accumulate += currentCount * PRIZE_MONEY[index];
       return accumulate;
     }, 0);
+  }
+
+  getLottos() {
+    return [...this.#lottos];
+  }
+
+  getWinLottos(winNumbersObj) {
+    const resultRankCounts = this.#makeLottoRanks(winNumbersObj);
+    return resultRankCounts;
+  }
+
+  getRateOfIncome(winNumbersObj) {
+    const NUMBER_OF_DECIMAL_PLACES = 1;
+    const income = this.#calculateIncome(winNumbersObj);
+    return Number(((income / this.#money) * 100).toFixed(NUMBER_OF_DECIMAL_PLACES)).toLocaleString();
   }
 }
