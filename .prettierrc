@@ -7,6 +7,6 @@
   "printWidth": 80,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "endOfLine": "auto",
+  "endOfLine": "lf",
   "prefer-const": true
 }
