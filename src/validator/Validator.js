@@ -6,6 +6,7 @@ const Validator = {
     this.checkEmpty(purchaseAmount);
     this.checkNotNumber(purchaseAmount);
     this.purchaseAmountNotDivided(purchaseAmount);
+    this.checkPurchaseAmountRange(purchaseAmount);
   },
 
   validateWinningNumbers(winningNumbers) {
@@ -51,6 +52,12 @@ const Validator = {
   purchaseAmountNotDivided(input) {
     if (input === 0 || input % SETTING.LOTTO_PRICE !== 0) {
       throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_NOT_DIVIDED);
+    }
+  },
+
+  checkPurchaseAmountRange(input) {
+    if (input > SETTING.MAX_LOTTO_PURCHASE_AMOUNT) {
+      throw new Error(ERROR_MESSAGE.EXCEEDED_MAX_PURCHASE_AMOUNT);
     }
   },
 
