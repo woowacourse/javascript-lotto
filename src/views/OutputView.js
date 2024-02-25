@@ -1,6 +1,6 @@
-import { MESSAGE } from '../constants/message';
-import CONFIG from '../constants/config';
-import PRIZE from '../constants/prize';
+import MESSAGE from '../constants/message.js';
+import CONFIG from '../constants/config.js';
+import PRIZE from '../constants/prize.js';
 
 const OutputView = {
   print(message = '') {

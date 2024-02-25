@@ -1,12 +1,11 @@
-import { CONFIG, MESSAGE } from '../constants';
-import readLineAsync from '../utils/readLineAsync';
-import {
-  bonusNumberValidator,
-  purchaseAmountValidator,
-  restartValidator,
-  winningNumbersValidator,
-} from '../validators';
-import OutputView from './OutputView';
+import CONFIG from '../constants/config.js';
+import MESSAGE from '../constants/message.js';
+import readLineAsync from '../utils/readLineAsync.js';
+import bonusNumberValidator from '../validators/bonusNumberValidator.js';
+import purchaseAmountValidator from '../validators/purchaseAmountValidator.js';
+import restartValidator from '../validators/restartValidator.js';
+import winningNumbersValidator from '../validators/winningNumbersValidator.js';
+import OutputView from './OutputView.js';
 
 const InputView = {
   async readPurchaseAmount() {

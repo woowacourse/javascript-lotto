@@ -1,4 +1,5 @@
-import { CONFIG, ERROR_MESSAGE } from '../constants';
+import CONFIG from '../constants/config.js';
+import { ERROR_MESSAGE } from '../constants/message.js';
 
 const numberValidator = {
   validate(number) {

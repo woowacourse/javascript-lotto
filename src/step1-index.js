@@ -1,5 +1,5 @@
-import { CONFIG } from './constants';
-import { InputView } from './views';
+import CONFIG from './constants/config.js';
+import InputView from './views/InputView.js';
 import LottoController from './controllers/LottoController';
 
 const app = {

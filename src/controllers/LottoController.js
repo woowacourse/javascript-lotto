@@ -1,6 +1,8 @@
-import { CONFIG } from '../constants';
-import { LotteryMachine, lottoService } from '../domain/services';
-import { InputView, OutputView } from '../views';
+import CONFIG from '../constants/config.js';
+import LotteryMachine from '../domain/services/LotteryMachine.js';
+import lottoService from '../domain/services/lottoService.js';
+import InputView from '../views/InputView.js';
+import OutputView from '../views/OutputView.js';
 
 class LottoController {
   #purchaseAmount;
