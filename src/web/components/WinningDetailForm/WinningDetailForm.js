@@ -1,98 +1,22 @@
-import Lotto from '../../../domain/Lotto/Lotto.js';
 import BaseComponent from '../BaseComponent/BaseComponent.js';
+
 import styles from './WinningDetailForm.module.css';
+
+import Lotto from '../../../domain/Lotto/Lotto.js';
+
 import WinningResultService from '../../../service/WinningResultService.js';
+
 import AppError from '../../../errors/AppError/AppError.js';
-import { showErrorMessage } from '../../utils/showErrorMessage.js';
+
 import { BonusNumberValidator, WinningNumberValidator } from '../../../validator/index.js';
+
+import { removeErrorMessage, showErrorMessage } from '../../utils/errorMessage.js';
+import { $ } from '../../utils/dom.js';
+import { COMPONENT_SELECTOR, CUSTOM_EVENT_TYPE } from '../../../constants/webApplication.js';
 
 const { LOTTO_RULE } = Lotto;
 
 class WinningDetailForm extends BaseComponent {
-  setEvent() {
-    this.on(
-      { target: document, eventName: 'buyLottoPrice' },
-      this.#handleRenderLottoNumbers.bind(this),
-    );
-
-    this.on(
-      { target: this.querySelector('#winning-detail-form'), eventName: 'submit' },
-      this.#handleSubmit.bind(this),
-    );
-  }
-
-  #handleRenderLottoNumbers() {
-    this.classList.remove('close');
-
-    this.#initWinningDetailInputs();
-
-    this.#focusFirstWinningNumberInput();
-  }
-
-  #initWinningDetailInputs() {
-    this.querySelectorAll('.winning-number').forEach((winningNumberInputElement) => {
-      winningNumberInputElement.value = '';
-    });
-
-    this.querySelector('.bonus-number').value = '';
-  }
-
-  #focusFirstWinningNumberInput() {
-    const winningNumberInputElementList = this.querySelectorAll('.winning-number');
-
-    if (
-      winningNumberInputElementList &&
-      winningNumberInputElementList[0] instanceof HTMLInputElement
-    ) {
-      winningNumberInputElementList[0].focus();
-    }
-  }
-
-  #handleSubmit(event) {
-    try {
-      event.preventDefault();
-
-      const { winningNumber, bonusNumber } = this.#createWinningDetail();
-      WinningNumberValidator.checkWinningNumber(winningNumber);
-      BonusNumberValidator.checkBonusNumber(bonusNumber, winningNumber);
-
-      this.#removeErrorMessage();
-
-      const params = this.#createWinningResultParams({ winningNumber, bonusNumber });
-      const { winningRankResult, rateOfReturn } = WinningResultService.createWinningResult(params);
-
-      this.emit('openModal', { winningRankResult, rateOfReturn });
-    } catch (error) {
-      if (error instanceof AppError) {
-        const nonPrefixErrorMessage = error.message.replace('[ERROR]', '');
-        showErrorMessage(nonPrefixErrorMessage, '#winning-detail-form');
-      }
-    }
-  }
-
-  #removeErrorMessage() {
-    const errorMessageElement = this.querySelector('.error-message');
-
-    if (errorMessageElement) errorMessageElement.remove();
-  }
-
-  #createWinningDetail() {
-    const winningNumber = Array.from(this.querySelectorAll('.winning-number'), (input) =>
-      Number(input.value),
-    ).filter((number) => number !== 0);
-    const bonusNumber = Number(this.querySelector('.bonus-number')?.value);
-
-    return { winningNumber, bonusNumber };
-  }
-
-  #createWinningResultParams({ winningNumber, bonusNumber }) {
-    const { buyLottoPrice, lottoNumbers } = document
-      .querySelector('purchased-lotto-section')
-      .getBuyLottoDetails();
-
-    return { winningNumber, bonusNumber, buyLottoPrice, lottoNumbers };
-  }
-
   render() {
     this.innerHTML = `
         <form id="winning-detail-form" class="${styles.winningDetailForm}">
@@ -117,15 +41,101 @@ class WinningDetailForm extends BaseComponent {
   }
 
   #createNumberInputByCount(count, { isBonusNumber } = { isBonusNumber: false }) {
-    if (!isBonusNumber) {
-      return Array.from({ length: count }, (_, index) => {
-        const id = `winning-number-input-${index + 1}`;
-
-        return `<input id="${id}" type="number" class="${styles.numberInput} winning-number"/>`;
-      }).join('');
+    if (isBonusNumber) {
+      return `<input id="bonus-number-input" type="number" class="${styles.numberInput} bonus-number"/>`;
     }
 
-    return `<input id="bonus-number-input" type="number" class="${styles.numberInput} bonus-number"/>`;
+    return Array.from({ length: count }, (_, index) => {
+      const id = `winning-number-input-${index + 1}`;
+
+      return `<input id="${id}" type="number" class="${styles.numberInput} winning-number"/>`;
+    }).join('');
+  }
+
+  setEvent() {
+    this.on(
+      { target: document, eventName: CUSTOM_EVENT_TYPE.buyLottoPrice },
+      this.#handleRenderWinningDetailForm.bind(this),
+    );
+
+    this.on(
+      { target: $(this, COMPONENT_SELECTOR.winningDetailForm), eventName: 'submit' },
+      this.#handleSubmit.bind(this),
+    );
+  }
+
+  #handleRenderWinningDetailForm() {
+    this.#initWinningDetailInputs();
+
+    this.classList.remove('close');
+
+    this.#focusFirstWinningNumberInput();
+  }
+
+  #initWinningDetailInputs() {
+    this.querySelectorAll(COMPONENT_SELECTOR.winningNumberInputs).forEach(
+      (winningNumberInputElement) => {
+        winningNumberInputElement.value = '';
+      },
+    );
+
+    $(this, COMPONENT_SELECTOR.bonusNumberInput).value = '';
+  }
+
+  #focusFirstWinningNumberInput() {
+    const winningNumberInputElementList = this.querySelectorAll(
+      COMPONENT_SELECTOR.winningNumberInputs,
+    );
+
+    if (
+      winningNumberInputElementList &&
+      winningNumberInputElementList[0] instanceof HTMLInputElement
+    ) {
+      winningNumberInputElementList[0].focus();
+    }
+  }
+
+  #handleSubmit(event) {
+    try {
+      event.preventDefault();
+
+      const params = this.#createWinningResultParams();
+      const { winningRankResult, rateOfReturn } = WinningResultService.createWinningResult(params);
+
+      removeErrorMessage(this);
+
+      this.emit(CUSTOM_EVENT_TYPE.openModal, { winningRankResult, rateOfReturn });
+    } catch (error) {
+      if (error instanceof AppError) {
+        const nonPrefixErrorMessage = error.message.replace(AppError.PREFIX, '');
+        showErrorMessage(nonPrefixErrorMessage, COMPONENT_SELECTOR.winningDetailForm);
+      }
+    }
+  }
+
+  #createWinningResultParams() {
+    const { winningNumber, bonusNumber } = this.#createWinningDetail();
+
+    const { buyLottoPrice, lottoNumbers } = document
+      .querySelector(COMPONENT_SELECTOR.purchasedLottoSection)
+      .getBuyLottoDetails();
+
+    return { winningNumber, bonusNumber, buyLottoPrice, lottoNumbers };
+  }
+
+  #createWinningDetail() {
+    const winningNumber = Array.from(
+      this.querySelectorAll(COMPONENT_SELECTOR.winningNumberInputs),
+      (input) => input.value,
+    )
+      .filter((input) => input !== '')
+      .map(Number);
+    const bonusNumber = Number($(this, COMPONENT_SELECTOR.bonusNumberInput)?.value);
+
+    WinningNumberValidator.checkWinningNumber(winningNumber);
+    BonusNumberValidator.checkBonusNumber(bonusNumber, winningNumber);
+
+    return { winningNumber, bonusNumber };
   }
 }
 
