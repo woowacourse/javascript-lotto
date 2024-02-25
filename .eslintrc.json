@@ -9,7 +9,16 @@
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
+  "overrides": [
+    {
+      "files": ["*.test.js", "console.js"],
+      "rules": {
+        "max-lines-per-function": ["off"]
+      }
+    }
+  ],
   "extends": ["eslint:recommended", "plugin:prettier/recommended"]
 }
