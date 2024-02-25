@@ -1,11 +1,79 @@
 {
-  "rules": {},
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "prettier",
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "eslint:recommended"
+  ],
+  "plugins": ["import", "jest", "prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "printWidth": 100
+      }
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "max-depth": ["error", { "max": 1 }],
+    "max-params": ["error", { "max": 2 }],
+    "class-methods-use-this": "off",
+    "max-lines-per-function": ["error", { "max": 10 }],
+    "import/extensions": ["error", { "js": "ignorePackages" }],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index",
+          "object",
+          "type",
+          "unknown"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "next",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@/core/**",
+            "group": "unknown"
+          },
+          {
+            "pattern": "**/*.css.ts",
+            "group": "unknown",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
 }
