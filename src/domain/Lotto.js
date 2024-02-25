@@ -12,18 +12,17 @@ export default class Lotto {
     this.#validateLotto();
   }
 
-  // TODO: validate 파일 분리?
   #validateLotto() {
-    this.#isInvalidLottoNumberCount();
+    this.#isValidLottoNumberCount();
     this.#hasRedundentLottoNumber();
 
     this.#lottoNumbers.forEach((lottoNumber) => {
       this.#isNotNumber(lottoNumber);
-      this.#isInvalidLottoNumberRange(lottoNumber);
+      this.#isValidLottoNumberRange(lottoNumber);
     });
   }
 
-  #isInvalidLottoNumberCount() {
+  #isValidLottoNumberCount() {
     if (this.#lottoNumbers.length !== 6) {
       throw new Error(ERROR_MESSAGE.IS_INVALID_LOTTO_NUMBER_COUNT);
     }
@@ -36,12 +35,12 @@ export default class Lotto {
   }
 
   #isNotNumber(lottoNumber) {
-    if (isNaN(lottoNumber)) {
+    if (Number.isNaN(lottoNumber)) {
       throw new Error(ERROR_MESSAGE.IS_NOT_NUMBER);
     }
   }
 
-  #isInvalidLottoNumberRange(lottoNumber) {
+  #isValidLottoNumberRange(lottoNumber) {
     if (lottoNumber > LOTTO_RULE.RANDOM_NUMBER_TO || lottoNumber < LOTTO_RULE.RANDOM_NUMBER_FROM) {
       throw new Error(ERROR_MESSAGE.IS_INVALID_LOTTO_NUMBER_RANGE);
     }

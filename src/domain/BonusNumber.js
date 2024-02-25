@@ -12,7 +12,7 @@ class BonusNumber {
 
   #validataeBonusNumber(number, winningLotto) {
     this.#isPositiveNumber(number);
-    this.#isInvalidNumberRange(number);
+    this.#isValidNumberRange(number);
     this.#hasRedundantNumber(number, winningLotto);
   }
 
@@ -22,7 +22,7 @@ class BonusNumber {
     }
   }
 
-  #isInvalidNumberRange(number) {
+  #isValidNumberRange(number) {
     if (number > LOTTO_RULE.RANDOM_NUMBER_TO || number < LOTTO_RULE.RANDOM_NUMBER_FROM) {
       throw new Error(ERROR_MESSAGE.IS_INVALID_LOTTO_NUMBER_RANGE);
     }
