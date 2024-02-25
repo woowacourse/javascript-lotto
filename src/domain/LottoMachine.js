@@ -1,5 +1,5 @@
-import pickRandomNumberInRange from '../util/pickRandomNumberInRange.js';
-import { SETTING } from '../constant/setting.js';
+import pickRandomNumberInRange from '../util/pickRandomNumberInRange';
+import { SETTING } from '../constant/setting';
 
 class LottoMachine {
   #purchaseAmount;
@@ -7,12 +7,13 @@ class LottoMachine {
   constructor(purchaseAmount) {
     this.#purchaseAmount = purchaseAmount;
   }
-  getLottoNumberList() {
+
+  getLottoNumbersList() {
     const lottoCount = this.#purchaseAmount / SETTING.LOTTO_PRICE;
-    return Array.from({ length: lottoCount }).map((_) => this.#createLottoNumber());
+    return Array.from({ length: lottoCount }).map(() => this.#createLottoNumbers());
   }
 
-  #createLottoNumber() {
+  #createLottoNumbers() {
     const lotto = new Set();
     while (lotto.size < SETTING.LOTTO_LENGTH) {
       lotto.add(pickRandomNumberInRange(SETTING.MIN_LOTTO_NUMBER, SETTING.MAX_LOTTO_NUMBER));

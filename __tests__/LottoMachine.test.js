@@ -8,9 +8,9 @@ describe('[LottoMachine] 로또 번호 발행 기능 테스트', () => {
 
     // when
     const lottoMachine = new LottoMachine(purchaseAmount);
-    const lottoNumberList = lottoMachine.getLottoNumberList();
+    const lottoNumbersList = lottoMachine.getLottoNumbersList();
 
     // then
-    expect(lottoNumberList.length).toBe(purchaseAmount / SETTING.LOTTO_PRICE);
+    expect(lottoNumbersList.length).toBe(purchaseAmount / SETTING.LOTTO_PRICE);
   });
 });
