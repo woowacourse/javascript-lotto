@@ -118,10 +118,14 @@ class WinningDetailForm extends BaseComponent {
 
       this.emit(CUSTOM_EVENT_TYPE.openModal, { winningRankResult, rateOfReturn });
     } catch (error) {
-      if (error instanceof AppError) {
-        const nonPrefixErrorMessage = error.message.replace(AppError.PREFIX, '');
-        showErrorMessage(nonPrefixErrorMessage, COMPONENT_SELECTOR.winningDetailForm);
-      }
+      this.#handleError(error);
+    }
+  }
+
+  #handleError(error) {
+    if (error instanceof AppError) {
+      const nonPrefixErrorMessage = error.message.replace(AppError.PREFIX, '');
+      showErrorMessage(nonPrefixErrorMessage, COMPONENT_SELECTOR.winningDetailForm);
     }
   }
 

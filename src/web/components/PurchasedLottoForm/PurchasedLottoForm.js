@@ -51,10 +51,14 @@ class PurchasedLottoForm extends BaseComponent {
 
       this.emit(CUSTOM_EVENT_TYPE.buyLottoPrice, Number(purchasedLottoPrice));
     } catch (error) {
-      if (error instanceof AppError) {
-        const nonPrefixErrorMessage = error.message.replace(AppError.PREFIX, '');
-        showErrorMessage(nonPrefixErrorMessage, COMPONENT_SELECTOR.purchasedLottoForm);
-      }
+      this.#handleError(error);
+    }
+  }
+
+  #handleError(error) {
+    if (error instanceof AppError) {
+      const nonPrefixErrorMessage = error.message.replace(AppError.PREFIX, '');
+      showErrorMessage(nonPrefixErrorMessage, COMPONENT_SELECTOR.purchasedLottoForm);
     }
   }
 
