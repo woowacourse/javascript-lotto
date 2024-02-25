@@ -7,11 +7,7 @@ import { InputView, OutputView } from '../views';
 import InputController from './InputController';
 
 class GameController {
-  #lottoGame;
-
-  constructor() {
-    this.#lottoGame = new LottoGame();
-  }
+  #lottoGame = new LottoGame();
 
   async playGame() {
     await InputController.retryOnInvalidInput(async () => this.#getPaid());

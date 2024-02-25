@@ -25,6 +25,17 @@ export const WINNING_RULE = Object.freeze(
   ]),
 );
 
+export const PRIZE_KEYS = Object.freeze(
+  Array.from(WINNING_RULE.keys()).reduce((acc, key) => {
+    acc[key] = 0;
+    return acc;
+  }, {}),
+);
+
+export const BONUS_MATCHED_COUNT = Array.from(WINNING_RULE.values()).find(
+  ({ isBonus }) => isBonus,
+)?.matchedCount;
+
 export const RESTART_KEY = Object.freeze({
   restart: 'y',
   end: 'n',

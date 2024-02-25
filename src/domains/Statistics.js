@@ -1,4 +1,4 @@
-import { WINNING_RULE } from '../constants';
+import { BONUS_MATCHED_COUNT, PRIZE_KEYS, WINNING_RULE } from '../constants';
 
 class Statistics {
   #ranks = [];
@@ -16,7 +16,7 @@ class Statistics {
         acc[rank] += 1;
         return acc;
       },
-      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+      { ...PRIZE_KEYS },
     );
   }
 
@@ -36,19 +36,14 @@ class Statistics {
   }
 
   #checkTicket(result) {
-    WINNING_RULE.forEach((value, key) => {
-      const { matchedCount, isBonus } = value;
-
-      const checkBonusMatch = matchedCount === 5;
+    WINNING_RULE.forEach(({ matchedCount, isBonus }, prizeKey) => {
+      const checkBonusMatch = matchedCount === BONUS_MATCHED_COUNT;
       const isMatchingCount = matchedCount === result.matchedCount;
-      const isMatchingOnlyCount = !checkBonusMatch && isMatchingCount;
-      const isMatchingBonusAndCount =
-        checkBonusMatch && isBonus === result.isBonus;
+      const isWinningLotto = !checkBonusMatch
+        ? isMatchingCount
+        : isBonus === result.isBonus && isMatchingCount;
 
-      if (!isMatchingCount) return;
-      if (isMatchingOnlyCount || isMatchingBonusAndCount) {
-        this.#ranks.push(key);
-      }
+      if (isWinningLotto) this.#ranks.push(prizeKey);
     });
   }
 
