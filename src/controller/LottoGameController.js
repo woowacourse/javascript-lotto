@@ -26,7 +26,8 @@ class LottoGameController {
   }
 
   #lottosWinningResult(winningNumbers, bonusNumber) {
-    const winningResult = new WinningResultService([...this.#lottos]).getWinningResult(winningNumbers, bonusNumber);
+    const winningResultService = new WinningResultService([...this.#lottos], { winningNumbers, bonusNumber });
+    const winningResult = winningResultService.getWinningResult();
     OutputView.printWinningResult(winningResult);
     OutputView.printProfitRate(this.#calculateProfitRate(winningResult));
   }

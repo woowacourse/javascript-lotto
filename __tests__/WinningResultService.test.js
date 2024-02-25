@@ -10,9 +10,9 @@ describe('[WinningResultService] 당첨 확인 로직 테스트', () => {
       [13, 14, 15, 16, 17, 18],
     ];
     const lottos = lottoNumbersList.map((lottoNumbers) => new Lotto(lottoNumbers));
-    const winningResultService = new WinningResultService(lottos);
     const winningNumbers = [2, 3, 4, 5, 6, 7];
     const bonusNumber = 1;
+    const winningResultService = new WinningResultService(lottos, { winningNumbers, bonusNumber });
 
     // when
     const winningResult = winningResultService.getWinningResult(winningNumbers, bonusNumber);
