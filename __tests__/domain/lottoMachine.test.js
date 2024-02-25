@@ -1,4 +1,3 @@
-import LOTTO_RULE from '../../src/constants/rules/lottoRule';
 import Lotto from '../../src/domain/Lotto';
 import LottoMachine from '../../src/domain/LottoMachine';
 import Money from '../../src/domain/Money';
@@ -7,7 +6,7 @@ import OutputView from '../../src/view/OutputView';
 describe('로또 머신 테스트', () => {
   test('구입 금액에 해당하는 만큼 로또를 발행하는가', () => {
     const money = new Money(8000);
-    const lottoMachine = new LottoMachine(money);
+    const lottoMachine = new LottoMachine(money.count);
 
     expect(lottoMachine.lottos.length).toBe(8);
   });

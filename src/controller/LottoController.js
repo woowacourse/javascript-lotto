@@ -8,6 +8,7 @@ import { retryGame } from '../util/retryGame';
 
 class LottoController {
   #lottoMachine;
+
   #money;
 
   async lottoGameStart() {
@@ -15,7 +16,8 @@ class LottoController {
       await this.#insertMoney();
     });
 
-    this.#lottoMachine = new LottoMachine(this.#money);
+    console.log(this.#money.count);
+    this.#lottoMachine = new LottoMachine(this.#money.count);
 
     this.#printPurchasedLottos();
 
@@ -54,8 +56,8 @@ class LottoController {
   }
 
   #printPurchasedLottos() {
-    OutputView.printPurchasedLottoAmount(this.#lottoMachine.count);
-    this.#lottoMachine.lottos.forEach(lotto => {
+    OutputView.printPurchasedLottoAmount(this.#money.count);
+    this.#lottoMachine.lottos.forEach((lotto) => {
       OutputView.printLottoNumbers(lotto.lottoNumbers);
     });
   }

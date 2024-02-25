@@ -1,21 +1,21 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
 import BonusNumber from './BonusNumber';
 import Lotto from './Lotto';
+import Money from './Money';
 
 class LottoMachine {
   #lottos;
-  #count; //TODO: count 분리
+
   #winningLotto;
+
   #bonusNumber;
 
-  constructor(money) {
-    //TODO: money.amount 리팩토링?
-    this.#count = money.amount / LOTTO_RULE.LOTTO_MONEY_UNIT;
-    this.#drawLottos();
+  constructor(count) {
+    this.#drawLottos(count);
   }
 
-  #drawLottos() {
-    this.#lottos = Array(this.#count).fill([]);
+  #drawLottos(count) {
+    this.#lottos = Array(count).fill([]);
     this.#lottos.forEach((_, idx) => {
       this.#lottos[idx] = new Lotto();
     });
@@ -24,7 +24,7 @@ class LottoMachine {
   initRanks() {
     const lottoRanks = new Map();
 
-    LOTTO_RULE.RANK.forEach(rank => {
+    LOTTO_RULE.RANK.forEach((rank) => {
       lottoRanks.set(rank, 0);
     });
 
@@ -40,7 +40,7 @@ class LottoMachine {
   countLottoRanks(lottos = this.#lottos) {
     const lottoRanks = this.initRanks();
 
-    lottos.forEach(lotto => {
+    lottos.forEach((lotto) => {
       const lottoValues = lotto.lottoNumbers;
       const winningLottoValues = this.#winningLotto.lottoNumbers;
       const bonusNumber = this.#bonusNumber.value;
@@ -82,10 +82,6 @@ class LottoMachine {
 
   get lottos() {
     return this.#lottos;
-  }
-
-  get count() {
-    return this.#count;
   }
 }
 
