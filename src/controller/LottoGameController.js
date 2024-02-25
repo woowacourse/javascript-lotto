@@ -12,8 +12,7 @@ class LottoGameController {
     this.#purchaseAmount = await InputController.inputPurchaseAmount();
     this.#createRandomLottos();
 
-    const winningNumbers = await InputController.inputWinningNumbers();
-    const bonusNumber = await InputController.inputBonusNumber(winningNumbers);
+    const { winningNumbers, bonusNumber } = await InputController.inputWinningConditions();
     this.#lottosWinningResult(winningNumbers, bonusNumber);
 
     const restartCommand = await InputController.inputRestartCommand();
@@ -21,7 +20,7 @@ class LottoGameController {
   }
 
   #createRandomLottos() {
-    const lottoList = new LottoMachine(this.#purchaseAmount).getLottoNumberList();
+    const lottoList = new LottoMachine(this.#purchaseAmount).getLottoNumbersList();
     this.#lottos = new Lottos(lottoList);
     OutputView.printPurchaseResult(lottoList);
   }
