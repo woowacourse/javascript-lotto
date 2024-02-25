@@ -11,12 +11,12 @@ export default class Lotto {
 
   #validateLotto() {
     this.#isValidLottoNumberCount();
-    this.#hasRedundentLottoNumber();
 
     this.#lottoNumbers.forEach((lottoNumber) => {
       this.#isNotNumber(lottoNumber);
       this.#isValidLottoNumberRange(lottoNumber);
     });
+    this.#hasRedundentLottoNumber();
   }
 
   #isValidLottoNumberCount() {
