@@ -1,4 +1,5 @@
 /* eslint-disable arrow-parens */
+import CONDITION from '../../constant/Condition';
 import Lotto from '../entity/Lotto';
 import WinningLotto from '../entity/WinningLotto';
 
@@ -13,22 +14,23 @@ class WinningResultService {
     this.#winningLotto.setBonusNumber(winningLottoCondition.bonusNumber);
   }
 
-  getWinningResult() {
-    const result = {
-      3: 0,
-      4: 0,
-      5: 0,
-      '5-1': 0,
-      6: 0,
-    };
+  getWinningResults() {
+    return this.#counter(this.#getResults());
+  }
 
-    this.#lottos
-      .map((lotto) => this.#winningLotto.getMatchCounts(lotto.getNumbers()))
-      .filter((numStr) => Object.keys(result).includes(numStr))
-      .forEach((matched) => {
-        result[matched] += 1;
-      });
-    return result;
+  #getResults() {
+    return this.#getMatchingCounts().filter((numStr) =>
+      Object.keys(CONDITION.winningPrice).includes(numStr),
+    );
+  }
+
+  #getMatchingCounts() {
+    const getLottoResult = (lotto) => this.#winningLotto.getMatchCounts(lotto.getNumbers());
+    return this.#lottos.map(getLottoResult);
+  }
+
+  #counter(array) {
+    return array.reduce((acc, cur) => ((acc[cur] = (acc[cur] || 0) + 1), acc), {});
   }
 }
 
