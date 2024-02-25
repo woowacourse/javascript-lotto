@@ -5,36 +5,22 @@ class WinningResultService {
   #winningCriteria;
   #winningResult;
 
-  constructor(lottos, { winningNumbers, bonusNumber }) {
+  constructor(lottos) {
     this.#lottos = lottos;
     this.#winningCriteria = this.#createWinningCriteria();
     this.#winningResult = this.#createWinningResult();
-    this.#calculateWinningResult(winningNumbers, bonusNumber);
   }
 
-  getWinningResult() {
-    return { ...this.#winningResult };
-  }
-
-  getProfitRate() {
-    const totalProfit = Object.entries(this.#winningResult).reduce(
-      (profit, [ranking, count]) => profit + RANKING[ranking].REWARD * count,
-      0,
-    );
-    return ((totalProfit * 100) / (this.#lottos.length * SETTING.LOTTO_PRICE)).toLocaleString('ko-KR', {
-      minimumFractionDigits: 1,
-    });
-  }
-
-  #calculateWinningResult(winningNumbers, bonusNumber) {
+  getWinningResult(winningNumbers, bonusNumber) {
     this.#lottos.forEach((lotto) => {
       const matchedNumbers = lotto.countMatchedNumbers(winningNumbers);
       const hasBonusNumber = lotto.hasNumber(bonusNumber);
-      this.#addRankingCount(matchedNumbers, hasBonusNumber);
+      this.#updateRanking(matchedNumbers, hasBonusNumber);
     });
+    return { ...this.#winningResult };
   }
 
-  #addRankingCount(matchedNumbers, hasBonusNumber) {
+  #updateRanking(matchedNumbers, hasBonusNumber) {
     if (matchedNumbers >= SETTING.MIN_RANKING_MATCHING_NUMBER) {
       const rankingKey =
         matchedNumbers === RANKING.SECOND.MATCHING_COUNT && hasBonusNumber

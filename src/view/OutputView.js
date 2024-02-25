@@ -9,9 +9,9 @@ const OutputView = {
     });
   },
 
-  printWinningResults(winningResults) {
+  printWinningResult(winningResult) {
     handleIO.print(LOTTO_WINNING_RESULTS.LOTTO_WINNING_RESULT_TITLE);
-    Object.entries(winningResults).forEach(([rank, winningCount]) => {
+    Object.entries(winningResult).forEach(([rank, winningCount]) => {
       handleIO.print(LOTTO_WINNING_RESULTS.WINNING_RESULT(rank, winningCount));
     });
   },
