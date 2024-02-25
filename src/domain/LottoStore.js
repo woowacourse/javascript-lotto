@@ -24,7 +24,6 @@ class LottoStore {
   }
 
   issueLottos(sixNumbersArray) {
-    // 2차원 배열의 이름 리뷰어는 어떻게 생각하시나요 ??
     if (!this.#isValidSixNumbersArray(sixNumbersArray))
       throw new Error(ERROR_MESSAGE.invalidSixNumbersArray);
 
