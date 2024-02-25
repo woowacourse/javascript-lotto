@@ -52,6 +52,6 @@ export default class Lotto {
   }
 
   get lottoNumbers() {
-    return this.#lottoNumbers;
+    return this.#lottoNumbers.slice();
   }
 }
