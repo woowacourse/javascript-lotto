@@ -7,5 +7,5 @@ describe('generateRandomNumberInRange 함수 테스트', () => {
 
     expect(randomResult).toBeGreaterThanOrEqual(1);
     expect(randomResult).toBeLessThanOrEqual(45);
-  })
-})
+  });
+});
