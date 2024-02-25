@@ -75,10 +75,12 @@
   - [x] `LottoResult` 분리
   - [x] `LottoValidator` 분리 및 로직 변경
   - [x] `retry` 로직 분리
-  - [ ] 객체 분리 이후 테스트하기
+  - [x] 객체 분리 이후 테스트하기
 - [x] 숫자 6개가 담긴 배열을 `lotto`로 명칭 통일
 
-- [ ] esLint 적용
+- [ ] git에서 로컬의 변경사항을 적용할 수 있게 `git config core.ignorecase false` 설정하기
+- [ ] esLint 적용 후 에러 없는지 확인
+- [ ] `LottoResult`의 `PRIZE_OF_LOTTO`를 객체로 만들어 오름차순 정렬
 
 ## 실행 예시
 ``` 
