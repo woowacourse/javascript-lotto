@@ -12,6 +12,7 @@ const MESSAGE = {
 const ERROR_MESSAGE = {
   BLANK_INPUT: '[ERROR] 공백이 아닌 값을 입력해주세요.',
   NOT_A_NUMBER_INPUT: '[ERROR] 숫자로 입력해주세요.',
+  ZERO_INPUT: '[ERROR] 0은 입력할 수 없습니다. 1000원 단위로 입력해주세요.',
   OUT_OF_RANGE: '[ERROR] 1부터 45 사이의 값으로 입력해주세요.',
   PURCHASE_AMOUNT_UNIT: '[ERROR] 로또 구매 금액은 1000원 단위로 입력해주세요.',
   LOTTO_LENGTH: '[ERROR] 당첨 번호는 6개를 입력해주세요.',
