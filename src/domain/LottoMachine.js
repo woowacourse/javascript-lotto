@@ -18,19 +18,27 @@ class LottoMachine {
   #drawLottos(count, customLottos) {
     const lottos = Array.from({ length: count }, () => []);
     if (customLottos.length) {
-      this.#lottos = customLottos.map((ticket) => {
-        const stringToNumberLotto = parseStringToNumber(ticket);
-        const customLotto = this.#makeCustomLottoNumbers(stringToNumberLotto);
-        const lotto = new Lotto(customLotto);
-        return lotto.lottoNumbers;
-      });
+      this.#customLotto(customLottos);
     } else {
-      this.#lottos = lottos.map((ticket) => {
-        const autoLotto = this.#drawAutoLottoNumbers(ticket);
-        const lotto = new Lotto(autoLotto);
-        return lotto.lottoNumbers;
-      });
+      this.#autoLotto(lottos);
     }
+  }
+
+  #customLotto(customLottos) {
+    this.#lottos = customLottos.map((ticket) => {
+      const stringToNumberLotto = parseStringToNumber(ticket);
+      const customLotto = this.#makeCustomLottoNumbers(stringToNumberLotto);
+      const lotto = new Lotto(customLotto);
+      return lotto.lottoNumbers;
+    });
+  }
+
+  #autoLotto(lottos) {
+    this.#lottos = lottos.map((ticket) => {
+      const autoLotto = this.#drawAutoLottoNumbers(ticket);
+      const lotto = new Lotto(autoLotto);
+      return lotto.lottoNumbers;
+    });
   }
 
   #makeCustomLottoNumbers(lotto) {
@@ -74,18 +82,22 @@ class LottoMachine {
 
   countLottoRanks() {
     const initialLottoRanks = this.#initRanks();
-
     const updatedRanks = this.#lottos.reduce((accumulator, lotto) => {
-      const winningLottoValues = this.#winningLotto.lottoNumbers;
-      const isBonus = lotto.includes(this.#bonusNumber.value);
-
-      const mergeLottoAndWinningLotto = [...lotto, ...winningLottoValues];
-      const matchCount = mergeLottoAndWinningLotto.length - new Set(mergeLottoAndWinningLotto).size;
-
+      const [isBonus, matchCount] = this.#calculateLottoMatch(lotto);
       return this.#checkWinningLotto(accumulator, matchCount, isBonus);
     }, initialLottoRanks);
 
     return Array.from(updatedRanks);
+  }
+
+  #calculateLottoMatch(lotto) {
+    const winningLottoValues = this.#winningLotto.lottoNumbers;
+    const isBonus = lotto.includes(this.#bonusNumber.value);
+
+    const mergeLottoAndWinningLotto = [...lotto, ...winningLottoValues];
+    const matchCount = mergeLottoAndWinningLotto.length - new Set(mergeLottoAndWinningLotto).size;
+
+    return [isBonus, matchCount];
   }
 
   #checkWinningLotto(ranks, matchCount, isBonus) {
