@@ -96,18 +96,18 @@ class WinningDetailForm extends BaseComponent {
   render() {
     this.innerHTML = `
         <form id="winning-detail-form" class="${styles.winningDetailForm}">
-          <label for="winning-detail-input" class="body">지난 주 당첨번호 ${
+          <p class="body">지난 주 당첨번호 ${
             LOTTO_RULE.count
-          }개와 보너스 번호 1개를 입력해주세요.</label>
+          }개와 보너스 번호 1개를 입력해주세요.</p>
           <div class="${styles.numbersInputContainer}">
             <div>
-              <p class="body">당첨 번호</p>
+              <label for="winning-number-input-1" class="body">당첨 번호</label>
               <div class=${styles.winningNumberInputContainer}>
                 ${this.#createNumberInputByCount(LOTTO_RULE.count)}
               </div>
             </div>
             <div class=${styles.bonusNumberContainer}>
-              <p class="body">보너스 번호</p>
+              <label for="bonus-number-input" class="body">보너스 번호</label>
               ${this.#createNumberInputByCount(1, { isBonusNumber: true })}
             </div>
           </div>
@@ -117,13 +117,15 @@ class WinningDetailForm extends BaseComponent {
   }
 
   #createNumberInputByCount(count, { isBonusNumber } = { isBonusNumber: false }) {
-    const inputElementString = `<input id="winning-detail-input" type="number" class="${
-      styles.numberInput
-    } ${isBonusNumber ? 'bonus-number' : 'winning-number'}"/>`;
+    if (!isBonusNumber) {
+      return Array.from({ length: count }, (_, index) => {
+        const id = `winning-number-input-${index + 1}`;
 
-    if (count === 1) return inputElementString;
+        return `<input id="${id}" type="number" class="${styles.numberInput} winning-number"/>`;
+      }).join('');
+    }
 
-    return Array.from({ length: count }, () => inputElementString).join('');
+    return `<input id="bonus-number-input" type="number" class="${styles.numberInput} bonus-number"/>`;
   }
 }
 
