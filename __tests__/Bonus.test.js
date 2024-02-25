@@ -47,12 +47,12 @@ describe('Bonus에 대한 테스트', () => {
     const BONUS_NUMBER = '7';
     const WINNING_LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
     const bonus = new Bonus(BONUS_NUMBER, WINNING_LOTTO_NUMBERS);
-    test('비교 대상인 로또 번호들에 보너스 번호가 없으면, false를 반환한다.', () => {
+    test('비교 대상인 로또 번호들에 보너스 번호가 없으면, 반환되는 매칭값은 false이다.', () => {
       const NOT_MATCHING_NUMBERS = [1, 2, 3, 4, 5, 6];
 
       expect(bonus.isMatchingNumber(NOT_MATCHING_NUMBERS)).toBeFalsy();
     });
-    test('비교 대상인 로또 번호들에 보너스 번호가 있으면, true를 반환한다.', () => {
+    test('비교 대상인 로또 번호들에 보너스 번호가 있으면, 반환되는 매칭값은 true이다.', () => {
       const MATCHING_NUMBERS = [1, 2, 3, 4, 5, Number(BONUS_NUMBER)];
 
       expect(bonus.isMatchingNumber(MATCHING_NUMBERS)).toBeTruthy();
