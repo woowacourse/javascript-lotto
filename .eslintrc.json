@@ -13,6 +13,7 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
+  "ignorePatterns": ["step1.config.js", "step2.config.js"],
   "extends": ["airbnb-base", "plugin:prettier/recommended"],
   "plugins": ["prettier"]
 }
