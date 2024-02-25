@@ -1,4 +1,4 @@
-import LottoMachine from '../src/domain/LottoMachine';
+import LottoMachine from '../src/service/LottoMachine';
 import { SETTING } from '../src/constant/setting';
 
 describe('[LottoMachine] 로또 번호 발행 기능 테스트', () => {
