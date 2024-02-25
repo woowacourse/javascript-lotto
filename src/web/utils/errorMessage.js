@@ -1,3 +1,6 @@
+import { COMPONENT_SELECTOR } from '../../constants/webApplication';
+import { $ } from './dom';
+
 const createErrorMessage = (message) => {
   const paragraphElement = document.createElement('p');
   const textElement = document.createTextNode(message);
@@ -19,7 +22,7 @@ const updateErrorMessage = (errorMessageElement, message) => {
 };
 
 export const showErrorMessage = (message, targetElement) => {
-  const errorMessageElement = document.querySelector('.error-message');
+  const errorMessageElement = $($(document, targetElement), COMPONENT_SELECTOR.errorMessage);
 
   if (errorMessageElement) {
     updateErrorMessage(errorMessageElement, message);
@@ -27,4 +30,10 @@ export const showErrorMessage = (message, targetElement) => {
   }
 
   commitNewErrorMessage(message, targetElement);
+};
+
+export const removeErrorMessage = (targetElement) => {
+  const errorMessageElement = $(targetElement, COMPONENT_SELECTOR.errorMessage);
+
+  if (errorMessageElement) errorMessageElement.remove();
 };

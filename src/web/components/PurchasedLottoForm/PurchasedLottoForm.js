@@ -6,7 +6,7 @@ import BuyLottoPriceValidator from '../../../validator/buyLottoPrice/BuyLottoPri
 
 import AppError from '../../../errors/AppError/AppError.js';
 
-import { showErrorMessage } from '../../utils/showErrorMessage.js';
+import { removeErrorMessage, showErrorMessage } from '../../utils/errorMessage.js';
 import { $ } from '../../utils/dom.js';
 
 import { COMPONENT_SELECTOR, CUSTOM_EVENT_TYPE } from '../../../constants/webApplication.js';
@@ -38,7 +38,7 @@ class PurchasedLottoForm extends BaseComponent {
       const purchasedLottoPrice = this.#getPurchasedLottoPrice();
       BuyLottoPriceValidator.check(purchasedLottoPrice);
 
-      this.#removeErrorMessage();
+      removeErrorMessage(this);
 
       $(this, COMPONENT_SELECTOR.purchasedLottoInput).value = '';
 
@@ -55,12 +55,6 @@ class PurchasedLottoForm extends BaseComponent {
     const purchasedLottoInputElement = $(this, COMPONENT_SELECTOR.purchasedLottoInput);
 
     return purchasedLottoInputElement?.value;
-  }
-
-  #removeErrorMessage() {
-    const errorMessageElement = $(this, COMPONENT_SELECTOR.errorMessage);
-
-    if (errorMessageElement) errorMessageElement.remove();
   }
 }
 
