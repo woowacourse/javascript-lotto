@@ -13,11 +13,12 @@ const validateRetryAnswer = answer => {
 export const retryGame = async func => {
   try {
     const answer = await InputView.readRetryResponse();
-    validateRetryAnswer(answer);
+    const lowAnswer = answer.toLowerCase();
+    validateRetryAnswer(lowAnswer);
 
-    if (answer === LOTTO_RULE.LOTTO_RESTART) {
+    if (lowAnswer === LOTTO_RULE.LOTTO_RESTART) {
       return await func();
-    } else if (answer === LOTTO_RULE.LOTTO_EXIT) {
+    } else if (lowAnswer === LOTTO_RULE.LOTTO_EXIT) {
       OutputView.printExitLotto();
     }
   } catch (err) {
