@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from '../constants/messages/errorMessage';
-import LOTTO_RULE from '../constants/rules/lottoRule';
+import { ERROR_MESSAGE } from '../../constants/messages/errorMessage';
+import LOTTO_RULE from '../../constants/rules/lottoRule';
 
 class BonusNumber {
   #bonumNumber;

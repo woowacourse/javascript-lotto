@@ -1,4 +1,4 @@
-import Lotto from '../../src/domain/Lotto';
+import Lotto from '../../src/domain/model/Lotto';
 
 describe('lotto 테스트', () => {
   test('Lotto의 숫자가 6개가 아닐 때, 에러를 발생시킨다.', () => {

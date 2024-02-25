@@ -1,5 +1,5 @@
-import BonusNumber from '../../src/domain/BonusNumber';
-import Lotto from '../../src/domain/Lotto';
+import BonusNumber from '../../src/domain/model/BonusNumber';
+import Lotto from '../../src/domain/model/Lotto';
 
 describe('bonusNumber 테스트', () => {
   const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);

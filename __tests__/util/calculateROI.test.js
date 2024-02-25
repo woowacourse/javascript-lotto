@@ -1,7 +1,7 @@
-import Lotto from '../../src/domain/Lotto';
-import LottoMachine from '../../src/domain/LottoMachine';
-import Money from '../../src/domain/Money';
-import calculateROI from '../../src/domain/calculateROI';
+import Lotto from '../../src/domain/model/Lotto';
+import LottoMachine from '../../src/domain/model/LottoMachine';
+import Money from '../../src/domain/model/Money';
+import { calculateROI } from '../../src/domain/calculateStatistics';
 
 describe('수익률 계산 테스트', () => {
   test('5등 1개, 5,000원 구입, 62.5% 수익률', () => {

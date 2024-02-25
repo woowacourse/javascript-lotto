@@ -1,10 +1,10 @@
 import InputView from '../view/InputView';
-import LottoMachine from '../domain/LottoMachine';
+import LottoMachine from '../domain/model/LottoMachine';
 import OutputView from '../view/OutputView';
-import Money from '../domain/Money';
+import Money from '../domain/model/Money';
 import { retryOnInvalidInput } from '../util/retryOnInvalidInput';
-import calculateROI from '../domain/calculateROI';
 import { retryGame } from '../domain/retryGame';
+import { calculateROI } from '../domain/calculateStatistics';
 
 class LottoController {
   #lottoMachine;

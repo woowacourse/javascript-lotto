@@ -1,6 +1,6 @@
-import Lotto from '../../src/domain/Lotto';
-import LottoMachine from '../../src/domain/LottoMachine';
-import Money from '../../src/domain/Money';
+import Lotto from '../../src/domain/model/Lotto';
+import LottoMachine from '../../src/domain/model/LottoMachine';
+import Money from '../../src/domain/model/Money';
 
 describe('로또 머신 테스트', () => {
   test('8000원을 삽입하면 8개의 로또를 발행한다.', () => {
