@@ -1,4 +1,5 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
+import generateRandomNumberInRange from '../util/generateRandomNumberInRange';
 import BonusNumber from './BonusNumber';
 import Lotto from './Lotto';
 
@@ -11,11 +12,48 @@ class LottoMachine {
     this.#drawLottos(money.count);
   }
 
-  #drawLottos(moneyAmount) {
-    this.#lottos = Array(moneyAmount).fill([]);
+  #drawLottos(moneyCount) {
+    this.#lottos = Array(moneyCount).fill([]);
+
     this.#lottos.forEach((_, idx) => {
-      this.#lottos[idx] = new Lotto();
+      this.#lottos[idx] = new Lotto(this.#generateRandomLottoNumbers());
     });
+  }
+
+  #generateRandomLottoNumbers() {
+    const lottoNumbers = [];
+    while (lottoNumbers.length !== 6) {
+      const randomNumber = generateRandomNumberInRange();
+
+      this.#pushNotRedundantNumber(lottoNumbers, randomNumber);
+    }
+    return lottoNumbers;
+  }
+
+  #pushNotRedundantNumber(lottoNumbers, randomNumber) {
+    if (!lottoNumbers.includes(randomNumber)) {
+      lottoNumbers.push(randomNumber);
+    }
+  }
+
+  countLottoRanks(lottos = this.#lottos) {
+    const lottoRanks = this.initRanks();
+
+    lottos.forEach(lotto => {
+      const lottoValues = lotto.lottoNumbers;
+      const winningLottoValues = this.#winningLotto.lottoNumbers;
+      const bonusNumber = this.#bonusNumber.value;
+      const isBonus = lottoValues.includes(bonusNumber);
+
+      const mergeLottoAndWinningLotto = [...lottoValues, ...winningLottoValues];
+      const matchCount = mergeLottoAndWinningLotto.length - new Set(mergeLottoAndWinningLotto).size;
+
+      this.#checkWinningLotto(lottoRanks, matchCount, isBonus);
+    });
+
+    const totalLottoRanks = Array.from(lottoRanks);
+
+    return totalLottoRanks;
   }
 
   initRanks() {
@@ -33,28 +71,6 @@ class LottoMachine {
     ranks.set(string, lottoRanksValue + 1);
   }
 
-  // TODO: 이거 괜찮은 방법인가? 테스트를 위해서 기존 코드에서 바꿔주었다.
-  countLottoRanks(lottos = this.#lottos) {
-    const lottoRanks = this.initRanks();
-
-    lottos.forEach(lotto => {
-      const lottoValues = lotto.lottoNumbers;
-      const winningLottoValues = this.#winningLotto.lottoNumbers;
-      const bonusNumber = this.#bonusNumber.value;
-      const isBonus = lottoValues.includes(bonusNumber);
-
-      const mergeLottoAndWinningLotto = [...lottoValues, ...winningLottoValues];
-      const matchCount = mergeLottoAndWinningLotto.length - new Set(mergeLottoAndWinningLotto).size;
-
-      this.#checkWinningLotto(lottoRanks, matchCount, isBonus);
-      // TODO: lottoRanks를 리턴이 아닌 레퍼런스를 하고 있다.
-    });
-
-    const totalLottoRanks = Array.from(lottoRanks);
-
-    return totalLottoRanks;
-  }
-
   #checkWinningLotto(lottoRanks, matchCount, isBonus) {
     if (matchCount === 6) {
       this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[0]);
@@ -69,8 +85,8 @@ class LottoMachine {
     }
   }
 
-  set winningLotto(numbers) {
-    this.#winningLotto = new Lotto(numbers);
+  set winningLotto(lottoInputs) {
+    this.#winningLotto = new Lotto(lottoInputs.split(',').map(input => Number(input.trim())));
   }
 
   set bonusNumber(number) {

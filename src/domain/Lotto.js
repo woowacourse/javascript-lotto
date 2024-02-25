@@ -1,22 +1,18 @@
-import generateRandomNumberInRange from '../util/generateRandomNumberInRange';
 import LOTTO_RULE from '../constants/rules/lottoRule';
 import ERROR_MESSAGE from '../constants/messages/errorMessage';
 
 export default class Lotto {
-  #lottoNumbers = [];
+  #lottoNumbers;
 
-  constructor(lottoNumbers = []) {
-    const needRandomGenerating = lottoNumbers.length === 0 ? true : false;
-
-    needRandomGenerating ? this.#drawAutoLottoNumbers() : this.#makeCustomLottoNumbers(lottoNumbers);
+  constructor(lottoInputs) {
+    this.#lottoNumbers = lottoInputs.map(input => Number(input));
     this.#validateLotto();
     this.#sortLottoNumbers();
   }
 
-  //TODO: validate 파일 분리?
   #validateLotto() {
-    this.#isNotValidLottoNumberCount();
-    this.#hasRedundentLottoNumber();
+    this.#isInvalidLottoNumberCount();
+    this.#hasRedundantLottoNumber();
 
     this.#lottoNumbers.forEach(lottoNumber => {
       this.#isNotNumber(lottoNumber);
@@ -24,13 +20,13 @@ export default class Lotto {
     });
   }
 
-  #isNotValidLottoNumberCount() {
+  #isInvalidLottoNumberCount() {
     if (this.#lottoNumbers.length !== 6) {
       throw new Error(ERROR_MESSAGE.IS_NOT_VALID_LOTTO_NUMBER_COUNT);
     }
   }
 
-  #hasRedundentLottoNumber() {
+  #hasRedundantLottoNumber() {
     if (new Set(this.#lottoNumbers).size !== 6) {
       throw new Error(ERROR_MESSAGE.HAS_REDUNDANT_LOTTO_NUMBER);
     }
@@ -44,27 +40,6 @@ export default class Lotto {
   #isInvalidLottoNumberRange(lottoNumber) {
     if (lottoNumber > LOTTO_RULE.RANDOM_NUMBER_TO || lottoNumber < LOTTO_RULE.RANDOM_NUMBER_FROM) {
       throw new Error(ERROR_MESSAGE.IS_INVALID_LOTTO_NUMBER_RANGE);
-    }
-  }
-
-  #makeCustomLottoNumbers(lottoNumbers) {
-    const splitedLottoNumbers = lottoNumbers.split(',');
-    splitedLottoNumbers.forEach(num => {
-      this.#pushNotRedundantNumber(Number(num));
-    });
-  }
-
-  #drawAutoLottoNumbers() {
-    while (this.#lottoNumbers.length !== 6) {
-      const randomNumber = generateRandomNumberInRange();
-
-      this.#pushNotRedundantNumber(randomNumber);
-    }
-  }
-
-  #pushNotRedundantNumber(randomNumber) {
-    if (!this.#lottoNumbers.includes(randomNumber)) {
-      this.#lottoNumbers.push(randomNumber);
     }
   }
 
