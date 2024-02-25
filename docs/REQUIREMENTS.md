@@ -78,7 +78,7 @@ npm run start-step2
 
 - 레이아웃 스타일 생성
   - [x] 브라우저 기본 css style reset하기
-  - [ ] color, typo 미리 선언하기
+  - [x] color, typo 미리 선언하기
   - [ ] 공통 header, main, footer 정의하기
   - [ ] 내 번호 당첨 확인 레이아웃 생성 (header, section, footer, 각 article 들)
 

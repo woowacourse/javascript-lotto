@@ -4,3 +4,19 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
 }
+
+:root {
+  /* color */
+  --primary: #4E5BA6;
+  --grayscale1: #FFFFFF;
+  --grayscale2: #FCFCFD;
+  --grayscale3: #B4B4B4;
+  --grayscale4: #8B8B8B;
+  --grayscale5: #000000;
+
+  /* typography */
+  --title: 800 2.4rem/3.6rem 'Roboto' sans-serif;
+  --subtitle: 600 2rem/2.4rem 'Roboto' sans-serif 0.015rem;
+  --body: 400 1.5rem/2.4rem 'Roboto' sans-serif 0.05rem;
+  --caption: 700 1.4rem/1.6rem 'Roboto' sans-serif 0.125rem;
+}
