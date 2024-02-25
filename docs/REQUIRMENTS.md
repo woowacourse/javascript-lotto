@@ -50,12 +50,11 @@
 
 ## 모듈 구조 수정 사항
 
-[] 유효성 검사는 해당 모듈에서 진행
+[x] 유효성 검사는 해당 모듈에서 진행
 
-- [x]구매 금액-> LottoMachine
+- [x] 구매 금액-> LottoMachine
 - [x] 로또 숫자 -> Lotto
 - [x] 보너스 번호 -> Bonus
       [x] WinningLotto : 당첨 번호
       [x] LottoResultsHelper
   - 필드 : lottoMachine , winningLotto
-  -
