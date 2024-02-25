@@ -5,22 +5,26 @@ class WinningResultService {
   #winningCriteria;
   #winningResult;
 
-  constructor(lottos) {
+  constructor(lottos, { winningNumbers, bonusNumber }) {
     this.#lottos = lottos;
     this.#winningCriteria = this.#createWinningCriteria();
     this.#winningResult = this.#createWinningResult();
+    this.#calculateWinningResult(winningNumbers, bonusNumber);
   }
 
-  getWinningResult(winningNumbers, bonusNumber) {
-    this.#lottos.forEach((lotto) => {
-      const matchedNumbers = lotto.countMatchedNumbers(winningNumbers);
-      const hasBonusNumber = lotto.hasNumber(bonusNumber);
-      this.#updateRanking(matchedNumbers, hasBonusNumber);
-    });
+  getWinningResult() {
     return { ...this.#winningResult };
   }
 
-  #updateRanking(matchedNumbers, hasBonusNumber) {
+  #calculateWinningResult(winningNumbers, bonusNumber) {
+    this.#lottos.forEach((lotto) => {
+      const matchedNumbers = lotto.countMatchedNumbers(winningNumbers);
+      const hasBonusNumber = lotto.hasNumber(bonusNumber);
+      this.#addRankingCount(matchedNumbers, hasBonusNumber);
+    });
+  }
+
+  #addRankingCount(matchedNumbers, hasBonusNumber) {
     if (matchedNumbers >= SETTING.MIN_RANKING_MATCHING_NUMBER) {
       const rankingKey =
         matchedNumbers === RANKING.SECOND.MATCHING_COUNT && hasBonusNumber
