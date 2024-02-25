@@ -1,14 +1,7 @@
 import Lotto from '../../src/domain/Lotto';
-describe('lotto 테스트 - random number로 생성될 때', () => {
-  test('구매한 로또가 6개의 중복되지 않은 숫자로 발행되는가', () => {
-    const lotto = new Lotto();
 
-    expect(new Set(lotto.lottoNumbers).size).toBe(6);
-  });
-});
-
-describe('lotto 테스트 - winnigLotto를 유저가 입력할 때', () => {
-  test('입력한 winnigLotto가 6개인가', () => {
+describe('lotto 테스트', () => {
+  test('Lotto의 숫자가 6개가 아닐 때, 에러를 발생시킨다.', () => {
     const inputNumber = [1, 2, 3, 4];
 
     expect(() => {
@@ -16,7 +9,7 @@ describe('lotto 테스트 - winnigLotto를 유저가 입력할 때', () => {
     }).toThrow();
   });
 
-  test('입력한 winnigLotto가 중복되지 않은 6개의 수인가', () => {
+  test('Lotto의 숫자에 중복이 발생할 때, 에러를 발생시킨다.', () => {
     const inputNumber = [1, 2, 3, 4, 10, 10];
 
     expect(() => {
@@ -24,16 +17,23 @@ describe('lotto 테스트 - winnigLotto를 유저가 입력할 때', () => {
     }).toThrow();
   });
 
-  test('입력한 winnigLotto가 모두 숫자인가', () => {
+  test('Lotto의 입력값에 문자열이 들어온다면, 에러를 발생시킨다.', () => {
     const inputNumber = [1, 2, 3, 'e', 5, 6];
 
     expect(() => {
       new Lotto(inputNumber);
     }).toThrow();
   });
-
-  test('입력한 winnigLotto가 모두 1부터 45 범위 안에 있는가', () => {
+  test('Lotto의 숫자 범위가 1부터 45가 아니라면, 에러를 발생시킨다.', () => {
     const inputNumber = [1, 2, 3, 4, 5, 100];
+
+    expect(() => {
+      new Lotto(inputNumber);
+    }).toThrow();
+  });
+
+  test('Lotto의 입력값에 공백이 들어온다면, 에러를 발생시킨다.', () => {
+    const inputNumber = [1, 2, 3, ' ', 5, 6];
 
     expect(() => {
       new Lotto(inputNumber);

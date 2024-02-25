@@ -3,7 +3,7 @@
 ## 1단계 피드백
 
 - [x] 네이밍 오타 찾기 - code Spell Checker 익스텐션
-- [ ] 테스트 명세를 자세히 써보기
+- [x] 테스트 명세를 자세히 써보기
 - [ ] EOF 찾아보기
 - [ ] App 객체의 필요성
 - [ ] retryOnInvalidInput
