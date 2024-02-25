@@ -1,9 +1,15 @@
 import BaseComponent from '../BaseComponent/BaseComponent.js';
+
 import styles from './PurchasedLottoForm.module.css';
+
 import BuyLottoPriceValidator from '../../../validator/buyLottoPrice/BuyLottoPriceValidator.js';
 
-import { showErrorMessage } from '../../utils/showErrorMessage.js';
 import AppError from '../../../errors/AppError/AppError.js';
+
+import { showErrorMessage } from '../../utils/showErrorMessage.js';
+import { $ } from '../../utils/dom.js';
+
+import { COMPONENT_SELECTOR, CUSTOM_EVENT_TYPE } from '../../../constants/webApplication.js';
 
 class PurchasedLottoForm extends BaseComponent {
   render() {
@@ -19,8 +25,8 @@ class PurchasedLottoForm extends BaseComponent {
   }
 
   setEvent() {
-    this.querySelector('#purchased-lotto-form').addEventListener(
-      'submit',
+    this.on(
+      { target: $(this, COMPONENT_SELECTOR.purchasedLottoForm), eventName: 'submit' },
       this.#handleSubmitBuyLottoPrice.bind(this),
     );
   }
@@ -34,25 +40,25 @@ class PurchasedLottoForm extends BaseComponent {
 
       this.#removeErrorMessage();
 
-      this.querySelector('#purchased-lotto-input').value = '';
+      $(this, COMPONENT_SELECTOR.purchasedLottoInput).value = '';
 
-      this.emit('buyLottoPrice', Number(purchasedLottoPrice));
+      this.emit(CUSTOM_EVENT_TYPE.buyLottoPrice, Number(purchasedLottoPrice));
     } catch (error) {
       if (error instanceof AppError) {
-        const nonPrefixErrorMessage = error.message.replace('[ERROR]', '');
-        showErrorMessage(nonPrefixErrorMessage, '#purchased-lotto-form');
+        const nonPrefixErrorMessage = error.message.replace(AppError.PREFIX, '');
+        showErrorMessage(nonPrefixErrorMessage, COMPONENT_SELECTOR.purchasedLottoForm);
       }
     }
   }
 
   #getPurchasedLottoPrice() {
-    const purchasedLottoInputElement = this.querySelector('#purchased-lotto-input');
+    const purchasedLottoInputElement = $(this, COMPONENT_SELECTOR.purchasedLottoInput);
 
     return purchasedLottoInputElement?.value;
   }
 
   #removeErrorMessage() {
-    const errorMessageElement = this.querySelector('.error-message');
+    const errorMessageElement = $(this, COMPONENT_SELECTOR.errorMessage);
 
     if (errorMessageElement) errorMessageElement.remove();
   }
