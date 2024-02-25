@@ -10,22 +10,22 @@ class LottoGameController {
 
   async play() {
     const purchaseAmount = await InputController.inputPurchaseAmount();
-    this.#createRandomLottos(purchaseAmount);
+    this.#purchaseLottos(purchaseAmount);
 
     const { winningNumbers, bonusNumber } = await InputController.inputWinningConditions();
-    this.#lottosWinningResult(winningNumbers, bonusNumber);
+    this.#processWinningResult(winningNumbers, bonusNumber);
 
     const restartCommand = await InputController.inputRestartCommand();
     this.#restartGame(restartCommand);
   }
 
-  #createRandomLottos(purchaseAmount) {
+  #purchaseLottos(purchaseAmount) {
     const lottoList = new LottoMachine(purchaseAmount).getLottoNumbersList();
     this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
     OutputView.printPurchaseResult(lottoList);
   }
 
-  #lottosWinningResult(winningNumbers, bonusNumber) {
+  #processWinningResult(winningNumbers, bonusNumber) {
     const winningResultService = new WinningResultService([...this.#lottos], { winningNumbers, bonusNumber });
     OutputView.printWinningResult(winningResultService.getWinningResult());
     OutputView.printProfitRate(winningResultService.getProfitRate());
