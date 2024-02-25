@@ -4,6 +4,7 @@ class LottoBoard {
   static LAST_RANK = 5;
 
   #isWinningNumberBooleans;
+
   #bonusNumber;
 
   constructor(numbers, bonusNumber) {
@@ -29,6 +30,7 @@ class LottoBoard {
     if (matchCount === 5 && !hasBonusNumber) return 3;
     if (matchCount === 5 && hasBonusNumber) return 2;
     if (matchCount === 6) return 1;
+    return 0;
   }
 
   #getMatchCount(lotto) {
@@ -43,8 +45,9 @@ class LottoBoard {
     this.#isWinningNumberBooleans = new Array(NUMBERS.maxLottoNumber + 1).fill(
       false
     );
-
-    numbers.forEach((number) => (this.#isWinningNumberBooleans[number] = true));
+    numbers.forEach((number) => {
+      this.#isWinningNumberBooleans[number] = true;
+    });
 
     Object.freeze(this.#isWinningNumberBooleans);
   }

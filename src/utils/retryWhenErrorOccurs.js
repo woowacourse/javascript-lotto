@@ -1,10 +1,10 @@
 async function retryWhenErrorOccurs(callback, ...args) {
-  while (true) {
-    try {
-      return await callback(...args);
-    } catch (error) {
-      console.log(error.message);
-    }
+  try {
+    return await callback(...args);
+  } catch (error) {
+    console.log(error.message);
+    return retryWhenErrorOccurs(callback, ...args);
   }
 }
+
 export default retryWhenErrorOccurs;

@@ -3,23 +3,31 @@ import MESSAGES from "./constants/messages";
 
 class InputView {
   static async readBuyPrice() {
-    return await this.#readLineAsync(MESSAGES.INPUT.buyPrice);
+    const buyPrice = await this.#readLineAsync(MESSAGES.INPUT.buyPrice);
+    return buyPrice;
   }
 
   static async readWinningNumbers() {
-    return await this.#readLineAsync(MESSAGES.INPUT.winningNumbers);
+    const winningNumbers = await this.#readLineAsync(
+      MESSAGES.INPUT.winningNumbers
+    );
+    return winningNumbers;
   }
 
   static async readBonusNumber() {
-    return await this.#readLineAsync(MESSAGES.INPUT.bonusNumber);
+    const bonusNumber = await this.#readLineAsync(MESSAGES.INPUT.bonusNumber);
+    return bonusNumber;
   }
 
   static async readRetryChecker() {
-    return await this.#readLineAsync(MESSAGES.INPUT.retryChecker);
+    const retryChecker = await this.#readLineAsync(MESSAGES.INPUT.retryChecker);
+    return retryChecker;
   }
 
+  // eslint-disable-next-line
   static #readLineAsync(query) {
     const inputQuery = `> ${query}`;
+    // eslint-disable-next-line
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
         reject(new Error("arguments must be 1"));

@@ -2,9 +2,14 @@ import LottoBoard from "./LottoBoard.js";
 import LottoSeller from "./LottoSeller";
 
 class LottoResult {
-  static PRIZE_OF_LOTTO = [
-    0, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000,
-  ];
+  static PRIZE_OF_LOTTO = {
+    1: 2_000_000_000,
+    2: 30_000_000,
+    3: 1_500_000,
+    4: 50_000,
+    5: 5_000,
+    0: 0,
+  };
 
   #rankCounts = new Array(LottoBoard.LAST_RANK + 1).fill(0);
 
@@ -28,11 +33,13 @@ class LottoResult {
   }
 
   #getProfit() {
-    return this.#rankCounts.reduce(
-      (profit, count, rank) =>
-        profit + count * LottoResult.PRIZE_OF_LOTTO[rank],
-      0
-    );
+    return Array.from({ length: this.#rankCounts.length })
+      .map((_, index) => index)
+      .reduce(
+        (profit, rank) =>
+          profit + this.#rankCounts[rank] * LottoResult.PRIZE_OF_LOTTO[rank],
+        0
+      );
   }
 }
 
