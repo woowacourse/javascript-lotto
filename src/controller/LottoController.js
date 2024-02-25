@@ -12,24 +12,37 @@ class LottoController {
   #money;
 
   async lottoGameStart() {
+    await this.handleMoneyInsertion();
+    this.#printPurchasedLottos();
+    await this.handleWinningNumbersInsertion();
+    await this.handleBonusNumbersInsertion();
+
+    this.#calculateLottoResult();
+
+    await this.retryGame();
+  }
+
+  async handleMoneyInsertion() {
     await retryOnInvalidInput(async () => {
       await this.#insertMoney();
     });
 
     this.#lottoMachine = new LottoMachine(this.#money.count);
+  }
 
-    this.#printPurchasedLottos();
-
+  async handleWinningNumbersInsertion() {
     await retryOnInvalidInput(async () => {
       await this.#insertWinnigNumbers();
     });
+  }
 
+  async handleBonusNumbersInsertion() {
     await retryOnInvalidInput(async () => {
       await this.#insertBonusNumbers();
     });
+  }
 
-    this.#calculateLottoResult();
-
+  async retryGame() {
     await retryGame(async () => {
       await this.lottoGameStart();
     });
@@ -63,7 +76,6 @@ class LottoController {
 
   #calculateLottoResult() {
     const lottoRanks = this.#lottoMachine.countLottoRanks();
-
     OutputView.printResultNotice();
     lottoRanks.forEach((lottoRank, idx) => {
       OutputView.printLottoResult(lottoRank, idx);
