@@ -1,6 +1,6 @@
 import { PROGRESS_MESSAGES, NEW_LINE, PERFORATION_LINE } from '../constants/messages/progressMessages';
 import Console from '../util/Console';
-import { mentGenerator } from '../util/mentGenerator';
+import mentGenerator from '../util/mentGenerator';
 
 class OutputView {
   static async printPurchasedLottoAmount(amount) {

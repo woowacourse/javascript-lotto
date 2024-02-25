@@ -2,9 +2,9 @@ import InputView from '../view/InputView';
 import LottoMachine from '../domain/LottoMachine';
 import OutputView from '../view/OutputView';
 import Money from '../domain/Money';
-import { retryOnInvalidInput } from '../util/retryOnInvalidInput';
+import retryOnInvalidInput from '../util/retryOnInvalidInput';
 import calculateROI from '../util/calculateROI';
-import { retryGame } from '../util/retryGame';
+import retryGame from '../util/retryGame';
 
 class LottoController {
   #lottoMachine;
@@ -16,7 +16,6 @@ class LottoController {
       await this.#insertMoney();
     });
 
-    console.log(this.#money.count);
     this.#lottoMachine = new LottoMachine(this.#money.count);
 
     this.#printPurchasedLottos();

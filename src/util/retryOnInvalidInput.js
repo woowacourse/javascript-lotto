@@ -1,10 +1,10 @@
 import Console from './Console';
 
-export const retryOnInvalidInput = async func => {
+export default async function retryOnInvalidInput(func) {
   try {
     return await func();
   } catch (err) {
     Console.print(err.message);
-    return await retryOnInvalidInput(func);
+    return retryOnInvalidInput(func);
   }
-};
+}
