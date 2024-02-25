@@ -1,4 +1,4 @@
-import PROGRESS_MESSAGES from '../constants/messages/progressMessages';
+import { PROGRESS_MESSAGES, NEW_LINE } from '../constants/messages/progressMessages';
 import Console from '../util/Console';
 
 class InputView {
@@ -9,13 +9,13 @@ class InputView {
   }
 
   static async readWinnigNumbers() {
-    const input = await Console.readLineAsync(PROGRESS_MESSAGES.READ_WINNIG_NUMBERS_MESSAGE);
+    const input = await Console.readLineAsync(`${NEW_LINE}${PROGRESS_MESSAGES.READ_WINNIG_NUMBERS_MESSAGE}`);
 
     return input;
   }
 
   static async readBonusNumber() {
-    const input = await Console.readLineAsync(PROGRESS_MESSAGES.READ_BONUS_NUMBER_MESSAGE);
+    const input = await Console.readLineAsync(`${NEW_LINE}${PROGRESS_MESSAGES.READ_BONUS_NUMBER_MESSAGE}`);
 
     return input;
   }

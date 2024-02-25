@@ -1,4 +1,4 @@
-import PROGRESS_MESSAGES from '../constants/messages/progressMessages';
+import { PROGRESS_MESSAGES, NEW_LINE, PERFORATION_LINE } from '../constants/messages/progressMessages';
 import Console from '../util/Console';
 import { mentGenerator } from '../util/mentGenerator';
 
@@ -14,7 +14,8 @@ class OutputView {
   }
 
   static async printResultNotice() {
-    Console.print(PROGRESS_MESSAGES.PRINT_RESULT_NOTICE_MESSAGE);
+    Console.print(`${NEW_LINE}${PROGRESS_MESSAGES.PRINT_RESULT_NOTICE_MESSAGE}`);
+    Console.print(`${PERFORATION_LINE}`);
   }
 
   static async printLottoResult(lottoRank, idx) {
@@ -23,7 +24,7 @@ class OutputView {
   }
 
   static async printTotalProfitRate(profitRate) {
-    Console.print(`총 수익률은 ${profitRate}%입니다.`);
+    Console.print(`${PROGRESS_MESSAGES.PRINT_TOTAL_PROFIT_RATE_MESSAGE(profitRate)}${NEW_LINE}`);
   }
 
   static async printExitLotto() {
