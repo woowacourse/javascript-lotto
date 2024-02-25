@@ -2,34 +2,30 @@ import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs";
 
 import MESSAGES from "../view/constants/messages";
 
-class AsyncRetryPlayer {
-  static MAX_RETRY_STACK_COUNT = 2;
+class RetryPlayer {
+  static MAX_RETRY_STACK_COUNT = 100;
 
   #RETRY_YES = ["y", "Y"];
 
   #RETRY_NO = ["n", "N"];
 
-  #mainClass;
-
   #inputView;
 
-  constructor(mainClass, inputView) {
-    this.#mainClass = mainClass;
+  constructor(inputView) {
     this.#inputView = inputView;
   }
 
-  async start() {
-    this.recursiveRetry();
+  async asyncStart(asyncFunction) {
+    while (await this.#checkRetry(asyncFunction));
   }
 
-  async recursiveRetry(count = 0) {
-    if (count === AsyncRetryPlayer.MAX_RETRY_STACK_COUNT) return;
-    await this.#mainClass.run();
+  async #checkRetry(asyncFunction, ...args) {
+    await asyncFunction(...args);
     const retryChecker = await retryWhenErrorOccurs(
       this.#readRetryChecker.bind(this)
     );
-    if (!this.#isRetryYes(retryChecker)) return;
-    this.recursiveRetry(count + 1);
+    if (this.#isRetryYes(retryChecker)) return true;
+    return false;
   }
 
   async #readRetryChecker() {
@@ -52,4 +48,4 @@ class AsyncRetryPlayer {
   }
 }
 
-export default AsyncRetryPlayer;
+export default RetryPlayer;

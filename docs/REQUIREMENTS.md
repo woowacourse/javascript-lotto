@@ -78,9 +78,12 @@
   - [x] 객체 분리 이후 테스트하기
 - [x] 숫자 6개가 담긴 배열을 `lotto`로 명칭 통일
 
-- [ ] git에서 로컬의 변경사항을 적용할 수 있게 `git config core.ignorecase false` 설정하기
+- [x] git에서 로컬의 변경사항을 적용할 수 있게 `git config core.ignorecase false` 설정하기
 - [ ] esLint 적용 후 에러 없는지 확인
 - [ ] `LottoResult`의 `PRIZE_OF_LOTTO`를 객체로 만들어 오름차순 정렬
+- [x] `AsyncRetryPlayer` 동작 변경
+  - [x] `run` 메소드에 종속X
+  - [x] 두 번 이상 실행 안됨 확인
 
 ## 실행 예시
 ``` 
