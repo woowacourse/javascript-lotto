@@ -1,5 +1,5 @@
-import App from './App';
+import LottoController from './controller/LottoController';
 
-const app = new App();
+const lottoController = new LottoController();
 
-app.run();
+lottoController.lottoGameStart();

@@ -4,8 +4,8 @@
 
 - [x] 네이밍 오타 찾기 - code Spell Checker 익스텐션
 - [x] 테스트 명세를 자세히 써보기
-- [ ] EOF 찾아보기
-- [ ] App 객체의 필요성
+- [x] EOF 찾아보기
+- [x] App 객체의 필요성
 - [ ] retryOnInvalidInput
 - [ ] 원본 배열의 참조를 getter로 넘기는 것 수정
 - [x] calculateROI 함수가 유틸 함수인가?
