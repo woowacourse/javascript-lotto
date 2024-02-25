@@ -4,6 +4,7 @@
 }
 
 .lottoNumber {
+  display: block;
   margin-left: 0.8rem;
   margin-bottom: 0.4rem;
 }

@@ -13,7 +13,7 @@ class PurchasedLotto extends BaseComponent {
     return `
       <li class="${styles.purchasedLotto} body">
         <span class=${styles.ticketIcon}>🎟️</span>
-        <p class=${styles.lottoNumber}>${this.#lottoNumber.join(', ')}</p>
+        <span class=${styles.lottoNumber}>${this.#lottoNumber.join(', ')}</ㄴ>
       </li>
     `;
   }
