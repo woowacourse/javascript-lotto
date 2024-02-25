@@ -32,7 +32,7 @@ export default class Lotto {
 
   #hasRedundentLottoNumber() {
     if (new Set(this.#lottoNumbers).size !== 6) {
-      throw new Error(ERROR_MESSAGE.HAS_REDUNDENT_LOTTO_NUMBER);
+      throw new Error(ERROR_MESSAGE.HAS_REDUNDANT_LOTTO_NUMBER);
     }
   }
 

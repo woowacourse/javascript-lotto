@@ -1,0 +1,18 @@
+# 리팩토링 목록
+
+## 1단계 피드백
+
+- [x] 네이밍 오타 찾기 - code Spell Checker 익스텐션
+- [ ] 테스트 명세를 자세히 써보기
+- [ ] EOF 찾아보기
+- [ ] App 객체의 필요성
+- [ ] retryOnInvalidInput
+- [ ] 원본 배열의 참조를 getter로 넘기는 것 수정
+- [ ] calculateROI 함수가 유틸 함수인가?
+- [ ] #drawLottos 함수에서 코드를 더 간결히 - Array 메서드 정리.
+- [ ] #checkWinningLotto 의 위치 변경 - 관련된 함수끼리는 가까이
+- [ ] Lotto.js에서 6이 의미하는 것 - 매직 넘버 주의!!!
+- [ ] Lotto.js에서 constructor 간결하게 가능
+- [ ] 당첨번호 입력 시, 엔터만 치면 undefined가 나오는 것 처리
+- [ ] 전체적인 타입 통일성 - 테스트코드와 함께
+- [ ] 다시 시작할때, y/n과 Y/N 모두 가능하도록.

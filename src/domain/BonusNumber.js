@@ -32,7 +32,7 @@ class BonusNumber {
     const winningLottoNumbers = winningLotto.lottoNumbers;
 
     if (winningLottoNumbers.includes(number)) {
-      throw new Error(ERROR_MESSAGE.HAS_REDUNDENT_LOTTO_NUMBER);
+      throw new Error(ERROR_MESSAGE.HAS_REDUNDANT_LOTTO_NUMBER);
     }
   }
 

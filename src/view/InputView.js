@@ -8,7 +8,7 @@ class InputView {
     return input;
   }
 
-  static async readWinnigNumbers() {
+  static async readWinningNumbers() {
     const input = await Console.readLineAsync(PROGRESS_MESSAGES.READ_WINNIG_NUMBERS_MESSAGE);
 
     return input;

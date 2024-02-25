@@ -20,7 +20,7 @@ class LottoController {
     this.#printPurchasedLottos(this.#money.count);
 
     await retryOnInvalidInput(async () => {
-      await this.#insertWinnigNumbers();
+      await this.#insertWinningNumbers();
     });
 
     await retryOnInvalidInput(async () => {
@@ -41,8 +41,8 @@ class LottoController {
     this.#money = validatedMoney;
   }
 
-  async #insertWinnigNumbers() {
-    const inputWinningNumber = await InputView.readWinnigNumbers();
+  async #insertWinningNumbers() {
+    const inputWinningNumber = await InputView.readWinningNumbers();
 
     this.#lottoMachine.winningLotto = inputWinningNumber;
   }
