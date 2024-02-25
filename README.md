@@ -62,12 +62,15 @@ src
 │   ├── messages.js
 │   └── rules.js
 ├── domains
-│   ├── LottoGame.js :
+│   ├── Lotto.js
+│   ├── LottoGame.js
 │   ├── LottoMachine.js
 │   ├── Statistics.js
-│   ├── Validator.js
 │   ├── WinningLotto.js
-│   └── index.js
+│   ├── index.js
+│   └── validator
+│       └── validators.js
+├── lotto-game.png
 ├── services
 │   ├── GameController.js
 │   ├── InputController.js
@@ -78,10 +81,11 @@ src
 │   ├── Console.js
 │   ├── RandomNumber.js
 │   ├── index.js
-│   └── validatorsUtils.js
+│   └── validators.js
 └── views
     ├── InputView.js
-    └── OutputView.js
+    ├── OutputView.js
+    └── index.js
 ```
 
 </div>
