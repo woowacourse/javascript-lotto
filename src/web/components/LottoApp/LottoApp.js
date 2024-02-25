@@ -12,7 +12,7 @@ class LottoApp extends BaseComponent {
           <h1 class="title">🎱 행운의 로또</h1>
         </header>
         <main class=${styles.mainContainer}>
-          <header class="${styles.mainHeader} title">🎱 내 번호 당첨 확인 🎱</header>
+          <h2 class="${styles.mainTitle} title">🎱 내 번호 당첨 확인 🎱</h2>
           <purchased-lotto-form></purchased-lotto-form>
           <purchased-lotto-section class="close"></purchased-lotto-section>
           <winning-detail-form class="close"></winning-detail-form>
