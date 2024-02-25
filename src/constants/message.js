@@ -5,6 +5,7 @@ const MESSAGE = {
   ENTER_BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요. ',
   WINNING_STATS: '\n당첨 통계',
   SEPARATOR: '--------------------',
+  PROFIT: '총 수익률은 _%입니다.',
   RESTART: '\n> 다시 시작하시겠습니까? (y/n)',
 };
 
