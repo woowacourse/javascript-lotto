@@ -2,6 +2,8 @@ import LottoGame from "./domain/LottoGame";
 import InputView from "./view/InputView";
 import OutputView from "./view/OutputView";
 import { ERROR_MESSAGE } from "./constants/message";
+import splitByDelimiter from "./utils/splitByDelimiter";
+import { SYMBOL } from "./constants/condition";
 
 class App {
   #lottoGame;
@@ -21,7 +23,7 @@ class App {
 
   async #purchaseLottos() {
     try {
-      const purchaseAmount = await InputView.readPurchaseAmount();
+      const purchaseAmount = Number(await InputView.readPurchaseAmount());
       const lottos = this.#lottoGame.issueLottos(purchaseAmount);
       OutputView.printLottos(lottos);
 
@@ -34,8 +36,11 @@ class App {
 
   async #generateWinningLotto() {
     try {
-      const winningNumbers = await InputView.readWinningNumber();
-      const bonusNumber = await InputView.readBonusNumber();
+      const winningNumbers = splitByDelimiter(
+        await InputView.readWinningNumber(),
+        SYMBOL.delimiter,
+      );
+      const bonusNumber = Number(await InputView.readBonusNumber());
 
       return this.#lottoGame.generateWinningLotto(winningNumbers, bonusNumber);
     } catch (error) {
@@ -57,7 +62,7 @@ class App {
   async #replay() {
     const retryYes = "y";
     const retryNo = "n";
-    const isRetry = await InputView.readRetry();
+    const isRetry = (await InputView.readRetry()).toLowerCase();
 
     if (isRetry !== retryYes && isRetry !== retryNo) {
       OutputView.print(ERROR_MESSAGE.invalidInput);
