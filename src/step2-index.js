@@ -1,4 +1,18 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import WebLottoController from './controllers/WebLottoController.js';
+import webInputView from './views/webInputView.js';
+
+const PURCHASE_FORM = document.getElementById('purchaseForm');
+const PURCHASE_BTN = document.getElementById('purchaseButton');
+
+const handlePurchaseBtn = () => {
+  const purchaseAmount = webInputView.readPurchaseAmount();
+  const lottoController = new WebLottoController(purchaseAmount);
+  lottoController.run();
+};
+
+const handleFormSubmit = e => {
+  e.preventDefault();
+};
+
+PURCHASE_FORM.addEventListener('submit', handleFormSubmit);
+PURCHASE_BTN.addEventListener('click', handlePurchaseBtn);
