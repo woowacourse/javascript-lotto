@@ -1,0 +1,33 @@
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  flex: 8;
+  display: flex;
+  align-items: center;
+  margin-left: 4rem;
+}
+
+.section-content {
+  flex: 80;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-content {
+  width: 25%;
+  height: 80%;
+  display: flex;
+  border: 1px solid #B4B4B4;
+}
+
+.wrapper-info {
+  flex: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
