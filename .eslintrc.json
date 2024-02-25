@@ -3,7 +3,8 @@
     "max-depth": ["error", 1],
     "max-params": ["error", 2],
     "lines-between-class-members": "off",
-    "import/extensions": ["error", "never"]
+    "import/extensions": ["error", "never"],
+    "class-methods-use-this": "off"
   },
   "overrides": [
     {
