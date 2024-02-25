@@ -12,11 +12,7 @@ function generateWinningLotto(numbers) {
 
 function generateRandomLottos(count) {
   return new Array(count).fill().map(() => {
-    const randomLotto = generateRandomNumbers(
-      LOTTO_NUMBER.min,
-      LOTTO_NUMBER.max,
-      LOTTO.count
-    );
+    const randomLotto = generateRandomNumbers(LOTTO_NUMBER.min, LOTTO_NUMBER.max, LOTTO.count);
 
     return new Lotto(randomLotto);
   });
