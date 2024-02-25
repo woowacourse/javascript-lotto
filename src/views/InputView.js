@@ -27,10 +27,9 @@ const InputView = {
   async readWinningNumbers() {
     try {
       const winningNumbersInput = await this.readWithMessage(MESSAGE.WINNING_NUMBERS_INPUT);
-      let winningNumbers = winningNumbersInput.split(CONFIG_FORMAT.SEPARATOR);
+      const winningNumbers = winningNumbersInput.split(CONFIG_FORMAT.SEPARATOR);
       winningNumbersValidator.validate(winningNumbers);
-      winningNumbers = winningNumbers.map(number => parseInt(number.trim(), 10));
-      return winningNumbers;
+      return winningNumbers.map(number => parseInt(number.trim(), 10));
     } catch (error) {
       OutputView.print(error.message);
       return this.readWinningNumbers();
