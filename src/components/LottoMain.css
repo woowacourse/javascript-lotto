@@ -1,0 +1,34 @@
+lotto-main {
+  display: flex;
+  flex: auto;
+  align-items: center;
+  justify-content: center;
+
+  height: max-content;
+}
+
+.lotto-main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  align-items: center;
+  justify-content: start;
+
+  width: 414px;
+  height: 727px;
+  background-color: var(--lotto-greyscale-1);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  padding-top: 40px;
+  padding-bottom: 32px;
+  padding-inline: 16px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 36px;
+}

@@ -1,0 +1,24 @@
+purchase-price-form {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+
+  width: 100%;
+}
+
+purchase-price-form .lotto-button {
+  width: 56px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  gap: 4px;
+}
+
+.label-container {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}

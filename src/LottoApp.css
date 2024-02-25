@@ -13,6 +13,8 @@
   line-height: 36px;
   letter-spacing: 0px;
   text-align: left;
+
+  color: var(--lotto-greyscale-5);
 }
 .lotto-subtitle {
   font-family: Roboto;
@@ -21,6 +23,8 @@
   line-height: 24px;
   letter-spacing: 0.15px;
   text-align: left;
+
+  color: var(--lotto-greyscale-5);
 }
 .lotto-body {
   font-family: Roboto;
@@ -29,6 +33,8 @@
   line-height: 24px;
   letter-spacing: 0.5px;
   text-align: left;
+
+  color: var(--lotto-greyscale-5);
 }
 .lotto-placeholder {
   font-family: Roboto;
@@ -37,6 +43,8 @@
   line-height: 24px;
   letter-spacing: 0.5px;
   text-align: left;
+
+  color: var(--lotto-greyscale-4);
 }
 .lotto-caption {
   font-family: Roboto;
@@ -45,6 +53,8 @@
   line-height: 16px;
   letter-spacing: 1.25px;
   text-align: left;
+
+  color: var(--lotto-greyscale-5);
 }
 
 html {
@@ -54,20 +64,14 @@ html {
 body {
   margin: 0;
   padding: 0;
+
+  background-color: var(--lotto-greyscale-2);
 }
 
 lotto-app {
   display: flex;
+  flex-direction: column;
+
   width: 100vw;
   height: 100vh;
-  flex-direction: column;
-}
-
-.lotto-main {
-  display: flex;
-  flex: auto;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: max-content;
 }
