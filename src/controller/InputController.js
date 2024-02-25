@@ -14,6 +14,12 @@ const InputController = {
     }
   },
 
+  async inputWinningConditions() {
+    const winningNumbers = await this.inputWinningNumbers();
+    const bonusNumber = await this.inputBonusNumber(winningNumbers);
+    return { winningNumbers, bonusNumber };
+  },
+
   async inputWinningNumbers() {
     try {
       const winningNumbers = await InputView.readWinningNumbers();
