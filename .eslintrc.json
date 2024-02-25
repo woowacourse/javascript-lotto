@@ -27,7 +27,7 @@
         "printWidth": 100
       }
     ],
-    "max-lines-per-function": ["error", { "max": 10 }],
+    "max-lines-per-function": ["error", { "max": 12 }],
     "import/extensions": ["error", { "js": "ignorePackages" }],
     "import/order": [
       "error",
@@ -68,5 +68,13 @@
     "max-depth": ["error", { "max": 2 }],
     "max-params": ["error", 3],
     "class-methods-use-this": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.js"],
+      "rules": {
+        "max-lines-per-function": "off"
+      }
+    }
+  ]
 }

@@ -1,5 +1,6 @@
 const OPTIONS = {
   INPUT: {
+    tryCount: 5,
     winningNumbersDelimiter: ','
   },
 
@@ -7,7 +8,7 @@ const OPTIONS = {
     price: 1000,
     minNumber: 1,
     maxNumber: 45,
-    combination: 6
+    count: 6
   },
 
   RANK: [1, 2, 3, 4, 5, 6],
@@ -37,6 +38,13 @@ const OPTIONS = {
     4: 0,
     5: 0,
     6: 0
+  },
+
+  RESTART: {
+    y: true,
+    Y: true,
+    n: false,
+    N: false
   }
 };
 

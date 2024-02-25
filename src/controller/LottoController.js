@@ -1,68 +1,113 @@
 import OPTIONS from '../constant/Options.js';
 import LottoMachine from '../domain/LottoMachine.js';
-import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
-import PurchaseAmountValidator from '../util/validation/PurchaseAmountValidator.js';
+import WinningLotto from '../domain/WinningLotto.js';
+import retryAsyncWithErrorLogging from '../util/retryAsyncWithErrorLogging.js';
+import { validate, validations } from '../util/validation.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 
 class LottoController {
   #lottoMachine;
 
+  #lottos;
+
+  #winningLotto;
+
   constructor() {
     this.#lottoMachine = new LottoMachine();
   }
 
-  async inputPurchaseAmount() {
-    const purchaseAmount = await InputView.inputPurchaseAmount();
-    PurchaseAmountValidator.validate(purchaseAmount);
-    return Number(purchaseAmount.trim());
-  }
+  async issueLottos() {
+    const purchaseAmount = await retryAsyncWithErrorLogging(
+      async () => this.#inputPurchaseAmount(),
+      OPTIONS.INPUT.retryCount
+    );
+    const issueQuantity = this.#lottoMachine.calculateIssueQuantity(purchaseAmount);
+    this.#lottos = this.#lottoMachine.issueLottos(issueQuantity);
 
-  async inputWinningNumbers() {
-    const winningNumbers = await InputView.inputWinningNumbers();
-    LottoNumbersValidator.validate(winningNumbers);
-    return winningNumbers
-      .split(OPTIONS.INPUT.winningNumbersDelimiter)
-      .map((number) => Number(number.trim()));
-  }
-
-  async inputBonusNumber() {
-    const bonusNumber = await InputView.inputBonusNumber();
-    return Number(bonusNumber.trim());
-  }
-
-  async inputRestartResponse() {
-    const restartResponse = await InputView.inputRestartResponse();
-    return restartResponse.trim();
-  }
-
-  displayIssueQuantity(issueQuantity) {
     OutputView.printIssueQuantity(issueQuantity);
+    OutputView.printLottoNumbersList(this.#lottos.map((lotto) => lotto.getNumbers()));
   }
 
-  displayLottoNumbersList(lottos) {
-    const lottoNumbersList = lottos.map((lotto) => lotto.getNumbers());
-    OutputView.printLottoNumbersList(lottoNumbersList);
+  async inputWinningInformations() {
+    const winningNumbers = await retryAsyncWithErrorLogging(
+      async () => this.#inputWinningNumbers(),
+      OPTIONS.INPUT.retryCount
+    );
+    const bonusNumber = await retryAsyncWithErrorLogging(
+      async () => this.#inputBonusNumber(winningNumbers),
+      OPTIONS.INPUT.retryCount
+    );
+    this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
   }
 
-  displayWinningResult(winningResult, profitRate) {
+  analyzeLottoResults() {
+    const winningResult = this.#lottoMachine.determineLottoRanks(this.#lottos, this.#winningLotto);
+    const profitRate = this.#lottoMachine.calculateProfitRate(winningResult);
+
     OutputView.printWinningResult(winningResult, profitRate);
   }
 
-  calculateIssueQuantity(purchaseAmount) {
-    return this.#lottoMachine.calculateIssueQuantity(purchaseAmount);
+  async #inputPurchaseAmount() {
+    const purchaseAmountInput = await InputView.inputPurchaseAmount();
+    const purchaseAmount = Number(purchaseAmountInput);
+    this.#validatePurchaseAmount(purchaseAmount);
+
+    return purchaseAmount;
   }
 
-  determineLottoRanks(lottos, winningNumbers, bonusNumber) {
-    return this.#lottoMachine.determineLottoRanks(lottos, winningNumbers, bonusNumber);
+  async #inputWinningNumbers() {
+    const winningNumbersInput = await InputView.inputWinningNumbers();
+    const winningNumbers = winningNumbersInput
+      .split(OPTIONS.INPUT.winningNumbersDelimiter)
+      .map((number) => Number(number));
+    this.#validateLottoNumbers(winningNumbers);
+
+    return winningNumbers;
   }
 
-  calculateProfitRate(winningResult) {
-    return this.#lottoMachine.calculateProfitRate(winningResult);
+  async #inputBonusNumber(winningNumbers) {
+    const bonusNumberInput = await InputView.inputBonusNumber();
+    const bonusNumber = Number(bonusNumberInput);
+    this.#validateBounsNumber(winningNumbers, bonusNumber);
+
+    return bonusNumber;
   }
 
-  issueLottos(issueQuantity) {
-    return this.#lottoMachine.issueLottos(issueQuantity);
+  async #inputRestartResponse() {
+    const restartResponseInput = await InputView.inputRestartResponse();
+    const restartResponse = restartResponseInput.trim().toLowerCase();
+    this.#validateRestartResponse(restartResponseInput);
+
+    return restartResponse;
+  }
+
+  #validatePurchaseAmount(purchaseAmount) {
+    validate(validations.isInteger, purchaseAmount, '구매금액');
+    validate(validations.isAtLeast, purchaseAmount, OPTIONS.LOTTO.price, '구매금액');
+  }
+
+  #validateLottoNumbers(lottoNumbers, bonusNumber = null) {
+    validate(validations.isUnique, lottoNumbers);
+    validate(validations.hasLength, lottoNumbers, OPTIONS.LOTTO.count);
+    lottoNumbers.forEach((number) => {
+      validate(validations.isInteger, number);
+      validate(validations.isInRange, number, OPTIONS.LOTTO.minNumber, OPTIONS.LOTTO.maxNumber);
+    });
+
+    if (bonusNumber) {
+      this.#validateBounsNumber(lottoNumbers, bonusNumber);
+    }
+  }
+
+  #validateBounsNumber(lottoNumbers, bonusNumber) {
+    validate(validations.isInteger, bonusNumber);
+    validate(validations.isInRange, bonusNumber, OPTIONS.LOTTO.minNumber, OPTIONS.LOTTO.maxNumber);
+    validate(validations.isUnique, [...lottoNumbers, bonusNumber]);
+  }
+
+  #validateRestartResponse(restartResponse) {
+    validate(validations.isInclude, Object.keys(OPTIONS.RESTART), restartResponse);
   }
 }
 

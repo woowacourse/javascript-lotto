@@ -1,10 +1,10 @@
 import OPTIONS from '../constant/Options.js';
-import Random from '../util/random/Random.js';
+import Random from '../util/Random.js';
 import Lotto from './Lotto.js';
 
 class LottoMachine {
   calculateIssueQuantity(purchaseAmount) {
-    return parseInt(purchaseAmount / OPTIONS.LOTTO.price, 10);
+    return Math.floor(purchaseAmount / OPTIONS.LOTTO.price);
   }
 
   issueLottos(issueQuantity) {
@@ -15,15 +15,15 @@ class LottoMachine {
     return Random.pickCombination(
       OPTIONS.LOTTO.minNumber,
       OPTIONS.LOTTO.maxNumber,
-      OPTIONS.LOTTO.combination
+      OPTIONS.LOTTO.count
     );
   }
 
-  determineLottoRanks(lottos, winningNumbers, bonusNumber) {
-    const winningResult = OPTIONS.WINNING_RESULT;
+  determineLottoRanks(lottos, winningLotto) {
+    const winningResult = { ...OPTIONS.WINNING_RESULT };
 
     lottos.forEach((lotto) => {
-      const rank = lotto.determineRank(winningNumbers, bonusNumber);
+      const rank = winningLotto.determineRank(lotto);
       winningResult[rank] += 1;
     });
 
@@ -31,28 +31,15 @@ class LottoMachine {
   }
 
   calculateProfitRate(winningResult) {
-    const totalPrizeAmount = this.#calculateTotalPrizeAmount(winningResult);
-    const totalPurchaseAmount = this.#calculateTotalPurchaseAmount(winningResult);
-    const profitRate = this.#caclulateProfitRate(totalPrizeAmount, totalPurchaseAmount);
-
-    return profitRate;
-  }
-
-  #calculateTotalPrizeAmount(winningResult) {
-    return Object.entries(winningResult).reduce((totalPrizeAmount, [rank, count]) => {
-      return totalPrizeAmount + count * OPTIONS.PRIZE_BY_RANK[rank];
+    const totalPrizeAmount = Object.entries(winningResult).reduce((sum, [rank, count]) => {
+      return sum + count * OPTIONS.PRIZE_BY_RANK[rank];
     }, 0);
-  }
 
-  #calculateTotalPurchaseAmount(winningResult) {
-    return (
+    const totalPurchaseAmount =
       Object.values(winningResult).reduce((sum, count) => {
         return sum + count;
-      }) * OPTIONS.LOTTO.price
-    );
-  }
+      }, 0) * OPTIONS.LOTTO.price;
 
-  #caclulateProfitRate(totalPrizeAmount, totalPurchaseAmount) {
     return (totalPrizeAmount / totalPurchaseAmount) * 100;
   }
 }

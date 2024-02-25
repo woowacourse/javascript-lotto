@@ -1,24 +1,21 @@
-import { INPUT_MESSAGES, INPUT_HINTS } from '../constant/Messages.js';
-import readLineAsync from '../util/readLine/readLineAsync.js';
+import { INPUT_MESSAGES } from '../constant/Messages.js';
+import readLineAsync from '../util/readLineAsync.js';
 
 const MESSAGES = INPUT_MESSAGES;
-const HINTS = INPUT_HINTS;
 
 class InputView {
   static async inputPurchaseAmount() {
-    const input = await readLineAsync([MESSAGES.purchaseAmount, HINTS.purchaseAmount].join(''));
+    const input = await readLineAsync(MESSAGES.purchaseAmount);
     return input;
   }
 
   static async inputWinningNumbers() {
-    const input = await readLineAsync(
-      [MESSAGES.winningNumbers, HINTS.winningNumber1, HINTS.winningNumber2].join('')
-    );
+    const input = await readLineAsync(MESSAGES.winningNumbers);
     return input;
   }
 
   static async inputBonusNumber() {
-    const input = await readLineAsync([MESSAGES.bonusNumber, HINTS.bonusNumber].join(''));
+    const input = await readLineAsync(MESSAGES.bonusNumber);
     return input;
   }
 
