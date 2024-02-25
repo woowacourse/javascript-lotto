@@ -1,30 +1,32 @@
+import { RANDOM, LOTTO } from '../constants';
+
 class LottoTicket {
-  #ticket;
+  #tickets;
 
   constructor() {
-    this.#ticket = [];
+    this.#tickets = [];
     this.#publishTicket();
   }
 
   #pickRandomNumberInRange() {
-    return Math.floor(Math.random() * 45) + 1;
+    return Math.floor(Math.random() * RANDOM.MAX) + RANDOM.MIN;
   }
 
   #publishTicket() {
-    const emptyArr = Array.from({ length: 6 }).fill(0);
-    emptyArr.forEach(() => {
-      this.#checkDuplicated();
+    Array.from({ length: LOTTO.SIZE }).forEach(() => {
+      this.#handleDuplicate(this.#pickRandomNumberInRange());
     });
   }
 
-  #checkDuplicated() {
-    const pickNumber = this.#pickRandomNumberInRange();
-    if (this.#ticket.includes(pickNumber)) this.#checkDuplicated();
-    if (!this.#ticket.includes(pickNumber)) this.#ticket.push(pickNumber);
+  #handleDuplicate(pickNumber) {
+    while (this.#tickets.includes(pickNumber)) {
+      pickNumber = this.#pickRandomNumberInRange();
+    }
+    this.#tickets.push(pickNumber);
   }
 
-  get ticket() {
-    return this.#ticket.sort((prevNumber, nextNumber) => prevNumber - nextNumber);
+  get tickets() {
+    return this.#tickets.sort((prevNumber, nextNumber) => prevNumber - nextNumber);
   }
 }
 
