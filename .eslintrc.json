@@ -1,11 +1,24 @@
 {
-  "rules": {},
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "max-depth": ["error", { "max": 1 }],
+    "max-lines-per-function": ["error", { "max": 10 }]
+  },
   "env": {
     "es6": true,
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
+  "overrides": [
+    {
+      "files": ["*.test.js", "console.js"],
+      "rules": {
+        "max-lines-per-function": ["off"]
+      }
+    }
+  ],
   "extends": ["eslint:recommended", "plugin:prettier/recommended"]
 }
