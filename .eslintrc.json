@@ -1,11 +1,22 @@
 {
-  "rules": {},
+  "rules": {
+    "lines-between-class-members": "off",
+    "class-methods-use-this": "off",
+    "no-continue": "off",
+    "no-constant-condition": "off",
+    "no-await-in-loop": "off",
+    "no-console": "off",
+    "no-restricted-globals": "off",
+    "no-plusplus": "off"
+  },
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "plugins": ["prettier"]
 }
