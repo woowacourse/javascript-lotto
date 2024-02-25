@@ -1,6 +1,6 @@
 import PROGRESS_MESSAGES from '../constants/messages/progressMessages';
 import Console from '../util/Console';
-import { mentGenerator } from '../util/mentGenerator';
+import { lottoResultMessageGenerator } from '../util/lottoResultMessageGenerator';
 
 class OutputView {
   static async printPurchasedLottoAmount(amount) {
@@ -18,7 +18,7 @@ class OutputView {
   }
 
   static async printLottoResult(lottoRank, idx) {
-    const ment = mentGenerator(lottoRank, idx);
+    const ment = lottoResultMessageGenerator(lottoRank, idx);
     Console.print(`${ment}`);
   }
 

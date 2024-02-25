@@ -3,8 +3,8 @@ import LottoMachine from '../domain/LottoMachine';
 import OutputView from '../view/OutputView';
 import Money from '../domain/Money';
 import { retryOnInvalidInput } from '../util/retryOnInvalidInput';
-import calculateROI from '../util/calculateROI';
-import { retryGame } from '../util/retryGame';
+import calculateROI from '../domain/calculateROI';
+import { retryGame } from '../domain/retryGame';
 
 class LottoController {
   #lottoMachine;

@@ -1,7 +1,7 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
 import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
-import Console from './Console';
+import Console from '../util/Console';
 import ERROR_MESSAGE from '../constants/messages/errorMessage';
 
 const validateRetryAnswer = answer => {

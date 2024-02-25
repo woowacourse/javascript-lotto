@@ -1,6 +1,6 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
 
-export const mentGenerator = (result, idx) => {
+export const lottoResultMessageGenerator = (result, idx) => {
   const prize = LOTTO_RULE.PRIZE[idx].toLocaleString('ko-KR');
   const count = result[1];
   if (idx === 0) {

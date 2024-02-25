@@ -8,7 +8,7 @@
 - [ ] App 객체의 필요성
 - [ ] retryOnInvalidInput
 - [ ] 원본 배열의 참조를 getter로 넘기는 것 수정
-- [ ] calculateROI 함수가 유틸 함수인가?
+- [x] calculateROI 함수가 유틸 함수인가?
 - [x] #drawLottos 함수에서 코드를 더 간결히 - Array 메서드 정리.
 - [x] #checkWinningLotto 의 위치 변경 - 관련된 함수끼리는 가까이
 - [ ] Lotto.js에서 6이 의미하는 것 - 매직 넘버 주의!!!
