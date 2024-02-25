@@ -6,24 +6,24 @@ export default class Money {
   #count;
 
   constructor(amount) {
-    this.#validateMoney(amount);
-    this.#amount = amount;
+    this.#amount = Number(amount);
+    this.#validateMoney();
     this.#count = amount / LOTTO_RULE.LOTTO_MONEY_UNIT;
   }
 
-  #validateMoney(amount) {
-    this.#isPositiveInteger(amount);
-    this.#isThousandUnit(amount);
+  #validateMoney() {
+    this.#isPositiveInteger();
+    this.#isThousandUnit();
   }
 
-  #isPositiveInteger(amount) {
-    if (isNaN(amount) || amount < 1) {
+  #isPositiveInteger() {
+    if (isNaN(this.#amount) || this.#amount < 1) {
       throw new Error(ERROR_MESSAGE.IS_NOT_POSITIVE_INTEGER);
     }
   }
 
-  #isThousandUnit(amount) {
-    if (amount % 1000 !== 0) {
+  #isThousandUnit() {
+    if (this.#amount % 1000 !== 0) {
       throw new Error(ERROR_MESSAGE.IS_NOT_THOUSAND_UNIT);
     }
   }
