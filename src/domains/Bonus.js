@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES } from '../constants';
-import { checkDefinedInputValue, isNotInLottoNumber } from '../utils';
+import { checkDefinedInputValue, isBonusNumberUnique } from '../utils';
 import LottoNumber from './LottoNumber';
 
 class Bonus {
@@ -22,7 +22,7 @@ class Bonus {
 
     const { number } = new LottoNumber(Number(bonusNumberInput));
 
-    if (!isNotInLottoNumber(winningLottoNumbers, number)) {
+    if (!isBonusNumberUnique(winningLottoNumbers, number)) {
       throw new Error(ERROR_MESSAGES.alreadyInLottoNumber);
     }
 

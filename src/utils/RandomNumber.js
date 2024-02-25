@@ -5,8 +5,11 @@ class RandomNumber {
    */
   static pickNumberInRange(start, end) {
     const range = [start, end].sort((a, b) => a < b);
+    const [firstNumber, lastNumber] = range;
 
-    return Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
+    return (
+      Math.floor(Math.random() * (lastNumber - firstNumber + 1)) + firstNumber
+    );
   }
 
   /**
