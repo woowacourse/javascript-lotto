@@ -16,17 +16,24 @@
 
 html, body {
     height: 100%;
+    background-color: var(--grey-scale-2);
+}
+
+input::placeholder {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--grey-scale-4);
 }
 
 .title {
     font-size: 24px;
-    font-weight: 900;
+    font-weight: 800;
     line-height: 36px;
 }
 
 .subtitle {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 24px;
 }
 
@@ -38,27 +45,49 @@ html, body {
 
 .buttonFont {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 24px;
+}
+
+.button {
+    border: 0;
+    background-color: var(--lotto-primary);
+    color: var(--grey-scale-1);
+    cursor: pointer;
 }
 
 #header {
     height: 7vh;
     display: flex;
     align-items: center;
-    background-color: var(--lotto-primary); 
+    background-color: var(--lotto-primary);
     color: var(--grey-scale-1);
 }
 
 #main {
     display: flex;
-    justify-content: center;   
+    justify-content: center;
 }
 
-#layout {
+#mainLayout {
     width: var(--lotto-width);
     height: 85vh;
-    border: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+
+#mainSection {
+    width: inherit;
+    height: 75vh;
+    border: 1px solid #0000001F;
+    padding: 0px 20px 30px 20px;
+}
+
+#titleSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
 }
 
 #footer {
@@ -72,4 +101,34 @@ html, body {
 #footerText {
     color: var(--lotto-primary);
     font-weight: bold;
+}
+
+#purchaseSection {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 30px;
+}
+
+#purchaseForm {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    height: 40px;
+}
+
+#purchaseInput {
+    display: flex;
+    flex-basis: 85%;
+    padding-left: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--grey-scale-3);
+}
+
+#purchaseButton {
+    display: flex;
+    flex-basis: 15%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
 }
