@@ -7,17 +7,17 @@ import webOutputView from '../views/webOutputView.js';
 
 class WebLottoController {
   #purchaseAmount;
+  #lottery;
 
   constructor(purchaseAmount) {
     this.#purchaseAmount = purchaseAmount;
   }
 
   async run() {
-    const lottery = new LotteryMachine(this.#purchaseAmount).makeLottery();
-    this.#showPurchaseLottoResult(lottery);
-    // const matchedResultList = await this.#calculateMatchedResultList(lottery);
-    // this.#processLottoResult(matchedResultList);
-    // this.#processProfit(matchedResultList);
+    this.#lottery = new LotteryMachine(this.#purchaseAmount).makeLottery();
+    this.#showPurchaseLottoResult(this.#lottery);
+    const $lottoResultButton = document.getElementById('lottoResultButton');
+    $lottoResultButton.addEventListener('click', this.handleLottoResult);
   }
 
   #showPurchaseLottoResult(lottery) {
@@ -36,13 +36,13 @@ class WebLottoController {
     OutputView.printProfit(profit);
   }
 
-  async #calculateMatchedResultList(lottery) {
-    // const winningNumbers = await InputView.readWinningNumbers();
-    // const bonusNumber = await InputView.readBonusNumber(winningNumbers);
+  handleLottoResult = () => {
     const winningNumbers = webInputView.readWinningNumbers();
     const bonusNumber = webInputView.readBonusNumber(winningNumbers);
-    return lottery.map(lotto => lotto.getMatchedAmount(winningNumbers, bonusNumber));
-  }
+    const matchedResultList = this.#lottery.map(lotto => lotto.getMatchedAmount(winningNumbers, bonusNumber));
+    this.#processLottoResult(matchedResultList);
+    this.#processProfit(matchedResultList);
+  };
 }
 
 export default WebLottoController;
