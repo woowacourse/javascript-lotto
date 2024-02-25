@@ -1,7 +1,20 @@
+import purchaseAmountValidator from '../validators/purchaseAmountValidator.js';
+
+const $purchaseError = document.getElementById('purchaseError');
+
 const webInputView = {
   readPurchaseAmount() {
-    const PURCHASE_INPUT = document.getElementById('purchaseInput');
-    return PURCHASE_INPUT.value;
+    try {
+      const purchaseAmountInput = document.getElementById('purchaseInput').value;
+      const purchaseAmount = purchaseAmountInput.trim();
+      purchaseAmountValidator.validate(purchaseAmount);
+      $purchaseError.classList.add('hidden');
+      return purchaseAmount;
+    } catch (error) {
+      $purchaseError.textContent = error.message;
+      $purchaseError.classList.remove('hidden');
+      return false;
+    }
   },
 };
 

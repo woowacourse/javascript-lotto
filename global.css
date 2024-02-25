@@ -26,6 +26,10 @@ input::placeholder {
     color: var(--grey-scale-4);
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 .title {
     font-size: 24px;
     font-weight: 800;
@@ -184,3 +188,6 @@ input::placeholder {
     border-radius: 4px;
 }
 
+#purchaseError {
+    color: red;
+}
