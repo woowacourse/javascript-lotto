@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from '../constants/message';
-import NUMBER from '../constants/number';
+import { ERROR_MESSAGE } from '../constants/message.js';
+import NUMBER from '../constants/number.js';
 
 const MoneyValidation = {
   validate(moneyString = '') {

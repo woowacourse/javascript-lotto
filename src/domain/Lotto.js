@@ -1,4 +1,4 @@
-import LottoValidation from '../validation/lottoValidation';
+import LottoValidation from '../validation/lottoValidation.js';
 
 /**
  * @module Lotto 숫자 6개를 가지고 있는 로또의 모듈입니다. 숫자의 유효성 검사를 진행합니다.

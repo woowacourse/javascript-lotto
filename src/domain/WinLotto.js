@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../constants/message';
+import { ERROR_MESSAGE } from '../constants/message.js';
 
 /**
  * @module WinLotto 우승한 로또의 모듈입니다. 보너스 숫자의 유효성 검사를 진행합니다.

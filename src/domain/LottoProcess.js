@@ -1,4 +1,4 @@
-import WINNER from '../constants/winner';
+import WINNER from '../constants/winner.js';
 
 /**
  * @module LottoProcess 구매한 로또를 우승 로또와 비교하여 몇 등이 되었는지 확인해서 합산하는 모듈입니다.

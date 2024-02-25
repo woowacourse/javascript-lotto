@@ -1,6 +1,6 @@
-import NUMBER from '../constants/number';
-import { pickNumbersInRange } from '../util/Random';
-import Lotto from './Lotto';
+import NUMBER from '../constants/number.js';
+import { pickNumbersInRange } from '../util/Random.js';
+import Lotto from './Lotto.js';
 
 /**
  * @module LottoPublisher 숫자로 로또를 개수만큼 발행하는 클래스입니다. 랜덤 숫자를

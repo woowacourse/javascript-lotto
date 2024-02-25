@@ -1,5 +1,5 @@
-import { addPriceComma } from '../util/NumberHelper';
-import NUMBER from './number';
+import { addPriceComma } from '../util/NumberHelper.js';
+import NUMBER from './number.js';
 
 const ERROR_MESSAGE = Object.freeze({
   PREFIX: '[ERROR]',

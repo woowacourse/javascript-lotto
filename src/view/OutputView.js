@@ -1,5 +1,5 @@
-import { NEW_LINE, OUTPUT_MESSAGE } from '../constants/message';
-import WINNER from '../constants/winner';
+import { NEW_LINE, OUTPUT_MESSAGE } from '../constants/message.js';
+import WINNER from '../constants/winner.js';
 
 const OutputView = {
   printLottoCount(count = 0) {
@@ -18,7 +18,7 @@ const OutputView = {
 
   printWinningStatistics(result = []) {
     result.forEach((_, index) => {
-      const rankIndex = Math.abs(WINNER.length - index);
+      const rankIndex = Math.abs(Object.keys(WINNER).length - index);
       console.log(
         `${OUTPUT_MESSAGE.MATCH_COUNT(WINNER[rankIndex].MATCH_COUNT)}${
           WINNER[rankIndex].IS_BONUS ? OUTPUT_MESSAGE.BONUS_MATCH : ''

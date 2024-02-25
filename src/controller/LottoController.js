@@ -1,14 +1,14 @@
-import NUMBER from '../constants/number';
-import InputView from '../view/InputView';
-import OutputView from '../view/OutputView';
-import LottoValidation from '../validation/lottoValidation';
-import RestartResponseValidation from '../validation/responseValidation';
-import LottoPublisher from '../domain/LottoPublisher';
-import MoneyValidation from '../validation/MoneyValidation';
-import WinLotto from '../domain/WinLotto';
-import LottoProcess from '../domain/LottoProcess';
-import LottoCalculator from '../domain/LottoCalculator';
-import { RESPONSE } from '../constants/input';
+import NUMBER from '../constants/number.js';
+import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
+import LottoValidation from '../validation/lottoValidation.js';
+import RestartResponseValidation from '../validation/responseValidation.js';
+import LottoPublisher from '../domain/LottoPublisher.js';
+import MoneyValidation from '../validation/moneyValidation.js';
+import WinLotto from '../domain/WinLotto.js';
+import LottoProcess from '../domain/LottoProcess.js';
+import LottoCalculator from '../domain/LottoCalculator.js';
+import { RESPONSE } from '../constants/input.js';
 
 /**
  * @module LottoController 로또의 관련 도메인과 뷰를 연결하여 게임을 컨트롤하는 컨트롤러 모듈입니다.
