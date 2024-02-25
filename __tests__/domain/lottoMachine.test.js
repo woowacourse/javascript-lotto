@@ -1,4 +1,3 @@
-import Lotto from '../../src/domain/Lotto';
 import LottoMachine from '../../src/domain/LottoMachine';
 import Money from '../../src/domain/Money';
 import OutputView from '../../src/view/OutputView';
@@ -13,12 +12,8 @@ describe('로또 머신 테스트', () => {
 
   test('당첨된 로또 등수 내역 테스트', () => {
     const money = new Money(2000);
-    const lottoMachine = new LottoMachine(money);
-    const myCustomLotto = [
-      new Lotto('1, 2, 8, 9, 10, 11'),
-      new Lotto('1, 2, 8, 9, 5, 10'),
-      new Lotto('1, 2, 8, 9, 10, 11'),
-    ];
+    const myCustomLotto = [['1, 2, 8, 9, 10, 11'], ['1, 2, 8, 9, 5, 10'], ['1, 2, 8, 9, 10, 11']];
+    const lottoMachine = new LottoMachine(money.count, myCustomLotto);
 
     const winningLottoNumber = '1, 2, 8, 9, 5, 6';
     const bonusNumber = 10;

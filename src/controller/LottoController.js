@@ -70,7 +70,7 @@ class LottoController {
   #printPurchasedLottos() {
     OutputView.printPurchasedLottoAmount(this.#money.count);
     this.#lottoMachine.lottos.forEach((lotto) => {
-      OutputView.printLottoNumbers(lotto.lottoNumbers);
+      OutputView.printLottoNumbers(lotto);
     });
   }
 

@@ -1,7 +1,7 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
 import BonusNumber from './BonusNumber';
 import Lotto from './Lotto';
-import Money from './Money';
+import generateRandomNumberInRange from '../util/generateRandomNumberInRange';
 
 class LottoMachine {
   #lottos;
@@ -10,15 +10,51 @@ class LottoMachine {
 
   #bonusNumber;
 
-  constructor(count) {
-    this.#drawLottos(count);
+  constructor(count, autoLottos = []) {
+    this.#drawLottos(count, autoLottos);
   }
 
-  #drawLottos(count) {
-    this.#lottos = Array(count).fill([]);
-    this.#lottos.forEach((_, idx) => {
-      this.#lottos[idx] = new Lotto();
+  #drawLottos(count, autoLottos) {
+    if (autoLottos) {
+      const lottos = Array.from({ length: count }, () => []);
+      this.#lottos = lottos.map((ticket) => {
+        const autoLotto = this.#drawAutoLottoNumbers(ticket);
+        const lotto = new Lotto(autoLotto);
+        return lotto.lottoNumbers;
+      });
+    } else {
+      const lottos = autoLottos;
+      this.#lottos = lottos.map((ticket) => {
+        console.log('custom ticket: ', ticket);
+        const customLotto = this.#makeCustomLottoNumbers(ticket);
+        const lotto = new Lotto(customLotto);
+        return lotto.lottoNumbers;
+      });
+    }
+  }
+
+  #makeCustomLottoNumbers(lotto) {
+    const splitedLottoNumbers = lotto.split(',');
+    splitedLottoNumbers.forEach((num) => {
+      this.#pushNotRedundantNumber(lotto, Number(num));
     });
+    return lotto;
+  }
+
+  #drawAutoLottoNumbers(lotto) {
+    while (lotto.length !== 6) {
+      const randomNumber = generateRandomNumberInRange();
+
+      this.#pushNotRedundantNumber(lotto, randomNumber);
+    }
+    return lotto;
+  }
+
+  #pushNotRedundantNumber(lotto, number) {
+    if (!lotto.includes(number)) {
+      lotto.push(number);
+      // return lotto;
+    }
   }
 
   initRanks() {
@@ -73,7 +109,10 @@ class LottoMachine {
   }
 
   set winningLotto(numbers) {
-    this.#winningLotto = new Lotto(numbers);
+    const typeNumberWinningLotto = numbers.split(',').map((num) => {
+      return Number(num);
+    });
+    this.#winningLotto = new Lotto(typeNumberWinningLotto);
   }
 
   set bonusNumber(number) {

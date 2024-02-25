@@ -1,14 +1,11 @@
-import generateRandomNumberInRange from '../util/generateRandomNumberInRange';
 import LOTTO_RULE from '../constants/rules/lottoRule';
 import ERROR_MESSAGE from '../constants/messages/errorMessage';
 
 export default class Lotto {
-  #lottoNumbers = [];
+  #lottoNumbers;
 
-  constructor(lottoNumbers = []) {
-    const needRandomGenerating = lottoNumbers.length === 0;
-
-    needRandomGenerating ? this.#drawAutoLottoNumbers() : this.#makeCustomLottoNumbers(lottoNumbers);
+  constructor(lottoNumbers) {
+    this.#lottoNumbers = lottoNumbers;
     this.#validateLotto();
   }
 
@@ -43,27 +40,6 @@ export default class Lotto {
   #isValidLottoNumberRange(lottoNumber) {
     if (lottoNumber > LOTTO_RULE.RANDOM_NUMBER_TO || lottoNumber < LOTTO_RULE.RANDOM_NUMBER_FROM) {
       throw new Error(ERROR_MESSAGE.IS_INVALID_LOTTO_NUMBER_RANGE);
-    }
-  }
-
-  #makeCustomLottoNumbers(lottoNumbers) {
-    const splitedLottoNumbers = lottoNumbers.split(',');
-    splitedLottoNumbers.forEach((num) => {
-      this.#pushNotRedundantNumber(Number(num));
-    });
-  }
-
-  #drawAutoLottoNumbers() {
-    while (this.#lottoNumbers.length !== 6) {
-      const randomNumber = generateRandomNumberInRange();
-
-      this.#pushNotRedundantNumber(randomNumber);
-    }
-  }
-
-  #pushNotRedundantNumber(randomNumber) {
-    if (!this.#lottoNumbers.includes(randomNumber)) {
-      this.#lottoNumbers.push(randomNumber);
     }
   }
 
