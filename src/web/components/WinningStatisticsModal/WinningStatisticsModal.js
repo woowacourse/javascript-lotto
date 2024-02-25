@@ -101,6 +101,23 @@ class WinningStatisticsModal extends BaseComponent {
     `;
   }
 
+  removeEvent() {
+    this.off(
+      { target: document, eventName: CUSTOM_EVENT_TYPE.openModal },
+      this.#handleOpenModal.bind(this),
+    );
+
+    this.off(
+      { target: $(this, COMPONENT_SELECTOR.modalCloseButton), eventName: 'click' },
+      this.#handleCloseModal.bind(this),
+    );
+
+    this.off(
+      { target: $(this, COMPONENT_SELECTOR.resetButton), eventName: 'click' },
+      this.#handleDispatchResetEvent.bind(this),
+    );
+  }
+
   setEvent() {
     this.on(
       { target: document, eventName: CUSTOM_EVENT_TYPE.openModal },

@@ -27,6 +27,13 @@ class PurchasedLottoSection extends BaseComponent {
     `;
   }
 
+  removeEvent() {
+    this.off(
+      { target: document, eventName: CUSTOM_EVENT_TYPE.buyLottoPrice },
+      this.#handleRenderPurchasedLottoSection.bind(this),
+    );
+  }
+
   setEvent() {
     this.on(
       { target: document, eventName: CUSTOM_EVENT_TYPE.buyLottoPrice },

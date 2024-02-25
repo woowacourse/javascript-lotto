@@ -52,6 +52,18 @@ class WinningDetailForm extends BaseComponent {
     }).join('');
   }
 
+  removeEvent() {
+    this.off(
+      { target: document, eventName: CUSTOM_EVENT_TYPE.buyLottoPrice },
+      this.#handleRenderWinningDetailForm.bind(this),
+    );
+
+    this.off(
+      { target: $(this, COMPONENT_SELECTOR.winningDetailForm), eventName: 'submit' },
+      this.#handleSubmit.bind(this),
+    );
+  }
+
   setEvent() {
     this.on(
       { target: document, eventName: CUSTOM_EVENT_TYPE.buyLottoPrice },

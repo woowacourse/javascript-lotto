@@ -24,6 +24,13 @@ class PurchasedLottoForm extends BaseComponent {
     `;
   }
 
+  removeEvent() {
+    this.off(
+      { target: $(this, COMPONENT_SELECTOR.purchasedLottoForm), eventName: 'submit' },
+      this.#handleSubmitBuyLottoPrice.bind(this),
+    );
+  }
+
   setEvent() {
     this.on(
       { target: $(this, COMPONENT_SELECTOR.purchasedLottoForm), eventName: 'submit' },
