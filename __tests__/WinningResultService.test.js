@@ -54,7 +54,7 @@ describe('[WinningResultService] 당첨 확인 로직 테스트', () => {
     const expectedProfitRate = (
       (RANKING.FIFTH.REWARD * 100) /
       (lottoNumbersList.length * SETTING.LOTTO_PRICE)
-    ).toString();
+    ).toLocaleString('ko-KR', { minimumFractionDigits: 1 });
     expect(profitRate).toEqual(expectedProfitRate);
   });
 });
