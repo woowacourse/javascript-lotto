@@ -1,4 +1,4 @@
-import { SETTING, RANKING } from '../constant/setting';
+import { SETTING } from '../constant/setting';
 import InputController from './InputController';
 import Lotto from '../domain/Lotto';
 import LottoMachine from '../service/LottoMachine';
@@ -27,19 +27,8 @@ class LottoGameController {
 
   #lottosWinningResult(winningNumbers, bonusNumber) {
     const winningResultService = new WinningResultService([...this.#lottos], { winningNumbers, bonusNumber });
-    const winningResult = winningResultService.getWinningResult();
-    OutputView.printWinningResult(winningResult);
-    OutputView.printProfitRate(this.#calculateProfitRate(winningResult));
-  }
-
-  #calculateProfitRate(winningResult) {
-    const totalProfit = Object.entries(winningResult).reduce(
-      (profit, [ranking, count]) => profit + RANKING[ranking].REWARD * count,
-      0,
-    );
-    return ((totalProfit * 100) / (this.#lottos.length * SETTING.LOTTO_PRICE)).toLocaleString('ko-KR', {
-      minimumFractionDigits: 1,
-    });
+    OutputView.printWinningResult(winningResultService.getWinningResult());
+    OutputView.printProfitRate(winningResultService.getProfitRate());
   }
 
   #restartGame(restartCommand) {

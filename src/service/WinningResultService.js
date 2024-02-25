@@ -16,6 +16,16 @@ class WinningResultService {
     return { ...this.#winningResult };
   }
 
+  getProfitRate() {
+    const totalProfit = Object.entries(this.#winningResult).reduce(
+      (profit, [ranking, count]) => profit + RANKING[ranking].REWARD * count,
+      0,
+    );
+    return ((totalProfit * 100) / (this.#lottos.length * SETTING.LOTTO_PRICE)).toLocaleString('ko-KR', {
+      minimumFractionDigits: 1,
+    });
+  }
+
   #calculateWinningResult(winningNumbers, bonusNumber) {
     this.#lottos.forEach((lotto) => {
       const matchedNumbers = lotto.countMatchedNumbers(winningNumbers);
