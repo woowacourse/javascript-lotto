@@ -10,6 +10,8 @@ class BaseComponent extends HTMLElement {
 
   setEvent() {}
 
+  getTemplate() {}
+
   emit(eventType, detail) {
     const customEvent = new CustomEvent(eventType, {
       bubbles: true,
