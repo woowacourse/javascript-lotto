@@ -90,3 +90,7 @@ src
 
 </div>
 </details>
+
+### 주요 클래스 구조
+
+![주요 클래스 구조](structure.png)
