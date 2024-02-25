@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from '../constants/messages/errorMessage';
+import { ERROR_MESSAGE } from '../constants/messages/errorMessage';
 import LOTTO_RULE from '../constants/rules/lottoRule';
 
 export default class Money {

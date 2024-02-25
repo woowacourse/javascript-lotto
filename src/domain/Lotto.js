@@ -1,5 +1,5 @@
 import LOTTO_RULE from '../constants/rules/lottoRule';
-import ERROR_MESSAGE from '../constants/messages/errorMessage';
+import { ERROR_MESSAGE } from '../constants/messages/errorMessage';
 
 export default class Lotto {
   #lottoNumbers;

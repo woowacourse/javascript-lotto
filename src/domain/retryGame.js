@@ -2,7 +2,7 @@ import LOTTO_RULE from '../constants/rules/lottoRule';
 import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import Console from '../util/Console';
-import ERROR_MESSAGE from '../constants/messages/errorMessage';
+import { ERROR_MESSAGE } from '../constants/messages/errorMessage';
 
 const validateRetryAnswer = answer => {
   if (!(answer === LOTTO_RULE.LOTTO_RESTART || answer === LOTTO_RULE.LOTTO_EXIT)) {

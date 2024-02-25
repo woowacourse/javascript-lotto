@@ -1,4 +1,4 @@
-import PROGRESS_MESSAGES from '../constants/messages/progressMessages';
+import { NEW_LINE, PROGRESS_MESSAGES } from '../constants/messages/progressMessages';
 import Console from '../util/Console';
 import { lottoResultMessageGenerator } from '../domain/lottoResultMessageGenerator';
 import LOTTO_RULE from '../constants/rules/lottoRule';
@@ -15,7 +15,8 @@ class OutputView {
   }
 
   static async printResultNotice() {
-    Console.print(PROGRESS_MESSAGES.PRINT_RESULT_NOTICE_MESSAGE);
+    Console.print(`${NEW_LINE}${PROGRESS_MESSAGES.PRINT_RESULT_NOTICE_MESSAGE}`);
+    Console.print(`${PROGRESS_MESSAGES.PRINT_SEPERATE_SECTION}`);
   }
 
   static async printLottoResult(lottoRank, idx) {
@@ -28,7 +29,7 @@ class OutputView {
   }
 
   static async printExitLotto() {
-    Console.print(PROGRESS_MESSAGES.PRINT_EXIT_MESSAGE);
+    Console.print(`${NEW_LINE}${PROGRESS_MESSAGES.PRINT_EXIT_MESSAGE}`);
   }
 }
 
