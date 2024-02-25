@@ -1,0 +1,6 @@
+@import url('./reset.css');
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
