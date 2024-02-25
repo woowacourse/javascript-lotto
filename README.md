@@ -13,7 +13,7 @@ npm run start-step2
 ## 기능 요구 사항
 
 ### UI
-- [ ] navbar
+- [x] header
 - [ ] footer
 - [ ] 전체 레이아웃 구성
 - [ ] 로또 구입 금액, 당첨번호, 보너스 번호 input
