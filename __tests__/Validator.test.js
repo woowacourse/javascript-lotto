@@ -3,10 +3,11 @@ import Validator from '../src/validator/Validator';
 
 describe('[Validator] 로또 구입 금액 검증', () => {
   test.each`
-    title                               | input       | errorMessage
-    ${'입력값은 공백이 아니여야 한다.'} | ${''}       | ${ERROR_MESSAGE.INPUT_IS_EMPTY}
-    ${'입력값은 숫자여야 한다.'}        | ${'string'} | ${ERROR_MESSAGE.INPUT_IS_NOT_NUMBER}
-    ${'입력 값은 1000 단위여야 한다.'}  | ${'500'}    | ${ERROR_MESSAGE.PURCHASE_AMOUNT_NOT_DIVIDED}
+    title                                        | input          | errorMessage
+    ${'입력값은 공백이 아니여야 한다.'}          | ${''}          | ${ERROR_MESSAGE.INPUT_IS_EMPTY}
+    ${'입력값은 숫자여야 한다.'}                 | ${'string'}    | ${ERROR_MESSAGE.INPUT_IS_NOT_NUMBER}
+    ${'입력 값은 1000 단위여야 한다.'}           | ${'500'}       | ${ERROR_MESSAGE.PURCHASE_AMOUNT_NOT_DIVIDED}
+    ${'입력 값은 최대 100000000 이하여야 한다.'} | ${'100001000'} | ${ERROR_MESSAGE.PURCHASE_AMOUNT_RANGE}
   `('$title', ({ input, errorMessage }) => {
     const validation = () => Validator.validatePurchaseAmount(input);
     expect(validation).toThrow(errorMessage);

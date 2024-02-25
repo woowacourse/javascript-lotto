@@ -6,13 +6,17 @@ const Validator = {
     this.checkEmpty(purchaseAmount);
     this.checkNotNumber(purchaseAmount);
     this.purchaseAmountNotDivided(purchaseAmount);
+    this.purchaseAmountRange(purchaseAmount);
   },
 
   validateWinningNumbers(winningNumbers) {
     this.checkEmpty(winningNumbers);
     this.checkWinningNumbersLength(winningNumbers);
 
-    const winningNumberList = winningNumbers.split(',').map((number) => number.trim());
+    const winningNumberList = winningNumbers
+      .split(',')
+      .filter((item) => item.trim() !== '')
+      .map(Number);
     this.checkWinningNumbersDuplicated(winningNumberList);
     winningNumberList.forEach((number) => {
       this.checkNotNumber(number);
@@ -47,6 +51,11 @@ const Validator = {
   purchaseAmountNotDivided(input) {
     if (input === 0 || input % SETTING.LOTTO_PRICE !== 0) {
       throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_NOT_DIVIDED);
+    }
+  },
+  purchaseAmountRange(input) {
+    if (input > 100000000) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_RANGE);
     }
   },
 
