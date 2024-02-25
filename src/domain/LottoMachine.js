@@ -26,7 +26,7 @@ class LottoMachine {
 
   #generateRandomLottoNumbers() {
     const lottoNumbers = [];
-    while (lottoNumbers.length !== 6) {
+    while (lottoNumbers.length !== LOTTO_RULE.LOTTO_LENGTH) {
       const randomNumber = generateRandomNumberInRange();
 
       this.#pushNotRedundantNumber(lottoNumbers, randomNumber);
@@ -62,35 +62,36 @@ class LottoMachine {
 
   initRanks() {
     const lottoRanks = new Map();
+    const rankValues = Object.values(LOTTO_RULE.RANKS).map(rankName => rankName.RANK);
 
-    LOTTO_RULE.RANK.forEach(rank => {
+    rankValues.forEach(rank => {
       lottoRanks.set(rank, 0);
     });
 
     return lottoRanks;
   }
 
-  #increaseRankCount(ranks, string) {
-    const lottoRanksValue = ranks.get(string);
-    ranks.set(string, lottoRanksValue + 1);
+  #increaseRankCount(lottoRanks, rankName) {
+    const lottoRanksValue = lottoRanks.get(rankName);
+    lottoRanks.set(rankName, lottoRanksValue + 1);
   }
 
   #checkWinningLotto(lottoRanks, matchCount, isBonus) {
-    if (matchCount === 6) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[0]);
-    } else if (matchCount === 5 && isBonus) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[1]);
-    } else if (matchCount === 5) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[2]);
-    } else if (matchCount === 4) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[3]);
-    } else if (matchCount === 3) {
-      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANK[4]);
+    if (matchCount === LOTTO_RULE.RANKS.FIRST.MATCH_COUNT) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANKS.FIRST.RANK);
+    } else if (matchCount === LOTTO_RULE.RANKS.SECOND.MATCH_COUNT && isBonus) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANKS.SECOND.RANK);
+    } else if (matchCount === LOTTO_RULE.RANKS.THIRD.MATCH_COUNT) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANKS.THIRD.RANK);
+    } else if (matchCount === LOTTO_RULE.RANKS.FOURTH.MATCH_COUNT) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANKS.FOURTH.RANK);
+    } else if (matchCount === LOTTO_RULE.RANKS.FIFTH.MATCH_COUNT) {
+      this.#increaseRankCount(lottoRanks, LOTTO_RULE.RANKS.FIFTH.RANK);
     }
   }
 
   set winningLotto(lottoInputs) {
-    this.#winningLotto = new Lotto(lottoInputs.split(',').map(input => Number(input.trim())));
+    this.#winningLotto = new Lotto(lottoInputs.split(LOTTO_RULE.NUMBER_DELIMITER).map(input => Number(input.trim())));
   }
 
   set bonusNumber(number) {

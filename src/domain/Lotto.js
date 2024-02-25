@@ -25,13 +25,13 @@ export default class Lotto {
   }
 
   #isInvalidLottoNumberCount() {
-    if (this.#lottoNumbers.length !== 6) {
+    if (this.#lottoNumbers.length !== LOTTO_RULE.LOTTO_LENGTH) {
       throw new Error(ERROR_MESSAGE.IS_NOT_VALID_LOTTO_NUMBER_COUNT);
     }
   }
 
   #hasRedundantLottoNumber() {
-    if (new Set(this.#lottoNumbers).size !== 6) {
+    if (new Set(this.#lottoNumbers).size !== LOTTO_RULE.LOTTO_LENGTH) {
       throw new Error(ERROR_MESSAGE.HAS_REDUNDANT_LOTTO_NUMBER);
     }
   }

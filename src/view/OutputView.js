@@ -1,6 +1,7 @@
 import PROGRESS_MESSAGES from '../constants/messages/progressMessages';
 import Console from '../util/Console';
 import { lottoResultMessageGenerator } from '../domain/lottoResultMessageGenerator';
+import LOTTO_RULE from '../constants/rules/lottoRule';
 
 class OutputView {
   static async printPurchasedLottoAmount(amount) {
@@ -8,7 +9,7 @@ class OutputView {
   }
 
   static async printLottoNumbers(lottoNumbers) {
-    const lottoNumbersToString = String(lottoNumbers).split(',').join(', ');
+    const lottoNumbersToString = String(lottoNumbers).split(LOTTO_RULE.NUMBER_DELIMITER).join(', ');
 
     Console.print(`[${lottoNumbersToString}]`);
   }
@@ -18,8 +19,8 @@ class OutputView {
   }
 
   static async printLottoResult(lottoRank, idx) {
-    const ment = lottoResultMessageGenerator(lottoRank, idx);
-    Console.print(`${ment}`);
+    const lottoResultMessage = lottoResultMessageGenerator(lottoRank, idx);
+    Console.print(`${lottoResultMessage}`);
   }
 
   static async printTotalProfitRate(profitRate) {

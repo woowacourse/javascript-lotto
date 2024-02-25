@@ -27,7 +27,7 @@ export default class Money {
   }
 
   #isThousandUnit() {
-    if (this.#amount % 1000 !== 0) {
+    if (this.#amount % LOTTO_RULE.LOTTO_MONEY_UNIT !== 0) {
       throw new Error(ERROR_MESSAGE.IS_NOT_THOUSAND_UNIT);
     }
   }
