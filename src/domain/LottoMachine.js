@@ -21,11 +21,11 @@ class LottoMachine {
   }
 
   #drawLottos(moneyCount) {
-    this.#lottos = Array(moneyCount).fill([]);
-
-    this.#lottos.forEach((_, idx) => {
-      this.#lottos[idx] = new Lotto(this.#generateRandomLottoNumbers());
-    });
+    this.#lottos = Array(moneyCount)
+      .fill([])
+      .map(() => {
+        return new Lotto(this.#generateRandomLottoNumbers());
+      });
   }
 
   #generateRandomLottoNumbers() {
