@@ -30,8 +30,8 @@ export default class LottoMachine {
   }
 
   #makeLottoByMoney() {
-    const CNT = Math.floor(this.#money / LOTTO_PRICE);
-    this.#lottos = Array.from({ length: CNT }, () => {
+    const count = Math.floor(this.#money / LOTTO_PRICE);
+    this.#lottos = Array.from({ length: count }, () => {
       const numbers = this.#makeRandomNumbers();
       return new Lotto(numbers);
     });
