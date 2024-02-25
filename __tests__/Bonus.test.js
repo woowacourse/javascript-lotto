@@ -10,27 +10,25 @@ describe('Bonus에 대한 테스트', () => {
       );
     });
 
-    test('보너스 번호가 정수여하며 그렇지 않을 경우 오류가 발생한다.', () => {
-      const BONUS_NUMBER_INPUTS = ['2.4', 'one'];
-
-      BONUS_NUMBER_INPUTS.forEach((input) => {
+    test.each(['2.4', 'one'])(
+      '보너스 번호가 정수가 아닐 경우 오류가 발생한다.\n [Test Case] : %s',
+      (input) => {
         expect(() => new Bonus(input, WINNING_LOTTO_NUMBERS)).toThrow(
           ERROR_MESSAGES.notInteger,
         );
-      });
-    });
+      },
+    );
 
-    test('보너스 번호가 1이상 45이하의 숫자여야 하며 그렇지 않을 경우 오류가 발생한다.', () => {
-      const BONUS_NUMBER_INPUTS = ['0', '46'];
-
-      BONUS_NUMBER_INPUTS.forEach((input) => {
+    test.each(['0', '46'])(
+      '보너스 번호가 1이상 45이하의 숫자가 아닐 경우 오류가 발생한다.\n [Test Case] : %s',
+      (input) => {
         expect(() => new Bonus(input, WINNING_LOTTO_NUMBERS)).toThrow(
           ERROR_MESSAGES.invalidLottoNumberRange,
         );
-      });
-    });
+      },
+    );
 
-    test('보너스 번호는 당첨 번호들과 중복되지 않는다. 그렇지 않을 경우 오류가 발생한다.', () => {
+    test('보너스 번호는 당첨 번호들과 중복될 경우 오류가 발생한다.', () => {
       const BONUS_INPUT = '7';
 
       expect(() => new Bonus(BONUS_INPUT, WINNING_LOTTO_NUMBERS)).toThrow(
@@ -38,13 +36,12 @@ describe('Bonus에 대한 테스트', () => {
       );
     });
 
-    test('보너스 번호가 유효한 경우 오류가 발생하지 않는다.', () => {
-      const BONUS_NUMBER_INPUTS = ['10', '45'];
-
-      BONUS_NUMBER_INPUTS.forEach((input) => {
+    test.each(['10', '45'])(
+      '유효한 보너스 번호에 대해서는 오류가 발생하지 않는다.\n [Test Case] : %s',
+      (input) => {
         expect(() => new Bonus(input, WINNING_LOTTO_NUMBERS)).not.toThrow();
-      });
-    });
+      },
+    );
   });
   describe('Bonus 기능 테스트', () => {
     const BONUS_NUMBER = '7';
