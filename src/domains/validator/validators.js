@@ -40,7 +40,7 @@ export const isLottoNumbersInRange = (numbers) => {
 /**
  * 보너스 번호가 로또 번호들 다른 지 여부
  * @param {number[]} lottoNumbers
- * @param {number[]} bonusNumbers
+ * @param {number} bonusNumbers
  */
 export const isNotInLottoNumber = (lottoNumbers, bonusNumber) =>
   !lottoNumbers.includes(bonusNumber);

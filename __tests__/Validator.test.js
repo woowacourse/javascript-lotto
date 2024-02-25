@@ -1,113 +1,177 @@
-import { Validator } from '../src/domains';
+import {
+  isDivisibleByPrice,
+  isLottoNumberInRange,
+  isLottoNumbersInRange,
+  isNotDuplicatedLottoNumber,
+  isNotInLottoNumber,
+  isValidLottoNumberCount,
+  isValidNumbersOfTickets,
+  isValidRestartInputForm,
+  isValidWinningNumbersForm,
+} from '../src/domains/validator/validators';
+import { isInteger, isIntegers } from '../src/utils';
 
-describe('checkWinningLottoNumbers 기능 테스트', () => {
-  test('당첨 로또 번호는 쉼표(,)로 구분되어 입력되어야 한다.', () => {
-    const LOTTO_INPUTS = ['1/2/3/4/5/6', '1 2 3 4 5 6'];
+describe('당첨 번호 유효성 검사 기능 테스트', () => {
+  test.each(['1/2/3/4/5/6', '1 2 3 4 5 6'])(
+    "isValidWinningNumbersForm - 구분자가 쉼표(,)가 아닐 경우 false를 반환한다. '%s'",
+    (input) => {
+      expect(isValidWinningNumbersForm(input)).toBeFalsy();
+    },
+  );
 
-    LOTTO_INPUTS.forEach((lottoInput) => {
-      expect(() => Validator.checkWinningLottoNumbers(lottoInput)).toThrow();
-    });
+  test('isValidWinningNumbersForm - 구분자가 쉼표(,)일 경우 true를 반환한다.', () => {
+    const INPUT = '1,2,3,4,5,6';
+
+    expect(isValidWinningNumbersForm(INPUT)).toBeTruthy();
   });
 
-  test('당첨 로또 번호는 정수로 이루어져야 한다.', () => {
-    const LOTTO_INPUTS = ['1,2,3,4,5,4.5', '1,2,3,4,5,s'];
+  test.each([[[1, 2, 3, 4, 5, 4.5]], [[1, 2, 3, 4, 5, 's']]])(
+    'isIntegers - 정수 배열이 아니라면 false를 반환한다. %s',
+    (numbers) => {
+      expect(isIntegers(numbers)).toBeFalsy();
+    },
+  );
 
-    LOTTO_INPUTS.forEach((lottoInput) => {
-      expect(() => Validator.checkWinningLottoNumbers(lottoInput)).toThrow();
-    });
+  test('isIntegers - 정수 배열은 true를 반환한다.', () => {
+    const NUMBERS = [1, 2, 3, 4, 5, 6];
+
+    expect(isIntegers(NUMBERS)).toBeTruthy();
   });
 
-  test('당첨 로또 번호의 범위는 1~45까지다.', () => {
-    const LOTTO_INPUTS = ['1,2,3,4,5,46', '1,2,3,4,5,0'];
+  test.each([[[1, 2, 3, 4, 5, 46]], [[1, 2, 3, 4, 5, 0]]])(
+    'isLottoNumbersInRange - 로또 번호의 범위가 1~45를 초과할 경우 false를 반환한다. %s',
+    (numbers) => {
+      expect(isLottoNumbersInRange(numbers)).toBeFalsy();
+    },
+  );
 
-    LOTTO_INPUTS.forEach((lottoInput) => {
-      expect(() => Validator.checkWinningLottoNumbers(lottoInput)).toThrow();
-    });
+  test('isLottoNumbersInRange - 로또 번호의 범위가 1~45인 경우 true를 반환한다.', () => {
+    const NUMBERS = [1, 2, 3, 4, 5, 45];
+
+    expect(isLottoNumbersInRange(NUMBERS)).toBeTruthy();
   });
 
-  test('당첨 로또 번호는 총 6개이어야 한다.', () => {
-    const LOTTO_INPUTS = ['1,2,3,4,5', '1,2,3,4,5,6,7'];
+  test.each([[[1, 2, 3, 4, 5]], [[1, 2, 3, 4, 5, 6, 7]]])(
+    'isValidLottoNumberCount - 로또 번호 배열의 인자가 총 6개가 아닌 경우 false를 반환한다. %s',
+    (numbers) => {
+      expect(isValidLottoNumberCount(numbers)).toBeFalsy();
+    },
+  );
 
-    LOTTO_INPUTS.forEach((lottoInput) => {
-      expect(() => Validator.checkWinningLottoNumbers(lottoInput)).toThrow();
-    });
+  test('isValidLottoNumberCount - 로또 번호 배열의 인자가 총 6개인 경우 true를 반환한다.', () => {
+    const NUMBERS = [1, 2, 3, 4, 5, 6];
+    expect(isValidLottoNumberCount(NUMBERS)).toBeTruthy();
   });
 
-  test('당첨 로또 번호는 중복되지 않아야 한다.', () => {
-    const LOTTO_INPUT = '1,2,3,4,5,5';
+  test('isNotDuplicatedLottoNumber - 중복된 번호가 있다면 false를 반환한다.', () => {
+    const NUMBERS = [1, 2, 3, 4, 5, 5];
 
-    expect(() => Validator.checkWinningLottoNumbers(LOTTO_INPUT)).toThrow();
+    expect(isNotDuplicatedLottoNumber(NUMBERS)).toBeFalsy();
+  });
+
+  test('isNotDuplicatedLottoNumber - 중복된 번호가 없다면 true를 반환한다.', () => {
+    const NUMBERS = [1, 2, 3, 4, 5, 6];
+
+    expect(isNotDuplicatedLottoNumber(NUMBERS)).toBeTruthy();
   });
 });
 
-describe('checkBonusNumber 기능 테스트', () => {
-  test('보너스 번호는 정수로 이루어져야 한다.', () => {
-    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
-    const BONUS_NUMBERS = ['4.5', 's', ''];
+describe('보너스 번호 유효성 검사 기능 테스트', () => {
+  test.each(['s', ' ', 1.2])(
+    'isInteger - 정수가 아니라면 false를 반환한다. %s',
+    (number) => {
+      expect(isInteger(number)).toBeFalsy();
+    },
+  );
 
-    BONUS_NUMBERS.forEach((bonusNumber) => {
-      expect(() =>
-        Validator.checkBonusNumber(LOTTO_NUMBERS, bonusNumber),
-      ).toThrow();
-    });
+  test.each([1, 2])('isInteger - 정수가라면 true를 반환한다. %s', (number) => {
+    expect(isInteger(number)).toBeTruthy();
   });
 
-  test('보너스 번호의 범위는 1~45까지다.', () => {
-    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
-    const BONUS_NUMBERS = ['46', '0'];
+  test.each([46, 0])(
+    'isLottoNumberInRange - 보너스 번호의 범위가 1~45를 초과할 경우 false를 반환한다. %s',
+    (numbers) => {
+      expect(isLottoNumberInRange(numbers)).toBeFalsy();
+    },
+  );
 
-    BONUS_NUMBERS.forEach((bonusNumber) => {
-      expect(() =>
-        Validator.checkBonusNumber(LOTTO_NUMBERS, bonusNumber),
-      ).toThrow();
-    });
+  test.each([1, 45])(
+    'isLottoNumberInRange - 보너스 번호의 범위가 1~45인 경우 true를 반환한다. %s',
+    (numbers) => {
+      expect(isLottoNumberInRange(numbers)).toBeTruthy();
+    },
+  );
+
+  test('isNotInLottoNumber - 이미 로또 번호에 존재하는 숫자인 경우 false를 반환한다.', () => {
+    const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
+    const BONUS_NUMBER = 1;
+
+    expect(isNotInLottoNumber(LOTTO_NUMBERS, BONUS_NUMBER)).toBeFalsy();
   });
 
-  test('보너스 번호는 로또 번호와 중복되지 않아야 한다.', () => {
+  test('isNotInLottoNumber - 로또 번호에 존재하지 않는 숫자인 경우 true를 반환한다.', () => {
     const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
-    const BONUS_NUMBER = '1';
+    const BONUS_NUMBER = 7;
 
-    expect(() =>
-      Validator.checkBonusNumber(LOTTO_NUMBERS, BONUS_NUMBER),
-    ).toThrow();
+    expect(isNotInLottoNumber(LOTTO_NUMBERS, BONUS_NUMBER)).toBeTruthy();
   });
 });
 
 describe('checkPaymentAmount 기능 테스트', () => {
-  test('구입 금액은 정수이어야 한다.', () => {
-    const INPUTS = ['1.1', 's', ''];
+  test.each([1.1, 's', ''])(
+    'isInteger - 정수가 아니라면 false를 반환한다. %s',
+    (number) => {
+      expect(isInteger(number)).toBeFalsy();
+    },
+  );
 
-    INPUTS.forEach((input) => {
-      expect(() => Validator.checkPaymentAmount(input)).toThrow();
-    });
+  test('isInteger - 정수라면 true를 반환한다.', () => {
+    const PAYMENT_AMOUNT = 1000;
+
+    expect(isInteger(PAYMENT_AMOUNT)).toBeTruthy();
   });
 
-  test('구입 가능한 로또는 최소 1장, 최대 20장이다.', () => {
-    const INPUTS = ['999', '20001'];
+  test.each([['999', '20001']])(
+    'isValidNumbersOfTickets - 구입 로또 개수가 1~50장을 초과할 경우 false를 반환한다. %s',
+    (input) => {
+      expect(isValidNumbersOfTickets(input)).toBeFalsy();
+    },
+  );
 
-    INPUTS.forEach((input) => {
-      expect(() => Validator.checkPaymentAmount(input)).toThrow();
-    });
-  });
+  test.each([['1000', '50000']])(
+    'isValidNumbersOfTickets - 구입 로또 개수가 1~50장인 경우 true를 반환한다. %s',
+    (input) => {
+      expect(isValidNumbersOfTickets(input)).toBeTruthy();
+    },
+  );
 
-  test('구입 금액은 1000원 단위로 나누어 떨어져야 한다.', () => {
-    const INPUTS = ['1500', '1001'];
+  test.each(['1500', '1001'])(
+    'isDivisibleByPrice - 구입 금액이 1000원 단위로 나누어 떨어지지 않으면 false를 반환한다. %s',
+    (input) => {
+      expect(isDivisibleByPrice(input)).toBeFalsy();
+    },
+  );
 
-    INPUTS.forEach((input) => {
-      expect(() => Validator.checkPaymentAmount(input)).toThrow();
-    });
-  });
+  test.each(['1000', '50000'])(
+    'isDivisibleByPrice - 구입 금액이 1000원 단위로 나누어 떨어지지 않으면 false를 반환한다. %s',
+    (input) => {
+      expect(isDivisibleByPrice(input)).toBeTruthy();
+    },
+  );
 });
 
 describe('checkRestartForm 기능 테스트', () => {
   test.each(['yes y', 'never'])(
-    '재시작 여부는 y 또는 n으로 입력되어야 한다.: %s',
+    'isValidRestartInputForm - y 또는 n 이외의 다른 문자가 입력되면 false를 반환한다. %s',
     (input) => {
-      expect(() => Validator.checkRestartForm(input)).toThrow();
+      expect(isValidRestartInputForm(input)).toBeFalsy();
     },
   );
 
-  test.each(['Y', 'N'])('대문자 입력은 유효하다.: %s', (input) => {
-    expect(() => Validator.checkRestartForm(input)).not.toThrow();
-  });
+  test.each(['y', 'n'])(
+    'isValidRestartInputForm - y 또는 n 이외의 다른 문자가 입력되면 false를 반환한다. %s',
+    (input) => {
+      expect(isValidRestartInputForm(input)).toBeTruthy();
+    },
+  );
 });
