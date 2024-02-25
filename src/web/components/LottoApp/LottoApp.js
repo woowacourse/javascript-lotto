@@ -18,7 +18,7 @@ class LottoApp extends BaseComponent {
           <winning-detail-form class="close"></winning-detail-form>
         </main>
         <footer class=${styles.footer}>
-          <p class="caption">Copyright 2023. woowacourse</p>
+          <p class="caption">&copy;Copyright 2023. woowacourse</p>
         </footer>
         <winning-statistics-modal class="close"></winning-statistics-modal>
     `;
