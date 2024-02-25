@@ -3,6 +3,7 @@
     "max-depth": ["error", 1],
     "max-params": ["error", 2],
     "no-return-await": "off",
+    "import/no-extraneous-dependencies": "off",
     "import/order": [
       "error",
       {

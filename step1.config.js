@@ -1,5 +1,4 @@
 const path = require('path');
-// eslint-disable-next-line
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
