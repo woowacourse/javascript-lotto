@@ -4,13 +4,17 @@ import BonusNumber from './BonusNumber';
 import Lotto from './Lotto';
 
 class LottoMachine {
+  /**
+   * @typedef {Object} winningNumbers
+   * @property {Object} Lotto - 당첨 번호 로또
+   * @property {number} bonusNumber - 보너스 번호
+   */
+  #winningNumbers = new Map();
   #lottos;
-  #winningLotto;
-  #bonusNumber;
 
   /**
    *
-   * @param {Object} money - Money
+   * @param {Object} Money
    */
   constructor(money) {
     this.#drawLottos(money.count);
@@ -45,8 +49,8 @@ class LottoMachine {
 
     lottos.forEach(lotto => {
       const lottoValues = lotto.lottoNumbers;
-      const winningLottoValues = this.#winningLotto.lottoNumbers;
-      const bonusNumber = this.#bonusNumber.value;
+      const winningLottoValues = this.#winningNumbers.get('winningLotto').lottoNumbers;
+      const bonusNumber = this.#winningNumbers.get('bonusNumber').value;
       const isBonus = lottoValues.includes(bonusNumber);
 
       const mergeLottoAndWinningLotto = [...lottoValues, ...winningLottoValues];
@@ -91,11 +95,14 @@ class LottoMachine {
   }
 
   set winningLotto(lottoInputs) {
-    this.#winningLotto = new Lotto(lottoInputs.split(LOTTO_RULE.NUMBER_DELIMITER).map(input => Number(input.trim())));
+    this.#winningNumbers.set(
+      'winningLotto',
+      new Lotto(lottoInputs.split(LOTTO_RULE.NUMBER_DELIMITER).map(input => Number(input.trim()))),
+    );
   }
 
   set bonusNumber(number) {
-    this.#bonusNumber = new BonusNumber(number, this.#winningLotto);
+    this.#winningNumbers.set('bonusNumber', new BonusNumber(number, this.#winningNumbers.get('winningLotto')));
   }
 
   get lottos() {
