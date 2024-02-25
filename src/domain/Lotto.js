@@ -10,7 +10,6 @@ export default class Lotto {
 
     needRandomGenerating ? this.#drawAutoLottoNumbers() : this.#makeCustomLottoNumbers(lottoNumbers);
     this.#validateLotto();
-    this.#sortLottoNumbers();
   }
 
   // TODO: validate 파일 분리?
@@ -69,11 +68,7 @@ export default class Lotto {
     }
   }
 
-  #sortLottoNumbers() {
-    this.#lottoNumbers = this.#lottoNumbers.toSorted((a, b) => a - b);
-  }
-
   get lottoNumbers() {
-    return this.#lottoNumbers;
+    return this.#lottoNumbers.toSorted((a, b) => a - b);
   }
 }
