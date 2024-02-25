@@ -80,11 +80,10 @@ npm run start-step2
   - [x] 브라우저 기본 css style reset하기
   - [x] color, typo 미리 선언하기
   - [x] 공통 header, main, footer 정의하기
-  - [ ] 내 번호 당첨 확인 레이아웃 생성 (header, section, footer, 각 article 들)
 
 - 로또 구매 article
-  - [ ] 로또 구매 form 생성
-  - [ ] input과 submit button 생성
+  - [x] 로또 구매 form 생성
+  - [x] input과 submit button 생성
   - [ ] readMoney와 button 연결
   - [ ] 생성된 결과를 보여주는 output 연결
 
