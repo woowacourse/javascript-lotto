@@ -72,12 +72,11 @@ class LottoMachine {
     ranks.set(string, lottoRanksValue + 1);
   }
 
-  // TODO: 이거 괜찮은 방법인가? 테스트를 위해서 기존 코드에서 바꿔주었다.
-  countLottoRanks(lottos = this.#lottos) {
+  countLottoRanks() {
     const lottoRanks = this.initRanks();
 
-    lottos.forEach((lotto) => {
-      const lottoValues = lotto.lottoNumbers;
+    this.#lottos.forEach((lotto) => {
+      const lottoValues = lotto;
       const winningLottoValues = this.#winningLotto.lottoNumbers;
       const bonusNumber = this.#bonusNumber.value;
       const isBonus = lottoValues.includes(bonusNumber);
@@ -109,10 +108,10 @@ class LottoMachine {
   }
 
   set winningLotto(numbers) {
-    const typeNumberWinningLotto = numbers.split(',').map((num) => {
+    const winningLotto = numbers.split(',').map((num) => {
       return Number(num);
     });
-    this.#winningLotto = new Lotto(typeNumberWinningLotto);
+    this.#winningLotto = new Lotto(winningLotto);
   }
 
   set bonusNumber(number) {

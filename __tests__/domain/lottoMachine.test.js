@@ -21,7 +21,7 @@ describe('로또 머신 테스트', () => {
     lottoMachine.winningLotto = winningLottoNumber;
     lottoMachine.bonusNumber = bonusNumber;
 
-    const lottoRanks = lottoMachine.countLottoRanks(myCustomLotto);
+    const lottoRanks = lottoMachine.countLottoRanks();
     lottoRanks.forEach((lottoRank, idx) => {
       OutputView.printLottoResult(lottoRank, idx);
     });
