@@ -1,4 +1,4 @@
-import { RANK } from '../constant/rank.js';
+import { RANK } from '../constants';
 
 class LottoMatcher {
   #matchingResult;
@@ -6,13 +6,7 @@ class LottoMatcher {
   constructor(winningNumber, bonusNumber) {
     this.winningNumber = winningNumber;
     this.bonusNumber = bonusNumber;
-    this.#matchingResult = {
-      FIRST: 0,
-      SECOND: 0,
-      THIRD: 0,
-      FOURTH: 0,
-      FIFTH: 0,
-    };
+    this.#matchingResult = { FIRST: 0, SECOND: 0, THIRD: 0, FOURTH: 0, FIFTH: 0 };
   }
 
   checkMatchAndBonus(tickets) {
@@ -31,19 +25,14 @@ class LottoMatcher {
   }
 
   findRankByMatchCount(matchCount) {
-    for (const rank in RANK) {
-      if (RANK[rank].MATCHING_COUNT === matchCount) {
-        return rank;
-      }
-    }
-    //return null;
+    return Object.keys(RANK).find((rank) => RANK[rank].MATCHING_COUNT === matchCount);
   }
 
   updateResult(matchCount, hasBonusNumber) {
-    if (hasBonusNumber) return (this.#matchingResult.SECOND += 1);
+    if (hasBonusNumber && matchCount === 5) return (this.#matchingResult[SECOND] += 1);
 
     const rank = this.findRankByMatchCount(matchCount);
-    this.#matchingResult.rank += 1;
+    this.#matchingResult[rank] += 1;
   }
 
   get matchingResult() {
