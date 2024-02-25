@@ -11,46 +11,40 @@ class LottoController {
   #money;
 
   async lottoGameStart() {
-    await retryOnInvalidInput(async () => {
-      await this.#insertMoney();
-    });
-
+    await this.#insertMoney();
     this.#lottoMachine = new LottoMachine(this.#money);
-
     this.#printPurchasedLottos(this.#money.count);
-
-    await retryOnInvalidInput(async () => {
-      await this.#insertWinningNumbers();
-    });
-
-    await retryOnInvalidInput(async () => {
-      await this.#insertBonusNumbers();
-    });
-
+    await this.#insertWinningNumbers();
+    await this.#insertBonusNumbers();
     this.#calculateLottoResult();
-
     await retryGame(async () => {
       await this.lottoGameStart();
     });
   }
 
   async #insertMoney() {
-    const inputMoney = await InputView.readMoney();
-    const validatedMoney = new Money(inputMoney);
+    await retryOnInvalidInput(async () => {
+      const inputMoney = await InputView.readMoney();
+      const validatedMoney = new Money(inputMoney);
 
-    this.#money = validatedMoney;
+      this.#money = validatedMoney;
+    });
   }
 
   async #insertWinningNumbers() {
-    const inputWinningNumber = await InputView.readWinningNumbers();
+    await retryOnInvalidInput(async () => {
+      const inputWinningNumber = await InputView.readWinningNumbers();
 
-    this.#lottoMachine.winningLotto = inputWinningNumber;
+      this.#lottoMachine.winningLotto = inputWinningNumber;
+    });
   }
 
   async #insertBonusNumbers() {
-    const inputBonusNumber = await InputView.readBonusNumber();
+    await retryOnInvalidInput(async () => {
+      const inputBonusNumber = await InputView.readBonusNumber();
 
-    this.#lottoMachine.bonusNumber = inputBonusNumber;
+      this.#lottoMachine.bonusNumber = inputBonusNumber;
+    });
   }
 
   #printPurchasedLottos(count) {

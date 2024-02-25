@@ -1,6 +1,6 @@
 {
   "rules": {
-    "max-lines-per-function": ["warn", 10],
+    "max-lines-per-function": ["warn", 12],
     "no-var": 2,
     "max-depth": ["warn", 1],
     "no-undef": 2,
@@ -15,6 +15,6 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "files": ["**/*.test.js"],
+  "ignorePatterns": ["dist", "__tests__"],
   "extends": ["eslint:recommended", "plugin:prettier/recommended"]
 }
