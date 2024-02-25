@@ -17,11 +17,12 @@
 html, body {
     height: 100%;
     background-color: var(--grey-scale-2);
+    font-size: 15px;
+    line-height: 24px;
 }
 
 input::placeholder {
     font-size: 15px;
-    font-weight: 400;
     color: var(--grey-scale-4);
 }
 
@@ -34,12 +35,6 @@ input::placeholder {
 .subtitle {
     font-size: 20px;
     font-weight: 600;
-    line-height: 24px;
-}
-
-.textFont {
-    font-size: 15px;
-    font-weight: 400;
     line-height: 24px;
 }
 
@@ -79,6 +74,8 @@ input::placeholder {
 #mainSection {
     width: inherit;
     height: 75vh;
+    display: flex;
+    flex-direction: column;
     border: 1px solid #0000001F;
     padding: 0px 20px 30px 20px;
 }
@@ -87,7 +84,7 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    flex-basis: 15%;
 }
 
 #footer {
@@ -107,7 +104,7 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding-bottom: 30px;
+    flex-basis: 15%;
 }
 
 #purchaseForm {
@@ -132,3 +129,57 @@ input::placeholder {
     align-items: center;
     border-radius: 4px;
 }
+
+#purchaseResultSection { 
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-basis: 50%;
+}
+
+#winningNumberSection {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 20%;
+    gap: 15px;
+}
+
+#lottoNumberWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+#winningNumberWrapper {
+    line-height: 30px;
+    flex-basis: 80%;
+}
+
+#winningNumberInput {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid var(--grey-scale-3);
+    border-radius: 4px;
+}
+
+#bonusNumberWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    flex-basis: 20%;
+    line-height: 30px;
+}
+
+#bonusNumberInput {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid var(--grey-scale-3);
+    border-radius: 4px;
+}
+
+#lottoResultButton {
+    height: 36px;
+    border-radius: 4px;
+}
+
