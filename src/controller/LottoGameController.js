@@ -6,12 +6,11 @@ import OutputView from '../view/OutputView';
 import InputController from './InputController';
 
 class LottoGameController {
-  #purchaseAmount;
   #lottos;
 
   async play() {
-    this.#purchaseAmount = await InputController.inputPurchaseAmount();
-    this.#createRandomLottos();
+    const purchaseAmount = await InputController.inputPurchaseAmount();
+    this.#createRandomLottos(purchaseAmount);
 
     const { winningNumbers, bonusNumber } = await InputController.inputWinningConditions();
     this.#lottosWinningResult(winningNumbers, bonusNumber);
@@ -20,8 +19,8 @@ class LottoGameController {
     this.#restartGame(restartCommand);
   }
 
-  #createRandomLottos() {
-    const lottoList = new LottoMachine(this.#purchaseAmount).getLottoNumbersList();
+  #createRandomLottos(purchaseAmount) {
+    const lottoList = new LottoMachine(purchaseAmount).getLottoNumbersList();
     this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
     OutputView.printPurchaseResult(lottoList);
   }
@@ -38,7 +37,9 @@ class LottoGameController {
       (profit, [ranking, count]) => profit + RANKING[ranking].REWARD * count,
       0,
     );
-    return ((totalProfit * 100) / this.#purchaseAmount).toLocaleString('ko-KR', { minimumFractionDigits: 1 });
+    return ((totalProfit * 100) / (this.#lottos.length * SETTING.LOTTO_PRICE)).toLocaleString('ko-KR', {
+      minimumFractionDigits: 1,
+    });
   }
 
   #restartGame(restartCommand) {
