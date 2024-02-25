@@ -1,11 +1,30 @@
 {
-  "rules": {},
+  "rules": {
+    "max-depth": ["error", 1],
+    "max-params": ["error", 2],
+    "no-return-assign": "off",
+    "no-return-await": "off",
+    "class-methods-use-this": "off",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  },
   "env": {
+    "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["airbnb-base", "prettier"],
+  "ignorePatterns": ["dist"]
 }
