@@ -14,11 +14,12 @@ module.exports = {
       },
     },
     {
-      files: ['src/components/**/*.js'],
+      files: ['src/web/components/**/*.js'],
       rules: {
         'max-lines-per-function': ['off'],
         'max-params': ['off'],
         'max-depth': ['off'],
+        'jsdoc/require-jsdoc': ['off'],
       },
     },
     {
