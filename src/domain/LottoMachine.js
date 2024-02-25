@@ -11,31 +11,30 @@ class LottoMachine {
 
   #bonusNumber;
 
-  constructor(count, autoLottos = []) {
-    this.#drawLottos(count, autoLottos);
+  constructor(count, customLottos = []) {
+    this.#drawLottos(count, customLottos);
   }
 
-  #drawLottos(count, autoLottos) {
-    if (autoLottos) {
-      const lottos = Array.from({ length: count }, () => []);
-      this.#lottos = lottos.map((ticket) => {
-        const autoLotto = this.#drawAutoLottoNumbers(ticket);
-        const lotto = new Lotto(autoLotto);
+  #drawLottos(count, customLottos) {
+    const lottos = Array.from({ length: count }, () => []);
+    if (customLottos.length) {
+      this.#lottos = customLottos.map((ticket) => {
+        const stringToNumberLotto = parseStringToNumber(ticket);
+        const customLotto = this.#makeCustomLottoNumbers(stringToNumberLotto);
+        const lotto = new Lotto(customLotto);
         return lotto.lottoNumbers;
       });
     } else {
-      const lottos = autoLottos;
       this.#lottos = lottos.map((ticket) => {
-        const customLotto = this.#makeCustomLottoNumbers(ticket);
-        const lotto = new Lotto(customLotto);
+        const autoLotto = this.#drawAutoLottoNumbers(ticket);
+        const lotto = new Lotto(autoLotto);
         return lotto.lottoNumbers;
       });
     }
   }
 
   #makeCustomLottoNumbers(lotto) {
-    const splitedLottoNumbers = lotto.split(',');
-    splitedLottoNumbers.forEach((num) => {
+    lotto.forEach((num) => {
       this.#pushNotRedundantNumber(lotto, Number(num));
     });
     return lotto;

@@ -12,11 +12,11 @@ describe('로또 머신 테스트', () => {
 
   test('당첨된 로또 등수 내역 테스트', () => {
     const money = new Money(2000);
-    const myCustomLotto = [['1, 2, 8, 9, 10, 11'], ['1, 2, 8, 9, 5, 10'], ['1, 2, 8, 9, 10, 11']];
+    const myCustomLotto = ['1, 2, 8, 9, 10, 11', '1, 2, 8, 9, 5, 10', '1, 2, 8, 9, 10, 11'];
     const lottoMachine = new LottoMachine(money.count, myCustomLotto);
 
     const winningLottoNumber = '1, 2, 8, 9, 5, 6';
-    const bonusNumber = 10;
+    const bonusNumber = '10';
 
     lottoMachine.winningLotto = winningLottoNumber;
     lottoMachine.bonusNumber = bonusNumber;
