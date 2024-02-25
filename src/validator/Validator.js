@@ -99,7 +99,7 @@ const Validator = {
   },
 
   checkBonusNumberDuplicated(bonusNumber, winningNumbers) {
-    if (winningNumbers.includes(parseInt(bonusNumber))) {
+    if (winningNumbers.includes(parseInt(bonusNumber, 10))) {
       throw new Error(ERROR_MESSAGE.BONUS_NUMBER_DUPLICATED);
     }
   },
