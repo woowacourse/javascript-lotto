@@ -5,11 +5,17 @@
     --grey-scale-3: #B4B4B4;
     --grey-scale-4: #8B8B8B;
     --grey-scale-5: #000000;
+    --lotto-width: 414px;
+    --lotto-height: 727px;
 }
 
 * {
     margin: 0;
     font-family: 'Roboto';
+}
+
+html, body {
+    height: 100%;
 }
 
 .title {
@@ -24,20 +30,46 @@
     line-height: 24px;
 }
 
-.text {
+.textFont {
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
 }
 
-.buttonText {
+.buttonFont {
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
 }
 
 #header {
-    padding: 10px;
+    height: 7vh;
+    display: flex;
+    align-items: center;
     background-color: var(--lotto-primary); 
     color: var(--grey-scale-1);
+}
+
+#main {
+    display: flex;
+    justify-content: center;   
+}
+
+#layout {
+    width: var(--lotto-width);
+    height: 85vh;
+    border: 1px solid black;
+}
+
+#footer {
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #4E5BA633;
+}
+
+#footerText {
+    color: var(--lotto-primary);
+    font-weight: bold;
 }
