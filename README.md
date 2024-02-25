@@ -14,7 +14,7 @@ npm run start-step2
 
 ### UI
 - [x] header
-- [ ] footer
+- [x] footer
 - [ ] 전체 레이아웃 구성
 - [ ] 로또 구입 금액, 당첨번호, 보너스 번호 input
 - [ ] 당첨 통계 모달
