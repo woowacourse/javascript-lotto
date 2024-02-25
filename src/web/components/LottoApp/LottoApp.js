@@ -1,11 +1,8 @@
+import { CUSTOM_EVENT_TYPE } from '../../../constants/webApplication.js';
 import BaseComponent from '../BaseComponent/BaseComponent.js';
 import styles from './LottoApp.module.css';
 
 class LottoApp extends BaseComponent {
-  setEvent() {
-    this.on({ target: document, eventName: 'reset' }, () => this.render());
-  }
-
   render() {
     this.innerHTML = `
         <header class=${styles.navBar}>
@@ -22,6 +19,24 @@ class LottoApp extends BaseComponent {
         </footer>
         <winning-statistics-modal class="close"></winning-statistics-modal>
     `;
+  }
+
+  setEvent() {
+    this.on(
+      { target: document, eventName: CUSTOM_EVENT_TYPE.reset },
+      this.#handleRenderLottoApp.bind(this),
+    );
+  }
+
+  removeEvent() {
+    this.off(
+      { target: document, eventName: CUSTOM_EVENT_TYPE.reset },
+      this.#handleRenderLottoApp.bind(this),
+    );
+  }
+
+  #handleRenderLottoApp() {
+    this.render();
   }
 }
 

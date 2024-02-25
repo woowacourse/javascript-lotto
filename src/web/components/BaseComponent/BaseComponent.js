@@ -4,11 +4,15 @@ class BaseComponent extends HTMLElement {
     this.setEvent();
   }
 
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    this.removeEvent();
+  }
 
   render() {}
 
   setEvent() {}
+
+  removeEvent() {}
 
   getTemplate() {}
 
@@ -25,7 +29,7 @@ class BaseComponent extends HTMLElement {
     target.addEventListener(eventName, eventHandler);
   }
 
-  off({ target, eventName, eventHandler }) {
+  off({ target, eventName }, eventHandler) {
     target.removeEventListener(eventName, eventHandler);
   }
 }
