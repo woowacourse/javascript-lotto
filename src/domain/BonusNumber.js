@@ -4,34 +4,33 @@ import LOTTO_RULE from '../constants/rules/lottoRule';
 class BonusNumber {
   #bonumNumber;
 
-  constructor(number, winningLotto) {
-    const parsedBonusNumber = Number(number);
-    this.#validataeBonusNumber(parsedBonusNumber, winningLotto);
-    this.#bonumNumber = parsedBonusNumber;
+  constructor(bonusNumberInput, winningLotto) {
+    this.#bonumNumber = Number(bonusNumberInput);
+    this.#validateBonusNumber(winningLotto);
   }
 
-  #validataeBonusNumber(number, winningLotto) {
-    this.#isPositiveNumber(number);
-    this.#isInvalidNumberRange(number);
-    this.#hasRedundantNumber(number, winningLotto);
+  #validateBonusNumber(winningLotto) {
+    this.#isPositiveNumber();
+    this.#isInvalidNumberRange();
+    this.#hasRedundantNumber(winningLotto);
   }
 
-  #isPositiveNumber(number) {
-    if (isNaN(number) || number < 1) {
+  #isPositiveNumber() {
+    if (isNaN(this.#bonumNumber) || this.#bonumNumber < 1) {
       throw new Error(ERROR_MESSAGE.IS_NOT_POSITIVE_INTEGER);
     }
   }
 
-  #isInvalidNumberRange(number) {
-    if (number > LOTTO_RULE.RANDOM_NUMBER_TO || number < LOTTO_RULE.RANDOM_NUMBER_FROM) {
+  #isInvalidNumberRange() {
+    if (this.#bonumNumber > LOTTO_RULE.RANDOM_NUMBER_TO || this.#bonumNumber < LOTTO_RULE.RANDOM_NUMBER_FROM) {
       throw new Error(ERROR_MESSAGE.IS_INVALID_LOTTO_NUMBER_RANGE);
     }
   }
 
-  #hasRedundantNumber(number, winningLotto) {
+  #hasRedundantNumber(winningLotto) {
     const winningLottoNumbers = winningLotto.lottoNumbers;
 
-    if (winningLottoNumbers.includes(number)) {
+    if (winningLottoNumbers.includes(this.#bonumNumber)) {
       throw new Error(ERROR_MESSAGE.HAS_REDUNDANT_LOTTO_NUMBER);
     }
   }
