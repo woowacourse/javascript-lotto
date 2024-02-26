@@ -9,7 +9,6 @@ import InputView from "../view/InputVIew.js";
 import OutputView from "../view/OutputView.js";
 
 import { retryOnError } from "../utils/retryOnError.js";
-import { parseNumber } from "../utils/parseNumber.js";
 
 import { ERROR_MESSAGE } from "../constants/messages.js";
 
@@ -77,13 +76,15 @@ class LottoController {
   async #readMoney() {
     const rawAmount = await InputView.readBuyAmount();
 
-    return new Money(parseNumber(rawAmount));
+    return new Money(parseInt(rawAmount, 10));
   }
 
   async #readLotto() {
     const rawLottoNumbers = await InputView.readWinningNumbers();
     const lottoNumberStrings = rawLottoNumbers.split(",");
-    const lottoNumbers = lottoNumberStrings.map(parseNumber);
+    const lottoNumbers = lottoNumberStrings.map((string) =>
+      parseInt(string, 10)
+    );
 
     return new Lotto(lottoNumbers);
   }
