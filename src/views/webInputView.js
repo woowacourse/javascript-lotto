@@ -4,6 +4,7 @@ import bonusNumberValidator from '../validators/bonusNumberValidator.js';
 
 const $purchaseError = document.getElementById('purchaseError');
 const $winningNumberSection = document.getElementById('winningNumberSection');
+const $lottoNumberError = document.getElementById('lottoNumberError');
 
 const webInputView = {
   readPurchaseAmount() {
@@ -26,8 +27,11 @@ const webInputView = {
       const winningNumbersInput = [...document.querySelectorAll('#winningNumberInput')];
       const winningNumbers = winningNumbersInput.map(data => parseInt(data.value, 10));
       winningNumbersValidator.validate(winningNumbers);
+      $lottoNumberError.classList.add('hidden');
       return winningNumbers;
     } catch (error) {
+      $lottoNumberError.textContent = error.message;
+      $lottoNumberError.classList.remove('hidden');
       return false;
     }
   },
@@ -35,10 +39,16 @@ const webInputView = {
   readBonusNumber(winningNumbers) {
     try {
       const bonusNumberInput = document.getElementById('bonusNumberInput').value;
+      const $modalBackground = document.getElementById('modalBackground');
       const bonusNumber = parseInt(bonusNumberInput, 10);
       bonusNumberValidator.validate(bonusNumber, winningNumbers);
+      $lottoNumberError.classList.add('hidden');
+      $modalBackground.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
       return bonusNumber;
     } catch (error) {
+      $lottoNumberError.textContent = error.message;
+      $lottoNumberError.classList.remove('hidden');
       return false;
     }
   },

@@ -37,11 +37,10 @@ class WebLottoController {
 
   handleLottoResult = () => {
     const winningNumbers = webInputView.readWinningNumbers();
+    if (!winningNumbers) return;
     const bonusNumber = webInputView.readBonusNumber(winningNumbers);
+    if (!bonusNumber) return;
     const matchedResultList = this.#lottery.map(lotto => lotto.getMatchedAmount(winningNumbers, bonusNumber));
-    const $modalBackground = document.getElementById('modalBackground');
-    $modalBackground.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
     this.#processLottoResult(matchedResultList);
     this.#processProfit(matchedResultList);
   };

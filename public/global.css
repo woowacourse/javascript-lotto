@@ -193,6 +193,11 @@ input::placeholder {
     font-size: 14px;
 }
 
+#lottoNumberError {
+    color: red;
+    font-size: 12px;
+}
+
 #lottoResultSection {
     width: 330px;
     height: 500px;
