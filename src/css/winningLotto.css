@@ -1,0 +1,48 @@
+.winningLotto {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.winningform_title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.winningLotto_form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.input_winningNumber {
+  width: 34px;
+  height: 36px;
+  border: solid 1px var(--greyscale-3-color);
+  border-radius: var(--border-radius);
+}
+
+.input_bonusNumber {
+  width: 34px;
+  height: 36px;
+  border: solid 1px var(--greyscale-3-color);
+  border-radius: var(--border-radius);
+}
+
+.result_button {
+  width: 100%;
+  height: 36px;
+  background-color: var(--lotto-primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+
+  &:hover,
+  &:active {
+    background-color: var(--lotto-active-color);
+  }
+}

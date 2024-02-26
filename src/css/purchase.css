@@ -1,0 +1,28 @@
+.input_form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.input_purchaseAmount {
+  width: 294px;
+  height: 36px;
+  border: solid 1px var(--greyscale-3-color);
+  border-radius: var(--border-radius);
+}
+
+.purchase_button {
+  width: 56px;
+  height: 36px;
+  background-color: var(--lotto-primary-color);
+  border: none;
+  color: var(--greyscale-1-color);
+  border-radius: var(--border-radius);
+  padding: 6px, 6px, 6px, 8px;
+
+  &:hover,
+  &:active {
+    background-color: var(--lotto-active-color);
+  }
+}
