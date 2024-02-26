@@ -11,7 +11,7 @@ import AppError from '../../../errors/AppError/AppError.js';
 import { BonusNumberValidator, WinningNumberValidator } from '../../../validator/index.js';
 
 import { removeErrorMessage, showErrorMessage } from '../../utils/errorMessage.js';
-import { $ } from '../../utils/dom.js';
+import { $, $$ } from '../../utils/dom.js';
 import { COMPONENT_SELECTOR, CUSTOM_EVENT_TYPE } from '../../../constants/webApplication.js';
 
 const { LOTTO_RULE } = Lotto;
@@ -59,7 +59,7 @@ class WinningDetailForm extends BaseComponent {
     );
 
     this.off(
-      { target: $(this, COMPONENT_SELECTOR.winningDetailForm), eventName: 'submit' },
+      { target: $(COMPONENT_SELECTOR.winningDetailForm), eventName: 'submit' },
       this.#handleSubmit.bind(this),
     );
   }
@@ -71,7 +71,7 @@ class WinningDetailForm extends BaseComponent {
     );
 
     this.on(
-      { target: $(this, COMPONENT_SELECTOR.winningDetailForm), eventName: 'submit' },
+      { target: $(COMPONENT_SELECTOR.winningDetailForm), eventName: 'submit' },
       this.#handleSubmit.bind(this),
     );
   }
@@ -85,19 +85,15 @@ class WinningDetailForm extends BaseComponent {
   }
 
   #initWinningDetailInputs() {
-    this.querySelectorAll(COMPONENT_SELECTOR.winningNumberInputs).forEach(
-      (winningNumberInputElement) => {
-        winningNumberInputElement.value = '';
-      },
-    );
+    $$(COMPONENT_SELECTOR.winningNumberInputs).forEach((winningNumberInputElement) => {
+      winningNumberInputElement.value = '';
+    });
 
-    $(this, COMPONENT_SELECTOR.bonusNumberInput).value = '';
+    $(COMPONENT_SELECTOR.bonusNumberInput).value = '';
   }
 
   #focusFirstWinningNumberInput() {
-    const winningNumberInputElementList = this.querySelectorAll(
-      COMPONENT_SELECTOR.winningNumberInputs,
-    );
+    const winningNumberInputElementList = $$(COMPONENT_SELECTOR.winningNumberInputs);
 
     if (
       winningNumberInputElementList &&
@@ -125,28 +121,28 @@ class WinningDetailForm extends BaseComponent {
   #handleError(error) {
     if (error instanceof AppError) {
       const nonPrefixErrorMessage = error.message.replace(AppError.PREFIX, '');
-      showErrorMessage(nonPrefixErrorMessage, COMPONENT_SELECTOR.winningDetailForm);
+      showErrorMessage(nonPrefixErrorMessage, $(COMPONENT_SELECTOR.winningDetailForm));
     }
   }
 
   #createWinningResultParams() {
     const { winningNumber, bonusNumber } = this.#createWinningDetail();
 
-    const { buyLottoPrice, lottoNumbers } = document
-      .querySelector(COMPONENT_SELECTOR.purchasedLottoSection)
-      .getBuyLottoDetails();
+    const { buyLottoPrice, lottoNumbers } = $(
+      COMPONENT_SELECTOR.purchasedLottoSection,
+    ).getBuyLottoDetails();
 
     return { winningNumber, bonusNumber, buyLottoPrice, lottoNumbers };
   }
 
   #createWinningDetail() {
     const winningNumber = Array.from(
-      this.querySelectorAll(COMPONENT_SELECTOR.winningNumberInputs),
+      $$(COMPONENT_SELECTOR.winningNumberInputs),
       (input) => input.value,
     )
       .filter((input) => input !== '')
       .map(Number);
-    const bonusNumber = Number($(this, COMPONENT_SELECTOR.bonusNumberInput)?.value);
+    const bonusNumber = Number($(COMPONENT_SELECTOR.bonusNumberInput)?.value);
 
     WinningNumberValidator.checkWinningNumber(winningNumber);
     BonusNumberValidator.checkBonusNumber(bonusNumber, winningNumber);

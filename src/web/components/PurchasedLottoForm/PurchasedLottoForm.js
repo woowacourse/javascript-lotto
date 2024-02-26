@@ -26,14 +26,14 @@ class PurchasedLottoForm extends BaseComponent {
 
   removeEvent() {
     this.off(
-      { target: $(this, COMPONENT_SELECTOR.purchasedLottoForm), eventName: 'submit' },
+      { target: $(COMPONENT_SELECTOR.purchasedLottoForm), eventName: 'submit' },
       this.#handleSubmitBuyLottoPrice.bind(this),
     );
   }
 
   setEvent() {
     this.on(
-      { target: $(this, COMPONENT_SELECTOR.purchasedLottoForm), eventName: 'submit' },
+      { target: $(COMPONENT_SELECTOR.purchasedLottoForm), eventName: 'submit' },
       this.#handleSubmitBuyLottoPrice.bind(this),
     );
   }
@@ -47,7 +47,7 @@ class PurchasedLottoForm extends BaseComponent {
 
       removeErrorMessage(this);
 
-      $(this, COMPONENT_SELECTOR.purchasedLottoInput).value = '';
+      $(COMPONENT_SELECTOR.purchasedLottoInput).value = '';
 
       this.emit(CUSTOM_EVENT_TYPE.buyLottoPrice, Number(purchasedLottoPrice));
     } catch (error) {
@@ -58,12 +58,12 @@ class PurchasedLottoForm extends BaseComponent {
   #handleError(error) {
     if (error instanceof AppError) {
       const nonPrefixErrorMessage = error.message.replace(AppError.PREFIX, '');
-      showErrorMessage(nonPrefixErrorMessage, COMPONENT_SELECTOR.purchasedLottoForm);
+      showErrorMessage(nonPrefixErrorMessage, $(COMPONENT_SELECTOR.purchasedLottoForm));
     }
   }
 
   #getPurchasedLottoPrice() {
-    const purchasedLottoInputElement = $(this, COMPONENT_SELECTOR.purchasedLottoInput);
+    const purchasedLottoInputElement = $(COMPONENT_SELECTOR.purchasedLottoInput);
 
     return purchasedLottoInputElement?.value;
   }

@@ -108,12 +108,12 @@ class WinningStatisticsModal extends BaseComponent {
     );
 
     this.off(
-      { target: $(this, COMPONENT_SELECTOR.modalCloseButton), eventName: 'click' },
+      { target: $(COMPONENT_SELECTOR.modalCloseButton), eventName: 'click' },
       this.#handleCloseModal.bind(this),
     );
 
     this.off(
-      { target: $(this, COMPONENT_SELECTOR.resetButton), eventName: 'click' },
+      { target: $(COMPONENT_SELECTOR.resetButton), eventName: 'click' },
       this.#handleDispatchResetEvent.bind(this),
     );
   }
@@ -125,12 +125,12 @@ class WinningStatisticsModal extends BaseComponent {
     );
 
     this.on(
-      { target: $(this, COMPONENT_SELECTOR.modalCloseButton), eventName: 'click' },
+      { target: $(COMPONENT_SELECTOR.modalCloseButton), eventName: 'click' },
       this.#handleCloseModal.bind(this),
     );
 
     this.on(
-      { target: $(this, COMPONENT_SELECTOR.resetButton), eventName: 'click' },
+      { target: $(COMPONENT_SELECTOR.resetButton), eventName: 'click' },
       this.#handleDispatchResetEvent.bind(this),
     );
   }

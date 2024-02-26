@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { COMPONENT_SELECTOR } from '../../constants/webApplication';
 import { $ } from './dom';
 
@@ -11,10 +12,10 @@ const createErrorMessage = (message) => {
   return paragraphElement;
 };
 
-const commitNewErrorMessage = (message, targetSelector) => {
+const commitNewErrorMessage = (message, targetElement) => {
   const errorMessageElement = createErrorMessage(message);
 
-  document.querySelector(targetSelector).appendChild(errorMessageElement);
+  targetElement.appendChild(errorMessageElement);
 };
 
 const updateErrorMessage = (errorMessageElement, message) => {
@@ -22,7 +23,7 @@ const updateErrorMessage = (errorMessageElement, message) => {
 };
 
 export const showErrorMessage = (message, targetElement) => {
-  const errorMessageElement = $($(document, targetElement), COMPONENT_SELECTOR.errorMessage);
+  const errorMessageElement = $(COMPONENT_SELECTOR.errorMessage, targetElement);
 
   if (errorMessageElement) {
     updateErrorMessage(errorMessageElement, message);
@@ -33,7 +34,7 @@ export const showErrorMessage = (message, targetElement) => {
 };
 
 export const removeErrorMessage = (targetElement) => {
-  const errorMessageElement = $(targetElement, COMPONENT_SELECTOR.errorMessage);
+  const errorMessageElement = $(COMPONENT_SELECTOR.errorMessage, targetElement);
 
   if (errorMessageElement) errorMessageElement.remove();
 };
