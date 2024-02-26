@@ -2,7 +2,7 @@ import executeOrRetryAsync from '../utils/executeOrRetryAsync.js';
 import bonusNumberValidator from '../validator/bonusNumberValidator.js';
 import commonValidator from '../validator/commonValidator.js';
 import lottoNumberValidator from '../validator/lottoNumberValidator.js';
-import inputView from '../view/inputView.js';
+import inputView from '../view/consoleView/inputView.js';
 
 class WinningLottoGenerator {
   async #readAndValidateWinningLottoNumbers() {

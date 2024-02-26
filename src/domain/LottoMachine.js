@@ -1,12 +1,20 @@
 import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/lotto-constants.js';
 import createUniqueNumbersInRange from '../utils/createUniqueNumbersInRange.js';
+import purchaseAmountValidator from '../validator/purchaseAmountValidator.js';
 
 import Lotto from './lotto.js';
 
 const lottoMachine = {
+  checkPurchaseAmount: (purchaseAmount) => {
+    purchaseAmountValidator.validate(purchaseAmount);
+
+    return Number(purchaseAmount);
+  },
+
   makeLottos: (purchaseAmount) => {
+    const validatedPurchaseAmount = lottoMachine.checkPurchaseAmount(purchaseAmount);
     return Array.from(
-      { length: purchaseAmount / LOTTO_PRICE },
+      { length: validatedPurchaseAmount / LOTTO_PRICE },
       () =>
         new Lotto(
           createUniqueNumbersInRange({

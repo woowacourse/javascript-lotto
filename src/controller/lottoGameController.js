@@ -1,7 +1,7 @@
 import { LOTTO_PRICE } from '../constants/lotto-constants.js';
 import RETRY_INPUT from '../constants/system.js';
 import LottoResultCalculator from '../domain/lottoResultCalculator.js';
-import inputView from '../view/inputView.js';
+import inputView from '../view/consoleView/inputView.js';
 import outputView from '../view/outputView.js';
 
 import LottoPurchaseController from './lottoPurchaseController.js';
