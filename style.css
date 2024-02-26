@@ -1,0 +1,146 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+header {
+  width: 100%;
+  height: 64px;
+  background-color: #4e5ba6;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.header-title {
+  color: #ffffff;
+  margin: 0 0 0 130px;
+}
+
+.title {
+  margin: 5px;
+  padding: 0;
+  align-self: center;
+}
+
+.purchase div {
+  margin-bottom: 5px;
+}
+
+.purchase-info {
+  margin-bottom: 2px;
+}
+
+section {
+  flex-grow: 1;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fcfcfd;
+}
+
+article {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  width: 414px;
+  border-radius: 4px;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-between;
+  padding: 20px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.purcase {
+  width: 100%;
+}
+
+.purchase-input {
+  display: flex;
+  gap: 10px;
+}
+
+.purchase-input input {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.purchase-input button {
+  color: white;
+  background-color: #4e5ba6;
+  border-radius: 4px;
+  padding: 6px 6px 6px 8px;
+  border: none;
+  width: 56px;
+}
+
+.winning-lotto {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-lotto input {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.winning-lotto_label {
+  display: flex;
+  justify-content: space-between;
+}
+
+ul,
+li {
+  list-style: none; /* 목록 마커를 제거합니다 */
+  margin: 0; /* 기본 마진을 제거합니다 */
+  padding: 0; /* 기본 패딩을 제거합니다 */
+}
+
+.result_button {
+  align-self: center;
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  background: #4e5ba6;
+  border: none;
+  color: #ffffff;
+}
+
+footer {
+  width: 100%;
+  height: 50px;
+  bottom: 0px;
+  right: 0px;
+  background-color: #fcfcfd;
+  border-top: 1px solid #4e5ba633;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+}
