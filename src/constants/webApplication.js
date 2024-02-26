@@ -1,7 +1,7 @@
 export const CUSTOM_EVENT_TYPE = Object.freeze({
   buyLottoPrice: 'buyLottoPrice',
   openModal: 'openModal',
-  reset: 'reset',
+  reset: 'resetGame',
 });
 
 export const COMPONENT_SELECTOR = Object.freeze({
