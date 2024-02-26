@@ -22,7 +22,7 @@ class MoneyInput extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     const money = this.$target.querySelector('#money').value;
-    this.props.updateMoney(money);
+    this.props.purchaseLottoTickets(money);
   }
 }
 

@@ -1,11 +1,13 @@
 import Component from './Component';
 import MoneyInput from './MoneyInput';
+import LottoDisplay from './LottoDisplay';
 import Validator from '../domain/Validator';
+import LottoGenerator from '../controller/LottoGenerator';
 
 class LottoPurchaseBox extends Component {
   setup() {
     this.state = {
-      money: 0,
+      lottoTickets: [],
     };
   }
 
@@ -14,18 +16,25 @@ class LottoPurchaseBox extends Component {
         <section class="lotto-purchase-box">
             <p class="lotto-purchase-title">🎱 내 번호 당첨 확인 🎱</p>
             <section class="money-input"></section>
+            <section class="lotto-display"></section>
         </section>
     `;
   }
 
   mounted() {
     const $moneyInput = this.$target.querySelector('.money-input');
-    new MoneyInput($moneyInput, { updateMoney: (newMoney) => this.updateMoney(newMoney) });
+    const $lottoDisplay = this.$target.querySelector('.lotto-display');
+
+    new MoneyInput($moneyInput, {
+      purchaseLottoTickets: (money) => this.purchaseLottoTickets(money),
+    });
+    new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
   }
 
-  updateMoney(newMoney) {
+  purchaseLottoTickets(money) {
     try {
-      this.setState({ money: Validator.validateMoney(newMoney) });
+      Validator.validateMoney(money);
+      this.setState({ lottoTickets: LottoGenerator.createLotto(money) });
     } catch (error) {
       alert(error.message);
     }
