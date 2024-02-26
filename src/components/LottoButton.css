@@ -12,3 +12,10 @@ lotto-button {
 lotto-button .lotto-caption {
   color: var(--lotto-greyscale-1);
 }
+
+lotto-button:hover {
+}
+
+lotto-button:active {
+  background-color: var(--lotto-primary-active);
+}
