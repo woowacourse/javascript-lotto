@@ -1,0 +1,34 @@
+button {
+  height: 36px;
+  background-color: var(--blue-color);
+  font-weight: var(--button-bold);
+  font-size: var(--button-font);
+  color: var(--white-color);
+  padding: 6px 6px 6px 8px;
+  border: 1px solid var(--blue-color);
+  border-radius: 4px;
+  line-height: 16px;
+  box-sizing: border-box;
+  letter-spacing: 1.25px;
+}
+button:active {
+  background-color: var(--white-color);
+  color: var(--blue-color);
+}
+
+input {
+  border: 1px solid var(--gray-color);
+  border-radius: 4px;
+  color: var(--black-color);
+  height: 36px;
+  box-sizing: border-box;
+}
+input:focus {
+  outline: none;
+  color: var(--deep-gray-color);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
