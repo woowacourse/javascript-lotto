@@ -6,6 +6,10 @@ const $purchaseForm = document.getElementById('purchaseForm');
 const $purchaseBtn = document.getElementById('purchaseButton');
 const $winningNumberInput = document.getElementById('winningNumberInput');
 const $closeBtn = document.getElementById('closeButton');
+const $restartBtn = document.getElementById('restartButton');
+const $purchaseSection = document.getElementById('purchaseResultSection');
+const $winningNumberSection = document.getElementById('winningNumberSection');
+const $lottoNumberWrapper = document.getElementById('lottoNumberWrapper');
 
 const app = {
   play() {
@@ -29,6 +33,15 @@ const handleCloseModal = () => {
   modal.close();
 };
 
+const handleClickRestart = () => {
+  modal.close();
+  $purchaseForm.reset();
+  $purchaseSection.replaceChildren();
+  $winningNumberSection.classList.add('hidden');
+  $lottoNumberWrapper.reset();
+};
+
 $purchaseForm.addEventListener('submit', handleFormSubmit);
 $purchaseBtn.addEventListener('click', handlePurchaseBtn);
 $closeBtn.addEventListener('click', handleCloseModal);
+$restartBtn.addEventListener('click', handleClickRestart);
