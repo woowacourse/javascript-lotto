@@ -1,5 +1,6 @@
 @import url('./main.css');
 @import url('./component.css');
+@import url('./modal.css');
 
 :root {
   --white-color: rgba(255, 255, 255, 1);
@@ -30,8 +31,12 @@ body {
   font-size: var(--default-font);
   font-weight: var(--default-bold);
   background-color: var(--light-gray-color);
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 body #app {
   position: relative;
+  height: 100vh;
+  width: 100vw;
 }
