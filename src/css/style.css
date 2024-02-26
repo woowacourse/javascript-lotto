@@ -1,0 +1,46 @@
+@import './reset.css';
+@import './theme.css';
+
+header {
+  width: 100%;
+  height: 64px;
+  background-color: var(--blue);
+}
+
+header .title {
+  position: absolute;
+  top: 14px;
+  left: 130px;
+  color: var(--white);
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 64px - 64px);
+  background-color: var(--light-gray);
+}
+
+section {
+  position: absolute;
+  width: 414px;
+  height: 727px;
+  background-color: var(--white);
+  border: 1px solid var(--gray);
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 64px;
+  border-top: 1px solid #4e5ba633;
+  background-color: var(--light-gray);
+}
+
+footer .caption {
+  color: var(--blue);
+}
