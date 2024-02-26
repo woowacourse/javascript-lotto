@@ -95,11 +95,10 @@ class WinningDetailForm extends BaseComponent {
   #focusFirstWinningNumberInput() {
     const winningNumberInputElementList = $$(COMPONENT_SELECTOR.winningNumberInputs);
 
-    if (
-      winningNumberInputElementList &&
-      winningNumberInputElementList[0] instanceof HTMLInputElement
-    ) {
-      winningNumberInputElementList[0].focus();
+    const firstWinningNumberInputElement = winningNumberInputElementList?.at(0);
+
+    if (firstWinningNumberInputElement instanceof HTMLInputElement) {
+      firstWinningNumberInputElement.focus();
     }
   }
 
