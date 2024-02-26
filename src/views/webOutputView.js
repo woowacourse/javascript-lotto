@@ -27,7 +27,19 @@ const webOutputView = {
   },
 
   printLottoResult(ranks) {
+    const $lottoResultTable = document.getElementById('lottoResultTable');
+    $lottoResultTable.replaceChildren();
     const resultTableFragment = document.createDocumentFragment();
+
+    const lottoResultRowTitle = document.createElement('div');
+    lottoResultRowTitle.classList.add('lotto-result-row');
+    lottoResultRowTitle.classList.add('table-title');
+    PRIZE.TABLE_TITLE_LIST.forEach(text => {
+      const lottoTableTitle = document.createElement('div');
+      lottoTableTitle.textContent = text;
+      lottoTableTitle.classList.add('lotto-result-cell');
+      lottoResultRowTitle.appendChild(lottoTableTitle);
+    });
 
     // 반복할 때마다 lottoResultRow 하나씩 생성
     [PRIZE.FIFTH, PRIZE.FORTH, PRIZE.THIRD, PRIZE.SECOND, PRIZE.FIRST].forEach(rank => {
@@ -52,7 +64,7 @@ const webOutputView = {
       resultTableFragment.appendChild(lottoResultRow);
     });
 
-    const $lottoResultTable = document.getElementById('lottoResultTable');
+    $lottoResultTable.appendChild(lottoResultRowTitle);
     $lottoResultTable.appendChild(resultTableFragment);
   },
 
