@@ -1,5 +1,8 @@
 import Dom from '../../utils/Dom';
 import Web from '../../utils/Web';
+import Condition from '../../constants/Condition';
+
+const { LOTTO } = Condition;
 
 const Input = {
   async readMoney() {
@@ -13,6 +16,10 @@ const Input = {
   },
 
   async readWinningNumbers() {
+    Array.from({ length: LOTTO.NUMBER_LENGTH }).forEach(() => {
+      Dom.createAppendTagNode({ target: '.read-winning-numbers', tag: 'input', attribute: { class: 'read-winning-numbers-input', type: 'text' } });
+    });
+    Dom.createAppendTagNode({ target: '.read-winning-numbers', tag: 'button', attribute: { id: 'read-winning-numbers-submit', type: 'button', text: '등록' } });
     const input = await Web.readTagValues({ button: '#read-winning-numbers-submit', inputs: '.read-winning-numbers-input' });
     return input;
   },

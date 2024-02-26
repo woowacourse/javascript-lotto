@@ -14,6 +14,17 @@ const Web = {
       });
     });
   },
+
+  readTagValues(selector) {
+    return new Promise((resolve) => {
+      const button = Dom.$(selector.button);
+      const inputs = Dom.$$(selector.inputs);
+
+      button.addEventListener('click', () => {
+        resolve(inputs.map((input) => input.value).join());
+      });
+    });
+  },
 };
 
 export default Web;
