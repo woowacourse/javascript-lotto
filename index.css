@@ -1,0 +1,159 @@
+* {
+}
+
+body {
+  background-color: var(--lotto-greyscale2-color);
+  margin: 0;
+}
+
+/* 공통 스타일 속성 */
+
+:root {
+  --lotto-primary-color: #4e5ba6;
+  --lotto-greyscale1-color: #ffffff;
+  --lotto-greyscale2-color: #fcfcfd;
+  --lotto-greyscale3-color: #b4b4b4;
+  --lotto-greyscale4-color: #8b8b8b;
+  --lotto-greyscale5-color: #000000;
+}
+
+.lotto-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.lotto-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15000000596046448px;
+  text-align: left;
+}
+
+.lotto-body {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.lotto-placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.lotto-caption {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+#main-header {
+  display: flex;
+  background: var(--lotto-primary-color);
+}
+
+#header-title {
+  color: var(--lotto-greyscale1-color);
+}
+
+#main-body {
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: center;
+}
+
+#content-box {
+  background-color: var(--lotto-greyscale1-color);
+  width: 414px;
+  height: 727px;
+  top: 148px;
+  left: 513px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#content-box-header {
+  color: var(--lotto-greyscale5-color);
+}
+
+#content-box-input-budget {
+}
+
+#content-box-lottos {
+}
+
+#content-box-input-combination {
+  display: flex;
+  flex-direction: row;
+}
+#content-box-numbers {
+}
+
+#content-box-numbers-input {
+}
+
+#lotto-input {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  width: 34px;
+  height: 36px;
+  top: 596px;
+  left: 16px;
+}
+
+#content-box-bonus {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+#content-box-bonus-input {
+}
+
+#content-box-result {
+  display: flex;
+  background-color: purple;
+  justify-content: center;
+}
+
+#result-btn {
+  width: 100%;
+  background-color: var(--lotto-primary-color);
+  color: var(--lotto-greyscale1-color);
+  width: Fixed (382px);
+  height: 36px;
+  top: 659px;
+  left: 16px;
+  padding: 6px, 6px, 6px, 8px;
+  border-radius: 4px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-align: center;
+}
+
+#footer {
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+}
+
+#footer-msg {
+  display: flex;
+}

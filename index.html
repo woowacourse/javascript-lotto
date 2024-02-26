@@ -1,16 +1,72 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+<head>
+  <meta charset="UTF-8" />
+  <title>🎱 행운의 로또 by 프룬🍒</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div id="main-header" class="lotto-title">
+      <h1 id="header-title">🎱 행운의 로또</h1>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
-  </body>
+
+    <div id="main-body">
+      <div id="content-box">
+        <div id="content-box-header">
+          <p class="lotto-subtitle">🎱 내 번호 당첨 확인 🎱</p>
+        </div>
+
+        <p>구입할 금액을 입력해주세요.</p>
+        <form id="content-box-input-budget">
+          <input type="number" id="budget" name="budget" placeholder="금액" />
+          <button type="submit">구입</button>
+        </form>
+
+        <div id="content-box-lottos">
+          <p>총 <span id="issued-lotto-count"></span>개를 구매하였습니다.</p>
+          <div>n, n, n, n, n, n</div>
+          <div>n, n, n, n, n, n</div>
+          <div>n, n, n, n, n, n</div>
+          <div>n, n, n, n, n, n</div>
+        </div>
+
+        <div id="content-box-input-combination">
+          <div id="content-box-numbers">
+            <p>당첨 번호</p>
+            <div id="content-box-numbers-input">
+              <input id="lotto-input" />
+              <input id="lotto-input" />
+              <input id="lotto-input" />
+              <input id="lotto-input" />
+              <input id="lotto-input" />
+              <input id="lotto-input" />
+            </div>
+          </div>
+          <div id="content-box-bonus">
+            <p>보너스 번호</p>
+            <div id="content-box-bonus-input">
+              <input id="lotto-input" />
+            </div>
+          </div>
+        </div>
+
+        <div id="content-box-result">
+          <button id="result-btn" class="">결과 확인하기</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="footer">
+      <p class="lotto-caption">Copyright 2023. woowacourse</p>
+    </div>
+
+  </div>
+  <script type="module" src="./src/js/index.js"></script>
+</body>
+
 </html>
