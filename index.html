@@ -2,9 +2,9 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
   </head>
 
@@ -16,10 +16,10 @@
           <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
           <div class="purchase">
             <div>구입할 금액을 입력해주세요.</div>
-            <div class="purchase-input">
-              <input />
-              <button>구입</button>
-            </div>
+            <form id="purchase-form">
+              <input id="purchaseAmount-input" type="number" placeholder="금액" />
+              <button id="purchase-button">구입</button>
+            </form>
           </div>
           <div>총 7개를 구매했습니다.</div>
           <ul>
