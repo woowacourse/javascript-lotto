@@ -1,0 +1,17 @@
+:root {
+  --lotto-primary-color: #4e5ba6;
+  --lotto-greyScale1-color: #ffffff;
+  --lotto-greyScale2-color: #fcfcfd;
+  --lotto-greyScale3-color: #b4b4b4;
+  --lotto-greyScale4-color: #8b8b8b;
+  --lotto-greyScale5-color: #000000;
+  --lotto-fontFamily: 'Roboto';
+  --lotto-title-fontWeight: 800;
+  --lotto-title-fontSize: 24px;
+  --lotto-subtitle-fontWeight: 600;
+  --lotto-subtitle-fontSize: 20px;
+  --lotto-bodyAndPlaceholder-fontWeight: 400;
+  --lotto-bodyAndPlaceholder-fontSize: 15px;
+  --lotto-caption-fontWeight: 700;
+  --lotto-caption-fontSize: 14px;
+}
