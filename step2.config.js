@@ -41,6 +41,7 @@ module.exports = {
       template: './index.html',
       title: 'web-lotto game',
       inject: 'body',
+      favicon: './favicon.ico',
     }),
   ],
   devtool: 'inline-source-map',
