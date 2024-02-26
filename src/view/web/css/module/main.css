@@ -106,3 +106,17 @@ section header h1 {
   letter-spacing: var(--body-letter);
 }
 
+.read-winning-numbers h2 {
+  margin-bottom: 1.2rem;
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter);
+}
+
+.winning-numbers-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
