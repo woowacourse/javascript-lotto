@@ -111,7 +111,7 @@ class LottoGame {
     const lengthMessage = this.controllers.message.lottoTicketsCount(lottoTickets.length);
     const detailMessage = this.controllers.message.purchaseResultDetail(lottoTickets);
 
-    this.views.output.printLottoTickesCount(lengthMessage);
+    this.views.output.printLottoTicketsCount(lengthMessage);
     this.views.output.printPurchaseResultDetail(detailMessage);
   }
 }

@@ -3,7 +3,7 @@ import Message from '../../constants/Message';
 const { OUTPUT } = Message;
 
 const Output = {
-  printLottoTickesCount(lottoTicketsCount) {
+  printLottoTicketsCount(lottoTicketsCount) {
     console.log(lottoTicketsCount);
   },
 
