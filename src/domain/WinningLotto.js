@@ -53,7 +53,7 @@ class WinningLotto {
         standard.hasBonusNumber === hasBonusNumber
     );
 
-    return foundRankStandard?.rank || LOTTO_RANK.none;
+    return foundRankStandard ? foundRankStandard.rank : LOTTO_RANK.none;
   }
 }
 
