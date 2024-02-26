@@ -51,13 +51,49 @@
           </div>
           <button id="lottoResultButton" class="button">결과 확인하기</button>
         </section>
-        <section>
-          <div>🏆 당첨 통계 🏆</div>
-          <div>
-            <div>일치 갯수</div>
-            <div>당첨금</div>
-            <div>당첨 갯수</div>
+        <section id="lottoResultSection">
+          <div id="closeButtonWrapper">
+            <button id="closeButton">X</button>
           </div>
+          <div id="lottoResultTitleWrapper">
+            <div class="title">🏆 당첨 통계 🏆</div>
+          </div>
+          <div id="lottoResultTable">
+            <div class="lotto-result-row table-title">
+              <div class="lotto-result-cell">일치 갯수</div>
+              <div class="lotto-result-cell">당첨금</div>
+              <div class="lotto-result-cell">당첨 갯수</div>
+            </div>
+            <div class="lotto-result-row">
+              <div class="lotto-result-cell">3개</div>
+              <div class="lotto-result-cell">5,000</div>
+              <div class="lotto-result-cell">0 개</div>
+            </div>
+            <div class="lotto-result-row">
+              <div class="lotto-result-cell">4개</div>
+              <div class="lotto-result-cell">15,000</div>
+              <div class="lotto-result-cell">0 개</div>
+            </div>
+            <div class="lotto-result-row">
+              <div class="lotto-result-cell">5개</div>
+              <div class="lotto-result-cell">1,500,000</div>
+              <div class="lotto-result-cell">0 개</div>
+            </div>
+            <div class="lotto-result-row">
+              <div class="lotto-result-cell">5개+보너스볼</div>
+              <div class="lotto-result-cell">30,000,000</div>
+              <div class="lotto-result-cell">0 개</div>
+            </div>
+            <div class="lotto-result-row">
+              <div class="lotto-result-cell">6개</div>
+              <div class="lotto-result-cell">2,000,000,000</div>
+              <div class="lotto-result-cell">0 개</div>
+            </div>
+            <div id="lottoProfitWrapper">
+              <div id="profitText">당신의 총 수익률은 0 %입니다.</div>
+            </div>
+          </div>
+          <button id="retryButton" class="button buttonFont">다시 시작하기</button>
         </section>
       </section>
     </section>
