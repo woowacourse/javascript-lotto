@@ -4,18 +4,17 @@ class LottoDisplay extends Component {
   template() {
     const { lottoTickets } = this.props;
 
-    if (lottoTickets.length > 1) {
-      return `    
+    return `   
+        <p>총 ${lottoTickets.length}개를 구매하였습니다.</p>
         <section>
-            <p>총 ${lottoTickets.length}개를 구매하였습니다.</p>
             ${lottoTickets
-              .map((lottoTicket) => `<p>🎟️ ${lottoTicket.getSortedNumbersAscending()}</p>`)
+              .map(
+                (lottoTicket) =>
+                  `<p><span>🎟️</span> ${lottoTicket.getSortedNumbersAscending().join(', ')}</p>`,
+              )
               .join('')}
         </section>
         `;
-    } else {
-      return '';
-    }
   }
 }
 

@@ -113,3 +113,38 @@ main {
   letter-spacing: 1.25px;
   text-align: center;
 }
+
+/* LottoDisplay */
+.lotto-display {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin: 24px 16px;
+}
+
+.lotto-display p {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.lotto-display span {
+  font-family: Roboto;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.lotto-display section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
