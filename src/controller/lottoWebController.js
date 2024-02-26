@@ -1,5 +1,6 @@
 import "../../index.css";
 import Lotto from "../domain/Lotto";
+import randomLottoArray from "../domain/randomLottoMaker";
 import { $ } from "../utils/querySelector";
 import budgetValidation from "../validation/budgetValidation";
 import startValidation from "../validation/startValidation";
@@ -23,14 +24,32 @@ const lottoWebController = {
     const webBudgetInput = $("#budget").value;
     const webBudget = Number(webBudgetInput);
     try {
+      // 유효성 검사 해줘
       startValidation(budgetValidation.categories, webBudget);
-      const webLotto = new Lotto(webBudget);
-      const webIssuedLottoCount = webLotto.calculateIssuedLottoCount();
-      $("#issued-lotto-count").innerHTML = webIssuedLottoCount;
+
+      // 로또 발행 장 수 계산해줘
+      const webIssuedLottoCount = this.calculateWebIssuedLottoCount(webBudget);
+
+      // 발행된 로또 번호 가져와서 보여줘
+      const webIssuedLottoArray = randomLottoArray(webIssuedLottoCount);
+      webIssuedLottoArray.forEach((array) => {
+        const issuedLottoDiv = document.createElement("div");
+        const curr = $("#content-box-lottos");
+        issuedLottoDiv.innerHTML = array;
+        curr.append(issuedLottoDiv);
+      });
+
       return true;
     } catch (error) {
       alert(error.message); // TODO : alert 말고 다른 종류로 바꾸기
     }
+  },
+
+  calculateWebIssuedLottoCount(webBudget) {
+    const webLotto = new Lotto(webBudget);
+    const webIssuedLottoCount = webLotto.calculateIssuedLottoCount();
+    $("#issued-lotto-count").innerHTML = webIssuedLottoCount;
+    return webIssuedLottoCount;
   },
 };
 
