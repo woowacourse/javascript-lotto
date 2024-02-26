@@ -20,9 +20,7 @@ class LottoGameController {
   async start() {
     await this.play();
     const restart = await this.#inputView.inputRestartGame();
-    if (restart === RETRY_INPUT.lower || restart === RETRY_INPUT.upper) {
-      this.start();
-    }
+    if (restart.toLowerCase() === RETRY_INPUT) this.start();
   }
 
   async play() {
