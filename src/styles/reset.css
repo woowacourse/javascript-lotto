@@ -1,0 +1,66 @@
+:root {
+  --lotto-primary: #4E5BA6;
+  --lotto-greyscale-1: #fff;
+  --lotto-greyscale-2: #FCFCFD;
+  --lotto-greyscale-3: #B4B4B4;
+  --lotto-greyscale-4: #8B8B8B;
+  --lotto-greyscale-5: #000;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 15px;
+  font-weight: 400;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 800;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  display:flex;
+  justify-content: center;
+  align-items: center
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
