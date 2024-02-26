@@ -11,13 +11,20 @@ class BonusNumber {
   }
 
   #validataeBonusNumber(number, winningLotto) {
+    this.#isNumber(number);
     this.#isPositiveNumber(number);
     this.#isValidNumberRange(number);
     this.#hasRedundantNumber(number, winningLotto);
   }
 
+  #isNumber(number) {
+    if (isNaN(number)) {
+      throw new Error(ERROR_MESSAGE.IS_NOT_NUMBER);
+    }
+  }
+
   #isPositiveNumber(number) {
-    if (isNaN(number) || number < 1) {
+    if (number < 1) {
       throw new Error(ERROR_MESSAGE.IS_NOT_POSITIVE_INTEGER);
     }
   }
