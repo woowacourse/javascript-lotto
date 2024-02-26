@@ -1,11 +1,8 @@
-lotto-input-field {
-  display: flex;
-  align-items: center;
-
+price-input-field {
   height: 36px;
 }
 
-.lotto-input {
+.price-input {
   width: 100%;
   height: 100%;
 
@@ -23,7 +20,7 @@ lotto-input-field {
   color: var(--lotto-greyscale-5);
 }
 
-.lotto-input::placeholder {
+.price-input::placeholder {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;

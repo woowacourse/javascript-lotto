@@ -10,14 +10,14 @@ purchase-price-form .lotto-button {
   width: 56px;
 }
 
-.input-container {
+.price-input-container {
   display: flex;
   flex-direction: column;
   flex: auto;
   gap: 4px;
 }
 
-.label-container {
+.price-input-label-container {
   display: flex;
   align-items: center;
   height: 24px;

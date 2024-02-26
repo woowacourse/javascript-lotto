@@ -1,6 +1,7 @@
 import './LottoMain.css';
 import './PurchasePriceForm.js';
 import './PurchasedInfo.js';
+import './WinningAndBonusInputForm.js';
 
 const LOTTO_MAIN_CONTAINER = `
   <div class="lotto-main-container">
@@ -11,6 +12,7 @@ const LOTTO_MAIN_CONTAINER = `
     </div>
     <purchase-price-form></purchase-price-form>
     <purchased-info></purchased-info>
+    <winning-numbers-form></winning-numbers-form>
   </div>
 `;
 

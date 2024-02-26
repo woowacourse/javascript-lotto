@@ -1,0 +1,20 @@
+winning-numbers-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 100%;
+}
+.winning-input-title-container {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.winning-bonus-input-container {
+  display: flex;
+  flex: auto;
+  justify-content: space-between;
+
+  width: 100%;
+}

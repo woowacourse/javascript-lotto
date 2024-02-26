@@ -1,0 +1,20 @@
+bonus-number-input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 8px;
+
+  width: 100%;
+}
+
+.bonus-number-input-container {
+  display: flex;
+  gap: 8px;
+}
+
+.bonus-number-title-container {
+  display: flex;
+  align-items: center;
+
+  height: 24px;
+}
