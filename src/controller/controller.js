@@ -1,8 +1,8 @@
 import LottoMachine from '../domain/lottoMachine.js';
 import Lotto from '../domain/lotto.js';
 import WinningLotto from '../domain/winningLotto.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+import InputView from '../view/console/InputView.js';
+import OutputView from '../view/console/OutputView.js';
 import Statistics from '../domain/statistics.js';
 import { INPUT_MESSAGES } from '../constant/messages.js';
 import { validateCost, validateNumber } from '../utils/validation.js';
