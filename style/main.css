@@ -1,0 +1,135 @@
+/* Header */
+.lotto-main-header {
+  height: 64px;
+  background-color: var(--blue-color);
+  position: relative;
+  line-height: 36px;
+}
+.lmh-title {
+  position: absolute;
+  left: 130px;
+  top: 14px;
+  line-height: 36px;
+  color: var(--white-color);
+  font-weight: var(--title-bold);
+  font-size: var(--title-font);
+}
+
+/* Body */
+
+.lotto-main-body .lotto-paper {
+  max-height: 727px;
+  width: 414px;
+  margin: 0 auto;
+  margin-top: 84px;
+  padding: 40px 16px 32px;
+  background-color: var(--white-color);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.lp-title {
+  font-size: var(--title-font);
+  font-weight: var(--title-bold);
+  text-align: center;
+  margin-bottom: 28px;
+}
+/* 구입 금액 입력 */
+.lp-purchase-amount {
+  margin: 0 auto;
+}
+.lp-purchase-amount .lp-pa-text {
+  margin-bottom: 4px;
+}
+.lp-pa-input-group {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 28px;
+}
+.lp-pa-input-group .lp-pa-input-amount {
+  width: 310px;
+  margin-right: 16px;
+  padding: 8px 8px 4px 8px;
+}
+.lp-pa-input-group .lp-pa-input-btn {
+  width: 56px;
+}
+/* 로또 발행 */
+.lp-ticket-issuance {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+.lp-ticket-issuance .lp-ti-total-purchase-number {
+  margin-bottom: 8px;
+}
+.lp-ticket-issuance .lp-ti-ticket-group {
+  display: flex;
+  flex-direction: column;
+}
+.lp-ti-ticket-group .lp-ti-ticket {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.lp-ti-ticket .lp-ti-img {
+  font-size: 34px;
+  margin-right: 8px;
+  line-height: 36px;
+}
+/* 당첨 번호 및 보너스 번호 입력 */
+.lp-number-input-group {
+  margin-bottom: 27px;
+}
+.lp-number-input-group .lp-nig-text {
+  margin-bottom: 12px;
+}
+.lp-number-input-group .lp-nig-input-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.lp-nig-number-input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.lp-nig-number-input-group .lp-nig-winnig-box {
+}
+.lp-nig-number-input-group .lp-nig-input {
+  width: 34px;
+  margin-right: 8px;
+  padding: 8px;
+}
+.lp-nig-number-input-group .lp-nig-input:last-child {
+  margin-right: 0;
+}
+.lp-nig-number-input-group .lp-nig-winnig-box {
+}
+.lp-nig-number-input-group .lp-nig-bonus-box .lp-nig-input {
+}
+/* 당첨 결과 확인 플로팅 버튼 */
+.lp-winning-floating-btn {
+  width: 100%;
+}
+
+/* Footer */
+.lotto-footer {
+  margin-top: 69px;
+  height: 80px;
+  width: 100%;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+.lotto-footer .lotto-footer-text {
+  margin: 0 auto;
+  font-size: var(--button-font);
+  font-weight: var(--button-bold);
+  color: var(--blue-color);
+  letter-spacing: 1.25px;
+  line-height: 16px;
+  text-align: center;
+  margin-top: 28px;
+}
