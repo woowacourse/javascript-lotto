@@ -1,4 +1,5 @@
 import WebLottoController from './controllers/WebLottoController.js';
+import eventHandler from './utils/dom/eventHandler.js';
 import modal from './utils/dom/modal.js';
 import webInputView from './views/webInputView.js';
 
@@ -7,9 +8,6 @@ const $purchaseBtn = document.getElementById('purchaseButton');
 const $winningNumberInput = document.getElementById('winningNumberInput');
 const $closeBtn = document.getElementById('closeButton');
 const $restartBtn = document.getElementById('restartButton');
-const $purchaseSection = document.getElementById('purchaseResultSection');
-const $winningNumberSection = document.getElementById('winningNumberSection');
-const $lottoNumberWrapper = document.getElementById('lottoNumberWrapper');
 
 const app = {
   play() {
@@ -35,10 +33,7 @@ const handleCloseModal = () => {
 
 const handleClickRestart = () => {
   modal.close();
-  $purchaseForm.reset();
-  $purchaseSection.replaceChildren();
-  $winningNumberSection.classList.add('hidden');
-  $lottoNumberWrapper.reset();
+  eventHandler.restart();
 };
 
 $purchaseForm.addEventListener('submit', handleFormSubmit);
