@@ -1,3 +1,4 @@
+/* header */
 header {
   display: flex;
   align-items: center;
@@ -17,6 +18,7 @@ header p {
   text-align: left;
 }
 
+/* footer */
 footer {
   display: flex;
   justify-content: center;
@@ -34,5 +36,35 @@ footer p {
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 1.25px;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* LottoPurchaseBox */
+.lotto-purchase-box {
+  width: 414px;
+  height: 727px;
+  margin: 84px 0px;
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #0000001f;
+}
+
+.lotto-purchase-title {
+  width: 382px;
+  height: 36px;
+  margin: 40px 16px;
+  color: #000000;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  letter-spacing: 0px;
   text-align: center;
 }
