@@ -1,4 +1,4 @@
-import { WINNING_RULE } from '../constants';
+import { RANK_HAS_BONUS, WINNING_RULE } from '../constants';
 
 class Statistics {
   #ranks = [];
@@ -64,7 +64,7 @@ class Statistics {
     WINNING_RULE.forEach((value, key) => {
       const { matchedCount, isBonus } = value;
 
-      const checkBonusMatch = matchedCount === 5;
+      const checkBonusMatch = matchedCount === RANK_HAS_BONUS;
       const isMatchingCount = matchedCount === result.matchedCount;
       const isMatchingOnlyCount = !checkBonusMatch && isMatchingCount;
       const isMatchingBonusAndCount =
