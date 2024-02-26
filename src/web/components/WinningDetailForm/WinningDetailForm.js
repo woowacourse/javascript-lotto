@@ -19,7 +19,7 @@ const { LOTTO_RULE } = Lotto;
 class WinningDetailForm extends BaseComponent {
   render() {
     this.innerHTML = `
-        <form id="winning-detail-form" class="${styles.winningDetailForm}">
+        <form type="submit" id="winning-detail-form" class="${styles.winningDetailForm}">
           <p class="body">지난 주 당첨번호 ${
             LOTTO_RULE.count
           }개와 보너스 번호 1개를 입력해주세요.</p>
@@ -85,15 +85,13 @@ class WinningDetailForm extends BaseComponent {
   }
 
   #initWinningDetailInputs() {
-    $$(COMPONENT_SELECTOR.winningNumberInputs).forEach((winningNumberInputElement) => {
-      winningNumberInputElement.value = '';
-    });
+    const form = $(COMPONENT_SELECTOR.winningDetailForm);
 
-    $(COMPONENT_SELECTOR.bonusNumberInput).value = '';
+    form.reset();
   }
 
   #focusFirstWinningNumberInput() {
-    const winningNumberInputElementList = $$(COMPONENT_SELECTOR.winningNumberInputs);
+    const winningNumberInputElementList = [...$$(COMPONENT_SELECTOR.winningNumberInputs)];
 
     const firstWinningNumberInputElement = winningNumberInputElementList?.at(0);
 
