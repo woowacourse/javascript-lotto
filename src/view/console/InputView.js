@@ -1,7 +1,7 @@
-import { SYMBOL } from '../constant/constants.js';
-import { INPUT_MESSAGES } from '../constant/messages.js';
-import ReadLine from '../utils/readLineAsync.js';
-import { validateRestartResponse } from '../utils/validation.js';
+import { SYMBOL } from '../../constant/constants.js';
+import { INPUT_MESSAGES } from '../../constant/messages.js';
+import ReadLine from '../../utils/readLineAsync.js';
+import { validateRestartResponse } from '../../utils/validation.js';
 
 const InputView = {
   async readNumber(message, validate) {
