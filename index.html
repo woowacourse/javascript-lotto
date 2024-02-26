@@ -4,15 +4,115 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    
     <!-- <link href="src/web/css/main.css" rel="stylesheet"/>
     <script defer type="module" src="./src/step2-index.js"></script> -->
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <div class="inner">
+        <header>
+          <h1>🎱 행운의 로또</h1>
+        </header>
+        <main>
+            <div class="contents">
+              <header>🎱 내 번호 당첨 확인 🎱</header>
+                <section class="paymentAmount">
+                  <div class="inputForm">
+                    <label  class="hidden" for="input-paymentAmount">
+                      구입할 금액을 입력해주세요.
+                    </label>
+                    <!--js에서  min, max 설정해주기-->
+                    <input id="input-paymentAmount" type="number" placeholder="금액"/>
+                    <button disabled>구입</button>
+                  </div>
+                  <div class="errorMessage"></div>
+                </section>
+                <!-- on 들어 갈때 보이는 것으로  -->
+                <section class="purchasedHistory">
+                  <div class="purchasedHistory__lottos-count">
+                    총 <span id="purchasedHistory__lottos-count__number"></span>를 구매하였습니다.
+                  </div>
+                  <ul class="issuedLottos"> 
+                    <!--발행된 로또들 입력 , li class ="lotto"-->
+                    <!--<li class="lotto">🎟️ 발행된 로또 번호</li>-->
+                  </ul>
+                </section>
+                <section class="winningCriteria">
+                  <div class="winningCriteria__explanation">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+                  <div class="winningCriteria__inputGroupContainer">
+                    <section  class="winningCriteria_lotto">
+                      <header>당첨 번호</header>
+                      <div class="input-group">
+                        <!-- js로 생성 -->
+                      </div>
+                    </section>
+                    <section class="winningCriteria__bonus">
+                      <header>보너스 번호</header>
+                        <label class="hidden" for="input-bonusNumber">
+                          보너스 번호를 입력해주세요.
+                        </label>
+                        <input id="input-bonusNumber" class="input-lottoNumber" type="number" />
+                    </section>
+                  </div>
+                  <div class="errorMessage"></div>
+                </section>
+                  <button class="btn-checkResult" disabled>결과 확인하기</button>
+            </div>
+        </main>
+        <footer>
+          Copyright 2023. woowacourse
+        </footer>
+      </div>
+    <div class="popup hidden">
+      <div class="popup__inner">
+        <button class="btn-close-popup">✖️</button>
+        <div class="popup__contents">
+          <header>🏆 당첨 통계 🏆</header>
+          <div class="rankStatistics">
+            <table id="rankStatistics__table">
+              <caption class="hidden">로또 당첨 결과</caption>
+              <thead>
+                <tr>
+                  <th scope="col">일치 갯수</th>
+                  <th scope="col">당첨금</th>
+                  <th scope="col">당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="rank5">
+                  <th scope="row">3개</th>
+                  <td class="prize"></td>
+                  <td class="count"></td>
+                </tr>
+                <tr id="rank4">
+                  <th scope="row">4개</th>
+                  <td class="prize"></td>
+                  <td class="count"></td>
+                </tr>
+                <tr id="rank3">
+                  <th scope="row">5개</th>
+                  <td class="prize"></td>
+                  <td class="count"></td>
+                </tr>
+                <tr id="rank2">
+                  <th scope="row">5개+보너스볼</th>
+                  <td class="prize"></td>
+                  <td class="count"></td>
+                </tr>
+                <tr id="rank1">
+                  <th scope="row">6개</th>
+                  <td class="prize"></td>
+                  <td class="count"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div> 
     </div>
-    
+  </div>
   </body>
 </html>
