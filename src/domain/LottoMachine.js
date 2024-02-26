@@ -19,9 +19,9 @@ class LottoMachine {
     const lottos = Array.from({ length: count }, () => []);
     if (customLottos.length) {
       this.#customLotto(customLottos);
-    } else {
-      this.#autoLotto(lottos);
+      return;
     }
+    this.#autoLotto(lottos);
   }
 
   #customLotto(customLottos) {
