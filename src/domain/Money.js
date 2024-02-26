@@ -13,12 +13,19 @@ export default class Money {
   }
 
   #validateMoney(amount) {
+    this.#isNumber(amount);
     this.#isPositiveInteger(amount);
     this.#isThousandUnit(amount);
   }
 
+  #isNumber(amount) {
+    if (Number.isNaN(amount)) {
+      throw new Error(ERROR_MESSAGE.IS_NOT_POSITIVE_INTEGER);
+    }
+  }
+
   #isPositiveInteger(amount) {
-    if (isNaN(amount) || amount < 1) {
+    if (amount < 1) {
       throw new Error(ERROR_MESSAGE.IS_NOT_POSITIVE_INTEGER);
     }
   }

@@ -12,18 +12,18 @@ class BonusNumber {
 
   #validataeBonusNumber(number, winningLotto) {
     this.#isNumber(number);
-    this.#isPositiveNumber(number);
+    this.#isPositiveInteger(number);
     this.#isValidNumberRange(number);
     this.#hasRedundantNumber(number, winningLotto);
   }
 
   #isNumber(number) {
-    if (typeof number !== 'number') {
+    if (Number.isNaN(number)) {
       throw new Error(ERROR_MESSAGE.IS_NOT_NUMBER);
     }
   }
 
-  #isPositiveNumber(number) {
+  #isPositiveInteger(number) {
     if (number < 1) {
       throw new Error(ERROR_MESSAGE.IS_NOT_POSITIVE_INTEGER);
     }
