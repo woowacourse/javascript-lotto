@@ -79,3 +79,30 @@ section header h1 {
   cursor: pointer;
   opacity: 0.7;
 }
+
+.print-purchase-result-detail h2 {
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter);
+}
+
+.print-purchase-result-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: 2.4rem 0;
+}
+
+#print-purchase-result-list {
+  margin-top: 0.8rem;
+}
+
+#print-purchase-result-list li {
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter);
+}
+

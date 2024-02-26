@@ -86,6 +86,7 @@ npm run start-step2
   - [x] input과 submit button 생성
   - [x] readMoney와 button 연결
   - [x] 생성된 결과를 보여주는 output 연결
+  - [x] output 화면 스타일
 
 - 당첨번호, 보너스번호 article
   - [ ] 당첨번호, 보너스번호 form 선언

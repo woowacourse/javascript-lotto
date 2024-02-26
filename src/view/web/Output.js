@@ -6,8 +6,9 @@ const Output = {
   },
 
   printPurchaseResultDetail(purchaseResultDetails) {
+    Dom.createAppendTagNode({ target: '.print-purchase-result-detail', tag: 'ul', attribute: { id: 'print-purchase-result-list' } });
     purchaseResultDetails.forEach((detail) => {
-      Dom.createAppendTagNode({ target: '.print-purchase-result-detail', tag: 'li', text: detail });
+      Dom.createAppendTagNode({ target: '#print-purchase-result-list', tag: 'li', text: `🎟️ ${detail}` });
     });
   },
 };
