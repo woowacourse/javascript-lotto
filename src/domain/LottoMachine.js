@@ -1,11 +1,13 @@
 import { LOTTO_NUMBER_LENGTH, LOTTO_NUMBER_RANGE, LOTTO_PRICE } from '../constants/lotto-constants.js';
 import createUniqueNumbersInRange from '../utils/createUniqueNumbersInRange.js';
+import commonValidator from '../validator/commonValidator.js';
 import purchaseAmountValidator from '../validator/purchaseAmountValidator.js';
 
 import Lotto from './lotto.js';
 
 const lottoMachine = {
   checkPurchaseAmount: (purchaseAmount) => {
+    commonValidator.validate(purchaseAmount);
     purchaseAmountValidator.validate(purchaseAmount);
 
     return Number(purchaseAmount);
