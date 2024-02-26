@@ -3,11 +3,14 @@ import OutputView from './View/OutputView';
 import LottoMachine from './Domain/LottoMachine';
 import WinningLotto from './Domain/WinningLotto';
 import retryOnFailureAsync from './Utils/retryOnFailureAsync';
+import Money from './Domain/Money.js';
 
 class LottoController {
   #lottoMachine;
 
   #winningLotto = new WinningLotto();
+
+  #money;
 
   async run() {
     await retryOnFailureAsync(this.#readBuyingLottoMoney, this);
@@ -21,7 +24,8 @@ class LottoController {
 
   async #readBuyingLottoMoney() {
     const money = await InputView.readMoney();
-    this.#lottoMachine = new LottoMachine(money);
+    this.#money = new Money(money).getMoney();
+    this.#lottoMachine = new LottoMachine(this.#money);
   }
 
   #printBoughtLottos() {
@@ -48,7 +52,7 @@ class LottoController {
   }
 
   #printRateOfReturn() {
-    const rateOfIncome = this.#lottoMachine.getRateOfIncome();
+    const rateOfIncome = this.#lottoMachine.getRateOfIncome(this.#money);
     OutputView.printRateOfReturn(rateOfIncome);
   }
 
