@@ -4,18 +4,22 @@
 
 # UI
 
-- header
+- header  
+  `.lotto-main-header`
   - `🎱행운의 로또` 타이틀
-- body 로또 구입 전/후, 당첨 통계 모달
+- body  
+  `.lotto-main-body`  
+  로또 구입 전/후, 당첨 통계 모달
   - header
     - `🎱 내 번호 당첨 확인 🎱` 타이틀
   - body
     - 로또 구입 전/후
     - 당첨 통계 모달
-- footer
+- footer  
+  `.lotto-footer`
   - copyright
 
-## 구입 전 / 후
+## 구입 전 / 후 `.lotto-paper`
 
 - 구입할 금액 입력
 - 구매 내역 및 로또 번호 출력

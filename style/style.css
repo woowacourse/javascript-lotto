@@ -1,0 +1,37 @@
+@import url('./main.css');
+@import url('./component.css');
+
+:root {
+  --white-color: rgba(255, 255, 255, 1);
+  --light-gray-color: rgba(252, 252, 253, 1);
+  --gray-color: rgba(180, 180, 180, 1);
+  --deep-gray-color: rgba(139, 139, 139, 1);
+  --blue-color: rgba(78, 91, 166, 1);
+  --black-color: rgba(0, 0, 0, 1);
+
+  --title-font: 24px;
+  --subtitle-font: 20px;
+  --default-font: 15px;
+  --button-font: 14px;
+
+  --title-bold: 800;
+  --subtitle-bold: 600;
+  --default-bold: 400;
+  --button-bold: 700;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--black-color);
+  font-size: var(--default-font);
+  font-weight: var(--default-bold);
+  background-color: var(--light-gray-color);
+}
+
+body #app {
+  position: relative;
+}
