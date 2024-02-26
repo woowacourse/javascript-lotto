@@ -1,16 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h1>🎱 행운의 로또</h1>
+      </header>
+
+      <main>
+        <section>
+          <h2>🎱 내 번호 당첨 확인 🎱</h2>
+          <article>
+            <form id="user-purchase-form">
+              <label>구입할 금액을 입력해주세요. </label>
+              <div>
+                <input
+                  id="user-purchase-input"
+                  type="number"
+                  placeholder="1000 단위로 입력해주세요."
+                  step="1000"
+                  min="0"
+                  max="100000"
+                  required
+                />
+                <button id="user-purchase-submit">구입</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="hidden">
+            <div id="total-ticket-count"></div>
+            <ul id="generated-lotto-container"></ul>
+          </article>
+
+          <article class="hidden">
+            <form id="winning-numbers-form">
+              <fieldset>
+                <legend>
+                  지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+                </legend>
+                <div class="input-container">
+                  <div class="winning-numbers-container">
+                    <label>당첨 번호 </label>
+                    <div class="winning-numbers">
+                      <input
+                        id="winning-numbers-input-1"
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="bonus-number-container">
+                    <label for="bonus-number-input">보너스 번호 </label>
+                    <input
+                      id="bonus-number-input"
+                      class="lotto-number-input"
+                      type="number"
+                      min="1"
+                      max="45"
+                      required
+                    />
+                  </div>
+                </div>
+                <button id="result-button">결과 확인하기</button>
+              </fieldset>
+            </form>
+          </article>
+        </section>
+      </main>
+
+      <footer><p>Copyright 2023. woowacourse</p></footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
