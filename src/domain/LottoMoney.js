@@ -26,10 +26,10 @@ class LottoMoney {
 
     const moneyIsNotInRange = money < LottoMoney.MIN || money > LottoMoney.MAX;
 
+    if (!Number.isInteger(money))
+    throw new CustomError(ERROR_MESSAGE.lottoMoneyNotInteger);
     if (moneyIsNotInRange)
       throw new CustomError(ERROR_MESSAGE.lottoMoneyNotInRange);
-    if (!Number.isInteger(money))
-      throw new CustomError(ERROR_MESSAGE.lottoMoneyNotInteger);
   }
 }
 

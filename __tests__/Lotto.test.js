@@ -20,7 +20,7 @@ describe("로또 기능 테스트", () => {
     const winningLotto = new Lotto("1,2,3,4,5,6");
     const bonusLottoNumber = new LottoNumber(6);
 
-    expect(() => winningLotto.checkHaveBonus(bonusLottoNumber.getLotto())).toThrow(
+    expect(() => winningLotto.checkHaveBonus(bonusLottoNumber.getLottoNumber())).toThrow(
       PREFIX.error
     );
   });
