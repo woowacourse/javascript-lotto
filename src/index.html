@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹 기반 로또 게임</title>
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🎱 행운의 로또</h1>
+    </header>
+    <main>
+      <h2>🎱 내 번호 당첨 확인 🎱</h2>
+      <section>
+        <div>
+          <form action="">
+            <label for="purchaseLotto">구입할 금액을 입력해주세요.</label>
+            <input
+              type="text"
+              name="purchaseLotto"
+              id="purchaseLotto"
+              placeholder="금액"
+              required
+            />
+          </form>
+        </div>
+        <div>
+          <button type="submit">구입</button>
+        </div>
+      </section>
+      <section>
+        <p></p>
+        <ul></ul>
+      </section>
+      <section>
+        <form action="">
+          <div>
+            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <div>
+              <label for="winningLotto">당첨 번호</label>
+              <input
+                type="text"
+                name="winningLotto"
+                id="winningLotto"
+                required
+              />
+              <input
+                type="text"
+                name="winningLotto"
+                id="winningLotto"
+                required
+              />
+              <input
+                type="text"
+                name="winningLotto"
+                id="winningLotto"
+                required
+              />
+              <input
+                type="text"
+                name="winningLotto"
+                id="winningLotto"
+                required
+              />
+              <input
+                type="text"
+                name="winningLotto"
+                id="winningLotto"
+                required
+              />
+              <input
+                type="text"
+                name="winningLotto"
+                id="winningLotto"
+                required
+              />
+            </div>
+            <div>
+              <label for="bonusNumber">보너스 번호</label>
+              <input type="text" name="bonusNumber" id="bonusNumber" required />
+            </div>
+          </div>
+          <button type="submit">결과 확인하기</button>
+        </form>
+      </section>
+
+      <section>
+        <div class="rectangle"></div>
+        <h2>🏆 당첨 통계 🏆</h2>
+        <div class="rectangle"></div>
+        <ol>
+          <li>
+            <div class="rectangle"></div>
+            <div>
+              <p>일치 갯수</p>
+              <p>당첨금</p>
+              <p>당첨 갯수</p>
+              <div class="rectangle"></div>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              <p>3개</p>
+              <p>5,000</p>
+              <p>n개</p>
+              <div class="rectangle"></div>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              <p>4개</p>
+              <p>50,000</p>
+              <p>n개</p>
+              <div class="rectangle"></div>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              <p>5개</p>
+              <p>1,500,000</p>
+              <p>n개</p>
+              <div class="rectangle"></div>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              <p>5개+보너스볼</p>
+              <p>30,000,000</p>
+              <p>n개</p>
+              <div class="rectangle"></div>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              <p>6개</p>
+              <p>2,000,000,000</p>
+              <p>n개</p>
+              <div class="rectangle"></div>
+            </div>
+          </li>
+        </ol>
+        <p>당신의 총 수익률은 %입니다.</p>
+        <button type="button">다시 시작하기</button>
+      </section>
+    </main>
+    <footer><p>Copyright 2023. woowacourse</p></footer>
+  </body>
+</html>
