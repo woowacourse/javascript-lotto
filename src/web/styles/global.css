@@ -1,0 +1,144 @@
+:root {
+  /* Color */
+  --color-primary: 78, 91, 166;
+  --color-grey-scale-1: 255, 255, 255;
+  --color-grey-scale-2: 252, 252, 253;
+  --color-grey-scale-3: 180, 180, 180;
+  --color-grey-scale-4: 139, 139, 139;
+  --color-grey-scale-5: 0, 0, 0;
+
+  /* Font Size */
+  --font-large: 2.4rem;
+  --font-medium: 2rem;
+  --font-regular: 1.5rem;
+  --font-small: 1.4rem;
+
+  /* Font Weight */
+  --weight-extra-bold: 800;
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Global Styles */
+html {
+  width: 100%;
+  height: 100%;
+
+  font-family: 'Pretendard', sans-serif;
+  font-size: 62.5%;
+
+  background-color: rgb(var(--color-grey-scale-2));
+}
+
+body {
+  margin: 0;
+
+  width: 100%;
+  height: 100%;
+
+  font-weight: var(--weight-regular);
+  font-size: var(--font-regular);
+}
+
+header {
+  margin: 0;
+  background-color: rgb(var(--color-primary));
+  padding: 1.4rem 13rem;
+}
+
+header > .title {
+  color: rgb(var(--color-grey-scale-1));
+}
+
+main {
+  height: 100%;
+  justify-content: center;
+}
+
+footer {
+  padding: 3rem 0;
+  border-top: 0.1rem solid rgba(var(--color-primary), 0.2);
+
+  color: rgb(var(--color-primary));
+  font-size: var(--font-small);
+  font-weight: var(--weight-bold);
+}
+
+a {
+  text-decoration: none;
+  color: rgb(var(--color-grey-scale-5));
+}
+
+p {
+  margin: 0;
+}
+
+input {
+  border: 0.1rem solid;
+  border-radius: 0.4rem;
+  border-color: rgb(var(--color-grey-scale-3));
+  padding: 0.8rem 0.8rem 0.4rem 0.8rem;
+
+  font-size: var(--font-regular);
+  line-height: 2.3rem;
+  letter-spacing: 0.05rem;
+}
+
+input:focus {
+  border-color: rgb(var(--color-primary));
+}
+
+label {
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+button {
+  /* cancel default style */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* appearance */
+  background-color: rgb(var(--color-primary));
+  color: rgb(var(--color-grey-scale-1));
+  border: none;
+  border-radius: 0.4rem;
+
+  /* text */
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
+  font-size: var(--font-small);
+  font-weight: var(--weight-regular);
+  text-align: center;
+  padding: 1rem 1.6rem;
+
+  /* prevent new line */
+  white-space: nowrap;
+}
+
+.title {
+  font-size: var(--font-large);
+  font-weight: var(--weight-extra-bold);
+}
+
+.subtitle {
+  font-size: var(--font-medium);
+  font-weight: var(--weight-semi-bold);
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}

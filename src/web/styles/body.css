@@ -1,0 +1,94 @@
+.main-content {
+  width: 100%;
+  max-width: fit-content;
+  padding: 4rem 1.6rem 3.2rem 1.6rem;
+
+  border: 0.1rem solid rgb(var(--color-grey-scale-3));
+  background-color: rgb(var(--color-grey-scale-1));
+
+  /* text */
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  font-size: var(--font-regular);
+}
+
+.main-content > .title {
+  margin-bottom: 2.8rem;
+}
+
+/* payment amount input */
+.payment-form {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin-bottom: 2.8rem;
+}
+
+.payment-form > .input-container {
+  width: 100%;
+  margin-right: 1.6rem;
+}
+
+.payment-form > .input-container > input {
+  width: 100%;
+}
+
+.payment-form > button {
+  min-height: max-content;
+}
+
+/* purchased lottos */
+.purchased-lottos-container {
+  width: 100%;
+  margin-bottom: 2.4rem;
+}
+
+.purchased-lottos-counter {
+  margin-bottom: 0.8rem;
+}
+
+.purchased-lotto-numbers {
+  display: flex;
+  align-items: center;
+
+  height: 3.6rem;
+
+  margin-bottom: 0.4rem;
+}
+
+.ticket-icon {
+  font-size: 3.4rem;
+  margin-right: 0.8rem;
+}
+
+/* winning lotto input */
+.winning-lottery-form > p {
+  margin-bottom: 1.2rem;
+}
+
+.winning-lottery-form > .input-container {
+  width: 100%;
+
+  margin-bottom: 2.7rem;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.lotto-number-input {
+  width: 3.4rem;
+  height: 3.6rem;
+}
+
+.check-result-btn {
+  width: 100%;
+}
