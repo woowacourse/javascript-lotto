@@ -1,7 +1,8 @@
-import { LottoBuyer, RateOfReturnCalculator, WinningRank } from '../domain/index.js';
+import { LottoBuyer } from '../domain/index.js';
 import { InputView, OutputView } from '../views/index.js';
 
 import RetryHandler from '../errors/RetryHandler/RetryHandler.js';
+import WinningResultService from '../service/WinningResultService.js';
 
 /**
  * @module LottoGameController
@@ -41,11 +42,9 @@ class LottoGameController {
    */
   async #processDrawLottoResult({ buyLottoPrice, lottoNumbers }) {
     const { winningNumber, bonusNumber } = await this.#requireWinningDetail();
-    const winningRank = new WinningRank({ winningNumber, bonusNumber, lottoNumbers });
-    const winningRankResult = winningRank.calculateRank();
 
-    const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankResult });
-    const rateOfReturn = rateOfReturnCalculator.execute();
+    const params = { buyLottoPrice, lottoNumbers, winningNumber, bonusNumber };
+    const { winningRankResult, rateOfReturn } = WinningResultService.createWinningResult(params);
 
     OutputView.printDrawLottoResult({ rateOfReturn, winningRankResult });
   }

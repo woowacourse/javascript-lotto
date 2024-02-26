@@ -1,0 +1,9 @@
+.purchasedMessage {
+  margin-top: 2.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.purchasedLottos {
+  width: 100%;
+  list-style-type: none;
+}

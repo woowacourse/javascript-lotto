@@ -32,6 +32,7 @@
  * @typedef {object} WinningNumberValidator
  * @property {WinningNumberValidationTypes} validationTypes - 검사할 항목들에 대한 객체
  * @property {(inputValue : string) => void} check - 유효성 검사를 진행하는 메서드
+ * @property {(inputValue : number[]) => void} checkWinningNumber - 입력 값이 아닌 당첨 번호에 대한 유효성 검사를 진행하는 메서드
  */
 
 /**
@@ -52,7 +53,8 @@
 /**
  * @typedef {object} BonusNumberValidator
  * @property {WinningNumberValidationTypes} validationTypes - 검사할 항목들에 대한 객체
- * @property {(inputValue : string, winningNumber : number[]) => void} check - 유효성 검사를 진행하는 메서드
+ * @property {(inputValue : string, winningNumber : number[]) => void} check - 입력된 보너스 번호에 대한 유효성 검사를 진행하는 메서드
+ * @property {(bonusNumber : number, winningNumber : number[]) => void} checkBonusNumber - 보너스 번호에 대한 유효성 검사를 진행하는 메서드
  */
 
 /**
