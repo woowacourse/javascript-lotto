@@ -8,7 +8,7 @@ import lottoGenerator from "../domain/lottoGenerator.js";
 
 import Command from "../utils/Command.js";
 
-import catchReturn from "../utils/catchReturn.js";
+import retryCallbackFunctionOnError from "../utils/retryCallbackFunctionOnError.js";
 import { calculateTotalPrize } from "../domain/calculateTotalPrize.js";
 import { calculateProfitRate } from "../utils/calculateProfitRate.js";
 import getLottoRank from "../domain/getLottoRank.js";
@@ -16,7 +16,7 @@ import getLottoRank from "../domain/getLottoRank.js";
 const lottoController = {
   async lottoGamePlay() {
     while (true) {
-      const money = await catchReturn(this.getMoney);
+      const money = await retryCallbackFunctionOnError(this.getMoney);
       const randomLottos = this.generateRandomLotto(money.getLottoCount());
       const { winningLotto, bonusLottoNumber } =
         await this.getWinningAndBonusLotto();
@@ -28,7 +28,7 @@ const lottoController = {
 
       this.printProfitRate(money.getLottoMoney(), rank);
 
-      if (await catchReturn(this.isExitGame)) break;
+      if (await retryCallbackFunctionOnError(this.isExitGame)) break;
     }
   },
 
@@ -46,8 +46,8 @@ const lottoController = {
   },
 
   async getWinningAndBonusLotto() {
-    const winningLotto = await catchReturn(this.getWinningLotto);
-    const bonusLottoNumber = await catchReturn(() =>
+    const winningLotto = await retryCallbackFunctionOnError(this.getWinningLotto);
+    const bonusLottoNumber = await retryCallbackFunctionOnError(() =>
       this.getBonusLottoNumber(winningLotto)
     );
     return { winningLotto, bonusLottoNumber };
