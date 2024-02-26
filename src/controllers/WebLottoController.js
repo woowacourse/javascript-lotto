@@ -1,7 +1,6 @@
 import CONFIG from '../constants/config.js';
 import LotteryMachine from '../domain/services/LotteryMachine.js';
 import lottoService from '../domain/services/lottoService.js';
-import OutputView from '../views/OutputView.js';
 import webInputView from '../views/webInputView.js';
 import webOutputView from '../views/webOutputView.js';
 
@@ -28,18 +27,21 @@ class WebLottoController {
 
   #processLottoResult(matchedResultList) {
     const rankList = lottoService.calculateRankCounts(matchedResultList);
-    OutputView.printLottoResult(rankList);
+    webOutputView.printLottoResult(rankList);
   }
 
   #processProfit(matchedResultList) {
     const profit = lottoService.calculateProfit(matchedResultList, this.#purchaseAmount);
-    OutputView.printProfit(profit);
+    webOutputView.printProfit(profit);
   }
 
   handleLottoResult = () => {
     const winningNumbers = webInputView.readWinningNumbers();
     const bonusNumber = webInputView.readBonusNumber(winningNumbers);
     const matchedResultList = this.#lottery.map(lotto => lotto.getMatchedAmount(winningNumbers, bonusNumber));
+    const $modalBackground = document.getElementById('modalBackground');
+    $modalBackground.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
     this.#processLottoResult(matchedResultList);
     this.#processProfit(matchedResultList);
   };
