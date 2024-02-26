@@ -52,10 +52,8 @@ const webOutputView = {
       resultTableFragment.appendChild(lottoResultRow);
     });
 
-    const $lottoResultSection = document.getElementById('lottoResultSection');
     const $lottoResultTable = document.getElementById('lottoResultTable');
     $lottoResultTable.appendChild(resultTableFragment);
-    $lottoResultSection.classList.remove('hidden');
   },
 
   printProfit(profit) {
