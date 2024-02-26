@@ -1,0 +1,107 @@
+@import './_style-constants.css';
+
+main {
+  width: inherit;
+  min-height: fit-content;
+  height: calc(100vh - 64px - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lotto-greyScale2-color);
+}
+
+main .contents {
+  width: 414px;
+  height: 727px;
+  background-color: var(--lotto-greyScale1-color);
+  border: 1px solid #0000001f;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+main .contents > header {
+  font-weight: var(--lotto-title-fontWeight);
+  font-size: var(--lotto-title-fontSize);
+  line-height: var(--lotto-title-lineHeight);
+  padding-top: 40px;
+  padding-bottom: 28px;
+  text-align: center;
+}
+
+.paymentAmount {
+  input {
+    width: 310px;
+    height: 36px;
+    padding: 4px 8px;
+  }
+  input::placeholder {
+    color: var(--lotto-greyScale4-color);
+    height: 24px;
+    margin: auto;
+  }
+}
+
+.purchasedHistory {
+  margin-top: 28px;
+  .issuedLottos {
+    margin-top: 8px;
+    width: 238px;
+    max-height: 276px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+  }
+}
+
+.winningCriteria {
+  margin-top: 24px;
+}
+
+.winningCriteria__inputGroupContainer {
+  display: flex;
+  justify-content: space-between;
+  section {
+    height: 68px;
+    header {
+      font-size: var(--lotto-bodyAndPlaceholder-fontSize);
+      font-weight: var(--lotto-bodyAndPlaceholder-fontWeight);
+      line-height: var(--lotto-bodyAndPlaceholder-lineHeight);
+    }
+    input {
+      width: 34px;
+      height: 36px;
+    }
+  }
+}
+
+.winningCriteria_lotto {
+  width: 244px;
+
+  .input-group {
+    display: flex;
+    width: inherit;
+    margin-top: 8px;
+  }
+
+  input {
+    margin-right: 8px;
+  }
+}
+
+.winningCriteria__bonus {
+  position: relative;
+  width: 90px;
+
+  input {
+    position: absolute;
+    top: calc(24px + 8px);
+    right: 0;
+  }
+}
+.issuedLottos {
+  li {
+    margin-bottom: 1px;
+  }
+}
+.btn-checkResult {
+  width: 100%;
+}

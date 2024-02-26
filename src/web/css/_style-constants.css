@@ -8,10 +8,14 @@
   --lotto-fontFamily: 'Roboto';
   --lotto-title-fontWeight: 800;
   --lotto-title-fontSize: 24px;
+  --lotto-title-lineHeight: 36px;
   --lotto-subtitle-fontWeight: 600;
   --lotto-subtitle-fontSize: 20px;
+  --lotto-subtitle-lineHeight: 24px;
   --lotto-bodyAndPlaceholder-fontWeight: 400;
   --lotto-bodyAndPlaceholder-fontSize: 15px;
+  --lotto-bodyAndPlaceholder-lineHeight: 24px;
   --lotto-caption-fontWeight: 700;
   --lotto-caption-fontSize: 14px;
+  --lotto-caption-lineHeight: 16px;
 }

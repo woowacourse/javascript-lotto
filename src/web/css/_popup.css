@@ -1,0 +1,32 @@
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(15, 15, 15, 0.205);
+  .popup__inner {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    padding: 16px 40px 16px 32px;
+    background-color: var(--lotto-greyScale2-color);
+  }
+  .btn-close-popup {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: inherit;
+    color: var(--lotto-greyScale5-color);
+  }
+}
+
+.popup__contents {
+  header {
+    font-size: var(--lotto-subtitle-fontSize);
+    font-weight: var(--lotto-subtitle-fontWeight);
+    line-height: var(--lotto-subtitle-lineHeight);
+  }
+}
