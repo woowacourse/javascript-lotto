@@ -22,6 +22,7 @@
 .input_winningNumber {
   width: 34px;
   height: 36px;
+  padding: 0 10px;
   border: solid 1px var(--greyscale-3-color);
   border-radius: var(--border-radius);
 }
@@ -29,6 +30,7 @@
 .input_bonusNumber {
   width: 34px;
   height: 36px;
+  padding: 0 10px;
   border: solid 1px var(--greyscale-3-color);
   border-radius: var(--border-radius);
 }

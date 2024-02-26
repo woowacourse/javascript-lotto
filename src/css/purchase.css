@@ -8,6 +8,7 @@
 .input_purchaseAmount {
   width: 294px;
   height: 36px;
+  padding: 0 10px;
   border: solid 1px var(--greyscale-3-color);
   border-radius: var(--border-radius);
 }
