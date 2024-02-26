@@ -20,18 +20,18 @@ purchased-lotto-form > form {
   width: 31rem;
   border-radius: 0.4rem;
   height: 3.6rem;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--gray-scale-3);
   padding: 0.8rem 0rem 0.4rem 0.4rem;
 }
 
 .purchasedLottoPriceInput::placeholder {
-  color: #8b8b8b;
+  color: var(--gray-scale-4);
 }
 
 .purchasedButton {
   width: 5.6rem;
   height: 3.6rem;
-  background-color: #4e5ba6;
+  background-color: var(--lotto-primary);
   border-radius: 0.4rem;
-  color: #ffffff;
+  color: var(--gray-scale-1);
 }

@@ -9,7 +9,7 @@ winning-statistics-modal {
   left: 0;
   background: rgba(0, 0, 0, 0.5);
   transition: opacity 0.25s ease;
-  z-index: 2;
+  z-index: var(--modal-z-index);
 }
 
 .modalInner {
@@ -39,7 +39,7 @@ winning-statistics-modal {
 }
 
 .modalCloseIcon {
-  stroke: #000000;
+  stroke: var(--gray-scale-5);
   fill: transparent;
   stroke-width: 5;
 }
@@ -78,8 +78,8 @@ svg {
 .resetButton {
   height: 3.6rem;
   border-radius: 0.4rem;
-  background-color: #4e5ba6;
-  color: #ffffff;
+  background-color: var(--lotto-primary);
+  color: var(--gray-scale-1);
 }
 
 tbody,

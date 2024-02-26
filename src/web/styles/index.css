@@ -1,3 +1,14 @@
+:root {
+  --gray-scale-1: #ffffff;
+  --gray-scale-2: #fcfcfd;
+  --gray-scale-3: #b4b4b4;
+  --gray-scale-4: #8b8b8b;
+  --gray-scale-5: #000000;
+  --lotto-primary: #4e5ba6;
+
+  --modal-z-index: 2;
+}
+
 html {
   font-size: 10px;
 }

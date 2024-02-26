@@ -9,7 +9,7 @@
 .numberInput {
   width: 3.4rem;
   height: 3.6rem;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--gray-scale-3);
   border-radius: 0.4rem;
   text-align: center;
 }
@@ -33,8 +33,8 @@
 }
 
 .submitButton {
-  background-color: #4e5ba6;
-  color: #ffffff;
+  background-color: var(--lotto-primary);
+  color: var(--gray-scale-1);
   margin-top: 1.7rem;
   border: none;
   padding: 0.4rem 0;
