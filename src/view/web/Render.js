@@ -17,14 +17,17 @@ const Render = {
     Dom.createAppendTagNode({ target: '.read-winning-numbers', tag: 'h2', text: '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.' });
     Dom.createAppendTagNode({ target: '.read-winning-numbers', tag: 'div', attribute: { class: 'winning-numbers-input-wrapper' } });
     Dom.createAppendTagNode({ target: '.winning-numbers-input-wrapper', tag: 'div', attribute: { class: 'winning-numbers' } });
-    Dom.createAppendTagNode({ target: '.winning-numbers-input-wrapper', tag: 'div', attribute: { class: 'bonus-number' } });
     Dom.createAppendTagNode({ target: '.winning-numbers', tag: 'label', text: '당첨 번호' });
+    Dom.createAppendTagNode({ target: '.winning-numbers', tag: 'div', attribute: { class: 'winning-numbers-inputs' } });
     Array.from({ length: LOTTO.NUMBER_LENGTH }).forEach(() => {
-      Dom.createAppendTagNode({ target: '.winning-numbers', tag: 'input', attribute: { class: 'read-winning-numbers-input', type: 'text' } });
+      Dom.createAppendTagNode({ target: '.winning-numbers-inputs', tag: 'input', attribute: { class: 'read-winning-numbers-input', type: 'text', maxlength: '2' } });
     });
+    Dom.createAppendTagNode({ target: '.winning-numbers-input-wrapper', tag: 'div', attribute: { class: 'bonus-number' } });
     Dom.createAppendTagNode({ target: '.bonus-number', tag: 'label', text: '보너스 번호' });
-    Dom.createAppendTagNode({ target: '.bonus-number', tag: 'input', attribute: { class: 'read-bonus-number-input', type: 'text' } });
-    Dom.createAppendTagNode({ target: '.read-winning-numbers', tag: 'button', attribute: { id: 'read-winning-numbers-submit', type: 'button', text: '결과 확인하기' } });
+    Dom.createAppendTagNode({ target: '.bonus-number', tag: 'input', attribute: { class: 'read-bonus-number-input', type: 'text', maxlength: '2' } });
+    Dom.createAppendTagNode({
+      target: '.read-winning-numbers', tag: 'button', attribute: { id: 'read-winning-numbers-submit', type: 'button' }, text: '결과 확인하기',
+    });
   },
 };
 

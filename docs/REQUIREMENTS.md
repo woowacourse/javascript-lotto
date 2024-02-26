@@ -90,7 +90,7 @@ npm run start-step2
 
 - 당첨번호, 보너스번호 article
   - [x] 당첨번호, 보너스번호 form 선언
-  - [ ] 각각 input 만들고 결과 확인하기 submit button 생성
+  - [x] 각각 input 만들고 결과 확인하기 submit button 생성
   - [ ] readWinningNumbers, readBonusNumber와 button 연결
   - [ ] 생성된 결과를 보여주기 위해 모달 창 생성
 

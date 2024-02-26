@@ -100,6 +100,7 @@ section header h1 {
 }
 
 #print-purchase-result-list li {
+  margin-bottom: 1.2rem;
   font-size: var(--body-size);
   font-weight: var(--body-weight);
   line-height: var(--body-line-height);
@@ -119,4 +120,64 @@ section header h1 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.winning-numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-numbers label {
+  margin-bottom: 0.8rem;
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter);
+}
+
+.winning-numbers-inputs input {
+  width: 3.4rem;
+  height: 3.6rem;
+  margin-right: 0.8rem;
+
+  border: 0.1rem solid var(--grayscale3);
+  border-radius: 0.4rem;
+}
+
+.bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bonus-number label {
+  margin-bottom: 0.8rem;
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter);
+}
+
+.bonus-number input {
+  width: 3.4rem;
+  height: 3.6rem;
+
+  border: 0.1rem solid var(--grayscale3);
+  border-radius: 0.4rem;
+}
+
+#read-winning-numbers-submit {
+  width: 100%;
+  height: 3.6rem;
+  margin-top: 3.3rem;
+
+  background-color: var(--primary);
+  border: none;
+  border-radius: 0.4rem;
+
+  color: var(--grayscale1);
+  font-size: var(--caption-size);
+  font-weight: var(--caption-weight);
+  line-height: var(--caption-line-height);
+  letter-spacing: var(--caption-letter);
 }
