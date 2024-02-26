@@ -1,4 +1,5 @@
 import lottoMachine from '../domain/lottoMachine';
+import view from '../view/webView/view';
 
 class lottoGameWebController {
   constructor() {
@@ -13,9 +14,12 @@ class lottoGameWebController {
     event.preventDefault();
     const purchaseAmountInput = event.target.querySelector('#purchaseAmount-input');
     const purchaseAmount = purchaseAmountInput.value;
+    console.log(purchaseAmount);
 
+    let lottoTickets;
     try {
-      const lottoTickets = lottoMachine.makeLottos(purchaseAmount);
+      lottoTickets = lottoMachine.makeLottos(purchaseAmount);
+      view.renderLottoList(lottoTickets);
     } catch (error) {
       alert(error.message);
       return;
