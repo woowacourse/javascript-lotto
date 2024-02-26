@@ -34,7 +34,7 @@
         <section id="purchaseResultSection"></section>
         <section id="winningNumberSection" class="hidden">
           <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
-          <div id="lottoNumberWrapper">
+          <form id="lottoNumberWrapper">
             <div id="winningNumberWrapper">
               <div>당첨번호</div>
               <input id="winningNumberInput" />
@@ -49,7 +49,7 @@
               <div>보너스 번호</div>
               <input id="bonusNumberInput" />
             </div>
-          </div>
+          </form>
           <button id="lottoResultButton" class="button">결과 확인하기</button>
         </section>
         <section id="lottoResultSection" class="hidden">
@@ -59,14 +59,8 @@
           <div id="lottoResultTitleWrapper">
             <div class="title">🏆 당첨 통계 🏆</div>
           </div>
-          <div id="lottoResultTable">
-            <div class="lotto-result-row table-title">
-              <div class="lotto-result-cell">일치 갯수</div>
-              <div class="lotto-result-cell">당첨금</div>
-              <div class="lotto-result-cell">당첨 갯수</div>
-            </div>
-          </div>
-          <button id="retryButton" class="button buttonFont">다시 시작하기</button>
+          <div id="lottoResultTable"></div>
+          <button id="restartButton" class="button buttonFont">다시 시작하기</button>
         </section>
       </section>
     </section>

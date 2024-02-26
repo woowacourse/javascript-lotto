@@ -272,7 +272,7 @@ input::placeholder {
     font-weight: bold;
 }
 
-#retryButton {
+#restartButton {
     height: 5vh;
     border-radius: 4px;
 }
