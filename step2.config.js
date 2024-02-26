@@ -39,6 +39,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
+      title: 'web-lotto game',
+      inject: 'body',
     }),
   ],
   devtool: 'inline-source-map',
