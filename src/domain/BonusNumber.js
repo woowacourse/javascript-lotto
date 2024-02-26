@@ -18,7 +18,7 @@ class BonusNumber {
   }
 
   #isNumber(number) {
-    if (isNaN(number)) {
+    if (typeof number !== 'number') {
       throw new Error(ERROR_MESSAGE.IS_NOT_NUMBER);
     }
   }
