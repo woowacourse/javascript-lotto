@@ -8,9 +8,9 @@ import LottoResultMaker from "../domain/LottoResultMaker.js";
 import InputView from "../view/InputVIew.js";
 import OutputView from "../view/OutputView.js";
 
+import CustomError from "../utils/CustomError.js";
 import { retryOnError } from "../utils/retryOnError.js";
-
-import { ERROR_MESSAGE } from "../constants/messages.js";
+import { parseNumber } from "../utils/parseNumber.js";
 
 const RETRY_YES = ["y", "Y"];
 const RETRY_NO = ["n", "N"];
@@ -75,7 +75,7 @@ class LottoController {
   async #readMoney() {
     const rawAmount = await InputView.readBuyAmount();
 
-    return new Money(parseInt(rawAmount, 10));
+    return new Money(parseNumber(rawAmount, 10));
   }
 
   async #readLotto() {
@@ -107,7 +107,9 @@ class LottoController {
     const RETRY_OPTIONS = [...RETRY_YES, ...RETRY_NO];
 
     if (!RETRY_OPTIONS.includes(string)) {
-      throw new Error(ERROR_MESSAGE.invalidRetryChecker);
+      throw new CustomError(
+        "유효하지 않은 재시작 옵션입니다. (y/n 중 선택해주세요)"
+      );
     }
   }
 }

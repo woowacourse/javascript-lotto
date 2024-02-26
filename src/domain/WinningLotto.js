@@ -1,6 +1,8 @@
 import LottoNumber from "./LottoNumber.js";
 import Lotto from "./Lotto.js";
 
+import CustomError from "../utils/CustomError.js";
+
 import { LOTTO_RANK, LOTTO_RANK_STANDARDS } from "../constants/lotto.js";
 
 class WinningLotto {
@@ -23,19 +25,19 @@ class WinningLotto {
 
   #validateIsIntanceofLotto(lotto) {
     if (!(lotto instanceof Lotto)) {
-      throw new Error("[ERROR] 로또 인스턴스만 입력 가능합니다.");
+      throw new CustomError("로또 인스턴스만 입력 가능합니다.");
     }
   }
 
   #validateIsInstanceofLottoNumber(bonusNumber) {
     if (!(bonusNumber instanceof LottoNumber)) {
-      throw new Error("[ERROR] 보너스 번호는 로또 번호 타입이어야 합니다.");
+      throw new CustomError("보너스 번호는 로또 번호 타입이어야 합니다.");
     }
   }
 
   #validateUniqueBonusNumber(lotto, bonusNumber) {
     if (lotto.has(bonusNumber)) {
-      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+      throw new CustomError("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
   }
 

@@ -1,6 +1,5 @@
+import CustomError from "../utils/CustomError.js";
 import { validateTypeInteger } from "../utils/validator.js";
-
-import { ERROR_MESSAGE } from "../constants/messages.js";
 
 export const LOTTO_NUMBER_MIN = 1;
 export const LOTTO_NUMBER_MAX = 45;
@@ -26,7 +25,7 @@ export default class LottoNumber {
 
   #validateInLottoNumberRange(number) {
     if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
-      throw new Error(ERROR_MESSAGE.notInLottoNumberRange);
+      throw new CustomError("유효한 범위 로또 숫자가 아닙니다.");
     }
   }
 }
