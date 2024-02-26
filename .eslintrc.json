@@ -4,6 +4,7 @@
     "max-params": ["error", 2],
     "no-return-await": "off",
     "import/no-extraneous-dependencies": "off",
+    "import/extensions": "off",
     "import/order": [
       "error",
       {
