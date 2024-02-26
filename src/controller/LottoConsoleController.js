@@ -11,10 +11,10 @@ import LottoCalculator from '../domain/LottoCalculator.js';
 import { RESPONSE } from '../constants/input.js';
 
 /**
- * @module LottoController 로또의 관련 도메인과 뷰를 연결하여 게임을 컨트롤하는 컨트롤러 모듈입니다.
+ * @module LottoConsoleController 로또의 관련 도메인과 뷰를 연결하여 게임을 컨트롤하는 컨트롤러 모듈입니다.
  */
 
-class LottoController {
+class LottoConsoleController {
   async play() {
     const lottoCount = await this.getValidateLottoAmount();
     const [lottos, lottosNumbers] = await this.buyRandomLottos(lottoCount);
@@ -109,4 +109,4 @@ class LottoController {
     return restartResponse;
   }
 }
-export default LottoController;
+export default LottoConsoleController;

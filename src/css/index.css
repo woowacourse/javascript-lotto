@@ -66,6 +66,10 @@ body {
   color: var(--placeholder-font-color);
 }
 
+.error {
+  color: rgb(242, 111, 35);
+}
+
 header {
   background-color: var(--lotto-primary);
   height: 64px;
@@ -125,7 +129,7 @@ main {
   justify-content: center;
 }
 
-#lotto-money-form-section > form {
+#lotto-money-form-section > p {
   width: 100%;
 }
 
@@ -141,6 +145,17 @@ main {
   align-items: center;
   justify-content: space-between;
   margin-top: 10px;
+}
+
+#money-input-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#money-error {
+  height: 10px;
+  padding-top: 5px;
 }
 
 #lotto-money-form-section button {
