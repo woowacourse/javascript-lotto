@@ -27,7 +27,6 @@ const webOutputView = {
   },
 
   printLottoResult(ranks) {
-    const countOutput = { 1: '6개 일치', 2: '5개+보너스 볼', 3: '5개 일치', 4: '4개 일치', 5: '3개 일치' };
     const resultTableFragment = document.createDocumentFragment();
 
     // 반복할 때마다 lottoResultRow 하나씩 생성
@@ -35,7 +34,7 @@ const webOutputView = {
       const lottoResultRow = document.createElement('div');
 
       const lottoMatchedCount = document.createElement('div');
-      lottoMatchedCount.textContent = `${countOutput[rank]}`;
+      lottoMatchedCount.textContent = `${PRIZE.COUNT_OUTPUTS[rank]}`;
       lottoMatchedCount.classList.add('lotto-result-cell');
 
       const lottoResultPrize = document.createElement('div');
