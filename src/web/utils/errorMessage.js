@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { COMPONENT_SELECTOR } from '../../constants/webApplication';
 import { $ } from './dom';
 
