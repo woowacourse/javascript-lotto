@@ -1,6 +1,6 @@
-import LOTTO_SETTING from '../Constants/lottoSetting';
-import ERROR_MESSAGE from '../Constants/Messages/errorMessage';
-import AppError from '../Error/AppError';
+import LOTTO_SETTING from '../Constants/lottoSetting.js';
+import ERROR_MESSAGE from '../Constants/Messages/errorMessage.js';
+import AppError from '../Error/AppError.js';
 
 export default class Lotto {
   #numbers;

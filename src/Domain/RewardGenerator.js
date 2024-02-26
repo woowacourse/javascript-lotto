@@ -1,4 +1,4 @@
-import MATCH_COUNT_CONDITION from '../Constants/matchCountCondition';
+import MATCH_COUNT_CONDITION from '../Constants/matchCountCondition.js';
 
 class RewardGenerator {
   #totalRewardResult = [
