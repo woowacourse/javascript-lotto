@@ -75,7 +75,7 @@ section header h1 {
   letter-spacing: var(--caption-letter);
 }
 
-.read-money button :hover {
+.read-money-form button :hover {
   cursor: pointer;
   opacity: 0.7;
 }

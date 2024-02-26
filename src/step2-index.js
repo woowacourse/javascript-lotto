@@ -3,3 +3,20 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 import './view/web/css/index.css';
+import { Input, Output } from './view/web/index';
+import { LottoGenerator, StatisticsGenerator, MessageGenerator } from './controller/generator/index';
+import LottoGame from './controller/LottoGame';
+
+const views = {
+  input: Input,
+  output: Output,
+};
+
+const controllers = {
+  lotto: LottoGenerator,
+  statistics: StatisticsGenerator,
+  message: MessageGenerator,
+};
+
+const lottoGame = new LottoGame(views, controllers);
+lottoGame.start();

@@ -84,7 +84,7 @@ npm run start-step2
 - 로또 구매 article
   - [x] 로또 구매 form 생성
   - [x] input과 submit button 생성
-  - [ ] readMoney와 button 연결
+  - [x] readMoney와 button 연결
   - [ ] 생성된 결과를 보여주는 output 연결
 
 - 당첨번호, 보너스번호 article
