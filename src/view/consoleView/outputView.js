@@ -1,5 +1,4 @@
 import { OUTPUT_MESSAGE } from '../constants/view-messages.js';
-import ascendingOrderSort from '../utils/ascendingSortArr.js';
 
 const outputView = {
   printPurchaseMessage(purchaseAmount) {
@@ -7,7 +6,7 @@ const outputView = {
   },
 
   printLottoNumber(lottoNumbers) {
-    console.log(ascendingOrderSort(lottoNumbers));
+    console.log(lottoNumbers);
   },
 
   printResultHeader() {
