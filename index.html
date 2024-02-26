@@ -1,16 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" />
+    <!-- <link rel="stylesheet" href="./style/style.css" /> -->
+    <title>우테코 - 🎱 행운의 로또</title>
   </head>
 
   <body>
+    <!-- <script defer type="module" src="./src/js/index.js"></script> -->
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header class="lotto-main-header">
+        <div class="lmh-title">🎱 행운의 로또</div>
+      </header>
+      <section class="lotto-main-body">
+        <div class="lotto-paper">
+          <div class="lp-title">🎱 내 번호 당첨 확인 🎱</div>
+          <!-- 구입 금액 입력 -->
+          <div class="lp-purchase-amount">
+            <span class="lp-pa-text">구입할 금액을 입력해주세요.</span>
+            <div class="lp-pa-input-group">
+              <input type="number" class="lp-pa-input-amount" placeholder="금액" required />
+              <button class="lp-pa-input-btn">구입</button>
+            </div>
+          </div>
+          <!-- 로또 발행 -->
+          <div class="lp-ticket-issuance">
+            <span class="lp-ti-total-purchase-number">총 __개를 구입하였습니다.</span>
+            <div class="lp-ti-ticket-group">
+              <div class="lp-ti-ticket">
+                <div class="lp-ti-img">🎟️</div>
+                <div class="lp-ti-lotto">12, 23, 34, 45, 11, 24</div>
+              </div>
+            </div>
+          </div>
+          <!-- 당첨번호 및 보너스 번호 입력 -->
+          <div class="lp-number-input-group">
+            <span class="lp-nig-text">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
+            <div class="lp-nig-input-title">
+              <span class="lp-nig-winning-number">당첨 번호</span>
+              <span class="lp-nig-bonus-number">보너스 번호</span>
+            </div>
+            <div class="lp-nig-number-input-group">
+              <div class="lp-nig-winnig-box">
+                <input class="lp-nig-input" type="text" id="winningNumber1" required />
+                <input class="lp-nig-input" type="text" id="winningNumber2" required />
+                <input class="lp-nig-input" type="text" id="winningNumber3" required />
+                <input class="lp-nig-input" type="text" id="winningNumber4" required />
+                <input class="lp-nig-input" type="text" id="winningNumber5" required />
+                <input class="lp-nig-input" type="text" id="winningNumber6" required />
+              </div>
+              <div class="lp-nig-bonus-box">
+                <input class="lp-nig-input" type="text" id="bonusNumber" required />
+              </div>
+            </div>
+          </div>
+          <!-- 당첨결과 확인 플로팅 버튼 -->
+          <button class="default-button lp-winning-floating-btn">결과 확인하기</button>
+        </div>
+      </section>
+      <footer class="lotto-footer"></footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
