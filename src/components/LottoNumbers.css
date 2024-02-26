@@ -1,0 +1,21 @@
+lotto-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.lotto-icon {
+  font-family: Roboto;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.lotto-numbers-container {
+  display: flex;
+  align-items: center;
+  height: 24px;
+
+  margin-top: 4px;
+}

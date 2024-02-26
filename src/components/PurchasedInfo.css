@@ -1,0 +1,16 @@
+purchased-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 8px;
+
+  width: 100%;
+}
+
+.purchased-info-title-container {
+  display: flex;
+  align-items: center;
+
+  height: 24px;
+  width: 100%;
+}

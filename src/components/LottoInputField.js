@@ -1,16 +1,16 @@
 import './LottoInputField.css';
 
-const LOTTO_HEADER_COMPONENT = `
-  <input placeholder='금액'></input>
+const LOTTO_INPUT_FIELD_COMPONENT = `
+  <input class="lotto-input" type="text" placeholder="금액"></input>
 `;
 
-class LottoInputField extends HTMLFormElement {
+class LottoInputField extends HTMLElement {
   connectedCallback() {
     this.render();
   }
 
   render() {
-    this.innerHTML = LOTTO_HEADER_COMPONENT;
+    this.innerHTML = LOTTO_INPUT_FIELD_COMPONENT;
   }
 }
 
