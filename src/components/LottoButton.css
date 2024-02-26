@@ -3,7 +3,7 @@ lotto-button {
   justify-content: center;
   align-items: center;
   background-color: var(--lotto-primary);
-  width: 56px;
+  width: 100%;
   height: 36px;
   padding: 6px, 6px, 6px, 8px;
   border-radius: 4px;

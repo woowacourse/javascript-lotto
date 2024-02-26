@@ -16,7 +16,7 @@ lotto-main {
   justify-content: start;
 
   width: 414px;
-  height: 727px;
+  height: min-content;
   background-color: var(--lotto-greyscale-1);
   border: 1px solid rgba(0, 0, 0, 0.12);
 
@@ -31,4 +31,8 @@ lotto-main {
   align-items: center;
 
   height: 36px;
+}
+
+lotto-main .lotto-button {
+  width: 100%;
 }

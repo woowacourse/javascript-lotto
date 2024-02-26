@@ -22,3 +22,7 @@ purchase-price-form .lotto-button {
   align-items: center;
   height: 24px;
 }
+
+#purchase-button {
+  width: 56px;
+}

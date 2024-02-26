@@ -9,7 +9,7 @@ const PURCHASE_PRICE_FORM = `
     </div>
     <price-input-field></price-input-field>
   </div>
-  <lotto-button>구입</lotto-button>
+  <lotto-button id="purchase-button"></lotto-button>
 `;
 
 class PurchasePriceForm extends HTMLElement {
@@ -19,6 +19,8 @@ class PurchasePriceForm extends HTMLElement {
 
   render() {
     this.innerHTML = PURCHASE_PRICE_FORM;
+    const purchaseButton = document.querySelector('#purchase-button');
+    purchaseButton.setText('구입');
   }
 }
 

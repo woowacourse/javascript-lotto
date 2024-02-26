@@ -2,6 +2,7 @@ import './LottoMain.css';
 import './PurchasePriceForm.js';
 import './PurchasedInfo.js';
 import './WinningAndBonusInputForm.js';
+import './LottoButton.js';
 
 const LOTTO_MAIN_CONTAINER = `
   <div class="lotto-main-container">
@@ -13,6 +14,7 @@ const LOTTO_MAIN_CONTAINER = `
     <purchase-price-form></purchase-price-form>
     <purchased-info></purchased-info>
     <winning-numbers-form></winning-numbers-form>
+    <lotto-button id="result-button"></lotto-button>
   </div>
 `;
 
@@ -23,6 +25,8 @@ class LottoMain extends HTMLElement {
 
   render() {
     this.innerHTML = LOTTO_MAIN_CONTAINER;
+    const resultButton = document.querySelector('#result-button');
+    resultButton.setText('당첨 결과 확인하기');
   }
 }
 
