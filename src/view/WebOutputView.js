@@ -3,6 +3,9 @@ const WebOutputView = {
     ele.innerHTML = errorMessage;
     ele.classList.remove('hidden');
   },
+  hiddenEle(ele) {
+    ele.classList.add('hidden');
+  },
 };
 
 export default WebOutputView;

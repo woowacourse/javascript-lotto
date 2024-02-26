@@ -1,85 +1,6 @@
 @import 'reset.css';
 @import 'common.css';
 
-:root {
-  /*font*/
-  --title-font-size: 24px;
-  --title-font-weight: 800;
-  --title-line-height: 36px;
-
-  --subtitle-font-size: 20px;
-  --subtitle-font-weight: 600;
-
-  --body-font-size: 15px;
-  --body-font-weight: 400;
-  --body-line-height: 24px;
-
-  --placeholder-font-size: 15px;
-  --placeholder-font-weight: 500;
-  --placeholder-font-color: #8b8b8b;
-
-  --caption-font-size: 14px;
-  --caption-font-weight: 700;
-  --caption-line-height: 16px;
-
-  /*color*/
-  --lotto-primary: #4e5ba6;
-  --lotto-greyscale-1: #ffffff;
-  --lotto-greyscale-2: #fcfcfd;
-  --lotto-greyscale-3: #b4b4b4;
-  --lotto-greyscale-4: #8b8b8b;
-  --lotto-greyscale-5: #000000;
-
-  --border-line: rgba(0, 0, 0, 0.12);
-}
-
-* {
-  font-family: 'Roboto', sans-serif;
-}
-
-body {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  min-height: 100dvh;
-  font-size: var(--body-font-size);
-  font-weight: var(--body-font-weight);
-  line-height: var(--body-line-height);
-  letter-spacing: 0.5px;
-}
-
-.title {
-  font-size: var(--title-font-size);
-  font-weight: var(--title-font-weight);
-  line-height: var(--title-line-height);
-}
-
-.caption {
-  font-size: var(--caption-font-size);
-  font-weight: var(--caption-font-weight);
-  line-height: var(--caption-line-height);
-}
-
-::placeholder {
-  font-size: var(--placeholder-font-size);
-  font-weight: var(--placeholder-font-weight);
-  color: var(--placeholder-font-color);
-}
-
-.error {
-  color: rgb(242, 111, 35);
-}
-
-header {
-  background-color: var(--lotto-primary);
-  height: 64px;
-  display: flex;
-}
-
-input {
-  padding: 10px;
-}
-
 h1 {
   font-size: var(--title-font-size);
   font-weight: var(--title-font-weight);
@@ -90,13 +11,6 @@ h1 {
 header > h1 {
   color: var(--lotto-greyscale-1);
   margin-left: 130px;
-}
-
-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 144px);
 }
 
 #main-lotto-card {
@@ -119,6 +33,7 @@ main {
   color: var(--lotto-greyscale-5);
 }
 
+/* TODO: 공통된 속성 class로 정리하기*/
 /*로또 구입 금액 입력 섹션*/
 #lotto-money-form-section {
   padding-top: 30px;
@@ -140,13 +55,6 @@ main {
   border-radius: 4px;
 }
 
-#lotto-money-input-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
 #money-input-box {
   display: flex;
   width: 100%;
@@ -158,6 +66,14 @@ main {
   padding-top: 5px;
 }
 
+#lotto-money-input-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* TODO: 위랑 안 겹치는지 확인 */
 #lotto-money-form-section button {
   border: 4px;
   padding: 6px 6px 6px 8px;
@@ -200,7 +116,9 @@ main {
   position: absolute;
   bottom: 10px;
   height: 200px;
+  width: 100%;
   flex-direction: column;
+  width: 382px;
 }
 
 #winning-numbers-form {
@@ -243,14 +161,8 @@ main {
   border: 1px solid var(--lotto-greyscale-3);
 }
 
-#winning-lotto-section button {
+#result-show-button {
   margin-top: 30px;
-  background-color: var(--lotto-primary);
-  width: 382px;
-  height: 36px;
-  border-radius: 4px;
-  padding: 6px 6px 6px 8px;
-  color: var(--lotto-greyscale-1);
 }
 
 /*footer*/
@@ -264,4 +176,54 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100vw;
+}
+
+/*modal*/
+#winning-statistics {
+  width: 350px;
+  height: 500px;
+  background-color: var(--lotto-greyscale-1);
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+}
+
+#winning-statistics h2 {
+  text-align: center;
+  width: 318px;
+  height: 24px;
+  font-size: 20px;
+  margin: 30px;
+}
+
+#winning-statistics-table {
+  width: 318px;
+  padding: 10px;
+}
+
+#winning-statistics-table tr {
+  border-top: 1px solid var(--border-line);
+  border-bottom: 1px solid var(--border-line);
+  text-align: center;
+}
+
+#winning-statistics-table th {
+  font-weight: var(--caption-font-weight);
+}
+
+#winning-statistics-table td,
+th {
+  height: 24px;
+  padding: 8px 0 8px 0;
+}
+
+#lotto-return-ratio {
+  margin: 30px;
+  font-weight: var(--caption-font-weight);
 }

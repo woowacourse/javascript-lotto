@@ -1,3 +1,50 @@
+:root {
+  /*font*/
+  --title-font-size: 24px;
+  --title-font-weight: 800;
+  --title-line-height: 36px;
+
+  --subtitle-font-size: 20px;
+  --subtitle-font-weight: 600;
+
+  --body-font-size: 15px;
+  --body-font-weight: 400;
+  --body-line-height: 24px;
+
+  --placeholder-font-size: 15px;
+  --placeholder-font-weight: 500;
+  --placeholder-font-color: #8b8b8b;
+
+  --caption-font-size: 14px;
+  --caption-font-weight: 700;
+  --caption-line-height: 16px;
+
+  /*color*/
+  --lotto-primary: #4e5ba6;
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000000;
+
+  --border-line: rgba(0, 0, 0, 0.12);
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  min-height: 100dvh;
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: 0.5px;
+}
+
 .flexCenter {
   display: flex;
   justify-content: center;
@@ -6,4 +53,65 @@
 
 .hidden {
   visibility: hidden;
+}
+
+.none {
+  display: none;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.primary-button {
+  background-color: var(--lotto-primary);
+  border-radius: 4px;
+  padding: 6px 6px 6px 8px;
+  color: var(--lotto-greyscale-1);
+  width: 100%;
+  height: 36px;
+}
+
+.title {
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
+}
+
+.caption {
+  font-size: var(--caption-font-size);
+  font-weight: var(--caption-font-weight);
+  line-height: var(--caption-line-height);
+}
+
+::placeholder {
+  font-size: var(--placeholder-font-size);
+  font-weight: var(--placeholder-font-weight);
+  color: var(--placeholder-font-color);
+}
+
+.error {
+  color: rgb(242, 111, 35);
+}
+
+header {
+  background-color: var(--lotto-primary);
+  height: 64px;
+  display: flex;
+}
+
+input {
+  padding: 10px;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 144px);
 }
