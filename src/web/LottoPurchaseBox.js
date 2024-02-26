@@ -1,5 +1,6 @@
 import Component from './Component';
 import MoneyInput from './MoneyInput';
+import Validator from '../domain/Validator';
 
 class LottoPurchaseBox extends Component {
   setup() {
@@ -23,7 +24,11 @@ class LottoPurchaseBox extends Component {
   }
 
   updateMoney(newMoney) {
-    this.setState({ money: newMoney });
+    try {
+      this.setState({ money: Validator.validateMoney(newMoney) });
+    } catch (error) {
+      alert(error.message);
+    }
   }
 }
 
