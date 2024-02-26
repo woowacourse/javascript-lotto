@@ -12,10 +12,9 @@ import { retryOnError } from "../utils/retryOnError.js";
 
 import { ERROR_MESSAGE } from "../constants/messages.js";
 
+const RETRY_YES = ["y", "Y"];
+const RETRY_NO = ["n", "N"];
 class LottoController {
-  static #RETRY_YES = ["y", "Y"];
-  static #RETRY_NO = ["n", "N"];
-
   async init() {
     const boughtLottos = await this.#processBuyingLottos();
     const winningLotto = await this.#processGettingWinningLotto();
@@ -24,7 +23,7 @@ class LottoController {
 
     const retryChecker = await retryOnError(this.#readRetryChecker.bind(this));
 
-    if (LottoController.#RETRY_YES.includes(retryChecker)) await this.init();
+    if (RETRY_YES.includes(retryChecker)) await this.init();
   }
 
   async #processBuyingLottos() {
@@ -105,12 +104,9 @@ class LottoController {
   }
 
   #validateRetryChecker(string) {
-    const RETRY_OPTION = [
-      ...LottoController.#RETRY_YES,
-      ...LottoController.#RETRY_NO,
-    ];
+    const RETRY_OPTIONS = [...RETRY_YES, ...RETRY_NO];
 
-    if (!RETRY_OPTION.includes(string)) {
+    if (!RETRY_OPTIONS.includes(string)) {
       throw new Error(ERROR_MESSAGE.invalidRetryChecker);
     }
   }

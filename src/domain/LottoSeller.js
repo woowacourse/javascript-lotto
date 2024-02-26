@@ -1,13 +1,13 @@
 import Money from "./Money.js";
-import LottoNumber from "./LottoNumber.js";
-import Lotto from "./Lotto.js";
+import { LOTTO_NUMBER_MAX, LOTTO_NUMBER_MIN } from "./LottoNumber.js";
+import Lotto, { LOTTO_NUMBER_LENGTH } from "./Lotto.js";
 
 import Random from "../utils/random.js";
 
-class LottoSeller {
-  static LOTTO_PRICE = 1000;
-  static MAX_LOTTO_COUNT = 100;
+export const LOTTO_PRICE = 1000;
+export const MAX_LOTTO_BUYING_COUNT = 100;
 
+class LottoSeller {
   static sell(money) {
     this.#validateLottoMoney(money);
 
@@ -29,23 +29,23 @@ class LottoSeller {
   }
 
   static #validateMinAmount(money) {
-    if (money.getAmount() < this.LOTTO_PRICE) {
+    if (money.getAmount() < LOTTO_PRICE) {
       throw new Error(
-        `[ERROR] 투입 금액은 최소 로또 한 개 가격(${this.LOTTO_PRICE}) 이상이어야 합니다.`
+        `[ERROR] 투입 금액은 최소 로또 한 개 가격(${LOTTO_PRICE}) 이상이어야 합니다.`
       );
     }
   }
 
   static #validateMaxAmount(money) {
-    if (money.getAmount() > this.MAX_LOTTO_COUNT * this.LOTTO_PRICE) {
+    if (money.getAmount() > MAX_LOTTO_BUYING_COUNT * LOTTO_PRICE) {
       throw new Error(
-        `[ERROR] 로또는 최대 ${this.MAX_LOTTO_COUNT}개까지 구매 가능합니다.`
+        `[ERROR] 로또는 최대 ${MAX_LOTTO_BUYING_COUNT}개까지 구매 가능합니다.`
       );
     }
   }
 
   static #calculateLottoCount(money) {
-    return Math.floor(money.getAmount() / LottoSeller.LOTTO_PRICE);
+    return Math.floor(money.getAmount() / LOTTO_PRICE);
   }
 
   static #pickLottos(count) {
@@ -54,9 +54,9 @@ class LottoSeller {
 
   static #pickLotto() {
     const numbers = Random.pickNumbersBetween(
-      LottoNumber.MIN,
-      LottoNumber.MAX,
-      Lotto.NUMBER_COUNT
+      LOTTO_NUMBER_MIN,
+      LOTTO_NUMBER_MAX,
+      LOTTO_NUMBER_LENGTH
     );
 
     return new Lotto(numbers);
