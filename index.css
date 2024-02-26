@@ -1,0 +1,143 @@
+header {
+  background-color: #4e5ba6;
+  border-bottom: 1px solid #4e5ba633;
+  display: flex;
+  align-items: center;
+}
+.header {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-left: 9rem;
+}
+
+#app {
+  width: 382px;
+  height: 727px;
+  top: 148px;
+  left: 513px;
+
+  margin: 84px auto;
+  padding: 32px 15px;
+  border: 1px solid #0000001f;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+#app > .title {
+  width: 100%;
+  height: 24px;
+  top: 52px;
+  left: 16px;
+
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-align: center;
+}
+
+.purchase {
+  width: 100%;
+}
+
+.purchase-form {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+.purchase__label {
+  width: 310px;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+.purchase-form__input {
+  width: 310px;
+  max-height: 36px;
+  padding: 8px 8px 0px 8px;
+  border-radius: 4px;
+  border: 1px;
+
+  border: 1px solid #b4b4b4;
+}
+.purchase-form__button {
+  width: 56px;
+  max-height: 36px;
+  top: 132px;
+  left: 342px;
+
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: #4e5ba6;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+/* 구매로또 */
+
+/* 당첨로또 */
+.winning-lotto {
+  display: flex;
+  display: none;
+  flex-direction: column;
+  row-gap: 8px;
+
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+/* 당첨번호 */
+.winning-lotto-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.winning-lotto-form input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+}
+
+.winning-numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-numbers__inputs {
+  display: flex;
+  gap: 8px;
+}
+
+/* 보너스번호 */
+.bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* 결과 */
+.result__button {
+  width: 100%;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: #4e5ba6;
+  font-size: 14px;
+
+  color: #ffffff;
+}
+.result {
+  width: 100%;
+  display: none;
+}

@@ -5,12 +5,54 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link href="index.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
+  <header>
+    <h1 class="header">🎱 행운의 로또</h1>
+  </header>
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
+      <div class="purchase">
+        <label class="purchase__label">구입할 금액을 입력해주세요.</label>
+        <div class="purchase-form">
+          <input class="purchase-form__input" placeholder="금액" />
+          <button class="purchase-form__button">구입</button>
+        </div>
+      </div>
+      <div class="purchased-lotto">
+        <div class="purchased-lotto__count-label"></div>
+        <div class="purchased-lotto__list"></div>
+      </div>
+      <div class="winning-lotto">
+        <label class="winning-lotto__label"
+          >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label
+        >
+        <div class="winning-lotto-form">
+          <div class="winning-numbers">
+            <label class="winning-numbers__label">당첨 번호</label>
+            <div class="winning-numbers__inputs">
+              <input /><input /><input /><input /><input /><input />
+            </div>
+          </div>
+          <div class="bonus-number">
+            <label class="bonus-number__label">보너스 번호</label>
+            <div class="bonus-number__input"><input /></div>
+          </div>
+        </div>
+      </div>
+      <div class="result">
+        <button class="result__button">결과 확인하기</button>
+      </div>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <script type="module" src="./src/step2-index.js"></script>
   </body>
+  <footer>copyright 2023. woowacourse</footer>
 </html>
