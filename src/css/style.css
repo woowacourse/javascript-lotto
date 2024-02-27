@@ -1,3 +1,14 @@
+:root {
+  --gray-scale-1: #ffffff;
+  --gray-scale-2: #fcfcfd;
+  --gray-scale-3: #b4b4b4;
+  --gray-scale-4: #8b8b8b;
+  --gray-scale-5: #000000;
+  --lotto-primary: #4e5ba6;
+
+  --modal-z-index: 2;
+}
+
 body,
 html {
   margin: 0;
@@ -19,14 +30,14 @@ html {
 header {
   width: 100%;
   height: 64px;
-  background-color: #4e5ba6;
+  background-color: var(--lotto-primary);
   display: flex;
   align-items: center;
   justify-items: center;
 }
 
 .header-title {
-  color: #ffffff;
+  color: var(--gray-scale-1);
   margin: 0 0 0 130px;
 }
 
@@ -69,11 +80,11 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fcfcfd;
+  background-color: var(--gray-scale-2);
 }
 
 #total-article {
-  background-color: #ffffff;
+  background-color: var(--gray-scale-1);
   border: 1px solid rgba(0, 0, 0, 0.12);
   width: 414px;
   border-radius: 4px;
@@ -102,13 +113,13 @@ ul {
 #purchaseAmount-input {
   width: 100%;
   height: 36px;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--gray-scale-3);
   border-radius: 4px;
 }
 
 #purchase-button {
-  color: white;
-  background-color: #4e5ba6;
+  color: var(--gray-scale-1);
+  background-color: var(--lotto-primary);
   border-radius: 4px;
   padding: 6px 6px 6px 8px;
   border: none;
@@ -134,7 +145,7 @@ ul {
 #winning-lotto input {
   width: 36px;
   height: 36px;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--gray-scale-3);
   border-radius: 4px;
 }
 
@@ -155,9 +166,9 @@ li {
   width: 100%;
   height: 36px;
   border-radius: 4px;
-  background: #4e5ba6;
+  background: var(--lotto-primary);
   border: none;
-  color: #ffffff;
+  color: var(--gray-scale-1);
   cursor: pointer;
   margin-top: 20px;
 }
@@ -195,7 +206,7 @@ footer {
 }
 
 #modal {
-  background-color: #ffffff;
+  background-color: var(--gray-scale-1);
   width: 350px;
   display: flex;
   flex-direction: column;
@@ -246,9 +257,9 @@ th {
 
 #retry-button {
   border-radius: 4px;
-  background: #4e5ba6;
+  background: var(--lotto-primary);
   border: none;
-  color: #ffffff;
+  color: var(--gray-scale-1);
   cursor: pointer;
   width: 100%;
   padding: 10px;
