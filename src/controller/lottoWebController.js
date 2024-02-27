@@ -20,6 +20,7 @@ const lottoWebController = {
       "click",
       this.handleWebLottoCombinationInput.bind(this)
     );
+    $("#modal-close-btn").addEventListener("click", this.closeModal.bind(this));
   },
 
   getWebBudget() {
@@ -98,9 +99,21 @@ const lottoWebController = {
         webLottoCombination
       );
       console.log("validation success");
+
+      this.openModal();
     } catch (error) {
       alert(error.message);
     }
+  },
+
+  openModal() {
+    console.log("openModal");
+    $("#modal").style.display = "flex";
+  },
+
+  closeModal() {
+    console.log("closeModal");
+    $("#modal").style.display = "none";
   },
 };
 
