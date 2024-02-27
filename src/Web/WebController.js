@@ -15,8 +15,6 @@ export default class WebController {
     RenderingHandler.renderFooter();
 
     this.#setMoneyFormEvent();
-    // this.#executeLottos();
-    // await this.#executeWinLottoNumber();
     // this.#executeResult();
     // await this.#executeRetry();
   }
@@ -35,55 +33,58 @@ export default class WebController {
     });
   }
 
-  // handleLottoMoney(e) {
-  //   e.preventDefault();
-  //   try {
-  //     const money = Number(e.target.money.value);
-  //     WebController.lottoMachine = new LottoMachine(money);
-  //     this.#executeLottos();
-  //   } catch (err) {
-  //     alert(err.message);
-  //   }
-  // }
-
   #executeLottos() {
     const boughtLottos = this.#lottoMachine.getLottos();
     RenderingHandler.renderLottosList(boughtLottos);
+    this.#setWinLottoNumbersEvent();
   }
 
-  // async #executeWinLottoNumber() {
-  //   await this.#executeWinLottoNumbers();
-  //   await this.#executeBonusNumber();
-  // }
+  #setWinLottoNumbersEvent() {
+    const moneyForm = document.getElementById('winLottoForm');
+    moneyForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      try {
+        const winNumbers = Array.from(e.target.winNumber).map((element) => {
+          this.#checkNumber(element.value);
+          return Number(element.value);
+        });
+        this.#checkNumber(e.target.bonusNumber.value);
+        const bonusNumber = Number(e.target.bonusNumber.value);
+        this.#executeWinLottoNumber(winNumbers, bonusNumber);
+        this.#executeResult();
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  }
 
-  // async #executeWinLottoNumbers() {
-  //   try {
-  //     const winLottoNumbers = await InputView.readWinLottoNumbers();
-  //     this.#winLottoNumber = new WinLottoNumber(winLottoNumbers);
-  //   } catch (err) {
-  //     OutputView.printError(err.message);
-  //     await this.#executeWinLottoNumbers();
-  //   }
-  // }
+  #executeWinLottoNumber(winNumbers, bonusNumber) {
+    this.#executeWinLottoNumbers(winNumbers);
+    this.#executeBonusNumber(bonusNumber);
+  }
 
-  // async #executeBonusNumber() {
-  //   try {
-  //     const bonusNumber = await InputView.readBonusNumber();
-  //     this.#winLottoNumber.setBonusNumber(bonusNumber);
-  //   } catch (err) {
-  //     OutputView.printError(err.message);
-  //     await this.#executeBonusNumber();
-  //   }
-  // }
+  #executeWinLottoNumbers(winLottoNumbers) {
+    this.#winLottoNumber = new WinLottoNumber(winLottoNumbers);
+  }
 
-  // #executeResult() {
-  //   const winNumbersObj = this.#winLottoNumber.getWinLottoNumbers();
-  //   const winLottos = this.#lottoMachine.getWinLottos(winNumbersObj);
-  //   OutputView.printWinLottos(winLottos);
+  #executeBonusNumber(bonusNumber) {
+    this.#winLottoNumber.setBonusNumber(bonusNumber);
+  }
 
-  //   const rateOfIncome = this.#lottoMachine.getRateOfIncome(winNumbersObj);
-  //   OutputView.printRateOfIncome(rateOfIncome);
-  // }
+  #checkNumber(input) {
+    if (!input && input !== '0') {
+      throw new Error('입력값 없음');
+    }
+  }
+
+  #executeResult() {
+    const winNumbersObj = this.#winLottoNumber.getWinLottoNumbers();
+    const winLottos = this.#lottoMachine.getWinLottos(winNumbersObj);
+
+    const rateOfIncome = this.#lottoMachine.getRateOfIncome(winNumbersObj);
+
+    RenderingHandler.renderLottoResultModal(winLottos, rateOfIncome);
+  }
 
   // async #executeRetry() {
   //   try {

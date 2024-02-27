@@ -39,6 +39,10 @@ const RenderingHandler = Object.freeze({
     lottoContainer.appendChild(LottoNumbersComponents.makeLottoResults(boughtLottos));
     lottoContainer.appendChild(WinLottoComponents.makeWinLottoForm());
   },
+
+  renderLottoResultModal: (winLottos, rateOfIncome) => {
+    console.log(winLottos, rateOfIncome);
+  },
 });
 
 export default RenderingHandler;
