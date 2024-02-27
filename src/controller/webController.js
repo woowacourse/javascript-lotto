@@ -79,12 +79,7 @@ class WebController {
   }
 
   async #setWinningLotto() {
-    const winningLotto = await RetryFunc.executeUntillMaxTry(
-      this.#getWinningLotto.bind(this),
-    );
-    // const WinningLottoWithBonusNumber = await RetryFunc.executeUntillMaxTry(
-    //   () => this.#getBonusNumber(winningLotto),
-    // );
+    const winningLotto = await this.#getWinningLotto();
 
     return winningLotto;
   }
@@ -95,6 +90,24 @@ class WebController {
       const winningNumbers = document.querySelectorAll(".input_winningNumber");
       const bonusNumber = document.getElementById("input_bonusNumber");
       console.log("getWinningLotto");
+
+      function onInputKeyDown(event) {
+        if (event.key === "Enter") {
+          // 엔터 키를 눌렀을 때 다음 입력란으로 포커스 이동
+          const nextInput = event.target.nextElementSibling;
+          if (nextInput) {
+            nextInput.focus();
+          } else {
+            bonusNumber.focus();
+          }
+        }
+      }
+
+      function onBonusNumberInputKeyDown(event) {
+        if (event.key === "Enter") {
+          button.click();
+        }
+      }
 
       function onClickHandler(event) {
         event.preventDefault();
@@ -118,16 +131,14 @@ class WebController {
         button.removeEventListener("click", onClickHandler);
       }
 
+      winningNumbers.forEach((input) => {
+        input.addEventListener("keydown", onInputKeyDown);
+      });
+
+      bonusNumber.addEventListener("keydown", onBonusNumberInputKeyDown);
+
       button.addEventListener("click", onClickHandler);
     });
-  }
-
-  async #getBonusNumber(winningLotto) {
-    const bonusNumber = 7;
-    // const bonusNumber = await this.#inputView.inputBonusNumber();
-    bonusNumberValidator(winningLotto.getNumbers(), Number(bonusNumber));
-
-    return new WinningLotto(winningLotto, Number(bonusNumber));
   }
 
   #getGameResult(lottoList, winningLotto) {
