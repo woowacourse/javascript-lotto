@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "color-hex-length": "long"
+  },
+  "extends": ["stylelint-config-standard"]
+}
