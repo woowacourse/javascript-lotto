@@ -9,6 +9,8 @@ const RetryFunc = {
       return result;
     } catch (error) {
       OutputView.printError(error.message);
+      const isRetry = document.getElementById("isRetry");
+      isRetry.innerText = error.message;
       return this.executeUntillMaxTry(asyncFn, retryCount + 1);
     }
   },
