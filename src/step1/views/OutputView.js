@@ -1,3 +1,4 @@
+import { MESSAGES } from "../constants/message";
 import Console from "../utils/Console";
 
 const OutputView = {
@@ -5,37 +6,38 @@ const OutputView = {
     Console.print(message);
   },
 
+  printGameIntro() {
+    Console.print(MESSAGES.gameIntro);
+  },
+
   printLottoCount(lottoCount) {
-    this.printMessage(`${lottoCount}개를 구매했습니다.`);
+    Console.print(MESSAGES.purchasedLottoCount(lottoCount));
   },
 
   printReturnRate(returnRate) {
-    this.printMessage(`총 수익률은 ${returnRate}%입니다.`);
+    Console.print(MESSAGES.returnRate(returnRate));
   },
 
-  printTotalLottos(lottos, lottosCount) {
-    this.printLottoCount(lottosCount);
-
+  printTotalLottos(lottos) {
     lottos.forEach((lotto) => {
       const sortedLottoNumers = lotto.sort((a, b) => a - b);
       Console.print(sortedLottoNumers);
     });
   },
 
-  printWinningResult(winningResult) {
-    this.printMessage("당첨 통계");
-    this.printMessage("--------------------");
-    const ranks = Object.keys(winningResult);
+  printWinningResult({ resultBoard, rewards, rankCondition }) {
+    Console.print(MESSAGES.resultIntro);
+
+    const ranks = Object.keys(rankCondition);
+
     ranks.forEach((rank) => {
-      const { reward, rule, matchedCount } = winningResult[rank];
-      if (rank === "second") {
-        this.printMessage(
-          `${rule}개 일치, 보너스 볼 일치 (${reward.toLocaleString()}원) - ${matchedCount}개`
-        );
-        return;
-      }
-      this.printMessage(
-        `${rule}개 일치 (${reward.toLocaleString()}원) - ${matchedCount}개`
+      const matchedCount = rankCondition[rank].matchedCount;
+      const useBonusNumber = rankCondition[rank].useBonusNumber;
+      const reward = rewards[rank];
+      const resultCount = resultBoard[rank];
+
+      Console.print(
+        MESSAGES.result({ matchedCount, useBonusNumber, reward, resultCount })
       );
     });
   },
