@@ -30,6 +30,7 @@ class WebController {
     try {
       const lottoList = await this.#setLotto();
       const winningLotto = await this.#setWinningLotto();
+      console.log("win,", winningLotto);
       this.#getGameResult(lottoList, winningLotto);
     } catch (exceedMaxRetryError) {
       //   this.#outputView.printExceedMaxRetry(exceedMaxRetryError.message);
@@ -49,19 +50,22 @@ class WebController {
 
   async #getPurchaseAmount() {
     return new Promise((resolve) => {
-      document.addEventListener("DOMContentLoaded", function () {
-        const purchaseAmountInput = document.getElementById(
-          "input_purchaseAmount",
-        );
-        const button = document.getElementById("purchase_button");
+      const purchaseAmountInput = document.getElementById(
+        "input_purchaseAmount",
+      );
+      const button = document.getElementById("purchase_button");
 
-        button.addEventListener("click", function (event) {
-          event.preventDefault();
-          purchaseAmountValidator(purchaseAmountInput.value);
-          resolve(Number(purchaseAmountInput.value));
-          purchaseAmountInput.value = "";
-        });
-      });
+      function onClickHandler(event) {
+        event.preventDefault();
+        purchaseAmountValidator(purchaseAmountInput.value);
+        resolve(Number(purchaseAmountInput.value));
+        purchaseAmountInput.value = "";
+
+        // 이벤트 핸들러를 한 번만 실행하도록 리스너 제거
+        button.removeEventListener("click", onClickHandler);
+      }
+
+      button.addEventListener("click", onClickHandler);
     });
   }
 
@@ -78,19 +82,44 @@ class WebController {
     const winningLotto = await RetryFunc.executeUntillMaxTry(
       this.#getWinningLotto.bind(this),
     );
-    const WinningLottoWithBonusNumber = await RetryFunc.executeUntillMaxTry(
-      () => this.#getBonusNumber(winningLotto),
-    );
-
-    return WinningLottoWithBonusNumber;
-  }
-
-  async #getWinningLotto() {
-    const winningLottoInput = [1, 2, 3, 4, 5, 6];
-    // const winningLottoInput = await this.#inputView.inputWinningLottoNumber();
-    const winningLotto = new LottoMachine().makeWinningLotto(winningLottoInput);
+    // const WinningLottoWithBonusNumber = await RetryFunc.executeUntillMaxTry(
+    //   () => this.#getBonusNumber(winningLotto),
+    // );
 
     return winningLotto;
+  }
+
+  #getWinningLotto() {
+    return new Promise((resolve) => {
+      const button = document.getElementById("result_button");
+      const winningNumbers = document.querySelectorAll(".input_winningNumber");
+      const bonusNumber = document.getElementById("input_bonusNumber");
+      console.log("getWinningLotto");
+
+      function onClickHandler(event) {
+        event.preventDefault();
+        const numbersString = Array.prototype.map
+          .call(winningNumbers, (input) => input.value.trim())
+          .join(",");
+
+        const winningLotto = new LottoMachine().makeWinningLotto(numbersString);
+        bonusNumberValidator(
+          winningLotto.getNumbers(),
+          Number(bonusNumber.value),
+        );
+
+        resolve(WinningLotto(winningLotto, bonusNumber.value));
+        winningNumbers.forEach((input) => {
+          input.value = "";
+        });
+        bonusNumber.value = "";
+
+        // 이벤트 핸들러를 한 번만 실행하도록 리스너 제거
+        button.removeEventListener("click", onClickHandler);
+      }
+
+      button.addEventListener("click", onClickHandler);
+    });
   }
 
   async #getBonusNumber(winningLotto) {
@@ -105,10 +134,8 @@ class WebController {
     const result = new LottoResult(lottoList, winningLotto);
     const { rank, profit } = result.getResult();
 
-    return { rank, profit }; // TODO: this.#outputView.printResult(rank);
-
-    // this.#outputView.printResult(rank);
-    // this.#outputView.printProfit(profit);
+    this.#outputView.printResult(rank);
+    this.#outputView.printProfit(profit);
   }
 }
 
