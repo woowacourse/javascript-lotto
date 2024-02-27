@@ -1,11 +1,17 @@
-import { LOTTO_RULE, WINNING_RULE } from '../../constants/index.js';
+import {
+  LOTTO_RULE,
+  RANDOM_NUMBER_RULE,
+  WINNING_RULE,
+} from '../../constants/index.js';
 
 const HtmlTextInjectorWithConstants = {
   injectorText() {
     this.private_setNumberRangeOfPaymentAmountInput();
     this.private_makeInputForWinningLottoNumbers();
     this.private_setNumberRangeOfBonusInput();
-    this.private_editPrizeAndCountText();
+    this.private_setTextContentAboutPrize();
+    this.private_setTextContentAboutPaymentAmountRule();
+    this.private_setTextContentAboutWinningCriteria();
   },
 
   private_setNumberRangeOfPaymentAmountInput() {
@@ -58,14 +64,73 @@ const HtmlTextInjectorWithConstants = {
     bonusInput.setAttribute('min', start);
     bonusInput.setAttribute('max', end);
   },
-
-  private_editPrizeAndCountText() {
+  private_setTextContentAboutPrize() {
     WINNING_RULE.forEach((value, key) => {
       const trEl = document.querySelector(`#rank${key}`);
       const prizeEl = trEl.querySelector('.prize');
 
       prizeEl.textContent = value.money.toLocaleString('ko-KR');
     });
+  },
+  // rule
+  private_setTextContentAboutPaymentAmountRule() {
+    this.private_setTextContentAboutLottoPrice();
+    this.private_setTextContentAboutRangeOfIssuedLotto();
+  },
+
+  private_setTextContentAboutLottoPrice() {
+    const { price } = LOTTO_RULE;
+    const lottoPriceElList = document.querySelectorAll(
+      '.paymentAmount__rule-lottoPrice',
+    );
+
+    lottoPriceElList.forEach((el) => {
+      // eslint-disable-next-line
+      el.textContent = price.toLocaleString('ko-KR');
+    });
+  },
+
+  private_setTextContentAboutRangeOfIssuedLotto() {
+    const { min, max } = LOTTO_RULE.numbersOfTickets;
+
+    const minEl = document.querySelector(
+      '#paymentAmount__rule-minNumberOfTickets',
+    );
+    const maxEl = document.querySelector(
+      '#paymentAmount__rule-maxNumberOfTickets',
+    );
+
+    minEl.textContent = min;
+    maxEl.textContent = max;
+  },
+  // 로또, 보너스 번호
+  private_setTextContentAboutWinningCriteria() {
+    this.private_setTextContentAboutLottoNumber();
+    this.private_setTextContentAboutNumbersOfLotto();
+  },
+
+  private_setTextContentAboutLottoNumber() {
+    const { start, end } = RANDOM_NUMBER_RULE.range;
+
+    const startEl = document.querySelector(
+      '#winningCriteria__rule-startNumberOfLotto',
+    );
+    const endEl = document.querySelector(
+      '#winningCriteria__rule-endNumberOfLotto',
+    );
+
+    startEl.textContent = start;
+    endEl.textContent = end;
+  },
+
+  private_setTextContentAboutNumbersOfLotto() {
+    const { length } = LOTTO_RULE;
+
+    const numbersOfLottoEl = document.querySelector(
+      '#winningCriteria__rule-numbersOfLotto',
+    );
+
+    numbersOfLottoEl.textContent = length;
   },
 };
 
