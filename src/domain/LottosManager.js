@@ -4,11 +4,11 @@ import { SETTING, RANKING } from '../constant/setting.js';
 class LottosManager {
   #lottos;
   #winningResults = {
-    6: 0,
-    B5: 0,
-    5: 0,
-    4: 0,
     3: 0,
+    4: 0,
+    5: 0,
+    B5: 0,
+    6: 0,
   };
 
   constructor(lottoList) {

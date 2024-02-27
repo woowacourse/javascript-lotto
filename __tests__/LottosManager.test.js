@@ -17,11 +17,11 @@ describe('[Lottos] 당첨 확인 로직 테스트', () => {
 
     // then
     const expectedResult = {
-      6: 0,
-      B5: 1,
-      5: 0,
-      4: 0,
       3: 0,
+      4: 0,
+      5: 0,
+      B5: 1,
+      6: 0,
     };
 
     expect(winningResults).toEqual(expectedResult);
