@@ -4,8 +4,9 @@ import { appendChildren, makeElementById, makeElementWithClassName } from '../..
 const LottoComponent = Object.freeze({
   makeLottoContainerElement: () => {
     const lottoContainer = makeElementById('div', 'lottoContainer');
-    lottoContainer.appendChild(LottoComponent.makeLottoTitle());
-    lottoContainer.appendChild(LottoComponent.makeMoneyForm());
+    appendChildren(lottoContainer, [LottoComponent.makeLottoTitle(), LottoComponent.makeMoneyForm()]);
+    const lottoResultContainer = makeElementById('div', 'lottoResultContainer');
+    lottoContainer.appendChild(lottoResultContainer);
     return lottoContainer;
   },
 

@@ -6,7 +6,7 @@ import LottoNumbersComponents from './components/LottoNumbersComponent';
 import WinLottoComponents from './components/WinLottoComponents';
 
 import LottoComponents from './components/LottoComponents';
-import { makeElementWithClassName } from '../utils';
+import { appendChildren, makeElementWithClassName } from '../utils';
 
 const RenderingHandler = Object.freeze({
   renderHeader: () => {
@@ -35,9 +35,12 @@ const RenderingHandler = Object.freeze({
   },
 
   renderLottosList: (boughtLottos) => {
-    const lottoContainer = document.getElementById('lottoContainer');
-    lottoContainer.appendChild(LottoNumbersComponents.makeLottoResults(boughtLottos));
-    lottoContainer.appendChild(WinLottoComponents.makeWinLottoForm());
+    const lottoResultContainer = document.getElementById('lottoResultContainer');
+    lottoResultContainer.innerHTML = '';
+    appendChildren(lottoResultContainer, [
+      LottoNumbersComponents.makeLottoResults(boughtLottos),
+      WinLottoComponents.makeWinLottoForm(),
+    ]);
   },
 
   renderLottoResultModal: (winLottos, rateOfIncome) => {
