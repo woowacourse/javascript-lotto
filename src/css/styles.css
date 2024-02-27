@@ -1,4 +1,21 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+}
+
+* {
+  margin: 0;
+}
+
+header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
 .header__title {
+  position: relative;
+  left: 130px;
 }
 
 .main__container {
@@ -68,4 +85,21 @@
 }
 
 .footer__info {
+}
+
+.color-white {
+  color: rgba(255, 255, 255, 1);
+}
+
+.bgcolor-primary {
+  background: rgba(78, 91, 166, 1);
+}
+
+.text-title {
+  font-family: 'Roboto';
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
 }
