@@ -39,7 +39,7 @@ export default function content(element) {
         <form id="buy-lotto-form">
           <div id="buy-lotto-container">
             <label id="buy-lotto-input-label" for="buy-lotto-input">구입할 금액을 입력해주세요.</label>
-            <input id="buy-lotto-input" placeholder="금액" type="text" />
+            <input id="buy-lotto-input" placeholder="금액" type="number" required step="1000" min="1000" />
           </div>
           <input id="buy-btn" type="submit" value="구입" />
         </form>

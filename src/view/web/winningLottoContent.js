@@ -30,18 +30,18 @@ export default function winningLottoContent(element) {
           <div class="number-input-container">
             <label>당첨 번호</label>
             <div id="winning-numbers-input">
-              <input type="number" min="1" max="45" class="number-input lotto-number" />
-              <input type="number" min="1" max="45" class="number-input lotto-number" />
-              <input type="number" min="1" max="45" class="number-input lotto-number" />
-              <input type="number" min="1" max="45" class="number-input lotto-number" />
-              <input type="number" min="1" max="45" class="number-input lotto-number" />
-              <input type="number" min="1" max="45" class="number-input lotto-number" />
+              <input type="number" required min="1" max="45" class="number-input lotto-number" />
+              <input type="number" required min="1" max="45" class="number-input lotto-number" />
+              <input type="number" required min="1" max="45" class="number-input lotto-number" />
+              <input type="number" required min="1" max="45" class="number-input lotto-number" />
+              <input type="number" required min="1" max="45" class="number-input lotto-number" />
+              <input type="number" required min="1" max="45" class="number-input lotto-number" />
             </div>
           </div>
 
           <div id="bonus-number-container" class="number-input-container">
             <label>보너스 번호</label>
-            <input type="number" class="number-input bonus-number" />
+            <input type="number" required class="number-input bonus-number" />
           </div>
         </div>
         <span class="input-error"></span>
