@@ -21,12 +21,12 @@ class LottoPurchaseBox extends Component {
     return `    
         <section class="lotto-purchase-box">
             <p class="lotto-purchase-title">🎱 내 번호 당첨 확인 🎱</p>
-            <section class="money-input"></section>
+            <section class="money-input-wrapper"></section>
             ${
               this.state.lottoTickets.length > 0
                 ? `
-                <section class="lotto-display"></section>
-                <section class="winning-lotto-input"></section>
+                <section class="lotto-display-wrapper"></section>
+                <section class="winning-lotto-input-wrapper"></section>
                 `
                 : ``
             }
@@ -41,15 +41,15 @@ class LottoPurchaseBox extends Component {
   }
 
   mounted() {
-    const $moneyInput = this.$target.querySelector('.money-input');
+    const $moneyInput = this.$target.querySelector('.money-input-wrapper');
 
     new MoneyInput($moneyInput, {
       purchaseLottoTickets: (money) => this.purchaseLottoTickets(money),
     });
 
     if (this.state.lottoTickets.length > 0) {
-      const $lottoDisplay = this.$target.querySelector('.lotto-display');
-      const $winningLottoInput = this.$target.querySelector('.winning-lotto-input');
+      const $lottoDisplay = this.$target.querySelector('.lotto-display-wrapper');
+      const $winningLottoInput = this.$target.querySelector('.winning-lotto-input-wrapper');
 
       new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
       new WinningLottoInput($winningLottoInput, {

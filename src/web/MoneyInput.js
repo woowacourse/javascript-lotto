@@ -5,10 +5,10 @@ class MoneyInput extends Component {
     return `    
         <form class="money-input-form">
             <label>구입할 금액을 입력해 주세요.</label>
-            <section>
-                <input id="money" type="text" placeholder="금액"></input>
-                <input id="money-input-btn" type="submit" value="구입"></input>
-            </section>
+            <fieldset>
+                <input class="money-input" type="text" placeholder="금액"></input>
+                <input class="money-input-btn" type="submit" value="구입"></input>
+            </fieldset>
         </form>
     `;
   }
@@ -21,7 +21,7 @@ class MoneyInput extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    const money = this.$target.querySelector('#money').value;
+    const money = this.$target.querySelector('.money-input').value;
     this.props.purchaseLottoTickets(money);
   }
 }

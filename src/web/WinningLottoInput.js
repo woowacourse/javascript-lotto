@@ -22,7 +22,7 @@ class WinningLottoInput extends Component {
                     <input class="bonus-number" type="text" required></input>
                 </section>
             </fieldset>
-            <input id="winning-lotto-btn" type="submit" value="결과 확인하기"></input>
+            <input class="winning-lotto-btn" type="submit" value="결과 확인하기"></input>
         </form>
     `;
   }

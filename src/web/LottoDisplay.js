@@ -6,7 +6,7 @@ class LottoDisplay extends Component {
 
     return `   
         <p>총 ${lottoTickets.length}개를 구매하였습니다.</p>
-        <section>
+        <section class="lotto-display">
             ${lottoTickets
               .map(
                 (lottoTicket) =>
