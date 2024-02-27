@@ -43,25 +43,29 @@ const webOutputView = {
   },
 
   clearLottoList: () => {
-    // 로또 티켓이 표시되는 요소를 특정 ID나 클래스로 가정
     const lottoListContainer = document.querySelector('#lottoList-container');
     if (lottoListContainer) {
-      lottoListContainer.innerHTML = ''; // 내부 HTML을 지워서 모든 자식 요소를 제거
+      lottoListContainer.innerHTML = '';
     }
   },
 
   clearResults: () => {
-    // 결과가 특정 ID나 클래스를 가진 테이블이나 다른 컨테이너에 표시되는 것으로 가정
     const resultsContainer = document.querySelector('#results-container');
     if (resultsContainer) {
-      resultsContainer.innerHTML = ''; // 내부 HTML을 지워서 모든 자식 요소를 제거
+      resultsContainer.innerHTML = '';
     }
 
-    // 결과를 표시하기 위해 모달을 사용하는 경우, 모달을 숨기고 싶을 수도 있습니다
     const resultModal = document.querySelector('#modal-background');
     if (resultModal) {
       resultModal.style.display = 'none';
     }
+  },
+
+  clearWinningLotto: () => {
+    const inputs = document.querySelectorAll('#winning-lotto input');
+    inputs.forEach((input) => {
+      input.value = ''; // 각 입력 필드의 값을 빈 문자열로 설정
+    });
   },
 };
 

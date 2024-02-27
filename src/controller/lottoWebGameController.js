@@ -41,17 +41,6 @@ class lottoGameWebController {
   };
 
   handleAutoFocusOnNumberInput = () => {
-    // const inputs = document.querySelectorAll('#winning-lotto input');
-
-    // inputs.forEach((input, index) => {
-    //   input.addEventListener('input', () => {
-    //     if (input.value.length === input.maxLength) {
-    //       if (index < inputs.length - 1) {
-    //         inputs[index + 1].focus();
-    //       }
-    //     }
-    //   });
-    // });
     const inputs = document.querySelectorAll('#winning-lotto input');
     let timeout = null;
 
@@ -64,7 +53,7 @@ class lottoGameWebController {
           if (value.length >= 1 && index < inputs.length - 1) {
             inputs[index + 1].focus();
           }
-        }, 700); // 1초 후에 실행
+        }, 700);
       });
     });
   };
@@ -110,6 +99,7 @@ class lottoGameWebController {
 
     webOutputView.clearLottoList();
     webOutputView.clearResults();
+    webOutputView.clearWinningLotto();
 
     this.#lottoTickets = [];
     this.#winningLotto = null;
