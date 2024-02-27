@@ -5,8 +5,6 @@ import ERROR_MESSAGE from '../Constants/Messages/errorMessage.js';
 class Money {
   #money;
 
-  constructor() {}
-
   #validateMoney(money) {
     if (money < LOTTO_SETTING.MIN_PRICE) {
       throw new AppError(ERROR_MESSAGE.INVALID_MIN_MONEY);
