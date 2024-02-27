@@ -49,7 +49,6 @@
   margin: 0 0 0 var(--margin-small);
   outline: 0;
   width: 56px;
-  height: 36px;
   background-color: var(--lotto-primary);
   font-size: var(--caption-font-size);
   font-weight: var(--caption-font-weight);
@@ -132,6 +131,7 @@
 
 .winning-numbers-inputs {
   display: flex;
+  flex-wrap: wrap;
   margin: var(--margin-small) 0 0 0;
 }
 

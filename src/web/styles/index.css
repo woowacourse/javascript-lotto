@@ -15,10 +15,12 @@ body {
 }
 
 button {
+  height: 36px;
+  padding: 6px 8px 6px 8px;
+  border: none;
   outline: none;
   box-shadow: none;
-  border: none;
-  padding: 6px 8px 6px 8px;
+  cursor: pointer;
 }
 
 .app {
@@ -39,8 +41,8 @@ button {
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
   margin: 0;
+  -webkit-appearance: none;
 }
 
 /* Firefox */
