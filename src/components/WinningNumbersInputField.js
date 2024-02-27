@@ -18,16 +18,20 @@ const WINNING_NUMBERS_INPUT_FIELD = `
 class WinningNumbersInputField extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.#setEventListener();
   }
 
   render() {
     this.innerHTML = WINNING_NUMBERS_INPUT_FIELD;
   }
 
-  #setEventListener() {
+  getValue() {
+    const winningNumbers = [];
     const inputFields = this.querySelectorAll('number-input-field');
-    console.log(inputFields);
+    inputFields.forEach((inputField) => {
+      winningNumbers.push(inputField.getValue());
+    });
+
+    return winningNumbers;
   }
 }
 

@@ -20,11 +20,30 @@ const WINNING_NUMBERS_FORM = `
 class WinningNumbersForm extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.#setEventListener();
   }
 
   render() {
     this.innerHTML = WINNING_NUMBERS_FORM;
   }
+
+  #setEventListener() {
+    const purchaseButton = document.querySelector('#result-button');
+
+    purchaseButton.addEventListener('click', () => {
+      const winningNumbers = document.querySelector('winning-numbers-input-field').getValue();
+
+      console.log(winningNumbers);
+    });
+  }
+
+  // #drawEvent(price) {
+  //   const app = document.querySelector('lotto-app');
+  //   const { _, lottoNumbersArray } = app.controller().processBuyLotto(price);
+
+  //   const purchaseEvent = new CustomEvent('purchase', { detail: { price, lottoNumbersArray } });
+  //   this.dispatchEvent(purchaseEvent);
+  // }
 }
 
 customElements.define('winning-numbers-form', WinningNumbersForm);
