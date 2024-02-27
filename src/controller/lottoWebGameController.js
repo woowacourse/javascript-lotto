@@ -17,6 +17,8 @@ class lottoGameWebController {
   bindEventListener() {
     document.querySelector('#purchase-form').addEventListener('submit', this.handleClickPurchaseButton);
     document.querySelector('#result-button').addEventListener('click', this.handleWinningLottoInput);
+    document.querySelector('#modal-close-button').addEventListener('click', this.handleRestartGame);
+    document.querySelector('#retry-button').addEventListener('click', this.handleRestartGame);
   }
 
   handleClickPurchaseButton = (event) => {
@@ -83,6 +85,19 @@ class lottoGameWebController {
     resultTable.style.display = 'flex';
     webOutputView.renderTalbe(totalResult);
     webOutputView.renderProfit(profit);
+  };
+
+  handleRestartGame = () => {
+    document.getElementById('lottoPurchase-article').style.display = 'none';
+    document.querySelector('#modal-background').style.display = 'none';
+
+    document.querySelector('#purchaseAmount-input').value = '';
+
+    webOutputView.clearLottoList();
+    webOutputView.clearResults();
+
+    this.#lottoTickets = [];
+    this.#winningLotto = null;
   };
 }
 
