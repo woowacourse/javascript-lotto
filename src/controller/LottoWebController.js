@@ -1,14 +1,17 @@
-import { OUTPUT_MESSAGE } from '../constants/message';
+import { ERROR_MESSAGE, OUTPUT_MESSAGE } from '../constants/message';
 import NUMBER from '../constants/number';
 import WINNER from '../constants/winner';
 import Lotto from '../domain/Lotto';
+import LottoCalculator from '../domain/LottoCalculator';
 import LottoProcess from '../domain/LottoProcess';
 import LottoPublisher from '../domain/LottoPublisher';
 import WinLotto from '../domain/WinLotto';
 import { $, $$ } from '../util/domSelector';
+import { printError } from '../util/view';
 import LottoValidation from '../validation/lottoValidation';
 import MoneyValidation from '../validation/moneyValidation';
-import WebOutputView from '../view/WebOutputView';
+import MyLottoOutputView from '../view/web/MyLottoOutputView';
+import WebInputView from '../view/web/WebInputView';
 
 class LottoWebController {
   constructor() {
@@ -28,10 +31,12 @@ class LottoWebController {
     $('#winning-lotto-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const winLotto = this.submitWinLotto();
-      const result = this.getResult(this.lottos, winLotto);
-      $('#winning-statistics-modal').classList.remove('hidden');
-      console.log('result', result);
-      this.makeResultTable(result);
+      const winResult = this.getResult(this.lottos, winLotto);
+      this.makeWinStatisticTable(winResult);
+      const lottoCalculator = new LottoCalculator();
+      const lottosCount = this.lottos.length;
+      const rateOfRevenue = lottoCalculator.getRateOfRevenue(winResult, lottosCount);
+      this.showRateOfReturn(rateOfRevenue);
     });
 
     //TODO: 에러 메세지 숨기는 부분 유틸 분리
@@ -39,6 +44,9 @@ class LottoWebController {
       input.addEventListener('input', () => {
         $('#win-lotto-error').classList.add('hidden');
       });
+    });
+    $('#lotto-game-restart-button').addEventListener('click', () => {
+      this.resetLottoGame();
     });
   }
 
@@ -48,11 +56,8 @@ class LottoWebController {
       const lottosCount = Number.parseInt($('#money-input').value / NUMBER.LOTTO_PRICE, 10);
       return this.buyRandomLottos(lottosCount);
     } catch ({ message }) {
-      // TODO: 유틸. 인풋 초기화 함수 생성
-      $('#money-input').value = '';
-      $('#money-input').focus();
-      // TODO: 유틸일까? View일까?
-      WebOutputView.printError($('#money-error'), message);
+      WebInputView.resetMoneyInput();
+      printError($('#money-error'), message);
     }
   }
 
@@ -64,30 +69,17 @@ class LottoWebController {
     return [lottos, lottoNumbers];
   }
 
-  // TODO:분리필요
-  //VIEW RENDER 로직 분리 필요
   showLottosInfo(lottoCount, lottosNumbers) {
-    $('#my-lottos-section').classList.remove('hidden');
-    $('#winning-lotto-section').classList.remove('hidden');
-
-    const lottosTicketsHTML = lottosNumbers.map((numbers) => {
-      const formattedNumbers = numbers.join(', ');
-      return `<li><span>🎟️</span>${formattedNumbers}</li>`;
-    });
-    $('#my-lottos-count').innerText = `총 ${lottoCount}개를 구매하였습니다.`;
-    $('#my-lottos-list').innerHTML = lottosTicketsHTML.join('');
+    MyLottoOutputView.renderSection();
+    MyLottoOutputView.renderLottosInfo(lottoCount, lottosNumbers);
     $('.number-input').focus();
   }
 
   getWinLottoNumbers() {
     const numberInputs = [...$$('.number-input')];
     //TODO: 모든 수가 다 입력되어 있는지 확인
-    numberInputs.some((input) => {
-      if (!input.value.length) {
-        //TODO: ERROR 상수 분리
-        throw new Error('[ERROR]');
-      }
-    });
+    LottoValidation.checkInputEmpty(numberInputs);
+
     const bonusNumberInput = numberInputs.splice(-1, 1);
     const winNumbers = numberInputs.reduce((numbers, input) => {
       numbers.push(Number(input.value));
@@ -95,6 +87,14 @@ class LottoWebController {
     }, []);
     const bonusNumber = Number(bonusNumberInput[0].value);
     return [winNumbers, bonusNumber];
+  }
+
+  checkInputEmpty(inputs) {
+    inputs.some((input) => {
+      if (!input.value.length) {
+        throw new Error(ERROR_MESSAGE.SOME_INPUT_EMPTY);
+      }
+    });
   }
 
   getValidateWinNumbers(winNumbers, bonusNumber) {
@@ -111,9 +111,14 @@ class LottoWebController {
       return newLotto;
     } catch ({ message }) {
       WebOutputView.printError($('#win-lotto-error'), message);
-      $$('.number-input').forEach((input) => (input.value = ''));
-      $('.number-input').focus();
     }
+    $$('.number-input').forEach((input) => (input.value = ''));
+    $('.number-input').focus();
+  }
+
+  makeWinStatisticTable(result) {
+    $('#winning-statistics-modal').classList.remove('hidden');
+    this.makeResultTable(result);
   }
 
   getResult(lottos, winLotto) {
@@ -122,8 +127,13 @@ class LottoWebController {
     return winResult;
   }
 
+  showRateOfReturn(rateOfRevenue) {
+    $('#lotto-return-ratio').innerText = `당신의 총 수익률은 ${rateOfRevenue}%입니다.`;
+  }
+
+  //TODO: VIew 로 이동
   makeResultTable(winningResults) {
-    const innerHTML = winningResults.reverse().map((_, index) => {
+    const innerHTML = winningResults.map((_, index) => {
       const rankIndex = Math.abs(Object.keys(WINNER).length - index);
       return `
       <tr>

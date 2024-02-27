@@ -6,6 +6,7 @@ const ERROR_MESSAGE = Object.freeze({
   NUMBERS_RANGE: '허용된 정수 범위를 벗어났습니다.',
   NUMBERS_LENGTH: `${NUMBER.LOTTO_LENGTH}개의 정수를 입력하셔야 합니다.`,
   NUMBERS_DUPLICATION: '중복된 숫자가 있습니다.',
+  SOME_INPUT_EMPTY: '모든 숫자를 다 입력하셔야 합니다.',
   BONUS_DUPLICATION: '보너스 숫자가 우승 숫자들과 중복됩니다.',
   PURCHASE_AMOUNT: '유효한 구입 금액이 아닙니다.',
   RESTART_RESPONSE: '유효한 응답이 아닙니다. y/n으로 응답해 주세요.',

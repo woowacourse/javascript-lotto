@@ -34,6 +34,14 @@ const LottoValidation = {
       throw new Error(`${ERROR_MESSAGE.PREFIX} ${ERROR_MESSAGE.NUMBERS_DUPLICATION}`);
     }
   },
+
+  checkInputEmpty(inputs) {
+    inputs.some((input) => {
+      if (!input.value.length) {
+        throw new Error(ERROR_MESSAGE.SOME_INPUT_EMPTY);
+      }
+    });
+  },
 };
 
 export default LottoValidation;
