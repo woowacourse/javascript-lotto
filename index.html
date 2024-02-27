@@ -12,7 +12,24 @@
       <header>
         <h1>🎱 행운의 로또</h1>
       </header>
-      <div id="main">여기가 main</div>
+      <div id="lotto">
+        <div class="main">
+          <div class="main__title-wrapper">
+            <h2 class="main__title">🎱 내 번호 당첨 확인 🎱</h2>
+          </div>
+          <form class="main__purchase-container">
+            <label class="main__purchase-text">구입할 금액을 입력해주세요.</label>
+            <div class="main__purchase-input-wrapper">
+              <input class="main__purchase-input-box" placeholder="금액" type="number" max="100000" />
+              <button class="main__purchase-button">구입</button>
+            </div>
+          </form>
+          <div id="resultContainer" hidden>
+            <span id="purchaseResultHeader"></span>
+            <ul id="purchasedLottosContainer"></ul>
+          </div>
+        </div>
+      </div>
       <footer>Copyright 2023. woowacourse</footer>
     </div>
     <script defer type="module" src="./src/js/index.js"></script>
