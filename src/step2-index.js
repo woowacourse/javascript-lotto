@@ -4,9 +4,14 @@
  */
 
 import { inputMoneyHandler } from './step2/handlers/inputMoneyHandler.js';
+import { inputWinningLottoNumbersHandler } from './step2/handlers/inputWinningLottoNumbersHandler.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const moneyInputForm = document.getElementById('moneyInputForm');
+  const winningLottoInputs = document.querySelectorAll('.winningLottoInput');
 
   moneyInputForm.addEventListener('submit', inputMoneyHandler);
+  winningLottoInputs.forEach((input, index) => {
+    inputWinningLottoNumbersHandler({ input, index, winningLottoInputs });
+  });
 });
