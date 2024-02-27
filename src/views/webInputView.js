@@ -24,7 +24,7 @@ const webInputView = {
 
   readWinningNumbers() {
     try {
-      const winningNumbersInput = [...document.querySelectorAll('#winningNumberInput')];
+      const winningNumbersInput = [...document.querySelectorAll('.winningNumberInput')];
       const winningNumbers = winningNumbersInput.map(data => parseInt(data.value, 10));
       winningNumbersValidator.validate(winningNumbers);
       $lottoNumberError.classList.add('hidden');
