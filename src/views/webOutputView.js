@@ -1,14 +1,13 @@
 import CONFIG from '../constants/config.js';
 import { MESSAGE } from '../constants/message.js';
-import PRIZE from '../constants/prize.js';
+import dom from '../utils/dom/index.js';
 
 const webOutputView = {
   printLottoCount(lottoCount) {
     const $purchaseSection = document.getElementById('purchaseResultSection');
-    const purchaseDiv = document.createElement('div');
     $purchaseSection.replaceChildren();
-    purchaseDiv.textContent = `${lottoCount}${MESSAGE.LOTTO_COUNT}`;
-    $purchaseSection.appendChild(purchaseDiv);
+    const purchaseResultTitle = dom.create('div', null, null, `${lottoCount}${MESSAGE.LOTTO_COUNT}`);
+    $purchaseSection.appendChild(purchaseResultTitle);
   },
 
   convertLottoFormat(lotto) {
@@ -19,9 +18,8 @@ const webOutputView = {
     const $purchaseSection = document.getElementById('purchaseResultSection');
     const fragment = document.createDocumentFragment();
     lottery.forEach(lotto => {
-      const purchaseResultDiv = document.createElement('div');
-      purchaseResultDiv.textContent = this.convertLottoFormat(lotto.numberList);
-      fragment.appendChild(purchaseResultDiv);
+      const purchaseResult = dom.create('div', null, null, this.convertLottoFormat(lotto.numberList));
+      fragment.appendChild(purchaseResult);
     });
     $purchaseSection.appendChild(fragment);
   },
@@ -29,52 +27,16 @@ const webOutputView = {
   printLottoResult(ranks) {
     const $lottoResultTable = document.getElementById('lottoResultTable');
     $lottoResultTable.replaceChildren();
-    const resultTableFragment = document.createDocumentFragment();
-
-    const lottoResultRowTitle = document.createElement('div');
-    lottoResultRowTitle.classList.add('lotto-result-row');
-    lottoResultRowTitle.classList.add('table-title');
-    PRIZE.TABLE_TITLE_LIST.forEach(text => {
-      const lottoTableTitle = document.createElement('div');
-      lottoTableTitle.textContent = text;
-      lottoTableTitle.classList.add('lotto-result-cell');
-      lottoResultRowTitle.appendChild(lottoTableTitle);
-    });
-
-    // 반복할 때마다 lottoResultRow 하나씩 생성
-    [PRIZE.FIFTH, PRIZE.FORTH, PRIZE.THIRD, PRIZE.SECOND, PRIZE.FIRST].forEach(rank => {
-      const lottoResultRow = document.createElement('div');
-
-      const lottoMatchedCount = document.createElement('div');
-      lottoMatchedCount.textContent = `${PRIZE.COUNT_OUTPUTS[rank]}`;
-      lottoMatchedCount.classList.add('lotto-result-cell');
-
-      const lottoResultPrize = document.createElement('div');
-      lottoResultPrize.textContent = `${PRIZE.AMOUNT[rank].toLocaleString('ko-KR')}`;
-      lottoResultPrize.classList.add('lotto-result-cell');
-      const lottoRankCount = document.createElement('div');
-
-      lottoRankCount.textContent = `${ranks[rank]}개`;
-      lottoRankCount.classList.add('lotto-result-cell');
-
-      lottoResultRow.classList.add('lotto-result-row');
-      lottoResultRow.appendChild(lottoMatchedCount);
-      lottoResultRow.appendChild(lottoResultPrize);
-      lottoResultRow.appendChild(lottoRankCount);
-      resultTableFragment.appendChild(lottoResultRow);
-    });
-
+    const lottoResultRowTitle = dom.createLottoResultTitle();
+    const lottoResultTableFragment = dom.createLottoResultTable(ranks);
     $lottoResultTable.appendChild(lottoResultRowTitle);
-    $lottoResultTable.appendChild(resultTableFragment);
+    $lottoResultTable.appendChild(lottoResultTableFragment);
   },
 
   printProfit(profit) {
     const $lottoResultTable = document.getElementById('lottoResultTable');
-    const lottoProfitWrapper = document.createElement('div');
-    lottoProfitWrapper.id = 'lottoProfitWrapper';
-    const profitText = document.createElement('div');
-    profitText.textContent = `당신의 총 수익률은 ${profit} %입니다.`;
-    profitText.id = 'profitText';
+    const lottoProfitWrapper = dom.create('div', 'lottoProfitWrapper', null);
+    const profitText = dom.create('div', 'profitText', null, `당신의 총 수익률은 ${profit} %입니다.`);
     lottoProfitWrapper.appendChild(profitText);
     $lottoResultTable.appendChild(lottoProfitWrapper);
   },
