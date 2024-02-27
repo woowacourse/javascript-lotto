@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Number type input의 spinner arrow 제거
+   - Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Number type input의 spinner arrow 제거
+   - Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+:root {
+  --color-primary: #4E5BA6;
+  --color-greyscale-1: #FFFFFF;
+  --color-greyscale-2: #FCFCFD;
+  --color-greyscale-3: #B4B4B4;
+  --color-greyscale-4: #8B8B8B;
+  --color-greyscale-5: #000000;
+  --font-title-size: 24px;
+  --font-subtitle-size: 20px;
+  --font-body-size: 15px;
+  --font-placeholder-size: 15px;
+  --font-caption-size: 14px;
+  --font-title-weight: 800;
+  --font-subtitle-weight: 600;
+  --font-caption-weight: 700;
+}
+
+html {
+  font-family: Roboto, sans-serif;
+  height: 100vh;
+}
+
+body {
+  height: calc(100% - (64px + 80px))
+}
+
+header {
+  background: var(--color-primary);
+  padding: 0 130px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+header > h1 {
+  font-weight: var(--font-title-weight);
+  font-size: var(--font-title-size);
+  color: var(--color-greyscale-1);
+}
+
+main {
+  background: var(--color-greyscale-2);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#lotto-game-screen {
+  background: var(--color-greyscale-1);
+  margin: auto;
+  border: 1px solid #0000001F;
+  border-radius: 4px;
+  padding: 16px;
+  width: 414px;
+  max-height: 727px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+#lotto-game-screen h1 {
+  font-weight: var(--font-title-weight);
+  font-size: var(--font-title-size);
+  color: var(--color-greyscale-5);
+  text-align: center;
+  margin-top: 28px;
+}
+
+#purchase {
+  font-size: var(--font-body-size);
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+#purchase form {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+#purchase input {
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  padding: 8px;
+  width: 314px;
+  height: 36px;
+  gap: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  opacity: 0.85;
+}
+
+#purchase button {
+  background: var(--color-primary);
+  color: var(--color-greyscale-1);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  border-radius: 4px;
+  padding: 6px 8px;
+  width: 56px;
+}
+
+#purchase-result {
+  font-size: var(--font-body-size);
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+#purchase-result ul {
+  max-height: 300px;
+  overflow: scroll;
+}
+
+#purchase-result li {
+  list-style-type: none;
+  margin: 6px 0;
+}
+
+#purchase-result li::before {
+  content: '🎟️';
+  font-size: 24px;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+
+#winning-numbers {
+  font-size: var(--font-body-size);
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+}
+
+#winning-numbers form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+#winning-numbers input {
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  padding: 8px;
+  width: 34px;
+  height: 36px;
+  font-size: var(--font-caption-size);
+  text-align: center;
+}
+
+#winning-numbers #bonus-number-input-group {
+  text-align: right;
+}
+
+#winning-numbers button {
+  background: var(--color-primary);
+  color: var(--color-greyscale-1);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  letter-spacing: 1.25px;
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+footer {
+  border-top: 1px solid #4E5BA633;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer p {
+  font-weight: var(--font-caption-weight);
+  font-size: var(--font-caption-size);
+  color: var(--color-primary);
+  letter-spacing: 1.25px;
+}

@@ -1,6 +1,7 @@
 {
   "rules": {
-    "color-hex-length": "long"
+    "color-hex-length": "long",
+    "property-no-vendor-prefix": null
   },
   "extends": ["stylelint-config-standard"]
 }

@@ -2,15 +2,69 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>🎱 행운의 로또</title>
   </head>
 
   <body>
-    <div id="app">
+    <header>
       <h1>🎱 행운의 로또</h1>
-    </div>
-    <script type="module" src="./src/js/index.js"></script>
+    </header>
+    <main>
+      <div id="lotto-game-screen">
+        <h1>🎱 내 번호 당첨 확인 🎱</h1>
+
+        <section id="purchase">
+          <p>구입할 금액을 입력해주세요.</p>
+          <form id="purchase-form">
+            <input placeholder="금액">
+            <button type="button" id="purchase-form-button">구입</button>
+          </form>
+        </section>
+
+        <section id="purchase-result">
+          <p>총 0개를 구매하였습니다.</p>
+          <ul>
+            <li>11, 13, 15, 17, 18, 20</li>
+            <li>11, 13, 15, 17, 18, 20</li>
+            <li>11, 13, 15, 17, 18, 20</li>
+            <li>11, 13, 15, 17, 18, 20</li>
+            <li>11, 13, 15, 17, 18, 20</li>
+            <li>11, 13, 15, 17, 18, 20</li>
+            <li>11, 13, 15, 17, 18, 20</li>
+          </ul>
+        </section>
+
+        <section id="winning-numbers">
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <form id="winning-numbers-form">
+            <div id="winning-numbers-input-group">
+              <label>당첨 번호</label>
+              <div class="input-group">
+                <input type="number">
+                <input type="number">
+                <input type="number">
+                <input type="number">
+                <input type="number">
+                <input type="number">
+              </div>
+            </div>
+            <div id="bonus-number-input-group">
+              <label>보너스 번호</label>
+              <div class="input-group">
+                <input type="number">
+              </div>
+            </div>
+          </form>
+          <button type="button">결과 확인하기</button>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>Copyright 2023. woowacourse</p>
+    </footer>
   </body>
+
+  <script type="module" src="./src/js/index.js"></script>
 </html>
