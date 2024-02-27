@@ -1,0 +1,87 @@
+#lottoResultSection {
+    width: 330px;
+    height: 500px;
+    position: absolute;
+    top: 20%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--grey-scale-1);
+    box-shadow: gray 2px 2px 2px 2px;
+    padding: 0px 20px 30px 20px;
+    border-radius: 10px;
+}
+#closeButtonWrapper {
+    display: flex;
+    justify-content: end;
+    margin-top: 5px;
+}
+
+#closeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    border: 0;
+    background-color: var(--grey-scale-1);
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#lottoResultTitleWrapper {
+    display: flex;
+    justify-content: center;
+    flex-basis: 20%;
+}
+
+#lottoResultTable {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+}
+
+.table-title {
+    font-weight: bold;
+    border-top: 2px solid #0000001F;
+}
+
+.lotto-result-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #0000001F;
+}
+
+.lotto-result-cell {
+    display: flex;
+    flex-basis: 33%;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+}
+
+#lottoProfitWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0px;
+}
+
+#profitText {
+    font-weight: bold;
+}
+
+#restartButton {
+    height: 5vh;
+    border-radius: 4px;
+}
+
+#modalBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
