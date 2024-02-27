@@ -1,5 +1,6 @@
 import "../../index.css";
 import Lotto from "../domain/Lotto.js";
+import lottoRankMaker from "../domain/lottoRankMaker.js";
 import lottoResultMaker from "../domain/lottoResultMaker.js";
 import randomLottoArray from "../domain/randomLottoMaker.js";
 import { $, $$ } from "../utils/querySelector.js";
@@ -80,10 +81,10 @@ class LottoWebController {
    */
   handleWebWinningCombinationInput() {
     const webWinningNumbersInput = Array.from({ length: 6 }, (_, index) => {
-      return Number($$("#lotto-numbers-input")[index].value);
+      return Number($$(".lotto-numbers-input")[index].value);
     });
 
-    const webWinningBonusInput = Number($("#lotto-bonus-input").value);
+    const webWinningBonusInput = Number($(".lotto-bonus-input").value);
     const webWinningCombination = {
       normalNumbers: webWinningNumbersInput,
       bonusNumber: webWinningBonusInput,
@@ -121,13 +122,16 @@ class LottoWebController {
   }
 
   calculateWebLottoResult(webWinningCombination) {
-    console.log("calculateWebLottoResult");
-    console.log(this.#webIssuedLottoArray);
-    // const webLottoResult = lottoResultMaker.calculateLottoResult(
-    //   this.#webIssuedLottoArray,
-    //   webWinningCombination
-    // );
-    // console.log(webLottoResult);
+    const webLottoResult = lottoResultMaker.calculateLottoResult(
+      this.#webIssuedLottoArray,
+      webWinningCombination
+    );
+    this.calculateWebRankResult(webLottoResult);
+  }
+
+  calculateWebRankResult(webLottoResult) {
+    const webRankResult = lottoRankMaker.calculateLottoRank(webLottoResult);
+    console.log(webRankResult);
   }
 }
 
