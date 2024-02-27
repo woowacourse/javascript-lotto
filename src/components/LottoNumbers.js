@@ -1,19 +1,21 @@
 import './LottoNumbers.css';
 
-const LOTTO_NUMBERS = `
+const LOTTO_NUMBERS = (numbers) => `
 <div class="lotto-icon">🎟️</div>
 <div class="lotto-numbers-container">
-  <p class="lotto-body">1, 2, 3, 4, 5, 6</p>
+  <p class="lotto-body">${numbers}</p>
 </div>
 `;
 
 class LottoNumbers extends HTMLElement {
   connectedCallback() {
-    this.render();
+    const numbers = this.getAttribute('numbers').split(',').join(', ');
+
+    this.render(numbers);
   }
 
-  render() {
-    this.innerHTML = LOTTO_NUMBERS;
+  render(numbers) {
+    this.innerHTML = LOTTO_NUMBERS(numbers);
   }
 }
 

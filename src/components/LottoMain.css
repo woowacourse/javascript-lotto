@@ -16,7 +16,7 @@ lotto-main {
   justify-content: start;
 
   width: 414px;
-  height: min-content;
+  height: 727px;
   background-color: var(--lotto-greyscale-1);
   border: 1px solid rgba(0, 0, 0, 0.12);
 
@@ -35,4 +35,12 @@ lotto-main {
 
 lotto-main .lotto-button {
   width: 100%;
+}
+
+.purchase-result {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: auto;
+  gap: 28px;
 }

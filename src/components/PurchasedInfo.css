@@ -3,6 +3,7 @@ purchased-info {
   flex-direction: column;
   justify-content: start;
   gap: 8px;
+  flex: auto;
 
   width: 100%;
 }

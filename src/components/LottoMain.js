@@ -12,10 +12,14 @@ const LOTTO_MAIN_CONTAINER = `
       </h1>
     </div>
     <purchase-price-form></purchase-price-form>
-    <purchased-info></purchased-info>
-    <winning-numbers-form></winning-numbers-form>
-    <lotto-button id="result-button"></lotto-button>
+    <div class="purchase-result"></div>
   </div>
+`;
+
+const LOTTO_MAIN_RESULT = (lottoNumbersArray) => `
+<purchased-info info={${lottoNumbersArray}}></purchased-info>
+<winning-numbers-form></winning-numbers-form>
+<lotto-button id="result-button"></lotto-button>
 `;
 
 class LottoMain extends HTMLElement {
@@ -26,16 +30,32 @@ class LottoMain extends HTMLElement {
 
   render() {
     this.innerHTML = LOTTO_MAIN_CONTAINER;
+  }
+
+  #renderResult(event) {
+    const { _, lottoNumbersArray } = event.detail;
+
+    const result = document.querySelector('.purchase-result');
+    result.innerHTML = LOTTO_MAIN_RESULT(lottoNumbersArray);
+
     const resultButton = document.querySelector('#result-button');
     resultButton.setText('당첨 결과 확인하기');
+    this.#dispatchPurchase(event);
+  }
+
+  #dispatchPurchase(event) {
+    const purchasedInfo = document.querySelector('purchased-info');
+    const purchaseResult = new CustomEvent('purchase-result', {
+      detail: { ...event.detail },
+    });
+
+    purchasedInfo.dispatchEvent(purchaseResult);
   }
 
   #setPurchaseEventListener() {
-    const app = document.querySelector('lotto-app');
     const purchasePriceForm = document.querySelector('purchase-price-form');
     purchasePriceForm.addEventListener('purchase', (event) => {
-      const { price } = event.detail;
-      app.controller().processBuyLotto(price);
+      this.#renderResult(event);
     });
   }
 }
