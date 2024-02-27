@@ -1,5 +1,6 @@
 import NUMBER from '../constants/number';
 import Lotto from '../domain/Lotto';
+import LottoProcess from '../domain/LottoProcess';
 import LottoPublisher from '../domain/LottoPublisher';
 import WinLotto from '../domain/WinLotto';
 import { $, $$ } from '../util/domSelector';
@@ -9,12 +10,13 @@ import WebOutputView from '../view/WebOutputView';
 
 class LottoWebController {
   constructor() {
-    this.numbers = [];
+    this.lottos;
   }
   play() {
     $('#money-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const [lottos, lottosNumbers] = this.getValidateLottoAmount();
+      this.lottos = lottos;
       const lottoCount = lottos.length;
       this.showLottosInfo(lottoCount, lottosNumbers);
     });
@@ -23,7 +25,16 @@ class LottoWebController {
     });
     $('#winning-lotto-form').addEventListener('submit', (e) => {
       e.preventDefault();
-      this.submitWinLotto();
+      const winLotto = this.submitWinLotto();
+      const result = this.getResult(this.lottos, winLotto);
+      $('#winning-statistics-modal').classList.remove('hidden');
+    });
+
+    //TODO: 에러 메세지 숨기는 부분 유틸 분리
+    [...$$('.number-input')].forEach((input) => {
+      input.addEventListener('input', () => {
+        $('#win-lotto-error').classList.add('hidden');
+      });
     });
   }
 
@@ -69,6 +80,7 @@ class LottoWebController {
     //TODO: 모든 수가 다 입력되어 있는지 확인
     numberInputs.some((input) => {
       if (!input.value.length) {
+        //TODO: ERROR 상수 분리
         throw new Error('[ERROR]');
       }
     });
@@ -87,7 +99,7 @@ class LottoWebController {
     const winLotto = new WinLotto(lottoWithWinNumbers, Number(bonusNumber));
     return winLotto;
   }
-
+  //TODO: 함수 분리
   submitWinLotto() {
     try {
       const [winNumbers, bonusNumber] = this.getWinLottoNumbers();
@@ -96,14 +108,14 @@ class LottoWebController {
     } catch ({ message }) {
       WebOutputView.printError($('#win-lotto-error'), message);
       $$('.number-input').forEach((input) => (input.value = ''));
-      numberInputs[0].focus();
+      $('.number-input').focus();
     }
-    //TODO: 에러 메세지 숨기는 부분 유틸 분리
-    [...$$('.number-input')].forEach((input) => {
-      input.addEventListener('input', () => {
-        $('#win-lotto-error').classList.add('hidden');
-      });
-    });
+  }
+
+  getResult(lottos, winLotto) {
+    const lottoProcess = new LottoProcess();
+    const winResult = lottoProcess.getResult(lottos, winLotto);
+    return winResult;
   }
 }
 export default LottoWebController;

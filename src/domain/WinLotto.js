@@ -22,7 +22,7 @@ class WinLotto {
     const lottoNumbers = this.#lotto.numbers;
     if (
       lottoNumbers.includes(this.#bonusNumber) ||
-      !LottoValidation.validateBonusNumber(lottoNumbers, this.#bonusNumber)
+      LottoValidation.validateBonusNumber(lottoNumbers, this.#bonusNumber)
     ) {
       throw new Error(ERROR_MESSAGE.PREFIX + ERROR_MESSAGE.BONUS_DUPLICATION);
     }
