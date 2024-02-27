@@ -149,7 +149,7 @@ input::placeholder {
     gap: 15px;
 }
 
-#lottoNumberWrapper {
+#lottoNumberForm {
     display: flex;
     justify-content: space-between;
 }

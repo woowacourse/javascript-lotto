@@ -36,10 +36,12 @@ const handleClickRestart = () => {
   eventHandler.restart();
 };
 
+const handleClickOuterModal = e => {
+  if (e.target.id === 'modalBackground') modal.close();
+};
+
 $purchaseForm.addEventListener('submit', handleFormSubmit);
 $purchaseBtn.addEventListener('click', handlePurchaseBtn);
 $closeBtn.addEventListener('click', handleCloseModal);
 $restartBtn.addEventListener('click', handleClickRestart);
-document.body.addEventListener('click', e => {
-  if (e.target.id === 'modalBackground') modal.close();
-});
+document.body.addEventListener('click', handleClickOuterModal);
