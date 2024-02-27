@@ -15,8 +15,6 @@ class LottoWebController {
   #webIssuedLottoArray;
   #webBudget;
   async start() {
-    // 입력받은 budget 처리 (submit) 후
-    // budget 유효성 검사 통과하면 로또 발행
     $("#content-box-input-budget").addEventListener(
       "submit",
       this.handleWebBudget.bind(this)
@@ -26,6 +24,7 @@ class LottoWebController {
       this.handleWebWinningCombinationInput.bind(this)
     );
     $("#modal-close-btn").addEventListener("click", this.closeModal.bind(this));
+    $("#modal-retry-btn").addEventListener("click", this.reloadPage.bind(this));
   }
 
   getWebBudget() {
@@ -39,7 +38,6 @@ class LottoWebController {
    */
   handleWebBudget(event) {
     event.preventDefault();
-    // const webBudget = this.getWebBudget();
     this.getWebBudget();
     try {
       // 유효성 검사 해줘
@@ -81,7 +79,8 @@ class LottoWebController {
   /**
    * 당첨 번호 및 보너스 번호 입력값 관리
    */
-  handleWebWinningCombinationInput() {
+  handleWebWinningCombinationInput(event) {
+    event.preventDefault();
     const webWinningNumbersInput = Array.from({ length: 6 }, (_, index) => {
       return Number($$(".lotto-numbers-input")[index].value);
     });
@@ -118,9 +117,11 @@ class LottoWebController {
     $("#modal").style.display = "flex";
   }
 
-  closeModal() {
+  closeModal(event) {
     console.log("closeModal");
+    event.preventDefault();
     $("#modal").style.display = "none";
+    // document.location.reload();
   }
 
   calculateWebLottoResult(webWinningCombination) {
@@ -137,6 +138,7 @@ class LottoWebController {
     this.calculateWebProfit(webRankResult);
   }
 
+  // TODO : 반복문 줄이기
   printWebRankResult(webRankResult) {
     $("#lotto-rank-1").innerHTML = webRankResult[1];
     $("#lotto-rank-2").innerHTML = webRankResult[2];
@@ -152,6 +154,11 @@ class LottoWebController {
     );
     console.log(webProfit);
     $("#profit-msg-num").innerHTML = webProfit;
+  }
+
+  reloadPage(event) {
+    event.preventDefault();
+    document.location.reload();
   }
 }
 
