@@ -58,17 +58,20 @@ header > h1 {
 #money-input-box {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-top: 5px;
+  flex-direction: column;
 }
 
+#money-form {
+  display: flex;
+  justify-content: space-between;
+}
 #money-error {
   height: 10px;
   padding-top: 5px;
 }
 
-\ #lotto-money-input-button {
+#lotto-money-input-button {
   display: flex;
   align-items: center;
   justify-content: space-between;

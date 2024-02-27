@@ -8,12 +8,12 @@ const LottoValidation = {
     this.validateDuplicationNumbers(numbers);
   },
 
-  validateBonusNumber(winNumbers = [], number = 0) {
+  validateBonusNumber(winNumbers, number) {
     this.validateInNumbersRange([number]);
     this.validateDuplicationNumbers([...winNumbers, number]);
   },
 
-  validateInNumbersRange(numbers = []) {
+  validateInNumbersRange(numbers) {
     numbers.forEach((numberString) => {
       const number = Number(numberString);
       if (!Number.isInteger(number) || number > NUMBER.LOTTO_END_NUMBER || number < NUMBER.LOTTO_START_NUMBER) {
