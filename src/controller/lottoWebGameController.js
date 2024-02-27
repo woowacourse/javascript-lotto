@@ -41,15 +41,30 @@ class lottoGameWebController {
   };
 
   handleAutoFocusOnNumberInput = () => {
+    // const inputs = document.querySelectorAll('#winning-lotto input');
+
+    // inputs.forEach((input, index) => {
+    //   input.addEventListener('input', () => {
+    //     if (input.value.length === input.maxLength) {
+    //       if (index < inputs.length - 1) {
+    //         inputs[index + 1].focus();
+    //       }
+    //     }
+    //   });
+    // });
     const inputs = document.querySelectorAll('#winning-lotto input');
+    let timeout = null;
 
     inputs.forEach((input, index) => {
-      input.addEventListener('input', () => {
-        if (input.value.length === input.maxLength) {
-          if (index < inputs.length - 1) {
+      input.addEventListener('input', function (e) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          const value = e.target.value;
+
+          if (value.length >= 1 && index < inputs.length - 1) {
             inputs[index + 1].focus();
           }
-        }
+        }, 700); // 1초 후에 실행
       });
     });
   };
@@ -97,6 +112,7 @@ class lottoGameWebController {
     webOutputView.clearResults();
 
     this.#lottoTickets = [];
+    this.#winningLotto = null;
     this.#winningLotto = null;
   };
 }
