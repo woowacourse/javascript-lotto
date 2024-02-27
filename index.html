@@ -1,118 +1,158 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    
-    <!-- <link href="src/web/css/main.css" rel="stylesheet"/>
-    <script defer type="module" src="./src/step2-index.js"></script> -->
-  </head>
 
-  <body>
-    <div id="app">
-      <div class="inner">
-        <header>
-          <h1>🎱 행운의 로또</h1>
-        </header>
-        <main>
-            <div class="contents">
-              <header>🎱 내 번호 당첨 확인 🎱</header>
-                <section class="paymentAmount">
-                  <div class="inputForm">
-                    <label  class="hidden" for="input-paymentAmount">
-                      구입할 금액을 입력해주세요.
-                    </label>
-                    <!--js에서  min, max 설정해주기-->
-                    <input id="input-paymentAmount" type="number" placeholder="금액"/>
-                    <button disabled>구입</button>
-                  </div>
-                  <div class="errorMessage"></div>
-                </section>
-                <!-- on 들어 갈때 보이는 것으로  -->
-                <section class="purchasedHistory">
-                  <div class="purchasedHistory__lottos-count">
-                    총 <span id="purchasedHistory__lottos-count__number"></span>를 구매하였습니다.
-                  </div>
-                  <ul class="issuedLottos"> 
-                    <!--발행된 로또들 입력 , li class ="lotto"-->
-                    <!--<li class="lotto">🎟️ 발행된 로또 번호</li>-->
-                  </ul>
-                </section>
-                <section class="winningCriteria">
-                  <div class="winningCriteria__explanation">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
-                  <div class="winningCriteria__inputGroupContainer">
-                    <section  class="winningCriteria_lotto">
-                      <header>당첨 번호</header>
-                      <div class="input-group">
-                        <!-- js로 생성 -->
-                      </div>
-                    </section>
-                    <section class="winningCriteria__bonus">
-                      <header>보너스 번호</header>
-                        <label class="hidden" for="input-bonusNumber">
-                          보너스 번호를 입력해주세요.
-                        </label>
-                        <input id="input-bonusNumber" class="input-lottoNumber" type="number" />
-                    </section>
-                  </div>
-                  <div class="errorMessage"></div>
-                </section>
-                  <button class="btn-checkResult" disabled>결과 확인하기</button>
+<head>
+  <meta charset="UTF-8" />
+  <title>🎱 행운의 로또</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+
+  <!-- <link href="src/web/css/main.css" rel="stylesheet"/>
+    <script defer type="module" src="./src/step2-index.js"></script> -->
+</head>
+
+<body>
+  <div id="app">
+    <div class="inner">
+      <header>
+        <h1>🎱 행운의 로또</h1>
+      </header>
+      <main>
+        <div class="contents">
+          <header>🎱 내 번호 당첨 확인 🎱</header>
+          <section class="paymentAmount">
+            <div class="paymentAmount__explanation explanation">
+              <button class="btn-toggleRule" title="구입 금액에 관한 룰 보기">🤔❔</button>
+              <ul class="rule shadow">
+                <li>
+                  로또 가격은<span class="paymentAmount__rule-lottoPrice"></span>이에요.
+                </li>
+                <li>구매 금액은 <span class="paymentAmount__rule-lottoPrice"></span>단위로 입력해주세요.</li>
+                <li>구매 가능한 로또는 최소 <span id="paymentAmount__rule-minNumberOfTickets"></span>장, 최대<span
+                    id="paymentAmount__rule-maxNumberOfTickets"></span>이에요.</li>
+              </ul>
             </div>
-        </main>
-        <footer>
-          Copyright 2023. woowacourse
-        </footer>
-      </div>
-    <div class="popup hidden">
-      <div class="popup__inner">
-        <button class="btn-close-popup">✖️</button>
-        <div class="popup__contents">
-          <header>🏆 당첨 통계 🏆</header>
-          <div class="rankStatistics">
-            <table id="rankStatistics__table">
-              <caption class="hidden">로또 당첨 결과</caption>
-              <thead>
-                <tr>
-                  <th scope="col">일치 갯수</th>
-                  <th scope="col">당첨금</th>
-                  <th scope="col">당첨 갯수</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr id="rank5">
-                  <th scope="row">3개</th>
-                  <td class="prize"></td>
-                  <td class="count"></td>
-                </tr>
-                <tr id="rank4">
-                  <th scope="row">4개</th>
-                  <td class="prize"></td>
-                  <td class="count"></td>
-                </tr>
-                <tr id="rank3">
-                  <th scope="row">5개</th>
-                  <td class="prize"></td>
-                  <td class="count"></td>
-                </tr>
-                <tr id="rank2">
-                  <th scope="row">5개+보너스볼</th>
-                  <td class="prize"></td>
-                  <td class="count"></td>
-                </tr>
-                <tr id="rank1">
-                  <th scope="row">6개</th>
-                  <td class="prize"></td>
-                  <td class="count"></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="paymentAmount__form">
+              <div class="inputForm">
+                <label for="input-paymentAmount">
+                  구입할 금액을 입력해주세요.
+                </label>
+                <!--js에서  min, max 설정해주기-->
+                <input id="input-paymentAmount" type="number" placeholder="금액" />
+              </div>
+              <button class="btn-payLotto" disabled>구입</button>
+              <div class="message-error"></div>
+            </div>
+
+          </section>
+          <!-- on 들어 갈때 보이는 것으로  -->
+          <section class="purchasedHistory">
+            <div class="purchasedHistory__lottos-count">
+              총 <span id="purchasedHistory__lottos-count__number"></span>를 구매하였습니다.
+            </div>
+            <ul class="issuedLottos">
+              <!--발행된 로또들 입력 , li class ="lotto"-->
+              <!--<li class="lotto">🎟️ 발행된 로또 번호</li>-->
+            </ul>
+          </section>
+          <section class="winningCriteria">
+            <div class="winningCriteria__explanation  explanation">
+              <div>
+                지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+              </div>
+              <div>
+                <button class="btn-toggleRule" title="당첨 번호, 보너스 번호에 관란 룰 보기">🤔❔</button>
+              </div>
+              <ul class="rule shadow">
+                <li>번호는
+                  <span id="winningCriteria__rule-startNumberOfLotto"></span>~
+                  <span id="winningCriteria__rule-endNumberOfLotto"></span>의 정수여야 해요.
+                </li>
+                <li>
+                  당첨 번호는 중복 없는 <span id="winningCriteria__rule-numberOfLotto"></span>개 여야해요.
+                </li>
+                <li>보너스 번호는 당첨 번호와 중복되지 않아야해요. </li>
+              </ul>
+            </div>
+            <div class="winningCriteria__inputGroupContainer">
+              <section class="winningCriteria_lotto">
+                <header>당첨 번호</header>
+                <div class="input-group">
+                  <!-- js로 생성 -->
+                </div>
+              </section>
+              <section class="winningCriteria__bonus">
+                <header>보너스 번호</header>
+                <label class="hidden" for="input-bonusNumber">
+                  보너스 번호를 입력해주세요.
+                </label>
+                <input id="input-bonusNumber" class="input-lottoNumber" type="number" />
+              </section>
+            </div>
+            <div class="errorMessage"></div>
+
+          </section>
+          <button class="btn-checkResult" disabled>결과 확인하기</button>
+        </div>
+      </main>
+      <footer>
+        Copyright 2023. woowacourse
+      </footer>
+      <div class="popup popup-statistics hidden">
+        <div class="popup__inner shadow">
+          <button class="btn-close-popup">✖️</button>
+          <div class="popup__contents">
+            <header>🏆 당첨 통계 🏆</header>
+            <div class="rankStatistics">
+              <table id="rankStatistics__table">
+                <caption class="hidden">로또 당첨 결과</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">일치 갯수</th>
+                    <th scope="col">당첨금</th>
+                    <th scope="col">당첨 갯수</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="rank5">
+                    <th scope="row">3개</th>
+                    <td class="prize"></td>
+                    <td class="count"></td>
+                  </tr>
+                  <tr id="rank4">
+                    <th scope="row">4개</th>
+                    <td class="prize"></td>
+                    <td class="count"></td>
+                  </tr>
+                  <tr id="rank3">
+                    <th scope="row">5개</th>
+                    <td class="prize"></td>
+                    <td class="count"></td>
+                  </tr>
+                  <tr id="rank2">
+                    <th scope="row">5개+보너스볼</th>
+                    <td class="prize"></td>
+                    <td class="count"></td>
+                  </tr>
+                  <tr id="rank1">
+                    <th scope="row">6개</th>
+                    <td class="prize"></td>
+                    <td class="count"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="profitRateContainer">
+                당신의 총 수익률은 <span id="profitRate"></span>%입니다.
+              </div>
+              <button class="btn-restart">게임 다시 시작하기</button>
+            </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
-  </body>
+</body>
+
 </html>
