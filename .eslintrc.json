@@ -2,9 +2,11 @@
   "rules": {
     "max-depth": ["error", 1]
   },
+
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "browser": true
   },
   "parserOptions": {
     "sourceType": "module",
