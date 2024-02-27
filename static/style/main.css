@@ -1,0 +1,49 @@
+/* Header */
+.lotto-main-header {
+  height: 64px;
+  background-color: var(--blue-color);
+  position: relative;
+  line-height: 36px;
+}
+.lmh-title {
+  position: absolute;
+  left: 130px;
+  top: 14px;
+  line-height: 36px;
+  color: var(--white-color);
+  font-weight: var(--title-bold);
+  font-size: var(--title-font);
+}
+
+/* Body */
+
+.lotto-main-body .lotto-paper {
+  max-height: 727px;
+  width: 414px;
+  margin: 0 auto;
+  margin-top: 84px;
+  padding: 40px 16px 32px;
+  background-color: var(--white-color);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Footer */
+.lotto-footer {
+  margin-top: 69px;
+  height: 80px;
+  width: 100%;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+.lotto-footer .lotto-footer-text {
+  margin: 0 auto;
+  font-size: var(--button-font);
+  font-weight: var(--button-bold);
+  color: var(--blue-color);
+  letter-spacing: 1.25px;
+  line-height: 16px;
+  text-align: center;
+  margin-top: 28px;
+}

@@ -1,5 +1,7 @@
 @import url('./main.css');
 @import url('./component.css');
+@import url('./purchaseBefore.css');
+@import url('./purchaseAfter.css');
 @import url('./modal.css');
 
 :root {

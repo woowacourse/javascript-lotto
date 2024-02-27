@@ -1,0 +1,26 @@
+.lp-title {
+  font-size: var(--title-font);
+  font-weight: var(--title-bold);
+  text-align: center;
+  margin-bottom: 28px;
+}
+/* 구입 금액 입력 */
+.lp-purchase-amount {
+  margin: 0 auto;
+}
+.lp-purchase-amount .lp-pa-text {
+  margin-bottom: 4px;
+}
+.lp-pa-input-group {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 28px;
+}
+.lp-pa-input-group .lp-pa-input-amount {
+  width: 310px;
+  margin-right: 16px;
+  padding: 8px 8px 4px 8px;
+}
+.lp-pa-input-group .lp-pa-input-btn {
+  width: 56px;
+}
