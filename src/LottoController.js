@@ -6,7 +6,7 @@ import retryOnFailureAsync from './Utils/retryOnFailureAsync';
 import Money from './Domain/Money.js';
 
 class LottoController {
-  #lottoMachine;
+  #lottoMachine = new LottoMachine();
 
   #winningLotto = new WinningLotto();
 
@@ -25,7 +25,7 @@ class LottoController {
   async #readBuyingLottoMoney() {
     const money = await InputView.readMoney();
     this.#money = new Money(money).getMoney();
-    this.#lottoMachine = new LottoMachine(this.#money);
+    this.#lottoMachine.makeLottoByMoney(this.#money);
   }
 
   #printBoughtLottos() {

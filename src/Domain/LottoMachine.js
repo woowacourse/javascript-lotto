@@ -11,12 +11,11 @@ export default class LottoMachine {
 
   #rewardGenerator;
 
-  constructor(money) {
+  constructor() {
     this.#rewardGenerator = new RewardGenerator();
-    this.#makeLottoByMoney(money);
   }
 
-  #makeLottoByMoney(money) {
+  makeLottoByMoney(money) {
     const totalBoughtLottoCount = Math.floor(money / LOTTO_SETTING.MIN_PRICE);
 
     this.#boughtLottos = Array.from({ length: totalBoughtLottoCount }, () => {
@@ -50,7 +49,7 @@ export default class LottoMachine {
       this.#rewardGenerator.calculateRewardRank(lottoNumber, totalWinningLottoInfo);
     });
 
-    const totalRewardResult = this.#rewardGenerator.getTotalRewardResult();
+    const totalRewardResult = this.#rewardGenerator.getTotalRewardResult().sort((a, b) => b.rank - a.rank);
 
     this.#calculateTotalPrize(totalRewardResult);
 
