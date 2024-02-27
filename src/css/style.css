@@ -1,0 +1,54 @@
+@import './theme.css';
+
+/* body */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* app */
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+/* header */
+header {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 64px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}
+
+h1 {
+  margin: 0 130px;
+  padding: 0;
+  font: var(--lotto-title);
+}
+
+/* main */
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: calc(100vh - 144px);
+  height: max-content;
+}
+
+/* footer */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 80px;
+  border-top: 1px solid #4e5ba633;
+  color: var(--lotto-primary);
+  font: var(--lotto-caption);
+}
