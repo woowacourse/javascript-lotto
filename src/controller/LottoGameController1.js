@@ -4,7 +4,7 @@ import LottosManager from '../domain/LottosManager.js';
 import OutputView from '../view/OutputView.js';
 import InputController from './InputController.js';
 
-class LottoGameController {
+class LottoGameController1 {
   #purchaseAmount;
   #lottos;
 
@@ -49,4 +49,4 @@ class LottoGameController {
   }
 }
 
-export default LottoGameController;
+export default LottoGameController1;
