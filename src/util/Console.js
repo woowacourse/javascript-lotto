@@ -3,8 +3,6 @@ import readline from 'readline';
 class Console {
   static readLineAsync(query) {
     return new Promise((resolve, reject) => {
-      // console.log(query); 
-      //TODO: class에선 arguments와 같은데,, 함수에선 다름
       if (arguments.length !== 1) {
         reject(new Error('arguments must be 1'));
       }
@@ -18,7 +16,7 @@ class Console {
         output: process.stdout,
       });
 
-      rl.question(query, input => {
+      rl.question(query, (input) => {
         rl.close();
         resolve(input);
       });

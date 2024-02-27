@@ -18,7 +18,7 @@
 /* Body */
 
 .lotto-main-body .lotto-paper {
-  max-height: 727px;
+  min-height: 727px;
   width: 414px;
   margin: 0 auto;
   margin-top: 84px;
@@ -27,6 +27,13 @@
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.error-message {
+  color: rgb(245, 59, 59);
+  font-size: 12px;
+  font-weight: var(--subtitle-bold);
+  margin-top: 5px;
 }
 
 /* Footer */
