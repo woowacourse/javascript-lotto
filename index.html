@@ -24,8 +24,8 @@
           <header>🎱 내 번호 당첨 확인 🎱</header>
           <section class="paymentAmount">
             <div class="paymentAmount__explanation explanation">
-              <button class="btn-toggleRule" title="구입 금액에 관한 룰 보기">🤔❔</button>
-              <ul class="rule shadow">
+              <button class="btn-toggleRule" title="구입 금액에 관한 룰 보기" name="btn-toggle-rule-paymentAmount">🤔❔</button>
+              <ul class="rule rule-paymentAmount hidden shadow ">
                 <li>
                   로또 가격은<span class="paymentAmount__rule-lottoPrice"></span>원이에요.
                 </li>
@@ -63,9 +63,10 @@
                 지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
               </div>
               <div>
-                <button class="btn-toggleRule" title="당첨 번호, 보너스 번호에 관란 룰 보기">🤔❔</button>
+                <button class="btn-toggleRule" title="당첨 번호, 보너스 번호에 관란 룰 보기"
+                  name="btn-toggle-rule-winningCriteria">🤔❔</button>
               </div>
-              <ul class="rule shadow">
+              <ul class="rule hidden rule-winningCriteria shadow ">
                 <li>번호는
                   <span id="winningCriteria__rule-startNumberOfLotto"></span>~
                   <span id="winningCriteria__rule-endNumberOfLotto"></span>의 정수여야 해요.

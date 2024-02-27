@@ -4,3 +4,4 @@
  */
 import './web/css/main.css';
 import './web/js/HtmlTextInjectorWithConstants.js';
+import './web/js/RuleDisplayController.js';
