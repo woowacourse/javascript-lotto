@@ -93,6 +93,10 @@ body {
 #content-box-input-budget {
 }
 
+#after-budget {
+  display: none;
+}
+
 #content-box-lottos {
 }
 
@@ -106,8 +110,8 @@ body {
 #content-box-numbers-input {
 }
 
-#lotto-bonus-input,
-#lotto-numbers-input {
+.lotto-bonus-input,
+.lotto-numbers-input {
   border: 1px solid #b4b4b4;
   border-radius: 4px;
   width: 34px;
@@ -148,6 +152,8 @@ body {
   letter-spacing: 1.25px;
   text-align: center;
 }
+
+/* 하단 */
 
 #footer {
   /* background-color: blue; */
