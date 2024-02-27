@@ -12,3 +12,8 @@ body {
   position: relative;
   overflow: scroll;
 }
+
+.mainCard {
+  height: 100vh;
+  margin: 0 auto;
+}
