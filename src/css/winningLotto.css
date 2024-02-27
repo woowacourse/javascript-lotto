@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .input_winningNumber {
@@ -43,9 +43,14 @@
   color: white;
   border: none;
   border-radius: var(--border-radius);
+  margin: 20px 0px;
+}
+#result_button:hover,
+#result_button:active {
+  background-color: var(--lotto-active-color);
+}
 
-  &:hover,
-  &:active {
-    background-color: var(--lotto-active-color);
-  }
+#invalid_winningLotto {
+  color: red;
+  font-size: 12px;
 }

@@ -32,7 +32,7 @@
   }
 }
 
-#isRetry {
+#invalid_purchaseAmount {
   color: red;
   font-size: 12px;
 }
