@@ -12,11 +12,9 @@
 </head>
 
 <body>
-  <div id="app">
-    <header id="header">
-      <h1 class="title">🎱 행운의 로또</h1>
-    </header>
-  </div>
+  <header id="header">
+    <h1 class="title">🎱 행운의 로또</h1>
+  </header>
   <main id="main">
     <section id="mainLayout">
       <section id="mainSection">
@@ -24,16 +22,7 @@
         <purchase-section id="purchaseSection"></purchase-section>
         <section id="purchaseResultSection"></section>
         <winning-number-section id="winningNumberSection" class="hidden"></winning-number-section>
-        <section id="lottoResultSection" class="hidden">
-          <div id="closeButtonWrapper">
-            <button id="closeButton">x</button>
-          </div>
-          <div id="lottoResultTitleWrapper">
-            <div class="title">🏆 당첨 통계 🏆</div>
-          </div>
-          <div id="lottoResultTable"></div>
-          <button id="restartButton" class="button buttonFont">다시 시작하기</button>
-        </section>
+        <lotto-result-modal id="lottoResultModal" class="hidden"></lotto-result-modal>
       </section>
     </section>
   </main>
