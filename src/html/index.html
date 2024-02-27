@@ -11,56 +11,58 @@
 <body>
   <div id="app">
     <header>
-      <p>🎱 행운의 로또</p>
+      <p class="header__title">🎱 행운의 로또</p>
     </header>
 
     <main>
-      <div>
-        <p>내 번호 당첨 확인</p>
+      <div class="main__container">
+        <p class="main__title">내 번호 당첨 확인</p>
 
-        <div>
-          <p>구입할 금액을 입력해주세요.</p>
-          <div>
-            <input type="text" placeholder="금액" />
-            <button type="submit">구입</button>
+        <div class="amount-form">
+          <div class="amount-form__con-label-input">
+            <p class="amount-form__label">구입할 금액을 입력해주세요.</p>
+            <input class="amount-form__input" type="text" placeholder="금액" />
           </div>
+
+          <button class="amount-form__submit-button">구입</button>
         </div>
 
-        <div>
-          <p>총 2개를 구매하였습니다.</p>
-          <div>
-            <p>1, 2, 3, 4, 5, 6</p>
-            <p>1, 2, 3, 4, 5, 6</p>
-          </div>
+        <div class="lotto-info">
+          <p class="lotto-info__label">총 2개를 구매하였습니다.</p>
+          <ul class="lotto-info__lotto-list">
+            <p class="lotto-info__lotto-numbers">1, 2, 3, 4, 5, 6</p>
+            <p class="lotto-info__lotto-numbers">1, 2, 3, 4, 5, 6</p>
+          </ul>
         </div>
 
-        <div>
-          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-          <div>
-            <div>
-              <p>당첨 번호</p>
-              <div>
-                <input type="number">
-                <input type="number">
-                <input type="number">
-                <input type="number">
-                <input type="number">
-                <input type="number">
+        <div class="result-form">
+          <p class="result-form__text">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div class="result-form__con-winning-bonus">
+            <div class="result-form__con-winning-label-input">
+              <p class="result-form__winning-label">당첨 번호</p>
+              <div class="result-form__winning-inputs">
+                <input class="result-form__winning-input" type="number">
+                <input class="result-form__winning-input" type="number">
+                <input class="result-form__winning-input" type="number">
+                <input class="result-form__winning-input" type="number">
+                <input class="result-form__winning-input" type="number">
+                <input class="result-form__winning-input" type="number">
               </div>
             </div>
-            <div>
-              <p>보너스 번호</p>
-              <input type="number">
+
+            <div class="result-form__con-bonus-label-input">
+              <p class="result-form__bonus-label">보너스 번호</p>
+              <input class="result-form__bonus-input" type="number">
             </div>
           </div>
-          <button>결과 확인하기</button>
+
+          <button class="result-form__submit-button">결과 확인하기</button>
         </div>
       </div>
     </main>
 
     <footer>
-      <hr />
-      <p>Copyright 2023. woowacourse</p>
+      <p class="footer__info">Copyright 2023. woowacourse</p>
     </footer>
   </div>
   <script type="module" src="../js/step2-index.js"></script>
