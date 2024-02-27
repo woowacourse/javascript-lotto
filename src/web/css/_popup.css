@@ -1,17 +1,24 @@
+.popup.hidden {
+  display: none;
+}
 .popup {
   position: absolute;
   top: 0;
   left: 0;
+  width: inherit;
+  max-width: inherit;
+  height: inherit;
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(15, 15, 15, 0.205);
+  background-color: rgba(var(--lotto-greyScale5-color-rgb), 20%);
   .popup__inner {
     position: relative;
     width: 350px;
     height: 500px;
-    padding: 16px 40px 16px 32px;
+    padding: 32px 16px 40px 16px;
+    box-sizing: border-box;
     background-color: var(--lotto-greyScale2-color);
   }
   .btn-close-popup {
@@ -28,5 +35,41 @@
     font-size: var(--lotto-subtitle-fontSize);
     font-weight: var(--lotto-subtitle-fontWeight);
     line-height: var(--lotto-subtitle-lineHeight);
+    text-align: center;
   }
+}
+
+.rankStatistics {
+  width: 100%;
+
+  margin-top: 33px;
+  table {
+    width: 100%;
+    height: 274px;
+    border-top: 1px solid var(--lotto-table-line-color);
+    border-bottom: 1px solid var(--lotto-table-line-color);
+  }
+  thead th {
+    font-weight: 600;
+  }
+  tr {
+    border-bottom: 1px solid var(--lotto-table-line-color);
+    height: calc(24px + 16px);
+    line-height: calc(24px + 16px);
+    text-align: center;
+  }
+
+  tbody tr:last-child {
+    border: none;
+  }
+}
+
+.profitRateContainer,
+.btn-restart {
+  width: 100%;
+  margin-top: 32px;
+}
+
+.profitRateContainer {
+  text-align: center;
 }

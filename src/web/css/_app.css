@@ -1,0 +1,50 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100vw;
+  max-width: 1440px;
+  height: 1024px;
+  margin: 0 auto;
+  font-family: var(--lotto-fontFamily);
+  font-size: var(--lotto-bodyAndPlaceholder-fontSize);
+  font-weight: var(--lotto-bodyAndPlaceholder-fontWeight);
+  line-height: var(--lotto-bodyAndPlaceholder-lineHeight);
+  color: var(--lotto-greyScale5-color);
+  line-height: 24px;
+  z-index: 0;
+}
+
+#app > .inner {
+  position: relative;
+  width: inherit;
+  height: inherit;
+  max-width: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#app > .inner > header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lotto-primary-color);
+  height: 64px;
+  h1 {
+    font-size: var(--lotto-title-fontSize);
+    font-weight: var(--lotto-title-fontWeight);
+    line-height: var(--lotto-title-lineHeight);
+    color: var(--lotto-greyScale1-color);
+  }
+}
+#app footer {
+  line-height: 80px;
+  height: 80px;
+  margin-top: auto;
+  border-top: 1px solid rgba(var(--lotto-primary-color-rgb), 0.2);
+  text-align: center;
+  color: var(--lotto-primary-color);
+  font-size: var(--lotto-caption-fontSize);
+  font-weight: var(--lotto-caption-fontWeight);
+}

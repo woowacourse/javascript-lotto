@@ -1,0 +1,22 @@
+@import './_common.css';
+
+.explanation {
+  z-index: 1;
+}
+.rule {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background-color: var(--lotto-greyScale1-color);
+  max-width: 600px;
+  min-width: 300px;
+  border-radius: 10px;
+  font-size: 12px;
+  padding: 5px;
+  box-sizing: border-box;
+
+  li {
+    list-style: circle;
+    margin-left: 16px;
+  }
+}

@@ -1,10 +1,12 @@
 :root {
   --lotto-primary-color: #4e5ba6;
+  --lotto-primary-color-rgb: 78, 91, 166;
   --lotto-greyScale1-color: #ffffff;
   --lotto-greyScale2-color: #fcfcfd;
   --lotto-greyScale3-color: #b4b4b4;
   --lotto-greyScale4-color: #8b8b8b;
   --lotto-greyScale5-color: #000000;
+  --lotto-greyScale5-color-rgb: 0, 0, 0;
   --lotto-fontFamily: 'Roboto';
   --lotto-title-fontWeight: 800;
   --lotto-title-fontSize: 24px;
@@ -18,4 +20,5 @@
   --lotto-caption-fontWeight: 700;
   --lotto-caption-fontSize: 14px;
   --lotto-caption-lineHeight: 16px;
+  --lotto-table-line-color: rgba(var(--lotto-greyScale5-color-rgb), 12%);
 }

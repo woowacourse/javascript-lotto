@@ -3,7 +3,8 @@
 main {
   width: inherit;
   min-height: fit-content;
-  height: calc(100vh - 64px - 80px);
+  max-width: inherit;
+  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,6 +12,7 @@ main {
 }
 
 main .contents {
+  position: relative;
   width: 414px;
   height: 727px;
   background-color: var(--lotto-greyScale1-color);
@@ -27,11 +29,25 @@ main .contents > header {
   padding-bottom: 28px;
   text-align: center;
 }
-
+.btn-toggleRule {
+  background-color: initial;
+  padding: 0;
+  width: max-content;
+}
 .paymentAmount {
+  position: relative;
+  height: 64px;
+  .inputForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  input,
+  .btn-payLotto {
+    height: 36px;
+  }
   input {
     width: 310px;
-    height: 36px;
     padding: 4px 8px;
   }
   input::placeholder {
@@ -39,8 +55,27 @@ main .contents > header {
     height: 24px;
     margin: auto;
   }
-}
 
+  .btn-payLotto {
+    margin-top: calc(64px - 36px);
+  }
+
+  .btn-toggleRule {
+    position: absolute;
+    top: 0;
+    right: 16px;
+  }
+}
+.paymentAmount__explanation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 20px;
+}
+.paymentAmount__form {
+  display: flex;
+  justify-content: space-between;
+}
 .purchasedHistory {
   margin-top: 28px;
   .issuedLottos {
@@ -54,8 +89,22 @@ main .contents > header {
 
 .winningCriteria {
   margin-top: 24px;
+  position: absolute;
+  bottom: 85px;
+  left: 16px;
 }
-
+.winningCriteria__explanation {
+  position: relative;
+}
+.winningCriteria__explanation div:nth-child(2) {
+  position: relative;
+  height: 24px;
+}
+.winningCriteria .btn-toggleRule {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
 .winningCriteria__inputGroupContainer {
   display: flex;
   justify-content: space-between;
@@ -75,7 +124,7 @@ main .contents > header {
 
 .winningCriteria_lotto {
   width: 244px;
-
+  margin-top: 4px;
   .input-group {
     display: flex;
     width: inherit;
@@ -103,5 +152,8 @@ main .contents > header {
   }
 }
 .btn-checkResult {
-  width: 100%;
+  width: calc(414px - 16px * 2);
+  position: absolute;
+  bottom: 32px;
+  left: 16px;
 }
