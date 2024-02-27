@@ -19,7 +19,6 @@ const LOTTO_MAIN_CONTAINER = `
 const LOTTO_MAIN_RESULT = (lottoNumbersArray) => `
 <purchased-info info={${lottoNumbersArray}}></purchased-info>
 <winning-numbers-form></winning-numbers-form>
-<lotto-button id="result-button"></lotto-button>
 `;
 
 class LottoMain extends HTMLElement {

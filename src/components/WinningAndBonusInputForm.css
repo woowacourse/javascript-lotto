@@ -1,10 +1,17 @@
 winning-numbers-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 27px;
 
   width: 100%;
 }
+
+.winning-bonus-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .winning-input-title-container {
   display: flex;
   align-items: center;
@@ -16,5 +23,9 @@ winning-numbers-form {
   flex: auto;
   justify-content: space-between;
 
+  width: 100%;
+}
+
+winning-numbers-form .lotto-button {
   width: 100%;
 }

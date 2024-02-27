@@ -12,6 +12,10 @@ class NumberInputField extends HTMLElement {
   render() {
     this.innerHTML = NUMBER_INPUT_FIELD_COMPONENT;
   }
+
+  getValue() {
+    return this.querySelector('.number-input').value;
+  }
 }
 
 customElements.define('number-input-field', NumberInputField);
