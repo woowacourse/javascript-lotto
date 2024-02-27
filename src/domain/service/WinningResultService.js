@@ -19,9 +19,7 @@ class WinningResultService {
   }
 
   #getResults() {
-    return this.#getMatchingCounts().filter((numStr) =>
-      Object.keys(CONDITION.winningPrice).includes(numStr),
-    );
+    return this.#getMatchingCounts().filter((numStr) => Object.keys(CONDITION.winningPrice).includes(numStr));
   }
 
   #getMatchingCounts() {

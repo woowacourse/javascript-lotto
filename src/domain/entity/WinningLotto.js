@@ -38,8 +38,8 @@ class WinningLotto {
 
   #isSecondPrize(lottoNumbers) {
     return (
-      this.#getMatchLottoCount(lottoNumbers) === CONDITION.secondPrizeMatchCount &&
-      this.#getMatchBonusNumberCount(lottoNumbers) === CONDITION.secondPrizeMatchBonusCount
+      this.#getMatchLottoCount(lottoNumbers) === CONDITION.secondPrizeMatchCount
+      && this.#getMatchBonusNumberCount(lottoNumbers) === CONDITION.secondPrizeMatchBonusCount
     );
   }
 
