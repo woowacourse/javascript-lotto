@@ -12,17 +12,19 @@ header {
 }
 
 #app {
-  width: 382px;
+  width: 414px;
   height: 727px;
   top: 148px;
   left: 513px;
 
+  box-sizing: border-box;
   margin: 84px auto;
   padding: 32px 15px;
   border: 1px solid #0000001f;
   align-content: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 28px;
 }
 
@@ -55,19 +57,22 @@ header {
 }
 .purchase-form__input {
   width: 310px;
-  max-height: 36px;
-  padding: 8px 8px 0px 8px;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 4px 8px;
   border-radius: 4px;
   border: 1px;
+  border: 1px solid var(--color-lotto-grayscale-3);
 
-  border: 1px solid var(--color-lotto-grayscale-2);
+  align-items: center;
 }
 .purchase-form__button {
   width: 56px;
-  max-height: 36px;
+  height: 36px;
   top: 132px;
   left: 342px;
 
+  box-sizing: border-box;
   padding: 6px 6px 6px 8px;
   border-radius: 4px;
   background: var(--color-lotto-primary);
@@ -132,11 +137,13 @@ header {
 .result__button {
   width: 100%;
 }
+
 .result {
   width: 100%;
 }
 
 /* 결과 확인 모달 */
+
 .result-modal-backdrop {
   position: fixed;
   z-index: 1;
@@ -181,13 +188,31 @@ header {
 
   text-align: right;
 }
+.result-modal-header__close-button:hover {
+  cursor: pointer;
+}
 
-.result-modal-lottos {
+.result-modal-table {
   width: 319px;
   height: 247px;
   top: 97px;
   left: 16px;
 }
+.result-modal-table__header {
+  font-weight: 600;
+}
+
+.result-modal__return-rate-text {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+
+  text-align: center;
+}
+
+/* 상수 정의 */
 
 .hidden {
   display: none;
@@ -211,6 +236,8 @@ header {
   font-weight: 800;
   line-height: 36px;
   letter-spacing: 0px;
+
+  color: var(--color-lotto-grayscale-5);
 }
 
 .text-lotto-subtitle {
@@ -219,6 +246,8 @@ header {
   font-weight: 600;
   line-height: 24px;
   letter-spacing: 0.15000000596046448px;
+
+  color: var(--color-lotto-grayscale-5);
 }
 
 .text-lotto-body {
@@ -227,6 +256,8 @@ header {
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
+
+  color: var(--color-lotto-grayscale-5);
 }
 
 .text-lotto-placeholder {
@@ -235,6 +266,8 @@ header {
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
+
+  color: var(--color-lotto-grayscale-4);
 }
 
 .text-lotto-caption {
@@ -243,6 +276,8 @@ header {
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 1.25px;
+
+  color: var(--color-lotto-grayscale-5);
 }
 
 .button-primary {
@@ -250,4 +285,8 @@ header {
   border-radius: 4px;
   background: var(--color-lotto-primary);
   color: var(--color-lotto-grayscale-1);
+}
+
+.button-primary:hover {
+  cursor: pointer;
 }

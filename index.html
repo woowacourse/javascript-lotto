@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- TODO: FIX Roboto 폰트 설치안되는 오류-->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
@@ -23,7 +24,7 @@
         <label class="purchase__label text-lotto-body">구입할 금액을 입력해주세요.</label>
         <div class="purchase-form">
           <input class="purchase-form__input" placeholder="금액" />
-          <button class="purchase-form__button">구입</button>
+          <button class="purchase-form__button button-primary">구입</button>
         </div>
       </div>
       <div class="purchased-lotto">
@@ -36,18 +37,18 @@
         >
         <div class="winning-lotto-form">
           <div class="winning-numbers">
-            <label class="winning-numbers__label">당첨 번호</label>
+            <label class="winning-numbers__label text-lotto-body">당첨 번호</label>
             <div class="winning-numbers-inputs">
-              <input class="winning-numbers-inputs__input" />
-              <input class="winning-numbers-inputs__input" />
-              <input class="winning-numbers-inputs__input" />
-              <input class="winning-numbers-inputs__input" />
-              <input class="winning-numbers-inputs__input" />
-              <input class="winning-numbers-inputs__input" />
+              <input class="winning-numbers-inputs__input text-lotto-body" />
+              <input class="winning-numbers-inputs__input text-lotto-body" />
+              <input class="winning-numbers-inputs__input text-lotto-body" />
+              <input class="winning-numbers-inputs__input text-lotto-body" />
+              <input class="winning-numbers-inputs__input text-lotto-body" />
+              <input class="winning-numbers-inputs__input text-lotto-body" />
             </div>
           </div>
           <div class="bonus-number">
-            <label class="bonus-number__label">보너스 번호</label>
+            <label class="bonus-number__label text-lotto-body">보너스 번호</label>
             <div class="bonus-number-inputs"><input class="bonus-number-inputs__input" /></div>
           </div>
         </div>
@@ -60,13 +61,47 @@
     <div class="result-modal hidden">
       <div class="result-modal-header">
         <div class="result-modal-header__close-button">X</div>
-        <div class="result-modal-header__title">🏆 당첨 통계 🏆</div>
+        <div class="result-modal-header__title text-lotto-subtitle">🏆 당첨 통계 🏆</div>
       </div>
-      <div class="result-modal-lottos">
-        <div class="result-modal-lottos__header"></div>
-        <div class="result-modal-lottos__header"></div>
+      <table class="result-modal-table text-lotto-body">
+        <thead>
+          <tr class="result-modal-table__header">
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td><span class="result-modal-table__count"></span>개</td>
+          </tr>
+          <tr>
+            <td>4개</td>
+            <td>50,000</td>
+            <td><span class="result-modal-table__count"></span>개</td>
+          </tr>
+          <tr>
+            <td>5개</td>
+            <td>150,000</td>
+            <td><span class="result-modal-table__count"></span>개</td>
+          </tr>
+          <tr>
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td><span class="result-modal-table__count"></span>개</td>
+          </tr>
+          <tr>
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td><span class="result-modal-table__count"></span>개</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="result-modal__return-rate-text">
+        당신의 총 수익률은 <span class="result-modal__return-rate">0</span>%입니다.
       </div>
-      <div>당신의 총 수익률은 %입니다.</div>
       <div class="result-modal__reset-button button-primary text-lotto-caption">다시 시작하기</div>
     </div>
     <footer>copyright 2023. woowacourse</footer>
