@@ -9,3 +9,7 @@ export const addClassNameHandler = (targetTag, className) => {
 export const removeClassNameHandler = (targetTag, className) => {
   targetTag.classList.remove(className);
 };
+
+export const reloadPage = () => {
+  window.location.reload();
+};
