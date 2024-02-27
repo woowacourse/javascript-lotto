@@ -76,11 +76,18 @@ class WebController {
       );
       const button = document.getElementById("purchase_button");
       const purchaseNumber = document.getElementById("purchase_number");
+      const successPurchases =
+        document.getElementsByClassName("after_purchase");
 
       function onClickHandler(event) {
         event.preventDefault();
         purchaseAmountValidator(purchaseAmountInput.value);
         resolve(Number(purchaseAmountInput.value));
+
+        for (const successPurchase of successPurchases) {
+          successPurchase.style.visibility = "visible";
+        }
+
         purchaseNumber.textContent = `총 ${purchaseAmountInput.value / 1000}개를 구매하였습니다.`;
         purchaseAmountInput.value = "";
 

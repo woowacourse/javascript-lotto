@@ -70,3 +70,7 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+.after_purchase {
+  visibility: hidden;
+}
