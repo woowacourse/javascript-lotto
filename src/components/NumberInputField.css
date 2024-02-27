@@ -17,7 +17,7 @@ number-input-field {
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
-  text-align: left;
+  text-align: center;
 
   color: var(--lotto-greyscale-5);
 }
