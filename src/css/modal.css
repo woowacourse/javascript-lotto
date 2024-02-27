@@ -1,0 +1,101 @@
+.main__btn {
+  margin-top: 60px;
+  all: unset;
+  background-color: mediumslateblue;
+  color: white;
+  padding: 5px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__background {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  width: 318px;
+  height: 428px;
+  padding: 40px 16px 32px 16px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 5px;
+  background-color: var(--lotto-greyscale-1);
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  height: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.modal__title {
+  height: 24px;
+  font: var(--lotto-subtitle);
+  margin: 0;
+}
+
+.winning-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 14px;
+  width: 100%;
+  height: 247px;
+  border: none;
+  border-top: 2px solid #b4b4b4;
+}
+
+.winning-result-column {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.profit-rate {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.restart-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}
+/* .hidden {
+  display: none;
+} */
