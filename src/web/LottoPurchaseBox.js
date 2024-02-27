@@ -2,14 +2,18 @@ import Component from './Component';
 import MoneyInput from './MoneyInput';
 import LottoDisplay from './LottoDisplay';
 import WinningLottoInput from './WinningLottoInput';
+import LottoStatisticsModal from './LottoStatisticsModal';
 import Validator from '../domain/Validator';
 import LottoGenerator from '../controller/LottoGenerator';
+import StatisticsGenerator from '../controller/StatisticsGenerator';
 
 class LottoPurchaseBox extends Component {
   setup() {
     this.state = {
       lottoTickets: [],
       winningLotto: { winningNumbers: [], bonusNumber: 0 },
+      lottoStatistics: { prizes: [], returnOnInvestment: 0 },
+      isModalOpen: false,
     };
   }
 
@@ -19,30 +23,48 @@ class LottoPurchaseBox extends Component {
             <p class="lotto-purchase-title">🎱 내 번호 당첨 확인 🎱</p>
             <section class="money-input"></section>
             ${
-              this.state.lottoTickets.length > 1
+              this.state.lottoTickets.length > 0
                 ? `
                 <section class="lotto-display"></section>
                 <section class="winning-lotto-input"></section>
-            `
+                `
                 : ``
-            } 
+            }
+            ${
+              this.state.isModalOpen
+                ? `
+                <section class="lotto-statistics-modal"></section>`
+                : ``
+            }
         </section>
     `;
   }
 
   mounted() {
     const $moneyInput = this.$target.querySelector('.money-input');
-    const $lottoDisplay = this.$target.querySelector('.lotto-display');
-    const $winningLottoInput = this.$target.querySelector('.winning-lotto-input');
 
     new MoneyInput($moneyInput, {
       purchaseLottoTickets: (money) => this.purchaseLottoTickets(money),
     });
-    new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
-    new WinningLottoInput($winningLottoInput, {
-      makeWinningLotto: (winningNumbers, bonusNumber) =>
-        this.makeWinningLotto(winningNumbers, bonusNumber),
-    });
+
+    if (this.state.lottoTickets.length > 0) {
+      const $lottoDisplay = this.$target.querySelector('.lotto-display');
+      const $winningLottoInput = this.$target.querySelector('.winning-lotto-input');
+
+      new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
+      new WinningLottoInput($winningLottoInput, {
+        makeWinningLotto: (winningNumbers, bonusNumber) =>
+          this.makeWinningLotto(winningNumbers, bonusNumber),
+      });
+    }
+
+    if (this.state.isModalOpen) {
+      const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal');
+      new LottoStatisticsModal($lottoStatisticsModal, {
+        lottoStatistics: this.state.lottoStatistics,
+        closeModal: () => this.closeModal(),
+      });
+    }
   }
 
   purchaseLottoTickets(money) {
@@ -73,9 +95,28 @@ class LottoPurchaseBox extends Component {
       this.setState({
         winningLotto: { winningNumbers: validWinningNumbers, validBonusNumber },
       });
+      this.showPrizeStatistics();
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  showPrizeStatistics() {
+    const { lottoTickets, winningLotto } = this.state;
+
+    const prizes = StatisticsGenerator.calculateAllPrize(lottoTickets, winningLotto);
+    const returnOnInvestment = StatisticsGenerator.calculateReturnOnInvestment(prizes);
+
+    this.setState({ lottoStatistics: { prizes, returnOnInvestment } });
+    this.openModal();
+  }
+
+  openModal() {
+    this.setState({ isModalOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ isModalOpen: false });
   }
 }
 
