@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/src/step2/style/main.css" />
     <link rel="stylesheet" href="/src/step2/style/header.css" />
     <link rel="stylesheet" href="/src/step2/style/content.css" />
+    <link rel="stylesheet" href="/src/step2/style/moneyInput.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,6 +26,23 @@
         <div class="contentContainer">
           <div class="contentTitle">
             <h1>🎱 내 번호 당첨 확인 🎱</h1>
+          </div>
+          <div class="lottoInputContainer">
+            <form class="moneyInputForm" id="moneyInputForm">
+              <div class="labelAndInputContainer">
+                <label for="lottoInput" class="inputLabel">구입할 금액을 입력해주세요</label>
+                <input type="text" placeholder="금액" name="moneyInput" id="moneyInput" class="moneyInput" />
+              </div>
+              <div class="lottoBuyingButtonContainer">
+                <button class="lottoBuyingButton" id="buyingButton" type="submit">구입</button>
+              </div>
+            </form>
+          </div>
+          <div class="resultAndWinningLottoContainer" id="resultAndWinningLottoContainer">
+            <div class="resultContainer">
+              <div class="resultText" id="resultText"></div>
+              <div class="boughtLottosContainer" id="boughtLottosContainer"></div>
+            </div>
           </div>
         </div>
       </div>
