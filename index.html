@@ -13,38 +13,35 @@
       <header>
         <div>🎱 행운의 로또</div>
       </header>
-      <div class="container">
+      <div id="container">
         <div>
-          <div class="title">🎱 내 번호 당첨 확인 🎱</div>
+          <div id="title">🎱 내 번호 당첨 확인 🎱</div>
           <div>
-            <p class="subtitle">구입할 금액을 입력해주세요.</p>
-            <div class="input_form">
-              <input
-                class="input_purchaseAmount"
-                placeholder="금액"
-                type="text"
-              />
-              <button class="purchase_button">구입</button>
-            </div>
+            <p id="subtitle">구입할 금액을 입력해주세요.</p>
+            <form id="input_form">
+              <input id="input_purchaseAmount" placeholder="금액" type="text" />
+              <button id="purchase_button">구입</button>
+            </form>
+            <p id="isRetry" />
           </div>
           <div>
-            <p class="purchase_number">총 0개를 구매하였습니다.</p>
-            <ul class="lotto_list">
-              <li class="lotto_number">
-                <span class="lotto_icon">🎟️</span>
+            <p id="purchase_number">총 0개를 구매하였습니다.</p>
+            <ul id="lotto_list">
+              <li id="lotto_number">
+                <span id="lotto_icon">🎟️</span>
                 <span>12, 19, 22, 23, 28, 37</span>
               </li>
             </ul>
           </div>
         </div>
-        <div class="winningLotto">
+        <div id="winningLotto">
           <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
           <div>
-            <div class="winningform_title">
+            <div id="winningform_title">
               <p>당첨 번호</p>
               <p>보너스 번호</p>
             </div>
-            <form class="winningLotto_form">
+            <form id="winningLotto_form">
               <div>
                 <input class="input_winningNumber" maxlength="1" />
                 <input class="input_winningNumber" maxlength="1" />
@@ -53,12 +50,18 @@
                 <input class="input_winningNumber" maxlength="1" />
                 <input class="input_winningNumber" maxlength="1" />
               </div>
-              <input class="input_bonusNumber" maxlength="1" />
+              <input id="input_bonusNumber" maxlength="1" />
             </form>
           </div>
-          <button class="result_button">결과 확인하기</button>
+          <button id="result_button">결과 확인하기</button>
         </div>
       </div>
+      <dialog>
+        <p>Greetings, one and all!</p>
+        <form method="dialog">
+          <button>OK</button>
+        </form>
+      </dialog>
       <footer>Copyright 2023. woowacourse</footer>
     </div>
     <script type="module" src="./src/js/index.js"></script>
