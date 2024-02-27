@@ -12,9 +12,7 @@ const OutputView = {
   },
 
   printRewardResult(rewardResult) {
-    const sortedResult = rewardResult.sort((a, b) => b.rank - a.rank);
-
-    sortedResult.forEach((result) => {
+    rewardResult.forEach((result) => {
       this.printMessage(`${LOTTO_REWARD[result.rank].message}${result.count}개`);
     });
   },
