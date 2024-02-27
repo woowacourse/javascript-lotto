@@ -1,8 +1,15 @@
+import content from './content';
 import { $ } from './utils/dom';
 
 export default function modal(element) {
   const handleCloseBtn = (event) => {
     event.preventDefault();
+    $('#modal-container').style.visibility = 'hidden';
+  };
+
+  const handleRetryBtn = (event) => {
+    event.preventDefault();
+    content(document.querySelector('article'));
     $('#modal-container').style.visibility = 'hidden';
   };
 
@@ -65,4 +72,5 @@ export default function modal(element) {
 
   render(element);
   $('#close-btn').addEventListener('click', handleCloseBtn);
+  $('#retry-btn').addEventListener('click', handleRetryBtn);
 }
