@@ -9,6 +9,7 @@ const app = {
     document.querySelector('.winningNumberInput').focus();
     const lottoController = new WebLottoController(purchaseAmount);
     lottoController.run();
+    document.getElementById('lottoResultButton').addEventListener('click', lottoController.handleLottoResult);
   },
 };
 

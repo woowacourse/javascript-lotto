@@ -16,8 +16,6 @@ class WebLottoController {
   async run() {
     this.#lottery = new LotteryMachine(this.#purchaseAmount).makeLottery();
     this.#showPurchaseLottoResult(this.#lottery);
-    const $lottoResultButton = document.getElementById('lottoResultButton');
-    $lottoResultButton.addEventListener('click', this.handleLottoResult);
   }
 
   #showPurchaseLottoResult(lottery) {
