@@ -1,4 +1,6 @@
+import { OUTPUT_MESSAGE } from '../constants/message';
 import NUMBER from '../constants/number';
+import WINNER from '../constants/winner';
 import Lotto from '../domain/Lotto';
 import LottoProcess from '../domain/LottoProcess';
 import LottoPublisher from '../domain/LottoPublisher';
@@ -28,6 +30,8 @@ class LottoWebController {
       const winLotto = this.submitWinLotto();
       const result = this.getResult(this.lottos, winLotto);
       $('#winning-statistics-modal').classList.remove('hidden');
+      console.log('result', result);
+      this.makeResultTable(result);
     });
 
     //TODO: 에러 메세지 숨기는 부분 유틸 분리
@@ -116,6 +120,21 @@ class LottoWebController {
     const lottoProcess = new LottoProcess();
     const winResult = lottoProcess.getResult(lottos, winLotto);
     return winResult;
+  }
+
+  makeResultTable(winningResults) {
+    const innerHTML = winningResults.reverse().map((_, index) => {
+      const rankIndex = Math.abs(Object.keys(WINNER).length - index);
+      return `
+      <tr>
+      <td>${OUTPUT_MESSAGE.WEB_BALL_COUNT(WINNER[rankIndex].MATCH_COUNT)}${
+        WINNER[rankIndex].IS_BONUS ? OUTPUT_MESSAGE.WEB_BONUS_MATH : ''
+      }</td>
+      <td>${OUTPUT_MESSAGE.WEB_WIN_PRICE(WINNER[rankIndex].PRICE)}</td>
+      <td>${OUTPUT_MESSAGE.WEB_BALL_COUNT(winningResults[rankIndex - 1])}</td>
+    </tr>`;
+    });
+    $('#winning-statistics-table').insertAdjacentHTML('beforeend', innerHTML.join(''));
   }
 }
 export default LottoWebController;

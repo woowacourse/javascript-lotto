@@ -29,6 +29,9 @@ const OUTPUT_MESSAGE = Object.freeze({
   WIN_COUNT: (count) => ` - ${count}개`,
   RATE_OF_REVENUE: (result) => `총 수익률은 ${result}%입니다.`,
   EMPTY: ``,
+  WEB_WIN_PRICE: (price) => `${addPriceComma(price)}원`,
+  WEB_BALL_COUNT: (count) => `${count}개`,
+  WEB_BONUS_MATH: '+보너스볼',
 });
 
 export { ERROR_MESSAGE, QUERY_MESSAGE, OUTPUT_MESSAGE, NEW_LINE };
