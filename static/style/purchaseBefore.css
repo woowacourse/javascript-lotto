@@ -7,6 +7,7 @@
 /* 구입 금액 입력 */
 .lp-purchase-amount {
   margin: 0 auto;
+  margin-bottom: 28px;
 }
 .lp-purchase-amount .lp-pa-text {
   margin-bottom: 4px;
@@ -14,7 +15,6 @@
 .lp-pa-input-group {
   display: flex;
   flex-direction: row;
-  margin-bottom: 28px;
 }
 .lp-pa-input-group .lp-pa-input-amount {
   width: 310px;
