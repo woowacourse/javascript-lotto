@@ -68,11 +68,58 @@
   </div>
 
   <div id="modal">
-    <div id="modal-body">
+    <div id="modal-box">
       <div id="modal-header">
         <span id="modal-close-btn">✖️</span>
+        <div id="modal-header-msg" class="lotto-subtitle">🏆당첨 통계🏆</div>
       </div>
-      모달
+      <div id="modal-body">
+        <div id="modal-body-table">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-7btt">일치 갯수</th>
+                <th class="tg-7btt">당첨금</th>
+                <th class="tg-7btt">당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-c3ow">3개</td>
+                <td class="tg-c3ow">5,000</td>
+                <td class="tg-c3ow"><span id="lotto-rank-5"></span>개</td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">4개</td>
+                <td class="tg-c3ow">50,000</td>
+                <td class="tg-c3ow"><span id="lotto-rank-4"></span>개</td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">5개</td>
+                <td class="tg-c3ow">1,500,000</td>
+                <td class="tg-c3ow"><span id="lotto-rank-3"></span>개</td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">5개+보너스볼</td>
+                <td class="tg-c3ow">30,000,000</td>
+                <td class="tg-c3ow"><span id="lotto-rank-2"></span>개</td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">6개</td>
+                <td class="tg-c3ow">2,000,000,000</td>
+                <td class="tg-c3ow"><span id="lotto-rank-1"></span>개</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="profit-msg">
+          <p>당신의 총 수익률은 <span id="profit-msg-num"></span>%입니다.</p>
+        </div>
+      </div>
+
+      <div id="modal-footer">
+        <button id="modal-retry-btn" class="lotto-caption">다시 시작하기</button>
+      </div>
     </div>
   </div>
   <script type="module" src="./src/js/index.js"></script>
