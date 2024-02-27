@@ -1,6 +1,6 @@
 @import url(./root.css);
 
-.lotto-result-modal-overlay {
+#lotto-result-modal-overlay {
   position: fixed;
   top: 0%;
   left: 0%;
@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.lotto-result-modal-container {
+#lotto-result-modal-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,14 +23,14 @@
   left: 50%;
   z-index: 2;
 
-  max-width: 30vw;
-  max-height: 50vh;
+  width: 350px;
+  height: 500px;
   background-color: var(--lotto-grayscale2);
   transform: translate(-50%, -50%);
   border-radius: var(--border-radius);
 }
 
-.modal-close-button {
+#modal-close-button {
   padding: 0;
   border: none;
   position: absolute;
@@ -44,13 +44,13 @@
   cursor: pointer;
 }
 
-.lotto-result-title {
+#lotto-result-title {
   margin: var(--margin-small) 0 0 0;
   font-size: var(--subtitle-font-size);
   font-weight: var(--subtitle-font-weight);
 }
 
-.winning-result-table {
+#winning-result-table {
   margin: var(--margin-large) 0 0 0;
   text-align: center;
 }
@@ -70,13 +70,13 @@ th {
   font-weight: var(--subtitle-font-weight);
 }
 
-.winning-result-profit {
+#winning-result-profit {
   margin: var(--margin-large) 0 0 0;
   font-size: var(--body-font-size);
   font-weight: var(--caption-font-weight);
 }
 
-.lotto-result-restart-button {
+#lotto-result-restart-button {
   margin: var(--margin-large) 0 0 0;
   padding: 6px;
   width: 100%;

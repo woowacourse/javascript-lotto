@@ -23,7 +23,7 @@ button {
   cursor: pointer;
 }
 
-.app {
+#app {
   display: flex;
   align-items: center;
   justify-content: space-between;

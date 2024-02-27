@@ -1,11 +1,11 @@
-.navbar {
+#navbar {
   display: flex;
   width: 100vw;
   height: var(--navbar-height);
   background-color: var(--lotto-primary);
 }
 
-.navbar-title {
+#navbar-title {
   display: flex;
   align-items: center;
   justify-content: center;
