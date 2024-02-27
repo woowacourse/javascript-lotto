@@ -1,10 +1,10 @@
-.winningLotto {
+#winningLotto {
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
 
-.winningform_title {
+#winningform_title {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -12,7 +12,7 @@
   margin-bottom: 10px;
 }
 
-.winningLotto_form {
+#winningLotto_form {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -27,7 +27,7 @@
   border-radius: var(--border-radius);
 }
 
-.input_bonusNumber {
+#input_bonusNumber {
   width: 34px;
   height: 36px;
   padding: 0 10px;
@@ -35,7 +35,7 @@
   border-radius: var(--border-radius);
 }
 
-.result_button {
+#result_button {
   width: 100%;
   height: 36px;
   background-color: var(--lotto-primary-color);

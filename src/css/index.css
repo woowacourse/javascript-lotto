@@ -34,7 +34,7 @@ button {
   font-weight: var(--button-font-weight);
 }
 
-.container {
+#container {
   border: solid 1px var(--border-color);
   border-radius: var(--border-radius);
   width: 414px;
@@ -45,7 +45,7 @@ button {
   justify-content: space-between;
 }
 
-.title {
+#title {
   font-size: var(--title-text-size);
   font-weight: var(--title-font-weight);
   margin: 20px;
@@ -53,7 +53,7 @@ button {
   justify-content: center;
 }
 
-.subtitle {
+#subtitle {
   margin-bottom: 10px;
 }
 

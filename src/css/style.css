@@ -2,6 +2,7 @@
 @import url("./purchase.css");
 @import url("./lottoList.css");
 @import url("./winningLotto.css");
+@import url("./dialog.css");
 
 :root {
   --lotto-primary-color: #4e5ba6;
