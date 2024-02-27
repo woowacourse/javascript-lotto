@@ -68,14 +68,31 @@ main {
 }
 
 .lotto-info {
+  margin-top: 16px;
 }
 
+/* FIXME: 사용하지 않는 클래스 */
 .lotto-info__label {
 }
 
 .lotto-info__lotto-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
+.lotto-info__lotto {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* FIXME: 사용하지 않는 클래스 */
+.lotto-info__lotto-emoji {
+}
+
+/* FIXME: 사용하지 않는 클래스 */
 .lotto-info__lotto-numbers {
 }
 
@@ -148,4 +165,13 @@ main {
   line-height: 16px;
   letter-spacing: 1.25px;
   text-align: center;
+}
+
+.text-emoji {
+  font-family: 'Roboto';
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
 }
