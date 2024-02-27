@@ -77,6 +77,12 @@ class lottoGameWebController {
 
     return totalResult;
   };
+
+  displayResult = (totalResult, profit = 0) => {
+    const resultTable = document.querySelector('#modal-background');
+    resultTable.style.display = 'block';
+    webOutputView.renderTalbe(totalResult);
+  };
 }
 
 new lottoGameWebController();

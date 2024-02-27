@@ -1,3 +1,6 @@
+import prize from '../../domain/prize';
+import formatNumber from '../../utils/formatNumber';
+
 const webOutputView = {
   renderLottoList: (lottoTickets) => {
     const lottoListTemplate = lottoTickets
@@ -11,7 +14,7 @@ const webOutputView = {
     document.querySelector('#lotto-list').innerHTML = lottoListTemplate;
   },
 
-  renderTalbe: () => {
+  renderTalbe: (totalResult) => {
     const tableHeader = `
     <tr id="reward-table-header">
     <th>일치 갯수</th>
@@ -20,8 +23,17 @@ const webOutputView = {
   </tr>
     `;
 
-    const tableTemplate = () => {};
+    const tableTemplate = Object.keys(totalResult).map(
+      (rank) =>
+        `<tr>
+        <th>${prize.findMatchCountByRank(rank)}개</th>
+        <th>${formatNumber(prize.findRewardByRank(rank))}</th>
+        <th>${totalResult[rank]}개</th>
+      </tr>
+      `,
+    );
 
+    console.log('tableTemplate', tableTemplate);
     document.querySelector('#reward-table').innerHTML = tableHeader + tableTemplate;
   },
 };
