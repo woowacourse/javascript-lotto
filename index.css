@@ -215,7 +215,7 @@ header {
 /* 상수 정의 */
 
 .hidden {
-  display: none;
+  visibility: hidden;
 }
 
 .shade {
