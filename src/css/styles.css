@@ -13,12 +13,23 @@ header {
   align-items: center;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+}
+
 .header__title {
   position: relative;
   left: 130px;
 }
 
+/* TODO: 수직 중앙 정렬 */
 .main__container {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  width: 414px;
+  height: 727px;
+  margin-top: 84px;
+  margin-bottom: 84px;
 }
 
 .main__title {
