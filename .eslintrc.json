@@ -3,7 +3,8 @@
     "max-depth": ["error", 1],
     "max-params": ["error", 2],
     "class-methods-use-this": "off",
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+    "no-undef": "off"
   },
   "overrides": [
     {

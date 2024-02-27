@@ -1,3 +1,6 @@
+import InputHandler from './View/InputHandler';
+import RenderingHandler from './View/RenderingHandler';
+
 import LottoMachine from '../Domain/LottoMachine';
 import WinLottoNumber from '../Domain/WinLottoNumber';
 
@@ -7,13 +10,13 @@ export default class Controller {
   #winLottoNumber;
 
   async run() {
-    console.log('success');
+    RenderingHandler.renderHeader();
+    RenderingHandler.renderFooter();
+
     // await this.#executeLottoMoney();
     // this.#executeLottos();
-
     // await this.#executeWinLottoNumber();
     // this.#executeResult();
-
     // await this.#executeRetry();
   }
 
