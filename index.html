@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/src/step2/style/header.css" />
     <link rel="stylesheet" href="/src/step2/style/content.css" />
     <link rel="stylesheet" href="/src/step2/style/moneyInput.css" />
+    <link rel="stylesheet" href="/src/step2/style/winningLottoInput.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -42,6 +43,31 @@
             <div class="resultContainer">
               <div class="resultText" id="resultText"></div>
               <div class="boughtLottosContainer" id="boughtLottosContainer"></div>
+            </div>
+            <div class="winningLottoFormContainer">
+              <p class="winningLottoFormBanner">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <form class="winningLottoForm" id="winningLottoForm">
+                <div class="winningLottoWrapper">
+                  <div class="winningLottoNumbersContainer">
+                    <label for="winningLottoNumbers" class="winningLottoLabel"> 당첨 번호 </label>
+                    <div class="winningLottoInputContainer">
+                      <input type="text" class="winningLottoInput" />
+                      <input type="text" class="winningLottoInput" />
+                      <input type="text" class="winningLottoInput" />
+                      <input type="text" class="winningLottoInput" />
+                      <input type="text" class="winningLottoInput" />
+                      <input type="text" class="winningLottoInput" />
+                    </div>
+                  </div>
+                  <div class="bonusNumberContainer">
+                    <label for="bonusNumber" class="winningLottoLabel"> 당첨 번호 </label>
+                    <input type="text" id="bonusNumberInput" class="winningLottoInput" />
+                  </div>
+                </div>
+                <div class="resultButtonContainer">
+                  <button class="resultButton" type="submit">결과 확인하기</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
