@@ -35,8 +35,9 @@ class LottoResultCalculator {
 
   getProfit(purchaseAmount) {
     const totalReward = this.#getTotalReward();
+    const profitBeforeRound = roundToSecondDecimalPlace(totalReward / purchaseAmount) * 100;
 
-    return roundToSecondDecimalPlace(totalReward / purchaseAmount) * 100;
+    return roundToSecondDecimalPlace(profitBeforeRound);
   }
 }
 
