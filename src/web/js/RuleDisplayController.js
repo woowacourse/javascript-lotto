@@ -15,7 +15,7 @@ class RuleDisplayController {
       el.addEventListener('click', (event) => this.#toggleRule(event)),
     );
   }
-  // eslint-disable-next-line
+
   #toggleRule(event) {
     const { name } = event.currentTarget;
     const targetRule = name.replace('btn-toggle-', '');

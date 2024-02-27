@@ -23,11 +23,11 @@ class Statistics {
       statisticsResult: this.#getStatisticsResult(),
     };
   }
+
   /**
    *
    * @returns  {{l:0, 2:0,3:0,4:0,5:0}}
    */
-  // eslint-disable-next-line
   #makeInitialStatisticsResult() {
     const initialStatisticsResult = {};
 

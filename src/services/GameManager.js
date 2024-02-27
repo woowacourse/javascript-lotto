@@ -26,7 +26,6 @@ class GameManager {
   /**
    * @param {profitRate: number,statisticsResult: {1:number, 2:number ,3:number, 4:number, 5:number}}} lottoAnalytics
    */
-  // eslint-disable-next-line
   #printStatistics(lottoAnalytics) {
     const { profitRate, statisticsResult } = lottoAnalytics;
 

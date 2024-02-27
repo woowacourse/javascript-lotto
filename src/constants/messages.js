@@ -21,7 +21,7 @@ export const OUTPUT_MESSAGES = Object.freeze({
   endGame: '\n---게임 종료 🤗---',
 });
 
-const ERROR_PREFIX = '[ERROR]';
+export const ERROR_PREFIX = '[ERROR]';
 
 export const ERROR_MESSAGES = Object.freeze({
   isUndefinedInputValue: `${ERROR_PREFIX} 입력값이 없습니다.`,

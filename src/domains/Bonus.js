@@ -1,5 +1,8 @@
 import { ERROR_MESSAGES } from '../constants';
-import { checkDefinedInputValue, isBonusNumberUnique } from '../utils';
+import {
+  checkDefinedInputValue,
+  isBonusNumberUnique,
+} from '../utils/validatorsUtils';
 import LottoNumber from './LottoNumber';
 
 class Bonus {
