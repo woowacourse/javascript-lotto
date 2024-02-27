@@ -35,7 +35,7 @@ export default function content(element) {
     element.innerHTML = `
       <section id="lotto-title"><h1>🎱 내 당첨번호 확인 🎱</h1></section>
       
-      <div>
+      <div id="buy-lotto-container">
         <form id="buy-lotto-form">
           <div id="buy-lotto-container">
             <label id="buy-lotto-input-label" for="buy-lotto-input">구입할 금액을 입력해주세요.</label>
