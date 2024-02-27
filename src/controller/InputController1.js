@@ -2,7 +2,7 @@ import handleIO from '../util/handleIO';
 import Validator from '../validator/Validator';
 import InputView from '../view/InputView';
 
-const InputController = {
+const InputController1 = {
   async inputPurchaseAmount() {
     try {
       const purchaseAmount = await InputView.readPurchaseAmount();
@@ -51,4 +51,4 @@ const InputController = {
   },
 };
 
-export default InputController;
+export default InputController1;
