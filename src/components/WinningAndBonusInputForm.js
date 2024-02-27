@@ -32,8 +32,9 @@ class WinningNumbersForm extends HTMLElement {
 
     purchaseButton.addEventListener('click', () => {
       const winningNumbers = document.querySelector('winning-numbers-input-field').getValue();
+      const bonusNumber = document.querySelector('bonus-number-input-field').getValue();
 
-      console.log(winningNumbers);
+      console.log(winningNumbers, bonusNumber);
     });
   }
 

@@ -18,6 +18,10 @@ class BonusNumberInputField extends HTMLElement {
   render() {
     this.innerHTML = WINNING_NUMBERS_INPUT_FIELD;
   }
+
+  getValue() {
+    return this.querySelector('number-input-field').getValue();
+  }
 }
 
 customElements.define('bonus-number-input-field', BonusNumberInputField);
