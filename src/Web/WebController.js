@@ -4,39 +4,52 @@ import RenderingHandler from './View/RenderingHandler';
 import LottoMachine from '../Domain/LottoMachine';
 import WinLottoNumber from '../Domain/WinLottoNumber';
 
-export default class Controller {
+export default class WebController {
   #lottoMachine;
 
   #winLottoNumber;
 
   async run() {
     RenderingHandler.renderHeader();
-
     RenderingHandler.renderLottoComponents();
-
     RenderingHandler.renderFooter();
 
-    // await this.#executeLottoMoney();
+    this.#setMoneyFormEvent();
     // this.#executeLottos();
     // await this.#executeWinLottoNumber();
     // this.#executeResult();
     // await this.#executeRetry();
   }
 
-  // async #executeLottoMoney() {
+  #setMoneyFormEvent() {
+    const moneyForm = document.getElementById('moneyForm');
+    moneyForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      try {
+        const money = Number(e.target.money.value);
+        this.#lottoMachine = new LottoMachine(money);
+        this.#executeLottos();
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  }
+
+  // handleLottoMoney(e) {
+  //   e.preventDefault();
   //   try {
-  //     const money = await InputView.readMoney();
-  //     this.#lottoMachine = new LottoMachine(money);
+  //     const money = Number(e.target.money.value);
+  //     WebController.lottoMachine = new LottoMachine(money);
+  //     this.#executeLottos();
   //   } catch (err) {
-  //     OutputView.printError(err.message);
-  //     await this.#executeLottoMoney();
+  //     alert(err.message);
   //   }
   // }
 
-  // #executeLottos() {
-  //   const boughtLottos = this.#lottoMachine.getLottos();
-  //   OutputView.printBoughtLottos(boughtLottos);
-  // }
+  #executeLottos() {
+    const boughtLottos = this.#lottoMachine.getLottos();
+    RenderingHandler.renderLottosList(boughtLottos);
+  }
 
   // async #executeWinLottoNumber() {
   //   await this.#executeWinLottoNumbers();

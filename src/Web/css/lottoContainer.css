@@ -1,4 +1,4 @@
-.lottoContainer {
+#lottoContainer {
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
@@ -18,7 +18,7 @@
   text-align: center;
 }
 
-.moneyForm {
+#moneyForm {
   display: flex;
   flex-direction: column;
   margin-top: 28px;

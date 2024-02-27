@@ -1,15 +1,11 @@
 import '../../css/lottoContainer.css';
-import { appendChildren, makeElementWithClassName } from '../../utils';
-import LottoNumbersComponents from './LottoNumbers';
-import WinLottoComponents from './WinLottoComponents';
+import { appendChildren, makeElementById, makeElementWithClassName } from '../../utils';
 
-const LottoComponents = Object.freeze({
+const LottoComponent = Object.freeze({
   makeLottoContainerElement: () => {
-    const lottoContainer = makeElementWithClassName('div', 'lottoContainer');
-    lottoContainer.appendChild(LottoComponents.makeLottoTitle());
-    lottoContainer.appendChild(LottoComponents.makeMoneyForm());
-    lottoContainer.appendChild(LottoNumbersComponents.makeLottoResults());
-    lottoContainer.appendChild(WinLottoComponents.makeWinLottoForm());
+    const lottoContainer = makeElementById('div', 'lottoContainer');
+    lottoContainer.appendChild(LottoComponent.makeLottoTitle());
+    lottoContainer.appendChild(LottoComponent.makeMoneyForm());
     return lottoContainer;
   },
 
@@ -20,21 +16,16 @@ const LottoComponents = Object.freeze({
   },
 
   makeMoneyForm: () => {
-    const moneyForm = makeElementWithClassName('form', 'moneyForm');
+    const moneyForm = makeElementById('form', 'moneyForm');
     const moneyFormLabel = makeElementWithClassName('labe', 'moneyFormLabel');
     moneyFormLabel.innerText = '구입할 금액을 입력해주세요.';
 
     const moneyFormInputDiv = makeElementWithClassName('div', 'moneyFormInputDiv');
     const moneyFormInput = makeElementWithClassName('input', 'moneyFormInput');
     moneyFormInput.placeholder = '금액';
+    moneyFormInput.name = 'money';
     const moneyFormButton = makeElementWithClassName('button', 'moneyFormButton');
     moneyFormButton.innerText = '구입';
-
-    moneyForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO: 금액 입력시 이벤트
-      console.log('active');
-    });
 
     appendChildren(moneyFormInputDiv, [moneyFormInput, moneyFormButton]);
     appendChildren(moneyForm, [moneyFormLabel, moneyFormInputDiv]);
@@ -42,4 +33,4 @@ const LottoComponents = Object.freeze({
   },
 });
 
-export default LottoComponents;
+export default LottoComponent;

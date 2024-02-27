@@ -2,7 +2,11 @@ import '../css/header.css';
 import '../css/footer.css';
 import '../css/main.css';
 
+import LottoNumbersComponents from './components/LottoNumbersComponent';
+import WinLottoComponents from './components/WinLottoComponents';
+
 import LottoComponents from './components/LottoComponents';
+import { makeElementWithClassName } from '../utils';
 
 const RenderingHandler = Object.freeze({
   renderHeader: () => {
@@ -28,6 +32,12 @@ const RenderingHandler = Object.freeze({
 
     main.appendChild(lottoContainer);
     app.appendChild(main);
+  },
+
+  renderLottosList: (boughtLottos) => {
+    const lottoContainer = document.getElementById('lottoContainer');
+    lottoContainer.appendChild(LottoNumbersComponents.makeLottoResults(boughtLottos));
+    lottoContainer.appendChild(WinLottoComponents.makeWinLottoForm());
   },
 });
 
