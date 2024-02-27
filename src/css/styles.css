@@ -26,28 +26,45 @@ main {
 /* TODO: 수직 중앙 정렬 */
 .main__container {
   border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
   width: 414px;
   height: 727px;
   margin-top: 84px;
   margin-bottom: 84px;
+  padding: 40px 16px 0px 16px;
 }
 
+/* FIXME: 사용하지 않는 클래스 */
 .main__title {
 }
 
 .amount-form {
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .amount-form__con-label-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
+/* FIXME: 사용하지 않는 클래스 */
 .amount-form__label {
 }
 
 .amount-form__input {
+  height: 36px;
+  width: 310px;
+  box-sizing: border-box;
 }
 
 .amount-form__submit-button {
+  border-radius: 4px;
+  width: 56px;
+  height: 36px;
+  align-self: flex-end;
 }
 
 .lotto-info {
@@ -112,5 +129,23 @@ main {
   font-weight: 800;
   line-height: 36px;
   letter-spacing: 0px;
+  text-align: center;
+}
+
+.text-content {
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
   text-align: left;
+}
+
+.text-caption {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-align: center;
 }
