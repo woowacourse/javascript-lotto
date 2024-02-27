@@ -1,8 +1,12 @@
+#purchaseAmount_container {
+  margin-bottom: 20px;
+}
+
 #input_form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 
 #input_purchaseAmount {
@@ -26,4 +30,9 @@
   &:active {
     background-color: var(--lotto-active-color);
   }
+}
+
+#isRetry {
+  color: red;
+  font-size: 12px;
 }

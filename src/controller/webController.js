@@ -59,7 +59,7 @@ class WebController {
   }
 
   async #setLotto() {
-    const purchaseAmount = await RetryFunc.executeUntillMaxTry(
+    const purchaseAmount = await RetryFunc.executeOrRetryAsync(
       this.#getPurchaseAmount.bind(this),
     );
     const lottoMachine = new LottoMachine(purchaseAmount);
@@ -78,21 +78,27 @@ class WebController {
       const purchaseNumber = document.getElementById("purchase_number");
       const successPurchases =
         document.getElementsByClassName("after_purchase");
+      const isRetry = document.getElementById("isRetry");
+      //   isRetry.innerText = error.message;
 
       function onClickHandler(event) {
         event.preventDefault();
-        purchaseAmountValidator(purchaseAmountInput.value);
-        resolve(Number(purchaseAmountInput.value));
+        try {
+          purchaseAmountValidator(purchaseAmountInput.value);
+          resolve(Number(purchaseAmountInput.value));
 
-        for (const successPurchase of successPurchases) {
-          successPurchase.style.visibility = "visible";
+          for (const successPurchase of successPurchases) {
+            successPurchase.style.visibility = "visible";
+          }
+
+          purchaseNumber.textContent = `총 ${purchaseAmountInput.value / 1000}개를 구매하였습니다.`;
+          purchaseAmountInput.value = "";
+          isRetry.innerText = "";
+          button.removeEventListener("click", onClickHandler);
+        } catch (error) {
+          isRetry.innerText = error.message;
+          purchaseAmountInput.value = "";
         }
-
-        purchaseNumber.textContent = `총 ${purchaseAmountInput.value / 1000}개를 구매하였습니다.`;
-        purchaseAmountInput.value = "";
-
-        // 이벤트 핸들러를 한 번만 실행하도록 리스너 제거
-        button.removeEventListener("click", onClickHandler);
       }
 
       button.addEventListener("click", onClickHandler);
