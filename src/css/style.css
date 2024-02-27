@@ -7,6 +7,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* app */
@@ -53,4 +54,15 @@ footer {
   border-top: 1px solid #4e5ba633;
   color: var(--lotto-primary);
   font: var(--lotto-caption);
+}
+
+/* 공통 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
 }
