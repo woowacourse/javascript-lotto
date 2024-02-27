@@ -106,7 +106,8 @@ body {
 #content-box-numbers-input {
 }
 
-#lotto-input {
+#lotto-bonus-input,
+#lotto-numbers-input {
   border: 1px solid #b4b4b4;
   border-radius: 4px;
   width: 34px;
