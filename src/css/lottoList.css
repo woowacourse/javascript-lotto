@@ -1,22 +1,22 @@
 #purchase_number {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 #lotto_list {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
   list-style-type: none;
+  height: 300px;
+  overflow-y: scroll;
 }
 
-#lotto_number {
+#lotto_list li {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
 }
 
-#lotto_icon {
-  font-size: 24px;
+#lotto_list li span:nth-child(1) {
+  font-size: 34px;
 }
