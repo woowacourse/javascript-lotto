@@ -4,7 +4,12 @@ const WebView = {
 
     lottoNumberArray.forEach((lottoNumber) => {
       const li = document.createElement("li");
-      li.innerText = lottoNumber.sort((a, b) => a - b);
+      const icon = document.createElement("span");
+      const lotto = document.createElement("span");
+      icon.innerText = "🎟️";
+      lotto.innerText = lottoNumber.sort((a, b) => a - b).join(", ");
+      li.appendChild(icon);
+      li.appendChild(lotto);
       list.appendChild(li);
     });
   },
