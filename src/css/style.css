@@ -1,6 +1,7 @@
 @import './reset.css';
 @import './theme.css';
 
+/* header */
 header {
   width: 100%;
   height: 64px;
@@ -14,6 +15,7 @@ header .title {
   color: var(--white);
 }
 
+/* main */
 main {
   display: flex;
   align-items: center;
@@ -24,13 +26,69 @@ main {
 }
 
 section {
-  position: absolute;
+  position: relative;
   width: 414px;
   height: 727px;
   background-color: var(--white);
   border: 1px solid var(--gray);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
 }
 
+/* section 1 --------------------- */
+#mainTitleSection {
+  position: absolute;
+  top: 40px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* section 2 --------------------- */
+#purchaseInputSection {
+  position: absolute;
+  top: 104px;
+  width: 382px;
+  height: 64px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#purchaseInputSection label {
+  padding: 8px 8px 0px 8px;
+}
+
+#purchaseInputSection div {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+#purchaseInputSection div input {
+  width: 310px;
+  height: 36px;
+  padding: 0px 8px;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+}
+
+#purchaseInputSection div button {
+  width: 56px;
+  height: 36px;
+  padding: 0px 6px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--blue);
+  color: var(--white);
+  text-align: center;
+}
+
+/* footer */
 footer {
   display: flex;
   align-items: center;
