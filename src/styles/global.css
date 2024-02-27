@@ -126,12 +126,6 @@ button {
   white-space: nowrap;
 }
 
-ul {
-  list-style: none;
-  padding-left: 0px;
-  margin: 0;
-}
-
 .title {
   font-size: var(--font-large);
   font-weight: var(--weight-extra-bold);
