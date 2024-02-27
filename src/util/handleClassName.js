@@ -1,4 +1,4 @@
-const handleView = {
+const handleClassName = {
   removeClassList(element, className) {
     element.classList.remove(className);
   },
@@ -16,4 +16,4 @@ const handleView = {
   },
 };
 
-export default handleView;
+export default handleClassName;
