@@ -21,6 +21,16 @@ dialog {
   justify-content: space-between;
 }
 
+#close {
+  position: absolute;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0;
+}
+
 #result_body {
   border-collapse: collapse;
   width: 100%;
