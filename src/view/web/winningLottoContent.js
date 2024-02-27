@@ -20,6 +20,7 @@ export default function winningLottoContent(element) {
     }
 
     $$('.input-error')[1].style.visibility = 'hidden';
+    $('#modal-container').style.visibility = 'visible';
   };
 
   const render = (element) => {
@@ -46,7 +47,7 @@ export default function winningLottoContent(element) {
         </div>
         <span class="input-error"></span>
 
-        <input type="submit" value="결과 확인하기" />
+        <input id="submitResult" type="submit" value="결과 확인하기" />
       </form>
     `;
   };
