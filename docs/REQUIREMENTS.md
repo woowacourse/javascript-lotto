@@ -99,5 +99,5 @@ npm run start-step2
   - [x] 생성된 통계결과 output에 연결
   - [x] 다시 시작하기 버튼 생성
   - [x] 다시 시작하기 버튼과 readRestartOrExit 연결
-  - [ ] x버튼을 누르면 modal exit 기능 구현
+  - [x] x버튼을 누르면 modal exit 기능 구현
 

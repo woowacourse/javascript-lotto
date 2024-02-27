@@ -5,10 +5,10 @@ const { RESTART_OPTION, PRIZE } = Condition;
 
 class LottoGame {
   /**
-   * views와 controller를 외부에서 주입
+   * views와 controller, utils를 외부에서 주입
    * @param {*} views (Input, Output)
    * @param {*} controllers (LottoGenerator, MessageGenerator, StatisticsGenerator)
-   * @param {*} utils (retryUntilValid)
+   * @param {*} utils (retryUntilValid, activeModalCloseButton)
    */
   constructor(views, controllers, utils) {
     this.views = views;
@@ -82,6 +82,7 @@ class LottoGame {
   }
 
   async restartOrExit() {
+    if (this.views.mode === 'web') this.utils.activeModalCloseButton();
     const restartOption = await this.utils.retryUntilValid(this.getRestartOption, this);
 
     if (restartOption === RESTART_OPTION.RESTART) {

@@ -7,6 +7,7 @@ import { Input, Output } from './view/web/index';
 import { LottoGenerator, StatisticsGenerator, WebMessageGenerator } from './controller/generator/index';
 import LottoGame from './controller/LottoGame';
 import retryUntilValidWeb from './utils/retryUntilValidWeb';
+import activeModalCloseButton from './utils/modalClose';
 
 const views = {
   mode: 'web',
@@ -22,6 +23,7 @@ const controllers = {
 
 const utils = {
   retryUntilValid: retryUntilValidWeb,
+  activeModalCloseButton,
 };
 
 const lottoGame = new LottoGame(views, controllers, utils);
