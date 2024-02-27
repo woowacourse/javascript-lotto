@@ -1,9 +1,13 @@
 import LottoPurchaseBox from './LottoPurchaseBox';
 
 class App {
-  play() {
+  start() {
     const $target = document.querySelector('#app');
-    const lottoPurchaseBox = new LottoPurchaseBox($target);
+    new LottoPurchaseBox($target, { restart: () => this.restart() });
+  }
+
+  restart() {
+    this.start();
   }
 }
 

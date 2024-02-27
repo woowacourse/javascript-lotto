@@ -33,7 +33,7 @@ class LottoPurchaseBox extends Component {
             ${
               this.state.isModalOpen
                 ? `
-                <section class="lotto-statistics-modal"></section>`
+                <section class="lotto-statistics-modal-wrapper"></section>`
                 : ``
             }
         </section>
@@ -59,10 +59,11 @@ class LottoPurchaseBox extends Component {
     }
 
     if (this.state.isModalOpen) {
-      const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal');
+      const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal-wrapper');
       new LottoStatisticsModal($lottoStatisticsModal, {
         lottoStatistics: this.state.lottoStatistics,
         closeModal: () => this.closeModal(),
+        restart: () => this.props.restart(),
       });
     }
   }
