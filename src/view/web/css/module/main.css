@@ -89,19 +89,20 @@ section header h1 {
   cursor: not-allowed;
 }
 
-.print-purchase-result-detail h2 {
-  font-size: var(--body-size);
-  font-weight: var(--body-weight);
-  line-height: var(--body-line-height);
-  letter-spacing: var(--body-letter);
-}
-
 .print-purchase-result-detail {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
   margin: 2.4rem 0;
+  overflow-y: scroll;
+}
+
+.print-purchase-result-detail h2 {
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter);
 }
 
 #print-purchase-result-list {

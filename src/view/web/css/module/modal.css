@@ -65,6 +65,7 @@
   letter-spacing: var(--th-letter);
   word-break: normal;
   text-align: center;
+  vertical-align: middle;
 }
 
 .statistics-detail td {
@@ -76,9 +77,10 @@
   letter-spacing: var(--body-letter);
   word-break: normal;
   text-align: center;
+  vertical-align: middle;
 }
 
-.statistics-detail td :last-child {
+.statistics-detail {
   border-bottom: 0.1rem solid var(--grayscale5-opacity-12);
 }
 
