@@ -1,15 +1,26 @@
-const WebInputView = {
-  //TODO: 여기가 맞을까?
-  resetLottoGame() {
-    this.resetMoneyInput();
-    $('#winning-statistics-modal').classList.add('hidden');
-    $('#my-lottos-section').classList.add('hidden');
-    $('#winning-lotto-section').classList.add('hidden');
-  },
+import { $, $$ } from '../../util/domSelector';
+import { hideElement } from '../../util/view';
 
+const WebInputView = {
   resetMoneyInput() {
     $('#money-input').value = '';
+  },
+
+  focusMoneyInput() {
     $('#money-input').focus();
+  },
+
+  hideWinningLottoSection() {
+    hideElement($('#winning-lotto-section'));
+  },
+
+  renderWinningLottoSection() {
+    hideElement('#winning-lotto-section');
+  },
+
+  resetWinningLottoNumbers() {
+    $$('.number-input').forEach((input) => (input.value = ''));
+    $('.number-input').focus();
   },
 };
 

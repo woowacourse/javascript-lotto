@@ -1,8 +1,12 @@
-export const printError = (ele, errorMessage) => {
-  ele.innerHTML = errorMessage;
-  ele.classList.remove('hidden');
+export const renderError = (el, errorMessage) => {
+  el.innerHTML = errorMessage;
+  renderElement(el);
 };
 
-// export const hiddenEle = (ele) => {
-//   ele.classList.add('hidden');
-// };
+export const hideElement = (el) => {
+  el.classList.add('hidden');
+};
+
+export const renderElement = (el) => {
+  el.classList.remove('hidden');
+};

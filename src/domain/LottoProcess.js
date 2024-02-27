@@ -17,7 +17,6 @@ class LottoProcess {
         const matchCount = this.#matchLottoNumbers(lotto, winLotto);
         const hasBonus = this.#hasBonus(lotto, winLotto.bonusNumber);
         const winRank = this.#getWinRank(matchCount, hasBonus);
-        console.log('winRank', winRank);
         winResult[winRank - 1] += 1;
         return winResult;
       },

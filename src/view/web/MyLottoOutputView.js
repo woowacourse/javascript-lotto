@@ -1,17 +1,26 @@
 import { $ } from '../../util/domSelector';
+import { hideElement, renderElement } from '../../util/view';
 
 const MyLottoOutputView = {
   renderSection() {
-    $('#my-lottos-section').classList.remove('hidden');
-    $('#winning-lotto-section').classList.remove('hidden');
+    renderElement($('#my-lottos-section'));
+    renderElement($('#winning-lotto-section'));
   },
 
-  renderLottosInfo(lottoCount, lottosNumbers) {
+  hideSection() {
+    hideElement($('#my-lottos-section'));
+    hideElement($('#winning-lotto-section'));
+  },
+
+  renderLottosCount(lottoCount) {
+    $('#my-lottos-count').innerText = `총 ${lottoCount}개를 구매하였습니다.`;
+  },
+
+  renderLottosNumbers(lottosNumbers) {
     const lottosTicketsHTML = lottosNumbers.map((numbers) => {
       const formattedNumbers = numbers.join(', ');
       return `<li><span>🎟️</span>${formattedNumbers}</li>`;
     });
-    $('#my-lottos-count').innerText = `총 ${lottoCount}개를 구매하였습니다.`;
     $('#my-lottos-list').innerHTML = lottosTicketsHTML.join('');
   },
 };
