@@ -55,15 +55,23 @@ class LottoPurchaseBox extends Component {
   }
 
   makeWinningNumbers(winningNumbers) {
-    return winningNumbers
-      .filter((number) => number !== '' && number !== undefined && number !== null)
-      .map(Number);
+    return Validator.validateLottoNumbers(
+      winningNumbers
+        .filter((number) => number !== '' && number !== undefined && number !== null)
+        .map(Number),
+    );
+  }
+
+  makeBonusNumber(winningNumbers, bonusNumber) {
+    return Validator.validateBonusNumber(winningNumbers, Number(bonusNumber));
   }
 
   makeWinningLotto(winningNumbers, bonusNumber) {
     try {
+      const validWinningNumbers = this.makeWinningNumbers(winningNumbers);
+      const validBonusNumber = this.makeBonusNumber(validWinningNumbers, bonusNumber);
       this.setState({
-        winningLotto: { winningNumbers: this.makeWinningNumbers(winningNumbers), bonusNumber },
+        winningLotto: { winningNumbers: validWinningNumbers, validBonusNumber },
       });
     } catch (error) {
       alert(error.message);

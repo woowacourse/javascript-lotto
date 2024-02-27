@@ -9,17 +9,17 @@ class WinningLottoInput extends Component {
                 <section class="winning-number-input">
                     <label>당첨 번호</label>
                     <section>
-                    <input class="winning-number" type="text"></input>
-                    <input class="winning-number" type="text"></input>
-                    <input class="winning-number" type="text"></input>
-                    <input class="winning-number" type="text"></input>
-                    <input class="winning-number" type="text"></input>
-                    <input class="winning-number" type="text"></input>
+                    <input class="winning-number" type="text" required></input>
+                    <input class="winning-number" type="text" required></input>
+                    <input class="winning-number" type="text" required></input>
+                    <input class="winning-number" type="text" required></input>
+                    <input class="winning-number" type="text" required></input>
+                    <input class="winning-number" type="text" required></input>
                     </section>
                 </section>
                 <section class="bonus-number-input">
                     <label>보너스 번호</label>
-                    <input class="bonus-number" type="text"></input>
+                    <input class="bonus-number" type="text" required></input>
                 </section>
             </fieldset>
             <input id="winning-lotto-btn" type="submit" value="결과 확인하기"></input>
@@ -35,11 +35,19 @@ class WinningLottoInput extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+
     const winningNumbers = [...this.$target.querySelectorAll('.winning-number')].map(
       (el) => el.value,
     );
     const bonusNumber = this.$target.querySelector('.bonus-number').value;
+
     this.props.makeWinningLotto(winningNumbers, bonusNumber);
+    this.resetFormValue();
+  }
+
+  resetFormValue() {
+    this.$target.querySelectorAll('.winning-number').forEach((el) => (el.value = ''));
+    this.$target.querySelector('.bonus-number').value = '';
   }
 }
 
