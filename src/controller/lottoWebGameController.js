@@ -80,7 +80,7 @@ class lottoGameWebController {
 
   displayResult = ({ totalResult, profit }) => {
     const resultTable = document.querySelector('#modal-background');
-    resultTable.style.display = 'block';
+    resultTable.style.display = 'flex';
     webOutputView.renderTalbe(totalResult);
     webOutputView.renderProfit(profit);
   };

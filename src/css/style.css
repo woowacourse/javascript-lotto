@@ -166,5 +166,60 @@ footer {
 #modal {
   background-color: #ffffff;
   width: 350px;
-  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  padding: 20px 10px;
+  position: relative;
+}
+
+#modal-close-button {
+  background-color: transparent;
+  border: none;
+  font-size: large;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+#reward-table {
+  width: 100%;
+}
+
+table,
+td,
+th {
+  padding: 10px;
+  border-bottom: 1px solid #0000001f;
+  border-collapse: collapse;
+  font-weight: 300;
+  font-size: small;
+}
+
+#profit-text {
+  margin: 30px 0px;
+}
+
+#reward-table-header th {
+  font-weight: 700;
+  font-size: larger;
+}
+
+#reward-table tr {
+  border-top: 1px solid #0000001f;
+}
+
+#retry-button {
+  border-radius: 4px;
+  background: #4e5ba6;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  font-size: medium;
 }
