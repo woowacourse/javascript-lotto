@@ -15,11 +15,14 @@ class WinningResultService {
   }
 
   getWinningResults() {
-    return this.#counter(this.#getResults());
+    const result = { 3: 0, 4: 0, 5: 0, '5-1': 0, 6: 0 };
+    return Object.assign(result, this.#counter(this.#getResults()));
   }
 
   #getResults() {
-    return this.#getMatchingCounts().filter((numStr) => Object.keys(CONDITION.winningPrice).includes(numStr));
+    return this.#getMatchingCounts().filter((numStr) =>
+      Object.keys(CONDITION.winningPrice).includes(numStr),
+    );
   }
 
   #getMatchingCounts() {
