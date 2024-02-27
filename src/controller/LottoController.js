@@ -64,7 +64,7 @@ class LottoController {
     return executeWithRetry(async () => {
       const winningNumbers = await InputView.winningNumbers();
       const splittedNumbers = splitInput(winningNumbers);
-      LottoValidator.winningNumbersValidate(splittedNumbers);
+      LottoValidator.validateWinningNumbers(splittedNumbers);
       return splittedNumbers;
     });
   }
@@ -72,7 +72,7 @@ class LottoController {
   async readBonusNumber() {
     return executeWithRetry(async () => {
       const bonusNumber = Number(await InputView.bonusNumber());
-      LottoValidator.bonusNumberValidate(
+      LottoValidator.validateBonusNumber(
         this.#lottoNumbers.winningNumbers,
         bonusNumber,
       );
