@@ -1,0 +1,14 @@
+:root {
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000000;
+  --lotto-primary: #4e5ba6;
+
+  --lotto-title: 800 normal 24px/36px Arial, sans-serif;
+  --lotto-subtitle: 600 20px/24px Arial, sans-serif;
+  --lotto-body: 400 15px/24px Arial, sans-serif;
+  --lotto-placeholder: 400 15px/24px Arial, sans-serif;
+  --lotto-caption: 700 14px/16px Arial, sans-serif;
+}
