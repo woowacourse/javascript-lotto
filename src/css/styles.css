@@ -18,6 +18,11 @@ main {
   justify-content: center;
 }
 
+footer {
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  padding: 28px 0px 36px 0px;
+}
+
 .header__title {
   position: relative;
   left: 130px;
@@ -28,10 +33,9 @@ main {
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   width: 382px;
-  height: 727px;
   margin-top: 84px;
   margin-bottom: 84px;
-  padding: 40px 16px 0px 16px;
+  padding: 40px 16px 32px 16px;
 }
 
 /* FIXME: 사용하지 않는 클래스 */
@@ -217,6 +221,10 @@ main {
 
 .color-white {
   color: rgba(255, 255, 255, 1);
+}
+
+.color-primary {
+  color: rgba(78, 91, 166, 1);
 }
 
 .bgcolor-primary {
