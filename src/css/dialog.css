@@ -1,0 +1,54 @@
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 500px;
+  padding: 20px;
+  background-color: var(--greyscale-2-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#result_body {
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+}
+
+.row {
+  border-bottom: 1px solid var(--border-color);
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+#profit {
+  display: flex;
+  justify-content: center;
+  font-size: var(--body-text-size);
+  font-weight: var(--subtitle-font-weight);
+}
+
+#retry_button {
+  width: 100%;
+  height: 36px;
+  background-color: var(--lotto-primary-color);
+  border: none;
+  color: var(--greyscale-1-color);
+  border-radius: var(--border-radius);
+  padding: 6px, 6px, 6px, 8px;
+
+  &:hover,
+  &:active {
+    background-color: var(--lotto-active-color);
+  }
+}

@@ -15,9 +15,9 @@
       </header>
       <div id="container">
         <div>
-          <div id="title">🎱 내 번호 당첨 확인 🎱</div>
+          <div class="title">🎱 내 번호 당첨 확인 🎱</div>
           <div>
-            <p id="subtitle">구입할 금액을 입력해주세요.</p>
+            <p class="subtitle">구입할 금액을 입력해주세요.</p>
             <form id="input_form">
               <input id="input_purchaseAmount" placeholder="금액" type="text" />
               <button id="purchase_button">구입</button>
@@ -58,10 +58,43 @@
           </div>
         </div>
       </div>
-      <dialog>
-        <p>Greetings, one and all!</p>
+      <dialog open>
+        <div class="title">🏆 당첨 통계 🏆</div>
+        <table id="result_body">
+          <tr class="row">
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+          </tr>
+          <tr class="row">
+            <td>3개</td>
+            <td>5,000</td>
+            <td>n개</td>
+          </tr>
+          <tr class="row">
+            <td>4개</td>
+            <td>50,000</td>
+            <td>n개</td>
+          </tr>
+          <tr class="row">
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td>n개</td>
+          </tr>
+          <tr class="row">
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td>n개</td>
+          </tr>
+          <tr class="row">
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td>n개</td>
+          </tr>
+        </table>
+        <div id="profit">당신의 총 수익률은 0%입니다.</div>
         <form method="dialog">
-          <button>OK</button>
+          <button id="retry_button">다시 시작하기</button>
         </form>
       </dialog>
       <footer>Copyright 2023. woowacourse</footer>
