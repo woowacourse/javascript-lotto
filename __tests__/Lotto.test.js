@@ -1,13 +1,30 @@
 import Lotto from "../src/step1/domains/Lotto";
+import LottoRules from "../src/step1/domains/LottoRules";
+import {
+  LOTTO_RULES,
+  LOTTO_REWARDS,
+  exchangeRank,
+} from "../src/step1/constants/rules";
+
+const lottoRules = new LottoRules({
+  price: LOTTO_RULES.price,
+  maxQuantity: LOTTO_RULES.maxQuantity,
+  lottoLength: LOTTO_RULES.length,
+  minNumber: LOTTO_RULES.minNumber,
+  maxNumber: LOTTO_RULES.maxNumber,
+  rewardInfo: LOTTO_REWARDS,
+  exchangeRank: exchangeRank,
+});
 
 const runInvalidLottoInputException = (
   invalidInput,
   errorMessage = "[ERROR]"
 ) => {
   expect(() => {
-    new Lotto(invalidInput);
+    new Lotto(invalidInput, lottoRules);
   }).toThrow(errorMessage);
 };
+
 describe("로또 도메인 테스트", () => {
   describe("유효성 테스트", () => {
     test("공백으로 로또를 생성하면 예외를 발생시킨다", () => {
@@ -49,7 +66,7 @@ describe("로또 도메인 테스트", () => {
   describe("기능 테스트", () => {
     test("1~45 사이의 중복되지 않는 6개 숫자가 담긴 배열로 로또를 생성할 수 있다.", () => {
       const VALID_INPUT = [1, 2, 3, 4, 5, 6];
-      const lotto = new Lotto(VALID_INPUT);
+      const lotto = new Lotto(VALID_INPUT, lottoRules);
 
       expect(lotto.getNumbers()).toEqual(VALID_INPUT);
     });
@@ -90,7 +107,7 @@ describe("로또 도메인 테스트", () => {
       ({ numbers, expectedInfo }) => {
         const WINNING_NUMBER = [1, 2, 3, 4, 5, 6];
         const BONUS_NUMBER = 7;
-        const lotto = new Lotto(numbers);
+        const lotto = new Lotto(numbers, lottoRules);
 
         const matchedNumber = lotto.getMatchedInfo(
           WINNING_NUMBER,
