@@ -3,3 +3,11 @@
 body {
   font-family: 'Roboto';
 }
+
+button {
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}

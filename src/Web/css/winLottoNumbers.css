@@ -1,0 +1,62 @@
+.winLottoForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.numbersContainer {
+  display: flex;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.winLottoFormLabel {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  display: flex;
+}
+.winNumbersDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.winLottoInputs {
+  display: flex;
+  gap: 8px;
+}
+
+.winLottoInput {
+  box-sizing: border-box;
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.bonusLottoNumberDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 8px;
+}
+
+.winLottoFormButton {
+  width: 382px;
+  height: 36px;
+  padding: 6px;
+  border-radius: 4px;
+  background: #4e5ba6;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: #ffffff;
+  margin-top: 28px;
+}

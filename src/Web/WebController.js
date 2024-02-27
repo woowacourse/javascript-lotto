@@ -11,6 +11,9 @@ export default class Controller {
 
   async run() {
     RenderingHandler.renderHeader();
+
+    RenderingHandler.renderLottoComponents();
+
     RenderingHandler.renderFooter();
 
     // await this.#executeLottoMoney();
