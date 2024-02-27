@@ -127,13 +127,13 @@ article {
   opacity: 0.7
 }
 
-#buy-input-error {
+.input-error {
   position: absolute;
   margin-top: 4px;
   color: tomato;
   visibility: hidden;
   height: 24px;
-  width: 310px;
+  width: 100%;
 }
 
 #step2 {
@@ -186,7 +186,7 @@ article {
   font-weight: 600;
 }
 
-#result-container {
+#winning-lotto-container {
   margin-top: 24px;
   display: flex;
   flex-direction: column;
@@ -237,7 +237,7 @@ article {
   justify-content: space-between;
 }
 
-#result-container > form > input[type=submit] {
+#winning-lotto-container > form > input[type=submit] {
   margin-top: 27px;
   background-color: var(--lotto-primary);
   border-radius: 4px;

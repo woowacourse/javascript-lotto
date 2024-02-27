@@ -1,6 +1,7 @@
 import LottoMachine from '../../domain/lottoMachine.js';
 import { validateCost } from '../../utils/validation.js';
-import { $ } from './utils/dom.js';
+import { $, $$ } from './utils/dom.js';
+import winningLottoContent from './winningLottoContent.js';
 
 export default function content(element) {
   const onSubmitBuyForm = (event) => {
@@ -10,8 +11,8 @@ export default function content(element) {
     try {
       validateCost(cost);
     } catch ({ message }) {
-      $('#buy-input-error').innerText = message;
-      $('#buy-input-error').style.visibility = 'visible';
+      $('.input-error').innerText = message;
+      $('.input-error').style.visibility = 'visible';
       return;
     }
 
@@ -25,8 +26,9 @@ export default function content(element) {
 
     $('#total-buy-text').innerText = `총 ${buyCount}개를 구매하였습니다.`;
     $('#lotto-tickets-container ul').innerHTML = lottoQuery;
-    $('#buy-input-error').style.visibility = 'hidden';
+    $('.input-error').style.visibility = 'hidden';
     $('#step2').style.visibility = 'visible';
+    $$('.lotto-number')[0].focus();
   };
 
   const render = (element) => {
@@ -41,7 +43,7 @@ export default function content(element) {
           </div>
           <input id="buy-btn" type="submit" value="구입" />
         </form>
-        <span id="buy-input-error"></span>
+        <span class="input-error"></span>
       </div>
 
       <div id="step2">
@@ -51,34 +53,11 @@ export default function content(element) {
           </ul>
         </div>
 
-        <div id="result-container">
-          <span id="winning-lotto-title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
-          <form>
-            <div id="winning-lotto-input-container">
-              <div class="number-input-container">
-                <label>당첨 번호</label>
-                <div id="winning-numbers-input">
-                  <input type="number" class="number-input" />
-                  <input type="number" class="number-input" />
-                  <input type="number" class="number-input" />
-                  <input type="number" class="number-input" />
-                  <input type="number" class="number-input" />
-                  <input type="number" class="number-input" />
-                </div>
-              </div>
-
-              <div id="bonus-number-container" class="number-input-container">
-                <label>보너스 번호</label>
-                <input type="number" id="bonus-number" class="number-input" />
-              </div>
-            </div>
-
-            <input type="submit" value="결과 확인하기" />
-          </form>
-        </div>
+        <div id="winning-lotto-container"></div>
       </div>
     `;
   };
   render(element);
+  winningLottoContent($('#winning-lotto-container'));
   $('#buy-lotto-form').addEventListener('submit', onSubmitBuyForm);
 }
