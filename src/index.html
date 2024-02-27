@@ -5,98 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>웹 기반 로또 게임</title>
     <link rel="stylesheet" href="styles/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
-      <h1>🎱 행운의 로또</h1>
+      <h1><span class="eightBall">🎱</span> 행운의 로또</h1>
     </header>
     <main>
-      <h2>🎱 내 번호 당첨 확인 🎱</h2>
-      <section>
-        <div>
-          <form action="">
-            <label for="purchaseLotto">구입할 금액을 입력해주세요.</label>
+      <h2>
+        <span class="eightBall">🎱</span> 내 번호 당첨 확인
+        <span class="eightBall">🎱</span>
+      </h2>
+
+      <form action="" method="get">
+        <section id="purchaseLotto">
+          <div id="purchaseLottoInputField">
+            <label for="purchaseLottoInput">구입할 금액을 입력해주세요.</label>
             <input
               type="text"
-              name="purchaseLotto"
-              id="purchaseLotto"
+              name="purchaseLottoInput"
+              id="purchaseLottoInput"
               placeholder="금액"
               required
             />
-          </form>
-        </div>
-        <div>
-          <button type="submit">구입</button>
-        </div>
+          </div>
+          <div id="purchaseLottoButton">
+            <button type="submit"><p>구입</p></button>
+          </div>
+        </section>
+      </form>
+
+      <section id="lotto">
+        <p>총 7개를 구매하였습니다.</p>
+        <ol>
+          <li>🎟️ 12, 28, 22, 37, 19, 23</li>
+          <li>🎟️ 12, 28, 22, 37, 19, 23</li>
+          <li>🎟️ 12, 28, 22, 37, 19, 23</li>
+          <li>🎟️ 12, 28, 22, 37, 19, 23</li>
+          <li>🎟️ 12, 28, 22, 37, 19, 23</li>
+          <li>🎟️ 12, 28, 22, 37, 19, 23</li>
+          <li>🎟️ 12, 28, 22, 37, 19, 23</li>
+        </ol>
       </section>
-      <section>
-        <p></p>
-        <ul></ul>
-      </section>
-      <section>
-        <form action="">
+      <section id="winningLotto">
+        <form action="" method="get">
           <div>
             <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
             <div>
-              <label for="winningLotto">당첨 번호</label>
+              <label for="winningLottoInput">당첨 번호</label>
               <input
                 type="text"
-                name="winningLotto"
-                id="winningLotto"
+                name="winningLottoInput"
+                id="winningLottoInputOne"
                 required
               />
               <input
                 type="text"
-                name="winningLotto"
-                id="winningLotto"
+                name="winningLottoInput"
+                id="winningLottoInputTwo"
                 required
               />
               <input
                 type="text"
-                name="winningLotto"
-                id="winningLotto"
+                name="winningLottoInput"
+                id="winningLottoInputThree"
                 required
               />
               <input
                 type="text"
-                name="winningLotto"
-                id="winningLotto"
+                name="winningLottoInput"
+                id="winningLottoInputFour"
                 required
               />
               <input
                 type="text"
-                name="winningLotto"
-                id="winningLotto"
+                name="winningLottoInput"
+                id="winningLottoInputFive"
                 required
               />
               <input
                 type="text"
-                name="winningLotto"
-                id="winningLotto"
+                name="winningLottoInput"
+                id="winningLottoInputSix"
                 required
               />
             </div>
             <div>
-              <label for="bonusNumber">보너스 번호</label>
-              <input type="text" name="bonusNumber" id="bonusNumber" required />
+              <label for="bonusNumberInput">보너스 번호</label>
+              <input
+                type="text"
+                name="bonusNumberInput"
+                id="bonusNumberInput"
+                required
+              />
             </div>
           </div>
           <button type="submit">결과 확인하기</button>
         </form>
       </section>
 
-      <section>
-        <div class="rectangle"></div>
+      <aside id="winningResult">
         <h2>🏆 당첨 통계 🏆</h2>
-        <div class="rectangle"></div>
         <ol>
           <li>
-            <div class="rectangle"></div>
             <div>
               <p>일치 갯수</p>
               <p>당첨금</p>
               <p>당첨 갯수</p>
-              <div class="rectangle"></div>
             </div>
           </li>
 
@@ -105,7 +125,6 @@
               <p>3개</p>
               <p>5,000</p>
               <p>n개</p>
-              <div class="rectangle"></div>
             </div>
           </li>
 
@@ -114,7 +133,6 @@
               <p>4개</p>
               <p>50,000</p>
               <p>n개</p>
-              <div class="rectangle"></div>
             </div>
           </li>
 
@@ -123,7 +141,6 @@
               <p>5개</p>
               <p>1,500,000</p>
               <p>n개</p>
-              <div class="rectangle"></div>
             </div>
           </li>
 
@@ -132,7 +149,6 @@
               <p>5개+보너스볼</p>
               <p>30,000,000</p>
               <p>n개</p>
-              <div class="rectangle"></div>
             </div>
           </li>
 
@@ -141,13 +157,12 @@
               <p>6개</p>
               <p>2,000,000,000</p>
               <p>n개</p>
-              <div class="rectangle"></div>
             </div>
           </li>
         </ol>
         <p>당신의 총 수익률은 %입니다.</p>
         <button type="button">다시 시작하기</button>
-      </section>
+      </aside>
     </main>
     <footer><p>Copyright 2023. woowacourse</p></footer>
   </body>

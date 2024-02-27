@@ -1,0 +1,168 @@
+body {
+  width: 1440px;
+  height: 1024px;
+  margin: 0;
+}
+
+header {
+  width: 1440px;
+  height: 64px;
+  border: 0px 0px 1px 0px;
+  background: rgba(78, 91, 166, 1);
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+header h1 {
+  position: relative;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
+
+  margin: 0;
+
+  width: 147px;
+  height: 36px;
+  top: 14px;
+  left: 130px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.eightBall {
+  font-weight: 700;
+}
+
+main {
+  position: absolute;
+  width: 414px;
+  height: 727px;
+  top: 148px;
+  left: 513px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 1);
+}
+
+main h2 {
+  position: absolute;
+  width: 382px;
+  height: 24px;
+  top: 52px;
+  left: 16px;
+  color: rgba(0, 0, 0, 1);
+  margin: 0;
+
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15000000596046448px;
+  text-align: center;
+}
+
+#purchaseLotto {
+  position: absolute;
+  width: 382px;
+  height: 64px;
+  top: 104px;
+  left: 16px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#purchaseLottoInputField {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 310px;
+  height: 64px;
+  top: 104px;
+  left: 16px;
+  gap: 4px;
+}
+
+#purchaseLottoInputField label {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+#purchaseLottoInputField input {
+  box-sizing: border-box;
+  width: 310px;
+  height: 36px;
+  padding: 8px 8px 0px 8px;
+  border-radius: 4px;
+  border: 1px;
+  gap: 10px;
+  border: 1px solid rgba(180, 180, 180, 1);
+}
+
+#purchaseLottoButton button {
+  width: 56px;
+  height: 36px;
+  top: 132px;
+  left: 342px;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: rgba(78, 91, 166, 1);
+
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+
+#purchaseLottoButton button p {
+  box-sizing: border-box;
+  width: 42px;
+  height: 24px;
+  padding: 4px 6px 4px 6px;
+  margin: 0;
+}
+
+#lotto {
+  display: none;
+}
+₩ #winningLotto {
+  display: none;
+}
+
+#winningResult {
+  position: fixed;
+  display: none;
+}
+
+footer {
+  position: absolute;
+  width: 1440px;
+  height: 80px;
+  top: 944px;
+  border: 1px 0px 0px 0px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+footer p {
+  position: relative;
+  text-align: center;
+  width: 224px;
+  height: 16px;
+  top: 32px;
+  left: 608px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  margin: 0;
+  color: rgba(78, 91, 166, 1);
+}
