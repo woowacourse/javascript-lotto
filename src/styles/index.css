@@ -62,7 +62,7 @@ main h2 {
   text-align: center;
 }
 
-#purchaseLotto {
+#purchaseLottoField {
   position: absolute;
   width: 382px;
   height: 64px;
@@ -154,6 +154,7 @@ main h2 {
   list-style: none;
   padding-left: 0;
   margin: 0;
+  overflow-y: auto;
 }
 
 #lotto ol li {
@@ -192,7 +193,91 @@ main h2 {
 }
 
 #winningLotto {
-  display: none;
+  display: block;
+}
+
+#winningLottoField {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 382px;
+  height: 104px;
+  top: 528px;
+  left: 16px;
+}
+
+#winningLottoField p {
+  width: 382px;
+  height: 24px;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  margin: 0;
+}
+
+#winningLottoInputField {
+  display: flex;
+  justify-content: space-between;
+}
+
+#winningLottoNumbersInputField {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 244px;
+  height: 68px;
+}
+
+#winningLottoNumbers {
+  display: flex;
+  justify-content: space-between;
+}
+
+#bonusNumberInputField {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  width: 76px;
+  height: 68px;
+}
+
+.winningLottoNumbersInput,
+#bonusNumberInput {
+  box-sizing: border-box;
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px;
+  border: 1px solid rgba(180, 180, 180, 1);
+}
+
+#winningLotto button {
+  position: absolute;
+  width: 382px;
+  height: 36px;
+  top: 659px;
+  left: 16px;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: rgba(78, 91, 166, 1);
+}
+
+#winningLotto button p {
+  width: 368px;
+  height: 24px;
+  padding: 4px 6px 4px 6px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: rgba(255, 255, 255, 1);
+  margin: 0;
 }
 
 #winningResult {

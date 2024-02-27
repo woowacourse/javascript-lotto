@@ -22,23 +22,21 @@
         <span class="eightBall">🎱</span>
       </h2>
 
-      <form action="" method="get">
-        <section id="purchaseLotto">
-          <div id="purchaseLottoInputField">
-            <label for="purchaseLottoInput">구입할 금액을 입력해주세요.</label>
-            <input
-              type="text"
-              name="purchaseLottoInput"
-              id="purchaseLottoInput"
-              placeholder="금액"
-              required
-            />
+      <section id="purchaseLotto">
+        <form action="" method="get">
+          <div id="purchaseLottoField">
+            <div id="purchaseLottoInputField">
+              <label for="purchaseLottoInput"
+                >구입할 금액을 입력해주세요.</label
+              >
+              <input id="purchaseLottoInput" placeholder="금액" required />
+            </div>
+            <div id="purchaseLottoButton">
+              <button type="submit"><p>구입</p></button>
+            </div>
           </div>
-          <div id="purchaseLottoButton">
-            <button type="submit"><p>구입</p></button>
-          </div>
-        </section>
-      </form>
+        </form>
+      </section>
 
       <section id="lotto">
         <p id="purchaseLottoView">총 7개를 구매하였습니다.</p>
@@ -76,58 +74,27 @@
 
       <section id="winningLotto">
         <form action="" method="get">
-          <div>
+          <div id="winningLottoField">
             <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div>
-              <label for="winningLottoInput">당첨 번호</label>
-              <input
-                type="text"
-                name="winningLottoInput"
-                id="winningLottoInputOne"
-                required
-              />
-              <input
-                type="text"
-                name="winningLottoInput"
-                id="winningLottoInputTwo"
-                required
-              />
-              <input
-                type="text"
-                name="winningLottoInput"
-                id="winningLottoInputThree"
-                required
-              />
-              <input
-                type="text"
-                name="winningLottoInput"
-                id="winningLottoInputFour"
-                required
-              />
-              <input
-                type="text"
-                name="winningLottoInput"
-                id="winningLottoInputFive"
-                required
-              />
-              <input
-                type="text"
-                name="winningLottoInput"
-                id="winningLottoInputSix"
-                required
-              />
-            </div>
-            <div>
-              <label for="bonusNumberInput">보너스 번호</label>
-              <input
-                type="text"
-                name="bonusNumberInput"
-                id="bonusNumberInput"
-                required
-              />
+            <div id="winningLottoInputField">
+              <div id="winningLottoNumbersInputField">
+                <label for="winningLottoNumbersInput">당첨 번호</label>
+                <div id="winningLottoNumbers">
+                  <input class="winningLottoNumbersInput" required />
+                  <input class="winningLottoNumbersInput" required />
+                  <input class="winningLottoNumbersInput" required />
+                  <input class="winningLottoNumbersInput" required />
+                  <input class="winningLottoNumbersInput" required />
+                  <input class="winningLottoNumbersInput" required />
+                </div>
+              </div>
+              <div id="bonusNumberInputField">
+                <label for="bonusNumberInput">보너스 번호</label>
+                <input type="text" id="bonusNumberInput" required />
+              </div>
             </div>
           </div>
-          <button type="submit">결과 확인하기</button>
+          <button type="submit"><p>결과 확인하기</p></button>
         </form>
       </section>
 
