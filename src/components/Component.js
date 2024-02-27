@@ -4,6 +4,8 @@ class Component extends HTMLElement {
     this.setEventHandler();
   }
 
+  disconnectedCallback() {}
+
   render() {}
 
   attributeChangedCallback() {}

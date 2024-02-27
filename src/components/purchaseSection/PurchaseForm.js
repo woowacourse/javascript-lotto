@@ -22,6 +22,13 @@ class PurchaseForm extends Component {
         `;
   }
 
+  disconnectedCallback() {
+    const $purchaseForm = document.getElementById('purchaseForm');
+    const $purchaseBtn = document.getElementById('purchaseButton');
+    $purchaseBtn.removeEventListener('click', this.handlePurchaseBtn);
+    $purchaseForm.removeEventListener('submit', this.handleFormSubmit);
+  }
+
   setEventHandler() {
     const $purchaseForm = document.getElementById('purchaseForm');
     const $purchaseBtn = document.getElementById('purchaseButton');

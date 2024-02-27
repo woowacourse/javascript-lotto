@@ -16,9 +16,18 @@ class LottoResultModal extends Component {
         `;
   }
 
+  disconnectedCallback() {
+    const $closeButton = document.getElementById('closeButton');
+    const $restartButton = document.getElementById('restartButton');
+    $closeButton.addEventListener('click', this.handleCloseModal);
+    $restartButton.addEventListener('click', this.handleClickRestart);
+  }
+
   setEventHandler() {
-    document.getElementById('closeButton').addEventListener('click', this.handleCloseModal);
-    document.getElementById('restartButton').addEventListener('click', this.handleClickRestart);
+    const $closeButton = document.getElementById('closeButton');
+    const $restartButton = document.getElementById('restartButton');
+    $closeButton.addEventListener('click', this.handleCloseModal);
+    $restartButton.addEventListener('click', this.handleClickRestart);
   }
 
   handleCloseModal() {
