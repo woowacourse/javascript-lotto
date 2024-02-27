@@ -5,7 +5,6 @@
       href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/css/style.css" />
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,8 +18,21 @@
       </header>
       <div class="lotto-container">
         <h1>🎱 내 번호 당첨 확인 🎱</h1>
-        <section></section>
-        <section></section>
+        <section class="purchase-lotto">
+          <h2>구입할 금액을 입력해주세요.</h2>
+          <div class="purchase-lotto_input">
+            <input
+              type="number"
+              placeholder="금액"
+              id="amount"
+              min="0"
+              max="1000000"
+              step="1000"
+            />
+            <button id="purchase-lotto">구입</button>
+          </div>
+        </section>
+        <section id="purchased-lotto-lists"></section>
         <section></section>
       </div>
       <footer class="footer">

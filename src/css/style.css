@@ -17,6 +17,61 @@ button:hover {
   padding-top: 14px;
 }
 
+.lotto-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 382px;
+  padding: 40px 16px 32px 16px;
+  margin: 0 auto;
+  border: 1px solid #000000;
+}
+
+.lotto-container h1 {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+}
+
+.purchase-lotto {
+  margin-top: 28px;
+  width: 100%;
+}
+
+.purchase-lotto_input {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.purchase-lotto_input input {
+  width: 310px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.purchase-lotto_input button {
+  background-color: #4e5ba6;
+  color: white;
+  border: none;
+  width: 56px;
+  height: 36px;
+  border-radius: 4px;
+}
+
+#purchased-lotto-lists {
+  margin: 28px 0 8px;
+  width: 100%;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+}
+
+#purchased-lotto-lists .imoji {
+  font-size: 34px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
