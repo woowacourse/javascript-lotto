@@ -1,0 +1,66 @@
+@import "reset.css";
+
+.header{
+    display: flex;
+    width: 100%;
+    height: 64px;
+    background: #4E5BA6;
+    color: #FFFFFF;
+}
+
+.header-title{
+    font-size: 30px;
+    margin:auto auto auto 8.12%;
+}
+.main-container{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.lotto-forms{
+    display: flex;
+    flex-direction: column;
+    width: 25.875rem;
+    height: 45.4375rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    margin: 5.25% auto 3rem auto;
+    justify-content: flex-start;
+}
+.lotto-title{
+    color: var(--lotto-greyscale-5, #000);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    
+    /* lotto-title */
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 2.25rem; /* 150% */
+    margin: 2.5rem;
+}
+
+.footer{
+    bottom: 0px;
+    width: 100%;
+    height: 1rem;
+    text-align: center;
+    border-top: 1px solid rgba(78, 91, 166, 0.20);
+    justify-content: center;
+    align-items: center;
+}
+.copyright{
+    color: var(--lotto-primary, #4E5BA6);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Roboto;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1rem; /* 114.286% */
+    letter-spacing: 0.07813rem;
+    margin: 1.3rem;
+    
+}
