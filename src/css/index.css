@@ -56,9 +56,11 @@ header > h1 {
 }
 
 #money-input-box {
-  display: flex;
   width: 100%;
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
 }
 
 #money-error {
@@ -66,11 +68,10 @@ header > h1 {
   padding-top: 5px;
 }
 
-#lotto-money-input-button {
+\ #lotto-money-input-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
 }
 
 /* TODO: 위랑 안 겹치는지 확인 */
@@ -88,7 +89,7 @@ header > h1 {
 #my-lottos-section {
   width: 238px;
   height: 276px;
-  padding-top: 35px;
+  padding-top: 20px;
 }
 
 #my-lottos-section span {
@@ -99,7 +100,7 @@ header > h1 {
 }
 
 #my-lottos-section > ul {
-  padding-top: 15px;
+  margin-top: 15px;
 }
 
 #my-lottos-section > ul > li {
@@ -108,6 +109,13 @@ header > h1 {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+#my-lottos-list {
+  height: 250px;
+  width: 100%;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 /*우승 로또 정보 입력 섹션*/
@@ -121,7 +129,7 @@ header > h1 {
   width: 382px;
 }
 
-#winning-numbers-form {
+#winning-lotto-form {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
@@ -227,3 +235,5 @@ th {
   margin: 30px;
   font-weight: var(--caption-font-weight);
 }
+/*
+//TODO: 삭제 버튼 빠짐 */

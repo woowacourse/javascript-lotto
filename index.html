@@ -25,19 +25,22 @@
           </div>
           <section id="lotto-money-form-section">
             <p>구입할 금액을 입력해주세요.</p>
+            <!-- //TODO: 필요할까? -->
             <div id="money-input-box">
-              <input id="money-input" placeholder="금액" type="text" />
-              <button class="caption" id="money-button">구입</button>
+              <form id="money-form">
+                <input id="money-input" placeholder="금액" type="text" />
+                <button class="caption" id="money-button">구입</button>
+              </form>
+              <span class="error hidden" id="money-error"></span>
             </div>
-            <span class="error hidden" id="money-error"></span>
           </section>
-          <section id="my-lottos-section" class="none">
+          <section id="my-lottos-section" class="hidden">
             <p id="my-lottos-count"></p>
             <ul id="my-lottos-list"></ul>
           </section>
-          <section id="winning-lotto-section" class="none">
+          <section id="winning-lotto-section" class="hidden">
             <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
-            <form id="winning-numbers-form">
+            <form id="winning-lotto-form">
               <div id="winning-lotto-inputs">
                 <div id="winning-numbers">
                   <p>당첨 번호</p>
@@ -56,6 +59,7 @@
                 </div>
               </div>
               <button id="result-show-button" class="caption primary-button">결과 확인하기</button>
+              <span class="error hidden" id="win-lotto-error"></span>
             </form>
           </section>
         </div>
@@ -63,7 +67,7 @@
       <footer>
         <div class="caption">Copyright 2023. woowacourse</div>
       </footer>
-      <section id="winning-statistics-modal">
+      <!-- <section id="winning-statistics-modal">
         <div class="modal-background">
           <div id="winning-statistics">
             <h2>🏆 당첨 통계 🏆</h2>
@@ -103,7 +107,7 @@
             <button id="lotto-game-restart-button" class="caption primary-button">다시 시작하기</button>
           </div>
         </div>
-      </section>
+      </section> -->
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
