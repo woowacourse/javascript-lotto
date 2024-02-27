@@ -45,6 +45,10 @@ body {
   font-size: var(--font-regular);
 }
 
+#app {
+  height: 100%;
+}
+
 header {
   margin: 0;
   background-color: rgb(var(--color-primary));
@@ -120,6 +124,12 @@ button {
 
   /* prevent new line */
   white-space: nowrap;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0;
 }
 
 .title {
