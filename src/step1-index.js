@@ -1,4 +1,4 @@
-import Controller from "./Controller";
+import Controller from "./Terminal/Controller";
 
 /**
  * step 1의 시작점이 되는 파일입니다.
