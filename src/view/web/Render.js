@@ -24,9 +24,15 @@ const Render = {
     });
     Dom.createAppendTagNode({ target: '.winning-numbers-input-wrapper', tag: 'div', attribute: { class: 'bonus-number' } });
     Dom.createAppendTagNode({ target: '.bonus-number', tag: 'label', text: '보너스 번호' });
-    Dom.createAppendTagNode({ target: '.bonus-number', tag: 'input', attribute: { class: 'read-bonus-number-input', type: 'text', maxlength: '2' } });
     Dom.createAppendTagNode({
-      target: '.read-winning-numbers', tag: 'button', attribute: { id: 'read-winning-numbers-submit', type: 'button' }, text: '결과 확인하기',
+      target: '.bonus-number',
+      tag: 'input',
+      attribute: {
+        class: 'read-bonus-number-input', type: 'text', maxlength: '2', disabled: true,
+      },
+    });
+    Dom.createAppendTagNode({
+      target: '.read-winning-numbers', tag: 'button', attribute: { id: 'read-winning-numbers-submit', type: 'button' }, text: '당첨번호 입력완료',
     });
   },
 

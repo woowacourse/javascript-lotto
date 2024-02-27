@@ -3,6 +3,8 @@ import Dom from '../../utils/Dom';
 const Output = {
   printLottoTicketsCount(lottoTicketsCount) {
     Dom.createAppendTagNode({ target: '.print-purchase-result-detail', tag: 'h2', text: lottoTicketsCount });
+    Dom.$('#read-money-input').disabled = true;
+    Dom.$('#read-money-form-submit').disabled = true;
   },
 
   printPurchaseResultDetail(purchaseResultDetails) {
@@ -13,6 +15,8 @@ const Output = {
   },
 
   printPrizeStatisticsHeader() {
+    Dom.$('.read-bonus-number-input').disabled = true;
+    Dom.$('#read-winning-numbers-submit').disabled = true;
     Dom.$('.modal-wrapper').style.display = 'flex';
     Dom.createAppendTagNode({ target: '.modal-header', tag: 'h1', text: '🏆 당첨 통계 🏆' });
     Dom.createAppendTagNode({

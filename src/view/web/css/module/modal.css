@@ -46,6 +46,10 @@
   letter-spacing: var(--caption-letter);
 }
 
+.close-btn:hover {
+  cursor: pointer;
+}
+
 .statistics-detail {
   width: 100%;
   border-collapse: collapse;
@@ -102,6 +106,14 @@
   font-weight: var(--caption-weight);
   line-height: var(--caption-line-height);
   letter-spacing: var(--caption-letter);
+}
+
+.restart-button:hover {
+  cursor: pointer;
+}
+
+.restart-button:active {
+  opacity: 0.7;
 }
 
 .restart-value {
