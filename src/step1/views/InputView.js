@@ -12,7 +12,7 @@ const InputView = {
     return await this.readInput(INPUT_QUERY.purchaseAmount);
   },
 
-  async readWinningLotto() {
+  async readWinningNumber() {
     return await this.readInput(INPUT_QUERY.winningLotto);
   },
 
