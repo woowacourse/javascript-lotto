@@ -1,0 +1,39 @@
+:root {
+  /* colors */
+  --lotto-primary: #4e5ba6;
+  --lotto-grayscale1: #ffffff;
+  --lotto-grayscale2: #fcfcfd;
+  --lotto-grayscale3: #b4b4b4;
+  --lotto-grayscale4: #8b8b8b;
+  --lotto-grayscale5: #000000;
+
+  /* typography */
+  --title-font-size: 24px;
+  --title-font-weight: 800;
+
+  --subtitle-font-size: 20px;
+  --subtitle-font-weight: 600;
+
+  --body-font-size: 15px;
+  --body-font-weight: 400;
+
+  --placeholder-font-size: 15px;
+  --placeholder-font-weight: 400;
+
+  --caption-font-size: 14px;
+  --caption-font-weight: 700;
+
+  --footer-border-color: #4e5ba633;
+  --table-border-color: #0000001f;
+
+  /* other properties */
+  --border-radius: 4px;
+  --navbar-height: 64px;
+  --footer-height: 80px;
+  --logo-left: 130px;
+
+  --margin-xsmall: 5px;
+  --margin-small: 10px;
+  --margin-medium: 20px;
+  --margin-large: 28px;
+}

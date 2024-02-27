@@ -1,0 +1,49 @@
+@import url(./root.css);
+@import url(./header.css);
+@import url(./main.css);
+@import url(./footer.css);
+@import url(./modal.css);
+@import url(./scrollbar.css);
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: var(--lotto-grayscale2);
+  box-sizing: border-box;
+}
+
+button {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  padding: 6px 8px 6px 8px;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.hide {
+  display: none;
+}
+
+/* input tag type number 설정으로 생기는 화살표 제거 */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

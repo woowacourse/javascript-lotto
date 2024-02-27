@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  width: 100vw;
+  height: var(--navbar-height);
+  background-color: var(--lotto-primary);
+}
+
+.navbar-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: var(--logo-left);
+  text-decoration: none;
+  text-align: center;
+
+  color: var(--lotto-grayscale1);
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+}
