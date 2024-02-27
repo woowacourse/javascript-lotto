@@ -41,31 +41,50 @@ class LottoPurchaseBox extends Component {
   }
 
   mounted() {
-    const $moneyInput = this.$target.querySelector('.money-input-wrapper');
+    this.initializeMoneyInput();
 
+    if (this.state.lottoTickets.length > 0) {
+      this.initializeLottoDisplay();
+      this.initializeWinningLottoInput();
+    }
+
+    if (this.state.isModalOpen) this.initializeLottoStatisticsModal();
+  }
+
+  initializeMoneyInput() {
+    const $moneyInput = this.$target.querySelector('.money-input-wrapper');
     new MoneyInput($moneyInput, {
       purchaseLottoTickets: (money) => this.purchaseLottoTickets(money),
     });
+  }
 
-    if (this.state.lottoTickets.length > 0) {
-      const $lottoDisplay = this.$target.querySelector('.lotto-display-wrapper');
-      const $winningLottoInput = this.$target.querySelector('.winning-lotto-input-wrapper');
+  initializeLottoDisplay() {
+    const $lottoDisplay = this.$target.querySelector('.lotto-display-wrapper');
+    new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
+  }
 
-      new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
-      new WinningLottoInput($winningLottoInput, {
-        makeWinningLotto: (winningNumbers, bonusNumber) =>
-          this.makeWinningLotto(winningNumbers, bonusNumber),
-      });
-    }
+  initializeWinningLottoInput() {
+    const $winningLottoInput = this.$target.querySelector('.winning-lotto-input-wrapper');
+    new WinningLottoInput($winningLottoInput, {
+      makeWinningLotto: (winningNumbers, bonusNumber) => this.makeWinningLotto(winningNumbers, bonusNumber),
+    });
+  }
 
-    if (this.state.isModalOpen) {
-      const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal-wrapper');
-      new LottoStatisticsModal($lottoStatisticsModal, {
-        lottoStatistics: this.state.lottoStatistics,
-        closeModal: () => this.closeModal(),
-        restart: () => this.props.restart(),
-      });
-    }
+  initializeLottoStatisticsModal() {
+    const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal-wrapper');
+    new LottoStatisticsModal($lottoStatisticsModal, {
+      lottoStatistics: this.state.lottoStatistics,
+      closeModal: () => this.closeModal(),
+      restart: () => this.props.restart(),
+    });
+  }
+
+  openModal() {
+    this.setState({ isModalOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ isModalOpen: false });
   }
 
   purchaseLottoTickets(money) {
@@ -77,24 +96,19 @@ class LottoPurchaseBox extends Component {
     }
   }
 
-  makeWinningNumbers(winningNumbers) {
-    return Validator.validateLottoNumbers(
-      winningNumbers
-        .filter((number) => number !== '' && number !== undefined && number !== null)
-        .map(Number),
+  validateWinningLottoNumbers(winningNumbers, bonusNumber) {
+    const validWinningNumbers = Validator.validateLottoNumbers(
+      winningNumbers.filter((number) => number !== '' && number !== undefined && number !== null).map(Number),
     );
-  }
+    const validBonusNumber = Validator.validateBonusNumber(validWinningNumbers, Number(bonusNumber));
 
-  makeBonusNumber(winningNumbers, bonusNumber) {
-    return Validator.validateBonusNumber(winningNumbers, Number(bonusNumber));
+    return { winningNumbers: validWinningNumbers, bonusNumber: validBonusNumber };
   }
 
   makeWinningLotto(winningNumbers, bonusNumber) {
     try {
-      const validWinningNumbers = this.makeWinningNumbers(winningNumbers);
-      const validBonusNumber = this.makeBonusNumber(validWinningNumbers, bonusNumber);
       this.setState({
-        winningLotto: { winningNumbers: validWinningNumbers, validBonusNumber },
+        winningLotto: this.validateWinningLottoNumbers(winningNumbers, bonusNumber),
       });
       this.showPrizeStatistics();
     } catch (error) {
@@ -110,14 +124,6 @@ class LottoPurchaseBox extends Component {
 
     this.setState({ lottoStatistics: { prizes, returnOnInvestment } });
     this.openModal();
-  }
-
-  openModal() {
-    this.setState({ isModalOpen: true });
-  }
-
-  closeModal() {
-    this.setState({ isModalOpen: false });
   }
 }
 
