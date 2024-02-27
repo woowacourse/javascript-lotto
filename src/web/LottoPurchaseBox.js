@@ -53,6 +53,7 @@ class LottoPurchaseBox extends Component {
 
   initializeMoneyInput() {
     const $moneyInput = this.$target.querySelector('.money-input-wrapper');
+
     new MoneyInput($moneyInput, {
       purchaseLottoTickets: (money) => this.purchaseLottoTickets(money),
     });
@@ -60,11 +61,13 @@ class LottoPurchaseBox extends Component {
 
   initializeLottoDisplay() {
     const $lottoDisplay = this.$target.querySelector('.lotto-display-wrapper');
+
     new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
   }
 
   initializeWinningLottoInput() {
     const $winningLottoInput = this.$target.querySelector('.winning-lotto-input-wrapper');
+
     new WinningLottoInput($winningLottoInput, {
       makeWinningLotto: (winningNumbers, bonusNumber) => this.makeWinningLotto(winningNumbers, bonusNumber),
     });
@@ -72,6 +75,7 @@ class LottoPurchaseBox extends Component {
 
   initializeLottoStatisticsModal() {
     const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal-wrapper');
+
     new LottoStatisticsModal($lottoStatisticsModal, {
       lottoStatistics: this.state.lottoStatistics,
       closeModal: () => this.closeModal(),

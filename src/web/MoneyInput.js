@@ -21,6 +21,11 @@ class MoneyInput extends Component {
     event.preventDefault();
     const money = this.$target.querySelector('.money-input').value;
     this.props.purchaseLottoTickets(money);
+    this.resetFormValue();
+  }
+
+  resetFormValue() {
+    this.$target.querySelector('.money-input').value = '';
   }
 }
 
