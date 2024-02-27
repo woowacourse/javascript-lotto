@@ -1,6 +1,6 @@
-import DELIMITER from '../Constants/delimiter';
-import PROGRESS_MESSAGE from '../Constants/Messages/progressMessage';
-import LOTTO_REWARD from '../Constants/lottoReward';
+import DELIMITER from '../Constants/delimiter.js';
+import PROGRESS_MESSAGE from '../Constants/Messages/progressMessage.js';
+import LOTTO_REWARD from '../Constants/lottoReward.js';
 
 const OutputView = {
   printBoughtLottoLength(lottoCount) {
