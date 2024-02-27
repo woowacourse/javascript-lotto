@@ -17,7 +17,7 @@ class WinningNumberSection extends Component {
           </div>
           <div id="bonusNumberWrapper">
             <div>보너스 번호</div>
-            <input id="bonusNumberInput" />
+            <input id="bonusNumberInput" type="number"/>
           </div>
         </form>
         <button id="lottoResultButton" class="button">결과 확인하기</button>`;
