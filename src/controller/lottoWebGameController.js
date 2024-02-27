@@ -62,8 +62,8 @@ class lottoGameWebController {
       return;
     }
 
-    const totalResult = this.getLottoResult();
-    this.displayResult(totalResult);
+    const { totalResult, profit } = this.getLottoResult();
+    this.displayResult({ totalResult, profit });
   };
 
   getLottoResult = () => {
@@ -75,13 +75,14 @@ class lottoGameWebController {
     const totalResult = lottoResultCalculator.getTotalResult();
     const profit = lottoResultCalculator.getProfit(this.#lottoTickets.length * LOTTO_PRICE);
 
-    return totalResult;
+    return { totalResult, profit };
   };
 
-  displayResult = (totalResult, profit = 0) => {
+  displayResult = ({ totalResult, profit }) => {
     const resultTable = document.querySelector('#modal-background');
     resultTable.style.display = 'block';
     webOutputView.renderTalbe(totalResult);
+    webOutputView.renderProfit(profit);
   };
 }
 

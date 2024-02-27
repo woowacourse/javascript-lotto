@@ -29,12 +29,17 @@ const webOutputView = {
         <th>${prize.findMatchCountByRank(rank)}개</th>
         <th>${formatNumber(prize.findRewardByRank(rank))}</th>
         <th>${totalResult[rank]}개</th>
-      </tr>
-      `,
+      </tr>`,
     );
 
-    console.log('tableTemplate', tableTemplate);
-    document.querySelector('#reward-table').innerHTML = tableHeader + tableTemplate;
+    document.querySelector('#reward-table').innerHTML = `${tableHeader} ${tableTemplate.join('')}`;
+  },
+
+  renderProfit: (profit) => {
+    const profitText = document.querySelector('#profit-text');
+    const profitTemplate = `당신의 총 수익률은 ${profit}%입니다.`;
+
+    profitText.innerHTML = profitTemplate;
   },
 };
 
