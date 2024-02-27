@@ -26,8 +26,8 @@ main {
 /* TODO: 수직 중앙 정렬 */
 .main__container {
   border: 1px solid rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  width: 414px;
+  border-radius: 4px;
+  width: 382px;
   height: 727px;
   margin-top: 84px;
   margin-bottom: 84px;
@@ -97,47 +97,68 @@ main {
 }
 
 .result-form {
+  margin-top: 24px;
 }
 
+/* FIXME: 사용하지 않는 클래스 */
 .result-form__text {
 }
 
 .result-form__con-winning-bonus {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
 }
 
+/* FIXME: 사용하지 않는 클래스 */
 .result-form__con-winning-label-input {
 }
 
+/* FIXME: 사용하지 않는 클래스 */
 .result-form__winning-label {
 }
 
 .result-form__winning-inputs {
+  display: flex;
+  gap: 8px;
 }
 
-.result-form__winning-input {
+.result-form__number-input {
+  border: 1px solid rgba(180, 180, 180, 1);
+  box-sizing: border-box;
+  border-radius: 4px;
+  width: 34px;
+  height: 36px;
+  margin-top: 8px;
 }
 
-.result-form__con-bonus-label-input {
-}
-
+/* FIXME: 사용하지 않는 클래스 */
 .result-form__bonus-label {
 }
 
-.result-form__bonus-input {
+.result-form__con-bonus-label-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .result-form__submit-button {
+  margin-top: 27px;
+  border-radius: 4px;
+  width: 382px;
+  height: 36px;
 }
 
 .footer__info {
 }
 
-.color-white {
-  color: rgba(255, 255, 255, 1);
+.no-arrow::-webkit-inner-spin-button,
+.no-arrow::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-
-.bgcolor-primary {
-  background: rgba(78, 91, 166, 1);
+.no-arrow {
+  -moz-appearance: textfield;
 }
 
 .text-title {
@@ -151,7 +172,7 @@ main {
 
 .text-content {
   font-family: 'Roboto';
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
@@ -174,4 +195,30 @@ main {
   line-height: 36px;
   letter-spacing: 0px;
   text-align: left;
+}
+
+.text-input-amount {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.text-input-lotto-number {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.color-white {
+  color: rgba(255, 255, 255, 1);
+}
+
+.bgcolor-primary {
+  background: rgba(78, 91, 166, 1);
 }
