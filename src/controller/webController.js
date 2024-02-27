@@ -6,6 +6,7 @@ import RetryFunc from "../utils/RetryFunc.js";
 import bonusNumberValidator from "../validator/BonusNumberValidator.js";
 import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import OutputView from "../view/OutputView.js";
+import WebView from "../view/webView.js";
 // import InputView from "../view/InputView.js";
 // import OutputView from "../view/OutputView.js";
 
@@ -69,9 +70,7 @@ class WebController {
       const numbers = cur.getNumbers();
       return [...acc, numbers];
     }, []);
-
-    // return lottoNumberList; // TODO: this.#outputView.printLottos(lottoNumberList);
-
+    WebView.showLottoList(lottoNumberList);
     this.#outputView.printLottos(lottoNumberList);
   }
 
