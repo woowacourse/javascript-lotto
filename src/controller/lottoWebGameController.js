@@ -2,6 +2,8 @@ import lottoMachine from '../domain/lottoMachine';
 import webOutputView from '../view/webView/webOutputView';
 import webInputView from '../view/webView/webInputView';
 import WinningLottoGenerator from './winningLottoGenerator';
+import LottoResultCalculator from '../domain/lottoResultCalculator';
+import { LOTTO_PRICE } from '../constants/lotto-constants';
 
 class lottoGameWebController {
   #lottoTickets;
@@ -59,6 +61,21 @@ class lottoGameWebController {
       alert(error.message);
       return;
     }
+
+    const totalResult = this.getLottoResult();
+    this.displayResult(totalResult);
+  };
+
+  getLottoResult = () => {
+    const lottoResultCalculator = new LottoResultCalculator({
+      lottoList: this.#lottoTickets,
+      winningLottoNumbers: this.#winningLotto.winningLottoNumbers,
+      bonusNumber: this.#winningLotto.bonusNumber,
+    });
+    const totalResult = lottoResultCalculator.getTotalResult();
+    const profit = lottoResultCalculator.getProfit(this.#lottoTickets.length * LOTTO_PRICE);
+
+    return totalResult;
   };
 }
 

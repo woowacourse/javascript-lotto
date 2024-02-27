@@ -1,11 +1,11 @@
 import { LOTTO_PRICE } from '../constants/lotto-constants.js';
 import RETRY_INPUT from '../constants/system.js';
 import LottoResultCalculator from '../domain/lottoResultCalculator.js';
+import executeOrRetryAsync from '../utils/executeOrRetryAsync.js';
 import inputView from '../view/consoleView/inputView.js';
 import outputView from '../view/outputView.js';
 
 import LottoPurchaseController from './lottoPurchaseController.js';
-import WinningLottoGenerator from './winningLottoGenerator.js';
 
 class LottoGameController {
   async play() {
@@ -23,11 +23,9 @@ class LottoGameController {
     if (RETRY_INPUT.YES.includes(retryAnswer.trim())) this.play();
   }
 
-  async #createValidatedWinningLotto() {
-    const winningLottoGenerator = new WinningLottoGenerator();
-    const { winningLottoNumbers, bonusNumber } = await winningLottoGenerator.createWinningLotto();
-
-    return { winningLottoNumbers, bonusNumber };
+  async readWinningLotto() {
+    const validatedWinningLottoInput = await executeOrRetryAsync(inputView.readWinningLottoNumber().bind(this));
+    return validatedWinningLottoInput;
   }
 
   async #getPurchasedLottoTickets() {
