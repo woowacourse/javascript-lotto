@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/src/step2/style/content.css" />
     <link rel="stylesheet" href="/src/step2/style/moneyInput.css" />
     <link rel="stylesheet" href="/src/step2/style/winningLottoInput.css" />
+    <link rel="stylesheet" href="/src/step2/style/modal.css" />
     <link rel="stylesheet" href="/src/step2/style/footer.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -73,9 +74,92 @@
           </div>
         </div>
       </div>
-
       <div class="footerCard">
         <p class="footerLogo">Copyright 2023. woowacourse</p>
+      </div>
+      <div class="modalCard" id="modalCard">
+        <div class="modalContainer">
+          <div class="closeButtonContainer">
+            <button id="modalCloseButton" class="closeButton" type="button">X</button>
+          </div>
+          <div class="winningStatisticsResultBannerContainer">
+            <p class="resultBannerText">🏆 당첨 통계 🏆</p>
+          </div>
+          <div class="resultTableContainer">
+            <div class="tableTitle">
+              <div class="row">
+                <p class="titleText statisticsText">일치 갯수</ㅔ>
+              </div>
+              <div class="row">
+                <p class="titleText statisticsText">당첨금</p>
+              </div>
+              <div class="row">
+                <p class="titleText statisticsText">당첨 갯수</p>
+              </div>
+            </div>
+            <div class="tableTitle">
+              <div class="row">
+                <p class="statisticsText">3개</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText">5,000</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText winningCount"></p>
+              </div>
+            </div>
+            <div class="tableTitle">
+              <div class="row">
+                <p class="statisticsText">4개</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText">50,000</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText winningCount"></p>
+              </div>
+            </div>
+            <div class="tableTitle">
+              <div class="row">
+                <p class="statisticsText">5개</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText">1,500,000</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText winningCount"></p>
+              </div>
+            </div>
+            <div class="tableTitle">
+              <div class="row">
+                <p class="statisticsText">5개+보너스볼</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText">30,000,000</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText winningCount"></p>
+              </div>
+            </div>
+            <div class="tableTitle">
+              <div class="row">
+                <p class="statisticsText">6개</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText">2,000,000,000</p>
+              </div>
+              <div class="row">
+                <p class="statisticsText winningCount"></p>
+              </div>
+            </div>
+          </div>
+          <div class="statisticsResultTextContainer">
+            <p class="statisticsResultText" id="statisticsResultText"></p>
+          </div>
+          <div class="retrySelectButtonContainer">
+            <button id="retrySelectButton" class="retrySelectButton">다시 시작하기</button>
+          </div>
+        </div>
       </div>
     </div>
     <!-- <script type="module" src="./src/js/index.js"></script> -->
