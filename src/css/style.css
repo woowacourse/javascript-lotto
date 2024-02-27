@@ -86,6 +86,7 @@ section {
   background-color: var(--blue);
   color: var(--white);
   text-align: center;
+  cursor: pointer;
 }
 
 /* footer */
