@@ -158,3 +158,32 @@ body {
 #footer-msg {
   display: flex;
 }
+
+/* 모달 */
+
+#modal {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#modal-body {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: var(--lotto-greyscale1-color);
+  width: 350px;
+  height: 500px;
+  border-radius: 4px;
+}
+
+#modal-close-btn {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
