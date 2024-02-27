@@ -2,22 +2,22 @@ import purchaseAmountValidator from '../validators/purchaseAmountValidator.js';
 import winningNumbersValidator from '../validators/winningNumbersValidator.js';
 import bonusNumberValidator from '../validators/bonusNumberValidator.js';
 
-const $purchaseError = document.getElementById('purchaseError');
-const $winningNumberSection = document.getElementById('winningNumberSection');
-const $lottoNumberError = document.getElementById('lottoNumberError');
-
 const webInputView = {
+  $purchaseError: document.getElementById('purchaseError'),
+  $winningNumberSection: document.getElementById('winningNumberSection'),
+  $lottoNumberError: document.getElementById('lottoNumberError'),
+
   readPurchaseAmount() {
     try {
       const purchaseAmountInput = document.getElementById('purchaseInput').value;
       const purchaseAmount = purchaseAmountInput.trim();
       purchaseAmountValidator.validate(purchaseAmount);
-      $purchaseError.classList.add('hidden');
-      $winningNumberSection.classList.remove('hidden');
+      this.$purchaseError.classList.add('hidden');
+      this.$winningNumberSection.classList.remove('hidden');
       return purchaseAmount;
     } catch (error) {
-      $purchaseError.textContent = error.message;
-      $purchaseError.classList.remove('hidden');
+      this.$purchaseError.textContent = error.message;
+      this.$purchaseError.classList.remove('hidden');
       return false;
     }
   },
@@ -27,11 +27,11 @@ const webInputView = {
       const winningNumbersInput = [...document.querySelectorAll('.winningNumberInput')];
       const winningNumbers = winningNumbersInput.map(data => parseInt(data.value, 10));
       winningNumbersValidator.validate(winningNumbers);
-      $lottoNumberError.classList.add('hidden');
+      this.$lottoNumberError.classList.add('hidden');
       return winningNumbers;
     } catch (error) {
-      $lottoNumberError.textContent = error.message;
-      $lottoNumberError.classList.remove('hidden');
+      this.$lottoNumberError.textContent = error.message;
+      this.$lottoNumberError.classList.remove('hidden');
       return false;
     }
   },
@@ -43,8 +43,8 @@ const webInputView = {
       bonusNumberValidator.validate(bonusNumber, winningNumbers);
       return bonusNumber;
     } catch (error) {
-      $lottoNumberError.textContent = error.message;
-      $lottoNumberError.classList.remove('hidden');
+      this.$lottoNumberError.textContent = error.message;
+      this.$lottoNumberError.classList.remove('hidden');
       return false;
     }
   },
