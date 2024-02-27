@@ -1,5 +1,6 @@
 @import url('./reset.css');
 @import url('./module/main.css');
+@import url('./module/modal.css');
 
 * {
   box-sizing: border-box;
@@ -23,27 +24,36 @@ body {
   --grayscale4: #8B8B8B;
   --grayscale5: #000000;
   --grayscale5-opacity-12: #0000001F;
+  --grayscale5-opacity-30: rgba(0, 0 ,0, 0.3);
 
   /* typography */
   --title-size: 2.4rem;
   --subtitle-size: 2rem;
   --body-size: 1.5rem;
   --caption-size: 1.4rem;
+  --th-size: 1.5rem;
 
   --title-weight: 800;
   --subtitle-weight: 600;
   --body-weight: 400;
   --caption-weight: 700;
+  -th-weight: 600;
 
   --title-line-height: 3.6rem;
   --subtitle-line-height: 2.4rem;
   --body-line-height: 2.4rem;
   --caption-line-height: 1.6rem;
+  --th-line-height: 2.4rem;
 
   --title-letter: 0;
   --subtitle-letter: 0.015rem;
   --body-letter: 0.05rem;
   --caption-letter: 0.125rem;
+  --th-letter: 0.05rem;
+}
+
+#app {
+  position: relative;
 }
 
 #app .header {

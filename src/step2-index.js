@@ -4,7 +4,7 @@
  */
 import './view/web/css/index.css';
 import { Input, Output } from './view/web/index';
-import { LottoGenerator, StatisticsGenerator, MessageGenerator } from './controller/generator/index';
+import { LottoGenerator, StatisticsGenerator, WebMessageGenerator } from './controller/generator/index';
 import LottoGame from './controller/LottoGame';
 
 const views = {
@@ -15,7 +15,7 @@ const views = {
 const controllers = {
   lotto: LottoGenerator,
   statistics: StatisticsGenerator,
-  message: MessageGenerator,
+  message: WebMessageGenerator,
 };
 
 const lottoGame = new LottoGame(views, controllers);

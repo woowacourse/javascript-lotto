@@ -19,6 +19,12 @@ const Input = {
     const input = await Web.readTagValue({ button: '#read-winning-numbers-submit', input: '.read-bonus-number-input' });
     return input;
   },
+
+  async readRestartOrExit() {
+    if (Dom.$('.restart-button') === null) Render.readRestartOrExit();
+    const input = await Web.readTagValue({ button: '.restart-button', input: '.restart-value' });
+    return input;
+  },
 };
 
 export default Input;

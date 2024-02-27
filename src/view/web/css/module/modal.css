@@ -1,0 +1,109 @@
+.modal-wrapper {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--grayscale5-opacity-30);
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+  width: 35rem;
+  height: 50rem;
+  padding: 4rem 1.6rem 3.2rem 1.6rem;
+  border-radius: 0.4rem;
+  background-color: var(--grayscale1);
+}
+
+.modal-container :not(:last-child) {
+  margin-bottom: 3.3rem;
+}
+
+.modal-header h1 {
+  font-size: var(--subtitle-size);
+  font-weight: var(--subtitle-weight);
+  line-height: var(--subtitle-line-height);
+  letter-spacing: var(--subtitle-letter);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+  border: none;
+  background-color: transparent;
+  font-size: var(--caption-size);
+  font-weight: var(--caption-weight);
+  line-height: var(--caption-line-height);
+  letter-spacing: var(--caption-letter);
+}
+
+.statistics-detail {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.statistics-detail th {
+  height: 4rem;
+  border-top: 0.1rem solid var(--grayscale5-opacity-12);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  line-height: var(--th-line-height);
+  letter-spacing: var(--th-letter);
+  word-break: normal;
+  text-align: center;
+}
+
+.statistics-detail td {
+  height: 4rem;
+  border-top: 0.1rem solid var(--grayscale5-opacity-12);
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter);
+  word-break: normal;
+  text-align: center;
+}
+
+.statistics-detail td :last-child {
+  border-bottom: 0.1rem solid var(--grayscale5-opacity-12);
+}
+
+.investment p {
+  font-size: var(--subtitle-size);
+  font-weight: var(--subtitle-weight);
+  line-height: var(--subtitle-line-height);
+  letter-spacing: var(--subtitle-letter);
+  text-align: center;
+}
+
+.restart {
+  width: 100%;
+}
+
+.restart-button {
+  width: 100%;
+  height: 3.6rem;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 0.4rem;
+  color: var(--grayscale1);
+
+  font-size: var(--caption-size);
+  font-weight: var(--caption-weight);
+  line-height: var(--caption-line-height);
+  letter-spacing: var(--caption-letter);
+}
+
+.restart-value {
+  display: none;
+}

@@ -29,6 +29,13 @@ const Render = {
       target: '.read-winning-numbers', tag: 'button', attribute: { id: 'read-winning-numbers-submit', type: 'button' }, text: '결과 확인하기',
     });
   },
+
+  readRestartOrExit() {
+    Dom.createAppendTagNode({
+      target: '.restart', tag: 'button', attribute: { class: 'restart-button' }, text: '다시 시작하기',
+    });
+    Dom.createAppendTagNode({ target: '.restart', tag: 'input', attribute: { class: 'restart-value', value: 'y' } });
+  },
 };
 
 export default Render;
