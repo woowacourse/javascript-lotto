@@ -1,5 +1,4 @@
 import Validator from '../domain/Validator';
-import retryUntilValid from '../utils/retryUntilValid';
 import Condition from '../constants/Condition';
 
 const { RESTART_OPTION, PRIZE } = Condition;
@@ -9,10 +8,12 @@ class LottoGame {
    * views와 controller를 외부에서 주입
    * @param {*} views (Input, Output)
    * @param {*} controllers (LottoGenerator, MessageGenerator, StatisticsGenerator)
+   * @param {*} utils (retryUntilValid)
    */
-  constructor(views, controllers) {
+  constructor(views, controllers, utils) {
     this.views = views;
     this.controllers = controllers;
+    this.utils = utils;
   }
 
   async start() {
@@ -32,7 +33,7 @@ class LottoGame {
   }
 
   async purchaseLottoTickets() {
-    const money = await retryUntilValid(this.getMoney, this);
+    const money = await this.utils.retryUntilValid(this.getMoney, this);
     const lottoTickets = this.controllers.lotto.createLotto(money);
     return lottoTickets;
   }
@@ -60,12 +61,12 @@ class LottoGame {
   }
 
   async makeWinningNumbers() {
-    const winningNumbers = await retryUntilValid(this.getWinningNumbers, this);
+    const winningNumbers = await this.utils.retryUntilValid(this.getWinningNumbers, this);
     return winningNumbers;
   }
 
   async makeBonusNumber(winningNumbers) {
-    const bonusNumber = await retryUntilValid(() => this.getBonusNumber(winningNumbers), this);
+    const bonusNumber = await this.utils.retryUntilValid(() => this.getBonusNumber(winningNumbers), this);
     return bonusNumber;
   }
 
@@ -75,10 +76,16 @@ class LottoGame {
     return restartOption;
   }
 
+  // 웹 모드를 위해서 새로고침을 사용해서 프로그램 다시 시작
+  windowReload() {
+    if (this.views.mode === 'web') window.location.reload();
+  }
+
   async restartOrExit() {
-    const restartOption = await retryUntilValid(this.getRestartOption, this);
+    const restartOption = await this.utils.retryUntilValid(this.getRestartOption, this);
 
     if (restartOption === RESTART_OPTION.RESTART) {
+      this.windowReload();
       await this.start();
     }
   }

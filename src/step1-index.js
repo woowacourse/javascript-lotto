@@ -6,8 +6,10 @@
 import { Input, Output } from './view/console/index';
 import LottoGame from './controller/LottoGame';
 import { LottoGenerator, StatisticsGenerator, MessageGenerator } from './controller/generator/index';
+import retryUntilValid from './utils/retryUntilValid';
 
 const views = {
+  mode: 'console',
   input: Input,
   output: Output,
 };
@@ -18,5 +20,9 @@ const controllers = {
   message: MessageGenerator,
 };
 
-const lottoGame = new LottoGame(views, controllers);
+const utils = {
+  retryUntilValid,
+};
+
+const lottoGame = new LottoGame(views, controllers, utils);
 lottoGame.start();

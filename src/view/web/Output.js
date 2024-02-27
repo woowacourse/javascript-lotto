@@ -19,6 +19,7 @@ const Output = {
       target: '.modal-header', tag: 'button', attribute: { class: 'close-btn' }, text: 'X',
     });
   },
+
   printPrizeDetails(prizeDetails) {
     prizeDetails.forEach((detail, index) => {
       const tr = document.createElement('tr');
@@ -29,6 +30,7 @@ const Output = {
       Dom.createAppendTagNode({ target: `#tr-${index}`, tag: 'td', text: detail.prizeCount });
     });
   },
+
   printReturnOnInvestment(returnOnInvestment) {
     Dom.createAppendTagNode({ target: '.investment', tag: 'p', text: returnOnInvestment });
   },

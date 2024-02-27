@@ -6,8 +6,10 @@ import './view/web/css/index.css';
 import { Input, Output } from './view/web/index';
 import { LottoGenerator, StatisticsGenerator, WebMessageGenerator } from './controller/generator/index';
 import LottoGame from './controller/LottoGame';
+import retryUntilValidWeb from './utils/retryUntilValidWeb';
 
 const views = {
+  mode: 'web',
   input: Input,
   output: Output,
 };
@@ -18,5 +20,9 @@ const controllers = {
   message: WebMessageGenerator,
 };
 
-const lottoGame = new LottoGame(views, controllers);
+const utils = {
+  retryUntilValid: retryUntilValidWeb,
+};
+
+const lottoGame = new LottoGame(views, controllers, utils);
 lottoGame.start();
