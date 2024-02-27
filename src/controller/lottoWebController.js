@@ -2,6 +2,7 @@ import "../../index.css";
 import Lotto from "../domain/Lotto.js";
 import lottoRankMaker from "../domain/lottoRankMaker.js";
 import lottoResultMaker from "../domain/lottoResultMaker.js";
+import profitCalculator from "../domain/profitCalculator.js";
 import randomLottoArray from "../domain/randomLottoMaker.js";
 import { $, $$ } from "../utils/querySelector.js";
 import budgetValidation from "../validation/budgetValidation.js";
@@ -12,6 +13,7 @@ import winningLottoValidation from "../validation/winningLottoValidation.js";
 
 class LottoWebController {
   #webIssuedLottoArray;
+  #webBudget;
   async start() {
     // 입력받은 budget 처리 (submit) 후
     // budget 유효성 검사 통과하면 로또 발행
@@ -28,8 +30,7 @@ class LottoWebController {
 
   getWebBudget() {
     const webBudgetInput = $("#budget").value;
-    const webBudget = Number(webBudgetInput);
-    return webBudget;
+    this.#webBudget = Number(webBudgetInput);
   }
 
   /**
@@ -38,13 +39,14 @@ class LottoWebController {
    */
   handleWebBudget(event) {
     event.preventDefault();
-    const webBudget = this.getWebBudget();
+    // const webBudget = this.getWebBudget();
+    this.getWebBudget();
     try {
       // 유효성 검사 해줘
-      startValidation(budgetValidation.categories, webBudget);
+      startValidation(budgetValidation.categories, this.#webBudget);
 
       // 로또 발행 장 수 계산해줘
-      const webIssuedLottoCount = this.calculateWebIssuedLottoCount(webBudget);
+      const webIssuedLottoCount = this.calculateWebIssuedLottoCount();
 
       // 발행된 로또 번호 가져와서 보여줘
       $("#after-budget").style.display = "block";
@@ -54,8 +56,8 @@ class LottoWebController {
     }
   }
 
-  calculateWebIssuedLottoCount(webBudget) {
-    const webLotto = new Lotto(webBudget);
+  calculateWebIssuedLottoCount() {
+    const webLotto = new Lotto(this.#webBudget);
     const webIssuedLottoCount = webLotto.calculateIssuedLottoCount();
     $("#issued-lotto-count").innerHTML = webIssuedLottoCount;
     return webIssuedLottoCount;
@@ -131,7 +133,25 @@ class LottoWebController {
 
   calculateWebRankResult(webLottoResult) {
     const webRankResult = lottoRankMaker.calculateLottoRank(webLottoResult);
-    console.log(webRankResult);
+    this.printWebRankResult(webRankResult);
+    this.calculateWebProfit(webRankResult);
+  }
+
+  printWebRankResult(webRankResult) {
+    $("#lotto-rank-1").innerHTML = webRankResult[1];
+    $("#lotto-rank-2").innerHTML = webRankResult[2];
+    $("#lotto-rank-3").innerHTML = webRankResult[3];
+    $("#lotto-rank-4").innerHTML = webRankResult[4];
+    $("#lotto-rank-5").innerHTML = webRankResult[5];
+  }
+
+  calculateWebProfit(webRankResult) {
+    const webProfit = profitCalculator.calculateProfit(
+      webRankResult,
+      this.#webBudget
+    );
+    console.log(webProfit);
+    $("#profit-msg-num").innerHTML = webProfit;
   }
 }
 
