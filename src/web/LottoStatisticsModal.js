@@ -5,6 +5,8 @@ const { RANK, PRIZE } = Condition;
 
 class LottoStatisticsModal extends Component {
   template() {
+    const { prizes, returnOnInvestment } = this.props.lottoStatistics;
+
     return ` 
         <section class="lotto-statistics-modal">
             <button class="modal-close-btn">X</button>
@@ -16,25 +18,20 @@ class LottoStatisticsModal extends Component {
                     <p>당첨 갯수</p>
                 </section>
                 <section class="prize-table-body">
-                    ${this.makePrizeDetailPhrases(this.props.lottoStatistics.prizes).join('')}
+                    ${this.makePrizeDetailPhrases(prizes).join('')}
                 </section>
             </section>
-            <p class="return-on-investment-text">당신의 총 수익률은 ${
-              this.props.lottoStatistics.returnOnInvestment
-            }% 입니다.</p>
+            <p class="return-on-investment-text">당신의 총 수익률은 ${returnOnInvestment}% 입니다.</p>
             <button class="restart-btn">다시 시작하기</button>
         </section>
     `;
   }
 
   setEvent() {
-    this.$target
-      .querySelector('.modal-close-btn')
-      .addEventListener('click', () => this.props.closeModal());
+    const { closeModal, restart } = this.props;
 
-    this.$target
-      .querySelector('.restart-btn')
-      .addEventListener('click', () => this.props.restart());
+    this.$target.querySelector('.modal-close-btn').addEventListener('click', () => closeModal());
+    this.$target.querySelector('.restart-btn').addEventListener('click', () => restart());
   }
 
   makePrizeDetailPhrases(prizes) {

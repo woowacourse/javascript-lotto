@@ -14,9 +14,7 @@ class MoneyInput extends Component {
   }
 
   setEvent() {
-    this.$target
-      .querySelector('.money-input-form')
-      .addEventListener('submit', (event) => this.onFormSubmit(event));
+    this.$target.querySelector('.money-input-form').addEventListener('submit', (event) => this.onFormSubmit(event));
   }
 
   onFormSubmit(event) {

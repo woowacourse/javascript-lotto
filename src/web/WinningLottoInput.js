@@ -28,17 +28,13 @@ class WinningLottoInput extends Component {
   }
 
   setEvent() {
-    this.$target
-      .querySelector('.winning-lotto-form')
-      .addEventListener('submit', (event) => this.onFormSubmit(event));
+    this.$target.querySelector('.winning-lotto-form').addEventListener('submit', (event) => this.onFormSubmit(event));
   }
 
   onFormSubmit(event) {
     event.preventDefault();
 
-    const winningNumbers = [...this.$target.querySelectorAll('.winning-number')].map(
-      (el) => el.value,
-    );
+    const winningNumbers = [...this.$target.querySelectorAll('.winning-number')].map((el) => el.value);
     const bonusNumber = this.$target.querySelector('.bonus-number').value;
 
     this.props.makeWinningLotto(winningNumbers, bonusNumber);
