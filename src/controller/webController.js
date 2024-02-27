@@ -7,8 +7,29 @@ import bonusNumberValidator from "../validator/BonusNumberValidator.js";
 import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import OutputView from "../view/OutputView.js";
 import WebView from "../view/webView.js";
-// import InputView from "../view/InputView.js";
-// import OutputView from "../view/OutputView.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const resultButton = document.getElementById("result_button");
+  const dialog = document.getElementById("result_dialog");
+  const closeButton = document.getElementById("close");
+  const retryButton = document.getElementById("retry_button");
+
+  resultButton.addEventListener("click", () => {
+    dialog.showModal();
+  });
+
+  dialog.querySelector("button").addEventListener("click", () => {
+    dialog.close();
+  });
+
+  closeButton.addEventListener("click", () => {
+    dialog.close("animalNotChosen");
+  });
+
+  retryButton.addEventListener("click", () => {
+    dialog.close();
+  });
+});
 
 class WebController {
   //   #inputView;
@@ -54,11 +75,13 @@ class WebController {
         "input_purchaseAmount",
       );
       const button = document.getElementById("purchase_button");
+      const purchaseNumber = document.getElementById("purchase_number");
 
       function onClickHandler(event) {
         event.preventDefault();
         purchaseAmountValidator(purchaseAmountInput.value);
         resolve(Number(purchaseAmountInput.value));
+        purchaseNumber.textContent = `총 ${purchaseAmountInput.value / 1000}개를 구매하였습니다.`;
         purchaseAmountInput.value = "";
 
         // 이벤트 핸들러를 한 번만 실행하도록 리스너 제거
@@ -95,6 +118,7 @@ class WebController {
         if (event.key === "Enter") {
           // 엔터 키를 눌렀을 때 다음 입력란으로 포커스 이동
           const nextInput = event.target.nextElementSibling;
+          // eslint-disable-next-line max-depth
           if (nextInput) {
             nextInput.focus();
           } else {
@@ -123,18 +147,17 @@ class WebController {
 
         resolve(WinningLotto(winningLotto, bonusNumber.value));
         winningNumbers.forEach((input) => {
+          // eslint-disable-next-line no-param-reassign
           input.value = "";
         });
         bonusNumber.value = "";
 
-        // 이벤트 핸들러를 한 번만 실행하도록 리스너 제거
         button.removeEventListener("click", onClickHandler);
       }
 
       winningNumbers.forEach((input) => {
         input.addEventListener("keydown", onInputKeyDown);
       });
-
       bonusNumber.addEventListener("keydown", onBonusNumberInputKeyDown);
 
       button.addEventListener("click", onClickHandler);
@@ -144,6 +167,8 @@ class WebController {
   #getGameResult(lottoList, winningLotto) {
     const result = new LottoResult(lottoList, winningLotto);
     const { rank, profit } = result.getResult();
+    WebView.showGameResult(rank);
+    WebView.showProfit(profit);
 
     this.#outputView.printResult(rank);
     this.#outputView.printProfit(profit);
