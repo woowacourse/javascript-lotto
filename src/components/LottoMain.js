@@ -21,12 +21,22 @@ const LOTTO_MAIN_CONTAINER = `
 class LottoMain extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.#setPurchaseEventListener();
   }
 
   render() {
     this.innerHTML = LOTTO_MAIN_CONTAINER;
     const resultButton = document.querySelector('#result-button');
     resultButton.setText('당첨 결과 확인하기');
+  }
+
+  #setPurchaseEventListener() {
+    const app = document.querySelector('lotto-app');
+    const purchasePriceForm = document.querySelector('purchase-price-form');
+    purchasePriceForm.addEventListener('purchase', (event) => {
+      const { price } = event.detail;
+      app.controller().processBuyLotto(price);
+    });
   }
 }
 

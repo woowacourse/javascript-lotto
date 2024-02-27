@@ -1,6 +1,7 @@
 import './PurchasePriceForm.css';
 import './PriceInputField.js';
 import './LottoButton.js';
+import { BuyLottoPriceValidator } from '../validator/index.js';
 
 const PURCHASE_PRICE_FORM = `
   <div class="price-input-container">
@@ -15,12 +16,24 @@ const PURCHASE_PRICE_FORM = `
 class PurchasePriceForm extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.#setEventListener();
   }
 
   render() {
     this.innerHTML = PURCHASE_PRICE_FORM;
     const purchaseButton = document.querySelector('#purchase-button');
     purchaseButton.setText('구입');
+  }
+
+  #setEventListener() {
+    const purchaseButton = document.querySelector('#purchase-button');
+
+    purchaseButton.addEventListener('click', () => {
+      const price = document.querySelector('price-input-field').getValue();
+      BuyLottoPriceValidator.check(price);
+      const purchaseEvent = new CustomEvent('purchase', { detail: { price } });
+      this.dispatchEvent(purchaseEvent);
+    });
   }
 }
 

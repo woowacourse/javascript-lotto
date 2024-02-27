@@ -2,6 +2,7 @@ import './LottoApp.css';
 import './components/LottoHeader.js';
 import './components/LottoMain.js';
 import './components/LottoFooter.js';
+import LottoWebController from './controller/LottoWebController.js';
 
 const LOTTO_APP_COMPONENT = `
   <lotto-header></lotto-header>
@@ -10,12 +11,23 @@ const LOTTO_APP_COMPONENT = `
     `;
 
 class LottoApp extends HTMLElement {
+  #lottoWebController;
+
+  constructor() {
+    super();
+    this.#lottoWebController = new LottoWebController();
+  }
+
   connectedCallback() {
     this.render();
   }
 
   render() {
     this.innerHTML = LOTTO_APP_COMPONENT;
+  }
+
+  controller() {
+    return this.#lottoWebController;
   }
 }
 

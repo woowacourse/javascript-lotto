@@ -12,6 +12,10 @@ class PriceInputField extends HTMLElement {
   render() {
     this.innerHTML = LOTTO_INPUT_FIELD_COMPONENT;
   }
+
+  getValue() {
+    return this.querySelector('.price-input').value;
+  }
 }
 
 customElements.define('price-input-field', PriceInputField);
