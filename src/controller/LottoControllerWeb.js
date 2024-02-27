@@ -15,13 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function purchaseLotto() {
   const purchaseAmount = document.querySelector('.lp-pa-input-group');
+  const purchaseLottoButton = document.querySelector('.lp-pa-input-btn');
+
+  // TODO: 포커싱이 사라지면 에러 메세지를 출력하게 하는 건?
+  // TODO: 값이 입력될 때 마다 에러 메세지 출력은? -> 이상할까?
   purchaseAmount.addEventListener('submit', (event) => {
     event.preventDefault();
     const money = event.target.amount.value;
     try {
       new Money(money);
+      handleClickAddComponent('purchase-after', purchaseAfter);
     } catch (error) {
       onError(purchaseAmount, error.message);
     }
   });
 }
+
+const handleClickAddComponent = (getId, addFunc) => {
+  document.getElementById(getId).insertAdjacentHTML('afterbegin', addFunc());
+};
