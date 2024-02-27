@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <link rel="stylesheet" href="./src/css/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,7 +25,6 @@
           </div>
           <section id="lotto-money-form-section">
             <p>구입할 금액을 입력해주세요.</p>
-            <!-- //TODO: 필요할까? -->
             <div id="money-input-box">
               <form id="money-form">
                 <input id="money-input" placeholder="금액" type="text" />
@@ -70,6 +69,7 @@
       <section id="winning-statistics-modal" class="hidden">
         <div class="modal-background">
           <div id="winning-statistics">
+            <button id="close-modal-button">x</button>
             <h2>🏆 당첨 통계 🏆</h2>
             <table id="winning-statistics-table">
               <tr>

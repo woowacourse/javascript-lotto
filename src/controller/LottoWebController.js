@@ -16,7 +16,7 @@ import WebInputView from '../view/web/WebInputView';
 
 class LottoWebController {
   constructor() {
-    this.lottos;
+    this.lottos = [];
   }
 
   play() {
@@ -32,15 +32,23 @@ class LottoWebController {
       e.preventDefault();
       const winLotto = this.submitWinLotto();
       this.calculateWinResults(winLotto);
+      ModalOutputView.renderSection();
     });
 
-    //TODO: 에러 메세지 숨기는 부분 유틸 분리
     [...$$('.number-input')].forEach((input) => {
       input.addEventListener('input', () => {
         hideElement($('#win-lotto-error'));
       });
     });
     $('#lotto-game-restart-button').addEventListener('click', () => {
+      this.restartLotto();
+    });
+    $('.modal-background').addEventListener('click', () => {
+      ModalOutputView.deleteModalInfo();
+      ModalOutputView.hideSection();
+    });
+    $('#close-modal-button').addEventListener('click', () => {
+      ModalOutputView.deleteModalInfo();
       ModalOutputView.hideSection();
     });
   }
@@ -83,12 +91,6 @@ class LottoWebController {
     $('.number-input').focus();
   }
 
-  resetLottoGame() {
-    WebInputView.resetMoneyInput();
-    ModalOutputView.hideSection();
-    MyLottoOutputView.hideSection();
-  }
-
   makeWinLotto(winNumbers, bonusNumber) {
     LottoValidation.validateNumbers(winNumbers);
     const lottoWithWinNumbers = new Lotto(winNumbers);
@@ -117,7 +119,6 @@ class LottoWebController {
     } catch ({ message }) {
       renderError($('#win-lotto-error'), message);
     }
-    WebInputView.resetWinningLottoNumbers();
   }
 
   calculateWinResults(winLotto) {
@@ -146,6 +147,15 @@ class LottoWebController {
 
   showRateOfReturn(rateOfRevenue) {
     ModalOutputView.renderReturnOfRatio(rateOfRevenue);
+  }
+
+  restartLotto() {
+    this.lottos = [];
+    MyLottoOutputView.hideSection();
+    ModalOutputView.hideSection();
+    MyLottoOutputView.deleteLottoInfo();
+    ModalOutputView.deleteModalInfo();
+    $('#money-input').focus();
   }
 }
 export default LottoWebController;

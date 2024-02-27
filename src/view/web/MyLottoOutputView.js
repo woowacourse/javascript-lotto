@@ -23,6 +23,11 @@ const MyLottoOutputView = {
     });
     $('#my-lottos-list').innerHTML = lottosTicketsHTML.join('');
   },
+
+  deleteLottoInfo() {
+    $('#my-lottos-count').innerText = '';
+    $('#my-lottos-list').innerHTML = '';
+  },
 };
 
 export default MyLottoOutputView;
