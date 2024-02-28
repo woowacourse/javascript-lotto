@@ -2,7 +2,7 @@ import Component from './Component';
 
 class MoneyInput extends Component {
   template() {
-    const MONEY_INPUT_TEMPLATE = `    
+    return `    
       <form class="money-input-form">
         <label>구입할 금액을 입력해 주세요.</label>
         <div>
@@ -11,8 +11,6 @@ class MoneyInput extends Component {
         </div>
       </form>
     `;
-
-    return MONEY_INPUT_TEMPLATE;
   }
 
   setEvent() {

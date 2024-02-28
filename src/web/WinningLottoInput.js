@@ -2,7 +2,7 @@ import Component from './Component';
 
 class WinningLottoInput extends Component {
   template() {
-    const WINNING_LOTTO_INPUT_TEMPLATE = ` 
+    return ` 
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
       <form class="winning-lotto-form">
         <div>
@@ -25,8 +25,10 @@ class WinningLottoInput extends Component {
         <input class="winning-lotto-btn" type="submit" value="결과 확인하기"></input>
       </form>
     `;
+  }
 
-    return WINNING_LOTTO_INPUT_TEMPLATE;
+  mounted() {
+    this.$target.querySelector('.winning-number').focus();
   }
 
   setEvent() {

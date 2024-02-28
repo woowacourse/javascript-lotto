@@ -20,7 +20,7 @@ class LottoPurchaseBox extends Component {
   template() {
     const { lottoTickets, isModalOpen } = this.state;
 
-    const LOTTO_PURCHASE_BOX_TEMPLATE = `    
+    return `    
       <section class="lotto-purchase-box">
           <p class="lotto-purchase-title">🎱 내 번호 당첨 확인 🎱</p>
           <section class="money-input-container"></section>
@@ -40,8 +40,6 @@ class LottoPurchaseBox extends Component {
           }
       </section>
     `;
-
-    return LOTTO_PURCHASE_BOX_TEMPLATE;
   }
 
   mounted() {
