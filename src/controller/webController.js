@@ -15,7 +15,7 @@ const winningNumbers = document.querySelectorAll(".input_winningNumber");
 
 class WebController {
   #reset() {
-    location.reload();
+    window.location.reload();
   }
 
   async start() {
