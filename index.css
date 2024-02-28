@@ -78,7 +78,6 @@ body {
 }
 
 #main-body {
-  /* background-color: yellow; */
   display: flex;
   justify-content: center;
 }
@@ -87,18 +86,16 @@ body {
   box-sizing: border-box;
   background-color: var(--lotto-greyscale1-color);
   width: 41.4rem;
-  height: 72.7rem;
-  top: 14.8rem;
-  left: 51.3rem;
+  min-height: 72.7rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 1.6rem;
+  padding: 4rem 1.6rem 3.2rem;
+  margin-top: 8.4rem;
 }
 
 #content-box-header {
   color: var(--lotto-greyscale5-color);
   display: flex;
   justify-content: center;
-  margin-top: 4rem;
 }
 
 #content-box-budget {
@@ -141,61 +138,92 @@ body {
 
 #after-budget {
   display: none;
+  /* display: flex; */
+  /* background-color: pink; */
+  margin-top: 2.8rem;
+  flex-direction: column;
+  height: min-content;
+  /* min-height: 20rem; */
 }
 
 #content-box-lottos {
+  box-sizing: border-box;
+  width: 22.2rem;
+  /* height: 2.4rem; */
+  height: 100%;
+  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#content-box-msg-combination {
+  margin-top: 2.4rem;
+  white-space: nowrap;
 }
 
 #content-box-input-combination {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1.2rem;
 }
+
 #content-box-numbers {
+  /* background-color: yellow; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #content-box-numbers-input {
+  box-sizing: border-box;
+  width: 24.4rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .lotto-bonus-input,
 .lotto-numbers-input {
-  border: 1px solid #b4b4b4;
-  border-radius: 4px;
-  width: 34px;
-  height: 36px;
-  top: 596px;
-  left: 16px;
+  box-sizing: border-box;
+  border: 0.1rem solid var(--lotto-greyscale3-color);
+  border-radius: 0.4rem;
+  width: 3.4rem;
+  height: 3.6rem;
+  padding: 0;
 }
 
 #content-box-bonus {
   display: flex;
   flex-direction: column;
   align-items: end;
+  /* background-color: green; */
+  width: 7.6rem;
+  height: 6.8rem;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #content-box-bonus-input {
 }
 
 #content-box-result {
+  box-sizing: border-box;
   display: flex;
-  background-color: purple;
+  /* background-color: purple; */
   justify-content: center;
+  margin-top: 2.7rem;
 }
 
 #result-btn {
   width: 100%;
   background-color: var(--lotto-primary-color);
   color: var(--lotto-greyscale1-color);
-  width: Fixed (382px);
-  height: 36px;
-  top: 659px;
-  left: 16px;
-  padding: 6px, 6px, 6px, 8px;
-  border-radius: 4px;
-  font-family: Roboto;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: 1.25px;
+  height: 3.6rem;
+  padding: 0.6rem 0.6rem 0.6rem 0.8rem;
+  border: none;
+  border-radius: 0.4rem;
   text-align: center;
 }
 

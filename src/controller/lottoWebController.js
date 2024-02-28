@@ -47,7 +47,7 @@ class LottoWebController {
       const webIssuedLottoCount = this.calculateWebIssuedLottoCount();
 
       // 발행된 로또 번호 가져와서 보여줘
-      $("#after-budget").style.display = "block";
+      $("#after-budget").style.display = "flex";
       this.handleWebIssuedLottoArray(webIssuedLottoCount);
     } catch (error) {
       return alert(error.message); // TODO : alert 말고 다른 종류로 바꾸기
@@ -71,7 +71,9 @@ class LottoWebController {
     this.#webIssuedLottoArray.forEach((array) => {
       const issuedLottoDiv = document.createElement("div");
       const curr = $("#content-box-lottos");
-      issuedLottoDiv.innerHTML = array;
+      issuedLottoDiv.innerHTML = "🎟️ " + array;
+      issuedLottoDiv.style.marginTop = "0.4rem";
+      issuedLottoDiv.className = "lotto-body";
       curr.append(issuedLottoDiv);
     });
   }
