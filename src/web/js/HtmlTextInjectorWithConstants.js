@@ -1,5 +1,6 @@
 import {
   LOTTO_RULE,
+  NUMBER_DELIMITER,
   RANDOM_NUMBER_RULE,
   WINNING_RULE,
 } from '../../constants/index.js';
@@ -12,6 +13,19 @@ const HtmlTextInjectorWithConstants = {
     this.private_setTextContentAboutPrize();
     this.private_setTextContentAboutPaymentAmountRule();
     this.private_setTextContentAboutWinningCriteria();
+  },
+
+  injectorLottoTickets(lottoTickets) {
+    const issuedLottosEl = document.querySelector('.issuedLottos');
+    const lottosCountEl = document.querySelector(
+      '#purchasedHistory__lottos-count__number',
+    );
+
+    lottosCountEl.textContent = lottoTickets.length;
+
+    lottoTickets.forEach((ticket) => {
+      this.private_makeElementForIssuedLotto(ticket, issuedLottosEl);
+    });
   },
 
   private_setNumberRangeOfPaymentAmountInput() {
@@ -132,6 +146,18 @@ const HtmlTextInjectorWithConstants = {
 
     numbersOfLottoEl.textContent = length;
   },
+
+  private_makeElementForIssuedLotto(ticket, issuedLottosEl) {
+    const li = document.createElement('li');
+    const textAboutLottoNumbers = ticket
+      .sort((prev, current) => prev - current)
+      .join(`${NUMBER_DELIMITER} `);
+
+    li.className = 'lotto';
+    li.textContent = `🎟️ ${textAboutLottoNumbers}`;
+
+    issuedLottosEl.appendChild(li);
+  },
 };
 
-HtmlTextInjectorWithConstants.injectorText();
+export default HtmlTextInjectorWithConstants;
