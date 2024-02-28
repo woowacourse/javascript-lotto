@@ -18,19 +18,29 @@ const LottoComponent = Object.freeze({
 
   makeMoneyForm: () => {
     const moneyForm = makeElementById('form', 'moneyForm');
+    const moneyFormInputDiv = makeElementWithClassName('div', 'moneyFormInputDiv');
+
+    appendChildren(moneyFormInputDiv, [LottoComponent.makeMoneyFormInput(), LottoComponent.makeMoneyFormButton()]);
+    appendChildren(moneyForm, [LottoComponent.makeMoneyFormLabel(), moneyFormInputDiv]);
+    return moneyForm;
+  },
+
+  makeMoneyFormLabel: () => {
     const moneyFormLabel = makeElementWithClassName('labe', 'moneyFormLabel');
     moneyFormLabel.innerText = '구입할 금액을 입력해주세요.';
+    return moneyFormLabel;
+  },
 
-    const moneyFormInputDiv = makeElementWithClassName('div', 'moneyFormInputDiv');
+  makeMoneyFormInput: () => {
     const moneyFormInput = makeElementWithClassName('input', 'moneyFormInput');
     moneyFormInput.placeholder = '금액';
     moneyFormInput.name = 'money';
+    return moneyFormInput;
+  },
+  makeMoneyFormButton: () => {
     const moneyFormButton = makeElementWithClassName('button', 'moneyFormButton');
     moneyFormButton.innerText = '구입';
-
-    appendChildren(moneyFormInputDiv, [moneyFormInput, moneyFormButton]);
-    appendChildren(moneyForm, [moneyFormLabel, moneyFormInputDiv]);
-    return moneyForm;
+    return moneyFormButton;
   },
 });
 
