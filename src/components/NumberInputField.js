@@ -1,6 +1,6 @@
 import './NumberInputField.css';
 
-const NUMBER_INPUT_FIELD_COMPONENT = `
+const NUMBER_INPUT_FIELD = `
   <input class="number-input" type="text"></input>
 `;
 
@@ -10,7 +10,7 @@ class NumberInputField extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = NUMBER_INPUT_FIELD_COMPONENT;
+    this.innerHTML = NUMBER_INPUT_FIELD;
   }
 
   getValue() {

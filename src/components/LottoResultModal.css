@@ -1,0 +1,59 @@
+lotto-result-modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.lotto-result {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+
+  width: 318px;
+  height: min-content;
+  z-index: 20;
+  background-color: var(--lotto-greyscale-1);
+
+  padding: 40px 16px 32px 16px;
+}
+
+.close-modal-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 16px;
+  right: 16px;
+
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-align: center;
+}
+
+.lotto-subtitle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 24px;
+  width: 100%;
+}
+
+.rate-of-return {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
