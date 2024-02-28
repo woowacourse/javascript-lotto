@@ -31,6 +31,13 @@ class LottoMain extends HTMLElement {
     this.innerHTML = LOTTO_MAIN;
   }
 
+  #setPurchaseEventListener() {
+    const purchasePriceForm = document.querySelector('purchase-price-form');
+    purchasePriceForm.addEventListener('purchase', (event) => {
+      this.#renderResult(event);
+    });
+  }
+
   #renderResult(event) {
     const { _, lottoNumbersArray } = event.detail;
 
@@ -39,13 +46,6 @@ class LottoMain extends HTMLElement {
 
     const resultButton = document.querySelector('#result-button');
     resultButton.setText('당첨 결과 확인하기');
-  }
-
-  #setPurchaseEventListener() {
-    const purchasePriceForm = document.querySelector('purchase-price-form');
-    purchasePriceForm.addEventListener('purchase', (event) => {
-      this.#renderResult(event);
-    });
   }
 }
 
