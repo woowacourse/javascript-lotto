@@ -15,11 +15,11 @@ body {
 }
 
 button {
-  height: 36px;
   padding: 6px 8px 6px 8px;
   border: none;
   outline: none;
   box-shadow: none;
+  height: 36px;
   cursor: pointer;
 }
 

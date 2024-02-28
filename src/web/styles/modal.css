@@ -23,8 +23,8 @@
   left: 50%;
   z-index: 2;
 
-  width: 350px;
-  height: 500px;
+  width: calc(49vh * 0.7);
+  height: 49vh;
   background-color: var(--lotto-grayscale2);
   transform: translate(-50%, -50%);
   border-radius: var(--border-radius);

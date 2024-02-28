@@ -28,9 +28,9 @@
 
   /* other properties */
   --border-radius: 4px;
-  --navbar-height: 64px;
-  --footer-height: 80px;
-  --logo-left: 130px;
+  --navbar-height: 6.25vh;
+  --footer-height: 7.8125vh;
+  --logo-left: 9vw;
 
   --margin-xsmall: 5px;
   --margin-small: 10px;
