@@ -65,6 +65,10 @@ class WebController {
   }
 
   async #setWinningLotto() {
+    winningNumbers.forEach((input) => {
+      input.addEventListener("keydown", winningLottoHandler.onInputKeyDown);
+    });
+
     const winningLotto = await this.#getWinningLotto();
 
     return winningLotto;
@@ -72,13 +76,8 @@ class WebController {
 
   #getWinningLotto() {
     return new Promise((resolve) => {
-      winningNumbers.forEach((input) => {
-        input.addEventListener("keydown", winningLottoHandler.onInputKeyDown);
-      });
-
       resultButton.addEventListener("click", (event) => {
         winningLottoHandler.onClickHandler(event, resolve);
-        dialog.showModal();
       });
     });
   }
@@ -86,6 +85,8 @@ class WebController {
   #getGameResult(lottoList, winningLotto) {
     const result = new LottoResult(lottoList, winningLotto);
     const { rank, profit } = result.getResult();
+
+    console.log(rank);
 
     WebView.showGameResult(rank);
     WebView.showProfit(profit);

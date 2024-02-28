@@ -7,14 +7,19 @@ const bonusNumber = document.getElementById("input_bonusNumber");
 
 const invalidWinningLotto = document.getElementById("invalid_winningLotto");
 
+const dialog = document.getElementById("result_dialog");
+
 const winningLottoHandler = {
+  convertInputToNumber() {
+    return Array.from(winningNumbers)
+      .map((input) => input.value.trim())
+      .join(",");
+  },
+
   onInputKeyDown(event) {
-    if (event.key !== "Enter") {
-      return;
-    }
+    if (event.key !== "Enter") return;
 
     const nextInput = event.target.nextElementSibling;
-
     if (nextInput) {
       nextInput.focus();
     } else {
@@ -22,22 +27,25 @@ const winningLottoHandler = {
     }
   },
 
+  makeWinningLotto() {
+    const numbersString = this.convertInputToNumber();
+    return new LottoMachine().makeWinningLotto(numbersString);
+  },
+
+  validateWinningLotto() {
+    const winningLotto = this.makeWinningLotto();
+    bonusNumberValidator(winningLotto.getNumbers(), Number(bonusNumber.value));
+    invalidWinningLotto.innerText = "";
+
+    return winningLotto;
+  },
+
   onClickHandler(event, resolve) {
     event.preventDefault();
-    const numbersString = Array.from(winningNumbers)
-      .map((input) => input.value.trim())
-      .join(",");
-
     try {
-      const winningLotto = new LottoMachine().makeWinningLotto(numbersString);
-      bonusNumberValidator(
-        winningLotto.getNumbers(),
-        Number(bonusNumber.value),
-      );
-
+      const winningLotto = this.validateWinningLotto();
       resolve(WinningLotto(winningLotto, bonusNumber.value));
-
-      invalidWinningLotto.innerText = "";
+      dialog.showModal();
     } catch (error) {
       invalidWinningLotto.innerText = error.message;
     }
