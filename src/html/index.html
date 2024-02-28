@@ -72,50 +72,55 @@
       <p class="footer__info color-primary text-caption">Copyright 2023. woowacourse</p>
     </footer>
 
-    <div style="background-color: aqua;">
+    <div class="result-modal">
       <!-- TODO: CSS에서 X(vector) 구현 -->
-      <div></div>
+      <div class="result-modal__button-close"></div>
 
-      <p>🏆 당첨 통계 🏆</p>
+      <p class="result-modal__title">🏆 당첨 통계 🏆</p>
 
-      <div>
-        <div>
+      <div class="result-modal__con-statics">
+        <div class="result-modal__con-categorys">
           <p>일치 갯수</p>
           <p>당첨금</p>
           <p>당첨 갯수</p>
         </div>
-        <div>
-          <div>
-            <p>3개</p>
-            <p>5,000</p>
-            <p>n개</p>
+
+        <div class="result-modal__con-statics">
+          <div class="result-modal__con-static-5">
+            <p class="result-modal__text-condition-5">3개</p>
+            <p class="result-modal__text-prize-5">5,000</p>
+            <p class="result-modal__text-count-5">n개</p>
           </div>
-          <div>
-            <p>4개</p>
-            <p>50,000</p>
-            <p>n개</p>
+
+          <div class="result-modal__con-static-4">
+            <p class="result-modal__text-condition-4">4개</p>
+            <p class="result-modal__text-prize-4">50,000</p>
+            <p class="result-modal__text-count-4">n개</p>
           </div>
-          <div>
-            <p>5개</p>
-            <p>1,500,000</p>
-            <p>n개</p>
+
+          <div class="result-modal__con-static-3">
+            <p class="result-modal__text-condition-3">5개</p>
+            <p class="result-modal__text-prize-3">1,500,000</p>
+            <p class="result-modal__text-count-3">n개</p>
           </div>
-          <div>
-            <p>5개+보너스볼</p>
-            <p>30,000,000</p>
-            <p>n개</p>
+
+          <div class="result-modal__con-static-2">
+            <p class="result-modal__text-condition-2">5개+보너스볼</p>
+            <p class="result-modal__text-prize-2">30,000,000</p>
+            <p class="result-modal__text-count-2">n개</p>
           </div>
-          <div>
-            <p>6개</p>
-            <p>2,000,000,000</p>
-            <p>n개</p>
+
+          <div class="result-modal__con-static-1">
+            <p class="result-modal__text-condition-1">6개</p>
+            <p class="result-modal__text-prize-1">2,000,000,000</p>
+            <p class="result-modal__text-count-1">n개</p>
           </div>
         </div>
       </div>
 
-      <div>당신의 총 수익률은 %입니다.</div>
+      <div class="result-modal__text-profit-rate">당신의 총 수익률은 %입니다.</div>
 
-      <button>다시 시작하기</button>
+      <button class="result-modal__button-restart">다시 시작하기</button>
     </div>
   </div>
   <script type="module" src="../js/step2-index.js"></script>
