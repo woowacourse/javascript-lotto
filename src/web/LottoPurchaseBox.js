@@ -18,26 +18,30 @@ class LottoPurchaseBox extends Component {
   }
 
   template() {
-    return `    
-        <section class="lotto-purchase-box">
-            <p class="lotto-purchase-title">🎱 내 번호 당첨 확인 🎱</p>
-            <section class="money-input-wrapper"></section>
-            ${
-              this.state.lottoTickets.length > 0
-                ? `
-                <section class="lotto-display-wrapper"></section>
-                <section class="winning-lotto-input-wrapper"></section>
-                `
-                : ``
-            }
-            ${
-              this.state.isModalOpen
-                ? `
-                <section class="lotto-statistics-modal-wrapper"></section>`
-                : ``
-            }
-        </section>
+    const { lottoTickets, isModalOpen } = this.state;
+
+    const LOTTO_PURCHASE_BOX_TEMPLATE = `    
+      <section class="lotto-purchase-box">
+          <p class="lotto-purchase-title">🎱 내 번호 당첨 확인 🎱</p>
+          <section class="money-input-container"></section>
+          ${
+            lottoTickets.length > 0
+              ? `
+              <section class="lotto-display-container"></section>
+              <section class="winning-lotto-input-container"></section>
+              `
+              : ``
+          }
+          ${
+            isModalOpen
+              ? `
+              <section class="lotto-statistics-modal-container"></section>`
+              : ``
+          }
+      </section>
     `;
+
+    return LOTTO_PURCHASE_BOX_TEMPLATE;
   }
 
   mounted() {
@@ -52,7 +56,7 @@ class LottoPurchaseBox extends Component {
   }
 
   initializeMoneyInput() {
-    const $moneyInput = this.$target.querySelector('.money-input-wrapper');
+    const $moneyInput = this.$target.querySelector('.money-input-container');
 
     new MoneyInput($moneyInput, {
       purchaseLottoTickets: (money) => this.purchaseLottoTickets(money),
@@ -60,13 +64,13 @@ class LottoPurchaseBox extends Component {
   }
 
   initializeLottoDisplay() {
-    const $lottoDisplay = this.$target.querySelector('.lotto-display-wrapper');
+    const $lottoDisplay = this.$target.querySelector('.lotto-display-container');
 
     new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
   }
 
   initializeWinningLottoInput() {
-    const $winningLottoInput = this.$target.querySelector('.winning-lotto-input-wrapper');
+    const $winningLottoInput = this.$target.querySelector('.winning-lotto-input-container');
 
     new WinningLottoInput($winningLottoInput, {
       makeWinningLotto: (winningNumbers, bonusNumber) => this.makeWinningLotto(winningNumbers, bonusNumber),
@@ -74,7 +78,7 @@ class LottoPurchaseBox extends Component {
   }
 
   initializeLottoStatisticsModal() {
-    const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal-wrapper');
+    const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal-container');
 
     new LottoStatisticsModal($lottoStatisticsModal, {
       lottoStatistics: this.state.lottoStatistics,
