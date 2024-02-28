@@ -1,11 +1,9 @@
 import NUMBER from '../constants/number';
-import Lotto from '../domain/Lotto';
 import LottoCalculator from '../domain/LottoCalculator';
 import LottoProcess from '../domain/LottoProcess';
 import LottoPublisher from '../domain/LottoPublisher';
-import WinLotto from '../domain/WinLotto';
 import { $, $$ } from '../util/domSelector';
-import { hideElement, renderError } from '../util/view';
+import { renderError } from '../util/view';
 import LottoValidation from '../validation/lottoValidation';
 import MoneyValidation from '../validation/moneyValidation';
 import ModalOutputView from '../view/web/ModalOutputView';
@@ -26,12 +24,6 @@ class LottoWebController {
     $('#winning-lotto-form').addEventListener('submit', (e) => {
       e.preventDefault();
       this.submitWinLotto();
-    });
-
-    [...$$('.number-input')].forEach((input) => {
-      input.addEventListener('input', () => {
-        hideElement($('#win-lotto-error'));
-      });
     });
 
     $('#lotto-game-restart-button').addEventListener('click', () => {
@@ -60,16 +52,13 @@ class LottoWebController {
 
   convertMoneyToLotto(money) {
     const lottosCount = Number.parseInt(money / NUMBER.LOTTO_PRICE, 10);
-    const [lottos, lottosNumbers] = this.buyRandomLottos(lottosCount);
+
+    const lottoPublisher = new LottoPublisher(lottosCount, []);
+    const lottos = lottoPublisher.publishLottos();
+    const lottosNumbers = lottoPublisher.lottoNumbers;
+
     this.lottos = lottos;
     return lottosNumbers;
-  }
-
-  buyRandomLottos(lottoCount) {
-    const lottoPublisher = new LottoPublisher(lottoCount, []);
-    const lottos = lottoPublisher.publishLottos();
-    const lottoNumbers = lottoPublisher.lottoNumbers;
-    return [lottos, lottoNumbers];
   }
 
   submitMoneyForm(money) {
@@ -98,6 +87,7 @@ class LottoWebController {
   getWinLottoNumbers() {
     const numberInputs = [...$$('.number-input')];
     const bonusNumberInput = numberInputs.splice(-1, 1);
+
     const winNumbers = numberInputs.reduce((numbers, input) => {
       numbers.push(Number(input.value));
       return numbers;
@@ -108,8 +98,8 @@ class LottoWebController {
 
   makeWinLotto(winNumbers, bonusNumber) {
     LottoValidation.validateNumbers(winNumbers);
-    const lottoWithWinNumbers = new Lotto(winNumbers);
-    const winLotto = new WinLotto(lottoWithWinNumbers, Number(bonusNumber));
+    const lottoPublisher = new LottoPublisher(1, winNumbers);
+    const winLotto = lottoPublisher.publishWinLotto(bonusNumber);
     return winLotto;
   }
 
@@ -117,6 +107,7 @@ class LottoWebController {
     try {
       const numberInputs = [...$$('.number-input')];
       LottoValidation.checkInputEmpty(numberInputs);
+
       const [winNumbers, bonusNumber] = this.getWinLottoNumbers();
       const winLotto = this.makeWinLotto(winNumbers, bonusNumber);
       this.showWinResults(winLotto);
