@@ -31,37 +31,12 @@ export default function modal(element) {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>3개</td>
-                <td>5,000</td>
-                <td>n개</td>
-              </tr>
-              <tr>
-                <td>4개</td>
-                <td>50,000</td>
-                <td>n개</td>
-              </tr>
-              <tr>
-                <td>5개</td>
-                <td>1,500,000</td>
-                <td>n개</td>
-              </tr>
-              <tr>
-                <td>5개 + 보너스볼</td>
-                <td>30,000,000</td>
-                <td>n개</td>
-              </tr>
-              <tr>
-                <td>6개</td>
-                <td>2,000,000,000</td>
-                <td>n개</td>
-              </tr>
             </tbody>
           </table>
         </section>
         
         <section id="profit-container">
-          <span id="profit">당신의 총 수익률은 %입니다.</span>
+          <span id="profit"></span>
         </section>
 
         <section id="retry-btn-container">
