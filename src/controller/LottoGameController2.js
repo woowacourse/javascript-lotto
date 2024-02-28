@@ -3,14 +3,14 @@ import LottoMachine from '../domain/LottoMachine.js';
 import LottosManager from '../domain/LottosManager.js';
 import elementHandler from '../handler/elementHandler.js';
 import Validator from '../validator/Validator.js';
-import View from '../view/view.js';
+import View from '../view/View.js';
 
 const $purchaseAmount = elementHandler.$('.purchase-input-box');
 const $purchaseForm = elementHandler.$('.purchase-form');
 
 class LottoGameController2 {
   #purchaseAmount;
-  #lottos;
+  #lottosManager;
 
   play() {
     this.inputPurchaseAmount();
@@ -19,50 +19,31 @@ class LottoGameController2 {
   inputPurchaseAmount() {
     $purchaseForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      console.log($purchaseAmount.value);
-      this.checkPurchaseAmount($purchaseAmount.value);
+      this.#checkPurchaseAmount($purchaseAmount.value);
     });
   }
 
-  checkPurchaseAmount(purchaseAmount) {
+  #checkPurchaseAmount(purchaseAmount) {
     try {
       Validator.validatePurchaseAmount(purchaseAmount);
       this.#purchaseAmount = purchaseAmount;
-      this.#createRandomLottos(this.#purchaseAmount / SETTING.LOTTO_PRICE);
+      this.#createRandomLottos();
     } catch (error) {
       alert(error.message);
       $purchaseAmount.value = '';
     }
   }
 
-  #createRandomLottos(lottoCount) {
-    console.log(lottoCount);
-    View.outputLottoCount(lottoCount);
-    const lottoList = new LottoMachine(lottoCount).getLottoNumberList();
-    this.#lottos = new LottosManager(lottoList);
+  #createRandomLottos() {
+    const lottos = new LottoMachine(this.#purchaseAmount).getLottoNumberList();
+    this.#lottosManager = new LottosManager(lottos);
+    this.#showPurchasedLottos(lottos);
   }
 
-  // #calculateWinningResult(winningNumbers, bonusNumber) {
-  //   const winningResults = this.#lottos.getWinningResults(winningNumbers, bonusNumber);
-  //   OutputView.printWinningResults(winningResults);
-  //   OutputView.printProfitRate(this.#calculateProfitRate(winningResults));
-  // }
-
-  // #calculateProfitRate(winningResults) {
-  //   const totalProfit = Object.entries(winningResults).reduce((profit, [matchedKey, count]) => {
-  //     return profit + RANKING[matchedKey].REWARD * count;
-  //   }, 0);
-  //   return ((totalProfit * 100) / this.#purchaseAmount).toLocaleString('ko-KR', { minimumFractionDigits: 1 });
-  // }
-
-  // #restartGame(restartCommand) {
-  //   if (restartCommand === SETTING.RESTART_COMMAND) {
-  //     this.play();
-  //   }
-  //   if (restartCommand === SETTING.EXIT_COMMAND) {
-  //     OutputView.printExitMessage();
-  //   }
-  // }
+  #showPurchasedLottos(lottos) {
+    View.renderPurchasedLottos(lottos);
+    View.renderWinningNumbersInput();
+  }
 }
 
 export default LottoGameController2;

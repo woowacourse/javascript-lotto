@@ -14,7 +14,7 @@
       </header>
 
       <div id="modal">
-        <div class="modal__background"></div>
+        <div class="modal__background" hidden></div>
         <div class="modal__content">
           <button class="close-button">❌</button>
           <h2 class="modal__title">🏆 당첨 통계 🏆</h2>
@@ -41,13 +41,13 @@
               <button class="purchase-button" type="submit">구입</button>
             </div>
           </form>
-          <div class="lottos-container">
+          <div class="lottos-container" hidden>
             <label class="lottos-text"></label>
             <ul class="lottos-list">
-              <li class="lottos-list-item"><span>🎟</span> 1, 2, 3, 4, 5, 6</li>
+              <!-- <li class="lottos-list-item"><span>🎟</span> 1, 2, 3, 4, 5, 6</li> -->
             </ul>
           </div>
-          <form class="winning-lotto-form">
+          <form class="winning-lotto-form" hidden>
             <div class="winning-lotto-text">지난 주 당첨번호 6개와 보너스번호 1개를 입력해주세요.</div>
             <div class="winning-lotto-container">
               <div class="winning-lotto-wrapper">
@@ -84,6 +84,6 @@
 
       <footer>Copyright 2023. woowacourse</footer>
     </div>
-    <script defer type="module" src="./src/controller/LottoGameController2.js"></script>
+    <!-- <script type="module" src="./src/step2-index.js"></script> -->
   </body>
 </html>
