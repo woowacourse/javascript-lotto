@@ -76,7 +76,10 @@ class LottoController2 {
     });
   }
 
-  #printProfitRate(profitRate) {}
+  #printProfitRate(profitRate) {
+    document.querySelector('.result-modal__text-profit-rate').innerHTML =
+      `당신의 총 수익률은 ${profitRate.toFixed(1)}% 입니다.`;
+  }
 
   #showComponentByClass(className) {
     document.querySelector(className).classList.remove('hidden');
