@@ -47,27 +47,36 @@ class StatisticsPopupController {
 
   #addEvent() {
     this.#element.btnClosePopupEl.addEventListener('click', (event) =>
-      this.#hideHiddenTargets(event).bind(this),
+      this.#hidePopup(event),
     );
 
     this.#element.btnRestartEl.addEventListener('click', (event) =>
-      this.#restartGame(event).bind(this),
+      this.#restartGame(event),
     );
   }
 
-  #hideHiddenTargets(event) {
+  #hidePopup(event) {
     event.stopPropagation();
+    this.#element.popupEl.classList.add('hidden');
+  }
 
+  #hideHiddenTargets() {
     const hiddenTargetElList = document.querySelectorAll('.hiddenTarget');
 
     hiddenTargetElList.forEach((element) => element.classList.add('hidden'));
+  }
+
+  #removePaymentAmountInputValue() {
+    const inputEl = document.querySelector('#input-paymentAmount');
+
+    inputEl.value = '';
   }
 
   #restartGame(event) {
     event.stopPropagation();
 
     this.#hideHiddenTargets();
-    // TODO 게임 재시작
+    this.#removePaymentAmountInputValue();
   }
 }
 

@@ -28,10 +28,13 @@ class WebLottoGameController {
     );
     // eslint-disable-next-line
     const winning = new WinningLottoAndBonusGenerator(this.#lottoResultsHelper);
-    // eslint-disable-next-line
-    const statisticsPopupController = new StatisticsPopupController(
-      this.#lottoResultsHelper,
-    );
+
+    if (this.#lottoResultsHelper.results) {
+      // eslint-disable-next-line
+      const statisticsPopupController = new StatisticsPopupController(
+        this.#lottoResultsHelper,
+      );
+    }
   }
 }
 export default WebLottoGameController;
