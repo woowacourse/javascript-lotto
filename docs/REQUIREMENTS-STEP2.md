@@ -15,12 +15,11 @@
 - [x] css, html을 이용해 하나의 html 페이지에 화면 만들기  
 - [x] Observer, Observable, Component 추상 클래스 생성
 - [x] 진입점이 되는 LottoWebApp 클래스 생성
-- [ ] 구입 금액 입력 
+- [x] 구입 금액 입력 
   - [x] buyAmountForm 컴포넌트 생성
-  - [ ] buyAmountState 생성 및 연결
 - [ ] 생성 로또 표시
+  - [x] lottosState 생성 및 연결
   - [ ] boughtLottoBoard 컴포넌트 생성
-  - [ ] lottosState 생성 및 연결
 - [ ] 당첨 결과 표시
   - [ ] WinningLottoForm 컴포넌트 생성
   - [ ] LottoResultState 생성 및 연결

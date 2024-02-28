@@ -6,6 +6,14 @@ import { $ } from "../utils/selector.js";
 import { parseNumber } from "../../step1-console/utils/parseNumber.js";
 
 export default class BuyAmountForm extends MyComponent {
+  #lottosState;
+
+  constructor(targetElementId, lottosState) {
+    super(targetElementId);
+
+    this.#lottosState = lottosState;
+  }
+
   _getTemplate() {
     return `
   <section class="getting-buying-amount">
@@ -29,11 +37,14 @@ export default class BuyAmountForm extends MyComponent {
     const buyingAmount = $(".buying-amount-input").value;
 
     const lottos = this.#buyLottos(buyingAmount);
+
+    this.#lottosState.setLottos(lottos);
   }
 
   #buyLottos(rawBuyAmount) {
     const money = new Money(parseNumber(rawBuyAmount));
     const lottos = LottoSeller.sell(money);
+
     return lottos;
   }
 }
