@@ -23,7 +23,7 @@ class WebController {
 
     await this.play();
     retryButton.addEventListener("click", async () => {
-      dialog.close(); // 모달 닫기
+      dialog.close();
       this.#reset();
     });
   }

@@ -27,3 +27,11 @@ export const OUTPUT_MESSAGE = {
 export const RETRY_INPUT = "y";
 
 export const LOTTO_PRICE = 1_000;
+
+export const WEB_MESSAGE = {
+  PURCHASE_AMOUNT: (purchaseAmount) =>
+    `총 ${purchaseAmount / LOTTO_PRICE}개를 구매했습니다.`,
+  LOTTO_ICON: "🎟️",
+  WIN_COUNT: (count) => `${count}개`,
+  PROFIT: (profit) => `당신의 총 수익률은 ${profit.toLocaleString()}%입니다.`,
+};

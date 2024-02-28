@@ -1,4 +1,4 @@
-import { LOTTO_PRICE } from "../constants/system.js";
+import { WEB_MESSAGE } from "../constants/system.js";
 
 const WebView = {
   showAfterPurchases() {
@@ -16,7 +16,7 @@ const WebView = {
     const invalidPurchaseAmount = document.getElementById(
       "invalid_purchaseAmount",
     );
-    purchaseNumber.textContent = `총 ${purchaseAmount / LOTTO_PRICE}개를 구매하였습니다.`;
+    purchaseNumber.textContent = WEB_MESSAGE.PURCHASE_AMOUNT(purchaseAmount);
     purchaseAmountInput.value = "";
     invalidPurchaseAmount.innerText = "";
   },
@@ -35,7 +35,7 @@ const WebView = {
     const li = document.createElement("li");
     const icon = document.createElement("span");
     const lotto = document.createElement("span");
-    icon.innerText = "🎟️";
+    icon.innerText = WEB_MESSAGE.LOTTO_ICON;
     lotto.innerText = lottoNumber.sort((a, b) => a - b).join(", ");
     li.appendChild(icon);
     li.appendChild(lotto);
@@ -55,13 +55,13 @@ const WebView = {
   oneTableRow(row, count) {
     const tdElement = row.querySelector("td:nth-child(3)");
     if (tdElement) {
-      tdElement.textContent = `${count}개`;
+      tdElement.textContent = WEB_MESSAGE.WIN_COUNT(count);
     }
   },
 
   showProfit(profit) {
     const profitElement = document.getElementById("profit");
-    profitElement.textContent = `당신의 총 수익률은 ${profit}%입니다.`;
+    profitElement.textContent = WEB_MESSAGE.PROFIT(profit);
   },
 };
 export default WebView;

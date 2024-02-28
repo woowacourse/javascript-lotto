@@ -1,3 +1,4 @@
+import { OPTION } from "../constants/option.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import WinningLotto from "../domain/WinningLotto.js";
 import bonusNumberValidator from "../validator/BonusNumberValidator.js";
@@ -13,7 +14,7 @@ const winningLottoHandler = {
   convertInputToNumber() {
     return Array.from(winningNumbers)
       .map((input) => input.value.trim())
-      .join(",");
+      .join(OPTION.DELIMITER);
   },
 
   onInputKeyDown(event) {
