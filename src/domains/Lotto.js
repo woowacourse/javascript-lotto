@@ -1,9 +1,6 @@
 import { ERROR_MESSAGE } from '../constants';
-import { isIntegers } from '../utils';
-import {
-  isLottoNumbersInRange,
-  isValidLottoNumberCount,
-} from './validator/validators';
+import { isIntegers } from '../utils/validators';
+import { isLottoNumbersInRange, isValidLottoNumberCount } from './validator/validators';
 
 class Lotto {
   #numbers;
@@ -23,13 +20,11 @@ class Lotto {
   }
 
   #validateNumbers(numbers = []) {
-    if (!isLottoNumbersInRange(numbers))
-      throw Error(ERROR_MESSAGE.invalidLottoNumberRange);
+    if (!isLottoNumbersInRange(numbers)) throw Error(ERROR_MESSAGE.invalidLottoNumberRange);
 
     if (!isIntegers(numbers)) throw Error(ERROR_MESSAGE.notInteger);
 
-    if (!isValidLottoNumberCount(numbers))
-      throw Error(ERROR_MESSAGE.invalidLottoNumberCount);
+    if (!isValidLottoNumberCount(numbers)) throw Error(ERROR_MESSAGE.invalidLottoNumberCount);
   }
 }
 

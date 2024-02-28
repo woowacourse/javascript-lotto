@@ -1,11 +1,8 @@
 import { ERROR_MESSAGE, LOTTO_RULE } from '../constants';
-import { isEmptyInput, isInteger, RandomNumber } from '../utils';
+import RandomNumber from '../utils/RandomNumber';
+import { isEmptyInput, isInteger } from '../utils/validators';
 import Lotto from './Lotto';
-import {
-  isDivisibleByPrice,
-  isValidNumbersOfTickets,
-  isValidWinningNumbersForm,
-} from './validator/validators';
+import { isDivisibleByPrice, isValidNumbersOfTickets, isValidWinningNumbersForm } from './validator/validators';
 import WinningLotto from './WinningLotto';
 
 class LottoMachine {
@@ -26,10 +23,7 @@ class LottoMachine {
     this.#validateLottoNumbersForm(lottoNumbersInput);
 
     const lottoNumbers = lottoNumbersInput.split(',').map(Number);
-    this.#winningLotto = new WinningLotto(
-      new Lotto(lottoNumbers),
-      bonusNumberInput,
-    );
+    this.#winningLotto = new WinningLotto(new Lotto(lottoNumbers), bonusNumberInput);
   }
 
   get lottos() {
@@ -41,9 +35,7 @@ class LottoMachine {
   }
 
   get matchingResults() {
-    return this.#lottos.map((lotto) =>
-      this.#winningLotto.compareLotto(lotto.numbers),
-    );
+    return this.#lottos.map((lotto) => this.#winningLotto.compareLotto(lotto.numbers));
   }
 
   #generateLottoTickets(paymentAmount) {
@@ -51,10 +43,7 @@ class LottoMachine {
     const numbersOfTickets = paymentAmount / price;
 
     return Array.from({ length: numbersOfTickets }, () => {
-      const uniqueNumbers = RandomNumber.pickUniqueNumbersInRange(
-        range,
-        length,
-      );
+      const uniqueNumbers = RandomNumber.pickUniqueNumbersInRange(range, length);
       return new Lotto(uniqueNumbers);
     });
   }
@@ -62,23 +51,19 @@ class LottoMachine {
   #validatePaymentAmount(paymentAmountInput) {
     const paymentAmount = Number(paymentAmountInput);
 
-    if (isEmptyInput(paymentAmountInput))
-      throw new Error(ERROR_MESSAGE.emptyInput);
+    if (isEmptyInput(paymentAmountInput)) throw new Error(ERROR_MESSAGE.emptyInput);
 
     if (!isInteger(paymentAmount)) throw new Error(ERROR_MESSAGE.notInteger);
 
-    if (!isDivisibleByPrice(paymentAmount))
-      throw new Error(ERROR_MESSAGE.inDivisibleByPrice);
+    if (!isDivisibleByPrice(paymentAmount)) throw new Error(ERROR_MESSAGE.inDivisibleByPrice);
 
-    if (!isValidNumbersOfTickets(paymentAmount))
-      throw new Error(ERROR_MESSAGE.inValidNumbersOfTickets);
+    if (!isValidNumbersOfTickets(paymentAmount)) throw new Error(ERROR_MESSAGE.inValidNumbersOfTickets);
   }
 
   #validateLottoNumbersForm(numbersInput) {
     if (isEmptyInput(numbersInput)) throw new Error(ERROR_MESSAGE.emptyInput);
 
-    if (!isValidWinningNumbersForm(numbersInput))
-      throw new Error(ERROR_MESSAGE.inValidwinningNumbersForm);
+    if (!isValidWinningNumbersForm(numbersInput)) throw new Error(ERROR_MESSAGE.inValidwinningNumbersForm);
   }
 }
 

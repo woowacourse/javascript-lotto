@@ -1,4 +1,4 @@
-import { Console } from '../utils';
+import Console from '../utils/Console';
 
 const InputController = {
   async retryOnInvalidInput(action) {

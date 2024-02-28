@@ -12,12 +12,27 @@ import './styles/PaymentForm.css';
 import LottoItems from './components/LottoItems';
 import PaymentForm from './components/PaymentForm';
 
+// domains
+import LottoMachine from './domains/LottoMachine';
+
 window.customElements.define('lotto-items', LottoItems);
 window.customElements.define('payment-form', PaymentForm, { extends: 'form' });
 
-// TODO: 이벤트 이름 객체 맵핑 객체 만들기
 document.addEventListener('DOMContentLoaded', () => {
+  // TODO: 이벤트가 추가되면 이벤트 { 이름: 함수 }로 객체를 만들어 돌면서 실행해주는 방법도 괜찮을듯..
   document.addEventListener('paymentFormSubmit', (event) => {
-    console.log(event);
+    const { paymentAmount } = event.detail;
+
+    try {
+      new LottoMachine(paymentAmount);
+    } catch (error) {
+      alert(error.message);
+    }
   });
 });
+
+// const GameController = {
+//   paymentFormSubmit: () => {
+
+//   },
+// }

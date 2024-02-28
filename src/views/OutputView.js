@@ -1,5 +1,5 @@
 import { OUTPUT_MESSAGES, WINNING_RULE, NUMBER_DELIMITER } from '../constants';
-import { Console } from '../utils';
+import Console from '../utils/Console';
 
 const OutputView = {
   printLottoTickets(lottoTickets) {
@@ -22,9 +22,7 @@ const OutputView = {
   },
 
   printProfitRate(profitRate) {
-    Console.print(
-      `\n총 수익률은 ${profitRate}${OUTPUT_MESSAGES.profitUnit}입니다.`,
-    );
+    Console.print(`\n총 수익률은 ${profitRate}${OUTPUT_MESSAGES.profitUnit}입니다.`);
   },
 
   printRestartGuide() {

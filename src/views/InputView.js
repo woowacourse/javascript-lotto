@@ -1,5 +1,5 @@
-import Console from '../utils/Console';
 import { INPUT_MESSAGES } from '../constants';
+import Console from '../utils/Console';
 
 const InputView = {
   async readPaymentAmount() {
