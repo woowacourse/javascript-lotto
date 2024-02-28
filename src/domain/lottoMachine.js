@@ -25,7 +25,7 @@ export default class LottoMachine {
       Random.getRandomArray({
         minNumber: LOTTO_RULES.min_number,
         maxNumber: LOTTO_RULES.max_number,
-        count: LOTTO_RULES.length,
+        length: LOTTO_RULES.length,
       }),
     );
     return lotto;

@@ -9,6 +9,8 @@ import LottoMachine from './domain/lottoMachine';
 const $buyForm = document.querySelector('.buy-form');
 const $lottoResult = document.querySelector('.lotto-result');
 const $answerForm = document.querySelector('.answer-form');
+const $lottoResultLabel = document.querySelector('.lotto-result-label');
+const $lottoNumbers = document.querySelector('.lotto-numbers');
 
 $buyForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -26,4 +28,5 @@ $buyForm.addEventListener('submit', (e) => {
   const lottoMachine = new LottoMachine(money);
   console.log(lottoMachine.getLottoCount);
   console.log(lottoMachine.getLottoNumbers);
+  $lottoResultLabel.value = `총 ${lottoMachine.getLottoCount}개를 구매하였습니다.`;
 });
