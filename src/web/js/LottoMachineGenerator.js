@@ -12,10 +12,6 @@ class LottoMachineGenerator {
     this.#addEvent();
   }
 
-  // get lottoMachine() {
-  //   return this.#lottoMachine;
-  // }
-
   #assignElement() {
     this.#btnPayLottoEl = document.querySelector('.btn-payLotto');
   }
@@ -46,7 +42,7 @@ class LottoMachineGenerator {
   }
 
   #handleClickBtn(event) {
-    event.stopPropagation();
+    event.preventDefault();
     const { value } = document.querySelector('#input-paymentAmount');
     const errorMessageEl = document.querySelector(
       '.paymentAmount .message-error',
@@ -57,6 +53,7 @@ class LottoMachineGenerator {
 
       this.#showWinningCriteria();
       this.#showPurchasedHistory();
+      handleErrorMessage(errorMessageEl);
     } catch (error) {
       handleErrorMessage(errorMessageEl, error);
     }

@@ -6,11 +6,7 @@ import { handleErrorMessage } from './utils';
 class WinningLottoAndBonusGenerator {
   #lottoResultsHelper;
 
-  #element = {
-    btnCheckResult: undefined,
-    // lottoNumbers, bonusNumber input 포함
-    inputElList: undefined,
-  };
+  #formEl;
 
   /**
    *
@@ -23,24 +19,19 @@ class WinningLottoAndBonusGenerator {
   }
 
   #assignEl() {
-    this.#element.inputElList = document.querySelectorAll(
-      '.winningCriteria__inputGroupContainer input',
-    );
-
-    this.#element.btnCheckResult = document.querySelector('.btn-checkResult');
+    this.#formEl = document.querySelector('.winningCriteria__form');
   }
 
   #getNumbers() {
-    const numberInputValues = Array.from(this.#element.inputElList).map(
-      (element) => element.value,
-    );
+    const lottoNumberValues = Array.from(
+      this.#formEl.querySelectorAll(
+        '.winningCriteria__form_lottoNumbers input',
+      ),
+    ).map((input) => input.value);
 
-    const lastIndex = numberInputValues.length - 1;
     return {
-      lottoNumberValues: numberInputValues
-        .slice(0, lastIndex)
-        .join(NUMBER_DELIMITER),
-      bonusNumberValues: numberInputValues[lastIndex],
+      lottoNumberValues: lottoNumberValues.join(NUMBER_DELIMITER),
+      bonusNumberValues: document.querySelector('#input-bonusNumber').value,
     };
   }
 
@@ -48,7 +39,7 @@ class WinningLottoAndBonusGenerator {
     const { lottoNumberValues, bonusNumberValues } = this.#getNumbers();
 
     const errorMessageEl = document.querySelector(
-      '.winningCriteria .errorMessage',
+      '.winningCriteria .message-error',
     );
 
     try {
@@ -68,13 +59,15 @@ class WinningLottoAndBonusGenerator {
   }
 
   #addEvent() {
-    this.#element.btnCheckResult.addEventListener('click', (event) =>
+    const btnCheckResultEl = this.#formEl.querySelector('button');
+
+    btnCheckResultEl.addEventListener('click', (event) =>
       this.#handleClickBtn(event),
     );
   }
 
   #handleClickBtn(event) {
-    event.stopPropagation();
+    event.preventDefault();
     this.#generateWinningLottoAndBonus();
   }
 

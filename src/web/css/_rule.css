@@ -2,10 +2,17 @@
 
 .explanation {
   z-index: 1;
+  width: fit-content;
+}
+.explanation:hover {
+  .rule {
+    display: block;
+  }
 }
 .rule {
+  display: none;
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(17px + 7px);
   right: 0;
   background-color: var(--lotto-greyScale1-color);
   max-width: 600px;
@@ -19,4 +26,8 @@
     list-style: circle;
     margin-left: 16px;
   }
+}
+
+.icon-toggleRule {
+  font-size: 14px;
 }

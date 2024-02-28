@@ -30,7 +30,7 @@ const HtmlTextInjectorWithConstants = {
     const { start, end } = LOTTO_RULE.range;
 
     const inputGroupEl = document.querySelector(
-      '.winningCriteria_lotto .input-group',
+      '.winningCriteria__form_lottoNumbers .input-group',
     );
 
     const labelTextContent = '당첨 번호를 입력해주세요.';
@@ -42,13 +42,14 @@ const HtmlTextInjectorWithConstants = {
       const inputElId = `input-lottoNumber${index + 1}`;
 
       labelEl.setAttribute('for', inputElId);
-      labelEl.className = 'hidden';
+      labelEl.className = 'screen-reader-only';
       labelEl.textContent = labelTextContent;
 
       inputEl.id = inputElId;
       inputEl.setAttribute('type', 'number');
       inputEl.setAttribute('min', start);
       inputEl.setAttribute('max', end);
+      inputEl.name = inputElId.replace('input-', '');
 
       inputGroupEl.appendChild(labelEl);
       inputGroupEl.appendChild(inputEl);

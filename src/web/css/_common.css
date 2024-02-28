@@ -17,6 +17,9 @@ input {
   border: 1px solid var(--lotto-greyScale3-color);
 }
 
+form label {
+  margin-bottom: 4px;
+}
 .hidden {
   display: none;
 }
@@ -33,4 +36,10 @@ input {
 .shadow {
   -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.19);
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.19);
+}
+
+.screen-reader-only {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }

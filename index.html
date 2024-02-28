@@ -24,8 +24,8 @@
           <header>🎱 내 번호 당첨 확인 🎱</header>
           <section class="paymentAmount">
             <div class="paymentAmount__explanation explanation">
-              <button class="btn-toggleRule" title="구입 금액에 관한 룰 보기" name="btn-toggle-rule-paymentAmount">🤔❔</button>
-              <ul class="rule rule-paymentAmount hidden hiddenTarget shadow ">
+              <div class="icon-toggleRule" title="구입 금액에 관한 룰 보기" name="icon-toggle-rule-paymentAmount">🤔❔</div>
+              <ul class="rule rule-paymentAmount shadow ">
                 <li>
                   로또 가격은<span class="paymentAmount__rule-lottoPrice"></span>원이에요.
                 </li>
@@ -34,19 +34,25 @@
                     id="paymentAmount__rule-maxNumberOfTickets"></span>장이에요.</li>
               </ul>
             </div>
-            <div class="paymentAmount__form">
-              <div class="inputForm">
+            <form class="paymentAmount__form">
+              <label for="input-paymentAmount">
+                구입할 금액을 입력해주세요.
+              </label>
+              <div>
+                <input id="input-paymentAmount" type="number" name="paymentAmount" placeholder="금액" />
+                <button class="btn-payLotto">구입</button>
+              </div>
+            </form>
+            <!-- <div class="inputForm">
                 <label for="input-paymentAmount">
                   구입할 금액을 입력해주세요.
                 </label>
 
                 <input id="input-paymentAmount" type="number" placeholder="금액" />
               </div>
-              <button class="btn-payLotto">구입</button>
-            </div>
+              <button class="btn-payLotto">구입</button> -->
             <div class="message-error"></div>
           </section>
-
           <section class="purchasedHistory hiddenTarget hidden">
             <div class="purchasedHistory__lottos-count">
               총 <span id="purchasedHistory__lottos-count__number"></span>를 구매하였습니다.
@@ -57,44 +63,46 @@
             </ul>
           </section>
           <section class="winningCriteria hiddenTarget hidden">
-            <div class="winningCriteria__explanation  explanation">
-              <div>
-                지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
-              </div>
-              <div>
-                <button class="btn-toggleRule" title="당첨 번호, 보너스 번호에 관란 룰 보기"
-                  name="btn-toggle-rule-winningCriteria">🤔❔</button>
-              </div>
-              <ul class="rule hidden hiddenTarget rule-winningCriteria shadow ">
-                <li>번호는
-                  <span id="winningCriteria__rule-startNumberOfLotto"></span>~
-                  <span id="winningCriteria__rule-endNumberOfLotto"></span>의 정수여야 해요.
-                </li>
-                <li>
-                  당첨 번호는 중복 없는 <span id="winningCriteria__rule-numbersOfLotto"></span>개 여야해요.
-                </li>
-                <li>보너스 번호는 당첨 번호와 중복되지 않아야해요. </li>
-              </ul>
+            <div>
+              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
             </div>
-            <div class="winningCriteria__inputGroupContainer">
-              <section class="winningCriteria_lotto">
-                <header>당첨 번호</header>
-                <div class="input-group">
-                  <!-- js로 생성 -->
+            <div>
+              <div class="winningCriteria__explanation  explanation">
+                <div class="icon-toggleRule" title="당첨 번호, 보너스 번호에 관란 룰 보기" name="icon-toggle-rule-winningCriteria">🤔❔
                 </div>
-              </section>
-              <section class="winningCriteria__bonus">
-                <header>보너스 번호</header>
-                <label class="hidden hiddenTarget" for="input-bonusNumber">
-                  보너스 번호를 입력해주세요.
-                </label>
-                <input id="input-bonusNumber" class="input-lottoNumber" type="number" />
-              </section>
-            </div>
-            <div class="errorMessage"></div>
+                <ul class=" rule rule-winningCriteria shadow ">
+                  <li>번호는
+                    <span id="winningCriteria__rule-startNumberOfLotto"></span>~
+                    <span id="winningCriteria__rule-endNumberOfLotto"></span>의 정수여야 해요.
+                  </li>
+                  <li>
+                    당첨 번호는 중복 없는 <span id="winningCriteria__rule-numbersOfLotto"></span>개 여야해요.
+                  </li>
+                  <li>보너스 번호는 당첨 번호와 중복되지 않아야해요. </li>
+                </ul>
 
+              </div>
+            </div>
+            <form class="winningCriteria__form">
+              <div class="winningCriteria__inputGroupContainer">
+                <section class="winningCriteria__form_lottoNumbers">
+                  <header>당첨 번호</header>
+                  <div class="input-group">
+                    <!-- js로 생성 -->
+                  </div>
+                </section>
+                <section class="winningCriteria__form__bonusNumber">
+                  <header>보너스 번호</header>
+                  <label class="screen-reader-only" for="input-bonusNumber">
+                    보너스 번호를 입력해주세요.
+                  </label>
+                  <input id="input-bonusNumber" type="number" name="bonusNumber" />
+                </section>
+              </div>
+              <div class="message-error"></div>
+              <button class="btn-checkResult">결과 확인하기</button>
+            </form>
           </section>
-          <button class="btn-checkResult hiddenTarget hidden">결과 확인하기</button>
         </div>
       </main>
       <footer>

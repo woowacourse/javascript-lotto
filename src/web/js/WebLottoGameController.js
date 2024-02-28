@@ -1,7 +1,6 @@
 import LottoResultsHelper from '../../domains/LottoResultsHelper';
 import HtmlTextInjectorWithConstants from './HtmlTextInjectorWithConstants';
 import LottoMachineGenerator from './LottoMachineGenerator';
-import RuleDisplayController from './RuleDisplayController';
 import StatisticsPopupController from './StatisticsPopupController';
 import WinningLottoAndBonusGenerator from './WinningLottoAndBonusGenerator';
 
@@ -16,8 +15,6 @@ class WebLottoGameController {
   }
 
   #setTextContextWithConstants() {
-    RuleDisplayController.addEventToggleRule();
-
     HtmlTextInjectorWithConstants.injectorText();
   }
 

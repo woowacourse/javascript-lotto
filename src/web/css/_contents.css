@@ -29,7 +29,7 @@ main .contents > header {
   padding-bottom: 28px;
   text-align: center;
 }
-.btn-toggleRule {
+.icon-toggleRule {
   background-color: initial;
   padding: 0;
   width: max-content;
@@ -56,23 +56,18 @@ main .contents > header {
     margin: auto;
   }
 
-  .btn-payLotto {
-    margin-top: calc(64px - 36px);
-  }
-
-  .btn-toggleRule {
+  .icon-toggleRule {
     position: absolute;
-    top: 0;
+    top: -5px;
     right: 16px;
   }
 }
 .paymentAmount__explanation {
   position: absolute;
   top: 0;
-  right: 0;
-  height: 20px;
+  right: -17px;
 }
-.paymentAmount__form {
+.paymentAmount__form > div {
   display: flex;
   justify-content: space-between;
 }
@@ -94,24 +89,25 @@ main .contents > header {
 .winningCriteria {
   margin-top: 24px;
   position: absolute;
-  bottom: 85px;
+  bottom: 27px;
   left: 16px;
 }
-.winningCriteria__explanation {
+
+.winningCriteria > div:nth-child(2) {
   position: relative;
+  height: 24px;
+}
+.winningCriteria__explanation {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .winningCriteria__explanation div:nth-child(2) {
   position: relative;
   height: 24px;
 }
-.winningCriteria .btn-toggleRule {
-  position: absolute;
-  top: 0;
-  right: 10px;
-}
-.winningCriteria__inputGroupContainer {
-  display: flex;
-  justify-content: space-between;
+
+.winningCriteria__form {
   section {
     height: 68px;
     header {
@@ -120,27 +116,37 @@ main .contents > header {
       line-height: var(--lotto-bodyAndPlaceholder-lineHeight);
     }
     input {
-      width: 34px;
+      width: 40px;
       height: 36px;
+      padding-left: 5px;
     }
   }
 }
-
-.winningCriteria_lotto {
-  width: 244px;
+.winningCriteria__inputGroupContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.winningCriteria__form_lottoNumbers {
+  width: fit-content;
   margin-top: 4px;
   .input-group {
     display: flex;
     width: inherit;
     margin-top: 8px;
   }
-
+  .input-group {
+    width: fit-content;
+  }
   input {
     margin-right: 8px;
   }
+  input:last-child {
+    margin-right: 0;
+  }
 }
 
-.winningCriteria__bonus {
+.winningCriteria__form__bonusNumber {
   position: relative;
   width: 90px;
 
@@ -157,7 +163,4 @@ main .contents > header {
 }
 .btn-checkResult {
   width: calc(414px - 16px * 2);
-  position: absolute;
-  bottom: 32px;
-  left: 16px;
 }
