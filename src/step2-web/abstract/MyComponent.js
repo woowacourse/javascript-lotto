@@ -1,11 +1,11 @@
-import CustomError from "../../utils/CustomError";
+import CustomError from "../../utils/CustomError.js";
 
-export default class WebComponent extends Observer {
+export default class MyComponent extends Observer {
   update() {
     this._render();
   }
 
-  _init() {
+  init() {
     this._render();
     this._setEvent();
   }
