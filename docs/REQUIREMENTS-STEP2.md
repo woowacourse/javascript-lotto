@@ -17,9 +17,9 @@
 - [x] 진입점이 되는 LottoWebApp 클래스 생성
 - [x] 구입 금액 입력 
   - [x] buyAmountForm 컴포넌트 생성
-- [ ] 생성 로또 표시
+- [x] 생성 로또 표시
   - [x] lottosState 생성 및 연결
-  - [ ] boughtLottoBoard 컴포넌트 생성
+  - [x] boughtLottoBoard 컴포넌트 생성
 - [ ] 당첨 결과 표시
   - [ ] WinningLottoForm 컴포넌트 생성
   - [ ] LottoResultState 생성 및 연결

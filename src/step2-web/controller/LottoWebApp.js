@@ -4,7 +4,7 @@ export default class LottoWebApp {
   $target;
   #views = [];
 
-  constructor(target, views = []) {
+  constructor(target, ...views) {
     if (!target) {
       throw new CustomError("루트 엘리먼트가 존재하지 않습니다.");
     }
@@ -14,15 +14,15 @@ export default class LottoWebApp {
   }
 
   init() {
-    this.#setBaseTemplate();
+    this.#renderBaseTemplate();
     this.#initViews();
   }
 
-  #setBaseTemplate() {
-    this.$target.innerHTML = this.#getBaseTemplate();
+  #renderBaseTemplate() {
+    this.$target.innerHTML = this.#generateBaseTemplate();
   }
 
-  #getBaseTemplate() {
+  #generateBaseTemplate() {
     return this.#views
       .map((view) => `<div id=${view.getTargetElementId()}></div>`)
       .join("");
