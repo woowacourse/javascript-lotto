@@ -1,5 +1,6 @@
 import header from './view/web/header.js';
 import main from './view/web/main.js';
+import footer from './view/web/footer.js';
 import modal from './view/web/modal.js';
 import './styles/reset.css';
 import './styles/index.css';
@@ -14,4 +15,5 @@ document.querySelector('#app').innerHTML = `
 
 header(document.querySelector('header'), '🎱 행운의 로또');
 main(document.querySelector('main'));
+footer(document.querySelector('footer'));
 modal(document.querySelector('#modal-container'));
