@@ -1,5 +1,13 @@
+import LottoTicket from '../domain/LottoTicket';
 import PurchaseAmountValidator from '../validator/PurchaseAmountValidator';
-import { PURCHASE_AMOUT_INPUT_ERROR } from '../constant/messages';
+import WinningNumbersValidator from '../validator/WinningNumbersValidator';
+import BonusNumberValidator from '../validator/BonusNumberValidator';
+import {
+  BONUS_NUMBER_INPUT_ERROR,
+  PURCHASE_AMOUT_INPUT_ERROR,
+  WINNING_NUMBER_INPUT_ERROR,
+} from '../constant/messages';
+import { PURCHASE_SYMBOL } from '../constant/symbols';
 
 class LottoController {
   constructor() {
@@ -65,6 +73,66 @@ class LottoController {
     document
       .querySelector('.btn-submit-lotto')
       .addEventListener('click', this.processLottoNumbers.bind(this));
+  }
+
+  processLottoNumbers(event) {
+    event.preventDefault();
+    const lottoNumbersInputSection = document.querySelector('.section-submit-lotto-numbers');
+    lottoNumbersInputSection.classList.remove('invisible');
+    const inputWinningNumbersView = document.querySelector('.wrapper-input-winning-numbers');
+    const inputWinningNumberView = document.querySelectorAll('.input-winning-number');
+    const lottoNumberErrorView = document.querySelector('.text-lotto-numbers-error');
+    const bonusNumberInputView = document.querySelector('.input-bonus-number');
+    const inputWinningNumbers = [];
+    Array.from({ length: 6 }).forEach((_, index) => {
+      const inputValue = Number(inputWinningNumbersView.children[index].value);
+      inputWinningNumbers.push(Number(inputValue));
+    });
+    const validationResult = this.validateWinningNumbers(inputWinningNumbers);
+    if (validationResult !== true) {
+      lottoNumberErrorView.textContent = validationResult;
+      Array.from(inputWinningNumberView).forEach((node) => {
+        node.value = null;
+      });
+      bonusNumberInputView.value = null;
+      this.click();
+    } else {
+      lottoNumberErrorView.textContent = '';
+      const winningNumbers = inputWinningNumbers;
+      this.processBonusNumber(winningNumbers);
+    }
+  }
+
+  validateWinningNumbers(inputValue) {
+    if (!WinningNumbersValidator.isValidCount(inputValue)) return WINNING_NUMBER_INPUT_ERROR.LENGTH;
+    if (!WinningNumbersValidator.isNumber(inputValue)) return WINNING_NUMBER_INPUT_ERROR.TYPE;
+    if (!WinningNumbersValidator.isUniqueNumbers(inputValue))
+      return WINNING_NUMBER_INPUT_ERROR.UNIQUE;
+    if (!WinningNumbersValidator.isValidRange(inputValue)) return WINNING_NUMBER_INPUT_ERROR.RANGE;
+    return true;
+  }
+
+  processBonusNumber(winningNumbers) {
+    const inputBonusNumberView = document.querySelector('.input-bonus-number');
+    const lottoNumberErrorView = document.querySelector('.text-lotto-numbers-error');
+    const inputBonusNumber = inputBonusNumberView.value;
+    const validationResult = this.validateBonusNumber(Number(inputBonusNumber), winningNumbers);
+    if (validationResult !== true) {
+      lottoNumberErrorView.textContent = validationResult;
+      inputBonusNumberView.value = null;
+      this.click();
+    } else {
+      lottoNumberErrorView.value = '';
+      const bonusNumber = Number(inputBonusNumber);
+    }
+  }
+
+  validateBonusNumber(inputValue, winningNumbers) {
+    if (!BonusNumberValidator.isNumber(inputValue)) return BONUS_NUMBER_INPUT_ERROR.TYPE;
+    if (!BonusNumberValidator.isValidRange(inputValue)) return BONUS_NUMBER_INPUT_ERROR.RANGE;
+    if (!BonusNumberValidator.isUniqueBonusNumber(inputValue, winningNumbers))
+      return BONUS_NUMBER_INPUT_ERROR.UNIQUE;
+    return true;
   }
 }
 
