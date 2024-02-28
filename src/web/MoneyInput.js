@@ -1,4 +1,7 @@
 import Component from './Component';
+import Condition from '../constants/Condition';
+
+const { MONEY } = Condition;
 
 class MoneyInput extends Component {
   template() {
@@ -6,7 +9,7 @@ class MoneyInput extends Component {
       <form class="money-input-form">
         <label>구입할 금액을 입력해 주세요.</label>
         <div>
-          <input class="money-input" type="text" placeholder="금액"></input>
+          <input class="money-input" type="number" min=${MONEY.MIN} max=${MONEY.MAX} step=${MONEY.UNIT} placeholder="금액" required></input>
           <input class="money-input-btn" type="submit" value="구입"></input>
         </div>
       </form>

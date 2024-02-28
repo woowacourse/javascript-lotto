@@ -17,7 +17,7 @@
   width: 100%;
 }
 
-.winning-lotto-form input[type='text'] {
+.winning-lotto-form input[type='number'] {
   width: 34px;
   height: 36px;
   border: 1px solid var(--lotto-greyscale-3);
