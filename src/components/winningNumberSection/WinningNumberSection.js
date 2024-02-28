@@ -1,18 +1,17 @@
-import Component from '../Component';
+import './WinningNumberSection.css';
+import CONFIG from '../../constants/config';
+import Component from '../core/Component';
 
 class WinningNumberSection extends Component {
-  render() {
-    this.innerHTML = `
+  template() {
+    return `
         <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
         <form id="lottoNumberForm">
           <div id="winningNumberWrapper">
             <div>당첨번호</div>
-            <input class="winningNumberInput" type="number" />
-            <input class="winningNumberInput" type="number" />
-            <input class="winningNumberInput" type="number" />
-            <input class="winningNumberInput" type="number" />
-            <input class="winningNumberInput" type="number" />
-            <input class="winningNumberInput" type="number" />
+            ${Array.from({ length: CONFIG.LOTTO_LENGTH })
+              .map(() => `<input class="winningNumberInput" type="number" />`)
+              .join(' ')}
             <div id="lottoNumberError" class="hidden"></div>
           </div>
           <div id="bonusNumberWrapper">
@@ -24,4 +23,4 @@ class WinningNumberSection extends Component {
   }
 }
 
-customElements.define('winning-number-section', WinningNumberSection);
+export default WinningNumberSection;
