@@ -230,13 +230,22 @@ body {
 /* 하단 */
 
 #footer {
-  /* background-color: blue; */
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 #footer-msg {
-  display: flex;
+  margin: auto;
+  margin-top: 2.8rem;
+  margin-bottom: 3.6rem;
+  color: var(--lotto-primary-color);
+}
+
+#division-line {
+  width: 100%;
+  border-top: 0.1rem solid rgba(78, 91, 166, 0.2);
+  margin-top: 6.9rem;
 }
 
 /* 모달 */
