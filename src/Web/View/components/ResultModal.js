@@ -33,15 +33,17 @@ const ResultModal = Object.freeze({
 
   makeModalResultContainer: (winLottos, rateOfIncome) => {
     const modalResultContainer = makeElementById('div', 'modalResultContainer');
-    appendChildren(modalResultContainer, [
-      ResultModal.makeModalResultTitle(),
-      ResultModal.makeModalResultRanks(winLottos),
-      ResultModal.makeModalRateOfIncomeResult(rateOfIncome),
-      ResultModal.makeModalRetryButton(),
-      ResultModal.makeModalCloseButton(),
-    ]);
+    appendChildren(modalResultContainer, ResultModal.makeModalResultContainerComponents(winLottos, rateOfIncome));
     return modalResultContainer;
   },
+
+  makeModalResultContainerComponents: (winLottos, rateOfIncome) => [
+    ResultModal.makeModalResultTitle(),
+    ResultModal.makeModalResultRanks(winLottos),
+    ResultModal.makeModalRateOfIncomeResult(rateOfIncome),
+    ResultModal.makeModalRetryButton(),
+    ResultModal.makeModalCloseButton(),
+  ],
 
   makeModalResultTitle: () => {
     const modalResultTitle = makeElementWithClassName('div', 'modalResultTitle');
@@ -53,16 +55,18 @@ const ResultModal = Object.freeze({
     winLottos.shift();
     const modalResultRankList = makeElementWithClassName('div', 'modalResultRankList');
     const modalResultRankTable = makeElementWithClassName('table', 'modalResultRankTable');
-    appendChildren(modalResultRankTable, [
-      ResultModal.makeModalResultRankHeader(),
-      ...winLottos.map((count, index) => {
-        const rank = index + 1;
-        return ResultModal.makeModalResultRankData(count, rank);
-      }),
-    ]);
+    appendChildren(modalResultRankTable, ResultModal.makeModalResultRankTableInformation(winLottos));
     modalResultRankList.appendChild(modalResultRankTable);
     return modalResultRankList;
   },
+
+  makeModalResultRankTableInformation: (winLottos) => [
+    ResultModal.makeModalResultRankHeader(),
+    ...winLottos.map((count, index) => {
+      const rank = index + 1;
+      return ResultModal.makeModalResultRankData(count, rank);
+    }),
+  ],
 
   makeModalResultRankHeader: () => {
     const modalResultRankRow = makeElementWithClassName('tr', 'modalResultRankRow');
