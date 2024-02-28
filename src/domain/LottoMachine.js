@@ -2,13 +2,13 @@ import pickRandomNumberInRange from '../util/pickRandomNumberInRange.js';
 import { SETTING } from '../constant/setting.js';
 
 class LottoMachine {
-  #lottoCount;
+  #purchaseAmount;
 
-  constructor(lottoCount) {
-    this.#lottoCount = lottoCount;
+  constructor(purchaseAmount) {
+    this.#purchaseAmount = purchaseAmount;
   }
   getLottoNumberList() {
-    return Array.from({ length: this.#lottoCount }).map((_) => this.#createLottoNumber());
+    return Array.from({ length: this.#purchaseAmount / SETTING.LOTTO_PRICE }).map((_) => this.#createLottoNumber());
   }
 
   #createLottoNumber() {
