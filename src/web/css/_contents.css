@@ -80,10 +80,14 @@ main .contents > header {
   margin-top: 28px;
   .issuedLottos {
     margin-top: 8px;
-    width: 238px;
     max-height: 276px;
+    height: fit-content;
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto;
+  }
+  li {
+    height: 36px;
+    line-height: 36px;
   }
 }
 

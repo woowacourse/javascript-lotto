@@ -17,6 +17,7 @@ class LottoResultsHelper {
   #winningData = {
     winningLotto: undefined,
     bonus: undefined,
+    results: undefined,
   };
 
   get paymentAmount() {
@@ -27,8 +28,12 @@ class LottoResultsHelper {
     return JSON.parse(JSON.stringify(this.#lottoMachine.lottoTickets));
   }
 
+  get results() {
+    return this.#winningData.results;
+  }
+
   /**
-   * @param {string} paymentAmountInput
+   * @param {string|undefined} paymentAmountInput
    */
   generateLottoMachine(paymentAmountInput) {
     this.#lottoMachine = new LottoMachine(paymentAmountInput);
@@ -56,12 +61,16 @@ class LottoResultsHelper {
    * @return {{isBonus:boolean, matchedCount:number}[]} result
    */
   calculateMatchingResults() {
-    return this.#lottoMachine.lottoTickets.map((lottoTicket) =>
+    const results = this.#lottoMachine.lottoTickets.map((lottoTicket) =>
       this.#winningData.winningLotto.compareLotto(
         lottoTicket,
         this.#winningData.bonus,
       ),
     );
+
+    this.#winningData.results = results;
+
+    return results;
   }
 }
 

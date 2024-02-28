@@ -25,7 +25,7 @@
           <section class="paymentAmount">
             <div class="paymentAmount__explanation explanation">
               <button class="btn-toggleRule" title="구입 금액에 관한 룰 보기" name="btn-toggle-rule-paymentAmount">🤔❔</button>
-              <ul class="rule rule-paymentAmount hidden shadow ">
+              <ul class="rule rule-paymentAmount hidden hiddenTarget shadow ">
                 <li>
                   로또 가격은<span class="paymentAmount__rule-lottoPrice"></span>원이에요.
                 </li>
@@ -39,16 +39,15 @@
                 <label for="input-paymentAmount">
                   구입할 금액을 입력해주세요.
                 </label>
-                <!--js에서  min, max 설정해주기-->
+
                 <input id="input-paymentAmount" type="number" placeholder="금액" />
               </div>
-              <button class="btn-payLotto" disabled>구입</button>
-              <div class="message-error"></div>
+              <button class="btn-payLotto">구입</button>
             </div>
-
+            <div class="message-error"></div>
           </section>
-          <!-- on 들어 갈때 보이는 것으로  -->
-          <section class="purchasedHistory">
+
+          <section class="purchasedHistory hiddenTarget hidden">
             <div class="purchasedHistory__lottos-count">
               총 <span id="purchasedHistory__lottos-count__number"></span>를 구매하였습니다.
             </div>
@@ -57,7 +56,7 @@
               <!--<li class="lotto">🎟️ 발행된 로또 번호</li>-->
             </ul>
           </section>
-          <section class="winningCriteria">
+          <section class="winningCriteria hiddenTarget hidden">
             <div class="winningCriteria__explanation  explanation">
               <div>
                 지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
@@ -66,7 +65,7 @@
                 <button class="btn-toggleRule" title="당첨 번호, 보너스 번호에 관란 룰 보기"
                   name="btn-toggle-rule-winningCriteria">🤔❔</button>
               </div>
-              <ul class="rule hidden rule-winningCriteria shadow ">
+              <ul class="rule hidden hiddenTarget rule-winningCriteria shadow ">
                 <li>번호는
                   <span id="winningCriteria__rule-startNumberOfLotto"></span>~
                   <span id="winningCriteria__rule-endNumberOfLotto"></span>의 정수여야 해요.
@@ -86,7 +85,7 @@
               </section>
               <section class="winningCriteria__bonus">
                 <header>보너스 번호</header>
-                <label class="hidden" for="input-bonusNumber">
+                <label class="hidden hiddenTarget" for="input-bonusNumber">
                   보너스 번호를 입력해주세요.
                 </label>
                 <input id="input-bonusNumber" class="input-lottoNumber" type="number" />
@@ -95,20 +94,20 @@
             <div class="errorMessage"></div>
 
           </section>
-          <button class="btn-checkResult" disabled>결과 확인하기</button>
+          <button class="btn-checkResult hiddenTarget hidden">결과 확인하기</button>
         </div>
       </main>
       <footer>
         Copyright 2023. woowacourse
       </footer>
-      <div class="popup popup-statistics hidden">
+      <div class="popup hidden hiddenTarget popup-statistics">
         <div class="popup__inner shadow">
           <button class="btn-close-popup">✖️</button>
           <div class="popup__contents">
             <header>🏆 당첨 통계 🏆</header>
             <div class="rankStatistics">
               <table id="rankStatistics__table">
-                <caption class="hidden">로또 당첨 결과</caption>
+                <caption class="hidden hiddenTarget">로또 당첨 결과</caption>
                 <thead>
                   <tr>
                     <th scope="col">일치 갯수</th>

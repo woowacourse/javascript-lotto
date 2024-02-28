@@ -21,10 +21,10 @@ input {
   display: none;
 }
 
-.errorMessage {
+.message-error {
   height: 20px;
   margin: 5px 0;
-  font-size: var(lotto-caption-fontSize);
+  font-size: 12px;
   font-weight: var(lotto-caption-fontWeight);
   line-height: var(lotto-caption-lineHeight);
   color: rgb(236, 84, 84);
