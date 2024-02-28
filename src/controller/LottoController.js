@@ -66,6 +66,8 @@ class LottoController {
     `;
     });
     this.lottoTickets = tickets;
+    const lottoNumbersInputSection = document.querySelector('.section-submit-lotto-numbers');
+    lottoNumbersInputSection.classList.remove('invisible');
     this.click();
   }
 
@@ -77,8 +79,6 @@ class LottoController {
 
   processLottoNumbers(event) {
     event.preventDefault();
-    const lottoNumbersInputSection = document.querySelector('.section-submit-lotto-numbers');
-    lottoNumbersInputSection.classList.remove('invisible');
     const inputWinningNumbersView = document.querySelector('.wrapper-input-winning-numbers');
     const inputWinningNumberView = document.querySelectorAll('.input-winning-number');
     const lottoNumberErrorView = document.querySelector('.text-lotto-numbers-error');
