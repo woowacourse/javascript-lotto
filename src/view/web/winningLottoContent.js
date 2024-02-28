@@ -1,28 +1,4 @@
-import Lotto from '../../domain/lotto.js';
-import WinningLotto from '../../domain/winningLotto.js';
-import { $, $$ } from './utils/dom.js';
-
 export default function winningLottoContent(element) {
-  const handleWinningLottoForm = (event) => {
-    event.preventDefault();
-    const winningNumbersInput = $$('.lotto-number');
-    const bonusNumber = Number($('.bonus-number').value);
-    const winningNumbers = [];
-
-    winningNumbersInput.forEach((element) => winningNumbers.push(Number(element.value)));
-
-    try {
-      const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
-    } catch ({ message }) {
-      $$('.input-error')[1].style.visibility = 'visible';
-      $$('.input-error')[1].innerText = message;
-      return;
-    }
-
-    $$('.input-error')[1].style.visibility = 'hidden';
-    $('#modal-container').style.visibility = 'visible';
-  };
-
   const render = (element) => {
     element.innerHTML = `
       <span id="winning-lotto-title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
@@ -52,6 +28,4 @@ export default function winningLottoContent(element) {
     `;
   };
   render(element);
-
-  $('#winning-lotto-form').addEventListener('submit', handleWinningLottoForm);
 }

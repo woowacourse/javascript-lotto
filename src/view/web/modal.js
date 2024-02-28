@@ -1,4 +1,3 @@
-import content from './content';
 import { $ } from './utils/dom';
 
 export default function modal(element) {
@@ -9,7 +8,9 @@ export default function modal(element) {
 
   const handleRetryBtn = (event) => {
     event.preventDefault();
-    content(document.querySelector('article'));
+    $('#buy-lotto-form').reset();
+    $('#winning-lotto-form').reset();
+    $('#step2').style.visibility = 'hidden';
     $('#modal-container').style.visibility = 'hidden';
   };
 

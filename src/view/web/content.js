@@ -1,36 +1,4 @@
-import LottoMachine from '../../domain/lottoMachine.js';
-import { validateCost } from '../../utils/validation.js';
-import { $, $$ } from './utils/dom.js';
-import winningLottoContent from './winningLottoContent.js';
-
 export default function content(element) {
-  const onSubmitBuyForm = (event) => {
-    event.preventDefault();
-    const cost = Number(event.target[0].value);
-
-    try {
-      validateCost(cost);
-    } catch ({ message }) {
-      $('.input-error').innerText = message;
-      $('.input-error').style.visibility = 'visible';
-      return;
-    }
-
-    const lottoMachine = new LottoMachine(cost);
-    const lottos = lottoMachine.getLottoNumbers;
-    const buyCount = lottoMachine.getLottoCount;
-
-    const lottoQuery = lottos
-      .map((numbers) => `<li><span class="ticket-icon">🎟️</span>${numbers.join(', ')}</li>`)
-      .join('');
-
-    $('#total-buy-text').innerText = `총 ${buyCount}개를 구매하였습니다.`;
-    $('#lotto-tickets-container ul').innerHTML = lottoQuery;
-    $('.input-error').style.visibility = 'hidden';
-    $('#step2').style.visibility = 'visible';
-    $$('.lotto-number')[0].focus();
-  };
-
   const render = (element) => {
     element.innerHTML = `
       <section id="lotto-title"><h1>🎱 내 당첨번호 확인 🎱</h1></section>
@@ -58,6 +26,4 @@ export default function content(element) {
     `;
   };
   render(element);
-  winningLottoContent($('#winning-lotto-container'));
-  $('#buy-lotto-form').addEventListener('submit', onSubmitBuyForm);
 }
