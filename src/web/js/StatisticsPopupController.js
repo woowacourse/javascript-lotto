@@ -72,11 +72,21 @@ class StatisticsPopupController {
     inputEl.value = '';
   }
 
+  #removeWinningCriteriaInputValue() {
+    const inputElList = document.querySelectorAll('.winningCriteria input');
+
+    inputElList.forEach((element) => {
+      // eslint-disable-next-line
+      element.value = '';
+    });
+  }
+
   #restartGame(event) {
     event.stopPropagation();
 
-    this.#hideHiddenTargets();
+    this.#removeWinningCriteriaInputValue();
     this.#removePaymentAmountInputValue();
+    this.#hideHiddenTargets();
   }
 }
 
