@@ -35,7 +35,7 @@ const PurchaseEvent = {
         <div>
             <div class = "random-lottos-result-title">총 ${lottos.length}개를 구매하였습니다.</div>
             <ul>
-                ${lottos.map((lotto) => `<li class="random-lotto-list">🎟️ ${lotto.getNumbers().join(', ')}</li>`).join('')}
+                ${lottos.map((lotto) => `<li class="random-lotto-list">🎟️ <span class = 'lotto-list-p'>${lotto.getNumbers().join(', ')}<span></p></li>`).join('')}
             </ul>
         </div>
         `

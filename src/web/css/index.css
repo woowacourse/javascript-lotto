@@ -115,10 +115,25 @@ letter-spacing: 0.03125rem;
 color: var(--lotto-greyscale-5, #000);
 font-feature-settings: 'clig' off, 'liga' off;
 font-family: Roboto;
-font-size: 1.5rem;
+font-size: 2.125rem;
 font-style: normal;
 font-weight: 600;
-line-height: 2.25rem; /* 105.882% */
+line-height: 2.25rem;
+display: flex;
+align-items: center;
+}
+
+.lotto-list-p{
+    color: var(--lotto-greyscale-5, #000);
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    font-family: Roboto;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5rem;
+    letter-spacing: 0.03125rem;
+    padding: 0.2rem;
 }
 
 .footer{
