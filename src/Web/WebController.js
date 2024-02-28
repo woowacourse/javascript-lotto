@@ -13,6 +13,7 @@ export default class WebController {
     RenderingHandler.renderHeader();
     RenderingHandler.renderLottoComponents();
     RenderingHandler.renderFooter();
+    RenderingHandler.renderLottoResultModal();
 
     this.#setMoneyFormEvent();
     // this.#executeResult();
@@ -80,7 +81,6 @@ export default class WebController {
   #executeResult() {
     const winNumbersObj = this.#winLottoNumber.getWinLottoNumbers();
     const winLottos = this.#lottoMachine.getWinLottos(winNumbersObj);
-
     const rateOfIncome = this.#lottoMachine.getRateOfIncome(winNumbersObj);
 
     RenderingHandler.renderLottoResultModal(winLottos, rateOfIncome);
