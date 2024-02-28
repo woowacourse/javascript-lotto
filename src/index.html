@@ -17,141 +17,138 @@
       <h1><span class="eightBall">🎱</span> 행운의 로또</h1>
     </header>
     <main>
-      <h2>
-        <span class="eightBall">🎱</span> 내 번호 당첨 확인
-        <span class="eightBall">🎱</span>
-      </h2>
+      <div id="myLottoContainer">
+        <h2>
+          <span class="eightBall">🎱</span> 내 번호 당첨 확인
+          <span class="eightBall">🎱</span>
+        </h2>
 
-      <section id="purchaseLotto">
-        <form action="" method="get">
-          <div id="purchaseLottoField">
-            <div id="purchaseLottoInputField">
-              <label for="purchaseLottoInput"
-                >구입할 금액을 입력해주세요.</label
-              >
-              <input id="purchaseLottoInput" placeholder="금액" required />
+        <section id="purchaseLotto">
+          <form action="">
+            <div id="purchaseLottoField">
+              <div id="purchaseLottoInputField">
+                <label for="purchaseLottoInput"
+                  >구입할 금액을 입력해주세요.</label
+                >
+                <input id="purchaseLottoInput" placeholder="금액" required />
+              </div>
+              <div id="purchaseLottoButton">
+                <button type="submit"><p>구입</p></button>
+              </div>
             </div>
-            <div id="purchaseLottoButton">
-              <button type="submit"><p>구입</p></button>
-            </div>
-          </div>
-        </form>
-      </section>
+          </form>
+        </section>
 
-      <section id="lotto">
-        <p id="purchaseLottoView">총 7개를 구매하였습니다.</p>
-        <ol>
-          <li>
-            <span class="admitOne">🎟️</span>
-            <p>12, 28, 22, 37, 19, 23</p>
-          </li>
-          <li>
-            <span class="admitOne">🎟️</span>
-            <p>12, 28, 22, 37, 19, 23</p>
-          </li>
-          <li>
-            <span class="admitOne">🎟️</span>
-            <p>12, 28, 22, 37, 19, 23</p>
-          </li>
-          <li>
-            <span class="admitOne">🎟️</span>
-            <p>12, 28, 22, 37, 19, 23</p>
-          </li>
-          <li>
-            <span class="admitOne">🎟️</span>
-            <p>12, 28, 22, 37, 19, 23</p>
-          </li>
-          <li>
-            <span class="admitOne">🎟️</span>
-            <p>12, 28, 22, 37, 19, 23</p>
-          </li>
-          <li>
-            <span class="admitOne">🎟️</span>
-            <p>12, 28, 22, 37, 19, 23</p>
-          </li>
-        </ol>
-      </section>
+        <section id="lotto">
+          <p id="purchaseLottoView">총 7개를 구매하였습니다.</p>
+          <ol>
+            <li>
+              <span class="admitOne">🎟️</span>
+              <p>12, 28, 22, 37, 19, 23</p>
+            </li>
+            <li>
+              <span class="admitOne">🎟️</span>
+              <p>12, 28, 22, 37, 19, 23</p>
+            </li>
+            <li>
+              <span class="admitOne">🎟️</span>
+              <p>12, 28, 22, 37, 19, 23</p>
+            </li>
+            <li>
+              <span class="admitOne">🎟️</span>
+              <p>12, 28, 22, 37, 19, 23</p>
+            </li>
+            <li>
+              <span class="admitOne">🎟️</span>
+              <p>12, 28, 22, 37, 19, 23</p>
+            </li>
+            <li>
+              <span class="admitOne">🎟️</span>
+              <p>12, 28, 22, 37, 19, 23</p>
+            </li>
+            <li>
+              <span class="admitOne">🎟️</span>
+              <p>12, 28, 22, 37, 19, 23</p>
+            </li>
+          </ol>
+        </section>
 
-      <section id="winningLotto">
-        <form action="" method="get">
-          <div id="winningLottoField">
-            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div id="winningLottoInputField">
-              <div id="winningLottoNumbersInputField">
-                <label for="winningLottoNumbersInput">당첨 번호</label>
-                <div id="winningLottoNumbers">
-                  <input class="winningLottoNumbersInput" required />
-                  <input class="winningLottoNumbersInput" required />
-                  <input class="winningLottoNumbersInput" required />
-                  <input class="winningLottoNumbersInput" required />
-                  <input class="winningLottoNumbersInput" required />
-                  <input class="winningLottoNumbersInput" required />
+        <section id="winningLotto">
+          <form action="">
+            <div id="winningLottoField">
+              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <div id="winningLottoInputField">
+                <div id="winningLottoNumbersInputField">
+                  <label for="winningLottoNumbersInput">당첨 번호</label>
+                  <div id="winningLottoNumbers">
+                    <input class="winningLottoNumbersInput" required />
+                    <input class="winningLottoNumbersInput" required />
+                    <input class="winningLottoNumbersInput" required />
+                    <input class="winningLottoNumbersInput" required />
+                    <input class="winningLottoNumbersInput" required />
+                    <input class="winningLottoNumbersInput" required />
+                  </div>
+                </div>
+                <div id="bonusNumberInputField">
+                  <label for="bonusNumberInput">보너스 번호</label>
+                  <input type="text" id="bonusNumberInput" required />
                 </div>
               </div>
-              <div id="bonusNumberInputField">
-                <label for="bonusNumberInput">보너스 번호</label>
-                <input type="text" id="bonusNumberInput" required />
-              </div>
             </div>
+            <button type="submit"><p>결과 확인하기</p></button>
+          </form>
+        </section>
+      </div>
+      <section id="winningResultModal">
+        <form action="">
+          <div id="winningResult">
+            <h2>🏆 당첨 통계 🏆</h2>
+            <table id="winningResultTable">
+              <thead>
+                <tr>
+                  <th>일치 갯수</th>
+                  <th>당첨금</th>
+                  <th>당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>3개</td>
+                  <td>5,000</td>
+                  <td>n개</td>
+                </tr>
+
+                <tr>
+                  <td>4개</td>
+                  <td>50,000</td>
+                  <td>n개</td>
+                </tr>
+
+                <tr>
+                  <td>5개</td>
+                  <td>1,500,000</td>
+                  <td>n개</td>
+                </tr>
+
+                <tr>
+                  <td>5개+보너스볼</td>
+                  <td>30,000,000</td>
+                  <td>n개</td>
+                </tr>
+
+                <tr>
+                  <td>6개</td>
+                  <td>2,000,000,000</td>
+                  <td>n개</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p id="winningReturnRate">당신의 총 수익률은 %입니다.</p>
+            <button type="submit"><p>다시 시작하기</p></button>
           </div>
-          <button type="submit"><p>결과 확인하기</p></button>
         </form>
       </section>
-
-      <aside id="winningResult">
-        <h2>🏆 당첨 통계 🏆</h2>
-        <ol>
-          <li>
-            <div>
-              <p>일치 갯수</p>
-              <p>당첨금</p>
-              <p>당첨 갯수</p>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <p>3개</p>
-              <p>5,000</p>
-              <p>n개</p>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <p>4개</p>
-              <p>50,000</p>
-              <p>n개</p>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <p>5개</p>
-              <p>1,500,000</p>
-              <p>n개</p>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <p>5개+보너스볼</p>
-              <p>30,000,000</p>
-              <p>n개</p>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <p>6개</p>
-              <p>2,000,000,000</p>
-              <p>n개</p>
-            </div>
-          </li>
-        </ol>
-        <p>당신의 총 수익률은 %입니다.</p>
-        <button type="button">다시 시작하기</button>
-      </aside>
     </main>
     <footer><p>Copyright 2023. woowacourse</p></footer>
   </body>

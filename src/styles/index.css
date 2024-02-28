@@ -1,11 +1,13 @@
+@import 'reset.css';
+
 body {
-  width: 1440px;
+  width: 100%;
   height: 1024px;
   margin: 0;
 }
 
 header {
-  width: 1440px;
+  width: 100%;
   height: 64px;
   border: 0px 0px 1px 0px;
   background: rgba(78, 91, 166, 1);
@@ -20,9 +22,7 @@ header h1 {
   line-height: 36px;
   letter-spacing: 0px;
   text-align: left;
-
   margin: 0;
-
   width: 147px;
   height: 36px;
   top: 14px;
@@ -34,18 +34,19 @@ header h1 {
   font-weight: 700;
 }
 
-main {
+#myLottoContainer {
   position: absolute;
   width: 414px;
   height: 727px;
   top: 148px;
-  left: 513px;
+  left: 50%;
+  transform: translateX(-50%);
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   background: rgba(255, 255, 255, 1);
 }
 
-main h2 {
+#myLottoContainer h2 {
   position: absolute;
   width: 382px;
   height: 24px;
@@ -146,15 +147,19 @@ main h2 {
 
 #lotto ol {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   box-sizing: border-box;
   width: 238px;
   height: 276px;
   top: 228px;
   left: 16px;
   list-style: none;
-  padding-left: 0;
+  padding: 0;
   margin: 0;
-  overflow-y: auto;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 #lotto ol li {
@@ -162,7 +167,7 @@ main h2 {
   align-items: center;
   width: 238px;
   height: 36px;
-  margin: 0 0 4px 0;
+  margin: 0;
 }
 
 .admitOne {
@@ -280,14 +285,124 @@ main h2 {
   margin: 0;
 }
 
-#winningResult {
+#winningResultModal {
   position: fixed;
-  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#winningResult {
+  position: absolute;
+  display: block;
+  width: 350px;
+  height: 500px;
+  top: 272px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+}
+
+#winningResult h2 {
+  position: absolute;
+  width: 318px;
+  height: 24px;
+  top: 41px;
+  left: 16px;
+  text-align: center;
+  margin: 0;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15000000596046448px;
+  text-align: center;
+}
+
+#winningResultTable {
+  position: absolute;
+  width: 319px;
+  height: 247px;
+  top: 97px;
+  left: 16px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#winningResultTable tr {
+  height: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#winningResultTable thead th {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 8px 0;
+}
+
+#winningResultTable tbody td {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  padding: 8px 0;
+  text-align: center;
+}
+
+#winningReturnRate {
+  position: absolute;
+  width: 318px;
+  height: 24px;
+  top: 376px;
+  left: 16px;
+  margin: 0;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+#winningResult button {
+  position: absolute;
+  width: 318px;
+  height: 36px;
+  top: 432px;
+  left: 16px;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: rgba(78, 91, 166, 1);
+}
+
+#winningResult button p {
+  position: relative;
+  width: 89px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 1);
+  margin: 0;
 }
 
 footer {
   position: absolute;
-  width: 1440px;
+  width: 100%;
   height: 80px;
   top: 944px;
   border: 1px 0px 0px 0px;
@@ -296,11 +411,11 @@ footer {
 
 footer p {
   position: relative;
-  text-align: center;
   width: 224px;
   height: 16px;
   top: 32px;
-  left: 608px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 14px;
   font-weight: 700;
   line-height: 16px;
