@@ -1,8 +1,8 @@
-import InputHandler from './View/InputHandler';
-import RenderingHandler from './View/RenderingHandler';
-
 import LottoMachine from '../Domain/LottoMachine';
 import WinLottoNumber from '../Domain/WinLottoNumber';
+
+import RenderingHandler from './View/RenderingHandler';
+import EventHandler from './View/EventHandler';
 
 export default class WebController {
   #lottoMachine;
@@ -83,22 +83,32 @@ export default class WebController {
     const rateOfIncome = this.#lottoMachine.getRateOfIncome(winNumbersObj);
 
     RenderingHandler.renderLottoResultModal(winLottos, rateOfIncome);
+    this.#setModalResultEvent();
   }
 
-  // async #executeRetry() {
-  //   try {
-  //     const isRetry = await InputView.readIsRetryRun();
-  //     await this.#initializeApp(isRetry);
-  //   } catch (error) {
-  //     OutputView.printError(error.message);
-  //     await this.#executeRetry();
-  //   }
-  // }
+  #setModalResultEvent() {
+    this.#setModalResultCloseEvent();
+    this.#setModalResultRetryEvent();
+  }
 
-  // async #initializeApp(isRetry) {
-  //   if (!isRetry) return;
-  //   this.#lottoMachine = undefined;
-  //   this.#winLottoNumber = undefined;
-  //   await this.run();
-  // }
+  #setModalResultCloseEvent() {
+    const modalCloseButton = document.querySelector('.modalCloseButton');
+    modalCloseButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      EventHandler.closeModal();
+    });
+  }
+
+  #setModalResultRetryEvent() {
+    const modalRetryButton = document.querySelector('.modalRetryButton');
+    modalRetryButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.#executeRetry();
+    });
+  }
+
+  #executeRetry() {
+    RenderingHandler.resetRenderedComponents();
+    this.run();
+  }
 }

@@ -6,7 +6,7 @@ import LottoNumbersComponents from './components/LottoNumbersComponent';
 import WinLottoComponents from './components/WinLottoComponents';
 
 import LottoComponents from './components/LottoComponents';
-import { appendChildren, makeElementWithClassName } from '../utils';
+import { appendChildren } from '../utils';
 import ResultModal from './components/ResultModal';
 
 const RenderingHandler = Object.freeze({
@@ -47,6 +47,11 @@ const RenderingHandler = Object.freeze({
   renderLottoResultModal: (winLottos, rateOfIncome) => {
     const main = document.getElementsByTagName('main')[0];
     main.appendChild(ResultModal.makeModalElement(winLottos, rateOfIncome));
+  },
+
+  resetRenderedComponents: () => {
+    const app = document.getElementById('app');
+    app.innerHTML = '';
   },
 });
 

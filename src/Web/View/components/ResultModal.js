@@ -19,8 +19,11 @@ const RANK_WIN_AMOUNT = Object.freeze({
 });
 
 const ResultModal = Object.freeze({
-  openModal: () => {},
-  closeModal: () => {},
+  closeModal: () => {
+    const modalContainer = document.getElementById('modalContainer');
+    modalContainer.parentNode.removeChild(modalContainer);
+  },
+
   makeModalElement: (winLottos, rateOfIncome) => {
     const modalContainer = makeElementById('div', 'modalContainer');
     const modalResultContainer = ResultModal.makeModalResultContainer(winLottos, rateOfIncome);
@@ -48,7 +51,6 @@ const ResultModal = Object.freeze({
 
   makeModalResultRanks: (winLottos) => {
     winLottos.shift();
-    console.log(winLottos);
     const modalResultRankList = makeElementWithClassName('div', 'modalResultRankList');
     const modalResultRankTable = makeElementWithClassName('table', 'modalResultRankTable');
     appendChildren(modalResultRankTable, [
@@ -87,7 +89,7 @@ const ResultModal = Object.freeze({
   },
 
   makeModalRetryButton: () => {
-    const modalRetryButton = makeElementById('button', 'modalRetryButton');
+    const modalRetryButton = makeElementWithClassName('button', 'modalRetryButton');
     modalRetryButton.innerHTML = '다시 시작하기';
     return modalRetryButton;
   },

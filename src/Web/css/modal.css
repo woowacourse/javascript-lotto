@@ -73,7 +73,7 @@ td {
   text-align: center;
 }
 
-#modalRetryButton {
+.modalRetryButton {
   width: 100%;
   height: 36px;
   background: #4e5ba6;
