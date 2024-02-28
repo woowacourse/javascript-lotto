@@ -1,7 +1,6 @@
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import purchaseClickHandler from "../Handler/purchaseClickHandler.js";
-import purchaseHandler from "../Handler/purchaseClickHandler.js";
 import winningLottoHandler from "../Handler/winningLottoHandler.js";
 import WebView from "../view/webView.js";
 
