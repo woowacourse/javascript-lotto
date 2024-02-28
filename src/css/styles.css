@@ -158,6 +158,19 @@ footer {
 }
 
 .result-modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.result-modal__popup {
   width: 350px;
   padding: 16px 16px 32px 16px;
   border-radius: 4px;
@@ -218,9 +231,14 @@ footer {
 }
 
 .result-modal__text-profit-rate {
+  margin-top: 32px;
 }
 
 .result-modal__button-restart {
+  margin-top: 32px;
+  width: 318px;
+  height: 36px;
+  border-radius: 4px;
 }
 
 .no-arrow::-webkit-inner-spin-button,
@@ -313,6 +331,15 @@ footer {
   text-align: center;
 }
 
+.text-profit-rate {
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
 .color-white {
   color: rgba(255, 255, 255, 1);
 }
@@ -327,4 +354,12 @@ footer {
 
 .bgcolor-white {
   background: rgba(255, 255, 255, 1);
+}
+
+.bgcolor-modal-fadeout {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+  display: none;
 }
