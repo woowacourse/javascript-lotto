@@ -162,9 +162,17 @@ footer {
   padding: 16px 16px 32px 16px;
   border-radius: 4px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .result-modal__button-close {
+  width: 16px;
+  height: 16px;
+  align-self: end;
+  font-size: 20px;
+  line-height: 14px;
+  text-align: center;
 }
 
 .result-modal__title {
@@ -259,4 +267,7 @@ footer {
 
 .bgcolor-white {
   background: rgba(255, 255, 255, 1);
+
+  /* TEST: 바운더리 확인용 임시 전경색 */
+  background-color: aqua;
 }
