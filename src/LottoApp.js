@@ -9,8 +9,6 @@ const LOTTO_APP_COMPONENT = `
   <lotto-header></lotto-header>
   <lotto-main></lotto-main>
   <lotto-footer></lotto-footer>
-
-  <lotto-result-modal></lotto-result-modal>
     `;
 
 class LottoApp extends HTMLElement {
@@ -23,6 +21,7 @@ class LottoApp extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.#setEventListener();
   }
 
   render() {
@@ -31,6 +30,14 @@ class LottoApp extends HTMLElement {
 
   controller() {
     return this.#lottoWebController;
+  }
+
+  #setEventListener() {
+    const lottoMain = this.querySelector('lotto-main');
+    lottoMain.addEventListener('lottoResult', () => {
+      const lottoResultModal = document.createElement('lotto-result-modal');
+      this.appendChild(lottoResultModal);
+    });
   }
 }
 

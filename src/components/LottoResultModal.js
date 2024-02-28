@@ -32,9 +32,11 @@ class LottoResultModal extends HTMLElement {
     });
     const closeButton = this.querySelector('.close-modal-icon');
     closeButton.addEventListener('click', () => {
-      console.log('닫을거야');
+      this.remove();
     });
   }
 }
 
 customElements.define('lotto-result-modal', LottoResultModal);
+
+export default LottoResultModal;
