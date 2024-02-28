@@ -1,9 +1,9 @@
-export default function header(element, title) {
-  const render = (str) => {
-    element.innerHTML = `
-    <h1>${str}</h1>
-    `;
-  };
+export default function Header() {
+  const header = document.createElement('header');
+  const lottoGameTitle = document.createElement('h1');
 
-  render(title);
+  lottoGameTitle.innerText = '🎱 행운의 로또';
+  header.appendChild(lottoGameTitle);
+
+  return header;
 }

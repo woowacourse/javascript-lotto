@@ -1,8 +1,11 @@
-export default function footer(element) {
-  const render = (element) => {
-    element.innerHTML = `
-      <span id="footer-text">Copyright 2023. woowacourse</span>
-    `;
-  };
-  render(element);
+export default function Footer() {
+  const footer = document.createElement('footer');
+  const span = document.createElement('span');
+
+  span.setAttribute('id', 'footer-text');
+  span.innerText = 'Copyright 2023. woowacourse';
+
+  footer.appendChild(span);
+
+  return footer;
 }
