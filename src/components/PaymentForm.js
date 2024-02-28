@@ -16,7 +16,10 @@ export default class PaymentForm extends HTMLFormElement {
 
     const paymentAmount = new FormData(this).get('paymentAmount');
     this.dispatchEvent(
-      new CustomEvent('paymentFormSubmit', { detail: { paymentAmount } }),
+      new CustomEvent('paymentFormSubmit', {
+        bubbles: true,
+        detail: { paymentAmount },
+      }),
     );
   }
 }

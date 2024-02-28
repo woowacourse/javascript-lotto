@@ -14,3 +14,10 @@ import PaymentForm from './components/PaymentForm';
 
 window.customElements.define('lotto-items', LottoItems);
 window.customElements.define('payment-form', PaymentForm, { extends: 'form' });
+
+// TODO: 이벤트 이름 객체 맵핑 객체 만들기
+document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('paymentFormSubmit', (event) => {
+    console.log(event);
+  });
+});
