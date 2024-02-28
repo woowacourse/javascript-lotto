@@ -88,7 +88,7 @@
 
 2단계
 
-- [ ] html, css 기본 구조 만들기
+- [x] html, css 기본 구조 만들기
 - [ ] view 로직 만들기
   - [ ] stream을 이용해 `readLineAsync`를 변경(InputView)
   - [ ] dom을 통해 `OutputView` 구현하기

@@ -1,16 +1,460 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎱 행운의 로또</title>
+  <style>
+    :root {
+      --lotto-primary: #4E5BA6;
+      --greyscale-1: #ffffff;
+      --greyscale-2: #fcfcfd;
+      --greyscale-3: #b4b4b4;
+      --greyscale-4: #8b8b8b;
+      --greyscale-5: #000000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .font-title {
+      font: 800 24px/36px Roboto;
+      letter-spacing: 0px;
+      color: #000000;
+    }
+
+    .font-subtitle {
+      font: 600 20px/24px Roboto;
+      letter-spacing: 0.15px;
+      color: #000000;
+
+    }
+
+    .font-body {
+      font: 400 15px/24px Roboto;
+      letter-spacing: 0.5px;
+      color: #000000;
+    }
+
+    .font-placeholder {
+      font: 400 15px/24px Roboto;
+      letter-spacing: 0.5px;
+      color: #8b8b8b;
+    }
+
+    .font-buttom-caption {
+      font: 700 14px/16px Roboto;
+      letter-spacing: 1.25px;
+      color: #000000;
+    }
+
+    body {
+      background: var(--greyscale-2);
+    }
+
+    header {
+      height: 64px;
+      background: var(--lotto-primary);
+      border-bottom: 1px solid var(--lotto-primary);
+    }
+
+    footer {
+      width: 100%;
+      height: 80px;
+      border-top: 1px solid #4E5BA633;
+      color: var(--lotto-primary);
+      text-align: center;
+    }
+
+    #modal {
+      visibility: hidden;
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: #00000080;
+
+      display: flex;
+      align-items: end;
+    }
+
+    .purchased-lotto {
+      display: flex;
+      align-items: center;
+      width: 238px;
+      height: 36px;
+      margin: 0px 0px 3px;
+    }
+
+    .lotto-ticket {
+      width: 34px;
+      height: 36px;
+      font: 600 34px/36px Roboto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lotto-number {
+      display: inline-block;
+      margin-left: 8px;
+    }
+
+    .winning-number-input {
+      width: 34px;
+      height: 36px;
+      border: 1px solid #B4B4B4;
+      border-radius: 4px;
+      margin: -1px;
+      text-align: center;
+    }
+
+    .winning-number-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .modal__result-tr {
+      border-top: 1px solid #0000001F;
+      border-bottom: 1px solid #0000001F;
+    }
+
+    #header-text {
+      display: inline-block;
+      margin: 14px 0px auto 130px;
+
+      color: var(--greyscale-1);
+    }
+
+    #main-contents {
+      width: 412px;
+      height: 725px;
+
+      border: 1px solid #0000001F;
+      background: var(--greyscale-1);
+
+      margin: 3.90625% auto;
+
+      border-radius: 4px;
+    }
+
+    #contents-title {
+      width: 382px;
+      margin: 40px auto 0 auto;
+      text-align: center;
+    }
+
+    #main-contents__price-form {
+      width: 382px;
+      height: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin: 28px 16px 0px;
+    }
+
+
+    #main-contents__price-input-box {
+      width: 310px;
+      height: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+
+    #main-contents__price-span {
+      width: 100%;
+      height: 24px;
+      white-space: nowrap;
+      display: flex;
+    }
+
+    #main-contents__price-input {
+      width: 100%;
+      height: 36px;
+      gap: 10px;
+      border-radius: 4px;
+      border: 1px solid var(--greyscale-3);
+      box-sizing: border-box;
+
+      padding: 8px 8px 0px 8px;
+    }
+
+    #main-contents__price-input::placeholder {
+      font: 400 15px/24px Roboto;
+      letter-spacing: 0.5px;
+      color: #8b8b8b;
+      border: 0px;
+    }
+
+    #main-contents__price-button {
+      width: 56px;
+      height: 36px;
+      background: var(--lotto-primary);
+      color: #ffffff;
+      padding: 6px 6px 6px 8px;
+      border-radius: 4px;
+      border: 0px
+    }
+
+    #main-contents__purchased-lotto-span {
+      display: inline-block;
+      width: 310px;
+      height: 24px;
+      margin: 28px 16px 0px;
+    }
+
+    #main-contents__purchased-lotto-box {
+      width: 238px;
+      height: 276px;
+      margin: 8px auto 0px 16px;
+      overflow-y: auto;
+    }
+
+    #main-contents__winning-lotto-form {
+      width: 382px;
+      height: 104px;
+
+      display: flex;
+      flex-wrap: wrap;
+      margin: 24px 0px 0px 16px;
+      justify-content: space-between;
+
+
+    }
+
+    #main-contents__winning-lotto-span {
+      display: inline-block;
+      width: 382px;
+      height: 24px;
+      letter-spacing: -1px;
+    }
+
+    #main-contents__winning-number-box {
+      width: 244px;
+      height: 68px;
+    }
+
+    #main-contents__bonus-number-box {
+      width: 76px;
+      height: 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    #main-contents__winning-number-span {
+      width: 76px;
+      height: 24px;
+    }
+
+    #main-contents__winning-number-inputs {
+      width: 244px;
+      height: 36px;
+    }
+
+    #main-contents__bonus-number-span {
+      width: 76px;
+      height: 24px;
+      white-space: nowrap;
+    }
+
+
+    #main-contents__winning-lotto-button {
+      width: 382px;
+      height: 36px;
+      background-color: var(--lotto-primary);
+      color: var(--greyscale-1);
+
+      border: 0px;
+      margin: 27px auto 0px 16px;
+      border-radius: 4px;
+      padding: 6px 6px 6px 8px
+    }
+
+    #modal-main-box {
+      margin: auto;
+      background-color: var(--greyscale-1);
+      border-radius: 4px;
+      width: 350px;
+      height: 500px;
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    #modal__close-button {
+      position: absolute;
+      top: 16px;
+      left: 318px;
+      border: 0px;
+      background-color: transparent;
+      width: 16px;
+      height: 16px;
+      font: 700 20px/16px Roboto;
+    }
+
+    #modal__title {
+      width: 318px;
+      height: 24px;
+      text-align: center;
+      margin-bottom: 0px;
+    }
+
+    #modal__result-table {
+      width: 319px;
+      height: 247px;
+      border-collapse: collapse;
+      text-align: center;
+      margin-top: 0px;
+    }
+
+    #modal__index-tr {
+      font-weight: 600;
+    }
+
+    #modal__result-span {
+      display: inline-block;
+      width: 318px;
+      height: 24px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    #modal__retry-botton {
+      width: 318px;
+      height: 36px;
+      padding: 6px 6px 6px 8px;
+      border-radius: 4px;
+      border: 0px;
+      background-color: var(--lotto-primary);
+      color: var(--greyscale-1);
+    }
+  </style>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="modal">
+    <div id="modal-main-box">
+      <button class="font-body" id="modal__close-button">x</button>
+      <h2 class="font-subtitle" id="modal__title">🏆 당첨 통계 🏆</h2>
+      <table id="modal__result-table">
+        <tr class="modal__result-tr" id="modal__index-tr">
+          <td>일치 갯수</td>
+          <td>당첨금</td>
+          <td>당첨 갯수</td>
+        </tr>
+        <tr class="modal__result-tr">
+          <td>3개</td>
+          <td>5,000</td>
+          <td>n개</td>
+        </tr>
+        <tr class="modal__result-tr">
+          <td>4개</td>
+          <td>50,000</td>
+          <td>n개</td>
+        </tr>
+        <tr class="modal__result-tr">
+          <td>5개</td>
+          <td>1,500,000</td>
+          <td>n개</td>
+        </tr>
+        <tr class="modal__result-tr">
+          <td>5개+보너스볼</td>
+          <td>30,000,000</td>
+          <td>n개</td>
+        </tr>
+        <tr class="modal__result-tr">
+          <td>6개</td>
+          <td>2,000,000,000</td>
+          <td>n개</td>
+        </tr>
+      </table>
+
+      <span id="modal__result-span">당신의 총 수익률은 %입니다.</span>
+
+      <button id="modal__retry-botton">다시 시작하기</button>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
-  </body>
+  </div>
+
+  <header>
+    <span class="font-title" id="header-text">🎱 행운의 로또</span>
+  </header>
+
+  <section class="font-body" id="main-contents">
+    <h1 class="font-title" id="contents-title">🎱 내 번호 당첨 확인🎱</h1>
+    <form id="main-contents__price-form">
+      <div id="main-contents__price-input-box">
+        <span id="main-contents__price-span">구입할 금액을 입력해주세요.</span>
+        <input id="main-contents__price-input" type="number" placeholder="금액" min="1000" max="10000000000" step="1000">
+      </div>
+      <button class="font-buttom-caption" id="main-contents__price-button">구입</button>
+    </form>
+
+    <span id="main-contents__purchased-lotto-span">총 7개를 구매하였습니다.</span>
+    <div id="main-contents__purchased-lotto-box">
+      <div class="purchased-lotto">
+        <strong class="lotto-ticket">🎟️</strong><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+      </div>
+      <div class="purchased-lotto">
+        <strong class="lotto-ticket">🎟️</strong><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+      </div>
+      <div class="purchased-lotto">
+        <strong class="lotto-ticket">🎟️</strong><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+      </div>
+      <div class="purchased-lotto">
+        <strong class="lotto-ticket">🎟️</strong><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+      </div>
+      <div class="purchased-lotto">
+        <strong class="lotto-ticket">🎟️</strong><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+      </div>
+      <div class="purchased-lotto">
+        <strong class="lotto-ticket">🎟️</strong><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+      </div>
+      <div class="purchased-lotto">
+        <strong class="lotto-ticket">🎟️</strong><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+      </div>
+    </div>
+
+
+    <form id="main-contents__winning-lotto-form">
+      <span id="main-contents__winning-lotto-span">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</span>
+      <div id="main-contents__winning-number-box">
+        <span id="main-contents__winning-number-span">당첨번호</span>
+        <div id="main-contents__winning-number-inputs">
+          <input class="winning-number-input" type="number" min="1" max="45">
+          <input class="winning-number-input" type="number" min="1" max="45">
+          <input class="winning-number-input" type="number" min="1" max="45">
+          <input class="winning-number-input" type="number" min="1" max="45">
+          <input class="winning-number-input" type="number" min="1" max="45">
+          <input class="winning-number-input" type="number" min="1" max="45">
+        </div>
+      </div>
+      <div id="main-contents__bonus-number-box">
+        <span id="main-contents__bonus-number-span">보너스 번호</span>
+        <input class="winning-number-input" id="main-contents__bonus-number-input" type="number">
+      </div>
+    </form>
+
+    <button id="main-contents__winning-lotto-button">결과 확인하기</button>
+  </section>
+
+  <footer>
+    <caption class="font-buttom-caption">Copyright 2023. woowacourse</caption>
+  </footer>
+</body>
+
 </html>
