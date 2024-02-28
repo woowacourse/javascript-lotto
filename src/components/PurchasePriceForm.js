@@ -21,15 +21,15 @@ class PurchasePriceForm extends HTMLElement {
 
   render() {
     this.innerHTML = PURCHASE_PRICE_FORM;
-    const purchaseButton = document.querySelector('#purchase-button');
+    const purchaseButton = this.querySelector('#purchase-button');
     purchaseButton.setText('구입');
   }
 
   #setEventListener() {
-    const purchaseButton = document.querySelector('#purchase-button');
+    const purchaseButton = this.querySelector('#purchase-button');
 
     purchaseButton.addEventListener('click', () => {
-      const price = document.querySelector('price-input-field').getValue();
+      const price = this.querySelector('price-input-field').getValue();
       BuyLottoPriceValidator.check(price);
 
       this.#purchaseEvent(price);

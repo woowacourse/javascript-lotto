@@ -1,6 +1,6 @@
 import './LottoHeader.css';
 
-const LOTTO_HEADER_COMPONENT = `
+const LOTTO_HEADER = `
   <h1 class="lotto-title">🎱 행운의 로또</h1>
 `;
 
@@ -10,7 +10,7 @@ class LottoHeader extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = LOTTO_HEADER_COMPONENT;
+    this.innerHTML = LOTTO_HEADER;
   }
 }
 

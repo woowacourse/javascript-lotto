@@ -1,30 +1,30 @@
-import './PurchasedInfo.css';
+import './PurchaseInfo.css';
 import './LottoNumbers.js';
 
-const PURCHASED_INFO = `
-<div class="purchased-info-title-container">
+const PURCHASE_INFO = `
+<div class="purchase-info-title-container">
 </div>
-<div class="purchased-info-container">
+<div class="purchase-info-container">
 </div>
 `;
 
-const PURCHASED_INFO_TITLE = (count) => `
+const PURCHASE_INFO_TITLE = (count) => `
 <p class="lotto-body">총 ${count}개를 구매했습니다.</p>
 `;
 
-class PurchasedInfo extends HTMLElement {
+class PurchaseInfo extends HTMLElement {
   connectedCallback() {
     this.render();
   }
 
   render() {
-    this.innerHTML = PURCHASED_INFO;
+    this.innerHTML = PURCHASE_INFO;
     const lottoNumbersArray = this.getAttribute('lottos');
     const lottos = this.#numbersToLottos(lottoNumbersArray);
 
-    const purchasedInfoTitle = this.querySelector('.purchased-info-title-container');
-    purchasedInfoTitle.innerHTML = PURCHASED_INFO_TITLE(lottos.length);
-    this.#renderPurchasedInfoContainer(lottos);
+    const purchasedInfoTitle = this.querySelector('.purchase-info-title-container');
+    purchasedInfoTitle.innerHTML = PURCHASE_INFO_TITLE(lottos.length);
+    this.#renderPurchaseInfoContainer(lottos);
   }
 
   #numbersToLottos(lottoNumbersArray) {
@@ -37,8 +37,8 @@ class PurchasedInfo extends HTMLElement {
     return lottos;
   }
 
-  #renderPurchasedInfoContainer(lottos) {
-    const purchasedInfoContainer = this.querySelector('.purchased-info-container');
+  #renderPurchaseInfoContainer(lottos) {
+    const purchasedInfoContainer = this.querySelector('.purchase-info-container');
     let innerHTML = ``;
     lottos.forEach((lottoNumbers) => {
       innerHTML += `<lotto-numbers numbers=${lottoNumbers}></lotto-numbers>`;
@@ -47,4 +47,4 @@ class PurchasedInfo extends HTMLElement {
   }
 }
 
-customElements.define('purchased-info', PurchasedInfo);
+customElements.define('purchase-info', PurchaseInfo);

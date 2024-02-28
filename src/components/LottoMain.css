@@ -25,16 +25,12 @@ lotto-main {
   padding-inline: 16px;
 }
 
-.title-container {
+.lotto-main-title-container {
   display: flex;
   justify-content: center;
   align-items: center;
 
   height: 36px;
-}
-
-lotto-main .lotto-button {
-  width: 100%;
 }
 
 .purchase-result {

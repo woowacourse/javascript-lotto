@@ -1,12 +1,12 @@
 import './LottoMain.css';
 import './PurchasePriceForm.js';
-import './PurchasedInfo.js';
-import './WinningAndBonusInputForm.js';
+import './PurchaseInfo.js';
+import './WinningAndBonusForm.js';
 import './LottoButton.js';
 
-const LOTTO_MAIN_CONTAINER = `
+const LOTTO_MAIN = `
   <div class="lotto-main-container">
-    <div class="title-container">
+    <div class="lotto-main-title-container">
       <h1 class="lotto-title">
         🎱 내 번호 당첨 확인 🎱
       </h1>
@@ -17,8 +17,8 @@ const LOTTO_MAIN_CONTAINER = `
 `;
 
 const LOTTO_MAIN_RESULT = (lottoNumbersArray) => `
-<purchased-info lottos=${lottoNumbersArray}></purchased-info>
-<winning-numbers-form></winning-numbers-form>
+<purchase-info lottos=${lottoNumbersArray}></purchase-info>
+<winning-and-bonus-form></winning-and-bonus-form>
 `;
 
 class LottoMain extends HTMLElement {
@@ -28,7 +28,7 @@ class LottoMain extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = LOTTO_MAIN_CONTAINER;
+    this.innerHTML = LOTTO_MAIN;
   }
 
   #renderResult(event) {

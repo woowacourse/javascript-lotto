@@ -1,4 +1,4 @@
-winning-numbers-form {
+winning-and-bonus-form {
   display: flex;
   flex-direction: column;
   gap: 27px;
@@ -6,19 +6,19 @@ winning-numbers-form {
   width: 100%;
 }
 
-.winning-bonus-container {
+.winning-and-bonus-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.winning-input-title-container {
+.winning-and-bonus-title-container {
   display: flex;
   align-items: center;
   height: 24px;
 }
 
-.winning-bonus-input-container {
+.winning-and-bonus-input-container {
   display: flex;
   flex: auto;
   justify-content: space-between;
@@ -26,6 +26,6 @@ winning-numbers-form {
   width: 100%;
 }
 
-winning-numbers-form .lotto-button {
+winning-and-bonus-form .lotto-button {
   width: 100%;
 }

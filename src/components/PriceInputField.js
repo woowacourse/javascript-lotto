@@ -1,6 +1,6 @@
 import './PriceInputField.css';
 
-const LOTTO_INPUT_FIELD_COMPONENT = `
+const PRICE_INPUT_FIELD = `
   <input class="price-input" type="text" placeholder="금액"></input>
 `;
 
@@ -10,7 +10,7 @@ class PriceInputField extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = LOTTO_INPUT_FIELD_COMPONENT;
+    this.innerHTML = PRICE_INPUT_FIELD;
   }
 
   getValue() {

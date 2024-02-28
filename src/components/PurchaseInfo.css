@@ -1,4 +1,4 @@
-purchased-info {
+purchase-info {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -8,7 +8,7 @@ purchased-info {
   width: 100%;
 }
 
-.purchased-info-title-container {
+.purchase-info-title-container {
   display: flex;
   align-items: center;
 
