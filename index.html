@@ -20,12 +20,13 @@
           <p class="lotto-subtitle">🎱 내 번호 당첨 확인 🎱</p>
         </div>
 
-        <p>구입할 금액을 입력해주세요.</p>
-        <form id="content-box-input-budget">
-          <input type="number" id="budget" name="budget" placeholder="금액" />
-          <button type="submit">구입</button>
-        </form>
-
+        <div id="content-box-budget">
+          <p id="content-box-budget-label" class="lotto-body">구입할 금액을 입력해주세요.</p>
+          <form id="content-box-input-budget">
+            <input type="number" id="budget" name="budget" placeholder="금액" />
+            <button type="submit" class="lotto-caption">구입</button>
+          </form>
+        </div>
         <div id="after-budget">
           <div id="content-box-lottos">
             <p>총 <span id="issued-lotto-count"></span>개를 구매하였습니다.</p>

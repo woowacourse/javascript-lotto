@@ -1,3 +1,5 @@
+@import "reset.css";
+
 html {
   font-size: 10px;
 }
@@ -82,6 +84,7 @@ body {
 }
 
 #content-box {
+  box-sizing: border-box;
   background-color: var(--lotto-greyscale1-color);
   width: 41.4rem;
   height: 72.7rem;
@@ -93,15 +96,47 @@ body {
 
 #content-box-header {
   color: var(--lotto-greyscale5-color);
-  background-color: pink;
   display: flex;
   justify-content: center;
-}
-
-#content-box-input-budget {
+  margin-top: 4rem;
 }
 
 #content-box-budget {
+  margin-top: 2.8rem;
+}
+
+#content-box-input-budget {
+  display: flex;
+  justify-content: space-between;
+}
+
+#content-box-input-budget > input {
+  box-sizing: border-box;
+  display: flex;
+  border: 0.1rem inset var(--lotto-greyscale3-color);
+  border-radius: 0.4rem;
+  width: 31rem;
+  height: 3.6rem;
+  padding: 0.8rem 0.8rem 0.4rem 0.8rem;
+  gap: 1rem;
+}
+
+#content-box-input-budget > button {
+  background-color: var(--lotto-primary-color);
+  color: var(--lotto-greyscale1-color);
+  width: 5.6rem;
+  /* height: 3.6rem; */
+  padding: 0;
+  border-radius: 0.4rem;
+  border: 0rem;
+  text-align: center;
+}
+
+#content-box-budget {
+}
+
+#content-box-budget-label {
+  margin-bottom: 0.4rem;
 }
 
 #after-budget {
