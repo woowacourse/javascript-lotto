@@ -21,7 +21,7 @@
   - [x] lottosState 생성 및 연결
   - [x] boughtLottoBoard 컴포넌트 생성
 - [ ] 당첨 결과 표시
-  - [ ] WinningLottoForm 컴포넌트 생성
+  - [x] WinningLottoForm 컴포넌트 생성
   - [ ] LottoResultState 생성 및 연결
     - [ ] isResultModalOn
     - [ ] ranks

@@ -34,9 +34,9 @@ export default class BuyAmountForm extends MyComponent {
   }
 
   #handleBuyLotto() {
-    const buyingAmount = $(".buying-amount-input").value;
+    const buyAmount = $(".buying-amount-input").value;
 
-    const lottos = this.#buyLottos(buyingAmount);
+    const lottos = this.#buyLottos(buyAmount);
 
     this.#lottosState.setLottos(lottos);
   }
