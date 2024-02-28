@@ -37,12 +37,12 @@
           <form class="purchase-form">
             <label class="purchase-text">구입할 금액을 입력해주세요.</label>
             <div class="purchase-input-wrapper">
-              <input class="purchase-input-box" placeholder="금액" type="number" max="100000" />
+              <input class="purchase-input-box" placeholder="금액" type="number" min="1000" max="100000" />
               <button class="purchase-button" type="submit">구입</button>
             </div>
           </form>
           <div class="lottos-container">
-            <label class="lottos-text">총 7개를 구매하였습니다.</label>
+            <label class="lottos-text"></label>
             <ul class="lottos-list">
               <li class="lottos-list-item"><span>🎟</span> 1, 2, 3, 4, 5, 6</li>
             </ul>
@@ -84,6 +84,6 @@
 
       <footer>Copyright 2023. woowacourse</footer>
     </div>
-    <script defer type="module" src="./src/js/index.js"></script>
+    <script defer type="module" src="./src/controller/LottoGameController2.js"></script>
   </body>
 </html>
