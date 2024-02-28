@@ -11,7 +11,7 @@ class LottoController {
   #winningLotto = new WinningLotto();
 
   #money = new Money();
-
+  
   async run() {
     await retryOnFailureAsync(this.#readBuyingLottoMoney, this);
     this.#printBoughtLottos();
