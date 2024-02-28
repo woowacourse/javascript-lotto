@@ -153,10 +153,15 @@ footer {
   height: 36px;
 }
 
+/* FIXME: 사용하지 않는 클래스 */
 .footer__info {
 }
 
 .result-modal {
+  width: 350px;
+  padding: 16px 16px 32px 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .result-modal__button-close {
@@ -250,4 +255,8 @@ footer {
 
 .bgcolor-primary {
   background: rgba(78, 91, 166, 1);
+}
+
+.bgcolor-white {
+  background: rgba(255, 255, 255, 1);
 }
