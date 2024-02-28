@@ -14,16 +14,17 @@
 
 /* main title */
 .main__title-wrapper {
-  margin: 0;
-  padding: 0;
+  margin-top: 20px;
 }
 
 .main__title {
   font: var(--lotto-title);
+  margin: 0;
+  padding: 0;
 }
 
 /* main purchase input */
-.purchase-container {
+.purchase-form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -65,18 +66,62 @@
 }
 
 /* main lottos output */
-
-/* main winning lotto input */
-.winning-lotto-container {
-  height: 104px;
-  font: var(--lotto-body);
-  height: 104px;
+.lottos-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.winning-lotto {
+.lottos-text {
+  height: 24px;
+  font: var(--lotto-body);
+}
+
+.lottos-list {
+  height: 270px;
+  margin: 0;
+  padding: 0;
+  resize: none;
+  overflow-x: hidden;
+}
+
+.lottos-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lottos-list::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: rgba(92, 92, 92, 0.4);
+  border-radius: 10px;
+}
+
+.lottos-list::-webkit-scrollbar-track {
+  background: rgba(92, 92, 92, 0.1);
+}
+
+.lottos-list-item {
+  list-style: none;
+  height: 36px;
+  font: var(--lotto-body);
+  span {
+    font: 600 34px/36px Roboto;
+  }
+}
+
+/* main winning lotto input */
+.winning-lotto-form {
+  width: 100%;
+  height: 104px;
+  font: var(--lotto-body);
+}
+
+.winning-lotto-text {
+  letter-spacing: 0px;
+}
+
+.winning-lotto-container {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
   height: 68px;
 }
 
@@ -91,4 +136,17 @@
 .bonus-lotto-input-container {
   display: flex;
   justify-content: flex-end;
+}
+
+.winning-lotto-submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
 }

@@ -16,7 +16,7 @@
       <div id="modal">
         <div class="modal__background"></div>
         <div class="modal__content">
-          <div class="close-button">❌</div>
+          <button class="close-button">❌</button>
           <h2 class="modal__title">🏆 당첨 통계 🏆</h2>
           <div class="winning-result">
             <div class="winning-result-column">일치 개수</div>
@@ -34,20 +34,22 @@
           <div class="main__title-wrapper">
             <h2 class="main__title">🎱 내 번호 당첨 확인 🎱</h2>
           </div>
-          <form class="purchase-container">
+          <form class="purchase-form">
             <label class="purchase-text">구입할 금액을 입력해주세요.</label>
             <div class="purchase-input-wrapper">
               <input class="purchase-input-box" placeholder="금액" type="number" max="100000" />
               <button class="purchase-button" type="submit">구입</button>
             </div>
           </form>
-          <div class="lottos-container" hidden>
-            <label class="lottos-text"></label>
-            <ul class="lottos-list"></ul>
+          <div class="lottos-container">
+            <label class="lottos-text">총 7개를 구매하였습니다.</label>
+            <ul class="lottos-list">
+              <li class="lottos-list-item"><span>🎟</span> 1, 2, 3, 4, 5, 6</li>
+            </ul>
           </div>
-          <form class="winning-lotto-container" hidden>
-            <div class="winning-lotto-text">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
-            <div class="winning-lotto">
+          <form class="winning-lotto-form">
+            <div class="winning-lotto-text">지난 주 당첨번호 6개와 보너스번호 1개를 입력해주세요.</div>
+            <div class="winning-lotto-container">
               <div class="winning-lotto-wrapper">
                 <label>당첨 번호</label>
                 <div class="winning-lotto-input-container">
@@ -66,7 +68,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="winning-lotto-submit-button" value="결과 확인하기">결과 확인하기</button>
+            <button class="winning-lotto-submit-button" type="submit" value="결과 확인하기">결과 확인하기</button>
           </form>
 
           <!-- <button class="btn">Open Modal</button>
