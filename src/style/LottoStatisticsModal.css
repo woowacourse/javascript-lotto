@@ -15,15 +15,15 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  width: 350px;
-  padding: 0px 16px;
+  width: 35rem;
+  padding: 0rem 1.6rem;
   background: var(--lotto-greyscale-1);
 }
 
 .modal-close-btn {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 1.6rem;
+  right: 1.6rem;
   border: none;
   outline: none;
   background: var(--lotto-greyscale-1);
@@ -36,7 +36,7 @@
 
 .lotto-statistics-modal-title {
   width: 100%;
-  margin: 40px 0px;
+  margin: 4rem 0rem;
   text-align: center;
   font-size: var(--font-medium);
   font-weight: var(--font-semi-bold);
@@ -44,20 +44,20 @@
 
 .return-on-investment-text {
   width: 100%;
-  margin: 32px 0px;
+  margin: 3.2rem 0rem;
   text-align: center;
   font-weight: var(--font-bold);
 }
 
 .lotto-statistics-modal table {
   width: 100%;
-  border-top: 1px solid var(--lotto-greyscale-5-light);
+  border-top: 0.1rem solid var(--lotto-greyscale-5-light);
 }
 
 .lotto-statistics-modal tr {
   display: flex;
-  padding: 8px 0px;
-  border-bottom: 1px solid var(--lotto-greyscale-5-light);
+  padding: 0.8rem 0rem;
+  border-bottom: 0.1rem solid var(--lotto-greyscale-5-light);
   text-align: center;
 }
 
@@ -72,10 +72,10 @@
 
 .restart-btn {
   width: 100%;
-  height: 36px;
-  margin-bottom: 32px;
+  height: 3.6rem;
+  margin-bottom: 3.2rem;
   border: 0;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   background: var(--lotto-primary);
   color: var(--lotto-greyscale-1);
   letter-spacing: var(--letter-spacing-large);

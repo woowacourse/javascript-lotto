@@ -1,20 +1,20 @@
 .lotto-display-container {
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
-  margin: 24px 0px;
+  row-gap: 0.8rem;
+  margin: 2.4rem 0rem;
 }
 
 .lotto-display {
   display: flex;
   flex-direction: column;
-  row-gap: 4px;
+  row-gap: 0.4rem;
 }
 
 .lotto-display p {
   display: flex;
   align-items: center;
-  column-gap: 8px;
+  column-gap: 0.8rem;
 }
 
 .lotto-display span {
