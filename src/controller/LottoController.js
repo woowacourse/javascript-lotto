@@ -148,6 +148,23 @@ class LottoController {
     const modalCloseButton = document.querySelector('.button-modal-close');
     modalView.classList.remove('invisible');
     modalCloseButton.addEventListener('click', () => modalView.classList.add('invisible'));
+    const winningStats = new WinningStatsMaker().makeWinningStats(this.lottoTickets, {
+      winningNumbers,
+      bonusNumber,
+    });
+    const winningStatsResultView = document.querySelector('.winning-stats-result');
+    winningStatsResultView.innerHTML = '';
+    Object.entries(winningStats)
+      .reverse()
+      .forEach(([prize, count]) => {
+        winningStatsResultView.innerHTML += `
+      <tr>
+      <td class="tg-0lax">${LOTTO_SYMBOL.COUNT_CONDITION[prize]}</td>
+      <td class="tg-0lax">${LOTTO_SYMBOL.PRIZE[prize].toLocaleString()}</td>
+      <td class="tg-0lax">${count}</td>
+      </tr>
+      `;
+      });
   }
 }
 
