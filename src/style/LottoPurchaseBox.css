@@ -1,0 +1,21 @@
+.lotto-purchase-box {
+  width: 414px;
+  min-height: 727px;
+  margin: 84px 0px;
+  padding: 0px 16px;
+  border: 1px solid var(--lotto-greyscale-5-light);
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.lotto-purchase-title {
+  width: 100%;
+  height: 36px;
+  margin: 40px 0px;
+  color: var(--lotto-greyscale-5);
+  letter-spacing: var(--letter-spacing-small);
+  text-align: center;
+  font-size: var(--font-large);
+  font-weight: var(--font-extra-bold);
+  line-height: var(--line-height-large);
+}

@@ -6,7 +6,12 @@
 import App from './web/App';
 
 import './style/reset.css';
-import './style/index.css';
+import './style/global.css';
+import './style/LottoDisplay.css';
+import './style/LottoPurchaseBox.css';
+import './style/LottoStatisticsModal.css';
+import './style/MoneyInput.css';
+import './style/WinningLottoInput.css';
 
 const app = new App();
 
