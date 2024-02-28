@@ -45,7 +45,7 @@ const winningLottoHandler = {
     event.preventDefault();
     try {
       const winningLotto = this.validateWinningLotto();
-      resolve(WinningLotto(winningLotto, bonusNumber.value));
+      resolve(WinningLotto(winningLotto, Number(bonusNumber.value)));
       dialog.showModal();
     } catch (error) {
       invalidWinningLotto.innerText = error.message;
