@@ -46,7 +46,7 @@ const RenderingHandler = Object.freeze({
 
   renderLottoResultModal: (winLottos, rateOfIncome) => {
     const main = document.getElementsByTagName('main')[0];
-    main.appendChild(ResultModal.makeModalElement());
+    main.appendChild(ResultModal.makeModalElement(winLottos, rateOfIncome));
   },
 });
 

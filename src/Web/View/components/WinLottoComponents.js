@@ -42,7 +42,9 @@ const WinLottoComponents = Object.freeze({
       winLottoInputs,
       Array.from({ length: 6 }, () => {
         const input = makeElementWithClassName('input', 'winLottoInput');
-        input.maxLength = 1;
+        input.type = 'number';
+        input.max = 45;
+        input.min = 1;
         input.name = `winNumber`;
         return input;
       }),

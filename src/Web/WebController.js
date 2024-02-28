@@ -13,7 +13,6 @@ export default class WebController {
     RenderingHandler.renderHeader();
     RenderingHandler.renderLottoComponents();
     RenderingHandler.renderFooter();
-    RenderingHandler.renderLottoResultModal();
 
     this.#setMoneyFormEvent();
     // this.#executeResult();

@@ -2,22 +2,38 @@ import '../../css/modal.css';
 
 import { appendChildren, makeElementById, makeElementWithClassName } from '../../utils';
 
+const RANK_STRING = Object.freeze({
+  1: '6개',
+  2: '5개+보너스볼',
+  3: '5개',
+  4: '4개',
+  5: '3개',
+});
+
+const RANK_WIN_AMOUNT = Object.freeze({
+  1: '2,000,000,000',
+  2: '30,000,000',
+  3: '1,500,000',
+  4: '50,000',
+  5: '5,000',
+});
+
 const ResultModal = Object.freeze({
   openModal: () => {},
   closeModal: () => {},
-  makeModalElement: () => {
+  makeModalElement: (winLottos, rateOfIncome) => {
     const modalContainer = makeElementById('div', 'modalContainer');
-    const modalResultContainer = ResultModal.makeModalResultContainer();
+    const modalResultContainer = ResultModal.makeModalResultContainer(winLottos, rateOfIncome);
     modalContainer.appendChild(modalResultContainer);
     return modalContainer;
   },
 
-  makeModalResultContainer: () => {
+  makeModalResultContainer: (winLottos, rateOfIncome) => {
     const modalResultContainer = makeElementById('div', 'modalResultContainer');
     appendChildren(modalResultContainer, [
       ResultModal.makeModalResultTitle(),
-      ResultModal.makeModalResultRanks(),
-      ResultModal.makeModalRateOfIncomeResult(),
+      ResultModal.makeModalResultRanks(winLottos),
+      ResultModal.makeModalRateOfIncomeResult(rateOfIncome),
       ResultModal.makeModalRetryButton(),
       ResultModal.makeModalCloseButton(),
     ]);
@@ -30,12 +46,17 @@ const ResultModal = Object.freeze({
     return modalResultTitle;
   },
 
-  makeModalResultRanks: () => {
+  makeModalResultRanks: (winLottos) => {
+    winLottos.shift();
+    console.log(winLottos);
     const modalResultRankList = makeElementWithClassName('div', 'modalResultRankList');
     const modalResultRankTable = makeElementWithClassName('table', 'modalResultRankTable');
     appendChildren(modalResultRankTable, [
       ResultModal.makeModalResultRankHeader(),
-      ...Array.from({ length: 5 }, () => ResultModal.makeModalResultRankData()),
+      ...winLottos.map((count, index) => {
+        const rank = index + 1;
+        return ResultModal.makeModalResultRankData(count, rank);
+      }),
     ]);
     modalResultRankList.appendChild(modalResultRankTable);
     return modalResultRankList;
@@ -49,19 +70,19 @@ const ResultModal = Object.freeze({
     return modalResultRankRow;
   },
 
-  makeModalResultRankData: () => {
+  makeModalResultRankData: (count, rank) => {
     const modalResultRankRow = makeElementWithClassName('tr', 'modalResultRankRow');
     modalResultRankRow.innerHTML = `<tr>
-  <td>3개</td>
-  <td>5000원</td>
-  <td>n개</td>
+  <td>${RANK_STRING[rank]}</td>
+  <td>${RANK_WIN_AMOUNT[rank]}</td>
+  <td>${count}</td>
 </tr>`;
     return modalResultRankRow;
   },
 
-  makeModalRateOfIncomeResult: (rate = '5,000') => {
+  makeModalRateOfIncomeResult: (rate) => {
     const rateOfIncomeResultContainer = makeElementWithClassName('div', 'rateOfIncomeResultContainer');
-    rateOfIncomeResultContainer.innerText = `당신의 수익률은 ${rate}%입니다`;
+    rateOfIncomeResultContainer.innerText = `당신의 수익률은 ${String(rate)}%입니다`;
     return rateOfIncomeResultContainer;
   },
 
