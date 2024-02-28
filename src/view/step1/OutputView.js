@@ -1,6 +1,6 @@
-import { SYMBOL } from "../constants/condition";
-import LOTTO_SYSTEM from "../constants/lottoSystem";
-import { OUTPUT_MESSAGE } from "../constants/message";
+import { SYMBOL } from "../../constants/condition";
+import LOTTO_SYSTEM from "../../constants/lottoSystem";
+import { OUTPUT_MESSAGE } from "../../constants/message";
 
 const OutputView = {
   printLottos(lottos) {

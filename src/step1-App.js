@@ -1,6 +1,6 @@
 import LottoGame from "./domain/LottoGame";
-import InputView from "./view/InputView";
-import OutputView from "./view/OutputView";
+import InputView from "./view/step1/InputView";
+import OutputView from "./view/step1/OutputView";
 import { ERROR_MESSAGE } from "./constants/message";
 import splitByDelimiter from "./utils/splitByDelimiter";
 import { SYMBOL } from "./constants/condition";
