@@ -1,6 +1,7 @@
 import LottoController2 from './controller/LottoController2.js';
-import WinningLotto from './domain/WinningLotto.js';
 import amountFormEventListener from './eventListener/amountFormEventListener.js';
+import modalCloseButtonEventListener from './eventListener/modalCloseButtonEventListener.js';
+import modalRestartButtonEventListener from './eventListener/modalRestartButtonEventListener.js';
 import resultFormEventListener from './eventListener/resultFormEventListener.js';
 
 const controller = new LottoController2();
@@ -9,6 +10,8 @@ const controller = new LottoController2();
 document.addEventListener('DOMContentLoaded', () => {
   const amountFormElement = document.querySelector('.amount-form');
   const resultFormElement = document.querySelector('.result-form');
+  const modalCloseButton = document.querySelector('.result-modal__button-close');
+  const modalRestartButton = document.querySelector('.result-modal__button-restart');
 
   amountFormElement.addEventListener('submit', (event) => {
     const purchaseAmount = amountFormEventListener(event);
@@ -19,4 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const [winningNumbers, bonusNumber] = resultFormEventListener(event);
     controller.analyzeAndPrintLottoResult(winningNumbers, bonusNumber);
   });
+
+  modalCloseButton.addEventListener('click', modalCloseButtonEventListener);
+  modalRestartButton.addEventListener('click', modalRestartButtonEventListener);
 });

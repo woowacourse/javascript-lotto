@@ -7,6 +7,10 @@
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 header {
   height: 64px;
   display: flex;
@@ -187,6 +191,7 @@ footer {
   font-size: 20px;
   line-height: 14px;
   text-align: center;
+  cursor: pointer;
 }
 
 .result-modal__title {
