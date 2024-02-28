@@ -1,4 +1,5 @@
-* {
+html {
+  font-size: 10px;
 }
 
 body {
@@ -19,52 +20,55 @@ body {
 
 .lotto-title {
   font-family: "Roboto", sans-serif;
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 800;
-  line-height: 36px;
-  letter-spacing: 0px;
+  line-height: 3.6rem;
+  letter-spacing: 0;
   text-align: left;
 }
 
 .lotto-subtitle {
   font-family: "Roboto", sans-serif;
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size: 2rem;
   font-weight: 600;
-  line-height: 24px;
-  letter-spacing: 0.15000000596046448px;
+  line-height: 2.4rem;
+  letter-spacing: 0.015rem;
   text-align: left;
 }
 
 .lotto-body {
   font-family: "Roboto", sans-serif;
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
   text-align: left;
 }
 
 .lotto-placeholder {
   font-family: "Roboto", sans-serif;
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
   text-align: left;
 }
 
 .lotto-caption {
   font-family: "Roboto", sans-serif;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 700;
-  line-height: 24px;
-  letter-spacing: 0.5px;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
   text-align: left;
 }
 
 #main-header {
   display: flex;
   background: var(--lotto-primary-color);
+  padding: 1.4rem;
+  padding-left: 14rem;
 }
 
 #header-title {
@@ -79,18 +83,25 @@ body {
 
 #content-box {
   background-color: var(--lotto-greyscale1-color);
-  width: 414px;
-  height: 727px;
-  top: 148px;
-  left: 513px;
+  width: 41.4rem;
+  height: 72.7rem;
+  top: 14.8rem;
+  left: 51.3rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 1.6rem;
 }
 
 #content-box-header {
   color: var(--lotto-greyscale5-color);
+  background-color: pink;
+  display: flex;
+  justify-content: center;
 }
 
 #content-box-input-budget {
+}
+
+#content-box-budget {
 }
 
 #after-budget {
@@ -202,7 +213,7 @@ body {
 /* 모달 표 */
 
 #modal-body {
-  background-color: pink;
+  /* background-color: pink; */
   /* display: flex;
   justify-content: center; */
   /* flex-direction: column; */
