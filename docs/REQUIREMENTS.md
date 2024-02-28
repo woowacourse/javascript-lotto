@@ -1,3 +1,24 @@
+# 🎰 '로또' 작동 방법
+
+### 데모 페이지
+
+https://anttiey.github.io/javascript-lotto/
+
+### Step 1
+
+```
+npm run start-step1
+```
+
+### Step 2
+
+```
+npm run start-step2
+```
+
+<br />
+<br />
+
 # 🎰 '로또' 1단계 기능 목록 (콘솔 기반 로또 게임)
 
 ### 로또
