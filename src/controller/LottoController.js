@@ -1,4 +1,5 @@
 import LottoTicket from '../domain/LottoTicket';
+import WinningStatsMaker from '../domain/WinningStatsMaker';
 import PurchaseAmountValidator from '../validator/PurchaseAmountValidator';
 import WinningNumbersValidator from '../validator/WinningNumbersValidator';
 import BonusNumberValidator from '../validator/BonusNumberValidator';
@@ -7,7 +8,7 @@ import {
   PURCHASE_AMOUT_INPUT_ERROR,
   WINNING_NUMBER_INPUT_ERROR,
 } from '../constant/messages';
-import { PURCHASE_SYMBOL } from '../constant/symbols';
+import { LOTTO_SYMBOL, PURCHASE_SYMBOL } from '../constant/symbols';
 
 class LottoController {
   constructor() {
@@ -124,6 +125,7 @@ class LottoController {
     } else {
       lottoNumberErrorView.value = '';
       const bonusNumber = Number(inputBonusNumber);
+      this.clickResultBtn(winningNumbers, bonusNumber);
     }
   }
 
@@ -133,6 +135,19 @@ class LottoController {
     if (!BonusNumberValidator.isUniqueBonusNumber(inputValue, winningNumbers))
       return BONUS_NUMBER_INPUT_ERROR.UNIQUE;
     return true;
+  }
+
+  clickResultBtn(winningNumbers, bonusNumber) {
+    document
+      .querySelector('.btn-submit-lotto')
+      .addEventListener('click', this.processWinningStats(winningNumbers, bonusNumber));
+  }
+
+  processWinningStats(winningNumbers, bonusNumber) {
+    const modalView = document.querySelector('.outside-modal');
+    const modalCloseButton = document.querySelector('.button-modal-close');
+    modalView.classList.remove('invisible');
+    modalCloseButton.addEventListener('click', () => modalView.classList.add('invisible'));
   }
 }
 
