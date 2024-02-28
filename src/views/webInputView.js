@@ -3,20 +3,19 @@ import winningNumbersValidator from '../validators/winningNumbersValidator.js';
 import bonusNumberValidator from '../validators/bonusNumberValidator.js';
 
 const webInputView = {
-  $purchaseError: document.getElementById('purchaseError'),
-  $winningNumberSection: document.getElementById('winningNumberSection'),
-
   readPurchaseAmount() {
+    const $purchaseError = document.getElementById('purchaseError');
+    const $winningNumberSection = document.getElementById('winningNumberSection');
     try {
       const purchaseAmountInput = document.getElementById('purchaseInput').value;
       const purchaseAmount = purchaseAmountInput.trim();
       purchaseAmountValidator.validate(purchaseAmount);
-      this.$purchaseError.classList.add('hidden');
-      this.$winningNumberSection.classList.remove('hidden');
+      $purchaseError.classList.add('hidden');
+      $winningNumberSection.classList.remove('hidden');
       return purchaseAmount;
     } catch (error) {
-      this.$purchaseError.textContent = error.message;
-      this.$purchaseError.classList.remove('hidden');
+      $purchaseError.textContent = error.message;
+      $purchaseError.classList.remove('hidden');
       return false;
     }
   },
