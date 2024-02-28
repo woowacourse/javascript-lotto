@@ -31,6 +31,10 @@ class LottoController {
 
     return validatedPurchaseAmount ? parseInt(validatedPurchaseAmount.trim(), 10) : null;
   }
+
+  calculateIssueQuantity(purchaseAmount) {
+    return this.#lottoMachine.calculateIssueQuantity(purchaseAmount);
+  }
 }
 
 export default LottoController;

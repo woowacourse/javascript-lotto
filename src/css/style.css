@@ -91,33 +91,39 @@ section {
 
 /* section 3 --------------------- */
 #lottoSection {
+  background-color: blue;
+
   position: absolute;
   top: 196px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
 }
 
 #lottoSection #lottoMainTitle {
-  position: absolute;
-  top: 0px;
-  left: 32px;
-  height: 24px;
-  margin-bottom: 28px;
+  background-color: yellow;
+
+  margin-bottom: 8px;
 }
-/* 
+
 #lottoSection #lottos {
-  position: absolute;
-  top: 8px;
-  left: 32px;
-  height: 276px;
   background-color: green;
+
+  height: 276px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
 #lottoSection #lottos #lotto {
-  height: 36px;
   background-color: white;
-} */
+
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 
 /* footer */
 footer {

@@ -14,10 +14,17 @@ const lottoController = new LottoController();
 window.onload = function () {
   const purchaseInputField = document.getElementById('purchaseInputField');
   const purchaseSubmitButton = document.getElementById('purchaseSubmitButton');
+  const lottoSection = document.getElementById('lottoSection');
+  const lottoMainTitle = document.getElementById('lottoMainTitle');
 
   purchaseSubmitButton.addEventListener('click', async function (event) {
     event.preventDefault();
     const purchaseAmount = purchaseInputField.value;
-    await lottoController.inputPurchaseAmount(purchaseAmount);
+    const validPurchaseAmount = await lottoController.inputPurchaseAmount(purchaseAmount);
+
+    const lottoCount = lottoController.calculateIssueQuantity(validPurchaseAmount);
+
+    lottoSection.style.display = 'block';
+    lottoMainTitle.textContent = `총 ${lottoCount}개를 구매하였습니다.`;
   });
 };
