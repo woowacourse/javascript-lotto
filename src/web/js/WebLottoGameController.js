@@ -2,6 +2,8 @@ import LottoResultsHelper from '../../domains/LottoResultsHelper';
 import HtmlTextInjectorWithConstants from './HtmlTextInjectorWithConstants';
 import LottoMachineGenerator from './LottoMachineGenerator';
 import RuleDisplayController from './RuleDisplayController';
+import StatisticsPopupController from './StatisticsPopupController';
+import WinningLottoAndBonusGenerator from './WinningLottoAndBonusGenerator';
 
 class WebLottoGameController {
   #lottoResultsHelper = new LottoResultsHelper();
@@ -22,6 +24,12 @@ class WebLottoGameController {
   #handleLottoMachineGenerator() {
     // eslint-disable-next-line
     const lottoMachineGenerator = new LottoMachineGenerator(
+      this.#lottoResultsHelper,
+    );
+    // eslint-disable-next-line
+    const winning = new WinningLottoAndBonusGenerator(this.#lottoResultsHelper);
+    // eslint-disable-next-line
+    const statisticsPopupController = new StatisticsPopupController(
       this.#lottoResultsHelper,
     );
   }
