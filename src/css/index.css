@@ -1,16 +1,31 @@
 @import 'reset.css';
 @import 'common.css';
+@import 'module/lottoMoneyInput.css';
+@import 'module/myLottoInfo.css';
+@import 'module/lottoModal.css';
+@import 'module/winLotto.css';
 
-h1 {
-  font-size: var(--title-font-size);
-  font-weight: var(--title-font-weight);
-  display: flex;
-  align-items: center;
+/*header*/
+header {
+  background-color: var(--lotto-primary);
+  height: 64px;
 }
 
 header > h1 {
-  color: var(--lotto-greyscale-1);
   margin-left: 130px;
+  color: var(--lotto-greyscale-1);
+}
+
+/*main*/
+main {
+  height: calc(100vh - 144px);
+}
+
+@media (max-height: 800px) {
+  header,
+  footer {
+    visibility: hidden;
+  }
 }
 
 #main-lotto-card {
@@ -24,226 +39,19 @@ header > h1 {
 
 #my-lottos-win-title {
   padding-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: var(--lotto-greyscale-5);
 }
 
 #main-lotto-card > h1 {
   color: var(--lotto-greyscale-5);
 }
 
-/* TODO: 공통된 속성 class로 정리하기*/
-/*로또 구입 금액 입력 섹션*/
-#lotto-money-form-section {
-  padding-top: 30px;
-  width: 382px;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#lotto-money-form-section > p {
-  width: 100%;
-}
-
-#lotto-money-form-section input {
-  width: 310px;
-  height: 36px;
-  border: 1px solid var(--lotto-greyscale-3);
-  border-radius: 4px;
-}
-
-#money-input-box {
-  width: 100%;
-  display: flex;
-  margin-top: 5px;
-  flex-direction: column;
-}
-
-#money-form {
-  display: flex;
-  justify-content: space-between;
-}
-#money-error {
-  height: 10px;
-  padding-top: 5px;
-}
-
-#lotto-money-input-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* TODO: 위랑 안 겹치는지 확인 */
-#lotto-money-form-section button {
-  border: 4px;
-  padding: 6px 6px 6px 8px;
-  width: 56px;
-  height: 36px;
-  background-color: var(--lotto-primary);
-  border-radius: 4px;
-  color: var(--lotto-greyscale-1);
-}
-
-/*구매한 로또 정보 나오는 섹션*/
-#my-lottos-section {
-  width: 238px;
-  height: 276px;
-  padding-top: 20px;
-}
-
-#my-lottos-section span {
-  font-size: 34px;
-  line-height: 36px;
-  font-weight: 600;
-  padding-right: 10px;
-}
-
-#my-lottos-section > ul {
-  margin-top: 15px;
-}
-
-#my-lottos-section > ul > li {
-  width: 238px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-#my-lottos-list {
-  height: 250px;
-  width: 100%;
-  overflow: auto;
-  overflow-x: hidden;
-}
-
-/*우승 로또 정보 입력 섹션*/
-#winning-lotto-section {
-  display: flex;
-  position: absolute;
-  bottom: 10px;
-  height: 200px;
-  width: 100%;
-  flex-direction: column;
-  width: 382px;
-}
-
-#winning-lotto-form {
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
-}
-
-#winning-numbers {
-  width: 244px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-}
-
-#winning-lotto-inputs {
-  display: flex;
-  justify-content: space-between;
-}
-
-#winning-numbers-inputs {
-  display: flex;
-  justify-content: space-around;
-}
-
-#bonus-number {
-  position: relative;
-}
-
-#bonus-number input {
-  position: absolute;
-  right: 0;
-}
-
-.number-input {
-  margin-top: 10px;
-  width: 34px;
-  height: 36px;
-  border-radius: 4px;
-  border: 1px solid var(--lotto-greyscale-3);
-}
-
-#result-show-button {
-  margin-top: 30px;
-}
-
 /*footer*/
 footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--lotto-primary);
   height: 80px;
   border-top: 1px solid var(--border-line);
   position: fixed;
   bottom: 0;
   width: 100vw;
-}
-
-/*modal*/
-#winning-statistics {
-  width: 350px;
-  height: 500px;
-  background-color: var(--lotto-greyscale-1);
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 16px;
-
-  border-radius: 4px;
-}
-
-#winning-statistics h2 {
-  text-align: center;
-  width: 318px;
-  height: 24px;
-  font-size: 20px;
-  margin: 30px;
-}
-
-#winning-statistics-table {
-  width: 318px;
-  padding: 10px;
-}
-
-#winning-statistics-table tr {
-  border-top: 1px solid var(--border-line);
-  border-bottom: 1px solid var(--border-line);
-  text-align: center;
-}
-
-#winning-statistics-table th {
-  font-weight: var(--caption-font-weight);
-}
-
-#winning-statistics-table td,
-th {
-  height: 24px;
-  padding: 8px 0 8px 0;
-}
-
-#lotto-return-ratio {
-  margin: 30px;
-  font-weight: var(--caption-font-weight);
-}
-
-#close-modal-button {
-  font-size: 28px;
-  position: absolute;
-  top: 10px;
-  right: 20px;
 }

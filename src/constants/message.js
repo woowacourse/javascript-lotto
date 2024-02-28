@@ -1,4 +1,4 @@
-import { addPriceComma } from '../util/NumberHelper.js';
+import { addPriceComma } from '../util/numberHelper.js';
 import NUMBER from './number.js';
 
 const ERROR_MESSAGE = Object.freeze({

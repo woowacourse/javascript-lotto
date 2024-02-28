@@ -45,6 +45,22 @@ body {
   letter-spacing: 0.5px;
 }
 
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+input {
+  padding-left: 10px;
+}
+h1 {
+  display: flex;
+  align-items: center;
+}
+
 .flexCenter {
   display: flex;
   justify-content: center;
@@ -70,11 +86,12 @@ body {
 
 .primary-button {
   background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
   border-radius: 4px;
   padding: 6px 6px 6px 8px;
-  color: var(--lotto-greyscale-1);
   width: 100%;
   height: 36px;
+  cursor: pointer;
 }
 
 .title {
@@ -97,21 +114,4 @@ body {
 
 .error {
   color: rgb(242, 111, 35);
-}
-
-header {
-  background-color: var(--lotto-primary);
-  height: 64px;
-  display: flex;
-}
-
-input {
-  padding: 10px;
-}
-
-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 144px);
 }

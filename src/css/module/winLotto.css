@@ -1,0 +1,54 @@
+/*우승 로또 정보 입력 섹션*/
+#winning-lotto-section {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  height: 200px;
+  width: 100%;
+  flex-direction: column;
+  width: 382px;
+}
+
+#winning-lotto-form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+#winning-numbers {
+  width: 244px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#winning-lotto-inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+#winning-numbers-inputs {
+  display: flex;
+  justify-content: space-around;
+}
+
+#bonus-number {
+  position: relative;
+}
+
+#bonus-number input {
+  position: absolute;
+  right: 0;
+}
+
+.number-input {
+  margin-top: 10px;
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--lotto-greyscale-3);
+}
+
+#result-show-button {
+  margin-top: 30px;
+}

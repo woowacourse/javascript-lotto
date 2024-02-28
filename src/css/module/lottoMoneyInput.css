@@ -1,0 +1,39 @@
+/*로또 구입 금액 인풋 섹션*/
+#lotto-money-form-section {
+  padding-top: 30px;
+  width: 382px;
+  flex-direction: column;
+}
+
+#lotto-money-form-section > p {
+  width: 100%;
+}
+
+#lotto-money-form-section input {
+  width: 310px;
+  height: 36px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+}
+
+#money-input-box {
+  width: 100%;
+  display: flex;
+  margin-top: 5px;
+  flex-direction: column;
+}
+
+#money-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#money-error {
+  height: 10px;
+  padding-top: 5px;
+}
+
+#lotto-money-form-section button {
+  width: 56px;
+  height: 36px;
+}

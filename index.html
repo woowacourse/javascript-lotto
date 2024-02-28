@@ -18,17 +18,17 @@
       <header>
         <h1 class="title">🎱 행운의 로또</h1>
       </header>
-      <main>
+      <main class="flexCenter">
         <div id="main-lotto-card">
-          <div id="my-lottos-win-title">
+          <div class="flexCenter" id="my-lottos-win-title">
             <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
           </div>
-          <section id="lotto-money-form-section">
+          <section id="lotto-money-form-section" class="flexCenter">
             <p>구입할 금액을 입력해주세요.</p>
             <div id="money-input-box">
               <form id="money-form">
-                <input id="money-input" placeholder="금액" type="text" />
-                <button class="caption" id="money-button">구입</button>
+                <input id="money-input" placeholder="금액" type="number" />
+                <button class="primary-button caption" id="money-button">구입</button>
               </form>
               <span class="error hidden" id="money-error"></span>
             </div>
@@ -44,17 +44,17 @@
                 <div id="winning-numbers">
                   <p>당첨 번호</p>
                   <div id="winning-numbers-inputs">
-                    <input class="number-input" type="text" />
-                    <input class="number-input" type="text" />
-                    <input class="number-input" type="text" />
-                    <input class="number-input" type="text" />
-                    <input class="number-input" type="text" />
-                    <input class="number-input" type="text" />
+                    <input class="number-input" type="number" />
+                    <input class="number-input" type="number" />
+                    <input class="number-input" type="number" />
+                    <input class="number-input" type="number" />
+                    <input class="number-input" type="number" />
+                    <input class="number-input" type="number" />
                   </div>
                 </div>
                 <div id="bonus-number">
                   <p>보너스 번호</p>
-                  <input class="number-input" />
+                  <input class="number-input" type="number" />
                 </div>
               </div>
               <button id="result-show-button" class="caption primary-button">결과 확인하기</button>
@@ -63,14 +63,11 @@
           </section>
         </div>
       </main>
-      <footer>
-        <div class="caption">Copyright 2023. woowacourse</div>
-      </footer>
       <section id="winning-statistics-modal" class="hidden">
         <div class="modal-background">
           <div id="winning-statistics">
             <button id="close-modal-button">x</button>
-            <h2>🏆 당첨 통계 🏆</h2>
+            <h2 class="title">🏆 당첨 통계 🏆</h2>
             <table id="winning-statistics-table">
               <tr>
                 <th>일치 갯수</th>
@@ -83,6 +80,9 @@
           </div>
         </div>
       </section>
+      <footer class="flexCenter">
+        <div class="caption">Copyright 2023. woowacourse</div>
+      </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>

@@ -1,5 +1,5 @@
 import { QUERY_MESSAGE, NEW_LINE } from '../constants/message.js';
-import Console from '../util/Console.js';
+import Console from '../util/console.js';
 
 const InputView = {
   async askPurchaseAmount() {
