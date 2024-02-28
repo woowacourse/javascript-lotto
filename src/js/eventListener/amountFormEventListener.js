@@ -4,8 +4,8 @@ import { validate2, validations } from '../util/validation.js';
 const amountFormEventListener = (event) => {
   event.preventDefault();
 
-  const purchaseAmountInput = document.querySelector('.amount-form__input').value;
-  const purchaseAmount = Number(purchaseAmountInput);
+  const input = document.querySelector('.amount-form__input').value;
+  const purchaseAmount = Number(input);
 
   validatePurchaseAmount(purchaseAmount);
 
@@ -13,8 +13,9 @@ const amountFormEventListener = (event) => {
 };
 
 const validatePurchaseAmount = (purchaseAmount) => {
-  validate2(validations.isInteger, purchaseAmount, '구매금액');
-  validate2(validations.isAtLeast, purchaseAmount, OPTIONS.LOTTO.price, '구매금액');
+  const name = '구입 금액';
+  validate2(validations.isInteger, purchaseAmount, name);
+  validate2(validations.isAtLeast, purchaseAmount, OPTIONS.LOTTO.price, name);
 };
 
 export default amountFormEventListener;
