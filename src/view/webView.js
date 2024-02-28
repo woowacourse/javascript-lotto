@@ -1,4 +1,25 @@
 const WebView = {
+  showAfterPurchases() {
+    const successPurchases = document.querySelectorAll(".after_purchase");
+
+    successPurchases.forEach((purchase) => {
+      const purchaseStyle = purchase.style;
+      purchaseStyle.visibility = "visible";
+    });
+  },
+
+  showPurchaseAmount(purchaseAmount) {
+    const purchaseAmountInput = document.getElementById("input_purchaseAmount");
+    const purchaseNumber = document.getElementById("purchase_number");
+    const invalidPurchaseAmount = document.getElementById(
+      "invalid_purchaseAmount",
+    );
+
+    purchaseNumber.textContent = `총 ${purchaseAmount / 1000}개를 구매하였습니다.`;
+    purchaseAmountInput.value = "";
+    invalidPurchaseAmount.innerText = "";
+  },
+
   showLottoList(lottoNumberArray) {
     const list = document.getElementById("lotto_list");
 
