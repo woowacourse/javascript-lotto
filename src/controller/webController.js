@@ -38,15 +38,19 @@ class WebController {
     const purchaseAmount = await this.#getPurchaseAmount();
     const lottoMachine = new LottoMachine(purchaseAmount);
     const lottoList = lottoMachine.makeLottos();
+
     this.#displayLottoList(lottoList);
 
     return lottoList;
   }
 
   async #getPurchaseAmount() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       purchaseButton.addEventListener("click", (event) => {
-        purchaseClickHandler(event, resolve, reject);
+        purchaseClickHandler(event, resolve);
+
+        WebView.showAfterPurchases();
+        WebView.showPurchaseAmount(purchaseAmountInput.value);
       });
     });
   }
