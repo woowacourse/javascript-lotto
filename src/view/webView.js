@@ -1,3 +1,5 @@
+import { LOTTO_PRICE } from "../constants/system.js";
+
 const WebView = {
   showAfterPurchases() {
     const successPurchases = document.querySelectorAll(".after_purchase");
@@ -14,8 +16,7 @@ const WebView = {
     const invalidPurchaseAmount = document.getElementById(
       "invalid_purchaseAmount",
     );
-
-    purchaseNumber.textContent = `총 ${purchaseAmount / 1000}개를 구매하였습니다.`;
+    purchaseNumber.textContent = `총 ${purchaseAmount / LOTTO_PRICE}개를 구매하였습니다.`;
     purchaseAmountInput.value = "";
     invalidPurchaseAmount.innerText = "";
   },
@@ -24,30 +25,38 @@ const WebView = {
     const list = document.getElementById("lotto_list");
 
     lottoNumberArray.forEach((lottoNumber) => {
-      const li = document.createElement("li");
-      const icon = document.createElement("span");
-      const lotto = document.createElement("span");
-      icon.innerText = "🎟️";
-      lotto.innerText = lottoNumber.sort((a, b) => a - b).join(", ");
-      li.appendChild(icon);
-      li.appendChild(lotto);
+      this.oneLotto(lottoNumber);
+      const li = this.oneLotto(lottoNumber);
       list.appendChild(li);
     });
   },
 
-  showGameResult(rank) {
-    const rankArray = Object.values(rank);
-    const reversedRank = rankArray.slice().reverse();
+  oneLotto(lottoNumber) {
+    const li = document.createElement("li");
+    const icon = document.createElement("span");
+    const lotto = document.createElement("span");
+    icon.innerText = "🎟️";
+    lotto.innerText = lottoNumber.sort((a, b) => a - b).join(", ");
+    li.appendChild(icon);
+    li.appendChild(lotto);
+    return li;
+  },
 
+  showGameResult(rank) {
+    const reversedRank = Object.values(rank).slice().reverse();
     const tableRows = document.querySelectorAll(
       "#result_body tr:not(:first-child)",
     );
     tableRows.forEach((row, index) => {
-      const tdElement = row.querySelector("td:nth-child(3)");
-      if (tdElement) {
-        tdElement.textContent = `${reversedRank[index]}개`;
-      }
+      this.oneTableRow(row, reversedRank[index]);
     });
+  },
+
+  oneTableRow(row, count) {
+    const tdElement = row.querySelector("td:nth-child(3)");
+    if (tdElement) {
+      tdElement.textContent = `${count}개`;
+    }
   },
 
   showProfit(profit) {
