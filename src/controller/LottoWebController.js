@@ -1,6 +1,4 @@
-import { ERROR_MESSAGE, OUTPUT_MESSAGE } from '../constants/message';
 import NUMBER from '../constants/number';
-import WINNER from '../constants/winner';
 import Lotto from '../domain/Lotto';
 import LottoCalculator from '../domain/LottoCalculator';
 import LottoProcess from '../domain/LottoProcess';
@@ -23,16 +21,11 @@ class LottoWebController {
     $('#money-form').addEventListener('submit', (e) => {
       e.preventDefault();
       this.submitMoneyForm($('#money-input').value);
-      WebInputView.resetWinningLottoNumbers();
     });
-    // $('#money-input').addEventListener('input', () => {
-    //   hideElement($('#money-error'));
-    // });
+
     $('#winning-lotto-form').addEventListener('submit', (e) => {
       e.preventDefault();
-      const winLotto = this.submitWinLotto();
-      this.calculateWinResults(winLotto);
-      ModalOutputView.renderSection();
+      this.submitWinLotto();
     });
 
     [...$$('.number-input')].forEach((input) => {
@@ -40,46 +33,36 @@ class LottoWebController {
         hideElement($('#win-lotto-error'));
       });
     });
+
     $('#lotto-game-restart-button').addEventListener('click', () => {
       this.restartLotto();
     });
+
     $('.modal-background').addEventListener('click', () => {
-      ModalOutputView.deleteModalInfo();
-      ModalOutputView.hideSection();
+      ModalOutputView.resetModal();
     });
+
     $('#close-modal-button').addEventListener('click', () => {
-      ModalOutputView.deleteModalInfo();
-      ModalOutputView.hideSection();
+      ModalOutputView.resetModal();
     });
+
     [...document.getElementsByTagName('input')].forEach((input) => {
       input.addEventListener('input', () => {
-        WebInputView.hiddenInputsErrors(); // 이 함수가 올바르게 정의되어 있고 접근 가능해야 합니다.
+        WebInputView.hiddenInputsErrors();
       });
     });
   }
 
+  /*로또 구입 금액 제출 섹션*/
   validateMoney(money) {
     MoneyValidation.validate(money);
-  }
-
-  submitMoneyForm(money) {
-    try {
-      this.validateMoney(money);
-      const [lottos, lottosNumbers] = this.convertMoneyToLotto(money);
-      this.lottos = lottos;
-      this.showLottosInfo(lottosNumbers);
-    } catch ({ message }) {
-      WebInputView.focusMoneyInput();
-      MyLottoOutputView.hideSection();
-      renderError($('#money-error'), message);
-    }
-    WebInputView.resetMoneyInput();
   }
 
   convertMoneyToLotto(money) {
     const lottosCount = Number.parseInt(money / NUMBER.LOTTO_PRICE, 10);
     const [lottos, lottosNumbers] = this.buyRandomLottos(lottosCount);
-    return [lottos, lottosNumbers];
+    this.lottos = lottos;
+    return lottosNumbers;
   }
 
   buyRandomLottos(lottoCount) {
@@ -89,6 +72,21 @@ class LottoWebController {
     return [lottos, lottoNumbers];
   }
 
+  submitMoneyForm(money) {
+    try {
+      this.validateMoney(money);
+      const lottosNumbers = this.convertMoneyToLotto(money);
+      this.showLottosInfo(lottosNumbers);
+    } catch ({ message }) {
+      WebInputView.focusMoneyInput();
+      MyLottoOutputView.hideSection();
+      renderError($('#money-error'), message);
+    }
+    WebInputView.resetMoneyInput();
+    WebInputView.resetWinningLottoNumbers();
+  }
+
+  /*구입한 로또 정보 섹션*/
   showLottosInfo(lottosNumbers) {
     MyLottoOutputView.renderSection();
     MyLottoOutputView.renderLottosCount(lottosNumbers.length);
@@ -96,17 +94,9 @@ class LottoWebController {
     $('.number-input').focus();
   }
 
-  makeWinLotto(winNumbers, bonusNumber) {
-    LottoValidation.validateNumbers(winNumbers);
-    const lottoWithWinNumbers = new Lotto(winNumbers);
-    const winLotto = new WinLotto(lottoWithWinNumbers, Number(bonusNumber));
-    return winLotto;
-  }
-
+  /*우승 로또 숫자 입력 섹션*/
   getWinLottoNumbers() {
     const numberInputs = [...$$('.number-input')];
-    LottoValidation.checkInputEmpty(numberInputs);
-
     const bonusNumberInput = numberInputs.splice(-1, 1);
     const winNumbers = numberInputs.reduce((numbers, input) => {
       numbers.push(Number(input.value));
@@ -116,23 +106,26 @@ class LottoWebController {
     return [winNumbers, bonusNumber];
   }
 
+  makeWinLotto(winNumbers, bonusNumber) {
+    LottoValidation.validateNumbers(winNumbers);
+    const lottoWithWinNumbers = new Lotto(winNumbers);
+    const winLotto = new WinLotto(lottoWithWinNumbers, Number(bonusNumber));
+    return winLotto;
+  }
+
   submitWinLotto() {
     try {
+      const numberInputs = [...$$('.number-input')];
+      LottoValidation.checkInputEmpty(numberInputs);
       const [winNumbers, bonusNumber] = this.getWinLottoNumbers();
-      const newLotto = this.makeWinLotto(winNumbers, bonusNumber);
-      return newLotto;
+      const winLotto = this.makeWinLotto(winNumbers, bonusNumber);
+      this.showWinResults(winLotto);
     } catch ({ message }) {
       renderError($('#win-lotto-error'), message);
     }
   }
 
-  calculateWinResults(winLotto) {
-    const winResult = this.makeWinResult(this.lottos, winLotto);
-    this.showWinStatisticTable(winResult);
-    const rateOfRevenue = this.makeRateOfRevenue(winResult, this.lottos.length);
-    this.showRateOfReturn(rateOfRevenue);
-  }
-
+  /*로또 우승 통계 모달 섹션*/
   makeWinResult(lottos, winLotto) {
     const lottoProcess = new LottoProcess();
     const winResult = lottoProcess.getResult(lottos, winLotto);
@@ -143,6 +136,14 @@ class LottoWebController {
     const lottoCalculator = new LottoCalculator();
     const rateOfRevenue = lottoCalculator.getRateOfRevenue(winResult, lottosCount);
     return rateOfRevenue;
+  }
+
+  showWinResults(winLotto) {
+    const winResult = this.makeWinResult(this.lottos, winLotto);
+    this.showWinStatisticTable(winResult);
+    const rateOfRevenue = this.makeRateOfRevenue(winResult, this.lottos.length);
+    this.showRateOfReturn(rateOfRevenue);
+    ModalOutputView.renderSection();
   }
 
   showWinStatisticTable(winResult) {

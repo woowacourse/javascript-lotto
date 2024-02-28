@@ -1,5 +1,7 @@
+import { ERROR_MESSAGE } from '../constants/message';
+
 export const renderError = (el, errorMessage) => {
-  el.innerHTML = errorMessage;
+  el.innerHTML = errorMessage.slice(ERROR_MESSAGE.PREFIX.length + 1);
   renderElement(el);
 };
 

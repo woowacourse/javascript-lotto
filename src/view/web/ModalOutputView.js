@@ -41,6 +41,11 @@ const ModalOutputView = {
       element.remove();
     });
   },
+
+  resetModal() {
+    this.hideSection();
+    this.deleteModalInfo();
+  },
 };
 
 export default ModalOutputView;
