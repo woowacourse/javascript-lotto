@@ -98,8 +98,12 @@ input:focus {
 }
 
 label {
-  display: block;
-  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
 }
 
 button {

@@ -4,10 +4,13 @@
  */
 
 // styles
-import './styles/body.css';
 import './styles/global.css';
+import './styles/body.css';
+import './styles/PaymentForm.css';
 
 // components
 import LottoItems from './components/LottoItems';
+import PaymentForm from './components/PaymentForm';
 
 window.customElements.define('lotto-items', LottoItems);
+window.customElements.define('payment-form', PaymentForm, { extends: 'form' });

@@ -16,30 +16,6 @@
   margin-bottom: 2.8rem;
 }
 
-/* payment amount input */
-.payment-form {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  width: 100%;
-
-  margin-bottom: 2.8rem;
-}
-
-.payment-form > .input-container {
-  width: 100%;
-  margin-right: 1.6rem;
-}
-
-.payment-form > .input-container > input {
-  width: 100%;
-}
-
-.payment-form > button {
-  min-height: max-content;
-}
-
 /* purchased lottos */
 #purchased-lottos-list {
   list-style: none;

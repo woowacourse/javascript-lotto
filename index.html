@@ -17,6 +17,15 @@
         <p class="lotto-numbers"></p>
       </li>
     </template>
+
+    <template id="payment-form">
+      <label
+        >구입할 금액을 입력해주세요.
+        <input name="paymentAmount" type="text" placeholder="금액" autofocus />
+      </label>
+      <button type="submit">구입</button>
+    </template>
+
     <section id="app">
       <header>
         <a class="title" href="./index.html">🎱 행운의 로또</a>
@@ -24,13 +33,9 @@
       <main class="flex-column-center">
         <div class="main-content flex-column-center">
           <p class="title">🎱 내 번호 당첨 확인 🎱</p>
-          <form class="payment-form">
-            <div class="input-container">
-              <label>구입할 금액을 입력해주세요. </label>
-              <input type="text" placeholder="금액" id="payment" autofocus />
-            </div>
-            <button>구입</button>
-          </form>
+          <!-- PaymentForm -->
+          <form is="payment-form"></form>
+
           <div class="purchased-lottos-container flex-column">
             <p class="purchased-lottos-counter">총 7개를 구매하였습니다.</p>
             <!-- LottoItems -->

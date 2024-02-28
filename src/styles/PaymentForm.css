@@ -1,0 +1,18 @@
+/* payment amount input */
+form[is='payment-form'] {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin-bottom: 2.8rem;
+}
+
+form[is='payment-form'] > label {
+  margin-right: 1.6rem;
+}
+
+form[is='payment-form'] > label > input {
+  margin-top: 0.4rem;
+}
