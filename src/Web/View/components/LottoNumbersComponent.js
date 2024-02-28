@@ -4,16 +4,27 @@ import { appendChildren, makeElementWithClassName } from '../../utils';
 const LottoNumbersComponent = Object.freeze({
   makeLottoResults: (boughtLottos) => {
     const resultContainer = makeElementWithClassName('div', 'resultContainer');
-    const resultTitle = makeElementWithClassName('div', 'resultTitle');
-    resultTitle.innerText = `총 ${boughtLottos.length}개를 구매하였습니다.`;
+    const resultNumbersContainer = LottoNumbersComponent.makeResultNumbersContainer(boughtLottos);
+    appendChildren(resultContainer, [
+      LottoNumbersComponent.makeResultTitle(boughtLottos.length),
+      resultNumbersContainer,
+    ]);
+    return resultContainer;
+  },
+
+  makeResultNumbersContainer: (boughtLottos) => {
     const resultNumbersContainer = makeElementWithClassName('div', 'resultNumbersContainer');
     appendChildren(
       resultNumbersContainer,
       boughtLottos.map((lotto) => LottoNumbersComponent.makeOneLottoNumbers(lotto.getLottoNumbers())),
     );
+    return resultNumbersContainer;
+  },
 
-    appendChildren(resultContainer, [resultTitle, resultNumbersContainer]);
-    return resultContainer;
+  makeResultTitle: (count) => {
+    const resultTitle = makeElementWithClassName('div', 'resultTitle');
+    resultTitle.innerText = `총 ${count}개를 구매하였습니다.`;
+    return resultTitle;
   },
 
   makeOneLottoNumbers: (numbers) => {
