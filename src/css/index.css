@@ -9,22 +9,23 @@
 header {
   background-color: var(--lotto-primary);
   height: 64px;
+  display: flex;
 }
 
 header > h1 {
-  margin-left: 130px;
+  margin-left: 10%;
   color: var(--lotto-greyscale-1);
 }
 
-/*main*/
+/* main*/
 main {
-  height: calc(100vh - 144px);
+  min-height: calc(100vh - 144px);
 }
 
-@media (max-height: 800px) {
-  header,
-  footer {
-    visibility: hidden;
+@media (max-width: 400px) {
+  main {
+    min-height: 100vw;
+    height: auto;
   }
 }
 
@@ -35,6 +36,13 @@ main {
   flex-direction: column;
   padding: 16px;
   position: relative;
+}
+
+@media (max-width: 400px) {
+  #main-lotto-card {
+    width: 100%;
+    padding: 4px;
+  }
 }
 
 #my-lottos-win-title {
@@ -53,5 +61,17 @@ footer {
   border-top: 1px solid var(--border-line);
   position: fixed;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
+}
+
+@media (max-width: 400px) {
+  footer {
+    position: inherit;
+  }
+}
+
+@media (max-height: 820px) {
+  footer {
+    position: inherit;
+  }
 }

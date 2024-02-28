@@ -22,6 +22,12 @@ const WebInputView = {
     $$('.number-input').forEach((input) => (input.value = ''));
     $('.number-input').focus();
   },
+
+  hiddenInputsErrors() {
+    [...$$('.error')].forEach((errorMessage) => {
+      errorMessage.classList.add('hidden');
+    });
+  },
 };
 
 export default WebInputView;

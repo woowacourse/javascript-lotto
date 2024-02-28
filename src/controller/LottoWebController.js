@@ -25,9 +25,9 @@ class LottoWebController {
       this.submitMoneyForm($('#money-input').value);
       WebInputView.resetWinningLottoNumbers();
     });
-    $('#money-input').addEventListener('input', () => {
-      hideElement($('#money-error'));
-    });
+    // $('#money-input').addEventListener('input', () => {
+    //   hideElement($('#money-error'));
+    // });
     $('#winning-lotto-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const winLotto = this.submitWinLotto();
@@ -50,6 +50,11 @@ class LottoWebController {
     $('#close-modal-button').addEventListener('click', () => {
       ModalOutputView.deleteModalInfo();
       ModalOutputView.hideSection();
+    });
+    [...document.getElementsByTagName('input')].forEach((input) => {
+      input.addEventListener('input', () => {
+        WebInputView.hiddenInputsErrors(); // 이 함수가 올바르게 정의되어 있고 접근 가능해야 합니다.
+      });
     });
   }
 

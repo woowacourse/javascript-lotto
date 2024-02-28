@@ -6,13 +6,19 @@
   height: 200px;
   width: 100%;
   flex-direction: column;
-  width: 382px;
 }
 
 #winning-lotto-form {
+  width: calc(100% - 32px);
   display: flex;
   flex-direction: column;
   padding-top: 20px;
+}
+
+@media (max-width: 400px) {
+  #winning-lotto-form {
+    width: calc(100% - 10px);
+  }
 }
 
 #winning-numbers {
@@ -22,11 +28,17 @@
   flex-direction: column;
 }
 
+@media (max-width: 400px) {
+  #winning-numbers {
+    width: 73%;
+    flex-wrap: wrap;
+  }
+}
+
 #winning-lotto-inputs {
   display: flex;
   justify-content: space-between;
 }
-
 #winning-numbers-inputs {
   display: flex;
   justify-content: space-around;
@@ -49,6 +61,11 @@
   border: 1px solid var(--lotto-greyscale-3);
 }
 
+#win-lotto-error {
+  padding-top: 5px;
+  height: 20px;
+}
+
 #result-show-button {
-  margin-top: 30px;
+  margin-top: 10px;
 }
