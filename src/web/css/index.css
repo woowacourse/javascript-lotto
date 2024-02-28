@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     width: 25.875rem;
-    height: 45.4375rem;
+    min-height: 45.4375rem;
     border-radius: 0.25rem;
     border: 1px solid rgba(0, 0, 0, 0.12);
     margin: 5.25% auto 3rem auto;
@@ -94,6 +94,31 @@
     margin: 0.3rem;
     height: 1rem;
     width: 90%;
+}
+
+.random-lottos{
+    display: flex;
+    width: 100%;
+}
+
+.random-lottos-result-title{
+color: var(--lotto-greyscale-5, #000);
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Roboto;
+font-size: 0.9375rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.5rem; /* 160% */
+letter-spacing: 0.03125rem;
+}
+.random-lotto-list{
+color: var(--lotto-greyscale-5, #000);
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Roboto;
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 600;
+line-height: 2.25rem; /* 105.882% */
 }
 
 .footer{
