@@ -5,19 +5,19 @@
   margin: 2.4rem 0rem;
 }
 
-.lotto-display {
+.lotto-display-container ul {
   display: flex;
   flex-direction: column;
   row-gap: 0.4rem;
 }
 
-.lotto-display p {
+.lotto-display-container li {
   display: flex;
   align-items: center;
   column-gap: 0.8rem;
 }
 
-.lotto-display span {
+.lotto-display-container span {
   letter-spacing: var(--letter-spacing-small);
   text-align: left;
   font-size: var(--font-xlarge);

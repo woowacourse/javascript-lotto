@@ -6,11 +6,11 @@ class LottoDisplay extends Component {
 
     return `   
       <p>총 ${lottoTickets.length}개를 구매하였습니다.</p>
-      <section class="lotto-display">
+      <ul>
         ${lottoTickets
-          .map((lottoTicket) => `<p><span>🎟️</span> ${lottoTicket.getSortedNumbersAscending().join(', ')}</p>`)
+          .map((lottoTicket) => `<li><span>🎟️</span> ${lottoTicket.getSortedNumbersAscending().join(', ')}</li>`)
           .join('')}
-      </section>
+      </ul>
     `;
   }
 }
