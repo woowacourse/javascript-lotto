@@ -38,13 +38,12 @@ class WinningNumbersForm extends HTMLElement {
     });
   }
 
-  // #drawEvent(price) {
-  //   const app = document.querySelector('lotto-app');
-  //   const { _, lottoNumbersArray } = app.controller().processBuyLotto(price);
-
-  //   const purchaseEvent = new CustomEvent('purchase', { detail: { price, lottoNumbersArray } });
-  //   this.dispatchEvent(purchaseEvent);
-  // }
+  #lottoResultEvent({ winningNumbers, bonusNumber }) {
+    const purchaseEvent = new CustomEvent('lottoResult', {
+      detail: { winningNumbers, bonusNumber },
+    });
+    this.dispatchEvent(purchaseEvent);
+  }
 }
 
 customElements.define('winning-numbers-form', WinningNumbersForm);

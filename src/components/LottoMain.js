@@ -17,7 +17,7 @@ const LOTTO_MAIN_CONTAINER = `
 `;
 
 const LOTTO_MAIN_RESULT = (lottoNumbersArray) => `
-<purchased-info info={${lottoNumbersArray}}></purchased-info>
+<purchased-info lottos=${lottoNumbersArray}></purchased-info>
 <winning-numbers-form></winning-numbers-form>
 `;
 
@@ -34,21 +34,11 @@ class LottoMain extends HTMLElement {
   #renderResult(event) {
     const { _, lottoNumbersArray } = event.detail;
 
-    const result = document.querySelector('.purchase-result');
-    result.innerHTML = LOTTO_MAIN_RESULT(lottoNumbersArray);
+    const purchaseResult = document.querySelector('.purchase-result');
+    purchaseResult.innerHTML = LOTTO_MAIN_RESULT(lottoNumbersArray);
 
     const resultButton = document.querySelector('#result-button');
     resultButton.setText('당첨 결과 확인하기');
-    this.#dispatchPurchase(event);
-  }
-
-  #dispatchPurchase(event) {
-    const purchasedInfo = document.querySelector('purchased-info');
-    const purchaseResult = new CustomEvent('purchase-result', {
-      detail: { ...event.detail },
-    });
-
-    purchasedInfo.dispatchEvent(purchaseResult);
   }
 
   #setPurchaseEventListener() {
