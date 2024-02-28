@@ -2,7 +2,7 @@ import LottoMachine from '../Domain/LottoMachine';
 import WinLottoNumber from '../Domain/WinLottoNumber';
 
 import RenderingHandler from './View/RenderingHandler';
-import EventHandler from './View/EventHandler';
+import ResultModal from './View/components/ResultModal';
 
 export default class WebController {
   #lottoMachine;
@@ -15,22 +15,23 @@ export default class WebController {
     RenderingHandler.renderFooter();
 
     this.#setMoneyFormEvent();
-    // this.#executeResult();
-    // await this.#executeRetry();
   }
 
   #setMoneyFormEvent() {
-    const moneyForm = document.getElementById('moneyForm');
-    moneyForm.addEventListener('submit', (e) => {
+    document.getElementById('moneyForm').addEventListener('submit', (e) => {
       e.preventDefault();
       try {
-        const money = Number(e.target.money.value);
-        this.#lottoMachine = new LottoMachine(money);
-        this.#executeLottos();
+        this.#executeMoneyFormSubmit(e);
       } catch (error) {
         alert(error.message);
       }
     });
+  }
+
+  #executeMoneyFormSubmit(e) {
+    const money = Number(e.target.money.value);
+    this.#lottoMachine = new LottoMachine(money);
+    this.#executeLottos();
   }
 
   #executeLottos() {
@@ -40,22 +41,33 @@ export default class WebController {
   }
 
   #setWinLottoNumbersEvent() {
-    const moneyForm = document.getElementById('winLottoForm');
-    moneyForm.addEventListener('submit', (e) => {
+    document.getElementById('winLottoForm').addEventListener('submit', (e) => {
       e.preventDefault();
       try {
-        const winNumbers = Array.from(e.target.winNumber).map((element) => {
-          this.#checkNumber(element.value);
-          return Number(element.value);
-        });
-        this.#checkNumber(e.target.bonusNumber.value);
-        const bonusNumber = Number(e.target.bonusNumber.value);
-        this.#executeWinLottoNumber(winNumbers, bonusNumber);
-        this.#executeResult();
+        this.#executeWinLottoNumberSubmit(e);
       } catch (error) {
         alert(error.message);
       }
     });
+  }
+
+  #executeWinLottoNumberSubmit(e) {
+    const winNumbers = this.#executeWinLottoNumberSubmitWinNumbers(e);
+    const bonusNumber = this.#executeWinLottoNumberSubmitBonusNumber(e);
+    this.#executeWinLottoNumber(winNumbers, bonusNumber);
+    this.#executeResult();
+  }
+
+  #executeWinLottoNumberSubmitWinNumbers(e) {
+    return Array.from(e.target.winNumber).map((element) => {
+      this.#checkNumber(element.value);
+      return Number(element.value);
+    });
+  }
+
+  #executeWinLottoNumberSubmitBonusNumber(e) {
+    this.#checkNumber(e.target.bonusNumber.value);
+    return Number(e.target.bonusNumber.value);
   }
 
   #executeWinLottoNumber(winNumbers, bonusNumber) {
@@ -95,7 +107,7 @@ export default class WebController {
     const modalCloseButton = document.querySelector('.modalCloseButton');
     modalCloseButton.addEventListener('click', (e) => {
       e.preventDefault();
-      EventHandler.closeModal();
+      ResultModal.closeModal();
     });
   }
 
