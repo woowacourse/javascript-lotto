@@ -1,0 +1,56 @@
+:root {
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000000;
+  --lotto-primary: #4e5ba6;
+}
+
+.lotto-title {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  color: var(--lotto-greyscale-5);
+}
+
+.lotto-subtitle {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: var(--lotto-greyscale-5);
+}
+
+.lotto-body {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: var(--lotto-greyscale-5);
+}
+
+.lotto-placeholder {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: var(--lotto-greyscale-5);
+}
+
+.lotto-caption {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: var(--lotto-greyscale-5);
+}
+
+.hidden {
+  display: none;
+}

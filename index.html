@@ -1,12 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
@@ -17,11 +17,11 @@
         <section class="lotto">
           <div class="check-lotto lotto-title">🎱 내 번호 당첨 확인 5 🎱</div>
           <form class="buy-form">
-            <label class="lotto-body" for="">구입할 금액을 입력해주세요</label>
-            <input type="text" name="" placeholder="금액" />
-            <input class="lotto-caption" type="submit" value="구입" />
+            <label for="buy-input" class="lotto-body buy-lotto-label" for="">구입할 금액을 입력해주세요</label>
+            <input class="buy-input" id="buy-input" name="buy-input" type="text" name="" placeholder="금액" />
+            <input class="lotto-caption buy-input-submit" type="submit" value="구입" />
           </form>
-          <div class="lotto-body lotto-result">
+          <div class="lotto-body lotto-result hidden">
             <div class="lotto-result-label">총 7개를 구매하였습니다.</div>
             <div class="lotto-numbers">
               <div class="lotto-number">🎟️ 12, 28, 22, 38, 19, 23</div>
@@ -33,10 +33,10 @@
               <div class="lotto-number">🎟️ 12, 28, 22, 38, 19, 23</div>
             </div>
           </div>
-          <form class="lotto-body answer-form" action="">
+          <form class="lotto-body answer-form hidden" action="">
             <div class="answer-intro">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</div>
             <div class="number-labels">
-              <div class="answer-numbers-label">당첨 번호</div>
+              <div class="answer-numbers-label">당첨 번호2</div>
               <div class="bonus-number-label">보너스 번호</div>
             </div>
 
@@ -60,6 +60,5 @@
         <div class="lotto-caption copyright">Copyright 2023. woowacourse</div>
       </footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>

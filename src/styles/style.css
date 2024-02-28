@@ -1,55 +1,4 @@
-:root {
-  --lotto-greyscale-1: #ffffff;
-  --lotto-greyscale-2: #fcfcfd;
-  --lotto-greyscale-3: #b4b4b4;
-  --lotto-greyscale-4: #8b8b8b;
-  --lotto-greyscale-5: #000000;
-  --lotto-primary: #4e5ba6;
-}
-
-.lotto-title {
-  font-family: Roboto;
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 36px;
-  color: var(--lotto-greyscale-5);
-}
-
-.lotto-subtitle {
-  font-family: Roboto;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 24px;
-  letter-spacing: 0.15px;
-  color: var(--lotto-greyscale-5);
-}
-
-.lotto-body {
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-  color: var(--lotto-greyscale-5);
-}
-
-.lotto-placeholder {
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-  color: var(--lotto-greyscale-5);
-}
-
-.lotto-caption {
-  font-family: Roboto;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: 1.25px;
-  color: var(--lotto-greyscale-5);
-}
+@import url('common.css');
 
 #app {
   display: flex;
@@ -85,9 +34,37 @@ main {
 
 .buy-form {
   display: flex;
-  .check-lotto {
-    text-align: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  .buy-lotto-label {
+    width: 100%;
   }
+
+  .buy-input {
+    width: 310px;
+    height: 36px;
+    border: 1px solid var(--lotto-greyscale-3);
+    border-radius: 4px;
+  }
+
+  .buy-input-submit {
+    width: 56px;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--lotto-primary);
+    color: var(--lotto-greyscale-1);
+  }
+}
+
+.lotto-result {
+  margin-bottom: 10px;
+}
+
+.number-inputs {
+  margin-bottom: 10px;
 }
 
 .number-labels {
