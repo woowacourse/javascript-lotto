@@ -1,0 +1,157 @@
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 62.5%;
+}
+
+:root {
+  --blue-color: rgba(255, 255, 255, 1);
+}
+
+#lotto-head {
+  margin: 0;
+  background: #4e5ba6;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+#lotto-body {
+  width: 100%;
+  height: 100%;
+  padding: 3rem 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#lotto-content {
+  width: 414px;
+  height: 727px;
+  top: 148px;
+  left: 513px;
+  border: 2px solid;
+  padding: 0 16px;
+}
+
+#lotto-footer {
+  width: 100%;
+  height: 80px;
+  top: 944px;
+  border: 1px, 0px, 0px, 0px;
+  border-top: 1px solid;
+}
+
+#lotto-title {
+  display: inline-block;
+  font-family: Roboto;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #ffffff;
+
+  margin: 0;
+  margin-left: 130px;
+}
+
+#lotto-content-title {
+  font-family: Roboto;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 3.6rem;
+  letter-spacing: 0px;
+  text-align: center;
+
+  /* width: 382px; */
+  /* height: 36px; */
+  padding: 40px 16px;
+}
+
+#money-label {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+#money-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 382px;
+}
+
+#money-input {
+  width: 31rem;
+  height: 3.6rem;
+  border-radius: 4px;
+  border: 1px solid rgba(180, 180, 180, 1);
+  gap: 10px;
+  padding: 8px 8px 4px 8px;
+  box-sizing: border-box;
+}
+
+#money-input::placeholder {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+#money-button {
+  width: 56px;
+  height: 3.6rem;
+  padding: 6px, 6px, 6px, 8px;
+  border-radius: 4px;
+  background: #4e5ba6;
+
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: white;
+}
+
+.content-message {
+  /* styleName: lotto-body; */
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: rgba(0, 0, 0, 1);
+  margin-top: 28px;
+}
+
+#lotto-ticket {
+  display: flex;
+  align-items: center;
+}
+
+#lotto-icon {
+  font-family: Roboto;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+#lotto-numbers {
+  margin-left: 8px;
+  /* //styleName: lotto-body; */
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
