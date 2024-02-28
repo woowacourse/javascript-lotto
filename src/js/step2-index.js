@@ -1,4 +1,9 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import amountFormEventHandler from './eventHandler/amountFormEventHandler.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const amountForm = document.querySelector('.amount-form');
+
+  amountForm.addEventListener('submit', (event) => {
+    const purchaseAmount = amountFormEventHandler(event);
+  });
+});
