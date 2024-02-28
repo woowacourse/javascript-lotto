@@ -1,4 +1,5 @@
 import LottoController2 from './controller/LottoController2.js';
+import WinningLotto from './domain/WinningLotto.js';
 import amountFormEventListener from './eventListener/amountFormEventListener.js';
 import resultFormEventListener from './eventListener/resultFormEventListener.js';
 
@@ -11,10 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   amountFormElement.addEventListener('submit', (event) => {
     const purchaseAmount = amountFormEventListener(event);
-    controller.issueLottosWithPrint(purchaseAmount);
+    controller.issueLottosAndPrintInfos(purchaseAmount);
   });
 
   resultFormElement.addEventListener('submit', (event) => {
     const [winningNumbers, bonusNumber] = resultFormEventListener(event);
+    controller.analyzeAndPrintLottoResult(winningNumbers, bonusNumber);
   });
 });

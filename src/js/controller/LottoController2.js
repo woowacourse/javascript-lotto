@@ -1,12 +1,13 @@
 import OPTIONS from '../constant/Options.js';
 import LottoMachine from '../domain/LottoMachine.js';
+import WinningLotto from '../domain/WinningLotto.js';
 
 class LottoController2 {
   #lottoMachine = new LottoMachine();
 
   #lottos;
 
-  issueLottosWithPrint(purchaseAmount) {
+  issueLottosAndPrintInfos(purchaseAmount) {
     this.#issueLottos(purchaseAmount);
 
     this.#printLottoInfos();
@@ -49,6 +50,33 @@ class LottoController2 {
       lottoListElement.appendChild(lottoElement);
     });
   }
+
+  analyzeAndPrintLottoResult(winningNumbers, bonusNumber) {
+    const [winningResult, profitRate] = this.#analzeLottoResults(winningNumbers, bonusNumber);
+
+    this.#printWinningResult(winningResult);
+    this.#printProfitRate(profitRate);
+
+    this.#showComponentByClass('.result-modal');
+  }
+
+  #analzeLottoResults(winningNumbers, bonusNumber) {
+    const winningResult = this.#lottoMachine.determineLottoRanks(
+      this.#lottos,
+      new WinningLotto(winningNumbers, bonusNumber)
+    );
+    const profitRate = this.#lottoMachine.calculateProfitRate(winningResult);
+
+    return [winningResult, profitRate];
+  }
+
+  #printWinningResult(winningResult) {
+    document.querySelectorAll('.result-modal__winning_count').forEach((shell, index) => {
+      shell.innerHTML = winningResult[5 - index];
+    });
+  }
+
+  #printProfitRate(profitRate) {}
 
   #showComponentByClass(className) {
     document.querySelector(className).classList.remove('hidden');
