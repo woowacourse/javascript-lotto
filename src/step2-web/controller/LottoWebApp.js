@@ -1,7 +1,7 @@
 import CustomError from "../../step1-console/utils/CustomError.js";
 
 export default class LottoWebApp {
-  #$target;
+  $target;
   #views = [];
 
   constructor(target, views = []) {
@@ -9,7 +9,7 @@ export default class LottoWebApp {
       throw new CustomError("루트 엘리먼트가 존재하지 않습니다.");
     }
 
-    this.#$target = target;
+    this.$target = target;
     this.#views = views;
   }
 
@@ -19,12 +19,13 @@ export default class LottoWebApp {
   }
 
   #setBaseTemplate() {
-    this.#$target.innerHTML = `
-<div class="buy-amount-form"></div>
-<div class="bought-lotto-board"></div>
-<div class="winning-lotto-form"></div>
-<div class="lotto-result-modal"></div>
-`;
+    this.$target.innerHTML = this.#getBaseTemplate();
+  }
+
+  #getBaseTemplate() {
+    return this.#views
+      .map((view) => `<div id=${view.getTargetElementId()}></div>`)
+      .join("");
   }
 
   #initViews() {

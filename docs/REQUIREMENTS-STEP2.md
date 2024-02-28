@@ -16,7 +16,7 @@
 - [x] Observer, Observable, Component 추상 클래스 생성
 - [x] 진입점이 되는 LottoWebApp 클래스 생성
 - [ ] 구입 금액 입력 
-  - [ ] buyAmountForm 컴포넌트 생성
+  - [x] buyAmountForm 컴포넌트 생성
   - [ ] buyAmountState 생성 및 연결
 - [ ] 생성 로또 표시
   - [ ] boughtLottoBoard 컴포넌트 생성
