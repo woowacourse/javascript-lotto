@@ -1,5 +1,24 @@
 # level1 - 행운의 로또
 
+# 2단계 미션
+
+### 구현 기능 목록
+
+- 웹 UI를 사용해 로또 게임의 주요 기능을 사용할 수 있도록 한다.
+- [figma](<https://www.figma.com/file/KcViH81qTQERbbJtBlTEqZ/%EB%A0%88%EB%B2%A81-%EB%AF%B8%EC%85%98-%EB%94%94%EC%9E%90%EC%9D%B8-(5%EA%B8%B0-%ED%81%AC%EB%A3%A8-%EA%B3%B5%EC%9C%A0%EC%9A%A9)?type=design&node-id=1422-98&mode=design&t=Mt7oDCGYnqsIxReV-0>) 시안을 기준으로 구현한다.
+- 실행 가능한 페이지에 접근할 수 있도록 github page 기능을 이용하고, 해당 링크를 PR과 REQUIREMENTS에 작성한다.
+
+- 모듈화에 대해 고민한다. - 도메인과 UI 관심사의 분리
+  - 1단계에서 구현한 도메인 로직을 (최대한) 수정하지 않고, UI만 변경한다.
+- 일관성 있고 의도가 드러나는 마크업을 작성하기 위해 노력한다.
+  - 목적에 맞는 HTML 태그를 사용한다.
+  - CSS 속성 선언 순서의 일관성을 고려한다.
+- CSS 문법 사용에 익숙해진다.
+  - CSS 속성은 가능하면 축약형(shorthand)을 사용한다.
+  - flexbox를 활용해 레이아웃을 구성한다.
+
+# 1단계 미션
+
 ### 구현 기능 목록
 
 #### UI
