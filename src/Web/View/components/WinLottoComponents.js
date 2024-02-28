@@ -39,7 +39,10 @@ const WinLottoComponents = Object.freeze({
 
   makeWinLottoInputs: () => {
     const winLottoInputs = makeElementWithClassName('div', 'winLottoInputs');
-    appendChildren(winLottoInputs, Array.from({ length: 6 }, WinLottoComponents.makeWinLottoInput()));
+    appendChildren(
+      winLottoInputs,
+      Array.from({ length: 6 }, () => WinLottoComponents.makeWinLottoInput()),
+    );
     return winLottoInputs;
   },
 
