@@ -1,10 +1,9 @@
-import modal from '../../utils/dom/modal';
-import eventHandler from '../../utils/dom/eventHandler';
-import Component from '../Component';
+import './LottoResultModal.css';
+import Component from '../core/Component';
 
 class LottoResultModal extends Component {
-  render() {
-    this.innerHTML = `
+  template() {
+    return `
         <div id="closeButtonWrapper">
             <button id="closeButton">x</button>
         </div>
@@ -16,28 +15,13 @@ class LottoResultModal extends Component {
         `;
   }
 
-  disconnectedCallback() {
-    const $closeButton = document.getElementById('closeButton');
-    const $restartButton = document.getElementById('restartButton');
-    $closeButton.addEventListener('click', this.handleCloseModal);
-    $restartButton.addEventListener('click', this.handleClickRestart);
-  }
-
-  setEventHandler() {
-    const $closeButton = document.getElementById('closeButton');
-    const $restartButton = document.getElementById('restartButton');
-    $closeButton.addEventListener('click', this.handleCloseModal);
-    $restartButton.addEventListener('click', this.handleClickRestart);
-  }
-
-  handleCloseModal() {
-    modal.close();
-  }
-
-  handleClickRestart() {
-    modal.close();
-    eventHandler.restart();
+  setEvent() {
+    const { handleCloseModal, handleClickRestart } = this.props;
+    const $closeBtn = this.$target.querySelector('#closeButton');
+    const $restartBtn = this.$target.querySelector('#restartButton');
+    $closeBtn.addEventListener('click', handleCloseModal);
+    $restartBtn.addEventListener('click', handleClickRestart);
   }
 }
 
-customElements.define('lotto-result-modal', LottoResultModal);
+export default LottoResultModal;
