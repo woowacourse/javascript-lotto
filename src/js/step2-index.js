@@ -1,9 +1,15 @@
-import amountFormEventHandler from './eventHandler/amountFormEventHandler.js';
+import LottoController2 from './controller/LottoController2.js';
+import amountFormEventListener from './eventListener/amountFormEventListener.js';
 
+const controller = new LottoController2();
+
+// 구입 금액을 입력받고 로또를 발행하여 출력하는 이벤트
 document.addEventListener('DOMContentLoaded', () => {
-  const amountForm = document.querySelector('.amount-form');
+  const amountFormElement = document.querySelector('.amount-form');
+  const resultFormElement = document.querySelector('.result-form');
 
-  amountForm.addEventListener('submit', (event) => {
-    const purchaseAmount = amountFormEventHandler(event);
+  amountFormElement.addEventListener('submit', (event) => {
+    const purchaseAmount = amountFormEventListener(event);
+    controller.issueLottosWithPrint(purchaseAmount);
   });
 });
