@@ -4,13 +4,61 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/styles/reset.css">
-    <link rel="stylesheet" href="src/styles/index.css">
+    <link rel="stylesheet" href="src/styles/reset.css" />
+    <link rel="stylesheet" href="src/styles/index.css" />
     <title>Document</title>
   </head>
-  
+
   <body>
     <div class="app">
+      <div class="outside-modal">
+        <div class="modal">
+          <div class="wrapper-modal-close">
+            <span class="button-modal-close">X</span>
+          </div>
+          <div>
+            <span class="text-lotto-stats">🏆 당첨 통계 🏆</span>
+          </div>
+          <div>
+            <table>
+              <thead class="winning-stats-info">
+                <tr>
+                  <th class="winning-stats-item">일치 갯수</th>
+                  <th class="winning-stats-item">당첨금</th>
+                  <th class="winning-stats-item">당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                  <td class="tg-0lax"></td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
       <h1>
         <p class="text-title">🎱 행운의 로또</p>
       </h1>
@@ -23,63 +71,53 @@
             <form class="form-purchase-amount">
               <label class="text-purchase-amount">구입할 금액을 입력해주세요.</label>
               <div>
-                <input type="text" value="" class="input-purchase-amount" placeholder="금액">
+                <input type="text" value="" class="input-purchase-amount" placeholder="금액" />
                 <button type="submit" class="button-purchase-amount">구입</button>
               </div>
-              <!-- 입력이 올바르지 않은 경우 에러메세지 -->
-              <p></p>
+              <p class="text-purchase-amount-error"></p>
             </form>
           </section>
-          <section class="section-lotto-ticket">
-            <p class="text-lotto-count">총 n개를 구매하였습니다.</p>
-            <ul class="ul-lotto-tickets">
-              <li>
-                <!-- 티켓 -->
-                <p class="text-ticket-emoji">🎟️</p>
-                <p class="text-ticket-numbers">
-                  <!-- 티켓들 중 티켓 한 장 -->
-                </p>
-              </li>
-            </ul>
+          <section class="section-lotto-ticket invisible">
+            <p class="text-lotto-count"></p>
+            <ul class="ul-lotto-tickets"></ul>
           </section>
-          <section class="section-submit-lotto-numbers">
+          <section class="section-submit-lotto-numbers invisible">
             <form action="">
-              <label for="" class="text-info-lotto-numbers">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+              <p class="text-info-input-numbers">
+                지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+              </p>
               <div class="wrapper-input-lotto-numbers">
-                <div class="wrapper-input-winning-numbers">
-                  <label for="" class="text-info-input-numbers">당첨 번호</label>
-                  <div class="input-winning-numbers">
-                    <input type="text" class="input-lotto-number">
-                    <input type="text" class="input-lotto-number">
-                    <input type="text" class="input-lotto-number">
-                    <input type="text" class="input-lotto-number">
-                    <input type="text" class="input-lotto-number">
-                    <input type="text" class="input-lotto-number">
+                <div class="wrapper-winning-numbers">
+                  <p for="" class="text-info-input-numbers">당첨 번호</p>
+                  <div class="wrapper-input-winning-numbers">
+                    <input type="text" class="input-winning-number" />
+                    <input type="text" class="input-winning-number" />
+                    <input type="text" class="input-winning-number" />
+                    <input type="text" class="input-winning-number" />
+                    <input type="text" class="input-winning-number" />
+                    <input type="text" class="input-winning-number" />
                   </div>
                 </div>
-                <div class="wrapper-input-bonus-number">
-                  <label for="" class="text-info-input-numbers">보너스 번호</label>
-                  <input type="text" name="" id="" class="input-lotto-number">
+                <div class="wrapper-bonus-number">
+                  <p for="" class="text-info-input-numbers">보너스 번호</p>
+                  <input type="text" class="input-bonus-number" />
                 </div>
               </div>
               <div>
-                <!-- 입력이 올바르지 않은 경우 에러메세지 -->
-                <p></p>
+                <p class="text-lotto-numbers-error"></p>
               </div>
               <div class="wrapper-submit-lotto">
-                <button class="text-submit-lotto">결과 확인하기</button>
+                <button type="button" class="btn-submit-lotto">결과 확인하기</button>
               </div>
             </form>
           </section>
         </article>
       </section>
       <footer class="wrapper-info">
-        <p class="text-info">
-          Copyright 2023. woowacourse
-        </p>
+        <p class="text-info">Copyright 2023. woowacourse</p>
       </footer>
     </div>
     <script type="module" src="./src/js/index.js"></script>
+    <script type="module" src="./src/controller/LottoController.js"></script>
   </body>
 </html>
-
