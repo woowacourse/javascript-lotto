@@ -89,6 +89,36 @@ section {
   cursor: pointer;
 }
 
+/* section 3 --------------------- */
+#lottoSection {
+  position: absolute;
+  top: 196px;
+}
+
+#lottoSection #lottoMainTitle {
+  position: absolute;
+  top: 0px;
+  left: 32px;
+  height: 24px;
+  margin-bottom: 28px;
+}
+/* 
+#lottoSection #lottos {
+  position: absolute;
+  top: 8px;
+  left: 32px;
+  height: 276px;
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#lottoSection #lottos #lotto {
+  height: 36px;
+  background-color: white;
+} */
+
 /* footer */
 footer {
   display: flex;
