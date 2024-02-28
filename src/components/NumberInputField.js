@@ -14,7 +14,7 @@ class NumberInputField extends HTMLElement {
   }
 
   getValue() {
-    return this.querySelector('.number-input').value;
+    return Number(this.querySelector('.number-input').value);
   }
 }
 

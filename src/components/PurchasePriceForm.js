@@ -32,15 +32,15 @@ class PurchasePriceForm extends HTMLElement {
       const price = this.querySelector('price-input-field').getValue();
       BuyLottoPriceValidator.check(price);
 
-      this.#purchaseEvent(price);
+      this.#purchaseEvent(Number(price));
     });
   }
 
   #purchaseEvent(price) {
     const app = document.querySelector('lotto-app');
-    const { _, lottoNumbersArray } = app.controller().processBuyLotto(price);
+    app.controller().processBuyLotto(price);
 
-    const purchaseEvent = new CustomEvent('purchase', { detail: { price, lottoNumbersArray } });
+    const purchaseEvent = new CustomEvent('purchase', {});
     this.dispatchEvent(purchaseEvent);
   }
 }

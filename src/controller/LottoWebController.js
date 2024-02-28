@@ -3,46 +3,38 @@ import { LottoBuyer, WinningRankCalculator, RateOfReturnCalculator } from '../do
 class LottoWebController {
   #lottoGameInfo;
 
-  processBuyLotto(price) {
-    const lottoBuyer = new LottoBuyer(price);
-    const lottoNumbersArray = lottoBuyer.purchase(price);
+  processBuyLotto(buyLottoPrice) {
+    const lottoBuyer = new LottoBuyer(buyLottoPrice);
+    const lottoNumbersArray = lottoBuyer.purchase(buyLottoPrice);
 
-    this.#lottoGameInfo.price = price;
-    this.#lottoGameInfo.lottoNumbersArray = lottoNumbersArray;
+    this.#lottoGameInfo = { buyLottoPrice, lottoNumbersArray };
   }
 
-  processCalculateRank({ winningNumbers, bonusNumber }) {
+  processLottoResult({ winningNumbers, bonusNumber }) {
+    this.#processCalculateRank({ winningNumbers, bonusNumber });
+    this.#processCalculateRateOfReturn();
+  }
+
+  #processCalculateRank({ winningNumbers, bonusNumber }) {
     const { lottoNumbersArray } = this.#lottoGameInfo;
+    // console.log(winningNumbers);
+    // console.log(lottoNumbersArray);
+    // console.log(bonusNumber);
     const winningRankCalculator = new WinningRankCalculator({
       winningNumbers,
-      bonusNumber,
       lottoNumbersArray,
+      bonusNumber,
     });
+    // console.log(winningRankCalculator.execute());
     this.#lottoGameInfo.winningRankResult = winningRankCalculator.execute();
   }
 
-  processCalculateRateOfReturn() {
+  #processCalculateRateOfReturn() {
     const { buyLottoPrice, winningRankResult } = this.#lottoGameInfo;
     const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankResult });
 
     this.#lottoGameInfo.rateOfReturn = rateOfReturnCalculator.execute();
   }
-
-  // processRaffleLottoResult({ winningNumbers, bonusNumber }) {
-  //   const { lottoNumbersArray } = this.#lottoGameInfo;
-  //   const winningRankCalculator = new WinningRankCalculator({
-  //     winningNumbers,
-  //     bonusNumber,
-  //     lottoNumbersArray,
-  //   });
-  //   const winningRankResult = winningRankCalculator.execute();
-
-  //   const rateOfReturnCalculator = new RateOfReturnCalculator({ buyLottoPrice, winningRankResult });
-  //   const rateOfReturn = rateOfReturnCalculator.execute();
-
-  //   this.#lottoGameInfo.winningRankResult = winningRankResult;
-  //   this.#lottoGameInfo.rateOfReturn = rateOfReturn;
-  // }
 
   getLottoGameInfo() {
     return this.#lottoGameInfo;

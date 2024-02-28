@@ -33,19 +33,29 @@ class LottoMain extends HTMLElement {
 
   #setPurchaseEventListener() {
     const purchasePriceForm = document.querySelector('purchase-price-form');
-    purchasePriceForm.addEventListener('purchase', (event) => {
-      this.#renderResult(event);
+    purchasePriceForm.addEventListener('purchase', () => {
+      this.#renderResult();
     });
   }
 
-  #renderResult(event) {
-    const { _, lottoNumbersArray } = event.detail;
+  #renderResult() {
+    const app = document.querySelector('lotto-app');
+    const lottoNumbersArray = app.controller().getLottoGameInfo().lottoNumbersArray;
 
     const purchaseResult = document.querySelector('.purchase-result');
     purchaseResult.innerHTML = LOTTO_MAIN_RESULT(lottoNumbersArray);
-
     const resultButton = document.querySelector('#result-button');
     resultButton.setText('당첨 결과 확인하기');
+    this.#setLottoResultEventListener();
+  }
+
+  #setLottoResultEventListener() {
+    const winningAndBonusForm = document.querySelector('winning-and-bonus-form');
+    winningAndBonusForm.addEventListener('lottoResult', () => {
+      // this.#renderResult();
+      const app = document.querySelector('lotto-app');
+      console.log(app.controller().getLottoGameInfo());
+    });
   }
 }
 

@@ -19,23 +19,23 @@ class PurchaseInfo extends HTMLElement {
 
   render() {
     this.innerHTML = PURCHASE_INFO;
-    const lottoNumbersArray = this.getAttribute('lottos');
-    const lottos = this.#numbersToLottos(lottoNumbersArray);
+    const app = document.querySelector('lotto-app');
+    const lottos = app.controller().getLottoGameInfo().lottoNumbersArray;
 
     const purchasedInfoTitle = this.querySelector('.purchase-info-title-container');
     purchasedInfoTitle.innerHTML = PURCHASE_INFO_TITLE(lottos.length);
     this.#renderPurchaseInfoContainer(lottos);
   }
 
-  #numbersToLottos(lottoNumbersArray) {
-    const numbers = lottoNumbersArray.split(',');
-    const lottos = [];
+  // #numbersToLottos(lottoNumbersArray) {
+  //   const numbers = lottoNumbersArray.split(',');
+  //   const lottos = [];
 
-    for (let i = 0; i < numbers.length; i += 6) {
-      lottos.push(numbers.slice(i, i + 6));
-    }
-    return lottos;
-  }
+  //   for (let i = 0; i < numbers.length; i += 6) {
+  //     lottos.push(numbers.slice(i, i + 6));
+  //   }
+  //   return lottos;
+  // }
 
   #renderPurchaseInfoContainer(lottos) {
     const purchasedInfoContainer = this.querySelector('.purchase-info-container');

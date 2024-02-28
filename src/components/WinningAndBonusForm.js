@@ -34,15 +34,16 @@ class WinningNumbersForm extends HTMLElement {
       const winningNumbers = document.querySelector('winning-numbers-input-field').getValue();
       const bonusNumber = document.querySelector('bonus-number-input-field').getValue();
 
-      console.log(winningNumbers, bonusNumber);
+      this.#lottoResultEvent({ winningNumbers, bonusNumber });
     });
   }
 
   #lottoResultEvent({ winningNumbers, bonusNumber }) {
-    const purchaseEvent = new CustomEvent('lottoResult', {
-      detail: { winningNumbers, bonusNumber },
-    });
-    this.dispatchEvent(purchaseEvent);
+    const app = document.querySelector('lotto-app');
+    app.controller().processLottoResult({ winningNumbers, bonusNumber });
+
+    const lottoResultEvent = new CustomEvent('lottoResult', {});
+    this.dispatchEvent(lottoResultEvent);
   }
 }
 
