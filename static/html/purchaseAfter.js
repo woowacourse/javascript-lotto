@@ -1,16 +1,9 @@
-export default function () {
+export default function purchaseAfter(count, lottos) {
   return `
     <div class="lp-ticket-issuance">
-      <span class="lp-ti-total-purchase-number">총 __개를 구입하였습니다.</span>
+      <span class="lp-ti-total-purchase-number">총 ${count}개를 구입하였습니다.</span>
       <div class="lp-ti-ticket-group">
-        <div class="lp-ti-ticket">
-          <div class="lp-ti-img">🎟️</div>
-          <div class="lp-ti-lotto">12, 23, 34, 45, 11, 24</div>
-        </div>
-        <div class="lp-ti-ticket">
-          <div class="lp-ti-img">🎟️</div>
-          <div class="lp-ti-lotto">12, 23, 34, 45, 11, 24</div>
-        </div>
+      ${printLotto(lottos)}
       </div>
     </div>
     <div class="lp-number-input-group">
@@ -35,4 +28,16 @@ export default function () {
     </div>
     <button class="lp-winning-floating-btn">결과 확인하기</button>
   `;
+}
+
+function printLotto(lottos) {
+  let lottoTicketsHTML = '';
+  lottos.forEach((lotto) => {
+    lottoTicketsHTML += `
+          <div class="lp-ti-ticket">
+              <div class="lp-ti-img">🎟️</div>
+              <div class="lp-ti-lotto">${lotto.join(', ')}</div>
+          </div>`;
+  });
+  return lottoTicketsHTML;
 }
