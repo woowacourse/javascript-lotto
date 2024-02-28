@@ -1,4 +1,4 @@
-const handleClassName = {
+const elementHandler = {
   removeClassList(element, className) {
     element.classList.remove(className);
   },
@@ -16,4 +16,4 @@ const handleClassName = {
   },
 };
 
-export default handleClassName;
+export default elementHandler;
