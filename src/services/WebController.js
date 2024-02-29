@@ -8,6 +8,10 @@ class WebController {
     paymentAmount: 0,
   };
 
+  #paymentForm = document.forms.paymentAmount;
+
+  // #purchasedLotto = document.querySelector()
+
   constructor(lottoGame) {
     this.#lottoGame = lottoGame;
     this.#init();
@@ -16,7 +20,7 @@ class WebController {
   // 이벤트 리스너 등록
   #init() {
     document.addEventListener('DOMContentLoaded', () => {
-      document.addEventListener(EVENTS.paymentFormSubmit, (event) => {
+      this.#paymentForm.addEventListener(EVENTS.paymentFormSubmit, (event) => {
         const { target } = event;
         const invalidInputCallback = (error) => {
           if (!target.querySelector('.err-msg')) {
