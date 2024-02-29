@@ -12,6 +12,7 @@ import WinningLotto from './domain/winningLotto.js';
 import Statistics from './domain/statistics.js';
 
 const $buyForm = document.querySelector('.buy-form');
+const $buyInput = document.querySelector('.buy-input');
 const $lottoResult = document.querySelector('.lotto-result');
 const $answerForm = document.querySelector('.answer-form');
 const $lottoResultLabel = document.querySelector('.lotto-result-label');
@@ -98,6 +99,9 @@ $modalCancel.addEventListener('click', () => {
 
 $retryButton.addEventListener('click', () => {
   $modal.classList.add('hidden');
+  $lottoResult.classList.add('hidden');
+  $answerForm.classList.add('hidden');
+  $buyInput.value = '';
   ableForm($buyForm);
   ableForm($answerForm);
 });
