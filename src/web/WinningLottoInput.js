@@ -1,5 +1,6 @@
 import Component from './Component';
 import Condition from '../constants/Condition';
+import Validator from '../domain/Validator';
 
 const { LOTTO } = Condition;
 
@@ -38,14 +39,32 @@ class WinningLottoInput extends Component {
     this.$target.querySelector('.winning-lotto-form').addEventListener('submit', (event) => this.onFormSubmit(event));
   }
 
+  readWinningNumbers() {
+    const winningNumbers = [...this.$target.querySelectorAll('.winning-number')].map((el) => Number(el.value));
+
+    return Validator.validateLottoNumbers(
+      winningNumbers.filter((number) => number !== '' && number !== undefined && number !== null),
+    );
+  }
+
+  readBonusNumber(winningNumber) {
+    const bonusNumber = Number(this.$target.querySelector('.bonus-number').value);
+
+    return Validator.validateBonusNumber(winningNumber, bonusNumber);
+  }
+
   onFormSubmit(event) {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    const winningNumbers = [...this.$target.querySelectorAll('.winning-number')].map((el) => el.value);
-    const bonusNumber = this.$target.querySelector('.bonus-number').value;
+      const winningNumbers = this.readWinningNumbers();
+      const bonusNumber = this.readBonusNumber(winningNumbers);
 
-    this.props.makeWinningLotto(winningNumbers, bonusNumber);
-    this.resetFormValue();
+      this.props.makeWinningLotto(winningNumbers, bonusNumber);
+    } catch (error) {
+      alert(error.message);
+      this.resetFormValue();
+    }
   }
 
   resetFormValue() {

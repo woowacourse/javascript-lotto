@@ -1,5 +1,6 @@
 import Component from './Component';
 import Condition from '../constants/Condition';
+import Validator from '../domain/Validator';
 
 const { MONEY } = Condition;
 
@@ -20,13 +21,23 @@ class MoneyInput extends Component {
     this.$target.querySelector('.money-input-form').addEventListener('submit', (event) => this.onFormSubmit(event));
   }
 
-  onFormSubmit(event) {
-    event.preventDefault();
-
+  readMoney() {
     const money = this.$target.querySelector('.money-input').value;
 
-    this.props.purchaseLottoTickets(money);
-    this.resetFormValue();
+    return Validator.validateMoney(money);
+  }
+
+  onFormSubmit(event) {
+    try {
+      event.preventDefault();
+
+      const money = this.readMoney();
+
+      this.props.purchaseLottoTickets(money);
+    } catch (error) {
+      alert(error.message);
+      this.resetFormValue();
+    }
   }
 
   resetFormValue() {

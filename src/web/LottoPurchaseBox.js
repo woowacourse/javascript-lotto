@@ -3,7 +3,6 @@ import MoneyInput from './MoneyInput';
 import LottoDisplay from './LottoDisplay';
 import WinningLottoInput from './WinningLottoInput';
 import LottoStatisticsModal from './LottoStatisticsModal';
-import Validator from '../domain/Validator';
 import LottoGenerator from '../controller/LottoGenerator';
 import StatisticsGenerator from '../controller/StatisticsGenerator';
 
@@ -94,32 +93,12 @@ class LottoPurchaseBox extends Component {
   }
 
   purchaseLottoTickets(money) {
-    try {
-      Validator.validateMoney(money);
-      this.setState({ lottoTickets: LottoGenerator.createLotto(money) });
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
-  validateWinningLottoNumbers(winningNumbers, bonusNumber) {
-    const validWinningNumbers = Validator.validateLottoNumbers(
-      winningNumbers.filter((number) => number !== '' && number !== undefined && number !== null).map(Number),
-    );
-    const validBonusNumber = Validator.validateBonusNumber(validWinningNumbers, Number(bonusNumber));
-
-    return { winningNumbers: validWinningNumbers, bonusNumber: validBonusNumber };
+    this.setState({ lottoTickets: LottoGenerator.createLotto(money) });
   }
 
   makeWinningLotto(winningNumbers, bonusNumber) {
-    try {
-      this.setState({
-        winningLotto: this.validateWinningLottoNumbers(winningNumbers, bonusNumber),
-      });
-      this.showPrizeStatistics();
-    } catch (error) {
-      alert(error.message);
-    }
+    this.setState({ winningLotto: { winningNumbers, bonusNumber } });
+    this.showPrizeStatistics();
   }
 
   showPrizeStatistics() {
