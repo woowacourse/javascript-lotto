@@ -59,6 +59,62 @@ const deactivatePriceButton = (element) => {
   element.removeEventListener("click", priceButtonClickEvent);
   element.addEventListener("click", preventDefault);
 };
+// print lottos
+
+const printBoughtLottos = (lottos, numberOfLotto) => {
+  printPurchasedLottoSpan(numberOfLotto);
+  const lottoNumberElements = lottos.map((lotto) =>
+    getPurchasedLottoElement(lotto)
+  );
+
+  document.getElementById("main-contents__purchased-lotto-box").innerHTML = "";
+
+  document
+    .getElementById("main-contents__purchased-lotto-box")
+    .append(...lottoNumberElements);
+};
+
+const printPurchasedLottoSpan = (numberOfLotto) => {
+  const purchasedLottoSpan = document.getElementById(
+    "main-contents__purchased-lotto-span"
+  );
+  purchasedLottoSpan.innerHTML = "";
+  purchasedLottoSpan.innerHTML = `총 ${numberOfLotto}개를 구매하였습니다.`;
+};
+
+const getPurchasedLottoElement = (lotto) => {
+  const purchasedLottoElement = document.createElement("div");
+  purchasedLottoElement.classList.add("purchased-lotto");
+  purchasedLottoElement.appendChild(getLottoTicketStrong());
+  purchasedLottoElement.appendChild(getLottoNumberSpan(lotto));
+  return purchasedLottoElement;
+};
+
+const getLottoTicketStrong = () => {
+  const lottoTicketStrong = document.createElement("strong");
+  lottoTicketStrong.innerHTML = "🎟️";
+  lottoTicketStrong.classList.add("lotto-ticket");
+  return lottoTicketStrong;
+};
+
+const getLottoNumberSpan = (lotto) => {
+  const lottoNumberSpan = document.createElement("span");
+  lottoNumberSpan.innerHTML = lotto.sort((a, b) => a - b).join(", ");
+  lottoNumberSpan.classList.add("lotto-number");
+  return lottoNumberSpan;
+};
+
+const printBoughtSlicedLottos = (lottos, originalNumberOfLotto) => {
+  printBoughtLottos(lottos, originalNumberOfLotto);
+  document
+    .getElementById("main-contents__purchased-lotto-box")
+    .append(
+      getPurchasedLottoElement([
+        `기타 ${originalNumberOfLotto - lottos.length}개의 로또...`,
+      ])
+    );
+};
 
 initBody();
 // activatePriceButton();
+// printBoughtSlicedLottos(new Array(100).fill([1, 2, 3, 4, 5, 6]), 10000);

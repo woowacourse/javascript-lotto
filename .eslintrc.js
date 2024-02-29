@@ -3,6 +3,7 @@ module.exports = {
     es2021: true,
     node: true,
     jest: true,
+    browser: true,
   },
   extends: ["airbnb-base", "prettier"],
   overrides: [
