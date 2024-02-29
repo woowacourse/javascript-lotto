@@ -266,93 +266,130 @@ body {
   left: 50%;
   transform: translate(-50%);
   background-color: var(--lotto-greyscale1-color);
-  width: 350px;
-  height: 500px;
+  width: 35rem;
+  height: 50rem;
   border-radius: 4px;
+}
+
+#modal-header {
+  margin: 0 1.6rem;
 }
 
 #modal-close-btn {
   position: absolute;
-  right: 16px;
-  top: 16px;
+  right: 1.6rem;
+  top: 1.6rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
+  text-align: center;
 }
 
 #modal-header-msg {
   text-align: center;
-  margin: 10% 0;
+  margin: 4rem 0 3.3rem;
 }
 
 /* 모달 표 */
 
 #modal-body {
-  /* background-color: pink; */
-  /* display: flex;
-  justify-content: center; */
-  /* flex-direction: column; */
+  margin-top: 3.3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 #modal-body-table {
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
+  width: 31.9rem;
+  height: 24.7rem;
+  color: var(--lotto-greyscale5-color);
 }
 
 .tg {
-  border-collapse: collapse;
-  border-spacing: 0;
+  box-sizing: border-box;
+  width: 31.8rem;
+  white-space: nowrap;
 }
 
 .tg td {
-  border-color: rgba(0, 0, 0, 0.12);
-  border-style: solid;
-  border-width: 1px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.12);
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  padding: 10px 5px;
+  line-height: 2.4rem;
+  margin: 0.8rem 0;
+  vertical-align: baseline;
   word-break: normal;
 }
 
 .tg th {
-  border-color: rgba(0, 0, 0, 0.12);
-  border-style: solid;
-  border-width: 1px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: normal;
+  box-sizing: border-box;
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.12);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
   overflow: hidden;
-  padding: 10px 5px;
+  padding: 0.8rem 1.7rem;
   word-break: normal;
 }
 
 .tg .tg-c3ow {
-  border-color: inherit;
+  box-sizing: border-box;
   text-align: center;
-  vertical-align: top;
+  padding: 0.8rem 0;
 }
 
 .tg .tg-7btt {
-  border-color: inherit;
   font-weight: bold;
   text-align: center;
-  vertical-align: top;
+  line-height: 2.4rem;
+}
+
+#table-matched {
+  box-sizing: border-box;
+  width: 9.6rem;
+}
+
+#table-prize {
+  box-sizing: border-box;
+  width: 13.4rem;
+}
+
+#table-count {
+  box-sizing: border-box;
+  width: 7.2rem;
 }
 
 #profit-msg {
+  margin-top: 3.2rem;
+  font-family: "Roboto";
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
   text-align: center;
 }
 
 #modal-footer {
-  /* background-color: skyblue; */
   display: flex;
   justify-content: center;
+  color: var(--lotto-greyscale5-color);
 }
 
 #modal-retry-btn {
   background-color: var(--lotto-primary-color);
   color: var(--lotto-greyscale1-color);
   width: 100%;
-  padding: 4px 6px;
+  padding: 0.6rem;
   text-align: center;
-  border-radius: 4px;
-  margin: 0 16px;
+  border-radius: 0.4rem;
+  margin: 3.2rem 1.6rem 3.2rem;
+  border: none;
 }

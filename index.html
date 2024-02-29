@@ -6,6 +6,11 @@
   <title>🎱 행운의 로또 by 프룬🍒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="index.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -73,7 +78,7 @@
   <div id="modal">
     <div id="modal-box">
       <div id="modal-header">
-        <span id="modal-close-btn">✖️</span>
+        <span id="modal-close-btn">X</span>
         <div id="modal-header-msg" class="lotto-subtitle">🏆당첨 통계🏆</div>
       </div>
       <div id="modal-body">
@@ -81,36 +86,36 @@
           <table class="tg">
             <thead>
               <tr>
-                <th class="tg-7btt">일치 갯수</th>
-                <th class="tg-7btt">당첨금</th>
-                <th class="tg-7btt">당첨 갯수</th>
+                <th id="table-matched" class="tg-7btt">일치 갯수</th>
+                <th id="table-prize" class="tg-7btt">당첨금</th>
+                <th id="table-count" class="tg-7btt">당첨 갯수</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="tg-c3ow">3개</td>
-                <td class="tg-c3ow">5,000</td>
-                <td class="tg-c3ow"><span id="lotto-rank-5"></span>개</td>
+                <td class="tg-c3ow lotto-body">3개</td>
+                <td class="tg-c3ow lotto-body">5,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-5"></span>개</td>
               </tr>
               <tr>
-                <td class="tg-c3ow">4개</td>
-                <td class="tg-c3ow">50,000</td>
-                <td class="tg-c3ow"><span id="lotto-rank-4"></span>개</td>
+                <td class="tg-c3ow lotto-body">4개</td>
+                <td class="tg-c3ow lotto-body">50,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-4"></span>개</td>
               </tr>
               <tr>
-                <td class="tg-c3ow">5개</td>
-                <td class="tg-c3ow">1,500,000</td>
-                <td class="tg-c3ow"><span id="lotto-rank-3"></span>개</td>
+                <td class="tg-c3ow lotto-body">5개</td>
+                <td class="tg-c3ow lotto-body">1,500,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-3"></span>개</td>
               </tr>
               <tr>
-                <td class="tg-c3ow">5개+보너스볼</td>
-                <td class="tg-c3ow">30,000,000</td>
-                <td class="tg-c3ow"><span id="lotto-rank-2"></span>개</td>
+                <td class="tg-c3ow lotto-body">5개+보너스볼</td>
+                <td class="tg-c3ow lotto-body">30,000,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-2"></span>개</td>
               </tr>
               <tr>
-                <td class="tg-c3ow">6개</td>
-                <td class="tg-c3ow">2,000,000,000</td>
-                <td class="tg-c3ow"><span id="lotto-rank-1"></span>개</td>
+                <td class="tg-c3ow lotto-body">6개</td>
+                <td class="tg-c3ow lotto-body">2,000,000,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-1"></span>개</td>
               </tr>
             </tbody>
           </table>
