@@ -1,5 +1,5 @@
 import FirstSection from './FirstSection.js';
-import NextStepArticle from './NextSection.js';
+import NextSection from './NextSection.js';
 
 export default function Main() {
   const main = document.createElement('main');
@@ -7,7 +7,7 @@ export default function Main() {
 
   const article = document.createElement('article');
   article.appendChild(FirstSection());
-  article.appendChild(NextStepArticle());
+  article.appendChild(NextSection());
 
   main.appendChild(article);
 

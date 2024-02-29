@@ -1,8 +1,8 @@
 import WinningLottoContent from './WinningLottoContent.js';
 
-export default function NextStepArticle() {
+export default function NextSection() {
   const section = document.createElement('section');
-  section.classList.add('lotto-section');
+  section.classList.add('next-section');
 
   const nextSection = document.createElement('section');
   nextSection.setAttribute('id', 'step2');

@@ -2,7 +2,7 @@ import BuyLottoForm from './BuyLottoForm.js';
 
 export default function FirstSection() {
   const section = document.createElement('section');
-  section.classList.add('lotto-section');
+  section.classList.add('first-section');
 
   const titleContainer = document.createElement('div');
   const title = document.createElement('h1');
