@@ -106,7 +106,6 @@ class LottoPurchaseBox extends Component {
 
   makeWinningLotto(winningNumbers, bonusNumber) {
     this.setState({ winningLotto: { winningNumbers, bonusNumber } });
-    this.disabledSection('.winning-lotto-input-container');
     this.showPrizeStatistics();
   }
 
@@ -118,6 +117,7 @@ class LottoPurchaseBox extends Component {
 
     this.setState({ lottoStatistics: { prizes, returnOnInvestment } });
     this.openModal();
+    this.disabledSection('.winning-lotto-input-container');
   }
 }
 
