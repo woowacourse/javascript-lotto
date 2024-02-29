@@ -27,3 +27,10 @@
 .lottoIcon {
   font-size: 34px;
 }
+
+.lottoNumbers {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  margin-left: 4px;
+}
