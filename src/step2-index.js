@@ -12,19 +12,11 @@ import LottoController from './controller/step2-LottoController';
 const lottoController = new LottoController();
 
 window.onload = function () {
-  const purchaseInputField = document.getElementById('purchaseInputField');
-  const purchaseSubmitButton = document.getElementById('purchaseSubmitButton');
-  const lottoSection = document.getElementById('lottoSection');
-  const lottoMainTitle = document.getElementById('lottoMainTitle');
+  const purchaseForm = document.getElementById('purchaseInputSection');
 
-  purchaseSubmitButton.addEventListener('click', async function (event) {
+  purchaseForm.addEventListener('submit', async function (event) {
     event.preventDefault();
-    const purchaseAmount = purchaseInputField.value;
-    const validPurchaseAmount = await lottoController.inputPurchaseAmount(purchaseAmount);
-
-    const lottoCount = lottoController.calculateIssueQuantity(validPurchaseAmount);
-
-    lottoSection.style.display = 'block';
-    lottoMainTitle.textContent = `총 ${lottoCount}개를 구매하였습니다.`;
+    const purchaseAmount = document.getElementById('purchaseInputField').value;
+    await lottoController.purchaseLottos(purchaseAmount);
   });
 };

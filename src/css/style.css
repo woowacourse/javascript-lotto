@@ -91,8 +91,6 @@ section {
 
 /* section 3 --------------------- */
 #lottoSection {
-  background-color: blue;
-
   position: absolute;
   top: 196px;
   width: 100%;
@@ -102,23 +100,17 @@ section {
 }
 
 #lottoSection #lottoMainTitle {
-  background-color: yellow;
-
   margin-bottom: 8px;
 }
 
-#lottoSection #lottos {
-  background-color: green;
-
+#lottoSection #lottoBox {
   height: 276px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-#lottoSection #lottos #lotto {
-  background-color: white;
-
+#lottoSection #lottoBox .lottoTicket {
   height: 36px;
   display: flex;
   align-items: center;

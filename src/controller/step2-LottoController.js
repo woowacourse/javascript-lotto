@@ -1,6 +1,6 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-constant-condition */
-// import OPTIONS from '../constant/Options.js';
 import LottoMachine from '../domain/LottoMachine.js';
 // import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
 // import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
@@ -34,6 +34,41 @@ class LottoController {
 
   calculateIssueQuantity(purchaseAmount) {
     return this.#lottoMachine.calculateIssueQuantity(purchaseAmount);
+  }
+
+  issueLottos(issueQuantity) {
+    return this.#lottoMachine.issueLottos(issueQuantity);
+  }
+
+  displayLottoNumbersList(lottos) {
+    const lottoBox = document.getElementById('lottoBox');
+
+    while (lottoBox.firstChild) {
+      lottoBox.firstChild.remove();
+    }
+
+    lottos.forEach((lotto) => {
+      const lottoNumbers = lotto.getNumbers();
+      const lottoTicket = document.createElement('div');
+      lottoTicket.className = 'lottoTicket';
+      lottoTicket.textContent = `🎟️ ${lottoNumbers.join(', ')}`;
+      lottoBox.appendChild(lottoTicket);
+    });
+  }
+
+  async purchaseLottos(purchaseAmount) {
+    const validatedPurchaseAmount = await this.inputPurchaseAmount(purchaseAmount);
+    const issueQuantity = this.calculateIssueQuantity(validatedPurchaseAmount);
+    const lottos = this.issueLottos(issueQuantity);
+    console.log(lottos);
+
+    const lottoSection = document.getElementById('lottoSection');
+    const lottoMainTitle = document.getElementById('lottoMainTitle');
+
+    lottoSection.style.display = 'block';
+    lottoMainTitle.textContent = `총 ${issueQuantity}개를 구매하였습니다.`;
+
+    this.displayLottoNumbersList(lottos);
   }
 }
 
