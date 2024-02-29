@@ -140,9 +140,9 @@ article {
   height: 36px;
 }
 
-input[type=submit]:hover {
+input[type='submit']:hover {
   cursor: pointer;
-  opacity: 0.7
+  opacity: 0.7;
 }
 
 .input-error {
@@ -214,7 +214,7 @@ input[type=submit]:hover {
 }
 
 #winning-lotto-title {
-  display:flex;
+  display: flex;
   align-items: center;
   font-size: 15px;
   font-weight: 400;
@@ -257,7 +257,7 @@ input[type=submit]:hover {
   justify-content: space-between;
 }
 
-#winning-lotto-container > form > input[type=submit] {
+#winning-lotto-container > form > input[type='submit'] {
   margin-top: 27px;
   background-color: var(--lotto-primary);
   border-radius: 4px;
