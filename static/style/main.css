@@ -19,7 +19,7 @@
 
 .lotto-main-body .lotto-paper {
   min-height: 427px;
-  width: 414px;
+  max-width: 414px;
   margin: 0 auto;
   margin-top: 84px;
   padding: 40px 16px 32px;
