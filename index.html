@@ -13,49 +13,49 @@
       <header>
         <h2>🎱 행운의 로또</h2>
       </header>
-      <div id="game_box">
-        <div>
+      <main id="game_box">
+        <section>
           <h2 class="title">🎱 내 번호 당첨 확인 🎱</h2>
-          <div id="purchaseAmount_container">
+          <section id="purchaseAmount_container">
             <p class="subtitle">구입할 금액을 입력해주세요.</p>
             <form id="input_form">
               <input id="input_purchaseAmount" placeholder="금액" type="text" />
               <button id="purchase_button">구입</button>
             </form>
             <p id="invalid_purchaseAmount" />
-          </div>
-          <div class="after_purchase">
+          </section>
+          <section class="after_purchase">
             <p id="purchase_number" />
             <ul id="lotto_list"></ul>
-          </div>
-        </div>
-        <div id="winningLotto" class="after_purchase">
+          </section>
+        </section>
+        <section id="winningLotto" class="after_purchase">
           <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-          <div>
-            <div id="winningform_title">
-              <p>당첨 번호</p>
-              <p>보너스 번호</p>
-            </div>
+          <section>
+            <section id="winningform_title">
+              <article>당첨 번호</article>
+              <article>보너스 번호</article>
+            </section>
             <form>
-              <div id="winningLotto_form">
-                <div>
+              <section id="winningLotto_form">
+                <section>
                   <input class="input_winningNumber" maxlength="2" />
                   <input class="input_winningNumber" maxlength="2" />
                   <input class="input_winningNumber" maxlength="2" />
                   <input class="input_winningNumber" maxlength="2" />
                   <input class="input_winningNumber" maxlength="2" />
                   <input class="input_winningNumber" maxlength="2" />
-                </div>
+                </section>
                 <input id="input_bonusNumber" maxlength="2" />
-              </div>
+              </section>
               <p id="invalid_winningLotto"></p>
               <button type="button" id="result_button">결과 확인하기</button>
             </form>
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </main>
       <dialog id="result_dialog">
-        <div method="dialog" class="dialog-content">
+        <section method="dialog" class="dialog-content">
           <button id="close_dialog">X</button>
           <h2 class="title">🏆 당첨 통계 🏆</h2>
           <table id="result_body">
@@ -90,9 +90,9 @@
               <td id="1st">n개</td>
             </tr>
           </table>
-          <div id="profit">당신의 총 수익률은 0%입니다.</div>
+          <p id="profit">당신의 총 수익률은 0%입니다.</p>
           <button id="retry_button">다시 시작하기</button>
-        </div>
+        </section>
       </dialog>
       <footer>Copyright 2023. woowacourse</footer>
     </div>
