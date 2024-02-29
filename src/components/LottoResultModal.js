@@ -26,10 +26,19 @@ class LottoResultModal extends HTMLElement {
   }
 
   #setEventListener() {
+    this.#setModalCloseListener();
+    this.#setRetryListener();
+  }
+
+  #setRetryListener() {
     const retryButton = this.querySelector('#retry-button');
     retryButton.addEventListener('click', () => {
-      console.log('다시 시작해보자고');
+      const app = document.querySelector('lotto-app');
+      app.connectedCallback();
     });
+  }
+
+  #setModalCloseListener() {
     const closeButton = this.querySelector('.close-modal-icon');
     closeButton.addEventListener('click', () => {
       this.remove();
