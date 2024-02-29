@@ -1,6 +1,7 @@
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import purchaseClickHandler from "../Handler/purchaseClickHandler.js";
+import retryHandler from "../Handler/retryHandler.js";
 import winningLottoHandler from "../Handler/winningLottoHandler.js";
 import WebView from "../view/webView.js";
 
@@ -8,23 +9,17 @@ const purchaseAmountInput = document.getElementById("input_purchaseAmount");
 const purchaseButton = document.getElementById("purchase_button");
 
 const resultButton = document.getElementById("result_button");
-const dialog = document.getElementById("result_dialog");
 const retryButton = document.getElementById("retry_button");
 
 const winningNumbers = document.querySelectorAll(".input_winningNumber");
 
 class WebController {
-  #reset() {
-    window.location.reload();
-  }
-
   async start() {
     purchaseAmountInput.focus();
 
     await this.play();
     retryButton.addEventListener("click", async () => {
-      dialog.close();
-      this.#reset();
+      retryHandler();
     });
   }
 
