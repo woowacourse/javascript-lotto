@@ -1,0 +1,20 @@
+header {
+  background-color: var(--lotto-primary);
+  display: flex;
+  align-items: center;
+  height: 64px;
+  width: 100%;
+  @media (max-width: 767px) {
+    justify-content: center;
+  }
+}
+
+header > h1 {
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--lotto-greyscale-1);
+  margin-left: 130px;
+  @media (max-width: 767px) {
+    margin: 0;
+  }
+}

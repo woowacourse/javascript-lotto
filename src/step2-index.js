@@ -4,9 +4,8 @@ import Footer from './view/web/footer/Footer.js';
 import Modal from './view/web/modal/Modal.js';
 import EventController from './view/web/controller/EventController.js';
 import { $ } from './view/web/utils/dom.js';
-import './styles/reset.css';
-import './styles/index.css';
-import './styles/modal.css';
+import './view/web/styles/reset.css';
+import './view/web/styles/index.css';
 
 $('#app').appendChild(Header());
 $('#app').appendChild(Main());
