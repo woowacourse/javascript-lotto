@@ -7,6 +7,7 @@ html {
 body {
   background-color: var(--lotto-greyscale2-color);
   margin: 0;
+  min-width: 41.4rem;
 }
 
 /* 공통 스타일 속성 */
@@ -110,7 +111,7 @@ body {
 #content-box-input-budget > input {
   box-sizing: border-box;
   display: flex;
-  border: 0.1rem inset var(--lotto-greyscale3-color);
+  border: 0.1rem solid var(--lotto-greyscale3-color);
   border-radius: 0.4rem;
   width: 31rem;
   height: 3.6rem;
@@ -127,6 +128,10 @@ body {
   border-radius: 0.4rem;
   border: 0rem;
   text-align: center;
+}
+
+#content-box-input-budget > button:disabled {
+  background-color: var(--lotto-greyscale4-color);
 }
 
 #content-box-budget {
@@ -149,11 +154,13 @@ body {
 #content-box-lottos {
   box-sizing: border-box;
   width: 22.2rem;
-  /* height: 2.4rem; */
   height: 100%;
-  margin-bottom: 0.8rem;
   display: flex;
   flex-direction: column;
+}
+
+#content-box-lottos-msg {
+  margin-bottom: 0.8rem;
 }
 
 #content-box-msg-combination {
@@ -190,6 +197,7 @@ body {
   width: 3.4rem;
   height: 3.6rem;
   padding: 0;
+  text-align: center;
 }
 
 #content-box-bonus {

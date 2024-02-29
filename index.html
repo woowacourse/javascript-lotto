@@ -28,13 +28,13 @@
         <div id="content-box-budget">
           <p id="content-box-budget-label" class="lotto-body">구입할 금액을 입력해주세요.</p>
           <form id="content-box-input-budget">
-            <input type="number" id="budget" name="budget" placeholder="금액" />
+            <input type="number" step="1000" min="1000" max="100000" id="budget" name="budget" placeholder="금액" />
             <button type="submit" class="lotto-caption">구입</button>
           </form>
         </div>
         <div id="after-budget">
           <div id="content-box-lottos">
-            <p class="lotto-body">총 <span id="issued-lotto-count"></span>개를 구매하였습니다.</p>
+            <p id="content-box-lottos-msg" class="lotto-body">총 <span id="issued-lotto-count"></span>개를 구매하였습니다.</p>
 
           </div>
 
