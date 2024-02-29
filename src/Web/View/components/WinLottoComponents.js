@@ -1,3 +1,4 @@
+import { LOTTO_NUMBER_RANGE, LOTTO_LENGTH } from '../../../Domain/LottoNumber';
 import '../../css/winLottoNumbers.css';
 import { appendChildren, makeElementById, makeElementWithClassName } from '../../utils';
 
@@ -5,17 +6,18 @@ const WinLottoComponents = Object.freeze({
   makeWinLottoForm: () => {
     const winLottoForm = makeElementById('form', 'winLottoForm');
     appendChildren(winLottoForm, [
-      WinLottoComponents.makeWinLottoFormLabel(),
+      WinLottoComponents.makeWinLottoFormDiv(),
       WinLottoComponents.makeWinLottoAndBonusNumbers(),
       WinLottoComponents.makeWinLottoFormButton(),
     ]);
     return winLottoForm;
   },
 
-  makeWinLottoFormLabel: () => {
-    const winLottoFormLabel = makeElementWithClassName('label', 'winLottoFormLabel');
-    winLottoFormLabel.innerText = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
-    return winLottoFormLabel;
+  makeWinLottoFormDiv: () => {
+    const winLottoFormDiv = makeElementWithClassName('div', 'winLottoFormDiv');
+    winLottoFormDiv.innerText = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
+    winLottoFormDiv.htmlFor = 'winLottoNumber';
+    return winLottoFormDiv;
   },
 
   makeWinLottoAndBonusNumbers: () => {
@@ -29,11 +31,11 @@ const WinLottoComponents = Object.freeze({
 
   makeWinLottoNumbers: () => {
     const winNumbersDiv = makeElementWithClassName('div', 'winNumbersDiv');
-    const winNumberTitle = makeElementWithClassName('div', 'winNumberTitle');
-    winNumberTitle.innerText = '당첨 번호';
+    const winNumberLabel = makeElementWithClassName('label', 'winNumberLabel');
+    winNumberLabel.innerText = '당첨 번호';
+    winNumberLabel.htmlFor = 'winNumber';
 
-    appendChildren(winNumbersDiv, [winNumberTitle, WinLottoComponents.makeWinLottoInputs()]);
-
+    appendChildren(winNumbersDiv, [winNumberLabel, WinLottoComponents.makeWinLottoInputs()]);
     return winNumbersDiv;
   },
 
@@ -41,7 +43,7 @@ const WinLottoComponents = Object.freeze({
     const winLottoInputs = makeElementWithClassName('div', 'winLottoInputs');
     appendChildren(
       winLottoInputs,
-      Array.from({ length: 6 }, () => WinLottoComponents.makeWinLottoInput()),
+      Array.from({ length: LOTTO_LENGTH }, () => WinLottoComponents.makeWinLottoInput()),
     );
     return winLottoInputs;
   },
@@ -49,20 +51,28 @@ const WinLottoComponents = Object.freeze({
   makeWinLottoInput: () => {
     const input = makeElementWithClassName('input', 'winLottoInput');
     input.type = 'number';
-    input.max = 45;
-    input.min = 1;
+    input.id = 'winNumber';
+    input.max = LOTTO_NUMBER_RANGE.MAX;
+    input.min = LOTTO_NUMBER_RANGE.MIN;
     input.name = `winNumber`;
     return input;
   },
 
   makeBonusLottoNumber: () => {
     const bonusNumberDiv = makeElementWithClassName('div', 'bonusLottoNumberDiv');
-    const bonusNumberTitle = makeElementWithClassName('div', 'bonusNumberTitle');
-    bonusNumberTitle.innerText = '보너스 번호';
+    const bonusNumberLabel = makeElementWithClassName('label', 'bonusNumberLabel');
+    bonusNumberLabel.innerText = '보너스 번호';
+    bonusNumberLabel.htmlFor = 'bonusNumber';
+    const bonusNumberInput = WinLottoComponents.makeBonusLottoInput();
+    appendChildren(bonusNumberDiv, [bonusNumberLabel, bonusNumberInput]);
+    return bonusNumberDiv;
+  },
+
+  makeBonusLottoInput: () => {
     const bonusNumberInput = makeElementWithClassName('input', 'winLottoInput');
     bonusNumberInput.name = 'bonusNumber';
-    appendChildren(bonusNumberDiv, [bonusNumberTitle, bonusNumberInput]);
-    return bonusNumberDiv;
+    bonusNumberInput.id = 'bonusNumber';
+    return bonusNumberInput;
   },
 
   makeWinLottoFormButton: () => {
