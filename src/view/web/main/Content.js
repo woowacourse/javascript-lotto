@@ -1,5 +1,5 @@
 import BuyLottoForm from './BuyLottoForm.js';
-import WinningLottoContent from './WinningLottoContent.js';
+import WinningLottoContent from './WinningLottoContent';
 
 export default function Content() {
   const article = document.createElement('article');

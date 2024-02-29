@@ -1,7 +1,7 @@
-import Header from './view/web/Header.js';
-import Main from './view/web/Main.js';
-import Footer from './view/web/Footer.js';
-import Modal from './view/web/Modal.js';
+import Header from './view/web/header/Header.js';
+import Main from './view/web/main/Main.js';
+import Footer from './view/web/footer/Footer.js';
+import Modal from './view/web/modal/Modal.js';
 import EventController from './view/web/controller/EventController.js';
 import { $ } from './view/web/utils/dom.js';
 import './styles/reset.css';
