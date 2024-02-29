@@ -6,7 +6,7 @@ const winNumberEvent = {
         const winNumbersBox = document.querySelector('.winnumber-input-box');
         winNumbersBox.innerHTML = `${this.createWinNumberInputBox()}`;
         const resultButton = document.querySelector('.result-button');
-        resultButton.addEventListener('click', () => Modal.createModal())
+        resultButton.addEventListener('click',  Modal.createModal.bind(Modal))
     },
 
     createWinNumberInputBox(){
