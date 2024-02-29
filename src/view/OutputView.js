@@ -1,10 +1,13 @@
 import MESSAGES from "./constants/messages.js";
 
 class OutputView {
-  static printBoughtLottos(lottos) {
+  static printNumberOfLotto(numberOfLotto) {
     this.#printMessage(
-      `${lottos.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
+      `${numberOfLotto}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
     );
+  }
+
+  static printBoughtLottos(lottos) {
     const lottoNumberArrayString = this.#getLottoNumberArrayString(lottos);
     this.#printMessage(lottoNumberArrayString);
     this.printBlankLine();
