@@ -40,7 +40,7 @@ const ResultModal = Object.freeze({
 
   makeModalResultTitle: () => {
     const modalResultTitle = makeElementWithClassName('div', 'modalResultTitle');
-    modalResultTitle.innerText = '🏆 당첨 통계 🏆';
+    modalResultTitle.innerHTML = '<h2>🏆 당첨 통계 🏆</h2>';
     return modalResultTitle;
   },
 

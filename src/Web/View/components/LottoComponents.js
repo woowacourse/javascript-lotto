@@ -12,7 +12,7 @@ const LottoComponent = Object.freeze({
 
   makeLottoTitle: () => {
     const lottoTitle = makeElementWithClassName('div', 'lottoTitle');
-    lottoTitle.innerText = `🎱 내 번호 당첨 확인 🎱`;
+    lottoTitle.innerHTML = `<h2>🎱 내 번호 당첨 확인 🎱</h2>`;
     return lottoTitle;
   },
 

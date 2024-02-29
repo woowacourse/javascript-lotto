@@ -13,7 +13,7 @@ const RenderingHandler = Object.freeze({
   renderHeader: () => {
     const app = document.getElementById('app');
     const headerElement = document.createElement('header');
-    headerElement.innerText = '🎱 행운의 로또';
+    headerElement.innerHTML = '<h1>🎱 행운의 로또</h1>';
 
     app.appendChild(headerElement);
   },
