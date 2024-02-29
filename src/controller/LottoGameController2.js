@@ -59,6 +59,7 @@ class LottoGameController2 {
       const bonusNumber = $bonusInput.value;
       this.#checkWinningNumbers(winningNumberList);
       this.#checkBonusNumber(bonusNumber, winningNumberList);
+      this.#showResult();
     });
   }
 
@@ -86,12 +87,25 @@ class LottoGameController2 {
 
     try {
       Validator.validateBonusNumber(bonusNumber, winningNumberList);
-      this.#winningNumbers = winningNumberList;
+      this.#bonusNumber = bonusNumber;
     } catch (error) {
       alert(error.message);
       // 메서드 분리 예정
       $bonusInput.value = '';
     }
+  }
+
+  #showResult() {
+    const winningResults = this.#lottosManager.getWinningResults(this.#winningNumbers, this.#bonusNumber);
+    const profitRate = this.#calculateProfitRate(winningResults);
+    View.renderWinningResults(winningResults, profitRate);
+  }
+
+  #calculateProfitRate(winningResults) {
+    const totalProfit = Object.entries(winningResults).reduce((profit, [matchedKey, count]) => {
+      return profit + RANKING[matchedKey].REWARD * count;
+    }, 0);
+    return ((totalProfit * 100) / this.#purchaseAmount).toLocaleString('ko-KR', { minimumFractionDigits: 1 });
   }
 }
 
