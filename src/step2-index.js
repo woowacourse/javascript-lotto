@@ -4,5 +4,8 @@
  */
 import '../src/css/reset.css';
 import '../index.css';
+import WebLottoController from './controller/WebLottoController';
 
-import '../src/js/index.js';
+const webLottoController = new WebLottoController();
+
+webLottoController.start();

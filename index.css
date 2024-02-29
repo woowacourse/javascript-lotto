@@ -30,8 +30,10 @@ html {
   height: 727px;
   top: 148px;
   left: 513px;
-  border: 2px solid;
-  padding: 0 16px;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  /* 여기에 해야하네! */
+  overflow: auto;
 }
 
 #lotto-footer {
@@ -83,6 +85,7 @@ html {
   justify-content: space-between;
   align-items: flex-end;
   width: 382px;
+  padding: 0px 16px;
 }
 
 #money-input {
@@ -119,8 +122,12 @@ html {
   color: white;
 }
 
+#money-button:disabled {
+  background: gray;
+  cursor: default;
+}
+
 .content-message {
-  /* styleName: lotto-body; */
   font-family: Roboto;
   font-size: 15px;
   font-weight: 400;
@@ -129,6 +136,16 @@ html {
   text-align: left;
   color: rgba(0, 0, 0, 1);
   margin-top: 28px;
+}
+
+#lotto-count-message-container {
+  padding: 0px 16px;
+}
+
+#lottos-container {
+  /* display: flex;
+  flex-direction: column; */
+  padding: 0px 16px;
 }
 
 #lotto-ticket {
@@ -147,11 +164,67 @@ html {
 
 #lotto-numbers {
   margin-left: 8px;
-  /* //styleName: lotto-body; */
   font-family: Roboto;
   font-size: 15px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
   text-align: left;
+}
+
+#winning-lotto-container {
+  padding: 0px 16px;
+}
+
+#winning-lotto-message-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#number-input {
+  display: inline-block;
+}
+
+#number-form {
+  margin-top: 8px;
+}
+
+#number-form-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#winning-lotto-inputs {
+  width: 244px;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 27px;
+}
+
+.inputs {
+  display: block;
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  box-shadow: none;
+
+  border: 1px solid rgba(180, 180, 180, 1);
+  gap: 10px;
+  padding: 8px 8px 4px 8px;
+  box-sizing: border-box;
+}
+
+#number-button {
+  width: 382px;
+  height: 3.6rem;
+  padding: 6px, 6px, 6px, 8px;
+  border-radius: 4px;
+  background: #4e5ba6;
+
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: white;
 }
