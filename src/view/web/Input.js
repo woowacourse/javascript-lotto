@@ -18,14 +18,14 @@ const Input = {
   async readBonusNumber() {
     Dom.$('#read-winning-numbers-submit').textContent = '결과 확인하기';
     Array.from(Dom.$$('.read-winning-numbers-input')).map((input) => input.disabled = true);
-    Dom.$('.read-bonus-number-input').disabled = false;
-    const input = await Web.readTagValue({ button: '#read-winning-numbers-submit', input: '.read-bonus-number-input' });
+    Dom.$('#read-bonus-number-input').disabled = false;
+    const input = await Web.readTagValue({ button: '#read-winning-numbers-submit', input: '#read-bonus-number-input' });
     return input;
   },
 
   async readRestartOrExit() {
-    if (Dom.$('.restart-button') === null) Render.readRestartOrExit();
-    const input = await Web.readTagValue({ button: '.restart-button', input: '.restart-value' });
+    if (Dom.$('#restart-button') === null) Render.readRestartOrExit();
+    const input = await Web.readTagValue({ button: '#restart-button', input: '#restart-value' });
     return input;
   },
 };

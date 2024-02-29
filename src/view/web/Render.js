@@ -28,7 +28,7 @@ const Render = {
       target: '.bonus-number',
       tag: 'input',
       attribute: {
-        class: 'read-bonus-number-input', type: 'text', maxlength: '2', disabled: true,
+        id: 'read-bonus-number-input', type: 'text', maxlength: '2', disabled: true,
       },
     });
     Dom.createAppendTagNode({
@@ -38,9 +38,9 @@ const Render = {
 
   readRestartOrExit() {
     Dom.createAppendTagNode({
-      target: '.restart', tag: 'button', attribute: { class: 'restart-button' }, text: '다시 시작하기',
+      target: '.restart', tag: 'button', attribute: { id: 'restart-button' }, text: '다시 시작하기',
     });
-    Dom.createAppendTagNode({ target: '.restart', tag: 'input', attribute: { class: 'restart-value', value: 'y' } });
+    Dom.createAppendTagNode({ target: '.restart', tag: 'input', attribute: { id: 'restart-value', value: 'y' } });
   },
 };
 
