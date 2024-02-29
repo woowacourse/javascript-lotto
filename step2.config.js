@@ -6,6 +6,9 @@ module.exports = {
   mode: 'development',
   devServer: {
     port: 9000,
+    devMiddleware: {
+      writeToDisk: true, // 이 옵션을 통해 개발 서버도 파일을 disk에 저장하도록 설정합니다.
+    },
   },
   entry: './src/step2-index.js',
   output: {
