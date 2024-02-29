@@ -1,7 +1,6 @@
 import './PriceInputField.css';
 
 const PRICE_INPUT_FIELD = `
-  <div class ="error-message"></div>
   <input class="price-input" type="text" placeholder="금액"></input>
 `;
 
@@ -16,10 +15,6 @@ class PriceInputField extends HTMLElement {
 
   getValue() {
     return this.querySelector('.price-input').value;
-  }
-
-  setErrorMessage(error) {
-    this.querySelector('.error-message').textContent = error.message;
   }
 }
 

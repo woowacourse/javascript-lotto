@@ -4,13 +4,14 @@ import './LottoButton.js';
 import { BuyLottoPriceValidator } from '../validator/index.js';
 
 const PURCHASE_PRICE_FORM = `
-  <div class="price-input-container">
-    <div class="price-input-label-container">
-      <p class="lotto-body">구입할 금액을 입력해 주세요.</p>
-    </div>
-    <price-input-field></price-input-field>
+  <div class="price-input-label-container">
+    <p class="lotto-body">구입할 금액을 입력해 주세요.</p>
   </div>
-  <lotto-button id="purchase-button"></lotto-button>
+  <div class="price-input-button-container">
+    <price-input-field></price-input-field>
+    <lotto-button id="purchase-button"></lotto-button>
+  </div>
+  <div class ="error-message"></div>
 `;
 
 class PurchasePriceForm extends HTMLElement {
@@ -40,8 +41,12 @@ class PurchasePriceForm extends HTMLElement {
       this.#purchaseEvent(Number(price));
       this.connectedCallback();
     } catch (error) {
-      this.querySelector('price-input-field').setErrorMessage(error);
+      this.setErrorMessage(error);
     }
+  }
+
+  setErrorMessage(error) {
+    this.querySelector('.error-message').textContent = error.message;
   }
 
   #purchaseEvent(price) {
