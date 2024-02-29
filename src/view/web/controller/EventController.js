@@ -1,8 +1,9 @@
-import { PRIZE, RANK } from '../../../constant/constants';
 import Lotto from '../../../domain/lotto';
 import LottoMachine from '../../../domain/lottoMachine';
 import Statistics from '../../../domain/statistics';
 import WinningLotto from '../../../domain/winningLotto';
+import LottoTickets from '../main/LottoTickets';
+import { PRIZE, RANK } from '../../../constant/constants';
 import { validateCost } from '../../../utils/validation';
 import { $, $$ } from '../utils/dom';
 
@@ -92,5 +93,19 @@ export default class EventController {
     `;
     $('#statistics tbody').innerHTML = statisticsQuery;
     $('#profit').innerHTML = `당신의 총 수익률은 ${statistics.getProfit}%입니다.`;
+  }
+
+  handleCloseBtn(event) {
+    event.preventDefault();
+    $('#modal-container').style.visibility = 'hidden';
+  }
+
+  handleRetryBtn(event) {
+    event.preventDefault();
+    $('#buy-lotto-form').reset();
+    $('#winning-lotto-form').reset();
+    $('.next-section').replaceChild(LottoTickets(), $('#lottos'));
+    $('#step2').style.visibility = 'hidden';
+    $('#modal-container').style.visibility = 'hidden';
   }
 }

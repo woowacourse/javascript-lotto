@@ -6,7 +6,6 @@ import EventController from './view/web/controller/EventController.js';
 import { $ } from './view/web/utils/dom.js';
 import './view/web/styles/reset.css';
 import './view/web/styles/index.css';
-import LottoTickets from './view/web/main/LottoTickets.js';
 
 $('#app').appendChild(Header());
 $('#app').appendChild(Main());
@@ -16,22 +15,8 @@ $('#app').appendChild(Modal());
 window.onload = () => {
   const eventController = new EventController();
 
-  const handleCloseBtn = (event) => {
-    event.preventDefault();
-    $('#modal-container').style.visibility = 'hidden';
-  };
-
-  const handleRetryBtn = (event) => {
-    event.preventDefault();
-    $('#buy-lotto-form').reset();
-    $('#winning-lotto-form').reset();
-    $('.next-section').replaceChild(LottoTickets(), $('#lottos'));
-    $('#step2').style.visibility = 'hidden';
-    $('#modal-container').style.visibility = 'hidden';
-  };
-
   $('#buy-lotto-form').addEventListener('submit', (event) => eventController.onSubmitBuyForm(event));
   $('#winning-lotto-form').addEventListener('submit', (event) => eventController.handleWinningLottoForm(event));
-  $('#close-btn').addEventListener('click', handleCloseBtn);
-  $('#retry-btn').addEventListener('click', handleRetryBtn);
+  $('#close-btn').addEventListener('click', (event) => eventController.handleCloseBtn(event));
+  $('#retry-btn').addEventListener('click', (event) => eventController.handleRetryBtn(event));
 };
