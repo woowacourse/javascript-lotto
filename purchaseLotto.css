@@ -1,0 +1,58 @@
+.purchase {
+  width: 100%;
+}
+
+.purchase-form {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+.purchase__label {
+  width: 310px;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+.purchase-form__input {
+  width: 310px;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px;
+  border: 1px solid var(--color-lotto-grayscale-3);
+
+  align-items: center;
+}
+.purchase-form__button {
+  width: 56px;
+  height: 36px;
+  top: 132px;
+  left: 342px;
+
+  box-sizing: border-box;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: var(--color-lotto-primary);
+  font-size: 14px;
+  color: var(--color-lotto-grayscale-1);
+}
+
+/* 구매로또 */
+.purchased-lotto {
+  height: 288px;
+}
+.purchased-lotto__label {
+  height: 24px;
+}
+
+.purchased-lotto__list {
+  height: 276px;
+  overflow-y: auto;
+}
+.purchased-lotto__list div {
+  white-space: pre;
+}

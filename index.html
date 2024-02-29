@@ -16,15 +16,25 @@
 
   <body>
     <header>
-      <h1 class="header">🎱 행운의 로또</h1>
+      <h1 class="header">
+        <a href="./">🎱 행운의 로또</a>
+      </h1>
     </header>
     <main id="app">
       <h1 class="title text-lotto-title">🎱 내 번호 당첨 확인 🎱</h1>
       <div class="purchase">
         <label class="purchase__label text-lotto-body">구입할 금액을 입력해주세요.</label>
-        <div class="purchase-form">
-          <input class="purchase-form__input" placeholder="금액" />
-          <button class="purchase-form__button button-primary">구입</button>
+        <div>
+          <div class="purchase-form">
+            <input
+              class="purchase-form__input"
+              type="number"
+              placeholder="금액"
+              aria-describedby="error-purchase-money"
+            />
+            <button class="purchase-form__button button-primary">구입</button>
+          </div>
+          <div id="error-purchase-money" class="text-lotto-error"></div>
         </div>
       </div>
       <div class="purchased-lotto">
@@ -54,6 +64,7 @@
         </div>
       </div>
       <div class="result hidden">
+        <div id="error-result" class="text-lotto-error"></div>
         <button class="result__button text-lotto-caption button-primary">결과 확인하기</button>
       </div>
     </main>
