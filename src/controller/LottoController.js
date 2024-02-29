@@ -165,6 +165,23 @@ class LottoController {
       </tr>
       `;
       });
+    this.processRateOfReturn(this.purchaseAmount, winningStats);
+  }
+
+  processRateOfReturn(purchaseAmount, winningStats) {
+    const rateOfReturnView = document.querySelector('.wrapper-rateOfReturn');
+    const prize = LOTTO_SYMBOL.PRIZE;
+    const totalPrizeMoney = Object.keys(prize).reduce(
+      (acc, cur) => acc + prize[cur] * winningStats[cur],
+      0,
+    );
+    const rate = (totalPrizeMoney / purchaseAmount) * 100;
+    const rateOfReturn = (Math.round(rate * 10) / 10).toFixed(1);
+
+    rateOfReturnView.innerHTML += `
+    <p class='text-rate-of-return'>당신의 총 수익률은 ${rateOfReturn}%입니다.</p>
+    `;
+    rateOfReturnView.classList.remove('invisible');
   }
 }
 
