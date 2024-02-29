@@ -10,6 +10,7 @@ export default function WinningLottoForm() {
   winningNumbersInputContainer.classList.add('number-input-container');
 
   const winningNumbersLabel = document.createElement('label');
+  winningNumbersLabel.classList.add('winning-number-label');
   winningNumbersLabel.innerText = '당첨 번호';
 
   const winningNumbersInputSection = document.createElement('section');
@@ -36,6 +37,7 @@ export default function WinningLottoForm() {
   bonusNumberContainer.classList.add('number-input-container');
 
   const bonusNumberLabel = document.createElement('label');
+  bonusNumberLabel.classList.add('winning-number-label');
   bonusNumberLabel.innerText = '보너스 번호';
 
   const bonusNumberInput = document.createElement('input');
