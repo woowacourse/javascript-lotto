@@ -11,3 +11,9 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+#app {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}

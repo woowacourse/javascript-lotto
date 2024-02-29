@@ -3,5 +3,7 @@ main {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  min-height: 900px;
+  margin-top: 64px;
+  overflow-y: hidden;
 }
