@@ -83,7 +83,7 @@ class LottoGameController {
     const bonusNumber = await this.#inputView.inputBonusNumber();
     bonusNumberValidator(winningLotto.getNumbers(), Number(bonusNumber));
 
-    return WinningLotto(winningLotto, bonusNumber);
+    return WinningLotto(winningLotto, Number(bonusNumber));
   }
 
   #getGameResult(lottoList, winningLotto) {
