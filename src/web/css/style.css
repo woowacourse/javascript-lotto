@@ -46,7 +46,7 @@ html {
 }
 
 body {
-  height: calc(100% - (64px + 80px))
+  height: calc(100% - (64px + 80px));
 }
 
 header {
@@ -66,25 +66,45 @@ header > h1 {
 main {
   background: var(--color-greyscale-2);
   height: 100%;
+  min-height: 737px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#lotto-game-screen {
+button:hover {
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  opacity: 0.85;
+}
+
+button:disabled {
+  background: var(--color-greyscale-4);
+  cursor: inherit;
+  opacity: 0.85;
+}
+
+.error-text {
+  font-size: var(--font-caption-size);
+  color: #FF0000;
+  letter-spacing: 0;
+  word-break: keep-all;
+}
+
+#lotto-game {
   background: var(--color-greyscale-1);
-  margin: auto;
+  margin: 28px auto;
   border: 1px solid #0000001F;
   border-radius: 4px;
   padding: 16px;
   width: 414px;
-  max-height: 727px;
+  height: 727px;
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
-#lotto-game-screen h1 {
+#lotto-game h1 {
   font-weight: var(--font-title-weight);
   font-size: var(--font-title-size);
   color: var(--color-greyscale-5);
@@ -114,12 +134,6 @@ main {
   gap: 10px;
 }
 
-button:hover {
-  cursor: pointer;
-  transition: all .3s ease-in-out;
-  opacity: 0.85;
-}
-
 #purchase button {
   background: var(--color-primary);
   color: var(--color-greyscale-1);
@@ -134,10 +148,11 @@ button:hover {
   font-size: var(--font-body-size);
   line-height: 24px;
   letter-spacing: 0.5px;
+  height: 300px;
 }
 
 #purchase-result ul {
-  max-height: 300px;
+  max-height: 276px;
   overflow: scroll;
 }
 
