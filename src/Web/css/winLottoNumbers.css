@@ -7,19 +7,19 @@
 
 .numbersContainer {
   display: flex;
-  font-size: 15px;
+  justify-content: space-between;
   font-weight: 400;
+  font-size: 15px;
   line-height: 24px;
   text-align: left;
-  justify-content: space-between;
 }
 
 .winLottoFormDiv {
-  font-size: 15px;
+  display: flex;
   font-weight: 400;
+  font-size: 15px;
   line-height: 24px;
   text-align: left;
-  display: flex;
 }
 .winNumbersDiv {
   display: flex;
@@ -36,34 +36,34 @@
   box-sizing: border-box;
   width: 34px;
   height: 36px;
+  text-align: center;
   border: 1px solid #b4b4b4;
   border-radius: 4px;
-  text-align: center;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
   margin: 0;
+  -webkit-appearance: none;
 }
 
 .bonusLottoNumberDiv {
   display: flex;
   flex-direction: column;
-  align-items: end;
   gap: 8px;
+  align-items: end;
 }
 
 .winLottoFormButton {
   width: 382px;
   height: 36px;
+  margin-top: 28px;
   padding: 6px;
-  border-radius: 4px;
-  background: #4e5ba6;
-  font-size: 14px;
+  color: #ffffff;
   font-weight: 700;
+  font-size: 14px;
   line-height: 16px;
   letter-spacing: 1.25px;
-  color: #ffffff;
-  margin-top: 28px;
+  background: #4e5ba6;
+  border-radius: 4px;
 }

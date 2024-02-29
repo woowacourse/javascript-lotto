@@ -1,28 +1,28 @@
 #modalContainer {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
   background-color: #00000080;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #modalResultContainer {
-  width: 350px;
-  height: 500px;
-  background: #ffffff;
-  border-radius: 4px;
-  padding: 40px 16px;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 40px;
-  position: relative;
+  width: 350px;
+  height: 500px;
+  padding: 40px 16px;
+  background: #ffffff;
+  border-radius: 4px;
 }
 
 .modalResultTitle {
-  font-size: 20px;
   font-weight: 600;
+  font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.15000000596046448px;
   text-align: center;
@@ -39,22 +39,22 @@ table > tr:last-child {
 
 tr {
   display: flex;
-  border-top: 1px solid #0000001f;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 12px;
+  border-top: 1px solid #0000001f;
 }
 
 th,
 td {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
-  height: 24px;
+  justify-content: center;
   width: 33%;
+  height: 24px;
   font-size: 15px;
-  letter-spacing: 0.5px;
   line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 th {
@@ -66,8 +66,8 @@ td {
 }
 
 .rateOfIncomeResultContainer {
-  font-size: 15px;
   font-weight: 700;
+  font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
   text-align: center;
@@ -76,19 +76,19 @@ td {
 .modalRetryButton {
   width: 100%;
   height: 36px;
-  background: #4e5ba6;
-  border-radius: 4px;
-  font-size: 14px;
+  color: #ffffff;
   font-weight: 700;
+  font-size: 14px;
   line-height: 16px;
   letter-spacing: 1.25px;
-  color: #ffffff;
+  background: #4e5ba6;
+  border-radius: 4px;
 }
 
 .modalCloseButton {
   position: absolute;
   top: 16px;
   right: 16px;
-  background: #ffffff;
   font-size: 16px;
+  background: #ffffff;
 }

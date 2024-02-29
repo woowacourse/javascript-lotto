@@ -15,6 +15,6 @@
 ### 🚩Feedback List
 
 - [x] input의 for어트리큐트, label id 연결하기
-- [ ] CSS 일관된 작성
+- [x] CSS 일관된 작성
 - [ ] 피그마 준수한 로또 번호 디자인
 - [ ] browser 사이징 시 컴포넌트 깨지지 않게 만들기
