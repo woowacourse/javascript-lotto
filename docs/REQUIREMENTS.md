@@ -90,6 +90,11 @@
 
 - [x] html, css 기본 구조 만들기
 - [ ] view 로직 만들기
+  - [ ] 기능
+    - [x] 로또 가격 입력
+    - [ ] 로또 출력
+    - [ ] 로또 번호 입력
+    - [ ] 로또 결과 출력
   - [ ] stream을 이용해 `readLineAsync`를 변경(InputView)
   - [ ] dom을 통해 `OutputView` 구현하기
 ## 실행 예시
