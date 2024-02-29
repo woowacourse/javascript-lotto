@@ -36,7 +36,7 @@
       </div>
       <div id="lotto-footer"></div>
       <div id="result-modal" class="hidden">
-        <div class="modal-container">
+        <div id="result-modal-container" class="modal-container">
           <div class="modal-content">
             <button id="modal-exit-button" class="exit-button">X</button>
             <header class="subtitle-text">🏆 당첨 통계 🏆</header>
@@ -77,7 +77,9 @@
                   </tr>
                 </tbody></table
             ></sector>
-            <div class="semi">당신의 총 수익률은 %입니다</div>
+            <div id="result-modal-roi" class="semi">
+              <!-- ROI result -->
+            </div>
             <button id="restart-button" class="lotto-button">다시 시작하기</button>
           </div>
         </div>

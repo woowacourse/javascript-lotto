@@ -1,10 +1,17 @@
+import { doc } from 'prettier';
 import LottoMachine from '../domain/model/LottoMachine';
 import Money from '../domain/model/Money';
 import { errorAlert } from '../util/errorAlert';
+import { calculateROI } from '../domain/calculateStatistics';
 
 class WebLottoController {
+  #money;
+
   start() {
     const $signupForm = document.getElementById('money-form');
+    const $moneyInput = document.getElementById('money-input');
+
+    $moneyInput.focus();
 
     $signupForm.addEventListener('submit', event => {
       event.preventDefault();
@@ -22,6 +29,8 @@ class WebLottoController {
     try {
       const money = new Money(value);
       const lottoMachine = new LottoMachine(money);
+
+      this.#money = money;
       $moneyButton.disabled = true;
 
       this.generateCountNotice(money.count);
@@ -109,6 +118,7 @@ class WebLottoController {
   openResultModal(lottoMachine) {
     const $resultModal = document.getElementById('result-modal');
     const $lottoResultTbodyRank = document.getElementsByClassName('lotto-result-tbody-rank');
+    const $resultModalRoi = document.getElementById('result-modal-roi');
 
     $resultModal.classList.remove('hidden');
 
@@ -119,6 +129,11 @@ class WebLottoController {
       .forEach((rank, idx) => {
         rank.insertAdjacentHTML('afterbegin', `${totalLottoRanks[idx][1]}개`);
       });
+
+    $resultModalRoi.insertAdjacentHTML(
+      'afterbegin',
+      `당신의 총 수익률은 ${calculateROI(this.#money, totalLottoRanks)}%입니다`,
+    );
 
     this.clickExitButtonHandler();
     this.clickRestartButtonHandler();
