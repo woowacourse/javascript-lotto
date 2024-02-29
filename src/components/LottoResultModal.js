@@ -2,8 +2,8 @@ import './LottoResultModal.css';
 import './LottoResultTable.js';
 
 const LOTTO_RESULT_MODAL = (rateOfReturn) => `
-<div class="lotto-result">
-<div class="close-modal-icon">X</div>
+  <div class="lotto-result">
+    <div class="close-modal-icon">X</div>
     <div class="lotto-subtitle-container">
       <h2 class="lotto-subtitle">🏆 당첨 통계 🏆</h2>
     </div>
@@ -25,6 +25,7 @@ class LottoResultModal extends HTMLElement {
     this.innerHTML = LOTTO_RESULT_MODAL(rateOfReturn);
 
     const retryButton = this.querySelector('#retry-button');
+    retryButton.setIsDisabled(false);
     retryButton.setText('다시 시작하기');
   }
 
