@@ -60,7 +60,6 @@ export default function WinningLottoForm() {
   submitResult.setAttribute('value', '결과 확인하기');
 
   // 합치기
-
   winningLottoInputContainer.appendChild(winningNumbersInputContainer);
   winningLottoInputContainer.appendChild(bonusNumberContainer);
   form.appendChild(winningLottoInputContainer);

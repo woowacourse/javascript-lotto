@@ -17,6 +17,7 @@ export default function ModalContent() {
   // 당첨 통계 제목
   const statisticsTitleContainer = document.createElement('section');
   statisticsTitleContainer.setAttribute('id', 'statistics-title-container');
+
   const h1 = document.createElement('h1');
   h1.innerText = '🏆 당첨 통계 🏆';
 
@@ -62,6 +63,7 @@ export default function ModalContent() {
 
   retryButtonContainer.appendChild(retryButton);
 
+  // 합치기
   main.appendChild(closeButtonSection);
   main.appendChild(statisticsTitleContainer);
   main.appendChild(statisticsContainer);
