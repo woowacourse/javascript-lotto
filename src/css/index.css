@@ -17,10 +17,8 @@ header {
   top: 0;
 }
 
-header div {
+header h2 {
   margin-left: 150px;
-  font-size: var(--title-text-size);
-  font-weight: var(--title-font-weight);
 }
 
 body {
@@ -34,7 +32,7 @@ button {
   font-weight: var(--button-font-weight);
 }
 
-#container {
+#game_box {
   border: solid 1px var(--border-color);
   border-radius: var(--border-radius);
   width: 414px;
@@ -45,9 +43,7 @@ button {
   justify-content: space-between;
 }
 
-.title {
-  font-size: var(--title-text-size);
-  font-weight: var(--title-font-weight);
+#title {
   margin: 20px;
   display: flex;
   justify-content: center;
