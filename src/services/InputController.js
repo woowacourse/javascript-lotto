@@ -1,12 +1,10 @@
-import Console from '../utils/Console';
-
 const InputController = {
-  async retryOnInvalidInput(action) {
+  async retryOnInvalidInput(action, errCallback) {
     try {
       await action();
     } catch (err) {
-      Console.print(err.message);
-      await this.retryOnInvalidInput(action);
+      errCallback(err);
+      await this.retryOnInvalidInput(action, errCallback);
     }
   },
 };

@@ -1,6 +1,7 @@
 import { ERROR_MESSAGE, RESTART_KEY } from '../constants';
 import { LottoGame } from '../domains';
 import { isValidRestartInputForm } from '../domains/validator/validators';
+import Console from '../utils/Console';
 import { isEmptyInput } from '../utils/validators';
 import { InputView, OutputView } from '../views';
 
@@ -10,14 +11,14 @@ class GameController {
   #lottoGame = new LottoGame();
 
   async playGame() {
-    await InputController.retryOnInvalidInput(async () => this.#getPaid());
+    await InputController.retryOnInvalidInput(async () => this.#getPaid(), this.#getErrorCallback());
     this.#printLottoTickets();
 
-    await InputController.retryOnInvalidInput(async () => this.#generateWinningLotto());
+    await InputController.retryOnInvalidInput(async () => this.#generateWinningLotto(), this.#getErrorCallback());
     this.#lottoGame.calculateStatistics();
     this.#printStatistics();
 
-    await InputController.retryOnInvalidInput(async () => await this.#restartLottoGame());
+    await InputController.retryOnInvalidInput(async () => await this.#restartLottoGame(), this.#getErrorCallback());
   }
 
   async #getPaid() {
@@ -58,6 +59,10 @@ class GameController {
     if (isEmptyInput(restartInput)) throw new Error(ERROR_MESSAGE.emptyInput);
 
     if (!isValidRestartInputForm(restartInput)) throw new Error(ERROR_MESSAGE.invalidRestartInputForm);
+  }
+
+  #getErrorCallback() {
+    return (error) => Console.print(error.message);
   }
 }
 

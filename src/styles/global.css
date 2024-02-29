@@ -150,3 +150,9 @@ button {
   display: flex;
   flex-direction: column;
 }
+
+.err-msg {
+  position: absolute;
+  left: 0;
+  bottom: -2.6rem;
+}

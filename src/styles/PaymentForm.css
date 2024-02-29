@@ -4,6 +4,8 @@ form[is='payment-form'] {
   align-items: flex-end;
   justify-content: space-between;
 
+  position: relative;
+
   width: 100%;
 
   margin-bottom: 2.8rem;

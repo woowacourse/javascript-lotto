@@ -1,4 +1,9 @@
 // TODO: constructor로 id를 받고 이름을 Form으로 고치면 범용적으로 사용 가능할듯
+
+export const EVENTS = {
+  paymentFormSubmit: 'paymentFormSubmit',
+};
+
 export default class PaymentForm extends HTMLFormElement {
   constructor() {
     super();
@@ -16,7 +21,7 @@ export default class PaymentForm extends HTMLFormElement {
 
     const paymentAmount = new FormData(this).get('paymentAmount');
     this.dispatchEvent(
-      new CustomEvent('paymentFormSubmit', {
+      new CustomEvent(EVENTS.paymentFormSubmit, {
         bubbles: true,
         detail: { paymentAmount },
       }),
