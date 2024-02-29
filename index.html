@@ -5,12 +5,127 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./src/web/css/style.css">
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
+    <header class="title">
+      <h1">🎱 행운의 로또</h1>
+    </header>
+
+    <main class="main-container">
+      <div class="game-container">
+        <div id="game-title">
+          🎱 내 번호 당첨 확인 🎱
+        </div>
+        <div id="game-money-input-container">
+          <div id="game-money-input-information">
+            구입할 금액을 입력하세요.
+          </div>
+          <div id="game-money-input-interaction">
+            <input 
+              type="number" 
+              name="money"
+              id="game-money-input-form"
+              placeholder="금액"
+            >
+            <button class="purchace">
+              구입
+            </button>
+          </div>
+        </div>
+        <div id="game-generatedlotto-container">
+          <div id="game-generatedlotto-count">
+            총 ?개를 구매하였습니다.
+          </div>
+          <div id="game-generatedlotto-list">
+            <div id="game-generatedlotto-list-icon">
+              🎟️
+            </div>
+            <div id="game-generatedlotto-list-number">
+              11, 21, 31, 41, 15, 16
+            </div>
+          </div>
+        </div>
+        <div id="game-winninglotto-container">
+          <div id="game-winninglotto-input-information">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+          </div>
+          <div id="game-winninglotto-input">
+            <div id="game-winninglotto-input-numbers">
+              <div id="game-winninglotto-input-numbers-information">
+                당첨 번호
+              </div>
+              <div id="game-winninglotto-input-numbers-interaction">
+                <input 
+                  type="number" 
+                  name="lotto-number1"
+                  class="number-input-interaction"
+                  min="1"
+                  max="45"
+                >
+                <input 
+                  type="number" 
+                  name="lotto-number2"
+                  class="number-input-interaction"
+                  min="1"
+                  max="45"
+                >
+                <input 
+                  type="number" 
+                  name="lotto-number3"
+                  class="number-input-interaction"
+                  min="1"
+                  max="45"
+                >
+                <input 
+                  type="number" 
+                  name="lotto-number4"
+                  class="number-input-interaction"
+                  min="1"
+                  max="45"
+                >
+                <input 
+                  type="number" 
+                  name="lotto-number5"
+                  class="number-input-interaction"
+                  min="1"
+                  max="45"
+                >
+                <input 
+                  type="number" 
+                  name="lotto-number6"
+                  class="number-input-interaction"
+                  min="1"
+                  max="45"
+                >
+              </div>
+            </div>
+            <div id="game-winninglotto-input-bonus">
+              <div id="game-winninglotto-input-bonus-information">
+                보너스 번호
+              </div>
+              <div id="game-winninglotto-input-bonus-interaction">
+                <input 
+                  type="number" 
+                  name="bonus-number"
+                  class="number-input-interaction"
+                  min="1"
+                  max="45"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="result-show">
+          결과 확인하기
+        </button>
+      </div>
+    </main>
+    
+    <footer class="footer-bg">
+      <p class="footer-text">Copyright 2023. woowacourse</p>
+    </footer>
     <script type="module" src="./src/js/index.js"></script>
   </body>
 </html>
