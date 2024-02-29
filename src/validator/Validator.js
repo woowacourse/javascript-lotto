@@ -54,7 +54,7 @@ const Validator = {
     }
   },
   purchaseAmountRange(input) {
-    if (input > 100000000) {
+    if (input > 100_000) {
       throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_RANGE);
     }
   },
