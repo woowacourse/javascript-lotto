@@ -82,7 +82,7 @@ footer{
 .purchased-lotto{
   display: flex;
   align-items: center;
-  width: 238px;
+  width: 218px;
   height: 36px;
   margin: 0px 0px 3px;
 }
@@ -226,6 +226,7 @@ footer{
   height: 276px;
   margin: 8px auto 0px 16px;
   overflow-y: auto;
+  overflow-x: auto;
 }
 
 #main-contents__winning-lotto-form{
