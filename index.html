@@ -28,6 +28,7 @@
         <input name="paymentAmount" type="text" placeholder="금액" autofocus />
       </label>
       <button type="submit">구입</button>
+      <p class="err-msg"></p>
     </template>
 
     <section id="app">
@@ -41,7 +42,7 @@
           <form is="payment-form" name="paymentAmount"></form>
 
           <!-- PurchasedLottos -->
-          <purchased-lottos />
+          <purchased-lottos></purchased-lottos>
           <form class="winning-lottery-form">
             <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
             <div class="input-container">

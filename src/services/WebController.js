@@ -3,64 +3,62 @@ import { EVENTS } from '../components/PaymentForm';
 class WebController {
   #lottoGame;
 
-  // TODO: state ~ 컴포넌트 필드 App으로 빼기
   #state = {
     lottos: [],
     paymentAmount: 0,
   };
 
-  #paymentForm = document.forms.paymentAmount;
+  #paymentForm;
 
-  #purchasedLotto = document.querySelector('#purchased-lottos-container');
+  #purchasedLottos;
 
-  constructor(lottoGame) {
+  constructor(lottoGame, paymentFormSelector, purchasedLottosSelector) {
     this.#lottoGame = lottoGame;
+    this.#paymentForm = document.querySelector(paymentFormSelector);
+    this.#purchasedLottos = document.querySelector(purchasedLottosSelector);
+
     this.#init();
   }
 
-  // 이벤트 리스너 등록
   #init() {
-    document.addEventListener('DOMContentLoaded', () => {
-      this.#paymentForm.addEventListener(EVENTS.paymentFormSubmit, (event) => {
-        const { target } = event;
-        const invalidInputCallback = (error) => {
-          if (!target.querySelector('.err-msg')) {
-            target.appendChild(this.#createErrMsgElement(error.message));
-          }
-          target.querySelector('.err-msg').innerHTML = error.message;
-
-          target.elements.paymentAmount.value = '';
-          this.#state.paymentAmount = '';
-        };
-
-        this.#validateInput(() => this.#getPaid(event), invalidInputCallback);
-      });
-    });
+    document.addEventListener('DOMContentLoaded', this.#addEventListeners.bind(this));
   }
 
-  #getPaid({ detail, target }) {
-    if (target.querySelector('.err-msg')) {
-      target.querySelector('.err-msg').remove();
-    }
-
-    this.#lottoGame.insertMoney(detail.paymentAmount);
-    this.#state.lottos = this.#lottoGame.lottos;
+  #addEventListeners() {
+    this.#paymentForm.addEventListener(EVENTS.paymentFormSubmit, this.#handlePaymentFormSubmit.bind(this));
   }
 
-  #createErrMsgElement(errMsg) {
-    const errMsgElement = document.createElement('p');
-    errMsgElement.setAttribute('class', 'err-msg');
-    errMsgElement.innerHTML = errMsg;
+  async #handlePaymentFormSubmit(event) {
+    const { target } = event;
+    const paymentAmount = target.elements.paymentAmount.value;
 
-    return errMsgElement;
-  }
-
-  async #validateInput(action, errCallback) {
     try {
-      await action();
+      await this.#getPaid(paymentAmount);
     } catch (error) {
-      errCallback(error);
+      this.#handleError(error.message);
     }
+  }
+
+  async #getPaid(paymentAmount) {
+    this.#lottoGame.insertMoney(paymentAmount);
+
+    const errMsgNode = this.#paymentForm.querySelector('.err-msg');
+    errMsgNode.innerHTML = '';
+
+    this.#state.lottos = this.#lottoGame.lottoTickets;
+    this.#updatePurchasedLottos();
+  }
+
+  #updatePurchasedLottos() {
+    this.#purchasedLottos.setAttribute('data-lottos', JSON.stringify(this.#state.lottos));
+  }
+
+  #handleError(errorMessage) {
+    const errMsgNode = this.#paymentForm.querySelector('.err-msg');
+    errMsgNode.innerHTML = errorMessage;
+
+    this.#paymentForm.elements.paymentAmount.value = '';
+    this.#state.paymentAmount = '';
   }
 }
 

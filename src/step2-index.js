@@ -20,4 +20,4 @@ import PaymentForm from './components/PaymentForm';
 window.customElements.define('purchased-lottos', PurchasedLottos);
 window.customElements.define('payment-form', PaymentForm, { extends: 'form' });
 
-const webController = new WebController(new LottoGame());
+const webController = new WebController(new LottoGame(), "form[is='payment-form']", 'purchased-lottos');
