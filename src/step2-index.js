@@ -6,6 +6,9 @@
 import './styles/reset.css';
 import './styles/style.css';
 import LottoMachine from './domain/lottoMachine';
+import { validateCost } from './utils/validation.js';
+import Lotto from './domain/lotto.js';
+import WinningLotto from './domain/winningLotto.js';
 
 const $buyForm = document.querySelector('.buy-form');
 const $lottoResult = document.querySelector('.lotto-result');
@@ -16,17 +19,57 @@ const $lottoNumbers = document.querySelector('.lotto-numbers');
 $buyForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
-  const money = formData.get('buy-input');
+  const money = Number(formData.get('buy-input'));
 
-  if (money % 1000 !== 0) {
-    alert('1000원 단위의 숫자를 입력해주세요');
+  let lottoMachine;
+  try {
+    lottoMachine = new LottoMachine(money);
+    validateCost(money);
+  } catch (error) {
+    alert(`${error.message}`);
     return;
   }
 
   $lottoResult.classList.remove('hidden');
   $answerForm.classList.remove('hidden');
 
-  const lottoMachine = new LottoMachine(money);
-  console.log(lottoMachine.getLottoNumbers);
   $lottoResultLabel.innerText = `총 ${lottoMachine.getLottoCount}개를 구매하였습니다.`;
+
+  lottoMachine.getLottoNumbers.forEach((lottoNumber) => {
+    const lottoTag = document.createElement('div');
+    lottoTag.textContent = ` 🎟️ ${lottoNumber.join(',')}`;
+    lottoTag.classList.add('lotto-number');
+    $lottoNumbers.appendChild(lottoTag);
+  });
+
+  disableForm($buyForm);
 });
+
+$answerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const answerNumbers = formData.getAll('answer-number').map((number) => Number(number));
+  const bonusNumber = Number(formData.get('bonus-number'));
+
+  try {
+    const answerLotto = new Lotto(answerNumbers);
+    const winningLotto = new WinningLotto(answerLotto, bonusNumber);
+    console.log({ winningLotto: winningLotto.getLottoNumbers, bonusNumber: winningLotto.getBonusNumber });
+  } catch (error) {
+    alert(`${error.message}`);
+  }
+
+  // disableForm($answerForm);
+});
+
+const disableForm = (formElement) => {
+  for (let i = 0; i < formElement.length; i++) {
+    formElement.elements[i].disabled = true;
+  }
+};
+
+const ableForm = (formElement) => {
+  for (let i = 0; i < formElement.length; i++) {
+    formElement.elements[i].disabled = false;
+  }
+};

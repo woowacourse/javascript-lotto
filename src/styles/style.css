@@ -63,10 +63,6 @@ main {
   margin-bottom: 10px;
 }
 
-.number-inputs {
-  margin-bottom: 10px;
-}
-
 .number-labels {
   display: flex;
   justify-content: space-between;
@@ -75,11 +71,14 @@ main {
 .number-inputs {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
+
   .number-input {
     width: 34px;
     height: 36px;
     border: 1px solid var(--lotto-greyscale-3);
     border-radius: 4px;
+    text-align: center;
   }
 }
 
