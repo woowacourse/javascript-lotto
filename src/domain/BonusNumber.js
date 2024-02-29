@@ -11,10 +11,17 @@ class BonusNumber {
   }
 
   #validataeBonusNumber(number, winningLotto) {
+    this.#isValidBonusNumberCount(number);
     this.#isNumber(number);
     this.#isPositiveInteger(number);
     this.#isValidNumberRange(number);
     this.#hasRedundantNumber(number, winningLotto);
+  }
+
+  #isValidBonusNumberCount(number) {
+    if (number === 0) {
+      throw new Error(ERROR_MESSAGE.IS_INVALID_BONUS_NUMBER_COUNT);
+    }
   }
 
   #isNumber(number) {
@@ -39,7 +46,7 @@ class BonusNumber {
     const winningLottoNumbers = winningLotto.lottoNumbers;
 
     if (winningLottoNumbers.includes(number)) {
-      throw new Error(ERROR_MESSAGE.HAS_REDUNDENT_LOTTO_NUMBER);
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_ALREADY_CHOSEN_MESSAGE);
     }
   }
 
