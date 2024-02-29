@@ -1,12 +1,10 @@
-main {
+.lotto-game-container {
   flex-grow: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 414px;
-  @media (max-width: 413px) {
-    max-width: 100vw;
-  }
+  width: 100vw;
 }
 
 article {
@@ -15,9 +13,14 @@ article {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 727px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
   padding: 0 16px;
+  height: 727px;
+  max-width: 414px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.lotto-section {
+  width: 100%;
 }
 
 #lotto-title {

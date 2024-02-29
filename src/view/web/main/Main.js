@@ -1,9 +1,15 @@
-import Content from './Content.js';
+import FirstSection from './FirstSection.js';
+import NextStepArticle from './NextSection.js';
 
 export default function Main() {
   const main = document.createElement('main');
+  main.classList.add('lotto-game-container');
 
-  main.appendChild(Content());
+  const article = document.createElement('article');
+  article.appendChild(FirstSection());
+  article.appendChild(NextStepArticle());
+
+  main.appendChild(article);
 
   return main;
 }
