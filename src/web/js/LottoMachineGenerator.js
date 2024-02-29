@@ -4,8 +4,12 @@ import { handleErrorMessage } from './utils';
 class LottoMachineGenerator {
   #lottoResultsHelper;
 
-  #btnPayLottoEl;
+  #btnPayLottoElement;
 
+  /**
+   *
+   * @param {LottoResultHelper} lottoResultsHelper
+   */
   constructor(lottoResultsHelper) {
     this.#lottoResultsHelper = lottoResultsHelper;
     this.#assignElement();
@@ -13,19 +17,19 @@ class LottoMachineGenerator {
   }
 
   #assignElement() {
-    this.#btnPayLottoEl = document.querySelector('.btn-payLotto');
+    this.#btnPayLottoElement = document.querySelector('.btn-pay-lotto');
   }
 
   #addEvent() {
-    this.#btnPayLottoEl.addEventListener('click', (event) =>
+    this.#btnPayLottoElement.addEventListener('click', (event) =>
       this.#handleClickBtn(event),
     );
   }
 
   #showPurchasedHistory() {
-    const purchasedHistoryEl = document.querySelector('.purchasedHistory');
+    const purchasedHistoryElement = document.querySelector('.purchase-history');
 
-    purchasedHistoryEl.classList.remove('hidden');
+    purchasedHistoryElement.classList.remove('hidden');
 
     HtmlTextInjectorWithGameResults.injectorLottoTickets(
       this.#lottoResultsHelper.lottoTickets,
@@ -33,19 +37,52 @@ class LottoMachineGenerator {
   }
 
   #showWinningCriteria() {
-    const winningCriteriaEl = document.querySelector('.winningCriteria');
+    const winningCriteriaElement = document.querySelector('.winning-criteria');
+    const btnCheckResult = document.querySelector('.btn-check-result');
 
-    const btnCheckResult = document.querySelector('.btn-checkResult');
-
-    winningCriteriaEl.classList.remove('hidden');
+    winningCriteriaElement.classList.remove('hidden');
     btnCheckResult.classList.remove('hidden');
   }
 
+  #closePurchasedHistoryElement() {
+    const purchaseHistoryElement = document.querySelector('.purchase-history');
+
+    if (!purchaseHistoryElement.classList.contains('hidden'))
+      purchaseHistoryElement.classList.add('hidden');
+  }
+
+  #closeWinningCriteriaElement() {
+    const winningCriteriaElement = document.querySelector('.winning-criteria');
+
+    if (!winningCriteriaElement.classList.contains('hidden'))
+      winningCriteriaElement.classList.add('hidden');
+    this.#clearWinningCriteriaInputValue();
+  }
+
+  #clearWinningCriteriaInputValue() {
+    const winningCriteriaInputElementList = document.querySelectorAll(
+      '.winning-criteria input',
+    );
+
+    winningCriteriaInputElementList.forEach((el) => {
+      // eslint-disable-next-line
+      el.value = '';
+    });
+  }
+
+  /**
+   *
+   * @param {Event} event
+   */
   #handleClickBtn(event) {
     event.preventDefault();
-    const { value } = document.querySelector('#input-paymentAmount');
-    const errorMessageEl = document.querySelector(
-      '.paymentAmount .message-error',
+
+    this.#closePurchasedHistoryElement();
+    this.#closeWinningCriteriaElement();
+
+    const { value } = document.querySelector('#input-payment-amount');
+    const errorMessageElement = document.querySelector(
+      '.payment-amount .message-error',
     );
 
     try {
@@ -53,9 +90,10 @@ class LottoMachineGenerator {
 
       this.#showWinningCriteria();
       this.#showPurchasedHistory();
-      handleErrorMessage(errorMessageEl);
+
+      handleErrorMessage(errorMessageElement);
     } catch (error) {
-      handleErrorMessage(errorMessageEl, error);
+      handleErrorMessage(errorMessageElement, error);
     }
   }
 }

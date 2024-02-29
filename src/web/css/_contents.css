@@ -33,12 +33,12 @@ main .contents > header {
   text-align: center;
 }
 
-.icon-toggleRule {
+.icon-toggle-rule {
   background-color: initial;
   padding: 0;
   width: max-content;
 }
-.paymentAmount {
+.payment-amount {
   position: relative;
   height: 64px;
   .inputForm {
@@ -47,7 +47,7 @@ main .contents > header {
     justify-content: space-between;
   }
   input,
-  .btn-payLotto {
+  .btn-pay-lotto {
     height: 36px;
   }
   input {
@@ -60,26 +60,26 @@ main .contents > header {
     margin: auto;
   }
 
-  .icon-toggleRule {
+  .icon-toggle-rule {
     position: absolute;
     top: -5px;
     right: 16px;
   }
 }
-.paymentAmount__explanation {
+.payment-amount__explanation {
   position: absolute;
   top: 0;
   right: -17px;
 }
-.paymentAmount__form > div {
+.payment-amount__form > div {
   display: flex;
   justify-content: space-between;
 }
-.purchasedHistory {
+.purchase-history {
   margin-top: 28px;
-  .issuedLottos {
+  .issued-lottos {
     margin-top: 8px;
-    max-height: 276px;
+    max-height: 260px;
     height: fit-content;
     box-sizing: border-box;
     overflow-y: auto;
@@ -87,30 +87,39 @@ main .contents > header {
   li {
     height: 36px;
     line-height: 36px;
+    display: flex;
+  }
+  .number {
+    width: 18px;
+    text-align: center;
+  }
+  .delimiter {
+    width: fit-content;
+    margin-left: 5px;
   }
 }
 
-.winningCriteria {
+.winning-criteria {
   margin-top: 24px;
   position: absolute;
   bottom: 27px;
 }
 
-.winningCriteria > div:nth-child(2) {
+.winning-criteria > div:nth-child(2) {
   position: relative;
   height: 24px;
 }
-.winningCriteria__explanation {
+.winning-criteria__explanation {
   position: absolute;
   top: 0;
   right: 0;
 }
-.winningCriteria__explanation div:nth-child(2) {
+.winning-criteria__explanation div:nth-child(2) {
   position: relative;
   height: 24px;
 }
 
-.winningCriteria__form {
+.winning-criteria__form {
   section {
     height: 68px;
     header {
@@ -125,11 +134,11 @@ main .contents > header {
     }
   }
 }
-.winningCriteria__inputGroupContainer {
+.winning-criteria__input-group-container {
   display: flex;
   justify-content: space-between;
 }
-.winningCriteria__form_lottoNumbers {
+.winning-criteria__form-lotto-numbers {
   width: fit-content;
   margin-top: 4px;
   .input-group {
@@ -148,7 +157,7 @@ main .contents > header {
   }
 }
 
-.winningCriteria__form__bonusNumber {
+.winning-criteria__form-bonus-number {
   position: relative;
   width: 90px;
 
@@ -158,12 +167,12 @@ main .contents > header {
     right: 0;
   }
 }
-.issuedLottos {
+.issued-lottos {
   li {
     margin-bottom: 1px;
   }
 }
-.btn-checkResult {
+.btn-check-result {
   width: 100%;
 }
 
@@ -176,17 +185,17 @@ main .contents > header {
   main .contents > section {
     width: calc(var(--contents-small-mobile-width) - 14px);
   }
-  .paymentAmount input {
+  .payment-amount input {
     width: 280px;
   }
 
-  .winningCriteria {
+  .winning-criteria {
     bottom: 10px;
   }
-  .winningCriteria__form section header {
+  .winning-criteria__form section header {
     font-size: 14px;
   }
-  .winningCriteria__form section input {
+  .winning-criteria__form section input {
     width: 38px;
     padding-left: 3px;
   }

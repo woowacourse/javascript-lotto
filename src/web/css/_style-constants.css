@@ -21,6 +21,6 @@
   --lotto-caption-fontSize: 14px;
   --lotto-caption-lineHeight: 16px;
   --lotto-table-line-color: rgba(var(--lotto-greyScale5-color-rgb), 12%);
-  --contents-width: 414px;
+  --contents-width: 420px;
   --contents-small-mobile-width: 360px;
 }

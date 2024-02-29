@@ -3,13 +3,17 @@ import HtmlTextInjectorWithGameResults from './HtmlTextInjectorWithGameResults';
 
 class StatisticsPopupController {
   #element = {
-    popupEl: undefined,
-    btnClosePopupEl: undefined,
-    btnRestartE: undefined,
+    popupElement: undefined,
+    btnClosePopupElement: undefined,
+    btnRestartElement: undefined,
   };
 
   #lottoAnalytics;
 
+  /**
+   *
+   * @param {LottoResultHelper} lottoResultsHelper
+   */
   constructor(lottoResultsHelper) {
     this.#assignElement();
     this.#getLottoAnalytics(lottoResultsHelper);
@@ -17,6 +21,10 @@ class StatisticsPopupController {
     this.#addEvent();
   }
 
+  /**
+   *
+   * @param {LottoResultHelper} lottoResultsHelper
+   */
   #getLottoAnalytics(lottoResultsHelper) {
     const statistics = new Statistics(
       lottoResultsHelper.results,
@@ -34,53 +42,65 @@ class StatisticsPopupController {
       this.#lottoAnalytics.profitRate,
     );
 
-    this.#element.popupEl.classList.remove('hidden');
+    this.#element.popupElement.classList.remove('hidden');
   }
 
   #assignElement() {
     this.#element = {
-      popupEl: document.querySelector('.popup'),
-      btnClosePopupEl: document.querySelector('.btn-close-popup'),
-      btnRestartEl: document.querySelector('.btn-restart'),
+      popupElement: document.querySelector('.popup'),
+      btnClosePopupElement: document.querySelector('.btn-close-popup'),
+      btnRestartElement: document.querySelector('.btn-restart'),
     };
   }
 
   #addEvent() {
-    this.#element.btnClosePopupEl.addEventListener('click', (event) =>
+    this.#element.btnClosePopupElement.addEventListener('click', (event) =>
       this.#hidePopup(event),
     );
 
-    this.#element.btnRestartEl.addEventListener('click', (event) =>
+    this.#element.btnRestartElement.addEventListener('click', (event) =>
       this.#restartGame(event),
     );
   }
 
+  /**
+   *
+   * @param {Event} event
+   */
   #hidePopup(event) {
     event.stopPropagation();
-    this.#element.popupEl.classList.add('hidden');
+    this.#element.popupElement.classList.add('hidden');
   }
 
   #hideHiddenTargets() {
-    const hiddenTargetElList = document.querySelectorAll('.hiddenTarget');
+    const hiddenTargetElementList = document.querySelectorAll('.hidden-target');
 
-    hiddenTargetElList.forEach((element) => element.classList.add('hidden'));
+    hiddenTargetElementList.forEach((element) =>
+      element.classList.add('hidden'),
+    );
   }
 
   #removePaymentAmountInputValue() {
-    const inputEl = document.querySelector('#input-paymentAmount');
+    const inputElement = document.querySelector('#input-payment-amount');
 
-    inputEl.value = '';
+    inputElement.value = '';
   }
 
   #removeWinningCriteriaInputValue() {
-    const inputElList = document.querySelectorAll('.winningCriteria input');
+    const inputElementList = document.querySelectorAll(
+      '.winning-criteria input',
+    );
 
-    inputElList.forEach((element) => {
+    inputElementList.forEach((element) => {
       // eslint-disable-next-line
       element.value = '';
     });
   }
 
+  /**
+   *
+   * @param {Event} event
+   */
   #restartGame(event) {
     event.stopPropagation();
 

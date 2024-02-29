@@ -1,7 +1,13 @@
 import { ERROR_PREFIX } from '../../constants';
 
-export const handleErrorMessage = (el, error) => {
+/**
+ *
+ * @param {Element} element
+ * @param {Error|undefined} error
+ */
+// eslint-disable-next-line
+export const handleErrorMessage = (element, error) => {
   const text = error ? error.message.replace(ERROR_PREFIX, '') : '';
-
-  el.textContent = text;
+  // eslint-disable-next-line
+  element.textContent = text;
 };

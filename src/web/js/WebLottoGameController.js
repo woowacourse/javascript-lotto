@@ -7,8 +7,6 @@ import WinningLottoAndBonusGenerator from './WinningLottoAndBonusGenerator';
 class WebLottoGameController {
   #lottoResultsHelper = new LottoResultsHelper();
 
-  #statistics = {};
-
   constructor() {
     this.#setTextContextWithConstants();
     this.#handleLottoMachineGenerator();
@@ -35,5 +33,3 @@ class WebLottoGameController {
   }
 }
 export default WebLottoGameController;
-// eslint-disable-next-line
-new WebLottoGameController();

@@ -1,42 +1,88 @@
 import { NUMBER_DELIMITER } from '../../constants';
 
 const HtmlTextInjectorWithGameResults = {
+  /**
+   *
+   * @param {number[][]} lottoTickets
+   */
   injectorLottoTickets(lottoTickets) {
-    const issuedLottosEl = document.querySelector('.issuedLottos');
-    const lottosCountEl = document.querySelector(
-      '#purchasedHistory__lottos-count__number',
+    const issuedLottosElement = document.querySelector('.issued-lottos');
+    const lottosCountElement = document.querySelector(
+      '#purchase-history__lottos-count__number',
     );
 
-    lottosCountEl.textContent = lottoTickets.length;
+    lottosCountElement.textContent = lottoTickets.length;
 
     lottoTickets.forEach((ticket) => {
-      this.private_makeElementForIssuedLotto(ticket, issuedLottosEl);
+      this.private_makeElementForIssuedLotto(ticket, issuedLottosElement);
     });
   },
 
+  /**
+   * @param {{1:number,2:number,3:number,4:number,5:number}} statisticsResult
+   */
   injectLottoStatistics(statisticsResult) {
     Object.entries(statisticsResult).forEach(([key, value]) => {
-      const countEl = document.querySelector(`#rank${key} .count`);
+      const countElement = document.querySelector(`#rank${key} .count`);
 
-      countEl.textContent = value;
+      countElement.textContent = value;
     });
   },
-
+  /**
+   * @param {number} profitRate
+   */
   injectProfitRate(profitRate) {
-    const profitRateEl = document.querySelector('#profitRate');
-    profitRateEl.textContent = profitRate;
+    const profitRateElement = document.querySelector('#profit-rate');
+
+    profitRateElement.textContent = profitRate;
+  },
+  /**
+   *
+   * @param {{text:string,className:className=undefined}} elementInfo
+   * @param {Element} parentElement
+   */
+  private_makeElementForIssuedLottoNumber(elementInfo, parentElement) {
+    const { text, className } = elementInfo;
+
+    const div = document.createElement('div');
+    div.textContent = text;
+    if (className) div.className = className;
+
+    parentElement.appendChild(div);
   },
 
-  private_makeElementForIssuedLotto(ticket, issuedLottosEl) {
+  /**
+   * @param {number[]} ticket
+   * @param {Element} issuedLottosElement
+   */
+  private_makeElementForIssuedLotto(ticket, issuedLottosElement) {
     const li = document.createElement('li');
     const textAboutLottoNumbers = ticket
       .sort((prev, current) => prev - current)
       .join(`${NUMBER_DELIMITER} `);
 
     li.className = 'lotto';
-    li.textContent = `🎟️ ${textAboutLottoNumbers}`;
 
-    issuedLottosEl.appendChild(li);
+    issuedLottosElement.appendChild(li);
+
+    this.private_makeElementForIssuedLottoNumber(
+      { text: '🎟️', className: 'icon-ticket' },
+      li,
+    );
+    const numbers = textAboutLottoNumbers.split(NUMBER_DELIMITER);
+
+    numbers.forEach((number, index) => {
+      this.private_makeElementForIssuedLottoNumber(
+        { text: number, className: 'number' },
+        li,
+      );
+      if (index < numbers.length - 1) {
+        this.private_makeElementForIssuedLottoNumber(
+          { text: NUMBER_DELIMITER, className: 'delimiter' },
+          li,
+        );
+      }
+    });
   },
 };
 

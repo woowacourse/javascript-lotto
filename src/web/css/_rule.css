@@ -28,8 +28,12 @@
   }
 }
 
-.icon-toggleRule {
+.icon-toggle-rule {
   font-size: 14px;
+}
+
+.payment-amount__explanation .rule {
+  right: 16px;
 }
 
 @media screen and (max-width: 425px) {

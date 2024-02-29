@@ -8,6 +8,7 @@
   width: inherit;
   max-width: inherit;
   height: inherit;
+  min-height: inherit;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -64,12 +65,12 @@
   }
 }
 
-.profitRateContainer,
+.profit-rate-container,
 .btn-restart {
   width: 100%;
   margin-top: 32px;
 }
 
-.profitRateContainer {
+.profit-rate-container {
   text-align: center;
 }
