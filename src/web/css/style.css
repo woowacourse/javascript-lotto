@@ -107,9 +107,7 @@ caption{
 
 #game-money-input-information {
   display: flex;
-  color: var(--lotto-greyscale-5, var(--Black, #000));
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-style: normal;
+  color: var(--lotto-greyscale-5);
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
@@ -217,7 +215,7 @@ caption{
 #game-winninglotto-input {
   display: flex;
   flex-direction: row;
-  gap: 67px;
+  gap: 93px;
 }
 
 #game-winninglotto-input-numbers {
@@ -243,7 +241,8 @@ caption{
   padding: 5px;
   border-radius: 4px;
   border: 1px solid var(--lotto-greyscale-3);
-  background: var(--lotto-greyscale-1, #FFF);
+  background: var(--lotto-greyscale-1);
+  width: 15px;
 }
 
 .result-show {
