@@ -3,11 +3,6 @@ import { EVENTS } from '../components/PaymentForm';
 class WebController {
   #lottoGame;
 
-  #state = {
-    lottos: [],
-    paymentAmount: 0,
-  };
-
   #paymentForm;
 
   #purchasedLottos;
@@ -45,12 +40,11 @@ class WebController {
     const errMsgNode = this.#paymentForm.querySelector('.err-msg');
     errMsgNode.innerHTML = '';
 
-    this.#state.lottos = this.#lottoGame.lottoTickets;
-    this.#updatePurchasedLottos();
+    this.#updatePurchasedLottos(this.#lottoGame.lottoTickets);
   }
 
-  #updatePurchasedLottos() {
-    this.#purchasedLottos.setAttribute('data-lottos', JSON.stringify(this.#state.lottos));
+  #updatePurchasedLottos(lottos) {
+    this.#purchasedLottos.setAttribute('data-lottos', JSON.stringify(lottos));
   }
 
   #handleError(errorMessage) {
@@ -58,7 +52,6 @@ class WebController {
     errMsgNode.innerHTML = errorMessage;
 
     this.#paymentForm.elements.paymentAmount.value = '';
-    this.#state.paymentAmount = '';
   }
 }
 

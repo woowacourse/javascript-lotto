@@ -15,9 +15,23 @@ import WebController from './services/WebController';
 
 // components
 import PurchasedLottos from './components/PurchasedLottos';
-import PaymentForm from './components/PaymentForm';
+import PaymentForm, { EVENTS } from './components/PaymentForm';
 
 window.customElements.define('purchased-lottos', PurchasedLottos);
 window.customElements.define('payment-form', PaymentForm, { extends: 'form' });
 
-const webController = new WebController(new LottoGame(), "form[is='payment-form']", 'purchased-lottos');
+const registry = {
+  paymentForm: {
+    events: EVENTS,
+    selector: "form[is='payment-form']",
+  },
+  purchasedLottos: {
+    selector: 'purchased-lottos',
+  },
+};
+
+const webController = new WebController(
+  new LottoGame(),
+  registry.paymentForm.selector,
+  registry.purchasedLottos.selector,
+);

@@ -2,6 +2,8 @@ export const EVENTS = {
   paymentFormSubmit: 'paymentFormSubmit',
 };
 
+export const SELECTOR = "form[is='payment-form']";
+
 export default class PaymentForm extends HTMLFormElement {
   constructor() {
     super();
