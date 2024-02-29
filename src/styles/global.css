@@ -1,6 +1,7 @@
 :root {
   /* Color */
   --color-primary: 78, 91, 166;
+  --color-red: 255, 0, 0;
   --color-grey-scale-1: 255, 255, 255;
   --color-grey-scale-2: 252, 252, 253;
   --color-grey-scale-3: 180, 180, 180;
@@ -155,4 +156,6 @@ button {
   position: absolute;
   left: 0;
   bottom: -2.6rem;
+
+  color: rgb(var(--color-red));
 }
