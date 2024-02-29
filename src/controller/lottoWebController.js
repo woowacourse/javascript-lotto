@@ -6,6 +6,7 @@ import profitCalculator from "../domain/profitCalculator.js";
 import randomLottoArray from "../domain/randomLottoMaker.js";
 import { $, $$ } from "../utils/querySelector.js";
 import budgetValidation from "../validation/budgetValidation.js";
+import commonInputValidation from "../validation/commonInputValidation.js";
 import startValidation from "../validation/startValidation.js";
 import winningLottoBonusValidation from "../validation/winningLottoBonusValidation.js";
 import winningLottoNumbersValidation from "../validation/winningLottoNumbersValidation.js";
@@ -48,6 +49,10 @@ class LottoWebController {
 
       // 발행된 로또 번호 가져와서 보여줘
       $("#after-budget").style.display = "flex";
+      const budgetInputNodes = $("#content-box-input-budget");
+      budgetInputNodes.querySelector("input").disabled = true;
+      budgetInputNodes.querySelector("button").disabled = true;
+
       this.handleWebIssuedLottoArray(webIssuedLottoCount);
     } catch (error) {
       return alert(error.message); // TODO : alert 말고 다른 종류로 바꾸기
@@ -68,11 +73,14 @@ class LottoWebController {
 
   // TODO : 구입 누를 때마다 div 추가되는 것 수정하기
   printWebIssuedLottoArray() {
+    const curr = $("#content-box-lottos-msg");
+
     this.#webIssuedLottoArray.forEach((array) => {
       const issuedLottoDiv = document.createElement("div");
-      const curr = $("#content-box-lottos");
-      issuedLottoDiv.innerHTML = "🎟️ " + array;
+      issuedLottoDiv.innerHTML = "🎟️ " + array.join(", ");
       issuedLottoDiv.style.marginTop = "0.4rem";
+      issuedLottoDiv.style.height = "3.6rem";
+      issuedLottoDiv.style.lineHeight = "3.6rem";
       issuedLottoDiv.className = "lotto-body";
       curr.append(issuedLottoDiv);
     });
@@ -93,25 +101,39 @@ class LottoWebController {
       bonusNumber: webWinningBonusInput,
     };
 
+    console.log(webWinningCombination);
+
     try {
-      startValidation(
+      // TODO : validation 중복 부분 수정하기
+      this.validateInput(
         winningLottoNumbersValidation.winningNumbers,
         webWinningNumbersInput
       );
-      startValidation(
-        winningLottoValidation.commonCategories,
-        webWinningBonusInput
-      );
-      startValidation(
+      this.validateInput(
         winningLottoBonusValidation.winningBonus,
         webWinningCombination
       );
-      console.log("validation success");
+
       this.calculateWebLottoResult(webWinningCombination);
       this.openModal();
     } catch (error) {
       alert(error.message); // TODO : alert 말고 다른 종류로 바꾸기
     }
+  }
+
+  validateInput(categories, input) {
+    startValidation(categories, input);
+
+    if (Array.isArray(input)) {
+      console.log("array");
+      startValidation(commonInputValidation.categories, input);
+      input.forEach((number) => {
+        startValidation(winningLottoValidation.commonCategories, number);
+      });
+      return;
+    }
+    startValidation(commonInputValidation.categories, [input.bonusNumber]);
+    startValidation(winningLottoValidation.commonCategories, input.bonusNumber);
   }
 
   openModal() {
