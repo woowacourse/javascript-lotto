@@ -62,10 +62,12 @@ const ResultModal = Object.freeze({
 
   makeModalResultRankTableInformation: (winLottos) => [
     ResultModal.makeModalResultRankHeader(),
-    ...winLottos.map((count, index) => {
-      const rank = index + 1;
-      return ResultModal.makeModalResultRankData(count, rank);
-    }),
+    ...winLottos
+      .map((count, index) => {
+        const rank = index + 1;
+        return ResultModal.makeModalResultRankData(count, rank);
+      })
+      .reverse(),
   ],
 
   makeModalResultRankHeader: () => {
