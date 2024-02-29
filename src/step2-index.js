@@ -15,6 +15,9 @@ const $lottoResult = document.querySelector('.lotto-result');
 const $answerForm = document.querySelector('.answer-form');
 const $lottoResultLabel = document.querySelector('.lotto-result-label');
 const $lottoNumbers = document.querySelector('.lotto-numbers');
+const $modalCancel = document.querySelector('.modal-cancle');
+const $retryButton = document.querySelector('.retry-button');
+const $modal = document.querySelector('.modal');
 
 $buyForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -60,6 +63,17 @@ $answerForm.addEventListener('submit', (e) => {
   }
 
   // disableForm($answerForm);
+});
+
+$modalCancel.addEventListener('click', () => {
+  console.log('modal click');
+});
+
+$retryButton.addEventListener('click', () => {
+  console.log('retry button');
+  $modal.classList.add('hidden');
+  ableForm($buyForm);
+  ableForm($answerForm);
 });
 
 const disableForm = (formElement) => {
