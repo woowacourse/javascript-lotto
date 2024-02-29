@@ -66,8 +66,13 @@ class WinningLottoAndBonusGenerator {
     );
   }
 
+  #moveScrollToTop() {
+    document.querySelector('html').scrollTop = 0;
+  }
+
   #handleClickBtn(event) {
     event.preventDefault();
+    this.#moveScrollToTop();
     this.#generateWinningLottoAndBonus();
   }
 }
