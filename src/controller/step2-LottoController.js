@@ -84,6 +84,8 @@ class LottoController {
 
     const winningAndBonusSection = document.getElementById('winningAndBonusSection');
     winningAndBonusSection.style.display = 'block';
+
+    return lottos;
   }
 
   async inputWinningNumbers() {
@@ -117,28 +119,55 @@ class LottoController {
     return validatedBonusNumber;
   }
 
-  // async runGame() {
-  //   const winningNumbers = await this.inputWinningNumbers();
-  //   const bonusNumber = await this.inputBonusNumber(winningNumbers);
+  determineLottoRanks({ lottos, winningNumbers, bonusNumber }) {
+    return this.#lottoMachine.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
+  }
 
-  //   console.log(`winning: ${winningNumbers}`);
-  //   console.log(`bonus: ${bonusNumber}`);
-  // }
-  async runGame() {
-    const winningNumbers = await this.inputWinningNumbers();
-    if (!winningNumbers) {
-      console.error('Winning numbers are not valid.');
-      return;
+  calculateProfitRate(winningResult) {
+    return this.#lottoMachine.calculateProfitRate(winningResult);
+  }
+
+  // eslint-disable-next-line max-params
+  async runGame(lottos, winningNumbers, bonusNumber) {
+    const winningResult = this.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
+    const profitRate = this.calculateProfitRate(winningResult);
+    this.displayWinningResult(winningResult, profitRate);
+    console.log(`winning---------${winningResult}`);
+
+    document.getElementById('modalCloseButton').addEventListener('click', () => {
+      document.getElementById('modalContainer').style.display = 'none';
+    });
+
+    document.getElementById('resetButton').addEventListener('click', () => {
+      document.getElementById('modalContainer').style.display = 'none';
+      this.runGame();
+    });
+  }
+
+  displayWinningResult(winningResult, profitRate) {
+    console.log('winning');
+    console.log(JSON.stringify(winningResult));
+    const resultTable = document.getElementById('resultTable');
+    const profitResult = document.getElementById('profitResult');
+
+    for (let i = 6; i >= 1; i -= 1) {
+      const row = resultTable.rows[7 - i];
+      const cell3 = row.cells[2];
+
+      cell3.innerHTML = winningResult[i.toString()];
     }
 
-    const bonusNumber = await this.inputBonusNumber(winningNumbers);
-    if (!bonusNumber) {
-      console.error('Bonus number is not valid.');
-      return;
-    }
+    profitResult.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
+  }
 
-    console.log(`winning: ${winningNumbers}`);
-    console.log(`bonus: ${bonusNumber}`);
+  resetGame() {
+    const resetButton = document.getElementById('resetButton');
+    const modalContainer = document.getElementById('modalContainer');
+
+    resetButton.addEventListener('click', () => {
+      modalContainer.style.display = 'none';
+      this.runGame();
+    });
   }
 }
 

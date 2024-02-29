@@ -16,15 +16,19 @@ window.onload = function () {
   const winningAndBonusForm = document.getElementById('winningAndBonusSection');
   const resultButton = document.getElementById('winningAndBonusSubmitButton');
 
+  let lottos = [];
+
   purchaseForm.addEventListener('submit', async function (event) {
     event.preventDefault();
     const purchaseAmount = document.getElementById('purchaseInputField').value;
-    await lottoController.purchaseLottos(purchaseAmount);
+    lottos = await lottoController.purchaseLottos(purchaseAmount);
   });
 
   winningAndBonusForm.addEventListener('submit', async function (event) {
     event.preventDefault();
-    await lottoController.runGame();
+    const winningNumbers = await lottoController.inputWinningNumbers();
+    const bonusNumber = await lottoController.inputBonusNumber(winningNumbers);
+    await lottoController.runGame(lottos, winningNumbers, bonusNumber);
   });
 
   resultButton.addEventListener('click', function () {
