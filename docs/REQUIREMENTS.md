@@ -74,6 +74,9 @@ npm run start-step2
 ```
 을 입력해주면 프로그램을 시작할 수 있습니다.
 
+## 배포된 사이트
+[로또 게임](https://jinhokim98.github.io/javascript-lotto/dist/)
+
 ## 기능목록
 
 - 레이아웃 스타일 생성
