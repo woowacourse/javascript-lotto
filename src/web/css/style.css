@@ -72,6 +72,16 @@ main {
   align-items: center;
 }
 
+button {
+  background: var(--color-primary);
+  color: var(--color-greyscale-1);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  letter-spacing: 1.25px;
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
 button:hover {
   cursor: pointer;
   transition: all .3s ease-in-out;
@@ -81,7 +91,6 @@ button:hover {
 button:disabled {
   background: var(--color-greyscale-4);
   cursor: inherit;
-  opacity: 0.85;
 }
 
 .error-text {
@@ -135,11 +144,6 @@ button:disabled {
 }
 
 #purchase button {
-  background: var(--color-primary);
-  color: var(--color-greyscale-1);
-  font-size: var(--font-caption-size);
-  font-weight: var(--font-caption-weight);
-  border-radius: 4px;
   padding: 6px 8px;
   width: 56px;
 }
@@ -184,6 +188,11 @@ button:disabled {
   gap: 6px;
 }
 
+#winning-numbers label {
+  display: block;
+  margin: 0 0 6px;
+}
+
 #winning-numbers input {
   border: 1px solid var(--color-greyscale-3);
   border-radius: 4px;
@@ -194,20 +203,23 @@ button:disabled {
   text-align: center;
 }
 
+#winning-numbers .input-group {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+
+#winning-numbers .input-group.flow-right {
+  flex-direction: row-reverse;
+}
+
 #winning-numbers #bonus-number-input-group {
   text-align: right;
 }
 
 #winning-numbers button {
-  background: var(--color-primary);
-  color: var(--color-greyscale-1);
-  font-size: var(--font-caption-size);
-  font-weight: var(--font-caption-weight);
-  letter-spacing: 1.25px;
   width: 100%;
   margin-top: 15px;
-  border-radius: 4px;
-  padding: 4px 6px;
 }
 
 footer {
