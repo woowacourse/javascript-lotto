@@ -1,4 +1,6 @@
-export default function statisticsModal() {
+export default function statisticsModal(lottoRanks, totalProfitRate) {
+  const ranks = lottoRanks.map((rank) => rank[1]);
+  // TODO: 총 수익률 출력
   return (
     //  TODO: close 버튼 추후 수정
     `<div class="modal-body">
@@ -14,30 +16,30 @@ export default function statisticsModal() {
           <div class="lm-wr-row-box">
             <div class="lm-wr-text">3개</div>
             <div class="lm-wr-text">5,000</div>
-            <div class="lm-wr-text">_개</div>
+            <div class="lm-wr-text">${ranks[4]}개</div>
           </div>
           <div class="lm-wr-row-box">
             <div class="lm-wr-text">4개</div>
             <div class="lm-wr-text">50,000</div>
-            <div class="lm-wr-text">_개</div>
+            <div class="lm-wr-text">${ranks[3]}개</div>
           </div>
           <div class="lm-wr-row-box">
             <div class="lm-wr-text">5개</div>
             <div class="lm-wr-text">1,500,000</div>
-            <div class="lm-wr-text">_개</div>
+            <div class="lm-wr-text">${ranks[2]}개</div>
           </div>
           <div class="lm-wr-row-box">
             <div class="lm-wr-text">5개+보너스볼</div>
             <div class="lm-wr-text">30,000,000</div>
-            <div class="lm-wr-text">_개</div>
+            <div class="lm-wr-text">${ranks[1]}개</div>
           </div>
           <div class="lm-wr-row-box">
             <div class="lm-wr-text">6개</div>
             <div class="lm-wr-text">2,000,000,000</div>
-            <div class="lm-wr-text">_개</div>
+            <div class="lm-wr-text">${ranks[0]}개</div>
           </div>
         </div>
-        <div class="lm-winning-statistics">당신의 총 수익률은 _%입니다.</div>
+        <div class="lm-winning-statistics">당신의 총 수익률은 ${totalProfitRate}%입니다.</div>
         <button class="lm-retry-btn">다시 시작하기</button>
       </div>
     </div>`
