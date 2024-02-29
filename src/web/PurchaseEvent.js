@@ -1,6 +1,8 @@
 import NUMBER from "../constants/number";
 import LottoService from "../domain/LottoService";
 import PurchaseAmountValidation from "../validation/purchaseAmount";
+import Modal from "./Modal";
+import winNumberEvent from "./WinNumberEvent";
 
 const PurchaseEvent = {
     initPurchaseEvent(){
@@ -14,15 +16,23 @@ const PurchaseEvent = {
         try{
             PurchaseAmountValidation.validate(purchaseInput);
             const randomLottos = LottoService.getLottos(Number.parseInt(Number(purchaseInput) / NUMBER.LOTTO_PRICE, 10));
+            this.closeErrorMessage('.puchase-error-message');
             this.showRandomLottos('.random-lottos', randomLottos)
+            winNumberEvent.createInputUIWinNumber();
         } catch (error){
             this.showErrorMessage('.puchase-error-message', error);
         }
     },
 
     showErrorMessage(selector, error){
-        const errorDvi = document.querySelector(selector);
-        errorDvi.innerText = error.message;
+        const errorDiv = document.querySelector(selector);
+        errorDiv.innerText = error.message;
+        
+    },
+
+    closeErrorMessage(selector) {
+        const errorDiv = document.querySelector(selector);
+        errorDiv.innerText = '';
     },
 
     showRandomLottos(selector = '', lottos = []){
@@ -33,7 +43,7 @@ const PurchaseEvent = {
     createRandomLottos(lottos = []){
         return `
         <div>
-            <div class = "random-lottos-result-title">총 ${lottos.length}개를 구매하였습니다.</div>
+        <div class = "random-lottos-result-title">총 ${lottos.length}개를 구매하였습니다.</div>
             <ul>
                 ${lottos.map((lotto) => `<li class="random-lotto-list">🎟️ <span class = 'lotto-list-p'>${lotto.getNumbers().join(', ')}<span></p></li>`).join('')}
             </ul>
