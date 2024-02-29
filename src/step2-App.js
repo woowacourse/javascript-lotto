@@ -7,27 +7,37 @@ class App {
    */
   #$root;
   #lottoGame;
+  #state;
 
   constructor($root) {
     this.#$root = $root;
     this.#lottoGame = new LottoGame();
+    this.#state = {
+      lottoes: null,
+    };
   }
 
-  init() {
+  render() {
     const lottoGameView = new LottoGameView({
+      props: { lottoes: this.#state.lottoes },
       onPurchaseAmountButtonClick: this.#onPurchaseAmountButtonClick.bind(this),
     });
-    this.#$root.append(lottoGameView.render());
+    this.#$root.replaceChildren(lottoGameView.render());
+  }
+
+  #setState(nextState) {
+    this.#state = nextState;
+    this.render();
   }
 
   #onPurchaseAmountButtonClick(purchaseAmount) {
-    this.#purchaseLottos(Number(purchaseAmount));
+    this.#purchaseLottoes(Number(purchaseAmount));
   }
 
-  #purchaseLottos(purchaseAmount) {
+  #purchaseLottoes(purchaseAmount) {
     try {
-      const lottos = this.#lottoGame.issueLottos(purchaseAmount);
-      console.log(lottos);
+      const lottoes = this.#lottoGame.issueLottoes(purchaseAmount);
+      this.#setState({ ...this.#state, lottoes });
     } catch (error) {
       alert(error.message);
     }

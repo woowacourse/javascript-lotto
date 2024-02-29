@@ -6,4 +6,4 @@
 import App from "./step2-App";
 
 const app = new App(document.getElementById("app"));
-app.init();
+app.render();

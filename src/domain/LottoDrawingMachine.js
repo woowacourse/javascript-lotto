@@ -1,8 +1,8 @@
 import LOTTO_SYSTEM from "../constants/lottoSystem";
 
 class LottoDrawingMachine {
-  draw(lottos, winningLotto) {
-    const matchedCounts = this.#matchLottoCounts(lottos, winningLotto);
+  draw(lottoes, winningLotto) {
+    const matchedCounts = this.#matchLottoCounts(lottoes, winningLotto);
 
     return this.#checkRankings(matchedCounts);
   }
@@ -21,8 +21,8 @@ class LottoDrawingMachine {
     return Number(totalProfitRate.toFixed(1));
   }
 
-  #matchLottoCounts(lottos, winningLotto) {
-    return lottos.map((lotto) => ({
+  #matchLottoCounts(lottoes, winningLotto) {
+    return lottoes.map((lotto) => ({
       correctCount: winningLotto.compareWinningNumbersWithLotto(lotto.numbers),
       isBonusCorrect: winningLotto.isBonusNumberMatch(lotto.numbers),
     }));

@@ -1,63 +1,25 @@
-class PurchaseAmount {
-  state;
-  onPurchaseAmountButtonClick;
-
-  constructor({ onPurchaseAmountButtonClick }) {
-    this.state = {
-      purchaseAmount: "",
-    };
-    this.onPurchaseAmountButtonClick = onPurchaseAmountButtonClick;
-  }
-
-  onPurchaseAmountInput(e) {
-    this.setState({ ...this.state, purchaseAmount: e.target.value });
-  }
-
-  setState(nextState) {
-    this.state = nextState;
-  }
-
-  render() {
-    const $root = document.createElement("div");
-    $root.className = "purchase-amount";
-
-    const $title = document.createElement("h3");
-    $title.className = "purchase-amount__title";
-
-    const $content = document.createElement("div");
-    $content.className = "purchase-amount__content";
-
-    const $contentInput = document.createElement("input");
-    $contentInput.type = "text";
-    $contentInput.className = "input purchase-amount__content__input";
-    $contentInput.placeholder = "금액";
-    $contentInput.value = this.state.purchaseAmount;
-    $contentInput.addEventListener(
-      "input",
-      this.onPurchaseAmountInput.bind(this),
-    );
-
-    const $contentButton = document.createElement("button");
-    $contentButton.className =
-      "button--primary purchase-amount__content__button";
-    $contentButton.innerText = "구입";
-    $contentButton.addEventListener("click", () =>
-      this.onPurchaseAmountButtonClick(this.state.purchaseAmount),
-    );
-
-    $content.append($contentInput, $contentButton);
-
-    $root.append($title, $content);
-
-    return $root;
-  }
-}
+import PurchasedLottoes from "./components/PurchasedLottoes";
+import PurchaseAmount from "./components/PurchaseAmount";
+import WinningLotto from "./components/WinningLotto";
+import CheckResultButton from "./components/CheckResultButton";
 
 class LottoGameView {
   #purchaseAmount;
+  #purchasedLottoes;
+  #winningLotto;
+  #checkResultButton;
 
-  constructor({ onPurchaseAmountButtonClick }) {
+  constructor({ props, onPurchaseAmountButtonClick }) {
     this.#purchaseAmount = new PurchaseAmount({ onPurchaseAmountButtonClick });
+    this.#purchasedLottoes = new PurchasedLottoes({
+      props: { lottoes: props.lottoes },
+    });
+    this.#winningLotto = new WinningLotto({
+      props: { isPurchased: !!props.lottoes },
+    });
+    this.#checkResultButton = new CheckResultButton({
+      props: { isPurchased: !!props.lottoes },
+    });
   }
 
   render() {
@@ -71,7 +33,12 @@ class LottoGameView {
 
     const $article = document.createElement("article");
     $article.innerHTML = `<h1 class="lotto-game__title">🎱 내 번호 당첨 확인 🎱</h1>`;
-    $article.append(this.#purchaseAmount.render());
+    $article.append(
+      this.#purchaseAmount.render(),
+      this.#purchasedLottoes.render(),
+      this.#winningLotto.render(),
+      this.#checkResultButton.render(),
+    );
     $main.append($article);
 
     $footer.innerHTML = `<p>Copyright 2023. woowacourse</p>`;
