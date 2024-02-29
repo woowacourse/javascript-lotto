@@ -17,6 +17,10 @@ const Validator = {
       .split(',')
       .filter((item) => item.trim() !== '')
       .map(Number);
+    this.validateWinningNumberList(winningNumberList);
+  },
+
+  validateWinningNumberList(winningNumberList) {
     this.checkWinningNumbersDuplicated(winningNumberList);
     winningNumberList.forEach((number) => {
       this.checkNotNumber(number);
