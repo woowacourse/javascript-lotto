@@ -44,6 +44,7 @@
   height: 80px;
   width: 100%;
   border-top: 1px solid rgba(78, 91, 166, 0.2);
+  background-color: var(--light-gray-color);
 }
 
 .lotto-footer .lotto-footer-text {
