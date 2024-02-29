@@ -15,6 +15,9 @@ window.onload = function () {
   const purchaseForm = document.getElementById('purchaseInputSection');
   const winningAndBonusForm = document.getElementById('winningAndBonusSection');
   const resultButton = document.getElementById('winningAndBonusSubmitButton');
+  const modalContainer = document.getElementById('modalContainer');
+  const modalCloseButton = document.getElementById('modalCloseButton');
+  const resetButton = document.getElementById('resetButton');
 
   let lottos = [];
 
@@ -32,7 +35,15 @@ window.onload = function () {
   });
 
   resultButton.addEventListener('click', function () {
-    const modalContainer = document.getElementById('modalContainer');
     modalContainer.style.display = 'flex';
+  });
+
+  modalCloseButton.addEventListener('click', function () {
+    modalContainer.style.display = 'none';
+  });
+
+  resetButton.addEventListener('click', function () {
+    modalContainer.style.display = 'none';
+    window.location.reload();
   });
 };

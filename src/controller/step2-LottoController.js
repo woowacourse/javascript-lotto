@@ -159,16 +159,6 @@ class LottoController {
 
     profitResult.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
   }
-
-  resetGame() {
-    const resetButton = document.getElementById('resetButton');
-    const modalContainer = document.getElementById('modalContainer');
-
-    resetButton.addEventListener('click', () => {
-      modalContainer.style.display = 'none';
-      this.runGame();
-    });
-  }
 }
 
 export default LottoController;
