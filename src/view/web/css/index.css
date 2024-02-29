@@ -1,6 +1,6 @@
 @import url('./reset.css');
-@import url('./module/main.css');
-@import url('./module/modal.css');
+@import url('./main.css');
+@import url('./modal.css');
 
 * {
   box-sizing: border-box;
@@ -58,6 +58,9 @@ body {
 
 #app .header {
   display: flex;
+  position: sticky;
+  top: 0;
+  left: 0;
   align-items: center;
   width: 100%;
   height: 6.4rem;
