@@ -92,12 +92,21 @@ class LottoPurchaseBox extends Component {
     this.setState({ isModalOpen: false });
   }
 
+  disabledSection(className) {
+    this.$target
+      .querySelector(className)
+      .querySelectorAll('input')
+      .forEach((el) => (el.disabled = true));
+  }
+
   purchaseLottoTickets(money) {
     this.setState({ lottoTickets: LottoGenerator.createLotto(money) });
+    this.disabledSection('.money-input-container');
   }
 
   makeWinningLotto(winningNumbers, bonusNumber) {
     this.setState({ winningLotto: { winningNumbers, bonusNumber } });
+    this.disabledSection('.winning-lotto-input-container');
     this.showPrizeStatistics();
   }
 
