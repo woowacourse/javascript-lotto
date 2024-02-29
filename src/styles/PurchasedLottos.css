@@ -1,0 +1,28 @@
+purchased-lottos {
+  width: 100%;
+  margin-bottom: 2.4rem;
+}
+
+purchased-lottos > .counter {
+  margin-bottom: 0.8rem;
+}
+
+purchased-lottos > .list {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0;
+}
+
+purchased-lottos > .list > li {
+  display: flex;
+  align-items: center;
+
+  height: 3.6rem;
+
+  margin-bottom: 0.4rem;
+}
+
+.ticket-icon {
+  font-size: 3.4rem;
+  margin-right: 0.8rem;
+}

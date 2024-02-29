@@ -7,16 +7,17 @@
 import './styles/global.css';
 import './styles/body.css';
 import './styles/PaymentForm.css';
-
-// components
-import LottoItems from './components/LottoItems';
-import PaymentForm from './components/PaymentForm';
+import './styles/PurchasedLottos.css';
 
 // domains
 import { LottoGame } from './domains';
 import WebController from './services/WebController';
 
-window.customElements.define('lotto-items', LottoItems);
+// components
+import PurchasedLottos from './components/PurchasedLottos';
+import PaymentForm from './components/PaymentForm';
+
+window.customElements.define('purchased-lottos', PurchasedLottos);
 window.customElements.define('payment-form', PaymentForm, { extends: 'form' });
 
 const webController = new WebController(new LottoGame());

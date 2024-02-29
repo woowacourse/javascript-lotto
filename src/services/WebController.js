@@ -3,6 +3,7 @@ import { EVENTS } from '../components/PaymentForm';
 class WebController {
   #lottoGame;
 
+  // TODO: state ~ 컴포넌트 필드 App으로 빼기
   #state = {
     lottos: [],
     paymentAmount: 0,
@@ -10,7 +11,7 @@ class WebController {
 
   #paymentForm = document.forms.paymentAmount;
 
-  // #purchasedLotto = document.querySelector()
+  #purchasedLotto = document.querySelector('#purchased-lottos-container');
 
   constructor(lottoGame) {
     this.#lottoGame = lottoGame;
@@ -43,7 +44,6 @@ class WebController {
     }
 
     this.#lottoGame.insertMoney(detail.paymentAmount);
-    this.#state.paymentAmount = this.#lottoGame.paymentAmount;
     this.#state.lottos = this.#lottoGame.lottos;
   }
 
