@@ -83,10 +83,10 @@
 }
 
 .investment p {
-  font-size: var(--subtitle-size);
-  font-weight: var(--subtitle-weight);
-  line-height: var(--subtitle-line-height);
-  letter-spacing: var(--subtitle-letter);
+  font-size: var(--accent-size);
+  font-weight: var(--accent-weight);
+  line-height: var(--accent-line-height);
+  letter-spacing: var(--accent-letter);
   text-align: center;
 }
 

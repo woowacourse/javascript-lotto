@@ -32,24 +32,28 @@ body {
   --body-size: 1.5rem;
   --caption-size: 1.4rem;
   --th-size: 1.5rem;
+  --accent-size: 1.5rem;
 
   --title-weight: 800;
   --subtitle-weight: 600;
   --body-weight: 400;
   --caption-weight: 700;
-  -th-weight: 600;
+  --th-weight: 600;
+  --accent-weight: 700;
 
   --title-line-height: 3.6rem;
   --subtitle-line-height: 2.4rem;
   --body-line-height: 2.4rem;
   --caption-line-height: 1.6rem;
   --th-line-height: 2.4rem;
+  --accent-line-height: 2.4rem;
 
   --title-letter: 0;
   --subtitle-letter: 0.015rem;
   --body-letter: 0.05rem;
   --caption-letter: 0.125rem;
   --th-letter: 0.05rem;
+  --accent-letter: 0.05rem;
 }
 
 #app {
