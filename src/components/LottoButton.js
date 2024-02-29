@@ -1,13 +1,17 @@
 import './LottoButton.css';
 
-//TODO: 텍스트 container로 감싸기
 const LOTTO_BUTTON = `
-  <h3 class="lotto-caption">text</h3>
+  <button class="lotto-caption">
+    <h3 class="lotto-caption">
+      text
+    </h3>
+  </button>
 `;
 
 class LottoButton extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.setIsDisabled(true);
   }
 
   render() {
@@ -17,6 +21,10 @@ class LottoButton extends HTMLElement {
 
   setText(text) {
     this.querySelector('.lotto-caption').textContent = text;
+  }
+
+  setIsDisabled(bool) {
+    this.querySelector('button').disabled = bool;
   }
 }
 

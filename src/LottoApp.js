@@ -1,3 +1,4 @@
+import './reset.css';
 import './LottoApp.css';
 import './components/LottoHeader.js';
 import './components/LottoMain.js';

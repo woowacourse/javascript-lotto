@@ -27,9 +27,21 @@ class PurchasePriceForm extends HTMLElement {
   }
 
   #setEventListener() {
-    const purchaseButton = this.querySelector('#purchase-button');
+    this.#setInputListener();
+    this.#setClickListener();
+  }
 
-    purchaseButton.addEventListener('click', () => {
+  #setInputListener() {
+    const priceInputField = this.querySelector('price-input-field');
+    priceInputField.addEventListener('input', () => {
+      const button = this.querySelector('lotto-button');
+      button.setIsDisabled(priceInputField.getValue() === '');
+    });
+  }
+
+  #setClickListener() {
+    const button = this.querySelector('button');
+    button.addEventListener('click', () => {
       const price = this.querySelector('price-input-field').getValue();
       this.#errorHandler(price);
     });

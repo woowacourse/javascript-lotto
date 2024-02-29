@@ -1,4 +1,4 @@
-lotto-button {
+lotto-button button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,9 +13,10 @@ lotto-button .lotto-caption {
   color: var(--lotto-greyscale-1);
 }
 
-lotto-button:hover {
+lotto-button button:disabled {
+  background-color: var(--lotto-greyscale-3);
 }
 
-lotto-button:active {
+lotto-button button:active:enabled {
   background-color: var(--lotto-primary-active);
 }
