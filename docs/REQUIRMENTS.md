@@ -63,21 +63,20 @@
 
 ## 기능 구현 목록
 
-- [] 로또 구매
-- [] 구매한 로또 목록 확인
-- [] 당첨 번호 및 보너스 번호 지정
-- [] 당첨 통계 확인
-- [] 게임 재시작
+- [x] 로또 구매
+- [x] 구매한 로또 목록 확인
+- [x] 당첨 번호 및 보너스 번호 지정
+- [x] 당첨 통계 확인
+- [x] 게임 재시작
 
 ## UI
 
-- [] [피그마 시안](https://www.figma.com/file/KcViH81qTQERbbJtBlTEqZ/%EB%A0%88%EB%B2%A81-%EB%AF%B8%EC%85%98-%EB%94%94%EC%9E%90%EC%9D%B8-%285%EA%B8%B0-%ED%81%AC%EB%A3%A8-%EA%B3%B5%EC%9C%A0%EC%9A%A9%29?node-id=1:2) 사용
-- 구체화한 요구 사항에 따라 추가로 필요한 UI가 있다면 스스로 적절히 판단하여 구현
+- [x] [피그마 시안](https://www.figma.com/file/KcViH81qTQERbbJtBlTEqZ/%EB%A0%88%EB%B2%A81-%EB%AF%B8%EC%85%98-%EB%94%94%EC%9E%90%EC%9D%B8-%285%EA%B8%B0-%ED%81%AC%EB%A3%A8-%EA%B3%B5%EC%9C%A0%EC%9A%A9%29?node-id=1:2) 사용 -[x] 구체화한 요구 사항에 따라 추가로 필요한 UI가 있다면 스스로 적절히 판단하여 구현
 
 ## 배포
 
-- [] 배포용 브랜치로 github page 기능 사용
-- [] npm 스크립트로 배포
+- [x] 배포용 브랜치로 github page 기능 사용
+- [x] npm 스크립트로 배포
 
 ```dash
 npm run build-step2
@@ -86,12 +85,25 @@ npm run build-step2
 ## 일관성 있고 의도가 드러나는 마크업 작성
 
 - 목적에 맞는 HTML 태그를 사용한다.
-- [] HTML 시맨틱 태그 활용
+- [x] HTML 시맨틱 태그 활용
 - CSS 속성 선언 순서의 일관성을 고려한다.
   - id,class
 
 ## CSS 문법 사용에 익숙해진다.
 
 - CSS 속성은 가능하면 축약형(shorthand)을 사용한다.
-- flexbox를 활용해 레이아웃을 구성한다.
-  - [] BEM 네이밍 방법론 사용
+- flexBox를 활용해 레이아웃을 구성한다.
+  - [x] BEM 네이밍 방법론 사용
+
+## 기타 추가할 기능
+
+- [x] 룰 토글 기능
+- [x] popup 클로즈 기능
+- [x] 구매 금액 입력 후에 당첨 번화와 보너스 번호 입력폼을 나오도록 하는 기능
+- [x] 결과 확인 클릭 시, popup 오픈
+- [x] input -XSS 차단 메서드
+- [x] popup 클로즈 시, 게임 재설정
+
+### 수정
+
+[] 구매 금액 다시 입력 시 발행된 로또 구역 숨기기

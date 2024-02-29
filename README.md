@@ -4,27 +4,86 @@
 
 # 실행 방법
 
+## 🎮 실행 방법
+
+### 배포
+
+```dash
+npm run build-step2
+```
+
 ### 테스트
 
 ```dash
 npm run test
 ```
 
-### 로또 게임 실행
+### 1단계 - 콘솔 기반 로또 게임 실행
 
 ```dash
 npm run start-step1
 ```
 
+### 2단계 웹 기반 로또 실행 방법
+
+#### 1. github page
+
+- [🖱️ 웹 기반 로또 게임 github page 바로가기](https://badahertz52.github.io/javascript-lotto/dist/)
+
+#### 2. local
+
+```dash
+npm run start-step2
+```
+
 ## 실행 결과
 
-<img src="./console_lotto_game1.png" alt="로또 게임 실행 결과1" width="300px"/>
-<img src="./console_lotto_game2.png" alt="로또 게임 실행 결과2" width="300px"/>
+### step1 (콘솔)
+
+<img src="./console_lotto_game1.png" alt="콘솔 기반 로또 게임 실행 결과1" width="300px"/>
+<img src="./console_lotto_game2.png" alt="콘솔 기반 로또 게임 실행 결과2" width="300px"/>
+
+### step2(웹)
+
+<img src="./step2.gif" width="500px" alt="웹 기반 로또 게임 실행" />
 
 ## 🏫 학습 목표
 
+### step1
+
 - UI와 도메인 영역을 분리한다.
 - TDD를 적용해 단위 테스트 기반으로 점진적인 리팩토링을 시행한다.
+
+### step2
+
+#### 우테코 학습 목표
+
+- **모듈화에 대해 고민한다. (도메인과 UI 관심사의 분리)**
+
+  - 1단계에서 구현한 도메인 로직을 (최대한) 수정하지
+    않고, UI만 변경한다.
+
+- **일관성 있고 의도가 드러나는 마크업을 작성하기 위해 노력한다.**
+
+- **목적에 맞는 HTML 태그를 사용한다.**
+- **CSS 속성 선언 순서의 일관성을 고려한다.**
+  - CSS 문법 사용에 익숙해진다.
+  - CSS 속성은 가능하면 축약형(shorthand)을 사용한다.
+  - flexbox를 활용해 레이아웃을 구성한다.
+
+#### 개인적인 구현 목표
+
+우테코 미션 외의 저의 개인적인 미션 구현 시 목표에요.
+
+- HTML 시멘틱 태그를 사용한다.
+- 스크린 리더기를 생각해 input의 label을 넣는다.
+- 많이 사용하는 css 속성들은 변수로 만들어서 재사용한다.
+- 반응형 웹을 만든다.
+- UX 생각하기
+  - 피그마에 없지만 사용자가 입력값에 대한 요구사항과 오류를 알 수 있도록 토클 메세지와 오류 메세지를 화면에 띄운다.
+  - 입력값에 맞는 형식을 작서할 수 있도록 input의 type과 min,max 속성을 활용한다.
+  - 게임 결과에 대한 팝업창을 열면 스크롤을 움직여서 팝업창의 시작점에서 팝업창을 볼 수 있도록 한다.
+- 1단계에서 만든 상수 객체를 활용해 HTML의 내용을 만든다.(EX:구매 금액의 요구 사항등)
 
 ## 🏃‍♀️ 구현 사항
 
@@ -47,6 +106,7 @@ npm run start-step1
 | services  | 도메인과 뷰를 연결하는 모듈들 관리                                    |
 | utils     | 유틸 함수, 객체 관리                                                  |
 | views     | 뷰 관리                                                               |
+| web       | 웹 기반 로또 게임 구현에 필요한 파일 관리                             |
 
 ### 파일 설명
 
@@ -85,6 +145,24 @@ src
  ┃ ┣ index.js
  ┃ ┣ InputView.js
  ┃ ┗ OutputView.js
+ ┣ web
+ ┃ ┣ css
+ ┃ ┃ ┣ main.css
+ ┃ ┃ ┣ _app.css
+ ┃ ┃ ┣ _common.css
+ ┃ ┃ ┣ _contents.css
+ ┃ ┃ ┣ _popup.css
+ ┃ ┃ ┣ _reset.css
+ ┃ ┃ ┣ _rule.css
+ ┃ ┃ ┗ _style-constants.css
+ ┃ ┣ js
+ ┃ ┃ ┣ HtmlTextInjectorWithConstants.js
+ ┃ ┃ ┣ HtmlTextInjectorWithGameResults.js
+ ┃ ┃ ┣ LottoMachineGenerator.js
+ ┃ ┃ ┣ StatisticsPopupController.js
+ ┃ ┃ ┣ utils.js
+ ┃ ┃ ┣ WebLottoGameController.js
+ ┃ ┃ ┗ WinningLottoAndBonusGenerator.js
  ┣ GameApp.js : 게임 실행 시,  GameManager을 실행 해 게임을 진행하는 모듈
  ┣ step1-index.js
  ┗ step2-index.js
@@ -95,6 +173,8 @@ src
 </details>
 
 ### 로또 미션 순서도 및 구조
+
+#### step1
 
 <details>
 <summary>🔍 로또 미션 순서도 및 구조 보기</summary>
