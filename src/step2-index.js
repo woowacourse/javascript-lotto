@@ -6,6 +6,7 @@ import EventController from './view/web/controller/EventController.js';
 import { $ } from './view/web/utils/dom.js';
 import './view/web/styles/reset.css';
 import './view/web/styles/index.css';
+import LottoTickets from './view/web/main/LottoTickets.js';
 
 $('#app').appendChild(Header());
 $('#app').appendChild(Main());
@@ -24,6 +25,7 @@ window.onload = () => {
     event.preventDefault();
     $('#buy-lotto-form').reset();
     $('#winning-lotto-form').reset();
+    $('.next-section').replaceChild(LottoTickets(), $('#lottos'));
     $('#step2').style.visibility = 'hidden';
     $('#modal-container').style.visibility = 'hidden';
   };
