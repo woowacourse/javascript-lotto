@@ -18,13 +18,15 @@ const $lottoNumbers = document.querySelector('.lotto-numbers');
 const $modalCancel = document.querySelector('.modal-cancle');
 const $retryButton = document.querySelector('.retry-button');
 const $modal = document.querySelector('.modal');
+const $modalBody = document.querySelector('.modal-body');
+
+let lottoMachine;
 
 $buyForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const money = Number(formData.get('buy-input'));
 
-  let lottoMachine;
   try {
     lottoMachine = new LottoMachine(money);
     validateCost(money);
@@ -60,17 +62,17 @@ $answerForm.addEventListener('submit', (e) => {
     console.log({ winningLotto: winningLotto.getLottoNumbers, bonusNumber: winningLotto.getBonusNumber });
   } catch (error) {
     alert(`${error.message}`);
+    return;
   }
 
-  // disableForm($answerForm);
+  disableForm($answerForm);
 });
 
 $modalCancel.addEventListener('click', () => {
-  console.log('modal click');
+  $modalBody.classList.add('hidden');
 });
 
 $retryButton.addEventListener('click', () => {
-  console.log('retry button');
   $modal.classList.add('hidden');
   ableForm($buyForm);
   ableForm($answerForm);
