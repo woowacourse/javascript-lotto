@@ -44,17 +44,10 @@ class LottoMain extends HTMLElement {
 
     const purchaseResult = document.querySelector('.purchase-result');
     purchaseResult.innerHTML = LOTTO_MAIN_RESULT(lottoNumbersArray);
+
     const resultButton = document.querySelector('#result-button');
     resultButton.setText('당첨 결과 확인하기');
-    // this.#setLottoResultEventListener();
   }
-
-  // #setLottoResultEventListener() {
-  //   const winningAndBonusForm = document.querySelector('winning-and-bonus-form');
-  //   winningAndBonusForm.addEventListener('lottoResult', (event) => {
-  //     this.dispatchEvent(event);
-  //   });
-  // }
 }
 
 customElements.define('lotto-main', LottoMain);

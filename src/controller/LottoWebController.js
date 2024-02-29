@@ -17,15 +17,12 @@ class LottoWebController {
 
   #processCalculateRank({ winningNumbers, bonusNumber }) {
     const { lottoNumbersArray } = this.#lottoGameInfo;
-    // console.log(winningNumbers);
-    // console.log(lottoNumbersArray);
-    // console.log(bonusNumber);
     const winningRankCalculator = new WinningRankCalculator({
       winningNumbers,
       lottoNumbersArray,
       bonusNumber,
     });
-    // console.log(winningRankCalculator.execute());
+
     this.#lottoGameInfo.winningRankResult = winningRankCalculator.execute();
   }
 
