@@ -56,10 +56,8 @@ class WinningLottoInput extends Component {
   onFormSubmit(event) {
     try {
       event.preventDefault();
-
       const winningNumbers = this.readWinningNumbers();
       const bonusNumber = this.readBonusNumber(winningNumbers);
-
       this.props.makeWinningLotto(winningNumbers, bonusNumber);
     } catch (error) {
       alert(error.message);

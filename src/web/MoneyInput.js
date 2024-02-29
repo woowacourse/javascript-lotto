@@ -30,9 +30,7 @@ class MoneyInput extends Component {
   onFormSubmit(event) {
     try {
       event.preventDefault();
-
       const money = this.readMoney();
-
       this.props.purchaseLottoTickets(money);
     } catch (error) {
       alert(error.message);

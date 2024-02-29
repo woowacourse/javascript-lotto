@@ -34,15 +34,19 @@ class LottoStatisticsModal extends Component {
   setEvent() {
     const { closeModal, restart } = this.props;
 
-    this.$target.querySelector('.lotto-statistics-modal-overlay').addEventListener('click', (event) => {
-      event.target === this.$target.querySelector('.lotto-statistics-modal-overlay') ? closeModal() : false;
-    });
+    this.$target.addEventListener('click', (event) => {
+      if (event.target.classList.contains('lotto-statistics-modal-overlay')) {
+        closeModal();
+      }
 
-    this.$target.querySelector('.modal-close-btn').addEventListener('click', () => closeModal());
+      if (event.target.classList.contains('modal-close-btn')) {
+        closeModal();
+      }
 
-    this.$target.querySelector('.restart-btn').addEventListener('click', () => {
-      window.scrollTo(0, 0);
-      restart();
+      if (event.target.classList.contains('restart-btn')) {
+        window.scrollTo(0, 0);
+        restart();
+      }
     });
   }
 
