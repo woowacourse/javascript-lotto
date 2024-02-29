@@ -41,7 +41,7 @@ const winningLottoHandler = {
     return winningLotto;
   },
 
-  onClickHandler(event, resolve) {
+  onClickGameResult(event, resolve) {
     event.preventDefault();
     try {
       const winningLotto = this.validateWinningLotto();
