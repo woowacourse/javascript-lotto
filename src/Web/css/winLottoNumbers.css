@@ -8,16 +8,12 @@
 .numbersContainer {
   display: flex;
   justify-content: space-between;
-  font-weight: 400;
-  font-size: 15px;
   line-height: 24px;
   text-align: left;
 }
 
 .winLottoFormDiv {
   display: flex;
-  font-weight: 400;
-  font-size: 15px;
   line-height: 24px;
   text-align: left;
 }

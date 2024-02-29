@@ -52,7 +52,7 @@ td {
   justify-content: center;
   width: 33%;
   height: 24px;
-  font-size: 15px;
+
   line-height: 24px;
   letter-spacing: 0.5px;
 }
@@ -61,13 +61,8 @@ th {
   font-weight: 600;
 }
 
-td {
-  font-weight: 400;
-}
-
 .rateOfIncomeResultContainer {
   font-weight: 700;
-  font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
   text-align: center;
