@@ -1,6 +1,20 @@
+import { $ } from '../../util/domSelector';
+import Lotto from '../../domain/Lotto';
+import LottoMachine from '../../service/LottoMachine';
+
 class LottoGameApp extends HTMLElement {
+  #lottos;
+
   connectedCallback() {
     this.#render();
+    $('purchase-form').addEventListener('purchaseLotto', this.#handleCustomEvent.bind(this));
+  }
+
+  #handleCustomEvent(event) {
+    const { purchaseAmount } = event.detail;
+    const lottoList = new LottoMachine(purchaseAmount).getLottoNumbersList();
+    this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
+    this.dispatchEvent(new CustomEvent('purchaseResult', { detail: { lottoList } }));
   }
 
   #render() {
