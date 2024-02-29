@@ -2,7 +2,6 @@ export default function purchaseAfter(count, lottos) {
   return `
     <div class="lp-ticket-issuance">
       <span class="lp-ti-total-purchase-number">총 ${count}개를 구입하였습니다.</span>
-      <div class="more-button">▼</div>
       <div class="lp-ti-ticket-group">
       ${printLotto(lottos)}
       </div>
