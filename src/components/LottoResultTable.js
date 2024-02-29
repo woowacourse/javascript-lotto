@@ -1,6 +1,6 @@
 import './LottoResultTable.css';
 
-const LOTTO_RESULT_TABLE = `
+const LOTTO_RESULT_TABLE = (winningRankResult) => `
   <div class="divider"></div>
   <div class="table-col">
     <div class="count-row">
@@ -22,7 +22,7 @@ const LOTTO_RESULT_TABLE = `
       <p class="lotto-body">5,000</p>
     </div>
     <div class="match-row">
-      <p class="lotto-body">n개</p>
+      <p class="lotto-body">${winningRankResult['5th']}개</p>
     </div>
   </div>
   <div class="divider"></div>
@@ -34,7 +34,7 @@ const LOTTO_RESULT_TABLE = `
       <p class="lotto-body">50,000</p>
     </div>
     <div class="match-row">
-      <p class="lotto-body">n개</p>
+      <p class="lotto-body">${winningRankResult['4th']}개</p>
     </div>
   </div>
   <div class="divider"></div>
@@ -46,7 +46,7 @@ const LOTTO_RESULT_TABLE = `
       <p class="lotto-body">1,500,000</p>
     </div>
     <div class="match-row">
-      <p class="lotto-body">n개</p>
+      <p class="lotto-body">${winningRankResult['3rd']}개</p>
     </div>
   </div>
   <div class="divider"></div>
@@ -58,7 +58,7 @@ const LOTTO_RESULT_TABLE = `
       <p class="lotto-body">30,000,000</p>
     </div>
     <div class="match-row">
-      <p class="lotto-body">n개</p>
+      <p class="lotto-body">${winningRankResult['2nd']}개</p>
     </div>
   </div>
   <div class="divider"></div>
@@ -70,7 +70,7 @@ const LOTTO_RESULT_TABLE = `
       <p class="lotto-body">2,000,000,000</p>
     </div>
     <div class="match-row">
-      <p class="lotto-body">n개</p>
+      <p class="lotto-body">${winningRankResult['1st']}개</p>
     </div>
   </div>
   <div class="divider"></div>
@@ -82,7 +82,9 @@ class LottoResultTable extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = LOTTO_RESULT_TABLE;
+    const app = document.querySelector('lotto-app');
+    const { winningRankResult } = app.controller().getLottoGameInfo();
+    this.innerHTML = LOTTO_RESULT_TABLE(winningRankResult);
   }
 }
 
