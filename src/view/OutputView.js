@@ -12,8 +12,8 @@ const OutputView = {
 
   printWinningResults(winningResults) {
     handleIO.print(GAME_MESSAGE.LOTTO_WINNING_RESULT_TITLE);
-    Object.entries(RANKING).forEach(([matchedKey, { TITILE, REWARD }]) => {
-      handleIO.print(`${TITILE} (${REWARD.toLocaleString()}원) - ${winningResults[matchedKey]}개`);
+    Object.entries(RANKING).forEach(([matchedKey, { TITLE, REWARD }]) => {
+      handleIO.print(`${TITLE} (${REWARD.toLocaleString()}원) - ${winningResults[matchedKey]}개`);
     });
   },
 
