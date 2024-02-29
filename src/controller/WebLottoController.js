@@ -121,6 +121,7 @@ class WebLottoController {
       });
 
     this.clickExitButtonHandler();
+    this.clickRestartButtonHandler();
   }
 
   clickExitButtonHandler() {
@@ -129,6 +130,14 @@ class WebLottoController {
 
     $modalExitButton.addEventListener('click', () => {
       $resultModal.classList.add('hidden');
+    });
+  }
+
+  clickRestartButtonHandler() {
+    const $restartButton = document.getElementById('restart-button');
+
+    $restartButton.addEventListener('click', () => {
+      location.reload();
     });
   }
 }
