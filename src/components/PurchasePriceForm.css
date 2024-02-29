@@ -4,6 +4,7 @@ purchase-price-form {
   align-items: end;
 
   width: 100%;
+  height: min-content;
 }
 
 purchase-price-form .lotto-button {

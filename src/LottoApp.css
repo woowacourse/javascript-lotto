@@ -2,6 +2,7 @@
   --lotto-primary: #4e5ba6;
   --lotto-primary-hover: #6272cd;
   --lotto-primary-active: #414c89;
+  --lotto-danger: #cc0000;
   --lotto-greyscale-1: #ffffff;
   --lotto-greyscale-2: #fcfcfd;
   --lotto-greyscale-3: #b4b4b4;
@@ -57,6 +58,17 @@
   text-align: left;
 
   color: var(--lotto-greyscale-5);
+}
+.error-message {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  line-height: 16px;
+  text-align: left;
+
+  color: var(--lotto-danger);
 }
 
 html {

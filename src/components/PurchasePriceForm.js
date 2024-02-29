@@ -30,9 +30,13 @@ class PurchasePriceForm extends HTMLElement {
 
     purchaseButton.addEventListener('click', () => {
       const price = this.querySelector('price-input-field').getValue();
-      BuyLottoPriceValidator.check(price);
-
-      this.#purchaseEvent(Number(price));
+      try {
+        BuyLottoPriceValidator.check(price);
+        this.#purchaseEvent(Number(price));
+        this.connectedCallback();
+      } catch (error) {
+        this.querySelector('price-input-field').setErrorMessage(error);
+      }
     });
   }
 
