@@ -1,6 +1,7 @@
 import '../../css/modal.css';
 
 import { appendChildren, makeElementById, makeElementWithClassName } from '../../utils';
+import { RANK_WIN_AMOUNT } from '../../../Domain/WinLottoNumber';
 
 const RANK_STRING = Object.freeze({
   1: '6개',
@@ -8,14 +9,6 @@ const RANK_STRING = Object.freeze({
   3: '5개',
   4: '4개',
   5: '3개',
-});
-
-const RANK_WIN_AMOUNT = Object.freeze({
-  1: '2,000,000,000',
-  2: '30,000,000',
-  3: '1,500,000',
-  4: '50,000',
-  5: '5,000',
 });
 
 const ResultModal = Object.freeze({
