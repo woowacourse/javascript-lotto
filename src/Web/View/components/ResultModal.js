@@ -76,7 +76,7 @@ const ResultModal = Object.freeze({
     modalResultRankRow.innerHTML = `<tr>
   <td>${RANK_STRING[rank]}</td>
   <td>${RANK_WIN_AMOUNT[rank]}</td>
-  <td>${count}</td>
+  <td>${count}개</td>
 </tr>`;
     return modalResultRankRow;
   },
