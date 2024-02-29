@@ -15,7 +15,7 @@
       </header>
       <div id="game_box">
         <div>
-          <h2 id="title">🎱 내 번호 당첨 확인 🎱</h2>
+          <h2 class="title">🎱 내 번호 당첨 확인 🎱</h2>
           <div id="purchaseAmount_container">
             <p class="subtitle">구입할 금액을 입력해주세요.</p>
             <form id="input_form">
@@ -25,7 +25,7 @@
             <p id="invalid_purchaseAmount" />
           </div>
           <div class="after_purchase">
-            <p id="purchase_number">총 0개를 구매하였습니다.</p>
+            <p id="purchase_number" />
             <ul id="lotto_list"></ul>
           </div>
         </div>
@@ -55,9 +55,9 @@
         </div>
       </div>
       <dialog id="result_dialog">
-        <form method="dialog" class="dialog-content">
-          <button id="close">X</button>
-          <div class="title">🏆 당첨 통계 🏆</div>
+        <div method="dialog" class="dialog-content">
+          <button id="close_dialog">X</button>
+          <h2 class="title">🏆 당첨 통계 🏆</h2>
           <table id="result_body">
             <tr>
               <th>일치 갯수</th>
@@ -92,7 +92,7 @@
           </table>
           <div id="profit">당신의 총 수익률은 0%입니다.</div>
           <button id="retry_button">다시 시작하기</button>
-        </form>
+        </div>
       </dialog>
       <footer>Copyright 2023. woowacourse</footer>
     </div>

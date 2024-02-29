@@ -43,7 +43,7 @@ button {
   justify-content: space-between;
 }
 
-#title {
+.title {
   margin: 20px;
   display: flex;
   justify-content: center;

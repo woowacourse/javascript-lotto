@@ -21,7 +21,7 @@ dialog {
   justify-content: space-between;
 }
 
-#close {
+#close_dialog {
   position: absolute;
   right: 20px;
   background: none;

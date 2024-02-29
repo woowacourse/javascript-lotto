@@ -8,10 +8,12 @@ import WebView from "../view/webView.js";
 const purchaseAmountInput = document.getElementById("input_purchaseAmount");
 const purchaseButton = document.getElementById("purchase_button");
 
-const resultButton = document.getElementById("result_button");
-const retryButton = document.getElementById("retry_button");
-
 const winningNumbers = document.querySelectorAll(".input_winningNumber");
+const resultButton = document.getElementById("result_button");
+
+const dialog = document.getElementById("result_dialog");
+const closeDialogButton = document.getElementById("close_dialog");
+const retryButton = document.getElementById("retry_button");
 
 class WebController {
   async start() {
@@ -71,7 +73,10 @@ class WebController {
   #getWinningLotto() {
     return new Promise((resolve) => {
       resultButton.addEventListener("click", (event) => {
-        winningLottoHandler.onClickHandler(event, resolve);
+        winningLottoHandler.onClickGameResult(event, resolve);
+      });
+      closeDialogButton.addEventListener("click", () => {
+        dialog.close();
       });
     });
   }
