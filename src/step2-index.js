@@ -10,3 +10,4 @@ import './web/component/LottoGameApp';
 
 import './web/component/PurchaseForm';
 import './web/component/PurchaseResult';
+import './web/component/WinningNumbersForm';

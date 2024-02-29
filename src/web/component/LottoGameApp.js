@@ -25,6 +25,7 @@ class LottoGameApp extends HTMLElement {
           <h1>🎱 내 번호 당첨 확인 🎱</h1>
           <purchase-form></purchase-form>
           <purchase-result></purchase-result>
+          <winning-numbers-form></winning-numbers-form>
         </div>
       </main>
       <lotto-footer></lotto-footer>
