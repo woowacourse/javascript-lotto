@@ -2,6 +2,7 @@ export default function purchaseAfter(count, lottos) {
   return `
     <div class="lp-ticket-issuance">
       <span class="lp-ti-total-purchase-number">총 ${count}개를 구입하였습니다.</span>
+      <div class="more-button">▼</div>
       <div class="lp-ti-ticket-group">
       ${printLotto(lottos)}
       </div>
@@ -13,7 +14,7 @@ export default function purchaseAfter(count, lottos) {
         <span class="lp-nig-bonus-number">보너스 번호</span>
       </div>
       <div class="lp-nig-number-input-group">
-        <div class="lp-nig-winnig-box">
+        <div class="lp-nig-winning-box">
           <input class="lp-nig-input" type="text" id="winningNumber1" maxlength="2" required />
           <input class="lp-nig-input" type="text" id="winningNumber2" maxlength="2" required />
           <input class="lp-nig-input" type="text" id="winningNumber3" maxlength="2" required />
