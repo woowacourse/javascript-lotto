@@ -13,6 +13,8 @@ const lottoController = new LottoController();
 
 window.onload = function () {
   const purchaseForm = document.getElementById('purchaseInputSection');
+  const winningAndBonusForm = document.getElementById('winningAndBonusSection');
+  const resultButton = document.getElementById('winningAndBonusSubmitButton');
 
   purchaseForm.addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -20,10 +22,13 @@ window.onload = function () {
     await lottoController.purchaseLottos(purchaseAmount);
   });
 
-  const winningAndBonusForm = document.getElementById('winningAndBonusSection');
-
   winningAndBonusForm.addEventListener('submit', async function (event) {
     event.preventDefault();
     await lottoController.runGame();
+  });
+
+  resultButton.addEventListener('click', function () {
+    const modalContainer = document.getElementById('modalContainer');
+    modalContainer.style.display = 'flex';
   });
 };
