@@ -1,0 +1,8 @@
+.winningLottoNumbersInput {
+  display: flex;
+  gap: 0.5rem;
+}
+.winningLottoNumberInput {
+  border: 1px solid gray;
+  background-color: red;
+}
