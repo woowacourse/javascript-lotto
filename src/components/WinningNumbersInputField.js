@@ -18,11 +18,22 @@ const WINNING_NUMBERS_INPUT_FIELD = `
 class WinningNumbersInputField extends HTMLElement {
   connectedCallback() {
     this.render();
+    // this.#setEventListener();
   }
 
   render() {
     this.innerHTML = WINNING_NUMBERS_INPUT_FIELD;
   }
+
+  // #setEventListener() {
+  //   const inputFields = this.querySelectorAll('number-input-field');
+  //   inputFields.forEach((inputField) => {
+  //     inputField.addEventListener('input', () => {
+  //       const winningNumbersInput = new CustomEvent('winningNumbersInput');
+  //       this.dispatchEvent(winningNumbersInput);
+  //     });
+  //   });
+  // }
 
   getValue() {
     const winningNumbers = [];

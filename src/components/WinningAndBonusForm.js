@@ -22,6 +22,7 @@ class WinningNumbersForm extends HTMLElement {
   connectedCallback() {
     this.render();
     this.#setEventListener();
+    this.#setInputListener();
   }
 
   render() {
@@ -37,6 +38,22 @@ class WinningNumbersForm extends HTMLElement {
 
       this.#errorHandler({ winningNumbers, bonusNumber });
     });
+  }
+
+  #setInputListener() {
+    this.addEventListener('input', () => {
+      console.log('!!!');
+      const button = this.querySelector('button');
+      button.disabled = !this.#isAllFilled();
+    });
+  }
+
+  #isAllFilled() {
+    const winningNumbersInput = this.querySelector('winning-numbers-input-field').getValue();
+    const bonusNumberInput = this.querySelector('bonus-number-input-field').getValue();
+    const hasEmptyWinningNumber = winningNumbersInput.includes(0);
+
+    return !hasEmptyWinningNumber && bonusNumberInput !== 0;
   }
 
   #lottoResultEvent({ winningNumbers, bonusNumber }) {
