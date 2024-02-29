@@ -1,19 +1,36 @@
-import header from './view/web/header.js';
-import main from './view/web/main.js';
-import footer from './view/web/footer.js';
-import modal from './view/web/modal.js';
+import Header from './view/web/Header.js';
+import Main from './view/web/Main.js';
+import Footer from './view/web/Footer.js';
+import Modal from './view/web/Modal.js';
+import EventController from './view/web/controller/EventController.js';
+import { $ } from './view/web/utils/dom.js';
 import './styles/reset.css';
 import './styles/index.css';
 import './styles/modal.css';
 
-document.querySelector('#app').innerHTML = `
-  <header></header>
-  <main></main>
-  <footer></footer>
-  <div id="modal-container"></div>
-`;
+$('#app').appendChild(Header());
+$('#app').appendChild(Main());
+$('#app').appendChild(Footer());
+$('#app').appendChild(Modal());
 
-header(document.querySelector('header'), '🎱 행운의 로또');
-main(document.querySelector('main'));
-footer(document.querySelector('footer'));
-modal(document.querySelector('#modal-container'));
+window.onload = () => {
+  const eventController = new EventController();
+
+  const handleCloseBtn = (event) => {
+    event.preventDefault();
+    $('#modal-container').style.visibility = 'hidden';
+  };
+
+  const handleRetryBtn = (event) => {
+    event.preventDefault();
+    $('#buy-lotto-form').reset();
+    $('#winning-lotto-form').reset();
+    $('#step2').style.visibility = 'hidden';
+    $('#modal-container').style.visibility = 'hidden';
+  };
+
+  $('#buy-lotto-form').addEventListener('submit', (event) => eventController.onSubmitBuyForm(event));
+  $('#winning-lotto-form').addEventListener('submit', (event) => eventController.handleWinningLottoForm(event));
+  $('#close-btn').addEventListener('click', handleCloseBtn);
+  $('#retry-btn').addEventListener('click', handleRetryBtn);
+};
