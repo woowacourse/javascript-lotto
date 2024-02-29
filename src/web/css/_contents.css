@@ -13,7 +13,7 @@ main {
 
 main .contents {
   position: relative;
-  width: 414px;
+  width: var(--contents-width);
   height: 727px;
   background-color: var(--lotto-greyScale1-color);
   border: 1px solid #0000001f;
@@ -21,6 +21,9 @@ main .contents {
   box-sizing: border-box;
 }
 
+main .contents > section {
+  width: calc(var(--contents-width) - 16px * 2);
+}
 main .contents > header {
   font-weight: var(--lotto-title-fontWeight);
   font-size: var(--lotto-title-fontSize);
@@ -29,6 +32,7 @@ main .contents > header {
   padding-bottom: 28px;
   text-align: center;
 }
+
 .icon-toggleRule {
   background-color: initial;
   padding: 0;
@@ -90,7 +94,6 @@ main .contents > header {
   margin-top: 24px;
   position: absolute;
   bottom: 27px;
-  left: 16px;
 }
 
 .winningCriteria > div:nth-child(2) {
@@ -125,7 +128,6 @@ main .contents > header {
 .winningCriteria__inputGroupContainer {
   display: flex;
   justify-content: space-between;
-  width: 100%;
 }
 .winningCriteria__form_lottoNumbers {
   width: fit-content;
@@ -162,5 +164,30 @@ main .contents > header {
   }
 }
 .btn-checkResult {
-  width: calc(414px - 16px * 2);
+  width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+  main .contents {
+    width: var(--contents-small-mobile-width);
+    padding: 0 7px;
+  }
+
+  main .contents > section {
+    width: calc(var(--contents-small-mobile-width) - 14px);
+  }
+  .paymentAmount input {
+    width: 280px;
+  }
+
+  .winningCriteria {
+    bottom: 10px;
+  }
+  .winningCriteria__form section header {
+    font-size: 14px;
+  }
+  .winningCriteria__form section input {
+    width: 38px;
+    padding-left: 3px;
+  }
 }

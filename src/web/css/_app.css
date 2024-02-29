@@ -3,9 +3,10 @@
   flex-direction: column;
   justify-content: flex-start;
   width: 100vw;
+  height: 100vh;
   max-width: 1440px;
-  height: 1024px;
-  margin: 0 auto;
+  min-height: 1024px;
+  margin: auto;
   font-family: var(--lotto-fontFamily);
   font-size: var(--lotto-bodyAndPlaceholder-fontSize);
   font-weight: var(--lotto-bodyAndPlaceholder-fontWeight);
@@ -19,6 +20,7 @@
   position: relative;
   width: inherit;
   height: inherit;
+  min-height: inherit;
   max-width: inherit;
   display: flex;
   flex-direction: column;
@@ -47,4 +49,14 @@
   color: var(--lotto-primary-color);
   font-size: var(--lotto-caption-fontSize);
   font-weight: var(--lotto-caption-fontWeight);
+}
+
+@media screen and (max-width: 768px) {
+  #app {
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  #app .popup {
+    height: calc(100vh + 50px);
+  }
 }

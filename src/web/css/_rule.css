@@ -31,3 +31,9 @@
 .icon-toggleRule {
   font-size: 14px;
 }
+
+@media screen and (max-width: 425px) {
+  .rule {
+    right: 15px;
+  }
+}
