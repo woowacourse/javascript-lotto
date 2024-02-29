@@ -39,6 +39,15 @@
   text-align: left;
 }
 
+.error-message {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  color: red;
+}
+
 /* Colors */
 :root {
   --blue: #4e5ba6;

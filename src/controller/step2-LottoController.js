@@ -15,21 +15,27 @@ class LottoController {
     this.#lottoMachine = new LottoMachine();
   }
 
-  async getInputAndValidate(input, validateFunction) {
+  // eslint-disable-next-line max-params
+  async getInputAndValidate(input, validateFunction, elementId) {
+    const errorElement = document.getElementById(elementId);
     try {
-      return validateFunction(input) ?? input;
+      const result = validateFunction(input) ?? input;
+      errorElement.textContent = '';
+      return result;
     } catch (error) {
-      console.error(error.message);
+      errorElement.textContent = error.message;
       return null;
     }
   }
 
   async inputPurchaseAmount(purchaseAmount) {
-    const validatedPurchaseAmount = await this.getInputAndValidate(purchaseAmount, (input) =>
-      PurchaseAmountValidator.validate(parseInt(input.trim(), 10))
+    const validatedPurchaseAmount = await this.getInputAndValidate(
+      purchaseAmount,
+      (input) => PurchaseAmountValidator.validate(parseInt(input.trim(), 10)),
+      'purchaseError'
     );
 
-    return validatedPurchaseAmount ? parseInt(validatedPurchaseAmount.trim(), 10) : null;
+    return validatedPurchaseAmount !== null ? parseInt(validatedPurchaseAmount.trim(), 10) : null;
   }
 
   calculateIssueQuantity(purchaseAmount) {
@@ -71,6 +77,10 @@ class LottoController {
 
   async purchaseLottos(purchaseAmount) {
     const validatedPurchaseAmount = await this.inputPurchaseAmount(purchaseAmount);
+
+    if (validatedPurchaseAmount === null) {
+      return;
+    }
     const issueQuantity = this.calculateIssueQuantity(validatedPurchaseAmount);
     const lottos = this.issueLottos(issueQuantity);
 
