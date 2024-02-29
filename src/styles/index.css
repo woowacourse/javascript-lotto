@@ -85,10 +85,6 @@ article {
   color: var(--lotto-greyscale-5);
 }
 
-#buy-lotto-container {
-  width: 100%;
-}
-
 #buy-lotto-form {
   display: flex;
   justify-content: space-between;
