@@ -37,6 +37,7 @@ class WebLottoController {
   calculateLottoResult(lottoMachine) {
     const $numberForm = document.getElementById('number-form');
     const $numberInputs = document.getElementsByClassName('inputs');
+
     $numberInputs[0].focus();
 
     $numberForm.addEventListener('submit', event => {
@@ -48,6 +49,8 @@ class WebLottoController {
 
         lottoMachine.winningLotto = value.slice(0, 6).join(',');
         lottoMachine.bonusNumber = value[6];
+
+        this.openResultModal(lottoMachine);
       } catch (err) {
         errorAlert(err);
       }
@@ -98,9 +101,35 @@ class WebLottoController {
                 </div>
                 <div><input type="text" class="inputs bonusNumber-input" name="numberInput" maxlength="2" /></div>
               </div>
-              <button type="submit" id="number-button">결과 확인하기</button>
+              <button type="submit" id="number-button" class="lotto-button">결과 확인하기</button>
             </form>`,
     );
+  }
+
+  openResultModal(lottoMachine) {
+    const $resultModal = document.getElementById('result-modal');
+    const $lottoResultTbodyRank = document.getElementsByClassName('lotto-result-tbody-rank');
+
+    $resultModal.classList.remove('hidden');
+
+    const totalLottoRanks = lottoMachine.countLottoRanks();
+
+    Array.from($lottoResultTbodyRank)
+      .reverse() // 상수값에 순서가 반대로 들어가 있었습니다.
+      .forEach((rank, idx) => {
+        rank.insertAdjacentHTML('afterbegin', `${totalLottoRanks[idx][1]}개`);
+      });
+
+    this.clickExitButtonHandler();
+  }
+
+  clickExitButtonHandler() {
+    const $modalExitButton = document.getElementById('modal-exit-button');
+    const $resultModal = document.getElementById('result-modal');
+
+    $modalExitButton.addEventListener('click', () => {
+      $resultModal.classList.add('hidden');
+    });
   }
 }
 

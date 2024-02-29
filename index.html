@@ -15,13 +15,13 @@
       </div>
       <div id="lotto-body">
         <div id="lotto-content">
-          <div id="lotto-content-title">🎱 내 번호 당첨 확인 🎱</div>
+          <div id="lotto-content-title" class="title-text">🎱 내 번호 당첨 확인 🎱</div>
           <form id="money-form">
-            <label id="money-label" for="money-input">
+            <label class="body-text" for="money-input">
               구입할 금액을 입력해주세요.<input type="text" id="money-input" placeholder="금액" />
             </label>
 
-            <button id="money-button" type="submit" form="money-form">구입</button>
+            <button id="money-button" class="lotto-button" type="submit" form="money-form">구입</button>
           </form>
           <div id="lotto-count-message-container">
             <!--lotto Count Notice -->
@@ -35,6 +35,53 @@
         </div>
       </div>
       <div id="lotto-footer"></div>
+      <div id="result-modal" class="hidden">
+        <div class="modal-container">
+          <div class="modal-content">
+            <button id="modal-exit-button" class="exit-button">X</button>
+            <header class="subtitle-text">🏆 당첨 통계 🏆</header>
+            <sector class="modal-table-container">
+              <table>
+                <thead class="table-border">
+                  <tr class="table-row">
+                    <th scope="col" class="semi">일치 갯수</th>
+                    <th scope="col" class="semi">당첨금</th>
+                    <th scope="col" class="semi">당첨 갯수</th>
+                  </tr>
+                </thead>
+                <tbody id="lotto-result-tbody" class="body-text">
+                  <tr class="table-border table-row">
+                    <td>3개</td>
+                    <td>5,000</td>
+                    <td class="lotto-result-tbody-rank"></td>
+                  </tr>
+                  <tr class="table-border table-row">
+                    <td>4개</td>
+                    <td>50,000</td>
+                    <td class="lotto-result-tbody-rank"></td>
+                  </tr>
+                  <tr class="table-border table-row">
+                    <td>5개</td>
+                    <td>1,500,000</td>
+                    <td class="lotto-result-tbody-rank"></td>
+                  </tr>
+                  <tr class="table-border table-row">
+                    <td>5개+보너스볼</td>
+                    <td>30,000,000</td>
+                    <td class="lotto-result-tbody-rank"></td>
+                  </tr>
+                  <tr class="table-border table-row">
+                    <td>6개</td>
+                    <td>2,000,000,000</td>
+                    <td class="lotto-result-tbody-rank"></td>
+                  </tr>
+                </tbody></table
+            ></sector>
+            <div class="semi">당신의 총 수익률은 %입니다</div>
+            <button id="restart-button" class="lotto-button">다시 시작하기</button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
