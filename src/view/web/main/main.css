@@ -7,24 +7,15 @@
   width: 100vw;
 }
 
-article {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 0 16px;
-  height: 727px;
-  max-width: 414px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+.first-section {
+  margin-top: 40px;
 }
 
-.lotto-section {
-  width: 100%;
+.next-section {
+  margin-bottom: 32px;
 }
 
 #lotto-title {
-  top: 40px;
   width: 100%;
   height: 36px;
   display: flex;
@@ -82,11 +73,6 @@ article {
   font-weight: 700;
   font-size: 14px;
   height: 36px;
-}
-
-input[type='submit']:hover {
-  cursor: pointer;
-  opacity: 0.7;
 }
 
 .input-error {

@@ -17,3 +17,24 @@ input::-webkit-inner-spin-button {
   align-items: center;
   overflow: hidden;
 }
+
+section {
+  width: 100%;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+  height: 727px;
+  max-width: 414px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+input[type='submit']:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
