@@ -1,29 +1,43 @@
-export default function content(element) {
-  const render = (element) => {
-    element.innerHTML = `
-      <section id="lotto-title"><h1>🎱 내 당첨번호 확인 🎱</h1></section>
-      
-      <div id="buy-lotto-container">
-        <form id="buy-lotto-form">
-          <div id="buy-lotto-container">
-            <label id="buy-lotto-input-label" for="buy-lotto-input">구입할 금액을 입력해주세요.</label>
-            <input id="buy-lotto-input" placeholder="금액" type="number" required step="1000" min="1000" />
-          </div>
-          <input id="buy-btn" type="submit" value="구입" />
-        </form>
-        <span class="input-error"></span>
-      </div>
+import BuyLottoForm from './BuyLottoForm.js';
+import WinningLottoContent from './WinningLottoContent.js';
 
-      <div id="step2">
-        <span id="total-buy-text"></span>
-        <div id="lotto-tickets-container">
-          <ul>
-          </ul>
-        </div>
+export default function Content() {
+  const article = document.createElement('article');
+  const titleSection = document.createElement('section');
+  const title = document.createElement('h1');
 
-        <div id="winning-lotto-container"></div>
-      </div>
-    `;
-  };
-  render(element);
+  title.innerText = '🎱 내 당첨번호 확인 🎱';
+  titleSection.setAttribute('id', 'lotto-title');
+  titleSection.appendChild(title);
+
+  // lottoContainer
+  const lottoContainer = document.createElement('section');
+  const errorMessage = document.createElement('span');
+
+  lottoContainer.setAttribute('id', 'buy-lotto-container');
+  errorMessage.classList.add('input-error');
+
+  lottoContainer.appendChild(BuyLottoForm());
+  lottoContainer.appendChild(errorMessage);
+
+  // nextSection
+  const nextSection = document.createElement('section');
+  nextSection.setAttribute('id', 'step2');
+  const buyTotalText = document.createElement('span');
+  buyTotalText.setAttribute('id', 'total-buy-text');
+  const lottoTicketsContainer = document.createElement('section');
+  const ul = document.createElement('ul');
+  lottoTicketsContainer.setAttribute('id', 'lotto-tickets-container');
+
+  lottoTicketsContainer.appendChild(ul);
+
+  nextSection.appendChild(buyTotalText);
+  nextSection.appendChild(lottoTicketsContainer);
+  nextSection.appendChild(WinningLottoContent());
+  lottoContainer.appendChild(nextSection);
+
+  article.appendChild(titleSection);
+  article.appendChild(lottoContainer);
+
+  return article;
 }

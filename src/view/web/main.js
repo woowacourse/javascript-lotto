@@ -1,20 +1,9 @@
-import EventController from './controller/EventController.js';
-import content from './content.js';
-import winningLottoContent from './winningLottoContent.js';
-import { $ } from './utils/dom.js';
+import Content from './Content.js';
 
-export default function main(element) {
-  const eventController = new EventController();
+export default function Main() {
+  const main = document.createElement('main');
 
-  const render = (element) => {
-    element.innerHTML = `
-    <article></article>
-    `;
-  };
+  main.appendChild(Content());
 
-  render(element);
-  content(document.querySelector('article'));
-  winningLottoContent($('#winning-lotto-container'));
-  $('#buy-lotto-form').addEventListener('submit', (event) => eventController.onSubmitBuyForm(event));
-  $('#winning-lotto-form').addEventListener('submit', (event) => eventController.handleWinningLottoForm(event));
+  return main;
 }
