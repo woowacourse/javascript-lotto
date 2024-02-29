@@ -17,11 +17,11 @@
     <main>
       <section>
         <!-- section 1 -->
-        <p id="mainTitleSection" class="title">🎱 내 번호 당첨 확인 🎱</p>
+        <div id="mainTitleSection" class="section-div title">🎱 내 번호 당첨 확인 🎱</div>
 
         <!-- section 2 -->
-        <form id="purchaseInputSection">
-          <label class="body" for="purchaseInputField"> 구입할 금액을 입력해주세요. </label>
+        <form id="purchaseInputSection" class="section-div body">
+          <label class="body" for="purchaseInputField">구입할 금액을 입력해주세요. </label>
           <div>
             <input id="purchaseInputField" class="placeholder" placeholder="금액" />
             <button id="purchaseSubmitButton" class="caption" type="submit">구입</button>
@@ -29,7 +29,7 @@
         </form>
 
         <!-- section 3 -->
-        <div id="lottoSection" style="display: none">
+        <div id="lottoSection" class="section-div body" style="display: none">
           <p id="lottoMainTitle" class="body"></p>
           <div id="lottoBox"></div>
         </div>

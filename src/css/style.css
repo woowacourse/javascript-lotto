@@ -35,32 +35,27 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 0 16px;
+  gap: 28px;
+}
+
+.section-div {
+  width: 100%;
 }
 
 /* section 1 --------------------- */
 #mainTitleSection {
-  position: absolute;
   top: 40px;
+  width: 382px;
+  margin-top: 40px;
   text-align: center;
-  box-sizing: border-box;
 }
 
 /* section 2 --------------------- */
 #purchaseInputSection {
-  position: absolute;
-  top: 104px;
   width: 382px;
-  height: 64px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-
-#purchaseInputSection label {
-  padding: 8px 8px 0px 8px;
 }
 
 #purchaseInputSection div {
@@ -69,7 +64,7 @@ section {
   gap: 16px;
 }
 
-#purchaseInputSection div input {
+#purchaseInputSection div #purchaseInputField {
   width: 310px;
   height: 36px;
   padding: 0px 8px;
@@ -77,7 +72,7 @@ section {
   border-radius: 4px;
 }
 
-#purchaseInputSection div button {
+#purchaseInputSection div #purchaseSubmitButton {
   width: 56px;
   height: 36px;
   padding: 0px 6px;
@@ -91,12 +86,10 @@ section {
 
 /* section 3 --------------------- */
 #lottoSection {
-  position: absolute;
-  top: 196px;
-  width: 100%;
+  width: 382px;
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 28px;
 }
 
 #lottoSection #lottoMainTitle {
@@ -108,13 +101,24 @@ section {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  overflow-y: scroll;
 }
 
 #lottoSection #lottoBox .lottoTicket {
-  height: 36px;
+  /* height: 36px; */
+  min-height: 36px;
+  max-height: 36px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 10px;
+  font-size: 15px;
+}
+
+#lottoSection #lottoBox .lottoTicket .lottoTicketNumber {
+  width: 24px;
+  text-align: center;
 }
 
 /* footer */

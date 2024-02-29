@@ -51,7 +51,20 @@ class LottoController {
       const lottoNumbers = lotto.getNumbers();
       const lottoTicket = document.createElement('div');
       lottoTicket.className = 'lottoTicket';
-      lottoTicket.textContent = `🎟️ ${lottoNumbers.join(', ')}`;
+      lottoTicket.textContent = `🎟️   `;
+
+      lottoNumbers.forEach((number, index) => {
+        const numberDiv = document.createElement('div');
+        numberDiv.className = 'lottoTicketNumber';
+        if (index < lottoNumbers.length - 1) {
+          numberDiv.textContent = `${number}, `;
+        } else {
+          numberDiv.textContent = number;
+        }
+
+        lottoTicket.appendChild(numberDiv);
+      });
+
       lottoBox.appendChild(lottoTicket);
     });
   }
