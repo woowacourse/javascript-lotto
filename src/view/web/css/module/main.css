@@ -152,6 +152,7 @@ section header h1 {
 
   border: 0.1rem solid var(--grayscale3);
   border-radius: 0.4rem;
+  text-align: center;
 }
 
 .bonus-number {
@@ -174,6 +175,7 @@ section header h1 {
 
   border: 0.1rem solid var(--grayscale3);
   border-radius: 0.4rem;
+  text-align: center;
 }
 
 #read-winning-numbers-submit {
