@@ -19,4 +19,11 @@ window.onload = function () {
     const purchaseAmount = document.getElementById('purchaseInputField').value;
     await lottoController.purchaseLottos(purchaseAmount);
   });
+
+  const winningAndBonusForm = document.getElementById('winningAndBonusSection');
+
+  winningAndBonusForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    await lottoController.runGame();
+  });
 };

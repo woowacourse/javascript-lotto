@@ -35,10 +35,31 @@
         </div>
 
         <!-- section 4 -->
-        //TODO: 당첨번호, 보너스 번호 입력 //TODO: 결과 확인
-
-        <!-- section 5 -->
-        //TODO: 당첨 통계 모달
+        <form id="winningAndBonusSection" class="section-div body" style="display: none">
+          <p id="winningAndBonusTitle" class="body">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+          </p>
+          <div id="winningAndBonusInputSection">
+            <div class="winningAndBonusContainer">
+              <p class="body">당첨 번호</p>
+              <div id="winningInputContainer">
+                <input class="inputRectangle" />
+                <input class="inputRectangle" />
+                <input class="inputRectangle" />
+                <input class="inputRectangle" />
+                <input class="inputRectangle" />
+                <input class="inputRectangle" />
+              </div>
+            </div>
+            <div id="bonusInputContainer" class="winningAndBonusContainer">
+              <p class="body">보너스 번호</p>
+              <input class="inputRectangle" />
+            </div>
+          </div>
+          <button id="winningAndBonusSubmitButton" class="caption" type="submit">
+            결과 확인하기
+          </button>
+        </form>
       </section>
     </main>
 

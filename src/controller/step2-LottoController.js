@@ -2,8 +2,8 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-constant-condition */
 import LottoMachine from '../domain/LottoMachine.js';
-// import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
-// import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
+import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
+import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
 import PurchaseAmountValidator from '../util/validation/PurchaseAmountValidator.js';
 // import RestartValidator from '../util/validation/RestartValidator.js';
 // import OutputView from '../view/OutputView.js';
@@ -73,7 +73,6 @@ class LottoController {
     const validatedPurchaseAmount = await this.inputPurchaseAmount(purchaseAmount);
     const issueQuantity = this.calculateIssueQuantity(validatedPurchaseAmount);
     const lottos = this.issueLottos(issueQuantity);
-    console.log(lottos);
 
     const lottoSection = document.getElementById('lottoSection');
     const lottoMainTitle = document.getElementById('lottoMainTitle');
@@ -82,6 +81,64 @@ class LottoController {
     lottoMainTitle.textContent = `총 ${issueQuantity}개를 구매하였습니다.`;
 
     this.displayLottoNumbersList(lottos);
+
+    const winningAndBonusSection = document.getElementById('winningAndBonusSection');
+    winningAndBonusSection.style.display = 'block';
+  }
+
+  async inputWinningNumbers() {
+    const winningNumbers = Array.from(
+      document.querySelectorAll('#winningInputContainer .inputRectangle')
+    ).map((input) => Number(input.value));
+    console.log(`Inputwinning1: ${winningNumbers}`);
+
+    const validatedWinningNumbers = await this.getInputAndValidate(winningNumbers, (numbers) => {
+      LottoNumbersValidator.validate(numbers);
+      return numbers;
+    });
+
+    console.log(`Inputwinning2: ${validatedWinningNumbers}`);
+    return validatedWinningNumbers;
+  }
+
+  async inputBonusNumber(winningNumbers) {
+    const bonusNumber = Number(
+      document.querySelector('#bonusInputContainer .inputRectangle').value
+    );
+    console.log(`bonusNumber1: ${bonusNumber}`);
+
+    const validatedBonusNumber = await this.getInputAndValidate(bonusNumber, (number) => {
+      BonusNumberValidator.validate(number, winningNumbers);
+      return number;
+    });
+
+    console.log(`bonusNumber2: ${validatedBonusNumber}`);
+
+    return validatedBonusNumber;
+  }
+
+  // async runGame() {
+  //   const winningNumbers = await this.inputWinningNumbers();
+  //   const bonusNumber = await this.inputBonusNumber(winningNumbers);
+
+  //   console.log(`winning: ${winningNumbers}`);
+  //   console.log(`bonus: ${bonusNumber}`);
+  // }
+  async runGame() {
+    const winningNumbers = await this.inputWinningNumbers();
+    if (!winningNumbers) {
+      console.error('Winning numbers are not valid.');
+      return;
+    }
+
+    const bonusNumber = await this.inputBonusNumber(winningNumbers);
+    if (!bonusNumber) {
+      console.error('Bonus number is not valid.');
+      return;
+    }
+
+    console.log(`winning: ${winningNumbers}`);
+    console.log(`bonus: ${bonusNumber}`);
   }
 }
 
