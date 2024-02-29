@@ -45,7 +45,7 @@ const WebView = {
   showGameResult(rank) {
     const reversedRank = Object.values(rank).slice().reverse();
     const tableRows = document.querySelectorAll(
-      "#result_body tr:not(:first-child)",
+      "#result_body tr:nth-child(n+2)",
     );
     tableRows.forEach((row, index) => {
       this.oneTableRow(row, reversedRank[index]);
