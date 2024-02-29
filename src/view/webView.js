@@ -48,11 +48,11 @@ const WebView = {
       "#result_body tr:nth-child(n+2)",
     );
     tableRows.forEach((row, index) => {
-      this.oneTableRow(row, reversedRank[index]);
+      this.showPrizeResultOneRow(row, reversedRank[index]);
     });
   },
 
-  oneTableRow(row, count) {
+  showPrizeResultOneRow(row, count) {
     const tdElement = row.querySelector("td:nth-child(3)");
     if (tdElement) {
       tdElement.textContent = WEB_MESSAGE.WIN_COUNT(count);
