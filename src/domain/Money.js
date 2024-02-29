@@ -16,6 +16,7 @@ export default class Money {
     this.#isNumber(amount);
     this.#isPositiveInteger(amount);
     this.#isThousandUnit(amount);
+    this.#checkPurchaseLimit(amount);
   }
 
   #isNumber(amount) {
@@ -33,6 +34,12 @@ export default class Money {
   #isThousandUnit(amount) {
     if (amount % 1000 !== 0) {
       throw new Error(ERROR_MESSAGE.IS_NOT_THOUSAND_UNIT);
+    }
+  }
+
+  #checkPurchaseLimit(amount) {
+    if (amount > LOTTO_RULE.LIMIT_MONEY) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_LIMIT);
     }
   }
 

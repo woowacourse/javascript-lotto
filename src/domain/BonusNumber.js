@@ -46,7 +46,7 @@ class BonusNumber {
     const winningLottoNumbers = winningLotto.lottoNumbers;
 
     if (winningLottoNumbers.includes(number)) {
-      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_ALREADY_CHOSEN_MESSAGE);
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_ALREADY_CHOSEN);
     }
   }
 
