@@ -5,6 +5,9 @@ import LottoSeller from "../../step1-console/domain/LottoSeller.js";
 import { $ } from "../utils/selector.js";
 import { parseNumber } from "../../step1-console/utils/parseNumber.js";
 
+const BUY_AMOUNT_INPUT_ID = "buying-amount-input";
+const BUY_AMOUNT_ERROR_MESSAGE_ID = "buying-amount-error-message";
+const BUY_AMOUNT_BUTTON_ID = "buying-amount-button";
 export default class BuyAmountForm extends Component {
   #lottosState;
 
@@ -19,10 +22,10 @@ export default class BuyAmountForm extends Component {
   <section class="getting-buying-amount">
     <p class="buying-amount-message body-text">구입할 금액을 입력해주세요.</p>
     <div class="buying-amount-input-group">
-      <input type="number" class="buying-amount-input" placeholder="금액" />
-      <button class="buying-amount-button">구입</button>
+      <input type="number" id=${BUY_AMOUNT_INPUT_ID} class="buying-amount-input" placeholder="금액" />
+      <button id="${BUY_AMOUNT_BUTTON_ID}" class="buying-amount-button">구입</button>
     </div>
-    <p id="buying-amount-error-message" class="error-message"></p>
+    <p id=${BUY_AMOUNT_ERROR_MESSAGE_ID} class="error-message"></p>
   </section>
 `;
   }
@@ -30,22 +33,23 @@ export default class BuyAmountForm extends Component {
   _setEvent() {
     const buyingAmountClickHandler = this._attachErrorHandler(
       this.#handleBuyLotto.bind(this),
-      "buying-amount-error-message"
+      BUY_AMOUNT_ERROR_MESSAGE_ID
     );
 
-    $(".buying-amount-button").addEventListener(
+    $(`#${BUY_AMOUNT_BUTTON_ID}`).addEventListener(
       "click",
       buyingAmountClickHandler
     );
   }
 
   #handleBuyLotto() {
-    const buyAmount = $(".buying-amount-input").value;
+    const buyAmount = $(`#${BUY_AMOUNT_INPUT_ID}`).value;
 
     const lottos = this.#buyLottos(buyAmount);
 
-    this.#lottosState.setState(lottos);
     this.#resetErrorMessage();
+    this.#resetInput();
+    this.#lottosState.setState(lottos);
   }
 
   #buyLottos(rawBuyAmount) {
@@ -56,6 +60,10 @@ export default class BuyAmountForm extends Component {
   }
 
   #resetErrorMessage() {
-    $("#buying-amount-error-message").textContent = "";
+    $(`#${BUY_AMOUNT_ERROR_MESSAGE_ID}`).textContent = "";
+  }
+
+  #resetInput() {
+    $(`#${BUY_AMOUNT_INPUT_ID}`).value = "";
   }
 }

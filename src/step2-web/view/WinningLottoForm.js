@@ -10,18 +10,14 @@ import LottoNumber from "../../step1-console/domain/LottoNumber.js";
 import LottoResultMaker from "../../step1-console/domain/LottoResultMaker.js";
 import { parseNumber } from "../../step1-console/utils/parseNumber.js";
 
+const CHECK_RESULT_BUTTON_ID = "check-result-button";
 const ERROR_MESSAGE_ELEMENT_ID = "winning-lotto-error-message";
 const LOTTO_NUMBER_INPUT_CLASS = "lotto-number-input";
 export default class WinningLottoForm extends Component {
   #lottosState;
   #lottoResultState;
 
-  constructor({
-    targetElementId,
-    lottosState,
-    lottoResultState,
-    isResultModalOnState,
-  }) {
+  constructor({ targetElementId, lottosState, lottoResultState }) {
     super(targetElementId);
 
     this.#lottosState = lottosState;
@@ -41,25 +37,28 @@ export default class WinningLottoForm extends Component {
       <p class="winning-lotto-message body-text">지난 주 당첨번호 ${LOTTO_NUMBER_LENGTH}개와 보너스 번호 1개를 입력해주세요.</p>
       <div class="winning-lotto-input-group">
         <div class="number-input-wrapper">
+
           <div class="winning-numbers-group">
             <p class="body-text">당첨 번호</p>
             <div class="winning-numbers-input-wrapper">
               ${lottoNumberInputsTemplate}
             </div>
           </div>
+
           <div class="bonus-number-group">
             <p class="body-text">보너스 번호</p>
             <div class="winning-numbers-input-wrapper">
               ${this.#getLottoNumberInputTemplate()}
             </div>
-            </div>
-            </div>
-            <p id=${ERROR_MESSAGE_ELEMENT_ID} class="error-message"></p>
+          </div>
 
-        <button class="check-result-button">
+        </div>
+        <p id=${ERROR_MESSAGE_ELEMENT_ID} class="error-message"></p>
+
+        <button id=${CHECK_RESULT_BUTTON_ID} class="check-result-button">
           결과 확인하기
-          </button>
-          
+        </button>
+
       </div>
   </section>
   `;
@@ -75,7 +74,7 @@ export default class WinningLottoForm extends Component {
       ERROR_MESSAGE_ELEMENT_ID
     );
 
-    $(".check-result-button").addEventListener(
+    $(`#${CHECK_RESULT_BUTTON_ID}`).addEventListener(
       "click",
       checkResultClickHandler
     );

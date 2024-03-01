@@ -1,6 +1,13 @@
-import { LOTTO_RANK } from "../../step1-console/constants/lotto.js";
+import {
+  LOTTO_RANK_STANDARDS,
+  LOTTO_RANK_TO_PRIZE,
+} from "../../step1-console/constants/lotto.js";
 import Component from "../abstract/Component.js";
 import { $ } from "../utils/selector.js";
+
+const SHOWING_WINNING_RESULT_SECTION_ID = "showing-winning-result";
+const WINNING_RESULT_CLOSE_BUTTON_ID = "winning-result-close-button";
+const LOTTO_RESTART_BUTTON_ID = "lotto-restart-button";
 
 export default class LottoResultModal extends Component {
   #lottosState;
@@ -21,10 +28,14 @@ export default class LottoResultModal extends Component {
 
     const hidden = isResultModalOn ? "" : "hidden";
 
+    const formattedProfitRateMessage = parseFloat(
+      profitRate.toFixed(1)
+    ).toLocaleString();
+
     return `
-    <section class="showing-winning-result ${hidden}">
+    <section id=${SHOWING_WINNING_RESULT_SECTION_ID} class="showing-winning-result" ${hidden}>
     <div class="winning-result-container">
-      <span class="winning-result-close-button">x</span>
+      <span id=${WINNING_RESULT_CLOSE_BUTTON_ID} class="winning-result-close-button">x</span>
       <h3 class="winning-result-title">🏆 당첨 통계 🏆</h3>
       <table class="winning-result-table">
         <thead>
@@ -35,63 +46,51 @@ export default class LottoResultModal extends Component {
           </tr>
         </thead>
         <tbody>
-          <tr class="winning-result-row">
-            <td>3개</td>
-            <td>5,000</td>
-            <td>${rankResult[LOTTO_RANK.fifth]}개</td>
-          </tr>
-          <tr class="winning-result-row">
-            <td>4개</td>
-            <td>50,000</td>
-            <td>${rankResult[LOTTO_RANK.fourth]}개</td>
-          </tr>
-          <tr class="winning-result-row">
-            <td>5개</td>
-            <td>1,500,000</td>
-            <td>${rankResult[LOTTO_RANK.third]}개</td>
-          </tr>
-          <tr class="winning-result-row">
-            <td>5개 + 보너스볼</td>
-            <td>30,000,000</td>
-            <td>${rankResult[LOTTO_RANK.second]}개</td>
-          </tr>
-          <tr class="winning-result-row">
-            <td>6개</td>
-            <td>2,000,000,000</td>
-            <td>${rankResult[LOTTO_RANK.first]}개</td>
-          </tr>
+        ${this.#getWinningResultRowsTemplate(rankResult)}
         </tbody>
       </table>
 
-      <p class="profit-rate-message">당신의 총 수익률은 ${parseFloat(
-        profitRate.toFixed(1)
-      ).toLocaleString()}%입니다.</p>
+      <p class="profit-rate-message">
+      당신의 총 수익률은 ${formattedProfitRateMessage}%입니다.
+      </p>
 
-      <button class="lotto-restart-button">다시 시작하기</button>
+      <button id=${LOTTO_RESTART_BUTTON_ID} class="lotto-restart-button">다시 시작하기</button>
     </div>
   </section>
     `;
   }
 
   _setEvent() {
-    $(".showing-winning-result").addEventListener(
+    $(`#${SHOWING_WINNING_RESULT_SECTION_ID}`).addEventListener(
       "click",
       this.#handleOutsideClick.bind(this)
     );
 
-    $(".winning-result-close-button").addEventListener(
+    $(`#${WINNING_RESULT_CLOSE_BUTTON_ID}`).addEventListener(
       "click",
       this.#handleResultModalCloseButton.bind(this)
     );
 
-    $(".lotto-restart-button").addEventListener(
+    $(`#${LOTTO_RESTART_BUTTON_ID}`).addEventListener(
       "click",
       this.#handleRestartButton.bind(this)
     );
   }
 
+  #getWinningResultRowsTemplate(rankResult) {
+    return LOTTO_RANK_STANDARDS.map(
+      ({ rank, matchCount, hasBonusNumber }) => `
+<tr class="winning-result-row">
+  <td>${matchCount}개 ${hasBonusNumber ? "+ 보너스볼" : ""}</td>
+  <td>${LOTTO_RANK_TO_PRIZE[rank].toLocaleString()}</td>
+  <td>${rankResult[rank]}개</td>
+</tr>
+      `
+    ).join("");
+  }
+
   #handleOutsideClick(e) {
-    if (e.target.classList.contains("showing-winning-result")) {
+    if (e.target.id === SHOWING_WINNING_RESULT_SECTION_ID) {
       this.#closeModal();
     }
   }

@@ -35,8 +35,8 @@ export default class LottoWebApp {
 
   <main>
     <div class="main-content-box">
-    <h2 class="my-lotto-title">🎱 내 번호 당첨 확인 🎱</h2>
-    ${this.#getTargetTemplates()}
+      <h2 class="my-lotto-title">🎱 내 번호 당첨 확인 🎱</h2>
+      ${this.#getTargetTemplates()}
     </div>
   </main>
 
