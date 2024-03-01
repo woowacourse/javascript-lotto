@@ -1,6 +1,3 @@
-.popup.hidden {
-  display: none;
-}
 .popup {
   position: absolute;
   top: 0;

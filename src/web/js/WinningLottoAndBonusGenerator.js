@@ -1,12 +1,15 @@
 import { NUMBER_DELIMITER } from '../../constants';
+import { GAME_STEP } from '../constants/gameStep';
 import StatisticsPopupController from './StatisticsPopupController';
 
-import { handleErrorMessage } from './utils';
+import { changeClassAboutGameStep, handleErrorMessage } from './utils';
 
 class WinningLottoAndBonusGenerator {
   #lottoResultsHelper;
 
-  #formElement;
+  $winningCriteriaFormElement = document.querySelector(
+    '.winning-criteria__form',
+  );
 
   /**
    *
@@ -14,19 +17,12 @@ class WinningLottoAndBonusGenerator {
    */
   constructor(lottoResultsHelper) {
     this.#lottoResultsHelper = lottoResultsHelper;
-    this.#assignElement();
     this.#addEvent();
-  }
-
-  #assignElement() {
-    this.#formElement = document.querySelector('.winning-criteria__form');
   }
 
   #getNumbers() {
     const lottoNumberValues = Array.from(
-      this.#formElement.querySelectorAll(
-        '.winning-criteria__form-lotto-numbers input',
-      ),
+      document.querySelectorAll('.winning-criteria__form-lotto-numbers input'),
     ).map((input) => input.value);
 
     return {
@@ -37,7 +33,6 @@ class WinningLottoAndBonusGenerator {
 
   #generateWinningLottoAndBonus() {
     const { lottoNumberValues, bonusNumberValues } = this.#getNumbers();
-
     const errorMessageElement = document.querySelector(
       '.winning-criteria .message-error',
     );
@@ -46,23 +41,24 @@ class WinningLottoAndBonusGenerator {
       this.#lottoResultsHelper.generateWinningLotto(lottoNumberValues);
       this.#lottoResultsHelper.generateBonus(bonusNumberValues);
 
+      handleErrorMessage(errorMessageElement);
+
       this.#lottoResultsHelper.calculateMatchingResults();
 
-      handleErrorMessage(errorMessageElement);
-      // eslint-disable-next-line
-      const statisticsPopupController = new StatisticsPopupController(
-        this.#lottoResultsHelper,
-      );
+      changeClassAboutGameStep('statistics');
+      new StatisticsPopupController(this.#lottoResultsHelper);
     } catch (error) {
       handleErrorMessage(errorMessageElement, error);
     }
   }
 
   #addEvent() {
-    const btnCheckResultElement = this.#formElement.querySelector('button');
+    this.$winningCriteriaFormElement.addEventListener('submit', (event) =>
+      this.#handleSubmitToGetStatistics(event),
+    );
 
-    btnCheckResultElement.addEventListener('click', (event) =>
-      this.#handleClickBtn(event),
+    this.$winningCriteriaFormElement.addEventListener('reset', (event) =>
+      this.#handleResetForm(event),
     );
   }
 
@@ -70,10 +66,21 @@ class WinningLottoAndBonusGenerator {
     document.querySelector('html').scrollTop = 0;
   }
 
-  #handleClickBtn(event) {
+  #handleSubmitToGetStatistics(event) {
     event.preventDefault();
     this.#moveScrollToTop();
     this.#generateWinningLottoAndBonus();
+  }
+
+  #handleResetForm(event) {
+    event.preventDefault();
+
+    const appInnerElement = document.querySelector('#app .inner');
+    if (appInnerElement.classList.contains(GAME_STEP.payment)) {
+      return;
+    }
+    // TODO 초기화 오류
+    changeClassAboutGameStep('payment');
   }
 }
 

@@ -1,0 +1,19 @@
+.step-payment {
+  .purchase-history,
+  .winning-criteria,
+  .popup {
+    display: none;
+  }
+}
+
+.step-winning {
+  .popup {
+    display: none;
+  }
+}
+
+.step-statistics {
+  .popup {
+    display: flex;
+  }
+}

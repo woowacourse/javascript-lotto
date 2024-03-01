@@ -35,7 +35,7 @@ class StatisticsPopupController {
   }
 
   #openPopup() {
-    HtmlTextInjectorWithGameResults.injectLottoStatistics(
+    HtmlTextInjectorWithGameResults.injectStatisticsTable(
       this.#lottoAnalytics.statisticsResult,
     );
     HtmlTextInjectorWithGameResults.injectProfitRate(
