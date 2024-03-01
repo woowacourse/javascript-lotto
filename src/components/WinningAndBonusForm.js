@@ -23,6 +23,7 @@ class WinningNumbersForm extends HTMLElement {
     this.render();
     this.#setEventListener();
     this.#setInputListener();
+    this.#setEnterListener();
   }
 
   render() {
@@ -33,10 +34,7 @@ class WinningNumbersForm extends HTMLElement {
     const purchaseButton = document.querySelector('#result-button');
 
     purchaseButton.addEventListener('click', () => {
-      const winningNumbers = document.querySelector('winning-numbers-input-field').getValue();
-      const bonusNumber = document.querySelector('bonus-number-input-field').getValue();
-
-      this.#errorHandler({ winningNumbers, bonusNumber });
+      this.#resultHandler();
     });
   }
 
@@ -45,6 +43,35 @@ class WinningNumbersForm extends HTMLElement {
       const button = this.querySelector('#result-button');
       button.setIsDisabled(!this.#isAllFilled());
     });
+  }
+
+  #setEnterListener() {
+    const button = this.querySelector('#result-button');
+    this.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter' && !button.getIsDisabled()) {
+        this.#resultHandler();
+      } else if (event.key === 'Enter') {
+        this.#focusNextInput();
+      }
+    });
+  }
+
+  #resultHandler() {
+    const winningNumbers = this.querySelector('winning-numbers-input-field').getValue();
+    const bonusNumber = this.querySelector('bonus-number-input-field').getValue();
+    this.#errorHandler({ winningNumbers, bonusNumber });
+    document.activeElement.blur();
+  }
+
+  #focusNextInput() {
+    const activeElement = document.activeElement;
+    const focusableElements = Array.from(document.querySelectorAll('input'));
+    const currentIndex = focusableElements.indexOf(activeElement);
+
+    if (currentIndex !== -1 && currentIndex < focusableElements.length - 1) {
+      const nextElement = focusableElements[currentIndex + 1];
+      nextElement.focus();
+    }
   }
 
   #isAllFilled() {

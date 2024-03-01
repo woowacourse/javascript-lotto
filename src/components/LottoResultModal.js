@@ -32,6 +32,7 @@ class LottoResultModal extends HTMLElement {
   #setEventListener() {
     this.#setModalCloseListener();
     this.#setRetryListener();
+    this.#setEnterListener();
   }
 
   #setRetryListener() {
@@ -39,6 +40,15 @@ class LottoResultModal extends HTMLElement {
     retryButton.addEventListener('click', () => {
       const app = document.querySelector('lotto-app');
       app.connectedCallback();
+    });
+  }
+
+  #setEnterListener() {
+    this.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        const app = document.querySelector('lotto-app');
+        app.connectedCallback();
+      }
     });
   }
 
