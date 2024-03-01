@@ -40,6 +40,7 @@ class LottoControllerWeb {
     addEvent(restartButton, 'click', () => {
       window.location.reload();
     });
+
     addEvent(close, 'click', () => {
       outputView.closeModal();
     });

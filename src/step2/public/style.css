@@ -272,7 +272,7 @@ h1 p {
   box-shadow: 0 0 10px 0 var(--color-ligthGray);
 }
 
-.close {
+.x-button {
   width: 0.875rem;
   position: absolute;
   right: 1.25rem;
