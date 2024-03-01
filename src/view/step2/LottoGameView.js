@@ -1,51 +1,85 @@
 import PurchasedLottoes from "./components/PurchasedLottoes";
 import PurchaseAmount from "./components/PurchaseAmount";
 import WinningLotto from "./components/WinningLotto";
-import CheckResultButton from "./components/CheckResultButton";
+import DrawButton from "./components/DrawButton";
+import ResultModal from "./components/ResultModal";
 
 class LottoGameView {
-  #purchaseAmount;
-  #purchasedLottoes;
-  #winningLotto;
-  #checkResultButton;
+  #state;
 
-  constructor({ props, onPurchaseAmountButtonClick }) {
-    this.#purchaseAmount = new PurchaseAmount({ onPurchaseAmountButtonClick });
-    this.#purchasedLottoes = new PurchasedLottoes({
-      props: { lottoes: props.lottoes },
-    });
-    this.#winningLotto = new WinningLotto({
-      props: { isPurchased: !!props.lottoes },
-    });
-    this.#checkResultButton = new CheckResultButton({
-      props: { isPurchased: !!props.lottoes },
-    });
+  constructor() {
+    this.#state = {
+      winningNumbers: Array.from({ length: 6 }).fill(""),
+      bonusNumber: "",
+      isModalOpen: false,
+    };
   }
 
-  render() {
-    const $root = document.createElement("div");
+  #setBonusNumber(bonusNumber) {
+    this.#setState({ ...this.#state, bonusNumber });
+  }
 
+  #setState(nextState) {
+    this.#state = nextState;
+  }
+
+  init($root) {
     const $header = document.createElement("header");
     const $main = document.createElement("main");
     const $footer = document.createElement("footer");
 
     $header.innerHTML = `<h1>🎱 행운의 로또</h1>`;
 
-    const $article = document.createElement("article");
-    $article.innerHTML = `<h1 class="lotto-game__title">🎱 내 번호 당첨 확인 🎱</h1>`;
-    $article.append(
-      this.#purchaseAmount.render(),
-      this.#purchasedLottoes.render(),
-      this.#winningLotto.render(),
-      this.#checkResultButton.render(),
+    $main.append(
+      (() => {
+        const $container = document.createElement("article");
+        $container.id = "container";
+        $container.innerHTML = `<h1 class="lotto-game__title">🎱 내 번호 당첨 확인 🎱</h1>`;
+        return $container;
+      })(),
     );
-    $main.append($article);
 
     $footer.innerHTML = `<p>Copyright 2023. woowacourse</p>`;
 
-    $root.append($header, $main, $footer);
+    $root.replaceChildren($header, $main, $footer);
+  }
 
-    return $root;
+  renderPurchaseAmount({ onPurchaseAmountButtonClick }) {
+    new PurchaseAmount(document.querySelector("#container"), {
+      onPurchaseAmountButtonClick,
+    }).render();
+
+    // this.#resultModalComponent.render(),
+  }
+
+  renderPurchasedLottoes({ lottoes }) {
+    new PurchasedLottoes(document.querySelector("#container"), {
+      lottoes,
+    }).render();
+  }
+
+  renderWinningLotto() {
+    new WinningLotto(document.querySelector("#container"), {
+      winningNumbers: this.#state.winningNumbers,
+      bonusNumber: this.#state.bonusNumber,
+      setBonusNumber: this.#setBonusNumber.bind(this),
+    }).render();
+  }
+
+  renderDrawButton({ onDrawButtonClick }) {
+    new DrawButton(document.querySelector("#container"), {
+      onDrawButtonClick: () => {
+        onDrawButtonClick(this.#state.winningNumbers, this.#state.bonusNumber);
+      },
+    }).render();
+  }
+
+  renderResultModal({ rankings, totalProfitRate, onRetryButtonClick }) {
+    new ResultModal(document.querySelector("#app"), {
+      rankings,
+      totalProfitRate,
+      onRetryButtonClick,
+    }).render();
   }
 }
 

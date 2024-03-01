@@ -1,7 +1,28 @@
 class BonusNumber {
+  #$parent;
+  #props;
+
+  constructor($parent, props) {
+    this.#$parent = $parent;
+    this.#props = props;
+  }
+
   render() {
-    const $root = document.createElement("div");
-    $root.className = "winning-lotto__content__bonus-number";
+    const $oldBonusNumber = this.#$parent.querySelector("#bonus-number");
+    const $newBonusNumber = this.#generateBonusNumber();
+
+    if ($oldBonusNumber) {
+      this.#$parent.replaceChild($newBonusNumber, $oldBonusNumber);
+      return;
+    }
+
+    this.#$parent.append($newBonusNumber);
+  }
+
+  #generateBonusNumber() {
+    const $bonusNumber = document.createElement("div");
+    $bonusNumber.id = "bonus-number";
+    $bonusNumber.className = "winning-lotto__content__bonus-number";
 
     const $title = document.createElement("h4");
     $title.innerText = "보너스 번호";
@@ -9,10 +30,13 @@ class BonusNumber {
     const $input = document.createElement("input");
     $input.className = "input winning-lotto__input";
     $input.type = "text";
+    $input.addEventListener("input", (e) => {
+      this.#props.setBonusNumber(e.target.value);
+    });
 
-    $root.append($title, $input);
+    $bonusNumber.append($title, $input);
 
-    return $root;
+    return $bonusNumber;
   }
 }
 

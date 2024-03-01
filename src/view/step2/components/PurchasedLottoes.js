@@ -1,7 +1,9 @@
 class PurchasedLottoes {
+  #$parent;
   #props;
 
-  constructor({ props }) {
+  constructor($parent, props) {
+    this.#$parent = $parent;
     this.#props = props;
   }
 
@@ -10,15 +12,36 @@ class PurchasedLottoes {
       return "";
     }
 
-    const $root = document.createElement("div");
-    $root.className = "purchased-lottoes";
+    const $oldPurchasedLottoes =
+      this.#$parent.querySelector("#purchased-lottoes");
+    const $newPurchasedLottoes = this.#generatePurchasedLottoes();
+
+    if ($oldPurchasedLottoes) {
+      this.#$parent.replaceChild($newPurchasedLottoes, $oldPurchasedLottoes);
+      return;
+    }
+
+    this.#$parent.append($newPurchasedLottoes);
+  }
+
+  #generatePurchasedLottoes() {
+    const $purchasedLottoes = document.createElement("div");
+    $purchasedLottoes.id = "purchased-lottoes";
+    $purchasedLottoes.className = "purchased-lottoes";
 
     const $title = document.createElement("h3");
     $title.innerText = `총 ${this.#props.lottoes.length}개를 구매하였습니다.`;
 
     const $content = document.createElement("div");
     $content.className = "purchased-lottoes__content";
+    $content.append(...this.#generateContentLottoes());
 
+    $purchasedLottoes.append($title, $content);
+
+    return $purchasedLottoes;
+  }
+
+  #generateContentLottoes() {
     const $lottoes = this.#props.lottoes.map((lotto) => {
       const $contentItem = document.createElement("div");
 
@@ -34,11 +57,7 @@ class PurchasedLottoes {
       return $contentItem;
     });
 
-    $content.append(...$lottoes);
-
-    $root.append($title, $content);
-
-    return $root;
+    return $lottoes;
   }
 }
 
