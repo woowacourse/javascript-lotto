@@ -1,11 +1,10 @@
 import './global.css';
 import './app.css';
 
-import modal from '../../utils/dom/modal';
 import Component from '../core/Component';
-import LottoResultModal from '../lottoResultModal/LottoResultModal';
 import PurchaseSection from '../purchaseSection/PurchaseSection';
 import TitleSection from '../titleSection/TitleSection';
+import LottoResultModal from '../lottoResultModal/LottoResultModal';
 
 class App extends Component {
   template() {
@@ -28,10 +27,14 @@ class App extends Component {
     new LottoResultModal($lottoResultModal);
   }
 
-  setEvent() {
-    document.body.addEventListener('click', e => {
-      if (e.target.id === 'modalBackground') modal.close();
-    });
+  lottoResultModalOpen() {
+    const $lottoNumberError = document.getElementById('lottoNumberError');
+    const $modalBackground = document.getElementById('modalBackground');
+    const $lottoResultModal = document.getElementById('lottoResultModal');
+    document.body.style.overflow = 'hidden';
+    $lottoNumberError.classList.add('hidden');
+    $modalBackground.classList.remove('hidden');
+    $lottoResultModal.classList.remove('hidden');
   }
 }
 

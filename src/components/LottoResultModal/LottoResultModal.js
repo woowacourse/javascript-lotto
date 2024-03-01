@@ -1,7 +1,6 @@
 import './LottoResultModal.css';
 import Component from '../core/Component';
 import dom from '../../utils/dom';
-import modal from '../../utils/dom/modal';
 import eventHandler from '../../utils/dom/eventHandler';
 import { DOM_MESSAGE } from '../../constants/message';
 
@@ -20,16 +19,23 @@ class LottoResultModal extends Component {
   }
 
   setEvent() {
-    dom.$('#closeButton').addEventListener('click', this.handleCloseModal);
-    dom.$('#restartButton').addEventListener('click', this.handleClickRestart);
+    dom.$('#closeButton').addEventListener('click', () => this.close());
+    dom.$('#restartButton').addEventListener('click', () => this.handleClickRestart());
+    document.body.addEventListener('click', e => {
+      if (e.target.id === 'modalBackground') this.close();
+    });
   }
 
-  handleCloseModal() {
-    modal.close();
+  close() {
+    const $modalBackground = document.getElementById('modalBackground');
+    const $lottoResultModal = document.getElementById('lottoResultModal');
+    document.body.style.overflow = 'unset';
+    $modalBackground.classList.add('hidden');
+    $lottoResultModal.classList.add('hidden');
   }
 
   handleClickRestart() {
-    modal.close();
+    this.close();
     eventHandler.restart();
   }
 }

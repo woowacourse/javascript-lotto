@@ -1,7 +1,6 @@
 import CONFIG from '../constants/config.js';
 import LotteryMachine from '../domain/services/LotteryMachine.js';
 import lottoService from '../domain/services/lottoService.js';
-import modal from '../utils/dom/modal.js';
 import webOutputView from '../views/webOutputView.js';
 
 class WebLottoController {
@@ -37,7 +36,6 @@ class WebLottoController {
     const matchedResultList = this.#lottery.map(lotto => lotto.getMatchedAmount(winningNumbers, bonusNumber));
     this.#processLottoResult(matchedResultList);
     this.#processProfit(matchedResultList);
-    modal.open();
   };
 }
 

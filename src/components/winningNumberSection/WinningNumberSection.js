@@ -43,6 +43,7 @@ class WinningNumberSection extends Component {
       if (!bonusNumber) return;
       $lottoNumberError.classList.add('hidden');
       this.props.lottoController.handleLottoResult(winningNumbers, bonusNumber);
+      this.lottoResultModalOpen();
     });
   }
 
@@ -89,6 +90,16 @@ class WinningNumberSection extends Component {
       $lottoNumberError.classList.remove('hidden');
       return false;
     }
+  }
+
+  lottoResultModalOpen() {
+    const $lottoNumberError = document.getElementById('lottoNumberError');
+    const $modalBackground = document.getElementById('modalBackground');
+    const $lottoResultModal = document.getElementById('lottoResultModal');
+    document.body.style.overflow = 'hidden';
+    $lottoNumberError.classList.add('hidden');
+    $modalBackground.classList.remove('hidden');
+    $lottoResultModal.classList.remove('hidden');
   }
 }
 
