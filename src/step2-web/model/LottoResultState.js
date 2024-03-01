@@ -1,7 +1,7 @@
 import { LOTTO_RANK_INITIAL_RESULT } from "../../step1-console/constants/lotto.js";
-import MyState from "../abstract/MyState.js";
+import State from "../abstract/State.js";
 
-export default class LottoResultState extends MyState {
+export default class LottoResultState extends State {
   constructor(
     intialState = {
       rankResult: { ...LOTTO_RANK_INITIAL_RESULT },

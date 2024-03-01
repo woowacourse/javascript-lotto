@@ -1,11 +1,11 @@
-import MyComponent from "../abstract/MyComponent.js";
+import Component from "../abstract/Component.js";
 import Money from "../../step1-console/domain/Money.js";
 import LottoSeller from "../../step1-console/domain/LottoSeller.js";
 
 import { $ } from "../utils/selector.js";
 import { parseNumber } from "../../step1-console/utils/parseNumber.js";
 
-export default class BuyAmountForm extends MyComponent {
+export default class BuyAmountForm extends Component {
   #lottosState;
 
   constructor(targetElementId, lottosState) {

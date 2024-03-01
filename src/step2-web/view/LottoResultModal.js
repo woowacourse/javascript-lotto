@@ -1,8 +1,8 @@
 import { LOTTO_RANK } from "../../step1-console/constants/lotto.js";
-import MyComponent from "../abstract/MyComponent.js";
+import Component from "../abstract/Component.js";
 import { $ } from "../utils/selector.js";
 
-export default class LottoResultModal extends MyComponent {
+export default class LottoResultModal extends Component {
   #lottosState;
   #lottoResultState;
   #isResultModalOnState;
@@ -21,6 +21,8 @@ export default class LottoResultModal extends MyComponent {
   }
 
   _getTemplate() {
+    this.#toggleBodyScrollable();
+
     const { rankResult, profitRate } = this.#lottoResultState.getState();
     const isResultModalOn = this.#isResultModalOnState.getState();
 
@@ -68,9 +70,9 @@ export default class LottoResultModal extends MyComponent {
         </tbody>
       </table>
 
-      <p class="profit-rate-message">당신의 총 수익률은 ${profitRate
-        .toFixed(1)
-        .toLocaleString()}%입니다.</p>
+      <p class="profit-rate-message">당신의 총 수익률은 ${parseFloat(
+        profitRate.toFixed(1)
+      ).toLocaleString()}%입니다.</p>
 
       <button class="lotto-restart-button">다시 시작하기</button>
     </div>
@@ -79,7 +81,10 @@ export default class LottoResultModal extends MyComponent {
   }
 
   _setEvent() {
-    this.#toggleBodyScrollable();
+    $(".showing-winning-result").addEventListener(
+      "click",
+      this.#handleOutsideClick.bind(this)
+    );
 
     $(".winning-result-close-button").addEventListener(
       "click",
@@ -92,7 +97,17 @@ export default class LottoResultModal extends MyComponent {
     );
   }
 
+  #handleOutsideClick(e) {
+    if (e.target.classList.contains("showing-winning-result")) {
+      this.#closeModal();
+    }
+  }
+
   #handleResultModalCloseButton() {
+    this.#closeModal();
+  }
+
+  #closeModal() {
     this.#isResultModalOnState.setState(false);
   }
 

@@ -4,7 +4,7 @@ import { $ } from "../utils/selector.js";
 
 import CustomError from "../../step1-console/utils/CustomError.js";
 
-export default class MyComponent extends Observer {
+export default class Component extends Observer {
   #targetElementId;
 
   constructor(targetElementId) {

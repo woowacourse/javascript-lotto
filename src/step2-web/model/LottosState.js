@@ -1,6 +1,6 @@
-import MyState from "../abstract/MyState.js";
+import State from "../abstract/State.js";
 
-export default class LottosState extends MyState {
+export default class LottosState extends State {
   constructor(initialState = []) {
     super(initialState);
   }

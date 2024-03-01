@@ -1,4 +1,4 @@
-import MyComponent from "../abstract/MyComponent.js";
+import Component from "../abstract/Component.js";
 
 import Lotto, {
   LOTTO_NUMBER_LENGTH,
@@ -9,7 +9,7 @@ import WinningLotto from "../../step1-console/domain/WinningLotto.js";
 import LottoNumber from "../../step1-console/domain/LottoNumber.js";
 import LottoResultMaker from "../../step1-console/domain/LottoResultMaker.js";
 
-export default class WinningLottoForm extends MyComponent {
+export default class WinningLottoForm extends Component {
   #lottosState;
   #lottoResultState;
   #isResultModalOnState;
@@ -51,13 +51,14 @@ export default class WinningLottoForm extends MyComponent {
             <div class="winning-numbers-input-wrapper">
               ${this.#getLottoNumberInputTemplate()}
             </div>
-          </div>
-        </div>
+            </div>
+            </div>
+            <p id="winning-lotto-error-message" class="error-message"></p>
+
         <button class="check-result-button">
           결과 확인하기
           </button>
           
-          <p id="winning-lotto-error-message" class="error-message"></p>
       </div>
   </section>
   `;

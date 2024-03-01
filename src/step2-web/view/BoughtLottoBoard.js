@@ -1,6 +1,6 @@
-import MyComponent from "../abstract/MyComponent.js";
+import Component from "../abstract/Component.js";
 
-export default class BoughtLottoBoard extends MyComponent {
+export default class BoughtLottoBoard extends Component {
   #lottosState;
 
   constructor(targetElementId, lottosState) {
@@ -15,7 +15,9 @@ export default class BoughtLottoBoard extends MyComponent {
     return `
 <section class="showing-bought-lottos">
   ${this.#getLottoCountTemplate(lottos.length)}
+  <div class="bought-lotto-list">
   ${lottos.map((lotto) => this.#getBoughtLottoTemplate(lotto)).join("")}
+  </div>
 </section>
     `;
   }

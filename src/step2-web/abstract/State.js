@@ -3,15 +3,15 @@ import Observable from "./Observable.js";
 import { isObject } from "../utils/typeChecker.js";
 import { deepCopy } from "../utils/deepCopy.js";
 
-export default class MyState extends Observable {
-  #state;
+export default class State extends Observable {
   _initialState;
+  #state;
 
   constructor(initialState) {
     super();
 
-    this.#state = initialState;
     this._initialState = initialState;
+    this.#state = initialState;
   }
 
   getState() {

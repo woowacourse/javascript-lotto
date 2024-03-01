@@ -95,7 +95,7 @@ body {
 }
 
 .showing-bought-lottos {
-  width: fit-content;
+  width: 100%;
 }
 
 .showing-winning-result {
@@ -214,7 +214,7 @@ body {
 .winning-numbers-input-wrapper {
   display: flex;
   justify-content: space-between;
-  margin: 0.5rem 0 1.2rem 0;
+  margin-top: 0.5rem;
 }
 
 /* #input-group */
@@ -260,7 +260,7 @@ body {
 .check-result-button {
   width: 100%;
   height: 2.2rem;
-  margin-top: 0.5rem;
+  margin-top: 1.2rem;
 
   background-color: var(--color-lotto-primary);
   color: var(--color-lotto-grey-scale-1);
@@ -354,4 +354,12 @@ body {
   color: red;
   font-size: 0.8rem;
   margin-top: 0.5rem;
+}
+
+.bought-lotto-list {
+  width: 100%;
+  height: fit-content;
+  max-height: 20rem;
+  overflow-y: auto;
+
 }

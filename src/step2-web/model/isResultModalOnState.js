@@ -1,6 +1,6 @@
-import MyState from "../abstract/MyState.js";
+import State from "../abstract/State.js";
 
-export default class IsResultModalOnState extends MyState {
+export default class IsResultModalOnState extends State {
   constructor(initialState = false) {
     super(initialState);
   }
