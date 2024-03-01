@@ -1,6 +1,6 @@
-import LottoPaymentValidator from '../src/validators/LottoPaymentValidator';
-import LottoValidator from '../src/validators/LottoValidator';
-import { ERROR_MESSAGES } from '../src/constants/messages';
+import LottoPaymentValidator from '../src/step1/validators/LottoPaymentValidator';
+import LottoValidator from '../src/step1/validators/LottoValidator';
+import { ERROR_MESSAGES } from '../src/step1/constants/messages';
 
 describe('구입 금액 테스트', () => {
   test('구입 금액은 1000원 단위로 나누어 떨어지지 않으면 에러를 발생한다.', () => {
