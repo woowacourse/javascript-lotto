@@ -27,11 +27,12 @@ class LottoControllerWeb {
 
   async run() {
     addEvent(lottoPriceButton, 'click', (e) => {
-      this.lottoPurchaseHandler(e);
+      this.#lottoPurchaseHandler(e);
     });
     addEvent(checkResultButton, 'click', (e) => {
-      this.lottoResultHandler(e);
+      this.#lottoResultHandler(e);
     });
+
     this.modalEventHandler();
   }
 
@@ -44,16 +45,16 @@ class LottoControllerWeb {
     });
   }
 
-  lottoPurchaseHandler(e) {
+  #lottoPurchaseHandler(e) {
     executeRetry(async () => {
       e.preventDefault();
-      await this.lottoPurchase();
+      await this.#lottoPurchase();
 
       outputView.printAfterBuyLottos(this.#lottoCount, this.#generatedLottos);
     });
   }
 
-  async lottoPurchase() {
+  async #lottoPurchase() {
     const lottoPrice = await inputView.inputLottoPrice();
     this.validateLottoNumbers(lottoPrice);
     this.#lottoCount = lottoPrice / LOTTO_RULES.lottoBaseTicketPrice;
@@ -61,23 +62,23 @@ class LottoControllerWeb {
     this.#generatedLottos = lottoGenerator.generatedLottos;
   }
 
-  lottoResultHandler(e) {
+  #lottoResultHandler(e) {
     executeRetry(async () => {
       e.preventDefault();
-      await this.inputLottoNumbers();
+      await this.#inputLottoNumbers();
       const { winningNumbers, bonusNumber } = this.#lottoNumber;
       this.validateInputLotto(winningNumbers, bonusNumber);
-      const { lottoStatistics, totalProfit } = this.calculateLottoResult();
+      const { lottoStatistics, totalProfit } = this.#calculateLottoResult();
       outputView.alertModal(lottoStatistics, totalProfit);
     });
   }
 
-  async inputLottoNumbers() {
+  async #inputLottoNumbers() {
     this.#lottoNumber.winningNumbers = await inputView.inputWinningNumbers();
     this.#lottoNumber.bonusNumber = await inputView.inputBonusNumber();
   }
 
-  calculateLottoResult() {
+  #calculateLottoResult() {
     const lottoCalculator = new LottoCalculator(
       this.#lottoNumber,
       this.#generatedLottos,

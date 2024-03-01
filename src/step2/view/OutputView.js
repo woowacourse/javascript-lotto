@@ -48,23 +48,30 @@ const outputView = {
 
   makeWinningStatisticsTable(lottoStatistics) {
     for (const key in LOTTO_STATISTICS) {
-      const tr = document.createElement('tr');
-      const td1 = document.createElement('td');
-      const td2 = document.createElement('td');
-      const td3 = document.createElement('td');
-      if (LOTTO_STATISTICS[key].number !== 5 || key !== 'fiveBonus') {
-        td1.innerText = LOTTO_STATISTICS[key].number + '개';
-      } else {
-        td1.innerText = '5개 + 보너스볼';
-      }
-
-      td2.innerText = LOTTO_STATISTICS[key].price.toLocaleString() + '원';
-      td3.innerText = lottoStatistics[key] + '개';
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
+      const tr = this.createTableElement(3);
+      tr.firstChild.innerText = this.isBonusOrNot(key);
+      tr.children[1].innerText =
+        LOTTO_STATISTICS[key].price.toLocaleString() + '원';
+      tr.lastChild.innerText = lottoStatistics[key] + '개';
       winningStatistics.appendChild(tr);
     }
+  },
+
+  isBonusOrNot(key) {
+    if (LOTTO_STATISTICS[key].number !== 5 || key !== 'fiveBonus') {
+      return LOTTO_STATISTICS[key].number + '개';
+    } else {
+      return '5개 + 보너스볼';
+    }
+  },
+
+  createTableElement(tableDataCount) {
+    const tr = document.createElement('tr');
+    while (tableDataCount--) {
+      const td = document.createElement('td');
+      tr.appendChild(td);
+    }
+    return tr;
   },
 
   closeModal() {
