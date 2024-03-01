@@ -21,7 +21,7 @@ dialog {
   justify-content: space-between;
 }
 
-#close_dialog {
+.result-dialog__close-button {
   position: absolute;
   right: 20px;
   background: none;
@@ -31,7 +31,7 @@ dialog {
   margin: 0;
 }
 
-#result_body {
+.result-dialog__body {
   border-collapse: collapse;
   width: 100%;
   border-top: 1px solid var(--border-color);
@@ -44,14 +44,14 @@ td {
   border-bottom: 1px solid var(--border-color);
 }
 
-#profit {
+.result-dialog__profit {
   display: flex;
   justify-content: center;
   font-size: var(--body-text-size);
   font-weight: var(--subtitle-font-weight);
 }
 
-#retry_button {
+.result-dialog__retry-button {
   width: 100%;
   height: 36px;
   background-color: var(--lotto-primary-color);
@@ -59,9 +59,9 @@ td {
   color: var(--greyscale-1-color);
   border-radius: var(--border-radius);
   padding: 6px, 6px, 6px, 8px;
+}
 
-  &:hover,
-  &:active {
-    background-color: var(--lotto-active-color);
-  }
+.result-dialog__retry-button:hover,
+.result-dialog__retry-button:active {
+  background-color: var(--lotto-active-color);
 }

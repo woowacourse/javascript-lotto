@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-header {
+.header {
   background-color: var(--lotto-primary-color);
   color: var(--greyscale-1-color);
   width: 100%;
@@ -17,7 +17,7 @@ header {
   top: 0;
 }
 
-header h2 {
+.header__title {
   margin-left: 150px;
 }
 
@@ -32,7 +32,7 @@ button {
   font-weight: var(--button-font-weight);
 }
 
-#game_box {
+.main {
   border: solid 1px var(--border-color);
   border-radius: var(--border-radius);
   width: 414px;

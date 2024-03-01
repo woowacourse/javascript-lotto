@@ -1,15 +1,15 @@
-#purchaseAmount_container {
+.purchase-section {
   margin-bottom: 20px;
 }
 
-#input_form {
+.purchase-section__form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 5px;
 }
 
-#input_purchaseAmount {
+.purchase-section__input {
   width: 294px;
   height: 36px;
   padding: 0 10px;
@@ -17,7 +17,7 @@
   border-radius: var(--border-radius);
 }
 
-#purchase_button {
+.purchase-section__button {
   width: 56px;
   height: 36px;
   background-color: var(--lotto-primary-color);
@@ -25,14 +25,14 @@
   color: var(--greyscale-1-color);
   border-radius: var(--border-radius);
   padding: 6px, 6px, 6px, 8px;
-
-  &:hover,
-  &:active {
-    background-color: var(--lotto-active-color);
-  }
 }
 
-#invalid_purchaseAmount {
+.purchase-section__button:hover,
+.purchase-section__button:active {
+  background-color: var(--lotto-active-color);
+}
+
+.purchase-section__invalid {
   color: red;
   font-size: 12px;
 }

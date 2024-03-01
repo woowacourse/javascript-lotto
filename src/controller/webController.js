@@ -4,17 +4,31 @@ import winningLottoHandler from "../Handler/winningLottoHandler.js";
 import purchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import WebView from "../view/webView.js";
 
-const purchaseAmountInput = document.getElementById("input_purchaseAmount");
-const purchaseButton = document.getElementById("purchase_button");
+const purchaseAmountInput = document.getElementsByClassName(
+  "purchase-section__input",
+)[0];
+const purchaseButton = document.getElementsByClassName(
+  "purchase-section__button",
+)[0];
 
-const winningNumbers = document.querySelectorAll(".input_winningNumber");
-const resultButton = document.getElementById("result_button");
+const winningNumbers = document.querySelectorAll(
+  ".winning-lotto__input-number",
+);
+const resultButton = document.getElementsByClassName(
+  "winning-lotto__result-button",
+)[0];
 
-const dialog = document.getElementById("result_dialog");
-const closeDialogButton = document.getElementById("close_dialog");
+const dialog = document.querySelector(".result-dialog");
+const closeDialogButton = document.getElementsByClassName(
+  "result-dialog__close-button",
+)[0];
 
-const retryButton = document.getElementById("retry_button");
-const invalidPurchaseAmount = document.getElementById("invalid_purchaseAmount");
+const retryButton = document.getElementsByClassName(
+  "result-dialog__retry-button",
+)[0];
+const invalidPurchaseAmount = document.getElementsByClassName(
+  "purchase-section__invalid",
+)[0];
 
 class WebController {
   #lottoList = [];

@@ -1,10 +1,10 @@
-#winningLotto {
+.winning-lotto {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-#winningform_title {
+.winning-lotto_title {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -12,7 +12,7 @@
   margin-bottom: 10px;
 }
 
-#winningLotto_form {
+.winning-lotto__input-section {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -20,7 +20,7 @@
   margin-bottom: 10px;
 }
 
-.input_winningNumber {
+.winning-lotto__input-number {
   width: 36px;
   height: 36px;
   padding: 0 10px;
@@ -28,7 +28,7 @@
   border-radius: var(--border-radius);
 }
 
-#input_bonusNumber {
+.winning-lotto__input-bonus-number {
   width: 36px;
   height: 36px;
   padding: 0 10px;
@@ -36,7 +36,7 @@
   border-radius: var(--border-radius);
 }
 
-#result_button {
+.winning-lotto__result-button {
   width: 100%;
   height: 36px;
   background-color: var(--lotto-primary-color);
@@ -45,12 +45,12 @@
   border-radius: var(--border-radius);
   margin: 20px 0px;
 }
-#result_button:hover,
-#result_button:active {
+.winning-lotto__result-button:hover,
+.winning-lotto__result-button:active {
   background-color: var(--lotto-active-color);
 }
 
-#invalid_winningLotto {
+.winning-lotto__invalid {
   color: red;
   font-size: 12px;
 }

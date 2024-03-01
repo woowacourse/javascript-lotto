@@ -1,8 +1,8 @@
-#purchase_number {
+.purchase_number {
   margin-bottom: 10px;
 }
 
-#lotto_list {
+.lotto_list {
   display: flex;
   flex-direction: column;
   list-style-type: none;
@@ -10,13 +10,13 @@
   overflow-y: scroll;
 }
 
-#lotto_list li {
+.lotto_list li {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
 
-#lotto_list li span:nth-child(1) {
+.lotto_list li span:nth-child(1) {
   font-size: 34px;
 }
