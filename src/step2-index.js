@@ -8,6 +8,7 @@ import './styles/global.css';
 import './styles/body.css';
 import './styles/PaymentForm.css';
 import './styles/PurchasedLottos.css';
+import './styles/WinningLottoForm.css';
 
 // domains
 import { LottoGame } from './domains';
@@ -15,23 +16,12 @@ import WebController from './services/WebController';
 
 // components
 import PurchasedLottos from './components/PurchasedLottos';
-import PaymentForm, { EVENTS } from './components/PaymentForm';
+import PaymentForm from './components/PaymentForm';
+import WinningLottoForm from './components/WinningLottoForm';
+import WebView from './views/web/WebView';
 
 window.customElements.define('purchased-lottos', PurchasedLottos);
 window.customElements.define('payment-form', PaymentForm, { extends: 'form' });
+window.customElements.define('winning-lotto-form', WinningLottoForm, { extends: 'form' });
 
-const registry = {
-  paymentForm: {
-    events: EVENTS,
-    selector: "form[is='payment-form']",
-  },
-  purchasedLottos: {
-    selector: 'purchased-lottos',
-  },
-};
-
-const webController = new WebController(
-  new LottoGame(),
-  registry.paymentForm.selector,
-  registry.purchasedLottos.selector,
-);
+const webController = new WebController(new LottoGame(), new WebView());

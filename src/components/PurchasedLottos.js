@@ -1,3 +1,4 @@
+export const PURCHASED_LOTTOS_SELECTOR = 'purchased-lottos';
 export default class PurchasedLottos extends HTMLElement {
   #counter;
 

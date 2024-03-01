@@ -1,17 +1,13 @@
-import { EVENTS } from '../components/PaymentForm';
+import { PAYMENT_FORM_EVENTS } from '../components/PaymentForm';
 
 class WebController {
   #lottoGame;
 
-  #paymentForm;
+  #webView;
 
-  #purchasedLottos;
-
-  constructor(lottoGame, paymentFormSelector, purchasedLottosSelector) {
+  constructor(lottoGame, webView) {
     this.#lottoGame = lottoGame;
-    this.#paymentForm = document.querySelector(paymentFormSelector);
-    this.#purchasedLottos = document.querySelector(purchasedLottosSelector);
-
+    this.#webView = webView;
     this.#init();
   }
 
@@ -20,7 +16,7 @@ class WebController {
   }
 
   #addEventListeners() {
-    this.#paymentForm.addEventListener(EVENTS.paymentFormSubmit, this.#handlePaymentFormSubmit.bind(this));
+    this.#webView.paymentForm.addEventListener(PAYMENT_FORM_EVENTS.submit, this.#handlePaymentFormSubmit.bind(this));
   }
 
   async #handlePaymentFormSubmit(event) {
@@ -30,28 +26,17 @@ class WebController {
     try {
       await this.#getPaid(paymentAmount);
     } catch (error) {
-      this.#handleError(error.message);
+      this.#webView.paymentForm.displayErrorMessage(error.message);
     }
   }
 
   async #getPaid(paymentAmount) {
     this.#lottoGame.insertMoney(paymentAmount);
 
-    const errMsgNode = this.#paymentForm.querySelector('.err-msg');
-    errMsgNode.innerHTML = '';
+    this.#webView.paymentForm.displayErrorMessage('');
 
-    this.#updatePurchasedLottos(this.#lottoGame.lottoTickets);
-  }
-
-  #updatePurchasedLottos(lottos) {
-    this.#purchasedLottos.setAttribute('data-lottos', JSON.stringify(lottos));
-  }
-
-  #handleError(errorMessage) {
-    const errMsgNode = this.#paymentForm.querySelector('.err-msg');
-    errMsgNode.innerHTML = errorMessage;
-
-    this.#paymentForm.elements.paymentAmount.value = '';
+    this.#webView.updatePurchasedLottos(this.#lottoGame.lottoTickets);
+    this.#webView.clearPaymentForm();
   }
 }
 
