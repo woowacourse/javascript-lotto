@@ -2,6 +2,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-constant-condition */
+import { OUTPUT_MESSAGES } from '../constant/Messages.js';
 import LottoMachine from '../domain/LottoMachine.js';
 import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
 import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
@@ -40,6 +41,13 @@ class LottoController {
     return this.#lottoMachine.calculateIssueQuantity(purchaseAmount);
   }
 
+  displayIssueQuantity(issueQuantity) {
+    const lottoMainTitle = document.getElementById('lottoMainTitle');
+    lottoMainTitle.textContent = `총 ${OUTPUT_MESSAGES.issueQuantity(issueQuantity)}`;
+  }
+
+  //---
+
   issueLottos(issueQuantity) {
     return this.#lottoMachine.issueLottos(issueQuantity);
   }
@@ -75,19 +83,16 @@ class LottoController {
 
   async purchaseLottos(purchaseAmount) {
     const validatedPurchaseAmount = await this.inputPurchaseAmount(purchaseAmount);
-
     if (validatedPurchaseAmount === null) {
       return;
     }
+
     const issueQuantity = this.calculateIssueQuantity(validatedPurchaseAmount);
     const lottos = this.issueLottos(issueQuantity);
 
     const lottoSection = document.getElementById('lottoSection');
-    const lottoMainTitle = document.getElementById('lottoMainTitle');
-
     lottoSection.style.display = 'block';
-    lottoMainTitle.textContent = `총 ${issueQuantity}개를 구매하였습니다.`;
-
+    this.displayIssueQuantity(issueQuantity);
     this.displayLottoNumbersList(lottos);
 
     const winningAndBonusSection = document.getElementById('winningAndBonusSection');
@@ -99,13 +104,12 @@ class LottoController {
   async inputWinningNumbers() {
     const winningNumbers = Array.from(
       document.querySelectorAll('#winningInputContainer .inputRectangle')
-    ).map((input) => input.value);
+    ).map((input) => Number(input.value));
     console.log(`Inputwinning1: ${winningNumbers}`);
 
     const validatedWinningNumbers = await this.getInputAndValidate({
-      input: winningNumbers.join(','),
-      validateFunction: (input) => {
-        const numbers = input.split(',').map(Number);
+      input: winningNumbers,
+      validateFunction: (numbers) => {
         LottoNumbersValidator.validate(numbers);
         return numbers;
       },
@@ -122,8 +126,7 @@ class LottoController {
 
     const validatedBonusNumber = await this.getInputAndValidate({
       input: bonusNumber,
-      validateFunction: (input) => {
-        const number = Number(input);
+      validateFunction: (number) => {
         BonusNumberValidator.validate(number, winningNumbers);
         return number;
       },
@@ -134,43 +137,6 @@ class LottoController {
 
     return validatedBonusNumber;
   }
-
-  // async inputWinningNumbers() {
-  //   const winningNumbers = Array.from(
-  //     document.querySelectorAll('#winningInputContainer .inputRectangle')
-  //   ).map((input) => Number(input.value));
-  //   console.log(`Inputwinning1: ${winningNumbers}`);
-
-  //   const validatedWinningNumbers = await this.getInputAndValidate({
-  //     input: winningNumbers,
-  //     validateFunction: (numbers) => {
-  //       LottoNumbersValidator.validate(numbers);
-  //       return numbers;
-  //     },
-  //     elementId: 'winningAndBonusError'
-  //   });
-
-  //   console.log(`Inputwinning2: ${validatedWinningNumbers}`);
-  //   return validatedWinningNumbers;
-  // }
-
-  // async inputBonusNumber(winningNumbers) {
-  //   const bonusNumber = document.querySelector('#bonusInputContainer .inputRectangle').value;
-  //   console.log(`bonusNumber1: ${bonusNumber}`);
-
-  //   const validatedBonusNumber = await this.getInputAndValidate({
-  //     input: bonusNumber,
-  //     validateFunction: (number) => {
-  //       BonusNumberValidator.validate(number, winningNumbers);
-  //       return number;
-  //     },
-  //     elementId: 'winningAndBonusError'
-  //   });
-
-  //   console.log(`bonusNumber2: ${validatedBonusNumber}`);
-
-  //   return validatedBonusNumber;
-  // }
 
   determineLottoRanks({ lottos, winningNumbers, bonusNumber }) {
     return this.#lottoMachine.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
