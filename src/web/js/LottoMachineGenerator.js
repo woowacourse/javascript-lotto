@@ -1,5 +1,9 @@
 import HtmlTextInjectorWithGameResults from './HtmlTextInjectorWithGameResults';
-import { changeClassAboutGameStep, handleErrorMessage } from './utils';
+import {
+  changeClassAboutGameStep,
+  handleErrorMessage,
+  recoveryInitialStateExceptPayment,
+} from './utils';
 
 class LottoMachineGenerator {
   #lottoResultsHelper;
@@ -18,10 +22,6 @@ class LottoMachineGenerator {
   #addEvent() {
     this.$paymentFormElement.addEventListener('submit', (event) =>
       this.#handlePaymentAmountSubmit(event),
-    );
-
-    this.$paymentFormElement.addEventListener('reset', (event) =>
-      this.#handlePaymentAmountReset(event),
     );
   }
 
@@ -49,17 +49,8 @@ class LottoMachineGenerator {
       handleErrorMessage(errorMessageElement);
     } catch (error) {
       handleErrorMessage(errorMessageElement, error);
+      recoveryInitialStateExceptPayment();
     }
-  }
-
-  /**
-   * payment-amount__form 의 reset을 활성화하면, 구매금액이 없는 게임을 초기 상태로 돌리기 위한 작업을 진행한다.
-   * @param {Event} event
-   */
-  #handlePaymentAmountReset(event) {
-    event.preventDefault();
-
-    document.querySelector('.winning-criteria__form').reset();
   }
 }
 

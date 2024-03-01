@@ -1,8 +1,12 @@
 import Statistics from '../../domains/Statistics';
 import HtmlTextInjectorWithGameResults from './HtmlTextInjectorWithGameResults';
+import {
+  changeClassAboutGameStep,
+  recoveryInitialStateExceptPayment,
+} from './utils';
 
 class StatisticsPopupController {
-  #element = {
+  $element = {
     popupElement: undefined,
     btnClosePopupElement: undefined,
     btnRestartElement: undefined,
@@ -42,11 +46,11 @@ class StatisticsPopupController {
       this.#lottoAnalytics.profitRate,
     );
 
-    this.#element.popupElement.classList.remove('hidden');
+    this.$element.popupElement.classList.remove('hidden');
   }
 
   #assignElement() {
-    this.#element = {
+    this.$element = {
       popupElement: document.querySelector('.popup'),
       btnClosePopupElement: document.querySelector('.btn-close-popup'),
       btnRestartElement: document.querySelector('.btn-restart'),
@@ -54,11 +58,11 @@ class StatisticsPopupController {
   }
 
   #addEvent() {
-    this.#element.btnClosePopupElement.addEventListener('click', (event) =>
+    this.$element.btnClosePopupElement.addEventListener('click', (event) =>
       this.#hidePopup(event),
     );
 
-    this.#element.btnRestartElement.addEventListener('click', (event) =>
+    this.$element.btnRestartElement.addEventListener('click', (event) =>
       this.#restartGame(event),
     );
   }
@@ -69,32 +73,7 @@ class StatisticsPopupController {
    */
   #hidePopup(event) {
     event.stopPropagation();
-    this.#element.popupElement.classList.add('hidden');
-  }
-
-  #hideHiddenTargets() {
-    const hiddenTargetElementList = document.querySelectorAll('.hidden-target');
-
-    hiddenTargetElementList.forEach((element) =>
-      element.classList.add('hidden'),
-    );
-  }
-
-  #removePaymentAmountInputValue() {
-    const inputElement = document.querySelector('#input-payment-amount');
-
-    inputElement.value = '';
-  }
-
-  #removeWinningCriteriaInputValue() {
-    const inputElementList = document.querySelectorAll(
-      '.winning-criteria input',
-    );
-
-    inputElementList.forEach((element) => {
-      // eslint-disable-next-line
-      element.value = '';
-    });
+    changeClassAboutGameStep('winning');
   }
 
   /**
@@ -103,10 +82,8 @@ class StatisticsPopupController {
    */
   #restartGame(event) {
     event.stopPropagation();
-
-    this.#removeWinningCriteriaInputValue();
-    this.#removePaymentAmountInputValue();
-    this.#hideHiddenTargets();
+    recoveryInitialStateExceptPayment();
+    document.querySelector('.payment-amount__form').reset();
   }
 }
 
