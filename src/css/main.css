@@ -67,8 +67,6 @@
 
 /* main lottos output */
 .lottos-container {
-  display: flex;
-  flex-direction: column;
   width: 100%;
 }
 

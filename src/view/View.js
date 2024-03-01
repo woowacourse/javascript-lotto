@@ -9,7 +9,7 @@ const $winningLottoForm = elementHandler.$('.winning-lotto-form');
 const $winningLottoInputContainer = elementHandler.$('.winning-lotto-input-container');
 const $bonusLottoInputContainer = elementHandler.$('.bonus-lotto-input-container');
 
-const $winningResultTable = elementHandler.$('.winning-result-table');
+const $winningResultContainer = elementHandler.$('.winning-result-container');
 const $profitRateText = elementHandler.$('.profit-rate-text');
 
 const $modal = elementHandler.$('#modal');
@@ -38,7 +38,7 @@ const View = {
     $modal.hidden = false;
 
     const matchedCounts = [3, 4, 5, 'B5', 6];
-    $winningResultTable.innerHTML += matchedCounts
+    $winningResultContainer.innerHTML = matchedCounts
       .map((matchedKey) => {
         const { TITLE_UI, REWARD } = RANKING[matchedKey];
         return `
@@ -51,6 +51,16 @@ const View = {
       .join('');
 
     $profitRateText.innerHTML = `당신의 총 수익률은 ${profitRate}%입니다.`;
+  },
+
+  renderCloseModal() {
+    $modal.hidden = true;
+  },
+
+  renderRestartGame() {
+    this.renderCloseModal();
+    $lottosContainer.hidden = true;
+    $winningLottoForm.hidden = true;
   },
 };
 

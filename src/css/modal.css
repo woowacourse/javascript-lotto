@@ -2,13 +2,11 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  top: 0;
-  z-index: 999;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal__content {
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -16,7 +14,6 @@
   flex-direction: column;
   align-items: center;
   gap: 32px;
-  position: relative;
   width: 318px;
   height: 428px;
   padding: 40px 16px 32px 16px;
@@ -33,6 +30,9 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 16px;
+  border: none;
+  outline: none;
+  background: none;
 }
 
 .modal__title {
@@ -43,7 +43,7 @@
 
 .winning-result-table {
   width: 100%;
-  border-collapse: collapse; /* 셀 경계를 합침 */
+  border-collapse: collapse;
 }
 
 .winning-result-column {
@@ -55,7 +55,7 @@
 }
 
 .winning-result-table tr:first-child {
-  border-top: 1px solid rgba(0, 0, 0, 0.12); /* 첫 번째 행의 위에 가로줄을 생성 */
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .head {
