@@ -35,7 +35,7 @@ class LottoGameController2 {
   #checkPurchaseAmount(purchaseAmount) {
     try {
       Validator.validatePurchaseAmount(purchaseAmount);
-      this.#purchaseAmount = purchaseAmount;
+      this.#purchaseAmount = Number(purchaseAmount);
       this.#createRandomLottos();
     } catch (error) {
       alert(error.message);
@@ -62,7 +62,7 @@ class LottoGameController2 {
     $winningLottoForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const winningNumberList = [...$winningInputs].map((winningNumber) => Number(winningNumber.value));
-      const bonusNumber = $bonusInput.value;
+      const bonusNumber = Number($bonusInput.value);
       this.#checkWinningNumbers(winningNumberList);
       this.#checkBonusNumber(bonusNumber, winningNumberList);
     });
