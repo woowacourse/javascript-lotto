@@ -18,14 +18,3 @@
   margin: 0.4rem 0 0.4rem 0;
   flex-grow: 1;
 }
-
-.purchase-context {
-  color: var(--lotto-greyscale-5, #000);
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem;
-  letter-spacing: 0.03125rem;
-}
