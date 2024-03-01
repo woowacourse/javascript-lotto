@@ -15,8 +15,8 @@ const LOTTO_MAIN = `
   </section>
 `;
 
-const LOTTO_MAIN_RESULT = (lottoNumbersArray) => `
-<purchase-info lottos=${lottoNumbersArray}></purchase-info>
+const LOTTO_MAIN_RESULT = `
+<purchase-info></purchase-info>
 <winning-and-bonus-form></winning-and-bonus-form>
 `;
 
@@ -38,11 +38,8 @@ class LottoMain extends HTMLElement {
   }
 
   #renderResult() {
-    const app = document.querySelector('lotto-app');
-    const lottoNumbersArray = app.controller().getLottoGameInfo().lottoNumbersArray;
-
     const purchaseResult = this.querySelector('.purchase-result');
-    purchaseResult.innerHTML = LOTTO_MAIN_RESULT(lottoNumbersArray);
+    purchaseResult.innerHTML = LOTTO_MAIN_RESULT;
 
     const resultButton = this.querySelector('#result-button');
     resultButton.setText('당첨 결과 확인하기');

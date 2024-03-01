@@ -10,10 +10,9 @@ lotto-main {
 .lotto-main-container {
   display: flex;
   flex-direction: column;
-  gap: 2.8rem;
-
   align-items: center;
   justify-content: start;
+  gap: 2.8rem;
 
   width: 41.4rem;
   height: min-content;
@@ -24,14 +23,6 @@ lotto-main {
   padding-top: 4rem;
   padding-bottom: 3.2rem;
   padding-inline: 1.6rem;
-}
-
-.lotto-main-title-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 3.6rem;
 }
 
 .purchase-result {

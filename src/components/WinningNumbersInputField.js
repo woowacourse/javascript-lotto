@@ -23,16 +23,6 @@ class WinningNumbersInputField extends HTMLElement {
     this.innerHTML = WINNING_NUMBERS_INPUT_FIELD;
   }
 
-  // #setEventListener() {
-  //   const inputFields = this.querySelectorAll('number-input-field');
-  //   inputFields.forEach((inputField) => {
-  //     inputField.addEventListener('input', () => {
-  //       const winningNumbersInput = new CustomEvent('winningNumbersInput');
-  //       this.dispatchEvent(winningNumbersInput);
-  //     });
-  //   });
-  // }
-
   getValue() {
     const winningNumbers = [];
     const inputFields = this.querySelectorAll('number-input-field');
