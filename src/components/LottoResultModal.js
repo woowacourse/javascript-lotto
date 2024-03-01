@@ -47,6 +47,17 @@ class LottoResultModal extends HTMLElement {
     closeButton.addEventListener('click', () => {
       this.remove();
     });
+    this.#setEventPropagation();
+    this.addEventListener('click', () => {
+      this.remove();
+    });
+  }
+
+  #setEventPropagation() {
+    const lottoResult = this.querySelector('.lotto-result');
+    lottoResult.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
   }
 }
 
