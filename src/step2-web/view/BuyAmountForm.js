@@ -6,20 +6,15 @@ import { $ } from "../utils/selector.js";
 import { parseNumber } from "../../step1-console/utils/parseNumber.js";
 
 export default class BuyAmountForm extends MyComponent {
-  #buyAmountState;
   #lottosState;
 
-  constructor(targetElementId, buyAmountState, lottosState) {
+  constructor(targetElementId, lottosState) {
     super(targetElementId);
 
-    this.#buyAmountState = buyAmountState;
     this.#lottosState = lottosState;
   }
 
   _getTemplate() {
-    const buyAmount = this.#buyAmountState.getState();
-    const buyAmountValueTemplate = buyAmount ? `value=${buyAmount}` : "";
-
     return `
   <section class="getting-buying-amount">
     <p class="buying-amount-message body-text">구입할 금액을 입력해주세요.</p>
@@ -49,7 +44,6 @@ export default class BuyAmountForm extends MyComponent {
 
     const lottos = this.#buyLottos(buyAmount);
 
-    this.#buyAmountState.setState(buyAmount);
     this.#lottosState.setState(lottos);
   }
 

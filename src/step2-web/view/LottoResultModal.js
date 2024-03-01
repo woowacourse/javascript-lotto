@@ -3,21 +3,18 @@ import MyComponent from "../abstract/MyComponent.js";
 import { $ } from "../utils/selector.js";
 
 export default class LottoResultModal extends MyComponent {
-  #buyAmountState;
   #lottosState;
   #lottoResultState;
   #isResultModalOnState;
 
   constructor({
     targetElementId,
-    buyAmountState,
     lottosState,
     lottoResultState,
     isResultModalOnState,
   }) {
     super(targetElementId);
 
-    this.#buyAmountState = buyAmountState;
     this.#lottosState = lottosState;
     this.#lottoResultState = lottoResultState;
     this.#isResultModalOnState = isResultModalOnState;
@@ -98,7 +95,6 @@ export default class LottoResultModal extends MyComponent {
   }
 
   #handleRestartButton() {
-    this.#buyAmountState.reset();
     this.#lottosState.reset();
     this.#lottoResultState.reset();
     this.#isResultModalOnState.reset();

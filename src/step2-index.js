@@ -9,19 +9,13 @@ import WinningLottoForm from "./step2-web/view/WinningLottoForm.js";
 
 import { $ } from "./step2-web/utils/selector.js";
 import LottoResultModal from "./step2-web/view/LottoResultModal.js";
-import BuyAmountState from "./step2-web/model/BuyAmountState.js";
 import IsResultModalOnState from "./step2-web/model/isResultModalOnState.js";
 
-const buyAmountState = new BuyAmountState();
 const lottosState = new LottosState();
 const lottoResultState = new LottoResultState();
 const isResultModalOnState = new IsResultModalOnState();
 
-const buyAmountForm = new BuyAmountForm(
-  "buy-amount-form",
-  buyAmountState,
-  lottosState
-);
+const buyAmountForm = new BuyAmountForm("buy-amount-form", lottosState);
 const boughtLottoBoard = new BoughtLottoBoard(
   "bought-lotto-board",
   lottosState
@@ -34,13 +28,12 @@ const winningLottoForm = new WinningLottoForm({
 });
 const lottoResultModal = new LottoResultModal({
   targetElementId: "lotto-result-modal",
-  buyAmountState,
   lottosState,
   lottoResultState,
   isResultModalOnState,
 });
 
-buyAmountState.addObserver(buyAmountForm);
+lottosState.addObserver(buyAmountForm);
 lottosState.addObserver(boughtLottoBoard);
 lottosState.addObserver(winningLottoForm);
 lottoResultState.addObserver(lottoResultModal);
