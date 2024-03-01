@@ -15,7 +15,7 @@ import winningLottoValidation from "../validation/winningLottoValidation.js";
 class LottoWebController {
   #webIssuedLottoArray;
   #webBudget;
-  start() {
+  async start() {
     $("#budget").addEventListener("keydown", this.handleWebBudget.bind(this));
     $("#budget-btn").addEventListener("click", this.handleWebBudget.bind(this));
     $("#result-btn").addEventListener(
