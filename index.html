@@ -11,49 +11,49 @@
     <div id="app">
       <h1><p>🎱 행운의 로또</p></h1>
       <div class="center">
-        <span id="Container">
-          <div class="mainContents">
+        <span class="container">
+          <div>
             <div class="title">🎱 내 번호 당첨 확인 🎱</div>
 
-            <form class="beforeBuyLottos">
+            <form class="before-buy-lottos">
               <label>구입할 금액을 입력해주세요.</label>
               <span>
                 <input
-                  class="thousandUnitInput input"
+                  class="thousand-unit-input input"
                   placeholder="1000원 단위의 금액을 입력해주세요."
                   min='0'
                   max='100000'
                   step="1000"
                   type="number"
                 />
-                <button class="lottoPriceButton blue-button">구입</button>
+                <button class="lotto-price-button blue-button">구입</button>
               </span>
             </form>
 
-            <div class="afterBuyLottos">
-              <ul id="generatedLottos"></ul>
-              <div class="pleaseInputLottos">
+            <div class="after-buy-lottos">
+              <ul class="generated-lottos"></ul>
+              <div class="input-lottos-instruction">
                 지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
               </div>
-              <div class="inputLottos">
-                <div class="winningLottos lotto">
+              <div class="input-lottos">
+                <div class="lotto">
                   <label> 당첨 번호</label>
                   <div>
-                    <input class="inputWinningLottos input" maxlength="2" />
-                    <input class="inputWinningLottos input" maxlength="2" />
-                    <input class="inputWinningLottos input" maxlength="2" />
-                    <input class="inputWinningLottos input" maxlength="2" />
-                    <input class="inputWinningLottos input" maxlength="2" />
-                    <input class="inputWinningLottos input" maxlength="2" />
+                    <input class="input-winning-lottos input" maxlength="2" />
+                    <input class="input-winning-lottos input" maxlength="2" />
+                    <input class="input-winning-lottos input" maxlength="2" />
+                    <input class="input-winning-lottos input" maxlength="2" />
+                    <input class="input-winning-lottos input" maxlength="2" />
+                    <input class="input-winning-lottos input" maxlength="2" />
                   </div>
                 </div>
-                <div class="bonusLotto lotto">
+                <div class="bonus-lotto lotto">
                   <label> 보너스 번호</label>
-                  <input class="inputBonusLotto input" maxlength="2" />
+                  <input class="input-bonus-lotto input" maxlength="2" />
                 </div>
               </div>
 
-              <button type="button" class="checkResultButton blue-button">
+              <button type="button" class="check-result-button blue-button">
                 결과 확인하기
               </button>
             </div>
@@ -64,8 +64,8 @@
       <div class="footer center">Copyright 2023. woowacourse</div>
     </div>
     <span class="modal">
-      <div class="modalBox">
-        <div id="close">
+      <div class="modal-box">
+        <div class="close">
           <svg
             width="14"
             height="14"
@@ -79,8 +79,8 @@
             />
           </svg>
         </div>
-        <div id="modal-title">🏆 당첨 통계 🏆</div>
-          <table class="modalTable">
+        <div class="modal-title">🏆 당첨 통계 🏆</div>
+          <table class="modal-table">
             <thead>
               <tr>
                 <th>일치 갯수</th>
@@ -88,14 +88,14 @@
                 <th>당첨 갯수</th>
               </tr>
             </thead>
-            <tbody id="winningStatistics">
+            <tbody class="winning-statistics">
         </td>
         </tbody>
         </table>
 
-        <p class="totalProfit"></p>
+        <p class="total-profit"></p>
           
-        <button class="restartButton blue-button">다시 시작하기</button>
+        <button class="restart-button blue-button">다시 시작하기</button>
       </div>
     </span>
     <script src="./src/step2-index.js" type="module" defer></script>

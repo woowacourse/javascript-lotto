@@ -37,8 +37,13 @@ button {
   border-radius: 0.25rem;
   border: none;
 
+  height: 2.5rem;
+
   background-color: var(--color-blue);
   color: var(--color-white);
+
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .input {
@@ -73,9 +78,9 @@ h1 p {
   margin-left: 8.125rem;
 }
 
-#Container {
+.container {
   min-height: 31.25rem;
-  max-height: 38rem;
+  max-height: 40rem;
 
   width: calc(414px-40px);
   background-color: var(--color-white);
@@ -102,16 +107,15 @@ h1 p {
 
 /* 로또금액 입력 스타일*/
 
-.lottoPriceButton {
+.lotto-price-button {
   width: 3.5rem;
-  height: 2.25rem;
 
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.078rem;
 }
 
-.beforeBuyLottos {
+.before-buy-lottos {
   margin-top: 1.875rem;
 
   display: flex;
@@ -121,24 +125,24 @@ h1 p {
   font-size: 0.9325rem;
 }
 
-.beforeBuyLottos > span {
+.before-buy-lottos > span {
   display: flex;
   gap: 0.625rem;
 }
 
-.thousandUnitInput {
+.thousand-unit-input {
   width: 19.375rem;
   padding: 0.5rem;
 }
 
-.thousandUnitInput::placeholder {
+.thousand-unit-input::placeholder {
   color: var(--color-gray);
 }
 
 /* 단위 금액 입력 후 나타나는 발행번호 스타일
 */
 
-.afterBuyLottos {
+.after-buy-lottos {
   margin-top: 1.875rem;
   visibility: hidden;
 
@@ -149,7 +153,7 @@ h1 p {
   text-align: left;
 }
 
-#generatedLottos {
+.generated-lottos {
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
@@ -160,13 +164,13 @@ h1 p {
   overflow: scroll;
 }
 
-#generatedLottos > li::before {
+.generated-lottos > li::before {
   content: '🎟️';
   margin-right: 0.625rem;
   font-size: 2.125rem;
 }
 
-#generatedLottos > li {
+.generated-lottos > li {
   display: flex;
   align-items: center;
 }
@@ -174,11 +178,11 @@ h1 p {
 /* 당첨번호 입력하기 스타일
 */
 
-.pleaseInputLottos {
+.input-lottos-instruction {
   margin-top: 1.875rem;
 }
 
-.inputLottos {
+.input-lottos {
   display: flex;
   justify-content: space-between;
   margin-top: 0.625rem;
@@ -204,15 +208,15 @@ h1 p {
   gap: 0.625rem;
 }
 
-.bonusLotto {
+.bonus-lotto {
   display: flex;
   align-items: flex-end;
 }
 
-.checkResultButton {
+.check-result-button {
   width: 25rem;
   padding: 0.625rem;
-  margin-top: 1.875rem;
+  margin-top: 2.3rem;
 }
 
 /* 바닥*/
@@ -249,7 +253,7 @@ h1 p {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modalBox {
+.modal-box {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -260,7 +264,7 @@ h1 p {
   transform: translate(-50%, -50%);
 
   width: 18.75rem;
-  height: 28.125rem;
+  height: 27.125rem;
 
   background-color: var(--color-white);
   border-radius: 0.3125rem;
@@ -268,7 +272,7 @@ h1 p {
   box-shadow: 0 0 10px 0 var(--color-ligthGray);
 }
 
-#close {
+.close {
   width: 0.875rem;
   position: absolute;
   right: 1.25rem;
@@ -276,7 +280,7 @@ h1 p {
   cursor: pointer;
 }
 
-#modal-title {
+.modal-title {
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.25rem;
@@ -286,13 +290,13 @@ h1 p {
   margin: 1.5615rem 0;
 }
 
-.modalTable {
+.modal-table {
   border-top: 1px solid var(--color-ligthGray);
   margin-bottom: 1.875rem;
   text-align: center;
 
   width: 100%;
-  height: 100%;
+  height: 55%;
   border-collapse: collapse;
 
   font-size: 0.9375rem;
@@ -310,9 +314,8 @@ thead {
   height: 15%;
 }
 
-.restartButton {
+.restart-button {
   width: 100%;
-  height: 4rem;
 
   margin-top: 1.25rem;
 }
