@@ -2,13 +2,14 @@ import WebLottoController from '../../controllers/WebLottoController';
 import webInputView from '../../views/webInputView';
 import Component from '../core/Component';
 import dom from '../../utils/dom';
+import { DOM_MESSAGE } from '../../constants/message';
 
 class PurchaseLottoForm extends Component {
   template() {
     return `
         <form id="purchaseLottoForm">
           <input id="purchaseInput" name="purchaseInput" placeholder="금액" />
-          <button id="purchaseButton" class="button buttonFont">구입</button>
+          <button id="purchaseButton" class="button buttonFont">${DOM_MESSAGE.PURCHASE_BUTTON}</button>
         </form>
         <div id="purchaseError" class="hidden"></div>
         `;
@@ -35,9 +36,13 @@ class PurchaseLottoForm extends Component {
     if (!purchaseAmount) return;
     dom.$('#winningNumberSection').classList.remove('hidden');
     dom.$('.winningNumberInput').focus();
+
     const lottoController = new WebLottoController(purchaseAmount);
     lottoController.run();
-    dom.$('#lottoResultButton').addEventListener('click', lottoController.handleLottoResult);
+    dom.$('#lottoNumberForm').addEventListener('submit', e => {
+      e.preventDefault();
+      lottoController.handleLottoResult();
+    });
   }
 }
 

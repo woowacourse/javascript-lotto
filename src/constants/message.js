@@ -21,4 +21,17 @@ const ERROR_MESSAGE = {
   RESTART: '[ERROR] y 또는 n을 입력해주세요.',
 };
 
-export { MESSAGE, ERROR_MESSAGE };
+const DOM_MESSAGE = {
+  LOTTO_TITLE: '🎱 내 번호 당첨 확인 🎱',
+  PURCHASE_AMOUNT_INPUT: '구입할 금액을 입력해주세요.',
+  PURCHASE_BUTTON: '구입',
+  LOTTO_NUMBERS_INPUT: '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.',
+  WINNING_NUMBERS: '당첨 번호',
+  BONUS_NUMBER: '보너스 번호',
+  LOTTO_RESULT_BUTTON: '결과 확인하기',
+  CLOSE_MODAL_BUTTON: 'x',
+  LOTTO_RESULT_TITLE: '🏆 당첨 통계 🏆',
+  LOTTO_RESTART_BUTTON: '다시 시작하기',
+};
+
+export { MESSAGE, ERROR_MESSAGE, DOM_MESSAGE };

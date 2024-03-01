@@ -2,11 +2,12 @@ import './PurchaseSection.css';
 import Component from '../core/Component';
 import PurchaseLottoForm from './PurchaseLottoForm';
 import dom from '../../utils/dom';
+import { DOM_MESSAGE } from '../../constants/message';
 
 class PurchaseSection extends Component {
   template() {
     return `
-        <div>구입할 금액을 입력해주세요.</div>
+        <div>${DOM_MESSAGE.PURCHASE_AMOUNT_INPUT}</div>
         <template id="purchaseLottoTemplate"></template>
         `;
   }
