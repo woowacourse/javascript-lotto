@@ -41,11 +41,14 @@
 
 .error-message {
   font-family: Roboto;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 16px;
   text-align: left;
   color: red;
+  min-height: 12px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 /* Colors */
