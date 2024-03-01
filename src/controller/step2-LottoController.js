@@ -27,6 +27,7 @@ class LottoController {
     }
   }
 
+  // 구입 금액 입력
   async inputPurchaseAmount(purchaseAmount) {
     const validatedPurchaseAmount = await this.getInputAndValidate({
       input: purchaseAmount,
@@ -37,6 +38,7 @@ class LottoController {
     return validatedPurchaseAmount;
   }
 
+  // 로또 발행 갯수 계산 및 출력
   calculateIssueQuantity(purchaseAmount) {
     return this.#lottoMachine.calculateIssueQuantity(purchaseAmount);
   }
@@ -46,39 +48,56 @@ class LottoController {
     lottoMainTitle.textContent = `총 ${OUTPUT_MESSAGES.issueQuantity(issueQuantity)}`;
   }
 
-  //---
-
+  // 로또 발행 갯수에 맞게 로또 발행
   issueLottos(issueQuantity) {
     return this.#lottoMachine.issueLottos(issueQuantity);
   }
 
   displayLottoNumbersList(lottos) {
-    const lottoBox = document.getElementById('lottoBox');
+    const lottoNumbersList = lottos.map((lotto) => lotto.getNumbers());
+    this.clearLottoBox();
 
+    lottoNumbersList.forEach((lottoNumbers) => {
+      const lottoTicket = this.createLottoTicket(lottoNumbers);
+      this.addLottoTicketToBox(lottoTicket);
+    });
+  }
+
+  clearLottoBox() {
+    const lottoBox = document.getElementById('lottoBox');
     while (lottoBox.firstChild) {
       lottoBox.firstChild.remove();
     }
+  }
 
-    lottos.forEach((lotto) => {
-      const lottoNumbers = lotto.getNumbers();
-      const lottoTicket = document.createElement('div');
-      lottoTicket.className = 'lottoTicket';
-      lottoTicket.textContent = `🎟️   `;
+  createLottoTicket(lottoNumbers) {
+    const lottoTicket = document.createElement('div');
+    lottoTicket.className = 'lottoTicket';
+    lottoTicket.textContent = `🎟️   `;
 
-      lottoNumbers.forEach((number, index) => {
-        const numberDiv = document.createElement('div');
-        numberDiv.className = 'lottoTicketNumber';
-        if (index < lottoNumbers.length - 1) {
-          numberDiv.textContent = `${number}, `;
-        } else {
-          numberDiv.textContent = number;
-        }
-
-        lottoTicket.appendChild(numberDiv);
-      });
-
-      lottoBox.appendChild(lottoTicket);
+    lottoNumbers.forEach((number, index) => {
+      const numberDiv = this.createNumberDiv({ number, index, length: lottoNumbers.length });
+      lottoTicket.appendChild(numberDiv);
     });
+
+    return lottoTicket;
+  }
+
+  createNumberDiv({ number, index, length }) {
+    const numberDiv = document.createElement('div');
+    numberDiv.className = 'lottoTicketNumber';
+    if (index < length - 1) {
+      numberDiv.textContent = `${number}, `;
+    } else {
+      numberDiv.textContent = number;
+    }
+
+    return numberDiv;
+  }
+
+  addLottoTicketToBox(lottoTicket) {
+    const lottoBox = document.getElementById('lottoBox');
+    lottoBox.appendChild(lottoTicket);
   }
 
   async purchaseLottos(purchaseAmount) {
@@ -89,18 +108,49 @@ class LottoController {
 
     const issueQuantity = this.calculateIssueQuantity(validatedPurchaseAmount);
     const lottos = this.issueLottos(issueQuantity);
-
-    const lottoSection = document.getElementById('lottoSection');
-    lottoSection.style.display = 'block';
-    this.displayIssueQuantity(issueQuantity);
-    this.displayLottoNumbersList(lottos);
-
-    const winningAndBonusSection = document.getElementById('winningAndBonusSection');
-    winningAndBonusSection.style.display = 'block';
+    this.displayPurchaseResult(issueQuantity, lottos);
 
     return lottos;
   }
 
+  displayPurchaseResult(issueQuantity, lottos) {
+    this.displayLottoSection();
+    this.displayIssueQuantity(issueQuantity);
+    this.displayLottoNumbersList(lottos);
+    this.displayWinningAndBonusSection();
+  }
+
+  displayLottoSection() {
+    const lottoSection = document.getElementById('lottoSection');
+    lottoSection.style.display = 'block';
+  }
+
+  displayWinningAndBonusSection() {
+    const winningAndBonusSection = document.getElementById('winningAndBonusSection');
+    winningAndBonusSection.style.display = 'block';
+  }
+
+  // async purchaseLottos(purchaseAmount) {
+  //   const validatedPurchaseAmount = await this.inputPurchaseAmount(purchaseAmount);
+  //   if (validatedPurchaseAmount === null) {
+  //     return;
+  //   }
+
+  //   const issueQuantity = this.calculateIssueQuantity(validatedPurchaseAmount);
+  //   const lottos = this.issueLottos(issueQuantity);
+
+  //   const lottoSection = document.getElementById('lottoSection');
+  //   lottoSection.style.display = 'block';
+  //   this.displayIssueQuantity(issueQuantity);
+  //   this.displayLottoNumbersList(lottos);
+
+  //   const winningAndBonusSection = document.getElementById('winningAndBonusSection');
+  //   winningAndBonusSection.style.display = 'block';
+
+  //   return lottos;
+  // }
+
+  //
   async inputWinningNumbers() {
     const winningNumbers = Array.from(
       document.querySelectorAll('#winningInputContainer .inputRectangle')
