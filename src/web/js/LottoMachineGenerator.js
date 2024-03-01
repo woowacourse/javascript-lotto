@@ -21,7 +21,7 @@ class LottoMachineGenerator {
 
   #addEvent() {
     this.$paymentFormElement.addEventListener('submit', (event) =>
-      this.#handlePaymentAmountSubmit(event),
+      this.#handleSubmitToIssueLottos(event),
     );
   }
 
@@ -29,7 +29,7 @@ class LottoMachineGenerator {
    * 구매 금액을 지출하면 유효성 검사를 통과하면 발행된 로또들을 화면에 출력하고 통과하지 못하면 오류 메세지를 화면에 출력한다.
    * @param {Event} event
    */
-  #handlePaymentAmountSubmit(event) {
+  #handleSubmitToIssueLottos(event) {
     event.preventDefault();
     recoveryInitialStateExceptPayment();
     const { currentTarget } = event;
