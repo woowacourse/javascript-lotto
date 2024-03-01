@@ -1,7 +1,6 @@
 import './LottoResultModal.css';
 import Component from '../core/Component';
 import dom from '../../utils/dom';
-import eventHandler from '../../utils/dom/eventHandler';
 import { DOM_MESSAGE } from '../../constants/message';
 
 class LottoResultModal extends Component {
@@ -34,9 +33,20 @@ class LottoResultModal extends Component {
     $lottoResultModal.classList.add('hidden');
   }
 
+  restart() {
+    const $purchaseSection = document.getElementById('purchaseResultSection');
+    const $winningNumberSection = document.getElementById('winningNumberSection');
+    const $lottoNumberForm = document.getElementById('lottoNumberForm');
+    const $purchaseLottoForm = document.getElementById('purchaseLottoForm');
+    $purchaseLottoForm.reset();
+    $purchaseSection.replaceChildren();
+    $winningNumberSection.classList.add('hidden');
+    $lottoNumberForm.reset();
+  }
+
   handleClickRestart() {
     this.close();
-    eventHandler.restart();
+    this.restart();
   }
 }
 
