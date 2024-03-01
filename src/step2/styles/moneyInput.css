@@ -1,52 +1,49 @@
-.lottoInputContainer {
+.buy-lotto-container {
   display: flex;
   justify-content: space-around;
   width: 100%;
   height: 64px;
 }
 
-.moneyInputForm {
+.buy-lotto-form {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.labelAndInputContainer {
+.buy-lotto-label-input-wrapper {
   width: 75%;
+}
+
+.buy-lotto {
+  margin: 10px;
 }
 
 .inputLabel {
   margin: 10px;
 }
 
-.moneyInput {
+.buy-lotto-input {
   margin: 10px;
   padding: 10px;
   width: 100%;
-  border-radius: 4px;
-  border: solid 1px rgba(0, 0, 0, 0.12);
 }
 
-.lottoBuyingButtonContainer {
+.buy-lotto-button-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.lottoBuyingButton {
-  background: #4e5ba6;
-  color: #fff;
+.buy-lotto-button {
   padding: 10px;
-  border: none;
   width: 56px;
-  border-radius: 4px;
   margin-top: 20px;
   height: 36px;
-  cursor: pointer;
   margin-left: 25px;
 }
 
-.resultAndWinningLottoContainer {
+.result-winning-lotto-container {
   width: 100%;
   padding: 20px;
   display: none;
@@ -56,8 +53,12 @@
   display: inline;
 }
 
-.resultContainer {
+.result-container {
   width: 100%;
+}
+
+.result-text {
+  margin-bottom: 10px;
 }
 
 .lottoEmoji {
