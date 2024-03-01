@@ -19,6 +19,7 @@ const inputView = {
     });
     return winningLottos;
   },
+
   inputBonusNumber() {
     return parseInt(inputBonusLotto.value);
   },

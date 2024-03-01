@@ -50,7 +50,7 @@ class LottoControllerWeb {
       e.preventDefault();
       await this.#lottoPurchase();
 
-      outputView.printAfterBuyLottos(this.#lottoCount, this.#generatedLottos);
+      outputView.showAfterBuyLottos(this.#lottoCount, this.#generatedLottos);
     });
   }
 

@@ -9,7 +9,7 @@ const {
 } = domSelector;
 
 const outputView = {
-  printAfterBuyLottos(ticketCount, lottos) {
+  showAfterBuyLottos(ticketCount, lottos) {
     this.generatedLottosReset();
     this.printLottoPayment(ticketCount);
     this.printGeneratedLottos(lottos);

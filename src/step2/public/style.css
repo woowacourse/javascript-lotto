@@ -54,6 +54,7 @@ h1 p {
 #Container {
   /* height: calc(727px-64px); */
   min-height: 31.25rem;
+  max-height: 38rem;
 
   width: calc(414px-40px);
   background-color: var(--color-gray);
@@ -147,7 +148,7 @@ h1 p {
   gap: 10px;
   padding: 0;
 
-  max-height: 14rem;
+  max-height: 13rem;
   overflow: scroll;
 }
 
