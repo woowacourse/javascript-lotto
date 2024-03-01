@@ -3,31 +3,18 @@ import Component from '../core/Component';
 import PurchaseLottoForm from './PurchaseLottoForm';
 
 class PurchaseSection extends Component {
-  mounted() {
-    const { handlePurchaseBtn } = this;
-    const $purchaseLottoForm = document.querySelector('#purchaseLottoForm');
-    new PurchaseLottoForm($purchaseLottoForm, {
-      handlePurchaseBtn: handlePurchaseBtn.bind(this),
-    });
-  }
-
   template() {
     return `
         <div>구입할 금액을 입력해주세요.</div>
-          <form id="purchaseLottoForm"></form>
-          <div id="purchaseError" class="hidden">
-        </div>`;
+        <template id="purchaseLottoTemplate"></template>
+        `;
   }
 
-  setEvent() {
-    const $purchaseLottoForm = this.$target.querySelector('#purchaseLottoForm');
-    $purchaseLottoForm.addEventListener('click', e => {
-      e.preventDefault();
+  mounted() {
+    const $purchaseLottoForm = document.querySelector('#purchaseLottoTemplate');
+    new PurchaseLottoForm($purchaseLottoForm, {
+      play: this.props.play,
     });
-  }
-
-  handlePurchaseBtn() {
-    this.props.play();
   }
 }
 

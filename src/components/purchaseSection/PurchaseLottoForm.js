@@ -3,14 +3,28 @@ import Component from '../core/Component';
 class PurchaseLottoForm extends Component {
   template() {
     return `
-            <input id="purchaseInput" placeholder="금액" />
-            <button id="purchaseButton" class="button buttonFont">구입</button>
+        <form id="purchaseLottoForm">
+          <input id="purchaseInput" placeholder="금액" />
+          <button id="purchaseButton" class="button buttonFont">구입</button>
+        </form>
+        <div id="purchaseError" class="hidden"></div>
         `;
   }
 
+  mounted() {
+    const template = document.querySelector('#purchaseLottoTemplate');
+    const newContent = document.importNode(template.content, true);
+    const $purchaseSection = document.querySelector('#purchaseSection');
+    $purchaseSection.appendChild(newContent);
+  }
+
   setEvent() {
-    const $purchaseBtn = this.$target.querySelector('#purchaseButton');
-    $purchaseBtn.addEventListener('click', this.props.handlePurchaseBtn);
+    const $purchaseLottoForm = document.querySelector('#purchaseLottoForm');
+    $purchaseLottoForm.addEventListener('submit', e => {
+      e.preventDefault();
+    });
+    const $purchaseBtn = document.querySelector('#purchaseButton');
+    $purchaseBtn.addEventListener('click', this.props.play);
   }
 }
 
