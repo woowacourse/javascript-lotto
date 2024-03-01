@@ -1,4 +1,4 @@
-import "../../src/styles/index.css";
+import "../styles/index.css";
 import Lotto from "../domain/Lotto.js";
 import lottoRankMaker from "../domain/lottoRankMaker.js";
 import lottoResultMaker from "../domain/lottoResultMaker.js";
