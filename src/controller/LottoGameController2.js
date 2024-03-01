@@ -65,7 +65,6 @@ class LottoGameController2 {
       const bonusNumber = $bonusInput.value;
       this.#checkWinningNumbers(winningNumberList);
       this.#checkBonusNumber(bonusNumber, winningNumberList);
-      this.#showResult();
     });
   }
 
@@ -93,6 +92,9 @@ class LottoGameController2 {
     try {
       Validator.validateBonusNumber(bonusNumber, winningNumberList);
       this.#bonusNumber = bonusNumber;
+      this.#showResult();
+      this.#bindCloseButton();
+      this.#bindRestartButton();
     } catch (error) {
       alert(error.message);
       // 메서드 분리 예정
@@ -101,13 +103,9 @@ class LottoGameController2 {
   }
 
   #showResult() {
-    console.log(this.#winningNumbers);
-    console.log(this.#bonusNumber);
     const winningResults = this.#lottosManager.getWinningResults(this.#winningNumbers, this.#bonusNumber);
     const profitRate = this.#calculateProfitRate(winningResults);
     View.renderWinningResults(winningResults, profitRate);
-    this.#bindCloseButton();
-    this.#bindRestartButton();
   }
 
   #calculateProfitRate(winningResults) {
