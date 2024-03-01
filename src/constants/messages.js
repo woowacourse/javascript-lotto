@@ -12,8 +12,8 @@ export const OUTPUT_MESSAGES = {
   ticketCount(count) {
     return `총 ${count}개를 구매했습니다.`;
   },
-  winningStatics: '당첨 통계',
-  winningStaticsOperation: '--------------------',
+  winningStatistics: '당첨 통계',
+  winningStatisticsOperation: '--------------------',
   totalProfit(profit) {
     return `총 수익률은 ${profit}%입니다.`;
   },

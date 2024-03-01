@@ -14,17 +14,17 @@ const OutputView = {
     });
   },
 
-  printWinningStatics(statics) {
-    Console.print(OUTPUT_MESSAGES.winningStatics);
-    Console.print(OUTPUT_MESSAGES.winningStaticsOperation);
-    this.printStatics(statics);
+  printWinningStatistics(statistics) {
+    Console.print(OUTPUT_MESSAGES.winningStatistics);
+    Console.print(OUTPUT_MESSAGES.winningStatisticsOperation);
+    this.printStatistics(statistics);
   },
 
-  printStatics(statics) {
+  printStatistics(statistics) {
     const keys = Object.keys(LOTTO_STATISTICS);
 
     keys.forEach((key) => {
-      const message = createWinningResult(key, statics[key]);
+      const message = createWinningResult(key, statistics[key]);
       Console.print(message);
     });
   },
