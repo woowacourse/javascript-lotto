@@ -10,14 +10,13 @@ export const INPUT_MESSAGES = {
 
 export const OUTPUT_MESSAGES = {
   ticketCount(count) {
-    return `총 ${count}개를 구매했습니다.`;
+    return `${count}개를 구매했습니다.`;
   },
   winningStatistics: '당첨 통계',
   winningStatisticsOperation: '--------------------',
   totalProfit(profit) {
     return `총 수익률은 ${profit}%입니다.`;
   },
-  ticketEmoji: '🎟️',
 };
 
 export const ERROR_MESSAGES = {
@@ -26,4 +25,14 @@ export const ERROR_MESSAGES = {
   invalidLength: `${LOTTO_RULES.winningNumbersLength}개의 숫자를 입력해 주세요.`,
   invalidRange: `${LOTTO_RULES.minLength} ~ ${LOTTO_RULES.maxLength} 사이의 숫자만 입력해 주세요.`,
   invalidUniqueNumber: '중복된 숫자는 입력할 수 없습니다.',
+};
+
+export const WEB_MESSAGES = {
+  ticketEmoji: '🎟️',
+  ticketCount(count) {
+    return `총 ${count}개를 구매했습니다.`;
+  },
+  totalProfit(profit) {
+    return `당신의 총 수익률은 ${profit}%입니다.`;
+  },
 };
