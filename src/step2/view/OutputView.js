@@ -15,12 +15,17 @@ const outputView = {
     this.printGeneratedLottos(lottos);
     afterBuyLottos.style.visibility = 'visible';
   },
+
   generatedLottosReset() {
     if (generatedLottos.hasChildNodes()) {
       afterBuyLottos.firstChild.remove();
-      while (generatedLottos.firstChild) {
-        generatedLottos.removeChild(generatedLottos.firstChild);
-      }
+      this.removeChild(generatedLottos);
+    }
+  },
+
+  removeChild(parents) {
+    while (parents.firstChild) {
+      parents.removeChild(parents.firstChild);
     }
   },
 
@@ -63,6 +68,7 @@ const outputView = {
   },
 
   closeModal() {
+    this.resetModal();
     modal.style.display = 'none';
   },
 

@@ -7,6 +7,7 @@ import outputView from '../view/outputView';
 import executeRetry from '../util/executeRetry';
 import LottoValidator from '../../step1/validators/LottoValidator';
 import LottoCalculator from '../../step1/domains/LottoCalculator';
+import LOTTO_RULES from '../../step1/constants/lotto-rules';
 
 const { lottoPriceButton, checkResultButton, restartButton, close } =
   domSelector;
@@ -31,6 +32,10 @@ class LottoControllerWeb {
     addEvent(checkResultButton, 'click', (e) => {
       this.lottoResultHandler(e);
     });
+    this.modalEventHandler();
+  }
+
+  modalEventHandler() {
     addEvent(restartButton, 'click', () => {
       window.location.reload();
     });
@@ -42,34 +47,34 @@ class LottoControllerWeb {
   lottoPurchaseHandler(e) {
     executeRetry(async () => {
       e.preventDefault();
-
-      this.#lottoCount =
-        this.validateLottoNumbers(await inputView.inputLottoPrice()) / 1000;
-
-      this.#generatedLottos = new LottoGenerator(
-        this.#lottoCount,
-      ).generatedLottos;
+      await this.lottoPurchase();
 
       outputView.printAfterBuyLottos(this.#lottoCount, this.#generatedLottos);
     });
   }
 
+  async lottoPurchase() {
+    const lottoPrice = await inputView.inputLottoPrice();
+    this.validateLottoNumbers(lottoPrice);
+    this.#lottoCount = lottoPrice / LOTTO_RULES.lottoBaseTicketPrice;
+    const lottoGenerator = new LottoGenerator(this.#lottoCount);
+    this.#generatedLottos = lottoGenerator.generatedLottos;
+  }
+
   lottoResultHandler(e) {
     executeRetry(async () => {
       e.preventDefault();
-
-      this.#lottoNumber.winningNumbers = await inputView.inputWinningNumbers();
-      this.#lottoNumber.bonusNumber = await inputView.inputBonusNumber();
-
-      this.validateInputLotto(
-        this.#lottoNumber.winningNumbers,
-        this.#lottoNumber.bonusNumber,
-      );
-
+      await this.inputLottoNumbers();
+      const { winningNumbers, bonusNumber } = this.#lottoNumber;
+      this.validateInputLotto(winningNumbers, bonusNumber);
       const { lottoStatistics, totalProfit } = this.calculateLottoResult();
-
       outputView.alertModal(lottoStatistics, totalProfit);
     });
+  }
+
+  async inputLottoNumbers() {
+    this.#lottoNumber.winningNumbers = await inputView.inputWinningNumbers();
+    this.#lottoNumber.bonusNumber = await inputView.inputBonusNumber();
   }
 
   calculateLottoResult() {
@@ -88,7 +93,6 @@ class LottoControllerWeb {
       throw new Error('로또 구입 금액을 입력해주세요.');
     }
     LottoPaymentValidator.validate(price);
-    return price;
   }
 
   validateInputLotto(winningNumbers, bonusNumber) {
