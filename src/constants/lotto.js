@@ -5,6 +5,7 @@ const LOTTO_NUMBER = {
 
 const LOTTO = {
   count: 6,
+  bonusCount: 1,
 };
 
 const LOTTO_MONEY = {
