@@ -41,46 +41,33 @@ body {
   text-align: center;
   font-feature-settings: 'clig' off, 'liga' off;
 
-  /* lotto-title */
   font-family: Roboto;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 800;
   line-height: 2.25rem;
-  /* 150% */
   margin: 2.5rem;
 }
 
-.purchase-input-form {
+.puchase-form {
   width: 100%;
+}
 
+.flex-container {
+  display: flex;
 }
 
 .purchase-input-text {
-  width: 19.375rem;
+  width: 20.875rem;
   height: 1.8rem;
   border-radius: 0.25rem;
   border: 1px solid var(--lotto-greyscale-3, #B4B4B4);
-  margin: 0.2rem;
-  ;
   margin: 0.4rem 0.4rem 0 0;
 }
 
-.purchase-input-submit {
-  width: 3.5rem;
-  padding: 0.375rem 0.375rem 0.375rem 0.5rem;
-  border-radius: 0.25rem;
-  background: var(--lotto-primary, #4E5BA6);
-  color: var(--lotto-greyscale-1, #FFF);
-  font-feature-settings: 'clig' off, 'liga' off;
-
-  font-family: Roboto;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1rem;
-  /* 114.286% */
-  letter-spacing: 0.07813rem;
+.purchase-button {
+  margin: 0.4rem 0 0.4rem 0;
+  flex-grow: 1;
 }
 
 .purchase-context {
@@ -93,11 +80,10 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 1.5rem;
-  /* 160% */
   letter-spacing: 0.03125rem;
 }
 
-.puchase-error-message {
+.error-message {
   color: #ff0000;
   margin: 0.3rem;
   height: 1rem;
@@ -139,7 +125,6 @@ body {
 .lotto-list-p {
   color: var(--lotto-greyscale-5, #000);
   font-feature-settings: 'clig' off, 'liga' off;
-
   font-family: Roboto;
   font-size: 0.9375rem;
   font-style: normal;
@@ -148,10 +133,16 @@ body {
   letter-spacing: 0.03125rem;
   padding: 0.2rem;
 }
+.winnumber-form{
+  display: flex;
+  flex-direction: column;
+}
 
 .winnumber-input-box {
   width: 100%;
   bottom: 0rem;
+  display: flex;
+  flex-direction: column;
   margin: auto 0 0.3rem 0;
 }
 
@@ -165,41 +156,38 @@ body {
 }
 
 .winnumber-input {
+  margin: 0.5rem 0.3rem 0 0;
+}
+.one-number-input {
   width: 1.5rem;
   height: 1.5rem;
-  margin: 0.5rem 0.3rem 0 0;
   text-align: center;
 }
 
 .bonusnumber-input {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: 0.5rem 0 0 0;
   float: right;
-  text-align: center;
+  margin: 0.5rem 0 0 0;
 }
 
-.result-button {
-  margin: 2rem 0;
-  width: 100%;
+.result-button{
+  margin: 0 0 1rem 0;
+  flex-grow: 1;
+}
+
+.button {
   border-radius: 0.25rem;
   background: var(--lotto-primary, #4E5BA6);
   color: var(--lotto-greyscale-1, #FFF);
   font-feature-settings: 'clig' off, 'liga' off;
   height: 2rem;
-
-  /* lotto-caption */
   font-family: Roboto;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 700;
   line-height: 1rem;
-  /* 114.286% */
   letter-spacing: 0.07813rem;
 
 }
-
-.modal {}
 
 .modal-container {
   width: 100%;
@@ -216,12 +204,14 @@ body {
 
 .modal-contents {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
   position: absolute;
   background-color: #ffffff;
   width: 21.875rem;
   height: 31.25rem;
   padding: 1rem;
+  flex-wrap: wrap;
 }
 
 .modal-title {
@@ -233,8 +223,54 @@ body {
   font-style: normal;
   font-weight: 600;
   line-height: 1.5rem;
-  letter-spacing: 0.00938rem;
+  letter-spacing: s0.00938rem;
   margin: 2.5rem;
+}
+
+.modal-table {
+  border-collapse: separate;
+  border-spacing: 1.0rem 1rem;
+  text-align: center;
+}
+
+.modal-table td,
+.modal-table th {
+  color: var(--lotto-greyscale-5, #000);
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  letter-spacing: 0.03125rem;
+}
+
+.modal-table td {
+  white-space: nowrap;
+}
+
+.modal-table th {
+  font-weight: bold;
+}
+
+.total-price {
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.restart-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--lotto-greyscale-1, #FFF);
+  font-family: Roboto;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1rem; /* 114.286% */
+  letter-spacing: 0.07813rem;
+  text-transform: uppercase;
 }
 
 .footer {
