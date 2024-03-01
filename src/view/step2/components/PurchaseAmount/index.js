@@ -53,6 +53,11 @@ class PurchaseAmount {
     $contentInput.addEventListener("input", (e) => {
       this.#state.purchaseAmount = e.target.value;
     });
+    $contentInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        this.#props.onPurchaseAmountButtonClick(this.#state.purchaseAmount);
+      }
+    });
 
     return $contentInput;
   }

@@ -12,6 +12,10 @@ h2 {
   initial-letter: 0.15px;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .button--primary {
   background-color: #4e5ba6;
   color: #ffffff;
@@ -63,7 +67,7 @@ main > article {
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   width: 440px;
-  height: 718px;
+  height: 690px;
   padding: 36px 16px;
   box-sizing: border-box;
   display: flex;
