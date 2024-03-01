@@ -6,7 +6,7 @@ class PurchaseLottoForm extends Component {
   template() {
     return `
         <form id="purchaseLottoForm">
-          <input id="purchaseInput" placeholder="금액" />
+          <input id="purchaseInput" name="purchaseInput" placeholder="금액" />
           <button id="purchaseButton" class="button buttonFont">구입</button>
         </form>
         <div id="purchaseError" class="hidden"></div>
@@ -24,14 +24,16 @@ class PurchaseLottoForm extends Component {
     const $purchaseLottoForm = document.querySelector('#purchaseLottoForm');
     $purchaseLottoForm.addEventListener('submit', e => {
       e.preventDefault();
+      const purchaseAmountInput = $purchaseLottoForm.elements.purchaseInput.value;
+      this.play(purchaseAmountInput);
     });
-    const $purchaseBtn = document.querySelector('#purchaseButton');
-    $purchaseBtn.addEventListener('click', this.play);
   }
 
-  play() {
-    const purchaseAmount = webInputView.readPurchaseAmount();
+  play(purchaseAmountInput) {
+    const $purchaseError = document.getElementById('purchaseError');
+    const purchaseAmount = webInputView.readPurchaseAmount(purchaseAmountInput, $purchaseError);
     if (!purchaseAmount) return;
+    document.getElementById('winningNumberSection').classList.remove('hidden');
     document.querySelector('.winningNumberInput').focus();
     const lottoController = new WebLottoController(purchaseAmount);
     lottoController.run();

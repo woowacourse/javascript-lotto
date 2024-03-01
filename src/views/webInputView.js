@@ -3,17 +3,14 @@ import winningNumbersValidator from '../validators/winningNumbersValidator.js';
 import bonusNumberValidator from '../validators/bonusNumberValidator.js';
 
 const webInputView = {
-  readPurchaseAmount() {
-    const $purchaseError = document.getElementById('purchaseError');
-    const $winningNumberSection = document.getElementById('winningNumberSection');
+  readPurchaseAmount(purchaseAmountInput, $purchaseError) {
     try {
-      const purchaseAmountInput = document.getElementById('purchaseInput').value;
       const purchaseAmount = purchaseAmountInput.trim();
       purchaseAmountValidator.validate(purchaseAmount);
       $purchaseError.classList.add('hidden');
-      $winningNumberSection.classList.remove('hidden');
       return purchaseAmount;
     } catch (error) {
+      // eslint-disable-next-line no-param-reassign
       $purchaseError.textContent = error.message;
       $purchaseError.classList.remove('hidden');
       return false;
