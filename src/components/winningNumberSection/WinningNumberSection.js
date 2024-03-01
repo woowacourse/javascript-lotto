@@ -3,6 +3,8 @@ import CONFIG from '../../constants/config';
 import Component from '../core/Component';
 import { DOM_MESSAGE } from '../../constants/message';
 import dom from '../../utils/dom';
+import winningNumbersValidator from '../../validators/winningNumbersValidator';
+import bonusNumberValidator from '../../validators/bonusNumberValidator';
 
 class WinningNumberSection extends Component {
   template() {
@@ -32,13 +34,45 @@ class WinningNumberSection extends Component {
 
   setEvent() {
     const $lottoNumberForm = dom.$('#lottoNumberForm');
+    const $lottoNumberError = dom.$('#lottoNumberError');
     $lottoNumberForm.addEventListener('submit', e => {
       e.preventDefault();
       const winningNumbersInputList = [...$lottoNumberForm.querySelectorAll('.winningNumberInput')];
-      const bonusNumber = $lottoNumberForm.elements.bonusNumberInput.value;
-      const winningNumbersInput = winningNumbersInputList.map(winningNumber => winningNumber.value);
+      const winningNumbersInput = winningNumbersInputList.map(winningNumber => parseInt(winningNumber.value, 10));
+      const winningNumbers = this.validateWinningNumbers(winningNumbersInput, $lottoNumberError);
+      if (!winningNumbers) return;
+      const bonusNumberInput = $lottoNumberForm.elements.bonusNumberInput.value;
+      const bonusNumber = this.validateBonusNumber({ bonusNumberInput, winningNumbers }, $lottoNumberError);
+      if (!bonusNumber) return;
       this.props.lottoController.handleLottoResult(winningNumbersInput, bonusNumber);
     });
+  }
+
+  validateWinningNumbers(winningNumbers, $lottoNumberError) {
+    try {
+      winningNumbersValidator.validate(winningNumbers);
+      $lottoNumberError.classList.add('hidden');
+      return winningNumbers;
+    } catch (error) {
+      // eslint-disable-next-line no-param-reassign
+      $lottoNumberError.textContent = error.message;
+      $lottoNumberError.classList.remove('hidden');
+      return false;
+    }
+  }
+
+  validateBonusNumber(lottoNumbers, $lottoNumberError) {
+    try {
+      const { bonusNumberInput, winningNumbers } = lottoNumbers;
+      const bonusNumber = parseInt(bonusNumberInput, 10);
+      bonusNumberValidator.validate(bonusNumber, winningNumbers);
+      return bonusNumber;
+    } catch (error) {
+      // eslint-disable-next-line no-param-reassign
+      $lottoNumberError.textContent = error.message;
+      $lottoNumberError.classList.remove('hidden');
+      return false;
+    }
   }
 }
 

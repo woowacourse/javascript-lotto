@@ -2,7 +2,6 @@ import CONFIG from '../constants/config.js';
 import LotteryMachine from '../domain/services/LotteryMachine.js';
 import lottoService from '../domain/services/lottoService.js';
 import modal from '../utils/dom/modal.js';
-import webInputView from '../views/webInputView.js';
 import webOutputView from '../views/webOutputView.js';
 
 class WebLottoController {
