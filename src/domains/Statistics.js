@@ -64,12 +64,12 @@ class Statistics {
     WINNING_RULE.forEach((value, key) => {
       const { matchedCount, isBonus } = value;
 
-      const checkBonusMatch =
+      const isBonusMatchRequired =
         matchedCount === WINNING_RULE.get(RANK_HAS_BONUS).matchedCount;
       const isMatchingCount = matchedCount === result.matchedCount;
-      const isMatchingOnlyCount = !checkBonusMatch && isMatchingCount;
+      const isMatchingOnlyCount = !isBonusMatchRequired && isMatchingCount;
       const isMatchingBonusAndCount =
-        checkBonusMatch && isBonus === result.isBonus;
+        isBonusMatchRequired && isBonus === result.isBonus;
 
       if (!isMatchingCount) return;
       if (isMatchingOnlyCount || isMatchingBonusAndCount) {
