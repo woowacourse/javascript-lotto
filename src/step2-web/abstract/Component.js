@@ -34,12 +34,12 @@ export default class Component extends Observer {
     throw new CustomError("_getTemplate 메서드가 구현되어 있지 않습니다.");
   }
 
-  _attachErrorHandler(eventHandler, errorMessageSetter) {
+  _attachErrorHandler(eventHandler, errorMessageTargetId) {
     return (e) => {
       try {
         eventHandler(e);
       } catch (error) {
-        errorMessageSetter(error.message);
+        $(`#${errorMessageTargetId}`).innerText = error.message;
       }
     };
   }

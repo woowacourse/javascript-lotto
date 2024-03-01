@@ -6,6 +6,7 @@ export default class LottoResultState extends State {
     intialState = {
       rankResult: { ...LOTTO_RANK_INITIAL_RESULT },
       profitRate: 0,
+      isResultModalOn: false,
     }
   ) {
     super(intialState);

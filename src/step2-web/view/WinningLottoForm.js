@@ -10,25 +10,22 @@ import LottoNumber from "../../step1-console/domain/LottoNumber.js";
 import LottoResultMaker from "../../step1-console/domain/LottoResultMaker.js";
 import { parseNumber } from "../../step1-console/utils/parseNumber.js";
 
+const ERROR_MESSAGE_ELEMENT_ID = "winning-lotto-error-message";
+const LOTTO_NUMBER_INPUT_CLASS = "lotto-number-input";
 export default class WinningLottoForm extends Component {
   #lottosState;
-  #winningLottoErrorMessageState;
   #lottoResultState;
-  #isResultModalOnState;
 
   constructor({
     targetElementId,
     lottosState,
-    winningLottoErrorMessageState,
     lottoResultState,
     isResultModalOnState,
   }) {
     super(targetElementId);
 
     this.#lottosState = lottosState;
-    this.#winningLottoErrorMessageState = winningLottoErrorMessageState;
     this.#lottoResultState = lottoResultState;
-    this.#isResultModalOnState = isResultModalOnState;
   }
 
   _getTemplate() {
@@ -38,8 +35,6 @@ export default class WinningLottoForm extends Component {
       .fill()
       .map((_) => this.#getLottoNumberInputTemplate())
       .join("");
-
-    const errorMessage = this.#winningLottoErrorMessageState.getState();
 
     return `
   <section class="getting-winning-lotto ${lottos.length ? "" : "hidden"}">
@@ -59,9 +54,7 @@ export default class WinningLottoForm extends Component {
             </div>
             </div>
             </div>
-            <p id="winning-lotto-error-message" class="error-message">${
-              errorMessage || ""
-            }</p>
+            <p id=${ERROR_MESSAGE_ELEMENT_ID} class="error-message"></p>
 
         <button class="check-result-button">
           결과 확인하기
@@ -73,13 +66,13 @@ export default class WinningLottoForm extends Component {
   }
 
   #getLottoNumberInputTemplate() {
-    return `<input type="number" class="lotto-number-input" />`;
+    return `<input type="number" class="${LOTTO_NUMBER_INPUT_CLASS}" />`;
   }
 
   _setEvent() {
     const checkResultClickHandler = this._attachErrorHandler(
       this.#handleCheckResultButton.bind(this),
-      (message) => this.#winningLottoErrorMessageState.setState(message)
+      ERROR_MESSAGE_ELEMENT_ID
     );
 
     $(".check-result-button").addEventListener(
@@ -97,17 +90,22 @@ export default class WinningLottoForm extends Component {
     const rankResult = LottoResultMaker.arrangeRanks(ranks);
     const profitRate = LottoResultMaker.calculateProfitRate(ranks);
 
-    this.#lottoResultState.setState({ rankResult, profitRate });
-    this.#isResultModalOnState.setState(true);
-    this.#winningLottoErrorMessageState.setState(null);
+    this.#resetErrorMessage();
+    this.#lottoResultState.setState({
+      rankResult,
+      profitRate,
+      isResultModalOn: true,
+    });
   }
 
   #getLottoNumbersFromInputs() {
-    const $winningNumberInputs = $$(".lotto-number-input").slice(
+    const $winningNumberInputs = $$(`.${LOTTO_NUMBER_INPUT_CLASS}`).slice(
       0,
       LOTTO_NUMBER_LENGTH
     );
-    const $bonusNumberInput = $$(".lotto-number-input")[LOTTO_NUMBER_LENGTH];
+    const $bonusNumberInput = $$(`.${LOTTO_NUMBER_INPUT_CLASS}`)[
+      LOTTO_NUMBER_LENGTH
+    ];
 
     const winningNumbers = $winningNumberInputs.map((input) =>
       parseNumber(input.value)
@@ -121,5 +119,9 @@ export default class WinningLottoForm extends Component {
     const lottos = new Lotto(winningNumbers);
     const bounusNumber = new LottoNumber(bonusNumber);
     return new WinningLotto(lottos, bounusNumber);
+  }
+
+  #resetErrorMessage() {
+    $(`#${ERROR_MESSAGE_ELEMENT_ID}`).textContent = "";
   }
 }

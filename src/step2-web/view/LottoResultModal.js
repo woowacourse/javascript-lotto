@@ -5,26 +5,19 @@ import { $ } from "../utils/selector.js";
 export default class LottoResultModal extends Component {
   #lottosState;
   #lottoResultState;
-  #isResultModalOnState;
 
-  constructor({
-    targetElementId,
-    lottosState,
-    lottoResultState,
-    isResultModalOnState,
-  }) {
+  constructor({ targetElementId, lottosState, lottoResultState }) {
     super(targetElementId);
 
     this.#lottosState = lottosState;
     this.#lottoResultState = lottoResultState;
-    this.#isResultModalOnState = isResultModalOnState;
   }
 
   _getTemplate() {
     this.#toggleBodyScrollable();
 
-    const { rankResult, profitRate } = this.#lottoResultState.getState();
-    const isResultModalOn = this.#isResultModalOnState.getState();
+    const { rankResult, profitRate, isResultModalOn } =
+      this.#lottoResultState.getState();
 
     const hidden = isResultModalOn ? "" : "hidden";
 
@@ -108,18 +101,17 @@ export default class LottoResultModal extends Component {
   }
 
   #closeModal() {
-    this.#isResultModalOnState.setState(false);
+    this.#lottoResultState.setState({ isResultModalOn: false });
   }
 
   #handleRestartButton() {
     this.#lottosState.reset();
     this.#lottoResultState.reset();
-    this.#isResultModalOnState.reset();
   }
 
   #toggleBodyScrollable() {
-    const isModalOn = this.#isResultModalOnState.getState();
+    const { isResultModalOn } = this.#lottoResultState.getState();
 
-    document.body.style.overflow = isModalOn ? "hidden" : "auto";
+    document.body.style.overflow = isResultModalOn ? "hidden" : "auto";
   }
 }
