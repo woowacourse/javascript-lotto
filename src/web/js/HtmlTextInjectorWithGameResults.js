@@ -1,4 +1,4 @@
-import { NUMBER_DELIMITER, WINNING_RULE } from '../../constants';
+import { LOTTO_RULE, NUMBER_DELIMITER, WINNING_RULE } from '../../constants';
 
 const HtmlTextInjectorWithGameResults = {
   /**
@@ -96,15 +96,15 @@ const HtmlTextInjectorWithGameResults = {
     const li = document.createElement('li');
     li.className = 'lotto';
 
-    const textAboutLottoNumbers = ticket
-      .sort((prev, current) => prev - current)
-      .join(NUMBER_DELIMITER);
+    const textAboutLottoNumbers = ticket.sort(
+      (prev, current) => prev - current,
+    );
 
     // 화면 상에서 숫자들의 영을 맞추지 위해 div로 감싸기
     const otherChildrenOfLi = [...textAboutLottoNumbers]
       .map(
-        (string, index) => `
-    <div class=${index % 2 ? 'delimiter' : 'number'}>
+        (string) => `
+    <div class= 'number'>
       ${string}
     </div>
     `,

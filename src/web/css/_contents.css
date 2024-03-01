@@ -90,12 +90,17 @@ main .contents > header {
     display: flex;
   }
   .number {
-    width: 18px;
+    width: 32px;
     text-align: center;
   }
-  .delimiter {
-    width: fit-content;
-    margin-left: 5px;
+  .number::before {
+    content: ',';
+  }
+  .number:nth-child(2) {
+    margin-left: 2px;
+  }
+  .number:nth-child(2)::before {
+    content: '';
   }
 }
 
