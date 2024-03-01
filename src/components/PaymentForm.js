@@ -8,10 +8,12 @@ export default class PaymentForm extends HTMLFormElement {
   constructor() {
     super();
 
-    const template = document.getElementById('payment-form');
+    const template = document.getElementById('template-payment-form');
     const content = template.content.cloneNode(true);
     this.appendChild(content);
+  }
 
+  connectedCallback() {
     this.addEventListener('submit', this.#handleSubmit.bind(this));
   }
 

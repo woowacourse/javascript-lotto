@@ -11,24 +11,43 @@
     <title>🎱 행운의 로또</title>
   </head>
   <body>
-    <template id="purchased-lottos">
+    <template id="template-purchased-lottos">
       <p class="counter"></p>
       <ul class="list"></ul>
     </template>
-    <template id="lotto-item">
+    <template id="template-lotto-item">
       <li>
         <p class="ticket-icon"></p>
         <p class="lotto-numbers"></p>
       </li>
     </template>
 
-    <template id="payment-form">
+    <template id="template-payment-form">
       <label
         >구입할 금액을 입력해주세요.
         <input name="paymentAmount" type="text" placeholder="금액" autofocus />
       </label>
       <button type="submit">구입</button>
       <p class="err-msg"></p>
+    </template>
+    <template id="template-winning-lotto-form">
+      <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+      <div class="input-container">
+        <div class="lotto-number">
+          <label> 당첨 번호 </label>
+          <input type="text" class="lotto-number-input" />
+          <input type="text" class="lotto-number-input" />
+          <input type="text" class="lotto-number-input" />
+          <input type="text" class="lotto-number-input" />
+          <input type="text" class="lotto-number-input" />
+          <input type="text" class="lotto-number-input" />
+        </div>
+        <div class="bonus-number">
+          <label> 보너스 번호 </label>
+          <input type="text" class="lotto-number-input" />
+        </div>
+      </div>
+      <button class="check-result-btn">결과 확인하기</button>
     </template>
 
     <section id="app">
@@ -43,7 +62,10 @@
 
           <!-- PurchasedLottos -->
           <purchased-lottos></purchased-lottos>
-          <form class="winning-lottery-form">
+
+          <!-- WinningLottoForm -->
+          <form is="winning-lotto-form" name="winningLotto"></form>
+          <!-- <form class="winning-lottery-form">
             <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
             <div class="input-container">
               <div class="lotto-number">
@@ -61,7 +83,7 @@
               </div>
             </div>
             <button class="check-result-btn">결과 확인하기</button>
-          </form>
+          </form> -->
         </div>
       </main>
 

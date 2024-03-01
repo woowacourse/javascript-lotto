@@ -8,13 +8,13 @@ export default class PurchasedLottos extends HTMLElement {
   constructor() {
     super();
 
-    const template = document.getElementById('purchased-lottos');
+    const template = document.getElementById('template-purchased-lottos');
     const content = template.content.cloneNode(true);
     this.appendChild(content);
 
     this.#counter = this.querySelector('p');
     this.#list = this.querySelector('ul');
-    this.#itemTemplate = document.getElementById('lotto-item');
+    this.#itemTemplate = document.getElementById('template-lotto-item');
   }
 
   static get observedAttributes() {
