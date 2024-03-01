@@ -38,7 +38,7 @@ const winningLottoHandler = {
   validateWinningLotto() {
     const makedLotto = this.makeWinningLotto();
     bonusNumberValidator(makedLotto.getNumbers(), Number(bonusNumber.value));
-    invalidWinningLotto.innerText = "";
+    invalidWinningLotto.textContent = "";
     const winningLotto = WinningLotto(makedLotto, Number(bonusNumber.value));
 
     return winningLotto;
@@ -59,7 +59,7 @@ const winningLottoHandler = {
       const winningLotto = this.validateWinningLotto();
       this.showModal(lottoList, winningLotto);
     } catch (error) {
-      invalidWinningLotto.innerText = error.message;
+      invalidWinningLotto.textContent = error.message;
     }
   },
 };

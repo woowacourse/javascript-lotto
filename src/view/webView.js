@@ -18,7 +18,7 @@ const WebView = {
     );
     purchaseNumber.textContent = WEB_MESSAGE.PURCHASE_AMOUNT(purchaseAmount);
     purchaseAmountInput.value = "";
-    invalidPurchaseAmount.innerText = "";
+    invalidPurchaseAmount.textContent = "";
   },
 
   showLottoList(lottoNumberArray) {
@@ -35,8 +35,8 @@ const WebView = {
     const li = document.createElement("li");
     const icon = document.createElement("span");
     const lotto = document.createElement("span");
-    icon.innerText = WEB_MESSAGE.LOTTO_ICON;
-    lotto.innerText = lottoNumber.sort((a, b) => a - b).join(", ");
+    icon.textContent = WEB_MESSAGE.LOTTO_ICON;
+    lotto.textContent = lottoNumber.sort((a, b) => a - b).join(", ");
     li.appendChild(icon);
     li.appendChild(lotto);
     return li;
