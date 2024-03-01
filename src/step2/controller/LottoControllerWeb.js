@@ -4,13 +4,23 @@ import { addEvent } from '../util/event';
 import LottoPaymentValidator from '../../step1/validators/LottoPaymentValidator';
 import LottoGenerator from '../../step1/domains/LottoGenerator';
 import LottoMachine from '../lottoMachine';
-import OutputView from '../view/outputView';
+import outputView from '../view/outputView';
 import executeRetry from '../util/executeRetry';
+import LottoValidator from '../../step1/validators/LottoValidator';
+import LottoCalculator from '../../step1/domains/LottoCalculator';
 
 const { lottoPriceButton, checkResultButton } = domSelector;
 
 class LottoControllerWeb {
+  #lottoCount;
+  #generatedLottos;
+  #lottoNumber;
+
   constructor() {
+    this.#lottoNumber = {
+      winningNumbers: [],
+      bonusNumber: 0,
+    };
     this.run();
   }
 
@@ -20,18 +30,14 @@ class LottoControllerWeb {
       executeRetry(async () => {
         e.preventDefault();
 
-        const ticketCount =
+        this.#lottoCount =
           this.validateLottoNumbers(await inputView.inputLottoPrice()) / 1000;
 
-        const lottoGenerator = new LottoGenerator(ticketCount);
-        const lottoMachine = new LottoMachine(
-          ticketCount,
-          lottoGenerator.generatedLottos,
-        );
-        OutputView.printAfterBuyLottos(
-          ticketCount,
-          lottoMachine.generatedLottos,
-        );
+        this.#generatedLottos = new LottoGenerator(
+          this.#lottoCount,
+        ).generatedLottos;
+
+        outputView.printAfterBuyLottos(this.#lottoCount, this.#generatedLottos);
       });
 
       // 버튼 이벤트 , 모달창 띄우기
@@ -39,10 +45,28 @@ class LottoControllerWeb {
       addEvent(checkResultButton, 'click', (e) => {
         executeRetry(async () => {
           e.preventDefault();
-          const winningNumbers = await inputView.inputWinningNumbers();
-          const bonusNumber = await inputView.inputBonusNumber();
-          console.log(winningNumbers);
-          console.log(bonusNumber);
+
+          this.#lottoNumber.winningNumbers =
+            await inputView.inputWinningNumbers();
+          this.#lottoNumber.bonusNumber = await inputView.inputBonusNumber();
+
+          LottoValidator.validateWinningNumbers(
+            this.#lottoNumber.winningNumbers,
+          );
+          LottoValidator.validateBonusNumber(
+            this.#lottoNumber.winningNumbers,
+            this.#lottoNumber.bonusNumber,
+          );
+
+          const lottoCalculator = new LottoCalculator(
+            this.#lottoNumber,
+            this.#generatedLottos,
+          );
+          const lottoStatistics = lottoCalculator.lottoStatistics;
+          const totalProfit = lottoCalculator.calculateTotalProfit(
+            this.#lottoCount,
+          );
+          outputView.alertModal(lottoStatistics, totalProfit);
         });
       });
     });
