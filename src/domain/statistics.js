@@ -13,7 +13,6 @@ export default class Statistics {
 
   constructor({ lottos, winningLotto, bonusNumber, cost }) {
     this.#calculateResult({ lottos, winningLotto, bonusNumber, cost });
-
     this.#profit = ((this.#calculateTotal() / cost) * 100).toFixed(1);
   }
 

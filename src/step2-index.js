@@ -2,7 +2,6 @@
  * step 2의 시작점이 되는 파일입니다.
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
-/* eslint-disable*/
 import './styles/reset.css';
 import './styles/style.css';
 import LottoMachine from './domain/lottoMachine';
@@ -32,35 +31,49 @@ const $profitRate = document.querySelector('.profit-rate');
 let money;
 let lottoMachine;
 
-$buyForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  money = Number(formData.get('buy-input'));
-
-  try {
-    lottoMachine = new LottoMachine(money);
-    validateCost(money);
-  } catch (error) {
-    alert(`${error.message}`);
-    return;
-  }
-
+const showLottos = (lottoCount, lottos) => {
   $lottoResult.classList.remove('hidden');
   $answerForm.classList.remove('hidden');
 
-  $lottoResultLabel.innerText = `총 ${lottoMachine.getLottoCount}개를 구매하였습니다.`;
-
-  lottoMachine.getLottoNumbers.forEach((lottoNumber) => {
+  $lottoResultLabel.innerText = `총 ${lottoCount}개를 구매하였습니다.`;
+  lottos.forEach((lottoNumber) => {
     const lottoTag = document.createElement('div');
     lottoTag.textContent = ` 🎟️ ${lottoNumber.join(',')}`;
     lottoTag.classList.add('lotto-number');
     $lottoNumbers.appendChild(lottoTag);
   });
+};
 
+const submitMoney = (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  money = Number(formData.get('buy-input'));
+
+  try {
+    validateCost(money);
+    lottoMachine = new LottoMachine(money);
+  } catch (error) {
+    alert(`${error.message}`);
+    return;
+  }
+
+  showLottos(lottoMachine.getLottoCount, lottoMachine.getLottoNumbers);
   disableForm($buyForm);
-});
+};
 
-$answerForm.addEventListener('submit', (e) => {
+$buyForm.addEventListener('submit', submitMoney);
+
+const showStatisticsResult = (statistics) => {
+  $threeMatchCount.innerText = `${statistics.getResult.three}개`;
+  $fourMatchCount.innerText = `${statistics.getResult.four}개`;
+  $fiveMatchCount.innerText = `${statistics.getResult.five}개`;
+  $fiveBonusMatchCount.innerText = `${statistics.getResult.five_bonus}개`;
+  $sixMatchCount.innerText = `${statistics.getResult.six}개`;
+  $profitRate.innerText = `당신의 총 수익률은 ${statistics.getProfit}%입니다`;
+  $modal.classList.remove('hidden');
+};
+
+const submitAnswerLotto = (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const answerNumbers = formData.getAll('answer-number').map((number) => Number(number));
@@ -82,26 +95,23 @@ $answerForm.addEventListener('submit', (e) => {
     cost: money,
   });
 
-  $threeMatchCount.innerText = `${statistics.getResult.three}개`;
-  $fourMatchCount.innerText = `${statistics.getResult.four}개`;
-  $fiveMatchCount.innerText = `${statistics.getResult.five}개`;
-  $fiveBonusMatchCount.innerText = `${statistics.getResult.five_bonus}개`;
-  $sixMatchCount.innerText = `${statistics.getResult.six}개`;
-  $profitRate.innerText = `당신의 총 수익률은 ${statistics.getProfit}%입니다`;
-
-  $modal.classList.remove('hidden');
+  showStatisticsResult(statistics);
   disableForm($answerForm);
-});
+};
+$answerForm.addEventListener('submit', submitAnswerLotto);
 
-$modalCancel.addEventListener('click', () => {
+const modalCancel = () => {
   $modalBody.classList.add('hidden');
-});
+};
 
-$retryButton.addEventListener('click', () => {
+const reset = () => {
   $modal.classList.add('hidden');
   $lottoResult.classList.add('hidden');
   $answerForm.classList.add('hidden');
   $buyInput.value = '';
   ableForm($buyForm);
   ableForm($answerForm);
-});
+};
+
+$modalCancel.addEventListener('click', modalCancel);
+$retryButton.addEventListener('click', reset);
