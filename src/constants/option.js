@@ -19,7 +19,6 @@ export const WINNING_RANK = {
 
 export const OPTION = {
   DELIMITER: ",",
-  SPACE_DELIMITER: ", ",
 };
 
 export const MAX_RETRY = 3;
