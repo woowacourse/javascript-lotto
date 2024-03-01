@@ -5,8 +5,9 @@ import LottoPaymentValidator from '../../step1/validators/LottoPaymentValidator'
 import LottoGenerator from '../../step1/domains/LottoGenerator';
 import LottoMachine from '../lottoMachine';
 import OutputView from '../view/outputView';
+import executeRetry from '../util/executeRetry';
 
-const { lottoPriceButton } = domSelector;
+const { lottoPriceButton, checkResultButton } = domSelector;
 
 class LottoControllerWeb {
   constructor() {
@@ -15,9 +16,10 @@ class LottoControllerWeb {
 
   async run() {
     // 구입 클릭 시 generateLottoNumbers 실행, 돔에 그리고 결과 보여주기.
-    addEvent(lottoPriceButton, 'click', async (e) => {
-      try {
+    addEvent(lottoPriceButton, 'click', (e) => {
+      executeRetry(async () => {
         e.preventDefault();
+
         const ticketCount =
           this.validateLottoNumbers(await inputView.inputLottoPrice()) / 1000;
 
@@ -30,10 +32,19 @@ class LottoControllerWeb {
           ticketCount,
           lottoMachine.generatedLottos,
         );
-      } catch (e) {
-        alert(e.message);
-        console.log(e.message);
-      }
+      });
+
+      // 버튼 이벤트 , 모달창 띄우기
+      // 당첨 통계 input 로직 불러오기
+      addEvent(checkResultButton, 'click', (e) => {
+        executeRetry(async () => {
+          e.preventDefault();
+          const winningNumbers = await inputView.inputWinningNumbers();
+          const bonusNumber = await inputView.inputBonusNumber();
+          console.log(winningNumbers);
+          console.log(bonusNumber);
+        });
+      });
     });
   }
 
@@ -43,7 +54,6 @@ class LottoControllerWeb {
       throw new Error('로또 구입 금액을 입력해주세요.');
     }
     LottoPaymentValidator.validate(price);
-    //TODO : 아무것도 입력 안했을떄 예외처리 추가하기\
     return price;
   }
 }
