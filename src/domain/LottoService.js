@@ -78,6 +78,10 @@ const LottoService = {
 
     return [result, rateOfRevenue];
   },
+
+  wrapArrayToLotto(winNumbers = []){
+    return new Lotto(winNumbers);
+  }
 };
 
 export default LottoService;

@@ -32,7 +32,7 @@ class LottoController {
 
   async inputWinnerInfo() {
     const winNumbers = await retryErrorCatch(() => this.getValidateWinNumbers());
-    const winLotto = new Lotto(winNumbers);
+    const winLotto = LottoService.wrapArrayToLotto(winNumbers);
     const bonusNumber = await retryErrorCatch(() => this.validateBonusNumber(winNumbers));
 
     return [winLotto, bonusNumber];
