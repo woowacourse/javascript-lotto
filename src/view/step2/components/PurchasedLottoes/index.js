@@ -1,3 +1,5 @@
+import "./style.css";
+
 class PurchasedLottoes {
   #$parent;
   #props;

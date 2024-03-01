@@ -1,4 +1,4 @@
-import LOTTO_SYSTEM from "../../../constants/lottoSystem";
+import LOTTO_SYSTEM from "../../../../constants/lottoSystem";
 
 function calculateTotalRanking(rankings) {
   const initialRanking = [0, 0, 0, 0, 0, 0];

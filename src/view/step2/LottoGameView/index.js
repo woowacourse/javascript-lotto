@@ -1,8 +1,9 @@
-import PurchasedLottoes from "./components/PurchasedLottoes";
-import PurchaseAmount from "./components/PurchaseAmount";
-import WinningLotto from "./components/WinningLotto";
-import DrawButton from "./components/DrawButton";
-import ResultModal from "./components/ResultModal";
+import "./style.css";
+import PurchasedLottoes from "../components/PurchasedLottoes";
+import PurchaseAmount from "../components/PurchaseAmount";
+import WinningLotto from "../components/WinningLotto";
+import DrawButton from "../components/DrawButton";
+import ResultModal from "../components/ResultModal";
 
 class LottoGameView {
   #state = {

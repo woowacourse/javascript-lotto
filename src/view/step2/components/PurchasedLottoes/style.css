@@ -1,0 +1,25 @@
+/* 구매한 로또 */
+.purchased-lottoes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.purchased-lottoes__content {
+  height: 260px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.purchased-lottoes__content__item {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+  gap: 4px;
+}
+
+.purchased-lottoes__content__item__emoji {
+  font-size: 24px;
+}

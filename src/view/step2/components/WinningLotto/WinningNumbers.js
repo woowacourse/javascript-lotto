@@ -36,6 +36,7 @@ class WinningNumbers {
 
   #generateWinningNumbersContent() {
     const $content = document.createElement("div");
+    $content.className = "winning-lotto__input-wrapper";
     $content.addEventListener("input", (e) => {
       this.#props.winningNumbers[e.target.dataset.index] = e.target.value;
     });
@@ -46,7 +47,7 @@ class WinningNumbers {
   }
 
   #generateWinningNumbersContentInput() {
-    return this.#props.winningNumbers.map((number, index) => {
+    return this.#props.winningNumbers.map((_, index) => {
       const $input = document.createElement("input");
       $input.className = "input winning-lotto__input";
       $input.type = "text";
