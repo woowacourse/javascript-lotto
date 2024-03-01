@@ -1,7 +1,6 @@
 import './global.css';
 import './app.css';
 
-import eventHandler from '../../utils/dom/eventHandler';
 import modal from '../../utils/dom/modal';
 import Component from '../core/Component';
 import LottoResultModal from '../lottoResultModal/LottoResultModal';
@@ -21,7 +20,6 @@ class App extends Component {
   }
 
   mounted() {
-    const { handleCloseModal, handleClickRestart } = this;
     const $titleSection = this.$target.querySelector('#titleSection');
     const $purchaseSection = this.$target.querySelector('#purchaseSection');
     const $winningNumberSection = this.$target.querySelector('#winningNumberSection');
@@ -30,25 +28,13 @@ class App extends Component {
     new TitleSection($titleSection);
     new PurchaseSection($purchaseSection);
     new WinningNumberSection($winningNumberSection);
-    new LottoResultModal($lottoResultModal, {
-      handleCloseModal: handleCloseModal.bind(this),
-      handleClickRestart: handleClickRestart.bind(this),
-    });
+    new LottoResultModal($lottoResultModal);
   }
 
   setEvent() {
     document.body.addEventListener('click', e => {
       if (e.target.id === 'modalBackground') modal.close();
     });
-  }
-
-  handleCloseModal() {
-    modal.close();
-  }
-
-  handleClickRestart() {
-    modal.close();
-    eventHandler.restart();
   }
 }
 
