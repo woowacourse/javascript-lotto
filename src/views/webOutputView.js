@@ -1,6 +1,6 @@
-import CONFIG from '../constants/config.js';
-import { MESSAGE } from '../constants/message.js';
-import dom from '../utils/dom/index.js';
+import CONFIG from '../constants/config';
+import { MESSAGE } from '../constants/message';
+import dom from '../utils/dom';
 
 const webOutputView = {
   printLottoCount(lottoCount) {
@@ -24,11 +24,12 @@ const webOutputView = {
     $purchaseSection.appendChild(fragment);
   },
 
-  printLottoResult(ranks) {
+  printLottoResult(createTableCallback, ranks) {
+    const { createLottoResultTitle, createLottoResultTable } = createTableCallback;
     const $lottoResultTable = document.getElementById('lottoResultTable');
     $lottoResultTable.replaceChildren();
-    const lottoResultRowTitle = dom.createLottoResultTitle();
-    const lottoResultTableFragment = dom.createLottoResultTable(ranks);
+    const lottoResultRowTitle = createLottoResultTitle();
+    const lottoResultTableFragment = createLottoResultTable(ranks);
     $lottoResultTable.appendChild(lottoResultRowTitle);
     $lottoResultTable.appendChild(lottoResultTableFragment);
   },
