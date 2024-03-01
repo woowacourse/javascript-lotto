@@ -1,6 +1,7 @@
 import WebLottoController from '../../controllers/WebLottoController';
 import webInputView from '../../views/webInputView';
 import Component from '../core/Component';
+import dom from '../../utils/dom';
 
 class PurchaseLottoForm extends Component {
   template() {
@@ -14,14 +15,14 @@ class PurchaseLottoForm extends Component {
   }
 
   mounted() {
-    const template = document.querySelector('#purchaseLottoTemplate');
+    const template = dom.$('#purchaseLottoTemplate');
     const newContent = document.importNode(template.content, true);
-    const $purchaseSection = document.querySelector('#purchaseSection');
+    const $purchaseSection = dom.$('#purchaseSection');
     $purchaseSection.appendChild(newContent);
   }
 
   setEvent() {
-    const $purchaseLottoForm = document.querySelector('#purchaseLottoForm');
+    const $purchaseLottoForm = dom.$('#purchaseLottoForm');
     $purchaseLottoForm.addEventListener('submit', e => {
       e.preventDefault();
       const purchaseAmountInput = $purchaseLottoForm.elements.purchaseInput.value;
@@ -30,14 +31,13 @@ class PurchaseLottoForm extends Component {
   }
 
   play(purchaseAmountInput) {
-    const $purchaseError = document.getElementById('purchaseError');
-    const purchaseAmount = webInputView.readPurchaseAmount(purchaseAmountInput, $purchaseError);
+    const purchaseAmount = webInputView.readPurchaseAmount(purchaseAmountInput, dom.$('#purchaseError'));
     if (!purchaseAmount) return;
-    document.getElementById('winningNumberSection').classList.remove('hidden');
-    document.querySelector('.winningNumberInput').focus();
+    dom.$('#winningNumberSection').classList.remove('hidden');
+    dom.$('.winningNumberInput').focus();
     const lottoController = new WebLottoController(purchaseAmount);
     lottoController.run();
-    document.getElementById('lottoResultButton').addEventListener('click', lottoController.handleLottoResult);
+    dom.$('#lottoResultButton').addEventListener('click', lottoController.handleLottoResult);
   }
 }
 

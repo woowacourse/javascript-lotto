@@ -1,9 +1,8 @@
 import './global.css';
 import './app.css';
-import WebLottoController from '../../controllers/WebLottoController';
+
 import eventHandler from '../../utils/dom/eventHandler';
 import modal from '../../utils/dom/modal';
-import webInputView from '../../views/webInputView';
 import Component from '../core/Component';
 import LottoResultModal from '../lottoResultModal/LottoResultModal';
 import PurchaseSection from '../purchaseSection/PurchaseSection';
@@ -22,15 +21,15 @@ class App extends Component {
   }
 
   mounted() {
-    const { play, handleCloseModal, handleClickRestart } = this;
+    const { handleCloseModal, handleClickRestart } = this;
     const $titleSection = this.$target.querySelector('#titleSection');
     const $purchaseSection = this.$target.querySelector('#purchaseSection');
     const $winningNumberSection = this.$target.querySelector('#winningNumberSection');
     const $lottoResultModal = this.$target.querySelector('#lottoResultModal');
 
-    new TitleSection($titleSection, {});
-    new PurchaseSection($purchaseSection, {});
-    new WinningNumberSection($winningNumberSection, {});
+    new TitleSection($titleSection);
+    new PurchaseSection($purchaseSection);
+    new WinningNumberSection($winningNumberSection);
     new LottoResultModal($lottoResultModal, {
       handleCloseModal: handleCloseModal.bind(this),
       handleClickRestart: handleClickRestart.bind(this),
@@ -42,15 +41,6 @@ class App extends Component {
       if (e.target.id === 'modalBackground') modal.close();
     });
   }
-
-  // play() {
-  //   const purchaseAmount = webInputView.readPurchaseAmount();
-  //   if (!purchaseAmount) return;
-  //   document.querySelector('.winningNumberInput').focus();
-  //   const lottoController = new WebLottoController(purchaseAmount);
-  //   lottoController.run();
-  //   document.getElementById('lottoResultButton').addEventListener('click', lottoController.handleLottoResult);
-  // }
 
   handleCloseModal() {
     modal.close();

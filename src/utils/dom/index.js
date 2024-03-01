@@ -1,6 +1,10 @@
 import PRIZE from '../../constants/prize';
 
 const dom = {
+  $(selector) {
+    return document.querySelector(selector);
+  },
+
   create(tagName, id, className, textContent) {
     const tag = document.createElement(tagName);
     if (id) tag.id = id;

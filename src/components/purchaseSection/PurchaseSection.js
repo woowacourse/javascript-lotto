@@ -1,6 +1,7 @@
 import './PurchaseSection.css';
 import Component from '../core/Component';
 import PurchaseLottoForm from './PurchaseLottoForm';
+import dom from '../../utils/dom';
 
 class PurchaseSection extends Component {
   template() {
@@ -11,8 +12,8 @@ class PurchaseSection extends Component {
   }
 
   mounted() {
-    const $purchaseLottoForm = document.querySelector('#purchaseLottoTemplate');
-    new PurchaseLottoForm($purchaseLottoForm, {});
+    const $purchaseLottoForm = dom.$('#purchaseLottoTemplate');
+    new PurchaseLottoForm($purchaseLottoForm);
   }
 }
 
