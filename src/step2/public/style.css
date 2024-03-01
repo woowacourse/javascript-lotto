@@ -18,14 +18,12 @@ p {
   margin: 0;
 }
 
-#app {
-  background-color: var(--color-primary);
-
-  width: 100%;
-  height: 100%;
+body,
+button {
+  font-family: 'Roboto', sans-serif;
 }
 
-#bodyContainer {
+.center {
   width: 100%;
   height: 100%;
 
@@ -35,16 +33,37 @@ p {
   justify-content: center;
 }
 
+.blue-button {
+  border-radius: 0.25rem;
+  border: none;
+
+  background-color: var(--color-blue);
+  color: var(--color-white);
+}
+
+.input {
+  border-radius: 0.25rem;
+  border: 1px solid var(--color-gray);
+}
+
+#app {
+  background-color: var(--color-primary);
+
+  width: 100%;
+  height: 100%;
+}
+
 #app h1 {
   background-color: var(--color-blueGray);
   color: var(--color-white);
+
   height: 4rem;
+
   display: flex;
   align-items: center;
 }
 
 h1 p {
-  font-family: Roboto;
   font-size: 1.5rem;
   font-weight: 800;
 
@@ -72,21 +91,13 @@ h1 p {
 }
 
 .title {
-  font-family: Roboto;
   font-size: 1.5rem;
   font-weight: 800;
+
   line-height: 2.25rem;
   letter-spacing: 0rem;
-  text-align: center;
-}
 
-.center {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 
 /* 로또금액 입력 스타일*/
@@ -94,10 +105,6 @@ h1 p {
 .lottoPriceButton {
   width: 3.5rem;
   height: 2.25rem;
-  border-radius: 0.25rem;
-  background-color: var(--color-blue);
-  color: var(--color-white);
-  border: none;
 
   font-size: 0.875rem;
   font-weight: 700;
@@ -122,8 +129,6 @@ h1 p {
 .thousandUnitInput {
   width: 19.375rem;
   padding: 0.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid var(--color-gray);
 }
 
 .thousandUnitInput::placeholder {
@@ -148,6 +153,7 @@ h1 p {
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
+
   padding: 0;
 
   max-height: 13rem;
@@ -188,8 +194,6 @@ h1 p {
 .lotto input {
   width: 2.125rem;
   height: 2.25rem;
-  border-radius: 0.25rem;
-  border: 1px solid var(--color-gray);
 
   text-align: center;
 }
@@ -208,15 +212,10 @@ h1 p {
 .checkResultButton {
   width: 25rem;
   padding: 0.625rem;
-  border-radius: 0.25rem;
-  background-color: var(--color-blue);
-  color: var(--color-white);
-  border: none;
-
   margin-top: 1.875rem;
 }
 
-/* 바닥.....바닥..*/
+/* 바닥*/
 
 .footer {
   margin-top: 3.75rem;
@@ -230,7 +229,7 @@ h1 p {
   letter-spacing: 0.0781rem;
   text-align: center;
 
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--color-ligthGray);
 }
 
 /* 모달창 */
@@ -238,10 +237,12 @@ h1 p {
 .modal {
   display: none;
   margin: 0 auto;
+
   position: fixed;
-  z-index: 1;
   left: 0;
   top: 0;
+  z-index: 1;
+
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -249,6 +250,7 @@ h1 p {
 }
 
 .modalBox {
+  display: flex;
   align-items: center;
   flex-direction: column;
 
@@ -256,12 +258,14 @@ h1 p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   width: 18.75rem;
   height: 28.125rem;
+
   background-color: var(--color-white);
   border-radius: 0.3125rem;
   padding: 1.25rem;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 var(--color-ligthGray);
 }
 
 #close {
@@ -276,28 +280,39 @@ h1 p {
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.25rem;
-  letter-spacing: 0.15000000596046448px;
+  letter-spacing: 0.0094rem;
   text-align: center;
+
   margin: 1.5615rem 0;
 }
 
 .modalTable {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--color-ligthGray);
   margin-bottom: 1.875rem;
+  text-align: center;
+
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+
+  font-size: 0.9375rem;
 }
 
 td {
   text-align: center;
 }
 
-#restartButton {
-  width: 100%;
-  height: 2.25rem;
-  background-color: var(--color-blue);
-  color: var(--color-white);
+tr {
+  border-bottom: 1px solid var(--color-ligthGray);
+}
 
-  border: none;
-  border-radius: 0.25rem;
+thead {
+  height: 15%;
+}
+
+.restartButton {
+  width: 100%;
+  height: 4rem;
 
   margin-top: 1.25rem;
 }

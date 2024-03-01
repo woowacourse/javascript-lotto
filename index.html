@@ -10,7 +10,7 @@
   <body>
     <div id="app">
       <h1><p>🎱 행운의 로또</p></h1>
-      <div id="bodyContainer">
+      <div class="center">
         <span id="Container">
           <div class="mainContents">
             <div class="title">🎱 내 번호 당첨 확인 🎱</div>
@@ -19,14 +19,14 @@
               <label>구입할 금액을 입력해주세요.</label>
               <span>
                 <input
-                  class="thousandUnitInput"
+                  class="thousandUnitInput input"
                   placeholder="1000원 단위의 금액을 입력해주세요."
                   min='0'
                   max='100000'
                   step="1000"
                   type="number"
                 />
-                <button class="lottoPriceButton">구입</button>
+                <button class="lottoPriceButton blue-button">구입</button>
               </span>
             </form>
 
@@ -39,21 +39,21 @@
                 <div class="winningLottos lotto">
                   <label> 당첨 번호</label>
                   <div>
-                    <input class="inputWinningLottos" maxlength="2" />
-                    <input class="inputWinningLottos" maxlength="2" />
-                    <input class="inputWinningLottos" maxlength="2" />
-                    <input class="inputWinningLottos" maxlength="2" />
-                    <input class="inputWinningLottos" maxlength="2" />
-                    <input class="inputWinningLottos" maxlength="2" />
+                    <input class="inputWinningLottos input" maxlength="2" />
+                    <input class="inputWinningLottos input" maxlength="2" />
+                    <input class="inputWinningLottos input" maxlength="2" />
+                    <input class="inputWinningLottos input" maxlength="2" />
+                    <input class="inputWinningLottos input" maxlength="2" />
+                    <input class="inputWinningLottos input" maxlength="2" />
                   </div>
                 </div>
                 <div class="bonusLotto lotto">
                   <label> 보너스 번호</label>
-                  <input class="inputBonusLotto" maxlength="2" />
+                  <input class="inputBonusLotto input" maxlength="2" />
                 </div>
               </div>
 
-              <button type="button" class="checkResultButton">
+              <button type="button" class="checkResultButton blue-button">
                 결과 확인하기
               </button>
             </div>
@@ -95,7 +95,7 @@
 
         <p class="totalProfit"></p>
           
-        <button id="restartButton">다시 시작하기</button>
+        <button class="restartButton blue-button">다시 시작하기</button>
       </div>
     </span>
     <script src="./src/step2-index.js" type="module" defer></script>

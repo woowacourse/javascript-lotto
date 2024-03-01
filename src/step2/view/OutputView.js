@@ -43,7 +43,7 @@ const outputView = {
   alertModal(lottoStatistics, profit) {
     this.makeWinningStatisticsTable(lottoStatistics);
     totalProfit.innerText = `당신의 총 수익률은 ${profit}%입니다.`;
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
   },
 
   makeWinningStatisticsTable(lottoStatistics) {

@@ -10,12 +10,10 @@ const domSelector = {
   totalProfit: document.querySelector('.totalProfit'),
 
   modal: document.querySelector('.modal'),
+  restartButton: document.querySelector('.restartButton'),
+  close: document.getElementById('close'),
 
   winningStatistics: document.getElementById('winningStatistics'),
-
-  restartButton: document.querySelector('#restartButton'),
-
-  close: document.getElementById('close'),
 };
 
 export default domSelector;
