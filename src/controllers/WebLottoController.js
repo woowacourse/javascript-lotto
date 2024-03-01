@@ -34,11 +34,7 @@ class WebLottoController {
     webOutputView.printProfit(profit);
   }
 
-  handleLottoResult = () => {
-    const winningNumbers = webInputView.readWinningNumbers();
-    if (!winningNumbers) return;
-    const bonusNumber = webInputView.readBonusNumber(winningNumbers);
-    if (!bonusNumber) return;
+  handleLottoResult = (winningNumbers, bonusNumber) => {
     const matchedResultList = this.#lottery.map(lotto => lotto.getMatchedAmount(winningNumbers, bonusNumber));
     this.#processLottoResult(matchedResultList);
     this.#processProfit(matchedResultList);
