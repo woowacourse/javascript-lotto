@@ -1,13 +1,12 @@
 import NUMBER from "../constants/number";
 import LottoService from "../domain/LottoService";
 import PurchaseAmountValidation from "../validation/purchaseAmount";
-import Modal from "./Modal";
 import winNumberEvent from "./WinNumberEvent";
 
 const PurchaseEvent = {
     initPurchaseEvent(){
-        const puchaseButton = document.querySelector('.lotto-forms');
-        puchaseButton.addEventListener('submit', this.purchaseSubmitEvent.bind(this));
+        const puchaseForm = document.querySelector('.puchase-form');
+        puchaseForm.addEventListener('submit', this.purchaseSubmitEvent.bind(this));
     },
 
     purchaseSubmitEvent(event = {}){
@@ -16,11 +15,11 @@ const PurchaseEvent = {
         try{
             PurchaseAmountValidation.validate(purchaseInput);
             const randomLottos = LottoService.getLottos(Number.parseInt(Number(purchaseInput) / NUMBER.LOTTO_PRICE, 10));
-            this.closeErrorMessage('.puchase-error-message');
+            this.closeErrorMessage('.purchase-error');
             this.showRandomLottos('.random-lottos', randomLottos)
-            winNumberEvent.createInputUIWinNumber();
+            winNumberEvent.createInputUIWinNumber(randomLottos);
         } catch (error){
-            this.showErrorMessage('.puchase-error-message', error);
+            this.showErrorMessage('.purchase-error', error);
         }
     },
 
