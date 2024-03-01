@@ -14,7 +14,8 @@
     "max-depth": ["error", 1],
     "max-params": ["error", 2],
     "max-lines-per-function": ["error", 10],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "no-param-reassign": "off"
   },
   "ignorePatterns": ["*.test.js"]
 }

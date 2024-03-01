@@ -10,6 +10,7 @@ import { validateCost } from './utils/validation.js';
 import Lotto from './domain/lotto.js';
 import WinningLotto from './domain/winningLotto.js';
 import Statistics from './domain/statistics.js';
+import { disableForm, ableForm } from './web/util.js';
 
 const $buyForm = document.querySelector('.buy-form');
 const $buyInput = document.querySelector('.buy-input');
@@ -69,7 +70,6 @@ $answerForm.addEventListener('submit', (e) => {
   try {
     const answerLotto = new Lotto(answerNumbers);
     winningLotto = new WinningLotto(answerLotto, bonusNumber);
-    console.log({ winningLotto: winningLotto.getLottoNumbers, bonusNumber: winningLotto.getBonusNumber });
   } catch (error) {
     alert(`${error.message}`);
     return;
@@ -87,7 +87,7 @@ $answerForm.addEventListener('submit', (e) => {
   $fiveMatchCount.innerText = `${statistics.getResult.five}개`;
   $fiveBonusMatchCount.innerText = `${statistics.getResult.five_bonus}개`;
   $sixMatchCount.innerText = `${statistics.getResult.six}개`;
-  $profitRate.innerText = `당신의 총 수익률은 ${statistics.getProfit}입니다`;
+  $profitRate.innerText = `당신의 총 수익률은 ${statistics.getProfit}%입니다`;
 
   $modal.classList.remove('hidden');
   disableForm($answerForm);
@@ -105,15 +105,3 @@ $retryButton.addEventListener('click', () => {
   ableForm($buyForm);
   ableForm($answerForm);
 });
-
-const disableForm = (formElement) => {
-  for (let i = 0; i < formElement.length; i++) {
-    formElement.elements[i].disabled = true;
-  }
-};
-
-const ableForm = (formElement) => {
-  for (let i = 0; i < formElement.length; i++) {
-    formElement.elements[i].disabled = false;
-  }
-};
