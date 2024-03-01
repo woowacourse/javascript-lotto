@@ -48,13 +48,10 @@ class LottoWebController {
     event.preventDefault();
     this.getWebBudget();
     try {
-      // 유효성 검사 해줘
       startValidation(budgetValidation.categories, this.#webBudget);
 
-      // 로또 발행 장 수 계산해줘
       const webIssuedLottoCount = this.calculateWebIssuedLottoCount();
 
-      // 발행된 로또 번호 가져와서 보여줘
       $("#after-budget").style.display = "flex";
       const budgetInputNodes = $("#content-box-input-budget");
       budgetInputNodes.querySelector("input").disabled = true;
@@ -62,7 +59,7 @@ class LottoWebController {
 
       this.handleWebIssuedLottoArray(webIssuedLottoCount);
     } catch (error) {
-      return alert(error.message); // TODO : alert 말고 다른 종류로 바꾸기
+      return alert(error.message);
     }
   }
 
@@ -156,7 +153,6 @@ class LottoWebController {
     startValidation(categories, input);
 
     if (Array.isArray(input)) {
-      console.log("array");
       startValidation(commonInputValidation.categories, input);
       input.forEach((number) => {
         startValidation(winningLottoValidation.commonCategories, number);
@@ -168,7 +164,6 @@ class LottoWebController {
   }
 
   openModal() {
-    // console.log("openModal");
     $("#modal").style.display = "flex";
   }
 

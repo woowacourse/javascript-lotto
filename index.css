@@ -136,9 +136,6 @@ body {
   background-color: var(--lotto-greyscale4-color);
 }
 
-#content-box-budget {
-}
-
 #content-box-budget-label {
   margin-bottom: 0.4rem;
 }
@@ -189,7 +186,6 @@ body {
 }
 
 #content-box-numbers {
-  /* background-color: yellow; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -217,7 +213,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: end;
-  /* background-color: green; */
   width: 7.6rem;
   height: 6.8rem;
   white-space: nowrap;
@@ -245,7 +240,6 @@ body {
   color: var(--lotto-greyscale1-color);
   height: 3.6rem;
   padding: 0.6rem 0.6rem 0.6rem 0.8rem;
-  /* margin-bottom: 3.2rem; */
   border: none;
   border-radius: 0.4rem;
   text-align: center;
