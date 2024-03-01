@@ -79,6 +79,8 @@ export default class LottoResultModal extends MyComponent {
   }
 
   _setEvent() {
+    this.#toggleBodyScrollable();
+
     $(".winning-result-close-button").addEventListener(
       "click",
       this.#handleResultModalCloseButton.bind(this)
@@ -98,5 +100,11 @@ export default class LottoResultModal extends MyComponent {
     this.#lottosState.reset();
     this.#lottoResultState.reset();
     this.#isResultModalOnState.reset();
+  }
+
+  #toggleBodyScrollable() {
+    const isModalOn = this.#isResultModalOnState.getState();
+
+    document.body.style.overflow = isModalOn ? "hidden" : "auto";
   }
 }
