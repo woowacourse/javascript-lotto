@@ -90,9 +90,6 @@ h1 p {
   margin-top: 3.25rem;
 
   padding: 1.875rem 1.25rem 1.25rem 1.56rem;
-
-  /*전처 컨테이너에 패딩을 주는게 좋아보이나요 아니면
-   각 요소마다 magin-left 를 넣는게 좋을까요?*/
 }
 
 .title {
@@ -187,7 +184,6 @@ h1 p {
   justify-content: space-between;
   margin-top: 0.625rem;
 
-  /* 이 부분 반복되니까 따로 묶기 나중에...*/
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.5rem;
