@@ -141,3 +141,20 @@ $lottoNumbersForm.addEventListener('submit', (event) => {
     return ($profitText.textContent = WEB_MESSAGES.totalProfit(totalProfit));
   }
 });
+
+// 당첨 통계 모달 버튼 닫기
+const $closeButton = $('#close-button');
+$closeButton.addEventListener('click', () => {
+  const $modalWrapper = $('#modal-wrapper');
+  $modalWrapper.classList.add('hidden-modal');
+  $modalWrapper.classList.remove('modal-wrapper');
+});
+
+// 당첨 통계 모달 외 영역 클릭 시 모달 닫기
+const $modalWrapper = $('#modal-wrapper');
+$modalWrapper.addEventListener('click', (event) => {
+  if (event.target === $modalWrapper) {
+    $modalWrapper.classList.add('hidden-modal');
+    $modalWrapper.classList.remove('modal-wrapper');
+  }
+});
