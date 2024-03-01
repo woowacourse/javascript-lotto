@@ -3,13 +3,13 @@ import domSelector from '../util/dom';
 import { addEvent } from '../util/event';
 import LottoPaymentValidator from '../../step1/validators/LottoPaymentValidator';
 import LottoGenerator from '../../step1/domains/LottoGenerator';
-import LottoMachine from '../lottoMachine';
 import outputView from '../view/outputView';
 import executeRetry from '../util/executeRetry';
 import LottoValidator from '../../step1/validators/LottoValidator';
 import LottoCalculator from '../../step1/domains/LottoCalculator';
 
-const { lottoPriceButton, checkResultButton } = domSelector;
+const { lottoPriceButton, checkResultButton, restartButton, close } =
+  domSelector;
 
 class LottoControllerWeb {
   #lottoCount;
@@ -50,10 +50,7 @@ class LottoControllerWeb {
             await inputView.inputWinningNumbers();
           this.#lottoNumber.bonusNumber = await inputView.inputBonusNumber();
 
-          LottoValidator.validateWinningNumbers(
-            this.#lottoNumber.winningNumbers,
-          );
-          LottoValidator.validateBonusNumber(
+          this.validateInputLotto(
             this.#lottoNumber.winningNumbers,
             this.#lottoNumber.bonusNumber,
           );
@@ -70,15 +67,28 @@ class LottoControllerWeb {
         });
       });
     });
+
+    addEvent(restartButton, 'click', (e) => {
+      //   modal.style.display = 'none';
+      window.location.reload();
+    });
+    addEvent(close, 'click', (e) => {
+      outputView.resetModal();
+      outputView.closeModal();
+    });
   }
 
-  // 구입 버튼 클릭 시 실행되는 함수
   validateLottoNumbers(price) {
     if (price === '' || price === '0') {
       throw new Error('로또 구입 금액을 입력해주세요.');
     }
     LottoPaymentValidator.validate(price);
     return price;
+  }
+
+  validateInputLotto(winningNumbers, bonusNumber) {
+    LottoValidator.validateWinningNumbers(winningNumbers);
+    LottoValidator.validateBonusNumber(winningNumbers, bonusNumber);
   }
 }
 

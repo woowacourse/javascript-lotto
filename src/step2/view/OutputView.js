@@ -61,5 +61,15 @@ const outputView = {
       winningStatistics.appendChild(tr);
     }
   },
+
+  closeModal() {
+    modal.style.display = 'none';
+  },
+
+  resetModal() {
+    while (winningStatistics.firstChild) {
+      winningStatistics.removeChild(winningStatistics.firstChild);
+    }
+  },
 };
 export default outputView;
