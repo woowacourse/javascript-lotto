@@ -2,7 +2,7 @@
 #winningNumberSection {
     display: flex;
     flex-direction: column;
-    flex-basis: 20%;
+    flex-basis: 25%;
     gap: 15px;
 }
 

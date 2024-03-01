@@ -6,7 +6,6 @@ import Component from '../core/Component';
 import LottoResultModal from '../lottoResultModal/LottoResultModal';
 import PurchaseSection from '../purchaseSection/PurchaseSection';
 import TitleSection from '../titleSection/TitleSection';
-import WinningNumberSection from '../winningNumberSection/WinningNumberSection';
 
 class App extends Component {
   template() {
@@ -14,7 +13,7 @@ class App extends Component {
       <section id="titleSection"></section>
       <section id="purchaseSection"></section>
       <section id="purchaseResultSection"></section>
-      <section id="winningNumberSection" class="hidden"></section>
+      <section id="winningNumberSection"></section>
       <section id="lottoResultModal" class="hidden"></section>
     `;
   }
@@ -22,12 +21,10 @@ class App extends Component {
   mounted() {
     const $titleSection = this.$target.querySelector('#titleSection');
     const $purchaseSection = this.$target.querySelector('#purchaseSection');
-    const $winningNumberSection = this.$target.querySelector('#winningNumberSection');
     const $lottoResultModal = this.$target.querySelector('#lottoResultModal');
 
     new TitleSection($titleSection);
     new PurchaseSection($purchaseSection);
-    new WinningNumberSection($winningNumberSection);
     new LottoResultModal($lottoResultModal);
   }
 
