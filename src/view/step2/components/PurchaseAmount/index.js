@@ -32,6 +32,7 @@ class PurchaseAmount {
 
     const $title = document.createElement("h3");
     $title.className = "purchase-amount__title";
+    $title.innerText = "구입할 금액을 입력해주세요.";
 
     const $content = document.createElement("div");
     $content.className = "purchase-amount__content";
