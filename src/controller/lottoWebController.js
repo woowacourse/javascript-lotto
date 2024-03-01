@@ -26,6 +26,12 @@ class LottoWebController {
     );
     $("#modal-close-btn").addEventListener("click", this.closeModal.bind(this));
     $("#modal-retry-btn").addEventListener("click", this.reloadPage.bind(this));
+
+    $("#content-box-input-combination")
+      .querySelectorAll("input")
+      .forEach((query) =>
+        query.addEventListener("keydown", this.enterToResultButton.bind(this))
+      );
   }
 
   getWebBudget() {
@@ -89,8 +95,7 @@ class LottoWebController {
   /**
    * 당첨 번호 및 보너스 번호 입력값 관리
    */
-  handleWebWinningCombinationInput(event) {
-    event.preventDefault();
+  handleWebWinningCombinationInput() {
     const webWinningNumbersInput = Array.from({ length: 6 }, (_, index) => {
       return Number($$(".lotto-numbers-input")[index].value);
     });
@@ -104,7 +109,6 @@ class LottoWebController {
     console.log(webWinningCombination);
 
     try {
-      // TODO : validation 중복 부분 수정하기
       this.validateInput(
         winningLottoNumbersValidation.winningNumbers,
         webWinningNumbersInput
@@ -176,13 +180,19 @@ class LottoWebController {
       webRankResult,
       this.#webBudget
     );
-    console.log(webProfit);
-    $("#profit-msg-num").innerHTML = webProfit;
+    // console.log(webProfit);
+    $("#profit-msg-num").innerHTML = webProfit.toFixed(2);
   }
 
   reloadPage(event) {
     event.preventDefault();
     document.location.reload();
+  }
+
+  enterToResultButton(event) {
+    if (event.keyCode === 13) {
+      return this.handleWebWinningCombinationInput(this);
+    }
   }
 }
 
