@@ -44,7 +44,7 @@ export default class BuyAmountForm extends MyComponent {
     const lottos = this.#buyLottos(buyAmount);
 
     this.#buyAmountState.setState(buyAmount);
-    this.#lottosState.setLottos(lottos);
+    this.#lottosState.setState(lottos);
   }
 
   #buyLottos(rawBuyAmount) {

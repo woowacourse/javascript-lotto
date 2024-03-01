@@ -1,19 +1,7 @@
-import Observable from "../abstract/Observable.js";
+import MyState from "../abstract/MyState.js";
 
-export default class BuyAmountState extends Observable {
-  #buyAmount = null;
-
-  getState() {
-    return this.#buyAmount;
-  }
-
-  setState(buyAmount) {
-    this.#buyAmount = buyAmount;
-
-    this.notify();
-  }
-
-  reset() {
-    this.setState(null);
+export default class BuyAmountState extends MyState {
+  constructor(initialState = null) {
+    super(initialState);
   }
 }

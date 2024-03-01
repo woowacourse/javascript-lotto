@@ -1,19 +1,7 @@
-import Observable from "../abstract/Observable.js";
+import MyState from "../abstract/MyState.js";
 
-export default class LottosState extends Observable {
-  #lottos = [];
-
-  getLottos() {
-    return this.#lottos;
-  }
-
-  setLottos(lottos) {
-    this.#lottos = lottos;
-
-    this.notify();
-  }
-
-  reset() {
-    this.setLottos([]);
+export default class LottosState extends MyState {
+  constructor(initialState = []) {
+    super(initialState);
   }
 }

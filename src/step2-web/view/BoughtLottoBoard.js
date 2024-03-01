@@ -10,7 +10,7 @@ export default class BoughtLottoBoard extends MyComponent {
   }
 
   _getTemplate() {
-    const lottos = this.#lottosState.getLottos();
+    const lottos = this.#lottosState.getState();
 
     return `
 <section class="showing-bought-lottos">

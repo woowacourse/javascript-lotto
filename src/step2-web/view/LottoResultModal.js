@@ -71,7 +71,9 @@ export default class LottoResultModal extends MyComponent {
         </tbody>
       </table>
 
-      <p class="profit-rate-message">당신의 총 수익률은 ${profitRate.toLocaleString()}%입니다.</p>
+      <p class="profit-rate-message">당신의 총 수익률은 ${profitRate
+        .toFixed(1)
+        .toLocaleString()}%입니다.</p>
 
       <button class="lotto-restart-button">다시 시작하기</button>
     </div>

@@ -28,7 +28,7 @@ export default class WinningLottoForm extends MyComponent {
   }
 
   _getTemplate() {
-    const lottos = this.#lottosState.getLottos();
+    const lottos = this.#lottosState.getState();
 
     const lottoNumberInputsTemplate = Array(LOTTO_NUMBER_LENGTH)
       .fill()
@@ -77,7 +77,7 @@ export default class WinningLottoForm extends MyComponent {
   #handleCheckResultButton() {
     const { winningNumbers, bonusNumber } = this.#getLottoNumbersFromInputs();
     const winningLotto = this.#createWinningLotto(winningNumbers, bonusNumber);
-    const ranks = winningLotto.rankLottos(this.#lottosState.getLottos());
+    const ranks = winningLotto.rankLottos(this.#lottosState.getState());
 
     const rankResult = LottoResultMaker.arrangeRanks(ranks);
     const profitRate = LottoResultMaker.calculateProfitRate(ranks);
