@@ -28,6 +28,7 @@ class PurchasePriceForm extends HTMLElement {
 
   #setEventListener() {
     this.#setInputListener();
+    this.#setEnterListener();
     this.#setClickListener();
   }
 
@@ -39,11 +40,25 @@ class PurchasePriceForm extends HTMLElement {
     });
   }
 
+  #setEnterListener() {
+    const priceInputField = this.querySelector('price-input-field');
+    priceInputField.addEventListener('keyup', (event) => {
+      const button = this.querySelector('#purchase-button');
+      if (event.key === 'Enter' && !button.getIsDisabled()) {
+        this.#handlePurchase();
+      }
+    });
+  }
+
+  #handlePurchase() {
+    const price = this.querySelector('price-input-field').getValue();
+    this.#errorHandler(price);
+  }
+
   #setClickListener() {
     const button = this.querySelector('#purchase-button');
     button.addEventListener('click', () => {
-      const price = this.querySelector('price-input-field').getValue();
-      this.#errorHandler(price);
+      this.#handlePurchase();
     });
   }
 

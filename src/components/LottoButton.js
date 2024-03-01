@@ -26,6 +26,10 @@ class LottoButton extends HTMLElement {
   setIsDisabled(bool) {
     this.querySelector('button').disabled = bool;
   }
+
+  getIsDisabled() {
+    return this.querySelector('button').disabled;
+  }
 }
 
 customElements.define('lotto-button', LottoButton);
