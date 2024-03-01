@@ -25,61 +25,66 @@ class LottoControllerWeb {
   }
 
   async run() {
-    // 구입 클릭 시 generateLottoNumbers 실행, 돔에 그리고 결과 보여주기.
     addEvent(lottoPriceButton, 'click', (e) => {
-      executeRetry(async () => {
-        e.preventDefault();
-
-        this.#lottoCount =
-          this.validateLottoNumbers(await inputView.inputLottoPrice()) / 1000;
-
-        this.#generatedLottos = new LottoGenerator(
-          this.#lottoCount,
-        ).generatedLottos;
-
-        outputView.printAfterBuyLottos(this.#lottoCount, this.#generatedLottos);
-      });
-
-      // 버튼 이벤트 , 모달창 띄우기
-      // 당첨 통계 input 로직 불러오기
-      addEvent(checkResultButton, 'click', (e) => {
-        executeRetry(async () => {
-          e.preventDefault();
-
-          this.#lottoNumber.winningNumbers =
-            await inputView.inputWinningNumbers();
-          this.#lottoNumber.bonusNumber = await inputView.inputBonusNumber();
-
-          this.validateInputLotto(
-            this.#lottoNumber.winningNumbers,
-            this.#lottoNumber.bonusNumber,
-          );
-
-          const lottoCalculator = new LottoCalculator(
-            this.#lottoNumber,
-            this.#generatedLottos,
-          );
-          const lottoStatistics = lottoCalculator.lottoStatistics;
-          const totalProfit = lottoCalculator.calculateTotalProfit(
-            this.#lottoCount,
-          );
-          outputView.alertModal(lottoStatistics, totalProfit);
-        });
-      });
+      this.lottoPurchaseHandler(e);
     });
-
-    addEvent(restartButton, 'click', (e) => {
-      //   modal.style.display = 'none';
+    addEvent(checkResultButton, 'click', (e) => {
+      this.lottoResultHandler(e);
+    });
+    addEvent(restartButton, 'click', () => {
       window.location.reload();
     });
-    addEvent(close, 'click', (e) => {
-      outputView.resetModal();
+    addEvent(close, 'click', () => {
       outputView.closeModal();
     });
   }
 
+  lottoPurchaseHandler(e) {
+    executeRetry(async () => {
+      e.preventDefault();
+
+      this.#lottoCount =
+        this.validateLottoNumbers(await inputView.inputLottoPrice()) / 1000;
+
+      this.#generatedLottos = new LottoGenerator(
+        this.#lottoCount,
+      ).generatedLottos;
+
+      outputView.printAfterBuyLottos(this.#lottoCount, this.#generatedLottos);
+    });
+  }
+
+  lottoResultHandler(e) {
+    executeRetry(async () => {
+      e.preventDefault();
+
+      this.#lottoNumber.winningNumbers = await inputView.inputWinningNumbers();
+      this.#lottoNumber.bonusNumber = await inputView.inputBonusNumber();
+
+      this.validateInputLotto(
+        this.#lottoNumber.winningNumbers,
+        this.#lottoNumber.bonusNumber,
+      );
+
+      const { lottoStatistics, totalProfit } = this.calculateLottoResult();
+
+      outputView.alertModal(lottoStatistics, totalProfit);
+    });
+  }
+
+  calculateLottoResult() {
+    const lottoCalculator = new LottoCalculator(
+      this.#lottoNumber,
+      this.#generatedLottos,
+    );
+    const lottoStatistics = lottoCalculator.lottoStatistics;
+    const totalProfit = lottoCalculator.calculateTotalProfit(this.#lottoCount);
+
+    return { lottoStatistics, totalProfit };
+  }
+
   validateLottoNumbers(price) {
-    if (price === '' || price === '0') {
+    if (price === '' || price === 0) {
       throw new Error('로또 구입 금액을 입력해주세요.');
     }
     LottoPaymentValidator.validate(price);
@@ -87,8 +92,20 @@ class LottoControllerWeb {
   }
 
   validateInputLotto(winningNumbers, bonusNumber) {
+    this.emptyValueInput(winningNumbers, bonusNumber);
     LottoValidator.validateWinningNumbers(winningNumbers);
     LottoValidator.validateBonusNumber(winningNumbers, bonusNumber);
+  }
+
+  emptyValueInput(winningNumbers, bonusNumber) {
+    winningNumbers.forEach((winningNumber) => {
+      if (isNaN(winningNumber)) {
+        throw new Error('당첨 번호를 입력해주세요.');
+      }
+    });
+    if (isNaN(bonusNumber)) {
+      throw new Error('보너스 번호를 입력해주세요.');
+    }
   }
 }
 
