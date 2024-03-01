@@ -65,6 +65,10 @@ class StatisticsModalController {
     this.$element.btnRestartElement.addEventListener('click', (event) =>
       this.#restartGame(event),
     );
+
+    this.$element.modalElement.addEventListener('click', (event) =>
+      this.#handleClickToCloseModal(event),
+    );
   }
 
   /**
@@ -85,6 +89,17 @@ class StatisticsModalController {
 
     recoveryInitialStateExceptPayment();
     document.querySelector('.payment-amount__form').reset();
+  }
+
+  /**
+   * modal__inner의 바깥 영역을 클릭하면 modal창이 닫히는 기능
+   * @param {Event} event
+   */
+  #handleClickToCloseModal(event) {
+    const { target } = event;
+    if (!target.closest('.modal__inner')) {
+      this.#hideModal(event);
+    }
   }
 }
 
