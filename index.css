@@ -76,6 +76,7 @@ body {
 
 #header-title {
   color: var(--lotto-greyscale1-color);
+  text-decoration-line: none;
 }
 
 #main-body {
@@ -293,6 +294,7 @@ body {
   line-height: 1.6rem;
   letter-spacing: 0.125rem;
   text-align: center;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 #modal-header-msg {
