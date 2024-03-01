@@ -1,4 +1,4 @@
-import "../../index.css";
+import "../../src/styles/index.css";
 import Lotto from "../domain/Lotto.js";
 import lottoRankMaker from "../domain/lottoRankMaker.js";
 import lottoResultMaker from "../domain/lottoResultMaker.js";
@@ -15,7 +15,7 @@ import winningLottoValidation from "../validation/winningLottoValidation.js";
 class LottoWebController {
   #webIssuedLottoArray;
   #webBudget;
-  async start() {
+  start() {
     $("#budget").addEventListener("keydown", this.handleWebBudget.bind(this));
     $("#budget-btn").addEventListener("click", this.handleWebBudget.bind(this));
     $("#result-btn").addEventListener(
