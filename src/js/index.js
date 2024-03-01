@@ -1,9 +1,61 @@
 import WebController from "../controller/WebController.js";
+import LOTTO_SYSTEM from "../constants/lottoSystem.js";
 import ElementTree from "./ElementTree.js";
 
 const webController = new WebController();
 
 const purchaseButton = document.getElementById("purchase-lotto");
+const modalCloseButton = document.getElementById("modal-close-button");
+const resetButton = document.getElementById("reset-game");
+const modalElement = document.getElementById("lotto-result");
+const appElement = document.getElementById("app");
+
+const resetGame = () => {
+  const showPurchaseLottosTag = document.getElementById(
+    "purchased-lotto-lists",
+  );
+  showPurchaseLottosTag.innerHTML = "";
+  const purchaseAmount = document.getElementById("amount");
+  purchaseAmount.value = 0;
+  closeModal();
+};
+
+const calculateTotalRanking = (rankings) => {
+  const initialRanking = [0, 0, 0, 0, 0, 0];
+
+  return rankings.reduce((acc, rank) => {
+    acc[rank] += 1;
+
+    return acc;
+  }, initialRanking);
+};
+
+const formatStatisticsResult = (ranking) => {
+  const secondPlace = 2;
+
+  const correctCount =
+    ranking !== secondPlace
+      ? LOTTO_SYSTEM.correctCount[ranking] + "개"
+      : LOTTO_SYSTEM.correctCount[ranking] + "보너스 볼";
+  const prize = LOTTO_SYSTEM.lottoPrize[ranking];
+
+  return {
+    correctCount,
+    prize,
+  };
+};
+
+const openModal = () => {
+  modalElement.style.display = "block";
+  appElement.style.backgroundColor = "rgba(0,0,0,0.5)";
+};
+
+const closeModal = () => {
+  modalElement.style.display = "none";
+  appElement.style.backgroundColor = "transparent";
+  const statisticTable = document.getElementById("lotto-result-table");
+  statisticTable.innerHTML = "";
+};
 
 const showPurchaseLottoCount = (lottos) => {
   const lottoListsElement = new ElementTree("div");
@@ -11,7 +63,7 @@ const showPurchaseLottoCount = (lottos) => {
   const message = `총 ${lottos.length}개를 구매하였습니다.`;
   lottoListsElement.createNewTag("div", message);
 
-  return lottoListsElement.tags;
+  return lottoListsElement.tags.outerHTML;
 };
 
 const showLottoLists = (lottos) => {
@@ -60,6 +112,7 @@ const showInputBonusNumber = () => {
 
   bonusNumberElement.createNewTag("button", "결과 확인하기", {
     class: "check-lotto-result",
+    onClick: checkLottoResult,
   });
 
   return bonusNumberElement.tags;
@@ -73,8 +126,59 @@ const purchaseLotto = () => {
   const lottos = webController.purchaseLottos(Number(purchaseAmount));
 
   showPurchaseLottosTag.innerHTML = showPurchaseLottoCount(lottos);
-  showPurchaseLottosTag.innerHTML += showLottoLists(lottos);
-  showPurchaseLottosTag.innerHTML += showInputBonusNumber();
+  showPurchaseLottosTag.appendChild(showLottoLists(lottos));
+  showPurchaseLottosTag.appendChild(showInputBonusNumber());
+};
+
+const showLottoRanking = (rankings) => {
+  const statisticTable = document.getElementById("lotto-result-table");
+  const rankingElement = new ElementTree("tbody");
+  const totalRanking = calculateTotalRanking(rankings);
+  formatStatisticsResult();
+
+  totalRanking
+    .slice()
+    .reverse()
+    .forEach((value, index) => {
+      const actualIndex = totalRanking.length - 1 - index;
+      if (actualIndex === 0) return;
+      const { correctCount, prize } = formatStatisticsResult(actualIndex);
+      rankingElement.generateTmpStack("tr", "");
+      rankingElement.pushTmpTag("td", correctCount);
+      rankingElement.pushTmpTag("td", prize.toLocaleString());
+      rankingElement.pushTmpTag("td", `${value}개`);
+      rankingElement.flushTmpTag();
+    });
+
+  statisticTable.appendChild(rankingElement.tags);
+};
+
+const showLottoProfiteRate = (totalProfitRate) => {
+  const profitValue = document.getElementById("profit-value");
+  profitValue.innerText = totalProfitRate;
+};
+
+const checkLottoResult = () => {
+  try {
+    const winningNumbers = document.querySelectorAll(".input-winningnumber");
+    const bonusNumber = document.querySelector(".input-bonusnumber");
+    const winningNumbersValue = Object.values(winningNumbers).map((number) =>
+      Number(number.value),
+    );
+    const bonusNumberValue = Number(bonusNumber.value);
+
+    const { rankings, totalProfitRate } = webController.calculateProfitRate(
+      winningNumbersValue,
+      bonusNumberValue,
+    );
+    openModal();
+    showLottoRanking(rankings);
+    showLottoProfiteRate(totalProfitRate);
+  } catch (error) {
+    alert(error.message);
+  }
 };
 
 purchaseButton.addEventListener("click", purchaseLotto);
+modalCloseButton.addEventListener("click", closeModal);
+resetButton.addEventListener("click", resetGame);
