@@ -15,12 +15,14 @@ export const LOTTO_RULE = Object.freeze({
   }),
 });
 
+export const RANK_HAS_BONUS = 2;
+
 export const WINNING_RULE = Object.freeze(
   new Map([
     [5, { matchedCount: 3, isBonus: false, money: 5_000 }],
     [4, { matchedCount: 4, isBonus: false, money: 50_000 }],
     [3, { matchedCount: 5, isBonus: false, money: 1_500_000 }],
-    [2, { matchedCount: 5, isBonus: true, money: 30_000_000 }],
+    [RANK_HAS_BONUS, { matchedCount: 5, isBonus: true, money: 30_000_000 }],
     [1, { matchedCount: 6, isBonus: false, money: 2_000_000_000 }],
   ]),
 );

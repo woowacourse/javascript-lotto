@@ -1,0 +1,233 @@
+@import './_style-constants.css';
+
+main {
+  width: inherit;
+  min-height: fit-content;
+  max-width: inherit;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lotto-greyScale2-color);
+}
+
+main .contents {
+  position: relative;
+  width: var(--contents-width);
+  height: 727px;
+  background-color: var(--lotto-greyScale1-color);
+  border: 1px solid #0000001f;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+main .contents > section {
+  width: calc(var(--contents-width) - 16px * 2);
+}
+
+main .contents > header {
+  font-weight: var(--lotto-title-fontWeight);
+  font-size: var(--lotto-title-fontSize);
+  line-height: var(--lotto-title-lineHeight);
+  padding-top: 40px;
+  padding-bottom: 28px;
+  text-align: center;
+}
+
+.icon-toggle-rule {
+  background-color: initial;
+  padding: 0;
+  width: max-content;
+}
+
+.payment-amount {
+  position: relative;
+  height: 64px;
+  .inputForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  input,
+  .btn-pay-lotto {
+    height: 36px;
+  }
+
+  input {
+    width: 310px;
+    padding: 4px 8px;
+  }
+
+  input::placeholder {
+    color: var(--lotto-greyScale4-color);
+    height: 24px;
+    margin: auto;
+  }
+
+  .icon-toggle-rule {
+    position: absolute;
+    top: -5px;
+    right: 16px;
+  }
+}
+
+.payment-amount__explanation {
+  position: absolute;
+  top: 0;
+  right: -17px;
+}
+
+.payment-amount__form > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.purchase-history {
+  margin-top: 28px;
+  .issued-lottos {
+    margin-top: 8px;
+    max-height: 260px;
+    height: fit-content;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  li {
+    height: 36px;
+    line-height: 36px;
+    display: flex;
+  }
+
+  .number {
+    width: 32px;
+    text-align: center;
+  }
+
+  .number::before {
+    content: ',';
+  }
+
+  .number:nth-child(2) {
+    margin-left: 2px;
+  }
+
+  .number:nth-child(2)::before {
+    content: '';
+  }
+}
+
+.winning-criteria {
+  margin-top: 24px;
+  position: absolute;
+  bottom: 27px;
+}
+
+.winning-criteria > div:nth-child(2) {
+  position: relative;
+  height: 24px;
+}
+
+.winning-criteria__explanation {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.winning-criteria__explanation div:nth-child(2) {
+  position: relative;
+  height: 24px;
+}
+
+.winning-criteria__form {
+  section {
+    height: 68px;
+    header {
+      font-size: var(--lotto-bodyAndPlaceholder-fontSize);
+      font-weight: var(--lotto-bodyAndPlaceholder-fontWeight);
+      line-height: var(--lotto-bodyAndPlaceholder-lineHeight);
+    }
+
+    input {
+      width: 40px;
+      height: 36px;
+      padding-left: 5px;
+    }
+  }
+}
+
+.winning-criteria__input-group-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-criteria__form-lotto-numbers {
+  width: fit-content;
+  margin-top: 4px;
+  .input-group {
+    display: flex;
+    width: inherit;
+    margin-top: 8px;
+  }
+
+  .input-group {
+    width: fit-content;
+  }
+
+  input {
+    margin-right: 8px;
+  }
+
+  input:last-child {
+    margin-right: 0;
+  }
+}
+
+.winning-criteria__form-bonus-number {
+  position: relative;
+  width: 90px;
+
+  input {
+    position: absolute;
+    top: calc(24px + 8px);
+    right: 0;
+  }
+}
+
+.issued-lottos {
+  li {
+    margin-bottom: 1px;
+  }
+}
+
+.btn-check-result {
+  width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+  main .contents {
+    width: var(--contents-small-mobile-width);
+    padding: 0 7px;
+  }
+
+  main .contents > section {
+    width: calc(var(--contents-small-mobile-width) - 14px);
+  }
+
+  .payment-amount input {
+    width: 280px;
+  }
+
+  .winning-criteria {
+    bottom: 10px;
+  }
+
+  .winning-criteria__form section header {
+    font-size: 14px;
+  }
+
+  .winning-criteria__form section input {
+    width: 38px;
+    padding-left: 3px;
+  }
+}

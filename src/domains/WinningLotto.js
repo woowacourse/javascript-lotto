@@ -1,5 +1,8 @@
 import { ERROR_MESSAGES, NUMBER_DELIMITER } from '../constants';
-import { checkDefinedInputValue, isValidWinningNumbersForm } from '../utils';
+import {
+  checkDefinedInputValue,
+  isValidWinningNumbersForm,
+} from '../utils/validatorsUtils';
 import Lotto from './Lotto';
 
 class WinningLotto {

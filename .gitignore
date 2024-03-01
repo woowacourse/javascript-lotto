@@ -1,2 +1,3 @@
 node_modules/
-dist/
+pr.md
+.vscode/settings.json

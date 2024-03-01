@@ -21,7 +21,7 @@ export const OUTPUT_MESSAGES = Object.freeze({
   endGame: '\n---게임 종료 🤗---',
 });
 
-const ERROR_PREFIX = '[ERROR]';
+export const ERROR_PREFIX = '[ERROR]';
 
 export const ERROR_MESSAGES = Object.freeze({
   isUndefinedInputValue: `${ERROR_PREFIX} 입력값이 없습니다.`,
@@ -29,7 +29,7 @@ export const ERROR_MESSAGES = Object.freeze({
   alreadyInLottoNumber: `${ERROR_PREFIX} 보너스 번호는 당첨 번호에 없는 번호여야 합니다.\n`,
   notInteger: `${ERROR_PREFIX} 정수가 아닙니다.\n`,
   inDivisibleByPrice: `${ERROR_PREFIX} 구매 금액이 ${LOTTO_RULE.price.toLocaleString('ko-KR')}${OUTPUT_MESSAGES.moneyUnit} 단위가 아닙니다.\n`,
-  inValidNumbersOfTickets: `${ERROR_PREFIX} 로또 티켓은 ${LOTTO_RULE.numbersOfTickets.min}장 이상 ${LOTTO_RULE.numbersOfTickets.max}이하로 구매하실 수  있습니다.\n`,
+  inValidNumbersOfTickets: `${ERROR_PREFIX} 로또 티켓은 ${LOTTO_RULE.numbersOfTickets.min}장 이상 ${LOTTO_RULE.numbersOfTickets.max}이하로 구매하실 수 있습니다.\n`,
   invalidLottoNumberCount: `${ERROR_PREFIX} 로또 번호 개수는 ${LOTTO_RULE.length}개 여야 합니다.\n`,
   duplicatedLottoNumber: `${ERROR_PREFIX} 로또 번호는 중복될 수 없습니다.\n`,
   invalidLottoNumberRange: `${ERROR_PREFIX} 번호는 ${LOTTO_RULE.range.start} 이상 ${LOTTO_RULE.range.end} 이하의 숫자로 이루어져야합니다.\n`,

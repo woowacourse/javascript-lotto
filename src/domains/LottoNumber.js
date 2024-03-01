@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES } from '../constants';
-import { isInteger, isLottoNumberInRange } from '../utils';
+import { isInteger, isLottoNumberInRange } from '../utils/validatorsUtils';
 
 class LottoNumber {
   #number;

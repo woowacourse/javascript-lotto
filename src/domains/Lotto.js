@@ -1,5 +1,8 @@
 import { ERROR_MESSAGES } from '../constants';
-import { isNotDuplicatedLottoNumber, isValidLottoNumberCount } from '../utils';
+import {
+  isNotDuplicatedLottoNumber,
+  isValidLottoNumberCount,
+} from '../utils/validatorsUtils';
 import LottoNumber from './LottoNumber';
 
 class Lotto {

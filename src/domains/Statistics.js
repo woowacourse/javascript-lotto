@@ -1,4 +1,4 @@
-import { WINNING_RULE } from '../constants';
+import { RANK_HAS_BONUS, WINNING_RULE } from '../constants';
 
 class Statistics {
   #ranks = [];
@@ -23,11 +23,11 @@ class Statistics {
       statisticsResult: this.#getStatisticsResult(),
     };
   }
+
   /**
    *
    * @returns  {{l:0, 2:0,3:0,4:0,5:0}}
    */
-  // eslint-disable-next-line
   #makeInitialStatisticsResult() {
     const initialStatisticsResult = {};
 
@@ -64,11 +64,12 @@ class Statistics {
     WINNING_RULE.forEach((value, key) => {
       const { matchedCount, isBonus } = value;
 
-      const checkBonusMatch = matchedCount === 5;
+      const isBonusMatchRequired =
+        matchedCount === WINNING_RULE.get(RANK_HAS_BONUS).matchedCount;
       const isMatchingCount = matchedCount === result.matchedCount;
-      const isMatchingOnlyCount = !checkBonusMatch && isMatchingCount;
+      const isMatchingOnlyCount = !isBonusMatchRequired && isMatchingCount;
       const isMatchingBonusAndCount =
-        checkBonusMatch && isBonus === result.isBonus;
+        isBonusMatchRequired && isBonus === result.isBonus;
 
       if (!isMatchingCount) return;
       if (isMatchingOnlyCount || isMatchingBonusAndCount) {

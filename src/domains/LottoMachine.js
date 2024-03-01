@@ -1,11 +1,11 @@
 import { ERROR_MESSAGES, LOTTO_RULE } from '../constants';
+import RandomNumber from '../utils/RandomNumber';
 import {
-  RandomNumber,
   checkDefinedInputValue,
   isDivisibleByPrice,
   isInteger,
   isValidNumbersOfTickets,
-} from '../utils';
+} from '../utils/validatorsUtils';
 
 class LottoMachine {
   /**

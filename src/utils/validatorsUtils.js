@@ -46,7 +46,7 @@ export const isLottoNumberInRange = (number) => {
  * @param {number[]} lottoNumbers
  * @param {number} bonusNumber
  */
-export const isNotInLottoNumber = (lottoNumbers, bonusNumber) =>
+export const isBonusNumberUnique = (lottoNumbers, bonusNumber) =>
   !lottoNumbers.includes(bonusNumber);
 
 // 구매 금액
