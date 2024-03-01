@@ -9,7 +9,7 @@ const $winningLottoForm = elementHandler.$('.winning-lotto-form');
 const $winningLottoInputContainer = elementHandler.$('.winning-lotto-input-container');
 const $bonusLottoInputContainer = elementHandler.$('.bonus-lotto-input-container');
 
-const $winningResultContainer = elementHandler.$('.winning-result-container');
+const $winningResultTable = elementHandler.$('.winning-result-table');
 const $profitRateText = elementHandler.$('.profit-rate-text');
 
 const $modal = elementHandler.$('#modal');
@@ -38,15 +38,15 @@ const View = {
     $modal.hidden = false;
 
     const matchedCounts = [3, 4, 5, 'B5', 6];
-    $winningResultContainer.innerHTML = matchedCounts
+    $winningResultTable.innerHTML += matchedCounts
       .map((matchedKey) => {
         const { TITLE_UI, REWARD } = RANKING[matchedKey];
         return `
-        <div class="winning-result">
-          <div class="winning-result-column">${TITLE_UI}</div>
-          <div class="winning-result-column">${REWARD.toLocaleString()}원</div>
-          <div class="winning-result-column">${winningResults[matchedKey]}개</div>
-        </div>`;
+        <tr>
+          <td class="winning-result-column">${TITLE_UI}</td>
+          <td class="winning-result-column">${REWARD.toLocaleString()}원</td>
+          <td class="winning-result-column">${winningResults[matchedKey]}개</td>
+        </tr>`;
       })
       .join('');
 
