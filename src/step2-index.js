@@ -158,3 +158,9 @@ $modalWrapper.addEventListener('click', (event) => {
     $modalWrapper.classList.remove('modal-wrapper');
   }
 });
+
+// 로또 재시작
+const $retryButton = $('#retry-button');
+$retryButton.addEventListener('click', () => {
+  location.reload();
+});
