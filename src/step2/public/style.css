@@ -1,0 +1,300 @@
+:root {
+  --color-primary: rgba(252, 252, 253, 1);
+  --color-gray: rgba(255, 255, 255, 1);
+  --color-blue: rgba(78, 91, 166, 1);
+}
+
+* {
+  text-decoration: none;
+  list-style: none;
+}
+
+body,
+h1,
+p {
+  margin: 0;
+}
+
+#app {
+  background-color: var(--color-primary);
+
+  width: 100%;
+  height: 100%;
+}
+
+#bodyContainer {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#app h1 {
+  background-color: rgba(78, 91, 166, 1);
+  color: white;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+h1 p {
+  font-family: Roboto;
+  font-size: 1.5rem;
+  font-weight: 800;
+
+  line-height: 2.25rem;
+  letter-spacing: 0rem;
+  text-align: left;
+  margin-left: 8.125rem;
+}
+
+#Container {
+  /* height: calc(727px-64px); */
+  min-height: 31.25rem;
+
+  width: calc(414px-40px);
+  background-color: var(--color-gray);
+  border-radius: 0.3rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  margin-top: 1.25rem;
+
+  padding: 30px 20px 20px 25px;
+
+  /*전처 컨테이너에 패딩을 주는게 좋아보이나요 아니면
+   각 요소마다 magin-left 를 넣는게 좋을까요?*/
+}
+
+.title {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 로또금액 입력 스타일*/
+
+.lottoPriceButton {
+  width: 56px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: var(--color-blue);
+  color: white;
+  border: none;
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+}
+
+.beforeBuyLottos {
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  font-size: 15px;
+}
+
+.beforeBuyLottos > span {
+  display: flex;
+  gap: 10px;
+}
+
+.thousandUnitInput {
+  width: 310px;
+  padding: 8px 8px 8px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(180, 180, 180, 1);
+}
+
+.thousandUnitInput::placeholder {
+  color: rgba(180, 180, 180, 1);
+}
+
+/* 단위 금액 입력 후 나타나는 발행번호 스타일
+*/
+
+.afterBuyLottos {
+  margin-top: 30px;
+  visibility: hidden;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+#generatedLottos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+
+  max-height: 14rem;
+  overflow: scroll;
+}
+
+#generatedLottos > li::before {
+  content: '🎟️';
+  margin-right: 10px;
+  font-size: 34px;
+}
+
+#generatedLottos > li {
+  display: flex;
+  align-items: center;
+}
+
+/* 당첨번호 입력하기 스타일
+*/
+
+.pleaseInputLottos {
+  margin-top: 30px;
+}
+
+.inputLottos {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+
+  /* 이 부분 반복되니까 따로 묶기 나중에...*/
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.lotto input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid rgba(180, 180, 180, 1);
+
+  text-align: center;
+}
+
+.lotto {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bonusLotto {
+  display: flex;
+  align-items: flex-end;
+}
+
+.checkResultButton {
+  width: 400px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: var(--color-blue);
+  color: white;
+  border: none;
+
+  margin-top: 30px;
+}
+
+/* 바닥.....바닥..*/
+
+.footer {
+  margin-top: 60px;
+  width: 100%;
+  height: 80px;
+  color: var(--color-blue);
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-align: center;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 모달창 */
+
+.modal {
+  display: none;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalBox {
+  align-items: center;
+  flex-direction: column;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 450px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+#close {
+  width: 14px;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  cursor: pointer;
+}
+
+#modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15000000596046448px;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.modalTable {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+td {
+  text-align: center;
+}
+
+#restartButton {
+  width: 100%;
+  height: 36px;
+  background-color: var(--color-blue);
+  color: white;
+
+  border: none;
+  border-radius: 4px;
+
+  margin-top: 20px;
+}

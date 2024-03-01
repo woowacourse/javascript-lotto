@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -9,8 +9,96 @@
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <h1><p>🎱 행운의 로또</p></h1>
+      <div id="bodyContainer">
+        <span id="Container">
+          <div class="mainContents">
+            <div class="title">🎱 내 번호 당첨 확인 🎱</div>
+
+            <form class="beforeBuyLottos">
+              <label>구입할 금액을 입력해주세요.</label>
+              <span>
+                <input
+                  class="thousandUnitInput"
+                  placeholder="1000원 단위의 금액을 입력해주세요."
+                  min='0'
+                  max='100000'
+                  step="1000"
+                  type="number"
+                />
+                <button class="lottoPriceButton">구입</button>
+              </span>
+            </form>
+
+            <div class="afterBuyLottos">
+              <ul id="generatedLottos"></ul>
+              <div class="pleaseInputLottos">
+                지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+              </div>
+              <div class="inputLottos">
+                <div class="winningLottos lotto">
+                  <label> 당첨 번호</label>
+                  <div>
+                    <input class="inputWinningLottos" maxlength="2" />
+                    <input class="inputWinningLottos" maxlength="2" />
+                    <input class="inputWinningLottos" maxlength="2" />
+                    <input class="inputWinningLottos" maxlength="2" />
+                    <input class="inputWinningLottos" maxlength="2" />
+                    <input class="inputWinningLottos" maxlength="2" />
+                  </div>
+                </div>
+                <div class="bonusLotto lotto">
+                  <label> 보너스 번호</label>
+                  <input class="inputBonusLotto" maxlength="2" />
+                </div>
+              </div>
+
+              <button type="button" class="checkResultButton">
+                결과 확인하기
+              </button>
+            </div>
+          </div>
+        </span>
+      </div>
+
+      <div class="footer center">Copyright 2023. woowacourse</div>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <span class="modal">
+      <div class="modalBox">
+        <div id="close">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+              fill="black"
+            />
+          </svg>
+        </div>
+        <div id="modal-title">🏆 당첨 통계 🏆</div>
+          <table class="modalTable">
+            <thead>
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody id="winningStatistics">
+        </td>
+        </tbody>
+        </table>
+
+        <p class="totalProfit"></p>
+          
+        <button id="restartButton">다시 시작하기</button>
+      </div>
+    </span>
+    <script src="./src/step2-index.js" type="module" defer></script>
+    <script type="module" src="./src/js/index.js" defer></script>
   </body>
 </html>
