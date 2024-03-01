@@ -10,6 +10,9 @@ const purchaseButton = document.getElementById("purchase_button");
 const winningNumbers = document.querySelectorAll(".input_winningNumber");
 const resultButton = document.getElementById("result_button");
 
+const dialog = document.getElementById("result_dialog");
+const closeDialogButton = document.getElementById("close_dialog");
+
 const retryButton = document.getElementById("retry_button");
 const invalidPurchaseAmount = document.getElementById("invalid_purchaseAmount");
 
@@ -70,6 +73,13 @@ class WebController {
     });
     resultButton.addEventListener("click", (event) => {
       winningLottoHandler.onClickGameResult(event, this.#lottoList);
+    });
+    this.#dialogHandler();
+  }
+
+  #dialogHandler() {
+    closeDialogButton.addEventListener("click", () => {
+      dialog.close();
     });
   }
 }
