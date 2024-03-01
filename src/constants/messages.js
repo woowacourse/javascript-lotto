@@ -10,13 +10,14 @@ export const INPUT_MESSAGES = {
 
 export const OUTPUT_MESSAGES = {
   ticketCount(count) {
-    return `${count}개를 구매했습니다.`;
+    return `총 ${count}개를 구매했습니다.`;
   },
   winningStatics: '당첨 통계',
   winningStaticsOperation: '--------------------',
   totalProfit(profit) {
     return `총 수익률은 ${profit}%입니다.`;
   },
+  ticketEmoji: '🎟️',
 };
 
 export const ERROR_MESSAGES = {
