@@ -26,3 +26,7 @@ purchased-lottos > .list > li {
   font-size: 3.4rem;
   margin-right: 0.8rem;
 }
+
+.lotto-numbers {
+  white-space: pre;
+}

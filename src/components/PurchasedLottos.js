@@ -68,7 +68,9 @@ export default class PurchasedLottos extends HTMLElement {
     const element = this.#createNewLottoItemNode();
 
     element.querySelector('.ticket-icon').textContent = '🎟️';
-    element.querySelector('.lotto-numbers').textContent = lotto.join(', ');
+    element.querySelector('.lotto-numbers').textContent = lotto
+      .map((number) => String(number).padStart(2, ' '))
+      .join(', ');
 
     return element;
   }
