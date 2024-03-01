@@ -22,10 +22,10 @@ class LottoWebController {
     );
     $("#result-btn").addEventListener(
       "click",
-      this.handleWebWinningCombinationInput.bind(this)
+      this.handleWebWinningCombinationInput.bind()
     );
-    $("#modal-close-btn").addEventListener("click", this.closeModal.bind(this));
-    $("#modal-retry-btn").addEventListener("click", this.reloadPage.bind(this));
+    $("#modal-close-btn").addEventListener("click", this.closeModal.bind());
+    $("#modal-retry-btn").addEventListener("click", this.reloadPage.bind());
     $("#modal").addEventListener("click", this.closeModalOutside.bind(this));
 
     $("#content-box-input-combination")
@@ -205,8 +205,7 @@ class LottoWebController {
     $("#profit-msg-num").innerHTML = webProfit.toFixed(0);
   }
 
-  reloadPage(event) {
-    event.preventDefault();
+  reloadPage() {
     document.location.reload();
   }
 
