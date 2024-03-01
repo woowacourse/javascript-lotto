@@ -19,7 +19,13 @@
           <section id="purchaseAmount_container">
             <p class="subtitle">구입할 금액을 입력해주세요.</p>
             <form id="input_form">
-              <input id="input_purchaseAmount" placeholder="금액" type="text" />
+              <input
+                id="input_purchaseAmount"
+                placeholder="금액"
+                type="number"
+                min="1"
+                max="100000"
+              />
               <button id="purchase_button">구입</button>
             </form>
             <p id="invalid_purchaseAmount" />
@@ -46,7 +52,7 @@
                   <input class="input_winningNumber" maxlength="2" />
                   <input class="input_winningNumber" maxlength="2" />
                 </section>
-                <input id="input_bonusNumber" maxlength="2" />
+                <input id="input_bonusNumber" maxlength="2" type="number" />
               </section>
               <p id="invalid_winningLotto"></p>
               <button type="button" id="result_button">결과 확인하기</button>
