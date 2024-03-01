@@ -1,7 +1,7 @@
 import './LottoButton.css';
 
 const LOTTO_BUTTON = `
-  <button class="lotto-caption">
+  <button class="lotto-caption" disabled="true">
     <h3 class="lotto-caption">
       text
     </h3>

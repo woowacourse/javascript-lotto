@@ -42,8 +42,8 @@ class WinningNumbersForm extends HTMLElement {
 
   #setInputListener() {
     this.addEventListener('input', () => {
-      const button = this.querySelector('button');
-      button.disabled = !this.#isAllFilled();
+      const button = this.querySelector('#result-button');
+      button.setIsDisabled(!this.#isAllFilled());
     });
   }
 
