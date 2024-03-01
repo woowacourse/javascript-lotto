@@ -77,18 +77,46 @@ class LottoWebController {
     this.printWebIssuedLottoArray();
   }
 
-  // TODO : 구입 누를 때마다 div 추가되는 것 수정하기
   printWebIssuedLottoArray() {
     const curr = $("#content-box-lottos-msg");
 
+    const setCommonStyles = (element, styles) => {
+      Object.assign(element.style, styles);
+    };
+
     this.#webIssuedLottoArray.forEach((array) => {
-      const issuedLottoDiv = document.createElement("div");
-      issuedLottoDiv.innerHTML = "🎟️ " + array.join(", ");
-      issuedLottoDiv.style.marginTop = "0.4rem";
-      issuedLottoDiv.style.height = "3.6rem";
-      issuedLottoDiv.style.lineHeight = "3.6rem";
-      issuedLottoDiv.className = "lotto-body";
-      curr.append(issuedLottoDiv);
+      const lottoImoji = Object.assign(document.createElement("div"), {
+        innerHTML: "🎟️",
+      });
+
+      setCommonStyles(lottoImoji, {
+        display: "inline-block",
+        width: "3.4rem",
+        height: "3.6rem",
+        lineHeight: "3.6rem",
+        marginRight: "0.8rem",
+        boxSizing: "border-box",
+        fontSize: "3rem",
+        verticalAlign: "middle",
+      });
+
+      const issuedLottoDiv = Object.assign(document.createElement("div"), {
+        innerHTML: array.join(", "),
+        className: "lotto-body",
+      });
+
+      setCommonStyles(issuedLottoDiv, {
+        display: "inline-block",
+        height: "3.6rem",
+        lineHeight: "3.6rem",
+        verticalAlign: "middle",
+      });
+
+      const issuedLotto = document.createElement("div");
+      issuedLotto.style.marginTop = "0.4rem";
+      issuedLotto.append(lottoImoji, issuedLottoDiv);
+
+      curr.append(issuedLotto);
     });
   }
 
@@ -105,8 +133,6 @@ class LottoWebController {
       normalNumbers: webWinningNumbersInput,
       bonusNumber: webWinningBonusInput,
     };
-
-    console.log(webWinningCombination);
 
     try {
       this.validateInput(
@@ -149,7 +175,6 @@ class LottoWebController {
     console.log("closeModal");
     event.preventDefault();
     $("#modal").style.display = "none";
-    // document.location.reload();
   }
 
   calculateWebLottoResult(webWinningCombination) {
@@ -166,13 +191,10 @@ class LottoWebController {
     this.calculateWebProfit(webRankResult);
   }
 
-  // TODO : 반복문 줄이기
   printWebRankResult(webRankResult) {
-    $("#lotto-rank-1").innerHTML = webRankResult[1];
-    $("#lotto-rank-2").innerHTML = webRankResult[2];
-    $("#lotto-rank-3").innerHTML = webRankResult[3];
-    $("#lotto-rank-4").innerHTML = webRankResult[4];
-    $("#lotto-rank-5").innerHTML = webRankResult[5];
+    Object.keys(webRankResult).forEach((rank) => {
+      $(`#lotto-rank-${rank}`).innerHTML = webRankResult[rank];
+    });
   }
 
   calculateWebProfit(webRankResult) {
@@ -180,8 +202,7 @@ class LottoWebController {
       webRankResult,
       this.#webBudget
     );
-    // console.log(webProfit);
-    $("#profit-msg-num").innerHTML = webProfit.toFixed(2);
+    $("#profit-msg-num").innerHTML = webProfit.toFixed(0);
   }
 
   reloadPage(event) {
