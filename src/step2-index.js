@@ -61,8 +61,6 @@ const submitMoney = (e) => {
   disableForm($buyForm);
 };
 
-$buyForm.addEventListener('submit', submitMoney);
-
 const showStatisticsResult = (statistics) => {
   $threeMatchCount.innerText = `${statistics.getResult.three}개`;
   $fourMatchCount.innerText = `${statistics.getResult.four}개`;
@@ -98,7 +96,6 @@ const submitAnswerLotto = (e) => {
   showStatisticsResult(statistics);
   disableForm($answerForm);
 };
-$answerForm.addEventListener('submit', submitAnswerLotto);
 
 const modalCancel = () => {
   $modalBody.classList.add('hidden');
@@ -113,5 +110,7 @@ const reset = () => {
   ableForm($answerForm);
 };
 
+$buyForm.addEventListener('submit', submitMoney);
+$answerForm.addEventListener('submit', submitAnswerLotto);
 $modalCancel.addEventListener('click', modalCancel);
 $retryButton.addEventListener('click', reset);
