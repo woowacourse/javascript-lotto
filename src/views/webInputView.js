@@ -1,22 +1,7 @@
-import purchaseAmountValidator from '../validators/purchaseAmountValidator.js';
 import winningNumbersValidator from '../validators/winningNumbersValidator.js';
 import bonusNumberValidator from '../validators/bonusNumberValidator.js';
 
 const webInputView = {
-  readPurchaseAmount(purchaseAmountInput, $purchaseError) {
-    try {
-      const purchaseAmount = purchaseAmountInput.trim();
-      purchaseAmountValidator.validate(purchaseAmount);
-      $purchaseError.classList.add('hidden');
-      return purchaseAmount;
-    } catch (error) {
-      // eslint-disable-next-line no-param-reassign
-      $purchaseError.textContent = error.message;
-      $purchaseError.classList.remove('hidden');
-      return false;
-    }
-  },
-
   readWinningNumbers() {
     const $lottoNumberError = document.getElementById('lottoNumberError');
     try {

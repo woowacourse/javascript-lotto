@@ -1,14 +1,15 @@
 import WebLottoController from '../../controllers/WebLottoController';
-import webInputView from '../../views/webInputView';
 import Component from '../core/Component';
 import dom from '../../utils/dom';
 import { DOM_MESSAGE } from '../../constants/message';
+import purchaseAmountValidator from '../../validators/purchaseAmountValidator';
+import WinningNumberSection from '../winningNumberSection/WinningNumberSection';
 
 class PurchaseLottoForm extends Component {
   template() {
     return `
         <form id="purchaseLottoForm">
-          <input id="purchaseInput" name="purchaseInput" placeholder="금액" />
+          <input id="purchaseInput" name="purchaseInput" placeholder="금액" type="number" />
           <button id="purchaseButton" class="button buttonFont">${DOM_MESSAGE.PURCHASE_BUTTON}</button>
         </form>
         <div id="purchaseError" class="hidden"></div>
@@ -32,17 +33,28 @@ class PurchaseLottoForm extends Component {
   }
 
   play(purchaseAmountInput) {
-    const purchaseAmount = webInputView.readPurchaseAmount(purchaseAmountInput, dom.$('#purchaseError'));
+    const purchaseAmount = this.validatePurchaseAmount(purchaseAmountInput, dom.$('#purchaseError'));
     if (!purchaseAmount) return;
     dom.$('#winningNumberSection').classList.remove('hidden');
-    dom.$('.winningNumberInput').focus();
-
     const lottoController = new WebLottoController(purchaseAmount);
     lottoController.run();
-    dom.$('#lottoNumberForm').addEventListener('submit', e => {
-      e.preventDefault();
-      lottoController.handleLottoResult();
+    const $winningNumberSection = document.querySelector('#winningNumberSection');
+    new WinningNumberSection($winningNumberSection, {
+      lottoController,
     });
+  }
+
+  validatePurchaseAmount(purchaseAmount, $purchaseError) {
+    try {
+      purchaseAmountValidator.validate(purchaseAmount);
+      $purchaseError.classList.add('hidden');
+      return purchaseAmount;
+    } catch (error) {
+      // eslint-disable-next-line no-param-reassign
+      $purchaseError.textContent = error.message;
+      $purchaseError.classList.remove('hidden');
+      return false;
+    }
   }
 }
 
