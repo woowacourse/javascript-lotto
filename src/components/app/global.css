@@ -60,7 +60,7 @@ input[type="number"]::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-#header {
+header {
     height: 7vh;
     display: flex;
     align-items: center;
@@ -69,7 +69,7 @@ input[type="number"]::-webkit-inner-spin-button {
     padding-left: 20px;
 }
 
-#main {
+main {
     display: flex;
     justify-content: center;
 }
@@ -109,7 +109,7 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-direction: column;
     gap: 15px;
     flex-basis: 47%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #winningNumberSection {
@@ -133,7 +133,7 @@ input[type="number"]::-webkit-inner-spin-button {
     border-radius: 10px;
 }
 
-#footer {
+footer {
     height: 8vh;
     display: flex;
     justify-content: center;
