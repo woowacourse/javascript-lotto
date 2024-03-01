@@ -11,16 +11,7 @@ const webLottoController = new WebLottoController();
 
 handler.headerResize();
 
-document.getElementById("moneyInput").addEventListener("input", (event) => {
-  const input = event.target.value;
-  const regex = /^[0-9]*$/; // 숫자만을 허용하는 정규식
-  if (!regex.test(input)) {
-      event.target.value = input.replace(/[^\d]/g, ''); // 숫자가 아닌 문자를 제거
-  }
-});
-
-
 handler.getMoney(webLottoController.getMoney.bind(webLottoController));
 handler.getWinningLottoAndBonus(webLottoController.initWinningLotto.bind(webLottoController));
 handler.getRank(webLottoController.printRankAndProfitRate.bind(webLottoController));
-handler.restart(webLottoController.restart.bind(webLottoController))
+handler.restart(webLottoController.restart.bind(webLottoController));
