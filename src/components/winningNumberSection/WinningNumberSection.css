@@ -8,6 +8,12 @@
 
 #lottoNumberForm {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#lottoNumberWrapper {
+    display: flex;
     justify-content: space-between;
 }
 

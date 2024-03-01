@@ -1,25 +1,28 @@
 import './WinningNumberSection.css';
 import CONFIG from '../../constants/config';
 import Component from '../core/Component';
+import { DOM_MESSAGE } from '../../constants/message';
 
 class WinningNumberSection extends Component {
   template() {
     return `
-        <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+        <div>${DOM_MESSAGE.LOTTO_NUMBERS_INPUT}</div>
         <form id="lottoNumberForm">
-          <div id="winningNumberWrapper">
-            <div>당첨번호</div>
-            ${Array.from({ length: CONFIG.LOTTO_LENGTH })
-              .map(() => `<input class="winningNumberInput" type="number" />`)
-              .join(' ')}
-            <div id="lottoNumberError" class="hidden"></div>
+          <div id="lottoNumberWrapper">
+            <div id="winningNumberWrapper">
+              <div>${DOM_MESSAGE.WINNING_NUMBERS}</div>
+              ${Array.from({ length: CONFIG.LOTTO_LENGTH })
+                .map(() => `<input class="winningNumberInput" type="number" />`)
+                .join(' ')}
+              <div id="lottoNumberError" class="hidden"></div>
+            </div>
+            <div id="bonusNumberWrapper">
+              <div>${DOM_MESSAGE.BONUS_NUMBER}</div>
+              <input id="bonusNumberInput" type="number"/>
+            </div>
           </div>
-          <div id="bonusNumberWrapper">
-            <div>보너스 번호</div>
-            <input id="bonusNumberInput" type="number"/>
-          </div>
-        </form>
-        <button id="lottoResultButton" class="button">결과 확인하기</button>`;
+          <button id="lottoResultButton" class="button">${DOM_MESSAGE.LOTTO_RESULT_BUTTON}</button>
+        </form>`;
   }
 }
 
