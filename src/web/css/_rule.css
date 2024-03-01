@@ -4,11 +4,13 @@
   z-index: 1;
   width: fit-content;
 }
+
 .explanation:hover {
   .rule {
     display: block;
   }
 }
+
 .rule {
   display: none;
   position: absolute;

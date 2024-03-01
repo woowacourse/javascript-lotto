@@ -30,9 +30,8 @@ class LottoMachineGenerator {
    * @param {Event} event
    */
   #handlePaymentAmountSubmit(event) {
-    document.querySelector('.winning-criteria__form').reset();
     event.preventDefault();
-
+    recoveryInitialStateExceptPayment();
     const { currentTarget } = event;
     const paymentAmountInputEl = currentTarget.elements.paymentAmount;
     const { value } = paymentAmountInputEl;
@@ -42,14 +41,15 @@ class LottoMachineGenerator {
 
     try {
       this.#lottoResultsHelper.generateLottoMachine(value);
+
       HtmlTextInjectorWithGameResults.injectorLottoTickets(
         this.#lottoResultsHelper.lottoTickets,
       );
+
       changeClassAboutGameStep('winning');
       handleErrorMessage(errorMessageElement);
     } catch (error) {
       handleErrorMessage(errorMessageElement, error);
-      recoveryInitialStateExceptPayment();
     }
   }
 }

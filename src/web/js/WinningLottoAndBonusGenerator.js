@@ -1,5 +1,4 @@
 import { NUMBER_DELIMITER } from '../../constants';
-import { GAME_STEP } from '../constants/gameStep';
 import StatisticsPopupController from './StatisticsPopupController';
 
 import { changeClassAboutGameStep, handleErrorMessage } from './utils';
@@ -56,10 +55,6 @@ class WinningLottoAndBonusGenerator {
     this.$winningCriteriaFormElement.addEventListener('submit', (event) =>
       this.#handleSubmitToGetStatistics(event),
     );
-
-    this.$winningCriteriaFormElement.addEventListener('reset', (event) =>
-      this.#handleResetForm(event),
-    );
   }
 
   #moveScrollToTop() {
@@ -70,17 +65,6 @@ class WinningLottoAndBonusGenerator {
     event.preventDefault();
     this.#moveScrollToTop();
     this.#generateWinningLottoAndBonus();
-  }
-
-  #handleResetForm(event) {
-    event.preventDefault();
-
-    const appInnerElement = document.querySelector('#app .inner');
-    if (appInnerElement.classList.contains(GAME_STEP.payment)) {
-      return;
-    }
-    // TODO 초기화 오류
-    changeClassAboutGameStep('payment');
   }
 }
 

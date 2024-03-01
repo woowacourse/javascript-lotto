@@ -82,6 +82,7 @@ class StatisticsPopupController {
    */
   #restartGame(event) {
     event.stopPropagation();
+
     recoveryInitialStateExceptPayment();
     document.querySelector('.payment-amount__form').reset();
   }

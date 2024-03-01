@@ -1,4 +1,4 @@
-import { LOTTO_RULE, NUMBER_DELIMITER, WINNING_RULE } from '../../constants';
+import { WINNING_RULE } from '../../constants';
 
 const HtmlTextInjectorWithGameResults = {
   /**
@@ -73,18 +73,18 @@ const HtmlTextInjectorWithGameResults = {
   private_getTableHtml(statisticsResult) {
     return `
     <table id="rank-statistics__table">
-    <caption class="screen-reader-only">로또 당첨 결과</caption>
-    <thead>
-      <tr>
-        <th scope="col">일치 갯수</th>
-        <th scope="col">당첨금</th>
-        <th scope="col">당첨 갯수</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${this.private_getTableTrArray(statisticsResult)}
-    </tbody>
-  </table>
+      <caption class="screen-reader-only">로또 당첨 결과</caption>
+      <thead>
+        <tr>
+          <th scope="col">일치 갯수</th>
+          <th scope="col">당첨금</th>
+          <th scope="col">당첨 갯수</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${this.private_getTableTrArray(statisticsResult)}
+      </tbody>
+    </table>
     `;
   },
 

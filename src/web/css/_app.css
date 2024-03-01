@@ -33,6 +33,7 @@
   align-items: center;
   background-color: var(--lotto-primary-color);
   height: 64px;
+
   h1 {
     margin-left: 130px;
     font-size: var(--lotto-title-fontSize);
@@ -57,9 +58,11 @@
     overflow-x: hidden;
     min-height: 100vh;
   }
+
   #app > .inner > header {
     justify-content: center;
   }
+
   #app .popup {
     height: calc(100vh + 50px);
   }

@@ -117,12 +117,12 @@ const HtmlTextInjectorWithConstants = {
 
     return `
     <ul class="rule rule-payment-amount shadow ">
-    <li>
-      로또 가격은 ${price}원이에요.
-    </li>
-    <li>구매 금액은 ${price}원 단위로 입력해주세요.</li>
-    <li>구매 가능한 로또는 최소 ${min}장, 최대 ${max}장이에요.</li>
-  </ul>
+      <li>
+        로또 가격은 ${price}원이에요.
+      </li>
+      <li>구매 금액은 ${price}원 단위로 입력해주세요.</li>
+      <li>구매 가능한 로또는 최소 ${min}장, 최대 ${max}장이에요.</li>
+    </ul>
     `;
   },
 
@@ -143,14 +143,14 @@ const HtmlTextInjectorWithConstants = {
 
     return `
     <ul class="rule rule-winning-criteria shadow ">
-    <li>번호는
-      ${start}~${end}의 정수여야 해요.
-    </li>
-    <li>
-      당첨 번호는 중복 없는 ${length}개 여야해요.
-    </li>
-    <li>보너스 번호는 당첨 번호와 중복되지 않아야해요. </li>
-  </ul>
+      <li>번호는
+        ${start}~${end}의 정수여야 해요.
+      </li>
+      <li>
+        당첨 번호는 중복 없는 ${length}개 여야해요.
+      </li>
+      <li>보너스 번호는 당첨 번호와 중복되지 않아야해요. </li>
+    </ul>
     `;
   },
 
