@@ -4,6 +4,6 @@ main {
   justify-content: center;
   width: 100vw;
   min-height: 900px;
-  margin-top: 64px;
-  overflow-y: hidden;
+  padding-top: 64px;
+  overflow-x: hidden;
 }
