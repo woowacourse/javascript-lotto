@@ -22,18 +22,14 @@ class WebController {
   start() {
     purchaseAmountInput.focus();
 
-    this.play();
+    this.#addPurchaseClickHandler();
+    this.#addWinningLottoHandler();
     retryButton.addEventListener("click", async () => {
       retryHandler();
     });
   }
 
-  play() {
-    this.#getPurchaseAmount();
-    this.#getWinningLotto();
-  }
-
-  #getPurchaseAmount() {
+  #addPurchaseClickHandler() {
     purchaseButton.addEventListener("click", (event) => {
       this.purchaseClickHandler(event);
     });
@@ -67,7 +63,7 @@ class WebController {
     WebView.showLottoList(lottoNumberList);
   }
 
-  #getWinningLotto() {
+  #addWinningLottoHandler() {
     winningNumbers.forEach((input) => {
       input.addEventListener("keydown", winningLottoHandler.onInputKeyDown);
     });
