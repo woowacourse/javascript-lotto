@@ -6,8 +6,17 @@ class PurchaseAmountValidator {
   static name = VARIABLE_ALIAS.purchaseAmount;
 
   static validate(purchaseAmount) {
-    this.validateIsInteger(purchaseAmount);
-    this.validateIsAtLeast(purchaseAmount, OPTIONS.LOTTO.price);
+    this.validateIsNumber(purchaseAmount);
+    const numberInput = parseInt(purchaseAmount, 10);
+    this.validateIsInteger(numberInput);
+    this.validateIsAtLeast(numberInput, OPTIONS.LOTTO.price);
+    return numberInput;
+  }
+
+  static validateIsNumber(value) {
+    if (!/^\d+$/.test(value)) {
+      throw new Error(`${ERROR_MESSAGES.prefix}${ERROR_MESSAGES.isNotNumber(this.name)}`);
+    }
   }
 
   static validateIsInteger(value) {

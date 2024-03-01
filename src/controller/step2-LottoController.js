@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-constant-condition */
@@ -5,8 +6,6 @@ import LottoMachine from '../domain/LottoMachine.js';
 import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
 import LottoNumbersValidator from '../util/validation/LottoNumbersValidator.js';
 import PurchaseAmountValidator from '../util/validation/PurchaseAmountValidator.js';
-// import RestartValidator from '../util/validation/RestartValidator.js';
-// import OutputView from '../view/OutputView.js';
 
 class LottoController {
   #lottoMachine;
@@ -15,11 +14,10 @@ class LottoController {
     this.#lottoMachine = new LottoMachine();
   }
 
-  // eslint-disable-next-line max-params
-  async getInputAndValidate(input, validateFunction, elementId) {
+  async getInputAndValidate({ input, validateFunction, elementId }) {
     const errorElement = document.getElementById(elementId);
     try {
-      const result = validateFunction(input) ?? input;
+      const result = validateFunction(input.trim()) ?? input;
       errorElement.textContent = '';
       return result;
     } catch (error) {
@@ -29,13 +27,13 @@ class LottoController {
   }
 
   async inputPurchaseAmount(purchaseAmount) {
-    const validatedPurchaseAmount = await this.getInputAndValidate(
-      purchaseAmount,
-      (input) => PurchaseAmountValidator.validate(parseInt(input.trim(), 10)),
-      'purchaseError'
-    );
+    const validatedPurchaseAmount = await this.getInputAndValidate({
+      input: purchaseAmount,
+      validateFunction: (input) => PurchaseAmountValidator.validate(input),
+      elementId: 'purchaseError'
+    });
 
-    return validatedPurchaseAmount !== null ? parseInt(validatedPurchaseAmount.trim(), 10) : null;
+    return validatedPurchaseAmount;
   }
 
   calculateIssueQuantity(purchaseAmount) {
@@ -101,12 +99,17 @@ class LottoController {
   async inputWinningNumbers() {
     const winningNumbers = Array.from(
       document.querySelectorAll('#winningInputContainer .inputRectangle')
-    ).map((input) => Number(input.value));
+    ).map((input) => input.value);
     console.log(`Inputwinning1: ${winningNumbers}`);
 
-    const validatedWinningNumbers = await this.getInputAndValidate(winningNumbers, (numbers) => {
-      LottoNumbersValidator.validate(numbers);
-      return numbers;
+    const validatedWinningNumbers = await this.getInputAndValidate({
+      input: winningNumbers.join(','),
+      validateFunction: (input) => {
+        const numbers = input.split(',').map(Number);
+        LottoNumbersValidator.validate(numbers);
+        return numbers;
+      },
+      elementId: 'winningAndBonusError'
     });
 
     console.log(`Inputwinning2: ${validatedWinningNumbers}`);
@@ -114,20 +117,60 @@ class LottoController {
   }
 
   async inputBonusNumber(winningNumbers) {
-    const bonusNumber = Number(
-      document.querySelector('#bonusInputContainer .inputRectangle').value
-    );
+    const bonusNumber = document.querySelector('#bonusInputContainer .inputRectangle').value;
     console.log(`bonusNumber1: ${bonusNumber}`);
 
-    const validatedBonusNumber = await this.getInputAndValidate(bonusNumber, (number) => {
-      BonusNumberValidator.validate(number, winningNumbers);
-      return number;
+    const validatedBonusNumber = await this.getInputAndValidate({
+      input: bonusNumber,
+      validateFunction: (input) => {
+        const number = Number(input);
+        BonusNumberValidator.validate(number, winningNumbers);
+        return number;
+      },
+      elementId: 'winningAndBonusError'
     });
 
     console.log(`bonusNumber2: ${validatedBonusNumber}`);
 
     return validatedBonusNumber;
   }
+
+  // async inputWinningNumbers() {
+  //   const winningNumbers = Array.from(
+  //     document.querySelectorAll('#winningInputContainer .inputRectangle')
+  //   ).map((input) => Number(input.value));
+  //   console.log(`Inputwinning1: ${winningNumbers}`);
+
+  //   const validatedWinningNumbers = await this.getInputAndValidate({
+  //     input: winningNumbers,
+  //     validateFunction: (numbers) => {
+  //       LottoNumbersValidator.validate(numbers);
+  //       return numbers;
+  //     },
+  //     elementId: 'winningAndBonusError'
+  //   });
+
+  //   console.log(`Inputwinning2: ${validatedWinningNumbers}`);
+  //   return validatedWinningNumbers;
+  // }
+
+  // async inputBonusNumber(winningNumbers) {
+  //   const bonusNumber = document.querySelector('#bonusInputContainer .inputRectangle').value;
+  //   console.log(`bonusNumber1: ${bonusNumber}`);
+
+  //   const validatedBonusNumber = await this.getInputAndValidate({
+  //     input: bonusNumber,
+  //     validateFunction: (number) => {
+  //       BonusNumberValidator.validate(number, winningNumbers);
+  //       return number;
+  //     },
+  //     elementId: 'winningAndBonusError'
+  //   });
+
+  //   console.log(`bonusNumber2: ${validatedBonusNumber}`);
+
+  //   return validatedBonusNumber;
+  // }
 
   determineLottoRanks({ lottos, winningNumbers, bonusNumber }) {
     return this.#lottoMachine.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
