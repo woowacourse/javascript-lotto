@@ -1,97 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎱 행운의 로또</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🎱 행운의 로또</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-
-<body>
-  <div id="app">
-    <div class="inner step-payment">
-      <header>
-        <h1>🎱 행운의 로또</h1>
-      </header>
-      <main>
-        <div class="contents">
-          <header>🎱 내 번호 당첨 확인 🎱</header>
-          <section class="payment-amount">
-            <div class="payment-amount__explanation explanation">
-              <div class="icon-toggle-rule" title="구입 금액에 관한 룰 보기">🤔❔</div>
-              <!--구매 금액 입력에 대한 룰-->
-            </div>
-            <form class="payment-amount__form" novalidate>
-              <label for="input-payment-amount">
-                구입할 금액을 입력해주세요.
-              </label>
-              <div>
-                <button class="btn-pay-lotto" type="submit">구입</button>
-              </div>
-            </form>
-            <div class="message-error"></div>
-          </section>
-          <section class="purchase-history ">
-            <div class="purchase-history__lottos-count">
-              총 <span id="purchase-history__lottos-count__number"></span>를 구매하였습니다.
-            </div>
-            <ul class="issued-lottos">
-              <!--발행된 로또에 대한 요소들-->
-            </ul>
-          </section>
-          <section class="winning-criteria">
-            <div>
-              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
-            </div>
-            <div>
-              <div class="winning-criteria__explanation explanation">
-                <div class="icon-toggle-rule" title="당첨 번호, 보너스 번호에 관란 룰 보기">🤔❔
+  <body>
+    <div id="app">
+      <div class="inner step-payment">
+        <header>
+          <h1>🎱 행운의 로또</h1>
+        </header>
+        <main>
+          <div class="contents">
+            <header>🎱 내 번호 당첨 확인 🎱</header>
+            <section class="payment-amount">
+              <div class="payment-amount__explanation explanation">
+                <div class="icon-toggle-rule" title="구입 금액에 관한 룰 보기">
+                  🤔❔
                 </div>
-                <!--당첨 번호 ,보너스 번호에 대한 룰-->
+                <!--구매 금액 입력에 대한 룰-->
               </div>
-            </div>
-            <form class="winning-criteria__form" novalidate>
-              <div class="winning-criteria__input-group-container">
-                <section class="winning-criteria__form-lotto-numbers">
-                  <header>당첨 번호</header>
-                  <div class="input-group">
-                    <!--당첨 번호관련 input * 6-->
-                  </div>
-                </section>
-                <section class="winning-criteria__form-bonus-number">
-                  <header>보너스 번호</header>
-                  <label class="screen-reader-only" for="input-bonus-number">
-                    보너스 번호를 입력해주세요.
-                  </label>
-                  <!--보너스 번호관련 input-->
-                </section>
-              </div>
+              <form class="payment-amount__form" novalidate>
+                <label for="input-payment-amount">
+                  구입할 금액을 입력해주세요.
+                </label>
+                <div>
+                  <button class="btn-pay-lotto" type="submit">구입</button>
+                </div>
+              </form>
               <div class="message-error"></div>
-              <button class="btn-check-result" type="submit">결과 확인하기</button>
-            </form>
-          </section>
-        </div>
-      </main>
-      <footer>
-        Copyright 2023. woowacourse
-      </footer>
-      <div class="popup popup-statistics">
-        <div class="popup__inner shadow">
-          <button class="btn-close-popup">✖️</button>
-          <div class="popup__contents">
-            <header>🏆 당첨 통계 🏆</header>
-            <div class="rank-statistics">
-              <!--로또 통계 테이블 -->
-              <div class="profit-rate-container">
-                당신의 총 수익률은 <span id="profit-rate"></span>%입니다.
+            </section>
+            <section class="purchase-history">
+              <div class="purchase-history__lottos-count">
+                총 <span id="purchase-history__lottos-count__number"></span>를
+                구매하였습니다.
               </div>
-              <button class="btn-restart">게임 다시 시작하기</button>
+              <ul class="issued-lottos">
+                <!--발행된 로또에 대한 요소들-->
+              </ul>
+            </section>
+            <section class="winning-criteria">
+              <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+              <div>
+                <div class="winning-criteria__explanation explanation">
+                  <div
+                    class="icon-toggle-rule"
+                    title="당첨 번호, 보너스 번호에 관란 룰 보기"
+                  >
+                    🤔❔
+                  </div>
+                  <!--당첨 번호 ,보너스 번호에 대한 룰-->
+                </div>
+              </div>
+              <form class="winning-criteria__form" novalidate>
+                <div class="winning-criteria__input-group-container">
+                  <section class="winning-criteria__form-lotto-numbers">
+                    <header>당첨 번호</header>
+                    <div class="input-group">
+                      <!--당첨 번호관련 input * 6-->
+                    </div>
+                  </section>
+                  <section class="winning-criteria__form-bonus-number">
+                    <header>보너스 번호</header>
+                    <label class="screen-reader-only" for="input-bonus-number">
+                      보너스 번호를 입력해주세요.
+                    </label>
+                    <!--보너스 번호관련 input-->
+                  </section>
+                </div>
+                <div class="message-error"></div>
+                <button class="btn-check-result" type="submit">
+                  결과 확인하기
+                </button>
+              </form>
+            </section>
+          </div>
+        </main>
+        <footer>Copyright 2023. woowacourse</footer>
+        <div class="popup popup-statistics">
+          <div class="popup__inner shadow">
+            <button class="btn-close-popup">✖️</button>
+            <div class="popup__contents">
+              <header>🏆 당첨 통계 🏆</header>
+              <div class="rank-statistics">
+                <!--로또 통계 테이블 -->
+                <div class="profit-rate-container">
+                  당신의 총 수익률은 <span id="profit-rate"></span>%입니다.
+                </div>
+                <button class="btn-restart">게임 다시 시작하기</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
