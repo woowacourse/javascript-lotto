@@ -147,7 +147,7 @@ class LottoWebController {
       this.calculateWebLottoResult(webWinningCombination);
       this.openModal();
     } catch (error) {
-      alert(error.message); // TODO : alert 말고 다른 종류로 바꾸기
+      $("#lotto-input-error").innerHTML = error.message;
     }
   }
 

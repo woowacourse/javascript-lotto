@@ -32,7 +32,6 @@ body {
 
 .lotto-subtitle {
   font-family: "Roboto", sans-serif;
-  /* font-size: 20px; */
   font-size: 2rem;
   font-weight: 600;
   line-height: 2.4rem;
@@ -214,13 +213,15 @@ body {
   justify-content: space-between;
 }
 
-#content-box-bonus-input {
+#lotto-input-error {
+  color: red;
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
 }
 
 #content-box-result {
   box-sizing: border-box;
   display: flex;
-  /* background-color: purple; */
   justify-content: center;
   margin-top: 2.7rem;
 }
