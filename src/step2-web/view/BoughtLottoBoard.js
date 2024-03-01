@@ -15,7 +15,7 @@ export default class BoughtLottoBoard extends MyComponent {
     return `
 <section class="showing-bought-lottos">
   ${this.#getLottoCountTemplate(lottos.length)}
-  ${lottos.map((lotto) => this.#getLottoLineTemplate(lotto)).join("")}
+  ${lottos.map((lotto) => this.#getBoughtLottoTemplate(lotto)).join("")}
 </section>
     `;
   }
@@ -28,7 +28,7 @@ export default class BoughtLottoBoard extends MyComponent {
       : BLANK;
   }
 
-  #getLottoLineTemplate(lotto) {
+  #getBoughtLottoTemplate(lotto) {
     return `
 <div class="bought-lotto-line flex-box">
   <span class="lotto-icon">🎟️</span>

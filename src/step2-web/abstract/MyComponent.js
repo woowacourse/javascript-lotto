@@ -9,6 +9,7 @@ export default class MyComponent extends Observer {
 
   constructor(targetElementId) {
     super();
+
     this.#targetElementId = targetElementId;
   }
 

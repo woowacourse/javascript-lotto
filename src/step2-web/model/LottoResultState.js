@@ -25,7 +25,5 @@ export default class LottoResultState extends Observable {
 
   reset() {
     this.setState(createInitialLottoResult());
-
-    this.notify();
   }
 }

@@ -12,18 +12,23 @@ import LottoResultMaker from "../../step1-console/domain/LottoResultMaker.js";
 export default class WinningLottoForm extends MyComponent {
   #lottosState;
   #lottoResultState;
+  #isResultModalOnState;
 
-  constructor(targetElementId, lottosState, lottoResultState) {
+  constructor({
+    targetElementId,
+    lottosState,
+    lottoResultState,
+    isResultModalOnState,
+  }) {
     super(targetElementId);
 
     this.#lottosState = lottosState;
     this.#lottoResultState = lottoResultState;
+    this.#isResultModalOnState = isResultModalOnState;
   }
 
   _getTemplate() {
     const lottos = this.#lottosState.getLottos();
-
-    const hidden = lottos.length ? "" : "hidden";
 
     const lottoNumberInputsTemplate = Array(LOTTO_NUMBER_LENGTH)
       .fill()
@@ -31,7 +36,7 @@ export default class WinningLottoForm extends MyComponent {
       .join("");
 
     return `
-  <section class="getting-winning-lotto ${hidden}">
+  <section class="getting-winning-lotto ${lottos.length ? "" : "hidden"}">
       <p class="winning-lotto-message body-text">지난 주 당첨번호 ${LOTTO_NUMBER_LENGTH}개와 보너스 번호 1개를 입력해주세요.</p>
       <div class="winning-lotto-input-group">
         <div class="number-input-wrapper">
@@ -80,8 +85,8 @@ export default class WinningLottoForm extends MyComponent {
     this.#lottoResultState.setState({
       rankResult,
       profitRate,
-      isResultModalOn: true,
     });
+    this.#isResultModalOnState.setState(true);
   }
 
   #getLottoNumbersFromInputs() {

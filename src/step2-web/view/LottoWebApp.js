@@ -19,10 +19,10 @@ export default class LottoWebApp {
   }
 
   #renderBaseTemplate() {
-    this.$target.innerHTML = this.#generateBaseTemplate();
+    this.$target.innerHTML = this.#getBaseTemplate();
   }
 
-  #generateBaseTemplate() {
+  #getBaseTemplate() {
     return this.#views
       .map((view) => `<div id=${view.getTargetElementId()}></div>`)
       .join("");
