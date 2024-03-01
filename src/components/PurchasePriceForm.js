@@ -4,14 +4,12 @@ import './LottoButton.js';
 import { BuyLottoPriceValidator } from '../validator/index.js';
 
 const PURCHASE_PRICE_FORM = `
-  <div class="price-input-label-container">
-    <p class="lotto-body">구입할 금액을 입력해 주세요.</p>
-  </div>
-  <div class="price-input-button-container">
+  <main class="lotto-body">구입할 금액을 입력해 주세요.</main>
+  <section class="price-input-button-container">
     <price-input-field></price-input-field>
     <lotto-button id="purchase-button"></lotto-button>
-  </div>
-  <div class ="error-message"></div>
+  </section>
+  <p class ="error-message"></p>
 `;
 
 class PurchasePriceForm extends HTMLElement {

@@ -2,9 +2,9 @@ import './LottoNumbers.css';
 
 const LOTTO_NUMBERS = (numbers) => `
 <div class="lotto-icon">🎟️</div>
-<div class="lotto-numbers-container">
+<section class="lotto-numbers-container">
   <p class="lotto-body">${numbers}</p>
-</div>
+</section>
 `;
 
 class LottoNumbers extends HTMLElement {

@@ -44,15 +44,6 @@ lotto-result-modal {
   text-align: center;
 }
 
-.lotto-subtitle-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 2.4rem;
-  width: 100%;
-}
-
 .rate-of-return {
   font-family: Roboto;
   font-size: 1.5rem;

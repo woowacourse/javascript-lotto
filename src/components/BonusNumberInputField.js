@@ -2,9 +2,7 @@ import './BonusNumberInputField.css';
 import './NumberInputField.js';
 
 const WINNING_NUMBERS_INPUT_FIELD = `
-  <div class="bonus-number-title-container">
-    <p class="lotto-body">보너스 번호</p>
-  </div>
+  <p class="lotto-body">보너스 번호</p>
   <div class="bonus-number-input-container">
     <number-input-field></number-input-field>  
   </div>

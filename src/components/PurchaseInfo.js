@@ -2,10 +2,10 @@ import './PurchaseInfo.css';
 import './LottoNumbers.js';
 
 const PURCHASE_INFO = `
-<div class="purchase-info-title-container">
-</div>
-<div class="purchase-info-container">
-</div>
+<main class="purchase-info-title-container">
+</main>
+<section class="purchase-info-container">
+</section>
 `;
 
 const PURCHASE_INFO_TITLE = (count) => `

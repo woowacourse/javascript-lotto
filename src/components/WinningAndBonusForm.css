@@ -12,12 +12,6 @@ winning-and-bonus-form {
   gap: 1.2rem;
 }
 
-.winning-and-bonus-title-container {
-  display: flex;
-  align-items: center;
-  height: 2.4rem;
-}
-
 .winning-and-bonus-input-container {
   display: flex;
   flex: auto;

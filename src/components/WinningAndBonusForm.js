@@ -4,18 +4,16 @@ import './BonusNumberInputField.js';
 import { BonusNumberValidator, WinningNumbersValidator } from '../validator/index.js';
 
 const WINNING_NUMBERS_FORM = `
-<div class="winning-and-bonus-container">
-    <div class="winning-and-bonus-title-container">
-      <p class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-    </div>
+  <section class="winning-and-bonus-container">
+    <main class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</main>
     
-    <div class="winning-and-bonus-input-container">
+    <section class="winning-and-bonus-input-container">
       <winning-numbers-input-field></winning-numbers-input-field>
       <bonus-number-input-field></bonus-number-input-field>
-    </div>
-    <div class="error-message"></div>
-  </div>
-<lotto-button id="result-button"></lotto-button>
+    </section>
+    <p class="error-message"></p>
+  </section>
+  <lotto-button id="result-button"></lotto-button>
 `;
 
 class WinningNumbersForm extends HTMLElement {
@@ -31,7 +29,7 @@ class WinningNumbersForm extends HTMLElement {
   }
 
   #setEventListener() {
-    const purchaseButton = document.querySelector('#result-button');
+    const purchaseButton = this.querySelector('#result-button');
 
     purchaseButton.addEventListener('click', () => {
       this.#resultHandler();
@@ -65,7 +63,7 @@ class WinningNumbersForm extends HTMLElement {
 
   #focusNextInput() {
     const activeElement = document.activeElement;
-    const focusableElements = Array.from(document.querySelectorAll('input'));
+    const focusableElements = Array.from(this.querySelectorAll('input'));
     const currentIndex = focusableElements.indexOf(activeElement);
 
     if (currentIndex !== -1 && currentIndex < focusableElements.length - 1) {

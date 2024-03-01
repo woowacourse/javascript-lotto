@@ -5,15 +5,14 @@ import './WinningAndBonusForm.js';
 import './LottoButton.js';
 
 const LOTTO_MAIN = `
-  <div class="lotto-main-container">
-    <div class="lotto-main-title-container">
-      <h1 class="lotto-title">
+  <section class="lotto-main-container">
+    <main class="lotto-title">
         🎱 내 번호 당첨 확인 🎱
-      </h1>
-    </div>
+    </main>
+    
     <purchase-price-form></purchase-price-form>
-    <div class="purchase-result"></div>
-  </div>
+    <section class="purchase-result"></section>
+  </section>
 `;
 
 const LOTTO_MAIN_RESULT = (lottoNumbersArray) => `
@@ -32,7 +31,7 @@ class LottoMain extends HTMLElement {
   }
 
   #setPurchaseEventListener() {
-    const purchasePriceForm = document.querySelector('purchase-price-form');
+    const purchasePriceForm = this.querySelector('purchase-price-form');
     purchasePriceForm.addEventListener('purchase', () => {
       this.#renderResult();
     });
@@ -42,10 +41,10 @@ class LottoMain extends HTMLElement {
     const app = document.querySelector('lotto-app');
     const lottoNumbersArray = app.controller().getLottoGameInfo().lottoNumbersArray;
 
-    const purchaseResult = document.querySelector('.purchase-result');
+    const purchaseResult = this.querySelector('.purchase-result');
     purchaseResult.innerHTML = LOTTO_MAIN_RESULT(lottoNumbersArray);
 
-    const resultButton = document.querySelector('#result-button');
+    const resultButton = this.querySelector('#result-button');
     resultButton.setText('당첨 결과 확인하기');
   }
 }

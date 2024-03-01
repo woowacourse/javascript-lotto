@@ -11,10 +11,3 @@ bonus-number-input-field {
   display: flex;
   gap: 0.8rem;
 }
-
-.bonus-number-title-container {
-  display: flex;
-  align-items: center;
-
-  height: 2.4rem;
-}

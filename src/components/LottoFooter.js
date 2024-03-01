@@ -1,7 +1,7 @@
 import './LottoFooter.css';
 
 const LOTTO_FOOTER = `
-  <h3 class="lotto-caption">Copyright 2023. woowacourse</h3>
+  <footer class="lotto-caption">Copyright 2023. woowacourse</footer>
 `;
 
 class LottoFooter extends HTMLElement {
