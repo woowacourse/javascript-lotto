@@ -26,6 +26,7 @@ class LottoWebController {
     );
     $("#modal-close-btn").addEventListener("click", this.closeModal.bind(this));
     $("#modal-retry-btn").addEventListener("click", this.reloadPage.bind(this));
+    $("#modal").addEventListener("click", this.closeModalOutside.bind(this));
 
     $("#content-box-input-combination")
       .querySelectorAll("input")
@@ -167,14 +168,18 @@ class LottoWebController {
   }
 
   openModal() {
-    console.log("openModal");
+    // console.log("openModal");
     $("#modal").style.display = "flex";
   }
 
-  closeModal(event) {
-    console.log("closeModal");
-    event.preventDefault();
+  closeModal() {
     $("#modal").style.display = "none";
+  }
+
+  closeModalOutside(event) {
+    if (event.target.id === "modal") {
+      this.closeModal();
+    }
   }
 
   calculateWebLottoResult(webWinningCombination) {
