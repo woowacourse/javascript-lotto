@@ -22,10 +22,10 @@ class LottoGameController2 {
   #bonusNumber = 0;
 
   play() {
-    this.inputPurchaseAmount();
+    this.#inputPurchaseAmount();
   }
 
-  inputPurchaseAmount() {
+  #inputPurchaseAmount() {
     $purchaseForm.addEventListener('submit', (event) => {
       event.preventDefault();
       this.#checkPurchaseAmount($purchaseAmount.value);
@@ -45,8 +45,8 @@ class LottoGameController2 {
 
   #createRandomLottos() {
     const lottos = new LottoMachine(this.#purchaseAmount).getLottoNumberList();
-    this.#showPurchasedLottos(lottos);
     this.#lottosManager = new LottosManager(lottos);
+    this.#showPurchasedLottos(lottos);
   }
 
   #showPurchasedLottos(lottos) {
@@ -77,7 +77,6 @@ class LottoGameController2 {
       this.#winningNumbers = winningNumberList;
     } catch (error) {
       alert(error.message);
-      // 메서드 분리 예정
       $winningInputs.forEach((winningNumber) => {
         winningNumber.value = '';
       });
@@ -97,7 +96,6 @@ class LottoGameController2 {
       this.#bindRestartButton();
     } catch (error) {
       alert(error.message);
-      // 메서드 분리 예정
       $bonusInput.value = '';
     }
   }
@@ -116,22 +114,11 @@ class LottoGameController2 {
   }
 
   #bindCloseButton() {
-    eventHandler.onClick($closeButton, () => {
-      View.renderCloseModal();
-    });
-    eventHandler.onClick($modalBackground, () => {
-      View.renderCloseModal();
-    });
-    eventHandler.onEsc(document, () => {
-      View.renderCloseModal();
-    });
-    eventHandler.onClick($modalContent, (event) => {
-      event.stopPropagation();
-    });
+    eventHandler.onModalClose($closeButton, $modalBackground, $modalContent, View.renderCloseModal);
   }
 
   #bindRestartButton() {
-    eventHandler.onClick($restartButton, () => {
+    eventHandler.onRestart($restartButton, () => {
       $purchaseAmount.value = '';
       View.renderRestartGame();
     });
