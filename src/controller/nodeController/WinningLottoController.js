@@ -1,7 +1,7 @@
-import MESSAGE from '../constant/Message';
-import WinningLotto from '../domain/entity/WinningLotto';
-import InputView from '../view/InputView';
-import OutputView from '../view/OutputView';
+import MESSAGE from '../../constant/Message';
+import WinningLotto from '../../domain/entity/WinningLotto';
+import InputView from '../../view/InputView';
+import OutputView from '../../view/OutputView';
 
 class WinningLottoController {
   static async playWinningLotto() {

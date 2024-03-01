@@ -1,7 +1,7 @@
-import MESSAGE from '../constant/Message';
-import WinningResultService from '../domain/service/WinningResultService';
-import WinningRewardService from '../domain/service/WinningRewardService';
-import OutputView from '../view/OutputView';
+import MESSAGE from '../../constant/Message';
+import WinningResultService from '../../domain/service/WinningResultService';
+import WinningRewardService from '../../domain/service/WinningRewardService';
+import OutputView from '../../view/OutputView';
 
 class WinningResultController {
   static playWinningResult(purchaseLottoObject, winningLottoObject) {

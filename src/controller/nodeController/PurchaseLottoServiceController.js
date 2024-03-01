@@ -1,7 +1,7 @@
-import MESSAGE from '../constant/Message';
-import PurchaseLottoService from '../domain/service/PurchaseLottoService';
-import InputView from '../view/InputView';
-import OutputView from '../view/OutputView';
+import MESSAGE from '../../constant/Message';
+import PurchaseLottoService from '../../domain/service/PurchaseLottoService';
+import InputView from '../../view/InputView';
+import OutputView from '../../view/OutputView';
 
 class PurchaseLottoServiceController {
   static async playPurchaseLottoService() {

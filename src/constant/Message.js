@@ -6,7 +6,7 @@ const MESSAGE = {
     retry: '> 다시 시작하시겠습니까? (y/n) ',
   },
   purchaseCount(count) {
-    return `${count}개를 구매했습니다.`;
+    return `총 ${count}개를 구매했습니다.`;
   },
   lotto(lottoNumbers) {
     return '[' + lottoNumbers.map(number => number.toString()).join(', ') + ']';
