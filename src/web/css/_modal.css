@@ -1,4 +1,4 @@
-.popup {
+.modal {
   position: absolute;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   align-items: center;
   background-color: rgba(var(--lotto-greyScale5-color-rgb), 20%);
 
-  .popup__inner {
+  .modal__inner {
     position: relative;
     width: 350px;
     height: 500px;
@@ -21,7 +21,7 @@
     background-color: var(--lotto-greyScale2-color);
   }
 
-  .btn-close-popup {
+  .btn-close-modal {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -30,7 +30,7 @@
   }
 }
 
-.popup__contents {
+.modal__contents {
   header {
     font-size: var(--lotto-subtitle-fontSize);
     font-weight: var(--lotto-subtitle-fontWeight);

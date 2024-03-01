@@ -151,7 +151,7 @@ src
  ┃ ┃ ┣ _app.css
  ┃ ┃ ┣ _common.css
  ┃ ┃ ┣ _contents.css
- ┃ ┃ ┣ _popup.css
+ ┃ ┃ ┣ _modal.css
  ┃ ┃ ┣ _reset.css
  ┃ ┃ ┣ _rule.css
  ┃ ┃ ┗ _style-constants.css
@@ -159,7 +159,7 @@ src
  ┃ ┃ ┣ HtmlTextInjectorWithConstants.js
  ┃ ┃ ┣ HtmlTextInjectorWithGameResults.js
  ┃ ┃ ┣ LottoMachineGenerator.js
- ┃ ┃ ┣ StatisticsPopupController.js
+ ┃ ┃ ┣ StatisticsModalController.js
  ┃ ┃ ┣ utils.js
  ┃ ┃ ┣ WebLottoGameController.js
  ┃ ┃ ┗ WinningLottoAndBonusGenerator.js

@@ -1,5 +1,5 @@
 import { NUMBER_DELIMITER } from '../../constants';
-import StatisticsPopupController from './StatisticsPopupController';
+import StatisticsModalController from './StatisticsModalController';
 
 import { changeClassAboutGameStep, handleErrorMessage } from './utils';
 
@@ -45,7 +45,7 @@ class WinningLottoAndBonusGenerator {
       this.#lottoResultsHelper.calculateMatchingResults();
 
       changeClassAboutGameStep('statistics');
-      new StatisticsPopupController(this.#lottoResultsHelper);
+      new StatisticsModalController(this.#lottoResultsHelper);
     } catch (error) {
       handleErrorMessage(errorMessageElement, error);
     }
@@ -63,6 +63,7 @@ class WinningLottoAndBonusGenerator {
 
   #handleSubmitToGetStatistics(event) {
     event.preventDefault();
+
     this.#moveScrollToTop();
     this.#generateWinningLottoAndBonus();
   }

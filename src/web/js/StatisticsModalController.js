@@ -5,10 +5,10 @@ import {
   recoveryInitialStateExceptPayment,
 } from './utils';
 
-class StatisticsPopupController {
+class StatisticsModalController {
   $element = {
-    popupElement: undefined,
-    btnClosePopupElement: undefined,
+    modalElement: undefined,
+    btnCloseModalElement: undefined,
     btnRestartElement: undefined,
   };
 
@@ -21,7 +21,7 @@ class StatisticsPopupController {
   constructor(lottoResultsHelper) {
     this.#assignElement();
     this.#getLottoAnalytics(lottoResultsHelper);
-    this.#openPopup();
+    this.#openModal();
     this.#addEvent();
   }
 
@@ -38,7 +38,7 @@ class StatisticsPopupController {
     this.#lottoAnalytics = statistics.lottoAnalytics;
   }
 
-  #openPopup() {
+  #openModal() {
     HtmlTextInjectorWithGameResults.injectStatisticsTable(
       this.#lottoAnalytics.statisticsResult,
     );
@@ -46,20 +46,20 @@ class StatisticsPopupController {
       this.#lottoAnalytics.profitRate,
     );
 
-    this.$element.popupElement.classList.remove('hidden');
+    this.$element.modalElement.classList.remove('hidden');
   }
 
   #assignElement() {
     this.$element = {
-      popupElement: document.querySelector('.popup'),
-      btnClosePopupElement: document.querySelector('.btn-close-popup'),
+      modalElement: document.querySelector('.modal'),
+      btnCloseModalElement: document.querySelector('.btn-close-modal'),
       btnRestartElement: document.querySelector('.btn-restart'),
     };
   }
 
   #addEvent() {
-    this.$element.btnClosePopupElement.addEventListener('click', (event) =>
-      this.#hidePopup(event),
+    this.$element.btnCloseModalElement.addEventListener('click', (event) =>
+      this.#hideModal(event),
     );
 
     this.$element.btnRestartElement.addEventListener('click', (event) =>
@@ -71,7 +71,7 @@ class StatisticsPopupController {
    *
    * @param {Event} event
    */
-  #hidePopup(event) {
+  #hideModal(event) {
     event.stopPropagation();
     changeClassAboutGameStep('winning');
   }
@@ -88,4 +88,4 @@ class StatisticsPopupController {
   }
 }
 
-export default StatisticsPopupController;
+export default StatisticsModalController;

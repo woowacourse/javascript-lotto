@@ -63,7 +63,7 @@
     justify-content: center;
   }
 
-  #app .popup {
+  #app .modal {
     height: calc(100vh + 50px);
   }
 }
