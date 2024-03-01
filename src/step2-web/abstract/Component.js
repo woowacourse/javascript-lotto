@@ -34,16 +34,12 @@ export default class Component extends Observer {
     throw new CustomError("_getTemplate 메서드가 구현되어 있지 않습니다.");
   }
 
-  _attachErrorHandler(eventHandler, errorMessageTargetId) {
-    if (!errorMessageTargetId) {
-      throw new CustomError("errorMessageTargetId가 주어지지 않았습니다.");
-    }
-
+  _attachErrorHandler(eventHandler, errorMessageSetter) {
     return (e) => {
       try {
         eventHandler(e);
       } catch (error) {
-        $(`#${errorMessageTargetId}`).innerText = error.message;
+        errorMessageSetter(error.message);
       }
     };
   }

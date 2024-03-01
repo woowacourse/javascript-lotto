@@ -14,7 +14,7 @@ export default class BoughtLottoBoard extends Component {
 
     return `
 <section class="showing-bought-lottos">
-  ${this.#getLottoCountTemplate(lottos.length)}
+  ${this.#getLottoCountNotiTemplate(lottos.length)}
   <div class="bought-lotto-list">
   ${lottos.map((lotto) => this.#getBoughtLottoTemplate(lotto)).join("")}
   </div>
@@ -22,7 +22,7 @@ export default class BoughtLottoBoard extends Component {
     `;
   }
 
-  #getLottoCountTemplate(lottoCount) {
+  #getLottoCountNotiTemplate(lottoCount) {
     const BLANK = "";
 
     return lottoCount
