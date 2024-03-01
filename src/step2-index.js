@@ -129,4 +129,15 @@ $lottoNumbersForm.addEventListener('submit', (event) => {
 
     $lottoStatisticsTbody.innerHTML = result;
   }
+
+  // 수익률 표시
+  const $profitText = $('#profit-text');
+  const totalProfit = lottoCalculator.calculateTotalProfit(ticketCount);
+
+  // OutputView printTotalProfit 메서드 가공
+  printTotalProfit(totalProfit);
+
+  function printTotalProfit(totalProfit) {
+    return ($profitText.textContent = WEB_MESSAGES.totalProfit(totalProfit));
+  }
 });
