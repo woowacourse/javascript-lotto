@@ -43,26 +43,14 @@
   font: var(--lotto-body);
 }
 
-.purchase-input-box {
+.purchase-input {
   width: 100%;
   height: 36px;
-  padding: 0px 0px 0px 8px;
-  border-radius: 4px;
-  border: 1px solid var(--lotto-greyscale-3);
+  padding: 0 0 0 8px;
 }
 
 .purchase-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 56px;
-  height: 36px;
-  border: 1px solid var(--lotto-primary);
-  border-radius: 4px;
-  background-color: var(--lotto-primary);
-  color: var(--lotto-greyscale-1);
-  outline: none;
-  cursor: pointer;
 }
 
 /* main lottos output */
@@ -130,11 +118,9 @@
   gap: 8px;
 }
 
-.lotto-input-box {
+.lotto-input {
   width: 34px;
   height: 36px;
-  border-radius: 4px;
-  border: 1px solid var(--lotto-greyscale-3);
   text-align: center;
 }
 
@@ -144,15 +130,6 @@
 }
 
 .winning-lotto-submit-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  height: 36px;
   margin: 20px 0;
-  border-radius: 4px;
-  border: none;
-  outline: none;
-  background-color: var(--lotto-primary);
-  color: var(--lotto-greyscale-1);
 }

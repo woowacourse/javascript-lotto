@@ -28,10 +28,12 @@ const View = {
     $winningLottoForm.hidden = false;
 
     $winningLottoInputContainer.innerHTML =
-      `<input class="lotto-input-box winning" type="number" min="1" max="45" required />`.repeat(SETTING.LOTTO_LENGTH);
-    $bonusLottoInputContainer.innerHTML = `<input class="lotto-input-box bonus" type="number" min="1" max="45" required />`;
+      `<input class="primary-input lotto-input winning" type="number" min="1" max="45" required />`.repeat(
+        SETTING.LOTTO_LENGTH,
+      );
+    $bonusLottoInputContainer.innerHTML = `<input class="primary-input lotto-input bonus" type="number" min="1" max="45" required />`;
 
-    elementHandler.$$('.lotto-input-box')[0].focus();
+    elementHandler.$$('.lotto-input')[0].focus();
   },
 
   renderWinningResults(winningResults, profitRate) {

@@ -6,7 +6,7 @@ import eventHandler from '../handler/eventHandler.js';
 import Validator from '../validator/Validator.js';
 import View from '../view/View.js';
 
-const $purchaseAmount = elementHandler.$('.purchase-input-box');
+const $purchaseAmount = elementHandler.$('.purchase-input');
 const $purchaseForm = elementHandler.$('.purchase-form');
 
 const $winningLottoForm = elementHandler.$('.winning-lotto-form');
@@ -56,8 +56,8 @@ class LottoGameController2 {
   }
 
   #inputWinningLotto() {
-    const $winningInputs = elementHandler.$$('.lotto-input-box.winning');
-    const $bonusInput = elementHandler.$('.lotto-input-box.bonus');
+    const $winningInputs = elementHandler.$$('.lotto-input.winning');
+    const $bonusInput = elementHandler.$('.lotto-input.bonus');
 
     $winningLottoForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -69,8 +69,8 @@ class LottoGameController2 {
   }
 
   #checkWinningNumbers(winningNumberList) {
-    const $winningInputs = elementHandler.$$('.lotto-input-box.winning');
-    const $bonusInput = elementHandler.$('.lotto-input-box.bonus');
+    const $winningInputs = elementHandler.$$('.lotto-input.winning');
+    const $bonusInput = elementHandler.$('.lotto-input.bonus');
 
     try {
       Validator.validateWinningNumberList(winningNumberList);
@@ -86,7 +86,7 @@ class LottoGameController2 {
   }
 
   #checkBonusNumber(bonusNumber, winningNumberList) {
-    const $bonusInput = elementHandler.$('.lotto-input-box.bonus');
+    const $bonusInput = elementHandler.$('.lotto-input.bonus');
 
     try {
       Validator.validateBonusNumber(bonusNumber, winningNumberList);
