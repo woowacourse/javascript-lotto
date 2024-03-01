@@ -1,5 +1,6 @@
 import LottoService from "../domain/LottoService";
 import LottoValidation from "../validation/lottoValidation";
+import Error from "./utils/Error";
 
 const ModalSection = {
     addResultButton(event, randomLottos = []) {
@@ -9,21 +10,11 @@ const ModalSection = {
         try{
             LottoValidation.validateNumbers(winNumbers);
             LottoValidation.validateBonusNumber(winNumbers, bonusNumber);
-            this.closeErrorMessage('.input-error');
+            Error.closeMessage('.input-error');
             this.createModal({randomLottos, winNumbers, bonusNumber})
         } catch (error){
-            this.showErrorMessage('.input-error', error)
+            Error.showMessage('.input-error', error)
         }
-    },
-
-    showErrorMessage(selector, error){
-        const errorDiv = document.querySelector(selector);
-        errorDiv.innerText = error.message;
-    },
-
-    closeErrorMessage(selector) {
-        const errorDiv = document.querySelector(selector);
-        errorDiv.innerText = '';
     },
     
     createModal({randomLottos, winNumbers, bonusNumber}){
