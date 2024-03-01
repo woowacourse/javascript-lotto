@@ -41,7 +41,7 @@ export default class LottoWebApp {
   </main>
 
   <footer class="lotto-footer">
-    <span class="lotto-footer-letter">Copyright 2023. woowacourse</span>
+    <span class="lotto-footer-letter">&copy;Copyright 2023. woowacourse</span>
   </footer>
 </div>
 `;
