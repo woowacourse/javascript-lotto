@@ -1,6 +1,6 @@
-import LottoService from "../domain/LottoService";
-import LottoValidation from "../validation/lottoValidation";
-import Error from "./utils/Error";
+import LottoService from "../../domain/LottoService";
+import LottoValidation from "../../validation/lottoValidation";
+import Error from "../../util/Error";
 
 const ModalSection = {
     addResultButton(event, randomLottos = []) {

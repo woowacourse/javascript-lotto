@@ -1,0 +1,83 @@
+.modal-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+  
+  }
+  
+  .modal-contents {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    background-color: #ffffff;
+    width: 21.875rem;
+    height: 31.25rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .modal-title {
+    color: var(--lotto-greyscale-5, #000);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Roboto;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5rem;
+    letter-spacing: s0.00938rem;
+    margin: 2.5rem;
+  }
+  
+  .modal-table {
+    border-collapse: separate;
+    border-spacing: 1.0rem 1rem;
+    text-align: center;
+  }
+  
+  .modal-table td,
+  .modal-table th {
+    color: var(--lotto-greyscale-5, #000);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Roboto;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5rem;
+    letter-spacing: 0.03125rem;
+  }
+  
+  .modal-table td {
+    white-space: nowrap;
+  }
+  
+  .modal-table th {
+    font-weight: bold;
+  }
+  
+  .total-price {
+    font-weight: bold;
+    margin: 1rem;
+  }
+  
+  .restart-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--lotto-greyscale-1, #FFF);
+    font-family: Roboto;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1rem;
+    letter-spacing: 0.07813rem;
+    text-transform: uppercase;
+  }

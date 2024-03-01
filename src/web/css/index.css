@@ -1,9 +1,3 @@
-@import "reset.css";
-
-body {
-  min-width: 25.875rem;
-}
-
 .header {
   display: flex;
   width: 100%;
@@ -15,6 +9,10 @@ body {
 .header-title {
   font-size: 30px;
   margin: auto auto auto 8.12%;
+}
+
+body {
+  min-width: 25.875rem;
 }
 
 .main-container {
@@ -49,230 +47,6 @@ body {
   margin: 2.5rem;
 }
 
-.puchase-form {
-  width: 100%;
-}
-
-.flex-container {
-  display: flex;
-}
-
-.purchase-input-text {
-  width: 20.875rem;
-  height: 1.8rem;
-  border-radius: 0.25rem;
-  border: 1px solid var(--lotto-greyscale-3, #B4B4B4);
-  margin: 0.4rem 0.4rem 0 0;
-}
-
-.purchase-button {
-  margin: 0.4rem 0 0.4rem 0;
-  flex-grow: 1;
-}
-
-.purchase-context {
-  color: var(--lotto-greyscale-5, #000);
-  font-feature-settings: 'clig' off, 'liga' off;
-
-
-  font-family: Roboto;
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem;
-  letter-spacing: 0.03125rem;
-}
-
-.error-message {
-  color: #ff0000;
-  margin: 0.3rem;
-  height: 1rem;
-  width: 90%;
-}
-
-.random-lottos {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  margin: 0 0 2rem 0;
-  overflow: auto;
-}
-
-.random-lottos-result-title {
-  color: var(--lotto-greyscale-5, #000);
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem;
-  /* 160% */
-  letter-spacing: 0.03125rem;
-}
-
-.random-lotto-list {
-  color: var(--lotto-greyscale-5, #000);
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
-  font-size: 2.125rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 2.25rem;
-  display: flex;
-  align-items: center;
-}
-
-.lotto-list-p {
-  color: var(--lotto-greyscale-5, #000);
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem;
-  letter-spacing: 0.03125rem;
-  padding: 0.2rem;
-}
-.winnumber-form{
-  display: flex;
-  flex-direction: column;
-}
-
-.winnumber-input-box {
-  width: 100%;
-  bottom: 0rem;
-  display: flex;
-  flex-direction: column;
-  margin: auto 0 0.3rem 0;
-}
-
-.winnumber-title {
-  margin: 0 0 1rem 0;
-}
-
-.input-box {
-  display: flex;
-  justify-content: space-between;
-}
-
-.winnumber-input {
-  margin: 0.5rem 0.3rem 0 0;
-}
-.one-number-input {
-  width: 1.5rem;
-  height: 1.5rem;
-  text-align: center;
-}
-
-.bonusnumber-input {
-  float: right;
-  margin: 0.5rem 0 0 0;
-}
-
-.result-button{
-  margin: 0 0 1rem 0;
-  flex-grow: 1;
-}
-
-.button {
-  border-radius: 0.25rem;
-  background: var(--lotto-primary, #4E5BA6);
-  color: var(--lotto-greyscale-1, #FFF);
-  font-feature-settings: 'clig' off, 'liga' off;
-  height: 2rem;
-  font-family: Roboto;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1rem;
-  letter-spacing: 0.07813rem;
-
-}
-
-.modal-container {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-
-}
-
-.modal-contents {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  position: absolute;
-  background-color: #ffffff;
-  width: 21.875rem;
-  height: 31.25rem;
-  padding: 1rem;
-  flex-wrap: wrap;
-}
-
-.modal-title {
-  color: var(--lotto-greyscale-5, #000);
-  text-align: center;
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.5rem;
-  letter-spacing: s0.00938rem;
-  margin: 2.5rem;
-}
-
-.modal-table {
-  border-collapse: separate;
-  border-spacing: 1.0rem 1rem;
-  text-align: center;
-}
-
-.modal-table td,
-.modal-table th {
-  color: var(--lotto-greyscale-5, #000);
-  text-align: center;
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem;
-  letter-spacing: 0.03125rem;
-}
-
-.modal-table td {
-  white-space: nowrap;
-}
-
-.modal-table th {
-  font-weight: bold;
-}
-
-.total-price {
-  font-weight: bold;
-  margin: 1rem;
-}
-
-.restart-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--lotto-greyscale-1, #FFF);
-  font-family: Roboto;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1rem; /* 114.286% */
-  letter-spacing: 0.07813rem;
-  text-transform: uppercase;
-}
-
 .footer {
   bottom: 0px;
   width: 100%;
@@ -296,3 +70,28 @@ body {
   letter-spacing: 0.07813rem;
   margin: 1.3rem;
 }
+
+.error-message {
+  color: #ff0000;
+  margin: 0.3rem;
+  height: 1rem;
+  width: 90%;
+}
+
+
+.button {
+  border-radius: 0.25rem;
+  background: var(--lotto-primary, #4E5BA6);
+  color: var(--lotto-greyscale-1, #FFF);
+  font-feature-settings: 'clig' off, 'liga' off;
+  height: 2rem;
+  font-family: Roboto;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1rem;
+  letter-spacing: 0.07813rem;
+
+}
+
+

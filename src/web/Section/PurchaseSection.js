@@ -1,9 +1,9 @@
-import NUMBER from "../constants/number";
-import LottoService from "../domain/LottoService";
-import PurchaseAmountValidation from "../validation/purchaseAmount";
+import NUMBER from "../../constants/number";
+import LottoService from "../../domain/LottoService";
+import PurchaseAmountValidation from "../../validation/purchaseAmount";
 import RandomSection from "./RandomSection";
 import WinNumberSection from "./WinNumberSection";
-import Error from "./utils/Error";
+import Error from "../../util/Error";
 
 const PurchaseSection = {
     initPurchaseEvent(){

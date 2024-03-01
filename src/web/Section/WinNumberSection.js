@@ -1,4 +1,4 @@
-import NUMBER from "../constants/number";
+import NUMBER from "../../constants/number";
 import ModalSection from "./ModalSection";
 
 const WinNumberSection = {
