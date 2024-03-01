@@ -5,13 +5,16 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./src/step2/styles/globals.css"" /> <link rel="stylesheet"
+    href="./src/step2/styles/main.css"" />
     <link rel="stylesheet" href="./src/step2/styles/content.css" />
     <link rel="stylesheet" href="./src/step2/styles/footer.css" />
     <link rel="stylesheet" href="./src/step2/styles/header.css" />
-    <link rel="stylesheet" href="./src/step2/styles/main.css" />
     <link rel="stylesheet" href="./src/step2/styles/modal.css" />
     <link rel="stylesheet" href="./src/step2/styles/moneyInput.css" />
     <link rel="stylesheet" href="./src/step2/styles/winningLottoInput.css" />
+    <link rel="stylesheet" href="./src/step2/styles/table.css" />
+    <link rel="stylesheet" href="./src/step2/styles/variables.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,147 +24,121 @@
   </head>
 
   <body>
-    <div id="app" class="mainCard">
-      <div class="headerCard">
-        <h1 class="headerBannerLogo">🎱 행운의 로또</h1>
-      </div>
-      <div class="contentCard">
-        <div class="contentContainer">
-          <div class="contentTitle">
+    <div id="app" class="main-card" role="application">
+      <header class="main-header">
+        <div class="main-header-container">
+          <h1 class="main-header-logo" role="heading">🎱 행운의 로또</h1>
+        </div>
+      </header>
+
+      <main class="content-card" role="main">
+        <div class="content-container">
+          <div class="content-title-container">
             <h1>🎱 내 번호 당첨 확인 🎱</h1>
           </div>
-          <div class="lottoInputContainer">
-            <form class="moneyInputForm" id="moneyInputForm">
-              <div class="labelAndInputContainer">
-                <label for="lottoInput" class="inputLabel">구입할 금액을 입력해주세요</label>
-                <input type="text" placeholder="금액" name="moneyInput" id="moneyInput" class="moneyInput" />
+          <div class="buy-lotto-container">
+            <form class="buy-lotto-form" id="moneyInputForm" role="form">
+              <div class="buy-lotto-label-input-wrapper">
+                <label for="moneyInput" class="label buy-lotto">구입할 금액을 입력해주세요</label>
+                <input type="text" placeholder="금액" name="moneyInput" id="moneyInput" class="input buy-lotto-input" />
               </div>
-              <div class="lottoBuyingButtonContainer">
-                <button class="lottoBuyingButton" id="buyingButton" type="submit">구입</button>
+              <div class="buy-lotto-button-container">
+                <button class="buy-lotto-button" id="buyingButton" type="submit" role="button">구입</button>
               </div>
             </form>
           </div>
-          <div class="resultAndWinningLottoContainer" id="resultAndWinningLottoContainer">
-            <div class="resultContainer">
-              <div class="resultText" id="resultText"></div>
-              <div class="boughtLottosContainer" id="boughtLottosContainer"></div>
+          <div class="result-winning-lotto-container" id="resultAndWinningLottoContainer">
+            <div class="result-container">
+              <p class="result-text" id="resultText"></p>
+              <div id="boughtLottosContainer"></div>
             </div>
-            <div class="winningLottoFormContainer">
-              <p class="winningLottoFormBanner">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-              <form class="winningLottoForm" id="winningLottoForm">
-                <div class="winningLottoWrapper">
-                  <div class="winningLottoNumbersContainer">
-                    <label for="winningLottoNumbers" class="winningLottoLabel"> 당첨 번호 </label>
-                    <div class="winningLottoInputContainer">
-                      <input type="text" class="winningLottoInput" />
-                      <input type="text" class="winningLottoInput" />
-                      <input type="text" class="winningLottoInput" />
-                      <input type="text" class="winningLottoInput" />
-                      <input type="text" class="winningLottoInput" />
-                      <input type="text" class="winningLottoInput" />
+            <div class="winning-lotto-form-container">
+              <p class="winning-lotto-form-banner-text">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+              <form class="winning-lotto-form" id="winningLottoForm" role="form">
+                <div class="winning-lotto-wrapper">
+                  <div>
+                    <label for="winningLottoNumbers" class="winning-lotto-label"> 당첨 번호 </label>
+                    <div class="winning-lotto-input-container">
+                      <input type="text" name="winningLottoNumbers" class="winning-lotto-input" />
+                      <input type="text" name="winningLottoNumbers" class="winning-lotto-input" />
+                      <input type="text" name="winningLottoNumbers" class="winning-lotto-input" />
+                      <input type="text" name="winningLottoNumbers" class="winning-lotto-input" />
+                      <input type="text" name="winningLottoNumbers" class="winning-lotto-input" />
+                      <input type="text" name="winningLottoNumbers" class="winning-lotto-input" />
                     </div>
                   </div>
-                  <div class="bonusNumberContainer">
-                    <label for="bonusNumber" class="winningLottoLabel"> 당첨 번호 </label>
-                    <input type="text" id="bonusNumberInput" class="winningLottoInput" />
+                  <div class="bonus-number-container">
+                    <label for="bonusNumber" class="winning-lotto-label bonus-number">보너스 번호 </label>
+                    <div class="bonus-number-input-wrapper">
+                      <input type="text" id="bonusNumberInput" class="winning-lotto-input" />
+                    </div>
                   </div>
                 </div>
-                <div class="resultButtonContainer">
-                  <button class="resultButton" type="submit">결과 확인하기</button>
+                <div class="result-button-container">
+                  <button class="result-button" type="submit">결과 확인하기</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
-      </div>
-      <div class="footerCard">
-        <p class="footerLogo">Copyright 2023. woowacourse</p>
-      </div>
-      <div class="modalCard" id="modalCard">
-        <div class="modalContainer">
-          <div class="closeButtonContainer">
-            <button id="modalCloseButton" class="closeButton" type="button">X</button>
+      </main>
+
+      <footer class="footer-container">
+        <p class="footer-logo-text">Copyright 2023. woowacourse</p>
+      </footer>
+
+      <main class="modal-card" id="modalCard">
+        <div class="modal-container">
+          <div class="close-button-container">
+            <span class="close-button" id="modalCloseButton">X</span>
           </div>
-          <div class="winningStatisticsResultBannerContainer">
-            <p class="resultBannerText">🏆 당첨 통계 🏆</p>
+          <div class="winning-statistics-result-banner-container">
+            <span class="result-banner-text"> 🏆 당첨 통계 🏆 </span>
           </div>
-          <div class="resultTableContainer">
-            <div class="tableTitle">
-              <div class="row">
-                <p class="titleText statisticsText">일치 갯수</p>
-              </div>
-              <div class="row">
-                <p class="titleText statisticsText">당첨금</p>
-              </div>
-              <div class="row">
-                <p class="titleText statisticsText">당첨 갯수</p>
-              </div>
-            </div>
-            <div class="tableTitle">
-              <div class="row">
-                <p class="statisticsText">3개</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText">5,000</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText winningCount"></p>
-              </div>
-            </div>
-            <div class="tableTitle">
-              <div class="row">
-                <p class="statisticsText">4개</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText">50,000</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText winningCount"></p>
-              </div>
-            </div>
-            <div class="tableTitle">
-              <div class="row">
-                <p class="statisticsText">5개</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText">1,500,000</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText winningCount"></p>
-              </div>
-            </div>
-            <div class="tableTitle">
-              <div class="row">
-                <p class="statisticsText">5개+보너스볼</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText">30,000,000</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText winningCount"></p>
-              </div>
-            </div>
-            <div class="tableTitle">
-              <div class="row">
-                <p class="statisticsText">6개</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText">2,000,000,000</p>
-              </div>
-              <div class="row">
-                <p class="statisticsText winningCount"></p>
-              </div>
-            </div>
+          <table class="result-table">
+            <tr class="table-row">
+              <th class="table-heading table-data-text">일치 갯수</th>
+              <th class="table-heading table-data-text">당첨금</th>
+              <th class="table-heading table-data-text">당첨 갯수</th>
+            </tr>
+            <tr class="table-row">
+              <td class="table-data-text">3개</td>
+              <td class="table-data-text">5,000</td>
+              <td class="table-data-text match-count-text"></td>
+            </tr>
+            <tr class="table-row">
+              <td class="table-data-text">4개</td>
+              <td class="table-data-text">50,000</td>
+              <td class="table-data-text match-count-text"></td>
+            </tr>
+            <tr class="table-row">
+              <td class="table-data-text">5개</td>
+              <td class="table-data-text">1,500,000</td>
+              <td class="table-data-text match-count-text"></td>
+            </tr>
+            <tr class="table-row">
+              <td class="table-data-text">5개+보너스볼</td>
+              <td class="table-data-text">30,000,000</td>
+              <td class="table-data-text match-count-text"></td>
+            </tr>
+            <tr class="table-row">
+              <td class="table-data-text">6개</td>
+              <td class="table-data-text">2,000,000,000</td>
+              <td class="table-data-text match-count-text"></td>
+            </tr>
+          </table>
+
+          <div class="statistics-result-banner-container">
+            <p class="statistics-result-text" id="statisticsResultText"></p>
           </div>
-          <div class="statisticsResultTextContainer">
-            <p class="statisticsResultText" id="statisticsResultText"></p>
-          </div>
-          <div class="retrySelectButtonContainer">
-            <button id="retrySelectButton" class="retrySelectButton">다시 시작하기</button>
+
+          <div class="retry-select-button-container">
+            <button id="retrySelectButton" class="retry-select-button">다시 시작하기</button>
           </div>
         </div>
-      </div>
+      </main>
     </div>
-    <script type="module" src="./dist/step2-bundle.js"></script>
+    <script type="module" src="./src/step2-index.js"></script>
+    <!-- <script type="module" src="./dist/step2-bundle.js"></script> -->
   </body>
 </html>
