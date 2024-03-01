@@ -18,6 +18,14 @@ class WebController {
       alert(error.message);
     }
   }
+
+  calculateProfitRate(winningNumbers, bonusNumber) {
+    this.#lottoStore.setWinningLotto(winningNumbers, bonusNumber);
+    const rankings = this.#lottoStore.checkRanking();
+    const totalProfitRate = this.#lottoStore.getTotalProfitRate(rankings);
+
+    return { rankings, totalProfitRate };
+  }
 }
 
 export default WebController;
