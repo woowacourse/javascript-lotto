@@ -1,7 +1,4 @@
-/* eslint-disable no-console */
-/* eslint-disable max-lines-per-function */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-constant-condition */
+/* eslint-disable no-param-reassign */
 import { OUTPUT_MESSAGES } from '../constant/Messages.js';
 import LottoMachine from '../domain/LottoMachine.js';
 import BonusNumberValidator from '../util/validation/BonusNumberValidator.js';
@@ -15,10 +12,16 @@ class LottoController {
     this.#lottoMachine = new LottoMachine();
   }
 
-  async getInputAndValidate({ input, validateFunction, elementId }) {
+  async validateInput({ input, validateFunction, elementId }) {
+    const trimmedInput = input.trim();
     const errorElement = document.getElementById(elementId);
+
+    return this.applyValidation({ input: trimmedInput, validateFunction, errorElement });
+  }
+
+  async applyValidation({ input, validateFunction, errorElement }) {
     try {
-      const result = validateFunction(input.trim()) ?? input;
+      const result = validateFunction(input) ?? input;
       errorElement.textContent = '';
       return result;
     } catch (error) {
@@ -28,8 +31,8 @@ class LottoController {
   }
 
   // 구입 금액 입력
-  async inputPurchaseAmount(purchaseAmount) {
-    const validatedPurchaseAmount = await this.getInputAndValidate({
+  async validatePurchaseAmount(purchaseAmount) {
+    const validatedPurchaseAmount = await this.validateInput({
       input: purchaseAmount,
       validateFunction: (input) => PurchaseAmountValidator.validate(input),
       elementId: 'purchaseError'
@@ -39,21 +42,21 @@ class LottoController {
   }
 
   // 로또 발행 갯수 계산 및 출력
-  calculateIssueQuantity(purchaseAmount) {
+  getIssueQuantity(purchaseAmount) {
     return this.#lottoMachine.calculateIssueQuantity(purchaseAmount);
   }
 
-  displayIssueQuantity(issueQuantity) {
+  updateIssueQuantityText(issueQuantity) {
     const lottoMainTitle = document.getElementById('lottoMainTitle');
     lottoMainTitle.textContent = `총 ${OUTPUT_MESSAGES.issueQuantity(issueQuantity)}`;
   }
 
   // 로또 발행 갯수에 맞게 로또 발행
-  issueLottos(issueQuantity) {
+  generateLottos(issueQuantity) {
     return this.#lottoMachine.issueLottos(issueQuantity);
   }
 
-  displayLottoNumbersList(lottos) {
+  updateLottoNumbers(lottos) {
     const lottoNumbersList = lottos.map((lotto) => lotto.getNumbers());
     this.clearLottoBox();
 
@@ -71,10 +74,7 @@ class LottoController {
   }
 
   createLottoTicket(lottoNumbers) {
-    const lottoTicket = document.createElement('div');
-    lottoTicket.className = 'lottoTicket';
-    lottoTicket.textContent = `🎟️   `;
-
+    const lottoTicket = this.createLottoTicketDiv();
     lottoNumbers.forEach((number, index) => {
       const numberDiv = this.createNumberDiv({ number, index, length: lottoNumbers.length });
       lottoTicket.appendChild(numberDiv);
@@ -83,14 +83,18 @@ class LottoController {
     return lottoTicket;
   }
 
+  createLottoTicketDiv() {
+    const lottoTicket = document.createElement('div');
+    lottoTicket.className = 'lottoTicket';
+    lottoTicket.textContent = `🎟️   `;
+
+    return lottoTicket;
+  }
+
   createNumberDiv({ number, index, length }) {
     const numberDiv = document.createElement('div');
     numberDiv.className = 'lottoTicketNumber';
-    if (index < length - 1) {
-      numberDiv.textContent = `${number}, `;
-    } else {
-      numberDiv.textContent = number;
-    }
+    numberDiv.textContent = index < length - 1 ? `${number}, ` : number;
 
     return numberDiv;
   }
@@ -101,63 +105,48 @@ class LottoController {
   }
 
   async purchaseLottos(purchaseAmount) {
-    const validatedPurchaseAmount = await this.inputPurchaseAmount(purchaseAmount);
+    const validatedPurchaseAmount = await this.validatePurchaseAmount(purchaseAmount);
     if (validatedPurchaseAmount === null) {
-      return;
+      return null;
     }
 
-    const issueQuantity = this.calculateIssueQuantity(validatedPurchaseAmount);
-    const lottos = this.issueLottos(issueQuantity);
-    this.displayPurchaseResult(issueQuantity, lottos);
+    const lottos = this.issueAndGenerateLottos(validatedPurchaseAmount);
+    return lottos;
+  }
+
+  issueAndGenerateLottos(purchaseAmount) {
+    const issueQuantity = this.getIssueQuantity(purchaseAmount);
+    const lottos = this.generateLottos(issueQuantity);
+    this.updateDisplayAfterPurchase(issueQuantity, lottos);
 
     return lottos;
   }
 
-  displayPurchaseResult(issueQuantity, lottos) {
-    this.displayLottoSection();
-    this.displayIssueQuantity(issueQuantity);
-    this.displayLottoNumbersList(lottos);
-    this.displayWinningAndBonusSection();
+  updateDisplayAfterPurchase(issueQuantity, lottos) {
+    this.showLottoSection();
+    this.updateIssueQuantityText(issueQuantity);
+    this.updateLottoNumbers(lottos);
+    this.showWinningAndBonusSection();
   }
 
-  displayLottoSection() {
+  showLottoSection() {
     const lottoSection = document.getElementById('lottoSection');
     lottoSection.style.display = 'block';
   }
 
-  displayWinningAndBonusSection() {
+  showWinningAndBonusSection() {
     const winningAndBonusSection = document.getElementById('winningAndBonusSection');
     winningAndBonusSection.style.display = 'block';
   }
 
-  // async purchaseLottos(purchaseAmount) {
-  //   const validatedPurchaseAmount = await this.inputPurchaseAmount(purchaseAmount);
-  //   if (validatedPurchaseAmount === null) {
-  //     return;
-  //   }
-
-  //   const issueQuantity = this.calculateIssueQuantity(validatedPurchaseAmount);
-  //   const lottos = this.issueLottos(issueQuantity);
-
-  //   const lottoSection = document.getElementById('lottoSection');
-  //   lottoSection.style.display = 'block';
-  //   this.displayIssueQuantity(issueQuantity);
-  //   this.displayLottoNumbersList(lottos);
-
-  //   const winningAndBonusSection = document.getElementById('winningAndBonusSection');
-  //   winningAndBonusSection.style.display = 'block';
-
-  //   return lottos;
-  // }
-
-  //
-  async inputWinningNumbers() {
+  // 당첨 번호 입력
+  // eslint-disable-next-line max-lines-per-function
+  async validateWinningNumbers() {
     const winningNumbers = Array.from(
       document.querySelectorAll('#winningInputContainer .inputRectangle')
     ).map((input) => Number(input.value));
-    console.log(`Inputwinning1: ${winningNumbers}`);
 
-    const validatedWinningNumbers = await this.getInputAndValidate({
+    const validatedWinningNumbers = await this.validateInput({
       input: winningNumbers,
       validateFunction: (numbers) => {
         LottoNumbersValidator.validate(numbers);
@@ -166,15 +155,15 @@ class LottoController {
       elementId: 'winningAndBonusError'
     });
 
-    console.log(`Inputwinning2: ${validatedWinningNumbers}`);
     return validatedWinningNumbers;
   }
 
-  async inputBonusNumber(winningNumbers) {
+  // 보너스 번호 입력
+  // eslint-disable-next-line max-lines-per-function
+  async validateBonusNumber(winningNumbers) {
     const bonusNumber = document.querySelector('#bonusInputContainer .inputRectangle').value;
-    console.log(`bonusNumber1: ${bonusNumber}`);
 
-    const validatedBonusNumber = await this.getInputAndValidate({
+    const validatedBonusNumber = await this.validateInput({
       input: bonusNumber,
       validateFunction: (number) => {
         BonusNumberValidator.validate(number, winningNumbers);
@@ -183,25 +172,25 @@ class LottoController {
       elementId: 'winningAndBonusError'
     });
 
-    console.log(`bonusNumber2: ${validatedBonusNumber}`);
-
     return validatedBonusNumber;
   }
 
+  // 로또 순위 결정
   determineLottoRanks({ lottos, winningNumbers, bonusNumber }) {
     return this.#lottoMachine.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
   }
 
+  // 수익률 계산
   calculateProfitRate(winningResult) {
     return this.#lottoMachine.calculateProfitRate(winningResult);
   }
 
-  // eslint-disable-next-line max-params
-  async runGame(lottos, winningNumbers, bonusNumber) {
+  // 게임 실행
+  // eslint-disable-next-line max-params, max-lines-per-function
+  async executeGame(lottos, winningNumbers, bonusNumber) {
     const winningResult = this.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
     const profitRate = this.calculateProfitRate(winningResult);
     this.displayWinningResult(winningResult, profitRate);
-    console.log(`winning---------${winningResult}`);
 
     document.getElementById('modalCloseButton').addEventListener('click', () => {
       document.getElementById('modalContainer').style.display = 'none';
@@ -209,13 +198,13 @@ class LottoController {
 
     document.getElementById('resetButton').addEventListener('click', () => {
       document.getElementById('modalContainer').style.display = 'none';
-      this.runGame();
+      this.executeGame();
     });
   }
 
+  // 당첨 결과 출력
+  // eslint-disable-next-line max-lines-per-function
   displayWinningResult(winningResult, profitRate) {
-    console.log('winning');
-    console.log(JSON.stringify(winningResult));
     const resultTable = document.getElementById('resultTable');
     const profitResult = document.getElementById('profitResult');
 

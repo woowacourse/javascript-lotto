@@ -29,9 +29,9 @@ window.onload = function () {
 
   winningAndBonusForm.addEventListener('submit', async function (event) {
     event.preventDefault();
-    const winningNumbers = await lottoController.inputWinningNumbers();
-    const bonusNumber = await lottoController.inputBonusNumber(winningNumbers);
-    await lottoController.runGame(lottos, winningNumbers, bonusNumber);
+    const winningNumbers = await lottoController.validateWinningNumbers();
+    const bonusNumber = await lottoController.validateBonusNumber(winningNumbers);
+    await lottoController.executeGame(lottos, winningNumbers, bonusNumber);
   });
 
   resultButton.addEventListener('click', function () {
