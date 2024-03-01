@@ -20,7 +20,6 @@ export default class MyComponent extends Observer {
   }
 
   render() {
-    this._cleanUpEvent();
     this.#paint();
     this._setEvent();
   }
@@ -28,8 +27,6 @@ export default class MyComponent extends Observer {
   getTargetElementId() {
     return this.#targetElementId;
   }
-
-  _cleanUpEvent() {}
 
   _setEvent() {}
 

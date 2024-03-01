@@ -79,8 +79,6 @@ export default class WinningLottoForm extends MyComponent {
     );
   }
 
-  _cleanUpEvent() {}
-
   #handleCheckResultButton() {
     const { winningNumbers, bonusNumber } = this.#getLottoNumbersFromInputs();
     const winningLotto = this.#createWinningLotto(winningNumbers, bonusNumber);
