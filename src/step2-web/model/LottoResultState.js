@@ -1,34 +1,31 @@
+import { LOTTO_RANK_INITIAL_RESULT } from "../../step1-console/constants/lotto.js";
 import Observable from "../abstract/Observable.js";
 
+const createInitialLottoResult = () => ({
+  rankResult: { ...LOTTO_RANK_INITIAL_RESULT },
+  profitRate: 0,
+  isResultModalOn: false,
+});
+
 export default class LottoResultState extends Observable {
-  #isResultModalOn = false;
-  #rankResult;
-  #profitRate;
+  #lottoResult = createInitialLottoResult();
 
-  getRankResult() {
-    return this.#rankResult;
+  getState() {
+    return this.#lottoResult;
   }
 
-  getProfitRate() {
-    return this.#profitRate;
-  }
+  setState(lottoResult) {
+    this.#lottoResult = {
+      ...this.#lottoResult,
+      ...lottoResult,
+    };
 
-  getIsResultModalOn() {
-    return this.#isResultModalOn;
-  }
-
-  setRankResult(rankResult) {
-    this.#rankResult = rankResult;
     this.notify();
   }
 
-  setProfitRate(profitRate) {
-    this.#profitRate = profitRate;
-    this.notify();
-  }
+  reset() {
+    this.setState(createInitialLottoResult());
 
-  setIsResultModalOn(isResultModalOn) {
-    this.#isResultModalOn = isResultModalOn;
     this.notify();
   }
 }

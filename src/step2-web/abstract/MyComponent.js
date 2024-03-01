@@ -13,11 +13,12 @@ export default class MyComponent extends Observer {
   }
 
   update() {
-    this._render();
+    this.render();
   }
 
-  init() {
-    this._render();
+  render() {
+    this._cleanUpEvent();
+    this._getTargetElement().innerHTML = this._getTemplate();
     this._setEvent();
   }
 
@@ -25,19 +26,20 @@ export default class MyComponent extends Observer {
     return this.#targetElementId;
   }
 
-  _render() {
-    const $target = this._getTargetElement();
-
-    $target.innerHTML = this._getTemplate();
-  }
-
   _setEvent() {}
+
+  _cleanUpEvent() {}
 
   _getTemplate() {
     throw new CustomError("_getTemplate 메서드가 구현되어 있지 않습니다.");
   }
 
   _getTargetElement() {
-    return $(`#${this.#targetElementId}`);
+    const $targetElement = $(`#${this.#targetElementId}`);
+    if (!$targetElement) {
+      throw CustomError("render를 위한 타겟 엘리먼트가 존재하지 않습니다.");
+    }
+
+    return $targetElement;
   }
 }

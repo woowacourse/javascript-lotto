@@ -6,7 +6,7 @@ export default class LottoWebApp {
 
   constructor(target, ...views) {
     if (!target) {
-      throw new CustomError("루트 엘리먼트가 존재하지 않습니다.");
+      throw new CustomError("타겟 엘리먼트가 존재하지 않습니다.");
     }
 
     this.$target = target;
@@ -15,7 +15,7 @@ export default class LottoWebApp {
 
   init() {
     this.#renderBaseTemplate();
-    this.#initViews();
+    this.#renderViews();
   }
 
   #renderBaseTemplate() {
@@ -28,7 +28,7 @@ export default class LottoWebApp {
       .join("");
   }
 
-  #initViews() {
-    this.#views.forEach((view) => view.init());
+  #renderViews() {
+    this.#views.forEach((view) => view.render());
   }
 }

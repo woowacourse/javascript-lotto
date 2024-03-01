@@ -75,14 +75,14 @@ class LottoController {
   async #readMoney() {
     const rawAmount = await InputView.readBuyAmount();
 
-    return new Money(parseNumber(rawAmount, 10));
+    return new Money(parseNumber(rawAmount));
   }
 
   async #readLotto() {
     const rawLottoNumbers = await InputView.readWinningNumbers();
     const lottoNumberStrings = rawLottoNumbers.split(",");
     const lottoNumbers = lottoNumberStrings.map((string) =>
-      parseInt(string, 10)
+      parseNumber(string)
     );
 
     return new Lotto(lottoNumbers);

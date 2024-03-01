@@ -12,4 +12,8 @@ export default class LottosState extends Observable {
 
     this.notify();
   }
+
+  reset() {
+    this.setLottos([]);
+  }
 }

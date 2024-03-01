@@ -1,5 +1,5 @@
 export const parseNumber = (string) => {
-  if (string === "") {
+  if (string !== 0 && !string) {
     return NaN;
   }
 
