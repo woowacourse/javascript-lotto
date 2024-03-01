@@ -4,7 +4,7 @@
   align-items: center;
   box-sizing: border-box;
   width: 414px;
-  height: 727px;
+  min-height: 727px;
   margin: 64px 0px;
   padding: 40px 16px;
   border: 1px solid #0000001f;
