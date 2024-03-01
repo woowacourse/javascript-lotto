@@ -1,5 +1,7 @@
 import { winningLotto } from '../instances.js';
 import LOTTO_SETTING from '../../Constants/lottoSetting.js';
+import safeEventHandlerWithAlertError from '../utils/safeEventHandlerWithAlertError.js';
+import { initializeInputValue } from './uiUtils.js';
 
 const winningNumbers = [];
 
@@ -9,8 +11,16 @@ const focusNextInput = ({ index, winningLottoInputs }) => {
   }
 };
 
-const setBonusNumber = (bonusNumber) => {
-  winningLotto.setBonusNumber(bonusNumber);
+const setBonusNumber = (bonusNumber, input) => {
+  safeEventHandlerWithAlertError(
+    () => {
+      winningLotto.setBonusNumber(bonusNumber);
+    },
+    (error) => {
+      alert(error.message);
+      initializeInputValue(input);
+    },
+  );
 };
 
 const totalWinningLottoNumbersHandler = ({ input, index, winningLottoInputs }) => {
@@ -22,11 +32,21 @@ const totalWinningLottoNumbersHandler = ({ input, index, winningLottoInputs }) =
   }
 
   if (winningNumbers.length === LOTTO_SETTING.VALID_LENGTH) {
-    winningLotto.setWinLottoNumbers(winningNumbers);
+    safeEventHandlerWithAlertError(
+      () => {
+        winningLotto.setWinLottoNumbers(winningNumbers);
+      },
+      (error) => {
+        alert(error.message);
+        winningLottoInputs.forEach((input) => {
+          initializeInputValue(input);
+        });
+      },
+    );
   }
 
   if (index === LOTTO_SETTING.VALID_LENGTH) {
-    setBonusNumber(winningNumber);
+    setBonusNumber(winningNumber, input);
     input.blur();
   }
 };

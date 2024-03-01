@@ -4,8 +4,18 @@ import PROGRESS_MESSAGE from '../../Constants/Messages/progressMessage.js';
 
 const modalOpenHandler = () => {
   const modalCard = document.getElementById('modalCard');
-  addClassNameHandler(modalCard, 'modalOpen');
+  addClassNameHandler(modalCard, 'modal-open');
 };
+
+export const modalCloseHandler = () => {
+  const modalCard = document.getElementById('modalCard');
+  removeClassNameHandler(modalCard, 'modal-open');
+};
+
+/**
+ * 총 수익률을 렌더링 합니다.
+ * @param { number } rateOfReturn
+ */
 
 const renderStatisticsResultText = (rateOfReturn) => {
   const statisticsResultText = document.getElementById('statisticsResultText');
@@ -13,13 +23,19 @@ const renderStatisticsResultText = (rateOfReturn) => {
   statisticsResultText.textContent = PROGRESS_MESSAGE.RATE_OF_RETURN_MESSAGE(rateOfReturn);
 };
 
-export const modalCloseHandler = () => {
-  const modalCard = document.getElementById('modalCard');
-  removeClassNameHandler(modalCard, 'modalOpen');
+const isAlreadyPrintedRateOfReturn = () => {
+  const statisticsResultText = document.getElementById('statisticsResultText').textContent;
+  return statisticsResultText !== '';
 };
 
 export const statisticsResultHandler = ({ e, winningCounts }) => {
   e.preventDefault();
+
+  if (isAlreadyPrintedRateOfReturn()) {
+    modalOpenHandler();
+    return;
+  }
+
   modalOpenHandler();
 
   const totalWinningLottoInfo = winningLotto.getWinLottoNumbers();
