@@ -66,10 +66,10 @@ class LottoCalculator {
     return totalPrice;
   }
 
-  calculateTotalProfit(lottoTickets) {
+  calculateTotalProfit(ticketCount) {
     const totalPrice = this.#calculateTotalPrice();
     const totalProfit =
-      (totalPrice / (lottoTickets * LOTTO_RULES.lottoBaseTicketPrice)) * 0.01;
+      (totalPrice / (ticketCount * LOTTO_RULES.lottoBaseTicketPrice)) * 0.01;
     return (
       Math.round(totalProfit * LOTTO_RULES.roundingStandard) /
       LOTTO_RULES.roundingStandard
