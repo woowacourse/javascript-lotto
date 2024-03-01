@@ -1,9 +1,9 @@
 import NUMBER from "../constants/number";
 import LottoService from "../domain/LottoService";
 import PurchaseAmountValidation from "../validation/purchaseAmount";
-import winNumberEvent from "./WinNumberEvent";
+import WinNumberSection from "./WinNumberSection";
 
-const PurchaseEvent = {
+const PurchaseSection = {
     initPurchaseEvent(){
         const puchaseForm = document.querySelector('.puchase-form');
         puchaseForm.addEventListener('submit', this.purchaseSubmitEvent.bind(this));
@@ -17,7 +17,7 @@ const PurchaseEvent = {
             const randomLottos = LottoService.getLottos(Number.parseInt(Number(purchaseInput) / NUMBER.LOTTO_PRICE, 10));
             this.closeErrorMessage('.purchase-error');
             this.showRandomLottos('.random-lottos', randomLottos)
-            winNumberEvent.createInputUIWinNumber(randomLottos);
+            WinNumberSection.createInputUIWinNumber(randomLottos);
         } catch (error){
             this.showErrorMessage('.purchase-error', error);
         }
@@ -51,4 +51,4 @@ const PurchaseEvent = {
     }
 }
 
-export default PurchaseEvent;
+export default PurchaseSection;

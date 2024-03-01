@@ -1,12 +1,12 @@
 import NUMBER from "../constants/number";
-import Modal from "./ModalEvent";
+import ModalSection from "./ModalSection";
 
-const winNumberEvent = {
+const WinNumberSection = {
     createInputUIWinNumber(randomLottos = []){
         const winNumbersBox = document.querySelector('.winnumber-input-box');
         winNumbersBox.innerHTML = `${this.createWinNumberInputBox()}`;
         const winNumberForm = document.querySelector('.winnumber-form');
-        winNumberForm.addEventListener('submit',  (event) => Modal.addResultButton(event, randomLottos))
+        winNumberForm.addEventListener('submit',  (event) => ModalSection.addResultButton(event, randomLottos))
     },
 
     createWinNumberInputBox(){
@@ -42,4 +42,4 @@ const winNumberEvent = {
     }
 }
 
-export default winNumberEvent;
+export default WinNumberSection;

@@ -1,7 +1,7 @@
 import LottoService from "../domain/LottoService";
 import LottoValidation from "../validation/lottoValidation";
 
-const Modal = {
+const ModalSection = {
     addResultButton(event, randomLottos = []) {
         event.preventDefault();
         const winNumbers = Array.from(document.querySelectorAll('.winnumber-input')).map(lotto => Number(lotto.value));
@@ -81,4 +81,4 @@ const Modal = {
         `
     }
 }
-export default Modal;
+export default ModalSection;
