@@ -49,6 +49,10 @@ $lottoPurchaseForm.addEventListener('submit', (event) => {
     const lottoGenerate = new LottoGenerate(ticketCount);
     generatedLottos = lottoGenerate.generatedLottos;
     $generatedLottoContents.innerHTML = printGeneratedLottos(generatedLottos);
+
+    $$hiddenForm.forEach(($$hidden) => {
+      $$hidden.classList.remove('hidden-form');
+    });
   }
 });
 
@@ -69,3 +73,37 @@ function printGeneratedLottos(generatedLottos) {
     })
     .join('');
 }
+
+// 당첨 번호, 보너스 번호 입력 및 유효성 검사
+const $lottoNumbersForm = $('#lotto-numbers-form');
+
+const lottoNumbers = {
+  winningNumbers: [],
+  bonusNumber: null,
+};
+
+$lottoNumbersForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  // 초기화
+  lottoNumbers.winningNumbers = [];
+  lottoNumbers.bonusNumber = null;
+
+  const $winningNumbersInputs = $$('.lotto-number-input');
+  $winningNumbersInputs.forEach((input) => {
+    lottoNumbers.winningNumbers.push(Number(input.value));
+  });
+
+  const $bonusNumberInput = $('#bonus-number-input');
+  lottoNumbers.bonusNumber = Number($bonusNumberInput.value);
+
+  try {
+    LottoValidator.validateWinningNumbers(lottoNumbers.winningNumbers);
+    LottoValidator.validateBonusNumber(
+      lottoNumbers.winningNumbers,
+      lottoNumbers.bonusNumber,
+    );
+  } catch (error) {
+    alert(error.message);
+  }
+});
