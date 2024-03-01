@@ -55,7 +55,9 @@ export default class WinningLottoForm extends MyComponent {
         </div>
         <button class="check-result-button">
           결과 확인하기
-        </button>
+          </button>
+          
+          <p id="winning-lotto-error-message" class="error-message"></p>
       </div>
   </section>
   `;
@@ -66,9 +68,14 @@ export default class WinningLottoForm extends MyComponent {
   }
 
   _setEvent() {
+    const checkResultClickHandler = this._attachErrorHandler(
+      this.#handleCheckResultButton.bind(this),
+      "winning-lotto-error-message"
+    );
+
     $(".check-result-button").addEventListener(
       "click",
-      this.#handleCheckResultButton.bind(this)
+      checkResultClickHandler
     );
   }
 

@@ -18,23 +18,29 @@ export default class BuyAmountForm extends MyComponent {
 
   _getTemplate() {
     const buyAmount = this.#buyAmountState.getState();
-    const buyAmountTemplate = buyAmount ? `value=${buyAmount}` : "";
+    const buyAmountValueTemplate = buyAmount ? `value=${buyAmount}` : "";
 
     return `
   <section class="getting-buying-amount">
     <p class="buying-amount-message body-text">구입할 금액을 입력해주세요.</p>
     <div class="buying-amount-input-group">
-      <input type="number" class="buying-amount-input" placeholder="금액" ${buyAmountTemplate} />
+      <input type="number" class="buying-amount-input" placeholder="금액" />
       <button class="buying-amount-button">구입</button>
     </div>
+    <div id="buying-amount-error-message" class="error-message"></>
   </section>
 `;
   }
 
   _setEvent() {
+    const buyingAmountClickHandler = this._attachErrorHandler(
+      this.#handleBuyLotto.bind(this),
+      "buying-amount-error-message"
+    );
+
     $(".buying-amount-button").addEventListener(
       "click",
-      this.#handleBuyLotto.bind(this)
+      buyingAmountClickHandler
     );
   }
 

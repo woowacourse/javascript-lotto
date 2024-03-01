@@ -24,6 +24,12 @@ export default class MyState extends Observable {
     this.notify();
   }
 
+  reset() {
+    const initialState = this.#generateInitialState();
+
+    this.setState(initialState);
+  }
+
   #assignState(state) {
     if (isObject(state)) {
       this.#state = {
@@ -33,12 +39,6 @@ export default class MyState extends Observable {
     } else {
       this.#state = state;
     }
-  }
-
-  reset() {
-    const initialState = this.#generateInitialState();
-
-    this.setState(initialState);
   }
 
   #generateInitialState() {
