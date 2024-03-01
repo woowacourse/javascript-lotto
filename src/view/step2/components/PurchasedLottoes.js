@@ -50,7 +50,7 @@ class PurchasedLottoes {
       $emoji.innerText = "🎟️";
 
       const $numbers = document.createElement("span");
-      $numbers.innerText = lotto.numbers.join(", ");
+      $numbers.innerText = lotto.numbers.sort((a, b) => a - b).join(", ");
 
       $contentItem.append($emoji, $numbers);
 

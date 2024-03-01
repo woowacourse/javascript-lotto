@@ -49,6 +49,7 @@ class App {
       this.#lottoes,
       winningLotto,
     );
+
     this.#lottoGameView.renderResultModal({
       rankings,
       totalProfitRate,
@@ -57,7 +58,7 @@ class App {
   }
 
   #onRetryButtonClick() {
-    this.play(this.#$root);
+    this.play();
   }
 
   #purchaseLottoes(purchaseAmount) {
