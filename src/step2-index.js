@@ -1,4 +1,4 @@
-import MainComponent from "./step2-web/view/MainComponent.js";
+import LottoWebApp from "./step2-web/view/LottoWebApp.js";
 
 import LottoResultState from "./step2-web/model/LottoResultState.js";
 import LottosState from "./step2-web/model/LottosState.js";
@@ -40,7 +40,7 @@ lottoResultState.addObserver(lottoResultModal);
 isResultModalOnState.addObserver(winningLottoForm);
 isResultModalOnState.addObserver(lottoResultModal);
 
-new MainComponent(
+new LottoWebApp(
   $("#app"),
   buyAmountForm,
   boughtLottoBoard,

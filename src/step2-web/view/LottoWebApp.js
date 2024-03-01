@@ -1,6 +1,6 @@
 import CustomError from "../../step1-console/utils/CustomError.js";
 
-export default class MainComponent {
+export default class LottoWebApp {
   $target;
   #components = [];
 
@@ -27,6 +27,27 @@ export default class MainComponent {
   }
 
   #getBaseTemplate() {
+    return `
+<div class="test">
+  <header class="lotto-header background-color-lotto-primary">
+    <h1 class="font-size-title font-weight-semi-bold color-lotto-grey-scale-1">🎱 행운의 로또</h1>
+  </header>
+
+  <main>
+    <div class="main-content-box">
+    <h2 class="my-lotto-title">🎱 내 번호 당첨 확인 🎱</h2>
+    ${this.#getTargetTemplates()}
+    </div>
+  </main>
+
+  <footer class="lotto-footer">
+    <span class="lotto-footer-letter">Copyright 2023. woowacourse</span>
+  </footer>
+</div>
+`;
+  }
+
+  #getTargetTemplates() {
     return this.#components
       .map((component) => `<div id=${component.getTargetElementId()}></div>`)
       .join("");
