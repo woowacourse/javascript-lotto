@@ -46,7 +46,7 @@ class WebController {
       this.#setLotto();
       purchaseButton.removeEventListener("click", this.purchaseClickHandler);
     } catch (error) {
-      invalidPurchaseAmount.innerText = error.message;
+      invalidPurchaseAmount.textContent = error.message;
     }
   }
 
@@ -80,6 +80,11 @@ class WebController {
   #dialogHandler() {
     closeDialogButton.addEventListener("click", () => {
       dialog.close();
+    });
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+      }
     });
   }
 }

@@ -39,8 +39,8 @@ const winningLottoHandler = {
     const makedLotto = this.makeWinningLotto();
     bonusNumberValidator(makedLotto.getNumbers(), Number(bonusNumber.value));
     invalidWinningLotto.textContent = "";
-    const winningLotto = WinningLotto(makedLotto, Number(bonusNumber.value));
 
+    const winningLotto = WinningLotto(makedLotto, Number(bonusNumber.value));
     return winningLotto;
   },
 
