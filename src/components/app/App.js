@@ -29,9 +29,7 @@ class App extends Component {
     const $lottoResultModal = this.$target.querySelector('#lottoResultModal');
 
     new TitleSection($titleSection, {});
-    new PurchaseSection($purchaseSection, {
-      play: play.bind(this),
-    });
+    new PurchaseSection($purchaseSection, {});
     new WinningNumberSection($winningNumberSection, {});
     new LottoResultModal($lottoResultModal, {
       handleCloseModal: handleCloseModal.bind(this),
@@ -45,14 +43,14 @@ class App extends Component {
     });
   }
 
-  play() {
-    const purchaseAmount = webInputView.readPurchaseAmount();
-    if (!purchaseAmount) return;
-    document.querySelector('.winningNumberInput').focus();
-    const lottoController = new WebLottoController(purchaseAmount);
-    lottoController.run();
-    document.getElementById('lottoResultButton').addEventListener('click', lottoController.handleLottoResult);
-  }
+  // play() {
+  //   const purchaseAmount = webInputView.readPurchaseAmount();
+  //   if (!purchaseAmount) return;
+  //   document.querySelector('.winningNumberInput').focus();
+  //   const lottoController = new WebLottoController(purchaseAmount);
+  //   lottoController.run();
+  //   document.getElementById('lottoResultButton').addEventListener('click', lottoController.handleLottoResult);
+  // }
 
   handleCloseModal() {
     modal.close();

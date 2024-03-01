@@ -1,3 +1,5 @@
+import WebLottoController from '../../controllers/WebLottoController';
+import webInputView from '../../views/webInputView';
 import Component from '../core/Component';
 
 class PurchaseLottoForm extends Component {
@@ -24,7 +26,16 @@ class PurchaseLottoForm extends Component {
       e.preventDefault();
     });
     const $purchaseBtn = document.querySelector('#purchaseButton');
-    $purchaseBtn.addEventListener('click', this.props.play);
+    $purchaseBtn.addEventListener('click', this.play);
+  }
+
+  play() {
+    const purchaseAmount = webInputView.readPurchaseAmount();
+    if (!purchaseAmount) return;
+    document.querySelector('.winningNumberInput').focus();
+    const lottoController = new WebLottoController(purchaseAmount);
+    lottoController.run();
+    document.getElementById('lottoResultButton').addEventListener('click', lottoController.handleLottoResult);
   }
 }
 

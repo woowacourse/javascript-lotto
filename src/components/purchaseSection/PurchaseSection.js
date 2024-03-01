@@ -12,9 +12,7 @@ class PurchaseSection extends Component {
 
   mounted() {
     const $purchaseLottoForm = document.querySelector('#purchaseLottoTemplate');
-    new PurchaseLottoForm($purchaseLottoForm, {
-      play: this.props.play,
-    });
+    new PurchaseLottoForm($purchaseLottoForm, {});
   }
 }
 
