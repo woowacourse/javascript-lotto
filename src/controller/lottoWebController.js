@@ -16,10 +16,8 @@ class LottoWebController {
   #webIssuedLottoArray;
   #webBudget;
   async start() {
-    $("#content-box-input-budget").addEventListener(
-      "submit",
-      this.handleWebBudget.bind(this)
-    );
+    $("#budget").addEventListener("keydown", this.handleWebBudget.bind(this));
+    $("#budget-btn").addEventListener("click", this.handleWebBudget.bind(this));
     $("#result-btn").addEventListener(
       "click",
       this.handleWebWinningCombinationInput.bind()
@@ -45,21 +43,22 @@ class LottoWebController {
    * @param {event} e
    */
   handleWebBudget(event) {
-    event.preventDefault();
-    this.getWebBudget();
-    try {
-      startValidation(budgetValidation.categories, this.#webBudget);
+    if (event.type === "click" || event.keyCode === 13) {
+      this.getWebBudget();
+      try {
+        startValidation(budgetValidation.categories, this.#webBudget);
 
-      const webIssuedLottoCount = this.calculateWebIssuedLottoCount();
+        const webIssuedLottoCount = this.calculateWebIssuedLottoCount();
 
-      $("#after-budget").style.display = "flex";
-      const budgetInputNodes = $("#content-box-input-budget");
-      budgetInputNodes.querySelector("input").disabled = true;
-      budgetInputNodes.querySelector("button").disabled = true;
+        $("#after-budget").style.display = "flex";
+        const budgetInputNodes = $("#content-box-input-budget");
+        budgetInputNodes.querySelector("input").disabled = true;
+        budgetInputNodes.querySelector("button").disabled = true;
 
-      this.handleWebIssuedLottoArray(webIssuedLottoCount);
-    } catch (error) {
-      return alert(error.message);
+        this.handleWebIssuedLottoArray(webIssuedLottoCount);
+      } catch (error) {
+        return alert(error.message);
+      }
     }
   }
 
