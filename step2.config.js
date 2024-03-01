@@ -42,7 +42,6 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
-      title: 'web-lotto game',
       inject: 'body',
       favicon: './favicon.ico',
     }),
