@@ -14,6 +14,8 @@ class ElementTree {
 
     Object.entries(attrs).forEach(([key, value]) => {
       if (key === "class") newElement.classList.add(value);
+      else if (key === "onClick" && typeof value === "function")
+        newElement.addEventListener("click", value);
       else newElement.setAttribute(key, value);
     });
 
@@ -33,6 +35,8 @@ class ElementTree {
     if (attrs) {
       Object.entries(attrs).forEach(([key, value]) => {
         if (key === "class") newElement.classList.add(value);
+        else if (key === "onClick" && typeof value === "function")
+          newElement.addEventListener("click", value);
         else newElement.setAttribute(key, value);
       });
     }
@@ -55,7 +59,7 @@ class ElementTree {
   }
 
   get tags() {
-    return this.#stackedTags.outerHTML;
+    return this.#stackedTags;
   }
 }
 
