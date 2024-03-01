@@ -56,6 +56,16 @@ const handler = {
       handleRestart();
     });
   },
+
+  onlyNumberInput(inputId) {
+    const $input = $(inputId);
+    const regex = /^[0-9]*$/;
+
+    if (!regex.test($input.value)) {
+      $input.innerHTML += "숫자만 입력해주세요";
+      $input.value = $input.value.replace(/[^\d]/g, "");
+    }
+  },
 };
 
 export default handler;
