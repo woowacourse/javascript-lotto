@@ -1,3 +1,4 @@
+
 import LOTTO_SETTING from '../Constants/lottoSetting.js';
 import generateRandomNumberFromRange from '../Utils/generateRandomNumberFromRange.js';
 import RewardGenerator from './RewardGenerator.js';

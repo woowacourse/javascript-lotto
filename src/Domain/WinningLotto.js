@@ -15,7 +15,7 @@ class WinningLotto {
   setBonusNumber(bonusNumber) {
     this.#validateBonusNumber(bonusNumber);
     this.#bonusNumber = bonusNumber;
-  }
+  }https://github.com/woowacourse/javascript-lotto/pull/296/conflict?name=src%252FConstants%252Fretry.js&base_oid=7eee17672796f4f39fbf17e79e89c32859944e14&head_oid=392e7a93c92abd3367f140312b5a44b996f3a4c5
 
   #validateBonusNumber(bonusNumber) {
     this.#validateRange(bonusNumber);
