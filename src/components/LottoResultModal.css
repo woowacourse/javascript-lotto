@@ -15,14 +15,14 @@ lotto-result-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 3.2rem;
 
-  width: 318px;
+  width: 31.8rem;
   height: min-content;
   z-index: 20;
   background-color: var(--lotto-greyscale-1);
 
-  padding: 40px 16px 32px 16px;
+  padding: 4rem 1.6rem 3.2rem 1.6rem;
 }
 
 .lotto-result lotto-button {
@@ -31,16 +31,16 @@ lotto-result-modal {
 
 .close-modal-icon {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 16px;
-  right: 16px;
+  width: 1.6rem;
+  height: 1.6rem;
+  top: 1.6rem;
+  right: 1.6rem;
 
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  line-height: 16px;
-  letter-spacing: 1.25px;
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
   text-align: center;
 }
 
@@ -49,15 +49,15 @@ lotto-result-modal {
   align-items: center;
   justify-content: center;
 
-  height: 24px;
+  height: 2.4rem;
   width: 100%;
 }
 
 .rate-of-return {
   font-family: Roboto;
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 700;
-  line-height: 24px;
-  letter-spacing: 0.5px;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
   text-align: center;
 }

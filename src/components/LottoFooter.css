@@ -3,8 +3,8 @@ lotto-footer {
   align-items: center;
   justify-content: center;
 
-  height: 80px;
-  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  height: 8rem;
+  border-top: 0.1rem solid rgba(78, 91, 166, 0.2);
 }
 
 lotto-footer .lotto-caption {

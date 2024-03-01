@@ -2,7 +2,7 @@ purchase-info {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 8px;
+  gap: 0.8rem;
   flex: auto;
 
   width: 100%;
@@ -12,6 +12,6 @@ purchase-info {
   display: flex;
   align-items: center;
 
-  height: 24px;
+  height: 2.4rem;
   width: 100%;
 }

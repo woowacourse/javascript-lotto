@@ -10,20 +10,20 @@ lotto-main {
 .lotto-main-container {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 2.8rem;
 
   align-items: center;
   justify-content: start;
 
-  width: 414px;
+  width: 41.4rem;
   height: min-content;
-  min-height: 727px;
+  min-height: 72.7rem;
   background-color: var(--lotto-greyscale-1);
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 0.1rem solid rgba(0, 0, 0, 0.12);
 
-  padding-top: 40px;
-  padding-bottom: 32px;
-  padding-inline: 16px;
+  padding-top: 4rem;
+  padding-bottom: 3.2rem;
+  padding-inline: 1.6rem;
 }
 
 .lotto-main-title-container {
@@ -31,7 +31,7 @@ lotto-main {
   justify-content: center;
   align-items: center;
 
-  height: 36px;
+  height: 3.6rem;
 }
 
 .purchase-result {
@@ -39,5 +39,5 @@ lotto-main {
   flex-direction: column;
   width: 100%;
   flex: auto;
-  gap: 28px;
+  gap: 2.8rem;
 }

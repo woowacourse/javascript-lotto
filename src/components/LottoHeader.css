@@ -2,10 +2,10 @@ lotto-header {
   display: flex;
   align-items: center;
 
-  height: 64px;
+  height: 6.4rem;
   background-color: var(--lotto-primary);
 
-  padding-inline: 130px;
+  padding-inline: 13rem;
 }
 
 lotto-header .lotto-title {

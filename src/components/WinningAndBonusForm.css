@@ -1,7 +1,7 @@
 winning-and-bonus-form {
   display: flex;
   flex-direction: column;
-  gap: 27px;
+  gap: 2.8rem;
 
   width: 100%;
 }
@@ -9,13 +9,13 @@ winning-and-bonus-form {
 .winning-and-bonus-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1.2rem;
 }
 
 .winning-and-bonus-title-container {
   display: flex;
   align-items: center;
-  height: 24px;
+  height: 2.4rem;
 }
 
 .winning-and-bonus-input-container {
