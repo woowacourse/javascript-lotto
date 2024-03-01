@@ -1,12 +1,15 @@
 import LOTTO_STATISTICS from '../constants/lotto-statistics';
 
-export const createWinningResult = (key, count) => {
+export function createWinningResult(key, count) {
   const { number, price } = LOTTO_STATISTICS[key];
+  const bonusText = key === 'fiveBonus' ? ', 보너스 일치' : '';
 
-  if (key === 'fiveBonus') {
-    return `${number}개 일치, 보너스 일치 (${price.toLocaleString()}원) - ${count}개`;
-  }
-  return `${number}개 일치 (${price.toLocaleString()}원) - ${count}개`;
-};
+  return `${number}개 일치${bonusText} (${price.toLocaleString()}원) - ${count}개`;
+}
 
-export default createWinningResult;
+export function createWebWinningResult(key, count) {
+  const { number, price } = LOTTO_STATISTICS[key];
+  const bonusText = key === 'fiveBonus' ? ' + 보너스볼' : '';
+
+  return `<tr><td>${number}개${bonusText}</td><td>${price.toLocaleString()}원</td><td>${count}개</td></tr>`;
+}
