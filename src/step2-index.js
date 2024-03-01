@@ -103,7 +103,30 @@ $lottoNumbersForm.addEventListener('submit', (event) => {
       lottoNumbers.winningNumbers,
       lottoNumbers.bonusNumber,
     );
+
+    // 당첨 통계 모달 호출
+    const $modalWrapper = $('#modal-wrapper');
+    $modalWrapper.classList.remove('hidden-modal');
+    $modalWrapper.classList.add('modal-wrapper');
   } catch (error) {
     alert(error.message);
+  }
+
+  // 당첨 통계 테이블 표시
+  const $lottoStatisticsTbody = $('#lotto-statistics-tbody');
+  const lottoCalculator = new LottoCalculator(lottoNumbers, generatedLottos);
+  const lottoStatistics = lottoCalculator.lottoStatistics;
+
+  // OutputView printStatistics 메서드 가공
+  printStatistics(lottoStatistics);
+
+  function printStatistics(statistics) {
+    const keys = Object.keys(LOTTO_STATISTICS);
+
+    const result = keys
+      .map((key) => createWebWinningResult(key, statistics[key]))
+      .join('');
+
+    $lottoStatisticsTbody.innerHTML = result;
   }
 });
