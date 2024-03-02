@@ -8,4 +8,5 @@ export const ERROR_MESSAGE = Object.freeze({
   IS_NOT_NUMBER: `${PREFIX_ERROR} 입력한 로또 번호에 숫자가 아닌 값이 존재합니다.`,
   IS_INVALID_LOTTO_NUMBER_RANGE: `${PREFIX_ERROR} 입력한 로또 번호가 1~45 범위에 있지 않습니다.`,
   IS_NOT_CORRECT_RESPONSE: `${PREFIX_ERROR} 올바르지 않은 응답입니다.`,
+  OVER_MAX_VALUE: `${PREFIX_ERROR} 최대 구입 금액은 100,000원 입니다.`,
 });
