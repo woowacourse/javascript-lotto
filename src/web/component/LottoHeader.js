@@ -1,9 +1,9 @@
 class LottoHeader extends HTMLElement {
   connectedCallback() {
-    this.render();
+    this.#render();
   }
 
-  render() {
+  #render() {
     this.innerHTML = `
       <header>
         <h1>🎱 행운의 로또</h1>

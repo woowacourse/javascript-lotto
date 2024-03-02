@@ -1,9 +1,9 @@
 class LottoFooter extends HTMLElement {
   connectedCallback() {
-    this.render();
+    this.#render();
   }
 
-  render() {
+  #render() {
     this.innerHTML = `
       <footer>
         <p>Copyright 2023. woowacourse</p>
