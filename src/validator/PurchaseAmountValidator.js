@@ -10,7 +10,7 @@ const PurchaseAmountValidator = {
   },
 
   isValidMinRange(inputValue) {
-    return inputValue > PURCHASE_SYMBOL.RANGE_MIN;
+    return inputValue >= PURCHASE_SYMBOL.RANGE_MIN;
   },
 };
 
