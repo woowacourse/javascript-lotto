@@ -12,7 +12,7 @@ const ERROR_MESSAGE = {
   EXCEEDED_MAX_PURCHASE_AMOUNT: generateErrorMessage(
     `${SETTING.MAX_LOTTO_PURCHASE_AMOUNT.toLocaleString()}원을 초과하여 입력하실 수 없습니다.`,
   ),
-  LOTTO_NUMBER_LENGTH: generateErrorMessage(`쉼표로 구분되는 ${SETTING.LOTTO_LENGTH}개의 숫자여야 합니다.`),
+  LOTTO_NUMBER_LENGTH: generateErrorMessage(`서로 구분되는 ${SETTING.LOTTO_LENGTH}개의 숫자여야 합니다.`),
   LOTTO_NUMBER_RANGE: generateErrorMessage(
     `각각의 숫자는 ${SETTING.MIN_LOTTO_NUMBER}~${SETTING.MAX_LOTTO_NUMBER} 사이의 숫자여야 합니다.`,
   ),
