@@ -55,7 +55,7 @@ class PurchaseForm extends HTMLElement {
       <section id="purchase">
         <p>구입할 금액을 입력해주세요.</p>
         <form id="purchase-form">
-          <input id="purchase-form-input" placeholder="금액">
+          <input id="purchase-form-input" type="number" placeholder="금액" oninput="this.value = this.valueAsNumber">
           <button type="button" id="purchase-form-button">구입</button>
         </form>
       </section>
