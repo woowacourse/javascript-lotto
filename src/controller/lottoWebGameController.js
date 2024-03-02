@@ -38,6 +38,8 @@ class lottoGameWebController {
     }
 
     purchaseAmountInput.value = '';
+    webOutputView.clearWinningLotto();
+    this.focusOnFirstLottoInput();
   };
 
   handleAutoFocusOnNumberInput = () => {
@@ -74,6 +76,13 @@ class lottoGameWebController {
   moveToNextField = (index, inputs) => {
     if (index < inputs.length - 1) {
       inputs[index + 1].focus();
+    }
+  };
+
+  focusOnFirstLottoInput = () => {
+    const firstLottoInput = document.querySelector('.lotto-input');
+    if (firstLottoInput) {
+      firstLottoInput.focus();
     }
   };
 
