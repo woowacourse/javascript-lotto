@@ -1,5 +1,5 @@
 import { LOTTO, BONUS } from '../../constants';
-import { $ } from './utils/dom';
+import { $, $$ } from './utils/dom';
 
 class WinningNumberForm {
   constructor({ $target }) {
@@ -8,7 +8,10 @@ class WinningNumberForm {
   }
 
   init() {
-    this.$target.value = '';
+    $$('.winning-number').forEach((element) => {
+      element.value = '';
+    });
+    $('.bonus-number').value = '';
   }
 
   render() {
