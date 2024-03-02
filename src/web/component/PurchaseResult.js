@@ -6,19 +6,19 @@ class PurchaseResult extends HTMLElement {
   constructor() {
     super();
     this.#boundMethods = {
-      handlePurchaseResult: this.#handlePurchaseResult.bind(this),
+      handleShowPurchaseResult: this.#handleShowPurchaseResult.bind(this),
     };
   }
 
   connectedCallback() {
-    $('lotto-game-app').addEventListener('purchaseResult', this.#boundMethods.handlePurchaseResult);
+    $('lotto-game-app').addEventListener('showPurchaseResult', this.#boundMethods.handleShowPurchaseResult);
   }
 
   disconnectedCallback() {
-    $('lotto-game-app').removeEventListener('purchaseResult', this.#boundMethods.handlePurchaseResult);
+    $('lotto-game-app').removeEventListener('showPurchaseResult', this.#boundMethods.handleShowPurchaseResult);
   }
 
-  #handlePurchaseResult(event) {
+  #handleShowPurchaseResult(event) {
     const { lottoList } = event.detail;
     const lottoListItems = lottoList.map((lotto) => `<li>${lotto.join(', ')}</li>`);
     this.#render(lottoListItems);

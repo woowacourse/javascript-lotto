@@ -11,7 +11,7 @@ class LottoGameApp extends HTMLElement {
     super();
     this.#boundMethods = {
       handlePurchaseLotto: this.#handlePurchaseLotto.bind(this),
-      handleWinningResult: this.#handleWinningResult.bind(this),
+      handleCreateWinningResult: this.#handleCreateWinningResult.bind(this),
       handleRestartGame: this.#handleRestartGame.bind(this),
     };
   }
@@ -24,21 +24,21 @@ class LottoGameApp extends HTMLElement {
     const { purchaseAmount } = event.detail;
     const lottoList = new LottoMachine(purchaseAmount).getLottoNumbersList();
     this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
-    this.dispatchEvent(new CustomEvent('purchaseResult', { detail: { lottoList } }));
+    this.dispatchEvent(new CustomEvent('showPurchaseResult', { detail: { lottoList } }));
   }
 
-  #handleWinningResult(event) {
+  #handleCreateWinningResult(event) {
     const { winningNumbers, bonusNumber } = event.detail;
     const winningResultService = new WinningResultService([...this.#lottos], { winningNumbers, bonusNumber });
     const winningResult = winningResultService.getWinningResult();
     const profitRate = winningResultService.getProfitRate();
-    this.dispatchEvent(new CustomEvent('winningResult', { detail: { winningResult, profitRate } }));
+    this.dispatchEvent(new CustomEvent('showResultModal', { detail: { winningResult, profitRate } }));
   }
 
   #initiateGame() {
     this.#render();
     $('purchase-form').addEventListener('purchaseLotto', this.#boundMethods.handlePurchaseLotto);
-    $('winning-numbers-form').addEventListener('winningCriteria', this.#boundMethods.handleWinningResult);
+    $('winning-numbers-form').addEventListener('createWinningResult', this.#boundMethods.handleCreateWinningResult);
     $('result-modal').addEventListener('restartGame', this.#boundMethods.handleRestartGame);
   }
 

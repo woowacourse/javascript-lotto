@@ -7,7 +7,7 @@ class ResultModal extends HTMLElement {
   constructor() {
     super();
     this.#boundMethods = {
-      handleWinningResult: this.#handleWinningResult.bind(this),
+      handleShowResultModal: this.#handleShowResultModal.bind(this),
       handleBackgroundClick: this.#handleBackgroundClick.bind(this),
       closeModal: this.#closeModal.bind(this),
       handleRestart: this.#handleRestart.bind(this),
@@ -15,18 +15,18 @@ class ResultModal extends HTMLElement {
   }
 
   connectedCallback() {
-    $('lotto-game-app').addEventListener('winningResult', this.#boundMethods.handleWinningResult);
+    $('lotto-game-app').addEventListener('showResultModal', this.#boundMethods.handleShowResultModal);
     this.addEventListener('click', this.#boundMethods.handleBackgroundClick);
   }
 
   disconnectedCallback() {
-    $('lotto-game-app').removeEventListener('winningResult', this.#boundMethods.handleWinningResult);
+    $('lotto-game-app').removeEventListener('showResultModal', this.#boundMethods.handleShowResultModal);
   }
 
-  #handleWinningResult(event) {
+  #handleShowResultModal(event) {
     const { winningResult, profitRate } = event.detail;
     const winningResultList = this.#createWinningResultList(winningResult).join('');
-    this.#showModal({ winningResultList, profitRate });
+    this.#showResultModal({ winningResultList, profitRate });
   }
 
   #handleRestart() {
@@ -41,7 +41,7 @@ class ResultModal extends HTMLElement {
     }
   }
 
-  #showModal({ winningResultList, profitRate }) {
+  #showResultModal({ winningResultList, profitRate }) {
     this.#render(winningResultList, profitRate);
     $('#close-modal-button', this).addEventListener('click', this.#boundMethods.closeModal);
     $('#restart-button', this).addEventListener('click', this.#boundMethods.handleRestart);

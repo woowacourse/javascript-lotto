@@ -13,11 +13,11 @@ class WinningNumbersForm extends HTMLElement {
   }
 
   connectedCallback() {
-    $('lotto-game-app').addEventListener('purchaseResult', this.#boundMethods.handlePurchaseResult);
+    $('lotto-game-app').addEventListener('showPurchaseResult', this.#boundMethods.handlePurchaseResult);
   }
 
   disconnectedCallback() {
-    $('lotto-game-app').removeEventListener('purchaseResult', this.#boundMethods.handlePurchaseResult);
+    $('lotto-game-app').removeEventListener('showPurchaseResult', this.#boundMethods.handlePurchaseResult);
   }
 
   #handlePurchaseResult() {
@@ -30,15 +30,15 @@ class WinningNumbersForm extends HTMLElement {
       const winningNumbers = this.#readWinningNumbers();
       const bonusNumber = this.#readBonusNumber(winningNumbers);
       this.#removeErrorMessage($('#winning-numbers-form'));
-      this.#setWinningCriteria({ winningNumbers, bonusNumber });
+      this.#sendWinningCriteria({ winningNumbers, bonusNumber });
     } catch (error) {
       this.#showErrorMessage(error.message, $('#winning-numbers-form'));
     }
   }
 
-  #setWinningCriteria({ winningNumbers, bonusNumber }) {
+  #sendWinningCriteria({ winningNumbers, bonusNumber }) {
     this.dispatchEvent(
-      new CustomEvent('winningCriteria', {
+      new CustomEvent('createWinningResult', {
         detail: { winningNumbers, bonusNumber },
       }),
     );
