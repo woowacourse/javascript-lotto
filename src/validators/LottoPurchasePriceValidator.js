@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES } from '../constants/messages';
-import LOTTO_RULES from '../constants/lotto-rules';
+import { ERROR_MESSAGES } from '../constants/messages.js';
+import LOTTO_RULES from '../constants/lotto-rules.js';
 
 const LottoPurchasePriceValidator = {
   validate(price) {

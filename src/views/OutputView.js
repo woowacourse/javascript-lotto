@@ -1,7 +1,7 @@
-import Console from '../utils/Console';
-import LOTTO_STATISTICS from '../constants/lotto-statistics';
-import { OUTPUT_MESSAGES } from '../constants/messages';
-import { createWinningResult } from '../utils/createWinningResult';
+import Console from '../utils/Console.js';
+import LOTTO_STATISTICS from '../constants/lotto-statistics.js';
+import { OUTPUT_MESSAGES } from '../constants/messages.js';
+import { createWinningResult } from '../utils/createWinningResult.js';
 
 const OutputView = {
   printTicketCount(count) {

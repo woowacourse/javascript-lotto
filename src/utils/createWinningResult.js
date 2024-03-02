@@ -1,4 +1,4 @@
-import LOTTO_STATISTICS from '../constants/lotto-statistics';
+import LOTTO_STATISTICS from '../constants/lotto-statistics.js';
 
 const COMPARE_LOTTO_COUNT = 'fiveBonus';
 

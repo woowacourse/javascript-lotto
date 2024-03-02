@@ -1,13 +1,13 @@
-import LottoGenerator from '../domains/LottoGenerator';
-import LottoCalculator from '../domains/LottoCalculator';
+import LottoGenerator from '../domains/LottoGenerator.js';
+import LottoCalculator from '../domains/LottoCalculator.js';
 
-import OutputWebView from '../views/OutputWebView';
+import OutputWebView from '../views/OutputWebView.js';
 
-import LottoValidator from '../validators/LottoValidator';
+import LottoValidator from '../validators/LottoValidator.js';
 
-import { $, $$ } from '../utils/dom';
+import { $, $$ } from '../utils/dom.js';
 
-import LOTTO_RULES from '../constants/lotto-rules';
+import LOTTO_RULES from '../constants/lotto-rules.js';
 
 class LottoWebController {
   #ticketCount;

@@ -1,4 +1,4 @@
-import LOTTO_RULES from './lotto-rules';
+import LOTTO_RULES from './lotto-rules.js';
 
 export const INPUT_MESSAGES = {
   prefix: '>',

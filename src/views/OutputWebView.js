@@ -1,7 +1,7 @@
-import { createWebWinningResult } from '../utils/createWinningResult';
+import { createWebWinningResult } from '../utils/createWinningResult.js';
 
-import { WEB_MESSAGES } from '../constants/messages';
-import LOTTO_STATISTICS from '../constants/lotto-statistics';
+import { WEB_MESSAGES } from '../constants/messages.js';
+import LOTTO_STATISTICS from '../constants/lotto-statistics.js';
 
 const OutputWebView = {
   displayTicketCount(count) {

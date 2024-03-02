@@ -1,16 +1,16 @@
-import LottoGenerator from '../domains/LottoGenerator';
-import LottoCalculator from '../domains/LottoCalculator';
+import LottoGenerator from '../domains/LottoGenerator.js';
+import LottoCalculator from '../domains/LottoCalculator.js';
 
-import InputView from '../views/InputView';
-import OutputView from '../views/OutputView';
+import InputView from '../views/InputView.js';
+import OutputView from '../views/OutputView.js';
 
-import LottoPurchasePriceValidator from '../validators/LottoPurchasePriceValidator';
-import LottoValidator from '../validators/LottoValidator';
+import LottoPurchasePriceValidator from '../validators/LottoPurchasePriceValidator.js';
+import LottoValidator from '../validators/LottoValidator.js';
 
-import executeWithRetry from '../utils/executeWithRetry';
-import splitInput from '../utils/splitInput';
+import executeWithRetry from '../utils/executeWithRetry.js';
+import splitInput from '../utils/splitInput.js';
 
-import LOTTO_RULES from '../constants/lotto-rules';
+import LOTTO_RULES from '../constants/lotto-rules.js';
 
 class LottoController {
   #lottoNumbers = {};
