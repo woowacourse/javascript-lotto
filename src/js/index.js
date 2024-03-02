@@ -26,7 +26,7 @@ const formatStatisticsResult = (ranking) => {
   const correctCount =
     ranking !== secondPlace
       ? LOTTO_SYSTEM.correctCount[ranking] + "개"
-      : LOTTO_SYSTEM.correctCount[ranking] + "보너스 볼";
+      : LOTTO_SYSTEM.correctCount[ranking] + "개+보너스 볼";
   const prize = LOTTO_SYSTEM.lottoPrize[ranking];
 
   return {
