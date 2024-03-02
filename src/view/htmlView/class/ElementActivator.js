@@ -34,6 +34,7 @@ class ElementActivator {
   static activateModal() {
     const modalDiv = Elements.DIVS.modal;
     removeClass(modalDiv, ClassName.visibilityHidden);
+    ButtonController.activateModalButtons();
   }
 
   static deactivateModal() {

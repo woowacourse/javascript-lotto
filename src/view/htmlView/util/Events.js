@@ -1,11 +1,12 @@
 import Elements from "./Elements";
+import ConsoleImplementation from "../class/ConsoleImplementation";
 
 class Events {
   static priceButtonClickEvent(event) {
     event.preventDefault();
     const priceInput = Elements.INPUTS.price;
 
-    console.log(priceInput.value);
+    ConsoleImplementation.enqueue(priceInput.value);
   }
 
   static winningLottoButtonClickEvent(event) {
@@ -16,17 +17,17 @@ class Events {
 
     const bonusNumber = Elements.INPUTS.bonusNumber.value;
 
-    console.log(winningNumbers, bonusNumber);
+    ConsoleImplementation.enqueue(winningNumbers, bonusNumber);
   }
 
   static modalRetryButtonClickEvent(event) {
     event.preventDefault();
-    console.log("y");
+    ConsoleImplementation.enqueue("y");
   }
 
   static modalCloseButtonClickEvent(event) {
     event.preventDefault();
-    console.log("n");
+    ConsoleImplementation.enqueue("n");
   }
 
   static preventDefault(event) {

@@ -3,7 +3,9 @@ import Elements from "../util/Elements";
 class InputController {
   static activatePriceInput() {
     const priceInput = Elements.INPUTS.price;
+    priceInput.disabled = false;
     priceInput.innerText = priceInput.praceholder;
+    priceInput.focus();
   }
 
   static deactivatePriceInput() {

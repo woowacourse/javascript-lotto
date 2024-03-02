@@ -1,4 +1,5 @@
 import ButtonController from "./class/ButtonController";
+import ConsoleImplementation from "./class/ConsoleImplementation";
 import ElementActivator from "./class/ElementActivator";
 import initBody from "./util/initBody";
 
@@ -7,32 +8,36 @@ class HTMLInputView {
     initBody();
     ElementActivator.activatePriceForm();
     // TODO: 콘솔창과 연결
+    const buyPrice = await this.#readLineAsync();
     ElementActivator.deactivatePriceForm();
-    const buyPrice = 1;
+
     return buyPrice;
   }
 
-  static async readWinngingNumbers() {
+  static async readWinningNumbers() {
     ElementActivator.activateWinningLottoForm();
-    // TODO: 콘솔창과 연결
-    ElementActivator.deactivateWinningLottoForm();
-    const buyPrice = 1;
-    return buyPrice;
+    const winningLotto = await this.#readLineAsync();
+    return winningLotto;
   }
 
-  static async readBonusNumbers() {
-    // TODO: 콘솔창과 연결
-    const bonusNumber = 10;
+  static async readBonusNumber() {
+    const bonusNumber = await this.#readLineAsync();
+
+    ElementActivator.deactivateWinningLottoForm();
     return bonusNumber;
   }
 
   static async readRetryChecker() {
-    // const retryChecker = await this.#readLineAsync(MESSAGES.INPUT.retryChecker);
-
     ButtonController.activateModalButtons();
-    // TODO: 콘솔창과 연결
+    const retryChecker = await this.#readLineAsync();
     ElementActivator.deactivateModal();
-    return 1;
+    return retryChecker;
+  }
+
+  static #readLineAsync() {
+    return new Promise((resolve) => {
+      ConsoleImplementation.waitReading(resolve);
+    });
   }
 }
 
