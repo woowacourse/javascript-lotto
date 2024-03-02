@@ -136,5 +136,3 @@ export default class LottoGameWebController {
     this.#winningLotto = null;
   };
 }
-
-new LottoGameWebController();
