@@ -4,6 +4,7 @@ import { RANKING } from '../../constant/setting';
 class ResultModal extends HTMLElement {
   connectedCallback() {
     $('lotto-game-app').addEventListener('winningResult', this.#handleWinningResult.bind(this));
+    this.addEventListener('click', this.#handleBackgroundClick.bind(this));
   }
 
   #handleWinningResult(event) {
@@ -12,9 +13,28 @@ class ResultModal extends HTMLElement {
     this.#showModal({ winningResultList, profitRate });
   }
 
+  #handleRestart() {
+    this.dispatchEvent(new CustomEvent('restartGame'));
+    this.#closeModal();
+  }
+
+  #handleBackgroundClick(event) {
+    const dialog = $('#result-modal', this);
+    if (dialog && event.target === dialog) {
+      this.#closeModal();
+    }
+  }
+
   #showModal({ winningResultList, profitRate }) {
     this.#render(winningResultList, profitRate);
+    $('#close-modal-button', this).addEventListener('click', this.#closeModal.bind(this));
+    $('#restart-button', this).addEventListener('click', this.#handleRestart.bind(this));
     $('#result-modal', this).showModal();
+  }
+
+  #closeModal() {
+    $('#result-modal', this).close();
+    this.#clearModalContent();
   }
 
   #createWinningResultList(winningResult) {
@@ -37,6 +57,10 @@ class ResultModal extends HTMLElement {
         <path d="M23 20.168l-8.185-8.187 8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186 8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/>
       </svg>
     `;
+  }
+
+  #clearModalContent() {
+    this.innerHTML = ``;
   }
 
   #render(winningResultList, profitRate) {
