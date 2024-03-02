@@ -1,7 +1,18 @@
+@import './header.css';
+@import './main.css';
+@import './footer.css';
+@import './popup.css';
+
 body {
   margin: 0;
   padding: 0;
   background-color: #fcfcfd;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #app {

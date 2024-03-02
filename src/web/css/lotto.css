@@ -1,0 +1,38 @@
+.lotto-display {
+  margin-top: 10px;
+  width: 382px;
+}
+
+.lotto-message {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.lotto-box {
+  width: 238px;
+  height: 276px;
+}
+
+.lotto-number::before {
+  content: '🎟️';
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin-right: 10px;
+}
+
+.lotto-number {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
