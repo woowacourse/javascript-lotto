@@ -39,7 +39,7 @@ class PurchaseForm extends HTMLElement {
       const purchaseAmount = this.#elements.input.value;
       Validator.validatePurchaseAmount(purchaseAmount);
       ErrorMessageUtil.removeErrorMessage(this.#elements.form);
-      this.#purchaseLotto(purchaseAmount);
+      this.#purchaseLotto(parseInt(purchaseAmount, 10));
     } catch (error) {
       ErrorMessageUtil.showErrorMessage(error.message, this.#elements.form);
     }
