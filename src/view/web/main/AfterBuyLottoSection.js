@@ -1,8 +1,9 @@
 import LottoTickets from './LottoTickets.js';
-import WinningLottoContent from './WinningLottoContent.js';
+import WinningLottoContent from './winningLotto/WinningLottoContent.js';
 
 export default function AfterBuyLottoSection() {
   const section = document.createElement('section');
+
   section.classList.add('hidden');
   section.classList.add('full-width');
   section.classList.add('next-section');
