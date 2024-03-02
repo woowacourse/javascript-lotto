@@ -189,23 +189,6 @@ caption{
   height: 230px;
 }
 
-#game-generatedlotto-list-icon {
-  display: flex;
-  font-size: 34px;
-  font-weight: 600;
-  line-height: 36px;
-}
-
-#game-generatedlotto-list-number{
-  display: flex;
-  color: var(--lotto-greyscale-5);
-  padding-top: 3px;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-}
-
 #game-winninglotto-container {
   display: flex;
   flex-direction: column;
