@@ -7,6 +7,10 @@ export const WINNINT_LOTTO_SELECTOR = "form[is='winning-lotto-form']";
 export default class WinningLottoForm extends HTMLFormElement {
   #errorMessage;
 
+  #winningNumbersInput;
+
+  #bonusNumberInput;
+
   constructor() {
     super();
 
@@ -15,6 +19,8 @@ export default class WinningLottoForm extends HTMLFormElement {
     this.appendChild(content);
 
     this.#errorMessage = this.querySelector('.err-msg');
+    this.#winningNumbersInput = this.winningNumbers;
+    this.#bonusNumberInput = this.bonusNumber;
 
     this.style.visibility = 'hidden';
   }
@@ -34,6 +40,11 @@ export default class WinningLottoForm extends HTMLFormElement {
   displayForm() {
     this.style.visibility = '';
   }
+
+  // disableForm() {
+  //   this.#winningNumbersInput.forEach((numberInput) => (numberInput.disabled = true));
+  //   this.#bonusNumberInput.disabled = true;
+  // }
 
   #handleSubmit(e) {
     e.preventDefault();

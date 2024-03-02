@@ -47,13 +47,15 @@ class WebController {
   async #handleWinningLottoFormSubmit(event) {
     try {
       await this.#getWinningLotto(event.detail);
+      // this.#webView.winningLottoForm.disableForm();
     } catch (error) {
       this.#webView.winningLottoForm.displayErrorMessage(error.message);
     }
   }
 
   async #getWinningLotto({ winningNumbers, bonusNumber }) {
-    this.#lottoGame.issueWinningLotto(winningNumbers.join(','), bonusNumber);
+    const winningNumbersInput = winningNumbers.every((number) => !number) ? '' : winningNumbers.join(',');
+    this.#lottoGame.issueWinningLotto(winningNumbersInput, bonusNumber);
 
     this.#webView.winningLottoForm.clearErrorMessage();
   }
