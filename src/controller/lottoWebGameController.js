@@ -5,7 +5,7 @@ import WinningLottoGenerator from './winningLottoGenerator';
 import LottoResultCalculator from '../domain/lottoResultCalculator';
 import { LOTTO_PRICE } from '../constants/lotto-constants';
 
-class lottoGameWebController {
+export default class LottoGameWebController {
   #lottoTickets;
   #winningLotto;
 
@@ -137,4 +137,4 @@ class lottoGameWebController {
   };
 }
 
-new lottoGameWebController();
+new LottoGameWebController();
