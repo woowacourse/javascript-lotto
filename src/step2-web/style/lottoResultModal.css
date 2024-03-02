@@ -55,14 +55,7 @@
   margin: 2rem 0;
 }
 
-.lotto-restart-button {
+.lotto-restart-button-style {
   width: 100%;
-  height: 2.2rem;
   margin-bottom: 1rem;
-  font-weight: var(--font-weight-semi-bold);
-  background-color: var(--color-lotto-primary);
-  color: var(--color-lotto-grey-scale-1);
-  border: none;
-  border-radius: var(--size-light-border-radius);
-  cursor: pointer;
 }

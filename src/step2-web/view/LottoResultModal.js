@@ -54,7 +54,9 @@ export default class LottoResultModal extends Component {
       당신의 총 수익률은 ${formattedProfitRateMessage}%입니다.
       </p>
 
-      <button id=${LOTTO_RESTART_BUTTON_ID} class="lotto-restart-button">다시 시작하기</button>
+      <button id=${LOTTO_RESTART_BUTTON_ID} class="submit-button lotto-restart-button-style">
+        다시 시작하기
+      </button>
     </div>
   </section>
     `;

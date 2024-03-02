@@ -33,14 +33,7 @@
   -webkit-appearance: none;
 }
 
-.buy-amount-button {
+.buy-amount-button-style {
   width: 15%;
-  border-radius: var(--size-light-border-radius);
-  height: 2.2rem;
-  font-weight: var(--font-weight-semi-bold);
   margin-left: 0.5rem;
-  background-color: var(--color-lotto-primary);
-  color: var(--color-lotto-grey-scale-1);
-  border: none;
-  cursor: pointer;
 }

@@ -25,16 +25,9 @@
   align-items: flex-end;
 }
 
-.check-result-button {
+.check-result-button-style {
   width: 100%;
-  height: 2.2rem;
   margin-top: 1.2rem;
-  background-color: var(--color-lotto-primary);
-  color: var(--color-lotto-grey-scale-1);
-  border: none;
-  border-radius: var(--size-light-border-radius);
-  cursor: pointer;
-  font-weight: var(--font-weight-semi-bold);
 }
 
 .lotto-number-input {

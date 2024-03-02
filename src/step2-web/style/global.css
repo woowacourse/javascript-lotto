@@ -134,3 +134,14 @@ body {
   font-size: 0.8rem;
   margin-top: 0.5rem;
 }
+
+/* common */
+.submit-button {
+  height: 2.2rem;
+  background-color: var(--color-lotto-primary);
+  color: var(--color-lotto-grey-scale-1);
+  border-radius: var(--size-light-border-radius);
+  border: none;
+  cursor: pointer;
+  font-weight: var(--font-weight-semi-bold);
+}

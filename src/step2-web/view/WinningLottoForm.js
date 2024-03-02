@@ -55,7 +55,7 @@ export default class WinningLottoForm extends Component {
         </div>
         <p id=${ERROR_MESSAGE_ELEMENT_ID} class="error-message"></p>
 
-        <button id=${CHECK_RESULT_BUTTON_ID} class="check-result-button">
+        <button id=${CHECK_RESULT_BUTTON_ID} class="submit-button check-result-button-style">
           결과 확인하기
         </button>
 
