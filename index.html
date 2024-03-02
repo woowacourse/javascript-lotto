@@ -17,24 +17,23 @@
             <div class="formTitle">구입할 금액을 입력해주세요.</div>
             <div class="inputAndButtonContainer">
               <input id="moneyInput" type="text" placeholder="금액" class="fullWidthInput" />
-              <button type="submit" class="button">구입</button>
+              <button id="moneySubmit" class="button" >구입</button>
             </div>
-
           </form>
           <div id="purchasedContainer" style="display: none">
             <div class="margin" style="margin-top: 36px; width: 100%"> </div>
             <div class="formTitle" id="purchasedLottoCount"></div>
-            <ul id="purchasedLottosContainer" class="scrollList"></dl>
+            <ul id="purchasedLottosContainer" class="scrollList hideScroll"></dl>
           </div>
-          <form  id="winningLottoAndBonusInputForm" style="display: none">
+          <div  id="winningLottoAndBonusInputContainer" style="display: none">
             <div id="winningLottoAndBonusInputTitle"></div>
             <div class="margin" style="margin-top: 20px; width: 100%"> </div>
             <div class="flexBetween">
-              <div id="winningLottoInputContainer" ></div>
-              <div id="bonusInputContainer" class="flexCol flexEnd"></div>
+              <form id="winningLottoInputForm" ></form>
+              <form id="bonusInputForm" class="flexCol flexEnd"></form>
             </div>
-            <button type="submit" id="checkResult" class="fullWidthButton positionBottom" >결과 확인하기</button>
-          </form>
+            <button id="checkResult" class="fullWidthButton positionBottom" >결과 확인하기</button>
+          </div>
         </main>
       </div>
       <div class="modalBackground" style="display: none">
