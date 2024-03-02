@@ -13,7 +13,9 @@ class Lotto {
   }
 
   static fromString(numberStrings) {
-    return new Lotto(numberStrings.map((numStr) => Number(numStr)));
+    return new Lotto(
+      numberStrings.split(',').map((numStr) => new LottoNumber.fromString(numStr).getNumber()),
+    );
   }
 
   getNumbers() {

@@ -1,4 +1,11 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import '../index.css';
+import PurchaseLottoListener from './webView/PurchaseLottoListener';
+import ResultModalListener from './webView/ResultModalListener';
+
+addClickListener('.purchase-form__button', PurchaseLottoListener.purchaseLotto);
+addClickListener('.result__button', ResultModalListener.resultButton);
+addClickListener('.result-modal-header__close-button', ResultModalListener.closeModal);
+
+function addClickListener(selector, listener) {
+  document.querySelector(selector).addEventListener('click', listener);
+}

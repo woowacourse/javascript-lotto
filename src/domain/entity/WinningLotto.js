@@ -13,8 +13,11 @@ class WinningLotto {
   }
 
   static fromString(winningNumbersString) {
-    const winningNumbers = winningNumbersString.split(',').map((num) => Number(num));
-    return new WinningLotto(winningNumbers);
+    return new WinningLotto(Lotto.fromString(winningNumbersString).getNumbers());
+    // this.#winningLottoNumberList = Lotto.fromString(winningNumbersString);
+    // return this;
+    // const winningNumbers = winningNumbersString.split(',').map((num) => Number(num));
+    // return new WinningLotto(winningNumbers);
   }
 
   getNumbers() {
@@ -35,8 +38,8 @@ class WinningLotto {
 
   #isSecondPrize(lottoNumbers) {
     return (
-      this.#getMatchLottoCount(lottoNumbers) === CONDITION.secondPrizeMatchCount &&
-      this.#getMatchBonusNumberCount(lottoNumbers) === CONDITION.secondPrizeMatchBonusCount
+      this.#getMatchLottoCount(lottoNumbers) === CONDITION.secondPrizeMatchCount
+      && this.#getMatchBonusNumberCount(lottoNumbers) === CONDITION.secondPrizeMatchBonusCount
     );
   }
 
