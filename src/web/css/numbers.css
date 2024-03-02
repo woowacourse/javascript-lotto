@@ -1,0 +1,60 @@
+@import './color.css';
+
+.winning-number-section {
+  margin-top: 10px;
+}
+
+.input-winning-bonus {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: left;
+  margin: 0px;
+}
+
+.number-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.number-margin {
+  margin-bottom: 10px;
+}
+
+.winning-number {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  text-align: center;
+}
+
+.bonus-number-box {
+  position: relative;
+}
+
+.bonus-number {
+  position: absolute;
+  right: 0;
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  text-align: center;
+}
+
+.check-result-btn {
+  width: 382px;
+  height: 36px;
+  padding: 6px, 6px, 6px, 8px;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--header-color);
+
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--font-color);
+}
