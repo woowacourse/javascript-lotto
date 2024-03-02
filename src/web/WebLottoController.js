@@ -2,6 +2,7 @@ import LottoMachine from '../domain/model/LottoMachine';
 import Money from '../domain/model/Money';
 import { errorAlert } from '../util/errorAlert';
 import { calculateROI } from '../domain/calculateStatistics';
+import LOTTO_RULE from '../constants/rules/lottoRule';
 
 class WebLottoController {
   #money;
@@ -47,6 +48,7 @@ class WebLottoController {
     const $numberInputs = document.getElementsByClassName('number-input');
 
     $numberInputs[0].focus();
+    let isFirstButtonClick = true;
 
     $numberForm.addEventListener('submit', event => {
       try {
@@ -55,10 +57,11 @@ class WebLottoController {
           return val.value;
         });
 
-        lottoMachine.winningLotto = value.slice(0, 6).join(',');
+        lottoMachine.winningLotto = value.slice(0, 6).join(LOTTO_RULE.NUMBER_DELIMITER);
         lottoMachine.bonusNumber = value[6];
 
-        this.openResultModal(lottoMachine);
+        this.openResultModal(lottoMachine, isFirstButtonClick);
+        isFirstButtonClick = false;
       } catch (err) {
         errorAlert(err);
       }
@@ -114,7 +117,7 @@ class WebLottoController {
     );
   }
 
-  openResultModal(lottoMachine) {
+  openResultModal(lottoMachine, isFirstButtonClick) {
     const $resultModal = document.getElementById('result-modal');
     const $lottoResultTbodyRank = document.getElementsByClassName('lotto-result-tbody-rank');
     const $resultModalRoi = document.getElementById('result-modal-roi');
@@ -123,16 +126,18 @@ class WebLottoController {
 
     const totalLottoRanks = lottoMachine.countLottoRanks();
 
-    Array.from($lottoResultTbodyRank)
-      .reverse() // 상수값에 순서가 반대로 들어가 있었습니다.
-      .forEach((rank, idx) => {
-        rank.insertAdjacentHTML('afterbegin', `${totalLottoRanks[idx][1]}개`);
-      });
+    if (isFirstButtonClick) {
+      Array.from($lottoResultTbodyRank)
+        .reverse() // constant와 출력 순서가 반대 (RANKS : FIRST{}, SECOND{} ...)
+        .forEach((rank, idx) => {
+          rank.insertAdjacentHTML('afterbegin', `${totalLottoRanks[idx][1]}개`);
+        });
 
-    $resultModalRoi.insertAdjacentHTML(
-      'afterbegin',
-      `당신의 총 수익률은 ${calculateROI(this.#money, totalLottoRanks)}%입니다`,
-    );
+      $resultModalRoi.insertAdjacentHTML(
+        'afterbegin',
+        `당신의 총 수익률은 ${calculateROI(this.#money, totalLottoRanks)}%입니다`,
+      );
+    }
 
     this.clickExitButtonHandler();
     this.clickRestartButtonHandler();
