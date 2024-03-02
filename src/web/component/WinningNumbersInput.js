@@ -2,9 +2,18 @@ import { $, $$ } from '../../util/domSelector';
 import { SETTING } from '../../constant/setting';
 
 class WinningNumbersInput extends HTMLElement {
+  #boundMethods;
+
+  constructor() {
+    super();
+    this.#boundMethods = {
+      handleWinningNumbers: this.#handleWinningNumbers.bind(this),
+    };
+  }
+
   connectedCallback() {
     this.#render();
-    $('winning-numbers-form').addEventListener('submitWinningNumbers', this.#handleWinningNumbers.bind(this));
+    $('winning-numbers-form').addEventListener('submitWinningNumbers', this.#boundMethods.handleWinningNumbers);
   }
 
   #createInputGroup() {

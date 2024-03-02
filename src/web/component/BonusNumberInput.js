@@ -2,9 +2,18 @@ import { $ } from '../../util/domSelector';
 import { SETTING } from '../../constant/setting';
 
 class BonusNumberInput extends HTMLElement {
+  #boundMethods;
+
+  constructor() {
+    super();
+    this.#boundMethods = {
+      handleBonusNumber: this.#handleBonusNumber.bind(this),
+    };
+  }
+
   connectedCallback() {
     this.#render();
-    $('winning-numbers-form').addEventListener('requestBonusNumber', this.#handleBonusNumber.bind(this));
+    $('winning-numbers-form').addEventListener('requestBonusNumber', this.#boundMethods.handleBonusNumber);
   }
 
   #handleBonusNumber() {

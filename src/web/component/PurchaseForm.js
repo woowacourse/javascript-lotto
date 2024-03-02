@@ -2,13 +2,22 @@ import { $ } from '../../util/domSelector';
 import Validator from '../../validator/Validator';
 
 class PurchaseForm extends HTMLElement {
+  #boundMethods;
+
+  constructor() {
+    super();
+    this.#boundMethods = {
+      handleSubmit: this.#handleSubmit.bind(this),
+    };
+  }
+
   connectedCallback() {
     this.#render();
     this.#setEvent();
   }
 
   #setEvent() {
-    $('#purchase-form-button').addEventListener('click', this.#handleSubmit.bind(this));
+    $('#purchase-form-button').addEventListener('click', this.#boundMethods.handleSubmit);
   }
 
   #handleSubmit() {
