@@ -26,7 +26,7 @@ export const ELEMENT_SELECTOR = {
   bonusNumberContainer: "bonus-number-input-container",
   bonusNumberInput: "bonus-number-input",
   modalBackground: "winning-result-modal-background",
-  modalCancelButton: "modal-cancel",
+  modalCancelButton: "modal-cancel-button",
   restartButton: "restart-button",
   winningResultContent: "winning-result-content",
   returnRateContainer: "return-rate-container",
