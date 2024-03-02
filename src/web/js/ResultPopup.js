@@ -1,57 +1,9 @@
-import LottoMatcher from '../../domain/LottoMatcher';
-import LottoCalculator from '../../domain/LottoCalculator';
-import WinningNumberValidator from '../../validators/WinningNumberValidator';
-import BonusNumberValidator from '../../validators/BonusNumberValidator';
 import { RANK } from '../../constants';
-import { $, $$ } from './utils/dom';
+import { $ } from './utils/dom';
 
 class ResultPopup {
-  constructor(lottoTicketArray) {
-    this.lottoTicketArray = lottoTicketArray;
-    $('.winning-bonus-number-form').addEventListener('submit', this.handleWinningInputForm.bind(this));
-  }
-
-  init() {
-    $$('.winning-number').forEach((element) => {
-      element.value = '';
-    });
-    $('.bonus-number').value = '';
-  }
-
-  handleWinningInputForm(event) {
-    event.preventDefault();
-
-    const winningNumbers = Array.from($$('.winning-number')).map((input) => Number(input.value));
-    const bonusNumber = Number($('.bonus-number').value);
-
-    this.handleErrorAndProcessInput(winningNumbers, bonusNumber);
-  }
-
-  handleErrorAndProcessInput(winningNumbers, bonusNumber) {
-    try {
-      this.validateWinningBonus(winningNumbers, bonusNumber);
-      const { lottoMatcher, totalProfit } = this.processWinningInput(winningNumbers, bonusNumber);
-      this.renderPopup(lottoMatcher.matchingResult, totalProfit);
-    } catch (error) {
-      alert(error.message);
-      this.init();
-    }
-  }
-
-  validateWinningBonus(winningNumbers, bonusNumber) {
-    WinningNumberValidator.validate(winningNumbers);
-    BonusNumberValidator.validate(bonusNumber, winningNumbers);
-  }
-
-  processWinningInput(winningNumbers, bonusNumber) {
-    const lottoMatcher = new LottoMatcher(winningNumbers, bonusNumber);
-    this.lottoTicketArray.forEach((lotto) => lottoMatcher.processMatches(lotto));
-
-    const totalProfit = LottoCalculator.getRateOfReturn(
-      this.lottoTicketArray.length * 1000,
-      lottoMatcher.matchingResult,
-    );
-    return { lottoMatcher, totalProfit };
+  constructor({ handleRestart }) {
+    this.handleRestart = handleRestart;
   }
 
   renderPopup(matchingResult, totalProfit) {
@@ -59,7 +11,7 @@ class ResultPopup {
     this.openPopup();
 
     $('.popup-close').addEventListener('click', this.closePopup.bind(this));
-    $('.restart-btn').addEventListener('click', this.restart.bind(this));
+    $('.restart-btn').addEventListener('click', this.handleRestart);
   }
 
   openPopup() {
@@ -70,11 +22,6 @@ class ResultPopup {
   closePopup() {
     $('.popup').style.display = 'none';
     $('.popup-open-back').style.display = 'none';
-  }
-
-  restart() {
-    this.closePopup();
-    // location.reload();
   }
 
   generatePopupTemplate(matchingResult, totalProfit) {
