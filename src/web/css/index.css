@@ -5,9 +5,9 @@
   --gray-scale-4: #8b8b8b;
   --gray-scale-5: #000000;
   --lotto-primary: #4e5ba6;
+  font-family: Roboto;
 }
 .lotto-title {
-  font-family: Roboto;
   font-size: 24px;
   font-weight: 800;
   line-height: 36px;
@@ -15,7 +15,6 @@
 }
 
 .lotto-subtitle {
-  font-family: Roboto;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
@@ -23,7 +22,6 @@
 }
 
 .lotto-body {
-  font-family: Roboto;
   font-size: 15px;
   font-weight: 400;
   line-height: 24px;
@@ -31,7 +29,6 @@
 }
 
 .lotto-placeholder {
-  font-family: Roboto;
   font-size: 15px;
   font-weight: 400;
   line-height: 24px;
@@ -40,7 +37,6 @@
 }
 
 .lotto-caption {
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 700;
   line-height: 16px;
@@ -161,7 +157,7 @@ input[type='text'] {
   text-align: center;
 }
 
-#purchase-button {
+.lotto-compact-button {
   color: var(--gray-scale-1);
   background-color: var(--lotto-primary);
   border-radius: 4px;
@@ -196,7 +192,7 @@ li {
   padding: 0;
 }
 
-#result-button {
+.lotto-stretch-button {
   align-self: center;
   width: 100%;
   height: 36px;
