@@ -16,15 +16,6 @@ const outputView = {
 
   // TODO: 리팩터링 필요
   printWinningLottoAndBonusInputForm() {
-    $("#mainWrapper").innerHTML += `<div  id="winningLottoAndBonusInputContainer" style="display: none">
-    <div id="winningLottoAndBonusInputTitle"></div>
-    <div class="margin" style="margin-top: 20px; width: 100%"> </div>
-    <div class="flexBetween">
-      <form id="winningLottoInputForm" ></form>
-      <form id="bonusInputForm" class="flexCol flexEnd"></form>
-    </div>
-    <button id="checkResult" class="fullWidthButton positionBottom" >결과 확인하기</button>
-  </div>`;
     $("#winningLottoAndBonusInputContainer").style.display = "block";
     $(
       "#winningLottoAndBonusInputTitle"
@@ -57,11 +48,16 @@ const outputView = {
   },
 
   resetToStart() {
+    this.usableMoneyInput();
     // TODO: 모든 폼을 가져와서 리셋하도록 수정
     // 동적으로 추가한 돔, 원래 있던 돔 | 돔을 삭제하느냐, 아예 폼을 리셋하느냐
     $("#moneyInputForm").reset();
     $("#purchasedContainer").style.display = "none";
-    $("#winningLottoAndBonusInputContainer").remove();
+    $("#winningLottoAndBonusInputContainer").style.display = "none";
+
+    const $checkResult = $("#checkResult");
+    $checkResult.classList.remove("disabledButton");
+    $checkResult.disabled = false;
   },
 
   removeRandomLottosAndWinningForm() {
@@ -70,8 +66,43 @@ const outputView = {
     $("#winningLottoAndBonusInputForm").style.display = "none";
   },
 
-  resetTargetForm(targetForm) {
-    $(targetForm).reset();
+  blockMoneyInput() {
+    const $moneyInput = $("#moneyInput");
+    const $moneySubmit = $("#moneySubmit");
+
+    $moneyInput.classList.add("disabledInput");
+    $moneySubmit.classList.add("disabledButton");
+
+    $moneyInput.disabled = true;
+    $moneySubmit.disabled = true;
+  },
+
+  usableMoneyInput() {
+    const $moneyInput = $("#moneyInput");
+    const $moneySubmit = $("#moneySubmit");
+
+    $moneyInput.classList.remove("disabledInput");
+    $moneySubmit.classList.remove("disabledButton");
+
+    $moneyInput.disabled = false;
+    $moneySubmit.disabled = false;
+  },
+
+  blockWinningLottoAndBonusInput() {
+    const $winningLottoInputs = new Array(LOTTO.count).fill().map((_, i) => $(`#winningLotto-${i + 1}`));
+    const $bonusNumberInput = $("#bonusInput");
+    const $checkResult = $("#checkResult");
+
+    $winningLottoInputs.forEach(($input) => {
+      $input.classList.add("disabledInput");
+      $input.disabled = true;
+    });
+
+    $bonusNumberInput.classList.add("disabledInput");
+    $bonusNumberInput.disabled = true;
+
+    $checkResult.classList.add("disabledButton");
+    $checkResult.disabled = true;
   },
 };
 
