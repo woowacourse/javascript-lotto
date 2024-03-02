@@ -27,6 +27,7 @@
     "no-await-in-loop": "off",
     "no-constant-condition": "off",
     "max-lines-per-function": ["error", 10],
+    "max-depth": ["error", 1],
     "no-console": "off",
     "class-methods-use-this": "off",
     "lines-between-class-members": [

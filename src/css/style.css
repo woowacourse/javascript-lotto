@@ -1,0 +1,36 @@
+@import url("./index.css");
+@import url("./purchase.css");
+@import url("./lottoList.css");
+@import url("./winningLotto.css");
+@import url("./dialog.css");
+
+:root {
+  --lotto-primary-color: #4e5ba6;
+  --lotto-active-color: #3f4d9a;
+  --greyscale-1-color: #ffffff;
+  --greyscale-2-color: #fcfcfd;
+  --greyscale-3-color: #b4b4b4;
+  --greyscale-4-color: #8b8b8b;
+  --greyscale-5-color: #000000;
+
+  --title-text-size: 24px;
+  --subtitle-text-size: 20px;
+  --body-text-size: 15px;
+  --placeholder-text-size: 15px;
+  --button-text-size: 14px;
+
+  --title-font-weight: 800;
+  --subtitle-font-weight: 700;
+  --body-font-weight: 400;
+  --placeholder-font-weight: 400;
+  --button-font-weight: 700;
+
+  --border-radius: 4px;
+  --border-color: rgba(0, 0, 0, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

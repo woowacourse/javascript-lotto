@@ -1,0 +1,67 @@
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 500px;
+  padding: 20px;
+  background-color: var(--greyscale-2-color);
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.dialog-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.result-dialog__close-button {
+  position: absolute;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.result-dialog__body {
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.result-dialog__profit {
+  display: flex;
+  justify-content: center;
+  font-size: var(--body-text-size);
+  font-weight: var(--subtitle-font-weight);
+}
+
+.result-dialog__retry-button {
+  width: 100%;
+  height: 36px;
+  background-color: var(--lotto-primary-color);
+  border: none;
+  color: var(--greyscale-1-color);
+  border-radius: var(--border-radius);
+  padding: 6px, 6px, 6px, 8px;
+}
+
+.result-dialog__retry-button:hover,
+.result-dialog__retry-button:active {
+  background-color: var(--lotto-active-color);
+}

@@ -20,9 +20,7 @@ class LottoGameController {
   async start() {
     await this.play();
     const restart = await this.#inputView.inputRestartGame();
-    if (restart === RETRY_INPUT.lower || restart === RETRY_INPUT.upper) {
-      this.start();
-    }
+    if (restart.toLowerCase() === RETRY_INPUT) this.start();
   }
 
   async play() {
@@ -85,7 +83,7 @@ class LottoGameController {
     const bonusNumber = await this.#inputView.inputBonusNumber();
     bonusNumberValidator(winningLotto.getNumbers(), Number(bonusNumber));
 
-    return WinningLotto(winningLotto, bonusNumber);
+    return WinningLotto(winningLotto, Number(bonusNumber));
   }
 
   #getGameResult(lottoList, winningLotto) {
