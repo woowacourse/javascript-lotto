@@ -1,20 +1,30 @@
 import { $ } from '../../util/domSelector';
 import Lotto from '../../domain/Lotto';
 import LottoMachine from '../../service/LottoMachine';
+import WinningResultService from '../../service/WinningResultService';
 
 class LottoGameApp extends HTMLElement {
   #lottos;
 
   connectedCallback() {
     this.#render();
-    $('purchase-form').addEventListener('purchaseLotto', this.#handleCustomEvent.bind(this));
+    $('purchase-form').addEventListener('purchaseLotto', this.#handlePurchaseLotto.bind(this));
+    $('winning-numbers-form').addEventListener('winningCriteria', this.#handleWinningResult.bind(this));
   }
 
-  #handleCustomEvent(event) {
+  #handlePurchaseLotto(event) {
     const { purchaseAmount } = event.detail;
     const lottoList = new LottoMachine(purchaseAmount).getLottoNumbersList();
     this.#lottos = lottoList.map((lotto) => new Lotto(lotto));
     this.dispatchEvent(new CustomEvent('purchaseResult', { detail: { lottoList } }));
+  }
+
+  #handleWinningResult(event) {
+    const { winningNumbers, bonusNumber } = event.detail;
+    const winningResultService = new WinningResultService([...this.#lottos], { winningNumbers, bonusNumber });
+    const winningResult = winningResultService.getWinningResult();
+    const profitRate = winningResultService.getProfitRate();
+    this.dispatchEvent(new CustomEvent('winningResult', { detail: { winningResult, profitRate } }));
   }
 
   #render() {
@@ -28,6 +38,7 @@ class LottoGameApp extends HTMLElement {
           <winning-numbers-form></winning-numbers-form>
         </div>
       </main>
+      <result-modal></result-modal>
       <lotto-footer></lotto-footer>
     `;
   }

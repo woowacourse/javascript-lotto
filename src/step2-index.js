@@ -13,3 +13,4 @@ import './web/component/PurchaseResult';
 import './web/component/WinningNumbersForm';
 import './web/component/WinningNumbersInput';
 import './web/component/BonusNumberInput';
+import './web/component/ResultModal';
