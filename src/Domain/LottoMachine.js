@@ -1,35 +1,22 @@
-import LOTTO_SETTING from '../Constants/lottoSetting';
-import ERROR_MESSAGE from '../Constants/Messages/errorMessage';
-import generateRandomNumberFromRange from '../Utils/generateRandomNumberFromRange';
-import RewardGenerator from './RewardGenerator';
-import AppError from '../Error/AppError';
-import Lotto from './Lotto';
-import LOTTO_REWARD from '../Constants/lottoReward';
+import LOTTO_SETTING from '../Constants/lottoSetting.js';
+import generateRandomNumberFromRange from '../Utils/generateRandomNumberFromRange.js';
+import RewardGenerator from './RewardGenerator.js';
+import Lotto from './Lotto.js';
+import LOTTO_REWARD from '../Constants/lottoReward.js';
 
 export default class LottoMachine {
-  #money;
-
   #totalPrize = 0;
 
   #boughtLottos;
 
   #rewardGenerator;
 
-  constructor(money) {
+  constructor() {
     this.#rewardGenerator = new RewardGenerator();
-    this.#money = money;
-    this.#validateMoney();
-    this.#makeLottoByMoney();
   }
 
-  #validateMoney() {
-    if (this.#money < LOTTO_SETTING.MIN_PRICE) {
-      throw new AppError(ERROR_MESSAGE.INVALID_MIN_MONEY);
-    }
-  }
-
-  #makeLottoByMoney() {
-    const totalBoughtLottoCount = Math.floor(this.#money / LOTTO_SETTING.MIN_PRICE);
+  makeLottoByMoney(money) {
+    const totalBoughtLottoCount = Math.floor(money / LOTTO_SETTING.MIN_PRICE);
 
     this.#boughtLottos = Array.from({ length: totalBoughtLottoCount }, () => {
       const newLotto = this.#makeNewLotto();
@@ -62,7 +49,7 @@ export default class LottoMachine {
       this.#rewardGenerator.calculateRewardRank(lottoNumber, totalWinningLottoInfo);
     });
 
-    const totalRewardResult = this.#rewardGenerator.getTotalRewardResult();
+    const totalRewardResult = this.#rewardGenerator.getTotalRewardResult().sort((a, b) => b.rank - a.rank);
 
     this.#calculateTotalPrize(totalRewardResult);
 
@@ -77,7 +64,7 @@ export default class LottoMachine {
     });
   }
 
-  getRateOfIncome() {
-    return Number(((this.#totalPrize / this.#money) * 100).toFixed(1)).toLocaleString();
+  getRateOfIncome(money) {
+    return Number(((this.#totalPrize / money) * 100).toFixed(1)).toLocaleString();
   }
 }

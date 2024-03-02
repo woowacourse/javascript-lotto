@@ -1,0 +1,67 @@
+.winning-lotto-form-container {
+  width: 100%;
+}
+
+.winning-lotto-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-lotto-form-banner-text {
+  margin: 10px 0;
+}
+
+.winning-lotto-label {
+  margin-bottom: 10px;
+}
+
+.winning-lotto-numbers-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.winning-lotto-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-lotto-input-container {
+  margin-top: 10px;
+}
+
+.winning-lotto-input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid rgba(180, 180, 180, 1);
+}
+
+.bonus-number-container {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bonus-number {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bonus-number-input-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.result-button-container {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.result-button {
+  width: 100%;
+  padding: 6px 6px 6px 8px;
+  height: 36px;
+}

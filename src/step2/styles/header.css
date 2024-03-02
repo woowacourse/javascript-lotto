@@ -1,0 +1,27 @@
+.main-header {
+  width: 100vw;
+  max-height: 64px;
+  height: auto;
+  background: var(--main-color);
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.main-header-container {
+  width: 30%;
+  text-align: center;
+}
+
+.main-header-logo {
+  color: #fff;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  font-family: 'Roboto', sans-serif;
+  white-space: nowrap;
+}

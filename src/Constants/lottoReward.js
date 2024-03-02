@@ -1,4 +1,4 @@
-import deepFreeze from '../Utils/deepFreeze';
+import deepFreeze from '../Utils/deepFreeze.js';
 
 const LOTTO_REWARD = deepFreeze({
   1: {

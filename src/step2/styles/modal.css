@@ -1,0 +1,58 @@
+.modal-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-open {
+  display: flex;
+}
+
+.modal-container {
+  width: 350px;
+  height: 500px;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-statistics-result-banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.result-banner-text {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.close-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+}
+
+.close-button {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
