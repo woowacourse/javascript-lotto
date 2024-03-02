@@ -6,4 +6,4 @@
 import './web/css/index.css';
 import './web/css/reset.css';
 
-import './controller/lottoWebGameController';
+import './controller/lottoWebGameController.js';
