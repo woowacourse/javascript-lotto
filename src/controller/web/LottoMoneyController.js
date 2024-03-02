@@ -42,7 +42,6 @@ class LottoMoneyController {
     MyLottoInfoView.renderSection();
     MyLottoInfoView.renderLottosCount(lottosNumbers.length);
     MyLottoInfoView.renderLottosNumbers(lottosNumbers);
-    $('.number-input').focus();
   }
 }
 

@@ -2,7 +2,7 @@ import { $, $$ } from '../../util/domSelector';
 import LottoMoneyController from './LottoMoneyController';
 import WinLottoController from './WinLottoController';
 import LottoResultModalController from './LottoResultModalController';
-import { resetElementValue } from '../../util/view';
+import { renderError, resetElementValue } from '../../util/view';
 import WinLottoView from '../../view/web/WinLottoView';
 import MyLottoInfoView from '../../view/web/MyLottoInfoView';
 import LottoResultModalView from '../../view/web/LottoResultModalView';
@@ -17,16 +17,19 @@ class LottoMainController {
   }
 
   play() {
+    WinLottoView.renderNumbersInputs();
+    this.bindEvents();
+  }
+
+  bindEvents() {
     $('#money-form').addEventListener('submit', (e) => {
       e.preventDefault();
       this.submitMoneyForm($('#money-input').value);
     });
-
     $('#winning-lotto-form').addEventListener('submit', (e) => {
       e.preventDefault();
       this.submitWinLotto();
     });
-
     $('#lotto-game-restart-button').addEventListener('click', () => {
       this.restartLotto();
     });
@@ -39,16 +42,18 @@ class LottoMainController {
       this.lottos = lottos;
       this.lottoMoneyController.showLottosInfo(lottosNumbers);
     }
-
     resetElementValue($('#money-input'));
     WinLottoView.resetWinningLottoNumbers();
   }
 
   submitWinLotto() {
-    checkInputEmpty([...$$('.number-input')], $('#win-lotto-error'));
+    try {
+      checkInputEmpty([...$$('.number-input')]);
+    } catch ({ message }) {
+      return renderError($('#win-lotto-error'), message);
+    }
     const [winNumbers, bonusNumber] = this.winLottoController.seperateLottoNumbers();
     const winLotto = this.winLottoController.makeWinLotto(winNumbers, bonusNumber);
-
     this.lottoResultModalController.showWinResults(this.lottos, winLotto);
   }
 

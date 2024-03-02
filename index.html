@@ -1,93 +1,86 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/css/index.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./src/css/index.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=IBM+Plex+Sans+KR&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=IBM+Plex+Sans+KR&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet"
     />
-  </head>
+</head>
 
-  <body>
-    <div id="app">
-      <header>
+<body>
+<div id="app">
+    <header>
         <h1 class="title">🎱 행운의 로또</h1>
-      </header>
-      <main class="flexCenter">
+    </header>
+    <main class="flexCenter">
         <div id="main-lotto-card">
-          <div class="flexCenter" id="my-lottos-win-title">
-            <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
-          </div>
-          <!--로또 구입 금액 입력-->
-          <section id="lotto-money-form-section" class="flexCenter">
-            <p>구입할 금액을 입력해주세요.</p>
-            <div id="money-input-box">
-              <form id="money-form">
-                <input id="money-input" placeholder="금액" type="number" />
-                <button class="primary-button caption" id="money-button">구입</button>
-              </form>
-              <span class="error hidden" id="money-error"></span>
+            <div class="flexCenter" id="my-lottos-win-title">
+                <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
             </div>
-          </section>
-          <!--구입한 내 로또 정보-->
-          <section id="my-lottos-section" class="hidden">
-            <p id="my-lottos-count"></p>
-            <ul id="my-lottos-list"></ul>
-          </section>
-          <!--당첨 로또 정보 입력-->
-          <section id="winning-lotto-section" class="hidden">
-            <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
-            <form id="winning-lotto-form">
-              <div id="winning-lotto-inputs">
-                <div id="winning-numbers">
-                  <label>당첨 번호</label>
-                  <div id="winning-numbers-inputs">
-                    <input class="number-input" type="number" />
-                    <input class="number-input" type="number" />
-                    <input class="number-input" type="number" />
-                    <input class="number-input" type="number" />
-                    <input class="number-input" type="number" />
-                    <input class="number-input" type="number" />
-                  </div>
+            <!--로또 구입 금액 입력-->
+            <section id="lotto-money-form-section" class="flexCenter">
+                <p>구입할 금액을 입력해주세요.</p>
+                <div id="money-input-box">
+                    <form id="money-form">
+                        <input id="money-input" placeholder="금액" type="number"/>
+                        <button class="primary-button caption" id="money-button">구입</button>
+                    </form>
+                    <span class="error hidden" id="money-error"></span>
                 </div>
-                <div id="bonus-number">
-                  <label>보너스 번호</label>
-                  <input class="number-input" type="number" />
-                </div>
-              </div>
-              <span class="error hidden" id="win-lotto-error"></span>
-              <button id="result-show-button" class="caption primary-button">결과 확인하기</button>
-            </form>
-          </section>
+            </section>
+            <!--구입한 내 로또 정보-->
+            <section id="my-lottos-section" class="hidden">
+                <p id="my-lottos-count"></p>
+                <ul id="my-lottos-list"></ul>
+            </section>
+            <!--당첨 로또 정보 입력-->
+            <section id="winning-lotto-section" class="hidden">
+                <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+                <form id="winning-lotto-form">
+                    <div id="winning-lotto-inputs">
+                        <div id="winning-numbers">
+                            <label>당첨 번호</label>
+                            <div id="winning-numbers-inputs">
+                            </div>
+                        </div>
+                        <div id="bonus-number">
+                            <label>보너스 번호</label>
+                        </div>
+                    </div>
+                    <span class="error hidden" id="win-lotto-error"></span>
+                    <button id="result-show-button" class="caption primary-button">결과 확인하기</button>
+                </form>
+            </section>
         </div>
-      </main>
-      <!--로또 당첨 통계 모달-->
-      <section id="winning-statistics-modal" class="hidden">
+    </main>
+    <!--로또 당첨 통계 모달-->
+    <section id="winning-statistics-modal" class="hidden">
         <div class="modal-background">
-          <div id="winning-statistics">
-            <button id="close-modal-button">x</button>
-            <h2 class="title">🏆 당첨 통계 🏆</h2>
-            <table id="winning-statistics-table">
-              <tr>
-                <th>일치 갯수</th>
-                <th>당첨금</th>
-                <th>당첨 갯수</th>
-              </tr>
-            </table>
-            <div id="lotto-return-ratio"></div>
-            <button id="lotto-game-restart-button" class="caption primary-button">다시 시작하기</button>
-          </div>
+            <div id="winning-statistics">
+                <button id="close-modal-button">x</button>
+                <h2 class="title">🏆 당첨 통계 🏆</h2>
+                <table id="winning-statistics-table">
+                    <tr>
+                        <th>일치 갯수</th>
+                        <th>당첨금</th>
+                        <th>당첨 갯수</th>
+                    </tr>
+                </table>
+                <div id="lotto-return-ratio"></div>
+                <button id="lotto-game-restart-button" class="caption primary-button">다시 시작하기</button>
+            </div>
         </div>
-      </section>
-      <footer class="flexCenter">
+    </section>
+    <footer class="flexCenter">
         <div class="caption">Copyright 2023. woowacourse</div>
-      </footer>
-    </div>
-    <script type="module" src="./src/step2-index.js"></script>
-  </body>
+    </footer>
+</div>
+<script type="module" src="./src/step2-index.js"></script>
+</body>
 </html>
