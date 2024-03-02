@@ -10,9 +10,9 @@ npm run start-step1
 npm run start-step2
 ```
 
-배포 링크 : [클릭](https://skiende74.github.io/javascript-lotto/dist/)
+**배포 링크 : [클릭](https://skiende74.github.io/javascript-lotto/dist/)**
 
-감사합니다 !
+**감사합니다 !**
 
 ![스크린샷](image.png)
 
@@ -42,7 +42,7 @@ npm run start-step2
 - InputView : 입력 담당. 무한 재입력도 담당
 - OutputView : 출력 담당.
 
-여기까지는 STEP1
+--여기까지는 STEP1--
 
 #### webView : web입출력을 위한 컴포넌트 ( STEP 2에서 추가된부분 )
 
