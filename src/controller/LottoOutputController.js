@@ -21,6 +21,7 @@ class LottoOutputController {
     const rankCounts = lottoResult.getRankCounts();
     const getProfitRate = lottoResult.getProfitRate();
 
+    this.#outputView.printLottoResultIntro();
     this.#outputView.printLottoResult(rankCounts, getProfitRate);
   }
 

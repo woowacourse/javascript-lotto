@@ -1,6 +1,4 @@
 import LottoResultMaker from "../domain/LottoResultMaker.js";
-import InputView from "../view/InputVIew.js";
-import OutputView from "../view/OutputView.js";
 import LottoInputController from "./LottoInputController.js";
 import LottoOutputController from "./LottoOutputController.js";
 
@@ -9,7 +7,7 @@ class LottoMainController {
 
   #inputController;
 
-  constructor(outputView = OutputView, inputView = InputView) {
+  constructor(outputView, inputView) {
     this.#outputController = new LottoOutputController(outputView);
     this.#inputController = new LottoInputController(inputView, outputView);
   }
