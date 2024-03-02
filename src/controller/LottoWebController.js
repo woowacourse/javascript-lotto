@@ -3,7 +3,7 @@ import LottoCalculator from '../domain/LottoCalculator';
 import LottoProcess from '../domain/LottoProcess';
 import LottoPublisher from '../domain/LottoPublisher';
 import { $, $$ } from '../util/domSelector';
-import { renderError } from '../util/view';
+import { hideElement, hideError, renderError } from '../util/view';
 import LottoValidation from '../validation/lottoValidation';
 import MoneyValidation from '../validation/moneyValidation';
 import ModalOutputView from '../view/web/ModalOutputView';
@@ -38,9 +38,13 @@ class LottoWebController {
       ModalOutputView.resetModal();
     });
 
-    [...document.getElementsByTagName('input')].forEach((input) => {
+    $('#money-input').addEventListener('input', () => {
+      hideElement($('#money-erorr'));
+    });
+
+    [...$$('.number-input')].forEach((input) => {
       input.addEventListener('input', () => {
-        WebInputView.hiddenInputsErrors();
+        hideElement($('#win-lotto-error'));
       });
     });
   }
