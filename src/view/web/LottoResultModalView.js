@@ -3,7 +3,7 @@ import WINNER from '../../constants/winner';
 import { $, $$ } from '../../util/domSelector';
 import { hideElement, renderElement } from '../../util/view';
 
-const ModalOutputView = {
+const LottoResultModalView = {
   renderSection() {
     renderElement($('#winning-statistics-modal'));
   },
@@ -48,4 +48,4 @@ const ModalOutputView = {
   },
 };
 
-export default ModalOutputView;
+export default LottoResultModalView;

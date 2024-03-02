@@ -12,3 +12,22 @@ export const hideElement = (el) => {
 export const renderElement = (el) => {
   el.classList.remove('hidden');
 };
+
+export const resetElementValue = (el) => {
+  el.value = '';
+};
+
+export const focusElement = (el) => {
+  el.focus();
+};
+
+// resetMoneyInput() {
+//   $('#money-input').value = '';
+// },
+// focusMoneyInput() {
+//   $('#money-input').focus();
+// },
+// resetWinningLottoNumbers() {
+//   $$('.number-input').forEach((input) => (input.value = ''));
+//   $('.number-input').focus();
+// },

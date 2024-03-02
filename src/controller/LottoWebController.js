@@ -3,12 +3,12 @@ import LottoCalculator from '../domain/LottoCalculator';
 import LottoProcess from '../domain/LottoProcess';
 import LottoPublisher from '../domain/LottoPublisher';
 import { $, $$ } from '../util/domSelector';
-import { hideElement, hideError, renderError } from '../util/view';
+import { focusElement, hideElement, renderError, resetElementValue } from '../util/view';
 import LottoValidation from '../validation/lottoValidation';
 import MoneyValidation from '../validation/moneyValidation';
-import ModalOutputView from '../view/web/ModalOutputView';
-import MyLottoOutputView from '../view/web/MyLottoOutputView';
-import WebInputView from '../view/web/WebInputView';
+import LottoResultModalView from '../view/web/lottoResultModalView';
+import MyLottoInfoView from '../view/web/MyLottoInfoView';
+import WinLottoView from '../view/web/WinLottoView';
 
 class LottoWebController {
   constructor() {
@@ -31,15 +31,15 @@ class LottoWebController {
     });
 
     $('.modal-background').addEventListener('click', () => {
-      ModalOutputView.resetModal();
+      LottoResultModalView.resetModal();
     });
 
     $('#close-modal-button').addEventListener('click', () => {
-      ModalOutputView.resetModal();
+      LottoResultModalView.resetModal();
     });
 
     $('#money-input').addEventListener('input', () => {
-      if ($('#money-erorr')) hideElement($('#money-erorr'));
+      if ($('#money-error')) hideElement($('#money-error'));
     });
 
     [...$$('.number-input')].forEach((input) => {
@@ -51,13 +51,14 @@ class LottoWebController {
 
   /*로또 구입 금액 제출 섹션*/
   validateMoney(money) {
+    const moneyInput = $('#money-input');
     try {
       MoneyValidation.validate(money);
       return money;
     } catch ({ message }) {
-      WebInputView.focusMoneyInput();
-      WebInputView.resetMoneyInput();
-      MyLottoOutputView.hideSection();
+      focusElement(moneyInput);
+      resetElementValue(moneyInput);
+      MyLottoInfoView.hideSection();
       renderError($('#money-error'), message);
     }
   }
@@ -79,15 +80,15 @@ class LottoWebController {
       const lottosNumbers = this.convertMoneyToLotto(validMoney);
       this.showLottosInfo(lottosNumbers);
     }
-    WebInputView.resetMoneyInput();
-    WebInputView.resetWinningLottoNumbers();
+    resetElementValue($('money-input'));
+    WinLottoView.resetWinningLottoNumbers();
   }
 
   /*구입한 로또 정보 섹션*/
   showLottosInfo(lottosNumbers) {
-    MyLottoOutputView.renderSection();
-    MyLottoOutputView.renderLottosCount(lottosNumbers.length);
-    MyLottoOutputView.renderLottosNumbers(lottosNumbers);
+    MyLottoInfoView.renderSection();
+    MyLottoInfoView.renderLottosCount(lottosNumbers.length);
+    MyLottoInfoView.renderLottosNumbers(lottosNumbers);
     $('.number-input').focus();
   }
 
@@ -142,25 +143,26 @@ class LottoWebController {
     this.showWinStatisticTable(winResult);
     const rateOfRevenue = this.makeRateOfRevenue(winResult, this.lottos.length);
     this.showRateOfReturn(rateOfRevenue);
-    ModalOutputView.renderSection();
+    LottoResultModalView.renderSection();
   }
 
   showWinStatisticTable(winResult) {
-    ModalOutputView.renderSection();
-    ModalOutputView.renderWinResultTable(winResult);
+    LottoResultModalView.renderSection();
+    LottoResultModalView.renderWinResultTable(winResult);
   }
 
   showRateOfReturn(rateOfRevenue) {
-    ModalOutputView.renderReturnOfRatio(rateOfRevenue);
+    LottoResultModalView.renderReturnOfRatio(rateOfRevenue);
   }
 
   restartLotto() {
     this.lottos = [];
-    MyLottoOutputView.hideSection();
-    ModalOutputView.hideSection();
-    MyLottoOutputView.deleteLottoInfo();
-    ModalOutputView.deleteModalInfo();
+    MyLottoInfoView.hideSection();
+    LottoResultModalView.hideSection();
+    MyLottoInfoView.deleteLottoInfo();
+    LottoResultModalView.deleteModalInfo();
     $('#money-input').focus();
   }
 }
+
 export default LottoWebController;

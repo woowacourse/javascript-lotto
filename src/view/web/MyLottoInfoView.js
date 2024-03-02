@@ -1,7 +1,7 @@
 import { $ } from '../../util/domSelector';
 import { hideElement, renderElement } from '../../util/view';
 
-const MyLottoOutputView = {
+const MyLottoInfoView = {
   renderSection() {
     renderElement($('#my-lottos-section'));
     renderElement($('#winning-lotto-section'));
@@ -30,4 +30,4 @@ const MyLottoOutputView = {
   },
 };
 
-export default MyLottoOutputView;
+export default MyLottoInfoView;
