@@ -1,4 +1,4 @@
-import { $ } from '../../util/domSelector';
+import { $ } from '../util/domSelector';
 import Validator from '../../validator/Validator';
 
 class PurchaseForm extends HTMLElement {

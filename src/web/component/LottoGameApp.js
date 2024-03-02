@@ -1,4 +1,4 @@
-import { $ } from '../../util/domSelector';
+import { $ } from '../util/domSelector';
 import Lotto from '../../domain/Lotto';
 import LottoMachine from '../../service/LottoMachine';
 import WinningResultService from '../../service/WinningResultService';

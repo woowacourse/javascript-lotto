@@ -1,4 +1,4 @@
-import { $ } from '../../util/domSelector';
+import { $ } from '../util/domSelector';
 
 class PurchaseResult extends HTMLElement {
   #boundMethods;

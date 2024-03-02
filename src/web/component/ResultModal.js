@@ -1,4 +1,4 @@
-import { $ } from '../../util/domSelector';
+import { $ } from '../util/domSelector';
 import { RANKING } from '../../constant/setting';
 
 class ResultModal extends HTMLElement {
