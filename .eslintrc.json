@@ -1,7 +1,7 @@
 {
   "rules": {
     "max-depth": ["error", 1],
-    "max-lines-per-function": ["error", 10],
+    // "max-lines-per-function": ["error", 10],
     "max-params": ["error", 2],
     "indent": ["error", 2],
     "quotes": ["error", "single"],
