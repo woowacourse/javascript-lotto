@@ -1,8 +1,15 @@
 import PurchaseAmountValidator from '../../validators/PurchaseAmountValidator';
 import LottoContainer from './LottoContainer';
+import WinningNumberForm from './WinningNumberForm';
 import { $ } from './utils/dom';
 
 class App {
+  constructor() {
+    this.winningNumberForm = new WinningNumberForm({
+      $target: $('.winning-number-section'),
+    });
+  }
+
   start() {
     this.submitAmountInputForm();
   }
@@ -26,6 +33,9 @@ class App {
       alert(error.message);
       return;
     }
+
+    this.winningNumberForm.openWinningNumberForm();
+    $('.purchase-amount').value = '';
   }
 }
 
