@@ -2,13 +2,27 @@ import { $, $$ } from '../../util/domSelector';
 import Validator from '../../validator/Validator';
 
 class WinningNumbersForm extends HTMLElement {
+  #boundMethods;
+
+  constructor() {
+    super();
+    this.#boundMethods = {
+      handlePurchaseResult: this.#handlePurchaseResult.bind(this),
+      handleSubmit: this.#handleSubmit.bind(this),
+    };
+  }
+
   connectedCallback() {
-    $('lotto-game-app').addEventListener('purchaseResult', this.#handlePurchaseResult.bind(this));
+    $('lotto-game-app').addEventListener('purchaseResult', this.#boundMethods.handlePurchaseResult);
+  }
+
+  disconnectedCallback() {
+    $('lotto-game-app').removeEventListener('purchaseResult', this.#boundMethods.handlePurchaseResult);
   }
 
   #handlePurchaseResult() {
     this.#render();
-    $('#winning-numbers-submit', this).addEventListener('click', this.#handleSubmit.bind(this));
+    $('#winning-numbers-submit', this).addEventListener('click', this.#boundMethods.handleSubmit);
   }
 
   #handleSubmit() {

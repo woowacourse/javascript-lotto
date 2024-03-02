@@ -1,8 +1,27 @@
 import { $ } from '../../util/domSelector';
 
 class PurchaseResult extends HTMLElement {
+  #boundMethods;
+
+  constructor() {
+    super();
+    this.#boundMethods = {
+      handlePurchaseResult: this.#handlePurchaseResult.bind(this),
+    };
+  }
+
   connectedCallback() {
-    $('lotto-game-app').addEventListener('purchaseResult', this.#handlePurchaseResult.bind(this));
+    $('lotto-game-app').addEventListener('purchaseResult', this.#boundMethods.handlePurchaseResult);
+  }
+
+  disconnectedCallback() {
+    $('lotto-game-app').removeEventListener('purchaseResult', this.#boundMethods.handlePurchaseResult);
+  }
+
+  #handlePurchaseResult(event) {
+    const { lottoList } = event.detail;
+    const lottoListItems = lottoList.map((lotto) => `<li>${lotto.join(', ')}</li>`);
+    this.#render(lottoListItems);
   }
 
   #render(lottoListItems) {
@@ -14,12 +33,6 @@ class PurchaseResult extends HTMLElement {
         </ul>
       </section>
     `;
-  }
-
-  #handlePurchaseResult(event) {
-    const { lottoList } = event.detail;
-    const lottoListItems = lottoList.map((lotto) => `<li>${lotto.join(', ')}</li>`);
-    this.#render(lottoListItems);
   }
 }
 
