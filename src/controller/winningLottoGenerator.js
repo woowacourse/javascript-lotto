@@ -12,18 +12,6 @@ class WinningLottoGenerator {
     this.#isWeb = isWeb;
   }
 
-  // async createWinningLotto() {
-  //   const winningLottoNumbers = await executeOrRetryAsync({
-  //     asyncFn: () => this.#readAndValidateWinningLottoNumbers(),
-  //     handleError: this.#isWeb ? alert : console.log,
-  //   });
-  //   const bonusNumber = await executeOrRetryAsync({
-  //     asyncFn: () => this.#readAndValidateBonusNumber(winningLottoNumbers),
-  //     handleError: this.#isWeb ? alert : console.log,
-  //   });
-  //   return { winningLottoNumbers, bonusNumber };
-  // }
-
   async createWinningLotto() {
     if (this.#isWeb) {
       return this.#createWinningLottoForWeb();

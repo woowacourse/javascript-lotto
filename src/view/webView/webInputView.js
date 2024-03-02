@@ -6,7 +6,6 @@ const webInputView = {
 
   readBonusNumber: () => {
     const bonusNumberInput = document.querySelector('#bonus-number input');
-    console.log('bonusNumberInput', bonusNumberInput.value);
     return bonusNumberInput.value;
   },
 };

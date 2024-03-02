@@ -1,11 +1,11 @@
-import lottoMachine from '../domain/lottoMachine';
-import webOutputView from '../view/webView/webOutputView';
-import webInputView from '../view/webView/webInputView';
-import WinningLottoGenerator from './winningLottoGenerator';
-import LottoResultCalculator from '../domain/lottoResultCalculator';
-import { LOTTO_PRICE } from '../constants/lotto-constants';
+import lottoMachine from '../domain/lottoMachine.js';
+import webOutputView from '../view/webView/webOutputView.js';
+import webInputView from '../view/webView/webInputView.js';
+import WinningLottoGenerator from './winningLottoGenerator.js';
+import LottoResultCalculator from '../domain/lottoResultCalculator.js';
+import { LOTTO_PRICE } from '../constants/lotto-constants.js';
 
-export default class LottoGameWebController {
+class LottoGameWebController {
   #lottoTickets;
   #winningLotto;
 
@@ -137,3 +137,5 @@ export default class LottoGameWebController {
     this.#winningLotto = null;
   };
 }
+
+new LottoGameWebController();

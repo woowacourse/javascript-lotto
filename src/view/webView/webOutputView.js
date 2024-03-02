@@ -1,5 +1,5 @@
-import prize from '../../domain/prize';
-import formatNumber from '../../utils/formatNumber';
+import prize from '../../domain/prize.js';
+import formatNumber from '../../utils/formatNumber.js';
 
 const webOutputView = {
   renderPurchaseAmount: (lottoTickets) => {
