@@ -1,4 +1,4 @@
-.modal-wrapper {
+.modal-dim-layer {
   display: none;
   position: fixed;
   justify-content: center;
@@ -34,7 +34,7 @@
   letter-spacing: var(--subtitle-letter);
 }
 
-.close-btn {
+.modal-header button {
   position: absolute;
   top: 1.6rem;
   right: 1.6rem;
@@ -46,7 +46,7 @@
   letter-spacing: var(--caption-letter);
 }
 
-.close-btn:hover {
+.modal-header button:hover {
   cursor: pointer;
 }
 
@@ -94,7 +94,7 @@
   width: 100%;
 }
 
-#restart-button {
+.restart button {
   width: 100%;
   height: 3.6rem;
   background-color: var(--primary);
@@ -108,14 +108,14 @@
   letter-spacing: var(--caption-letter);
 }
 
-#restart-button:hover {
+.restart button:hover {
   cursor: pointer;
 }
 
-#restart-button:active {
+.restart button:active {
   opacity: 0.7;
 }
 
-#restart-value {
+.restart input {
   display: none;
 }

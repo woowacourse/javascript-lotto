@@ -17,10 +17,10 @@ const Output = {
   printPrizeStatisticsHeader() {
     Dom.$('#read-bonus-number-input').disabled = true;
     Dom.$('#read-winning-numbers-submit').disabled = true;
-    Dom.$('.modal-wrapper').style.display = 'flex';
+    Dom.$('.modal-dim-layer').style.display = 'flex';
     Dom.createAppendTagNode({ target: '.modal-header', tag: 'h1', text: '🏆 당첨 통계 🏆' });
     Dom.createAppendTagNode({
-      target: '.modal-header', tag: 'button', attribute: { class: 'close-btn' }, text: 'X',
+      target: '.modal-header', tag: 'button', attribute: { id: 'close-btn' }, text: 'X',
     });
   },
 
