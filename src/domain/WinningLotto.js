@@ -1,3 +1,4 @@
+import BonusNumberError from "../error/BonusNumberError.js";
 import CustomError from "../error/CustomError.js";
 import ERROR_MESSAGE from "../error/errorMessage.js";
 
@@ -17,12 +18,9 @@ class WinningLotto {
   }
 
   #checkHaveBonus(bonusNumber) {
-    const hasBonusNumber = this.#numbers
-      .get()
-      .some((num) => num === bonusNumber);
+    const hasBonusNumber = this.#numbers.get().some((num) => num === bonusNumber);
 
-    if (hasBonusNumber)
-      throw new CustomError(ERROR_MESSAGE.bonusNumberOverlapped);
+    if (hasBonusNumber) throw new BonusNumberError(ERROR_MESSAGE.bonusNumberOverlapped);
   }
 
   getBonusNumber() {
