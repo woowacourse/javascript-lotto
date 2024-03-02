@@ -28,11 +28,13 @@
 }
 
 #lotto-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--lotto-primary);
   width: 100%;
   height: 80px;
-  top: 944px;
-  border: 1px, 0px, 0px, 0px;
-  border-top: 1px solid;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
 }
 
 #lotto-title {
@@ -65,7 +67,7 @@
 }
 
 #money-button {
-  width: 56px;
+  width: 86px;
   height: 36px;
 }
 
