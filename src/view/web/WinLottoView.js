@@ -1,5 +1,6 @@
 import { $, $$ } from '../../util/domSelector';
 import NUMBER from '../../constants/number';
+import { hideElement } from '../../util/view';
 
 const WinLottoView = {
   renderWinLottoSection() {
@@ -24,6 +25,7 @@ const WinLottoView = {
   resetWinningLottoNumbers() {
     $$('.number-input').forEach((input) => (input.value = ''));
     $('.number-input').focus();
+    hideElement($('#win-lotto-error'));
   },
 };
 
