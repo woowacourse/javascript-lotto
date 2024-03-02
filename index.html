@@ -4,58 +4,62 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" src="./style.css" />
   </head>
   <body>
     <main id="app">
       <header>
-        <h1 class="header-title">🎱 행운의 로또</h1>
+        <h1 class="header-title lotto-title">🎱 행운의 로또</h1>
       </header>
-      <section id="total-article">
-        <h2 class="title">🎱 내 번호 당첨 확인 🎱</h2>
-        <div class="purchase">
-          <p>구입할 금액을 입력해주세요.</p>
-          <form id="purchase-form">
-            <input id="purchaseAmount-input" type="number" placeholder="금액" />
-            <button id="purchase-button">구입</button>
-          </form>
-        </div>
-        <article id="lottoPurchase-article">
-          <h3 id="purchaseHeader-text"></h3>
-          <ul id="lotto-list"></ul>
-          <p class="purchase-info">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-          <div class="winning-lotto_label">
-            <span>당첨 번호</span>
-            <span>보너스 번호</span>
+      <div class="dd">
+        <section id="total-article" class="lotto-body">
+          <h1 class="title lotto-title">🎱 내 번호 당첨 확인 🎱</h1>
+          <div class="purchase">
+            <p>구입할 금액을 입력해주세요.</p>
+            <form id="purchase-form">
+              <input id="purchaseAmount-input" class="lotto-placeholder" type="number" placeholder="금액" />
+              <button id="purchase-button">구입</button>
+            </form>
           </div>
-          <div id="winning-lotto">
-            <div id="winning-lotto-inputs">
-              <input type="text" maxlength="2" class="lotto-input" />
-              <input type="text" maxlength="2" class="lotto-input" />
-              <input type="text" maxlength="2" class="lotto-input" />
-              <input type="text" maxlength="2" class="lotto-input" />
-              <input type="text" maxlength="2" class="lotto-input" />
-              <input type="text" maxlength="2" class="lotto-input" />
+          <article id="lottoPurchase-article">
+            <h3 id="purchaseHeader-text"></h3>
+            <ul id="lotto-list"></ul>
+            <p class="purchase-info">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <div class="winning-lotto_label">
+              <span>당첨 번호</span>
+              <span>보너스 번호</span>
             </div>
-            <div id="bonus-number">
-              <input type="text" maxlength="2" class="lotto-input" />
+            <div id="winning-lotto">
+              <div id="winning-lotto-inputs">
+                <input type="text" maxlength="2" class="lotto-input" />
+                <input type="text" maxlength="2" class="lotto-input" />
+                <input type="text" maxlength="2" class="lotto-input" />
+                <input type="text" maxlength="2" class="lotto-input" />
+                <input type="text" maxlength="2" class="lotto-input" />
+                <input type="text" maxlength="2" class="lotto-input" />
+              </div>
+              <div id="bonus-number">
+                <input type="text" maxlength="2" class="lotto-input" />
+              </div>
             </div>
-          </div>
-          <button id="result-button">결과 확인 하기</button>
-        </article>
-      </section>
-      <footer>
-        <p>Copyright 2023. woowacourse</p>
+            <button id="result-button">결과 확인 하기</button>
+          </article>
+        </section>
+      </div>
+      <footer class="lotto-footer">
+        <p class="lotto-caption">Copyright 2023. woowacourse</p>
       </footer>
-      <aside id="modal-background">
-        <article id="modal">
-          <button id="modal-close-button">X</button>
-          <h2>🏆 당첨 통계 🏆</h2>
+      <div id="modal-background">
+        <dialog id="modal">
+          <div class="close-div">
+            <button id="modal-close-button">X</button>
+          </div>
+          <h1 class="lotto-title">🏆 당첨 통계 🏆</h1>
           <table id="reward-table"></table>
-          <p id="profit-text">총 수익율은 어쩌구다.</p>
+          <h2 id="profit-text" class="lotto-subtitle"></h2>
           <button id="retry-button">다시 시작하기</button>
-        </article>
-      </aside>
+        </dialog>
+      </div>
     </main>
   </body>
 </html>

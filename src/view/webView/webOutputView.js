@@ -22,9 +22,9 @@ const webOutputView = {
   renderTalbe: (totalResult) => {
     const tableHeader = `
     <tr id="reward-table-header">
-    <th>일치 갯수</th>
-    <th>당첨금</th>
-    <th>당첨 갯수</th>
+    <th class="lotto-subtitle">일치 갯수</th>
+    <th class="lotto-subtitle">당첨금</th>
+    <th class="lotto-subtitle">당첨 갯수</th>
   </tr>
     `;
 
