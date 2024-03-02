@@ -6,6 +6,6 @@
 import './web/css/index.css';
 import './web/css/reset.css';
 
-import LottoWebGameController from './controller/lottoWebGameController.js';
+import LottoGameWebController from './controller/lottoWebGameController.js';
 
-new LottoWebGameController();
+new LottoGameWebController();

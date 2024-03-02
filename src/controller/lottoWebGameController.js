@@ -10,6 +10,7 @@ export default class LottoGameWebController {
   #winningLotto;
 
   constructor() {
+    console.log('LottoGameWebController 생성');
     this.bindEventListener();
     this.handleAutoFocusOnNumberInput();
   }
