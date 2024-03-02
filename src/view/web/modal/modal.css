@@ -42,7 +42,6 @@
 }
 
 #close-btn:hover {
-  cursor: pointer;
   opacity: 0.7;
 }
 
@@ -113,6 +112,5 @@ td {
 }
 
 #retry-btn:hover {
-  cursor: pointer;
   opacity: 0.7;
 }
