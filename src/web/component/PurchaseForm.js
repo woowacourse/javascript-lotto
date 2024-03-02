@@ -22,6 +22,7 @@ class PurchaseForm extends HTMLElement {
 
   #bindElements() {
     this.#elements = {
+      ...this.#elements,
       form: $('#purchase-form', this),
       input: $('#purchase-form-input', this),
       submitButton: $('#purchase-form-button', this),

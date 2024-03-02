@@ -4,36 +4,58 @@ import Validator from '../../validator/Validator';
 
 class WinningNumbersForm extends HTMLElement {
   #boundMethods;
+  #elements;
 
   constructor() {
     super();
     this.#boundMethods = {
       handlePurchaseResult: this.#handlePurchaseResult.bind(this),
       handleSubmit: this.#handleSubmit.bind(this),
+      handleEnterKeyDown: this.#handleEnterKeyDown.bind(this),
     };
+    this.#elements = { app: $('lotto-game-app') };
   }
 
   connectedCallback() {
-    $('lotto-game-app').addEventListener('showPurchaseResult', this.#boundMethods.handlePurchaseResult);
+    this.#elements.app.addEventListener('showPurchaseResult', this.#boundMethods.handlePurchaseResult);
   }
 
   disconnectedCallback() {
-    $('lotto-game-app').removeEventListener('showPurchaseResult', this.#boundMethods.handlePurchaseResult);
+    this.#elements.app.removeEventListener('showPurchaseResult', this.#boundMethods.handlePurchaseResult);
+  }
+
+  #bindElements() {
+    this.#elements = {
+      ...this.#elements,
+      form: $('#winning-numbers-form', this),
+      winningNumbersInputs: $$('.winning-numbers-input', this),
+      bonusNumberInput: $('.bonus-number-input', this),
+      submitButton: $('#winning-numbers-submit', this),
+    };
   }
 
   #handlePurchaseResult() {
     this.#render();
-    $('#winning-numbers-submit', this).addEventListener('click', this.#boundMethods.handleSubmit);
+    this.#bindElements();
+    this.#elements.form.addEventListener('keydown', this.#boundMethods.handleEnterKeyDown);
+    this.#elements.submitButton.addEventListener('click', this.#boundMethods.handleSubmit);
   }
 
   #handleSubmit() {
     try {
       const winningNumbers = this.#readWinningNumbers();
       const bonusNumber = this.#readBonusNumber(winningNumbers);
-      ErrorMessageUtil.removeErrorMessage($('#winning-numbers-form'));
+      ErrorMessageUtil.removeErrorMessage(this.#elements.form);
       this.#sendWinningCriteria({ winningNumbers, bonusNumber });
     } catch (error) {
-      ErrorMessageUtil.showErrorMessage(error.message, $('#winning-numbers-form'));
+      ErrorMessageUtil.showErrorMessage(error.message, this.#elements.form);
+    }
+  }
+
+  #handleEnterKeyDown(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.#boundMethods.handleSubmit();
     }
   }
 
@@ -46,7 +68,7 @@ class WinningNumbersForm extends HTMLElement {
   }
 
   #processWinningNumbers() {
-    const winningNumbers = [...$$('.winning-numbers-input')]
+    const winningNumbers = [...this.#elements.winningNumbersInputs]
       .map((numberInput) => numberInput.value)
       .filter((number) => number !== '');
     return winningNumbers;
@@ -59,7 +81,7 @@ class WinningNumbersForm extends HTMLElement {
   }
 
   #readBonusNumber(winningNumbers) {
-    const bonusNumber = $('.bonus-number-input').value.trim();
+    const bonusNumber = this.#elements.bonusNumberInput.value.trim();
     Validator.validateBonusNumber(bonusNumber, winningNumbers);
     return parseInt(bonusNumber, 10);
   }
