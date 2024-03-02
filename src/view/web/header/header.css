@@ -1,5 +1,5 @@
 header {
-  background-color: var(--lotto-primary);
+  background-color: var(--primary);
   display: flex;
   align-items: center;
   height: 64px;
@@ -11,7 +11,7 @@ header {
 }
 
 .header-title {
-  color: var(--lotto-greyscale-1);
+  color: var(--greyscale-1);
   margin-left: 130px;
 
   @media (max-width: 767px) {

@@ -39,7 +39,7 @@ button:hover {
 }
 
 input[type='number']:focus {
-  border: 2px solid var(--lotto-primary) !important;
+  border: 2px solid var(--primary) !important;
 }
 
 .visible {

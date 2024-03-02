@@ -18,7 +18,7 @@
   padding: 16px;
   width: 350px;
   height: 500px;
-  background-color: var(--lotto-greyscale-1);
+  background-color: var(--greyscale-1);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@
 }
 
 #close-btn {
-  background-color: var(--lotto-greyscale-1);
+  background-color: var(--greyscale-1);
 }
 
 #close-btn:hover {
@@ -104,8 +104,8 @@ td {
   width: 100%;
   font-size: 14px;
   font-weight: 700;
-  color: var(--lotto-greyscale-1);
-  background-color: var(--lotto-primary);
+  color: var(--greyscale-1);
+  background-color: var(--primary);
   padding: 4px 0;
   height: 36px;
   border-radius: 4px;
