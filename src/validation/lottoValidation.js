@@ -11,7 +11,12 @@ const LottoValidation = {
   validateInNumbersRange(numbers) {
     numbers.forEach((numberString) => {
       const number = Number(numberString);
-      if (!Number.isInteger(number) || number > NUMBER.LOTTO_END_NUMBER || number < NUMBER.LOTTO_START_NUMBER) {
+      if (
+        !Number.isInteger(number) ||
+        number > NUMBER.LOTTO_END_NUMBER ||
+        number < NUMBER.LOTTO_START_NUMBER ||
+        number > NUMBER.LOTTO_MAX_COUNT
+      ) {
         throw new Error(`${ERROR_MESSAGE.PREFIX} ${ERROR_MESSAGE.NUMBERS_RANGE}`);
       }
     });

@@ -4,6 +4,7 @@ const NUMBER = Object.freeze({
   LOTTO_END_NUMBER: 45,
   LOTTO_NUMBERS_LENGTH: 6,
   LOTTO_BONUS_LENGTH: 1,
+  LOTTO_MAX_COUNT: 1000,
 });
 
 export default NUMBER;
