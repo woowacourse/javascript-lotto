@@ -17,7 +17,6 @@ class WebWinningResultController {
 
     const winningResult = desiredKeys.map(key => winningResultObject[key]);
 
-    console.log(winningResult);
     const $winningResultCount = document.querySelectorAll(
       '.winningResultCount',
     );
