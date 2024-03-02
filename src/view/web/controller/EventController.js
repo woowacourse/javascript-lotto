@@ -103,13 +103,13 @@ export default class EventController {
     $('#profit').innerHTML = `당신의 총 수익률은 ${statistics.getProfit}%입니다.`;
   }
 
-  handleCloseBtn(event) {
+  handleCloseButton(event) {
     event.preventDefault();
     $('#modal-container').classList.remove('visible');
     $('#modal-container').classList.add('hidden');
   }
 
-  handleRetryBtn(event) {
+  handleRetryButton(event) {
     event.preventDefault();
     $('#buy-lotto-form').reset();
     $('#winning-lotto-form').reset();

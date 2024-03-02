@@ -17,7 +17,7 @@ window.onload = () => {
 
   $('#buy-lotto-form').addEventListener('submit', (event) => eventController.onSubmitBuyForm(event));
   $('#winning-lotto-form').addEventListener('submit', (event) => eventController.handleWinningLottoForm(event));
-  $('#dimmer').addEventListener('click', (event) => eventController.handleCloseBtn(event));
-  $('#close-btn').addEventListener('click', (event) => eventController.handleCloseBtn(event));
-  $('#retry-btn').addEventListener('click', (event) => eventController.handleRetryBtn(event));
+  $('#dimmer').addEventListener('click', (event) => eventController.handleCloseButton(event));
+  $('#close-btn').addEventListener('click', (event) => eventController.handleCloseButton(event));
+  $('#retry-btn').addEventListener('click', (event) => eventController.handleRetryButton(event));
 };
