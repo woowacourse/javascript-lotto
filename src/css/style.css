@@ -33,16 +33,6 @@ h1 {
   font: var(--lotto-title);
 }
 
-/* lotto */
-#lotto {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  min-height: calc(100vh - 144px);
-  height: max-content;
-}
-
 /* footer */
 footer {
   display: flex;
@@ -56,6 +46,15 @@ footer {
 }
 
 /* 공통 */
+.primary-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 5px;
+  background-color: var(--lotto-greyscale-1);
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

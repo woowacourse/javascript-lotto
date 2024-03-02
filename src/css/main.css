@@ -1,15 +1,19 @@
 @import './theme.css';
 
+/* lotto */
 #main {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 100vw;
+  min-height: calc(100vh - 144px);
+  height: max-content;
+}
+
+.main__content {
   width: 382px;
   height: 590px;
   padding: 32px 16px;
-  border: 1px solid var(--lotto-greyscale-3);
-  border-radius: 5px;
-  background-color: var(--lotto-greyscale-1);
 }
 
 /* main title */
