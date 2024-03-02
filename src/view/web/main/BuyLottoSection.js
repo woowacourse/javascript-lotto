@@ -1,7 +1,7 @@
 import ErrorMessage from '../utils/ErrorMessage.js';
 import BuyLottoForm from './BuyLottoForm.js';
 
-export default function FirstSection() {
+export default function BuyLottoSection() {
   const section = document.createElement('section');
   section.classList.add('first-section');
 
