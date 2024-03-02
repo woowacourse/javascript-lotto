@@ -62,9 +62,9 @@ class PurchasePriceForm extends HTMLElement {
 
   #errorHandler(price) {
     try {
-      BuyLottoPriceValidator.check(price);
+      BuyLottoPriceValidator.check(`${price}`);
 
-      this.#purchaseEvent(Number(price));
+      this.#purchaseEvent(price);
       this.connectedCallback();
     } catch (error) {
       this.setErrorMessage(error);
