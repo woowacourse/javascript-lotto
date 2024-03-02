@@ -1,5 +1,6 @@
-import { CONFIG, ERROR_MESSAGE } from '../constants';
-import numberValidator from './numberValidator';
+import { ERROR_MESSAGE } from '../constants/message.js';
+import CONFIG from '../constants/config.js';
+import numberValidator from './numberValidator.js';
 
 const purchaseAmountValidator = {
   validate(purchaseAmount) {

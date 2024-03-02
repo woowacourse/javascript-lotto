@@ -3,16 +3,21 @@
     "lines-between-class-members": "off",
     "class-methods-use-this": "off",
     "no-console": "off",
-    "no-restricted-globals":"off"
+    "no-restricted-globals":"off",
+    "import/extensions": "off",
+    "no-new": "off",
+    "no-unused-vars": "warn"
   },
   "env": {
     "es6": true,
     "node": true,
-    "jest": true
+    "jest": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": "latest"
   },
+  "ignorePatterns": ["step1.config.js", "step2.config.js"],
   "extends": ["airbnb-base", "plugin:prettier/recommended"],
   "plugins": ["prettier"]
 }

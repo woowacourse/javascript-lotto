@@ -1,0 +1,147 @@
+:root {
+    --lotto-primary: #4E5BA6;
+    --grey-scale-1: #FFFFFF;
+    --grey-scale-2: #FCFCFD;
+    --grey-scale-3: #B4B4B4;
+    --grey-scale-4: #8B8B8B;
+    --grey-scale-5: #000000;
+    --lotto-width: 414px;
+}
+
+* {
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+html, body {
+    height: 100%;
+    background-color: var(--grey-scale-2);
+    font-size: 15px;
+    line-height: 24px;
+}
+
+input::placeholder {
+    font-size: 15px;
+    color: var(--grey-scale-4);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 36px;
+}
+
+.subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.buttonFont {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.button {
+    border: 0;
+    background-color: var(--lotto-primary);
+    color: var(--grey-scale-1);
+    cursor: pointer;
+}
+
+header {
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--lotto-primary);
+    color: var(--grey-scale-1);
+    padding-left: 20px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+#mainLayout {
+    width: var(--lotto-width);
+    height: 85vh;
+    display: flex;
+    align-items: center;
+}
+
+#app {
+    width: inherit;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #0000001F;
+    padding: 0px 20px 30px 20px;
+}
+
+#titleSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 15%;
+}
+
+#purchaseSection {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-basis: 18%;
+}
+
+#purchaseResultSection { 
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-basis: 47%;
+    overflow-y: auto;
+}
+
+#winningNumberSection {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 20%;
+    gap: 15px;
+}
+
+#lottoResultModal {
+    width: 330px;
+    height: 500px;
+    position: absolute;
+    top: 20%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--grey-scale-1);
+    box-shadow: gray 2px 2px 2px 2px;
+    padding: 0px 20px 30px 20px;
+    border-radius: 10px;
+}
+
+footer {
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #4E5BA633;
+}
+
+#footerText {
+    color: var(--lotto-primary);
+    font-weight: bold;
+}

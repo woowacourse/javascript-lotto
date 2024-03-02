@@ -5,6 +5,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   mode: "development",
   devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
     port: 9000,
   },
   entry: "./src/step2-index.js",

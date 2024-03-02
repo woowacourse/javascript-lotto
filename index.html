@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
-    <script type="module" src="./src/js/index.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>🎱 행운의 로또</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1 class="title">🎱 행운의 로또</h1>
+  </header>
+  <main>
+    <section id="mainLayout">
+      <div id="app"></div>
+    </section>
+  </main>
+  <footer>
+    <div id="footerText" class="buttonFont">Copyright 2023. woowacourse</div>
+  </footer>
+  <div id="modalBackground" class="hidden"></div>
+  <script type="module" src="./src/step2-index.js"></script>
+</body>
+
 </html>

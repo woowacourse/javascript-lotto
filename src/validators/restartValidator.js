@@ -1,4 +1,5 @@
-import { CONFIG, ERROR_MESSAGE } from '../constants';
+import { ERROR_MESSAGE } from '../constants/message.js';
+import CONFIG from '../constants/config.js';
 
 const restartValidator = {
   validate(restartInput) {

@@ -1,9 +1,11 @@
-import { CONFIG, ERROR_MESSAGE } from '../constants';
+import CONFIG from '../constants/config.js';
+import { ERROR_MESSAGE } from '../constants/message.js';
 
 const numberValidator = {
   validate(number) {
     this.validateBlank(number);
     this.validateNumber(number);
+    this.validateNotZero(number);
   },
 
   validateLottoNumber(number) {
@@ -20,6 +22,12 @@ const numberValidator = {
   validateNumber(number) {
     if (isNaN(number)) {
       throw new Error(ERROR_MESSAGE.NOT_A_NUMBER_INPUT);
+    }
+  },
+
+  validateNotZero(number) {
+    if (parseInt(number, 10) === 0) {
+      throw new Error(ERROR_MESSAGE.ZERO_INPUT);
     }
   },
 

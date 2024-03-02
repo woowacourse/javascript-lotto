@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from '../constants';
-import numberValidator from './numberValidator';
+import { ERROR_MESSAGE } from '../constants/message.js';
+import numberValidator from './numberValidator.js';
 
 const bonusNumberValidator = {
   validate(bonusNumber, winningNumbers) {
