@@ -5,6 +5,7 @@ import './webView/MainApp/MainApp.css';
 import './webView/HeaderBar/HeaderBar.css';
 import './webView/PurchaseLotto/PurchaseLotto.css';
 import './webView/PurchasedLotto/PurchasedLotto.css';
+import './webView/Lotto/Lotto.css';
 import './webView/WinningLotto/WinningLotto.css';
 import './webView/ResultButton/ResultButton.css';
 import './webView/ResultModal/ResultModal.css';

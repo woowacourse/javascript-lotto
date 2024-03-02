@@ -1,18 +1,18 @@
 import BaseComponent from '../BaseComponent/BaseComponent';
-import PurchasedLotto from '../PurchasedLotto/PurchasedLotto';
 import Lotto from '../Lotto/Lotto';
 import PurchaseLottoService from '../../domain/service/PurchaseLottoService';
+import PurchasedLotto from '../PurchasedLotto/PurchasedLotto';
 
 const CLASSNAME_HIDDEN = 'hidden';
 const SELECTOR_WINNING_LOTTO = '.winning-lotto';
 const SELECTOR_RESULT = '.result';
 const SELECTOR_PURCHASE = '.purchase-form__input';
 const SELECTOR_PURCHASED = '.purchased-lotto__list';
+const SELECTOR_PURCHASED_LABEL = '.purchased-lotto__label';
 
 class PurchaseLotto extends BaseComponent {
   render() {
     this.outerHTML = `      <div class="purchase"> 
-<label class="purchase__label text-lotto-body">구입할 금액을 입력해주세요.</label>
 <div class="purchase-form">
   <input
     class="purchase-form__input"
@@ -31,6 +31,9 @@ class PurchaseLotto extends BaseComponent {
       { target: '.purchase-form__button', eventName: 'click' },
       this.#purchaseLottoListener.bind(this),
     );
+    this.on({ target: '.purchase-form__input', eventName: 'keydown' }, (event) => {
+      event.key === 'Enter' && this.#purchaseLottoListener(event).bind(this);
+    });
   }
 
   #printErrorMessage(message) {
@@ -48,12 +51,22 @@ class PurchaseLotto extends BaseComponent {
     event.preventDefault();
 
     this.#removeErrorMessage();
+    this.#removeBuyingMessage();
     this.#clearLottos();
 
     const purchaseMoney = document.querySelector(SELECTOR_PURCHASE);
     const lottos = this.#getLottos(purchaseMoney.value);
+    if (!lottos) return;
+
+    this.#showBuyingMessage(lottos.length);
     this.#appendLottos(lottos);
     this.#showWinningPart();
+  }
+  #showBuyingMessage(count) {
+    document.querySelector(SELECTOR_PURCHASED_LABEL).innerHTML = `${count}개를 구입하였습니다.`;
+  }
+  #removeBuyingMessage() {
+    document.querySelector(SELECTOR_PURCHASED_LABEL).innerHTML = '';
   }
 
   #getLottos(purchaseMoney) {
@@ -67,10 +80,8 @@ class PurchaseLotto extends BaseComponent {
   }
 
   #appendLottos(lottos) {
-    const purchased = document.querySelector(SELECTOR_PURCHASED);
-    const fragment = document.createDocumentFragment();
-    lottos.forEach((lotto) => fragment.append(new Lotto(lotto)));
-    purchased.append(fragment);
+    const purchased = document.querySelector('purchased-lotto');
+    purchased.appendLottos(lottos);
   }
 
   #clearLottos() {

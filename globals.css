@@ -81,6 +81,7 @@
   border-radius: 4px;
   background: var(--color-lotto-primary);
   color: var(--color-lotto-grayscale-1);
+  border: none;
 }
 
 .button-primary:hover {

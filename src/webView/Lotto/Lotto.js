@@ -8,11 +8,15 @@ class Lotto extends BaseComponent {
     this.#numbers = numbers;
   }
   render() {
-    const padStart = (num) => (String(num).length == 1 ? `  ${String(num)}` : String(num));
-    this.outerHTML = `<div>🎟️ ${this.#numbers.map(padStart).join(', ')}</div>`;
+    this.outerHTML = `<div class="lotto"><span class="lotto-mark">🎟️</span> ${this.#getLottoString()}</div>`;
   }
 
   setEvent() {}
+
+  #getLottoString() {
+    const padStart = (num) => (String(num).length == 1 ? `  ${String(num)}` : String(num));
+    return this.#numbers.map(padStart).join(', ');
+  }
 }
 customElements.define('lotto-element', Lotto);
 

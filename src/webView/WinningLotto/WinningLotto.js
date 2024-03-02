@@ -3,7 +3,7 @@ import BaseComponent from '../BaseComponent/BaseComponent';
 class WinningLotto extends BaseComponent {
   render() {
     this.outerHTML = `<div class="winning-lotto hidden">
-    <label class="winning-lotto__label"
+    <label class="winning-lotto__label text-lotto-body"
       >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label
     >
     <div class="winning-lotto-form">

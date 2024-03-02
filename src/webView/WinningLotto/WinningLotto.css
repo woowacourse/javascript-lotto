@@ -4,6 +4,10 @@
   flex-direction: column;
   row-gap: 8px;
 }
+label.winning-lotto__label {
+  font-size: 14px;
+  font-weight: 500;
+}
 
 /* 당첨번호 */
 .winning-lotto-form {

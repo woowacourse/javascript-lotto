@@ -1,0 +1,11 @@
+.lotto {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.lotto-mark {
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0px;
+}
