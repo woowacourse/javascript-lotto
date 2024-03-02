@@ -1,16 +1,22 @@
-import { $ } from '../utils/selector.js';
+import { $ } from "../utils/web/selector.js";
 
-function renderTable (target, content) {
+function renderTable(target, content) {
   const $target = $(target);
-  const tableHeaderHtml = `<thead>${content.shift().map(title => `<th>${title}</th>`).join('')}</thead>`;
+  const tableHeaderHtml = `<thead>${content
+    .shift()
+    .map((title) => `<th>${title}</th>`)
+    .join("")}</thead>`;
   const tableBodyHtml = `
   <tbody>
-    ${content.map((row) => `<tr>
-      ${row.map(el => `<td>${el}</td>`).join('')}
+    ${content
+      .map(
+        (row) => `<tr>
+      ${row.map((el) => `<td>${el}</td>`).join("")}
       </tr>`
-    ).join('')}
-  </tbody>`
- 
+      )
+      .join("")}
+  </tbody>`;
+
   $target.innerHTML = tableHeaderHtml + tableBodyHtml;
 }
 

@@ -1,4 +1,4 @@
-import { $ } from "../../utils/selector.js";
+import { $ } from "../../utils/web/selector.js";
 
 function toast(errorMessage) {
   const toastElement = document.createElement("div");

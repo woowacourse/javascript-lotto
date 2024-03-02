@@ -1,10 +1,9 @@
 import { LOTTO } from "../../constants/lotto.js";
-import { $ } from "../../utils/selector.js";
+import { $ } from "../../utils/web/selector.js";
 
 const inputView = {
   // TODO: trigger, target 이름 수정
   async readMoney() {
-    console.log("adfasdf");
     const $trigger = $("#moneySubmit");
     const $target = $("#moneyInput");
 

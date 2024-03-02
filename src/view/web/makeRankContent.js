@@ -1,4 +1,4 @@
-import { PRIZE } from "../domain/calculateTotalPrize.js";
+import { PRIZE } from "../../domain/calculateTotalPrize.js";
 
 function makeRankContent(rank, i) {
   if (i < PRIZE.length - 2) return [`${i + 3}개`, PRIZE[i], `${rank}개`];

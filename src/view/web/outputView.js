@@ -1,6 +1,6 @@
 import { LOTTO } from "../../constants/lotto.js";
-import { $ } from "../../utils/selector.js";
-import makeRankContent from "../makeRankContent.js";
+import { $ } from "../../utils/web/selector.js";
+import makeRankContent from "./makeRankContent.js";
 import renderTable from "../renderTable.js";
 
 const outputView = {
