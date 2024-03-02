@@ -20,7 +20,6 @@ class HTMLOutputView {
 
     removeClass(purchasedLottodiv, ClassName.visibilityHidden);
     purchasedLottodiv.innerHTML = "";
-
     purchasedLottodiv.append(...lottoNumberElements);
   }
 
@@ -41,10 +40,9 @@ class HTMLOutputView {
 
   static printLottoResult(rankCounts, profitRate) {
     const transformIndexToRank = (index) => 5 - index;
-    const rankCountElements = Array.from(
-      document.getElementsByClassName("rank-count")
-    );
-    rankCountElements.forEach(
+    const rankCountElements = document.getElementsByClassName("rank-count");
+    const rankCountElementArray = Array.from(rankCountElements);
+    rankCountElementArray.forEach(
       (element, index) =>
         (element.innerText = `${rankCounts[transformIndexToRank(index)]}개`)
     );

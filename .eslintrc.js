@@ -31,7 +31,7 @@ module.exports = {
     // 들여쓰기 깊이 제한
     "max-depth": ["error", 1],
     // 함수 당 라인 수 제한
-    "max-lines-per-function": ["error", { max: 20 }],
+    "max-lines-per-function": ["error", { max: 10 }],
     // 함수 내 매개변수 갯수 제한
     "max-params": ["error", 2],
     "import/no-unresolved": ["off"],
