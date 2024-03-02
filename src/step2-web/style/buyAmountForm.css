@@ -1,0 +1,46 @@
+/* BuyAmountForm */
+.getting-buying-amount {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.buying-amount-message {
+  margin-bottom: 0.5rem;
+}
+
+.buying-amount-input-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buying-amount-input {
+  height: 2rem;
+  border-radius: var(--size-light-border-radius);
+  border: 0.04rem solid var(--color-lotto-grey-scale-4);
+  flex-grow: 1;
+  font-size: var(--size-body-text);
+  color: var(--color-lotto-grey-scale-5);
+}
+
+.buying-amount-input[type="number"] {
+  padding: 0 0.5rem;
+}
+
+.buying-amount-input[type="number"]::-webkit-inner-spin-button,
+.buying-amount-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.buying-amount-button {
+  width: 15%;
+  border-radius: var(--size-light-border-radius);
+  height: 2.2rem;
+  font-weight: var(--font-weight-semi-bold);
+  margin-left: 0.5rem;
+  background-color: var(--color-lotto-primary);
+  color: var(--color-lotto-grey-scale-1);
+  border: none;
+  cursor: pointer;
+}

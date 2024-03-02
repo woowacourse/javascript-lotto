@@ -1,0 +1,25 @@
+/* BoughtLottoBoard */
+.showing-bought-lottos {
+  width: 100%;
+}
+
+.bought-message {
+  margin: 1.5rem 0 0.6rem 0;
+}
+
+.bought-lotto-list {
+  width: 100%;
+  height: fit-content;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
+.bought-lotto-line {
+  display: flex;
+  align-items: center;
+}
+
+.lotto-icon {
+  font-size: 1.8rem;
+  margin-right: 0.6rem;
+}
