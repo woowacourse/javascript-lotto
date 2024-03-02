@@ -11,17 +11,17 @@
   <body>
     <div id="app">
       <div id="lotto-head">
-        <h1 id="lotto-title">🎱 행운의 로또</h1>
+        <h1 id="lotto-title" class="title-text">🎱 행운의 로또</h1>
       </div>
       <div id="lotto-body">
         <div id="lotto-content">
           <div id="lotto-content-title" class="title-text">🎱 내 번호 당첨 확인 🎱</div>
           <form id="money-form">
             <label class="body-text" for="money-input">
-              구입할 금액을 입력해주세요.<input type="text" id="money-input" placeholder="금액" />
+              구입할 금액을 입력해주세요.<input type="text" id="money-input" class="body-text" placeholder="금액" />
             </label>
 
-            <button id="money-button" class="lotto-button" type="submit" form="money-form">구입</button>
+            <button id="money-button" class="lotto-button caption-text" type="submit" form="money-form">구입</button>
           </form>
           <div id="lotto-count-message-container">
             <!--lotto Count Notice -->
@@ -36,7 +36,7 @@
       </div>
       <div id="lotto-footer"></div>
       <div id="result-modal" class="hidden">
-        <div id="result-modal-container" class="modal-container">
+        <div id="result-modal-container">
           <div class="modal-content">
             <button id="modal-exit-button" class="exit-button">X</button>
             <header class="subtitle-text">🏆 당첨 통계 🏆</header>
@@ -44,9 +44,9 @@
               <table>
                 <thead class="table-border">
                   <tr class="table-row">
-                    <th scope="col" class="semi">일치 갯수</th>
-                    <th scope="col" class="semi">당첨금</th>
-                    <th scope="col" class="semi">당첨 갯수</th>
+                    <th scope="col" class="caption-text">일치 갯수</th>
+                    <th scope="col" class="caption-text">당첨금</th>
+                    <th scope="col" class="caption-text">당첨 갯수</th>
                   </tr>
                 </thead>
                 <tbody id="lotto-result-tbody" class="body-text">
@@ -77,10 +77,10 @@
                   </tr>
                 </tbody></table
             ></sector>
-            <div id="result-modal-roi" class="semi">
+            <div id="result-modal-roi" class="caption-text">
               <!-- ROI result -->
             </div>
-            <button id="restart-button" class="lotto-button">다시 시작하기</button>
+            <button id="restart-button" class="lotto-button caption-text">다시 시작하기</button>
           </div>
         </div>
       </div>

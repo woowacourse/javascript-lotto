@@ -1,0 +1,73 @@
+/* Font */
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 62.5%;
+}
+
+/* Variables */
+:root {
+  --blue-color: rgba(255, 255, 255, 1);
+  --border1: rgba(0, 0, 0, 0.12);
+  --lotto-primary: rgba(78, 91, 166, 1);
+  --lotto-greyscale-1: rgba(255, 255, 255, 1);
+  --lotto-greyscale-3: rgba(180, 180, 180, 1);
+  --lotto-greyscale-5: rgba(0, 0, 0, 1);
+}
+
+/* Text Styles */
+.title-text {
+  text-align: center;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  letter-spacing: 0px;
+}
+
+.subtitle-text {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-align: center;
+}
+
+.body-text {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.caption-text {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+}
+
+.icon {
+  font-family: Roboto;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+/* Button Styles */
+.lotto-button {
+  padding: 6px, 6px, 6px, 8px;
+  border-radius: 4px;
+  background: #4e5ba6;
+  color: white;
+}
+
+/* Modal */
+.hidden {
+  display: none;
+}
