@@ -1,7 +1,9 @@
 import PurchaseAmountValidator from '../../validators/PurchaseAmountValidator';
 import LottoContainer from './LottoContainer';
+import ResultPopup from './ResultPopup';
 import WinningNumberForm from './WinningNumberForm';
 import { $ } from './utils/dom';
+// import { doc } from 'prettier';
 
 class App {
   constructor() {
@@ -36,6 +38,8 @@ class App {
 
     this.winningNumberForm.openWinningNumberForm();
     $('.purchase-amount').value = '';
+
+    const resultPopup = new ResultPopup(lottoContainer.getLottoTicketArray());
   }
 }
 
