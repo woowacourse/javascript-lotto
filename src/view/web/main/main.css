@@ -19,7 +19,6 @@
   width: 100%;
   height: 36px;
   display: flex;
-  flex-direction: center;
   justify-content: center;
   color: var(--lotto-greyscale-5);
 }
@@ -89,7 +88,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 100%;
   height: 276px;
   overflow: auto;
   margin-top: 8px;
@@ -99,7 +97,7 @@
   display: flex;
   align-items: center;
   height: 24px;
-  font-weight: 400px;
+  font-weight: 400;
   font-size: 15px;
 }
 
