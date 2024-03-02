@@ -52,6 +52,8 @@ class PurchaseForm extends HTMLElement {
   }
 
   #purchaseLotto(purchaseAmount) {
+    this.#elements.input.disabled = true;
+    this.#elements.submitButton.disabled = true;
     this.dispatchEvent(new CustomEvent('purchaseLotto', { detail: { purchaseAmount } }));
   }
 
