@@ -101,7 +101,7 @@ h2 {
 }
 
 .error-text {
-  font-size: var(--font-caption-size);
+  font-size: 12px;
   color: #FF0000;
   letter-spacing: 0;
   word-break: keep-all;

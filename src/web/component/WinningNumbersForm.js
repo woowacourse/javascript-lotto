@@ -1,4 +1,5 @@
 import { $, $$ } from '../util/domSelector';
+import ErrorMessageUtil from '../util/ErrorMessageUtil';
 import Validator from '../../validator/Validator';
 
 class WinningNumbersForm extends HTMLElement {
@@ -29,10 +30,10 @@ class WinningNumbersForm extends HTMLElement {
     try {
       const winningNumbers = this.#readWinningNumbers();
       const bonusNumber = this.#readBonusNumber(winningNumbers);
-      this.#removeErrorMessage($('#winning-numbers-form'));
+      ErrorMessageUtil.removeErrorMessage($('#winning-numbers-form'));
       this.#sendWinningCriteria({ winningNumbers, bonusNumber });
     } catch (error) {
-      this.#showErrorMessage(error.message, $('#winning-numbers-form'));
+      ErrorMessageUtil.showErrorMessage(error.message, $('#winning-numbers-form'));
     }
   }
 
@@ -61,21 +62,6 @@ class WinningNumbersForm extends HTMLElement {
     const bonusNumber = $('.bonus-number-input').value.trim();
     Validator.validateBonusNumber(bonusNumber, winningNumbers);
     return parseInt(bonusNumber, 10);
-  }
-
-  #showErrorMessage(message, target) {
-    const errorMessageElement = $('.error-text', target);
-    if (errorMessageElement) {
-      errorMessageElement.textContent = message;
-      return;
-    }
-    const messageElement = `<p class='error-text'>${message}</p>`;
-    target.insertAdjacentHTML('beforeend', messageElement);
-  }
-
-  #removeErrorMessage(target) {
-    const errorMessageElement = $('.error-text', target);
-    errorMessageElement?.remove();
   }
 
   #render() {

@@ -1,4 +1,5 @@
 import { $ } from '../util/domSelector';
+import ErrorMessageUtil from '../util/ErrorMessageUtil';
 import Validator from '../../validator/Validator';
 
 class PurchaseForm extends HTMLElement {
@@ -24,30 +25,15 @@ class PurchaseForm extends HTMLElement {
     try {
       const purchaseAmount = $('#purchase-form-input').value;
       Validator.validatePurchaseAmount(purchaseAmount);
-      this.#removeErrorMessage(this);
+      ErrorMessageUtil.removeErrorMessage($('#purchase-form', this));
       this.#purchaseLotto(purchaseAmount);
     } catch (error) {
-      this.#showErrorMessage(error.message, this);
+      ErrorMessageUtil.showErrorMessage(error.message, $('#purchase-form', this));
     }
   }
 
   #purchaseLotto(purchaseAmount) {
     this.dispatchEvent(new CustomEvent('purchaseLotto', { detail: { purchaseAmount } }));
-  }
-
-  #showErrorMessage(message, target) {
-    const errorMessageElement = $('.error-text', target);
-    if (errorMessageElement) {
-      errorMessageElement.textContent = message;
-      return;
-    }
-    const messageElement = `<p class='error-text'>${message}</p>`;
-    this.lastElementChild.insertAdjacentHTML('beforeend', messageElement);
-  }
-
-  #removeErrorMessage(target) {
-    const errorMessageElement = $('.error-text', target);
-    errorMessageElement?.remove();
   }
 
   #render() {
