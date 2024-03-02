@@ -7,8 +7,7 @@ class LottoContainer {
   }
 
   init() {
-    $('.purchase-amount').value = '';
-    $('.purchase-amount').focus();
+    $('.lotto-display').innerHTML = '';
     this.lottoTicketArray = [];
   }
 
