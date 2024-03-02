@@ -1,5 +1,5 @@
-import { RESPONSE } from '../constants/input.js';
-import { ERROR_MESSAGE } from '../constants/message.js';
+import { RESPONSE } from '../constants/input';
+import { ERROR_MESSAGE } from '../constants/message';
 
 const RestartResponseValidation = {
   validate(response = '') {
