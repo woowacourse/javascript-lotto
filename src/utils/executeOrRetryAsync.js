@@ -4,7 +4,7 @@ import AppError from './appError.js';
 
 /* eslint-disable max-lines-per-function */
 /* eslint-disable max-depth */
-export default async function executeOrRetryAsync({ asyncFn, handleError, retryLimit = 10, attempts = 0 }) {
+export default async function executeOrRetryAsync({ asyncFn, handleError, retryLimit = 50, attempts = 0 }) {
   try {
     return await asyncFn();
   } catch (error) {

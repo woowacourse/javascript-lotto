@@ -2,6 +2,11 @@ import prize from '../../domain/prize';
 import formatNumber from '../../utils/formatNumber';
 
 const webOutputView = {
+  renderPurchaseAmount: (lottoTickets) => {
+    const purchaseAmountTemplate = `총 ${lottoTickets.length}개를 구매했습니다.`;
+    document.querySelector('#purchaseHeader-text').innerHTML = purchaseAmountTemplate;
+  },
+
   renderLottoList: (lottoTickets) => {
     const lottoListTemplate = lottoTickets
       .map(

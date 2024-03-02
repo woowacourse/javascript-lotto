@@ -5,8 +5,6 @@
   --gray-scale-4: #8b8b8b;
   --gray-scale-5: #000000;
   --lotto-primary: #4e5ba6;
-
-  --modal-z-index: 2;
 }
 
 body,
@@ -15,6 +13,8 @@ html {
   padding: 0;
   width: 100vw;
   height: 100vh;
+  min-width: 640px;
+  min-height: 800px;
 }
 
 #app {
@@ -90,9 +90,10 @@ section {
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   padding: 20px;
   position: relative;
-  height: 610px;
+  height: 500px;
 }
 
 ul {
@@ -101,7 +102,7 @@ ul {
   gap: 10px;
 }
 
-.purcase {
+.purchase {
   width: 100%;
 }
 
@@ -115,6 +116,12 @@ ul {
   height: 36px;
   border: 1px solid var(--gray-scale-3);
   border-radius: 4px;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #purchase-button {
@@ -139,7 +146,9 @@ ul {
   gap: 10px;
   margin: 10px 0;
   overflow-y: auto;
-  max-height: 300px;
+  /* max-height: 300px;
+  min-height: 300px; */
+  height: 350px;
 }
 
 #winning-lotto input {
@@ -189,9 +198,9 @@ footer {
 #lottoPurchase-article {
   display: flex;
   display: none;
-
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 #modal-background {
@@ -203,6 +212,8 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 #modal {

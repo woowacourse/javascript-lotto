@@ -1,94 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Document</title>
   </head>
-
   <body>
-    <div id="app">
-      <header><h1 class="header-title">🎱 행운의 로또</h1></header>
-      <section>
-        <article id="total-article">
-          <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
-          <div class="purchase">
-            <div>구입할 금액을 입력해주세요.</div>
-            <form id="purchase-form">
-              <input id="purchaseAmount-input" type="number" placeholder="금액" />
-              <button id="purchase-button">구입</button>
-            </form>
+    <main id="app">
+      <header>
+        <h1 class="header-title">🎱 행운의 로또</h1>
+      </header>
+      <section id="total-article">
+        <h2 class="title">🎱 내 번호 당첨 확인 🎱</h2>
+        <div class="purchase">
+          <p>구입할 금액을 입력해주세요.</p>
+          <form id="purchase-form">
+            <input id="purchaseAmount-input" type="number" placeholder="금액" />
+            <button id="purchase-button">구입</button>
+          </form>
+        </div>
+        <article id="lottoPurchase-article">
+          <h3 id="purchaseHeader-text">총 7개를 구매했습니다.</h3>
+          <ul id="lotto-list"></ul>
+          <p class="purchase-info">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div class="winning-lotto_label">
+            <span>당첨 번호</span>
+            <span>보너스 번호</span>
           </div>
-          <!-- 구매후 화면 -->
-          <article id="lottoPurchase-article">
-            <div id="purchaseHeader-text">총 7개를 구매했습니다.</div>
-            <ul id="lotto-list"></ul>
-            <div class="purchase-info">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
-            <div class="winning-lotto_label">
-              <span>당첨 번호</span>
-              <span>보너스 번호</span>
+          <div id="winning-lotto">
+            <div id="winning-lotto-inputs">
+              <input type="text" maxlength="2" class="lotto-input" />
+              <input type="text" maxlength="2" class="lotto-input" />
+              <input type="text" maxlength="2" class="lotto-input" />
+              <input type="text" maxlength="2" class="lotto-input" />
+              <input type="text" maxlength="2" class="lotto-input" />
+              <input type="text" maxlength="2" class="lotto-input" />
             </div>
-            <div id="winning-lotto">
-              <div id="winning-lotto-inputs">
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
-              </div>
-              <div id="bonus-number">
-                <input type="text" maxlength="2" class="lotto-input" />
-              </div>
+            <div id="bonus-number">
+              <input type="text" maxlength="2" class="lotto-input" />
             </div>
-            <button id="result-button">결과 확인 하기</button>
-          </article>
+          </div>
+          <button id="result-button">결과 확인 하기</button>
         </article>
       </section>
-      <script type="module" src="./src/js/index.js"></script>
-      <footer>Copyright 2023. woowacourse</footer>
-      <section id="modal-background">
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
+      <aside id="modal-background">
         <article id="modal">
           <button id="modal-close-button">X</button>
-          <h1>🏆 당첨 통계 🏆</h1>
-          <table id="reward-table">
-            <!-- <tr id="reward-table-header">
-              <th>일치 갯수</th>
-              <th>당첨금</th>
-              <th>당첨 갯수</th>
-            </tr>
-            <tr>
-              <th>3</th>
-              <th>5,000</th>
-              <th>n개</th>
-            </tr>
-            <tr>
-              <th>3</th>
-              <th>5,000</th>
-              <th>n개</th>
-            </tr>
-            <tr>
-              <th>3</th>
-              <th>5,000</th>
-              <th>n개</th>
-            </tr>
-            <tr>
-              <th>3</th>
-              <th>5,000</th>
-              <th>n개</th>
-            </tr>
-            <tr>
-              <th>3</th>
-              <th>5,000</th>
-              <th>n개</th>
-            </tr> -->
-          </table>
-          <h4 id="profit-text">총 수익율은 어쩌구다.</h4>
+          <h2>🏆 당첨 통계 🏆</h2>
+          <table id="reward-table"></table>
+          <p id="profit-text">총 수익율은 어쩌구다.</p>
           <button id="retry-button">다시 시작하기</button>
         </article>
-      </section>
-    </div>
+      </aside>
+    </main>
   </body>
 </html>

@@ -29,6 +29,7 @@ class lottoGameWebController {
 
     try {
       this.#lottoTickets = lottoMachine.makeLottos(purchaseAmount);
+      webOutputView.renderPurchaseAmount(this.#lottoTickets);
       webOutputView.renderLottoList(this.#lottoTickets);
       lottoPurchaseArticle.style.display = 'block';
     } catch (error) {
@@ -36,7 +37,6 @@ class lottoGameWebController {
       return;
     }
 
-    //
     purchaseAmountInput.value = '';
   };
 
