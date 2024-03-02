@@ -51,7 +51,7 @@ class LottoPublisher {
     const numbers = pickNumbersInRange({
       from: NUMBER.LOTTO_START_NUMBER,
       to: NUMBER.LOTTO_END_NUMBER,
-      count: NUMBER.LOTTO_LENGTH,
+      count: NUMBER.LOTTO_NUMBERS_LENGTH,
     });
     return numbers.sort((a, b) => b - a);
   }

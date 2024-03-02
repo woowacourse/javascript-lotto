@@ -41,7 +41,9 @@
             </section>
             <!--당첨 로또 정보 입력-->
             <section id="winning-lotto-section" class="hidden">
-                <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+                <div>지난 주 당첨번호 <span id="lotto-numbers-length"></span>개와 보너스 번호 <span id="bonus-numbers-length"></span>개를
+                    입력해주세요.
+                </div>
                 <form id="winning-lotto-form">
                     <div id="winning-lotto-inputs">
                         <div id="winning-numbers">
@@ -81,6 +83,6 @@
         <div class="caption">Copyright 2023. woowacourse</div>
     </footer>
 </div>
-<script type="module" src="./src/step2-index.js"></script>
+<script defer src="./src/step2-index.js"></script>
 </body>
 </html>

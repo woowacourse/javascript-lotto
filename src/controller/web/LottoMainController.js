@@ -17,7 +17,7 @@ class LottoMainController {
   }
 
   play() {
-    WinLottoView.renderNumbersInputs();
+    WinLottoView.renderWinLottoSection();
     this.bindEvents();
   }
 

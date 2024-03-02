@@ -18,7 +18,7 @@ const LottoValidation = {
   },
 
   validateNumbersLength(numbers = []) {
-    if (numbers.length !== NUMBER.LOTTO_LENGTH) {
+    if (numbers.length !== NUMBER.LOTTO_NUMBERS_LENGTH) {
       throw new Error(`${ERROR_MESSAGE.PREFIX} ${ERROR_MESSAGE.NUMBERS_LENGTH}`);
     }
   },
