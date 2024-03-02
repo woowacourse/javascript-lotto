@@ -68,16 +68,17 @@
                 </div>
               </div>
             </div>
-            <button type="button" class="winningLottoButton">
+            <button type="button" class="winningLotto-btn">
               <p>결과 확인하기</p>
             </button>
           </form>
         </section>
       </div>
 
-      <section class="winningResultModal">
+      <section class="winningResultModal winningResultModal-hidden">
         <form action="">
-          <div class="winningResult winningResult-visible">
+          <div class="winningResult winningResult-hidden">
+            <span class="x-btn">Ｘ</span>
             <h2>🏆 당첨 통계 🏆</h2>
             <table class="winningResultTable">
               <thead>
@@ -91,37 +92,39 @@
                 <tr>
                   <td>3개</td>
                   <td>5,000</td>
-                  <td>n개</td>
+                  <td class="winningResultCount">n개</td>
                 </tr>
 
                 <tr>
                   <td>4개</td>
                   <td>50,000</td>
-                  <td>n개</td>
+                  <td class="winningResultCount">n개</td>
                 </tr>
 
                 <tr>
                   <td>5개</td>
                   <td>1,500,000</td>
-                  <td>n개</td>
+                  <td class="winningResultCount">n개</td>
                 </tr>
 
                 <tr>
                   <td>5개+보너스볼</td>
                   <td>30,000,000</td>
-                  <td>n개</td>
+                  <td class="winningResultCount">n개</td>
                 </tr>
 
                 <tr>
                   <td>6개</td>
                   <td>2,000,000,000</td>
-                  <td>n개</td>
+                  <td class="winningResultCount">n개</td>
                 </tr>
               </tbody>
             </table>
 
             <p class="winningReturnRate">당신의 총 수익률은 %입니다.</p>
-            <button type="button"><p>다시 시작하기</p></button>
+            <button type="button" class="retry-btn">
+              <p>다시 시작하기</p>
+            </button>
           </div>
         </form>
       </section>

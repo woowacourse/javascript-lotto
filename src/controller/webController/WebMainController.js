@@ -9,10 +9,10 @@ class WebMainController {
       WebPurchaseLottoServiceController.playWebPurchaseLottoService,
     );
 
-    const $winningLottoButton = document.querySelector('.winningLottoButton');
+    const $winningLottoButton = document.querySelector('.winningLotto-btn');
     $winningLottoButton.addEventListener(
       'click',
-      WebWinningLottoController.playWebWinningLotto,
+      WebWinningLottoController.playWebWinningResult,
     );
   }
 }

@@ -12,6 +12,8 @@ const CONDITION = {
     6: 2000000000,
   },
 
+  winningKeys: [3, 4, 5, '5-1', 6],
+
   secondPrizeMatchCount: 5,
   secondPrizeMatchBonusCount: 1,
 

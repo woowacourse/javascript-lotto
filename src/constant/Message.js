@@ -22,7 +22,7 @@ const MESSAGE = {
       .join('\n');
   },
   returnRate(returnRate) {
-    return `총 수익률은 ${returnRate.toFixed(1)}%입니다.`;
+    return `당신의 총 수익률은 ${returnRate.toFixed(1)}%입니다.`;
   },
   winningCharacteristicsHeader: '당첨 통계',
   lineSplitter: '--------------------',

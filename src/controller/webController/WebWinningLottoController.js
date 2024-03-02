@@ -1,8 +1,10 @@
 import WinningLotto from '../../domain/entity/WinningLotto';
 import WebView from '../../view/WebView';
+import WebMainController from './WebMainController';
+import WebWinningResultController from './WebWinningResultController';
 
 class WebWinningLottoController {
-  static playWebWinningLotto() {
+  static playWebWinningResult() {
     const winningLottoConfig = {
       value: Array.from(document.querySelectorAll('.winningLottoNumbersInput'))
         .map(numberInput => numberInput.value)
@@ -18,6 +20,14 @@ class WebWinningLottoController {
       };
       WebView.readExactValue(bonusNumberConfig);
     }
+
+    const winningLottoObject = {
+      numbers: winningLotto.getNumbers(),
+      bonusNumber: winningLotto.getBonusNumber(),
+    };
+
+    WebWinningResultController.setWinningLottoObject(winningLottoObject);
+    WebWinningResultController.playWinningResult();
   }
 }
 

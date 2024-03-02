@@ -1,6 +1,7 @@
 import MESSAGE from '../../constant/Message';
 import PurchaseLottoService from '../../domain/service/PurchaseLottoService';
 import WebView from '../../view/WebView';
+import WebWinningResultController from './WebWinningResultController';
 
 class WebPurchaseLottoServiceController {
   static playWebPurchaseLottoService() {
@@ -28,6 +29,13 @@ class WebPurchaseLottoServiceController {
 
     const $winnigLotto = document.querySelector('.winningLotto');
     $winnigLotto.classList.add('winningLotto-visible');
+
+    const pusrchaseLottoObject = {
+      purchaseCountKey: purchaseCount,
+      lottosNumbersKey: lottosNumbers,
+    };
+
+    WebWinningResultController.setPurchaseLottoObject(pusrchaseLottoObject);
   }
 }
 

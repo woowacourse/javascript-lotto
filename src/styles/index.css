@@ -112,7 +112,7 @@ header h1 {
   padding: 6px 6px 6px 8px;
   border-radius: 4px;
   background: rgba(78, 91, 166, 1);
-
+  cursor: pointer;
   font-family: Roboto;
   font-size: 14px;
   font-weight: 700;
@@ -267,8 +267,9 @@ header h1 {
   border: 1px solid rgba(180, 180, 180, 1);
 }
 
-.winningLotto button {
+.winningLotto-btn {
   position: absolute;
+  cursor: pointer;
   width: 382px;
   height: 36px;
   top: 659px;
@@ -278,7 +279,7 @@ header h1 {
   background: rgba(78, 91, 166, 1);
 }
 
-.winningLotto button p {
+.winningLotto-btn p {
   width: 368px;
   height: 24px;
   padding: 4px 6px 4px 6px;
@@ -297,8 +298,11 @@ header h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  display: none;
   background: rgba(0, 0, 0, 0.5);
+}
+
+.winningResultModal-hidden {
+  display: none;
 }
 
 .winningResultModal-visible {
@@ -307,7 +311,6 @@ header h1 {
 
 .winningResult {
   position: absolute;
-  display: block;
   width: 350px;
   height: 500px;
   top: 272px;
@@ -317,10 +320,30 @@ header h1 {
   border-radius: 4px;
 }
 
-.winningResult-visible {
+.winningResult-hidden {
   display: none;
 }
 
+.winningResult-visible {
+  display: block;
+}
+
+.x-btn {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 16px;
+  left: 318px;
+  margin: 0;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-align: center;
+}
 .winningResult h2 {
   position: absolute;
   width: 318px;
@@ -388,8 +411,9 @@ header h1 {
   text-align: center;
 }
 
-.winningResult button {
+.retry-btn {
   position: absolute;
+  cursor: pointer;
   width: 318px;
   height: 36px;
   top: 432px;
@@ -399,7 +423,7 @@ header h1 {
   background: rgba(78, 91, 166, 1);
 }
 
-.winningResult button p {
+.retry-btn p {
   position: relative;
   width: 89px;
   height: 16px;
