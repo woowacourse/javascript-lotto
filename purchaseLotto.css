@@ -1,5 +1,8 @@
 .purchase {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .purchase-form {
@@ -39,6 +42,10 @@
   background: var(--color-lotto-primary);
   font-size: 14px;
   color: var(--color-lotto-grayscale-1);
+}
+
+#error-purchase-money {
+  height: 14px;
 }
 
 /* 구매로또 */

@@ -1,4 +1,4 @@
-import PurchaseLottoService from '../domain/service/PurchaseLottoService';
+import PurchaseLottoService from '../../domain/service/PurchaseLottoService';
 
 const CLASSNAME_HIDDEN = 'hidden';
 const SELECTOR_WINNING_LOTTO = '.winning-lotto';
@@ -47,7 +47,7 @@ const View = {
 };
 
 const PurchaseLottoListener = {
-  purchaseLotto(event) {
+  purchaseLottoListener(event) {
     event.preventDefault();
 
     const purchaseMoney = document.querySelector(SELECTOR_PURCHASE);
@@ -58,6 +58,7 @@ const PurchaseLottoListener = {
       lottos = new PurchaseLottoService(purchaseMoney.value).getLottos();
     } catch (error) {
       View.printError(error.message);
+      console.log(error.message);
       return;
     }
     View.removeErrorMessage();

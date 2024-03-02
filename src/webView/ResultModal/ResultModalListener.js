@@ -1,5 +1,5 @@
-import WinningResultService from '../domain/service/WinningResultService';
-import WinningRewardService from '../domain/service/WinningRewardService';
+import WinningResultService from '../../domain/service/WinningResultService';
+import WinningRewardService from '../../domain/service/WinningRewardService';
 
 const CLASSNAME_HIDDEN = 'hidden';
 const SELECTOR = {
@@ -87,7 +87,7 @@ const ResultModalListener = {
     try {
       winningResults = Private.getWinningResults();
     } catch (error) {
-      OutputView.printError(error);
+      OutputView.printError(error.message);
       return;
     }
     OutputView.removeErrorMessage();
