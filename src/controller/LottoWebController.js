@@ -39,12 +39,12 @@ class LottoWebController {
     });
 
     $('#money-input').addEventListener('input', () => {
-      hideElement($('#money-erorr'));
+      if ($('#money-erorr')) hideElement($('#money-erorr'));
     });
 
     [...$$('.number-input')].forEach((input) => {
       input.addEventListener('input', () => {
-        hideElement($('#win-lotto-error'));
+        if ($('#win-lotto-error')) hideElement($('#win-lotto-error'));
       });
     });
   }

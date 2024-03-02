@@ -5,11 +5,6 @@ export const renderError = (el, errorMessage) => {
   renderElement(el);
 };
 
-export const hideError = (el) => {
-  hideElement(el);
-  // el.innerHTML = '';
-};
-
 export const hideElement = (el) => {
   el.classList.add('hidden');
 };

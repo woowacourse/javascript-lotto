@@ -47,9 +47,14 @@
   position: relative;
 }
 
+#bonus-number label {
+  height: 24px;
+}
+
 #bonus-number input {
   position: absolute;
   right: 0;
+  bottom: 0;
 }
 
 .number-input {

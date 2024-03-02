@@ -1,5 +1,4 @@
 #my-lottos-section {
-  width: 238px;
   height: 276px;
   padding-top: 20px;
 }
@@ -13,6 +12,7 @@
 
 #my-lottos-section > ul {
   margin-top: 15px;
+  width: 100%;
 }
 
 #my-lottos-section > ul > li {
