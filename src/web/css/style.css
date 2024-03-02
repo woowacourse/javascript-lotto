@@ -186,7 +186,9 @@ caption{
   flex-direction: row;
   gap: 8px;
   margin: 5px;
-  height: 230px;
+  height: 270px;
+  overflow-y: scroll;
+  
 }
 
 #game-winninglotto-container {
