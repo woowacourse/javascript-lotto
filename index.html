@@ -5,10 +5,71 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="./src/step2/css/reset.css" /> -->
   </head>
   <body>
-    <header>보너스 번호는 로또 번호와 중복될 수 없습니다.</header>
+    <header class="app-header">
+      <h1 class="text-lg font-bold text-v-center">🎱 행운의 로또</h1>
+    </header>
+
+    <main class="app-main">
+      <section class="h-80 w-30 game-container">
+        <h1 class="text-m font-bold text-h-center">🎱 내 번호 당첨 확인 🎱</h1>
+
+        <form id="lotto-purchase-form" class="flex flex-col purchase-form">
+          <label for="purchase-input" class="text-sm font-light"
+            >구입할 금액을 입력해주세요.</label
+          >
+          <div class="flex justify-between purchase-input-container">
+            <input
+              type="number"
+              placeholder="금액"
+              id="lotto-purchase-input"
+              class="text-sm font-light"
+              required
+            />
+            <button type="submit" class="navy-button">구입</button>
+          </div>
+        </form>
+
+        <section
+          id="purchased-lottos-container"
+          class="lottos-container"
+        ></section>
+
+        <form id="winning-lotto-form" class="hidden winning-form">
+          <span class="text-sm font-light"
+            >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span
+          >
+          <div class="flex justify-between">
+            <span class="text-sm font-light">당첨 번호</span>
+            <span class="text-sm font-light">보너스 번호</span>
+          </div>
+          <div class="flex justify-between">
+            <div id="winning-lotto-input-container" class="flex gap-x-1"></div>
+            <div id="bonus-number-input-container"></div>
+          </div>
+          <button type="submit" class="navy-button w-100">결과 확인하기</button>
+        </form>
+      </section>
+    </main>
+
+    <section class="hidden modal-background" id="winning-result-modal">
+      <div class="flex flex-col gap-x-1 modal-content">
+        <button id="modal-cancel" class="cancel-button text-m">X</button>
+        <h1 class="text-m font-bold text-h-center">🏆 당첨 통계 🏆</h1>
+        <table id="winning-content" class="gap-x-1 result-container"></table>
+        <span id="return-rate-container" class="text-sm font-bold"></span>
+        <button class="navy-button w-90" id="restart-button">
+          다시 시작하기
+        </button>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <span class="text-sm color-navy font-light"
+        >Copyright 2024. woowacourse</span
+      >
+    </footer>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
