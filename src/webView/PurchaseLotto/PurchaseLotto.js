@@ -1,7 +1,5 @@
 import BaseComponent from '../BaseComponent/BaseComponent';
-import Lotto from '../Lotto/Lotto';
 import PurchaseLottoService from '../../domain/service/PurchaseLottoService';
-import PurchasedLotto from '../PurchasedLotto/PurchasedLotto';
 
 const CLASSNAME_HIDDEN = 'hidden';
 const SELECTOR_WINNING_LOTTO = '.winning-lotto';
@@ -20,7 +18,7 @@ class PurchaseLotto extends BaseComponent {
     placeholder="금액"
     aria-describedby="error-purchase-money"
   />
-  <button class="purchase-form__button button-primary">구입</button>
+  <button class="purchase-form__button button-primary text-lotto-caption">구입</button>
 </div>
 <div id="error-purchase-money" class="text-lotto-error"></div>
 </div>`;
@@ -62,8 +60,9 @@ class PurchaseLotto extends BaseComponent {
     this.#appendLottos(lottos);
     this.#showWinningPart();
   }
+
   #showBuyingMessage(count) {
-    document.querySelector(SELECTOR_PURCHASED_LABEL).innerHTML = `${count}개를 구입하였습니다.`;
+    document.querySelector(SELECTOR_PURCHASED_LABEL).innerHTML = `총 ${count}개를 구입하였습니다.`;
   }
   #removeBuyingMessage() {
     document.querySelector(SELECTOR_PURCHASED_LABEL).innerHTML = '';

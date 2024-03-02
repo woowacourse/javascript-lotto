@@ -4,7 +4,7 @@ import Lotto from '../Lotto/Lotto';
 class PurchasedLotto extends BaseComponent {
   render() {
     this.innerHTML = `
-    <div class="purchased-lotto__label"></div>
+    <div class="purchased-lotto__label text-lotto-body"></div>
     <div class="purchased-lotto__list text-lotto-body"></div>`;
   }
   setEvent() {}

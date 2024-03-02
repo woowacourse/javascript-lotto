@@ -8,7 +8,7 @@ class Lotto extends BaseComponent {
     this.#numbers = numbers;
   }
   render() {
-    this.outerHTML = `<div class="lotto"><span class="lotto-mark">🎟️</span> ${this.#getLottoString()}</div>`;
+    this.outerHTML = `<div class="lotto"><span class="lotto-mark lotto-body">🎟️</span> <span class="lotto-string text-lotto-body">${this.#getLottoString()}</span></div>`;
   }
 
   setEvent() {}

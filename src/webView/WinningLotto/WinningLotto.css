@@ -6,9 +6,9 @@
 }
 label.winning-lotto__label {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  color: #000000;
 }
-
 /* 당첨번호 */
 .winning-lotto-form {
   display: flex;
