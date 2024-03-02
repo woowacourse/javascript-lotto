@@ -1,7 +1,7 @@
-@import './header.css';
-@import './main.css';
-@import './footer.css';
-@import './popup.css';
+@import 'header.css';
+@import 'main.css';
+@import 'footer.css';
+@import 'popup.css';
 
 body {
   margin: 0;

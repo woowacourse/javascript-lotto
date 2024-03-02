@@ -1,6 +1,6 @@
-@import './color.css';
-@import './lotto.css';
-@import './numbers.css';
+@import 'color.css';
+@import 'lotto.css';
+@import 'numbers.css';
 
 main {
   width: 100%;
