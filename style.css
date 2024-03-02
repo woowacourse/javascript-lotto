@@ -170,7 +170,7 @@ footer{
 }
 
 
-#main-contents__price-input-box{
+#main-contents__price-input-div{
   width: 310px;
   height: 64px;
   display: flex;
@@ -193,7 +193,7 @@ footer{
   gap: 10px;
   border-radius: 4px;
   border: 1px solid var(--greyscale-3);
-  box-sizing: border-box;
+  div-sizing: border-div;
   
   padding: 8px 8px 0px 8px;
 }
@@ -221,7 +221,7 @@ footer{
   margin: 28px auto 0px 16px;
 }
 
-#main-contents__purchased-lotto-box{
+#main-contents__purchased-lotto-div{
   width: 238px;
   height: 276px;
   margin: 8px auto 0px 16px;
@@ -246,12 +246,12 @@ footer{
   letter-spacing: -1px;
 }
 
-#main-contents__winning-number-box{
+#main-contents__winning-number-div{
   width: 244px;
   height: 68px;
 }
 
-#main-contents__bonus-number-box{
+#main-contents__bonus-number-div{
   width: 76px;
   height: 68px;
   display: flex;
@@ -286,7 +286,7 @@ footer{
   padding: 6px 6px 6px 8px
 }
 
-#modal-main-box{
+#modal-main-div{
   margin: auto;
   background-color: var( --greyscale-1);
   border-radius: 4px;
@@ -306,6 +306,7 @@ footer{
   left: 318px;
   border: 0px;
   background-color: transparent;
+  color:var( --greyscale-5);
   width: 16px;
   height: 16px;
   font:700 20px/16px Roboto;
@@ -337,7 +338,7 @@ footer{
   font-weight: 700;
 }
 
-#modal__retry-botton{
+#modal__retry-button{
   width: 318px;
   height: 36px;
   padding: 6px 6px 6px 8px;

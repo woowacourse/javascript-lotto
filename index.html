@@ -10,8 +10,8 @@
 </head>
 
 <body>
-  <div id="modal">
-    <div id="modal-main-box">
+  <div id="modal" class="visibility-hidden">
+    <div id="modal-main-div">
       <button class="font-body" id="modal__close-button">x</button>
       <h2 class="font-subtitle" id="modal__title">🏆 당첨 통계 🏆</h2>
       <table id="modal__result-table">
@@ -49,7 +49,7 @@
 
       <span id="modal__result-span">당신의 총 수익률은 %입니다.</span>
 
-      <button id="modal__retry-botton">다시 시작하기</button>
+      <button id="modal__retry-button">다시 시작하기</button>
     </div>
   </div>
 
@@ -60,14 +60,14 @@
   <section class="font-body" id="main-contents">
     <h1 class="font-title" id="contents-title">🎱 내 번호 당첨 확인🎱</h1>
     <form id="main-contents__price-form">
-      <div id="main-contents__price-input-box">
+      <div id="main-contents__price-input-div">
         <input id="main-contents__price-input" type="number" placeholder="금액" min="1000" max="10000000000" step="1000">
       </div>
       <button class="font-buttom-caption" id="main-contents__price-button">구입</button>
     </form>
 
     <span id="main-contents__purchased-lotto-span">총 7개를 구매하였습니다.</span>
-    <div id="main-contents__purchased-lotto-box">
+    <div id="main-contents__purchased-lotto-div">
       <div class="purchased-lotto">
         <strong class="lotto-ticket">🎟️</strong><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
       </div>
@@ -94,7 +94,7 @@
 
     <form id="main-contents__winning-lotto-form">
       <span id="main-contents__winning-lotto-span">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</span>
-      <div id="main-contents__winning-number-box">
+      <div id="main-contents__winning-number-div">
         <span id="main-contents__winning-number-span">당첨번호</span>
         <div id="main-contents__winning-number-inputs">
           <input class="winning-number-input" type="number" min="1" max="45">
@@ -105,7 +105,7 @@
           <input class="winning-number-input" type="number" min="1" max="45">
         </div>
       </div>
-      <div id="main-contents__bonus-number-box">
+      <div id="main-contents__bonus-number-div">
         <span id="main-contents__bonus-number-span">보너스 번호</span>
         <input class="winning-number-input" id="main-contents__bonus-number-input" type="number">
       </div>
