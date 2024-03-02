@@ -1,3 +1,4 @@
+import './Web/css/reset.css';
 import './Web/css/style.css';
 import WebController from './Web/WebController';
 
