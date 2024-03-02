@@ -32,7 +32,7 @@ const LottoNumbersComponent = Object.freeze({
     const lottoIcon = makeElementWithClassName('div', 'lottoIcon');
     lottoIcon.innerText = `🎟️`;
     const lottoNumbers = makeElementWithClassName('div', 'lottoNumbers');
-    lottoNumbers.innerHTML = `<p>${numbers.join(', </p><p>')}</p>`;
+    lottoNumbers.innerHTML = `<div>${numbers.join(', </div><div>')}</div>`;
     appendChildren(lottoNumberDiv, [lottoIcon, lottoNumbers]);
     return lottoNumberDiv;
   },
