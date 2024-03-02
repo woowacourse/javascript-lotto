@@ -30,6 +30,10 @@ body {
   letter-spacing: 1px;
 }
 
+body.modalOpen {
+  overflow-y: hidden;
+}
+
 header {
   height: 64px;
   padding-left: 130px;
@@ -48,6 +52,7 @@ header {
 header.scrolled {
   height: 30px;
   font-size: var(--font-body-size);
+  will-change: transform;
   animation: changeFontSize 0.5s;
   /* TODO: 이 클래스가 제거될 땐 애니메이션이 안됨 */
 }
@@ -91,6 +96,7 @@ footer {
     height: 30px;
   }
 }
+
 ul {
   list-style-type: none;
   padding-inline-start: 0;
@@ -106,6 +112,7 @@ ul > li {
 }
 
 main {
+  box-sizing: border-box;
   width: 414px;
   height: 727px;
   border: 1px solid #0000001f;
@@ -115,7 +122,6 @@ main {
 
 #mainContainer {
   width: 100%;
-  height: 100%;
   top: 0;
   display: flex;
   justify-content: center;
@@ -128,16 +134,17 @@ main {
   height: 26px;
   border: 1px solid var(--color-grayscale-3);
   border-radius: 4px;
+  text-align: center;
 }
 
 .modalBackground {
   background: #00000080;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -279,4 +286,55 @@ input {
 .scrollList {
   height: 280px;
   overflow: scroll;
+}
+
+div {
+  font-size: var(--font-body-size);
+}
+
+.hideScroll {
+  scrollbar-width: none;
+}
+
+.toast {
+  position: fixed;
+  min-width: 300px;
+  width: fit-content;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 20px 30px;
+  border-radius: 8px;
+  animation: toastAnimation 3s forwards;
+  font-weight: var(--font-caption-weight);
+  font-size: var(--font-caption-size);
+  color: var(--color-lotto-primary);
+}
+
+@keyframes toastAnimation {
+  0% {
+    bottom: -100px;
+    opacity: 0.5;
+  }
+  30% {
+    bottom: 40px;
+    opacity: 1;
+  }
+  70% {
+    bottom: 40px;
+    opacity: 1;
+  }
+  100% {
+    bottom: -100px;
+    opacity: 0.5;
+  }
+}
+
+.disabledButton {
+  background-color: var(--color-grayscale-4);
+}
+
+.disabledInput {
+  color: var(--color-grayscale-4);
 }
