@@ -4,14 +4,13 @@
  */
 
 import WebLottoController from "./controller/WebLottoController.js";
-import handler from "./view/handler.js";
 import "./view/styles.css";
+import outputView from "./view/web/outputView.js";
+import inputView from "./view/web/inputView.js";
+import headerResize from "./view/web/headerResize.js";
 
-const webLottoController = new WebLottoController();
+const webLottoController = new WebLottoController(inputView, outputView);
 
-handler.headerResize();
+headerResize();
 
-handler.getMoney(webLottoController.getMoney.bind(webLottoController));
-handler.getWinningLottoAndBonus(webLottoController.initWinningLotto.bind(webLottoController));
-handler.getRank(webLottoController.printRankAndProfitRate.bind(webLottoController));
-handler.restart(webLottoController.restart.bind(webLottoController));
+webLottoController.game();
