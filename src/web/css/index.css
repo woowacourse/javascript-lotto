@@ -58,6 +58,7 @@
 }
 
 .lotto-content {
+  width: 100%;
   background-color: var(--gray-scale-2);
   flex-grow: 1;
   display: flex;
@@ -115,21 +116,9 @@ li {
   margin-bottom: 10px;
 }
 
-section {
-  flex-grow: 1;
-  width: 100%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--gray-scale-2);
-}
-
 #total-article {
   background-color: var(--gray-scale-1);
   border: 1px solid rgba(0, 0, 0, 0.12);
-  width: 414px;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -137,6 +126,7 @@ section {
   padding: 20px;
   position: relative;
   height: 600px;
+  width: 414px;
 }
 
 ul {
