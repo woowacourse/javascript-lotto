@@ -4,12 +4,11 @@ import { ERROR_MESSAGE } from "../error/ErrorMessage.js";
 class LottoMoney {
   #money;
   static MIN = 1_000;
-  static MAX = 1_000_000_000;
+  static MAX = 100_000;
   static LOTTO_PRICE = 1000;
 
   constructor(money) {
     const parsedMoney = Number(money);
-    this.#validate(parsedMoney);
     this.#money = parsedMoney;
   }
 
@@ -21,7 +20,7 @@ class LottoMoney {
     return this.#money;
   }
 
-  #validate(money) {
+  static validate(money) {
     if (isNaN(money)) throw new CustomError(ERROR_MESSAGE.lottoMoneyNotNumber);
 
     const moneyIsNotInRange = money < LottoMoney.MIN || money > LottoMoney.MAX;

@@ -8,7 +8,7 @@ const ERROR_MESSAGE = {
   bonusNumberOverlapped: "보너스 번호는 당첨 번호와 중복될 수 없습니다.",
 
   lottoMoneyNotNumber: `구입 금액은 숫자로 입력해야 합니다.`,
-  lottoMoneyNotInRange: `구입 금액은 1000원 이상 1,000,000,000원 이하의 숫자로 입력해야 합니다.`,
+  lottoMoneyNotInRange: `구입 금액은 1,000원 이상 100,000원 이하의 숫자로 입력해야 합니다.`,
   lottoMoneyNotInteger: `구입 금액은 정수로 입력해야 합니다.`,
 
   lottoNumberNotNumber: `각 로또 번호는 숫자로 입력해야 합니다.`,
