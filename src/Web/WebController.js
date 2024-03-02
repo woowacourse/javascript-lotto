@@ -10,9 +10,7 @@ export default class WebController {
   #winLottoNumber;
 
   async run() {
-    RenderingHandler.renderHeader();
     RenderingHandler.renderLottoComponents();
-    RenderingHandler.renderFooter();
 
     this.#setMoneyFormEvent();
   }
