@@ -23,8 +23,9 @@ class WebController {
     this.#lottoStore.setWinningLotto(winningNumbers, bonusNumber);
     const rankings = this.#lottoStore.checkRanking();
     const totalProfitRate = this.#lottoStore.getTotalProfitRate(rankings);
+    const totalRanking = this.#lottoStore.calculateTotalRanking(rankings);
 
-    return { rankings, totalProfitRate };
+    return { totalRanking, totalProfitRate };
   }
 }
 

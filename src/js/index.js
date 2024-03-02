@@ -20,16 +20,6 @@ const resetGame = () => {
   closeModal();
 };
 
-const calculateTotalRanking = (rankings) => {
-  const initialRanking = [0, 0, 0, 0, 0, 0];
-
-  return rankings.reduce((acc, rank) => {
-    acc[rank] += 1;
-
-    return acc;
-  }, initialRanking);
-};
-
 const formatStatisticsResult = (ranking) => {
   const secondPlace = 2;
 
@@ -130,11 +120,9 @@ const purchaseLotto = () => {
   showPurchaseLottosTag.appendChild(showInputBonusNumber());
 };
 
-const showLottoRanking = (rankings) => {
+const showLottoRanking = (totalRanking) => {
   const statisticTable = document.getElementById("lotto-result-table");
   const rankingElement = new ElementTree("tbody");
-  const totalRanking = calculateTotalRanking(rankings);
-  formatStatisticsResult();
 
   totalRanking
     .slice()
@@ -167,12 +155,12 @@ const checkLottoResult = () => {
     );
     const bonusNumberValue = Number(bonusNumber.value);
 
-    const { rankings, totalProfitRate } = webController.calculateProfitRate(
+    const { totalRanking, totalProfitRate } = webController.calculateProfitRate(
       winningNumbersValue,
       bonusNumberValue,
     );
     openModal();
-    showLottoRanking(rankings);
+    showLottoRanking(totalRanking);
     showLottoProfiteRate(totalProfitRate);
   } catch (error) {
     alert(error.message);

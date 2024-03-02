@@ -41,8 +41,9 @@ class Controller {
   calculateProfitRate() {
     const rankings = this.#lottoStore.checkRanking();
     const totalProfitRate = this.#lottoStore.getTotalProfitRate(rankings);
+    const totalRanking = this.#lottoStore.calculateTotalRanking(rankings);
 
-    OutputView.printRankings(rankings);
+    OutputView.printRankings(totalRanking);
     OutputView.printTotalProfitRate(totalProfitRate);
   }
 

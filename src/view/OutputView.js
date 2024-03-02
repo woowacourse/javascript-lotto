@@ -12,10 +12,8 @@ const OutputView = {
     this.print(SYMBOL.space);
   },
 
-  printRankings(rankings) {
+  printRankings(totalRanking) {
     this.print(OUTPUT_MESSAGE.winningStatistics);
-
-    const totalRanking = this.calculateTotalRanking(rankings);
 
     for (let i = totalRanking.length - 1; i > 0; i--) {
       this.print(this.formatStatisticsResult(i, totalRanking[i]));
@@ -24,16 +22,6 @@ const OutputView = {
 
   printTotalProfitRate(totalProfitRate) {
     this.print(OUTPUT_MESSAGE.totalProfitRate(totalProfitRate));
-  },
-
-  calculateTotalRanking(rankings) {
-    const initialRanking = [0, 0, 0, 0, 0, 0];
-
-    return rankings.reduce((acc, rank) => {
-      acc[rank] += 1;
-
-      return acc;
-    }, initialRanking);
   },
 
   formatStatisticsResult(ranking, count) {
