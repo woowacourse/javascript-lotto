@@ -1,4 +1,3 @@
-import { doc } from 'prettier';
 import LottoMachine from '../domain/model/LottoMachine';
 import Money from '../domain/model/Money';
 import { errorAlert } from '../util/errorAlert';
