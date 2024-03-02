@@ -47,7 +47,15 @@ class LottoWebController {
 
   /*로또 구입 금액 제출 섹션*/
   validateMoney(money) {
-    MoneyValidation.validate(money);
+    try {
+      MoneyValidation.validate(money);
+      return money;
+    } catch ({ message }) {
+      WebInputView.focusMoneyInput();
+      WebInputView.resetMoneyInput();
+      MyLottoOutputView.hideSection();
+      renderError($('#money-error'), message);
+    }
   }
 
   convertMoneyToLotto(money) {
@@ -62,14 +70,10 @@ class LottoWebController {
   }
 
   submitMoneyForm(money) {
-    try {
-      this.validateMoney(money);
-      const lottosNumbers = this.convertMoneyToLotto(money);
+    const validMoney = this.validateMoney(money);
+    if (validMoney) {
+      const lottosNumbers = this.convertMoneyToLotto(validMoney);
       this.showLottosInfo(lottosNumbers);
-    } catch ({ message }) {
-      WebInputView.focusMoneyInput();
-      MyLottoOutputView.hideSection();
-      renderError($('#money-error'), message);
     }
     WebInputView.resetMoneyInput();
     WebInputView.resetWinningLottoNumbers();

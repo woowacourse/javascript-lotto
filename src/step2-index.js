@@ -4,6 +4,7 @@
  */
 import LottoWebController from './controller/LottoWebController';
 import './css/index.css';
+import './controller/LottoWebController';
 
 const lottoWebController = new LottoWebController();
 lottoWebController.play();
