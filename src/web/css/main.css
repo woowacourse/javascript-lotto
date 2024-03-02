@@ -1,0 +1,81 @@
+@import './color.css';
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 80px 0px;
+}
+
+.lotto-app-container {
+  background-color: var(--font-color);
+  width: 414px;
+  height: 727px;
+  border: 1px solid #0000001f;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  width: 382px;
+  height: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin: 50px 0px 30px 0px;
+}
+
+.input-section {
+  width: 382px;
+  height: 64px;
+  border-radius: 4px;
+}
+
+.purchase-form {
+  display: flex;
+  align-items: end;
+}
+
+.input-column {
+  display: flex;
+  flex-direction: column;
+  width: Fixed (310px);
+  height: 64px;
+  margin-right: 4px;
+}
+
+.input-column > label {
+  width: 310px;
+  height: 24px;
+  padding: 0px, 126px, 0px, 0px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.purchase-amount {
+  width: 310px;
+  height: 36px;
+  padding-left: 10px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  margin-right: 10px;
+}
+
+.purchase-btn {
+  background-color: var(--header-color);
+  width: 56px;
+  height: 36px;
+  padding: 6px, 6px, 6px, 8px;
+  border-radius: 4px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--font-color);
+}
