@@ -15,12 +15,24 @@ const Web = {
     });
   },
 
-  readTagValues(selector) {
+  readFormInputValue(selector) {
     return new Promise((resolve) => {
-      const button = Dom.$(selector.button);
+      const form = Dom.$(selector.form);
+      const input = Dom.$(selector.input);
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        resolve(input.value);
+      });
+    });
+  },
+
+  readFormInputValues(selector) {
+    return new Promise((resolve) => {
+      const form = Dom.$(selector.form);
       const inputs = Dom.$$(selector.inputs);
-      button.addEventListener('click', () => {
-        resolve(Array.from(inputs).map((input) => input.value).join());
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        resolve(Array.from(inputs).filter((input) => input.value !== '').map((input) => input.value).join(', '));
       });
     });
   },

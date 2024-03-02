@@ -37,7 +37,7 @@ section header h1 {
   letter-spacing: var(--body-letter);
 }
 
-.read-money-form {
+.read-money form {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,7 +46,7 @@ section header h1 {
   height: 3.6rem;
 }
 
-.read-money-form input {
+.read-money form input {
   width: 31rem;
   height: 100%;
   padding: 0.6rem 0.8rem;
@@ -56,11 +56,11 @@ section header h1 {
   outline: none;
 }
 
-.read-money-form input::placeholder {
+.read-money form input::placeholder {
   color: var(--grayscale4);
 }
 
-.read-money-form button {
+.read-money form button {
   width: 5.6rem;
   height: 100%;
 
@@ -75,15 +75,15 @@ section header h1 {
   letter-spacing: var(--caption-letter);
 }
 
-.read-money-form button:hover {
+.read-money form button:hover {
   cursor: pointer;
 }
 
-.read-money-form button:active {
+.read-money form button:active {
   opacity: 0.7;
 }
 
-.read-money-form button:disabled {
+.read-money form button:disabled {
   background-color: var(--grayscale3);
   color: var(--grayscale5);
   cursor: not-allowed;
@@ -125,7 +125,7 @@ section header h1 {
   letter-spacing: var(--body-letter);
 }
 
-.winning-numbers-input-wrapper {
+.read-winning-numbers form {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -134,10 +134,10 @@ section header h1 {
 
 .winning-numbers {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
-.winning-numbers label {
+.winning-numbers legend {
   margin-bottom: 0.8rem;
   font-size: var(--body-size);
   font-weight: var(--body-weight);
@@ -145,7 +145,7 @@ section header h1 {
   letter-spacing: var(--body-letter);
 }
 
-.winning-numbers-inputs input {
+.winning-numbers input {
   width: 3.4rem;
   height: 3.6rem;
   margin-right: 0.8rem;
@@ -161,7 +161,7 @@ section header h1 {
   align-items: flex-end;
 }
 
-.bonus-number label {
+.bonus-number legend {
   margin-bottom: 0.8rem;
   font-size: var(--body-size);
   font-weight: var(--body-weight);
@@ -178,7 +178,7 @@ section header h1 {
   text-align: center;
 }
 
-#read-winning-numbers-submit {
+.read-winning-numbers button {
   width: 100%;
   height: 3.6rem;
   margin-top: 3.3rem;
@@ -194,15 +194,15 @@ section header h1 {
   letter-spacing: var(--caption-letter);
 }
 
-#read-winning-numbers-submit:hover {
+.read-winning-numbers button:hover {
   cursor: pointer;
 }
 
-#read-winning-numbers-submit:active {
+.read-winning-numbers button:active {
   opacity: 0.7;
 }
 
-#read-winning-numbers-submit:disabled {
+.read-winning-numbers button:disabled {
   background-color: var(--grayscale3);
   color: var(--grayscale5);
   cursor: not-allowed;

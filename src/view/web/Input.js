@@ -5,21 +5,21 @@ import Render from './Render';
 const Input = {
   async readMoney() {
     if (Dom.$('#read-money-input') === null) Render.readMoney();
-    const money = await Web.readTagValue({ button: '#read-money-form-submit', input: '#read-money-input' });
+    const money = await Web.readFormInputValue({ form: '#read-money-form', input: '#read-money-input' });
     return money;
   },
 
   async readWinningNumbers() {
-    if (Dom.$('.read-winning-numbers-input') === null) Render.readWinningNumbers();
-    const input = await Web.readTagValues({ button: '#read-winning-numbers-submit', inputs: '.read-winning-numbers-input' });
+    if (Dom.$('#winning-numbers-input-form') === null) Render.readWinningNumbers();
+    const input = await Web.readFormInputValues({ form: '#winning-numbers-input-form', inputs: '.winning-numbers input' });
     return input;
   },
 
   async readBonusNumber() {
-    Dom.$('#read-winning-numbers-submit').textContent = '결과 확인하기';
-    Array.from(Dom.$$('.read-winning-numbers-input')).map((input) => input.disabled = true);
+    Dom.$('.read-winning-numbers button').textContent = '결과 확인하기';
+    Array.from(Dom.$$('.winning-numbers input')).map((input) => input.disabled = true);
     Dom.$('#read-bonus-number-input').disabled = false;
-    const input = await Web.readTagValue({ button: '#read-winning-numbers-submit', input: '#read-bonus-number-input' });
+    const input = await Web.readFormInputValue({ form: '#winning-numbers-input-form', input: '.bonus-number input' });
     return input;
   },
 
