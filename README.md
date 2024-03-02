@@ -7,10 +7,14 @@
 ```
 npm install npm
 npm run start-step1
+npm run start-step2
 ```
+
+배포 링크 : [클릭](https://skiende74.github.io/javascript-lotto/dist/)
 
 감사합니다 !
 
+![스크린샷](image.png)
 
 ### 폴더구조 간결요약
 
@@ -34,11 +38,57 @@ npm run start-step1
 - WInningRewardService : 수익률 계산 담당
 
 #### view : 입출력
+
 - InputView : 입력 담당. 무한 재입력도 담당
 - OutputView : 출력 담당.
 
+여기까지는 STEP1
 
-# 고민한 사항 및 코드 의도
+#### webView : web입출력을 위한 컴포넌트 ( STEP 2에서 추가된부분 )
+
+- BaseComponent : customElements 베이스클래스.
+- HeaderBar : 헤더부분 컴포넌트
+- FooterBar : 푸터 컴포넌트
+- MainApp : 앱 컴포넌트
+- PurchaseLotto : 로또금액 입력부
+- PurchasedLotto : 구매한 로또 컴포넌트
+- Lotto : 출력되는 한줄의 로또 담당 컴포넌트
+- ResultButton : 로또결과 버튼
+- ResultModal : 로또 결과 모달
+- WinningLotto : 로또 결과 내용 컴포넌트
+
+customElements를 적용하였습니다. step2-index.js에서 호출됩니다.
+
+# Step 2에서 고민한 사항 및 코드 의도
+
+### step1의 코드변경 없이 재사용
+
+기존 step1 코드의 변경 없이, step1 코드의 코드를 **재사용**합니다. Service레이어만 import해서 재사용하는 형태로 구현하였습니다. step2에서는 따로 컨트롤러가 필요하지않아따로 step2를 위한 컨트롤러는 만들지않았으며, webView에서 웹컴포넌트들이 Service 레이어를 호출해서 작동하고있습니다.
+
+### Custom Elements 적용
+
+html 컴포넌트가 비대해지는 것을 막기위해 **[custom elements]를** 적용하여 컴포넌트를 **분리**하였습니다. 이번에 custom elements를 처음적용해보았는데, 처음엔 이 custom elements라는 키워드라도 알았으면 좋았을텐데 이 키워드를 몰라서, 키워드를 알아내는 과정에 꽤 시간을 썼습니다.
+
+컴포넌트 분리를 통해, 기존엔 수정사항이 생길 때 html과, css파일, 전부 이동해가면서 고쳐야했다면, 지금은 관심 컴포넌트끼리 모여있기 때문에 빠르고 정확한 수정이 가능하다고생각합니다.
+
+### CSS 분리
+
+CSS도 컴포넌트별로 분리하였습니다. 하지만, CSS Module은 현재는 적합하지않다고 판단하여 따로 적용하지 않았습니다. 처음에는 적용하였다가, CSS Module 적용시 클래스명이 맹글링되어 동일 컴포넌트에서조차 자식 태그에 css selector로 접근이 불가능해져 되돌렸습니다.
+
+[custom elements]: https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements
+
+## 시간상 진행하지 못해 아쉬운 부분
+
+조금 더 진행할 수 있는 리팩토링이 있으나 시간이 부족하여 진행하지 못 한 부분이 있습니다. 하지만 이제 슬슬 PR을 보내야할 시간이라고 판단하여 더 진행하지는 못했습니다.
+
+- webView/ResultModal 폴더의 ResultModalListener가 현재 깔끔하지 않습니다. 함수길이도 조금 길고, 상수를 뽑아낼 것들도 있고, 여러가지 일을 하고 있다고 판단됩니다. 애초에 이 파일을 없애고 ResultModal 클래스 및 다른 해당 책임 클래스에 퍼뜨려 깔끔하게 통합시킬 수 있을 거라고 생각합니다. 하지만 시간상 더 진행하지 못 하였습니다.
+- 현재 각 컴포넌트들이 일부는 서로의 퍼블릭 메소드를 통해 메시지를 주고받고 있습니다만, 모든 컴포넌트(ResultModalListener 등)들이 그렇게 하지는 못하고있습니다. 일부는 querySelector로 직접 바꾸고있는 부분이 조금 있습니다. 컴포넌트끼리는 퍼블릭메소드로 메시지를 주고받게끔하면 조금 더 느슨한연결이 가능할 것 같습니다.
+
+### 미션을 진행하면서 좋았던 부분
+custom elements로 컴포넌트를 분리하고, css를 분리하고 하는 과정을 직접 겪으면서, 바닐라 JS (w. 웹팩) 환경에서 동적렌더링을 하는 경험을 해볼 수 있었던 것 같습니다.
+CSS Module을 다시 사용해보면서 조금이나마 더 익숙해진 것 같습니다.
+
+# Step 1에서 고민한 사항 및 코드 의도
 
 ## 가장 중요시 한 것
 
@@ -102,4 +152,3 @@ npm run start-step1
 - 이번에는 커밋메시지를 test 커밋과, feat커밋 이렇게 두번에 나누어서 커밋하지 않고, 테스트구현후 -> 기능구현을 한 다음에 한꺼번에 feat으로 커밋 메시지를 올렸는데, 케빈은 TDD를 할 경우 test, feat 순서로 분리해서 커밋을 하시는 편이신지 궁금합니다.
 - 또, 이번에는
 - 메소드 단위로 커밋을 하기도 하고, 클래스 단위(기능단위)로 커밋을하기도하였는데, 커밋은 작게하는 것이 좋다고는 하지만 너무 자주하기엔 커밋메세지작성이 오래걸리는거같습니다. 케빈은 보통 커밋 빈도를 어느정도로 맞추는 편인지 궁금합니다.
-
