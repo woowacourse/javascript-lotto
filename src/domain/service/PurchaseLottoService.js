@@ -15,6 +15,7 @@ class PurchaseLottoService {
   #validate(moneyString) {
     this.#validateNumber(moneyString);
     this.#validateMultiple(moneyString);
+    this.#validateBlank(moneyString);
   }
 
   #validateNumber(moneyString) {
@@ -26,6 +27,12 @@ class PurchaseLottoService {
   #validateMultiple(moneyString) {
     if (Number(moneyString) % CONDITION.pricePerLotto !== 0) {
       throw new Error(ERROR.beMultiple);
+    }
+  }
+
+  #validateBlank(moneyString) {
+    if (!moneyString) {
+      throw new Error(ERROR.beNotBlank);
     }
   }
 

@@ -5,12 +5,11 @@ import WebView from '../../view/WebView';
 class WebPurchaseLottoServiceController {
   static playWebPurchaseLottoService() {
     const purchaseLottoConfig = {
-      value: 'purchaseLottoInput',
+      value: document.querySelector('.purchaseLottoInput').value,
       factory: inputString => new PurchaseLottoService(inputString),
     };
 
-    const purchaseLottoService =
-      WebView.readWebViewExactValue(purchaseLottoConfig);
+    const purchaseLottoService = WebView.readExactValue(purchaseLottoConfig);
 
     const purchaseCount = purchaseLottoService.getPurchaseCount();
     const $purchaseLottoView = document.querySelector('.purchaseLottoView');

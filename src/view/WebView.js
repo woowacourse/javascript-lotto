@@ -1,9 +1,6 @@
 const WebView = {
-  readWebViewExactValue(config) {
-    console.log(config);
-
-    const inputString = document.querySelector(`.${config.value}`).value;
-    console.log(inputString);
+  readExactValue(config) {
+    const inputString = config.value;
     try {
       return config.factory(inputString);
     } catch (e) {

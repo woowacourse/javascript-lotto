@@ -184,7 +184,7 @@ header h1 {
   color: rgba(0, 0, 0, 1);
 }
 
-.lotto ol li p {
+.lottos li p {
   box-sizing: border-box;
   margin: 0;
   padding: 0 0 0 8px;
@@ -301,9 +301,13 @@ header h1 {
   background: rgba(0, 0, 0, 0.5);
 }
 
+.winningResultModal-visible {
+  display: block;
+}
+
 .winningResult {
   position: absolute;
-  display: none;
+  display: block;
   width: 350px;
   height: 500px;
   top: 272px;
@@ -311,6 +315,10 @@ header h1 {
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 1);
   border-radius: 4px;
+}
+
+.winningResult-visible {
+  display: none;
 }
 
 .winningResult h2 {

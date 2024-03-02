@@ -68,14 +68,16 @@
                 </div>
               </div>
             </div>
-            <button type="submit"><p>결과 확인하기</p></button>
+            <button type="button" class="winningLottoButton">
+              <p>결과 확인하기</p>
+            </button>
           </form>
         </section>
       </div>
 
       <section class="winningResultModal">
         <form action="">
-          <div class="winningResult">
+          <div class="winningResult winningResult-visible">
             <h2>🏆 당첨 통계 🏆</h2>
             <table class="winningResultTable">
               <thead>
@@ -119,7 +121,7 @@
             </table>
 
             <p class="winningReturnRate">당신의 총 수익률은 %입니다.</p>
-            <button type="submit"><p>다시 시작하기</p></button>
+            <button type="button"><p>다시 시작하기</p></button>
           </div>
         </form>
       </section>
