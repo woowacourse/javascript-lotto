@@ -1,5 +1,3 @@
-import { $ } from "../../utils/selector.js";
-
 const modal = {
   openModal() {
     const $modal = document.getElementsByClassName("modalBackground")[0];
@@ -17,6 +15,10 @@ const modal = {
     $modalBackground.style.display = "none";
 
     document.body.classList.remove("modalOpen");
+  },
+
+  closeModalByBackground(event) {
+    if (event.target === event.currentTarget) modal.closeModal();
   },
 };
 
