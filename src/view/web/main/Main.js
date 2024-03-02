@@ -1,5 +1,5 @@
-import BuyLottoSection from './BuyLottoSection.js';
 import AfterBuyLottoSection from './AfterBuyLottoSection.js';
+import BuyLottoSection from './buyLotto/BuyLottoSection.js';
 
 export default function Main() {
   const main = document.createElement('main');

@@ -1,4 +1,4 @@
-import ErrorMessage from '../utils/ErrorMessage.js';
+import ErrorMessage from '../../utils/ErrorMessage.js';
 import BuyLottoForm from './BuyLottoForm.js';
 
 export default function BuyLottoSection() {
