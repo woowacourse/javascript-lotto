@@ -1,5 +1,6 @@
 import ClassName from "../util/ClassName";
 import Elements from "../util/Elements";
+import Events from "../util/Events";
 import addClass from "../util/addClass";
 import removeClass from "../util/removeClass";
 import ButtonController from "./ButtonController";
@@ -35,6 +36,10 @@ class ElementActivator {
     const modalDiv = Elements.DIVS.modal;
     removeClass(modalDiv, ClassName.visibilityHidden);
     ButtonController.activateModalButtons();
+    modalDiv.addEventListener("keydown", (event) => {
+      const escKey = 27;
+      if (event.keyCode === escKey) Events.modalCloseButtonClickEvent(event);
+    });
   }
 
   static deactivateModal() {

@@ -50,6 +50,10 @@ body{
   background: var(--greyscale-2);
 }
 
+body:focus{
+  border: 10px
+}
+
 header {
   height: 64px;
   background: var(--lotto-primary);
@@ -193,7 +197,7 @@ footer{
   gap: 10px;
   border-radius: 4px;
   border: 1px solid var(--greyscale-3);
-  div-sizing: border-div;
+  box-sizing: border-box;
   
   padding: 8px 8px 0px 8px;
 }

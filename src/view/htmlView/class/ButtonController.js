@@ -58,6 +58,7 @@ class ButtonController {
       "click",
       Events.modalRetryButtonClickEvent
     );
+    modalRetryButton.focus();
   }
 
   static #activateModalCloseButton() {

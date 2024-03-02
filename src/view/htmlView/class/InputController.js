@@ -4,7 +4,7 @@ class InputController {
   static activatePriceInput() {
     const priceInput = Elements.INPUTS.price;
     priceInput.disabled = false;
-    priceInput.innerText = priceInput.praceholder;
+    priceInput.value = "";
     priceInput.focus();
   }
 
@@ -20,6 +20,7 @@ class InputController {
       input.disabled = false;
       input.value = "";
     });
+    winningLottoInputs[0].focus();
   }
 
   static activateBonusNumberInput() {
