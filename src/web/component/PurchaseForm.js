@@ -4,31 +4,50 @@ import Validator from '../../validator/Validator';
 
 class PurchaseForm extends HTMLElement {
   #boundMethods;
+  #elements;
 
   constructor() {
     super();
     this.#boundMethods = {
       handleSubmit: this.#handleSubmit.bind(this),
+      handleEnterKeyDown: this.#handleEnterKeyDown.bind(this),
     };
   }
 
   connectedCallback() {
     this.#render();
+    this.#bindElements();
     this.#setEvent();
   }
 
+  #bindElements() {
+    this.#elements = {
+      form: $('#purchase-form', this),
+      input: $('#purchase-form-input', this),
+      submitButton: $('#purchase-form-button', this),
+    };
+  }
+
   #setEvent() {
-    $('#purchase-form-button').addEventListener('click', this.#boundMethods.handleSubmit);
+    this.#elements.submitButton.addEventListener('click', this.#boundMethods.handleSubmit);
+    this.#elements.input.addEventListener('keydown', this.#boundMethods.handleEnterKeyDown);
   }
 
   #handleSubmit() {
     try {
-      const purchaseAmount = $('#purchase-form-input').value;
+      const purchaseAmount = this.#elements.input.value;
       Validator.validatePurchaseAmount(purchaseAmount);
-      ErrorMessageUtil.removeErrorMessage($('#purchase-form', this));
+      ErrorMessageUtil.removeErrorMessage(this.#elements.form);
       this.#purchaseLotto(purchaseAmount);
     } catch (error) {
-      ErrorMessageUtil.showErrorMessage(error.message, $('#purchase-form', this));
+      ErrorMessageUtil.showErrorMessage(error.message, this.#elements.form);
+    }
+  }
+
+  #handleEnterKeyDown(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.#boundMethods.handleSubmit();
     }
   }
 
