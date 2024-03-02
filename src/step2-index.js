@@ -11,17 +11,15 @@ import './styles/PurchasedLottos.css';
 import './styles/WinningLottoForm.css';
 
 // domains
-import { LottoGame } from './domains';
 import WebController from './services/WebController';
 
 // components
-import PurchasedLottos from './components/PurchasedLottos';
-import PaymentForm from './components/PaymentForm';
-import WinningLottoForm from './components/WinningLottoForm';
-import WebView from './views/web/WebView';
+import PurchasedLottos from './views/web/components/PurchasedLottos';
+import PaymentForm from './views/web/components/PaymentForm';
+import WinningLottoForm from './views/web/components/WinningLottoForm';
 
 window.customElements.define('purchased-lottos', PurchasedLottos);
 window.customElements.define('payment-form', PaymentForm, { extends: 'form' });
 window.customElements.define('winning-lotto-form', WinningLottoForm, { extends: 'form' });
 
-const webController = new WebController(new LottoGame(), new WebView());
+const webController = new WebController();

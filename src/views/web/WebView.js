@@ -1,6 +1,6 @@
-import { PAYEMENT_FORM_SELECTOR } from '../../components/PaymentForm';
-import { PURCHASED_LOTTOS_SELECTOR } from '../../components/PurchasedLottos';
-import { WINNINT_LOTTO_SELECTOR } from '../../components/WinningLottoForm';
+import { PAYEMENT_FORM_SELECTOR } from './components/PaymentForm';
+import { PURCHASED_LOTTOS_SELECTOR } from './components/PurchasedLottos';
+import { WINNINT_LOTTO_SELECTOR } from './components/WinningLottoForm';
 
 class WebView {
   paymentForm;
@@ -19,8 +19,8 @@ class WebView {
     this.purchasedLottos.setAttribute('data-lottos', JSON.stringify(lottoTickets));
   }
 
-  clearPaymentForm() {
-    this.paymentForm.elements.paymentAmount.value = '';
+  displayWinningLottoForm() {
+    this.winningLottoForm.displayForm();
   }
 }
 

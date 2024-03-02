@@ -30,24 +30,27 @@
       <button type="submit">구입</button>
       <p class="err-msg"></p>
     </template>
+
     <template id="template-winning-lotto-form">
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
       <div class="input-container">
         <div id="winning-numbers">
           <label> 당첨 번호 </label>
-          <input type="number" class="lotto-number-input" name="winning-numbers" min="1" max="45" />
-          <input type="number" class="lotto-number-input" name="winning-numbers" min="1" max="45" />
-          <input type="number" class="lotto-number-input" name="winning-numbers" min="1" max="45" />
-          <input type="number" class="lotto-number-input" name="winning-numbers" min="1" max="45" />
-          <input type="number" class="lotto-number-input" name="winning-numbers" min="1" max="45" />
-          <input type="number" class="lotto-number-input" name="winning-numbers" min="1" max="45" />
+          <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" />
+          <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" />
+          <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" />
+          <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" />
+          <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" />
+          <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" />
         </div>
 
         <div id="bonus-number">
           <label> 보너스 번호 </label>
-          <input type="number" class="lotto-number-input" name="bonus-number" min="1" max="45" />
+          <input type="number" class="lotto-number-input" name="bonusNumber" min="1" max="45" />
         </div>
+        <p class="err-msg"></p>
       </div>
+
       <button class="check-result-btn">결과 확인하기</button>
     </template>
 
@@ -66,25 +69,6 @@
 
           <!-- WinningLottoForm -->
           <form is="winning-lotto-form" name="winningLotto"></form>
-          <!-- <form class="winning-lottery-form">
-            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div class="input-container">
-              <div class="lotto-number">
-                <label> 당첨 번호 </label>
-                <input type="text" class="lotto-number-input" />
-                <input type="text" class="lotto-number-input" />
-                <input type="text" class="lotto-number-input" />
-                <input type="text" class="lotto-number-input" />
-                <input type="text" class="lotto-number-input" />
-                <input type="text" class="lotto-number-input" />
-              </div>
-              <div class="bonus-number">
-                <label> 보너스 번호 </label>
-                <input type="text" class="lotto-number-input" />
-              </div>
-            </div>
-            <button class="check-result-btn">결과 확인하기</button>
-          </form> -->
         </div>
       </main>
 

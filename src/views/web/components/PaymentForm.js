@@ -7,6 +7,10 @@ export const PAYEMENT_FORM_SELECTOR = "form[is='payment-form']";
 export default class PaymentForm extends HTMLFormElement {
   #errorMessage;
 
+  #input;
+
+  #submitBtn;
+
   constructor() {
     super();
 
@@ -15,6 +19,8 @@ export default class PaymentForm extends HTMLFormElement {
     this.appendChild(content);
 
     this.#errorMessage = this.querySelector('.err-msg');
+    this.#input = this.paymentAmount;
+    this.#submitBtn = this.querySelector('button');
   }
 
   connectedCallback() {
@@ -23,6 +29,15 @@ export default class PaymentForm extends HTMLFormElement {
 
   displayErrorMessage(message) {
     this.#errorMessage.innerHTML = message;
+  }
+
+  clearErrorMessage() {
+    this.#errorMessage.innerHTML = '';
+  }
+
+  disableForm() {
+    this.#input.disabled = true;
+    this.#submitBtn.disabled = true;
   }
 
   #handleSubmit(e) {

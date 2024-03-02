@@ -1,13 +1,11 @@
-export const EVENTS = {
-  winningLottoFormSubmit: 'winningLottoFormSubmit',
+export const WINNING_LOTTO_EVENTS = {
+  submit: 'winningLottoFormSubmit',
 };
 
 export const WINNINT_LOTTO_SELECTOR = "form[is='winning-lotto-form']";
 
 export default class WinningLottoForm extends HTMLFormElement {
-  #winningNumbersInput;
-
-  #bonusNumberInput;
+  #errorMessage;
 
   constructor() {
     super();
@@ -16,23 +14,36 @@ export default class WinningLottoForm extends HTMLFormElement {
     const content = template.content.cloneNode(true);
     this.appendChild(content);
 
-    this.#winningNumbersInput = this.querySelectorAll('.lotto-number-input[name="winning-numbers');
-    this.#bonusNumberInput = this.querySelector('.lotto-number-input[name="bonus-number');
+    this.#errorMessage = this.querySelector('.err-msg');
+
+    this.style.visibility = 'hidden';
   }
 
   connectedCallback() {
     this.addEventListener('submit', this.#handleSubmit.bind(this));
   }
 
+  displayErrorMessage(message) {
+    this.#errorMessage.innerHTML = message;
+  }
+
+  clearErrorMessage() {
+    this.#errorMessage.innerHTML = '';
+  }
+
+  displayForm() {
+    this.style.visibility = '';
+  }
+
   #handleSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData(this);
-    const winningNumbers = formData.getAll('winning-numbers');
-    const bonusNumber = formData.getAll('bonus-number');
+    const winningNumbers = formData.getAll('winningNumbers');
+    const bonusNumber = formData.getAll('bonusNumber');
 
     this.dispatchEvent(
-      new CustomEvent(EVENTS.winningLottoFormSubmit, {
+      new CustomEvent(WINNING_LOTTO_EVENTS.submit, {
         detail: { winningNumbers, bonusNumber },
       }),
     );

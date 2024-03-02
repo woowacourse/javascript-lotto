@@ -1,13 +1,16 @@
-import { PAYMENT_FORM_EVENTS } from '../components/PaymentForm';
+import { LottoGame } from '../domains';
+import WebView from '../views/web/WebView';
+import { PAYMENT_FORM_EVENTS } from '../views/web/components/PaymentForm';
+import { WINNING_LOTTO_EVENTS } from '../views/web/components/WinningLottoForm';
 
 class WebController {
   #lottoGame;
 
   #webView;
 
-  constructor(lottoGame, webView) {
-    this.#lottoGame = lottoGame;
-    this.#webView = webView;
+  constructor() {
+    this.#lottoGame = new LottoGame();
+    this.#webView = new WebView();
     this.#init();
   }
 
@@ -17,26 +20,42 @@ class WebController {
 
   #addEventListeners() {
     this.#webView.paymentForm.addEventListener(PAYMENT_FORM_EVENTS.submit, this.#handlePaymentFormSubmit.bind(this));
+    this.#webView.winningLottoForm.addEventListener(
+      WINNING_LOTTO_EVENTS.submit,
+      this.#handleWinningLottoFormSubmit.bind(this),
+    );
   }
 
   async #handlePaymentFormSubmit(event) {
-    const { target } = event;
-    const paymentAmount = target.elements.paymentAmount.value;
-
     try {
-      await this.#getPaid(paymentAmount);
+      await this.#getPaid(event.detail);
+      this.#webView.paymentForm.disableForm();
     } catch (error) {
       this.#webView.paymentForm.displayErrorMessage(error.message);
     }
   }
 
-  async #getPaid(paymentAmount) {
+  async #getPaid({ paymentAmount }) {
     this.#lottoGame.insertMoney(paymentAmount);
 
-    this.#webView.paymentForm.displayErrorMessage('');
+    this.#webView.paymentForm.clearErrorMessage();
 
     this.#webView.updatePurchasedLottos(this.#lottoGame.lottoTickets);
-    this.#webView.clearPaymentForm();
+    this.#webView.displayWinningLottoForm();
+  }
+
+  async #handleWinningLottoFormSubmit(event) {
+    try {
+      await this.#getWinningLotto(event.detail);
+    } catch (error) {
+      this.#webView.winningLottoForm.displayErrorMessage(error.message);
+    }
+  }
+
+  async #getWinningLotto({ winningNumbers, bonusNumber }) {
+    this.#lottoGame.issueWinningLotto(winningNumbers.join(','), bonusNumber);
+
+    this.#webView.winningLottoForm.clearErrorMessage();
   }
 }
 
