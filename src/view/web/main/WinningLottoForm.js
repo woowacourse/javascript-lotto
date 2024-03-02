@@ -1,3 +1,4 @@
+import { LOTTO_RULES } from '../../../constant/constants';
 import ErrorMessage from '../utils/ErrorMessage';
 
 export default function WinningLottoForm() {
@@ -18,13 +19,13 @@ export default function WinningLottoForm() {
   const winningNumbersInputSection = document.createElement('section');
   winningNumbersInputSection.setAttribute('id', 'winning-numbers-input');
 
-  Array.from({ length: 6 }).forEach((_, idx) => {
+  Array.from({ length: LOTTO_RULES.length }).forEach((_, idx) => {
     const numberInput = document.createElement('input');
     numberInput.setAttribute('id', `winning-number-${idx + 1}`);
     numberInput.setAttribute('type', 'number');
     numberInput.setAttribute('required', 'required');
-    numberInput.setAttribute('min', '1');
-    numberInput.setAttribute('max', '45');
+    numberInput.setAttribute('min', LOTTO_RULES.min_number);
+    numberInput.setAttribute('max', LOTTO_RULES.max_number);
     numberInput.classList.add('number-input');
     numberInput.classList.add('lotto-number');
 

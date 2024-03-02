@@ -31,6 +31,8 @@ export const LOTTO_RULES = {
   length: 6,
   min_number: 1,
   max_number: 45,
+  min_cost: 1_000,
+  max_cost: 100_000,
   cost: 1_000,
   restart: 'y',
   stop: 'n',

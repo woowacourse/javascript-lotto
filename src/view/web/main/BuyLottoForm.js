@@ -1,3 +1,5 @@
+import { LOTTO_RULES } from '../../../constant/constants';
+
 export default function BuyLottoForm() {
   const form = document.createElement('form');
   const lottoContainer = document.createElement('div');
@@ -14,9 +16,9 @@ export default function BuyLottoForm() {
   buyLottoInput.setAttribute('placeholder', '금액');
   buyLottoInput.setAttribute('type', 'number');
   buyLottoInput.setAttribute('required', 'required');
-  buyLottoInput.setAttribute('step', '1000');
-  buyLottoInput.setAttribute('min', '1000');
-  buyLottoInput.setAttribute('max', '100000');
+  buyLottoInput.setAttribute('step', LOTTO_RULES.cost);
+  buyLottoInput.setAttribute('min', LOTTO_RULES.min_cost);
+  buyLottoInput.setAttribute('max', LOTTO_RULES.max_cost);
 
   buyButton.innerText = '구입';
   buyButton.setAttribute('id', 'buy-button');
