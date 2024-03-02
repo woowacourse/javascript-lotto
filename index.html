@@ -12,8 +12,29 @@
       <header>
         <label>🎱 행운의 로또</label>
       </header>
-      <main></main>
-      <footer>Copyright 2023. woowacourse</footer>
+      <main>
+        <div class="lotto-app-container">
+          <div class="title">🎱 내 번호 당첨 확인 🎱</div>
+          <div class="input-section">
+            <form class="purchase-form">
+              <div class="input-column">
+                <label>구입할 금액을 입력해주세요. </label>
+                <input
+                  type="number"
+                  placeholder="금액"
+                  class="purchase-amount"
+                  min="1"
+                  max="100000"
+                  name="amount"
+                  required
+                />
+              </div>
+              <button class="purchase-btn">구입</button>
+            </form>
+          </div>
+        </div>
+      </main>
+      <footer class="footer w-100 fw-700 flex-center">Copyright 2023. woowacourse</footer>
     </div>
   </body>
 </html>
