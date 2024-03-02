@@ -1,21 +1,21 @@
 /* BuyAmountForm */
-.getting-buying-amount {
+.getting-buy-amount {
   width: 100%;
   margin-top: 1.5rem;
 }
 
-.buying-amount-message {
+.buy-amount-message {
   margin-bottom: 0.5rem;
 }
 
-.buying-amount-input-group {
+.buy-amount-form {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.buying-amount-input {
+.buy-amount-input {
   height: 2rem;
   border-radius: var(--size-light-border-radius);
   border: 0.04rem solid var(--color-lotto-grey-scale-4);
@@ -24,16 +24,16 @@
   color: var(--color-lotto-grey-scale-5);
 }
 
-.buying-amount-input[type="number"] {
+.buy-amount-input[type="number"] {
   padding: 0 0.5rem;
 }
 
-.buying-amount-input[type="number"]::-webkit-inner-spin-button,
-.buying-amount-input[type="number"]::-webkit-outer-spin-button {
+.buy-amount-input[type="number"]::-webkit-inner-spin-button,
+.buy-amount-input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-.buying-amount-button {
+.buy-amount-button {
   width: 15%;
   border-radius: var(--size-light-border-radius);
   height: 2.2rem;

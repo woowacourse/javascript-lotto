@@ -35,7 +35,7 @@ export default class WinningLottoForm extends Component {
     return `
   <section class="getting-winning-lotto ${lottos.length ? "" : "hidden"}">
       <p class="winning-lotto-message body-text">지난 주 당첨번호 ${LOTTO_NUMBER_LENGTH}개와 보너스 번호 1개를 입력해주세요.</p>
-      <div class="winning-lotto-input-group">
+      <form class="winning-lotto-form" onsubmit="return false;">
         <div class="number-input-wrapper">
 
           <div class="winning-numbers-group">
@@ -59,7 +59,7 @@ export default class WinningLottoForm extends Component {
           결과 확인하기
         </button>
 
-      </div>
+      </form>
   </section>
   `;
   }
