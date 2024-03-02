@@ -54,17 +54,16 @@ export default function WinningLottoForm() {
   bonusNumberContainer.appendChild(bonusNumberInput);
 
   // 결과 확인하기 버튼
-  const submitResult = document.createElement('input');
-  submitResult.setAttribute('id', 'submitResult');
-  submitResult.setAttribute('type', 'submit');
-  submitResult.setAttribute('value', '결과 확인하기');
+  const resultButton = document.createElement('button');
+  resultButton.setAttribute('id', 'result-button');
+  resultButton.innerText = '결과 확인하기';
 
   // 합치기
   winningLottoInputContainer.appendChild(winningNumbersInputContainer);
   winningLottoInputContainer.appendChild(bonusNumberContainer);
   form.appendChild(winningLottoInputContainer);
   form.appendChild(ErrorMessage('winning-number-error', ['input-error', 'hidden']));
-  form.appendChild(submitResult);
+  form.appendChild(resultButton);
 
   return form;
 }

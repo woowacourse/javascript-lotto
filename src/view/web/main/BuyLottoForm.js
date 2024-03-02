@@ -3,7 +3,7 @@ export default function BuyLottoForm() {
   const lottoContainer = document.createElement('div');
   const inputLabel = document.createElement('label');
   const buyLottoInput = document.createElement('input');
-  const buyButton = document.createElement('input');
+  const buyButton = document.createElement('button');
 
   form.setAttribute('id', 'buy-lotto-form');
   lottoContainer.setAttribute('id', 'buy-lotto-container');
@@ -18,9 +18,8 @@ export default function BuyLottoForm() {
   buyLottoInput.setAttribute('min', '1000');
   buyLottoInput.setAttribute('max', '100000');
 
-  buyButton.setAttribute('type', 'submit');
-  buyButton.setAttribute('value', '구입');
-  buyButton.setAttribute('id', 'buy-btn');
+  buyButton.innerText = '구입';
+  buyButton.setAttribute('id', 'buy-button');
 
   lottoContainer.appendChild(inputLabel);
   lottoContainer.appendChild(buyLottoInput);

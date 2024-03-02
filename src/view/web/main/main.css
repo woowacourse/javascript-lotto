@@ -61,7 +61,7 @@
   font-weight: 400;
 }
 
-#buy-btn {
+#buy-button {
   width: 56px;
   background-color: var(--lotto-primary);
   color: var(--lotto-greyscale-1);
@@ -184,7 +184,7 @@
   margin-top: 12px;
 }
 
-#winning-lotto-container > form > input[type='submit'] {
+#result-button {
   background-color: var(--lotto-primary);
   border-radius: 4px;
   width: 100%;
