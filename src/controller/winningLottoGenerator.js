@@ -5,9 +5,54 @@ import lottoNumberValidator from '../validator/lottoNumberValidator.js';
 
 class WinningLottoGenerator {
   #input;
+  #isWeb;
 
-  constructor(inputView) {
+  constructor({ inputView, isWeb }) {
     this.#input = inputView;
+    this.#isWeb = isWeb;
+  }
+
+  // async createWinningLotto() {
+  //   const winningLottoNumbers = await executeOrRetryAsync({
+  //     asyncFn: () => this.#readAndValidateWinningLottoNumbers(),
+  //     handleError: this.#isWeb ? alert : console.log,
+  //   });
+  //   const bonusNumber = await executeOrRetryAsync({
+  //     asyncFn: () => this.#readAndValidateBonusNumber(winningLottoNumbers),
+  //     handleError: this.#isWeb ? alert : console.log,
+  //   });
+  //   return { winningLottoNumbers, bonusNumber };
+  // }
+
+  async createWinningLotto() {
+    if (this.#isWeb) {
+      return this.#createWinningLottoForWeb();
+    } else {
+      return this.#createWinningLottoWithRetry();
+    }
+  }
+
+  async #createWinningLottoForWeb() {
+    try {
+      const winningLottoNumbers = await this.#readAndValidateWinningLottoNumbers();
+      const bonusNumber = await this.#readAndValidateBonusNumber(winningLottoNumbers);
+      return { winningLottoNumbers, bonusNumber };
+    } catch (error) {
+      alert(error.message);
+      return;
+    }
+  }
+
+  async #createWinningLottoWithRetry() {
+    const winningLottoNumbers = await executeOrRetryAsync({
+      asyncFn: () => this.#readAndValidateWinningLottoNumbers(),
+      handleError: console.log,
+    });
+    const bonusNumber = await executeOrRetryAsync({
+      asyncFn: () => this.#readAndValidateBonusNumber(winningLottoNumbers),
+      handleError: console.log,
+    });
+    return { winningLottoNumbers, bonusNumber };
   }
 
   async #readAndValidateWinningLottoNumbers() {
@@ -26,18 +71,6 @@ class WinningLottoGenerator {
     });
 
     return Number(bonusNumberInput);
-  }
-
-  async createWinningLotto() {
-    const winningLottoNumbers = await executeOrRetryAsync({
-      asyncFn: () => this.#readAndValidateWinningLottoNumbers(),
-      handleError: console.log,
-    });
-    const bonusNumber = await executeOrRetryAsync({
-      asyncFn: () => this.#readAndValidateBonusNumber(winningLottoNumbers),
-      handleError: console.log,
-    });
-    return { winningLottoNumbers, bonusNumber };
   }
 }
 

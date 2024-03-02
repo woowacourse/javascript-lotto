@@ -69,7 +69,7 @@ const webOutputView = {
   clearWinningLotto: () => {
     const inputs = document.querySelectorAll('#winning-lotto input');
     inputs.forEach((input) => {
-      input.value = ''; // 각 입력 필드의 값을 빈 문자열로 설정
+      input.value = '';
     });
   },
 };

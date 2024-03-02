@@ -43,7 +43,6 @@ class lottoGameWebController {
   handleAutoFocusOnNumberInput = () => {
     document.addEventListener('DOMContentLoaded', () => {
       const inputs = document.querySelectorAll('.lotto-input');
-      const self = this; // 클래스 컨텍스트에 대한 참조를 저장
 
       inputs.forEach((input, index) => {
         let firstValueEntered = false;
@@ -65,7 +64,7 @@ class lottoGameWebController {
                 input.value = '0' + input.value;
                 this.moveToNextField(index, inputs);
               }
-            }, 700);
+            }, 500);
           }
         });
       });
@@ -79,12 +78,13 @@ class lottoGameWebController {
   };
 
   handleWinningLottoInput = async () => {
+    const winningLottoGenerator = new WinningLottoGenerator({ inputView: webInputView, isWeb: true });
+
     try {
-      const winningLottoGenerator = new WinningLottoGenerator(webInputView);
       const { winningLottoNumbers, bonusNumber } = await winningLottoGenerator.createWinningLotto();
       this.#winningLotto = { winningLottoNumbers, bonusNumber };
     } catch (error) {
-      alert(error.message);
+      webOutputView.clearWinningLotto();
       return;
     }
 
