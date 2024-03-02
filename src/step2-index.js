@@ -5,4 +5,4 @@
 import './web/css/index.css';
 import App from './web/js/App';
 
-new App().start();
+new App();
