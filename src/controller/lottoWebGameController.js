@@ -41,21 +41,41 @@ class lottoGameWebController {
   };
 
   handleAutoFocusOnNumberInput = () => {
-    const inputs = document.querySelectorAll('#winning-lotto input');
-    let timeout = null;
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputs = document.querySelectorAll('.lotto-input');
+      const self = this; // 클래스 컨텍스트에 대한 참조를 저장
 
-    inputs.forEach((input, index) => {
-      input.addEventListener('input', function (e) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          const value = e.target.value;
+      inputs.forEach((input, index) => {
+        let firstValueEntered = false;
 
-          if (value.length >= 1 && index < inputs.length - 1) {
-            inputs[index + 1].focus();
+        input.addEventListener('input', (e) => {
+          if (input.value.length > 2) {
+            input.value = input.value.substring(0, 2);
+            return;
           }
-        }, 700);
+
+          if (input.value.length === 2 && firstValueEntered) {
+            clearTimeout(input.delay);
+            firstValueEntered = false;
+            this.moveToNextField(index, inputs);
+          } else if (input.value.length === 1 && !firstValueEntered) {
+            firstValueEntered = true;
+            input.delay = setTimeout(() => {
+              if (input.value.length === 1) {
+                input.value = '0' + input.value;
+                this.moveToNextField(index, inputs);
+              }
+            }, 700);
+          }
+        });
       });
     });
+  };
+
+  moveToNextField = (index, inputs) => {
+    if (index < inputs.length - 1) {
+      inputs[index + 1].focus();
+    }
   };
 
   handleWinningLottoInput = async () => {
