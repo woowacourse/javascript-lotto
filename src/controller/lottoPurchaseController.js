@@ -2,7 +2,9 @@ import lottoMachine from '../domain/lottoMachine.js';
 import executeOrRetryAsync from '../utils/executeOrRetryAsync.js';
 import CommonValidator from '../validator/commonValidator.js';
 import purchaseAmountValidator from '../validator/purchaseAmountValidator.js';
+
 import inputView from '../view/consoleView/inputView.js';
+
 import outputView from '../view/outputView.js';
 
 class LottoPurchaseController {

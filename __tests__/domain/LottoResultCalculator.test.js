@@ -8,6 +8,7 @@ describe('LottoResultCalculator 객체 테스트', () => {
     bonusNumber: 7,
   };
 
+
   describe('구매한 로또들의 총 결과를 객체로 리턴한다.', () => {
     test.each([
       {
@@ -78,8 +79,10 @@ describe('LottoResultCalculator 객체 테스트', () => {
       }).getTotalResult();
 
       expect(lottoResult).toEqual(expectedResults);
+
     });
   });
+
 
   test('구매한 로또의 수익률을 계산한다.', () => {
     const LOTTO_LIST = [new Lotto([1, 2, 3, 11, 12, 13])];

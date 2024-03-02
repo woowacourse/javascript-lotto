@@ -3,6 +3,7 @@ import bonusNumberValidator from '../validator/bonusNumberValidator.js';
 import commonValidator from '../validator/commonValidator.js';
 import lottoNumberValidator from '../validator/lottoNumberValidator.js';
 
+
 class WinningLottoGenerator {
   #input;
   #isWeb;
@@ -45,13 +46,16 @@ class WinningLottoGenerator {
 
   async #readAndValidateWinningLottoNumbers() {
     const winningLottoNumbersInput = await this.#input.readWinningLottoNumber();
+
     commonValidator.validate(winningLottoNumbersInput);
     lottoNumberValidator.validate(winningLottoNumbersInput);
 
     return winningLottoNumbersInput.map(Number);
   }
+
   async #readAndValidateBonusNumber(winningLottoNumbers) {
     const bonusNumberInput = await this.#input.readBonusNumber();
+
     commonValidator.validate(bonusNumberInput.trim());
     bonusNumberValidator.validate({
       winningLottoNumbers,
@@ -60,6 +64,8 @@ class WinningLottoGenerator {
 
     return Number(bonusNumberInput);
   }
+
+
 }
 
 export default WinningLottoGenerator;

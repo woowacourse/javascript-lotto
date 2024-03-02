@@ -7,6 +7,7 @@ import outputView from '../view/outputView.js';
 
 import LottoPurchaseController from './lottoPurchaseController.js';
 
+
 class LottoGameController {
   async play() {
     const lottoList = await this.#getPurchasedLottoTickets();
@@ -23,9 +24,11 @@ class LottoGameController {
     if (RETRY_INPUT.YES.includes(retryAnswer.trim())) this.play();
   }
 
+
   async readWinningLotto() {
     const validatedWinningLottoInput = await executeOrRetryAsync(inputView.readWinningLottoNumber().bind(this));
     return validatedWinningLottoInput;
+
   }
 
   async #getPurchasedLottoTickets() {
