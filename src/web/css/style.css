@@ -89,6 +89,10 @@ button:disabled {
   cursor: inherit;
 }
 
+button:disabled:hover {
+  opacity: inherit;
+}
+
 h1 {
   font-weight: var(--font-title-weight);
   font-size: var(--font-title-size);
@@ -100,6 +104,17 @@ h2 {
   font-weight: var(--font-subtitle-weight);
   color: var(--color-greyscale-5);
   text-align: center;
+}
+
+input {
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  padding: 8px;
+  height: 36px;
+}
+
+input:disabled {
+  background: rgba(0 0 0 / 5%);
 }
 
 .error-text {
@@ -143,11 +158,7 @@ h2 {
 }
 
 #purchase input {
-  border: 1px solid var(--color-greyscale-3);
-  border-radius: 4px;
-  padding: 8px;
   width: 314px;
-  height: 36px;
   gap: 10px;
 }
 
@@ -202,11 +213,7 @@ h2 {
 }
 
 #winning-numbers input {
-  border: 1px solid var(--color-greyscale-3);
-  border-radius: 4px;
-  padding: 8px;
   width: 34px;
-  height: 36px;
   font-size: var(--font-caption-size);
   text-align: center;
 }
