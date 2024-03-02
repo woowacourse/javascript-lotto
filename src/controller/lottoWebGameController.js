@@ -38,7 +38,6 @@ class lottoGameWebController {
       return;
     }
 
-    purchaseAmountInput.value = '';
     webOutputView.clearWinningLotto();
     this.focusOnFirstLottoInput();
   };
