@@ -1,7 +1,7 @@
-import NUMBER from '../constants/number.js';
-import {pickNumbersInRange} from '../util/random.js';
-import Lotto from './Lotto.js';
-import WinLotto from './WinLotto.js';
+import NUMBER from '../constants/number';
+import {pickNumbersInRange} from '../util/random';
+import Lotto from './Lotto';
+import WinLotto from './WinLotto';
 
 /**
  * @module LottoPublisher 숫자로 로또를 개수만큼 발행하는 클래스입니다.

@@ -1,5 +1,5 @@
-import NUMBER from '../constants/number.js';
-import WINNER from '../constants/winner.js';
+import NUMBER from '../constants/number';
+import WINNER from '../constants/winner';
 
 /**
  * @module LottoCalculator 로또의 결과와 구매 금액을 분석해 수익을 합산해 최종 수익률을 반환하는 모듈입니다.

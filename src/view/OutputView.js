@@ -1,5 +1,5 @@
-import { NEW_LINE, OUTPUT_MESSAGE } from '../constants/message.js';
-import WINNER from '../constants/winner.js';
+import { NEW_LINE, OUTPUT_MESSAGE } from '../constants/message';
+import WINNER from '../constants/winner';
 
 const OutputView = {
   printLottoCount(count = 0) {
