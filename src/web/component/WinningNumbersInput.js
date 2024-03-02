@@ -1,19 +1,8 @@
-import { $, $$ } from '../../util/domSelector';
 import { SETTING } from '../../constant/setting';
 
 class WinningNumbersInput extends HTMLElement {
-  #boundMethods;
-
-  constructor() {
-    super();
-    this.#boundMethods = {
-      handleWinningNumbers: this.#handleWinningNumbers.bind(this),
-    };
-  }
-
   connectedCallback() {
     this.#render();
-    $('winning-numbers-form').addEventListener('submitWinningNumbers', this.#boundMethods.handleWinningNumbers);
   }
 
   #createInputGroup() {
@@ -22,11 +11,6 @@ class WinningNumbersInput extends HTMLElement {
         `<input class="winning-numbers-input" type="number" \
         min=${SETTING.MIN_LOTTO_NUMBER} max=${SETTING.MAX_LOTTO_NUMBER} maxlength="2" />`,
     );
-  }
-
-  #handleWinningNumbers() {
-    const winningNumbers = [...$$('.winning-numbers-input')].map((numberInput) => numberInput.value);
-    this.dispatchEvent(new CustomEvent('readWinningNumbers', { detail: { winningNumbers } }));
   }
 
   #render() {
