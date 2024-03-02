@@ -49,13 +49,13 @@ const WinLottoComponents = Object.freeze({
   },
 
   makeWinLottoInput: () => {
-    const input = makeElementWithClassName('input', 'winLottoInput');
-    input.type = 'number';
-    input.id = 'winNumber';
-    input.max = LOTTO_NUMBER_RANGE.MAX;
-    input.min = LOTTO_NUMBER_RANGE.MIN;
-    input.name = `winNumber`;
-    return input;
+    const winLottoInput = makeElementWithClassName('input', 'winLottoInput');
+    winLottoInput.id = 'winNumber';
+    winLottoInput.name = `winNumber`;
+    winLottoInput.type = 'number';
+    winLottoInput.max = LOTTO_NUMBER_RANGE.MAX;
+    winLottoInput.min = LOTTO_NUMBER_RANGE.MIN;
+    return winLottoInput;
   },
 
   makeBonusLottoNumber: () => {
@@ -72,6 +72,9 @@ const WinLottoComponents = Object.freeze({
     const bonusNumberInput = makeElementWithClassName('input', 'winLottoInput');
     bonusNumberInput.name = 'bonusNumber';
     bonusNumberInput.id = 'bonusNumber';
+    bonusNumberInput.type = 'number';
+    bonusNumberInput.max = LOTTO_NUMBER_RANGE.MAX;
+    bonusNumberInput.min = LOTTO_NUMBER_RANGE.MIN;
     return bonusNumberInput;
   },
 
