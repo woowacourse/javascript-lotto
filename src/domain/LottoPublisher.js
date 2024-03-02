@@ -1,5 +1,5 @@
 import NUMBER from '../constants/number.js';
-import { pickNumbersInRange } from '../util/random.js';
+import {pickNumbersInRange} from '../util/random.js';
 import Lotto from './Lotto.js';
 import WinLotto from './WinLotto.js';
 

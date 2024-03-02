@@ -1,4 +1,3 @@
-import { ERROR_MESSAGE } from '../constants/message.js';
 import LottoValidation from '../validation/lottoValidation.js';
 
 /**
@@ -20,12 +19,8 @@ class WinLotto {
 
   #validate() {
     const lottoNumbers = this.#lotto.numbers;
-    if (
-      lottoNumbers.includes(this.#bonusNumber) ||
-      LottoValidation.validateBonusNumber(lottoNumbers, this.#bonusNumber)
-    ) {
-      throw new Error(ERROR_MESSAGE.PREFIX + ERROR_MESSAGE.BONUS_DUPLICATION);
-    }
+    LottoValidation.validateDuplicationNumbers([...lottoNumbers, this.#bonusNumber]);
+    LottoValidation.validateInNumbersRange([this.#bonusNumber]);
   }
 
   get winNumbers() {

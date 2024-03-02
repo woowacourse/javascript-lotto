@@ -8,11 +8,6 @@ const LottoValidation = {
     this.validateDuplicationNumbers(numbers);
   },
 
-  validateBonusNumber(winNumbers, number) {
-    this.validateInNumbersRange([number]);
-    this.validateDuplicationNumbers([...winNumbers, number]);
-  },
-
   validateInNumbersRange(numbers) {
     numbers.forEach((numberString) => {
       const number = Number(numberString);
@@ -33,14 +28,6 @@ const LottoValidation = {
     if (uniqueNumbers.size !== numbers.length) {
       throw new Error(`${ERROR_MESSAGE.PREFIX} ${ERROR_MESSAGE.NUMBERS_DUPLICATION}`);
     }
-  },
-
-  checkInputEmpty(inputs) {
-    inputs.some((input) => {
-      if (!input.value.length) {
-        throw new Error(`${ERROR_MESSAGE.PREFIX} ${ERROR_MESSAGE.SOME_INPUT_EMPTY}`);
-      }
-    });
   },
 };
 

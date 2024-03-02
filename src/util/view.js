@@ -20,14 +20,3 @@ export const resetElementValue = (el) => {
 export const focusElement = (el) => {
   el.focus();
 };
-
-// resetMoneyInput() {
-//   $('#money-input').value = '';
-// },
-// focusMoneyInput() {
-//   $('#money-input').focus();
-// },
-// resetWinningLottoNumbers() {
-//   $$('.number-input').forEach((input) => (input.value = ''));
-//   $('.number-input').focus();
-// },
