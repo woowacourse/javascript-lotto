@@ -89,14 +89,14 @@
 2단계
 
 - [x] html, css 기본 구조 만들기
-- [ ] view 로직 만들기
-  - [ ] 기능
+- [x] view 로직 만들기
+  - [x] 기능
     - [x] 로또 가격 입력
-    - [ ] 로또 출력
-    - [ ] 로또 번호 입력
-    - [ ] 로또 결과 출력
-  - [ ] stream을 이용해 `readLineAsync`를 변경(InputView)
-  - [ ] dom을 통해 `OutputView` 구현하기
+    - [x] 로또 출력
+    - [x] 로또 번호 입력
+    - [x] 로또 결과 출력
+  - [x] 콘솔 구현체를 이용해 `readLineAsync`를 변경(InputView)
+  - [x] dom을 통해 `OutputView` 구현하기
 ## 실행 예시
 ``` 
 > 구입금액을 입력해 주세요.8000
