@@ -16,7 +16,7 @@ class lottoGameWebController {
 
   bindEventListener() {
     document.querySelector('#purchase-form').addEventListener('submit', this.handleClickPurchaseButton);
-    document.querySelector('#result-button').addEventListener('click', this.handleWinningLottoInput);
+    document.querySelector('#winning-lotto').addEventListener('submit', this.handleWinningLottoInput);
     document.querySelector('#modal-close-button').addEventListener('click', this.handleRestartGame);
     document.querySelector('#retry-button').addEventListener('click', this.handleRestartGame);
   }
@@ -78,6 +78,7 @@ class lottoGameWebController {
   };
 
   handleWinningLottoInput = async () => {
+    event.preventDefault();
     const winningLottoGenerator = new WinningLottoGenerator({ inputView: webInputView, isWeb: true });
 
     try {

@@ -11,7 +11,7 @@
       <header>
         <h1 class="header-title lotto-title">🎱 행운의 로또</h1>
       </header>
-      <div class="dd">
+      <div class="lotto-content">
         <section id="total-article" class="lotto-body">
           <h1 class="title lotto-title">🎱 내 번호 당첨 확인 🎱</h1>
           <div class="purchase">
@@ -29,20 +29,22 @@
               <span>당첨 번호</span>
               <span>보너스 번호</span>
             </div>
-            <div id="winning-lotto">
-              <div id="winning-lotto-inputs">
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
-                <input type="text" maxlength="2" class="lotto-input" />
+            <form id="winning-lotto">
+              <div class="winning-lotto-input-container">
+                <div id="winning-lotto-inputs">
+                  <input type="text" maxlength="2" class="lotto-input" />
+                  <input type="text" maxlength="2" class="lotto-input" />
+                  <input type="text" maxlength="2" class="lotto-input" />
+                  <input type="text" maxlength="2" class="lotto-input" />
+                  <input type="text" maxlength="2" class="lotto-input" />
+                  <input type="text" maxlength="2" class="lotto-input" />
+                </div>
+                <div id="bonus-number">
+                  <input type="text" maxlength="2" class="lotto-input" />
+                </div>
               </div>
-              <div id="bonus-number">
-                <input type="text" maxlength="2" class="lotto-input" />
-              </div>
-            </div>
-            <button id="result-button">결과 확인 하기</button>
+              <button id="result-button">결과 확인 하기</button>
+            </form>
           </article>
         </section>
       </div>

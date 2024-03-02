@@ -57,7 +57,7 @@
   position: relative;
 }
 
-.dd {
+.lotto-content {
   background-color: var(--gray-scale-2);
   flex-grow: 1;
   display: flex;
@@ -163,6 +163,10 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
+input[type='text'] {
+  text-align: center;
+}
+
 #purchase-button {
   color: var(--gray-scale-1);
   background-color: var(--lotto-primary);
@@ -176,7 +180,7 @@ input[type='number']::-webkit-outer-spin-button {
 #winning-lotto {
   display: flex;
   flex-grow: 1;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 #winning-lotto input {
@@ -279,6 +283,13 @@ li {
 #reward-table {
   width: 100%;
   flex-grow: 1;
+}
+
+.winning-lotto-input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 table,
