@@ -43,8 +43,8 @@ const openModal = () => {
 const closeModal = () => {
   modalElement.style.display = "none";
   appElement.style.backgroundColor = "transparent";
-  const statisticTable = document.getElementById("lotto-result-table");
-  statisticTable.innerHTML = "";
+  const statisticTable = document.querySelector("#lotto-result-table tbody");
+  statisticTable.remove();
 };
 
 const showPurchaseLottoCount = (lottos) => {
