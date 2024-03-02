@@ -2,46 +2,32 @@ import { $, $$ } from '../../util/domSelector';
 import Validator from '../../validator/Validator';
 
 class WinningNumbersForm extends HTMLElement {
-  #winningNumbers;
-  #bonusNumber;
-
   connectedCallback() {
-    $('lotto-game-app').addEventListener('purchaseResult', this.#render.bind(this));
-    $('lotto-game-app').addEventListener('purchaseResult', this.#addFormEvent.bind(this));
+    $('lotto-game-app').addEventListener('purchaseResult', this.#handlePurchaseResult.bind(this));
   }
 
-  #addFormEvent() {
-    $('#winning-numbers-submit').addEventListener('click', this.#handleSubmit.bind(this));
+  #handlePurchaseResult() {
+    this.#render();
+    $('#winning-numbers-submit', this).addEventListener('click', this.#handleSubmit.bind(this));
   }
 
   #handleSubmit() {
-    this.#winningNumbers = this.#readWinningNumbers();
-    if (this.#winningNumbers) {
-      this.#bonusNumber = this.#readBonusNumber(this.#winningNumbers);
-    }
-    if (this.#winningNumbers && this.#bonusNumber) {
+    try {
+      const winningNumbers = this.#readWinningNumbers();
+      const bonusNumber = this.#readBonusNumber(winningNumbers);
       this.#removeErrorMessage($('#winning-numbers-form'));
-      this.#sendWinningCreteria({ winningNumbers: [...this.#winningNumbers], bonusNumber: this.#bonusNumber });
+      this.#setWinningCriteria({ winningNumbers, bonusNumber });
+    } catch (error) {
+      this.#showErrorMessage(error.message, $('#winning-numbers-form'));
     }
   }
 
-  #sendWinningCreteria({ winningNumbers, bonusNumber }) {
+  #setWinningCriteria({ winningNumbers, bonusNumber }) {
     this.dispatchEvent(
       new CustomEvent('winningCriteria', {
         detail: { winningNumbers, bonusNumber },
       }),
     );
-  }
-
-  #readWinningNumbers() {
-    try {
-      const winningNumbers = this.#processWinningNumbers();
-      Validator.validateWinningNumbers(winningNumbers.join(','));
-      return winningNumbers.map((number) => parseInt(number.trim(), 10));
-    } catch (error) {
-      this.#showErrorMessage(error.message, $('#winning-numbers-form'));
-      return null;
-    }
   }
 
   #processWinningNumbers() {
@@ -51,15 +37,16 @@ class WinningNumbersForm extends HTMLElement {
     return winningNumbers;
   }
 
+  #readWinningNumbers() {
+    const winningNumbers = this.#processWinningNumbers();
+    Validator.validateWinningNumbers(winningNumbers.join(','));
+    return winningNumbers.map((number) => parseInt(number.trim(), 10));
+  }
+
   #readBonusNumber(winningNumbers) {
-    try {
-      const bonusNumber = $('.bonus-number-input').value;
-      Validator.validateBonusNumber(bonusNumber, winningNumbers);
-      return parseInt(bonusNumber, 10);
-    } catch (error) {
-      this.#showErrorMessage(error.message, $('#winning-numbers-form'));
-      return null;
-    }
+    const bonusNumber = $('.bonus-number-input').value.trim();
+    Validator.validateBonusNumber(bonusNumber, winningNumbers);
+    return parseInt(bonusNumber, 10);
   }
 
   #showErrorMessage(message, target) {
