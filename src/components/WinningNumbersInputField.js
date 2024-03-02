@@ -16,7 +16,6 @@ const WINNING_NUMBERS_INPUT_FIELD = `
 class WinningNumbersInputField extends HTMLElement {
   connectedCallback() {
     this.render();
-    // this.#setEventListener();
   }
 
   render() {
