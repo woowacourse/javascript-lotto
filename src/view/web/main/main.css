@@ -42,7 +42,7 @@
   width: 100%;
 }
 
-#buy-lotto-input-label {
+#cost-label {
   position: relative;
   display: flex;
   justify-content: flex-start;
@@ -51,7 +51,7 @@
   height: 24px;
 }
 
-#buy-lotto-input {
+#cost {
   border-radius: 4px;
   border: 1px solid var(--lotto-greyscale-3);
   width: 100%;

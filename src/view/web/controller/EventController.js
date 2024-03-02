@@ -14,7 +14,8 @@ export default class EventController {
 
   onSubmitBuyForm(event) {
     event.preventDefault();
-    this.#cost = Number(event.target[0].value);
+
+    this.#cost = document.getElementById('cost').valueAsNumber;
 
     try {
       validateCost(this.#cost);

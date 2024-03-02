@@ -7,10 +7,10 @@ export default function BuyLottoForm() {
 
   form.setAttribute('id', 'buy-lotto-form');
   lottoContainer.setAttribute('id', 'buy-lotto-container');
-  inputLabel.setAttribute('id', 'buy-lotto-input-label');
-  inputLabel.setAttribute('for', 'buy-lotto-input');
+  inputLabel.setAttribute('id', 'cost-label');
+  inputLabel.setAttribute('for', 'cost');
   inputLabel.innerText = '구입할 금액을 입력해주세요.';
-  buyLottoInput.setAttribute('id', 'buy-lotto-input');
+  buyLottoInput.setAttribute('id', 'cost');
   buyLottoInput.setAttribute('placeholder', '금액');
   buyLottoInput.setAttribute('type', 'number');
   buyLottoInput.setAttribute('required', 'required');
