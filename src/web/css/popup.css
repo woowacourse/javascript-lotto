@@ -1,0 +1,128 @@
+@import './color.css';
+
+.popup {
+  width: 350px;
+  height: 510px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  z-index: 2;
+  background-color: var(--font-color);
+}
+
+.popup-close {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 16px;
+  left: 320px;
+  background-color: transparent;
+  border: none;
+  color: black;
+}
+
+.result {
+  width: 318px;
+  height: 24px;
+  position: absolute;
+  top: 30px;
+  left: 16px;
+  padding: 0px, 94px, 0px, 94px;
+  text-align: center;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.rank-container {
+  width: 319px;
+  height: 247px;
+  position: absolute;
+  top: 97px;
+  left: 16px;
+}
+
+.rank-column {
+  width: 318px;
+  height: 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #0000001f;
+  padding: 10px 0px;
+}
+
+.rank-column:first-child {
+  border-top: 1px solid #0000001f;
+}
+
+.rank-column > div {
+  width: 33%;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.rank-column > span {
+  width: 33%;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.popup-open-back {
+  background-color: #00000080;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.total-profit {
+  width: 318px;
+  height: 24px;
+  position: absolute;
+  top: 390px;
+  left: 16px;
+  padding: 0px, 66px, 0px, 66px;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.restart-btn {
+  width: 318px;
+  height: 36px;
+  position: absolute;
+  top: 440px;
+  left: 16px;
+  padding: 6px, 6px, 6px, 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--header-color);
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-align: center;
+  color: var(--font-color);
+}
