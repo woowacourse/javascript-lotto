@@ -21,9 +21,8 @@ class WinningResultService {
       (profit, [ranking, count]) => profit + RANKING[ranking].REWARD * count,
       0,
     );
-    return ((totalProfit * 100) / (this.#lottos.length * SETTING.LOTTO_PRICE)).toLocaleString('ko-KR', {
-      minimumFractionDigits: 1,
-    });
+    const profitRate = (totalProfit * 100) / (this.#lottos.length * SETTING.LOTTO_PRICE);
+    return profitRate.toFixed(1);
   }
 
   #calculateWinningResult(winningNumbers, bonusNumber) {
