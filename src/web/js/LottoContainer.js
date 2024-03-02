@@ -8,6 +8,7 @@ class LottoContainer {
 
   init() {
     $('.lotto-display').innerHTML = '';
+    $('.lotto-app-container').style.height = '727px';
     this.lottoTicketArray = [];
   }
 

@@ -40,6 +40,7 @@ class App {
   handleRestart() {
     this.resultPopup.closePopup();
     this.lottoContainer.init();
+    this.winningNumberForm.init();
     this.winningNumberForm.closeWinningNumberForm();
   }
 
