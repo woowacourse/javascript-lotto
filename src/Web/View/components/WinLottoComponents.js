@@ -43,19 +43,9 @@ const WinLottoComponents = Object.freeze({
     const winLottoInputs = makeElementWithClassName('div', 'winLottoInputs');
     appendChildren(
       winLottoInputs,
-      Array.from({ length: LOTTO_LENGTH }, () => WinLottoComponents.makeWinLottoInput()),
+      Array.from({ length: LOTTO_LENGTH }, () => WinLottoComponents.makeWinLottoInput('winNumber')),
     );
     return winLottoInputs;
-  },
-
-  makeWinLottoInput: () => {
-    const winLottoInput = makeElementWithClassName('input', 'winLottoInput');
-    winLottoInput.id = 'winNumber';
-    winLottoInput.name = `winNumber`;
-    winLottoInput.type = 'number';
-    winLottoInput.max = LOTTO_NUMBER_RANGE.MAX;
-    winLottoInput.min = LOTTO_NUMBER_RANGE.MIN;
-    return winLottoInput;
   },
 
   makeBonusLottoNumber: () => {
@@ -63,19 +53,19 @@ const WinLottoComponents = Object.freeze({
     const bonusNumberLabel = makeElementWithClassName('label', 'bonusNumberLabel');
     bonusNumberLabel.innerText = '보너스 번호';
     bonusNumberLabel.htmlFor = 'bonusNumber';
-    const bonusNumberInput = WinLottoComponents.makeBonusLottoInput();
+    const bonusNumberInput = WinLottoComponents.makeWinLottoInput('bonusNumber');
     appendChildren(bonusNumberDiv, [bonusNumberLabel, bonusNumberInput]);
     return bonusNumberDiv;
   },
 
-  makeBonusLottoInput: () => {
-    const bonusNumberInput = makeElementWithClassName('input', 'winLottoInput');
-    bonusNumberInput.name = 'bonusNumber';
-    bonusNumberInput.id = 'bonusNumber';
-    bonusNumberInput.type = 'number';
-    bonusNumberInput.max = LOTTO_NUMBER_RANGE.MAX;
-    bonusNumberInput.min = LOTTO_NUMBER_RANGE.MIN;
-    return bonusNumberInput;
+  makeWinLottoInput: (id) => {
+    const winLottoInput = makeElementWithClassName('input', 'winLottoInput');
+    winLottoInput.id = id;
+    winLottoInput.name = id;
+    winLottoInput.type = 'number';
+    winLottoInput.max = LOTTO_NUMBER_RANGE.MAX;
+    winLottoInput.min = LOTTO_NUMBER_RANGE.MIN;
+    return winLottoInput;
   },
 
   makeWinLottoFormButton: () => {
