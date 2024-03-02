@@ -84,7 +84,7 @@ class WinningNumbersForm extends HTMLElement {
     const app = document.querySelector('lotto-app');
     app.controller().processLottoResult({ winningNumbers, bonusNumber });
 
-    const lottoResultEvent = new CustomEvent('lottoResult', {
+    const lottoResultEvent = new CustomEvent('getLottoResult', {
       bubbles: true,
     });
     this.dispatchEvent(lottoResultEvent);

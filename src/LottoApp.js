@@ -35,7 +35,7 @@ class LottoApp extends HTMLElement {
 
   #setEventListener() {
     const lottoMain = this.querySelector('lotto-main');
-    lottoMain.addEventListener('lottoResult', () => {
+    lottoMain.addEventListener('getLottoResult', () => {
       const lottoResultModal = document.createElement('lotto-result-modal');
       this.appendChild(lottoResultModal);
     });
