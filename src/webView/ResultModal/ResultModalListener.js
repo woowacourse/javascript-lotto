@@ -5,7 +5,7 @@ const CLASSNAME_HIDDEN = 'hidden';
 const SELECTOR = {
   WINNING_NUMBERS_INPUTS: '.winning-numbers-inputs',
   BONUS_NUMBER_INPUT: '.bonus-number-inputs__input',
-  RESULT_MODAL: '.result-modal',
+  RESULT_MODAL: '.result-modal-body',
   RESULT_MODAL_BACKDROPS: '.result-modal-backdrop',
   TABLE_PURCHASE_COUNTS: '.result-modal-table__count',
   RETURN_RATE: '.result-modal__return-rate',
@@ -100,6 +100,11 @@ const ResultModalListener = {
     event.preventDefault();
     OutputView.closeResultModal();
   },
+
+  resetGame(event) {
+    this.closeModal();
+    
+  }
 };
 
 export default ResultModalListener;

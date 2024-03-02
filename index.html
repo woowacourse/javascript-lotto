@@ -7,55 +7,13 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- TODO: FIX Roboto 폰트 설치안되는 오류-->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
   </head>
 
   <body>
-    <header>
-      <h1 class="header">
-        <a href="./">🎱 행운의 로또</a>
-      </h1>
-    </header>
-    <main id="app">
-      <h1 class="title text-lotto-title">🎱 내 번호 당첨 확인 🎱</h1>
-      <purchase-lotto></purchase-lotto>
-      <div class="purchased-lotto">
-        <div class="purchased-lotto__label"></div>
-        <div class="purchased-lotto__list text-lotto-body"></div>
-      </div>
-      <div class="winning-lotto hidden">
-        <label class="winning-lotto__label"
-          >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label
-        >
-        <div class="winning-lotto-form">
-          <div class="winning-numbers">
-            <label class="winning-numbers__label text-lotto-body">당첨 번호</label>
-            <div class="winning-numbers-inputs">
-              <input class="winning-numbers-inputs__input text-lotto-body" />
-              <input class="winning-numbers-inputs__input text-lotto-body" />
-              <input class="winning-numbers-inputs__input text-lotto-body" />
-              <input class="winning-numbers-inputs__input text-lotto-body" />
-              <input class="winning-numbers-inputs__input text-lotto-body" />
-              <input class="winning-numbers-inputs__input text-lotto-body" />
-            </div>
-          </div>
-          <div class="bonus-number">
-            <label class="bonus-number__label text-lotto-body">보너스 번호</label>
-            <div class="bonus-number-inputs"><input class="bonus-number-inputs__input" /></div>
-          </div>
-        </div>
-      </div>
-      <div class="result hidden">
-        <div id="error-result" class="text-lotto-error"></div>
-        <button class="result__button text-lotto-caption button-primary">결과 확인하기</button>
-      </div>
-    </main>
+    <header-bar></header-bar>
+    <main-app></main-app>
     <result-modal></result-modal>
-    <footer>copyright 2023. woowacourse</footer>
+    <footer-bar></footer-bar>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

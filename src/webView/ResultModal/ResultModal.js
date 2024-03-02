@@ -3,8 +3,8 @@ import ResultModalListener from './ResultModalListener';
 
 class ResultModal extends BaseComponent {
   render() {
-    this.innerHTML = `<div class="result-modal-backdrop hidden"></div>
-        <div class="result-modal hidden">
+    this.outerHTML = `<div class="result-modal"><div class="result-modal-backdrop hidden"></div>
+        <div class="result-modal-body hidden">
           <div class="result-modal-header">
             <div class="result-modal-header__close-button">X</div>
             <div class="result-modal-header__title text-lotto-subtitle">🏆 당첨 통계 🏆</div>
@@ -51,13 +51,17 @@ class ResultModal extends BaseComponent {
           <div class="result-modal__reset-button button-primary text-lotto-caption">
             다시 시작하기
           </div>
-        </div>`;
+        </div></div>`;
   }
 
   setEvent() {
     this.on({ target: '.result__button', eventName: 'click' }, ResultModalListener.resultButton);
     this.on(
       { target: '.result-modal-header__close-button', eventName: 'click' },
+      ResultModalListener.closeModal,
+    );
+    this.on(
+      { target: '.result-modal__reset-button', eventName: 'click' },
       ResultModalListener.closeModal,
     );
   }

@@ -1,4 +1,6 @@
 import PurchaseLottoService from '../../domain/service/PurchaseLottoService';
+import Lotto from '../Lotto/Lotto';
+import PurchasedLotto from '../PurchasedLotto/PurchasedLotto';
 
 const CLASSNAME_HIDDEN = 'hidden';
 const SELECTOR_WINNING_LOTTO = '.winning-lotto';
@@ -7,29 +9,14 @@ const SELECTOR_PURCHASE = '.purchase-form__input';
 const SELECTOR_PURCHASED = '.purchased-lotto__list';
 
 const Private = {
-  stringToDiv(string) {
-    const div = document.createElement('div');
-    div.textContent = string;
-    return div;
-  },
-
-  makeDivsFragmentFromStrings(strings) {
-    const fragment = document.createDocumentFragment();
-
-    const appendToFragment = (element) => {
-      fragment.appendChild(element);
-    };
-
-    strings.map(Private.stringToDiv).forEach(appendToFragment);
-    return fragment;
-  },
-
-  nextElementSiblings(element) {
-    const result = [];
-    while (element.nextElementSibling) {
-      result.push(element.nextElementSibling);
+  getLottos(purchaseMoney) {
+    try {
+      return new PurchaseLottoService(purchaseMoney).getLottos();
+    } catch (error) {
+      View.printErrorMessage(error.message);
+      console.log(error.message);
+      return;
     }
-    return result;
   },
 };
 
@@ -38,7 +25,7 @@ const View = {
     document.querySelector(SELECTOR_WINNING_LOTTO).classList.remove(CLASSNAME_HIDDEN);
     document.querySelector(SELECTOR_RESULT).classList.remove(CLASSNAME_HIDDEN);
   },
-  printError(message) {
+  printErrorMessage(message) {
     document.querySelector('#error-purchase-money').textContent = message;
   },
   removeErrorMessage() {
@@ -53,23 +40,13 @@ const PurchaseLottoListener = {
     const purchaseMoney = document.querySelector(SELECTOR_PURCHASE);
     const purchased = document.querySelector(SELECTOR_PURCHASED);
 
-    let lottos;
-    try {
-      lottos = new PurchaseLottoService(purchaseMoney.value).getLottos();
-    } catch (error) {
-      View.printError(error.message);
-      console.log(error.message);
-      return;
-    }
     View.removeErrorMessage();
-    const lottoStrings = lottos
-      .map((lotto) => lotto.map((num) => String(num).padStart(2, ' ')))
-      .map((lotto) => `🎟️ ${lotto.join(', ')}`);
 
-    const lottosFragment = Private.makeDivsFragmentFromStrings(lottoStrings);
-
-    [...purchased.children].map((node) => node.remove());
-    purchased.append(lottosFragment);
+    PurchasedLotto.clear();
+    const lottos = Private.getLottos(purchaseMoney.value);
+    const fragment = document.createDocumentFragment();
+    lottos.forEach((lotto) => fragment.append(new Lotto(lotto)));
+    purchased.append(fragment);
     View.showWinningPart();
   },
 };

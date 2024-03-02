@@ -47,19 +47,3 @@
 #error-purchase-money {
   height: 14px;
 }
-
-/* 구매로또 */
-.purchased-lotto {
-  height: 288px;
-}
-.purchased-lotto__label {
-  height: 24px;
-}
-
-.purchased-lotto__list {
-  height: 276px;
-  overflow-y: auto;
-}
-.purchased-lotto__list div {
-  white-space: pre;
-}
