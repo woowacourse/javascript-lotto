@@ -42,3 +42,15 @@ input[type='submit']:hover {
 input[type='number']:focus {
   border: 2px solid var(--lotto-primary) !important;
 }
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.full-width {
+  width: 100%;
+}

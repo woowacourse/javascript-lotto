@@ -1,3 +1,4 @@
+import ErrorMessage from '../utils/ErrorMessage.js';
 import BuyLottoForm from './BuyLottoForm.js';
 
 export default function FirstSection() {
@@ -13,13 +14,11 @@ export default function FirstSection() {
 
   // lottoContainer
   const lottoContainer = document.createElement('div');
-  const errorMessage = document.createElement('span');
 
   lottoContainer.setAttribute('id', 'buy-lotto-container');
-  errorMessage.classList.add('input-error');
 
   lottoContainer.appendChild(BuyLottoForm());
-  lottoContainer.appendChild(errorMessage);
+  lottoContainer.appendChild(ErrorMessage('cost-error', ['input-error', 'hidden']));
 
   section.appendChild(titleContainer);
   section.appendChild(lottoContainer);

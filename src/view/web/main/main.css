@@ -81,14 +81,8 @@
   justify-content: flex-start;
   align-items: center;
   color: tomato;
-  visibility: hidden;
   height: 24px;
   max-width: inherit;
-}
-
-#step2 {
-  visibility: hidden;
-  width: 100%;
 }
 
 #lotto-tickets-container {

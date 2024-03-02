@@ -20,8 +20,9 @@ export default class EventController {
     try {
       validateCost(this.#cost);
     } catch ({ message }) {
-      $('.input-error').innerText = message;
-      $('.input-error').style.visibility = 'visible';
+      $('#cost-error').innerText = message;
+      $('#cost-error').classList.remove('hidden');
+      $('#cost-error').classList.add('visible');
       return;
     }
 
@@ -35,15 +36,18 @@ export default class EventController {
 
     $('#total-buy-text').innerText = `총 ${buyCount}개를 구매하였습니다.`;
     $('#lotto-tickets-container ul').innerHTML = lottoQuery;
-    $('.input-error').style.visibility = 'hidden';
-    $('#step2').style.visibility = 'visible';
-    $$('.lotto-number')[0].focus();
+    $('#cost-error').classList.remove('visible');
+    $('#cost-error').classList.add('hidden');
+    $('#step2').classList.remove('hidden');
+    $('#step2').classList.add('visible');
+    $('#winning-number-1').focus();
   }
 
   handleWinningLottoForm(event) {
     event.preventDefault();
+
     const winningNumbersInput = $$('.lotto-number');
-    const bonusNumberInput = Number($('.bonus-number').value);
+    const bonusNumberInput = $('#bonus-number').valueAsNumber;
     const winningNumbers = [];
 
     winningNumbersInput.forEach((element) => winningNumbers.push(Number(element.value)));
@@ -51,8 +55,9 @@ export default class EventController {
     try {
       this.#winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumberInput);
     } catch ({ message }) {
-      $$('.input-error')[1].style.visibility = 'visible';
-      $$('.input-error')[1].innerText = message;
+      $('#winning-number-error').classList.remove('hidden');
+      $('#winning-number-error').classList.add('visible');
+      $('#winning-number-error').innerText = message;
       return;
     }
     const lottos = this.#lottoMachine.getLottoNumbers;
@@ -62,8 +67,10 @@ export default class EventController {
     const statistics = new Statistics({ lottos, winningLotto, bonusNumber, cost });
     const result = statistics.getResult;
 
-    $$('.input-error')[1].style.visibility = 'hidden';
-    $('#modal-container').style.visibility = 'visible';
+    $('#winning-number-error').classList.remove('visible');
+    $('#winning-number-error').classList.add('hidden');
+    $('#modal-container').classList.remove('hidden');
+    $('#modal-container').classList.add('visible');
 
     const statisticsQuery = `
       <tr>
@@ -98,7 +105,8 @@ export default class EventController {
 
   handleCloseBtn(event) {
     event.preventDefault();
-    $('#modal-container').style.visibility = 'hidden';
+    $('#modal-container').classList.remove('visible');
+    $('#modal-container').classList.add('hidden');
   }
 
   handleRetryBtn(event) {
@@ -106,7 +114,9 @@ export default class EventController {
     $('#buy-lotto-form').reset();
     $('#winning-lotto-form').reset();
     $('.next-section').replaceChild(LottoTickets(), $('#lottos'));
-    $('#step2').style.visibility = 'hidden';
-    $('#modal-container').style.visibility = 'hidden';
+    $('#step2').classList.remove('visible');
+    $('#step2').classList.add('hidden');
+    $('#modal-container').classList.remove('visible');
+    $('#modal-container').classList.add('hidden');
   }
 }
