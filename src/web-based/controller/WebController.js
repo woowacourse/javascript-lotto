@@ -35,9 +35,6 @@ class LottoWebController {
       .querySelector('.btn-submit-lotto')
       .addEventListener('click', this.processWinningNumbers.bind(this));
     document
-      .querySelector('.btn-submit-lotto')
-      .addEventListener('click', () => this.processWinningStats());
-    document
       .querySelector('.button-restart')
       .addEventListener('click', () => this.processRestart());
   }
