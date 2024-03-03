@@ -112,6 +112,7 @@ class LottoWebController {
       BonusNumberOutputView.resetBonusNumber();
     } else {
       this.bonusNumber = inputBonusNumber;
+      WinningNumbersOutputView.displayLottoNumbersError('');
       this.processWinningStats();
     }
   }
