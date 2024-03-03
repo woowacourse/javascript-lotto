@@ -14,6 +14,7 @@ class HTMLInputView {
   }
 
   static async readWinningNumbers() {
+    ConsoleImplementation.reset();
     ElementActivator.activateWinningLottoForm();
     const winningLotto = await this.#readLineAsync();
     return winningLotto;

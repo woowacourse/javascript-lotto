@@ -1,26 +1,31 @@
 class ConsoleImplementation {
   static #queue = [];
 
-  static #nowResolve = null;
+  static #nowFunction = null;
 
   static enqueue(...args) {
     this.#validateEnqueueArgs(args);
     const stringArgs = args.map((arg) => arg.toString());
-    if (this.#nowResolve !== null) {
+    if (this.#nowFunction !== null) {
       this.#executeResolve(stringArgs.shift());
     }
     this.#queue.push(...stringArgs);
   }
 
-  static waitReading(resolve) {
-    if (this.#nowResolve !== null) {
+  static waitReading(func) {
+    if (this.#nowFunction !== null) {
       throw new Error("[ERROR] 이미 대기 중인 resolve 함수가 존재");
     }
     if (this.#queue.length > 0) {
-      resolve(this.#queue.shift());
+      func(this.#queue.shift());
       return;
     }
-    this.#nowResolve = resolve;
+    this.#nowFunction = func;
+  }
+
+  static reset() {
+    this.#queue.length = 0;
+    this.#nowFunction = null;
   }
 
   static #validateEnqueueArgs(array) {
@@ -35,8 +40,8 @@ class ConsoleImplementation {
   }
 
   static #executeResolve(strings) {
-    this.#nowResolve(strings);
-    this.#nowResolve = null;
+    this.#nowFunction(strings);
+    this.#nowFunction = null;
   }
 }
 
