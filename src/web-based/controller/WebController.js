@@ -1,16 +1,16 @@
-import LottoTicket from '../domain/LottoTicket';
-import WinningStatsMaker from '../domain/WinningStatsMaker';
-import PurchaseAmountValidator from '../validator/PurchaseAmountValidator';
-import WinningNumbersValidator from '../validator/WinningNumbersValidator';
-import BonusNumberValidator from '../validator/BonusNumberValidator';
+import LottoTicket from '../../domain/LottoTicket';
+import WinningStatsMaker from '../../domain/WinningStatsMaker';
+import PurchaseAmountValidator from '../../validator/PurchaseAmountValidator';
+import WinningNumbersValidator from '../../validator/WinningNumbersValidator';
+import BonusNumberValidator from '../../validator/BonusNumberValidator';
 import {
   BONUS_NUMBER_INPUT_ERROR,
   PURCHASE_AMOUT_INPUT_ERROR,
   WINNING_NUMBER_INPUT_ERROR,
-} from '../constant/messages';
-import { LOTTO_SYMBOL, PURCHASE_SYMBOL } from '../constant/symbols';
+} from '../../constant/messages';
+import { LOTTO_SYMBOL, PURCHASE_SYMBOL } from '../../constant/symbols';
 
-class LottoController {
+class LottoWebController {
   constructor() {
     this.purchaseAmount = 0;
     this.lottoTickets = [];
@@ -39,9 +39,9 @@ class LottoController {
     const inputPurchaseAmountView = document.querySelector('.input-purchase-amount');
     const purchaseAmountErrorView = document.querySelector('.text-purchase-amount-error');
     const inputValue = inputPurchaseAmountView.value;
-    console.log(inputValue, '구매금액입력값');
     const purchaseAmount = Number(inputValue);
     const validationResult = this.validatePurchaseAmount(purchaseAmount);
+
     if (validationResult !== true) {
       inputPurchaseAmountView.value = null;
       purchaseAmountErrorView.textContent = validationResult;
@@ -49,6 +49,7 @@ class LottoController {
       this.purchaseAmount = purchaseAmount;
       purchaseAmountErrorView.textContent = '';
     }
+
     this.processLottoTicket();
   }
 
@@ -205,4 +206,4 @@ class LottoController {
     lottoNumberErrorView.textContent = '';
   }
 }
-export default LottoController;
+export default LottoWebController;
