@@ -4,18 +4,17 @@ import LOTTO_RULE from '../constants/rules/lottoRule';
 class BonusNumber {
   #bonumNumber;
 
-  constructor(number, winningLotto) {
+  constructor(number) {
     const parsedBonusNumber = Number(number);
-    this.#validataeBonusNumber(parsedBonusNumber, winningLotto);
+    this.#validateBonusNumber(parsedBonusNumber);
     this.#bonumNumber = parsedBonusNumber;
   }
 
-  #validataeBonusNumber(number, winningLotto) {
+  #validateBonusNumber(number) {
     this.#isValidBonusNumberCount(number);
     this.#isNumber(number);
     this.#isPositiveInteger(number);
     this.#isValidNumberRange(number);
-    this.#hasRedundantNumber(number, winningLotto);
   }
 
   #isValidBonusNumberCount(number) {
@@ -42,13 +41,13 @@ class BonusNumber {
     }
   }
 
-  #hasRedundantNumber(number, winningLotto) {
-    const winningLottoNumbers = winningLotto.lottoNumbers;
+  // #hasRedundantNumber(number, winningLotto) {
+  //   const winningLottoNumbers = winningLotto.lottoNumbers;
 
-    if (winningLottoNumbers.includes(number)) {
-      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_ALREADY_CHOSEN);
-    }
-  }
+  //   if (winningLottoNumbers.includes(number)) {
+  //     throw new Error(ERROR_MESSAGE.BONUS_NUMBER_ALREADY_CHOSEN);
+  //   }
+  // }
 
   get value() {
     return this.#bonumNumber;

@@ -3,6 +3,7 @@ import BonusNumber from './BonusNumber';
 import Lotto from './Lotto';
 import generateRandomNumberInRange from '../util/generateRandomNumberInRange';
 import parseStringToNumber from '../util/parseStringToNumber';
+import ERROR_MESSAGE from '../constants/messages/errorMessage';
 
 class LottoMachine {
   #lottos;
@@ -119,13 +120,22 @@ class LottoMachine {
     return ranks;
   }
 
+  #validateHasRedundantNumber(winningLotto, number) {
+    const winningLottoNumbers = winningLotto.lottoNumbers;
+
+    if (winningLottoNumbers.includes(number)) {
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_ALREADY_CHOSEN);
+    }
+  }
+
   set winningLotto(numbers) {
     const winningLotto = parseStringToNumber(numbers);
     this.#winningLotto = new Lotto(winningLotto);
   }
 
   set bonusNumber(number) {
-    this.#bonusNumber = new BonusNumber(number, this.#winningLotto);
+    this.#bonusNumber = new BonusNumber(number);
+    this.#validateHasRedundantNumber(this.#winningLotto, Number(number));
   }
 
   get lottos() {

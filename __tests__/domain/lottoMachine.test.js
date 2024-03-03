@@ -10,6 +10,18 @@ describe('로또 머신 테스트', () => {
     expect(lottoMachine.lottos.length).toBe(8);
   });
 
+  test('당첨 번호와 보너스 번호가 중복될 때, 예외가 발생한다.', () => {
+    const money = new Money(8000);
+    const winningLotto = '1, 2, 3, 4, 5, 6';
+    const inputBonusNumber = '4';
+
+    const lottoMachine = new LottoMachine(money.count);
+    lottoMachine.winningLotto = winningLotto;
+    expect(() => {
+      lottoMachine.bonusNumber = inputBonusNumber;
+    }).toThrow();
+  });
+
   test('당첨된 로또 등수 내역 테스트', () => {
     const money = new Money(2000);
     const myCustomLotto = ['1, 2, 8, 9, 10, 11', '1, 2, 8, 9, 5, 10', '1, 2, 8, 9, 10, 11'];
