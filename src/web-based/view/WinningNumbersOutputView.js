@@ -1,7 +1,6 @@
 class WinningNumbersOutputView {
   lottoNumbersInputSectionView = document.querySelector('.section-submit-lotto-numbers');
-  inputWinningNumbersView = document.querySelector('.wrapper-input-winning-numbers');
-  inputWinningNumberView = document.querySelectorAll('.input-winning-number');
+  inputWinningNumbersWrapperView = document.querySelector('.wrapper-input-winning-numbers');
   bonusNumberInputView = document.querySelector('.input-bonus-number');
   lottoNumberErrorView = document.querySelector('.text-lotto-numbers-error');
 
@@ -11,7 +10,7 @@ class WinningNumbersOutputView {
       winningNumbersInputElement.type = 'text';
       winningNumbersInputElement.className = 'input-winning-number';
 
-      this.inputWinningNumbersView.appendChild(winningNumbersInputElement);
+      this.inputWinningNumbersWrapperView.appendChild(winningNumbersInputElement);
     });
   }
 
@@ -22,7 +21,7 @@ class WinningNumbersOutputView {
   getWinningNumbers() {
     const inputWinningNumbers = [];
     Array.from({ length: 6 }).forEach((_, index) => {
-      const inputValue = Number(this.inputWinningNumbersView.children[index].value);
+      const inputValue = Number(this.inputWinningNumbersWrapperView.children[index].value);
       inputWinningNumbers.push(Number(inputValue));
     });
 
@@ -30,8 +29,10 @@ class WinningNumbersOutputView {
   }
 
   resetWinningNumbersAndBonusNumber() {
-    Array.from(this.inputWinningNumberView).forEach((node) => {
-      node.value = null;
+    const inputWinningNumbersNodes = document.querySelectorAll('.input-winning-number');
+
+    Array.from(inputWinningNumbersNodes).forEach((node) => {
+      node.value = '';
     });
 
     this.bonusNumberInputView.value = null;
@@ -42,10 +43,12 @@ class WinningNumbersOutputView {
   }
 
   resetToInitialState() {
-    Array.from(this.inputWinningNumberView).forEach((node) => {
+    const inputWinningNumbersNodes = document.querySelectorAll('.input-winning-number');
+
+    Array.from(inputWinningNumbersNodes).forEach((node) => {
       node.value = '';
     });
-    this.inputWinningNumbersView.innerHTML = '';
+    this.inputWinningNumbersWrapperView.innerHTML = '';
     this.bonusNumberInputView.value = '';
     this.lottoNumberErrorView.textContent = '';
     this.lottoNumbersInputSectionView.classList.add('invisible');

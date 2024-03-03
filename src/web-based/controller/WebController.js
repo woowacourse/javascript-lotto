@@ -109,9 +109,10 @@ class LottoWebController {
 
     if (validationResult !== true) {
       BonusNumberOutputView.displayLottoNumberError(validationResult);
-      BonusNumberOutputView.reset();
+      BonusNumberOutputView.resetBonusNumber();
     } else {
       this.bonusNumber = inputBonusNumber;
+      this.processWinningStats();
     }
   }
 
