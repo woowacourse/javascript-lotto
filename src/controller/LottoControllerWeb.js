@@ -6,7 +6,7 @@ import generatePurchaseInfoHTML from '../../static/html/generatePurchaseInfoHTML
 import generatePurchaseInputHTML from '../../static/html/generatePurchaseInputHTML';
 import onError from '../util/onError';
 import renderUI from '../util/renderUI';
-import findErrorAndRemove from '../util/findErrorAndRemove';
+import removeErrorMessage from '../util/removeErrorMessage';
 import closeModal from '../util/closeModal';
 
 renderUI('purchase-before', 'afterbegin', generatePurchaseInputHTML());
@@ -21,7 +21,7 @@ purchaseAmountButton.addEventListener('click', (event) => {
   try {
     const money = new Money(Number(inputMoney));
     const lottoMachine = new LottoMachine(money.count);
-    findErrorAndRemove();
+    removeErrorMessage();
     printPurchaseInfoHTML(findPurchaseInfoHTML, money.count, lottoMachine.lottos);
     handleClickLottoResult(lottoMachine, money);
   } catch (error) {
@@ -44,7 +44,7 @@ function executionWinningAndBonusNumbers(lottoMachine, money) {
   const winningBonusNumbersGroup = document.querySelector('.lp-nig-number-input-group');
   try {
     inputWinningAndBonusNumbers(lottoMachine);
-    findErrorAndRemove();
+    removeErrorMessage();
     printLottoResultsAndProfitRate(lottoMachine, money);
     closeModal('lm-close-btn');
     closeModal('modal-body');
