@@ -122,6 +122,7 @@ input:disabled {
   color: var(--color-error-text);
   letter-spacing: 0;
   word-break: keep-all;
+  animation: fade-in 0.5s;
 }
 
 #lotto-game {
@@ -148,6 +149,7 @@ input:disabled {
   font-size: var(--font-body-size);
   line-height: 24px;
   letter-spacing: 0.5px;
+  animation: fade-in 0.5s;
 }
 
 #purchase form {
@@ -172,6 +174,7 @@ input:disabled {
   line-height: 24px;
   letter-spacing: 0.5px;
   height: 300px;
+  animation: fade-in 0.5s;
 }
 
 #purchase-result ul {
@@ -198,6 +201,7 @@ input:disabled {
   display: flex;
   flex-flow: column wrap;
   gap: 10px;
+  animation: bottom-up 0.5s;
 }
 
 #winning-numbers form {
@@ -243,11 +247,12 @@ dialog {
   height: 500px;
   margin: auto;
   border-radius: 4px;
-  animation: fade-slide-in-from-top 0.3s ease-in-out;
+  animation: bottom-up 0.7s;
 }
 
 dialog::backdrop {
   background: rgba(0 0 0 / 50%);
+  animation: fade-in 0.7s;
 }
 
 #result-modal-box {
@@ -309,4 +314,21 @@ footer p {
   font-size: var(--font-caption-size);
   color: var(--color-primary);
   letter-spacing: 1.25px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bottom-up {
+  from {
+    bottom: -20px;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
 }
