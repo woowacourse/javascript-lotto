@@ -14,15 +14,15 @@ export default function purchaseAfter(count, lottos) {
       </div>
       <div class="lp-nig-number-input-group">
         <div class="lp-nig-winning-box">
-          <input class="lp-nig-input" type="text" id="winningNumber1" maxlength="2" required />
-          <input class="lp-nig-input" type="text" id="winningNumber2" maxlength="2" required />
-          <input class="lp-nig-input" type="text" id="winningNumber3" maxlength="2" required />
-          <input class="lp-nig-input" type="text" id="winningNumber4" maxlength="2" required />
-          <input class="lp-nig-input" type="text" id="winningNumber5" maxlength="2" required />
-          <input class="lp-nig-input" type="text" id="winningNumber6" maxlength="2" required />
+          <input class="lp-nig-input" type="text" id="winningNumber1" maxlength="2" min="1" max="45" required />
+          <input class="lp-nig-input" type="text" id="winningNumber2" maxlength="2" min="1" max="45" required />
+          <input class="lp-nig-input" type="text" id="winningNumber3" maxlength="2" min="1" max="45" required />
+          <input class="lp-nig-input" type="text" id="winningNumber4" maxlength="2" min="1" max="45" required />
+          <input class="lp-nig-input" type="text" id="winningNumber5" maxlength="2" min="1" max="45" required />
+          <input class="lp-nig-input" type="text" id="winningNumber6" maxlength="2" min="1" max="45" required />
         </div>
         <div class="lp-nig-bonus-box">
-          <input class="lp-nig-input" type="text" id="bonusNumber" maxlength="2" required />
+          <input class="lp-nig-input" type="text" id="bonusNumber" maxlength="2" min="1" max="45" required />
         </div>
       </div>
     </div>
