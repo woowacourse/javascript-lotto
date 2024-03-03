@@ -143,7 +143,7 @@ class LottoWebController {
       0,
     );
     const rate = (totalPrizeMoney / purchaseAmount) * 100;
-    const rateOfReturn = (Math.round(rate * 10) / 10).toFixed(1);
+    const rateOfReturn = parseFloat((Math.round(rate * 10) / 10).toFixed(1));
 
     RateOfReturnOutputView.displayRateOfReturn(rateOfReturn);
   }
