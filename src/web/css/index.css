@@ -182,9 +182,15 @@ input[type='text'] {
 }
 
 #winning-lotto {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+#bonus-number-fieldset {
   display: flex;
-  flex-grow: 1;
-  flex-direction: column;
+  justify-content: end;
 }
 
 #winning-lotto input {
@@ -192,6 +198,11 @@ input[type='text'] {
   height: 36px;
   border: 1px solid var(--gray-scale-3);
   border-radius: 4px;
+}
+
+#result-button {
+  grid-column: 1 / -1;
+  margin: 0;
 }
 
 .winning-lotto_label {
