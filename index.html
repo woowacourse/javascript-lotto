@@ -8,27 +8,27 @@
     <link rel="stylesheet" type="text/css" href="./src/web/css/index.css" />
   </head>
   <body>
-    <main id="app">
+    <div id="app">
       <header>
         <h1 class="header-title lotto-title">🎱 행운의 로또</h1>
       </header>
-      <div class="lotto-content">
-        <section id="total-article" class="lotto-body">
-          <h1 class="title lotto-title">🎱 내 번호 당첨 확인 🎱</h1>
-          <div class="purchase">
+      <main class="lotto-content">
+        <article id="total-article" class="lotto-body">
+          <section class="purchase">
+            <h1 class="title lotto-title">🎱 내 번호 당첨 확인 🎱</h1>
             <p>구입할 금액을 입력해주세요.</p>
             <form id="purchase-form">
               <input id="purchaseAmount-input" class="lotto-placeholder" type="number" placeholder="금액" />
               <button id="purchase-button" class="lotto-compact-button">구입</button>
             </form>
-          </div>
-          <article id="lottoPurchase-article">
+          </section>
+          <section id="lottoPurchase-article">
             <h3 id="purchaseHeader-text"></h3>
             <ul id="lotto-list"></ul>
             <p class="purchase-info">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
             <div class="winning-lotto_label">
-              <span>당첨 번호</span>
-              <span>보너스 번호</span>
+              <label>당첨 번호</label>
+              <label>보너스 번호</label>
             </div>
             <form id="winning-lotto">
               <div class="winning-lotto-input-container">
@@ -46,9 +46,9 @@
               </div>
               <button id="result-button" class="lotto-stretch-button">결과 확인 하기</button>
             </form>
-          </article>
-        </section>
-      </div>
+          </section>
+        </article>
+      </main>
       <footer class="lotto-footer">
         <p class="lotto-caption">Copyright 2023. woowacourse</p>
       </footer>
@@ -63,7 +63,7 @@
           <button id="retry-button" class="lotto-stretch-button">다시 시작하기</button>
         </dialog>
       </div>
-    </main>
+    </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
