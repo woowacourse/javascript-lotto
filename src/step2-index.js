@@ -4,6 +4,7 @@ import './styles/body.css';
 import './styles/PaymentForm.css';
 import './styles/PurchasedLottos.css';
 import './styles/WinningLottoForm.css';
+import './styles/Modal.css';
 
 // services
 import WebController from './services/WebController';
