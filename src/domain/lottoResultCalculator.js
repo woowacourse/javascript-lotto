@@ -15,7 +15,7 @@ class LottoResultCalculator {
   }
 
   getTotalResult() {
-    const initialResult = prize.generateInitiallResultObject();
+    const initialResult = prize.generateInitialResultObject();
     const totalResult = this.#lottoList.reduce((acc, lotto) => {
       const rank = lotto.getRank(this.#winningLotto);
       if (rank !== NO_MATCH_PLACE) {

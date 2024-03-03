@@ -19,7 +19,7 @@ const webOutputView = {
     document.querySelector('#lotto-list').innerHTML = lottoListTemplate;
   },
 
-  renderTalbe: (totalResult) => {
+  renderTable: (totalResult) => {
     const tableHeader = `
     <tr id="reward-table-header">
     <th class="lotto-subtitle">일치 갯수</th>

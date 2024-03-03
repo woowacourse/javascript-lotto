@@ -118,7 +118,7 @@ class LottoGameWebController {
   displayResult = ({ totalResult, profit }) => {
     const resultTable = document.querySelector('#modal-background');
     resultTable.style.display = 'flex';
-    webOutputView.renderTalbe(totalResult);
+    webOutputView.renderTable(totalResult);
     webOutputView.renderProfit(profit);
   };
 
