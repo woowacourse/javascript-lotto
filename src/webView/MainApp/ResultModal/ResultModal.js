@@ -1,9 +1,10 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '@webView/BaseComponent/BaseComponent';
 import ResultModalListener from './ResultModalListener';
 
 class ResultModal extends BaseComponent {
   render() {
-    this.outerHTML = `<div class="result-modal"><div class="result-modal-backdrop hidden"></div>
+    this.innerHTML = `
+    <div class="result-modal-backdrop hidden"></div>
         <div class="result-modal-body hidden">
           <div class="result-modal-header">
             <div class="result-modal-header__close-button">X</div>
@@ -51,19 +52,25 @@ class ResultModal extends BaseComponent {
           <div class="result-modal__reset-button button-primary text-lotto-caption">
             다시 시작하기
           </div>
-        </div></div>`;
+        </div>`;
   }
 
   setEvent() {
-    this.on({ target: '.result__button', eventName: 'click' }, ResultModalListener.resultButton);
     this.on(
       { target: '.result-modal-header__close-button', eventName: 'click' },
-      ResultModalListener.closeModal,
+      this.#close.bind(this),
     );
-    this.on(
-      { target: '.result-modal__reset-button', eventName: 'click' },
-      ResultModalListener.closeModal,
-    );
+    this.on({ target: '.result-modal-backdrop', eventName: 'click' }, this.#close.bind(this));
+    this.on({ target: '.result-modal__reset-button', eventName: 'click' }, this.#close.bind(this));
+  }
+
+  #open() {
+    this.querySelector('.result-modal-body').classList.remove('hidden');
+    this.querySelector('.result-modal-backdrop').classList.remove('hidden');
+  }
+  #close() {
+    this.querySelector('.result-modal-body').classList.add('hidden');
+    this.querySelector('.result-modal-backdrop').classList.add('hidden');
   }
 }
 customElements.define('result-modal', ResultModal);

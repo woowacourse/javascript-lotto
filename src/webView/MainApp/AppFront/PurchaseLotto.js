@@ -1,5 +1,5 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
-import PurchaseLottoService from '../../domain/service/PurchaseLottoService';
+import BaseComponent from '@webView/BaseComponent/BaseComponent';
+import PurchaseLottoService from '@src/domain/service/PurchaseLottoService';
 
 const CLASSNAME_HIDDEN = 'hidden';
 const SELECTOR_WINNING_LOTTO = '.winning-lotto';
@@ -10,7 +10,7 @@ const SELECTOR_PURCHASED_LABEL = '.purchased-lotto__label';
 
 class PurchaseLotto extends BaseComponent {
   render() {
-    this.outerHTML = `      <div class="purchase"> 
+    this.innerHTML = `
 <div class="purchase-form">
   <input
     class="purchase-form__input"
@@ -20,8 +20,7 @@ class PurchaseLotto extends BaseComponent {
   />
   <button class="purchase-form__button button-primary text-lotto-caption">구입</button>
 </div>
-<div id="error-purchase-money" class="text-lotto-error"></div>
-</div>`;
+<div id="error-purchase-money" class="text-lotto-error"></div>`;
   }
 
   setEvent() {

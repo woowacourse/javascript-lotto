@@ -1,4 +1,4 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '@webView/BaseComponent/BaseComponent';
 
 class Lotto extends BaseComponent {
   #numbers;
@@ -10,8 +10,6 @@ class Lotto extends BaseComponent {
   render() {
     this.outerHTML = `<div class="lotto"><span class="lotto-mark lotto-body">🎟️</span> <span class="lotto-string text-lotto-body">${this.#getLottoString()}</span></div>`;
   }
-
-  setEvent() {}
 
   #getLottoString() {
     const padStart = (num) => (String(num).length == 1 ? `  ${String(num)}` : String(num));

@@ -1,5 +1,5 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
-import Lotto from '../Lotto/Lotto';
+import BaseComponent from '@webView/BaseComponent/BaseComponent';
+import Lotto from './Lotto';
 
 class PurchasedLotto extends BaseComponent {
   render() {
@@ -7,10 +7,9 @@ class PurchasedLotto extends BaseComponent {
     <div class="purchased-lotto__label text-lotto-body"></div>
     <div class="purchased-lotto__list text-lotto-body"></div>`;
   }
-  setEvent() {}
-  show() {}
+
   static clear() {
-    document.querySelector('.purchased-lotto__list').innerHTML = '';
+    this.querySelector('.purchased-lotto__list').innerHTML = '';
   }
   appendLottos(lottos) {
     const fragment = document.createDocumentFragment();

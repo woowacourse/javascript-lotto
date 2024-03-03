@@ -1,5 +1,6 @@
-import WinningResultService from '../../domain/service/WinningResultService';
-import WinningRewardService from '../../domain/service/WinningRewardService';
+import WinningResultService from '@src/domain/service/WinningResultService';
+import WinningRewardService from '@src/domain/service/WinningRewardService';
+import LottoNumber from '../../../domain/entity/LottoNumber';
 
 const CLASSNAME_HIDDEN = 'hidden';
 const SELECTOR = {
@@ -24,7 +25,7 @@ const Private = {
       string
         .slice(EMOJI_BLANK_LENGTH)
         .split(', ')
-        .map((numStr) => Number(numStr));
+        .map((numStr) => LottoNumber.fromString(numStr).getNumber());
     return [...lottoList.children].map((el) => commaStringToNumbers(el.innerText));
   },
 
@@ -32,8 +33,10 @@ const Private = {
     const winningNumberInputs = document.querySelector(SELECTOR.WINNING_NUMBERS_INPUTS);
     const bonusNumberInput = document.querySelector(SELECTOR.BONUS_NUMBER_INPUT);
 
-    const winningNumbers = [...winningNumberInputs.children].map((el) => Number(el.value));
-    const bonusNumber = Number(bonusNumberInput.value);
+    const winningNumbers = [...winningNumberInputs.children].map((el) =>
+      LottoNumber.fromString(el.value).getNumber(),
+    );
+    const bonusNumber = LottoNumber.fromString(bonusNumberInput.value).getNumber();
     return { numbers: winningNumbers, bonusNumber };
   },
 
@@ -49,11 +52,6 @@ const OutputView = {
   openResultModal() {
     document.querySelector(SELECTOR.RESULT_MODAL).classList.remove(CLASSNAME_HIDDEN);
     document.querySelector(SELECTOR.RESULT_MODAL_BACKDROPS).classList.remove(CLASSNAME_HIDDEN);
-  },
-
-  closeResultModal() {
-    document.querySelector(SELECTOR.RESULT_MODAL).classList.add(CLASSNAME_HIDDEN);
-    document.querySelector(SELECTOR.RESULT_MODAL_BACKDROPS).classList.add(CLASSNAME_HIDDEN);
   },
 
   printWinningResult(winningResult) {
@@ -72,15 +70,15 @@ const OutputView = {
   },
 
   printError(message) {
-    document.querySelector('#error-result').textContent = message;
+    document.querySelector('result-button').printErrorMessage(message);
   },
   removeErrorMessage() {
-    document.querySelector('#error-result').textContent = '';
+    document.querySelector('result-button').removeErrorMessage();
   },
 };
 
 const ResultModalListener = {
-  resultButton(event) {
+  resultButtonListener(event) {
     event.preventDefault();
 
     let winningResults;
@@ -95,16 +93,6 @@ const ResultModalListener = {
     OutputView.printWinningResult(winningResults);
     OutputView.printReturnRate(winningResults, Private.getLottoNumbers().length);
   },
-
-  closeModal(event) {
-    event.preventDefault();
-    OutputView.closeResultModal();
-  },
-
-  resetGame(event) {
-    this.closeModal();
-    
-  }
 };
 
 export default ResultModalListener;

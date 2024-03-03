@@ -1,8 +1,8 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '@webView/BaseComponent/BaseComponent';
 
 class WinningLotto extends BaseComponent {
   render() {
-    this.outerHTML = `<div class="winning-lotto hidden">
+    this.innerHTML = `
     <label class="winning-lotto__label text-lotto-body"
       >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label
     >
@@ -22,10 +22,14 @@ class WinningLotto extends BaseComponent {
         <label class="bonus-number__label text-lotto-body">보너스 번호</label>
         <div class="bonus-number-inputs"><input class="bonus-number-inputs__input" /></div>
       </div>
-    </div>
-  </div>`;
+    </div.`;
   }
 
-  setEvent() {}
+  showError() {
+    this.querySelector('.winning-lotto-form').classList.add('border-error');
+  }
+  removeError() {
+    this.querySelector('.winning-lotto-form').classList.remove('border-error');
+  }
 }
 customElements.define('winning-lotto', WinningLotto);

@@ -1,12 +1,3 @@
-/* 상수 정의 */
-.hidden {
-  visibility: hidden;
-}
-
-.shade {
-  backdrop-filter: blur(2px);
-}
-
 :root {
   --color-lotto-primary: #4e5ba6;
   --color-lotto-grayscale-1: #ffffff;
@@ -16,7 +7,20 @@
   --color-lotto-grayscale-5: #000000;
   --color-lotto-error: #dd0000;
 }
+/* 상수 정의 */
+.hidden {
+  visibility: hidden;
+}
 
+.shade {
+  backdrop-filter: blur(2px);
+}
+
+.border-error {
+  outline: 3px solid red;
+  outline-style: dashed;
+  outline-offset: 5px;
+}
 .text-lotto-title {
   font-family: Roboto;
   font-size: 24px;
@@ -46,7 +50,6 @@
 
   color: var(--color-lotto-grayscale-5);
 }
-
 
 .text-lotto-placeholder {
   font-family: Roboto;

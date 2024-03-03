@@ -14,6 +14,13 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.mjs', '.css'],
+
+    alias: {
+      '@root': path.resolve(__dirname, '.'),
+      '@App': path.resolve(__dirname, 'src/webView/MainApp'),
+      '@webView': path.resolve(__dirname, 'src/webView'),
+      '@src': path.resolve(__dirname, 'src'),
+    },
   },
   module: {
     rules: [
@@ -38,7 +45,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: 'src/webView/index.html',
     }),
   ],
   devtool: 'inline-source-map',
