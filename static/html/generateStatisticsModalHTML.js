@@ -14,7 +14,7 @@ export default function generateStatisticsModalHTML(lottoRanks, totalProfitRate)
           ${displayWinningResultList(ranks)}
         </div>
         <div class="lm-winning-statistics">당신의 총 수익률은 ${totalProfitRate}%입니다.</div>
-        <button class="lm-retry-btn default-button">다시 시작하기</button>
+        <button class="lm-retry-btn default-button" id="retry-btn">다시 시작하기</button>
       </div>
     </div>`;
 }

@@ -11,13 +11,13 @@ import clickToCloseModal from '../util/clickToCloseModal';
 
 renderUI({ elementId: 'purchase-before', func: generatePurchaseInputHTML() });
 
-const purchaseAmount = document.querySelector('.lp-pa-input-group');
-const purchaseAmountButton = document.querySelector('.lp-pa-input-btn');
+const purchaseAmount = document.getElementById('purchase-input-group');
+const purchaseAmountButton = document.getElementById('purchase-input-btn');
 const findPurchaseInfoHTML = document.getElementById('purchase-after');
 
 purchaseAmountButton.addEventListener('click', (event) => {
   event.preventDefault();
-  const inputMoney = document.querySelector('.lp-pa-input-amount').valueAsNumber;
+  const inputMoney = document.getElementById('purchase-amount').valueAsNumber;
   try {
     const money = new Money(Number(inputMoney));
     const lottoMachine = new LottoMachine(money.count);
@@ -30,7 +30,7 @@ purchaseAmountButton.addEventListener('click', (event) => {
 });
 
 function handleClickLottoResult(lottoMachine, money) {
-  const printLottoResultButton = document.querySelector('.lp-winning-floating-btn');
+  const printLottoResultButton = document.getElementById('display-result-btn');
   printLottoResultButton.addEventListener('click', (event) => {
     event.preventDefault();
     executionWinningAndBonusNumbers(lottoMachine, money);
@@ -41,7 +41,7 @@ function handleClickLottoResult(lottoMachine, money) {
 // TODO: 로또 출력 많을 때, 더보기 버튼으로 접었다 폈다 하기
 // TODO: 당첨 번호 입력할 때, autoFocusing 및 하나 입력하면 다음 input으로 포커싱해주기
 function executionWinningAndBonusNumbers(lottoMachine, money) {
-  const winningBonusNumbersGroup = document.querySelector('.lp-nig-number-input-group');
+  const winningBonusNumbersGroup = document.getElementById('winning-bonus-number-input-group');
   try {
     inputWinningAndBonusNumbers(lottoMachine);
     removeErrorMessage();
@@ -83,7 +83,7 @@ function printPurchaseInfoHTML(findPurchaseInfoHTML, count, lottos) {
 }
 
 function retryLotto() {
-  const retryButton = document.querySelector('.lm-retry-btn');
+  const retryButton = document.getElementById('retry-btn');
   retryButton.addEventListener('click', () => {
     window.location.reload();
   });

@@ -14,7 +14,7 @@ export default function generatePurchaseInfoHTML(count, lottos) {
         <span class="lp-nig-winning-number">당첨 번호</span>
         <span class="lp-nig-bonus-number">보너스 번호</span>
       </div>
-      <div class="lp-nig-number-input-group">
+      <div class="lp-nig-number-input-group" id="winning-bonus-number-input-group">
         <div class="lp-nig-winning-box">
           ${displayWinningNumberInput()}
         </div>
@@ -23,7 +23,7 @@ export default function generatePurchaseInfoHTML(count, lottos) {
         </div>
       </div>
     </div>
-    <button class="lp-winning-floating-btn default-button">결과 확인하기</button>
+    <button class="lp-winning-floating-btn default-button" id="display-result-btn">결과 확인하기</button>
   `;
 }
 
