@@ -29,3 +29,12 @@ form[is='winning-lotto-form'] > .input-container {
 .check-result-btn {
   width: 100%;
 }
+
+/* 반응형 */
+
+/* 모바일 */
+@media (max-width: 767px) {
+  form[is='winning-lotto-form'] {
+    width: 100%;
+  }
+}

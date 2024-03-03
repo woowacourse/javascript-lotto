@@ -194,3 +194,24 @@ td {
 
   color: rgb(var(--color-red));
 }
+
+/* 반응형 */
+
+/* 모바일 */
+@media (max-width: 767px) {
+  header,
+  footer {
+    display: none !important;
+  }
+
+  main {
+    height: 100vh;
+  }
+
+  .main-content {
+    max-width: none !important;
+    min-width: 33rem;
+    height: 100%;
+    border: none !important;
+  }
+}
