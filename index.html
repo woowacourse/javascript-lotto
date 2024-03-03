@@ -55,6 +55,53 @@
     </template>
 
     <template id="template-modal">
+      <style>
+        .modal {
+          position: absolute;
+          top: 0;
+          left: 0;
+
+          width: 100%;
+          height: 100vh;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          background-color: rgba(var(--color-grey-scale-5), 0.5);
+        }
+
+        .content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+
+          background-color: rgba(var(--color-grey-scale-1));
+          padding: 1.6rem;
+        }
+
+        .close {
+          /* cancel default style */
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+
+          /* appearance */
+          background-color: transparent;
+          border: none;
+
+          /* text */
+          line-height: 1.6rem;
+          letter-spacing: 0.125rem;
+          font-size: 2rem;
+          font-weight: var(--weight-bold);
+        }
+
+        .close:hover {
+          cursor: pointer;
+        }
+      </style>
       <div class="modal flex-column-center">
         <div class="content flex-column">
           <button class="close">X</button>
@@ -130,7 +177,7 @@
       <app-modal>
         <p slot="header">🏆 당첨 통계 🏆</p>
         <div slot="body">
-          <table id="">
+          <table>
             <thead>
               <th>일치 개수</th>
               <th>당첨금</th>
