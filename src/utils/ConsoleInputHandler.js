@@ -1,7 +1,7 @@
 import readline from 'readline';
 import { GAME_SYMBOL } from '../constant/symbols';
 
-class Console {
+class ConsoleInputHandler {
   static makeReadLineQuestion(query, rl) {
     return new Promise((resolve, reject) => {
       rl.question(query, (input) => {
@@ -22,4 +22,4 @@ class Console {
   }
 }
 
-export default Console;
+export default ConsoleInputHandler;
