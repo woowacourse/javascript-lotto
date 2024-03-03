@@ -1,0 +1,9 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  min-height: 900px;
+  padding-top: 64px;
+  overflow-x: hidden;
+}

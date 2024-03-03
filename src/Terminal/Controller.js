@@ -1,7 +1,7 @@
 import InputView from './View/InputView';
 import OutputView from './View/OutputView';
-import LottoMachine from './Domain/LottoMachine';
-import WinLottoNumber from './Domain/WinLottoNumber';
+import LottoMachine from '../Domain/LottoMachine';
+import WinLottoNumber from '../Domain/WinLottoNumber';
 
 export default class Controller {
   #lottoMachine;

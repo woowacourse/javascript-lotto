@@ -1,0 +1,34 @@
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin-top: 28px;
+}
+
+.resultNumbersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 276px;
+  overflow-y: scroll;
+}
+
+.lottoNumberDiv {
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.lottoIcon {
+  font-size: 34px;
+}
+
+.lottoNumbers {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  margin-left: 4px;
+}

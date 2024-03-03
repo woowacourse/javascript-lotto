@@ -1,0 +1,90 @@
+#modalContainer {
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000080;
+}
+
+#modalResultContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 350px;
+  height: 500px;
+  padding: 40px 16px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+.modalResultTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  height: 247px;
+}
+
+table > tr:last-child {
+  border-bottom: 1px solid #0000001f;
+}
+
+tr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-top: 1px solid #0000001f;
+}
+
+th,
+td {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  height: 24px;
+
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+th {
+  font-weight: 600;
+}
+
+.rateOfIncomeResultContainer {
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.modalRetryButton {
+  width: 100%;
+  height: 36px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  background: #4e5ba6;
+  border-radius: 4px;
+}
+
+.modalCloseButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 16px;
+  background: #ffffff;
+}

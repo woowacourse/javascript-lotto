@@ -1,0 +1,57 @@
+#lottoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 414px;
+  min-height: 727px;
+  margin: 64px 0px;
+  padding: 40px 16px;
+  border: 1px solid #0000001f;
+  border-radius: 4px;
+}
+
+.lottoTitle {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+}
+
+#moneyForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 28px;
+}
+
+.moneyFormLabel {
+  margin-bottom: 4px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.moneyFormInputDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.moneyFormInput {
+  box-sizing: border-box;
+  width: 310px;
+  height: 36px;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.moneyFormButton {
+  width: 56px;
+  height: 36px;
+  padding: 6px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  background: #4e5ba6;
+  border-radius: 4px;
+}

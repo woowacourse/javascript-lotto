@@ -1,0 +1,13 @@
+footer {
+  bottom: 0;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 80px;
+  color: #4e5ba6;
+  font-weight: 700;
+  font-size: 14px;
+  border-top: 1px solid hsla(231, 36%, 48%, 0.2);
+}

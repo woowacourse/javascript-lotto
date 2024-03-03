@@ -1,5 +1,3 @@
-import { RANK_WIN_AMOUNT } from '../Domain/WinLottoNumber';
-
 const DIVIDED_SYMBOL = ', ';
 
 const COUNT_UNIT = '개';
@@ -14,6 +12,14 @@ const RANK_TO_COUNT = Object.freeze({
   3: 5,
   4: 4,
   5: 3,
+});
+
+const RANK_TO_PRIZE_MONEY_STRINGS = Object.freeze({
+  1: '2,000,000,000원',
+  2: '30,000,000원',
+  3: '1,500,000원',
+  4: '50,000원',
+  5: '5,000원',
 });
 
 const RANK_TO_MESSAGE = Object.freeze({
@@ -41,7 +47,7 @@ const OutputView = Object.freeze({
     const NUMBER_OF_RANK_TYPE = 5;
     for (let rank = NUMBER_OF_RANK_TYPE; rank > 0; rank -= 1) {
       const rankMessage = RANK_TO_MESSAGE[rank];
-      const message = `${RANK_TO_COUNT[rank]}${rankMessage} (${RANK_WIN_AMOUNT[rank]}원) - ${winLottos[rank]}${COUNT_UNIT}`;
+      const message = `${RANK_TO_COUNT[rank]}${rankMessage} (${RANK_TO_PRIZE_MONEY_STRINGS[rank]}) - ${winLottos[rank]}${COUNT_UNIT}`;
       this.printMessage(message);
     }
   },
