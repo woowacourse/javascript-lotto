@@ -1,5 +1,12 @@
 import LottoTicket from '../../domain/LottoTicket';
 import WinningStatsMaker from '../../domain/WinningStatsMaker';
+import PurchaseAmountOutputView from '../view/PurchaseAmountOutputView';
+import LottoTicektsOutputView from '../view/LottoTicektsOutputView';
+import WinningNumbersOutputView from '../view/WinningNumbersOutputView';
+import BonusNumberOutputView from '../view/BonusNumberOutputView';
+import LottoTicketsOutputView from '../view/LottoTicektsOutputView';
+import WinningStatsOutputView from '../view/WinningStatsOutputView';
+import RateOfReturnOutputView from '../view/RateOfReturnOutputView';
 import PurchaseAmountValidator from '../../validator/PurchaseAmountValidator';
 import WinningNumbersValidator from '../../validator/WinningNumbersValidator';
 import BonusNumberValidator from '../../validator/BonusNumberValidator';
@@ -11,11 +18,12 @@ import {
 import { LOTTO_SYMBOL, PURCHASE_SYMBOL } from '../../constant/symbols';
 
 class LottoWebController {
+  purchaseAmount = 0;
+  lottoTickets = [];
+  winningNumbers = [];
+  bonusNumber = 0;
+
   constructor() {
-    this.purchaseAmount = 0;
-    this.lottoTickets = [];
-    this.winningNumbers = [];
-    this.bonusNumber = 0;
     this.setupEventListeners();
   }
 
@@ -37,24 +45,20 @@ class LottoWebController {
   processPurchaseAmount(event) {
     event.preventDefault();
     const inputPurchaseAmountView = document.querySelector('.input-purchase-amount');
-    const purchaseAmountErrorView = document.querySelector('.text-purchase-amount-error');
-    const purchaseButton = document.querySelector('.button-purchase-amount');
-
     const inputValue = inputPurchaseAmountView.value;
     const purchaseAmount = Number(inputValue);
     const validationResult = this.validatePurchaseAmount(purchaseAmount);
 
     if (validationResult !== true) {
-      inputPurchaseAmountView.value = null;
-      purchaseAmountErrorView.textContent = validationResult;
-      inputPurchaseAmountView.disabled = false;
-      purchaseButton.disabled = false;
+      PurchaseAmountOutputView.displayPurchaseAmountInput(false);
+      PurchaseAmountOutputView.displayPurchaseAmountError(validationResult);
+      PurchaseAmountOutputView.displayPurchaseButton(false);
     } else {
       this.purchaseAmount = purchaseAmount;
-      purchaseAmountErrorView.textContent = '';
-      inputPurchaseAmountView.disabled = true;
-      purchaseButton.disabled = true;
-      this.processLottoTicket();
+      PurchaseAmountOutputView.displayPurchaseAmountInput(true);
+      PurchaseAmountOutputView.displayPurchaseAmountError('');
+      PurchaseAmountOutputView.displayPurchaseButton(true);
+      this.processLottoTickets();
     }
   }
 
@@ -66,50 +70,29 @@ class LottoWebController {
     return true;
   }
 
-  processLottoTicket() {
+  processLottoTickets() {
     const lottoTicketCount = this.purchaseAmount / PURCHASE_SYMBOL.UNIT;
-    const lottoTicketsSection = document.querySelector('.section-lotto-ticket');
-    const lottoTicketsView = document.querySelector('.ul-lotto-tickets');
-    lottoTicketsSection.classList.remove('invisible');
-    document.querySelector(
-      '.text-lotto-count',
-    ).textContent = `총 ${lottoTicketCount}개를 구매하셨습니다.`;
     const tickets = [];
     Array.from({ length: lottoTicketCount }).forEach(() => {
       const ticket = new LottoTicket().publishTicket();
       tickets.push(ticket);
-      lottoTicketsView.innerHTML += `
-    <li class='li-lotto-ticket'>
-      <p class='text-ticket-emoji'>🎟️</p>
-      <p class='text-ticket-numbers'>${ticket.join(', ')}</p>
-    <li>
-    `;
     });
     this.lottoTickets = tickets;
-    const lottoNumbersInputSection = document.querySelector('.section-submit-lotto-numbers');
-    lottoNumbersInputSection.classList.remove('invisible');
+
+    LottoTicektsOutputView.displayLottoTicketsSection(this.lottoTickets);
+    LottoTicektsOutputView.displayLottoNumbersInputSection();
   }
 
   processWinningNumbers(event) {
     event.preventDefault();
-    const inputWinningNumbersView = document.querySelector('.wrapper-input-winning-numbers');
-    const inputWinningNumberView = document.querySelectorAll('.input-winning-number');
-    const lottoNumberErrorView = document.querySelector('.text-lotto-numbers-error');
-    const bonusNumberInputView = document.querySelector('.input-bonus-number');
-    const inputWinningNumbers = [];
-    Array.from({ length: 6 }).forEach((_, index) => {
-      const inputValue = Number(inputWinningNumbersView.children[index].value);
-      inputWinningNumbers.push(Number(inputValue));
-    });
+
+    const inputWinningNumbers = WinningNumbersOutputView.getWinningNumbers();
     const validationResult = this.validateWinningNumbers(inputWinningNumbers);
+
     if (validationResult !== true) {
-      lottoNumberErrorView.textContent = validationResult;
-      Array.from(inputWinningNumberView).forEach((node) => {
-        node.value = null;
-      });
-      bonusNumberInputView.value = null;
+      WinningNumbersOutputView.displayLottoNumberError(validationResult);
+      WinningNumbersOutputView.reset();
     } else {
-      lottoNumberErrorView.textContent = '';
       this.winningNumbers = inputWinningNumbers;
       this.processBonusNumber();
     }
@@ -125,19 +108,14 @@ class LottoWebController {
   }
 
   processBonusNumber() {
-    const inputBonusNumberView = document.querySelector('.input-bonus-number');
-    const lottoNumberErrorView = document.querySelector('.text-lotto-numbers-error');
-    const inputBonusNumber = inputBonusNumberView.value;
-    const validationResult = this.validateBonusNumber(
-      Number(inputBonusNumber),
-      this.winningNumbers,
-    );
+    const inputBonusNumber = BonusNumberOutputView.getBonusNumber();
+    const validationResult = this.validateBonusNumber(inputBonusNumber, this.winningNumbers);
+
     if (validationResult !== true) {
-      lottoNumberErrorView.textContent = validationResult;
-      inputBonusNumberView.value = null;
+      BonusNumberOutputView.displayLottoNumberError(validationResult);
+      BonusNumberOutputView.reset();
     } else {
-      lottoNumberErrorView.value = '';
-      this.bonusNumber = Number(inputBonusNumber);
+      this.bonusNumber = inputBonusNumber;
     }
   }
 
@@ -150,32 +128,17 @@ class LottoWebController {
   }
 
   processWinningStats() {
-    const modalView = document.querySelector('.outside-modal');
-    const modalCloseButton = document.querySelector('.button-modal-close');
-    modalView.classList.remove('invisible');
-    modalCloseButton.addEventListener('click', () => modalView.classList.add('invisible'));
     const winningStats = new WinningStatsMaker().makeWinningStats(this.lottoTickets, {
       winningNumbers: this.winningNumbers,
       bonusNumber: this.bonusNumber,
     });
-    const winningStatsResultView = document.querySelector('.winning-stats-result');
-    winningStatsResultView.textContent = '';
-    Object.entries(winningStats)
-      .reverse()
-      .forEach(([prize, count]) => {
-        winningStatsResultView.innerHTML += `
-      <tr>
-      <td class="tg-0lax">${LOTTO_SYMBOL.COUNT_CONDITION[prize]}</td>
-      <td class="tg-0lax">${LOTTO_SYMBOL.PRIZE[prize].toLocaleString()}</td>
-      <td class="tg-0lax">${count}</td>
-      </tr>
-      `;
-      });
+    WinningStatsOutputView.displayModal();
+    WinningStatsOutputView.displayWinningStats(winningStats);
+
     this.processRateOfReturn(this.purchaseAmount, winningStats);
   }
 
   processRateOfReturn(purchaseAmount, winningStats) {
-    const rateOfReturnView = document.querySelector('.wrapper-rateOfReturn');
     const prize = LOTTO_SYMBOL.PRIZE;
     const totalPrizeMoney = Object.keys(prize).reduce(
       (acc, cur) => acc + prize[cur] * winningStats[cur],
@@ -183,33 +146,21 @@ class LottoWebController {
     );
     const rate = (totalPrizeMoney / purchaseAmount) * 100;
     const rateOfReturn = (Math.round(rate * 10) / 10).toFixed(1);
-    rateOfReturnView.textContent = '';
-    rateOfReturnView.innerHTML += `
-    <p class='text-rate-of-return'>당신의 총 수익률은 ${rateOfReturn}%입니다.</p>
-    `;
-    rateOfReturnView.classList.remove('invisible');
+
+    RateOfReturnOutputView.displayRateOfReturn(rateOfReturn);
   }
 
   processRestart() {
-    const modalView = document.querySelector('.outside-modal');
-    modalView.classList.add('invisible');
-    const inputPurchaseAmountView = document.querySelector('.input-purchase-amount');
-    inputPurchaseAmountView.value = null;
-    const purchaseAmountErrorView = document.querySelector('.text-purchase-amount-error');
-    purchaseAmountErrorView.textContent = '';
-    const lottoTicketsSection = document.querySelector('.section-lotto-ticket');
-    lottoTicketsSection.classList.add('invisible');
-    const lottoTicketsView = document.querySelector('.ul-lotto-tickets');
-    lottoTicketsView.textContent = '';
-    const inputWinningNumbersView = document.querySelector('.section-submit-lotto-numbers');
-    inputWinningNumbersView.classList.add('invisible');
-    const inputWinningNumberView = document.querySelectorAll('.input-winning-number');
-    inputWinningNumberView.forEach((input) => (input.value = null));
-    const bonusNumberInputView = document.querySelector('.input-bonus-number');
-    bonusNumberInputView.value = null;
-    const lottoNumberErrorView = document.querySelector('.text-lotto-numbers-error');
-    lottoNumberErrorView.textContent = '';
-    // 버튼이랑 그거 다 풀려야 함!!!!
+    this.purchaseAmount = 0;
+    this.lottoTickets = [];
+    this.winningNumbers = [];
+    this.bonusNumber = 0;
+    PurchaseAmountOutputView.resetToInitialState();
+    LottoTicketsOutputView.resetToInitialState();
+    WinningNumbersOutputView.resetToInitialState();
+    BonusNumberOutputView.resetToInitialState();
+    WinningStatsOutputView.resetToInitialState();
+    RateOfReturnOutputView.resetToInitialState();
   }
 }
 export default LottoWebController;
