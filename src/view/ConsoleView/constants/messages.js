@@ -13,6 +13,7 @@ const ERROR = {
   invalidBuyPriceRangeHead: "[ERROR] 유효한 구입 금액 범위(",
   invalidBuyPriceRangeMiddle: " ~ ",
   invalidBuyPriceRangeTail: ")를 벗어났습니다.",
+  notBlankInLottoNumber: "[ERROR] 빈 값은 들어올 수 없습니다.",
 };
 
 const INPUT = {
