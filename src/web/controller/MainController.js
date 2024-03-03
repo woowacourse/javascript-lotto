@@ -21,6 +21,11 @@ class MainController {
     this.#issuedLottoController = new IssuedLottoController(
       this.#budgetController.getLottoCount()
     );
+
+    // 우승 로또 데이터 설정
+    const winningLottoController = new WinningLottoController(
+      this.#issuedLottoController.getIssuedLottos()
+    );
   }
 }
 
