@@ -6,14 +6,14 @@ import Condition from '../../constants/Condition';
 const { LOTTO } = Condition;
 
 const Render = {
-  readMoney() {
+  moneyInputAndSubmitButton() {
     Dom.createAppendTagNode({ target: '#read-money-form', tag: 'input', attribute: { id: 'read-money-input', type: 'text', placeholder: '금액' } });
     Dom.createAppendTagNode({
       target: '#read-money-form', tag: 'button', attribute: { id: 'read-money-form-submit', type: 'submit' }, text: '구입',
     });
   },
 
-  readWinningNumbers() {
+  winningNumbersFormInputAndSubmitButton() {
     Dom.createAppendTagNode({ target: '.read-winning-numbers', tag: 'h2', text: '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.' });
     Dom.createAppendTagNode({ target: '.read-winning-numbers', tag: 'form', attribute: { id: 'winning-numbers-input-form' } });
     Dom.createAppendTagNode({ target: '#winning-numbers-input-form', tag: 'fieldset', attribute: { class: 'winning-numbers' } });
@@ -35,7 +35,7 @@ const Render = {
     });
   },
 
-  readRestartOrExit() {
+  restartButton() {
     Dom.createAppendTagNode({
       target: '.restart', tag: 'button', attribute: { id: 'restart-button' }, text: '다시 시작하기',
     });

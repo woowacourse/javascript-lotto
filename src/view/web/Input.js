@@ -4,13 +4,13 @@ import Render from './Render';
 
 const Input = {
   async readMoney() {
-    if (Dom.$('#read-money-input') === null) Render.readMoney();
+    if (Dom.$('#read-money-input') === null) Render.moneyInputAndSubmitButton();
     const money = await Web.readFormInputValue({ form: '#read-money-form', input: '#read-money-input' });
     return money;
   },
 
   async readWinningNumbers() {
-    if (Dom.$('#winning-numbers-input-form') === null) Render.readWinningNumbers();
+    if (Dom.$('#winning-numbers-input-form') === null) Render.winningNumbersFormInputAndSubmitButton();
     const input = await Web.readFormInputValues({ form: '#winning-numbers-input-form', inputs: '.winning-numbers input' });
     return input;
   },
@@ -24,7 +24,7 @@ const Input = {
   },
 
   async readRestartOrExit() {
-    if (Dom.$('#restart-button') === null) Render.readRestartOrExit();
+    if (Dom.$('#restart-button') === null) Render.restartButton();
     const input = await Web.readTagValue({ button: '#restart-button', input: '#restart-value' });
     return input;
   },
