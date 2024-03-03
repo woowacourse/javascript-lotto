@@ -28,7 +28,6 @@ const $fiveBonusMatchCount = document.querySelector('.five-bonus-match-count');
 const $sixMatchCount = document.querySelector('.six-match-count');
 const $profitRate = document.querySelector('.profit-rate');
 
-let money;
 let lottoMachine;
 
 const showLottos = (lottoCount, lottos) => {
@@ -47,7 +46,7 @@ const showLottos = (lottoCount, lottos) => {
 const submitMoney = (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
-  money = Number(formData.get('buy-input'));
+  const money = Number(formData.get('buy-input'));
 
   try {
     validateCost(money);
@@ -74,8 +73,9 @@ const showStatisticsResult = (statistics) => {
 const submitAnswerLotto = (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
-  const answerNumbers = formData.getAll('answer-number').map((number) => Number(number));
+  const answerNumbers = formData.getAll('answer-number').map(Number);
   const bonusNumber = Number(formData.get('bonus-number'));
+  const money = Number($buyInput.value);
 
   let winningLotto;
   try {
