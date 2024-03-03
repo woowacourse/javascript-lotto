@@ -1,5 +1,5 @@
 import readline from 'readline';
-import { GAME_SYMBOL } from '../constant/symbols';
+import { GAME_SYMBOL } from '../../constant/symbols';
 
 class ConsoleInputHandler {
   static makeReadLineQuestion(query, rl) {

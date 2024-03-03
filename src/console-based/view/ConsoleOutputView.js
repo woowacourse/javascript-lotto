@@ -1,4 +1,4 @@
-import { OUTPUT_INFO } from '../constant/messages';
+import { OUTPUT_INFO } from '../../constant/messages';
 
 const OutputView = {
   printPurchaseCount(purchaseCount) {
