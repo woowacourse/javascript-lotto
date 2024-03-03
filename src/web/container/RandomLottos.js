@@ -3,6 +3,7 @@ const RandomLottos = {
     console.log(selector);
     const randomLottoContainer = document.querySelector(selector);
     randomLottoContainer.innerHTML = this.listRandomLottos(lottos);
+    return lottos;
   },
 
   listRandomLottos(lottos){
