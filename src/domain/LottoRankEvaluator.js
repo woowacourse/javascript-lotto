@@ -8,14 +8,14 @@ class LottoRankEvaluator {
     this.#winningLotto = { ...winningLotto };
   }
 
-  #checkNormalNumbers = (lotto) => {
+  #countMatchedNormalNumbers = (lotto) => {
     return lotto.reduce(
-      (count, number) => count + this.#isMatchedNumber(number),
+      (count, number) => count + this.#isMatchedNormalNumber(number),
       0
     );
   };
 
-  #checkBonusNumber = (lotto, normalCount) => {
+  #checkMatchedBonusNumber = (lotto, normalCount) => {
     return normalCount === 5 && lotto.includes(this.#winningLotto.bonusNumber)
       ? 1
       : 0;
@@ -27,8 +27,11 @@ class LottoRankEvaluator {
       normal: 0,
       bonus: false,
     };
-    lottoCounts.normal = this.#checkNormalNumbers(lotto);
-    lottoCounts.bonus = this.#checkBonusNumber(lotto, lottoCounts.normal);
+    lottoCounts.normal = this.#countMatchedNormalNumbers(lotto);
+    lottoCounts.bonus = this.#checkMatchedBonusNumber(
+      lotto,
+      lottoCounts.normal
+    );
 
     return lottoCounts;
   };
@@ -38,7 +41,7 @@ class LottoRankEvaluator {
     return matchingResult;
   };
 
-  #isMatchedNumber = (number) => {
+  #isMatchedNormalNumber = (number) => {
     return this.#winningLotto.normalNumbers.includes(number) ? 1 : 0;
   };
 
