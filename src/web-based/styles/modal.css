@@ -64,6 +64,10 @@ tr {
   white-space: nowrap;
 }
 
+td {
+  vertical-align: middle;
+}
+
 .winning-stats-item {
   font-weight: 600;
 }
