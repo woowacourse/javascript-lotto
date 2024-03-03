@@ -54,9 +54,8 @@ class LottoWebController {
       purchaseAmountErrorView.textContent = '';
       inputPurchaseAmountView.disabled = true;
       purchaseButton.disabled = true;
+      this.processLottoTicket();
     }
-
-    this.processLottoTicket();
   }
 
   validatePurchaseAmount(inputValue) {
@@ -210,6 +209,7 @@ class LottoWebController {
     bonusNumberInputView.value = null;
     const lottoNumberErrorView = document.querySelector('.text-lotto-numbers-error');
     lottoNumberErrorView.textContent = '';
+    // 버튼이랑 그거 다 풀려야 함!!!!
   }
 }
 export default LottoWebController;
