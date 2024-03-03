@@ -20,6 +20,7 @@ class WinningLottoController {
     const winningLottoDiv = this.#createWinningLottoDiv();
     afterBuySec.appendChild(winningLottoDiv);
     this.#setWinningLottoDiv();
+    this.#setResultBtn();
 
     this.#issuedLottos = [...issuedLottos];
 
@@ -239,6 +240,12 @@ class WinningLottoController {
     return resultBtn;
   }
 
+  #setResultBtn() {
+    const winningLottoDiv = document.querySelector("#winning-lotto-div");
+    const resultBtn = this.#createResultBtn();
+    winningLottoDiv.appendChild(resultBtn);
+  }
+
   #setWinningLottoDiv() {
     const winningLottoDiv = document.querySelector("#winning-lotto-div");
 
@@ -250,9 +257,6 @@ class WinningLottoController {
 
     this.#setWinningNumbersDiv(winningDisplayDiv);
     this.#setBonusNumberDiv(winningDisplayDiv);
-
-    const resultBtn = this.#createResultBtn();
-    winningLottoDiv.appendChild(resultBtn);
   }
 
   /* 모달 엘리먼트 관련 함수들 */
