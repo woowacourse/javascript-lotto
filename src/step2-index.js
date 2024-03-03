@@ -29,12 +29,17 @@ window.onload = function () {
   winningAndBonusForm.addEventListener('submit', async function (event) {
     event.preventDefault();
     const winningNumbers = await lottoController.validateWinningNumbers();
-    const bonusNumber = await lottoController.validateBonusNumber(winningNumbers);
-
-    if (winningNumbers !== null && bonusNumber !== null) {
-      await lottoController.executeGame(lottos, winningNumbers, bonusNumber);
-      modalContainer.style.display = 'flex';
+    if (winningNumbers === null) {
+      return;
     }
+
+    const bonusNumber = await lottoController.validateBonusNumber(winningNumbers);
+    if (bonusNumber === null) {
+      return;
+    }
+
+    await lottoController.executeGame(lottos, winningNumbers, bonusNumber);
+    modalContainer.style.display = 'flex';
   });
 
   modalCloseButton.addEventListener('click', function () {
