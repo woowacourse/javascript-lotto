@@ -1,6 +1,6 @@
 import LOTTO_RULE from '../../src/constants/rules/lottoRule';
 
-export default function purchaseAfter(count, lottos) {
+export default function generatePurchaseInfoHTML(count, lottos) {
   return `
     <div class="lp-ticket-issuance">
       <span class="lp-ti-total-purchase-number">총 ${count}개를 구입하였습니다.</span>

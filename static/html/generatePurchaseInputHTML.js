@@ -1,4 +1,4 @@
-export default function purchaseBefore() {
+export default function generatePurchaseInputHTML() {
   return `<h1 class="lp-title">🎱 내 번호 당첨 확인 🎱</h1>
     <div class="lp-purchase-amount">
       <label class="lp-pa-text" for="purchase-amount">구입할 금액을 입력해주세요.</label>

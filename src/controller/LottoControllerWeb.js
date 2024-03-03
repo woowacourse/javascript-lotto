@@ -1,19 +1,19 @@
 import LottoMachine from '../domain/LottoMachine';
 import Money from '../domain/Money';
 import calculateROI from '../util/calculateROI';
-import statisticsModal from '../../static/html/statisticsModal';
-import purchaseAfter from '../../static/html/purchaseAfter';
-import purchaseBefore from '../../static/html/purchaseBefore';
+import generateStatisticsModalHTML from '../../static/html/generateStatisticsModalHTML';
+import generatePurchaseInfoHTML from '../../static/html/generatePurchaseInfoHTML';
+import generatePurchaseInputHTML from '../../static/html/generatePurchaseInputHTML';
 import onError from '../util/onError';
 import renderUI from '../util/renderUI';
 import findErrorAndRemove from '../util/findErrorAndRemove';
 import closeModal from '../util/closeModal';
 
-renderUI('purchase-before', 'afterbegin', purchaseBefore());
+renderUI('purchase-before', 'afterbegin', generatePurchaseInputHTML());
 
 const purchaseAmount = document.querySelector('.lp-pa-input-group');
 const purchaseAmountButton = document.querySelector('.lp-pa-input-btn');
-const findPurchaseAfter = document.getElementById('purchase-after');
+const findPurchaseInfoHTML = document.getElementById('purchase-after');
 
 purchaseAmountButton.addEventListener('click', (event) => {
   event.preventDefault();
@@ -22,7 +22,7 @@ purchaseAmountButton.addEventListener('click', (event) => {
     const money = new Money(Number(inputMoney));
     const lottoMachine = new LottoMachine(money.count);
     findErrorAndRemove();
-    printPurchaseAfter(findPurchaseAfter, money.count, lottoMachine.lottos);
+    printPurchaseInfoHTML(findPurchaseInfoHTML, money.count, lottoMachine.lottos);
     handleClickLottoResult(lottoMachine, money);
   } catch (error) {
     onError(purchaseAmount, error.message);
@@ -57,7 +57,7 @@ function executionWinningAndBonusNumbers(lottoMachine, money) {
 function printLottoResultsAndProfitRate(lottoMachine, money) {
   const lottoRanks = lottoMachine.countLottoRanks();
   const totalProfitRate = calculateROI(money, lottoRanks);
-  renderUI('statistics-modal', 'beforebegin', statisticsModal(lottoRanks, totalProfitRate));
+  renderUI('statistics-modal', 'beforebegin', generateStatisticsModalHTML(lottoRanks, totalProfitRate));
 }
 
 function inputWinningAndBonusNumbers(lottoMachine) {
@@ -70,12 +70,12 @@ function inputWinningAndBonusNumbers(lottoMachine) {
   lottoMachine.bonusNumber = inputBonusNumber;
 }
 
-function printPurchaseAfter(findPurchaseAfter, count, lottos) {
-  if (!findPurchaseAfter) {
-    renderUI('purchase-after', 'afterbegin', purchaseAfter(count, lottos));
+function printPurchaseInfoHTML(findPurchaseInfoHTML, count, lottos) {
+  if (!findPurchaseInfoHTML) {
+    renderUI('purchase-after', 'afterbegin', generatePurchaseInfoHTML(count, lottos));
   }
-  if (findPurchaseAfter) {
-    findPurchaseAfter.innerHTML = purchaseAfter(count, lottos);
+  if (findPurchaseInfoHTML) {
+    findPurchaseInfoHTML.innerHTML = generatePurchaseInfoHTML(count, lottos);
   }
 }
 
