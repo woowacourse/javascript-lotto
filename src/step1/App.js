@@ -1,8 +1,8 @@
 // import LottoController from "./controllers/LottoController";
 
-import { LOTTO_REWARDS, LOTTO_RULES, exchangeRank } from "./constants/rules";
-import LottoGame from "./controllers/LottoGame";
-import LottoRules from "./domains/LottoRules";
+import { LOTTO_REWARDS, LOTTO_RULES, exchangeRank } from "./constants/rules.js";
+import LottoGame from "./controllers/LottoGame.js";
+import LottoRules from "./domains/LottoRules.js";
 
 class App {
   async run() {

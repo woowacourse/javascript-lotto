@@ -1,5 +1,5 @@
-import { pickRandomNumberInRange } from "../utils/pickRandomNumberInRange";
-import Lotto from "./Lotto";
+import { pickRandomNumberInRange } from "../utils/pickRandomNumberInRange.js";
+import Lotto from "./Lotto.js";
 
 class LottoStore {
   #lottoRules;

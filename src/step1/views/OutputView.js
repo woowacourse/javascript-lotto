@@ -1,5 +1,5 @@
-import { MESSAGES } from "../constants/message";
-import Console from "../utils/Console";
+import { MESSAGES } from "../constants/message.js";
+import Console from "../utils/Console.js";
 
 const OutputView = {
   printMessage(message) {

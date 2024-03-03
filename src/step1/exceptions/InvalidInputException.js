@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from "../constants/message";
+import { ERROR_MESSAGES } from "../constants/message.js";
 
 class InvalidInputException extends Error {
   constructor(message) {
