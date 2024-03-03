@@ -1,4 +1,4 @@
-import LottoWebApp from "./step2-web/components/LottoWebApp.js";
+import LottoWebApp from "./step2-web/LottoWebApp.js";
 
 import LottoResultState from "./step2-web/states/LottoResultState.js";
 import LottosState from "./step2-web/states/LottosState.js";

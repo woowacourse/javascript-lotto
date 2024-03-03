@@ -7,6 +7,7 @@ import { $ } from "../utils/selector.js";
 const BUY_AMOUNT_INPUT_ID = "buy-amount-input";
 const BUY_AMOUNT_ERROR_MESSAGE_ID = "buy-amount-error-message";
 const BUY_AMOUNT_BUTTON_ID = "buy-amount-button";
+
 export default class BuyAmountForm extends Component {
   #lottosState;
 

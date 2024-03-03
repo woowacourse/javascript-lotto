@@ -1,4 +1,4 @@
-import CustomError from "../../step1-console/utils/CustomError.js";
+import CustomError from "../step1-console/utils/CustomError.js";
 
 export default class LottoWebApp {
   $target;
