@@ -9,7 +9,7 @@ import renderUI from '../util/renderUI';
 import removeErrorMessage from '../util/removeErrorMessage';
 import clickToCloseModal from '../util/clickToCloseModal';
 
-renderUI('purchase-before', 'afterbegin', generatePurchaseInputHTML());
+renderUI({ elementId: 'purchase-before', func: generatePurchaseInputHTML() });
 
 const purchaseAmount = document.querySelector('.lp-pa-input-group');
 const purchaseAmountButton = document.querySelector('.lp-pa-input-btn');
@@ -57,7 +57,10 @@ function executionWinningAndBonusNumbers(lottoMachine, money) {
 function printLottoResultsAndProfitRate(lottoMachine, money) {
   const lottoRanks = lottoMachine.countLottoRanks();
   const totalProfitRate = calculateROI(money, lottoRanks);
-  renderUI('statistics-modal', 'afterbegin', generateStatisticsModalHTML(lottoRanks, totalProfitRate));
+  renderUI({
+    elementId: 'statistics-modal',
+    func: generateStatisticsModalHTML(lottoRanks, totalProfitRate),
+  });
 }
 
 function inputWinningAndBonusNumbers(lottoMachine) {
@@ -72,7 +75,7 @@ function inputWinningAndBonusNumbers(lottoMachine) {
 
 function printPurchaseInfoHTML(findPurchaseInfoHTML, count, lottos) {
   if (!findPurchaseInfoHTML) {
-    renderUI('purchase-after', 'afterbegin', generatePurchaseInfoHTML(count, lottos));
+    renderUI({ elementId: 'purchase-after', func: generatePurchaseInfoHTML(count, lottos) });
   }
   if (findPurchaseInfoHTML) {
     findPurchaseInfoHTML.innerHTML = generatePurchaseInfoHTML(count, lottos);
