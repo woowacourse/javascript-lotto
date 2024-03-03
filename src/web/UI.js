@@ -15,12 +15,15 @@ export const showLottos = (lottoCount, lottos) => {
   $answerForm.classList.remove('hidden');
 
   $lottoResultLabel.innerText = `총 ${lottoCount}개를 구매하였습니다.`;
+
+  const lottosfragment = new DocumentFragment();
   lottos.forEach((lottoNumber) => {
     const lottoTag = document.createElement('div');
     lottoTag.textContent = ` 🎟️ ${lottoNumber.join(',')}`;
     lottoTag.classList.add('lotto-number');
-    $lottoNumbers.appendChild(lottoTag);
+    lottosfragment.append(lottoTag);
   });
+  $lottoNumbers.appendChild(lottosfragment);
 };
 
 export const showStatisticsResult = (statistics) => {
