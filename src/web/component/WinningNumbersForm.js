@@ -37,8 +37,8 @@ class WinningNumbersForm extends HTMLElement {
   #handlePurchaseResult() {
     this.#render();
     this.#bindElements();
-    this.#elements.form.addEventListener('keydown', this.#boundMethods.handleEnterKeyDown);
-    this.#elements.submitButton.addEventListener('click', this.#boundMethods.handleSubmit);
+    this.#setEvent();
+    this.#setInputFocus();
   }
 
   #handleSubmit() {
@@ -57,6 +57,15 @@ class WinningNumbersForm extends HTMLElement {
       event.preventDefault();
       this.#boundMethods.handleSubmit();
     }
+  }
+
+  #setEvent() {
+    this.#elements.form.addEventListener('keydown', this.#boundMethods.handleEnterKeyDown);
+    this.#elements.submitButton.addEventListener('click', this.#boundMethods.handleSubmit);
+  }
+
+  #setInputFocus() {
+    this.#elements.winningNumbersInputs[0].focus();
   }
 
   #sendWinningCriteria({ winningNumbers, bonusNumber }) {

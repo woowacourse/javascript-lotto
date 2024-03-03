@@ -18,6 +18,7 @@ class PurchaseForm extends HTMLElement {
     this.#render();
     this.#bindElements();
     this.#setEvent();
+    this.#setInputFocus();
   }
 
   #bindElements() {
@@ -32,6 +33,10 @@ class PurchaseForm extends HTMLElement {
   #setEvent() {
     this.#elements.submitButton.addEventListener('click', this.#boundMethods.handleSubmit);
     this.#elements.input.addEventListener('keydown', this.#boundMethods.handleEnterKeyDown);
+  }
+
+  #setInputFocus() {
+    this.#elements.input.focus();
   }
 
   #handleSubmit() {
