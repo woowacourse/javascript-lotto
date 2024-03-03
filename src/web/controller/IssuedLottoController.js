@@ -50,10 +50,14 @@ class IssuedLottoController {
   }
 
   #printIssuedLottos(issuedLottoDiv) {
+    const fragment = document.createDocumentFragment();
+
     this.#issuedLottos.forEach((lottoNumbers) => {
       const lottoEl = this.#createLottoEl(lottoNumbers);
-      issuedLottoDiv.appendChild(lottoEl);
+      fragment.appendChild(lottoEl);
     });
+
+    issuedLottoDiv.appendChild(fragment);
   }
 
   getIssuedLottos() {
