@@ -2,6 +2,8 @@
 <h2>level1 - 행운의 로또</h2>
 <p>자바스크립트로 구현 하는 로또 어플리케이션</p>
 
+<p> 배포 주소: https://imxyjl.github.io/javascript-lotto </p>
+
 <h3> 기능 요구사항 </h3>
 <h4> 메인 화면 </h4>
 <ul>
