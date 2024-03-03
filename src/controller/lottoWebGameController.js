@@ -19,7 +19,7 @@ class LottoGameWebController {
     document.querySelector('#winning-lotto').addEventListener('submit', this.handleWinningLottoInput);
     document.querySelector('#modal-close-button').addEventListener('click', this.handleRestartGame);
     document.querySelector('#retry-button').addEventListener('click', this.handleRestartGame);
-    document.querySelector('#modal-background').addEventListener('click', this.handleRestartGame);
+    document.querySelector('#modal').addEventListener('click', this.handleModalDeem);
   }
 
   handleClickPurchaseButton = (event) => {
@@ -115,24 +115,32 @@ class LottoGameWebController {
   };
 
   displayResult = ({ totalResult, profit }) => {
-    const resultTable = document.querySelector('#modal-background');
-    resultTable.style.display = 'flex';
+    const modal = document.querySelector('#modal');
+
     webOutputView.renderTable(totalResult);
     webOutputView.renderProfit(profit);
+
+    modal.showModal();
   };
 
   handleRestartGame = () => {
     document.getElementById('lottoPurchase-article').style.display = 'none';
-    document.querySelector('#modal-background').style.display = 'none';
-
     document.querySelector('#purchaseAmount-input').value = '';
 
     webOutputView.clearLottoList();
     webOutputView.clearResults();
     webOutputView.clearWinningLotto();
 
+    modal.close();
     this.#lottoTickets = [];
     this.#winningLotto = null;
+  };
+
+  handleModalDeem = (event) => {
+    const modal = document.querySelector('#modal');
+    if (event.target === modal) {
+      this.handleRestartGame();
+    }
   };
 }
 
