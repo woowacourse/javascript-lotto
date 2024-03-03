@@ -1,4 +1,4 @@
-button {
+.default-button {
   height: 36px;
   background-color: var(--blue-color);
   font-weight: var(--button-bold);
@@ -8,10 +8,9 @@ button {
   border: 1px solid var(--blue-color);
   border-radius: 4px;
   line-height: 16px;
-  box-sizing: border-box;
   letter-spacing: 1.25px;
 }
-button:active {
+.default-button:active {
   background-color: var(--white-color);
   color: var(--blue-color);
 }

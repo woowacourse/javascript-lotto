@@ -24,8 +24,7 @@
   flex-direction: row;
   justify-content: flex-end;
   margin-bottom: 10px;
-  /* TODO: 추후 사이즈 수정 */
-  font-size: 20px;
+  font-size: 17px;
 }
 .lotto-modal .lm-title {
   font-size: var(--subtitle-font);

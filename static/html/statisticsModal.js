@@ -1,11 +1,8 @@
 export default function statisticsModal(lottoRanks, totalProfitRate) {
   const ranks = lottoRanks.map((rank) => rank[1]);
-  // TODO: 총 수익률 출력
-  return (
-    //  TODO: close 버튼 추후 수정
-    `<div class="modal-body">
+  return `<div class="modal-body">
       <div class="lotto-modal">
-        <div class="lm-close-btn">X</div>
+        <button class="lm-close-btn">X</button>
         <h2 class="lm-title">🏆 당첨 통계 🏆</h2>
         <div class="lm-winning-result-group">
           <div class="lm-wr-row-box">
@@ -40,8 +37,7 @@ export default function statisticsModal(lottoRanks, totalProfitRate) {
           </div>
         </div>
         <div class="lm-winning-statistics">당신의 총 수익률은 ${totalProfitRate}%입니다.</div>
-        <button class="lm-retry-btn">다시 시작하기</button>
+        <button class="lm-retry-btn default-button">다시 시작하기</button>
       </div>
-    </div>`
-  );
+    </div>`;
 }

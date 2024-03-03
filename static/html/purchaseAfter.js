@@ -26,7 +26,7 @@ export default function purchaseAfter(count, lottos) {
         </div>
       </div>
     </div>
-    <button class="lp-winning-floating-btn">결과 확인하기</button>
+    <button class="lp-winning-floating-btn default-button">결과 확인하기</button>
   `;
 }
 
