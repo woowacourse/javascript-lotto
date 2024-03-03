@@ -43,7 +43,7 @@ function handleClickLottoResult(lottoMachine, money) {
 function executionWinningAndBonusNumbers(lottoMachine, money) {
   const winningBonusNumbersGroup = document.querySelector('.lp-nig-number-input-group');
   try {
-    inputWinningAndBounusNumbers(lottoMachine);
+    inputWinningAndBonusNumbers(lottoMachine);
     findErrorAndRemove();
     printLottoResultsAndProfitRate(lottoMachine, money);
     closeModal('lm-close-btn');
@@ -60,7 +60,7 @@ function printLottoResultsAndProfitRate(lottoMachine, money) {
   renderUI('statistics-modal', 'beforebegin', statisticsModal(lottoRanks, totalProfitRate));
 }
 
-function inputWinningAndBounusNumbers(lottoMachine) {
+function inputWinningAndBonusNumbers(lottoMachine) {
   const extractionWinningNumbers = new Array(6)
     .fill(0)
     .map((_, idx) => document.getElementById(`winningNumber${idx + 1}`).value);
