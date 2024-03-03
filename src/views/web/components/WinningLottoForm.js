@@ -19,8 +19,8 @@ export default class WinningLottoForm extends HTMLFormElement {
     this.appendChild(content);
 
     this.#errorMessage = this.querySelector('.err-msg');
-    this.#winningNumbersInput = this.winningNumbers;
-    this.#bonusNumberInput = this.bonusNumber;
+    this.#winningNumbersInput = this.querySelectorAll("input[name='winningNumbers']");
+    this.#bonusNumberInput = this.querySelector("input[name='bonusNumber']");
 
     this.style.visibility = 'hidden';
   }
@@ -40,11 +40,6 @@ export default class WinningLottoForm extends HTMLFormElement {
   displayForm() {
     this.style.visibility = '';
   }
-
-  // disableForm() {
-  //   this.#winningNumbersInput.forEach((numberInput) => (numberInput.disabled = true));
-  //   this.#bonusNumberInput.disabled = true;
-  // }
 
   #handleSubmit(e) {
     e.preventDefault();

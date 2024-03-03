@@ -49,7 +49,6 @@ class WebController {
   async #handleWinningLottoFormSubmit(event) {
     try {
       await this.#getWinningLotto(event.detail);
-      // this.#webView.winningLottoForm.disableForm();
       this.#webView.modal.openModal();
     } catch (error) {
       this.#webView.winningLottoForm.displayErrorMessage(error.message);
