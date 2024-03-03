@@ -4,6 +4,7 @@ import winningLottoBonusValidation from "../../validation/winningLottoBonusValid
 import winningLottoNumbersValidation from "../../validation/winningLottoNumbersValidation.js";
 import getLottoPrizeMoney from "../../domain/getLottoPrizeMoney.js";
 import LottoRankEvaluator from "../../domain/LottoRankEvaluator.js";
+import { modal } from "../utility/modal.js";
 import { calculator } from "../../domain/calculator.js";
 import { LOTTO_SETTING } from "../../constants/lottoConstants.js";
 import { INPUT_MESSAGE } from "../constants/viewMessage.js";
@@ -13,7 +14,7 @@ class WinningLottoController {
   #winningLotto = {};
   #issuedLottos = [];
 
-  constructor(issuedLottos) {
+  constructor(issuedLottos, setModalBtnsClickHandlerCallback) {
     const afterBuySec = document.querySelector("#after-buy-section");
 
     const winningLottoDiv = this.#createWinningLottoDiv();
@@ -22,7 +23,7 @@ class WinningLottoController {
 
     this.#issuedLottos = [...issuedLottos];
 
-    this.#setClickResultBtnHandler();
+    this.#setClickResultBtnHandler(setModalBtnsClickHandlerCallback);
   }
 
   #validateWinningNumbers(winningNumbers) {
@@ -94,7 +95,7 @@ class WinningLottoController {
     return { rankData: { ...rankData }, lottoPrizeMoney, profits };
   }
 
-  #handleResultBtnClick() {
+  #handleResultBtnClick(setModalBtnsClickHandlerCallback) {
     const lottoNumberInputValues = Array.from(
       document.querySelectorAll(".winning-lotto-number-input"),
       (input) => input.value
@@ -107,11 +108,18 @@ class WinningLottoController {
       alert(error.message);
       return;
     }
+
+    this.#createModalContent(
+      this.#getLottoGameResult(),
+      setModalBtnsClickHandlerCallback
+    );
   }
 
-  #setClickResultBtnHandler() {
+  #setClickResultBtnHandler(setModalBtnsClickHandlerCallback) {
     const resultBtn = document.querySelector("#result-btn");
-    resultBtn.addEventListener("click", () => this.#handleResultBtnClick());
+    resultBtn.addEventListener("click", () =>
+      this.#handleResultBtnClick(setModalBtnsClickHandlerCallback)
+    );
   }
 
   /* 우승 로또 번호 입력과 관련된 엘리먼트 함수들 */
@@ -248,6 +256,21 @@ class WinningLottoController {
   }
 
   /* 모달 엘리먼트 관련 함수들 */
+
+  #createModalTableDiv() {
+    const modalTableDiv = document.createElement("div");
+    modalTableDiv.classList.add("modal-table-div");
+
+    return modalTableDiv;
+  }
+
+  #createTableTitleH() {
+    const tableTitleH = document.createElement("h3");
+    tableTitleH.textContent = OUTPUT_MESSAGE.RESULT_TITLE;
+
+    return tableTitleH;
+  }
+
   #createResultTable(lottoGameResult) {
     const resultTableData = OUTPUT_MESSAGE.formatResultsTable(
       lottoGameResult.rankData
@@ -263,6 +286,36 @@ class WinningLottoController {
     profitP.textContent = OUTPUT_MESSAGE.formatProfits(lottoGameResult.profits);
 
     return profitP;
+  }
+
+  #createRetryBtn() {
+    const retryBtn = document.createElement("button");
+    retryBtn.classList.add("retry-btn");
+    retryBtn.textContent = OUTPUT_MESSAGE.RETRY;
+
+    return retryBtn;
+  }
+
+  #createModalContent(lottoGameResult, setModalBtnsClickHandlerCallback) {
+    const modalTableDiv = this.#createModalTableDiv();
+
+    const tableTitleH = this.#createTableTitleH();
+    modalTableDiv.appendChild(tableTitleH);
+
+    const resultTable = this.#createResultTable(lottoGameResult);
+    modalTableDiv.insertAdjacentHTML("beforeend", resultTable);
+
+    const profitP = this.#createProfitsP(lottoGameResult);
+    modalTableDiv.appendChild(profitP);
+
+    const retryBtn = this.#createRetryBtn();
+    modalTableDiv.appendChild(retryBtn);
+
+    const modalBackgroundSec =
+      modal.createModalBackgroundSection(modalTableDiv);
+    document.querySelector("main").appendChild(modalBackgroundSec);
+
+    setModalBtnsClickHandlerCallback();
   }
 
   #createTableHTML(results) {
