@@ -6,6 +6,7 @@ import WinningResultService from '../../service/WinningResultService';
 class LottoGameApp extends HTMLElement {
   #lottos;
   #boundMethods;
+  #elements;
 
   constructor() {
     super();
@@ -37,9 +38,22 @@ class LottoGameApp extends HTMLElement {
 
   #initiateGame() {
     this.#render();
-    $('purchase-form').addEventListener('purchaseLotto', this.#boundMethods.handlePurchaseLotto);
-    $('winning-numbers-form').addEventListener('createWinningResult', this.#boundMethods.handleCreateWinningResult);
-    $('result-modal').addEventListener('restartGame', this.#boundMethods.handleRestartGame);
+    this.#bindElements();
+    this.#elements.purchaseForm.addEventListener('purchaseLotto', this.#boundMethods.handlePurchaseLotto);
+    this.#elements.winningNumbersForm.addEventListener(
+      'createWinningResult',
+      this.#boundMethods.handleCreateWinningResult,
+    );
+    this.#elements.resultModal.addEventListener('restartGame', this.#boundMethods.handleRestartGame);
+  }
+
+  #bindElements() {
+    this.#elements = {
+      ...this.#elements,
+      purchaseForm: $('purchase-form'),
+      winningNumbersForm: $('winning-numbers-form'),
+      resultModal: $('result-modal'),
+    };
   }
 
   #handleRestartGame() {

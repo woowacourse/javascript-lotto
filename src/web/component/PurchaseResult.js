@@ -2,20 +2,22 @@ import { $ } from '../util/domSelector';
 
 class PurchaseResult extends HTMLElement {
   #boundMethods;
+  #elements;
 
   constructor() {
     super();
     this.#boundMethods = {
       handleShowPurchaseResult: this.#handleShowPurchaseResult.bind(this),
     };
+    this.#elements = { app: $('lotto-game-app') };
   }
 
   connectedCallback() {
-    $('lotto-game-app').addEventListener('showPurchaseResult', this.#boundMethods.handleShowPurchaseResult);
+    this.#elements.app.addEventListener('showPurchaseResult', this.#boundMethods.handleShowPurchaseResult);
   }
 
   disconnectedCallback() {
-    $('lotto-game-app').removeEventListener('showPurchaseResult', this.#boundMethods.handleShowPurchaseResult);
+    this.#elements.app.removeEventListener('showPurchaseResult', this.#boundMethods.handleShowPurchaseResult);
   }
 
   #handleShowPurchaseResult(event) {
