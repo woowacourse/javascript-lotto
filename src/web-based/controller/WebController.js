@@ -38,6 +38,8 @@ class LottoWebController {
     event.preventDefault();
     const inputPurchaseAmountView = document.querySelector('.input-purchase-amount');
     const purchaseAmountErrorView = document.querySelector('.text-purchase-amount-error');
+    const purchaseButton = document.querySelector('.button-purchase-amount');
+
     const inputValue = inputPurchaseAmountView.value;
     const purchaseAmount = Number(inputValue);
     const validationResult = this.validatePurchaseAmount(purchaseAmount);
@@ -45,9 +47,13 @@ class LottoWebController {
     if (validationResult !== true) {
       inputPurchaseAmountView.value = null;
       purchaseAmountErrorView.textContent = validationResult;
+      inputPurchaseAmountView.disabled = false;
+      purchaseButton.disabled = false;
     } else {
       this.purchaseAmount = purchaseAmount;
       purchaseAmountErrorView.textContent = '';
+      inputPurchaseAmountView.disabled = true;
+      purchaseButton.disabled = true;
     }
 
     this.processLottoTicket();
