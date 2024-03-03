@@ -5,10 +5,10 @@ const ErrorMessageUtil = {
     const errorMessageElement = $('.error-text', target);
     if (errorMessageElement) {
       errorMessageElement.textContent = message;
-    } else {
-      const messageElement = `<p class='error-text'>${message}</p>`;
-      target.insertAdjacentHTML('beforeend', messageElement);
+      return;
     }
+    const messageElement = `<p class='error-text'>${message}</p>`;
+    target.insertAdjacentHTML('beforeend', messageElement);
   },
 
   removeErrorMessage(target) {
