@@ -1,0 +1,24 @@
+html {
+  font-size: 62.5%;
+  font-family: 'Roboto';
+}
+
+:root {
+  --primary-color: #4e5ba6;
+  --greyscale1-color: #ffffff;
+  --greyscale2-color: #fcfcfd;
+  --greyscale3-color: #b4b4b4;
+  --greyscale4-color: #8b8b8b;
+  --greyscale4-color: #000000;
+}
+
+.app {
+  width: 100%;
+  height: 102.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.invisible {
+  visibility: hidden;
+}

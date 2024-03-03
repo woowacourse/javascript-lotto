@@ -1,28 +1,4 @@
-html {
-  font-size: 62.5%;
-}
-
-:root {
-  --primary-color: #4e5ba6;
-  --greyscale1-color: #ffffff;
-  --greyscale2-color: #fcfcfd;
-  --greyscale3-color: #b4b4b4;
-  --greyscale4-color: #8b8b8b;
-  --greyscale4-color: #000000;
-}
-
-.app {
-  width: 100%;
-  height: 102.4rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
-h1 {
+header {
   display: flex;
   height: 6.4rem;
   align-items: center;
@@ -36,7 +12,7 @@ h1 {
   color: #ffffff;
 }
 
-.section-content {
+main {
   flex: 86;
   display: flex;
   justify-content: center;
@@ -258,116 +234,6 @@ h2 {
   padding: 0.4rem 0.6rem 0.4rem 0.6rem;
   border: none;
   color: #ffffff;
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1.6rem;
-  letter-spacing: 0.125rem;
-}
-
-/* 모달 */
-/* 모달 outside, modal,  */
-.outside-modal {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  inset: 0px;
-  z-index: 100000000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal {
-  width: 35rem;
-  height: 50rem;
-  display: flex;
-  background-color: #ffffff;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.6rem;
-}
-
-.wrapper-modal-close {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.button-modal-close {
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.6rem;
-  letter-spacing: 0.125rem;
-}
-
-.text-lotto-stats {
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 2.4rem;
-  letter-spacing: 0.015rem;
-}
-
-table {
-  width: 31.9rem;
-  height: 24.7rem;
-  margin: 3.2rem 0 3.2rem 0;
-}
-
-th {
-  padding: 0.8rem 0 0.8rem 0;
-  width: 31.8rem;
-  height: 2.4rem;
-}
-
-tr {
-  border-top: 0.1rem solid #0000001f;
-  border-bottom: 0.1rem solid #0000001f;
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 2.4rem;
-  letter-spacing: 0.05rem;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.winning-stats-item {
-  font-weight: 600;
-}
-
-.wrapper-rateOfReturn {
-  width: 31.8rem;
-  height: 2.4rem;
-  padding: 0, 6.6rem, 0, 6.6rem;
-}
-
-.text-rate-of-return {
-  text-align: center;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-}
-
-.wrapper-restart-btn {
-  width: 100%;
-  height: 3.6rem;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  margin: 3.8rem 0 3.8rem 0;
-  background-color: #4e5ba6;
-  padding: 06rem, 0.6rem, 0.6rem, 0.8rem;
-  border-radius: 0.4rem;
-}
-
-.button-restart {
-  width: 100%;
-  border: 0;
-  color: #ffffff;
-  background-color: transparent;
-  cursor: pointer;
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.6rem;
