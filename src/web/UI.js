@@ -9,6 +9,8 @@ const $lottoNumbers = document.querySelector('.lotto-numbers');
 const $lottoResult = document.querySelector('.lotto-result');
 const $answerForm = document.querySelector('.answer-form');
 const $modal = document.querySelector('.modal');
+const $modalCancel = document.querySelector('.modal-cancle');
+const $modalBody = document.querySelector('.modal-body');
 
 export const showLottos = (lottoCount, lottos) => {
   $lottoResult.classList.remove('hidden');
@@ -34,4 +36,10 @@ export const showStatisticsResult = (statistics) => {
   $sixMatchCount.innerText = `${statistics.getResult.six}개`;
   $profitRate.innerText = `당신의 총 수익률은 ${statistics.getProfit}%입니다`;
   $modal.classList.remove('hidden');
+};
+
+export const modalCancel = (e) => {
+  if (!$modalBody.contains(e.target) || e.target === $modalCancel) {
+    $modal.classList.add('hidden');
+  }
 };

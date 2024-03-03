@@ -9,76 +9,63 @@ import { validateCost } from './utils/validation.js';
 import Lotto from './domain/lotto.js';
 import WinningLotto from './domain/winningLotto.js';
 import Statistics from './domain/statistics.js';
-import { disableForm, ableForm } from './web/util.js';
-import { showLottos, showStatisticsResult } from './web/UI.js';
+import { disableForm, reset } from './web/util.js';
+import { showLottos, showStatisticsResult, modalCancel } from './web/UI.js';
 
 const $buyForm = document.querySelector('.buy-form');
 const $buyInput = document.querySelector('.buy-input');
-const $lottoResult = document.querySelector('.lotto-result');
 const $answerForm = document.querySelector('.answer-form');
-
-const $modalCancel = document.querySelector('.modal-cancle');
 const $retryButton = document.querySelector('.retry-button');
 const $modal = document.querySelector('.modal');
-const $modalBody = document.querySelector('.modal-body');
 
-let lottoMachine;
+class Step2Controller {
+  #lottoMachine;
 
-const submitMoney = (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const money = Number(formData.get('buy-input'));
-
-  try {
-    validateCost(money);
-    lottoMachine = new LottoMachine(money);
-    showLottos(lottoMachine.getLottoCount, lottoMachine.getLottoNumbers);
-    disableForm($buyForm);
-  } catch (error) {
-    alert(`${error.message}`);
+  constructor() {
+    $buyForm.addEventListener('submit', this.buyLotto);
+    $answerForm.addEventListener('submit', this.submitAnswerLotto);
+    $modal.addEventListener('click', modalCancel);
+    $retryButton.addEventListener('click', reset);
   }
-};
 
-const submitAnswerLotto = (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const answerNumbers = formData.getAll('answer-number').map(Number);
-  const bonusNumber = Number(formData.get('bonus-number'));
-  const money = Number($buyInput.value);
+  buyLotto = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const money = Number(formData.get('buy-input'));
 
-  try {
-    const answerLotto = new Lotto(answerNumbers);
-    const winningLotto = new WinningLotto(answerLotto, bonusNumber);
-    const statistics = new Statistics({
-      lottos: lottoMachine.getLottoNumbers,
-      winningLotto: winningLotto.getLottoNumbers,
-      bonusNumber: winningLotto.getBonusNumber,
-      cost: money,
-    });
+    try {
+      validateCost(money);
+      this.#lottoMachine = new LottoMachine(money);
+      showLottos(this.#lottoMachine.getLottoCount, this.#lottoMachine.getLottoNumbers);
+      disableForm($buyForm);
+    } catch (error) {
+      alert(`${error.message}`);
+    }
+  };
 
-    showStatisticsResult(statistics);
-    disableForm($answerForm);
-  } catch (error) {
-    alert(`${error.message}`);
-  }
-};
+  submitAnswerLotto = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const answerNumbers = formData.getAll('answer-number').map(Number);
+    const bonusNumber = Number(formData.get('bonus-number'));
+    const money = Number($buyInput.value);
 
-const modalCancel = (e) => {
-  if (!$modalBody.contains(e.target) || e.target === $modalCancel) {
-    $modal.classList.add('hidden');
-  }
-};
+    try {
+      const answerLotto = new Lotto(answerNumbers);
+      const winningLotto = new WinningLotto(answerLotto, bonusNumber);
+      const statistics = new Statistics({
+        lottos: this.#lottoMachine.getLottoNumbers,
+        winningLotto: winningLotto.getLottoNumbers,
+        bonusNumber: winningLotto.getBonusNumber,
+        cost: money,
+      });
 
-const reset = () => {
-  $modal.classList.add('hidden');
-  $lottoResult.classList.add('hidden');
-  $answerForm.classList.add('hidden');
-  $buyInput.value = '';
-  ableForm($buyForm);
-  ableForm($answerForm);
-};
+      showStatisticsResult(statistics);
+      disableForm($answerForm);
+    } catch (error) {
+      alert(`${error.message}`);
+    }
+  };
+}
 
-$buyForm.addEventListener('submit', submitMoney);
-$answerForm.addEventListener('submit', submitAnswerLotto);
-$modal.addEventListener('click', modalCancel);
-$retryButton.addEventListener('click', reset);
+const app = new Step2Controller();
