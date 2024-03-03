@@ -63,8 +63,10 @@ const submitAnswerLotto = (e) => {
   }
 };
 
-const modalCancel = () => {
-  $modalBody.classList.add('hidden');
+const modalCancel = (e) => {
+  if (!$modalBody.contains(e.target) || e.target === $modalCancel) {
+    $modal.classList.add('hidden');
+  }
 };
 
 const reset = () => {
@@ -78,5 +80,5 @@ const reset = () => {
 
 $buyForm.addEventListener('submit', submitMoney);
 $answerForm.addEventListener('submit', submitAnswerLotto);
-$modalCancel.addEventListener('click', modalCancel);
+$modal.addEventListener('click', modalCancel);
 $retryButton.addEventListener('click', reset);
