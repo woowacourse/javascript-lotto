@@ -8,7 +8,7 @@ purchased-lottos > .counter {
 }
 
 purchased-lottos > .list {
-  height: 20rem;
+  height: 15rem;
   overflow: scroll;
 
   list-style: none;

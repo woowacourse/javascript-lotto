@@ -11,9 +11,3 @@ app-modal > p[slot='header'] {
   /* spacing */
   margin: 0.8rem 0 3.3rem;
 }
-
-app-modal > div[slot='body'] {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}

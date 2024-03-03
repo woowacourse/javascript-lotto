@@ -68,7 +68,7 @@ export default class Statistics extends HTMLElement {
   #updateProfitRate() {
     const { profitRate } = this.lottoAnalytics;
 
-    this.#profitRate.innerHTML = profitRate ? `당신의 총 수익률은 ${profitRate}%입니다.` : '';
+    this.#profitRate.innerHTML = `당신의 총 수익률은 ${profitRate}%입니다.`;
   }
 
   #dispatchRestartEvent() {

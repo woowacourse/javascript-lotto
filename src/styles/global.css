@@ -61,11 +61,13 @@ header > .title {
 }
 
 main {
-  height: 85%;
+  height: 80%;
   justify-content: center;
 }
 
 footer {
+  height: 10%;
+
   padding: 3rem 0;
   border-top: 0.1rem solid rgba(var(--color-primary), 0.2);
 
@@ -147,6 +149,21 @@ button:hover {
 
 button:disabled {
   cursor: not-allowed;
+}
+
+table {
+  border-collapse: collapse;
+  border-top: 0.1rem solid rgb(var(--color-grey-scale-5), 0.12);
+
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 0.8rem;
+  border-bottom: 0.1rem solid rgb(var(--color-grey-scale-5), 0.12);
 }
 
 .title {
