@@ -98,6 +98,10 @@ input:focus {
   border-color: rgb(var(--color-primary));
 }
 
+input:disabled {
+  cursor: not-allowed;
+}
+
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -135,6 +139,14 @@ button {
 
   /* prevent new line */
   white-space: nowrap;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 .title {

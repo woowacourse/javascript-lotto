@@ -15,6 +15,7 @@
       <p class="counter"></p>
       <ul class="list"></ul>
     </template>
+
     <template id="template-lotto-item">
       <li>
         <p class="ticket-icon"></p>
@@ -111,45 +112,44 @@
       </div>
     </template>
 
-    <!-- <template id="template-statistics">
-      <p class="title">🏆 당첨 통계 🏆</p>
-      <table class="statistics-table">
+    <template id="template-statistics">
+      <table id="statistics-table">
         <thead>
           <th>일치 개수</th>
           <th>당첨금</th>
           <th>당첨 개수</th>
         </thead>
         <tbody>
-          <tr class="matching-result">
-            <td class="matching-count">3개</td>
-            <td class="prize">5,000</td>
-            <td class="number-of-matching-count"><slot name="5"></slot></td>
+          <tr class="matchingResult">
+            <td class="matchedCount">3개</td>
+            <td class="money">5,000</td>
+            <td class="numberOfMatchedCount" id="5"></td>
           </tr>
-          <tr class="matching-result">
-            <td class="matching-count">4개</td>
-            <td class="prize">50,000</td>
-            <td class="number-of-matching-count"><slot name="4"></slot></td>
+          <tr class="matchingResult">
+            <td class="matchedCount">4개</td>
+            <td class="money">50,000</td>
+            <td class="numberOfMatchedCount" id="4"></td>
           </tr>
-          <tr class="matching-result">
-            <td class="matching-count">5개</td>
-            <td class="prize">1,500,000</td>
-            <td class="number-of-matching-count"><slot name="3"></slot></td>
+          <tr class="matchingResult">
+            <td class="matchedCount">5개</td>
+            <td class="money">1,500,000</td>
+            <td class="numberOfMatchedCount" id="3"></td>
           </tr>
-          <tr class="matching-result">
-            <td class="matching-count">5개+보너스 볼</td>
-            <td class="prize">30,000,000</td>
-            <td class="number-of-matching-count"><slot name="2"></slot></td>
+          <tr class="matchingResult">
+            <td class="matchedCount">5개+보너스 볼</td>
+            <td class="money">30,000,000</td>
+            <td class="numberOfMatchedCount" id="2"></td>
           </tr>
-          <tr class="matching-result">
-            <td class="matching-count">6개</td>
-            <td class="prize">2,000,000,000</td>
-            <td class="number-of-matching-count"><slot name="1"></slot></td>
+          <tr class="matchingResult">
+            <td class="matchedCount">6개</td>
+            <td class="money">2,000,000,000</td>
+            <td class="numberOfMatchedCount" id="1"></td>
           </tr>
         </tbody>
       </table>
-      <p class="statistics-result">당신의 총 수익률은 %입니다.</p>
-      <button class="restart-btn">다시 시작하기</button>
-    </template> -->
+      <p id="profit-rate"></p>
+      <button id="restart">다시 시작하기</button>
+    </template>
 
     <section id="app">
       <header>
@@ -176,44 +176,7 @@
       <!-- Modal -->
       <app-modal>
         <p slot="header">🏆 당첨 통계 🏆</p>
-        <div slot="body">
-          <table>
-            <thead>
-              <th>일치 개수</th>
-              <th>당첨금</th>
-              <th>당첨 개수</th>
-            </thead>
-            <tbody>
-              <tr class="matching-result">
-                <td class="matching-count">3개</td>
-                <td class="prize">5,000</td>
-                <td class="number-of-matching-count"></td>
-              </tr>
-              <tr class="matching-result">
-                <td class="matching-count">4개</td>
-                <td class="prize">50,000</td>
-                <td class="number-of-matching-count"></td>
-              </tr>
-              <tr class="matching-result">
-                <td class="matching-count">5개</td>
-                <td class="prize">1,500,000</td>
-                <td class="number-of-matching-count"></td>
-              </tr>
-              <tr class="matching-result">
-                <td class="matching-count">5개+보너스 볼</td>
-                <td class="prize">30,000,000</td>
-                <td class="number-of-matching-count"></td>
-              </tr>
-              <tr class="matching-result">
-                <td class="matching-count">6개</td>
-                <td class="prize">2,000,000,000</td>
-                <td class="number-of-matching-count"></td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="statistics-result">당신의 총 수익률은 %입니다.</p>
-          <button class="restart-btn">다시 시작하기</button>
-        </div>
+        <statistics-result slot="body"></statistics-result>
       </app-modal>
     </section>
   </body>

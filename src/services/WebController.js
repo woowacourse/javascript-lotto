@@ -1,6 +1,7 @@
 import { LottoGame } from '../domains';
 import WebView from '../views/web/WebView';
 import { PAYMENT_FORM_EVENTS } from '../views/web/components/PaymentForm';
+import { STATISTICS_EVENTS } from '../views/web/components/Statistics';
 import { WINNING_LOTTO_EVENTS } from '../views/web/components/WinningLottoForm';
 
 // TODO: this.#webView에서 직접 접근하는 것들 추상화 해주기
@@ -25,6 +26,7 @@ class WebController {
       WINNING_LOTTO_EVENTS.submit,
       this.#handleWinningLottoFormSubmit.bind(this),
     );
+    // this.#webView.statistics.addEventListener(STATISTICS_EVENTS.restart, this.#handleRestart.bind(this));
   }
 
   async #handlePaymentFormSubmit(event) {
@@ -41,7 +43,6 @@ class WebController {
     this.#lottoGame.insertMoney(paymentAmount);
 
     this.#webView.paymentForm.clearErrorMessage();
-
     this.#webView.updatePurchasedLottos(this.#lottoGame.lottoTickets);
     this.#webView.displayWinningLottoForm();
   }
@@ -50,17 +51,26 @@ class WebController {
     try {
       await this.#getWinningLotto(event.detail);
       this.#webView.modal.openModal();
+      this.#webView.statistics.lottoAnalytics = this.#lottoGame.lottoAnalytics;
     } catch (error) {
       this.#webView.winningLottoForm.displayErrorMessage(error.message);
     }
   }
 
   async #getWinningLotto({ winningNumbers, bonusNumber }) {
-    const winningNumbersInput = winningNumbers.every((number) => !number) ? '' : winningNumbers.join(',');
-    this.#lottoGame.issueWinningLotto(winningNumbersInput, bonusNumber);
+    this.#lottoGame.issueWinningLotto(winningNumbers.join(','), bonusNumber);
+    this.#lottoGame.calculateStatistics();
 
     this.#webView.winningLottoForm.clearErrorMessage();
   }
+
+  // async #handleRestart() {
+  //   this.#lottoGame = new LottoGame();
+  //   this.#webView = new WebView();
+  //   this.#init();
+
+  //   this.#webView.modal.closeModal();
+  // }
 }
 
 export default WebController;
