@@ -29,19 +29,15 @@ export const OUTPUT_MESSAGE = Object.freeze({
   formatResults(matchedLotto) {
     return Object.keys(matchedLotto)
       .sort((a, b) => b - a)
-      .map((key) => {
-        return `${PRIZE[key]} - ${matchedLotto[key]}개`;
-      });
+      .map((key) => `${PRIZE[key]} - ${matchedLotto[key]}개`);
   },
   formatProfits(profits) {
     return `총 수익률은 ${profits}%입니다.\n`;
   },
 
-  formatResultsTable(matchedLotto){
+  formatResultsTable(matchedLotto) {
     return Object.keys(matchedLotto)
       .sort((a, b) => b - a)
-      .map((key) => {
-        return `${PRIZE[key]} - ${matchedLotto[key]}개`;
-      });
+      .map((key) => `${PRIZE[key]} - ${matchedLotto[key]}개`);
   },
 });
