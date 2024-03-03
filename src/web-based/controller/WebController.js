@@ -80,18 +80,17 @@ class LottoWebController {
     this.lottoTickets = tickets;
 
     LottoTicektsOutputView.displayLottoTicketsSection(this.lottoTickets);
-    LottoTicektsOutputView.displayLottoNumbersInputSection();
+    WinningNumbersOutputView.displayWinningNumbersInputSection();
+    WinningNumbersOutputView.displayWinningNumbersInput();
   }
 
-  processWinningNumbers(event) {
-    event.preventDefault();
-
+  processWinningNumbers() {
     const inputWinningNumbers = WinningNumbersOutputView.getWinningNumbers();
     const validationResult = this.validateWinningNumbers(inputWinningNumbers);
 
     if (validationResult !== true) {
-      WinningNumbersOutputView.displayLottoNumberError(validationResult);
-      WinningNumbersOutputView.reset();
+      WinningNumbersOutputView.displayLottoNumbersError(validationResult);
+      WinningNumbersOutputView.resetWinningNumbersAndBonusNumber();
     } else {
       this.winningNumbers = inputWinningNumbers;
       this.processBonusNumber();

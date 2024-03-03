@@ -26,14 +26,9 @@ class LottoTicketsOutputView {
     });
   }
 
-  displayLottoNumbersInputSection() {
-    this.lottoNumbersInputSectionView.classList.remove('invisible');
-  }
-
   resetToInitialState() {
     this.lottoTicketsSectionView.classList.add('invisible');
     this.lottoTicketsView.textContent = '';
-    this.lottoNumbersInputSectionView.classList.add('invisible');
   }
 }
 
