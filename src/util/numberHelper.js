@@ -1,3 +1,3 @@
 export const addPriceComma = (price) => {
-  return price.toLocaleString(price);
+  return price.toLocaleString();
 };

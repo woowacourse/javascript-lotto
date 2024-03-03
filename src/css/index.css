@@ -1,0 +1,116 @@
+@import 'reset.css';
+@import 'common.css';
+@import 'variable.css';
+@import 'module/lottoMoneyInput.css';
+@import 'module/myLottoInfo.css';
+@import 'module/lottoModal.css';
+@import 'module/winLotto.css';
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  min-height: 100dvh;
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: 0.5px;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+input {
+  padding-left: 10px;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+}
+
+::placeholder {
+  font-size: var(--placeholder-font-size);
+  font-weight: var(--placeholder-font-weight);
+  color: var(--placeholder-font-color);
+}
+
+/*header*/
+header {
+  background-color: var(--lotto-primary);
+  height: 64px;
+  display: flex;
+}
+
+header > h1 {
+  margin-left: 10%;
+  color: var(--lotto-greyscale-1);
+}
+
+/* main*/
+main {
+  min-height: calc(100vh - 144px);
+}
+
+@media (max-width: 400px) {
+  main {
+    min-height: 100vw;
+    height: auto;
+  }
+}
+
+#main-lotto-card {
+  width: 414px;
+  height: 727px;
+  border: 1px solid var(--border-line);
+  flex-direction: column;
+  padding: 16px;
+  position: relative;
+}
+
+@media (max-width: 400px) {
+  #main-lotto-card {
+    width: 100%;
+    padding: 4px;
+  }
+}
+
+#my-lottos-win-title {
+  padding-top: 20px;
+  color: var(--lotto-greyscale-5);
+}
+
+#main-lotto-card > h1 {
+  color: var(--lotto-greyscale-5);
+}
+
+/*footer*/
+footer {
+  color: var(--lotto-primary);
+  height: 80px;
+  border-top: 1px solid var(--border-line);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 400px) {
+  footer {
+    position: inherit;
+  }
+}
+
+@media (max-height: 820px) {
+  footer {
+    position: inherit;
+  }
+}

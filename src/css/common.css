@@ -1,0 +1,48 @@
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.none {
+  display: none;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.primary-button {
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  border-radius: 4px;
+  padding: 6px 6px 6px 8px;
+  width: 100%;
+  height: 36px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
+}
+
+.caption {
+  font-size: var(--caption-font-size);
+  font-weight: var(--caption-font-weight);
+  line-height: var(--caption-line-height);
+}
+
+.error {
+  color: rgb(242, 111, 35);
+}

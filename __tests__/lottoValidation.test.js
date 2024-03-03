@@ -15,7 +15,7 @@ describe('로또 번호 유효성 테스트', () => {
   );
 
   test.each([[[1, 2, 3, 4, 5, 6, 7]], [[1, 2, 3, 4, 5]]])(
-    `입력받은 숫자가 ${NUMBER.LOTTO_LENGTH}개가 아니면 에러를 발생시킨다.`,
+    `입력받은 숫자가 ${NUMBER.LOTTO_NUMBERS_LENGTH}개가 아니면 에러를 발생시킨다.`,
     (numbers) => {
       expect(() => new Lotto(numbers)).toThrow(ERROR_MESSAGE.NUMBERS_LENGTH);
     }

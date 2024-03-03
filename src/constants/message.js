@@ -1,11 +1,12 @@
-import { addPriceComma } from '../util/NumberHelper';
+import { addPriceComma } from '../util/numberHelper';
 import NUMBER from './number';
 
 const ERROR_MESSAGE = Object.freeze({
   PREFIX: '[ERROR]',
   NUMBERS_RANGE: '허용된 정수 범위를 벗어났습니다.',
-  NUMBERS_LENGTH: `${NUMBER.LOTTO_LENGTH}개의 정수를 입력하셔야 합니다.`,
+  NUMBERS_LENGTH: `${NUMBER.LOTTO_NUMBERS_LENGTH}개의 정수를 입력하셔야 합니다.`,
   NUMBERS_DUPLICATION: '중복된 숫자가 있습니다.',
+  SOME_INPUT_EMPTY: '모든 숫자를 다 입력하셔야 합니다.',
   BONUS_DUPLICATION: '보너스 숫자가 우승 숫자들과 중복됩니다.',
   PURCHASE_AMOUNT: '유효한 구입 금액이 아닙니다.',
   RESTART_RESPONSE: '유효한 응답이 아닙니다. y/n으로 응답해 주세요.',
@@ -29,6 +30,9 @@ const OUTPUT_MESSAGE = Object.freeze({
   WIN_COUNT: (count) => ` - ${count}개`,
   RATE_OF_REVENUE: (result) => `총 수익률은 ${result}%입니다.`,
   EMPTY: ``,
+  WEB_WIN_PRICE: (price) => `${addPriceComma(price)}원`,
+  WEB_BALL_COUNT: (count) => `${count}개`,
+  WEB_BONUS_MATH: '+보너스볼',
 });
 
 export { ERROR_MESSAGE, QUERY_MESSAGE, OUTPUT_MESSAGE, NEW_LINE };

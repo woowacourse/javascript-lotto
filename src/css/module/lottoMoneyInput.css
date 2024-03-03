@@ -1,0 +1,50 @@
+#lotto-money-form-section {
+  padding-top: 30px;
+  width: 382px;
+  flex-direction: column;
+}
+
+@media (max-width: 400px) {
+  #lotto-money-form-section {
+    width: 100%;
+  }
+}
+
+#lotto-money-form-section > p {
+  width: 100%;
+}
+
+#money-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#money-input-box {
+  width: 100%;
+  display: flex;
+  margin-top: 5px;
+  flex-direction: column;
+}
+
+#money-input {
+  width: 310px;
+  height: 36px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+}
+
+@media (max-width: 400px) {
+  #money-input {
+    width: 80%;
+  }
+}
+
+#money-error {
+  height: 10px;
+  padding-top: 5px;
+}
+
+#lotto-money-form-section button {
+  width: 56px;
+  height: 36px;
+}

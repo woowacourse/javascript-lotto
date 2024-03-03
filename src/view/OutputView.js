@@ -16,9 +16,9 @@ const OutputView = {
     console.log(`${NEW_LINE}${OUTPUT_MESSAGE.WINNING_STATISTICS_TITLE}`);
   },
 
-  printWinningStatisticsReverse(result = []) {
+  printWinningStatistics(result = []) {
     result.forEach((_, index) => {
-      const rankIndex = Math.abs(5 - index);
+      const rankIndex = Math.abs(Object.keys(WINNER).length - index);
       console.log(
         `${OUTPUT_MESSAGE.MATCH_COUNT(WINNER[rankIndex].MATCH_COUNT)}${
           WINNER[rankIndex].IS_BONUS ? OUTPUT_MESSAGE.BONUS_MATCH : ''

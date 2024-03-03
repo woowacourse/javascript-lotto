@@ -4,17 +4,17 @@ import OutputView from '../view/OutputView';
 import LottoValidation from '../validation/lottoValidation';
 import RestartResponseValidation from '../validation/responseValidation';
 import LottoPublisher from '../domain/LottoPublisher';
-import MoneyValidation from '../validation/MoneyValidation';
+import MoneyValidation from '../validation/moneyValidation';
 import WinLotto from '../domain/WinLotto';
 import LottoProcess from '../domain/LottoProcess';
 import LottoCalculator from '../domain/LottoCalculator';
-import { RESPONSE } from '../constants/input';
+import {RESPONSE} from '../constants/input';
 
 /**
- * @module LottoController 로또의 관련 도메인과 뷰를 연결하여 게임을 컨트롤하는 컨트롤러 모듈입니다.
+ * @module LottoConsoleController 로또의 관련 도메인과 뷰를 연결하여 게임을 컨트롤하는 컨트롤러 모듈입니다.
  */
 
-class LottoController {
+class LottoConsoleController {
   async play() {
     const lottoCount = await this.getValidateLottoAmount();
     const [lottos, lottosNumbers] = await this.buyRandomLottos(lottoCount);
@@ -45,8 +45,8 @@ class LottoController {
       const winLottoPublisher = new LottoPublisher(1, [winNumbers]);
       const [lottoWithWinNumbers] = winLottoPublisher.publishLottos();
       return await this.getValidateBonusNumber(lottoWithWinNumbers);
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ message }) {
+      console.log(message);
       return this.makeWinLotto();
     }
   }
@@ -58,7 +58,7 @@ class LottoController {
 
   showLottoResult(winResult, lottoCount) {
     OutputView.printResultTitle();
-    OutputView.printWinningStatisticsReverse(winResult);
+    OutputView.printWinningStatistics(winResult);
     const lottoCalculator = new LottoCalculator();
     const rateOfRevenue = lottoCalculator.getRateOfRevenue(winResult, lottoCount);
     OutputView.printRateOfRevenue(rateOfRevenue);
@@ -68,8 +68,8 @@ class LottoController {
     const purchaseAmount = await InputView.askPurchaseAmount();
     try {
       MoneyValidation.validate(purchaseAmount);
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ message }) {
+      console.log(message);
       return this.getValidateLottoAmount();
     }
     return Number.parseInt(purchaseAmount / NUMBER.LOTTO_PRICE, 10);
@@ -79,8 +79,8 @@ class LottoController {
     const winNumbers = await InputView.askWinNumbers().split(',');
     try {
       LottoValidation.validateNumbers(winNumbers);
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ message }) {
+      console.log(message);
       return this.getValidateWinNumbers();
     }
     return winNumbers;
@@ -91,8 +91,8 @@ class LottoController {
     try {
       const bonusNumberInput = await InputView.askBonusNumber();
       winLotto = new WinLotto(lottoWithWinNumbers, Number(bonusNumberInput));
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ message }) {
+      console.log(message);
       return this.getValidateBonusNumber(lottoWithWinNumbers);
     }
     return winLotto;
@@ -102,11 +102,12 @@ class LottoController {
     const restartResponse = await InputView.askRestart();
     try {
       RestartResponseValidation.validate(restartResponse);
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ message }) {
+      console.log(message);
       return this.getValidateRestartResponse();
     }
     return restartResponse;
   }
 }
-export default LottoController;
+
+export default LottoConsoleController;

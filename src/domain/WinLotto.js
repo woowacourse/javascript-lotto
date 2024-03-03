@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../constants/message';
+import LottoValidation from '../validation/lottoValidation';
 
 /**
  * @module WinLotto 우승한 로또의 모듈입니다. 보너스 숫자의 유효성 검사를 진행합니다.
@@ -14,14 +14,13 @@ class WinLotto {
   constructor(lotto, bonusNumber) {
     this.#lotto = lotto;
     this.#bonusNumber = bonusNumber;
-    this.#validate(bonusNumber);
+    this.#validate();
   }
 
   #validate() {
     const lottoNumbers = this.#lotto.numbers;
-    if (lottoNumbers.includes(this.#bonusNumber)) {
-      throw new Error(ERROR_MESSAGE.PREFIX + ERROR_MESSAGE.BONUS_DUPLICATION);
-    }
+    LottoValidation.validateDuplicationNumbers([...lottoNumbers, this.#bonusNumber]);
+    LottoValidation.validateInNumbersRange([this.#bonusNumber]);
   }
 
   get winNumbers() {

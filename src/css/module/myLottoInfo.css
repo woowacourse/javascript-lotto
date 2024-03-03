@@ -1,0 +1,31 @@
+#my-lottos-section {
+  height: 276px;
+  padding-top: 20px;
+}
+
+#my-lottos-section span {
+  font-size: 34px;
+  line-height: 36px;
+  font-weight: 600;
+  padding-right: 10px;
+}
+
+#my-lottos-section > ul {
+  margin-top: 15px;
+  width: 100%;
+}
+
+#my-lottos-section > ul > li {
+  width: 238px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#my-lottos-list {
+  height: 250px;
+  width: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+}

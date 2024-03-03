@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from '../constants/message.js';
-import NUMBER from '../constants/number.js';
+import { ERROR_MESSAGE } from '../constants/message';
+import NUMBER from '../constants/number';
 
 const LottoValidation = {
   validateNumbers(numbers = []) {
@@ -8,22 +8,22 @@ const LottoValidation = {
     this.validateDuplicationNumbers(numbers);
   },
 
-  validateBonusNumber(winNumbers = [], number = 0) {
-    this.validateInNumbersRange([number]);
-    this.validateDuplicationNumbers([...winNumbers, number]);
-  },
-
-  validateInNumbersRange(numbers = []) {
+  validateInNumbersRange(numbers) {
     numbers.forEach((numberString) => {
       const number = Number(numberString);
-      if (!Number.isInteger(number) || number > NUMBER.LOTTO_END_NUMBER || number < NUMBER.LOTTO_START_NUMBER) {
+      if (
+        !Number.isInteger(number) ||
+        number > NUMBER.LOTTO_END_NUMBER ||
+        number < NUMBER.LOTTO_START_NUMBER ||
+        number > NUMBER.LOTTO_MAX_COUNT
+      ) {
         throw new Error(`${ERROR_MESSAGE.PREFIX} ${ERROR_MESSAGE.NUMBERS_RANGE}`);
       }
     });
   },
 
   validateNumbersLength(numbers = []) {
-    if (numbers.length !== NUMBER.LOTTO_LENGTH) {
+    if (numbers.length !== NUMBER.LOTTO_NUMBERS_LENGTH) {
       throw new Error(`${ERROR_MESSAGE.PREFIX} ${ERROR_MESSAGE.NUMBERS_LENGTH}`);
     }
   },
