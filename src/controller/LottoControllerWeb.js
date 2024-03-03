@@ -7,7 +7,7 @@ import generatePurchaseInputHTML from '../../static/html/generatePurchaseInputHT
 import onError from '../util/onError';
 import renderUI from '../util/renderUI';
 import removeErrorMessage from '../util/removeErrorMessage';
-import closeModal from '../util/closeModal';
+import clickToCloseModal from '../util/clickToCloseModal';
 
 renderUI('purchase-before', 'afterbegin', generatePurchaseInputHTML());
 
@@ -46,8 +46,8 @@ function executionWinningAndBonusNumbers(lottoMachine, money) {
     inputWinningAndBonusNumbers(lottoMachine);
     removeErrorMessage();
     printLottoResultsAndProfitRate(lottoMachine, money);
-    closeModal('lm-close-btn');
-    closeModal('modal-body');
+    clickToCloseModal('lm-close-btn');
+    clickToCloseModal('modal-body');
     retryLotto();
   } catch (error) {
     onError(winningBonusNumbersGroup, error.message);
