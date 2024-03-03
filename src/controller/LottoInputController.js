@@ -61,7 +61,6 @@ class LottoInputController {
     winningNumberStrings.forEach((string) => {
       LottoValidator.validateNonNegativeIntegerString(string);
     });
-
     const winningNumbers = winningNumberStrings.map(Number);
     LottoValidator.validateLotto(winningNumbers);
     return winningNumbers;

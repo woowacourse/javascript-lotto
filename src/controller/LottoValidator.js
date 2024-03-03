@@ -1,5 +1,5 @@
 import LottoSeller from "../domain/LottoSeller.js";
-import MESSAGES from "../view/constants/messages.js";
+import MESSAGES from "../view/ConsoleView/constants/messages.js";
 import NUMBERS from "../domain/constants/numbers.js";
 
 class LottoValidator {
