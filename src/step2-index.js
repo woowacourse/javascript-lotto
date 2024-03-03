@@ -1,3 +1,4 @@
+import "./step2-web/style/index.css";
 import LottoWebApp from "./step2-web/LottoWebApp.js";
 
 import LottoResultState from "./step2-web/states/LottoResultState.js";
