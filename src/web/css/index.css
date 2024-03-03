@@ -82,16 +82,11 @@ header {
 
 .title {
   margin: 5px;
-  padding: 0;
-  align-self: center;
+  text-align: center;
 }
 
 .purchase {
   margin-bottom: 25px;
-}
-
-.purchase div {
-  margin-bottom: 10px;
 }
 
 #lotto-list {
