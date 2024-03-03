@@ -1,14 +1,14 @@
-import LottoWebApp from "./step2-web/view/LottoWebApp.js";
+import LottoWebApp from "./step2-web/components/LottoWebApp.js";
 
-import LottoResultState from "./step2-web/model/LottoResultState.js";
-import LottosState from "./step2-web/model/LottosState.js";
+import LottoResultState from "./step2-web/states/LottoResultState.js";
+import LottosState from "./step2-web/states/LottosState.js";
 
-import BoughtLottoBoard from "./step2-web/view/BoughtLottoBoard.js";
-import BuyAmountForm from "./step2-web/view/BuyAmountForm.js";
-import WinningLottoForm from "./step2-web/view/WinningLottoForm.js";
+import BoughtLottoBoard from "./step2-web/components/BoughtLottoBoard.js";
+import BuyAmountForm from "./step2-web/components/BuyAmountForm.js";
+import WinningLottoForm from "./step2-web/components/WinningLottoForm.js";
+import LottoResultModal from "./step2-web/components/LottoResultModal.js";
 
 import { $ } from "./step2-web/utils/selector.js";
-import LottoResultModal from "./step2-web/view/LottoResultModal.js";
 
 const lottosState = new LottosState();
 const lottoResultState = new LottoResultState();
