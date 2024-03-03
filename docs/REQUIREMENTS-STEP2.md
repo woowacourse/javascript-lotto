@@ -34,13 +34,14 @@
 - [x] 로또 내부 스크롤 만들기 (화면 너무 길어지지 않게)
 - [x] header, footer 렌더도 처음에 한번에 (html에 있는 거 분리해서 빼내기)
 - [x] 반응형 신경쓰기 (naver 처럼 minLength 정하기 + 요소 깨지는 거 수정)
-- [ ] form으로 처리하여 enter 적용되게
+- [x] form으로 처리하여 enter 적용되게
+- [x] 모달 esc로 close되도록
 
 ## 리팩토링
 - [x] result modal 표 생성 코드 개선
 - [x] state 클래스 추상화
-- [ ] css 컴포넌트 별로 나누기
-- [ ] css 이름 일관성 맞추기
-- [ ] js 셀렉팅은 id로, css 셀렉팅은 class 하기
+- [x] css 컴포넌트 별로 나누기
+- [x] css 이름 일관성 맞추기
+- [x] js 셀렉팅은 id로, css 셀렉팅은 class 하기
 - [ ] 컴포넌트에서 service 로직 분리하기
 - [ ] 구조 그려서 설명(옵저버 패턴에 대해 + (구체적으로) state와 component와의 관계도)

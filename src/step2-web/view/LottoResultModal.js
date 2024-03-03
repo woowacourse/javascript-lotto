@@ -68,9 +68,11 @@ export default class LottoResultModal extends Component {
       this.#handleOutsideClick.bind(this)
     );
 
+    document.addEventListener("keydown", this.#handleEscapeKey.bind(this));
+
     $(`#${WINNING_RESULT_CLOSE_BUTTON_ID}`).addEventListener(
       "click",
-      this.#handleResultModalCloseButton.bind(this)
+      this.#closeModal.bind(this)
     );
 
     $(`#${LOTTO_RESTART_BUTTON_ID}`).addEventListener(
@@ -97,8 +99,10 @@ export default class LottoResultModal extends Component {
     }
   }
 
-  #handleResultModalCloseButton() {
-    this.#closeModal();
+  #handleEscapeKey(e) {
+    if (e.key === "Escape") {
+      this.#closeModal();
+    }
   }
 
   #closeModal() {

@@ -78,6 +78,7 @@ body {
   font-size: 1.5rem;
 }
 
+/* base 템플릿(헤더, 메인 컨테이너, 푸터) */
 .main-content-box {
   border: var(--size-light-border) solid var(--color-lotto-grey-scale-3);
   border-radius: var(--size-light-border-radius);
@@ -87,15 +88,11 @@ body {
   padding: 1rem 1rem 1.7rem 1rem;
 }
 
-/* section */
-.flex-box {
-  display: flex;
-}
 
 .my-lotto-title {
   font-weight: var(--font-weight-semi-bold);
   font-size: var(--size-title);
-
+  
   width: fit-content;
   margin: 1.3rem auto 0.5rem auto;
 }
@@ -107,7 +104,7 @@ body {
 .lotto-footer {
   color: var(--color-lotto-primary);
   border-top: var(--size-light-border) solid var(--color-lotto-primary);
-
+  
   display: flex;
   justify-content: center;
 }
@@ -115,6 +112,27 @@ body {
 .lotto-footer-letter {
   margin: 2rem 0;
   font-weight: var(--font-weight-bold);
+}
+
+/* common */
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.submit-button {
+  height: 2.2rem;
+  background-color: var(--color-lotto-primary);
+  color: var(--color-lotto-grey-scale-1);
+  border-radius: var(--size-light-border-radius);
+  border: none;
+  cursor: pointer;
+  font-weight: var(--font-weight-semi-bold);
+}
+
+.flex-box {
+  display: flex;
 }
 
 .body-text {
@@ -127,21 +145,4 @@ body {
 
 .hidden {
   display: none;
-}
-
-.error-message {
-  color: red;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-}
-
-/* common */
-.submit-button {
-  height: 2.2rem;
-  background-color: var(--color-lotto-primary);
-  color: var(--color-lotto-grey-scale-1);
-  border-radius: var(--size-light-border-radius);
-  border: none;
-  cursor: pointer;
-  font-weight: var(--font-weight-semi-bold);
 }

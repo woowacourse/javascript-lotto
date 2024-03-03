@@ -27,10 +27,9 @@ export default class WinningLottoForm extends Component {
   _getTemplate() {
     const lottos = this.#lottosState.getState();
 
-    const lottoNumberInputsTemplate = Array(LOTTO_NUMBER_LENGTH)
+    const lottoNumberInputsTemplates = Array(LOTTO_NUMBER_LENGTH)
       .fill()
-      .map((_) => this.#getLottoNumberInputTemplate())
-      .join("");
+      .map((_, index) => this.#getLottoNumberInputTemplate(index));
 
     return `
   <section class="getting-winning-lotto ${lottos.length ? "" : "hidden"}">
@@ -41,14 +40,16 @@ export default class WinningLottoForm extends Component {
           <div class="winning-numbers-group">
             <p class="body-text">당첨 번호</p>
             <div class="winning-numbers-input-wrapper">
-              ${lottoNumberInputsTemplate}
+              ${lottoNumberInputsTemplates.join("")}
             </div>
           </div>
 
           <div class="bonus-number-group">
             <p class="body-text">보너스 번호</p>
             <div class="winning-numbers-input-wrapper">
-              ${this.#getLottoNumberInputTemplate()}
+              ${this.#getLottoNumberInputTemplate(
+                lottoNumberInputsTemplates.length
+              )}
             </div>
           </div>
 
@@ -64,24 +65,38 @@ export default class WinningLottoForm extends Component {
   `;
   }
 
-  #getLottoNumberInputTemplate() {
-    return `<input type="number" class="${LOTTO_NUMBER_INPUT_CLASS}" />`;
+  #getLottoNumberInputTemplate(order) {
+    return `<input type="number" class="${LOTTO_NUMBER_INPUT_CLASS}" data-input-order=${order} />`;
   }
 
   _setEvent() {
-    const checkResultClickHandler = this._attachErrorHandler(
-      this.#handleCheckResultButton.bind(this),
+    $$(`.${LOTTO_NUMBER_INPUT_CLASS}`).forEach((input) => {
+      input.addEventListener("keyup", this.#handleAutoFocus);
+    });
+
+    const submitHandler = this._attachErrorHandler(
+      this.#handleSubmit.bind(this),
       ERROR_MESSAGE_ELEMENT_ID
     );
 
-    $(`#${CHECK_RESULT_BUTTON_ID}`).addEventListener(
-      "click",
-      checkResultClickHandler
-    );
+    $(`#${CHECK_RESULT_BUTTON_ID}`).addEventListener("click", submitHandler);
   }
 
-  #handleCheckResultButton() {
-    const { winningNumbers, bonusNumber } = this.#getLottoNumbersFromInputs();
+  #handleAutoFocus(e) {
+    if (isNaN(e.key)) {
+      return;
+    }
+
+    const MAX_INPUT_LENGTH = 2;
+    if (e.target.value.length === MAX_INPUT_LENGTH) {
+      const currentOrder = e.target.dataset.inputOrder;
+      const nextInput = $(`[data-input-order="${+currentOrder + 1}"]`);
+      nextInput?.focus();
+    }
+  }
+
+  #handleSubmit() {
+    const { winningNumbers, bonusNumber } = this.#getUserLottoNumbers();
 
     const winningLotto = this.#createWinningLotto(winningNumbers, bonusNumber);
     const ranks = winningLotto.rankLottos(this.#lottosState.getState());
@@ -97,7 +112,7 @@ export default class WinningLottoForm extends Component {
     });
   }
 
-  #getLottoNumbersFromInputs() {
+  #getUserLottoNumbers() {
     const $winningNumberInputs = $$(`.${LOTTO_NUMBER_INPUT_CLASS}`).slice(
       0,
       LOTTO_NUMBER_LENGTH
