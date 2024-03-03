@@ -1,0 +1,256 @@
+:root {
+  --primary-color: #4e5ba6;
+  --secondary-color: #ffffff;
+  --border-color: #b4b4b4;
+  --button-background-color: var(--primary-color);
+  --button-text-color: var(--secondary-color);
+  --input-border-color: var(--border-color);
+  --modal-background-color: #8b8b8b;
+  --modal-content-background-color: #fcfcfd;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 3rem;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+
+main {
+  background-color: #fcfcfd;
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0;
+}
+
+footer {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  border-top: 1px solid var(--border-color);
+}
+
+button {
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 0.2rem;
+  cursor: var(--btn-cursor, pointer);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+input {
+  border: 1px solid var(--input-border-color);
+  border-radius: 0.2rem;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--border-color);
+  padding: 8px;
+  text-align: center;
+}
+
+thead th {
+  border-top: 1px solid var(--border-color);
+  font-weight: bold;
+}
+
+#main-content-article {
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: 56vh;
+  overflow: auto;
+  padding: 1rem;
+  width: 21vw;
+}
+
+#budget-input-div {
+  display: flex;
+  flex-direction: column;
+}
+
+#budget-group-div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#budget-input {
+  box-sizing: border-box;
+  flex: 7;
+  height: 1.8rem;
+  margin: 0.4rem 0.5rem 0.1em 0;
+  padding: 0.2rem;
+  width: 80%;
+}
+
+#purchase-btn {
+  display: inline-block;
+  flex: 3;
+  height: 1.8rem;
+  margin: auto;
+  padding: 0.1em 0.8em;
+}
+
+.input-group-div {
+  display: flex;
+  height: 100%;
+}
+
+.input-group-div input,
+.input-group-div button {
+  height: 100%;
+  width: 100%;
+}
+
+#winning-display-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.winning-lotto-number-input {
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  width: 1.4rem;
+}
+
+.lotto-emoji-span {
+  display: inline-block;
+  font-size: 1.6rem;
+}
+
+.issued-lotto-numbers-span {
+  margin-left: 0.3rem;
+}
+
+#winning-numbers-div {
+  display: flex;
+  flex-direction: column;
+  padding-right: 3rem;
+}
+
+#winning-numbers-div label {
+  display: block;
+}
+
+.winning-numbers-input-div {
+  display: flex;
+  flex-direction: row;
+}
+
+#winning-numbers-div input {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.2rem;
+}
+
+#bonus-number-div {
+  width: 100%;
+}
+
+#bonus-number-div label {
+  display: inline-block;
+  margin-right: 0;
+  text-align: right;
+  width: 100%;
+}
+
+#bonus-number-div input {
+  display: flex;
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 0.2rem;
+  width: 1.4rem;
+  height: 1.5rem;
+}
+
+#result-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+
+.modal-section {
+  background-color: var(--modal-background-color);
+  height: 100%;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.lotto-game-p {
+  margin-bottom: 0.5rem;
+  margin-top: 1.8rem;
+}
+
+.modal-close-btn {
+  background-color: white;
+  color: black;
+  position: fixed;
+  right: 2%;
+  top: 3%;
+}
+
+.modal-content-div {
+  background-color: var(--modal-content-background-color);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  height: 55%;
+  left: 50%;
+  overflow: auto;
+  padding: 1.5rem;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 20%;
+}
+
+.retry-btn {
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+}
+
+.bold-p {
+  font-weight: bold;
+}
