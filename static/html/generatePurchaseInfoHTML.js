@@ -19,7 +19,7 @@ export default function generatePurchaseInfoHTML(count, lottos) {
           ${displayWinningNumberInput()}
         </div>
         <div class="lp-nig-bonus-box">
-          <input class="lp-nig-input" type="text" id="bonusNumber" maxlength="2" min="1" max="45" required />
+          <input class="lp-nig-input" type="number" id="bonusNumber" maxlength="2" min="1" max="45" required />
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@ function printLotto(lottos) {
 function displayWinningNumberInput() {
   let winningNumberInputs = '';
   for (let index = 0; index < LOTTO_RULE.LOTTO_COUNT; index += 1) {
-    winningNumberInputs += `<input class="lp-nig-input" type="text" id="winningNumber${index + 1}" maxlength="2" min="1" max="45" required />`;
+    winningNumberInputs += `<input class="lp-nig-input" type="number" id="winningNumber${index + 1}" maxlength="2" min="1" max="45" required />`;
   }
   return winningNumberInputs;
 }

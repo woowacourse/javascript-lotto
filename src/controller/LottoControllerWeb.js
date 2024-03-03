@@ -17,7 +17,7 @@ const findPurchaseInfoHTML = document.getElementById('purchase-after');
 
 purchaseAmountButton.addEventListener('click', (event) => {
   event.preventDefault();
-  const inputMoney = document.querySelector('.lp-pa-input-amount').value;
+  const inputMoney = document.querySelector('.lp-pa-input-amount').valueAsNumber;
   try {
     const money = new Money(Number(inputMoney));
     const lottoMachine = new LottoMachine(money.count);
