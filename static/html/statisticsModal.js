@@ -6,7 +6,7 @@ export default function statisticsModal(lottoRanks, totalProfitRate) {
     `<div class="modal-body">
       <div class="lotto-modal">
         <div class="lm-close-btn">X</div>
-        <div class="lm-title">🏆 당첨 통계 🏆</div>
+        <h2 class="lm-title">🏆 당첨 통계 🏆</h2>
         <div class="lm-winning-result-group">
           <div class="lm-wr-row-box">
             <div class="lm-wr-text">일치 갯수</div>
