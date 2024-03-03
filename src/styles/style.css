@@ -16,13 +16,14 @@
 }
 
 main {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .lotto {
+  margin-top: 50px;
   width: 434px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
