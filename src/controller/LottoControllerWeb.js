@@ -57,7 +57,7 @@ function executionWinningAndBonusNumbers(lottoMachine, money) {
 function printLottoResultsAndProfitRate(lottoMachine, money) {
   const lottoRanks = lottoMachine.countLottoRanks();
   const totalProfitRate = calculateROI(money, lottoRanks);
-  renderUI('statistics-modal', 'beforebegin', generateStatisticsModalHTML(lottoRanks, totalProfitRate));
+  renderUI('statistics-modal', 'afterbegin', generateStatisticsModalHTML(lottoRanks, totalProfitRate));
 }
 
 function inputWinningAndBonusNumbers(lottoMachine) {
