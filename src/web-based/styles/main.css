@@ -2,14 +2,14 @@ header {
   display: flex;
   height: 6.4rem;
   align-items: center;
-  background-color: #4e5ba6;
+  background-color: var(--primary-color);
 }
 
 .text-title {
   margin-left: 13rem;
   font-size: 2.4rem;
   line-height: 3.6rem;
-  color: #ffffff;
+  color: var(--greyscale1-color);
 }
 
 main {
@@ -22,7 +22,7 @@ main {
 .container-content {
   width: 41.4rem;
   height: 72.7rem;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--greyscale3-color);
 }
 
 .wrapper-info {
@@ -30,17 +30,15 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #4e5ba633;
+  border-top: 1px solid var(--primary-color);
 }
 
 .text-info {
-  color: #4e5ba6;
+  color: var(--primary-color);
 }
 
 .text-lotto-numbers-error {
   padding-bottom: 0.5rem;
-  font-size: 1.2rem;
-  color: red;
 }
 
 .wrapper-contetnt {
@@ -48,7 +46,7 @@ main {
   flex-direction: column;
 }
 
-h2 {
+.title-winning-check {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,13 +81,12 @@ h2 {
   width: 29.4rem;
   height: 3.6rem;
   margin-right: 1.6rem;
-  border: 0.1rem solid #b4b4b4;
   border-radius: 0.4rem;
   line-height: 1.5rem;
   font-size: 1.5rem;
   &:disabled {
-    border: 0.1rem solid #e5e5e5;
-    background-color: #e5e5e5;
+    border: 0.1rem solid var(--greyscale6-color);
+    background-color: var(--greyscale6-color);
   }
 }
 
@@ -102,12 +99,12 @@ h2 {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.6rem;
-  background-color: #4e5ba6;
+  background-color: var(--primary-color);
   color: #ffffff;
   cursor: pointer;
   &:disabled {
-    border: 0.1rem solid #757dad;
-    background-color: #757dad;
+    border: 0.1rem solid var(--greyscale7-color);
+    background-color: var(--greyscale7-color);
     cursor: auto;
   }
 }
@@ -153,6 +150,11 @@ h2 {
   margin: 0 1.6rem 0 1.6rem;
 }
 
+.wrapper-input-winning-numbers {
+  display: flex;
+  gap: 0.8rem;
+}
+
 .text-info-lotto-numbers {
   display: flex;
   margin-bottom: 0.8rem;
@@ -167,11 +169,6 @@ h2 {
   height: 3.4rem;
   padding: 0;
   text-align: center;
-  border-radius: 0.4rem;
-  border: 0.1rem solid #b4b4b4;
-  &:focus {
-    border: 1px solid red;
-  }
 }
 
 .input-bonus-number {
@@ -179,8 +176,6 @@ h2 {
   height: 3.4rem;
   padding: 0;
   text-align: center;
-  border-radius: 0.4rem;
-  border: 0.1rem solid #b4b4b4;
 }
 
 .wrapper-winning-numbers {
@@ -220,22 +215,19 @@ h2 {
 .wrapper-submit-lotto {
   padding: 0.6rem 0.6rem 0.6rem 0.8rem;
   border-radius: 0.4rem;
-  background-color: #4e5ba6;
+  background-color: var(--primary-color);
   text-align: center;
 }
 
 .btn-submit-lotto {
   width: 100%;
-  border: none;
-  background-color: #4e5ba6;
-}
-
-.btn-submit-lotto {
   padding: 0.4rem 0.6rem 0.4rem 0.6rem;
   border: none;
-  color: #ffffff;
+  background-color: var(--primary-color);
+  color: var(--greyscale1-color);
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.6rem;
   letter-spacing: 0.125rem;
+  cursor: pointer;
 }

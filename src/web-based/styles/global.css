@@ -9,7 +9,10 @@ html {
   --greyscale2-color: #fcfcfd;
   --greyscale3-color: #b4b4b4;
   --greyscale4-color: #8b8b8b;
-  --greyscale4-color: #000000;
+  --greyscale5-color: #000000;
+  --greyscale6-color: #e5e5e5;
+  --greyscale7-color: #757dad;
+  --greyscale8-color: #f30909;
 }
 
 .app {
@@ -21,4 +24,14 @@ html {
 
 .invisible {
   visibility: hidden;
+}
+
+input {
+  border: 0.1rem solid var(--greyscale3-color);
+  border-radius: 0.4rem;
+}
+
+.text-input-error {
+  font-size: 1.2rem;
+  color: var(--greyscale8-color);
 }
