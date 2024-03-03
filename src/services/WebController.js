@@ -3,6 +3,7 @@ import WebView from '../views/web/WebView';
 import { PAYMENT_FORM_EVENTS } from '../views/web/components/PaymentForm';
 import { WINNING_LOTTO_EVENTS } from '../views/web/components/WinningLottoForm';
 
+// TODO: this.#webView에서 직접 접근하는 것들 추상화 해주기
 class WebController {
   #lottoGame;
 
@@ -30,6 +31,7 @@ class WebController {
     try {
       await this.#getPaid(event.detail);
       this.#webView.paymentForm.disableForm();
+      this.#webView.winningLottoForm.querySelector('.lotto-number-input').focus();
     } catch (error) {
       this.#webView.paymentForm.displayErrorMessage(error.message);
     }
@@ -48,6 +50,7 @@ class WebController {
     try {
       await this.#getWinningLotto(event.detail);
       // this.#webView.winningLottoForm.disableForm();
+      this.#webView.modal.openModal();
     } catch (error) {
       this.#webView.winningLottoForm.displayErrorMessage(error.message);
     }
