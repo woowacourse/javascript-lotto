@@ -236,36 +236,10 @@ li {
 }
 
 #lottoPurchase-article {
-  display: flex;
   display: none;
   flex-direction: column;
   gap: 10px;
   width: 100%;
-}
-
-#modal-background {
-  display: none;
-
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-#modal {
-  background-color: var(--gray-scale-1);
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 4px;
-  padding: 20px 10px;
-  position: relative;
 }
 
 .close-div {
@@ -314,6 +288,36 @@ th {
 
 #profit-text {
   margin: 30px 0;
+}
+
+#modal-background {
+  display: none;
+
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal {
+  display: flex;
+  background-color: var(--gray-scale-1);
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  padding: 20px 10px;
+  position: relative;
+}
+
+#modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 #modal h1 {
