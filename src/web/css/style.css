@@ -186,7 +186,7 @@ caption{
   flex-direction: row;
   gap: 8px;
   margin: 5px;
-  height: 270px;
+  height: 300px;
   overflow-y: scroll;
   
 }
@@ -230,13 +230,20 @@ caption{
   width: 15px;
 }
 
-.result-show {
+.result-button-container {
   align-items: center;
   justify-content: center;
   display: flex;
-  border:none;
-  height: 30px;
+}
+
+.result-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   border-radius: 4px;
+  height: 30px;
+  border:none;
   color: var(--lotto-greyscale-1);
   background: var(--lotto-primary);
   font-weight: 700;

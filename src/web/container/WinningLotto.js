@@ -1,0 +1,35 @@
+import Lotto from "../../domain/Lotto";
+import LottoNumber from "../../domain/LottoNumber";
+
+const WinningLotto = {
+  showWinningLottoInputUI(randomLottos) {
+    const winningLottoInformation = document.querySelector('#game-winninglotto-input-numbers-information');
+    winningLottoInformation.innerHTML = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
+    this.createWinningLottoInteraction();
+    this.createBonusLottoInteraction();
+    this.createResultButton();
+  },
+
+  createWinningLottoInteraction() {
+    const winningLottoInputInformation = document.querySelector('#game-winninglotto-input-numbers-information');
+    winningLottoInputInformation.innerHTML = '당첨 번호'
+    const winningLottoInteraction = document.querySelector('#game-winninglotto-input-numbers-interaction');
+    winningLottoInteraction.innerHTML = `
+    ${Array.from({length:Lotto.NUMBER_COUNT}, () => 
+    `<input class='number-input-interaction' name='winning-number' type = 'number'/>`).join('  ')}`
+  },
+
+  createBonusLottoInteraction() {
+    const bonusLottoInputInformation = document.querySelector('#game-winninglotto-input-bonus-information');
+    bonusLottoInputInformation.innerHTML = '보너스 번호'
+    const bonusLottoInputInteraction = document.querySelector('#game-winninglotto-input-bonus-interaction');
+    bonusLottoInputInteraction.innerHTML =  `<input class='number-input-interaction' name='bonus-number' type = 'number'/>`;
+  },
+  
+  createResultButton() {
+    const resultButton = document.querySelector('.result-button-container');
+    resultButton.innerHTML = '<button class="result-button"> 결과 확인</button>';
+  }
+}
+
+export default WinningLotto;
