@@ -43,7 +43,6 @@ class WebLottoController {
   readWinningLottoAndBonusNumber() {
     const $numberForm = document.getElementById('number-form');
     const $numberInputs = document.getElementsByClassName('number-input');
-    let isFirstButtonClick = true;
 
     $numberInputs[0].focus();
     $numberForm.addEventListener('submit', event => {
@@ -53,8 +52,7 @@ class WebLottoController {
           return val.value;
         });
         this.makeWinningLottoAndBonusNumber(numberInputs);
-        this.openResultModal(isFirstButtonClick);
-        isFirstButtonClick = false;
+        this.openResultModal();
       } catch (err) {
         errorAlert(err);
       }
@@ -66,17 +64,15 @@ class WebLottoController {
     this.#lottoMachine.bonusNumber = numberInputs[6];
   }
 
-  openResultModal(isFirstButtonClick) {
+  openResultModal() {
     const $resultModal = document.getElementById('result-modal');
     $resultModal.classList.remove('hidden');
 
     const totalLottoRanks = this.#lottoMachine.countLottoRanks();
     const profitRate = calculateROI(this.#money, totalLottoRanks);
 
-    if (isFirstButtonClick) {
-      resultModal.generateResultRank(totalLottoRanks);
-      resultModal.generateProfitRate(profitRate);
-    }
+    resultModal.generateResultRank(totalLottoRanks);
+    resultModal.generateProfitRate(profitRate);
     this.clickExitButtonHandler();
     this.clickRestartButtonHandler();
   }
@@ -87,6 +83,7 @@ class WebLottoController {
 
     $modalExitButton.addEventListener('click', () => {
       $resultModal.classList.add('hidden');
+      resultModal.deleteResultRank();
     });
   }
 
