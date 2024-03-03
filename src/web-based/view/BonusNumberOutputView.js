@@ -6,10 +6,6 @@ class BonusNumberOutputView {
     return Number(this.inputBonusNumberView.value);
   }
 
-  resetBonusNumber() {
-    this.inputBonusNumberView.value = null;
-  }
-
   displayLottoNumberError(message) {
     this.lottoNumberErrorView.textContent = message;
   }

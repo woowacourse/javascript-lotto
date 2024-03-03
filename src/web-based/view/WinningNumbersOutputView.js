@@ -28,16 +28,6 @@ class WinningNumbersOutputView {
     return inputWinningNumbers;
   }
 
-  resetWinningNumbersAndBonusNumber() {
-    const inputWinningNumbersNodes = document.querySelectorAll('.input-winning-number');
-
-    Array.from(inputWinningNumbersNodes).forEach((node) => {
-      node.value = '';
-    });
-
-    this.bonusNumberInputView.value = null;
-  }
-
   displayLottoNumbersError(message) {
     this.lottoNumberErrorView.textContent = message;
   }
@@ -48,6 +38,7 @@ class WinningNumbersOutputView {
     Array.from(inputWinningNumbersNodes).forEach((node) => {
       node.value = '';
     });
+
     this.inputWinningNumbersWrapperView.innerHTML = '';
     this.bonusNumberInputView.value = '';
     this.lottoNumberErrorView.textContent = '';
