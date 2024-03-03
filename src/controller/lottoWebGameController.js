@@ -134,7 +134,6 @@ class LottoGameWebController {
 
     this.#lottoTickets = [];
     this.#winningLotto = null;
-    this.#winningLotto = null;
   };
 }
 

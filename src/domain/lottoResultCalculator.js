@@ -1,4 +1,4 @@
-import { NO_MATCH_PLACE, PERCENTATION } from '../constants/prize-constants.js';
+import { NO_MATCH_PLACE, PERCENTAGE } from '../constants/prize-constants.js';
 import excludeKeyFromObject from '../utils/excludeKeyFromObject.js';
 import roundToSecondDecimalPlace from '../utils/roundToSecondDecimalPlace.js';
 
