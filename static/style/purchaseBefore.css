@@ -14,7 +14,6 @@
 }
 .lp-pa-input-group {
   display: flex;
-  flex-direction: row;
 }
 .lp-pa-input-group .lp-pa-input-amount {
   width: 310px;
