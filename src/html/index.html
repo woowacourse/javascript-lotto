@@ -8,139 +8,61 @@
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
 
-<!-- TODO: 공통 스타일 클래스 상위 태그에 할당 -->
-
 <body>
   <div id="app">
-    <header class="bgcolor-primary">
-      <p class="header__title text-title color-white">🎱 행운의 로또</p>
+
+    <header>
+      <p>🎱 행운의 로또</p>
     </header>
 
     <main>
-      <div class="main__container">
-        <p class="main__title text-title">내 번호 당첨 확인</p>
-        <form class="amount-form">
-          <div class="amount-form__con-label-input">
-            <p class="amount-form__label text-content">구입할 금액을 입력해주세요.</p>
-            <input class="amount-form__input text-input-amount no-arrow" type="number" placeholder="금액" />
-          </div>
+      <div>
+        <p>🎱 내 번호 당첨 확인 🎱</p>
 
-          <button type="submit" class="amount-form__submit-button text-caption color-white bgcolor-primary">구입</button>
+        <form>
+          <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
+          <input type="number" name="purchase-amount" id="purchase-amount">
+          <button type="submit">구입</button>
         </form>
 
-        <div class="lotto-info hidden">
-          <p class="lotto-info__label text-content">총 n개를 구매하였습니다.</p>
-          <div class="lotto-info__lotto-list">
+        <div>
+          <p>총 <span id="issuedQuantity">${issued-quantity}</span>개를 구매하였습니다.</p>
+          <div>
+            <p>
+              <span>🎟️</span>
+              <span>${lotto-numbers}</span>
+            </p>
           </div>
         </div>
 
-        <form class="result-form hidden">
-          <p class="result-form__text text-content">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-          <div class="result-form__con-winning-bonus">
-            <div class="result-form__con-winning-label-input">
-              <p class="result-form__winning-label text-content">당첨 번호</p>
-              <div class="result-form__winning-inputs">
-                <input class="result-form__number-input text-input-lotto-number no-arrow" type="number">
-                <input class="result-form__number-input text-input-lotto-number no-arrow" type="number">
-                <input class="result-form__number-input text-input-lotto-number no-arrow" type="number">
-                <input class="result-form__number-input text-input-lotto-number no-arrow" type="number">
-                <input class="result-form__number-input text-input-lotto-number no-arrow" type="number">
-                <input class="result-form__number-input text-input-lotto-number no-arrow" type="number">
-              </div>
-            </div>
+        <form>
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
 
-            <div class="result-form__con-bonus-label-input">
-              <p class="result-form__bonus-label text-content">보너스 번호</p>
-              <input class="result-form__number-input text-input-lotto-number no-arrow" type="number">
+          <div>
+            <label for="winning-number-1">당첨 번호</label>
+            <div>
+              <input type="number" name="winning-number-list" id="winning-number-1">
+              <input type="number" name="winning-number-list">
+              <input type="number" name="winning-number-list">
+              <input type="number" name="winning-number-list">
+              <input type="number" name="winning-number-list">
+              <input type="number" name="winning-number-list">
             </div>
           </div>
 
-          <button type="submit" class="result-form__submit-button text-caption color-white bgcolor-primary">결과
-            확인하기</button>
+          <div>
+            <label for="bonus-number">보너스 번호</label>
+            <input type="number" name="bonus-number" id="bonus-number">
+          </div>
+
+          <button type="submit">결과 확인하기</button>
         </form>
       </div>
     </main>
 
     <footer>
-      <p class="footer__info color-primary text-caption">Copyright 2023. woowacourse</p>
+      <p>Copyright 2023. woowacourse</p>
     </footer>
-
-    <div class="result-modal hidden">
-      <div class="result-modal__popup bgcolor-white">
-        <!-- TODO: CSS에서 X(vector) 구현 -->
-        <p class="result-modal__button-close">✖</p>
-
-        <p class="result-modal__title text-subtitle">🏆 당첨 통계 🏆</p>
-
-        <div class="result-modal__con-statics-table">
-          <div class="result-modal__horizontal-rule"></div>
-
-          <div class="result-modal__con-statics-table--row text-table-category">
-            <p class="result-modal__con-statics-table--col1">일치 갯수</p>
-            <p class="result-modal__con-statics-table--col2">당첨금</p>
-            <p class="result-modal__con-statics-table--col3">당첨 갯수</p>
-          </div>
-
-          <div class="result-modal__horizontal-rule"></div>
-
-          <div class="result-modal__con-statics text-table-content">
-            <div class="result-modal__con-statics-table--row">
-              <p class="result-modal__text-condition-5  result-modal__con-statics-table--col1">3개</p>
-              <p class="result-modal__text-prize-5 result-modal__con-statics-table--col2">5,000</p>
-              <p class="result-modal__text-count-5 result-modal__con-statics-table--col3">
-                <span class="result-modal__winning_count"></span>개
-              </p>
-            </div>
-
-            <div class="result-modal__horizontal-rule"></div>
-
-            <div class="result-modal__con-statics-table--row">
-              <p class="result-modal__text-condition-4 result-modal__con-statics-table--col1">4개</p>
-              <p class="result-modal__text-prize-4 result-modal__con-statics-table--col2">50,000</p>
-              <p class="result-modal__text-count-4 result-modal__con-statics-table--col3">
-                <span class="result-modal__winning_count"></span>개
-              </p>
-            </div>
-
-            <div class="result-modal__horizontal-rule"></div>
-
-            <div class="result-modal__con-statics-table--row">
-              <p class="result-modal__text-condition-3 result-modal__con-statics-table--col1">5개</p>
-              <p class="result-modal__text-prize-3 result-modal__con-statics-table--col2">1,500,000</p>
-              <p class="result-modal__text-count-3 result-modal__con-statics-table--col3">
-                <span class="result-modal__winning_count"></span>개
-              </p>
-            </div>
-
-            <div class="result-modal__horizontal-rule"></div>
-
-            <div class="result-modal__con-statics-table--row">
-              <p class="result-modal__text-condition-2 result-modal__con-statics-table--col1">5개+보너스볼</p>
-              <p class="result-modal__text-prize-2 result-modal__con-statics-table--col2">30,000,000</p>
-              <p class="result-modal__text-count-2 result-modal__con-statics-table--col3">
-                <span class="result-modal__winning_count"></span>개
-              </p>
-            </div>
-
-            <div class="result-modal__horizontal-rule"></div>
-
-            <div class="result-modal__con-statics-table--row">
-              <p class="result-modal__text-condition-1 result-modal__con-statics-table--col1">6개</p>
-              <p class="result-modal__text-prize-1 result-modal__con-statics-table--col2">2,000,000,000</p>
-              <p class="result-modal__text-count-1 result-modal__con-statics-table--col3">
-                <span class="result-modal__winning_count"></span>개
-              </p>
-            </div>
-
-            <div class="result-modal__horizontal-rule"></div>
-          </div>
-        </div>
-
-        <div class="result-modal__text-profit-rate text-profit-rate">당신의 총 수익률은 %입니다.</div>
-
-        <button class="result-modal__button-restart text-caption color-white bgcolor-primary">다시 시작하기</button>
-      </div>
-    </div>
   </div>
 
   <script type="module" src="../js/step2-index.js"></script>
