@@ -84,6 +84,16 @@ class WinningLottoController {
     };
   }
 
+  #getLottoGameResult() {
+    const lottoRankEvaluator = new LottoRankEvaluator(this.getWinningLotto());
+
+    const rankData = lottoRankEvaluator.getRankData([...this.#issuedLottos]);
+    const lottoPrizeMoney = getLottoPrizeMoney(rankData);
+    const profits = calculator.getProfits(lottoPrizeMoney, LOTTO_SETTING.PRICE);
+
+    return { rankData: { ...rankData }, lottoPrizeMoney, profits };
+  }
+
   #handleResultBtnClick() {
     const lottoNumberInputValues = Array.from(
       document.querySelectorAll(".winning-lotto-number-input"),
@@ -235,6 +245,56 @@ class WinningLottoController {
 
     const resultBtn = this.#createResultBtn();
     winningLottoDiv.appendChild(resultBtn);
+  }
+
+  /* 모달 엘리먼트 관련 함수들 */
+  #createResultTable(lottoGameResult) {
+    const resultTableData = OUTPUT_MESSAGE.formatResultsTable(
+      lottoGameResult.rankData
+    );
+    const resultTable = this.#createTableHTML(resultTableData);
+
+    return resultTable;
+  }
+
+  #createProfitsP(lottoGameResult) {
+    const profitP = document.createElement("p");
+    profitP.classList.add("bold-p");
+    profitP.textContent = OUTPUT_MESSAGE.formatProfits(lottoGameResult.profits);
+
+    return profitP;
+  }
+
+  #createTableHTML(results) {
+    const tableRows = results
+      .reverse()
+      .map(
+        (result) => `
+      <tr>
+        <td>${result.matchCount}</td>
+        <td>${result.prize}</td>
+        <td>${result.count}</td>
+      </tr>
+    `
+      )
+      .join("");
+
+    const tableHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>${OUTPUT_MESSAGE.MATCH_COUNT}</th>
+            <th>${OUTPUT_MESSAGE.PRIZE_MONEY}</th>
+            <th>${OUTPUT_MESSAGE.COUNT}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+    `;
+
+    return tableHTML;
   }
 }
 
