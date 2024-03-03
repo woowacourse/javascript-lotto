@@ -1,9 +1,11 @@
+import Component from "../abstract/Component.js";
+
+import { $ } from "../utils/selector.js";
+
 import {
   LOTTO_RANK_STANDARDS,
   LOTTO_RANK_TO_PRIZE,
 } from "../../step1-console/constants/lotto.js";
-import Component from "../abstract/Component.js";
-import { $ } from "../utils/selector.js";
 
 const SHOWING_WINNING_RESULT_SECTION_ID = "showing-winning-result";
 const WINNING_RESULT_CLOSE_BUTTON_ID = "winning-result-close-button";

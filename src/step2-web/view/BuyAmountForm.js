@@ -1,9 +1,8 @@
 import Component from "../abstract/Component.js";
-import Money from "../../step1-console/domain/Money.js";
-import LottoSeller from "../../step1-console/domain/LottoSeller.js";
+
+import { lottoService } from "../service/lottoService.js";
 
 import { $ } from "../utils/selector.js";
-import { parseNumber } from "../../step1-console/utils/parseNumber.js";
 
 const BUY_AMOUNT_INPUT_ID = "buy-amount-input";
 const BUY_AMOUNT_ERROR_MESSAGE_ID = "buy-amount-error-message";
@@ -45,18 +44,11 @@ export default class BuyAmountForm extends Component {
   #handleBuyLotto() {
     const buyAmount = $(`#${BUY_AMOUNT_INPUT_ID}`).value;
 
-    const lottos = this.#buyLottos(buyAmount);
+    const lottos = lottoService.buyLottos(buyAmount);
 
     this.#resetErrorMessage();
     this.#resetInput();
     this.#lottosState.setState(lottos);
-  }
-
-  #buyLottos(rawBuyAmount) {
-    const money = new Money(parseNumber(rawBuyAmount));
-    const lottos = LottoSeller.sell(money);
-
-    return lottos;
   }
 
   #resetErrorMessage() {

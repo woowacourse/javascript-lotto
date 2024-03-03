@@ -1,14 +1,11 @@
 import Component from "../abstract/Component.js";
 
-import Lotto, {
-  LOTTO_NUMBER_LENGTH,
-} from "../../step1-console/domain/Lotto.js";
+import { lottoService } from "../service/lottoService.js";
 
 import { $, $$ } from "../utils/selector.js";
-import WinningLotto from "../../step1-console/domain/WinningLotto.js";
-import LottoNumber from "../../step1-console/domain/LottoNumber.js";
-import LottoResultMaker from "../../step1-console/domain/LottoResultMaker.js";
 import { parseNumber } from "../../step1-console/utils/parseNumber.js";
+
+import { LOTTO_NUMBER_LENGTH } from "../../step1-console/domain/Lotto.js";
 
 const CHECK_RESULT_BUTTON_ID = "check-result-button";
 const ERROR_MESSAGE_ELEMENT_ID = "winning-lotto-error-message";
@@ -96,13 +93,7 @@ export default class WinningLottoForm extends Component {
   }
 
   #handleSubmit() {
-    const { winningNumbers, bonusNumber } = this.#getUserLottoNumbers();
-
-    const winningLotto = this.#createWinningLotto(winningNumbers, bonusNumber);
-    const ranks = winningLotto.rankLottos(this.#lottosState.getState());
-
-    const rankResult = LottoResultMaker.arrangeRanks(ranks);
-    const profitRate = LottoResultMaker.calculateProfitRate(ranks);
+    const { rankResult, profitRate } = this.#getLottoResult();
 
     this.#resetErrorMessage();
     this.#lottoResultState.setState({
@@ -112,7 +103,26 @@ export default class WinningLottoForm extends Component {
     });
   }
 
-  #getUserLottoNumbers() {
+  #getLottoResult() {
+    const { winningNumbers, bonusNumber } = this.#getWinningLottoNumbers();
+
+    const winningLotto = lottoService.createWinningLotto(
+      winningNumbers,
+      bonusNumber
+    );
+
+    const boughtLottos = this.#lottosState.getState();
+
+    const rankResult = lottoService.rankLottos(boughtLottos, winningLotto);
+    const profitRate = lottoService.calculateProfitRate(
+      boughtLottos,
+      winningLotto
+    );
+
+    return { rankResult, profitRate };
+  }
+
+  #getWinningLottoNumbers() {
     const $winningNumberInputs = $$(`.${LOTTO_NUMBER_INPUT_CLASS}`).slice(
       0,
       LOTTO_NUMBER_LENGTH
@@ -127,12 +137,6 @@ export default class WinningLottoForm extends Component {
     const bonusNumber = parseNumber($bonusNumberInput.value);
 
     return { winningNumbers, bonusNumber };
-  }
-
-  #createWinningLotto(winningNumbers, bonusNumber) {
-    const lottos = new Lotto(winningNumbers);
-    const bounusNumber = new LottoNumber(bonusNumber);
-    return new WinningLotto(lottos, bounusNumber);
   }
 
   #resetErrorMessage() {
