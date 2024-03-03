@@ -18,7 +18,7 @@ class WebWinningResultController {
     const winningResult = desiredKeys.map(key => winningResultObject[key]);
 
     const $winningResultCount = document.querySelectorAll(
-      '.winningResultCount',
+      '.winning-result__count',
     );
 
     $winningResultCount.forEach(
@@ -30,17 +30,19 @@ class WebWinningResultController {
       this.purchaseLottoObject.purchaseCountKey,
     );
 
-    const $winningReturnRate = document.querySelector('.winningReturnRate');
+    const $winningReturnRate = document.querySelector(
+      '.winning-result__return-rate',
+    );
 
     $winningReturnRate.textContent = MESSAGE.returnRate(
       winningRewardService.getReturnRate(),
     );
 
-    const $winningResultModal = document.querySelector('.winningResultModal');
-    $winningResultModal.classList.add('winningResultModal-visible');
+    const $winningResultModal = document.querySelector('.winning-result-modal');
+    $winningResultModal.classList.add('winning-result-modal_visible');
 
-    const $winningResult = document.querySelector('.winningResult');
-    $winningResult.classList.add('winningResult-visible');
+    const $winningResult = document.querySelector('.winning-result');
+    $winningResult.classList.add('winning-result_visible');
   }
 
   static setPurchaseLottoObject(purchaseLottoObject) {

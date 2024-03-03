@@ -2,23 +2,20 @@ body {
   width: 100%;
   height: 1024px;
   margin: 0;
+  font-family: Roboto;
 }
 
-header {
+.header {
   width: 100%;
   height: 64px;
-  border: 0px 0px 1px 0px;
   background: rgba(78, 91, 166, 1);
   border-bottom: 1px solid rgba(78, 91, 166, 0.2);
 }
 
-header h1 {
+.header__text {
   position: relative;
-  font-family: Roboto;
   font-size: 24px;
-  font-weight: 800;
   line-height: 36px;
-  letter-spacing: 0px;
   text-align: left;
   margin: 0;
   width: 147px;
@@ -28,12 +25,14 @@ header h1 {
   color: rgba(255, 255, 255, 1);
 }
 
-.eightBall {
+.header__eight-ball,
+.lotto-container__eight-ball {
   font-weight: 700;
 }
 
-.myLottoContainer {
+.lotto-container {
   position: absolute;
+  box-sizing: border-box;
   width: 414px;
   height: 727px;
   top: 148px;
@@ -41,51 +40,38 @@ header h1 {
   transform: translateX(-50%);
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
-  background: rgba(255, 255, 255, 1);
 }
 
-.myLottoContainer h2 {
+.lotto-container__text {
   position: absolute;
   width: 382px;
-  height: 24px;
   top: 52px;
   left: 16px;
-  color: rgba(0, 0, 0, 1);
   margin: 0;
-
-  font-family: Roboto;
-  font-size: 24px;
   font-weight: 600;
   line-height: 24px;
-  letter-spacing: 0.15000000596046448px;
+  letter-spacing: 0.15px;
   text-align: center;
 }
 
-.purchaseLottoField {
+.purchase-container {
   position: absolute;
   width: 382px;
-  height: 64px;
   top: 104px;
   left: 16px;
-  border-radius: 4px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.purchaseLottoInputField {
+.purchase {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 310px;
-  height: 64px;
-  top: 104px;
-  left: 16px;
   gap: 4px;
 }
 
-.purchaseLottoInputField label {
-  font-family: Roboto;
+.purchase label {
   font-size: 15px;
   font-weight: 400;
   line-height: 24px;
@@ -93,7 +79,7 @@ header h1 {
   text-align: left;
 }
 
-.purchaseLottoInputField input {
+.purchase__input {
   box-sizing: border-box;
   width: 310px;
   height: 36px;
@@ -104,41 +90,30 @@ header h1 {
   border: 1px solid rgba(180, 180, 180, 1);
 }
 
-.purchaseLottoButton {
+.purchase__btn {
   width: 56px;
   height: 36px;
-  top: 132px;
-  left: 342px;
   padding: 6px 6px 6px 8px;
   border-radius: 4px;
   background: rgba(78, 91, 166, 1);
   cursor: pointer;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 700;
-  line-height: 16px;
   letter-spacing: 1.25px;
   text-align: left;
   color: rgba(255, 255, 255, 1);
 }
 
-.purchaseLottoButton p {
+.purchase__btn-text {
   box-sizing: border-box;
+  font-family: Roboto;
   width: 42px;
   height: 24px;
   padding: 4px 6px 4px 6px;
   margin: 0;
 }
 
-.lotto-hidden {
-  display: none;
-}
-
-.lotto-visible {
-  display: block;
-}
-
-.purchaseLottoView {
+.purchase-lotto__text {
   position: absolute;
   width: 310px;
   height: 24px;
@@ -147,7 +122,7 @@ header h1 {
   margin: 0;
 }
 
-.lottos {
+.purchase-lotto__list {
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -164,18 +139,16 @@ header h1 {
   overflow-x: hidden;
 }
 
-.lottos li {
+.purchase-lotto__list li {
   display: flex;
   align-items: center;
-  width: 238px;
   height: 36px;
   margin: 0;
 }
 
-.admitOne {
+.purchase-lotto__admit-one {
   width: 34px;
   height: 36px;
-  font-family: Roboto;
   font-size: 34px;
   font-weight: 600;
   line-height: 36px;
@@ -184,13 +157,12 @@ header h1 {
   color: rgba(0, 0, 0, 1);
 }
 
-.lottos li p {
+.purchase-lotto__list li p {
   box-sizing: border-box;
   margin: 0;
   padding: 0 0 0 8px;
   width: 196px;
   height: 24px;
-  font-family: Roboto;
   font-size: 15px;
   font-weight: 400;
   line-height: 24px;
@@ -199,15 +171,7 @@ header h1 {
   color: rgba(0, 0, 0, 1);
 }
 
-.winningLotto-hidden {
-  display: none;
-}
-
-.winningLotto-visible {
-  display: block;
-}
-
-.winningLottoField {
+.winning-lotto {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -218,24 +182,19 @@ header h1 {
   left: 16px;
 }
 
-.winningLottoField p {
-  width: 382px;
-  height: 24px;
-  font-family: Roboto;
+.winning-lotto__text {
   font-size: 15px;
-  font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.5px;
-  text-align: left;
   margin: 0;
 }
 
-.winningLottoInputField {
+.winning-lotto-input-container {
   display: flex;
   justify-content: space-between;
 }
 
-.winningLottoNumbersInputField {
+.winning-lotto-numbers {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -243,12 +202,12 @@ header h1 {
   height: 68px;
 }
 
-.winningLottoNumbers {
+.winning-lotto-numbers__input-container {
   display: flex;
   justify-content: space-between;
 }
 
-.bonusNumberInputField {
+.winning-lotto-bonus-number {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -257,17 +216,16 @@ header h1 {
   height: 68px;
 }
 
-.winningLottoNumbersInput,
-.bonusNumberInput {
+.winning-lotto-numbers__input,
+.winning-lotto-bonus-number__input {
   box-sizing: border-box;
   width: 34px;
   height: 36px;
   border-radius: 4px;
-  border: 1px;
   border: 1px solid rgba(180, 180, 180, 1);
 }
 
-.winningLotto-btn {
+.winning-lotto__btn {
   position: absolute;
   cursor: pointer;
   width: 382px;
@@ -279,7 +237,7 @@ header h1 {
   background: rgba(78, 91, 166, 1);
 }
 
-.winningLotto-btn p {
+.winning-lotto__btn-text {
   width: 368px;
   height: 24px;
   padding: 4px 6px 4px 6px;
@@ -292,7 +250,7 @@ header h1 {
   margin: 0;
 }
 
-.winningResultModal {
+.winning-result-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -301,15 +259,15 @@ header h1 {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.winningResultModal-hidden {
+.winning-result-modal_hidden {
   display: none;
 }
 
-.winningResultModal-visible {
+.winning-result-modal_visible {
   display: block;
 }
 
-.winningResult {
+.winning-result {
   position: absolute;
   width: 350px;
   height: 500px;
@@ -320,47 +278,30 @@ header h1 {
   border-radius: 4px;
 }
 
-.winningResult-hidden {
-  display: none;
-}
-
-.winningResult-visible {
-  display: block;
-}
-
-.x-btn {
+.winning-result__close-btn {
   position: absolute;
-  width: 16px;
-  height: 16px;
   top: 16px;
   left: 318px;
-  margin: 0;
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.87);
-  font-family: Roboto;
   font-size: 20px;
   font-weight: 700;
   line-height: 16px;
-  letter-spacing: 1.25px;
-  text-align: center;
 }
-.winningResult h2 {
+
+.winning-result__text {
   position: absolute;
   width: 318px;
-  height: 24px;
   top: 41px;
   left: 16px;
-  text-align: center;
   margin: 0;
-  font-family: Roboto;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  letter-spacing: 0.15000000596046448px;
+  letter-spacing: 0.15px;
   text-align: center;
 }
 
-.winningResultTable {
+.winning-result__table {
   position: absolute;
   width: 319px;
   height: 247px;
@@ -370,40 +311,33 @@ header h1 {
   border-spacing: 0;
 }
 
-.winningResultTable tr {
+.winning-result__table tr {
   height: 24px;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
 }
 
-.winningResultTable thead th {
-  font-family: Roboto;
-  font-size: 15px;
+.winning-result__table thead th {
   font-weight: 600;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-  text-align: center;
   padding: 8px 0;
 }
 
-.winningResultTable tbody td {
-  font-family: Roboto;
-  font-size: 15px;
+.winning-result__table tbody td {
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
   padding: 8px 0;
-  text-align: center;
 }
 
-.winningReturnRate {
+.winning-result__return-rate {
   position: absolute;
   width: 318px;
   height: 24px;
   top: 376px;
   left: 16px;
   margin: 0;
-  font-family: Roboto;
   font-size: 15px;
   font-weight: 600;
   line-height: 24px;
@@ -411,7 +345,7 @@ header h1 {
   text-align: center;
 }
 
-.retry-btn {
+.winning-result__retry-btn {
   position: absolute;
   cursor: pointer;
   width: 318px;
@@ -423,7 +357,7 @@ header h1 {
   background: rgba(78, 91, 166, 1);
 }
 
-.retry-btn p {
+.winning-result__retry-btn-text {
   position: relative;
   width: 89px;
   height: 16px;
@@ -438,18 +372,16 @@ header h1 {
   margin: 0;
 }
 
-footer {
+.footer {
   position: absolute;
   width: 100%;
   height: 80px;
   top: 944px;
-  border: 1px 0px 0px 0px;
   border-top: 1px solid rgba(78, 91, 166, 0.2);
 }
 
-footer p {
+.footer__text {
   position: relative;
-  width: 224px;
   height: 16px;
   top: 32px;
   left: 50%;
@@ -458,6 +390,19 @@ footer p {
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 1.25px;
+  text-align: center;
   margin: 0;
   color: rgba(78, 91, 166, 1);
+}
+
+.purchase-lotto_hidden,
+.winning-lotto-container_hidden,
+.winning-result_hidden {
+  display: none;
+}
+
+.purchase-lotto_visible,
+.winning-lotto-container_visible,
+.winning-result_visible {
+  display: block;
 }

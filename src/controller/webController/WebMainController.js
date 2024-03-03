@@ -4,22 +4,22 @@ import WebWinningLottoController from './WebWinningLottoController';
 
 class WebMainController {
   play() {
-    const $purchaseLottoButton = document.querySelector('.purchaseLottoButton');
+    const $purchaseLottoButton = document.querySelector('.purchase__btn');
     $purchaseLottoButton.addEventListener(
       'click',
       WebPurchaseLottoServiceController.playWebPurchaseLottoService,
     );
 
-    const $winningLottoButton = document.querySelector('.winningLotto-btn');
+    const $winningLottoButton = document.querySelector('.winning-lotto__btn');
     $winningLottoButton.addEventListener(
       'click',
       WebWinningLottoController.playWebWinningResult,
     );
 
-    const $closeBtn = document.querySelector('.x-btn');
+    const $closeBtn = document.querySelector('.winning-result__close-btn');
     $closeBtn.addEventListener('click', WebCloseController.playWebClose);
 
-    const $retryBtn = document.querySelector('.retry-btn');
+    const $retryBtn = document.querySelector('.winning-result__retry-btn');
     $retryBtn.addEventListener('click', () => window.location.reload());
   }
 }

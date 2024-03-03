@@ -9,7 +9,6 @@ class WinningResultService {
     this.#winningLotto = new WinningLotto(winningLottoObj.numbers);
     this.#winningLotto.setBonusNumber(winningLottoObj.bonusNumber);
     this.#getMatchCounts(lottos);
-    console.log(this.#matchCounts);
   }
 
   #getMatchCounts(lottos) {
