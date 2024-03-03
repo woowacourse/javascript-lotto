@@ -9,6 +9,7 @@ class LottoMoney {
 
   constructor(money) {
     const parsedMoney = Number(money);
+    this.#validate(parsedMoney);
     this.#money = parsedMoney;
   }
 
@@ -20,7 +21,7 @@ class LottoMoney {
     return this.#money;
   }
 
-  static validate(money) {
+  #validate(money) {
     if (isNaN(money)) throw new CustomError(ERROR_MESSAGE.lottoMoneyNotNumber);
 
     const moneyIsNotInRange = money < LottoMoney.MIN || money > LottoMoney.MAX;

@@ -1,6 +1,7 @@
 import LottoMoney from "../../domain/LottoMoney";
 import lottoGenerator from "../../domain/lottoGenerator";
 import RandomLottos from "./RandomLottos";
+import WinningLotto from "./WinningLotto";
 
 const GameMoneyInput = {
   initGameMoneyInput() {
@@ -13,11 +14,11 @@ const GameMoneyInput = {
     const moneyInput = document.querySelector('#game-money-input-form').value;
     const parsedMoney = Number(moneyInput);
     try {
-      LottoMoney.validate(parsedMoney);
       const lottoMoney = new LottoMoney(parsedMoney);
-      RandomLottos.showRandomLottos('#game-generatedlotto-list', lottoGenerator.generateRandomLotto(lottoMoney.getLottoCount()));
-
+      const randomlottos = RandomLottos.showRandomLottos('#game-generatedlotto-list', lottoGenerator.generateRandomLotto(lottoMoney.getLottoCount()));
+      WinningLotto.showWinningLottoInputUI(randomlottos);
     } catch (error) {
+      
       alert(error);
     }
   }
