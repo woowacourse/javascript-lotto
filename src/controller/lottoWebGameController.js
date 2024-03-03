@@ -10,7 +10,6 @@ class LottoGameWebController {
   #winningLotto;
 
   constructor() {
-    console.log('LottoGameWebController 생성');
     this.bindEventListener();
     this.handleAutoFocusOnNumberInput();
   }
@@ -87,7 +86,7 @@ class LottoGameWebController {
     }
   };
 
-  handleWinningLottoInput = async () => {
+  handleWinningLottoInput = async (event) => {
     event.preventDefault();
     const winningLottoGenerator = new WinningLottoGenerator({ inputView: webInputView, isWeb: true });
 

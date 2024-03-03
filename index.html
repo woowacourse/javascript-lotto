@@ -22,32 +22,31 @@
               <button id="purchase-button" class="lotto-compact-button">구입</button>
             </form>
           </section>
+
           <section id="lottoPurchase-article">
             <figure>
               <figcaption><h3 id="purchaseHeader-text"></h3></figcaption>
               <ul id="lotto-list"></ul>
             </figure>
-            <p class="purchase-info">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            <div class="winning-lotto_label">
-              <label>당첨 번호</label>
-              <label>보너스 번호</label>
-            </div>
-            <form id="winning-lotto">
-              <div class="winning-lotto-input-container">
-                <div id="winning-lotto-inputs">
+            <figure>
+              <figcaption class="purchase-info">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</figcaption>
+              <form id="winning-lotto">
+                <fieldset id="winning-lotto-fieldset">
+                  <legend>당첨 번호</legend>
                   <input type="text" maxlength="2" class="lotto-input" />
                   <input type="text" maxlength="2" class="lotto-input" />
                   <input type="text" maxlength="2" class="lotto-input" />
                   <input type="text" maxlength="2" class="lotto-input" />
                   <input type="text" maxlength="2" class="lotto-input" />
                   <input type="text" maxlength="2" class="lotto-input" />
-                </div>
-                <div id="bonus-number">
+                </fieldset>
+                <fieldset id="bonus-number-fieldset">
+                  <legend>보너스 번호</legend>
                   <input type="text" maxlength="2" class="lotto-input" />
-                </div>
-              </div>
-              <button id="result-button" class="lotto-stretch-button">결과 확인 하기</button>
-            </form>
+                </fieldset>
+                <button id="result-button" class="lotto-stretch-button">결과 확인 하기</button>
+              </form>
+            </figure>
           </section>
         </article>
       </main>
