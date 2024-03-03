@@ -1,5 +1,5 @@
-import './styles/reset.css';
-import './styles/index.css';
-import LottoController from './controller/LottoController';
+import './web-based/styles/reset.css';
+import './web-based/styles/index.css';
+import WebApp from './step2-App';
 
-new LottoController().start();
+new WebApp().initWebBasedGame();
