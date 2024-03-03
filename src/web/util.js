@@ -1,7 +1,6 @@
 const $modal = document.querySelector('.modal');
 const $lottoResult = document.querySelector('.lotto-result');
 const $answerForm = document.querySelector('.answer-form');
-const $buyInput = document.querySelector('.buy-input');
 const $buyForm = document.querySelector('.buy-form');
 
 export const disableForm = (formElement) => {
@@ -20,7 +19,8 @@ export const reset = () => {
   $modal.classList.add('hidden');
   $lottoResult.classList.add('hidden');
   $answerForm.classList.add('hidden');
-  $buyInput.value = '';
+  $buyForm.reset();
+  $answerForm.reset();
   ableForm($buyForm);
   ableForm($answerForm);
 };
