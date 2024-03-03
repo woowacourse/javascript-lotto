@@ -31,18 +31,15 @@ export default class BuyAmountForm extends Component {
   }
 
   _setEvent() {
-    const buyingAmountClickHandler = this._attachErrorHandler(
-      this.#handleBuyLotto.bind(this),
+    const handleSubmit = this._attachErrorHandler(
+      this.#handleSubmit.bind(this),
       BUY_AMOUNT_ERROR_MESSAGE_ID
     );
 
-    $(`#${BUY_AMOUNT_BUTTON_ID}`).addEventListener(
-      "click",
-      buyingAmountClickHandler
-    );
+    $(`#${BUY_AMOUNT_BUTTON_ID}`).addEventListener("click", handleSubmit);
   }
 
-  #handleBuyLotto() {
+  #handleSubmit() {
     const buyAmount = $(`#${BUY_AMOUNT_INPUT_ID}`).value;
 
     const lottos = lottoService.buyLottos(buyAmount);

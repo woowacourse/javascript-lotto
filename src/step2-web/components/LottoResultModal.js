@@ -30,7 +30,7 @@ export default class LottoResultModal extends Component {
 
     const hidden = isResultModalOn ? "" : "hidden";
 
-    const formattedProfitRateMessage = parseFloat(
+    const formattedProfitRate = parseFloat(
       profitRate.toFixed(1)
     ).toLocaleString();
 
@@ -53,7 +53,7 @@ export default class LottoResultModal extends Component {
       </table>
 
       <p class="profit-rate-message">
-      당신의 총 수익률은 ${formattedProfitRateMessage}%입니다.
+      당신의 총 수익률은 ${formattedProfitRate}%입니다.
       </p>
 
       <button id=${LOTTO_RESTART_BUTTON_ID} class="submit-button lotto-restart-button-style">
