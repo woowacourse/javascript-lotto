@@ -42,12 +42,16 @@ export default class Statistics extends HTMLElement {
     this.#updateTable();
     this.#updateProfitRate();
 
-    this.#restartBtn.addEventListener('click', this.#restartEvent.bind(this));
+    this.#restartBtn.addEventListener('click', this.#dispatchRestartEvent.bind(this));
   }
 
   attributeChangedCallback() {
     this.#updateTable();
     this.#updateProfitRate();
+  }
+
+  clear() {
+    this.lottoAnalytics = {};
   }
 
   #updateTable() {
@@ -64,12 +68,10 @@ export default class Statistics extends HTMLElement {
   #updateProfitRate() {
     const { profitRate } = this.lottoAnalytics;
 
-    this.#profitRate.innerHTML = `당신의 총 수익률은 ${profitRate}%입니다.`;
+    this.#profitRate.innerHTML = profitRate ? `당신의 총 수익률은 ${profitRate}%입니다.` : '';
   }
 
-  #restartEvent() {
-    this.lottoAnalytics = '';
-
+  #dispatchRestartEvent() {
     this.dispatchEvent(new CustomEvent(STATISTICS_EVENTS.restart));
   }
 }

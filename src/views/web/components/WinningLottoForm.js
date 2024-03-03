@@ -29,6 +29,11 @@ export default class WinningLottoForm extends HTMLFormElement {
     this.addEventListener('submit', this.#handleSubmit.bind(this));
   }
 
+  clear() {
+    this.reset();
+    this.style.visibility = 'hidden';
+  }
+
   displayErrorMessage(message) {
     this.#errorMessage.innerHTML = message;
   }

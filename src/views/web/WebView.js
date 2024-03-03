@@ -23,8 +23,17 @@ class WebView {
     this.modal = document.querySelector(MODAL_SELECTOR);
   }
 
+  clearViews() {
+    this.modal.closeModal();
+
+    this.paymentForm.clear();
+    this.winningLottoForm.clear();
+    this.purchasedLottos.clear();
+    this.statistics.clear();
+  }
+
   updatePurchasedLottos(lottoTickets) {
-    this.purchasedLottos.setAttribute('data-lottos', JSON.stringify(lottoTickets));
+    this.purchasedLottos.lottos = lottoTickets;
   }
 
   displayWinningLottoForm() {

@@ -43,6 +43,10 @@ export default class PurchasedLottos extends HTMLElement {
     this.#updateCounter();
   }
 
+  clear() {
+    this.lottos = [];
+  }
+
   #updateList() {
     this.#list.innerHTML = '';
 
@@ -57,14 +61,12 @@ export default class PurchasedLottos extends HTMLElement {
 
   #updateCounter() {
     if (this.lottos.length === 0) {
-      return (this.#counter.innerHTML = '');
+      this.#counter.innerHTML = '';
+      return;
     }
     this.#counter.innerHTML = `총 ${this.lottos.length}개를 구매하였습니다.`;
   }
 
-  /**
-   * @param {number[]} lotto
-   */
   #getLottoElement(lotto) {
     const element = this.#createNewLottoItemNode();
 

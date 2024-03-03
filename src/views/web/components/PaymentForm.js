@@ -27,6 +27,12 @@ export default class PaymentForm extends HTMLFormElement {
     this.addEventListener('submit', this.#handleSubmit.bind(this));
   }
 
+  clear() {
+    this.#input.disabled = false;
+    this.#submitBtn.disabled = false;
+    this.reset();
+  }
+
   displayErrorMessage(message) {
     this.#errorMessage.innerHTML = message;
   }

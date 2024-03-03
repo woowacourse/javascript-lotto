@@ -26,7 +26,7 @@ class WebController {
       WINNING_LOTTO_EVENTS.submit,
       this.#handleWinningLottoFormSubmit.bind(this),
     );
-    // this.#webView.statistics.addEventListener(STATISTICS_EVENTS.restart, this.#handleRestart.bind(this));
+    this.#webView.statistics.addEventListener(STATISTICS_EVENTS.restart, this.#handleRestart.bind(this));
   }
 
   async #handlePaymentFormSubmit(event) {
@@ -64,13 +64,13 @@ class WebController {
     this.#webView.winningLottoForm.clearErrorMessage();
   }
 
-  // async #handleRestart() {
-  //   this.#lottoGame = new LottoGame();
-  //   this.#webView = new WebView();
-  //   this.#init();
+  async #handleRestart() {
+    this.#lottoGame = new LottoGame();
+    this.#webView = new WebView();
+    this.#init();
 
-  //   this.#webView.modal.closeModal();
-  // }
+    this.#webView.clearViews();
+  }
 }
 
 export default WebController;
