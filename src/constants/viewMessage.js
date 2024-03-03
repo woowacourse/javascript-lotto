@@ -19,9 +19,11 @@ export const OUTPUT_MESSAGE = Object.freeze({
   formatLottoCount(lottoCount) {
     return `${lottoCount}개를 구매했습니다.`;
   },
+
   formatLottoArrayToString(lottoArray) {
     return lottoArray.map((numbers) => `[${numbers.join(", ")}]`).join("\n");
   },
+
   formatMatchingResultToString(matchingResult) {
     return matchingResult.map((result, i) => result[i].normalNumbers);
   },
@@ -31,6 +33,7 @@ export const OUTPUT_MESSAGE = Object.freeze({
       .sort((a, b) => b - a)
       .map((key) => `${PRIZE[key]} - ${matchedLotto[key]}개`);
   },
+
   formatProfits(profits) {
     return `총 수익률은 ${profits}%입니다.\n`;
   },
