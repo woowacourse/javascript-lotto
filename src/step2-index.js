@@ -14,7 +14,6 @@ const lottoController = new LottoController();
 window.onload = function () {
   const purchaseForm = document.getElementById('purchaseInputSection');
   const winningAndBonusForm = document.getElementById('winningAndBonusSection');
-  const resultButton = document.getElementById('winningAndBonusSubmitButton');
   const modalContainer = document.getElementById('modalContainer');
   const modalCloseButton = document.getElementById('modalCloseButton');
   const resetButton = document.getElementById('resetButton');
@@ -31,11 +30,11 @@ window.onload = function () {
     event.preventDefault();
     const winningNumbers = await lottoController.validateWinningNumbers();
     const bonusNumber = await lottoController.validateBonusNumber(winningNumbers);
-    await lottoController.executeGame(lottos, winningNumbers, bonusNumber);
-  });
 
-  resultButton.addEventListener('click', function () {
-    modalContainer.style.display = 'flex';
+    if (winningNumbers !== null && bonusNumber !== null) {
+      await lottoController.executeGame(lottos, winningNumbers, bonusNumber);
+      modalContainer.style.display = 'flex';
+    }
   });
 
   modalCloseButton.addEventListener('click', function () {

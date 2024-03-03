@@ -13,18 +13,20 @@ class LottoController {
   }
 
   async validateInput({ input, validateFunction, elementId }) {
-    const trimmedInput = input.trim();
+    const trimmedInput = typeof input === 'string' ? input.trim() : input;
     const errorElement = document.getElementById(elementId);
 
     return this.applyValidation({ input: trimmedInput, validateFunction, errorElement });
   }
 
+  // eslint-disable-next-line max-lines-per-function
   async applyValidation({ input, validateFunction, errorElement }) {
     try {
       const result = validateFunction(input) ?? input;
       errorElement.textContent = '';
       return result;
     } catch (error) {
+      console.error(error);
       errorElement.textContent = error.message;
       return null;
     }
@@ -140,17 +142,22 @@ class LottoController {
   }
 
   // 당첨 번호 입력
+
+  getWinningNumbers() {
+    return Array.from(document.querySelectorAll('#winningInputContainer .inputRectangle'))
+      .map((input) => Number(input.value))
+      .filter((number) => number !== '');
+  }
+
   // eslint-disable-next-line max-lines-per-function
   async validateWinningNumbers() {
-    const winningNumbers = Array.from(
-      document.querySelectorAll('#winningInputContainer .inputRectangle')
-    ).map((input) => Number(input.value));
+    const winningNumbers = this.getWinningNumbers();
 
     const validatedWinningNumbers = await this.validateInput({
       input: winningNumbers,
-      validateFunction: (numbers) => {
-        LottoNumbersValidator.validate(numbers);
-        return numbers;
+      validateFunction: (input) => {
+        LottoNumbersValidator.validate(input);
+        return input;
       },
       elementId: 'winningAndBonusError'
     });
@@ -159,9 +166,13 @@ class LottoController {
   }
 
   // 보너스 번호 입력
+  getBonusNumber() {
+    return Number(document.querySelector('#bonusInputContainer .inputRectangle').value);
+  }
+
   // eslint-disable-next-line max-lines-per-function
   async validateBonusNumber(winningNumbers) {
-    const bonusNumber = document.querySelector('#bonusInputContainer .inputRectangle').value;
+    const bonusNumber = this.getBonusNumber();
 
     const validatedBonusNumber = await this.validateInput({
       input: bonusNumber,
@@ -198,7 +209,7 @@ class LottoController {
 
     document.getElementById('resetButton').addEventListener('click', () => {
       document.getElementById('modalContainer').style.display = 'none';
-      this.executeGame();
+      this.executeGame(lottos, winningNumbers, bonusNumber);
     });
   }
 
@@ -215,7 +226,7 @@ class LottoController {
       cell3.innerHTML = winningResult[i.toString()];
     }
 
-    profitResult.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
+    profitResult.textContent = `당신의 ${OUTPUT_MESSAGES.profitRate(profitRate)}`;
   }
 }
 
