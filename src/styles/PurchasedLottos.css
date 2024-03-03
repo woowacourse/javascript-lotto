@@ -8,6 +8,9 @@ purchased-lottos > .counter {
 }
 
 purchased-lottos > .list {
+  height: 20rem;
+  overflow: scroll;
+
   list-style: none;
   padding-left: 0px;
   margin: 0;
@@ -29,4 +32,5 @@ purchased-lottos > .list > li {
 
 .lotto-numbers {
   white-space: pre;
+  font-variant-numeric: tabular-nums;
 }
