@@ -8,12 +8,21 @@ class LottoTicketsOutputView {
     this.lottoTicketsSectionView.classList.remove('invisible');
     this.lottoCountView.textContent = `총 ${lottoTickets.length}개를 구매하셨습니다.`;
     lottoTickets.forEach((ticket) => {
-      this.lottoTicketsView.innerHTML += `
-      <li class='li-lotto-ticket'>
-        <p class='text-ticket-emoji'>🎟️</p>
-        <p class='text-ticket-numbers'>${ticket.join(', ')}</p>
-      <li>
-      `;
+      const li = document.createElement('li');
+      li.className = 'li-lotto-ticket';
+
+      const ticketEmojiElement = document.createElement('span');
+      ticketEmojiElement.className = 'text-ticket-emoji';
+      ticketEmojiElement.textContent = '🎟️';
+
+      const ticketNumbersElement = document.createElement('span');
+      ticketNumbersElement.className = 'text-ticket-numbers';
+      ticketNumbersElement.textContent = ticket.join(', ');
+
+      li.appendChild(ticketEmojiElement);
+      li.appendChild(ticketNumbersElement);
+
+      this.lottoTicketsView.appendChild(li);
     });
   }
 
@@ -23,7 +32,7 @@ class LottoTicketsOutputView {
 
   resetToInitialState() {
     this.lottoTicketsSectionView.classList.add('invisible');
-    this.lottoTicketsView.innerHTML = '';
+    this.lottoTicketsView.textContent = '';
     this.lottoNumbersInputSectionView.classList.add('invisible');
   }
 }

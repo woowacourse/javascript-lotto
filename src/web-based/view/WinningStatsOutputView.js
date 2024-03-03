@@ -17,13 +17,22 @@ class WinningStatsOutputView {
     Object.entries(winningStats)
       .reverse()
       .forEach(([prize, count]) => {
-        this.winningStatsResultView.innerHTML += `
-        <tr>
-        <td class="tg-0lax">${LOTTO_SYMBOL.COUNT_CONDITION[prize]}</td>
-        <td class="tg-0lax">${LOTTO_SYMBOL.PRIZE[prize].toLocaleString()}</td>
-        <td class="tg-0lax">${count}</td>
-        </tr>
-        `;
+        const trElement = document.createElement('tr');
+
+        const countConditionElement = document.createElement('td');
+        countConditionElement.textContent = LOTTO_SYMBOL.COUNT_CONDITION[prize];
+
+        const prizeElement = document.createElement('td');
+        prizeElement.textContent = LOTTO_SYMBOL.PRIZE[prize].toLocaleString();
+
+        const countElement = document.createElement('td');
+        countElement.textContent = count;
+
+        trElement.appendChild(countConditionElement);
+        trElement.appendChild(prizeElement);
+        trElement.appendChild(countElement);
+
+        this.winningStatsResultView.appendChild(trElement);
       });
   }
 
