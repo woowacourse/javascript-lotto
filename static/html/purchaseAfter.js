@@ -41,7 +41,7 @@ function printLotto(lottos) {
 
 function displayWinningNumberInput() {
   let winningNumberInputs = '';
-  for (let index = 0; index < LOTTO_RULE.WINNING_NUMBER_COUNT; index++) {
+  for (let index = 0; index < LOTTO_RULE.LOTTO_COUNT; index += 1) {
     winningNumberInputs += `<input class="lp-nig-input" type="text" id="winningNumber${index + 1}" maxlength="2" min="1" max="45" required />`;
   }
   return winningNumberInputs;

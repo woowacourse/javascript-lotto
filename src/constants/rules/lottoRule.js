@@ -3,7 +3,7 @@ const LOTTO_RULE = Object.freeze({
   LIMIT_MONEY: 100000,
   RANDOM_NUMBER_FROM: 1,
   RANDOM_NUMBER_TO: 45,
-  WINNING_NUMBER_COUNT: 6,
+  LOTTO_COUNT: 6,
   RANK: ['first', 'second', 'third', 'fourth', 'fifth'],
   PRIZE: [2000000000, 30000000, 1500000, 50000, 5000],
   LOTTO_RESTART: 'y',
