@@ -16,7 +16,7 @@ const Input = {
   },
 
   async readBonusNumber() {
-    Dom.$('.read-winning-numbers button').textContent = '결과 확인하기';
+    Dom.$('.read-winning-numbers button').textContent = '보너스번호 확인 후 결과 확인하기';
     Array.from(Dom.$$('.winning-numbers input')).map((input) => input.disabled = true);
     Dom.$('#read-bonus-number-input').disabled = false;
     const input = await Web.readFormInputValue({ form: '#winning-numbers-input-form', input: '.bonus-number input' });
