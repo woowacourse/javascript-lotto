@@ -4,7 +4,6 @@ class PurchaseAmountOutputView {
   purchaseButtonView = document.querySelector('.button-purchase-amount');
 
   displayPurchaseAmountInput(disabled) {
-    this.purchaseAmountInputView.value = null;
     this.purchaseAmountInputView.disabled = disabled;
   }
 
