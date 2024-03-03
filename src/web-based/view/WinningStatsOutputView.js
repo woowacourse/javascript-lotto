@@ -10,6 +10,11 @@ class WinningStatsOutputView {
     this.modalCloseButtonView.addEventListener('click', () =>
       this.modalView.classList.add('invisible'),
     );
+    this.modalView.addEventListener('click', (event) => {
+      if (event.target === this.modalView) {
+        this.modalView.classList.add('invisible');
+      }
+    });
   }
 
   displayWinningStats(winningStats) {

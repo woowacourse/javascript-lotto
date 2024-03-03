@@ -129,8 +129,9 @@ class LottoWebController {
       winningNumbers: this.winningNumbers,
       bonusNumber: this.bonusNumber,
     });
-    WinningStatsOutputView.displayModal();
+
     WinningStatsOutputView.displayWinningStats(winningStats);
+    WinningStatsOutputView.displayModal();
 
     this.processRateOfReturn(this.purchaseAmount, winningStats);
   }
