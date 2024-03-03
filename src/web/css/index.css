@@ -136,12 +136,26 @@ ul {
 }
 
 #purchase-form {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  grid-gap: 10px;
+}
+
+#purchase-form label {
+  grid-column: 1 / -1;
+}
+
+#purchase-form input {
+  grid-column: 1 / 2;
+}
+
+#purchase-form button {
+  grid-column: 2 / 3;
+  height: 36px;
 }
 
 #purchaseAmount-input {
-  width: 100%;
   height: 36px;
   border: 1px solid var(--gray-scale-3);
   border-radius: 4px;
