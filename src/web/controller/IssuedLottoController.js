@@ -6,7 +6,6 @@ class IssuedLottoController {
 
   constructor(count) {
     this.#issuedLottos = getRandomLottoArray(count);
-    this.#printIssuedLottoDiv();
   }
 
   #createLottoEmojiSpan() {
@@ -40,19 +39,17 @@ class IssuedLottoController {
     return lottoDiv;
   }
 
-  #printIssuedLottoDiv() {
+  printIssuedLottoDiv() {
     const afterBuySec = document.querySelector("#after-buy-section");
 
     const issuedLottoDiv = document.createElement("div");
     issuedLottoDiv.id = "issued-lotto-div";
     afterBuySec.appendChild(issuedLottoDiv);
 
-    this.#printIssuedLottos();
+    this.#printIssuedLottos(issuedLottoDiv);
   }
 
-  #printIssuedLottos() {
-    const issuedLottoDiv = document.querySelector("#issued-lotto-div");
-
+  #printIssuedLottos(issuedLottoDiv) {
     this.#issuedLottos.forEach((lottoNumbers) => {
       const lottoEl = this.#createLottoEl(lottoNumbers);
       issuedLottoDiv.appendChild(lottoEl);
