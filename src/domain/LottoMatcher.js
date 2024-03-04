@@ -29,7 +29,7 @@ class LottoMatcher {
   }
 
   updateResult(matchCount, hasBonusNumber) {
-    if (hasBonusNumber && matchCount === 5) return (this.#matchingResult[SECOND] += 1);
+    if (hasBonusNumber && matchCount === 5) return (this.#matchingResult.SECOND += 1);
 
     const rank = this.findRankByMatchCount(matchCount);
     this.#matchingResult[rank] += 1;

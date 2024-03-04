@@ -7,9 +7,13 @@ const LOTTO = {
   SIZE: 6,
 };
 
+const BONUS = {
+  SIZE: 1,
+};
+
 const PURCHASE_AMOUNT = {
   UNIT: 1000,
   MIN: 1000,
 };
 
-export { RANDOM, LOTTO, PURCHASE_AMOUNT };
+export { RANDOM, LOTTO, PURCHASE_AMOUNT, BONUS };
