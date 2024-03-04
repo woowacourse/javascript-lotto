@@ -1,6 +1,7 @@
-import { $, $$ } from '../util/domSelector';
-import ErrorMessageUtil from '../util/ErrorMessageUtil';
-import Validator from '../../validator/Validator';
+import { $, $$ } from '../../util/domSelector';
+import ErrorMessageUtil from '../../util/ErrorMessageUtil';
+import Validator from '../../../validator/Validator';
+import styles from './WinningNumbersForm.module.css';
 
 class WinningNumbersForm extends HTMLElement {
   #boundHandlePurchaseResult;
@@ -93,7 +94,7 @@ class WinningNumbersForm extends HTMLElement {
 
   #render() {
     this.innerHTML = `
-      <section id="winning-numbers">
+      <section id="winning-numbers" class="${styles['winning-numbers']}">
         <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
         <form id="winning-numbers-form">
           <winning-numbers-input></winning-numbers-input>

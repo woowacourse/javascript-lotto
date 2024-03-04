@@ -1,3 +1,5 @@
+import styles from './LottoHeader.module.css';
+
 class LottoHeader extends HTMLElement {
   connectedCallback() {
     this.#render();
@@ -5,8 +7,8 @@ class LottoHeader extends HTMLElement {
 
   #render() {
     this.innerHTML = `
-      <header>
-        <h1>🎱 행운의 로또</h1>
+      <header class="${styles.header}">
+        <h1 class="${styles.title}">🎱 행운의 로또</h1>
       </header>
     `;
   }

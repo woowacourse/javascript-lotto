@@ -1,0 +1,26 @@
+.winning-numbers {
+  font-size: var(--font-body-size);
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+  animation: fade-in 0.5s;
+}
+
+.winning-numbers form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.winning-numbers button {
+  width: 100%;
+  margin-top: 15px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

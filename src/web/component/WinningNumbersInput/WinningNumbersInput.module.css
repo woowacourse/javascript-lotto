@@ -1,0 +1,16 @@
+.label {
+  display: block;
+  margin: 0 0 6px;
+}
+
+.input-group {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+
+.input-group input {
+  width: 34px;
+  font-size: var(--font-caption-size);
+  text-align: center;
+}

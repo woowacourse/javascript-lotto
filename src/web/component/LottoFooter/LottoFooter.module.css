@@ -1,0 +1,14 @@
+.footer {
+  border-top: 1px solid #4E5BA633;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer p {
+  font-weight: var(--font-caption-weight);
+  font-size: var(--font-caption-size);
+  color: var(--color-primary);
+  letter-spacing: 1.25px;
+}

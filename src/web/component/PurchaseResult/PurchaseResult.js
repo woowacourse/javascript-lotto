@@ -1,4 +1,5 @@
-import { $ } from '../util/domSelector';
+import { $ } from '../../util/domSelector';
+import styles from './PurchaseResult.module.css';
 
 class PurchaseResult extends HTMLElement {
   #boundHandleShowPurchaseResult;
@@ -26,7 +27,7 @@ class PurchaseResult extends HTMLElement {
 
   #render(lottoListItems) {
     this.innerHTML = `
-      <section id="purchase-result">
+      <section class="${styles['purchase-result']}">
         <p>총 ${lottoListItems.length}개를 구매하였습니다.</p>
         <ul>
           ${lottoListItems.join('')}

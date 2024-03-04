@@ -1,5 +1,6 @@
-import { $ } from '../util/domSelector';
-import { RANKING } from '../../constant/setting';
+import { $ } from '../../util/domSelector';
+import { RANKING } from '../../../constant/setting';
+import styles from './ResultModal.module.css';
 
 class ResultModal extends HTMLElement {
   #boundHandleShowResultModal;
@@ -88,9 +89,9 @@ class ResultModal extends HTMLElement {
 
   #render(winningResultList, profitRate) {
     this.innerHTML = `
-      <dialog id="result-modal">
-        <div id="result-modal-box">
-          <div id="close-modal-button">
+      <dialog id="result-modal" class="${styles['result-modal']}">
+        <div class="${styles['result-modal-box']}">
+          <div id="close-modal-button" class="${styles['close-modal-button']}">
             ${this.#createCloseModalButton()}
           </div>
           <h2>🏆 당첨 통계 🏆</h2>
@@ -106,10 +107,10 @@ class ResultModal extends HTMLElement {
               ${winningResultList}
             </tbody>
           </table>
-          <p id="profit-rate-text">
+          <p class="${styles['profit-rate-text']}">
             당신의 총 수익률은 ${profitRate}%입니다.
           </p>
-          <button id="restart-button" type="button">다시 시작하기</button>
+          <button id="restart-button" class="${styles['restart-button']}" type="button">다시 시작하기</button>
         </div>
       </dialog>
     `;

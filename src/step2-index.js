@@ -1,14 +1,15 @@
-import './web/css/style.css';
+import './web/style/reset.css';
+import './web/style/global.css';
 
-import './web/component/LottoHeader';
-import './web/component/LottoFooter';
-import './web/component/LottoGameApp';
-import './web/component/PurchaseForm';
-import './web/component/PurchaseResult';
-import './web/component/WinningNumbersForm';
-import './web/component/WinningNumbersInput';
-import './web/component/BonusNumberInput';
-import './web/component/ResultModal';
+import './web/component/LottoHeader/LottoHeader';
+import './web/component/LottoFooter/LottoFooter';
+import './web/component/LottoGameApp/LottoGameApp';
+import './web/component/PurchaseForm/PurchaseForm';
+import './web/component/PurchaseResult/PurchaseResult';
+import './web/component/WinningNumbersForm/WinningNumbersForm';
+import './web/component/WinningNumbersInput/WinningNumbersInput';
+import './web/component/BonusNumberInput/BonusNumberInput';
+import './web/component/ResultModal/ResultModal';
 
 document.addEventListener('DOMContentLoaded', () => {
   const header = document.createElement('lotto-header');

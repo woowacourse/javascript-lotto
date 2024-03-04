@@ -1,7 +1,8 @@
-import { $ } from '../util/domSelector';
-import Lotto from '../../domain/Lotto';
-import LottoMachine from '../../service/LottoMachine';
-import WinningResultService from '../../service/WinningResultService';
+import { $ } from '../../util/domSelector';
+import Lotto from '../../../domain/Lotto';
+import LottoMachine from '../../../service/LottoMachine';
+import WinningResultService from '../../../service/WinningResultService';
+import styles from './LottoGameApp.module.css';
 
 class LottoGameApp extends HTMLElement {
   #lottos;
@@ -48,7 +49,7 @@ class LottoGameApp extends HTMLElement {
 
   #render() {
     this.innerHTML = `
-      <main id="lotto-game">
+      <main id="lotto-game" class="${styles['lotto-game']}">
         <h1>🎱 내 번호 당첨 확인 🎱</h1>
         <purchase-form></purchase-form>
         <purchase-result></purchase-result>

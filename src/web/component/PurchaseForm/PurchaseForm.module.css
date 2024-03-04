@@ -1,0 +1,28 @@
+.purchase {
+  font-size: var(--font-body-size);
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  animation: fade-in 0.5s;
+}
+
+.purchase-form {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.purchase-form input {
+  width: 314px;
+  gap: 10px;
+}
+
+.purchase-form button {
+  padding: 6px 8px;
+  width: 56px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,3 +1,5 @@
+import styles from './LottoFooter.module.css';
+
 class LottoFooter extends HTMLElement {
   connectedCallback() {
     this.#render();
@@ -5,7 +7,7 @@ class LottoFooter extends HTMLElement {
 
   #render() {
     this.innerHTML = `
-      <footer>
+      <footer class=${styles.footer}>
         <p>Copyright 2023. woowacourse</p>
       </footer>
     `;
