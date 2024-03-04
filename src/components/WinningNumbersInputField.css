@@ -1,0 +1,12 @@
+winning-numbers-input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  width: 100%;
+}
+
+.winning-numbers-input-container {
+  display: flex;
+  gap: 0.8rem;
+}

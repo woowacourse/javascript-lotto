@@ -1,0 +1,25 @@
+winning-and-bonus-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+
+  width: 100%;
+}
+
+.winning-and-bonus-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.winning-and-bonus-input-container {
+  display: flex;
+  flex: auto;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+winning-and-bonus-form .lotto-button {
+  width: 100%;
+}

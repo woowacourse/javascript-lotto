@@ -1,0 +1,54 @@
+lotto-result-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  width: 100%;
+}
+
+lotto-result-table .lotto-body {
+  text-align: center;
+}
+
+.table-col {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 2.4rem;
+}
+
+.divider {
+  width: 100%;
+  height: 0.1rem;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.count-row {
+  width: 9.6rem;
+}
+
+.prize-row {
+  flex: auto;
+}
+
+.match-row {
+  width: 7.2rem;
+}
+
+.table-title {
+  font-family: Roboto;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  text-align: center;
+}
+
+.table-item {
+  font-family: Roboto;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  text-align: center;
+}

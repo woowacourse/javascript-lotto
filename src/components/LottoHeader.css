@@ -1,0 +1,13 @@
+lotto-header {
+  display: flex;
+  align-items: center;
+
+  height: 6.4rem;
+  background-color: var(--lotto-primary);
+
+  padding-inline: 13rem;
+}
+
+lotto-header .lotto-title {
+  color: var(--lotto-greyscale-1);
+}

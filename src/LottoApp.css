@@ -1,0 +1,99 @@
+:root {
+  font-size: 62.5%;
+
+  --lotto-primary: #4e5ba6;
+  --lotto-primary-hover: #6272cd;
+  --lotto-primary-active: #414c89;
+  --lotto-danger: #cc0000;
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000000;
+}
+.lotto-title {
+  font-family: Roboto;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 3.6rem;
+  letter-spacing: 0;
+  text-align: left;
+
+  color: var(--lotto-greyscale-5);
+}
+.lotto-subtitle {
+  font-family: Roboto;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  letter-spacing: 0.015rem;
+  text-align: left;
+
+  color: var(--lotto-greyscale-5);
+}
+.lotto-body {
+  font-family: Roboto;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  text-align: left;
+
+  color: var(--lotto-greyscale-5);
+}
+.lotto-placeholder {
+  font-family: Roboto;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  text-align: left;
+
+  color: var(--lotto-greyscale-4);
+}
+.lotto-caption {
+  font-family: Roboto;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
+  text-align: left;
+
+  color: var(--lotto-greyscale-5);
+}
+.error-message {
+  font-family: Roboto;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: 0.02rem;
+  line-height: 1.6rem;
+  text-align: left;
+
+  color: var(--lotto-danger);
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+}
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--lotto-greyscale-2);
+}
+
+lotto-app {
+  display: flex;
+  flex-direction: column;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

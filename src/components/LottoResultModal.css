@@ -1,0 +1,54 @@
+lotto-result-modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.lotto-result {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.2rem;
+
+  width: 31.8rem;
+  height: min-content;
+  z-index: 20;
+  background-color: var(--lotto-greyscale-1);
+
+  padding: 4rem 1.6rem 3.2rem 1.6rem;
+}
+
+.lotto-result lotto-button {
+  width: 100%;
+}
+
+.close-modal-icon {
+  position: absolute;
+  width: 1.6rem;
+  height: 1.6rem;
+  top: 1.6rem;
+  right: 1.6rem;
+
+  font-family: Roboto;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
+  text-align: center;
+}
+
+.rate-of-return {
+  font-family: Roboto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  text-align: center;
+}

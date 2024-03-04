@@ -1,0 +1,12 @@
+lotto-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 8rem;
+  border-top: 0.1rem solid rgba(78, 91, 166, 0.2);
+}
+
+lotto-footer .lotto-caption {
+  color: var(--lotto-primary);
+}
