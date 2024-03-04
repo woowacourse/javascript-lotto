@@ -6,7 +6,7 @@ import WebWinningResultController from './WebWinningResultController';
 class WebPurchaseLottoServiceController {
   static playWebPurchaseLottoService() {
     const purchaseLottoConfig = {
-      value: document.getElementById('purchase__input').value,
+      value: document.getElementById('purchase__input').valueAsNumber,
       factory: inputString => new PurchaseLottoService(inputString),
     };
 
