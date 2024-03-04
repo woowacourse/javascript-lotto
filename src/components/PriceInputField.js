@@ -19,7 +19,7 @@ class PriceInputField extends HTMLElement {
     if (!inputField) {
       throw new AppError('".price-input"를 찾을 수 없습니다.');
     }
-    return inputField.getValue();
+    return inputField.value;
   }
 }
 
