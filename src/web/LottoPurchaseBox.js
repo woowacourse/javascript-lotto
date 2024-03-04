@@ -53,35 +53,43 @@ class LottoPurchaseBox extends Component {
   }
 
   initializeMoneyInput() {
-    const $moneyInput = this.$target.querySelector('.money-input-container');
+    if (this.$target.querySelector('.money-input-container')) {
+      const $moneyInput = this.$target.querySelector('.money-input-container');
 
-    new MoneyInput($moneyInput, {
-      purchaseLottoTickets: (money) => this.purchaseLottoTickets(money),
-    });
+      new MoneyInput($moneyInput, {
+        purchaseLottoTickets: (money) => this.purchaseLottoTickets(money),
+      });
+    }
   }
 
   initializeLottoDisplay() {
-    const $lottoDisplay = this.$target.querySelector('.lotto-display-container');
+    if (this.$target.querySelector('.lotto-display-container')) {
+      const $lottoDisplay = this.$target.querySelector('.lotto-display-container');
 
-    new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
+      new LottoDisplay($lottoDisplay, { lottoTickets: this.state.lottoTickets });
+    }
   }
 
   initializeWinningLottoInput() {
-    const $winningLottoInput = this.$target.querySelector('.winning-lotto-input-container');
+    if (this.$target.querySelector('.winning-lotto-input-container')) {
+      const $winningLottoInput = this.$target.querySelector('.winning-lotto-input-container');
 
-    new WinningLottoInput($winningLottoInput, {
-      makeWinningLotto: (winningNumbers, bonusNumber) => this.makeWinningLotto(winningNumbers, bonusNumber),
-    });
+      new WinningLottoInput($winningLottoInput, {
+        makeWinningLotto: (winningNumbers, bonusNumber) => this.makeWinningLotto(winningNumbers, bonusNumber),
+      });
+    }
   }
 
   initializeLottoStatisticsModal() {
-    const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal-container');
+    if (this.$target.querySelector('.lotto-statistics-modal-container')) {
+      const $lottoStatisticsModal = this.$target.querySelector('.lotto-statistics-modal-container');
 
-    new LottoStatisticsModal($lottoStatisticsModal, {
-      lottoStatistics: this.state.lottoStatistics,
-      closeModal: () => this.closeModal(),
-      restart: () => this.props.restart(),
-    });
+      new LottoStatisticsModal($lottoStatisticsModal, {
+        lottoStatistics: this.state.lottoStatistics,
+        closeModal: () => this.closeModal(),
+        restart: () => this.props.restart(),
+      });
+    }
   }
 
   openModal() {
