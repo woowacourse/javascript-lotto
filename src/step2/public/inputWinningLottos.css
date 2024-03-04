@@ -14,7 +14,8 @@
   text-align: left;
 }
 
-.lotto input {
+.input-winning-lottos,
+.input-bonus-lotto {
   width: 2.125rem;
   height: 2.25rem;
 

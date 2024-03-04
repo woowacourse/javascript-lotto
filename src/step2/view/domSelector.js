@@ -3,7 +3,7 @@ const domSelector = {
   generatedLottos: document.querySelector('.generated-lottos'),
   afterBuyLottos: document.querySelector('.after-buy-lottos'),
 
-  beforeBuyLottos: document.querySelector('.before-buy-lottos'),
+  buyLottosForm: document.querySelector('.buy-lottos-form'),
 
   inputWinningLottos: document.querySelectorAll('.input-winning-lottos'),
   checkResultButton: document.querySelector('.check-result-button'),

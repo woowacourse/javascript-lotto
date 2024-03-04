@@ -62,15 +62,15 @@
   font-size: 0.9375rem;
 }
 
-td {
+.modal-table td {
   text-align: center;
 }
 
-tr {
+.modal-table tr {
   border-bottom: 1px solid var(--color-ligthGray);
 }
 
-thead {
+.modal-table > thead {
   height: 15%;
 }
 

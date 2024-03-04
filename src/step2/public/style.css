@@ -5,7 +5,7 @@
   height: 100%;
 }
 
-#app h1 {
+.main-title {
   background-color: var(--color-blueGray);
   color: var(--color-white);
 
@@ -13,19 +13,17 @@
 
   display: flex;
   align-items: center;
-}
 
-h1 p {
   font-size: 1.5rem;
   font-weight: 800;
 
   line-height: 2.25rem;
   letter-spacing: 0rem;
   text-align: left;
-  margin-left: 8.125rem;
+  padding-left: 5.125rem;
 }
 
-.container {
+.main-container {
   min-height: 31.25rem;
   max-height: 40rem;
 
@@ -39,7 +37,7 @@ h1 p {
   padding: 1.875rem 1.25rem 1.25rem 1.56rem;
 }
 
-.title {
+.box-title {
   font-size: 1.5rem;
   font-weight: 800;
 
