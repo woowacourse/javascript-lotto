@@ -65,6 +65,12 @@ footer{
   text-align: center;
 }
 
+footer>p{
+  display: inline-block;
+  margin: 28px auto;
+  font-weight: 700;
+}
+
 #modal{
   position: absolute;
 
@@ -196,7 +202,7 @@ footer{
   border-radius: 4px;
   box-sizing: border-box;
   
-  padding: 8px 8px 0px 8px;
+  padding: 8px;
 }
 
 #main-contents__price-input::placeholder{
@@ -222,9 +228,9 @@ footer{
 }
 
 #main-contents__purchased-lotto-section{
-  width: 238px;
+  width: 90%;
   height: 276px;
-  margin: 8px auto 0px 16px;
+  margin: 8px auto 0px;
   overflow-y: auto;
   overflow-x: auto;
 }
