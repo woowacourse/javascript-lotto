@@ -1,0 +1,233 @@
+header {
+  display: flex;
+  height: 6.4rem;
+  align-items: center;
+  background-color: var(--primary-color);
+}
+
+.text-title {
+  margin-left: 13rem;
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+  color: var(--greyscale1-color);
+}
+
+main {
+  flex: 86;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-content {
+  width: 41.4rem;
+  height: 72.7rem;
+  border: 0.1rem solid var(--greyscale3-color);
+}
+
+.wrapper-info {
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 0.1rem solid var(--primary-color);
+  font-size: 1.4rem;
+}
+
+.text-info {
+  color: var(--primary-color);
+}
+
+.text-lotto-numbers-error {
+  padding-bottom: 0.5rem;
+}
+
+.wrapper-contetnt {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-winning-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem 1.6rem 3.5rem 1.6rem;
+}
+
+.text-winning-check {
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+
+.section-purchase-amount {
+  height: 6.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 1.6rem 2.8rem 1.6rem;
+  gap: 0.5rem;
+}
+
+.text-purchase-amount {
+  font-size: 1.5rem;
+}
+
+.form-purchase-amount {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-purchase-amount {
+  width: 28.4rem;
+  height: 3.6rem;
+  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+  margin-right: 1.6rem;
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  &:disabled {
+    border: 0.1rem solid var(--greyscale6-color);
+    background-color: var(--greyscale6-color);
+  }
+}
+
+.button-purchase-amount {
+  width: 5.6rem;
+  height: 3.6rem;
+  padding: 0.6rem 0.6rem 0.6rem 0.8rem;
+  border: none;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  cursor: pointer;
+  &:disabled {
+    border: 0.1rem solid var(--greyscale7-color);
+    background-color: var(--greyscale7-color);
+    cursor: auto;
+  }
+}
+
+.section-lotto-ticket {
+  height: 30.8rem;
+  display: flex;
+  flex-direction: column;
+  overflow: overlay;
+  margin: 0 1.6rem 2.4rem 1.6rem;
+}
+
+.text-lotto-count {
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+}
+
+.ul-lotto-tickets {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.8rem;
+}
+
+.li-lotto-ticket {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.text-ticket-emoji {
+  font-size: 3.4rem;
+}
+
+.text-ticket-numbers {
+  font-size: 1.5rem;
+}
+
+.section-submit-lotto-numbers {
+  height: 16.7rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0 1.6rem 0 1.6rem;
+}
+
+.wrapper-input-winning-numbers {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.text-info-lotto-numbers {
+  display: flex;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+}
+
+.input-winning-number {
+  width: 3.2rem;
+  height: 3.4rem;
+  padding: 0;
+  text-align: center;
+}
+
+.input-bonus-number {
+  width: 3.2rem;
+  height: 3.4rem;
+  padding: 0;
+  text-align: center;
+}
+
+.wrapper-winning-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.wrapper-input-lotto-numbers {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.text-info-input-numbers {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+}
+
+.input-winning-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.wrapper-bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 0.8rem;
+}
+
+.wrapper-submit-lotto {
+  padding: 0.6rem 0.6rem 0.6rem 0.8rem;
+  border-radius: 0.4rem;
+  background-color: var(--primary-color);
+  text-align: center;
+}
+
+.btn-submit-lotto {
+  width: 100%;
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--greyscale1-color);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
+  cursor: pointer;
+}
