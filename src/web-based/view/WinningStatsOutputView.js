@@ -25,7 +25,7 @@ class WinningStatsOutputView {
         const trElement = document.createElement('tr');
 
         const countConditionElement = document.createElement('td');
-        countConditionElement.textContent = LOTTO_SYMBOL.COUNT_CONDITION[prize];
+        countConditionElement.textContent = LOTTO_SYMBOL.MATCH_COUNT_PER_RANK[prize];
 
         const prizeElement = document.createElement('td');
         prizeElement.textContent = LOTTO_SYMBOL.PRIZE[prize].toLocaleString();

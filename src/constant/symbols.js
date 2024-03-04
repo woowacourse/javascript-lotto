@@ -22,7 +22,7 @@ export const LOTTO_SYMBOL = {
     4: 50000,
     5: 5000,
   },
-  COUNT_CONDITION: {
+  MATCH_COUNT_PER_RANK: {
     1: '6개',
     2: '5개+보너스볼',
     3: '5개',
