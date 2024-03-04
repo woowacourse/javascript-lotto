@@ -59,7 +59,7 @@ class App {
       this.resultPopup.renderPopup(lottoMatcher.matchingResult, totalProfit);
     } catch (error) {
       alert(error.message);
-      this.winningNumberForm.init();
+      // this.winningNumberForm.init();
     }
   }
 
