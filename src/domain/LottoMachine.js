@@ -8,8 +8,7 @@ class LottoMachine {
     this.#purchaseAmount = purchaseAmount;
   }
   getLottoNumberList() {
-    const lottoCount = this.#purchaseAmount / SETTING.LOTTO_PRICE;
-    return Array.from({ length: lottoCount }).map((_) => this.#createLottoNumber());
+    return Array.from({ length: this.#purchaseAmount / SETTING.LOTTO_PRICE }).map((_) => this.#createLottoNumber());
   }
 
   #createLottoNumber() {

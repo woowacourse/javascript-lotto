@@ -9,11 +9,11 @@ const SETTING = {
 };
 
 const RANKING = {
-  6: { MATCHING_COUNT: 6, TITILE: '6개 일치', REWARD: 2_000_000_000 },
-  B5: { MATCHING_COUNT: 5, TITILE: '5개 일치, 보너스 볼 일치', REWARD: 30_000_000 },
-  5: { MATCHING_COUNT: 5, TITILE: '5개 일치', REWARD: 1_500_000 },
-  4: { MATCHING_COUNT: 4, TITILE: '4개 일치', REWARD: 50_000 },
-  3: { MATCHING_COUNT: 3, TITILE: '3개 일치', REWARD: 5_000 },
+  3: { MATCHING_COUNT: 3, TITLE: '3개 일치', TITLE_UI: '3개', REWARD: 5_000 },
+  4: { MATCHING_COUNT: 4, TITLE: '4개 일치', TITLE_UI: '4개', REWARD: 50_000 },
+  5: { MATCHING_COUNT: 5, TITLE: '5개 일치', TITLE_UI: '5개', REWARD: 1_500_000 },
+  B5: { MATCHING_COUNT: 5, TITLE: '5개 일치, 보너스 볼 일치', TITLE_UI: '5개+보너스볼', REWARD: 30_000_000 },
+  6: { MATCHING_COUNT: 6, TITLE: '6개 일치', TITLE_UI: '6개', REWARD: 2_000_000_000 },
 };
 
 export { SETTING, RANKING };

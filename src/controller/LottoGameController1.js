@@ -2,21 +2,21 @@ import { SETTING, RANKING } from '../constant/setting.js';
 import LottoMachine from '../domain/LottoMachine.js';
 import LottosManager from '../domain/LottosManager.js';
 import OutputView from '../view/OutputView.js';
-import InputController from './InputController.js';
+import InputController1 from './InputController1.js';
 
-class LottoGameController {
+class LottoGameController1 {
   #purchaseAmount;
   #lottos;
 
   async play() {
-    this.#purchaseAmount = await InputController.inputPurchaseAmount();
+    this.#purchaseAmount = await InputController1.inputPurchaseAmount();
     this.#createRandomLottos();
 
-    const winningNumbers = await InputController.inputWinningNumbers();
-    const bonusNumber = await InputController.inputBonusNumber(winningNumbers);
+    const winningNumbers = await InputController1.inputWinningNumbers();
+    const bonusNumber = await InputController1.inputBonusNumber(winningNumbers);
     this.#calculateWinningResult(winningNumbers, bonusNumber);
 
-    const restartCommand = await InputController.inputRestartCommand();
+    const restartCommand = await InputController1.inputRestartCommand();
     this.#restartGame(restartCommand);
   }
 
@@ -49,4 +49,4 @@ class LottoGameController {
   }
 }
 
-export default LottoGameController;
+export default LottoGameController1;

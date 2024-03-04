@@ -1,4 +1,4 @@
-import LottoGameController from './controller/LottoGameController.js';
+import LottoGameController1 from './controller/LottoGameController1.js';
 
-const lottoGameController = new LottoGameController();
-lottoGameController.play();
+const lottoGameController1 = new LottoGameController1();
+lottoGameController1.play();

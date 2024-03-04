@@ -2,7 +2,7 @@ import handleIO from '../util/handleIO';
 import Validator from '../validator/Validator';
 import InputView from '../view/InputView';
 
-const InputController = {
+const InputController1 = {
   async inputPurchaseAmount() {
     try {
       const purchaseAmount = await InputView.readPurchaseAmount();
@@ -42,8 +42,9 @@ const InputController = {
   async inputRestartCommand() {
     try {
       const restartCommand = await InputView.readRestartCommand();
-      Validator.validateRestartCommand(restartCommand.toLowerCase());
-      return restartCommand.toLowerCase();
+      const lowerCasedCommand = restartCommand.toLowerCase();
+      Validator.validateRestartCommand(lowerCasedCommand);
+      return lowerCasedCommand;
     } catch (error) {
       handleIO.print(error.message);
       return this.inputRestartCommand();
@@ -51,4 +52,4 @@ const InputController = {
   },
 };
 
-export default InputController;
+export default InputController1;

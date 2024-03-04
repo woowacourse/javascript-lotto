@@ -1,0 +1,143 @@
+@import './theme.css';
+
+/* main */
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: calc(100vh - 144px);
+  height: max-content;
+}
+
+.main__content {
+  width: 382px;
+  height: 590px;
+  padding: 32px 16px;
+}
+
+/* main title */
+.main__title-wrapper {
+  margin-top: 20px;
+}
+
+.main__title {
+  font: var(--lotto-title);
+  margin: 0;
+  padding: 0;
+}
+
+/* main purchase input */
+.purchase-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.purchase-text {
+  font: var(--lotto-body);
+}
+
+.purchase-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font: var(--lotto-body);
+}
+
+.purchase-input {
+  width: 100%;
+  height: 36px;
+  padding: 0 0 0 8px;
+}
+
+.purchase-button {
+  width: 56px;
+}
+
+.purchase-button.disabled {
+  background-color: rgba(78, 91, 166, 0.5);
+}
+
+/* main lottos output */
+.lottos-container {
+  width: 100%;
+}
+
+.lottos-text {
+  height: 24px;
+  font: var(--lotto-body);
+}
+
+.lottos-list {
+  height: 270px;
+  margin: 0;
+  padding: 0;
+  resize: none;
+  overflow-x: hidden;
+}
+
+.lottos-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lottos-list::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: rgba(92, 92, 92, 0.4);
+  border-radius: 10px;
+}
+
+.lottos-list::-webkit-scrollbar-track {
+  background: rgba(92, 92, 92, 0.1);
+}
+
+.lottos-list-item {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 36px;
+  font: var(--lotto-body);
+  span {
+    font: 600 34px/36px Roboto;
+  }
+}
+
+/* main winning lotto input */
+.winning-lotto-form {
+  width: 100%;
+  height: 104px;
+  font: var(--lotto-body);
+}
+
+.winning-lotto-text {
+  height: 24px;
+}
+
+.winning-lotto-container {
+  display: flex;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.winning-lotto-input-container {
+  display: flex;
+  gap: 8px;
+}
+
+.lotto-input {
+  width: 34px;
+  height: 36px;
+  text-align: center;
+}
+
+.bonus-lotto-input-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.winning-lotto-submit-button {
+  width: 100%;
+  margin: 20px 0;
+}

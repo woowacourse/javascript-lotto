@@ -17,6 +17,10 @@ const Validator = {
       .split(',')
       .filter((item) => item.trim() !== '')
       .map(Number);
+    this.validateWinningNumberList(winningNumberList);
+  },
+
+  validateWinningNumberList(winningNumberList) {
     this.checkWinningNumbersDuplicated(winningNumberList);
     winningNumberList.forEach((number) => {
       this.checkNotNumber(number);
@@ -54,7 +58,7 @@ const Validator = {
     }
   },
   purchaseAmountRange(input) {
-    if (input > 100000000) {
+    if (input > 100_000) {
       throw new Error(ERROR_MESSAGE.PURCHASE_AMOUNT_RANGE);
     }
   },

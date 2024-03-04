@@ -1,0 +1,70 @@
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal__content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 32px;
+  width: 318px;
+  height: 428px;
+  padding: 40px 16px 32px 16px;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  height: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 16px;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.modal__title {
+  height: 24px;
+  font: var(--lotto-subtitle);
+  margin: 0;
+}
+
+.winning-result-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.winning-result-column {
+  font: var(--lotto-body);
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  height: 40px;
+  padding: 0;
+}
+
+.winning-result-table tr:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.head {
+  font-weight: 600;
+}
+
+.profit-rate-text {
+  font: 700 15px/24px Roboto;
+  margin: 0;
+}
+
+.restart-button {
+  width: 100%;
+}
