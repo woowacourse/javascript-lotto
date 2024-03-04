@@ -21,7 +21,7 @@ const View = {
   renderPurchasedLottos(lottos) {
     $lottosContainer.hidden = false;
 
-    $lottosText.innerHTML = `총 ${lottos.length}개를 구매하였습니다.`;
+    $lottosText.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
     $lottosList.innerHTML = `${lottos
       .map((lotto) => `<li class="lottos-list-item"><span>🎟️</span> ${lotto.join(', ')}</li>`)
       .join('')}`;
@@ -55,7 +55,7 @@ const View = {
       })
       .join('');
 
-    $profitRateText.innerHTML = `당신의 총 수익률은 ${profitRate}%입니다.`;
+    $profitRateText.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
 
     this.renderCloseModal();
     this.renderRestartGame();
