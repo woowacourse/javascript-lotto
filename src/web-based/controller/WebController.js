@@ -32,8 +32,8 @@ class LottoWebController {
       .querySelector('.form-purchase-amount')
       .addEventListener('submit', this.processPurchaseAmount.bind(this));
     document
-      .querySelector('.btn-submit-lotto')
-      .addEventListener('click', this.processWinningNumbers.bind(this));
+      .querySelector('.form-winning-numbers')
+      .addEventListener('submit', this.processWinningNumbers.bind(this));
     document
       .querySelector('.button-restart')
       .addEventListener('click', () => this.processRestart());
@@ -81,7 +81,8 @@ class LottoWebController {
     WinningNumbersOutputView.displayWinningNumbersInput();
   }
 
-  processWinningNumbers() {
+  processWinningNumbers(event) {
+    event.preventDefault();
     const inputWinningNumbers = WinningNumbersOutputView.getWinningNumbers();
     const validationResult = this.validateWinningNumbers(inputWinningNumbers);
 
