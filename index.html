@@ -30,19 +30,9 @@
         </form>
         <div id="purchase-result-container">
           <p id="purchase-result"></p>
+          <ul id="purchased-lotto-list"></ul>
         </div>
-        <div id="purchased-lotto-list">
-          <!-- <ul>
-            <li><span>🎟️</span>12, 28, 22, 37, 19, 23</li>
-            <li><span>🎟️</span>12, 28, 22, 37, 19, 23</li>
-            <li><span>🎟️</span>12, 28, 22, 37, 19, 23</li>
-            <li><span>🎟️</span>12, 28, 22, 37, 19, 23</li>
-            <li><span>🎟️</span>12, 28, 22, 37, 19, 23</li>
-            <li><span>🎟️</span>12, 28, 22, 37, 19, 23</li>
-            <li><span>🎟️</span>12, 28, 22, 37, 19, 23</li>
-          </ul> -->
-        </div>
-        <form class="winning-numbers-form hide">
+        <form id="winning-numbers-form">
           <label>지난주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
           <div id="winning-numbers-input-field">
             <div id="winning-numbers-container">
@@ -60,14 +50,15 @@
               <label>보너스 번호</label>
               <input type="number" id="bonus-number-input" required />
             </div>
+            <p id="winning-numbers-result"></p>
           </div>
           <button type="submit" id="winning-numbers-submit-button">결과 확인하기</button>
         </form>
       </div>
     </main>
-    <footer><p>Copyright 2023. woowacourse</p></footer>
 
-    <section class="hide">
+    <footer><p>Copyright 2023. woowacourse</p></footer>
+    <section id="lotto-result-modal-section" class="hide">
       <div id="lotto-result-modal-overlay">
         <div id="lotto-result-modal-container">
           <button id="modal-close-button">✖️</button>

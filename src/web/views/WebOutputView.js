@@ -1,5 +1,8 @@
 const WebOutputView = {
   printMessage(target, message) {
+    if (target.classList.contains('error')) {
+      target.classList.remove('error');
+    }
     target.innerHTML = message;
   },
 
