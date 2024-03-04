@@ -1,15 +1,14 @@
 import OPTIONS from '../constant/Options.js';
 import { validate2, validations } from '../util/validation.js';
 
-const resultFormEventListener = (event) => {
+const winningsFormSubmitListener = (event) => {
   event.preventDefault();
 
-  const inputs = [...document.querySelectorAll('.result-form__number-input')].map((element) => {
+  const form = event.target;
+  const winningNumbers = Array.from(form.elements['input-winning-list'], (element) => {
     return Number(element.value);
   });
-
-  const winningNumbers = inputs.slice(0, -1);
-  const bonusNumber = inputs[6];
+  const bonusNumber = Number(form.elements['input-bonus'].value);
 
   validateLottoNumbers(winningNumbers, bonusNumber);
 
@@ -52,4 +51,4 @@ const validateBounsNumber = (lottoNumbers, bonusNumber) => {
   validate2(validations.isUnique, [...lottoNumbers, bonusNumber], name);
 };
 
-export default resultFormEventListener;
+export default winningsFormSubmitListener;

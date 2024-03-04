@@ -1,11 +1,11 @@
 import OPTIONS from '../constant/Options.js';
 import { validate2, validations } from '../util/validation.js';
 
-const amountFormEventListener = (event) => {
+const purchaseFormSubmitListener = (event) => {
   event.preventDefault();
 
-  const input = document.querySelector('.amount-form__input').value;
-  const purchaseAmount = Number(input);
+  const purchaseAmountInput = event.target.elements['input'].value;
+  const purchaseAmount = Number(purchaseAmountInput);
 
   validatePurchaseAmount(purchaseAmount);
 
@@ -18,4 +18,4 @@ const validatePurchaseAmount = (purchaseAmount) => {
   validate2(validations.isAtLeast, purchaseAmount, OPTIONS.LOTTO.price, name);
 };
 
-export default amountFormEventListener;
+export default purchaseFormSubmitListener;

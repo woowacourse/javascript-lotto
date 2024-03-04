@@ -5,6 +5,8 @@ footer {
 
 header {
   align-items: center;
+  background: var(--color-bg-header);
+  color: var(--color-text-header);
   display: flex;
   height: 64px;
 }
@@ -17,6 +19,7 @@ input::-webkit-outer-spin-button {
 
 input {
   box-sizing: border-box;
+  text-align: center;
   -moz-appearance: textfield;
 }
 
@@ -44,7 +47,10 @@ main {
 
 /* TEST: 임시 max-height */
 .con-lotto-numbers {
-  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 16vh;
   overflow-y: auto;
 }
 

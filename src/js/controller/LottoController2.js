@@ -12,8 +12,8 @@ class LottoController2 {
 
     this.#printLottoInfos();
 
-    this.#showComponentByClass('.lotto-info');
-    this.#showComponentByClass('.result-form');
+    this.#showComponentById('con-lotto-infos');
+    this.#showComponentById('form-winnings');
   }
 
   #issueLottos(purchaseAmount) {
@@ -22,24 +22,19 @@ class LottoController2 {
   }
 
   #printLottoInfos() {
-    const lottoListElement = document.querySelector('.lotto-info__lotto-list');
+    const lottoNumbersContainer = document.querySelector('.con-lotto-numbers');
 
-    document.querySelector('.lotto-info__label').textContent =
-      `총 ${this.#lottos.length}개를 구매하였습니다.`;
+    document.getElementById('span-issued-quntity').textContent = this.#lottos.length;
 
-    lottoListElement.innerHTML = '';
+    lottoNumbersContainer.innerHTML = '';
 
     this.#lottos.forEach((lotto) => {
-      const lottoElement = document.createElement('div');
+      const lottoElement = document.createElement('p');
 
-      lottoElement.className = 'lotto-info__lotto';
-
-      const lottoEmojiElement = document.createElement('span');
-      lottoEmojiElement.className = 'lotto-info__lotto-emiji text-emoji';
-      lottoEmojiElement.textContent = '🎟️';
+      const lottoEmojiElement = document.createTextNode('🎟️');
 
       const lottoNumbersElement = document.createElement('span');
-      lottoNumbersElement.className = 'lotto-info__lotto-numbers text-content';
+      lottoNumbersElement.className = 'span-lotto-numbers';
       lottoNumbersElement.textContent = lotto
         .getNumbers()
         .join(OPTIONS.OUTPUT.lottoNumbersDelimiter);
@@ -47,7 +42,7 @@ class LottoController2 {
       lottoElement.appendChild(lottoEmojiElement);
       lottoElement.appendChild(lottoNumbersElement);
 
-      lottoListElement.appendChild(lottoElement);
+      lottoNumbersContainer.appendChild(lottoElement);
     });
   }
 
@@ -57,7 +52,7 @@ class LottoController2 {
     this.#printWinningResult(winningResult);
     this.#printProfitRate(profitRate);
 
-    this.#showComponentByClass('.result-modal');
+    this.#showComponentById('con-modal');
   }
 
   #analzeLottoResults(winningNumbers, bonusNumber) {
@@ -71,18 +66,18 @@ class LottoController2 {
   }
 
   #printWinningResult(winningResult) {
-    document.querySelectorAll('.result-modal__winning_count').forEach((shell, index) => {
+    document.querySelectorAll('.span-winning-count').forEach((shell, index) => {
       shell.innerHTML = winningResult[5 - index];
     });
   }
 
   #printProfitRate(profitRate) {
-    document.querySelector('.result-modal__text-profit-rate').innerHTML =
+    document.querySelector('.span-profit-rate').innerHTML =
       `당신의 총 수익률은 ${profitRate.toFixed(1)}% 입니다.`;
   }
 
-  #showComponentByClass(className) {
-    document.querySelector(className).classList.remove('hidden');
+  #showComponentById(Id) {
+    document.getElementById(Id).classList.remove('hidden');
   }
 }
 

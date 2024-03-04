@@ -1,25 +1,31 @@
+// import '../css/styles.css';
+// import '../css/index.css';
+// import '../css/modal.css';
+// import '../css/font.css';
+// import '../css/color.css';
+
 import LottoController2 from './controller/LottoController2.js';
-import amountFormEventListener from './eventListener/amountFormEventListener.js';
 import modalCloseButtonEventListener from './eventListener/modalCloseButtonEventListener.js';
 import modalRestartButtonEventListener from './eventListener/modalRestartButtonEventListener.js';
-import resultFormEventListener from './eventListener/resultFormEventListener.js';
+import purchaseFormSubmitListener from './eventListener/purchaseFormSubmitListener.js';
+import winningsFormSubmitListener from './eventListener/resultFormEventListener.js';
 
 const controller = new LottoController2();
 
 // 구입 금액을 입력받고 로또를 발행하여 출력하는 이벤트
 document.addEventListener('DOMContentLoaded', () => {
-  const amountFormElement = document.querySelector('.amount-form');
-  const resultFormElement = document.querySelector('.result-form');
-  const modalCloseButton = document.querySelector('.result-modal__button-close');
-  const modalRestartButton = document.querySelector('.result-modal__button-restart');
+  const purchaseAmountForm = document.getElementById('form-purchase');
+  const winningsForm = document.getElementById('form-winnings');
+  const modalCloseButton = document.querySelector('.btn-close');
+  const modalRestartButton = document.querySelector('.btn-restart');
 
-  amountFormElement.addEventListener('submit', (event) => {
-    const purchaseAmount = amountFormEventListener(event);
+  purchaseAmountForm.addEventListener('submit', (event) => {
+    const purchaseAmount = purchaseFormSubmitListener(event);
     controller.issueLottosAndPrintInfos(purchaseAmount);
   });
 
-  resultFormElement.addEventListener('submit', (event) => {
-    const [winningNumbers, bonusNumber] = resultFormEventListener(event);
+  winningsForm.addEventListener('submit', (event) => {
+    const [winningNumbers, bonusNumber] = winningsFormSubmitListener(event);
     controller.analyzeAndPrintLottoResult(winningNumbers, bonusNumber);
   });
 

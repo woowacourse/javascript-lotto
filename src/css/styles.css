@@ -9,10 +9,10 @@
 }
 
 button {
-  background: var(--color-primary);
+  background: var(--color-bg-button);
   border: 0;
   border-radius: 4px;
-  color: var(--color-button-text);
+  color: var(--color-text-button);
   cursor: pointer;
 }
 
@@ -20,4 +20,8 @@ form {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.hidden {
+  display: none !important;
 }

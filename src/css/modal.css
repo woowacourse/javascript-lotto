@@ -29,6 +29,18 @@ th {
 
 .con-modal {
   align-items: center;
+  background: var(--color-bg-modal-background);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.modal-popup {
+  align-items: center;
   background: var(--color-bg-modal);
   border-radius: 4px;
   box-sizing: border-box;
@@ -37,14 +49,4 @@ th {
   height: fit-content;
   padding: 16px 16px 32px;
   width: 350px;
-}
-
-.modal-background {
-  background: var(--color-bg-modal-background);
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  width: 100vw;
 }
