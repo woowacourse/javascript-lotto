@@ -196,8 +196,7 @@ class LottoController {
   }
 
   // 게임 실행
-  // eslint-disable-next-line max-params
-  async executeGame(lottos, winningNumbers, bonusNumber) {
+  async executeGame({ lottos, winningNumbers, bonusNumber }) {
     const winningResult = this.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
     const profitRate = this.calculateProfitRate(winningResult);
     this.displayWinningResult(winningResult, profitRate);
@@ -209,7 +208,6 @@ class LottoController {
     const profitResult = document.getElementById('profitResult');
 
     for (let i = 5; i >= 1; i -= 1) {
-      console.log(i, winningResult[i]);
       const row = resultTable.rows[6 - i];
       const cell3 = row.cells[2];
       cell3.innerHTML = winningResult[i.toString()];

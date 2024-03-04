@@ -38,8 +38,12 @@ window.onload = function () {
       return;
     }
 
-    await lottoController.executeGame(lottos, winningNumbers, bonusNumber);
+    await lottoController.executeGame({ lottos, winningNumbers, bonusNumber });
     modalContainer.style.display = 'flex';
+  });
+
+  modalContainer.addEventListener('click', function () {
+    modalContainer.style.display = 'none';
   });
 
   modalCloseButton.addEventListener('click', function () {
