@@ -97,6 +97,26 @@
     - [x] 로또 결과 출력
   - [x] 콘솔 구현체를 이용해 `readLineAsync`를 변경(InputView)
   - [x] dom을 통해 `OutputView` 구현하기
+
+- [ ] HTML
+  - [ ] 시멘틱 태그 더 적극적으로 활용
+  - [ ] EOL 에러
+- [ ] 컨트롤러 및 뷰 수정
+  - [ ] 웹에 맞게 로직 변경(순차적->함수형)
+  - [ ] 재시작 로직 변경
+- [ ] 기존 설계 변경
+  - [ ] view 아래의 Controller라는 이름 변경
+  - [ ] 디렉토리 내의 잘못된 이름 변경(git folder name case sensitive 참고)
+  - [ ] preventDefault() 없애기
+  - [ ] initBody를 InputView 아래로 넣기
+  - [ ] css 파일 분리하기
+- [ ] UI 수정
+  - [ ] input 잘못 입력 시 기존 입력 값 지우지 않기
+  - [ ] 금액 padding 밑으로 찌그러짐
+  - [ ] 로또 스크롤바 위치 고민
+  - [ ] padding 피그마처럼 반영
+  - [ ] 선택자 font 이름 변경
+
 ## 실행 예시
 ``` 
 > 구입금액을 입력해 주세요.8000
