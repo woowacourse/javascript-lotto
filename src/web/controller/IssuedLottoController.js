@@ -8,20 +8,12 @@ class IssuedLottoController {
     this.#issuedLottos = getRandomLottoArray(count);
   }
 
-  #createLottoEmojiSpan() {
-    const lottoEmojiSpan = document.createElement("span");
-    lottoEmojiSpan.classList.add("lotto-emoji-span");
-    lottoEmojiSpan.textContent = SYMBOL.LOTTO_EMOJI;
-
-    return lottoEmojiSpan;
-  }
-
-  #createLottoNumbersSpan(lottoNumbers) {
+  #createLottoNumbersP(lottoNumbers) {
     const lottoNumbersSpan = document.createElement("span");
     lottoNumbersSpan.classList.add("issued-lotto-numbers-span");
-    lottoNumbersSpan.textContent = [...lottoNumbers].join(
-      SYMBOL.LOTTO_NUMBER_DELIMITER
-    );
+    lottoNumbersSpan.textContent = `${SYMBOL.LOTTO_EMOJI} ${[
+      ...lottoNumbers,
+    ].join(SYMBOL.LOTTO_NUMBER_DELIMITER)}`;
 
     return lottoNumbersSpan;
   }
@@ -30,10 +22,7 @@ class IssuedLottoController {
     const lottoDiv = document.createElement("div");
     lottoDiv.classList.add("issued-lotto");
 
-    const lottoEmojiSpan = this.#createLottoEmojiSpan();
-    lottoDiv.appendChild(lottoEmojiSpan);
-
-    const lottoNumbersSpan = this.#createLottoNumbersSpan(lottoNumbers);
+    const lottoNumbersSpan = this.#createLottoNumbersP(lottoNumbers);
     lottoDiv.appendChild(lottoNumbersSpan);
 
     return lottoDiv;
