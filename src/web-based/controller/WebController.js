@@ -12,7 +12,7 @@ import WinningNumbersValidator from '../../validator/WinningNumbersValidator';
 import BonusNumberValidator from '../../validator/BonusNumberValidator';
 import {
   BONUS_NUMBER_INPUT_ERROR,
-  PURCHASE_AMOUT_INPUT_ERROR,
+  PURCHASE_AMOUNT_INPUT_ERROR,
   WINNING_NUMBER_INPUT_ERROR,
 } from '../../constant/messages';
 import { LOTTO_SYMBOL, PURCHASE_SYMBOL } from '../../constant/symbols';
@@ -60,10 +60,10 @@ class LottoWebController {
   }
 
   validatePurchaseAmount(inputValue) {
-    if (!PurchaseAmountValidator.isNumber(inputValue)) return PURCHASE_AMOUT_INPUT_ERROR.TYPE;
-    if (!PurchaseAmountValidator.isValidUnit(inputValue)) return PURCHASE_AMOUT_INPUT_ERROR.UNIT;
+    if (!PurchaseAmountValidator.isNumber(inputValue)) return PURCHASE_AMOUNT_INPUT_ERROR.TYPE;
+    if (!PurchaseAmountValidator.isValidUnit(inputValue)) return PURCHASE_AMOUNT_INPUT_ERROR.UNIT;
     if (!PurchaseAmountValidator.isValidMinRange(inputValue))
-      return PURCHASE_AMOUT_INPUT_ERROR.RANGE;
+      return PURCHASE_AMOUNT_INPUT_ERROR.RANGE;
     return true;
   }
 

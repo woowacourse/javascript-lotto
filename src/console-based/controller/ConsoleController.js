@@ -8,7 +8,7 @@ import BonusNumberValidator from '../../validator/BonusNumberValidator';
 import RestartOrExitValidator from '../../validator/RestartOrExitValidator';
 import RepeatUntilSuccess from '../utils/RepeatUntilSuccess';
 import {
-  PURCHASE_AMOUT_INPUT_ERROR,
+  PURCHASE_AMOUNT_INPUT_ERROR,
   RESTART_OR_EXIT_INPUT_ERROR,
   WINNING_NUMBER_INPUT_ERROR,
 } from '../../constant/messages';
@@ -41,11 +41,11 @@ class LottoConsoleController {
 
   validatePurchaseAmount(inputValue) {
     if (!PurchaseAmountValidator.isNumber(inputValue))
-      throw new Error(PURCHASE_AMOUT_INPUT_ERROR.TYPE);
+      throw new Error(PURCHASE_AMOUNT_INPUT_ERROR.TYPE);
     if (!PurchaseAmountValidator.isValidUnit(inputValue))
-      throw new Error(PURCHASE_AMOUT_INPUT_ERROR.UNIT);
+      throw new Error(PURCHASE_AMOUNT_INPUT_ERROR.UNIT);
     if (!PurchaseAmountValidator.isValidMinRange(inputValue))
-      throw new Error(PURCHASE_AMOUT_INPUT_ERROR.RANGE);
+      throw new Error(PURCHASE_AMOUNT_INPUT_ERROR.RANGE);
   }
 
   processLottoTicket(purchaseAmount) {

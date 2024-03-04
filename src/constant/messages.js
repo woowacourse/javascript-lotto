@@ -29,7 +29,7 @@ export const OUTPUT_INFO = {
   },
 };
 
-export const PURCHASE_AMOUT_INPUT_ERROR = {
+export const PURCHASE_AMOUNT_INPUT_ERROR = {
   TYPE: `${GAME_SYMBOL.ERROR} 구매 금액은 숫자여야 합니다.`,
   UNIT: `${GAME_SYMBOL.ERROR}구매 금액은 1000원 단위여야 합니다.`,
   RANGE: `${GAME_SYMBOL.ERROR}최소 구매 금액은 1000원 입니다.`,
