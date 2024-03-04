@@ -23,3 +23,9 @@ body.modalOpen {
   padding: 15px;
   position: relative;
 }
+
+.rightButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
