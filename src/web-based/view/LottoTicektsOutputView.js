@@ -7,6 +7,8 @@ class LottoTicketsOutputView {
   displayLottoTicketsSection(lottoTickets) {
     this.lottoTicketsSectionView.classList.remove('invisible');
     this.lottoCountView.textContent = `총 ${lottoTickets.length}개를 구매하셨습니다.`;
+
+    const fragment = document.createDocumentFragment();
     lottoTickets.forEach((ticket) => {
       const li = document.createElement('li');
       li.className = 'li-lotto-ticket';
@@ -22,8 +24,10 @@ class LottoTicketsOutputView {
       li.appendChild(ticketEmojiElement);
       li.appendChild(ticketNumbersElement);
 
-      this.lottoTicketsView.appendChild(li);
+      fragment.appendChild(li);
     });
+
+    this.lottoTicketsView.appendChild(fragment);
   }
 
   resetToInitialState() {
