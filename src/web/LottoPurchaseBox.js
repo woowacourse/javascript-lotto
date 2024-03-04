@@ -5,6 +5,7 @@ import WinningLottoInput from './WinningLottoInput';
 import LottoStatisticsModal from './LottoStatisticsModal';
 import LottoGenerator from '../controller/LottoGenerator';
 import StatisticsGenerator from '../controller/StatisticsGenerator';
+import disableSectionElements from '../utils/disableSectionElements';
 
 class LottoPurchaseBox extends Component {
   setup() {
@@ -45,11 +46,17 @@ class LottoPurchaseBox extends Component {
     this.initializeMoneyInput();
 
     if (this.state.lottoTickets.length > 0) {
+      disableSectionElements(this.$target, '.money-input-container', '.clickable');
+
       this.initializeLottoDisplay();
       this.initializeWinningLottoInput();
     }
 
-    if (this.state.isModalOpen) this.initializeLottoStatisticsModal();
+    if (this.state.isModalOpen) {
+      disableSectionElements(this.$target, '.winning-lotto-input-container', '.clickable');
+
+      this.initializeLottoStatisticsModal();
+    }
   }
 
   initializeMoneyInput() {
@@ -100,24 +107,16 @@ class LottoPurchaseBox extends Component {
     this.setState({ isModalOpen: false });
   }
 
-  disabledSection(className) {
-    this.$target
-      .querySelector(className)
-      .querySelectorAll('input')
-      .forEach((el) => (el.disabled = true));
-  }
-
   purchaseLottoTickets(money) {
     this.setState({ lottoTickets: LottoGenerator.createLotto(money) });
-    this.disabledSection('.money-input-container');
   }
 
   makeWinningLotto(winningNumbers, bonusNumber) {
     this.setState({ winningLotto: { winningNumbers, bonusNumber } });
-    this.showPrizeStatistics();
+    this.#showPrizeStatistics();
   }
 
-  showPrizeStatistics() {
+  #showPrizeStatistics() {
     const { lottoTickets, winningLotto } = this.state;
 
     const prizes = StatisticsGenerator.calculateAllPrize(lottoTickets, winningLotto);
@@ -125,7 +124,6 @@ class LottoPurchaseBox extends Component {
 
     this.setState({ lottoStatistics: { prizes, returnOnInvestment } });
     this.openModal();
-    this.disabledSection('.winning-lotto-input-container');
   }
 }
 

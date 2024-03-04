@@ -13,20 +13,20 @@ class WinningLottoInput extends Component {
           <fieldset class="winning-number-input">
             <label>당첨 번호</label>
             <div>
-              <input class="winning-number" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
-              <input class="winning-number" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
-              <input class="winning-number" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
-              <input class="winning-number" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
-              <input class="winning-number" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
-              <input class="winning-number" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
+              <input class="winning-number clickable" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
+              <input class="winning-number clickable" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
+              <input class="winning-number clickable" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
+              <input class="winning-number clickable" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
+              <input class="winning-number clickable" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
+              <input class="winning-number clickable" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
             </div>
           </fieldset>
           <fieldset class="bonus-number-input">
             <label>보너스 번호</label>
-            <input class="bonus-number" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
+            <input class="bonus-number clickable" type="number" min=${LOTTO.NUMBER_RANGE_MIN} max=${LOTTO.NUMBER_RANGE_MAX} step="1" required></input>
           </fieldset>
         </div>
-        <input class="winning-lotto-btn" type="submit" value="결과 확인하기"></input>
+        <input class="winning-lotto-btn clickable" type="submit" value="결과 확인하기"></input>
       </form>
     `;
   }
@@ -36,10 +36,10 @@ class WinningLottoInput extends Component {
   }
 
   setEvent() {
-    this.$target.querySelector('.winning-lotto-form').addEventListener('submit', (event) => this.onFormSubmit(event));
+    this.$target.querySelector('.winning-lotto-form').addEventListener('submit', (event) => this.#onFormSubmit(event));
   }
 
-  readWinningNumbers() {
+  #readWinningNumbers() {
     const winningNumbers = [...this.$target.querySelectorAll('.winning-number')].map((el) => Number(el.value));
 
     return Validator.validateLottoNumbers(
@@ -47,17 +47,17 @@ class WinningLottoInput extends Component {
     );
   }
 
-  readBonusNumber(winningNumber) {
+  #readBonusNumber(winningNumber) {
     const bonusNumber = Number(this.$target.querySelector('.bonus-number').value);
 
     return Validator.validateBonusNumber(winningNumber, bonusNumber);
   }
 
-  onFormSubmit(event) {
+  #onFormSubmit(event) {
     try {
       event.preventDefault();
-      const winningNumbers = this.readWinningNumbers();
-      const bonusNumber = this.readBonusNumber(winningNumbers);
+      const winningNumbers = this.#readWinningNumbers();
+      const bonusNumber = this.#readBonusNumber(winningNumbers);
       this.props.makeWinningLotto(winningNumbers, bonusNumber);
     } catch (error) {
       alert(error.message);
