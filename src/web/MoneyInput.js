@@ -34,12 +34,8 @@ class MoneyInput extends Component {
       this.props.purchaseLottoTickets(money);
     } catch (error) {
       alert(error.message);
-      this.resetFormValue();
+      this.$target.querySelector('.money-input-form').reset();
     }
-  }
-
-  resetFormValue() {
-    this.$target.querySelector('.money-input').value = '';
   }
 }
 

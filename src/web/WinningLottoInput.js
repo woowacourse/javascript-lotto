@@ -61,13 +61,8 @@ class WinningLottoInput extends Component {
       this.props.makeWinningLotto(winningNumbers, bonusNumber);
     } catch (error) {
       alert(error.message);
-      this.resetFormValue();
+      this.$target.querySelector('.winning-lotto-form').reset();
     }
-  }
-
-  resetFormValue() {
-    this.$target.querySelectorAll('.winning-number').forEach((el) => (el.value = ''));
-    this.$target.querySelector('.bonus-number').value = '';
   }
 }
 
