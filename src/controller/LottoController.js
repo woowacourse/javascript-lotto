@@ -48,7 +48,7 @@ class LottoController {
     const purchaseAmount = await InputView.askPurchaseAmount();
     PurchaseAmountValidation.validate(purchaseAmount);
 
-    return Number.parseInt(purchaseAmount / NUMBER.LOTTO_PRICE, 10);
+    return LottoService.getPurchaseCount(purchaseAmount);
   }
 
   async getValidateWinNumbers() {

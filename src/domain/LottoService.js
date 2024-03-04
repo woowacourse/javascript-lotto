@@ -81,6 +81,10 @@ const LottoService = {
 
   wrapArrayToLotto(winNumbers = []){
     return new Lotto(winNumbers);
+  },
+
+  getPurchaseCount(purchaseAmount){
+    return Number.parseInt(purchaseAmount / NUMBER.LOTTO_PRICE, 10);
   }
 };
 
