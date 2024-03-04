@@ -14,8 +14,7 @@ export const isValidLottoNumberCount = (numbers) => {
  * 로또 번호들이 중복되지 않는 지 여부
  * @param {number[]} numbers
  */
-export const isNotDuplicatedLottoNumber = (numbers) =>
-  numbers.length === new Set(numbers).size;
+export const isNotDuplicatedLottoNumber = (numbers) => numbers.length === new Set(numbers).size;
 
 /**
  * 로또 번호들이 유효한 범위안의 숫자인지 여부
@@ -42,8 +41,7 @@ export const isLottoNumbersInRange = (numbers) => {
  * @param {number[]} lottoNumbers
  * @param {number} bonusNumbers
  */
-export const isNotInLottoNumber = (lottoNumbers, bonusNumber) =>
-  !lottoNumbers.includes(bonusNumber);
+export const isNotInLottoNumber = (lottoNumbers, bonusNumber) => !lottoNumbers.includes(bonusNumber);
 
 /**
  * 구매금액이 로또 가격으로 나누어 떨어지는 지 여부
@@ -67,16 +65,14 @@ export const isValidNumbersOfTickets = (money) => {
  * 당첨번호에 대한 입력값이 숫자들로 이루어지며 숫자들이 쉼표로 구분되저 있는지 여부
  * @param {string} numberInput
  */
-export const isValidWinningNumbersForm = (numbersInput) =>
-  /^(\d+,)*\d+$/.test(numbersInput);
+export const isValidWinningNumbersForm = (numbersInput) => /^(\d+,)*\d+$/.test(numbersInput);
 
 /**
  * 재시작 여부 입력으로 y 또는 n이 입력되었는지 여부
  * @param {string} restartInput
  */
 export const isValidRestartInputForm = (restartInput) => {
-  const { restart, end } = RESTART_KEY;
-  const regex = new RegExp(`^[${restart}|${end}]$`);
+  const validInputValues = Object.values(RESTART_KEY);
 
-  return regex.test(restartInput);
+  return validInputValues.include(restartInput);
 };
