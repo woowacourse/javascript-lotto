@@ -1,0 +1,61 @@
+/* 로또 발행 */
+.lp-ticket-issuance {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+.lp-ticket-issuance .lp-ti-total-purchase-number {
+  margin-bottom: 8px;
+}
+.lp-ticket-issuance .lp-ti-ticket-group {
+  display: flex;
+  flex-direction: column;
+}
+.lp-ti-ticket-group .lp-ti-ticket {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.lp-ti-ticket .lp-ti-img {
+  font-size: 34px;
+  margin-right: 8px;
+  line-height: 36px;
+}
+/* 당첨 번호 및 보너스 번호 입력 */
+.lp-number-input-group {
+  margin-bottom: 27px;
+}
+.lp-number-input-group .lp-nig-text {
+  margin-bottom: 12px;
+}
+.lp-number-input-group .lp-nig-input-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.lp-nig-number-input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.lp-nig-number-input-group .lp-nig-winning-box {
+}
+.lp-nig-number-input-group .lp-nig-input {
+  width: 34px;
+  margin-right: 8px;
+  padding: 8px;
+}
+.lp-nig-number-input-group .lp-nig-input:last-child {
+  margin-right: 0;
+}
+.lp-nig-number-input-group .lp-nig-winnig-box {
+}
+.lp-nig-number-input-group .lp-nig-bonus-box .lp-nig-input {
+}
+/* 당첨 결과 확인 플로팅 버튼 */
+.lp-winning-floating-btn {
+  width: 100%;
+}

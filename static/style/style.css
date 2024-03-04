@@ -1,0 +1,44 @@
+@import url('./main.css');
+@import url('./component.css');
+@import url('./purchaseBefore.css');
+@import url('./purchaseAfter.css');
+@import url('./modal.css');
+
+:root {
+  --white-color: rgba(255, 255, 255, 1);
+  --light-gray-color: rgba(252, 252, 253, 1);
+  --gray-color: rgba(180, 180, 180, 1);
+  --deep-gray-color: rgba(139, 139, 139, 1);
+  --blue-color: rgba(78, 91, 166, 1);
+  --black-color: rgba(0, 0, 0, 1);
+
+  --title-font: 24px;
+  --subtitle-font: 20px;
+  --default-font: 15px;
+  --button-font: 14px;
+
+  --title-bold: 800;
+  --subtitle-bold: 600;
+  --default-bold: 400;
+  --button-bold: 700;
+}
+
+body {
+  font:
+    var(--default-bold) var(--default-font) / 24px 'Roboto',
+    sans-serif;
+  color: var(--black-color);
+  background-color: var(--light-gray-color);
+  letter-spacing: 0.5px;
+}
+
+body #app {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}

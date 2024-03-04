@@ -1,0 +1,65 @@
+/* Header */
+.lotto-main-header {
+  height: 64px;
+  background-color: var(--blue-color);
+  position: relative;
+  line-height: 36px;
+}
+.lmh-title {
+  position: absolute;
+  left: 130px;
+  top: 14px;
+  line-height: 36px;
+  color: var(--white-color);
+  font-weight: var(--title-bold);
+  font-size: var(--title-font);
+}
+
+/* Body */
+.lotto-main-body {
+  margin-bottom: 69px;
+  min-height: 65vh;
+}
+
+.lotto-main-body .lotto-paper {
+  min-height: 427px;
+  max-width: 414px;
+  margin: 0 auto;
+  margin-top: 84px;
+  padding: 40px 16px 32px;
+  background-color: var(--white-color);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.error-message {
+  color: rgb(245, 59, 59);
+  font-size: 12px;
+  font-weight: var(--subtitle-bold);
+  margin-top: 5px;
+}
+
+.error-line {
+  outline: 2px solid rgb(245, 59, 59);
+  border-radius: 4px;
+}
+
+/* Footer */
+.lotto-footer {
+  height: 80px;
+  width: 100%;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  background-color: var(--light-gray-color);
+}
+
+.lotto-footer .lotto-footer-text {
+  margin: 0 auto;
+  font-size: var(--button-font);
+  font-weight: var(--button-bold);
+  color: var(--blue-color);
+  letter-spacing: 1.25px;
+  line-height: 16px;
+  text-align: center;
+  margin-top: 28px;
+}

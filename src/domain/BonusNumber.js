@@ -4,20 +4,33 @@ import LOTTO_RULE from '../constants/rules/lottoRule';
 class BonusNumber {
   #bonumNumber;
 
-  constructor(number, winningLotto) {
+  constructor(number) {
     const parsedBonusNumber = Number(number);
-    this.#validataeBonusNumber(parsedBonusNumber, winningLotto);
+    this.#validateBonusNumber(parsedBonusNumber);
     this.#bonumNumber = parsedBonusNumber;
   }
 
-  #validataeBonusNumber(number, winningLotto) {
-    this.#isPositiveNumber(number);
+  #validateBonusNumber(number) {
+    this.#isValidBonusNumberCount(number);
+    this.#isNumber(number);
+    this.#isPositiveInteger(number);
     this.#isValidNumberRange(number);
-    this.#hasRedundantNumber(number, winningLotto);
   }
 
-  #isPositiveNumber(number) {
-    if (isNaN(number) || number < 1) {
+  #isValidBonusNumberCount(number) {
+    if (number === 0) {
+      throw new Error(ERROR_MESSAGE.IS_INVALID_BONUS_NUMBER_COUNT);
+    }
+  }
+
+  #isNumber(number) {
+    if (Number.isNaN(number)) {
+      throw new Error(ERROR_MESSAGE.IS_NOT_NUMBER);
+    }
+  }
+
+  #isPositiveInteger(number) {
+    if (number < 1) {
       throw new Error(ERROR_MESSAGE.IS_NOT_POSITIVE_INTEGER);
     }
   }
@@ -28,13 +41,13 @@ class BonusNumber {
     }
   }
 
-  #hasRedundantNumber(number, winningLotto) {
-    const winningLottoNumbers = winningLotto.lottoNumbers;
+  // #hasRedundantNumber(number, winningLotto) {
+  //   const winningLottoNumbers = winningLotto.lottoNumbers;
 
-    if (winningLottoNumbers.includes(number)) {
-      throw new Error(ERROR_MESSAGE.HAS_REDUNDENT_LOTTO_NUMBER);
-    }
-  }
+  //   if (winningLottoNumbers.includes(number)) {
+  //     throw new Error(ERROR_MESSAGE.BONUS_NUMBER_ALREADY_CHOSEN);
+  //   }
+  // }
 
   get value() {
     return this.#bonumNumber;

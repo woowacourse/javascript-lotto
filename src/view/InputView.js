@@ -5,7 +5,7 @@ class InputView {
   static async readMoney() {
     const input = await Console.readLineAsync(PROGRESS_MESSAGES.READ_MONEY_MESSAGE);
 
-    return input;
+    return Number(input);
   }
 
   static async readWinnigNumbers() {
