@@ -171,7 +171,7 @@ footer{
 }
 
 
-#main-contents__price-input-div{
+#main-contents__price-input-section{
   width: 310px;
   height: 64px;
   display: flex;
@@ -221,7 +221,7 @@ footer{
   margin: 28px auto 0px 16px;
 }
 
-#main-contents__purchased-lotto-div{
+#main-contents__purchased-lotto-section{
   width: 238px;
   height: 276px;
   margin: 8px auto 0px 16px;
@@ -246,12 +246,12 @@ footer{
   letter-spacing: -1px;
 }
 
-#main-contents__winning-number-div{
+#main-contents__winning-number-section{
   width: 244px;
   height: 68px;
 }
 
-#main-contents__bonus-number-div{
+#main-contents__bonus-number-section{
   width: 76px;
   height: 68px;
   display: flex;
@@ -286,7 +286,7 @@ footer{
   padding: 6px 6px 6px 8px
 }
 
-#modal-main-div{
+#modal__main{
   margin: auto;
   background-color: var( --greyscale-1);
   border-radius: 4px;

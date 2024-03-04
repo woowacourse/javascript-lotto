@@ -16,7 +16,7 @@ const INPUTS = {
   ),
 
   bonusNumber: document.querySelector(
-    "#main-contents__bonus-number-div .winning-number-input"
+    "#main-contents__bonus-number-section .winning-number-input"
   ),
 };
 
@@ -25,7 +25,7 @@ const SPANS = {
 };
 
 const DIVS = {
-  purchasedLotto: getElementById("main-contents__purchased-lotto-div"),
+  purchasedLotto: getElementById("main-contents__purchased-lotto-section"),
   modal: getElementById("modal"),
 };
 

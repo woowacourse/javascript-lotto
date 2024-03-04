@@ -61,7 +61,7 @@ class HTMLOutputView {
   }
 
   static #getPurchasedLottoElement = (lotto) => {
-    const purchasedLottoElement = document.createElement("div");
+    const purchasedLottoElement = document.createElement("figure");
     purchasedLottoElement.classList.add(ClassName.purchasedLotto);
     purchasedLottoElement.appendChild(this.#getLottoTicketStrong());
     purchasedLottoElement.appendChild(this.#getLottoNumberSpan(lotto));
