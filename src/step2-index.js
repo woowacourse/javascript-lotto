@@ -1,4 +1,41 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import './web/styles/reset.css';
+import './web/styles/index.css';
+import WebLottoController from './web/WebLottoController';
+import {
+  lottoResultModalSection,
+  purchaseAmountForm,
+  purchaseButton,
+  purchaseLottoList,
+  purchaseResult,
+  winningNumbersButton,
+  winningNumbersForm,
+} from './web/DOM/objects';
+import WebInputView from './web/views/WebInputView';
+import WebOutputView from './web/views/WebOutputView';
+
+const app = {
+  play() {
+    this.initApp();
+    this.initEventListener();
+  },
+
+  purchaseAmountHandler(event) {
+    const purchaseAmount = WebInputView.readPurchaseAmount(event);
+    if (purchaseAmount) {
+      new WebLottoController(purchaseAmount).run();
+    }
+  },
+
+  initApp() {
+    WebOutputView.reset(purchaseResult);
+    WebOutputView.reset(purchaseLottoList);
+    WebOutputView.reset(winningNumbersForm);
+    lottoResultModalSection.classList.add('hide');
+  },
+
+  initEventListener() {
+    purchaseAmountForm.addEventListener('submit', this.purchaseAmountHandler);
+  },
+};
+
+app.play();
