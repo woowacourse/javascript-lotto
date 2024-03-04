@@ -1,41 +1,41 @@
 .winnumber-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .winnumber-input-box {
-    width: 100%;
-    bottom: 0rem;
-    display: flex;
-    flex-direction: column;
-    margin: auto 0 0.3rem 0;
+  width: 100%;
+  bottom: 0rem;
+  display: flex;
+  flex-direction: column;
+  margin: auto 0 0.3rem 0;
 }
 
 .winnumber-title {
-    margin: 0 0 1rem 0;
+  margin: 0 0 1rem 0;
 }
 
 .input-box {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .winnumber-input {
-    margin: 0.5rem 0.3rem 0 0;
+  margin: 0.5rem 0.3rem 0 0;
 }
 
 .one-number-input {
-    width: 1.5rem;
-    height: 1.5rem;
-    text-align: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
 }
 
 .bonusnumber-input {
-    float: right;
-    margin: 0.5rem 0 0 0;
+  float: right;
+  margin: 0.5rem 0 0 0;
 }
 
 .result-button {
-    margin: 0 0 1rem 0;
-    flex-grow: 1;
+  margin: 0 0 1rem 0;
+  flex-grow: 1;
 }
