@@ -28,7 +28,7 @@ class LottoWebController {
       this.handleWebWinningCombinationInput.bind()
     );
     $("#modal-close-btn").addEventListener("click", this.closeModal.bind());
-    $("#modal-retry-btn").addEventListener("click", this.reloadPage.bind());
+    $("#modal-retry-btn").addEventListener("click", this.reloadTag.bind(this));
     $("#modal").addEventListener("click", this.closeModalOutside.bind(this));
 
     $("#content-box-input-combination")
@@ -56,10 +56,12 @@ class LottoWebController {
       const webIssuedLottoCount = this.calculateWebIssuedLottoCount();
 
       $("#after-budget").style.display = "flex";
-      const budgetInputNodes = $("#content-box-input-budget");
-      budgetInputNodes.querySelector("input").disabled = true;
-      budgetInputNodes.querySelector("button").disabled = true;
+      const form = document.querySelector("#content-box-input-budget");
+      const formInputs = form.querySelectorAll("input, button");
 
+      formInputs.forEach((input) => {
+        input.disabled = true;
+      });
       this.handleWebIssuedLottoArray(webIssuedLottoCount);
     } catch (error) {
       return alert(error.message);
@@ -114,11 +116,22 @@ class LottoWebController {
       });
 
       const issuedLotto = document.createElement("div");
+      issuedLotto.className = "issued-lotto";
       issuedLotto.style.marginTop = "0.4rem";
       issuedLotto.append(lottoImoji, issuedLottoDiv);
 
       curr.append(issuedLotto);
     });
+  }
+
+  removeWebIssuedLottoArray() {
+    const issuedLottos = $$(".issued-lotto");
+    issuedLottos.forEach((lotto) => lotto.remove());
+  }
+
+  removeWebWinningCombinationInput() {
+    $$(".lotto-numbers-input").forEach((input) => (input.value = ""));
+    $(".lotto-bonus-input").value = "";
   }
 
   /**
@@ -171,6 +184,7 @@ class LottoWebController {
   }
 
   closeModal() {
+    console.log("close modal");
     $("#modal").style.display = "none";
   }
 
@@ -210,6 +224,21 @@ class LottoWebController {
 
   reloadPage() {
     document.location.reload();
+  }
+
+  reloadTag() {
+    this.removeWebIssuedLottoArray();
+    this.removeWebWinningCombinationInput();
+    $("#budget").value = "";
+    $("#after-budget").style.display = "none";
+    const form = document.querySelector("#content-box-input-budget");
+    const formInputs = form.querySelectorAll("input, button");
+
+    formInputs.forEach((input) => {
+      input.disabled = false;
+    });
+
+    this.closeModal();
   }
 
   enterToResultButton(event) {
