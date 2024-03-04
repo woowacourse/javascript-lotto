@@ -3,6 +3,7 @@ import LottoCalculator from '../domains/LottoCalculator.js';
 
 import OutputWebView from '../views/OutputWebView.js';
 
+import LottoPurchasePriceValidator from '../validators/LottoPurchasePriceValidator.js';
 import LottoValidator from '../validators/LottoValidator.js';
 
 import { $, $$ } from '../utils/dom.js';
@@ -45,18 +46,22 @@ class LottoWebController {
 
     const purchasePrice = $('#lotto-purchase-input').value;
 
-    /**
-     * <고민>
-     * 구입 버튼을 누르기 전에 html input 태그의 step 속성으로 1,000원 단위의 입력인지 검증이 가능하다.
-     * 또한 number type, min, max 값도 검증이 가능하다.
-     * → LottoPurchasePriceValidator.validate(purchasePrice)를 사용해야 할까? 태그의 속성을 잘 활용하는 것이 더 좋은 방법이 아닐까?
-     */
+    if (this.validatePurchasePrice(purchasePrice)) {
+      this.#ticketCount = this.getTicketCount(purchasePrice);
 
-    this.#ticketCount = this.getTicketCount(purchasePrice);
+      this.generateLottos();
+      this.displayGeneratedLottoInfo();
+      $('#hidden-form').classList.remove('hidden-form');
+    }
+  }
 
-    this.generateLottos();
-    this.displayGeneratedLottoInfo();
-    $('#hidden-form').classList.remove('hidden-form');
+  validatePurchasePrice(purchasePrice) {
+    try {
+      LottoPurchasePriceValidator.validate(purchasePrice);
+      return true;
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   getTicketCount(lottoPurchasePrice) {
@@ -87,8 +92,8 @@ class LottoWebController {
     event.preventDefault();
 
     this.setLottoNumbers();
-    const isPass = this.validateLottoNumbers();
-    if (isPass) {
+
+    if (this.validateLottoNumbers()) {
       this.openModal();
       this.calculateAndShowResults();
     }
