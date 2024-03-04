@@ -16,10 +16,11 @@
             <div class="title">🎱 내 번호 당첨 확인 🎱</div>
 
             <form class="before-buy-lottos">
-              <label>구입할 금액을 입력해주세요.</label>
+              <label for="lotto-price-input">구입할 금액을 입력해주세요.</label>
               <span>
                 <input
                   class="thousand-unit-input input"
+                  id="lotto-price-input"
                   placeholder="1000원 단위의 금액을 입력해주세요."
                   min='0'
                   max='100000'
@@ -38,9 +39,9 @@
               </div>
               <div class="input-lottos">
                 <div class="lotto">
-                  <label> 당첨 번호</label>
+                  <label for="winning-lotto-input"> 당첨 번호</label>
                   <div>
-                    <input class="input-winning-lottos input" maxlength="2" />
+                    <input id="winning-lotto-input" class="input-winning-lottos input" maxlength="2" />
                     <input class="input-winning-lottos input" maxlength="2" />
                     <input class="input-winning-lottos input" maxlength="2" />
                     <input class="input-winning-lottos input" maxlength="2" />
@@ -49,8 +50,8 @@
                   </div>
                 </div>
                 <div class="bonus-lotto lotto">
-                  <label> 보너스 번호</label>
-                  <input class="input-bonus-lotto input" maxlength="2" />
+                  <label for="winning-lotto-input"> 보너스 번호</label>
+                  <input id="winning-lotto-input" class="input-bonus-lotto input" maxlength="2" />
                 </div>
               </div>
 
