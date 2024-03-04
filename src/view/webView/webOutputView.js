@@ -3,66 +3,74 @@ import formatNumber from '../../utils/formatNumber.js';
 
 const webOutputView = {
   renderPurchaseAmount: (lottoTickets) => {
-    const purchaseAmountTemplate = `총 ${lottoTickets.length}개를 구매했습니다.`;
-    document.querySelector('#purchaseHeader-text').innerHTML = purchaseAmountTemplate;
+    const renderPurchaseAmountTemplate = `총 ${lottoTickets.length}개를 구매했습니다.`;
+    document.querySelector('#purchaseHeader-text').textContent = renderPurchaseAmountTemplate;
   },
 
   renderLottoList: (lottoTickets) => {
-    const lottoListTemplate = lottoTickets
-      .map(
-        (lotto) => `<li>
-        <span class="ticket-emoji">🎟️</span
-        ><span class="lotto-number">${lotto.getNumbers().join(', ')}</span>
-      </li>`,
-      )
-      .join('');
-    document.querySelector('#lotto-list').innerHTML = lottoListTemplate;
+    const lottoListElement = document.querySelector('#lotto-list');
+    lottoListElement.innerHTML = '';
+
+    lottoTickets.forEach((lotto) => {
+      const liElement = document.createElement('li');
+      const ticketEmojiSpan = document.createElement('span');
+      ticketEmojiSpan.className = 'ticket-emoji';
+      ticketEmojiSpan.textContent = '🎟️';
+
+      const lottoNumberSpan = document.createElement('span');
+      lottoNumberSpan.className = 'lotto-number';
+      lottoNumberSpan.textContent = lotto.getNumbers().join(', ');
+
+      liElement.appendChild(ticketEmojiSpan);
+      liElement.appendChild(lottoNumberSpan);
+
+      lottoListElement.appendChild(liElement);
+    });
   },
 
   renderTable: (totalResult) => {
-    const tableHeader = `
-    <tr id="reward-table-header">
-    <th class="lotto-subtitle">일치 갯수</th>
-    <th class="lotto-subtitle">당첨금</th>
-    <th class="lotto-subtitle">당첨 갯수</th>
-  </tr>
-    `;
+    const table = document.querySelector('#reward-table');
 
-    const tableTemplate = Object.keys(totalResult).map(
-      (rank) =>
-        `<tr>
-        <th>${prize.findMatchCountByRank(rank)}개</th>
-        <th>${formatNumber(prize.findRewardByRank(rank))}</th>
-        <th>${totalResult[rank]}개</th>
-      </tr>`,
-    );
+    const headerRow = document.createElement('tr');
+    const headers = ['일치 갯수', '당첨금', '당첨 갯수'];
+    headers.forEach((headerText) => {
+      const header = document.createElement('th');
+      header.textContent = headerText;
+      header.classList.add('lotto-subtitle');
+      headerRow.appendChild(header);
+    });
+    table.appendChild(headerRow);
 
-    document.querySelector('#reward-table').innerHTML = `${tableHeader} ${tableTemplate.join('')}`;
+    Object.keys(totalResult).forEach((rank) => {
+      const row = document.createElement('tr');
+      const matchCount = document.createElement('th');
+      matchCount.textContent = `${prize.findMatchCountByRank(rank)}개`;
+
+      const reward = document.createElement('th');
+      reward.textContent = `${formatNumber(prize.findRewardByRank(rank))}`;
+
+      const count = document.createElement('th');
+      count.textContent = `${totalResult[rank]}개`;
+
+      row.appendChild(matchCount);
+      row.appendChild(reward);
+      row.appendChild(count);
+
+      table.appendChild(row);
+    });
   },
 
   renderProfit: (profit) => {
     const profitText = document.querySelector('#profit-text');
     const profitTemplate = `당신의 총 수익률은 ${profit}%입니다.`;
 
-    profitText.innerHTML = profitTemplate;
-  },
-
-  clearLottoList: () => {
-    const lottoListContainer = document.querySelector('#lottoList-container');
-    if (lottoListContainer) {
-      lottoListContainer.innerHTML = '';
-    }
+    profitText.textContent = profitTemplate;
   },
 
   clearResults: () => {
     const resultsContainer = document.querySelector('#results-container');
     if (resultsContainer) {
       resultsContainer.innerHTML = '';
-    }
-
-    const resultModal = document.querySelector('#modal-background');
-    if (resultModal) {
-      resultModal.style.display = 'none';
     }
   },
 

@@ -47,20 +47,16 @@ class LottoGameWebController {
       const inputs = document.querySelectorAll('.lotto-input');
 
       inputs.forEach((input, index) => {
-        let firstValueEntered = false;
-
         input.addEventListener('input', (e) => {
           if (input.value.length > 2) {
             input.value = input.value.substring(0, 2);
             return;
           }
 
-          if (input.value.length === 2 && firstValueEntered) {
+          if (input.value.length === 2) {
             clearTimeout(input.delay);
-            firstValueEntered = false;
             this.moveToNextField(index, inputs);
-          } else if (input.value.length === 1 && !firstValueEntered) {
-            firstValueEntered = true;
+          } else if (input.value.length === 1) {
             input.delay = setTimeout(() => {
               if (input.value.length === 1) {
                 input.value = '0' + input.value;
@@ -127,7 +123,6 @@ class LottoGameWebController {
     document.getElementById('lottoPurchase-article').style.display = 'none';
     document.querySelector('#purchaseAmount-input').value = '';
 
-    webOutputView.clearLottoList();
     webOutputView.clearResults();
     webOutputView.clearWinningLotto();
 
