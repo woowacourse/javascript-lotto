@@ -23,7 +23,7 @@ const LOTTO_RESULT_TABLE = `
 const LOTTO_RESULT_TABLE_COL = ({ rank, match }) => `
 <div class = "table-col">
   <div class="count-row">
-    <p class="lotto-body">${rankRule[rank].match}개</p>
+    <p class="lotto-body">${rankRule[rank].match}개${rank === '2nd' ? '+보너스볼' : ''}</p>
   </div>
   <div class="prize-row">
     <p class="lotto-body">${winningPrize[rank].toLocaleString('ko-KR')}원</p>
