@@ -1,12 +1,12 @@
-import { PRIZE, SYMBOL } from '../constant/constants.js';
+import { PRIZE, RANK, SYMBOL } from '../constant/constants.js';
 
 export default class Statistics {
   #result = {
-    three: 0,
-    four: 0,
-    five: 0,
-    five_bonus: 0,
-    six: 0,
+    [RANK.first]: 0,
+    [RANK.second]: 0,
+    [RANK.third]: 0,
+    [RANK.fourth]: 0,
+    [RANK.fifth]: 0,
   };
 
   #profit = 0;
@@ -14,16 +14,16 @@ export default class Statistics {
   constructor({ lottos, winningLotto, bonusNumber, cost }) {
     this.#calculateResult({ lottos, winningLotto, bonusNumber, cost });
 
-    this.#profit = ((this.#calculateTotal() / cost) * SYMBOL.hundred).toFixed(SYMBOL.one);
+    this.#profit = ((this.#calculateTotal() / cost) * 100).toFixed(SYMBOL.decimalPlaces);
   }
 
   #calculateTotal() {
     return (
-      this.#result.three * PRIZE.fifth +
-      this.#result.four * PRIZE.fourth +
-      this.#result.five * PRIZE.third +
-      this.#result.five_bonus * PRIZE.second +
-      this.#result.six * PRIZE.first
+      this.#result[RANK.fifth] * PRIZE[RANK.fifth] +
+      this.#result[RANK.fourth] * PRIZE[RANK.fourth] +
+      this.#result[RANK.third] * PRIZE[RANK.third] +
+      this.#result[RANK.second] * PRIZE[RANK.second] +
+      this.#result[RANK.first] * PRIZE[RANK.first]
     );
   }
 
@@ -37,11 +37,11 @@ export default class Statistics {
   }
 
   #addResult(correctNumber, hasBonusNumber) {
-    if (correctNumber === SYMBOL.three) this.#result.three += SYMBOL.one;
-    else if (correctNumber === SYMBOL.four) this.#result.four += SYMBOL.one;
-    else if (correctNumber === SYMBOL.five && hasBonusNumber) this.#result.five_bonus += SYMBOL.one;
-    else if (correctNumber === SYMBOL.five) this.#result.five += SYMBOL.one;
-    else if (correctNumber === SYMBOL.six) this.#result.six += SYMBOL.one;
+    if (correctNumber === 3) this.#result[RANK.fifth] += 1;
+    else if (correctNumber === 4) this.#result[RANK.fourth] += 1;
+    else if (correctNumber === 5 && hasBonusNumber) this.#result[RANK.second] += 1;
+    else if (correctNumber === 5) this.#result[RANK.third] += 1;
+    else if (correctNumber === 6) this.#result[RANK.first] += 1;
   }
 
   #getCorrectCount(lotto, winningLotto) {

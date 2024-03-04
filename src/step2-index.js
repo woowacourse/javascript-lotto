@@ -1,4 +1,21 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import Header from './view/web/header/Header.js';
+import Main from './view/web/main/Main.js';
+import Footer from './view/web/footer/Footer.js';
+import Modal from './view/web/modal/Modal.js';
+import EventController from './view/web/controller/EventController.js';
+import { $ } from './view/web/utils/dom.js';
+import './view/web/styles/reset.css';
+import './view/web/styles/index.css';
+
+$('#app').appendChild(Header());
+$('#app').appendChild(Main());
+$('#app').appendChild(Footer());
+$('#app').appendChild(Modal());
+
+const eventController = new EventController();
+
+$('#buy-lotto-form').addEventListener('submit', (event) => eventController.onSubmitBuyForm(event));
+$('#winning-lotto-form').addEventListener('submit', (event) => eventController.handleWinningLottoForm(event));
+$('#dimmer').addEventListener('click', (event) => eventController.handleCloseButton(event));
+$('#close-button').addEventListener('click', (event) => eventController.handleCloseButton(event));
+$('#retry-button').addEventListener('click', (event) => eventController.handleRetryButton(event));

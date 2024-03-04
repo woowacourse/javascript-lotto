@@ -2,7 +2,8 @@
   "env": {
     "jest": true,
     "node": true,
-    "es2022": true
+    "es2022": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": 13
@@ -12,8 +13,7 @@
     "prettier/prettier": ["error"],
     "max-depth": ["error", 1],
     "max-params": ["error", 2],
-    "max-lines-per-function": ["error", 10],
-    "no-magic-numbers": "error",
+    "max-lines-per-function": "off",
     "import/extensions": "off",
     "lines-between-class-members": "off"
   }

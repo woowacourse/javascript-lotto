@@ -1,0 +1,55 @@
+@import url('../header/header.css');
+@import url('../main/main.css');
+@import url('../footer/footer.css');
+@import url('../modal/modal.css');
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+section {
+  width: 100%;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0 16px;
+  width: 100%;
+  max-width: 414px;
+  height: 727px;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+input[type='number']:focus {
+  border: 2px solid var(--primary);
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.full-width {
+  width: 100%;
+}

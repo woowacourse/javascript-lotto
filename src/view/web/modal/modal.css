@@ -1,0 +1,108 @@
+.modal-container {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.dimmer {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 99;
+  border-radius: 4px;
+  background-color: var(--greyscale-1);
+  padding: 16px;
+  width: 350px;
+  height: 500px;
+}
+
+.close-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.close-button-text {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.close-button {
+  background-color: var(--greyscale-1);
+}
+
+.statistics-title-container {
+  margin-top: 8px;
+  height: 24px;
+}
+
+.statistics {
+  margin-top: 33px;
+  width: 100%;
+  line-height: 24px;
+  text-align: center;
+}
+
+.statistics th,
+td {
+  padding: 8px 0;
+}
+
+.statistics thead {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.statistics tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  height: 40px;
+}
+
+.statistics td {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.statistics th {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.profit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 0px;
+  height: 24px;
+}
+
+.profit {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.retry-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.retry-button {
+  border-radius: 4px;
+  background-color: var(--primary);
+  padding: 4px 0;
+  width: 100%;
+  height: 36px;
+  color: var(--greyscale-1);
+  font-weight: 700;
+  font-size: 14px;
+}

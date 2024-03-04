@@ -1,4 +1,4 @@
-import { LOTTO_RULES, SYMBOL } from './constants.js';
+import { LOTTO_RULES, RANK, SYMBOL } from './constants.js';
 
 export const INPUT_MESSAGES = {
   cost: `${SYMBOL.input_prefix} 구입 금액을 입력해주세요.`,
@@ -12,11 +12,11 @@ export const OUTPUT_MESSAGES = {
   lotto: (lotto) => `[${lotto.join(`${SYMBOL.delimiter + SYMBOL.space}`)}]`,
   winningStatistics: '당첨 통계',
   separate: '--------------------',
-  three: (count) => `3개 일치, (5,000원) - ${count}개`,
-  four: (count) => `4개 일치, (50,000원) - ${count}개`,
-  five: (count) => `5개 일치, (1,500,000원) - ${count}개`,
-  five_bonus: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
-  six: (count) => `6개 일치, (2,000,000,000원) - ${count}개`,
+  [RANK.fifth]: (count) => `3개 일치, (5,000원) - ${count}개`,
+  [RANK.fourth]: (count) => `4개 일치, (50,000원) - ${count}개`,
+  [RANK.third]: (count) => `5개 일치, (1,500,000원) - ${count}개`,
+  [RANK.second]: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
+  [RANK.first]: (count) => `6개 일치, (2,000,000,000원) - ${count}개`,
   profit: (profit) => `총 수익률은 ${profit}% 입니다.`,
 };
 
