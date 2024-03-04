@@ -17,11 +17,11 @@ class WebLottoController {
     $moneyInput.focus();
     $signupForm.addEventListener('submit', event => {
       event.preventDefault();
-      this.moneyInputFormHandler($moneyInput.value);
+      this.#moneyInputFormHandler($moneyInput.value);
     });
   }
 
-  moneyInputFormHandler(value) {
+  #moneyInputFormHandler(value) {
     const $moneyInput = document.getElementById('money-input');
     const $moneyButton = document.getElementById('money-button');
 
@@ -33,14 +33,14 @@ class WebLottoController {
       mainPage.generateCountNotice(this.#money.count);
       mainPage.generatePurchasedLottosNotice(this.#lottoMachine.lottos);
       mainPage.generateWinningNumbersInputs();
-      this.readWinningLottoAndBonusNumber();
+      this.#readWinningLottoAndBonusNumber();
     } catch (err) {
       errorAlert(err);
       $moneyInput.value = null;
     }
   }
 
-  readWinningLottoAndBonusNumber() {
+  #readWinningLottoAndBonusNumber() {
     const $numberForm = document.getElementById('number-form');
     const $numberInputs = document.getElementsByClassName('number-input');
 
@@ -51,20 +51,20 @@ class WebLottoController {
         const numberInputs = Array.from(event.target.numberInput).map(val => {
           return val.value;
         });
-        this.makeWinningLottoAndBonusNumber(numberInputs);
-        this.openResultModal();
+        this.#makeWinningLottoAndBonusNumber(numberInputs);
+        this.#openResultModal();
       } catch (err) {
         errorAlert(err);
       }
     });
   }
 
-  makeWinningLottoAndBonusNumber(numberInputs) {
+  #makeWinningLottoAndBonusNumber(numberInputs) {
     this.#lottoMachine.winningLotto = numberInputs.slice(0, 6).join(LOTTO_RULE.NUMBER_DELIMITER);
     this.#lottoMachine.bonusNumber = numberInputs[6];
   }
 
-  openResultModal() {
+  #openResultModal() {
     const $resultModal = document.getElementById('result-modal');
     $resultModal.classList.remove('hidden');
 
@@ -73,11 +73,11 @@ class WebLottoController {
 
     resultModal.generateResultRank(totalLottoRanks);
     resultModal.generateProfitRate(profitRate);
-    this.clickExitButtonHandler();
-    this.clickRestartButtonHandler();
+    this.#clickExitButtonHandler();
+    this.#clickRestartButtonHandler();
   }
 
-  clickExitButtonHandler() {
+  #clickExitButtonHandler() {
     const $modalExitButton = document.getElementById('modal-exit-button');
     const $resultModal = document.getElementById('result-modal');
 
@@ -87,7 +87,7 @@ class WebLottoController {
     });
   }
 
-  clickRestartButtonHandler() {
+  #clickRestartButtonHandler() {
     const $restartButton = document.getElementById('restart-button');
 
     $restartButton.addEventListener('click', () => {

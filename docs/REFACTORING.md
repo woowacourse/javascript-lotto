@@ -6,6 +6,8 @@
 - [ ] element를 잡아내지 못했을 경우(undefined)도 대비해두기 (안전성)
 - [x] CSS 순서 통일을 자동화할 수 있는 도구 - prettier-plugin-css-order
 - [x] css 중복, 상수 적용 안하고 있는 것 적용
+- [x] money-input 중복으로 찾는 부분 제거
+- [x] WebController의 private
 
 ## 1단계 피드백 반영
 
