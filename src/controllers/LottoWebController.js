@@ -1,6 +1,8 @@
 import LottoGenerator from '../domains/LottoGenerator.js';
 import LottoCalculator from '../domains/LottoCalculator.js';
 
+import { openModal, closeModal } from '../handlers/modalHandler.js';
+
 import OutputWebView from '../views/OutputWebView.js';
 
 import LottoPurchasePriceValidator from '../validators/LottoPurchasePriceValidator.js';
@@ -25,8 +27,15 @@ class LottoWebController {
   }
 
   initEventListeners() {
-    $('#close-button').addEventListener('click', this.closeModal.bind(this));
-    $('#modal-wrapper').addEventListener('click', this.closeModal.bind(this));
+    this.submitFormEventListeners();
+    this.closeModalEventListeners();
+    $('#restart-button').addEventListener(
+      'click',
+      this.handleRestartButton.bind(this),
+    );
+  }
+
+  submitFormEventListeners() {
     $('#lotto-purchase-form').addEventListener(
       'submit',
       this.handleLottoPurchaseSubmit.bind(this),
@@ -35,10 +44,11 @@ class LottoWebController {
       'submit',
       this.handleLottoNumbersSubmit.bind(this),
     );
-    $('#restart-button').addEventListener(
-      'click',
-      this.handleRestartButton.bind(this),
-    );
+  }
+
+  closeModalEventListeners() {
+    $('#close-button').addEventListener('click', closeModal);
+    $('#modal-wrapper').addEventListener('click', closeModal);
   }
 
   handleLottoPurchaseSubmit(event) {
@@ -94,7 +104,7 @@ class LottoWebController {
     this.setLottoNumbers();
 
     if (this.validateLottoNumbers()) {
-      this.openModal();
+      openModal();
       this.calculateAndShowResults();
     }
   }
@@ -119,16 +129,6 @@ class LottoWebController {
     } catch (error) {
       alert(error.message);
     }
-  }
-
-  openModal() {
-    $('#modal-wrapper').classList.remove('hidden-modal');
-    $('#modal-wrapper').classList.add('modal-wrapper');
-  }
-
-  closeModal() {
-    $('#modal-wrapper').classList.add('hidden-modal');
-    $('#modal-wrapper').classList.remove('modal-wrapper');
   }
 
   calculateAndShowResults() {
