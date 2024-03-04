@@ -1,40 +1,40 @@
 .modal-container {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
   display: flex;
+  position: fixed;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 .dimmer {
   position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-  padding: 16px;
-  width: 350px;
-  height: 500px;
-  background-color: var(--greyscale-1);
-  border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   z-index: 99;
+  border-radius: 4px;
+  background-color: var(--greyscale-1);
+  padding: 16px;
+  width: 350px;
+  height: 500px;
 }
 
 .close-button-container {
-  width: 100%;
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 }
 
 .close-button-text {
-  font-size: 20px;
   font-weight: 700;
+  font-size: 20px;
 }
 
 .close-button {
@@ -42,15 +42,15 @@
 }
 
 .statistics-title-container {
-  height: 24px;
   margin-top: 8px;
+  height: 24px;
 }
 
 .statistics {
-  width: 100%;
-  text-align: center;
-  line-height: 24px;
   margin-top: 33px;
+  width: 100%;
+  line-height: 24px;
+  text-align: center;
 }
 
 .statistics th,
@@ -63,31 +63,31 @@ td {
 }
 
 .statistics tr {
-  height: 40px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  height: 40px;
 }
 
 .statistics td {
-  font-size: 15px;
   font-weight: 400;
+  font-size: 15px;
 }
 
 .statistics th {
-  font-size: 15px;
   font-weight: 600;
+  font-size: 15px;
 }
 
 .profit-container {
-  height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 32px 0px;
+  height: 24px;
 }
 
 .profit {
-  font-size: 15px;
   font-weight: 600;
+  font-size: 15px;
 }
 
 .retry-button-container {
@@ -97,12 +97,12 @@ td {
 }
 
 .retry-button {
-  width: 100%;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--greyscale-1);
+  border-radius: 4px;
   background-color: var(--primary);
   padding: 4px 0;
+  width: 100%;
   height: 36px;
-  border-radius: 4px;
+  color: var(--greyscale-1);
+  font-weight: 700;
+  font-size: 14px;
 }

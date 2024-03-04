@@ -10,11 +10,11 @@ input::-webkit-inner-spin-button {
 }
 
 #app {
-  min-height: 100vh;
-  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -27,11 +27,11 @@ article {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 0 16px;
-  height: 727px;
-  max-width: 414px;
   border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0 16px;
+  width: 100%;
+  max-width: 414px;
+  height: 727px;
 }
 
 button:hover {
@@ -39,7 +39,7 @@ button:hover {
 }
 
 input[type='number']:focus {
-  border: 2px solid var(--primary) !important;
+  border: 2px solid var(--primary);
 }
 
 .visible {

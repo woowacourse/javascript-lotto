@@ -1,9 +1,9 @@
 header {
-  background-color: var(--primary);
   display: flex;
   align-items: center;
-  height: 64px;
+  background-color: var(--primary);
   width: 100%;
+  height: 64px;
 
   @media (max-width: 767px) {
     justify-content: center;
@@ -11,8 +11,8 @@ header {
 }
 
 .header-title {
-  color: var(--greyscale-1);
   margin-left: 130px;
+  color: var(--greyscale-1);
 
   @media (max-width: 767px) {
     margin: 0;
