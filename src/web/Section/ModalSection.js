@@ -10,7 +10,7 @@ const ModalSection = {
     try {
       LottoValidation.validateNumbers(winNumbers);
       LottoValidation.validateBonusNumber(winNumbers, bonusNumber);
-      Error.closeMessage('.input-error');
+      Error.checkMessage('.input-error');
       this.createModal({ randomLottos, winNumbers, bonusNumber });
     } catch (error) {
       Error.showMessage('.input-error', error);

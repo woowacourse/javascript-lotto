@@ -16,8 +16,8 @@ const PurchaseSection = {
     const purchaseInput = document.querySelector('.purchase-input-text').value;
     try {
       PurchaseAmountValidation.validate(purchaseInput);
-      const randomLottos = LottoService.getLottos(Number.parseInt(Number(purchaseInput) / NUMBER.LOTTO_PRICE, 10));
-      Error.closeMessage('.purchase-error');
+      const randomLottos = LottoService.getLottos(LottoService.getPurchaseCount(purchaseInput));
+      Error.checkMessage('.purchase-error');
       RandomSection.showRandomLottos('.random-lottos', randomLottos);
       WinNumberSection.createInputUIWinNumber(randomLottos);
     } catch (error) {
