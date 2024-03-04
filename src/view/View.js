@@ -78,6 +78,7 @@ const View = {
       $winningLottoForm.hidden = true;
       $purchaseAmount.value = '';
       $purchaseButton.disabled = false;
+      elementHandler.removeClassList($purchaseButton, 'disabled');
     });
   },
 };
