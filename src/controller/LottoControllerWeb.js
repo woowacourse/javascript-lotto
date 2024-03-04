@@ -19,7 +19,7 @@ purchaseAmountButton.addEventListener('click', (event) => {
   event.preventDefault();
   const inputMoney = document.getElementById('purchase-amount').valueAsNumber;
   try {
-    const money = new Money(Number(inputMoney));
+    const money = new Money(inputMoney);
     const lottoMachine = new LottoMachine(money.count);
     removeErrorMessage();
     printPurchaseInfoHTML(findPurchaseInfoHTML, money.count, lottoMachine.lottos);
