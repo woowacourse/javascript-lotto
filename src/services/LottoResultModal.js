@@ -11,8 +11,15 @@ class LottoResultModal {
 
   static showLottoStatistics(lottoCalculator) {
     const lottoStatistics = lottoCalculator.lottoStatistics;
-    $('#lotto-statistics-tbody').innerHTML =
-      OutputWebView.displayStatistics(lottoStatistics);
+
+    const $lottoStatisticsBody = $('#lotto-statistics-tbody');
+    if ($lottoStatisticsBody) {
+      $lottoStatisticsBody.remove();
+    }
+
+    $('#lotto-statistics-table').appendChild(
+      OutputWebView.displayStatistics(lottoStatistics),
+    );
   }
 
   static showTotalProfit(lottoCalculator, ticketCount) {

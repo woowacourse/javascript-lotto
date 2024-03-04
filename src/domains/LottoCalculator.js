@@ -1,4 +1,4 @@
-import LOTTO_STATISTICS from '../constants/lotto-statistics.js';
+import { LOTTO_STATISTICS } from '../constants/lotto-statistics.js';
 import LOTTO_RULES from '../constants/lotto-rules.js';
 class LottoCalculator {
   #lottoStatistics;
