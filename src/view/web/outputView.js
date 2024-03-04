@@ -30,6 +30,7 @@ const outputView = {
     ).innerHTML = `<div class="marginBottomSmall">당첨 번호</div> <div class="inputsGap">${winningLottoInputs.join(
       ""
     )}</div>`;
+
     $(
       "#bonusInputForm"
     ).innerHTML = `<div class="marginBottomSmall">보너스 번호</div><input class='squareInput' id='bonusInput' type='text'/>`;
@@ -103,6 +104,12 @@ const outputView = {
 
     $checkResult.classList.add("disabledButton");
     $checkResult.disabled = true;
+  },
+
+  resetTargetForm(targetForm) {
+    const $targetForm = $(targetForm);
+
+    $targetForm.reset();
   },
 };
 
