@@ -46,6 +46,8 @@
 #app {
   width: 100vw;
   height: 100vh;
+  /* width: 100%;
+  height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -290,20 +292,6 @@ th {
   margin: 30px 0;
 }
 
-#modal-background {
-  display: none;
-
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
 #modal {
   display: flex;
   background-color: var(--gray-scale-1);
@@ -314,6 +302,10 @@ th {
   border-radius: 4px;
   padding: 20px 10px;
   position: relative;
+}
+
+dialog:open {
+  display: flex;
 }
 
 #modal::backdrop {
@@ -330,7 +322,7 @@ th {
 
 td,
 th {
-  padding: 10px 5px; /* 상하 패딩, 좌우 패딩 */
+  padding: 10px 5px;
 }
 
 #retry-button {
