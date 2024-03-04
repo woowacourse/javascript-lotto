@@ -24,7 +24,9 @@
         <h2 class="text-title">🎱 내 번호 당첨 확인 🎱</h2>
 
         <section id="amountBox">
-          <label class="text-body">구입할 금액을 입력해주세요.</label>
+          <label class="text-body" for="amountInput"
+            >구입할 금액을 입력해주세요.</label
+          >
           <form id="amountForm">
             <div class="input-box">
               <input
@@ -42,7 +44,7 @@
           </form>
         </section>
 
-        <section id="lottosBox">
+        <section id="lottosBox" class="hidden">
           <div id="lottosCount" class="text-body"></div>
           <ul id="lottosUl"></ul>
         </section>
@@ -55,21 +57,63 @@
 
             <div class="numberInputBox">
               <div>
-                <label class="text-body">당첨 번호</label>
+                <label for="winningNumber" class="text-body">당첨 번호</label>
                 <div>
-                  <input type="number" min="1" max="45" class="number-input" />
-                  <input type="number" min="1" max="45" class="number-input" />
-                  <input type="number" min="1" max="45" class="number-input" />
-                  <input type="number" min="1" max="45" class="number-input" />
-                  <input type="number" min="1" max="45" class="number-input" />
-                  <input type="number" min="1" max="45" class="number-input" />
+                  <input
+                    id="winningNumber"
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="number-input"
+                  />
+                  <input
+                    id="winningNumber-2"
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="number-input"
+                  />
+                  <input
+                    id="winningNumber-3"
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="number-input"
+                  />
+                  <input
+                    id="winningNumber-4"
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="number-input"
+                  />
+                  <input
+                    id="winningNumber-5"
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="number-input"
+                  />
+                  <input
+                    id="winningNumber-6"
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="number-input"
+                  />
                 </div>
               </div>
 
               <div class="bonusNumberBox">
-                <label class="text-body">보너스 번호</label>
+                <label class="text-body" for="bonusNumber">보너스 번호</label>
                 <div>
-                  <input type="number" min="1" max="45" class="number-input" />
+                  <input
+                    id="bonusNumber"
+                    type="number"
+                    min="1"
+                    max="45"
+                    class="number-input"
+                  />
                 </div>
               </div>
             </div>
