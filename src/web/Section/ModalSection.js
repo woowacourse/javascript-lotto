@@ -33,17 +33,11 @@ const ModalSection = {
   restart() {
     document.querySelector('.purchase-input-text').value = '';
     const ramdomSection = document.querySelector('.random-lottos');
-    while (ramdomSection.firstChild) {
-      ramdomSection.removeChild(ramdomSection.firstChild);
-    }
+    ramdomSection.replaceChildren();
     const winNumberSection = document.querySelector('.winnumber-input-box');
-    while (winNumberSection.firstChild) {
-      winNumberSection.removeChild(winNumberSection.firstChild);
-    }
+    winNumberSection.replaceChildren();
     const modal = document.querySelector('.modal');
-    while (modal.firstChild) {
-      modal.removeChild(modal.firstChild);
-    }
+    modal.replaceChildren();
   },
 
   createModalContainer(result = [], rateOfRevenue = 0) {
