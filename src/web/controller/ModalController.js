@@ -28,12 +28,18 @@ class ModalController {
     this.#setupModalHandlers();
   }
 
-  #setupModalHandlers() {
-    // NOTE: 모달 닫기 버튼 - 모든 모달에 공통으로 세팅
-
-    this.#addEventToModalButton(".modal-close-btn", () => {
+  #setupDefaultHandlers() {
+    // NOTE: 모달 닫기 버튼, 모달 외곽 배경 클릭시 닫기 - 모든 모달에 공통으로 세팅
+    const closeModal = () => {
       document.querySelector(".modal-section").remove();
-    });
+    };
+
+    this.#addEventToModalButton(".modal-close-btn", closeModal);
+    this.#addEventToModalButton(".modal-section", closeModal);
+  }
+
+  #setupModalHandlers() {
+    this.#setupDefaultHandlers();
 
     Object.entries(this.#modalHandlers).forEach(([selector, handlerFunc]) => {
       this.#addEventToModalButton(selector, handlerFunc());
