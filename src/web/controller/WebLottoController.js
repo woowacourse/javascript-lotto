@@ -17,7 +17,7 @@ class WebLottoController {
     $moneyInput.focus();
     $signupForm.addEventListener('submit', event => {
       event.preventDefault();
-      this.moneyInputFormHandler(event.target['money-input'].value);
+      this.moneyInputFormHandler($moneyInput.value);
     });
   }
 
