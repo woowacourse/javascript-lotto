@@ -15,10 +15,9 @@ const GameMoneyInput = {
     const parsedMoney = Number(moneyInput);
     try {
       const lottoMoney = new LottoMoney(parsedMoney);
-      const randomlottos = RandomLottos.showRandomLottos('#game-generatedlotto-list', lottoGenerator.generateRandomLotto(lottoMoney.getLottoCount()));
-      WinningLotto.showWinningLottoInputUI(randomlottos);
+      const randomLottos = RandomLottos.showRandomLottos('#game-generatedlotto-list', lottoGenerator.generateRandomLotto(lottoMoney.getLottoCount()));
+      WinningLotto.showWinningLottoInputUI(randomLottos, lottoMoney);
     } catch (error) {
-      
       alert(error);
     }
   }

@@ -1,13 +1,14 @@
 import Lotto from "../../domain/Lotto";
 import LottoNumber from "../../domain/LottoNumber";
+import Result from "./Result";
 
 const WinningLotto = {
-  showWinningLottoInputUI(randomLottos) {
+  showWinningLottoInputUI(randomLottos, lottoMoney) {
     const winningLottoInformation = document.querySelector('#game-winninglotto-input-numbers-information');
     winningLottoInformation.innerHTML = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
     this.createWinningLottoInteraction();
     this.createBonusLottoInteraction();
-    this.createResultButton();
+    this.createResultButton(randomLottos, lottoMoney);
   },
 
   createWinningLottoInteraction() {
@@ -26,7 +27,7 @@ const WinningLotto = {
     bonusLottoInputInteraction.innerHTML =  `<input class='number-input-interaction' name='bonus-number' type='number'/>`;
   },
   
-  createResultButton() {
+  createResultButton(randomLottos, lottoMoney) {
     const resultButton = document.querySelector('.result-button-container');
     resultButton.innerHTML = '<button class="result-button"> 결과 확인</button>';
     resultButton.addEventListener('click', () => {
@@ -35,11 +36,12 @@ const WinningLotto = {
         const winningLotto = new Lotto(winningNumbers.join());
         const bonusNumber = new LottoNumber(document.querySelector('[name="bonus-number"]').value);
         winningLotto.checkHaveBonus(bonusNumber.getLottoNumber());
-      } catch (error) {
-          alert(error);
-      }
-    });
-}
+        Result.showResult(winningLotto, bonusNumber, randomLottos, lottoMoney);
+      }catch(error){
+        alert(error)
+      }}
+    );
+  }
 }
 
 export default WinningLotto;

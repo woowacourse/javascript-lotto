@@ -19,7 +19,6 @@ function calcMatchCountAndBonus({ winningLotto, bonusLottoNumber, randomLotto })
 
 function getLottoRank({ winningLotto, bonusLottoNumber, randomLottos }) {
   const ranks = Array.from({ length: 5 }, () => 0);
-
   randomLottos.forEach((randomLotto) => {
     const { matchCount, isBonus } = calcMatchCountAndBonus({ winningLotto, bonusLottoNumber, randomLotto });
     if (matchCount < START_MATCH_COUNT) return;
