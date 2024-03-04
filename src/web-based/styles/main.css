@@ -22,7 +22,7 @@ main {
 .container-content {
   width: 41.4rem;
   height: 72.7rem;
-  border: 1px solid var(--greyscale3-color);
+  border: 0.1rem solid var(--greyscale3-color);
 }
 
 .wrapper-info {
@@ -30,7 +30,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid var(--primary-color);
+  border-top: 0.1rem solid var(--primary-color);
   font-size: 1.4rem;
 }
 
@@ -81,7 +81,7 @@ main {
 .input-purchase-amount {
   width: 28.4rem;
   height: 3.6rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
   margin-right: 1.6rem;
   line-height: 1.5rem;
   font-size: 1.5rem;
@@ -110,7 +110,6 @@ main {
   }
 }
 
-/* 로또 티켓 */
 .section-lotto-ticket {
   height: 30.8rem;
   display: flex;
@@ -144,7 +143,6 @@ main {
   font-size: 1.5rem;
 }
 
-/* 당첨 번호, 보너스 번호 입력 및 제출 */
 .section-submit-lotto-numbers {
   height: 16.7rem;
   display: flex;

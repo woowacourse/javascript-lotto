@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  inset: 0px;
+  inset: 0;
   z-index: 100000000;
 }
 
@@ -15,7 +15,7 @@
   background-color: var(--greyscale1-color);
   flex-direction: column;
   align-items: center;
-  padding: 1.6rem;
+  padding: 1.6rem 1.6rem 1.6rem 1.6rem;
 }
 
 .wrapper-modal-close {
@@ -75,15 +75,15 @@ td {
 .wrapper-rateOfReturn {
   width: 31.8rem;
   height: 2.4rem;
-  padding: 0, 6.6rem, 0, 6.6rem;
+  padding: 0 6.6rem 0 6.6rem;
 }
 
 .text-rate-of-return {
   text-align: center;
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 700;
-  line-height: 24px;
-  letter-spacing: 0.5px;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
 }
 
 .wrapper-restart-btn {
@@ -94,7 +94,7 @@ td {
   justify-content: center;
   margin: 3.8rem 0 3.8rem 0;
   background-color: var(--primary-color);
-  padding: 06rem, 0.6rem, 0.6rem, 0.8rem;
+  padding: 0.6rem 0.6rem 0.6rem 0.8rem;
   border-radius: 0.4rem;
 }
 
