@@ -1,6 +1,8 @@
 import { $ } from '../util/domSelector';
 import ErrorMessageUtil from '../util/ErrorMessageUtil';
+import numericInputFilter from '../util/numericInputFilter';
 import Validator from '../../validator/Validator';
+import { SETTING } from '../../constant/setting';
 
 class PurchaseForm extends HTMLElement {
   #boundMethods;
@@ -32,6 +34,9 @@ class PurchaseForm extends HTMLElement {
 
   #setEvent() {
     this.#elements.submitButton.addEventListener('click', this.#boundMethods.handleSubmit);
+    this.#elements.input.addEventListener('input', () =>
+      numericInputFilter(this.#elements.input, SETTING.MAX_LOTTO_PURCHASE_AMOUNT_LENGTH),
+    );
     this.#elements.input.addEventListener('keydown', this.#boundMethods.handleEnterKeyDown);
   }
 
@@ -68,7 +73,7 @@ class PurchaseForm extends HTMLElement {
       <section id="purchase">
         <p>구입할 금액을 입력해주세요.</p>
         <form id="purchase-form">
-          <input id="purchase-form-input" type="number" placeholder="금액" oninput="this.value = this.valueAsNumber">
+          <input id="purchase-form-input" type="number" placeholder="금액">
           <button type="button" id="purchase-form-button">구입</button>
         </form>
       </section>
