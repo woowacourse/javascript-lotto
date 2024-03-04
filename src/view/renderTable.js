@@ -11,7 +11,7 @@ function renderTable(target, content) {
     ${content
       .map(
         (row) => `<tr>
-      ${row.map((el) => `<td>${el}</td>`).join("")}
+      ${row.map((el) => `<td aria-live='polite' >${el}</td>`).join("")}
       </tr>`
       )
       .join("")}
