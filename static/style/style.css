@@ -23,10 +23,6 @@
   --button-bold: 700;
 }
 
-html {
-  font-size: 62.5%;
-}
-
 body {
   font:
     var(--default-bold) var(--default-font) / 24px 'Roboto',
