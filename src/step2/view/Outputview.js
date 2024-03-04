@@ -18,6 +18,7 @@ export const printLottos = (lottos) => {
   $lottosUl.append(...$lottoElements);
   $lottosCount.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
 
+  document.getElementById("lottosBox").classList.remove("hidden");
   WinningLottoForm.show();
 };
 
@@ -26,6 +27,7 @@ export const removeLottos = () => {
   const $lottosUl = document.getElementById("lottosUl");
   $lottosCount.innerText = ``;
   $lottosUl.replaceChildren();
+  document.getElementById("lottosBox").classList.add("hidden");
 };
 
 export const printResultTable = (results) => {
