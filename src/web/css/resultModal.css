@@ -1,0 +1,61 @@
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  border: none;
+  width: 350px;
+  height: 500px;
+}
+
+.modal-content {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--lotto-greyscale-1);
+  width: 350px;
+  height: 500px;
+}
+
+.modal-table-container {
+  width: 318px;
+  height: 247px;
+}
+
+.result-table {
+  width: 100%;
+}
+
+.table-border {
+  border-top: 1px solid var(--border1);
+  border-bottom: 1px solid var(--border1);
+}
+
+.table-row {
+  height: 40px;
+  text-align: center;
+  td,
+  th {
+    vertical-align: middle;
+  }
+}
+
+.table-row th {
+  width: 33%;
+}
+
+#restart-button {
+  width: 318px;
+  height: 36px;
+}
+
+.exit-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-weight: 700;
+  font-size: 16px;
+}
