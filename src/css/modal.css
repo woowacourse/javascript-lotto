@@ -1,7 +1,11 @@
 #modal {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  margin: 0;
   background-color: rgba(0, 0, 0, 0.6);
 }
 

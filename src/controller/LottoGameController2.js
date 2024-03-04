@@ -2,7 +2,6 @@ import { SETTING, RANKING } from '../constant/setting.js';
 import LottoMachine from '../domain/LottoMachine.js';
 import LottosManager from '../domain/LottosManager.js';
 import elementHandler from '../handler/elementHandler.js';
-import eventHandler from '../handler/eventHandler.js';
 import Validator from '../validator/Validator.js';
 import View from '../view/View.js';
 
@@ -11,10 +10,6 @@ const $purchaseForm = elementHandler.$('.purchase-form');
 
 const $winningLottoForm = elementHandler.$('.winning-lotto-form');
 
-const $modalBackground = elementHandler.$('#modal');
-const $modalContent = elementHandler.$('.modal__content');
-const $closeButton = elementHandler.$('.close-button');
-const $restartButton = elementHandler.$('.restart-button');
 class LottoGameController2 {
   #purchaseAmount;
   #lottosManager;
@@ -91,9 +86,9 @@ class LottoGameController2 {
     try {
       Validator.validateBonusNumber(bonusNumber, winningNumberList);
       this.#bonusNumber = bonusNumber;
+      console.log(this.#winningNumbers);
+      console.log(this.#bonusNumber);
       this.#showResult();
-      this.#bindCloseButton();
-      this.#bindRestartButton();
     } catch (error) {
       alert(error.message);
       $bonusInput.value = '';
@@ -111,17 +106,6 @@ class LottoGameController2 {
       return profit + RANKING[matchedKey].REWARD * count;
     }, 0);
     return ((totalProfit * 100) / this.#purchaseAmount).toFixed(1);
-  }
-
-  #bindCloseButton() {
-    eventHandler.onModalClose($closeButton, $modalBackground, $modalContent, View.renderCloseModal);
-  }
-
-  #bindRestartButton() {
-    eventHandler.onRestart($restartButton, () => {
-      $purchaseAmount.value = '';
-      View.renderRestartGame();
-    });
   }
 }
 

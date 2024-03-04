@@ -1,5 +1,6 @@
 import { SETTING, RANKING } from '../constant/setting.js';
 import elementHandler from '../handler/elementHandler.js';
+import eventHandler from '../handler/eventHandler.js';
 
 const $lottosContainer = elementHandler.$('.lottos-container');
 const $lottosText = elementHandler.$('.lottos-text');
@@ -13,6 +14,8 @@ const $winningResultContainer = elementHandler.$('.winning-result-container');
 const $profitRateText = elementHandler.$('.profit-rate-text');
 
 const $modal = elementHandler.$('#modal');
+const $modalContent = elementHandler.$('.modal__content');
+const $restartButton = elementHandler.$('.restart-button');
 
 const View = {
   renderPurchasedLottos(lottos) {
@@ -37,7 +40,7 @@ const View = {
   },
 
   renderWinningResults(winningResults, profitRate) {
-    $modal.hidden = false;
+    $modal.showModal();
 
     const matchedCounts = [3, 4, 5, 'B5', 6];
     $winningResultContainer.innerHTML = matchedCounts
@@ -53,16 +56,24 @@ const View = {
       .join('');
 
     $profitRateText.innerHTML = `당신의 총 수익률은 ${profitRate}%입니다.`;
+
+    this.renderCloseModal();
+    this.renderRestartGame();
   },
 
   renderCloseModal() {
-    $modal.hidden = true;
+    eventHandler.onClick($modal, () => $modal.close());
+    eventHandler.onClick($modalContent, (event) => {
+      event.stopPropagation();
+    });
   },
 
   renderRestartGame() {
-    this.renderCloseModal();
-    $lottosContainer.hidden = true;
-    $winningLottoForm.hidden = true;
+    eventHandler.onClick($restartButton, () => {
+      $modal.close();
+      $lottosContainer.hidden = true;
+      $winningLottoForm.hidden = true;
+    });
   },
 };
 
