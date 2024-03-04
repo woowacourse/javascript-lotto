@@ -9,11 +9,16 @@ purchased-lottos > .counter {
 
 purchased-lottos > .list {
   height: 15rem;
-  overflow: scroll;
+  overflow-y: scroll;
+  scrollbar-color: unset;
 
   list-style: none;
   padding-left: 0px;
   margin: 0;
+}
+
+purchased-lottos > .list::-webkit-scrollbar {
+  background: rgb(var(--color-grey-scale-1));
 }
 
 purchased-lottos > .list > li {
