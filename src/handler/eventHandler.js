@@ -18,19 +18,6 @@ const eventHandler = {
   onEnter(element, callback) {
     this.onKeyup(element, 'Enter', callback);
   },
-
-  onModalClose(closeButton, modalBackground, modalContent, callback) {
-    this.onClick(closeButton, callback);
-    this.onClick(modalBackground, callback);
-    this.onEsc(document, callback);
-    this.onClick(modalContent, (event) => {
-      event.stopPropagation();
-    });
-  },
-
-  onRestart(restartButton, callback) {
-    this.onClick(restartButton, callback);
-  },
 };
 
 export default eventHandler;
