@@ -4,7 +4,7 @@ import WebWinningLottoController from './WebWinningLottoController';
 
 class WebMainController {
   play() {
-    const $purchaseLottoButton = document.querySelector('.purchase__button');
+    const $purchaseLottoButton = document.getElementById('purchase__button');
     $purchaseLottoButton.addEventListener(
       'click',
       WebPurchaseLottoServiceController.playWebPurchaseLottoService,
