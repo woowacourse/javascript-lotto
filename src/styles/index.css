@@ -140,14 +140,19 @@ body {
   margin-bottom: 0.4rem;
 }
 
-#after-budget {
+#after-budget-invisible {
   display: none;
+}
+
+#after-budget {
+  display: flex;
   margin-top: 2.8rem;
   flex-direction: column;
   height: inherit;
   flex-grow: 1;
   justify-content: space-between;
 }
+
 
 #content-box-lottos {
   box-sizing: border-box;
@@ -179,10 +184,12 @@ body {
 }
 
 #content-box-input-combination {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   margin-top: 1.2rem;
+}
+
+#content-box-input {
+  display: flex;
+  justify-content: space-between;
 }
 
 #content-box-numbers {
@@ -411,4 +418,28 @@ body {
   border-radius: 0.4rem;
   margin: 3.2rem 1.6rem 3.2rem;
   border: none;
+}
+
+/* 발행된 로또 */
+
+#lotto-imoji {
+  display: inline-block;
+  width: 3.4rem;
+  height: 3.6rem;
+  line-height: 3.6rem;
+  margin-right: 0.8rem;
+  box-sizing: border-box;
+  font-size: 3rem;
+  vertical-align: middle;
+}
+
+#issued-lotto-div {
+  display: inline-block;
+  height: 3.6rem;
+  line-height: 3.6rem;
+  vertical-align: middle;
+}
+
+#issued-lotto {
+  margin-top: 0.4rem;
 }

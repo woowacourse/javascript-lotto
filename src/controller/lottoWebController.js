@@ -21,21 +21,14 @@ class LottoWebController {
       "submit",
       this.handleWebBudget.bind(this)
     );
-    // $("#budget").addEventListener("keydown", this.handleWebBudget.bind(this));
-    // $("#budget-btn").addEventListener("click", this.handleWebBudget.bind(this));
-    $("#result-btn").addEventListener(
-      "click",
-      this.handleWebWinningCombinationInput.bind()
-    );
     $("#modal-close-btn").addEventListener("click", this.closeModal.bind());
     $("#modal-retry-btn").addEventListener("click", this.reloadTag.bind(this));
     $("#modal").addEventListener("click", this.closeModalOutside.bind(this));
 
-    $("#content-box-input-combination")
-      .querySelectorAll("input")
-      .forEach((query) =>
-        query.addEventListener("keydown", this.enterToResultButton.bind(this))
-      );
+    $("#content-box-input-combination").addEventListener(
+      "submit",
+      this.handleWebWinningCombinationInput.bind(this)
+    );
   }
 
   getWebBudget() {
@@ -55,7 +48,7 @@ class LottoWebController {
 
       const webIssuedLottoCount = this.calculateWebIssuedLottoCount();
 
-      $("#after-budget").style.display = "flex";
+      $("#after-budget-invisible").id = "after-budget";
       const form = document.querySelector("#content-box-input-budget");
       const formInputs = form.querySelectorAll("input, button");
 
@@ -83,41 +76,20 @@ class LottoWebController {
   printWebIssuedLottoArray() {
     const curr = $("#content-box-lottos-msg");
 
-    const setCommonStyles = (element, styles) => {
-      Object.assign(element.style, styles);
-    };
-
     this.#webIssuedLottoArray.forEach((array) => {
       const lottoImoji = Object.assign(document.createElement("div"), {
         innerHTML: "🎟️",
-      });
-
-      setCommonStyles(lottoImoji, {
-        display: "inline-block",
-        width: "3.4rem",
-        height: "3.6rem",
-        lineHeight: "3.6rem",
-        marginRight: "0.8rem",
-        boxSizing: "border-box",
-        fontSize: "3rem",
-        verticalAlign: "middle",
+        id: "lotto-imoji",
       });
 
       const issuedLottoDiv = Object.assign(document.createElement("div"), {
         innerHTML: array.join(", "),
         className: "lotto-body",
-      });
-
-      setCommonStyles(issuedLottoDiv, {
-        display: "inline-block",
-        height: "3.6rem",
-        lineHeight: "3.6rem",
-        verticalAlign: "middle",
+        id: "issued-lotto-div",
       });
 
       const issuedLotto = document.createElement("div");
-      issuedLotto.className = "issued-lotto";
-      issuedLotto.style.marginTop = "0.4rem";
+      issuedLotto.id = "issued-lotto";
       issuedLotto.append(lottoImoji, issuedLottoDiv);
 
       curr.append(issuedLotto);
@@ -137,7 +109,8 @@ class LottoWebController {
   /**
    * 당첨 번호 및 보너스 번호 입력값 관리
    */
-  handleWebWinningCombinationInput() {
+  handleWebWinningCombinationInput(event) {
+    event.preventDefault();
     const webWinningNumbersInput = Array.from({ length: 6 }, (_, index) => {
       return Number($$(".lotto-numbers-input")[index].value);
     });
@@ -184,7 +157,6 @@ class LottoWebController {
   }
 
   closeModal() {
-    console.log("close modal");
     $("#modal").style.display = "none";
   }
 
@@ -222,29 +194,19 @@ class LottoWebController {
     $("#profit-msg-num").innerHTML = webProfit.toFixed(0);
   }
 
-  reloadPage() {
-    document.location.reload();
-  }
-
   reloadTag() {
     this.removeWebIssuedLottoArray();
     this.removeWebWinningCombinationInput();
     $("#budget").value = "";
-    $("#after-budget").style.display = "none";
+    $("#after-budget").id = "after-budget-invisible";
     const form = document.querySelector("#content-box-input-budget");
-    const formInputs = form.querySelectorAll("input, button");
+    const formInputs = form.querySelectorAll("#budget, .lotto-caption");
 
     formInputs.forEach((input) => {
       input.disabled = false;
     });
 
     this.closeModal();
-  }
-
-  enterToResultButton(event) {
-    if (event.keyCode === 13) {
-      return this.handleWebWinningCombinationInput(this);
-    }
   }
 }
 
