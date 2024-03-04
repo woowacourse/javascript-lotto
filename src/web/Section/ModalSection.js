@@ -6,7 +6,7 @@ const ModalSection = {
     addResultButton(event, randomLottos = []) {
         event.preventDefault();
         const winNumbers = Array.from(document.querySelectorAll('.winnumber-input')).map(lotto => Number(lotto.value));
-        const bonusNumber = document.querySelector('.bonusnumber-input').value;
+        const bonusNumber = Number(document.querySelector('.bonusnumber-input').value);
         try{
             LottoValidation.validateNumbers(winNumbers);
             LottoValidation.validateBonusNumber(winNumbers, bonusNumber);
