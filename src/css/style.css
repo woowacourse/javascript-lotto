@@ -64,7 +64,7 @@ section {
   gap: 16px;
 }
 
-#purchaseInputSection div #purchaseInputField {
+#purchaseInputField {
   width: 310px;
   height: 36px;
   padding: 0px 8px;
@@ -72,7 +72,7 @@ section {
   border-radius: 4px;
 }
 
-#purchaseInputSection div #purchaseSubmitButton {
+#purchaseSubmitButton {
   width: 56px;
   height: 36px;
   padding: 0px 6px;
@@ -91,11 +91,11 @@ section {
   flex-direction: column;
 }
 
-#lottoSection #lottoMainTitle {
+#lottoMainTitle {
   margin-bottom: 8px;
 }
 
-#lottoSection #lottoBox {
+#lottoBox {
   height: 276px;
   display: flex;
   flex-direction: column;
@@ -103,7 +103,7 @@ section {
   overflow-y: scroll;
 }
 
-#lottoSection #lottoBox .lottoTicket {
+.lottoTicket {
   min-height: 36px;
   max-height: 36px;
   display: flex;
@@ -114,7 +114,7 @@ section {
   font-size: 15px;
 }
 
-#lottoSection #lottoBox .lottoTicket .lottoTicketNumber {
+.lottoTicketNumber {
   width: 24px;
   text-align: center;
 }
@@ -126,12 +126,12 @@ section {
   flex-direction: column;
 }
 
-#winningAndBonusSection #winningAndBonusTitle {
+#winningAndBonusTitle {
   white-space: nowrap;
   margin-bottom: 8px;
 }
 
-#winningAndBonusSection #winningAndBonusInputSection {
+#winningAndBonusInputSection {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -139,22 +139,19 @@ section {
   margin-bottom: 4px;
 }
 
-#winningAndBonusSection #winningAndBonusInputSection .winningAndBonusContainer {
+.winningAndBonusContainer {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-#winningAndBonusSection
-  #winningAndBonusInputSection
-  .winningAndBonusContainer
-  #winningInputContainer {
+#winningInputContainer {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
 
-#winningAndBonusSection #winningAndBonusInputSection .inputRectangle {
+.inputRectangle {
   width: 34px;
   height: 36px;
   border-radius: 4px;
@@ -162,7 +159,7 @@ section {
   text-align: center;
 }
 
-#winningAndBonusSection #winningAndBonusSubmitButton {
+#winningAndBonusSubmitButton {
   width: 100%;
   height: 36px;
   padding: 0px 6px;
@@ -175,11 +172,11 @@ section {
   cursor: pointer;
 }
 
-#winningAndBonusSection #bonusInputContainer {
+#bonusInputContainer {
   align-items: flex-end;
 }
 
-/* footer */
+/* footer ---------------------  */
 footer {
   display: flex;
   align-items: center;
@@ -194,7 +191,7 @@ footer .caption {
   color: var(--blue);
 }
 
-/* modal */
+/* modal ---------------------  */
 #modalContainer {
   position: fixed;
   z-index: 1;
