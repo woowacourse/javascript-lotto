@@ -271,9 +271,9 @@ body {
   position: absolute;
   width: 350px;
   height: 500px;
-  top: 272px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
   background: rgba(255, 255, 255, 1);
   border-radius: 4px;
 }
