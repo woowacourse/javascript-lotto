@@ -65,33 +65,23 @@ class LottoGameController2 {
 
   #checkWinningNumbers(winningNumberList) {
     const $winningInputs = elementHandler.$$('.lotto-input.winning');
-    const $bonusInput = elementHandler.$('.lotto-input.bonus');
 
     try {
       Validator.validateWinningNumberList(winningNumberList);
       this.#winningNumbers = winningNumberList;
     } catch (error) {
       alert(error.message);
-      $winningInputs.forEach((winningNumber) => {
-        winningNumber.value = '';
-      });
-      $bonusInput.value = '';
       $winningInputs[0].focus();
     }
   }
 
   #checkBonusNumber(bonusNumber, winningNumberList) {
-    const $bonusInput = elementHandler.$('.lotto-input.bonus');
-
     try {
       Validator.validateBonusNumber(bonusNumber, winningNumberList);
       this.#bonusNumber = bonusNumber;
-      console.log(this.#winningNumbers);
-      console.log(this.#bonusNumber);
       this.#showResult();
     } catch (error) {
       alert(error.message);
-      $bonusInput.value = '';
     }
   }
 
