@@ -132,11 +132,9 @@ class WinningLottoController {
     return numberInput;
   }
 
-  #createWinningNumbersInputs() {
-    const createWinningNumberInput = () => this.#createWinningNumberInput();
-    return Array.from(
-      { length: LOTTO_SETTING.LENGTH },
-      createWinningNumberInput
+  #createWinningNumbersInputs(length) {
+    return Array.from({ length: length }, () =>
+      this.#createWinningNumberInput()
     );
   }
 
@@ -194,9 +192,11 @@ class WinningLottoController {
     const winningNumbersInputDiv = this.#createWinningNumbersInputDiv();
     winningNumbersDiv.appendChild(winningNumbersInputDiv);
 
-    this.#createWinningNumbersInputs().forEach((winningNumberInput) => {
-      winningNumbersInputDiv.appendChild(winningNumberInput);
-    });
+    this.#createWinningNumbersInputs(LOTTO_SETTING.LENGTH).forEach(
+      (winningNumberInput) => {
+        winningNumbersInputDiv.appendChild(winningNumberInput);
+      }
+    );
   }
 
   #createBonusNumberDiv() {
@@ -214,11 +214,6 @@ class WinningLottoController {
     return bonusNumberLabel;
   }
 
-  #createBonusNumberInput() {
-    const bonusNumberInput = this.#createWinningNumberInput();
-    return bonusNumberInput;
-  }
-
   #setBonusNumberDiv(winningDisplayDiv) {
     const bonusNumberDiv = this.#createBonusNumberDiv();
     winningDisplayDiv.appendChild(bonusNumberDiv);
@@ -226,7 +221,7 @@ class WinningLottoController {
     const bonusNumberLabel = this.#createBonusNumberLabel();
     bonusNumberDiv.appendChild(bonusNumberLabel);
 
-    const bonusNumberInput = this.#createBonusNumberInput();
+    const bonusNumberInput = this.#createWinningNumberInput();
     bonusNumberDiv.appendChild(bonusNumberInput);
   }
 
