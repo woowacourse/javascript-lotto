@@ -34,7 +34,6 @@
   position: absolute;
   top: 30px;
   left: 16px;
-  padding: 0px, 94px, 0px, 94px;
   text-align: center;
 
   font-size: 20px;
@@ -98,7 +97,6 @@
   position: absolute;
   top: 390px;
   left: 16px;
-  padding: 0px, 66px, 0px, 66px;
   text-align: center;
 
   font-size: 15px;
@@ -114,7 +112,6 @@
   position: absolute;
   top: 440px;
   left: 16px;
-  padding: 6px, 6px, 6px, 8px;
   border: none;
   border-radius: 4px;
   background-color: var(--header-color);
