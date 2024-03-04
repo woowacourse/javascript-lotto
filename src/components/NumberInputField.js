@@ -14,8 +14,11 @@ class NumberInputField extends HTMLElement {
   }
 
   getValue() {
-    return this.querySelector('.number-input').value;
-  }
+    const inputField = this.querySelector('.number-input');
+    if (!inputField) {
+      throw new AppError('".number-input"를 찾을 수 없습니다.');
+    }
+    return inputField.getValue();
 }
 
 customElements.define('number-input-field', NumberInputField);
