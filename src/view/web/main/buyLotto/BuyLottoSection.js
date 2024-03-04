@@ -9,13 +9,13 @@ export default function BuyLottoSection() {
   const title = document.createElement('h1');
 
   title.innerText = '🎱 내 당첨번호 확인 🎱';
-  titleContainer.setAttribute('id', 'lotto-title');
+  titleContainer.classList.add('lotto-title');
   titleContainer.appendChild(title);
 
   // lottoContainer
   const lottoContainer = document.createElement('div');
 
-  lottoContainer.setAttribute('id', 'buy-lotto-container');
+  lottoContainer.classList.add('buy-lotto-container');
 
   lottoContainer.appendChild(BuyLottoForm());
   lottoContainer.appendChild(ErrorMessage('cost-error', ['input-error', 'hidden']));

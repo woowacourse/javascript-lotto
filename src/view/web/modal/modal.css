@@ -1,4 +1,4 @@
-#modal-container {
+.modal-container {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -7,14 +7,14 @@
   align-items: center;
 }
 
-#dimmer {
+.dimmer {
   position: absolute;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-#modal-container > main {
+.modal-content {
   padding: 16px;
   width: 350px;
   height: 500px;
@@ -26,62 +26,58 @@
   z-index: 99;
 }
 
-#close-btn-container {
+.close-button-container {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
 
-#close-btn-text {
+.close-button-text {
   font-size: 20px;
   font-weight: 700;
 }
 
-#close-btn {
+.close-button {
   background-color: var(--greyscale-1);
 }
 
-#close-btn:hover {
-  opacity: 0.7;
-}
-
-#statistics-title-container {
+.statistics-title-container {
   height: 24px;
   margin-top: 8px;
 }
 
-#statistics {
+.statistics {
   width: 100%;
   text-align: center;
   line-height: 24px;
   margin-top: 33px;
 }
 
-#statistics th,
+.statistics th,
 td {
   padding: 8px 0;
 }
 
-#statistics thead {
+.statistics thead {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-#statistics tr {
+.statistics tr {
   height: 40px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-#statistics td {
+.statistics td {
   font-size: 15px;
   font-weight: 400;
 }
 
-#statistics th {
+.statistics th {
   font-size: 15px;
   font-weight: 600;
 }
 
-#profit-container {
+.profit-container {
   height: 24px;
   display: flex;
   justify-content: center;
@@ -89,18 +85,18 @@ td {
   margin: 32px 0px;
 }
 
-#profit {
+.profit {
   font-size: 15px;
   font-weight: 600;
 }
 
-#retry-btn-container {
+.retry-button-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#retry-btn {
+.retry-button {
   width: 100%;
   font-size: 14px;
   font-weight: 700;
@@ -109,8 +105,4 @@ td {
   padding: 4px 0;
   height: 36px;
   border-radius: 4px;
-}
-
-#retry-btn:hover {
-  opacity: 0.7;
 }

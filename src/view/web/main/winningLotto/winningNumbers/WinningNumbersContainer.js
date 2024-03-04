@@ -7,10 +7,11 @@ export default function WinningNumbersContainer() {
 
   const winningNumbersLabel = document.createElement('label');
   winningNumbersLabel.classList.add('winning-number-label');
+  winningNumbersLabel.classList.add('number-input-label-font');
   winningNumbersLabel.innerText = '당첨 번호';
 
   const winningNumbersInputSection = document.createElement('section');
-  winningNumbersInputSection.setAttribute('id', 'winning-numbers-input');
+  winningNumbersInputSection.classList.add('winning-numbers-input-section');
 
   Array.from({ length: LOTTO_RULES.length }).forEach((_, idx) => {
     winningNumbersInputSection.appendChild(WinningNumbersInput(idx + 1));

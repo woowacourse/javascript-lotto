@@ -5,13 +5,14 @@ export default function BuyLottoInput() {
   const inputLabel = document.createElement('label');
   const buyLottoInput = document.createElement('input');
 
-  lottoContainer.setAttribute('id', 'buy-lotto-container');
+  lottoContainer.classList.add('buy-lotto-input-container');
 
-  inputLabel.setAttribute('id', 'cost-label');
   inputLabel.setAttribute('for', 'cost');
+  inputLabel.classList.add('cost-label');
   inputLabel.innerText = '구입할 금액을 입력해주세요.';
 
   buyLottoInput.setAttribute('id', 'cost');
+  buyLottoInput.classList.add('cost');
   buyLottoInput.setAttribute('placeholder', '금액');
   buyLottoInput.setAttribute('type', 'number');
   buyLottoInput.setAttribute('required', 'required');

@@ -17,5 +17,5 @@ const eventController = new EventController();
 $('#buy-lotto-form').addEventListener('submit', (event) => eventController.onSubmitBuyForm(event));
 $('#winning-lotto-form').addEventListener('submit', (event) => eventController.handleWinningLottoForm(event));
 $('#dimmer').addEventListener('click', (event) => eventController.handleCloseButton(event));
-$('#close-btn').addEventListener('click', (event) => eventController.handleCloseButton(event));
-$('#retry-btn').addEventListener('click', (event) => eventController.handleRetryButton(event));
+$('#close-button').addEventListener('click', (event) => eventController.handleCloseButton(event));
+$('#retry-button').addEventListener('click', (event) => eventController.handleRetryButton(event));

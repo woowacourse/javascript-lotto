@@ -7,7 +7,7 @@ footer {
   align-items: center;
 }
 
-#footer-text {
+.footer-text {
   color: var(--primary);
   font-size: 14px;
   font-weight: 700;

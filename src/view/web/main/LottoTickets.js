@@ -2,18 +2,18 @@ export default function LottoTickets() {
   const buyResultContainer = document.createElement('div');
   buyResultContainer.setAttribute('id', 'lottos');
 
-  // 구매한 로또 개수
   const purchaseTotalSpan = document.createElement('span');
+  purchaseTotalSpan.classList.add('total-buy-text');
   purchaseTotalSpan.setAttribute('id', 'total-buy-text');
 
-  // 로또 티켓
   const lottoTicketsContainer = document.createElement('section');
-  lottoTicketsContainer.setAttribute('id', 'lotto-tickets-container');
+  lottoTicketsContainer.classList.add('lotto-tickets-container');
 
   const ticketsUl = document.createElement('ul');
+  ticketsUl.setAttribute('id', 'ticket-list');
+  ticketsUl.classList.add('ticket-list');
   lottoTicketsContainer.appendChild(ticketsUl);
 
-  // 합치기
   buyResultContainer.appendChild(purchaseTotalSpan);
   buyResultContainer.appendChild(lottoTicketsContainer);
 

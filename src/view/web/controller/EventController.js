@@ -35,7 +35,7 @@ export default class EventController {
       .join('');
 
     $('#total-buy-text').innerText = `총 ${buyCount}개를 구매하였습니다.`;
-    $('#lotto-tickets-container ul').innerHTML = lottoQuery;
+    $('#ticket-list').innerHTML = lottoQuery;
     $('#cost-error').classList.remove('visible');
     $('#cost-error').classList.add('hidden');
     $('#step2').classList.remove('hidden');
@@ -99,7 +99,7 @@ export default class EventController {
         <td>${result[RANK.first]}개</td>
       </tr>
     `;
-    $('#statistics tbody').innerHTML = statisticsQuery;
+    $('#statistics-content').innerHTML = statisticsQuery;
     $('#profit').innerHTML = `당신의 총 수익률은 ${statistics.getProfit}%입니다.`;
   }
 

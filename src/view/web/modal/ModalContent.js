@@ -1,22 +1,24 @@
 export default function ModalContent() {
   const main = document.createElement('main');
-  // 닫기 버튼
+  main.classList.add('modal-content');
+
   const closeButtonSection = document.createElement('section');
-  closeButtonSection.setAttribute('id', 'close-btn-container');
+  closeButtonSection.classList.add('close-button-container');
 
   const closeButton = document.createElement('button');
-  closeButton.setAttribute('id', 'close-btn');
+  closeButton.classList.add('close-button');
+  closeButton.setAttribute('id', 'close-button');
 
-  const closeBtnText = document.createElement('span');
-  closeBtnText.setAttribute('id', 'close-btn-text');
-  closeBtnText.innerText = 'X';
+  const closeButtonText = document.createElement('span');
+  closeButtonText.classList.add('close-button-text');
+  closeButtonText.innerText = 'X';
 
-  closeButton.appendChild(closeBtnText);
+  closeButton.appendChild(closeButtonText);
   closeButtonSection.appendChild(closeButton);
 
   // 당첨 통계 제목
   const statisticsTitleContainer = document.createElement('section');
-  statisticsTitleContainer.setAttribute('id', 'statistics-title-container');
+  statisticsTitleContainer.classList.add('statistics-title-container');
 
   const h1 = document.createElement('h1');
   h1.innerText = '🏆 당첨 통계 🏆';
@@ -25,10 +27,9 @@ export default function ModalContent() {
 
   // 통계
   const statisticsContainer = document.createElement('section');
-  statisticsContainer.setAttribute('id', 'statistics-container');
 
   const table = document.createElement('table');
-  table.setAttribute('id', 'statistics');
+  table.classList.add('statistics');
 
   table.innerHTML = `
     <thead>
@@ -38,7 +39,7 @@ export default function ModalContent() {
         <th>당첨 갯수</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="statistics-content">
     </tbody>
   `;
 
@@ -46,19 +47,21 @@ export default function ModalContent() {
 
   // 이익 출력
   const profitContainer = document.createElement('section');
-  profitContainer.setAttribute('id', 'profit-container');
+  profitContainer.classList.add('profit-container');
 
   const profitText = document.createElement('span');
+  profitText.classList.add('profit');
   profitText.setAttribute('id', 'profit');
 
   profitContainer.appendChild(profitText);
 
   // 재시작 버튼
   const retryButtonContainer = document.createElement('section');
-  retryButtonContainer.setAttribute('id', 'retry-btn-container');
+  retryButtonContainer.classList.add('retry-button-container');
 
   const retryButton = document.createElement('button');
-  retryButton.setAttribute('id', 'retry-btn');
+  retryButton.setAttribute('id', 'retry-button');
+  retryButton.classList.add('retry-button');
   retryButton.innerText = '다시 시작하기';
 
   retryButtonContainer.appendChild(retryButton);

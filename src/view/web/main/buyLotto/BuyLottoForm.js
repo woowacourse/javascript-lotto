@@ -5,9 +5,10 @@ export default function BuyLottoForm() {
   const buyButton = document.createElement('button');
 
   form.setAttribute('id', 'buy-lotto-form');
+  form.classList.add('buy-lotto-form');
 
   buyButton.innerText = '구입';
-  buyButton.setAttribute('id', 'buy-button');
+  buyButton.classList.add('buy-button');
 
   form.appendChild(BuyLottoInput());
   form.appendChild(buyButton);
