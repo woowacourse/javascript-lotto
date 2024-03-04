@@ -9,13 +9,11 @@ class BonusNumber {
 
   render() {
     const $oldBonusNumber = this.#$parent.querySelector("#bonus-number");
-    const $newBonusNumber = this.#generateBonusNumber();
-
     if ($oldBonusNumber) {
-      this.#$parent.replaceChild($newBonusNumber, $oldBonusNumber);
       return;
     }
 
+    const $newBonusNumber = this.#generateBonusNumber();
     this.#$parent.append($newBonusNumber);
   }
 

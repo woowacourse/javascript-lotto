@@ -9,13 +9,11 @@ class DrawButton {
 
   render() {
     const $oldDrawButton = this.#$parent.querySelector("#draw-button");
-    const $newDrawButton = this.#generateDrawButton();
-
     if ($oldDrawButton) {
-      this.#$parent.replaceChild($newDrawButton, $oldDrawButton);
       return;
     }
 
+    const $newDrawButton = this.#generateDrawButton();
     this.#$parent.append($newDrawButton);
   }
 

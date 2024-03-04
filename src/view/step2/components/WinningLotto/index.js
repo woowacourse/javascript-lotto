@@ -13,13 +13,11 @@ class WinningLotto {
 
   render() {
     const $oldWinningLotto = this.#$parent.querySelector("#winning-lotto");
-    const $newWinningLotto = this.#generateWinningLotto();
-
     if ($oldWinningLotto) {
-      this.#$parent.replaceChild($newWinningLotto, $oldWinningLotto);
       return;
     }
 
+    const $newWinningLotto = this.#generateWinningLotto();
     this.#$parent.append($newWinningLotto);
   }
 

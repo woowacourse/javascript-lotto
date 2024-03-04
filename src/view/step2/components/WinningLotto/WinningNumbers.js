@@ -9,13 +9,11 @@ class WinningNumbers {
 
   render() {
     const $oldWinningNumbers = this.#$parent.querySelector("#winning-numbers");
-    const $newWinningNumbers = this.#generateWinningNumbers();
-
     if ($oldWinningNumbers) {
-      this.#$parent.replaceChild($newWinningNumbers, $oldWinningNumbers);
       return;
     }
 
+    const $newWinningNumbers = this.#generateWinningNumbers();
     this.#$parent.append($newWinningNumbers);
   }
 

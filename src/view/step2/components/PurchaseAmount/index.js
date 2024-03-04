@@ -15,13 +15,11 @@ class PurchaseAmount {
 
   render() {
     const $oldPurchaseAmount = this.#$parent.querySelector("#purchase-amount");
-    const $newPurchaseAmount = this.#generatePurchaseAmount();
-
     if ($oldPurchaseAmount) {
-      this.#$parent.replaceChild($newPurchaseAmount, $oldPurchaseAmount);
       return;
     }
 
+    const $newPurchaseAmount = this.#generatePurchaseAmount();
     this.#$parent.append($newPurchaseAmount);
   }
 

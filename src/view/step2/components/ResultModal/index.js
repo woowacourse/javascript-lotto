@@ -34,13 +34,11 @@ class ResultModal {
 
   render() {
     const $oldResultModal = this.#$parent.querySelector("#result-modal");
-    const $newResultModal = this.#generateResultModal();
-
     if ($oldResultModal) {
-      this.#$parent.replaceChild($newResultModal, $oldResultModal);
       return;
     }
 
+    const $newResultModal = this.#generateResultModal();
     this.#$parent.append($newResultModal);
   }
 

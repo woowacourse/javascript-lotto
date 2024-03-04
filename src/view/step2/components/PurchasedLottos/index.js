@@ -12,13 +12,11 @@ class PurchasedLottos {
   render() {
     const $oldPurchasedLottos =
       this.#$parent.querySelector("#purchased-lottos");
-    const $newPurchasedLottos = this.#generatePurchasedLottos();
-
     if ($oldPurchasedLottos) {
-      this.#$parent.replaceChild($newPurchasedLottos, $oldPurchasedLottos);
       return;
     }
 
+    const $newPurchasedLottos = this.#generatePurchasedLottos();
     this.#$parent.append($newPurchasedLottos);
   }
 
