@@ -11,7 +11,7 @@ class LottoStatisticsModal extends Component {
       <section class="lotto-statistics-modal-overlay">
         <section class="lotto-statistics-modal">
           <button class="modal-close-btn">X</button>
-          <p class="lotto-statistics-modal-title">🏆 당첨 통계 🏆</p>
+          <h1 class="lotto-statistics-modal-title">🏆 당첨 통계 🏆</h1>
           <table>
             <thead>
               <tr>
