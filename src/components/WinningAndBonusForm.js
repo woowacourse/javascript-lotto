@@ -80,9 +80,10 @@ class WinningNumbersForm extends HTMLElement {
     return !hasEmptyWinningNumber && bonusNumberInput !== 0;
   }
 
-  #lottoResultEvent({ winningNumbers, bonusNumber }) {
+  #lottoResultEvent(winningNumbers, bonusNumber) {
     const app = document.querySelector('lotto-app');
     app.controller().processLottoResult({ winningNumbers, bonusNumber });
+    // console.log(winningNumbers, bonusNumber);
 
     const lottoResultEvent = new CustomEvent('getLottoResult', {
       bubbles: true,
@@ -97,9 +98,9 @@ class WinningNumbersForm extends HTMLElement {
   #errorHandler({ winningNumbers, bonusNumber }) {
     try {
       WinningNumbersValidator.check(winningNumbers.join(','));
-      BonusNumberValidator.check(`${bonusNumber}`, winningNumbers);
+      BonusNumberValidator.check(bonusNumber, winningNumbers.map(Number));
 
-      this.#lottoResultEvent({ winningNumbers, bonusNumber });
+      this.#lottoResultEvent(winningNumbers.map(Number), Number(bonusNumber));
     } catch (error) {
       this.setErrorMessage(error);
     }
