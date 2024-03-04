@@ -8,13 +8,12 @@ describe('LottoResultCalculator 객체 테스트', () => {
     bonusNumber: 7,
   };
 
-
   describe('구매한 로또들의 총 결과를 객체로 리턴한다.', () => {
     test.each([
       {
         lottoNumbers: [
-          [1, 2, 3, 4, 5, 6], // 1등
-          [1, 2, 3, 4, 5, 7], // 2등
+          [1, 2, 3, 4, 5, 6], //NOTE: 1등
+          [1, 2, 3, 4, 5, 7], //NOTE: 2등
         ],
         description: '1등 1개, 2등 1개',
         expectedResults: {
@@ -27,8 +26,8 @@ describe('LottoResultCalculator 객체 테스트', () => {
       },
       {
         lottoNumbers: [
-          [1, 2, 3, 4, 5, 7], // 2등
-          [1, 2, 3, 4, 5, 8], // 3등
+          [1, 2, 3, 4, 5, 7], //NOTE: 2등
+          [1, 2, 3, 4, 5, 8], //NOTE: 3등
         ],
         description: '2등 1개, 3등 1개',
         expectedResults: {
@@ -41,9 +40,9 @@ describe('LottoResultCalculator 객체 테스트', () => {
       },
       {
         lottoNumbers: [
-          [1, 2, 3, 4, 5, 8], // 3등
-          [1, 2, 3, 4, 8, 9], // 4등
-          [1, 2, 3, 4, 8, 9], // 4등
+          [1, 2, 3, 4, 5, 8], // NOTE: 3등
+          [1, 2, 3, 4, 8, 9], // NOTE: 4등
+          [1, 2, 3, 4, 8, 9], // NOTE: 4등
         ],
         description: '3등 1개, 4등 2개',
         expectedResults: {
@@ -56,9 +55,9 @@ describe('LottoResultCalculator 객체 테스트', () => {
       },
       {
         lottoNumbers: [
-          [1, 8, 9, 10, 11, 12], // 꽝
-          [1, 8, 9, 10, 11, 12], // 꽝
-          [1, 8, 9, 10, 11, 12], // 꽝
+          [1, 8, 9, 10, 11, 12], //NOTE: 꽝을 나타냄
+          [1, 8, 9, 10, 11, 12], //NOTE: 꽝을 나타냄
+          [1, 8, 9, 10, 11, 12], //NOTE: 꽝을 나타냄
         ],
         description: '꽝 3개',
         expectedResults: {
@@ -79,10 +78,8 @@ describe('LottoResultCalculator 객체 테스트', () => {
       }).getTotalResult();
 
       expect(lottoResult).toEqual(expectedResults);
-
     });
   });
-
 
   test('구매한 로또의 수익률을 계산한다.', () => {
     const LOTTO_LIST = [new Lotto([1, 2, 3, 11, 12, 13])];
