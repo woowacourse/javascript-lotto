@@ -5,7 +5,9 @@
 
 import LottoStoreBox from "./step2/web/LottoStoreBox.js";
 import WinningLottoForm from "./step2/web/WinningLottoForm.js";
+import LottoResultModal from "./step2/web/LottoResultModal.js";
 import "./css/style.css";
 
 LottoStoreBox.addSubmitEvent();
 WinningLottoForm.addSubmitEvent();
+LottoResultModal.addClickEvents();
