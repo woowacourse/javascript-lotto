@@ -16,15 +16,15 @@ class LottoResultCalculator {
 
   getTotalResult() {
     const initialResult = prize.generateInitialResultObject();
-    const totalResult = this.#lottoList.reduce((acc, lotto) => {
+
+    this.#lottoList.forEach((lotto) => {
       const rank = lotto.getRank(this.#winningLotto);
       if (rank !== NO_MATCH_PLACE) {
         initialResult[rank] += 1;
       }
-      return acc;
-    }, initialResult);
+    });
 
-    return excludeKeyFromObject({ object: totalResult, removeKey: NO_MATCH_PLACE });
+    return excludeKeyFromObject({ object: initialResult, removeKey: NO_MATCH_PLACE });
   }
 
   #getTotalReward() {
