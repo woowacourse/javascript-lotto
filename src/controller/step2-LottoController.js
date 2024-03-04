@@ -142,7 +142,6 @@ class LottoController {
   }
 
   // 당첨 번호 입력
-
   getWinningNumbers() {
     return Array.from(document.querySelectorAll('#winningInputContainer .inputRectangle'))
       .map((input) => Number(input.value))
@@ -197,32 +196,22 @@ class LottoController {
   }
 
   // 게임 실행
-  // eslint-disable-next-line max-params, max-lines-per-function
+  // eslint-disable-next-line max-params
   async executeGame(lottos, winningNumbers, bonusNumber) {
     const winningResult = this.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
     const profitRate = this.calculateProfitRate(winningResult);
     this.displayWinningResult(winningResult, profitRate);
-
-    document.getElementById('modalCloseButton').addEventListener('click', () => {
-      document.getElementById('modalContainer').style.display = 'none';
-    });
-
-    document.getElementById('resetButton').addEventListener('click', () => {
-      document.getElementById('modalContainer').style.display = 'none';
-      this.executeGame(lottos, winningNumbers, bonusNumber);
-    });
   }
 
-  // 당첨 결과 출력
   // eslint-disable-next-line max-lines-per-function
   displayWinningResult(winningResult, profitRate) {
     const resultTable = document.getElementById('resultTable');
     const profitResult = document.getElementById('profitResult');
 
-    for (let i = 6; i >= 1; i -= 1) {
-      const row = resultTable.rows[7 - i];
+    for (let i = 5; i >= 1; i -= 1) {
+      console.log(i, winningResult[i]);
+      const row = resultTable.rows[6 - i];
       const cell3 = row.cells[2];
-
       cell3.innerHTML = winningResult[i.toString()];
     }
 
