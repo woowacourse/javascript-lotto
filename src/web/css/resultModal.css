@@ -1,29 +1,29 @@
 #result-modal {
+  z-index: 9;
   width: 100%;
   height: 100%;
-  z-index: 9;
 }
 
 #result-modal-container {
-  position: absolute;
   display: flex;
+  position: absolute;
+  top: 0;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-  position: relative;
   display: flex;
+  position: relative;
   flex-direction: column;
-  align-items: center;
   justify-content: space-around;
+  align-items: center;
+  background-color: var(--lotto-greyscale-1);
   width: 350px;
   height: 500px;
-  background-color: var(--lotto-greyscale-1);
 }
 
 .modal-table-container {
@@ -70,6 +70,6 @@ thead th:nth-child(3) {
   position: absolute;
   top: 16px;
   right: 16px;
-  font-size: 16px;
   font-weight: 700;
+  font-size: 16px;
 }
