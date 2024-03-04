@@ -10,10 +10,6 @@ class PurchasedLottos {
   }
 
   render() {
-    if (!this.#props.lottos) {
-      return "";
-    }
-
     const $oldPurchasedLottos =
       this.#$parent.querySelector("#purchased-lottos");
     const $newPurchasedLottos = this.#generatePurchasedLottos();
