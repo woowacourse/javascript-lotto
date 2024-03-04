@@ -113,7 +113,7 @@ export default class EventController {
     event.preventDefault();
     $('#buy-lotto-form').reset();
     $('#winning-lotto-form').reset();
-    $('.next-section').replaceChild(LottoTickets(), $('#lottos'));
+    $('#step2').replaceChild(LottoTickets(), $('#lottos'));
     $('#step2').classList.remove('visible');
     $('#step2').classList.add('hidden');
     $('#modal-container').classList.remove('visible');
