@@ -17,8 +17,15 @@ class LottoGameApp extends HTMLElement {
     };
   }
 
-  connectedCallback() {
-    this.#initiateGame();
+  initiateGame() {
+    this.#render();
+    this.#bindElements();
+    this.#elements.purchaseForm.addEventListener('purchaseLotto', this.#boundMethods.handlePurchaseLotto);
+    this.#elements.winningNumbersForm.addEventListener(
+      'createWinningResult',
+      this.#boundMethods.handleCreateWinningResult,
+    );
+    this.#elements.resultModal.addEventListener('restartGame', this.#boundMethods.handleRestartGame);
   }
 
   #handlePurchaseLotto(event) {
@@ -36,17 +43,6 @@ class LottoGameApp extends HTMLElement {
     this.dispatchEvent(new CustomEvent('showResultModal', { detail: { winningResult, profitRate } }));
   }
 
-  #initiateGame() {
-    this.#render();
-    this.#bindElements();
-    this.#elements.purchaseForm.addEventListener('purchaseLotto', this.#boundMethods.handlePurchaseLotto);
-    this.#elements.winningNumbersForm.addEventListener(
-      'createWinningResult',
-      this.#boundMethods.handleCreateWinningResult,
-    );
-    this.#elements.resultModal.addEventListener('restartGame', this.#boundMethods.handleRestartGame);
-  }
-
   #bindElements() {
     this.#elements = {
       ...this.#elements,
@@ -57,7 +53,7 @@ class LottoGameApp extends HTMLElement {
   }
 
   #handleRestartGame() {
-    this.#initiateGame();
+    this.initiateGame();
   }
 
   #render() {
