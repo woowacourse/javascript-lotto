@@ -1,8 +1,9 @@
 import LotteryMachine from '../domain/services/LotteryMachine';
-import WebInputView from './views/WebInputView';
-import { purchaseResult, purchaseAmountForm, purchaseLottoList, winningNumbersForm } from './DOM/objects';
-import WebOutputView from './views/WebOutputView';
+import { purchaseResult, purchaseLottoList, winningNumbersForm, lottoResultModalSection } from './DOM/objects';
 import { CONFIG_FORMAT, CONFIG_LOTTO } from '../constants/config';
+import WebInputView from './views/WebInputView';
+import WebOutputView from './views/WebOutputView';
+import lottoService from '../domain/services/lottoService';
 
 class WebLottoController {
   #purchaseAmount;
@@ -16,6 +17,7 @@ class WebLottoController {
     this.#lottery = new LotteryMachine(this.#purchaseAmount).makeLottery();
     this.showPurchasedResult(this.#purchaseAmount / CONFIG_LOTTO.PURCHASE_UNIT);
     this.renderWinningNumbersForm();
+    winningNumbersForm.addEventListener('submit', this.winningNumbersHandler);
   }
 
   showPurchasedResult(amount) {
@@ -48,6 +50,23 @@ class WebLottoController {
     </div>
     <button type="submit" id="winning-numbers-submit-button">결과 확인하기</button>`;
     WebOutputView.printMessage(winningNumbersForm, winningNumbersFormHTML);
+  }
+
+  winningNumbersHandler(event) {
+    const winningNumbersAndBonus = WebInputView.readWinningAndBonusNumbers(event);
+    if (winningNumbersAndBonus) {
+      const { winningNumbers, bonusNumber } = winningNumbersAndBonus;
+      const matchedResultList = this.#lottery.map(lotto => lotto.getMatchedAmount(winningNumbers, bonusNumber));
+      const rankList = lottoService.calculateRankCounts(matchedResultList);
+      const profit = lottoService.calculateProfit(matchedResultList, this.#purchaseAmount);
+      this.openResultModal(rankList, profit);
+    }
+  }
+
+  openResultModal(rankList, profit) {
+    console.log(lottoResultModalSection);
+    // TODOLIST - 당첨 결과를 출력하는 모달창 띄우기
+    // lottoResultModalSection.classList.remove('hide');
   }
 }
 
