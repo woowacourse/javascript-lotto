@@ -1,3 +1,5 @@
+import { LOTTO_SYMBOL } from '../../constant/symbols';
+
 class WinningNumbersOutputView {
   lottoNumbersInputSectionView = document.querySelector('.section-submit-lotto-numbers');
   inputWinningNumbersWrapperView = document.querySelector('.wrapper-input-winning-numbers');
@@ -5,7 +7,7 @@ class WinningNumbersOutputView {
   lottoNumberErrorView = document.querySelector('.text-lotto-numbers-error');
 
   displayWinningNumbersInput() {
-    Array.from({ length: 6 }).forEach(() => {
+    Array.from({ length: LOTTO_SYMBOL.COUNT }).forEach(() => {
       const winningNumbersInputElement = document.createElement('input');
       winningNumbersInputElement.type = 'text';
       winningNumbersInputElement.className = 'input-winning-number';
