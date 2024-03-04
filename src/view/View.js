@@ -2,6 +2,8 @@ import { SETTING, RANKING } from '../constant/setting.js';
 import elementHandler from '../handler/elementHandler.js';
 import eventHandler from '../handler/eventHandler.js';
 
+const $purchaseAmount = elementHandler.$('.purchase-input');
+
 const $lottosContainer = elementHandler.$('.lottos-container');
 const $lottosText = elementHandler.$('.lottos-text');
 const $lottosList = elementHandler.$('.lottos-list');
@@ -35,8 +37,6 @@ const View = {
         SETTING.LOTTO_LENGTH,
       );
     $bonusLottoInputContainer.innerHTML = `<input class="primary-input lotto-input bonus" type="number" min="1" max="45" required />`;
-
-    elementHandler.$$('.lotto-input')[0].focus();
   },
 
   renderWinningResults(winningResults, profitRate) {
@@ -73,6 +73,7 @@ const View = {
       $modal.close();
       $lottosContainer.hidden = true;
       $winningLottoForm.hidden = true;
+      $purchaseAmount.value = '';
     });
   },
 };

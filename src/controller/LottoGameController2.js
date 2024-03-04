@@ -53,6 +53,7 @@ class LottoGameController2 {
   #inputWinningLotto() {
     const $winningInputs = elementHandler.$$('.lotto-input.winning');
     const $bonusInput = elementHandler.$('.lotto-input.bonus');
+    $winningInputs[0].focus();
 
     $winningLottoForm.addEventListener('submit', (event) => {
       event.preventDefault();
