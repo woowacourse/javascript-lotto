@@ -55,6 +55,10 @@
 
 ## STEP2
 
+### 배포 링크
+
+[로또 페이지](https://00kang.github.io/javascript-lotto/)
+
 ### 실행
 
 ```bash
