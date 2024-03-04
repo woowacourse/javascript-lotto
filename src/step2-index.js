@@ -4,7 +4,11 @@
  */
 
 import WebLottoController from "./controller/WebLottoController.js";
-import "./view/web/styles.css";
+import "./view/web/css/styles.css";
+import "./view/web/css/disabled.css";
+import "./view/web/modal/modal.css";
+import "./view/web/toast/toast.css";
+
 import outputView from "./view/web/outputView.js";
 import inputView from "./view/web/inputView.js";
 import headerResize from "./view/web/headerResize.js";
