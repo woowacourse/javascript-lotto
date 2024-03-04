@@ -69,24 +69,23 @@ class WebLottoController {
   }
 
   #openResultModal() {
-    const $resultModal = document.getElementById('result-modal');
-    $resultModal.classList.remove('hidden');
+    const $dialog = document.getElementById('dialog');
+    $dialog.showModal();
 
     const totalLottoRanks = this.#lottoMachine.countLottoRanks();
     const profitRate = calculateROI(this.#money, totalLottoRanks);
 
     resultModal.generateResultRank(totalLottoRanks);
     resultModal.generateProfitRate(profitRate);
-    this.#clickExitButtonHandler();
+    this.#clickExitButtonHandler($dialog);
     this.#clickRestartButtonHandler();
   }
 
-  #clickExitButtonHandler() {
+  #clickExitButtonHandler($dialog) {
     const $modalExitButton = document.getElementById('modal-exit-button');
-    const $resultModal = document.getElementById('result-modal');
 
     $modalExitButton.addEventListener('click', () => {
-      $resultModal.classList.add('hidden');
+      $dialog.close();
       resultModal.deleteResultRank();
     });
   }

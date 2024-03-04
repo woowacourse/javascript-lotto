@@ -36,55 +36,53 @@
         </div>
       </main>
       <footer id="lotto-footer" class="caption-text">Copyright 2023. woowacourse</footer>
-      <div id="result-modal" class="hidden">
-        <div id="result-modal-container">
-          <div class="modal-content">
-            <button id="modal-exit-button" class="exit-button">X</button>
-            <header class="subtitle-text">🏆 당첨 통계 🏆</header>
-            <sector class="modal-table-container">
-              <table class="result-table">
-                <thead class="table-border">
-                  <tr class="table-row">
-                    <th scope="col" class="caption-text">일치 갯수</th>
-                    <th scope="col" class="caption-text">당첨금</th>
-                    <th scope="col" class="caption-text">당첨 갯수</th>
-                  </tr>
-                </thead>
-                <tbody id="lotto-result-tbody" class="body-text">
-                  <tr class="table-border table-row">
-                    <td>3개</td>
-                    <td>5,000</td>
-                    <td class="lotto-result-tbody-rank"></td>
-                  </tr>
-                  <tr class="table-border table-row">
-                    <td>4개</td>
-                    <td>50,000</td>
-                    <td class="lotto-result-tbody-rank"></td>
-                  </tr>
-                  <tr class="table-border table-row">
-                    <td>5개</td>
-                    <td>1,500,000</td>
-                    <td class="lotto-result-tbody-rank"></td>
-                  </tr>
-                  <tr class="table-border table-row">
-                    <td>5개+보너스볼</td>
-                    <td>30,000,000</td>
-                    <td class="lotto-result-tbody-rank"></td>
-                  </tr>
-                  <tr class="table-border table-row">
-                    <td>6개</td>
-                    <td>2,000,000,000</td>
-                    <td class="lotto-result-tbody-rank"></td>
-                  </tr>
-                </tbody></table
-            ></sector>
-            <div id="result-modal-roi" class="caption-text">
-              <!-- ROI result -->
-            </div>
-            <button id="restart-button" class="lotto-button caption-text">다시 시작하기</button>
+      <dialog id="dialog">
+        <div class="modal-content">
+          <button id="modal-exit-button" class="exit-button">X</button>
+          <header class="subtitle-text">🏆 당첨 통계 🏆</header>
+          <sector class="modal-table-container">
+            <table class="result-table">
+              <thead class="table-border">
+                <tr class="table-row">
+                  <th scope="col" class="caption-text">일치 갯수</th>
+                  <th scope="col" class="caption-text">당첨금</th>
+                  <th scope="col" class="caption-text">당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody id="lotto-result-tbody" class="body-text">
+                <tr class="table-border table-row">
+                  <td>3개</td>
+                  <td>5,000</td>
+                  <td class="lotto-result-tbody-rank"></td>
+                </tr>
+                <tr class="table-border table-row">
+                  <td>4개</td>
+                  <td>50,000</td>
+                  <td class="lotto-result-tbody-rank"></td>
+                </tr>
+                <tr class="table-border table-row">
+                  <td>5개</td>
+                  <td>1,500,000</td>
+                  <td class="lotto-result-tbody-rank"></td>
+                </tr>
+                <tr class="table-border table-row">
+                  <td>5개+보너스볼</td>
+                  <td>30,000,000</td>
+                  <td class="lotto-result-tbody-rank"></td>
+                </tr>
+                <tr class="table-border table-row">
+                  <td>6개</td>
+                  <td>2,000,000,000</td>
+                  <td class="lotto-result-tbody-rank"></td>
+                </tr>
+              </tbody></table
+          ></sector>
+          <div id="result-modal-roi" class="caption-text">
+            <!-- ROI result -->
           </div>
+          <button id="restart-button" class="lotto-button caption-text">다시 시작하기</button>
         </div>
-      </div>
+      </dialog>
     </div>
   </body>
 </html>

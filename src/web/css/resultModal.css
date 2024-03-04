@@ -1,18 +1,12 @@
-#result-modal {
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 9;
-  width: 100%;
-  height: 100%;
-}
-
-#result-modal-container {
-  display: flex;
-  position: absolute;
-  top: 0;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
+  border: none;
+  width: 350px;
+  height: 500px;
 }
 
 .modal-content {
