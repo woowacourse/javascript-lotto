@@ -37,14 +37,14 @@ export const mainPage = {
             <form id="number-form">
               <div id="number-form-container">
                 <div id="winning-lotto-inputs">
-                  <input type="text" class="number-input" name="numberInput" maxlength="2" />
-                  <input type="text" class="number-input" name="numberInput" maxlength="2" />
-                  <input type="text" class="number-input" name="numberInput" maxlength="2" />
-                  <input type="text" class="number-input" name="numberInput" maxlength="2" />
-                  <input type="text" class="number-input" name="numberInput" maxlength="2" />
-                  <input type="text" class="number-input" name="numberInput" maxlength="2" />
+                  <input type="text" class="input-shape number-input" name="numberInput" maxlength="2" />
+                  <input type="text" class="input-shape number-input" name="numberInput" maxlength="2" />
+                  <input type="text" class="input-shape number-input" name="numberInput" maxlength="2" />
+                  <input type="text" class="input-shape number-input" name="numberInput" maxlength="2" />
+                  <input type="text" class="input-shape number-input" name="numberInput" maxlength="2" />
+                  <input type="text" class="input-shape number-input" name="numberInput" maxlength="2" />
                 </div>
-                <div><input type="text" class="number-input bonusNumber-input" name="numberInput" maxlength="2" /></div>
+                <div><input type="text" class="input-shape number-input bonusNumber-input" name="numberInput" maxlength="2" /></div>
               </div>
               <button type="submit" id="number-button" class="lotto-button caption-text">결과 확인하기</button>
             </form>`,

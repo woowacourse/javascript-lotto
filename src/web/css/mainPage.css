@@ -57,11 +57,6 @@
 }
 
 #money-input {
-  gap: 10px;
-  box-sizing: border-box;
-  border: 1px solid var(--lotto-greyscale-3);
-  border-radius: 4px;
-  padding: 8px 8px 4px 8px;
   width: 310px;
   height: 36px;
 }
@@ -125,12 +120,6 @@
 
 .number-input {
   display: block;
-  gap: 10px;
-  box-sizing: border-box;
-  box-shadow: none;
-  border: 1px solid var(--lotto-greyscale-3);
-  border-radius: 4px;
-  padding: 8px 8px 4px 8px;
   width: 34px;
   height: 36px;
 }

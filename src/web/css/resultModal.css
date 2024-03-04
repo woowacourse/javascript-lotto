@@ -31,7 +31,7 @@
   height: 247px;
 }
 
-table {
+.result-table {
   width: 100%;
 }
 
@@ -49,15 +49,7 @@ table {
   }
 }
 
-thead th:nth-child(1) {
-  width: 33%;
-}
-
-thead th:nth-child(2) {
-  width: 33%;
-}
-
-thead th:nth-child(3) {
+.table-row th {
   width: 33%;
 }
 

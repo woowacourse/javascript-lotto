@@ -6,7 +6,6 @@ html {
 
 /* Variables */
 :root {
-  --blue-color: rgba(255, 255, 255, 1);
   --border1: rgba(0, 0, 0, 0.12);
   --lotto-primary: rgba(78, 91, 166, 1);
   --lotto-greyscale-1: rgba(255, 255, 255, 1);
@@ -62,9 +61,19 @@ html {
 /* Button Styles */
 .lotto-button {
   border-radius: 4px;
-  background: #4e5ba6;
+  background: var(--lotto-primary);
   padding: 6px, 6px, 6px, 8px;
   color: white;
+}
+
+/* Input Styles */
+.input-shape {
+  gap: 10px;
+  box-sizing: border-box;
+  box-shadow: none;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+  padding: 8px 8px 4px 8px;
 }
 
 /* Modal */
