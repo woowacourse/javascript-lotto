@@ -4,9 +4,8 @@ import ModalSection from './ModalSection';
 const WinNumberSection = {
   createInputUIWinNumber(randomLottos = []) {
     const winNumbersBox = document.querySelector('.winnumber-input-box');
-    while (winNumbersBox.firstChild) {
-      winNumbersBox.removeChild(winNumbersBox.firstChild);
-    }
+
+    winNumbersBox.replaceChildren();
     const form = this.createWinNumberInputBox();
     winNumbersBox.appendChild(form);
     form.addEventListener('submit', (event) => ModalSection.addResultButton(event, randomLottos));

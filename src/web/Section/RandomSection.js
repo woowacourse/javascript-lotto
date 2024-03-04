@@ -1,9 +1,7 @@
 const RandomSection = {
   showRandomLottos(selector = '', lottos = []) {
     const randomLottoContainer = document.querySelector(selector);
-    while (randomLottoContainer.firstChild) {
-      randomLottoContainer.removeChild(randomLottoContainer.firstChild);
-    }
+    randomLottoContainer.replaceChildren();
     randomLottoContainer.appendChild(this.createRandomLottos(lottos));
   },
 
