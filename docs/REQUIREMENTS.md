@@ -104,11 +104,11 @@
 - [ ] 컨트롤러 및 뷰 수정
   - [ ] 웹에 맞게 로직 변경(순차적->함수형)
   - [ ] 재시작 로직 변경
-- [ ] 기존 설계 변경
-  - [ ] view 아래의 Controller라는 이름 변경
-  - [ ] 디렉토리 내의 잘못된 이름 변경(git folder name case sensitive 참고)
-  - [ ] preventDefault() 없애기
-  - [ ] initBody를 InputView 아래로 넣기
+- [x] 기존 설계 변경
+  - [x] view 아래의 Controller라는 이름 변경
+  - [x] 디렉토리 내의 잘못된 이름 변경(git folder name case sensitive 참고)
+  - [x] preventDefault() 없애기
+  - [x] initBody를 InputView 아래로 넣기
 - [x] css 
   - [x] css 파일 분리하기
   - [x] 선택자 font 이름 변경

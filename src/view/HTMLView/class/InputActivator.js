@@ -1,6 +1,6 @@
 import Elements from "../util/Elements";
 
-class InputController {
+class InputActivator {
   static activatePriceInput() {
     const priceInput = Elements.INPUTS.price;
     priceInput.disabled = false;
@@ -40,4 +40,4 @@ class InputController {
   }
 }
 
-export default InputController;
+export default InputActivator;

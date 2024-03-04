@@ -1,4 +1,8 @@
-const getElementById = (id) => document.getElementById(id);
+const getElementById = (id) => {
+  const element = document.getElementById(id);
+  if (element === null) throw new Error("[ERROR] 없는 id임");
+  return element;
+};
 
 const BUTTONS = {
   price: getElementById("main-contents__price-button"),

@@ -29,10 +29,6 @@ class Events {
     event.preventDefault();
     ConsoleImplementation.enqueue("n");
   }
-
-  static preventDefault(event) {
-    event.preventDefault();
-  }
 }
 
 export default Events;
