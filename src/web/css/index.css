@@ -2,8 +2,8 @@
   display: flex;
   width: 100%;
   height: 64px;
-  background: #4E5BA6;
-  color: #FFFFFF;
+  background: var(--lotto-primary, #4E5BA6);
+  color: var(--lotto-greyscale-1, #FFF);
 }
 
 .header-title {
@@ -40,7 +40,7 @@ body {
   height: 45.4375rem;
   border-radius: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
-  margin: 5.25% auto 3rem auto;
+  margin: 5.25rem auto 3rem auto;
   align-items: center;
   padding: 0 1rem 0;
 }
