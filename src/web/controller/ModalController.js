@@ -11,8 +11,9 @@ class ModalController {
 
   constructor(modalContent, modalHandlers) {
     /* NOTE
-    modalHandlers : '선택자' : 이벤트 핸들러 함수로 이루어진 객체 
+      modalHandlers : {'선택자' : 이벤트 핸들러 함수}로 이루어진 객체
     */
+
     this.#modalContent = modalContent;
     this.#modalHandlers = modalHandlers;
   }
@@ -28,7 +29,8 @@ class ModalController {
   }
 
   #setupModalHandlers() {
-    // 모달 닫기 버튼: 모든 모달에 공통으로 세팅
+    // NOTE: 모달 닫기 버튼 - 모든 모달에 공통으로 세팅
+
     this.#addEventToModalButton(".modal-close-btn", () => {
       document.querySelector(".modal-section").remove();
     });

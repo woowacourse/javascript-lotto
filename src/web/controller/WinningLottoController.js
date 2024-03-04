@@ -121,7 +121,7 @@ class WinningLottoController {
     resultBtn.addEventListener("click", () => this.#handleResultBtnClick());
   }
 
-  /* 우승 로또 번호 입력과 관련된 엘리먼트 함수들 */
+  /* NOTE: 우승 로또 번호 입력과 관련된 엘리먼트 함수들 */
 
   #createWinningNumberInput() {
     const numberInput = document.createElement("input");
@@ -255,7 +255,7 @@ class WinningLottoController {
     this.#setBonusNumberDiv(winningDisplayDiv);
   }
 
-  /* 모달 엘리먼트 관련 함수들 */
+  /* NOTE: 모달 엘리먼트 관련 함수들 */
 
   #createModalTableDiv() {
     const modalTableDiv = document.createElement("div");

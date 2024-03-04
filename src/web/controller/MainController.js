@@ -17,14 +17,13 @@ class MainController {
   }
 
   #playLottoGame() {
-    // 로또 발행
+    // NOTE: 로또 발행
     this.#issuedLottoController = new IssuedLottoController(
       this.#budgetController.getLottoCount()
     );
     this.#issuedLottoController.printIssuedLottoDiv();
 
-    // 우승 로또 데이터 설정
-
+    // NOTE: 우승 로또 데이터 설정
     const winningLottoController = new WinningLottoController(
       this.#issuedLottoController.getIssuedLottos()
     );

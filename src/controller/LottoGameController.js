@@ -13,7 +13,7 @@ class LottoGameController {
   #winningLotto = {};
 
   /*
-   * 로또 구매와 관련된 메소드들
+   * NOTE: 로또 구매와 관련된 메소드들
    */
   async #initBudget() {
     const budget = await getValidInput(InputView.readBudget);
@@ -31,7 +31,7 @@ class LottoGameController {
   }
 
   /*
-   * 로또 당첨 번호 설정과 관련된 메소드들
+   * NOTE: 로또 당첨 번호 설정과 관련된 메소드들
    */
   async #initWinningLotto() {
     const normalWinningNumbers = await getValidInput(
@@ -66,7 +66,7 @@ class LottoGameController {
   };
 
   /*
-   * 로또 게임 결과 산출과 관련된 함수들
+   * NOTE: 로또 게임 결과 산출과 관련된 함수들
    */
   #countMatchingNumbers = (lotto) => {
     const lottoCounts = {
@@ -96,7 +96,7 @@ class LottoGameController {
   }
 
   /*
-   * 게임 실행 로직과 관련된 함수들
+   * NOTE: 게임 실행 로직과 관련된 함수들
    */
   async #runLottoGame() {
     const lottoCount = await this.#buyLotto();

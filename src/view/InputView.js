@@ -1,4 +1,3 @@
-import { INPUT_MESSAGE } from "../constants/viewMessage.js";
 import readLineAsync from "../utils/readLineAsync.js";
 import startValidation from "../validation/startValidation.js";
 import retryValidation from "../validation/retryValidation.js";
@@ -6,6 +5,7 @@ import budgetValidation from "../validation/budgetValidation.js";
 import winningLottoValidation from "../validation/winningLottoValidation.js";
 import winningLottoBonusValidation from "../validation/winningLottoBonusValidation.js";
 import winningLottoNumbersValidation from "../validation/winningLottoNumbersValidation.js";
+import { INPUT_MESSAGE } from "../constants/viewMessage.js";
 
 const InputView = {
   async readBudget() {
