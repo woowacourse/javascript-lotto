@@ -14,13 +14,9 @@
 }
 
 .lotto-box {
-  width: 238px;
+  /* width: 238px; */
   height: 255px;
   overflow: overlay;
-}
-
-.lotto-box::-webkit-scrollbar {
-  display: none;
 }
 
 .lotto-number::before {
