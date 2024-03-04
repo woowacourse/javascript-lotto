@@ -4,7 +4,7 @@ import './LottoResultTable.js';
 const LOTTO_RESULT_MODAL = (rateOfReturn) => `
   <section class="lotto-result">
     <div class="close-modal-icon">X</div>
-    <main class="lotto-subtitle">🏆 당첨 통계 🏆</main>
+    <h1 class="lotto-subtitle">🏆 당첨 통계 🏆</h1>
     <lotto-result-table></lotto-result-table>
     <p class="rate-of-return">당신의 총 수익률은 ${rateOfReturn}%입니다.</p>
     <lotto-button id="retry-button"></lotto-button>

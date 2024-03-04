@@ -5,7 +5,7 @@ import { BonusNumberValidator, WinningNumbersValidator } from '../validator/inde
 
 const WINNING_NUMBERS_FORM = `
   <section class="winning-and-bonus-container">
-    <main class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</main>
+    <p class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
     
     <section class="winning-and-bonus-input-container">
       <winning-numbers-input-field></winning-numbers-input-field>

@@ -6,9 +6,9 @@ import './LottoButton.js';
 
 const LOTTO_MAIN = `
   <section class="lotto-main-container">
-    <main class="lotto-title">
+    <h1 class="lotto-title">
         🎱 내 번호 당첨 확인 🎱
-    </main>
+    </h1>
     
     <purchase-price-form></purchase-price-form>
     <section class="purchase-result"></section>

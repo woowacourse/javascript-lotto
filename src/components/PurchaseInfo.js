@@ -2,10 +2,10 @@ import './PurchaseInfo.css';
 import './LottoNumbers.js';
 
 const PURCHASE_INFO = `
-<main class="purchase-info-title-container">
-</main>
-<section class="purchase-info-container">
-</section>
+<div class="purchase-info-title-container">
+</div>
+<div class="purchase-info-container">
+</div>
 `;
 
 const PURCHASE_INFO_TITLE = (count) => `
@@ -26,16 +26,6 @@ class PurchaseInfo extends HTMLElement {
     purchasedInfoTitle.innerHTML = PURCHASE_INFO_TITLE(lottos.length);
     this.#renderPurchaseInfoContainer(lottos);
   }
-
-  // #numbersToLottos(lottoNumbersArray) {
-  //   const numbers = lottoNumbersArray.split(',');
-  //   const lottos = [];
-
-  //   for (let i = 0; i < numbers.length; i += 6) {
-  //     lottos.push(numbers.slice(i, i + 6));
-  //   }
-  //   return lottos;
-  // }
 
   #renderPurchaseInfoContainer(lottos) {
     const purchasedInfoContainer = this.querySelector('.purchase-info-container');
