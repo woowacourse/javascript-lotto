@@ -24,8 +24,12 @@ const SPANS = {
   purchasedLotto: getElementById("main-contents__purchased-lotto-span"),
 };
 
-const DIVS = {
+const SECTION = {
   purchasedLotto: getElementById("main-contents__purchased-lotto-section"),
+  modal: getElementById("modal"),
+};
+
+const ASIDE = {
   modal: getElementById("modal"),
 };
 
@@ -33,6 +37,6 @@ const FORMS = {
   winningLotto: getElementById("main-contents__winning-lotto-form"),
 };
 
-const Elements = { BUTTONS, INPUTS, SPANS, DIVS, FORMS };
+const Elements = { BUTTONS, INPUTS, SPANS, SECTION, FORMS, ASIDE };
 
 export default Elements;

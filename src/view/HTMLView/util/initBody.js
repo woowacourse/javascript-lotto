@@ -5,9 +5,9 @@ import addClass from "./addClass";
 
 const hiddenTargets = [
   Elements.SPANS.purchasedLotto,
-  Elements.DIVS.purchasedLotto,
+  Elements.SECTION.purchasedLotto,
   Elements.FORMS.winningLotto,
-  Elements.DIVS.modal,
+  Elements.ASIDE.modal,
 ];
 
 const grantHiddenToHiddenTarget = () => {

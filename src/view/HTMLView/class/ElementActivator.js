@@ -33,7 +33,7 @@ class ElementActivator {
   }
 
   static activateModal() {
-    const modalDiv = Elements.DIVS.modal;
+    const modalDiv = Elements.ASIDE.modal;
     removeClass(modalDiv, ClassName.visibilityHidden);
     ButtonController.activateModalButtons();
     modalDiv.addEventListener("keydown", (event) => {
@@ -43,7 +43,7 @@ class ElementActivator {
   }
 
   static deactivateModal() {
-    const modalDiv = Elements.DIVS.modal;
+    const modalDiv = Elements.ASIDE.modal;
     addClass(modalDiv, ClassName.visibilityHidden);
   }
 }

@@ -16,7 +16,7 @@ class HTMLOutputView {
     const lottoNumberElements = lottos.map((lotto) =>
       this.#getPurchasedLottoElement(lotto)
     );
-    const purchasedLottodiv = Elements.DIVS.purchasedLotto;
+    const purchasedLottodiv = Elements.SECTION.purchasedLotto;
 
     removeClass(purchasedLottodiv, ClassName.visibilityHidden);
     purchasedLottodiv.innerHTML = "";
@@ -26,7 +26,7 @@ class HTMLOutputView {
   static printBoughtSlicedLottos(lottos, originalNumberOfLotto) {
     HTMLOutputView.printBoughtLottos(lottos);
 
-    const purchasedLottodiv = Elements.DIVS.purchasedLotto;
+    const purchasedLottodiv = Elements.SECTION.purchasedLotto;
     purchasedLottodiv.append(
       this.#getPurchasedLottoElement([
         `기타 ${originalNumberOfLotto - lottos.length}개의 로또...`,
