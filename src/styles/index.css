@@ -1,7 +1,8 @@
+@import 'reset.css';
+
 body {
   width: 100%;
   height: 100vh;
-  margin: 0;
   font-family: Roboto;
 }
 
@@ -17,7 +18,6 @@ body {
   font-size: 24px;
   line-height: 36px;
   text-align: left;
-  margin: 0;
   top: 14px;
   left: 130px;
   color: rgba(255, 255, 255, 1);
@@ -30,7 +30,6 @@ body {
 
 .lotto-container {
   position: absolute;
-  box-sizing: border-box;
   width: 414px;
   height: 727px;
   top: 148px;
@@ -45,7 +44,6 @@ body {
   width: 382px;
   top: 52px;
   left: 16px;
-  margin: 0;
   font-weight: 600;
   line-height: 24px;
   letter-spacing: 0.15px;
@@ -78,7 +76,6 @@ body {
 }
 
 #purchase__input {
-  box-sizing: border-box;
   width: 310px;
   height: 36px;
   padding: 8px 8px 0px 8px;
@@ -86,6 +83,7 @@ body {
   border: 1px;
   gap: 10px;
   border: 1px solid rgba(180, 180, 180, 1);
+  box-sizing: border-box;
 }
 
 #purchase__button {
@@ -103,12 +101,10 @@ body {
 }
 
 .purchase__button-text {
-  box-sizing: border-box;
   font-family: Roboto;
   width: 42px;
   height: 24px;
   padding: 4px 6px 4px 6px;
-  margin: 0;
 }
 
 .purchase-lotto__text {
@@ -117,12 +113,10 @@ body {
   height: 24px;
   top: 196px;
   left: 16px;
-  margin: 0;
 }
 
 .purchase-lotto__list {
   position: relative;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: 238px;
@@ -130,8 +124,6 @@ body {
   top: 228px;
   left: 16px;
   list-style: none;
-  padding: 0;
-  margin: 0;
   gap: 4px 0;
   overflow: hidden auto;
 }
@@ -140,7 +132,6 @@ body {
   display: flex;
   align-items: center;
   height: 36px;
-  margin: 0;
 }
 
 .purchase-lotto__admit-one {
@@ -155,8 +146,6 @@ body {
 }
 
 .purchase-lotto__list li p {
-  box-sizing: border-box;
-  margin: 0;
   padding: 0 0 0 8px;
   width: 196px;
   height: 24px;
@@ -183,7 +172,6 @@ body {
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
-  margin: 0;
 }
 
 .winning-lotto-input-container {
@@ -215,11 +203,11 @@ body {
 
 .winning-lotto-numbers__input,
 .winning-lotto-bonus-number__input {
-  box-sizing: border-box;
   width: 34px;
   height: 36px;
   border-radius: 4px;
   border: 1px solid rgba(180, 180, 180, 1);
+  box-sizing: border-box;
 }
 
 .winning-lotto__button {
@@ -244,7 +232,6 @@ body {
   line-height: 16px;
   letter-spacing: 1.25px;
   color: rgba(255, 255, 255, 1);
-  margin: 0;
 }
 
 .winning-result-modal {
@@ -277,7 +264,6 @@ body {
   line-height: 16px;
   background-color: white;
   border: none;
-  padding: 0;
 }
 
 .winning-result__text {
@@ -285,7 +271,6 @@ body {
   width: 318px;
   top: 41px;
   left: 16px;
-  margin: 0;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
@@ -329,7 +314,6 @@ body {
   height: 24px;
   top: 376px;
   left: 16px;
-  margin: 0;
   font-size: 15px;
   font-weight: 600;
   line-height: 24px;
@@ -361,7 +345,6 @@ body {
   left: 50%;
   transform: translateX(-50%);
   color: rgba(255, 255, 255, 1);
-  margin: 0;
 }
 
 .footer {
@@ -383,7 +366,6 @@ body {
   line-height: 16px;
   letter-spacing: 1.25px;
   text-align: center;
-  margin: 0;
   color: rgba(78, 91, 166, 1);
 }
 
