@@ -2,27 +2,22 @@ import { $ } from '../util/domSelector';
 import { RANKING } from '../../constant/setting';
 
 class ResultModal extends HTMLElement {
-  #boundMethods;
+  #boundHandleShowResultModal;
   #elements;
 
   constructor() {
     super();
-    this.#boundMethods = {
-      handleShowResultModal: this.#handleShowResultModal.bind(this),
-      handleBackgroundClick: this.#handleBackgroundClick.bind(this),
-      closeModal: this.#closeModal.bind(this),
-      handleRestart: this.#handleRestart.bind(this),
-    };
+    this.#boundHandleShowResultModal = this.#handleShowResultModal.bind(this);
     this.#elements = { app: $('lotto-game-app') };
   }
 
   connectedCallback() {
-    this.#elements.app.addEventListener('showResultModal', this.#boundMethods.handleShowResultModal);
-    this.addEventListener('click', this.#boundMethods.handleBackgroundClick);
+    this.#elements.app.addEventListener('showResultModal', this.#boundHandleShowResultModal);
+    this.addEventListener('click', this.#handleBackgroundClick.bind(this));
   }
 
   disconnectedCallback() {
-    this.#elements.app.removeEventListener('showResultModal', this.#boundMethods.handleShowResultModal);
+    this.#elements.app.removeEventListener('showResultModal', this.#boundHandleShowResultModal);
   }
 
   #handleShowResultModal(event) {
@@ -46,8 +41,8 @@ class ResultModal extends HTMLElement {
   #showResultModal({ winningResultList, profitRate }) {
     this.#render(winningResultList, profitRate);
     this.#bindElements();
-    this.#elements.closeModalButton.addEventListener('click', this.#boundMethods.closeModal);
-    this.#elements.restartButton.addEventListener('click', this.#boundMethods.handleRestart);
+    this.#elements.closeModalButton.addEventListener('click', this.#closeModal.bind(this));
+    this.#elements.restartButton.addEventListener('click', this.#handleRestart.bind(this));
     this.#elements.modal.showModal();
   }
 

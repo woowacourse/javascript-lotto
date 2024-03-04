@@ -5,16 +5,7 @@ import Validator from '../../validator/Validator';
 import { SETTING } from '../../constant/setting';
 
 class PurchaseForm extends HTMLElement {
-  #boundMethods;
   #elements;
-
-  constructor() {
-    super();
-    this.#boundMethods = {
-      handleSubmit: this.#handleSubmit.bind(this),
-      handleEnterKeyDown: this.#handleEnterKeyDown.bind(this),
-    };
-  }
 
   connectedCallback() {
     this.#render();
@@ -33,11 +24,11 @@ class PurchaseForm extends HTMLElement {
   }
 
   #setEvent() {
-    this.#elements.submitButton.addEventListener('click', this.#boundMethods.handleSubmit);
+    this.#elements.submitButton.addEventListener('click', this.#handleSubmit.bind(this));
     this.#elements.input.addEventListener('input', () =>
       numericInputFilter(this.#elements.input, SETTING.MAX_LOTTO_PURCHASE_AMOUNT_LENGTH),
     );
-    this.#elements.input.addEventListener('keydown', this.#boundMethods.handleEnterKeyDown);
+    this.#elements.input.addEventListener('keydown', this.#handleEnterKeyDown.bind(this));
   }
 
   #setInputFocus() {
@@ -58,7 +49,7 @@ class PurchaseForm extends HTMLElement {
   #handleEnterKeyDown(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
-      this.#boundMethods.handleSubmit();
+      this.#handleSubmit();
     }
   }
 

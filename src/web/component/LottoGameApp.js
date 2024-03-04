@@ -5,27 +5,17 @@ import WinningResultService from '../../service/WinningResultService';
 
 class LottoGameApp extends HTMLElement {
   #lottos;
-  #boundMethods;
   #elements;
-
-  constructor() {
-    super();
-    this.#boundMethods = {
-      handlePurchaseLotto: this.#handlePurchaseLotto.bind(this),
-      handleCreateWinningResult: this.#handleCreateWinningResult.bind(this),
-      handleRestartGame: this.#handleRestartGame.bind(this),
-    };
-  }
 
   initiateGame() {
     this.#render();
     this.#bindElements();
-    this.#elements.purchaseForm.addEventListener('purchaseLotto', this.#boundMethods.handlePurchaseLotto);
+    this.#elements.purchaseForm.addEventListener('purchaseLotto', this.#handlePurchaseLotto.bind(this));
     this.#elements.winningNumbersForm.addEventListener(
       'createWinningResult',
-      this.#boundMethods.handleCreateWinningResult,
+      this.#handleCreateWinningResult.bind(this),
     );
-    this.#elements.resultModal.addEventListener('restartGame', this.#boundMethods.handleRestartGame);
+    this.#elements.resultModal.addEventListener('restartGame', this.#handleRestartGame.bind(this));
   }
 
   #handlePurchaseLotto(event) {

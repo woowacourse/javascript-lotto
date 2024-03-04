@@ -3,25 +3,21 @@ import ErrorMessageUtil from '../util/ErrorMessageUtil';
 import Validator from '../../validator/Validator';
 
 class WinningNumbersForm extends HTMLElement {
-  #boundMethods;
+  #boundHandlePurchaseResult;
   #elements;
 
   constructor() {
     super();
-    this.#boundMethods = {
-      handlePurchaseResult: this.#handlePurchaseResult.bind(this),
-      handleSubmit: this.#handleSubmit.bind(this),
-      handleEnterKeyDown: this.#handleEnterKeyDown.bind(this),
-    };
+    this.#boundHandlePurchaseResult = this.#handlePurchaseResult.bind(this);
     this.#elements = { app: $('lotto-game-app') };
   }
 
   connectedCallback() {
-    this.#elements.app.addEventListener('showPurchaseResult', this.#boundMethods.handlePurchaseResult);
+    this.#elements.app.addEventListener('showPurchaseResult', this.#boundHandlePurchaseResult);
   }
 
   disconnectedCallback() {
-    this.#elements.app.removeEventListener('showPurchaseResult', this.#boundMethods.handlePurchaseResult);
+    this.#elements.app.removeEventListener('showPurchaseResult', this.#boundHandlePurchaseResult);
   }
 
   #bindElements() {
@@ -55,13 +51,13 @@ class WinningNumbersForm extends HTMLElement {
   #handleEnterKeyDown(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
-      this.#boundMethods.handleSubmit();
+      this.#handleSubmit();
     }
   }
 
   #setEvent() {
-    this.#elements.form.addEventListener('keydown', this.#boundMethods.handleEnterKeyDown);
-    this.#elements.submitButton.addEventListener('click', this.#boundMethods.handleSubmit);
+    this.#elements.form.addEventListener('keydown', this.#handleEnterKeyDown.bind(this));
+    this.#elements.submitButton.addEventListener('click', this.#handleSubmit.bind(this));
   }
 
   #setInputFocus() {
