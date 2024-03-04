@@ -1,4 +1,4 @@
-import domSelector from '../util/dom';
+import domSelector from './domSelector';
 const { lottoPrice, inputWinningLottos, inputBonusLotto } = domSelector;
 
 const inputView = {

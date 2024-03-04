@@ -1,11 +1,13 @@
 const domSelector = {
   lottoPrice: document.querySelector('.thousand-unit-input'),
-  lottoPriceButton: document.querySelector('.lotto-price-button'),
   generatedLottos: document.querySelector('.generated-lottos'),
   afterBuyLottos: document.querySelector('.after-buy-lottos'),
 
+  beforeBuyLottos: document.querySelector('.before-buy-lottos'),
+
   inputWinningLottos: document.querySelectorAll('.input-winning-lottos'),
   checkResultButton: document.querySelector('.check-result-button'),
+  inputLottosForm: document.querySelector('.input-lottos'),
   inputBonusLotto: document.querySelector('.input-bonus-lotto'),
   totalProfit: document.querySelector('.total-profit'),
 

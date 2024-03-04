@@ -1,5 +1,5 @@
 import LOTTO_STATISTICS from '../../step1/constants/lotto-statistics';
-import domSelector from '../util/dom';
+import domSelector from './domSelector';
 const {
   generatedLottos,
   afterBuyLottos,
@@ -10,13 +10,13 @@ const {
 
 const outputView = {
   showAfterBuyLottos(ticketCount, lottos) {
-    this.generatedLottosReset();
+    this.resetGeneratedLottos();
     this.printLottoPayment(ticketCount);
     this.printGeneratedLottos(lottos);
     afterBuyLottos.style.visibility = 'visible';
   },
 
-  generatedLottosReset() {
+  resetGeneratedLottos() {
     if (generatedLottos.hasChildNodes()) {
       afterBuyLottos.firstChild.remove();
       this.removeChild(generatedLottos);
@@ -49,7 +49,7 @@ const outputView = {
   makeWinningStatisticsTable(lottoStatistics) {
     for (const key in LOTTO_STATISTICS) {
       const tr = this.createTableElement(3);
-      tr.firstChild.innerText = this.isBonusOrNot(key);
+      tr.firstChild.innerText = this.getMatchCountDescriptio(key);
       tr.children[1].innerText =
         LOTTO_STATISTICS[key].price.toLocaleString() + '원';
       tr.lastChild.innerText = lottoStatistics[key] + '개';
@@ -57,7 +57,7 @@ const outputView = {
     }
   },
 
-  isBonusOrNot(key) {
+  getMatchCountDescriptio(key) {
     if (LOTTO_STATISTICS[key].number !== 5 || key !== 'fiveBonus') {
       return LOTTO_STATISTICS[key].number + '개';
     } else {

@@ -1,5 +1,5 @@
 import inputView from '../view/inputView';
-import domSelector from '../util/dom';
+import domSelector from '../view/domSelector';
 import { addEvent } from '../util/event';
 import LottoPaymentValidator from '../../step1/validators/LottoPaymentValidator';
 import LottoGenerator from '../../step1/domains/LottoGenerator';
@@ -9,8 +9,13 @@ import LottoValidator from '../../step1/validators/LottoValidator';
 import LottoCalculator from '../../step1/domains/LottoCalculator';
 import LOTTO_RULES from '../../step1/constants/lotto-rules';
 
-const { lottoPriceButton, checkResultButton, restartButton, close } =
-  domSelector;
+const {
+  afterBuyLottos,
+  restartButton,
+  close,
+  beforeBuyLottos,
+  checkResultButton,
+} = domSelector;
 
 class LottoControllerWeb {
   #lottoCount;
@@ -26,9 +31,14 @@ class LottoControllerWeb {
   }
 
   async run() {
-    addEvent(lottoPriceButton, 'click', (e) => {
+    addEvent(beforeBuyLottos, 'submit', (e) => {
       this.#lottoPurchaseHandler(e);
     });
+
+    addEvent(afterBuyLottos, 'submit', (e) => {
+      this.#lottoResultHandler(e);
+    });
+
     addEvent(checkResultButton, 'click', (e) => {
       this.#lottoResultHandler(e);
     });
