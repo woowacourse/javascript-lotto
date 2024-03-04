@@ -109,9 +109,9 @@
   - [ ] 디렉토리 내의 잘못된 이름 변경(git folder name case sensitive 참고)
   - [ ] preventDefault() 없애기
   - [ ] initBody를 InputView 아래로 넣기
-- [ ] css 
-  - [ ] css 파일 분리하기
-  - [ ] 선택자 font 이름 변경
+- [x] css 
+  - [x] css 파일 분리하기
+  - [x] 선택자 font 이름 변경
 - [ ] UI 수정
   - [ ] input 잘못 입력 시 기존 입력 값 지우지 않기
   - [x] 금액 padding 밑으로 찌그러짐

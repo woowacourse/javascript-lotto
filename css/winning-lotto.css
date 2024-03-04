@@ -1,0 +1,70 @@
+@import url('./root.css');
+
+#main-contents__winning-lotto-form {
+  width          : 382px;
+  height         : 104px;
+  display        : flex;
+  flex-wrap      : wrap;
+  justify-content: space-between;
+  margin-top     : 15px;
+}
+
+#main-contents__winning-lotto-span {
+  display       : inline-block;
+  width         : 382px;
+  height        : 24px;
+  letter-spacing: -1px;
+}
+
+#main-contents__winning-number-section {
+  width : 244px;
+  height: 68px;
+}
+
+#main-contents__bonus-number-section {
+  width         : 76px;
+  height        : 68px;
+  display       : flex;
+  flex-direction: column;
+  align-items   : flex-end;
+}
+
+#main-contents__winning-number-span {
+  width : 76px;
+  height: 24px;
+}
+
+#main-contents__winning-number-inputs {
+  width : 244px;
+  height: 36px;
+}
+
+#main-contents__bonus-number-span {
+  width      : 76px;
+  height     : 24px;
+  white-space: nowrap;
+}
+
+#main-contents__winning-lotto-button {
+  width : 382px;
+  height: 36px;
+
+  border       : 0px;
+  margin       : 27px auto 0px auto;
+  border-radius: 4px;
+  padding      : 6px 6px 6px 8px
+}
+
+.winning-number-input {
+  width        : 34px;
+  height       : 36px;
+  border       : 1px solid #B4B4B4;
+  border-radius: 4px;
+  margin       : -1px;
+  text-align   : center;
+}
+
+.winning-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin            : 0;
+}

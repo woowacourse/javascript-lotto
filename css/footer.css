@@ -1,0 +1,15 @@
+@import url('./root.css');
+
+footer {
+  width     : 100%;
+  height    : 80px;
+  border-top: 1px solid #4e5ba633;
+  color     : var(--lotto-primary);
+  text-align: center;
+}
+
+footer>p {
+  display    : inline-block;
+  margin     : 28px auto;
+  font-weight: 700;
+}

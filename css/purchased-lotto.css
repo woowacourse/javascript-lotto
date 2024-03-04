@@ -1,0 +1,38 @@
+.purchased-lotto {
+  display    : flex;
+  align-items: center;
+  width      : 218px;
+  height     : 36px;
+  margin     : 0px 0px 3px;
+}
+
+.lotto-ticket {
+  width          : 34px;
+  height         : 36px;
+  font           : 600 34px/36px Roboto;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.lotto-number {
+  display    : inline-block;
+  margin-left: 8px;
+}
+
+
+
+#main-contents__purchased-lotto-span {
+  display: inline-block;
+  width  : 310px;
+  height : 24px;
+  margin : 28px auto 0px 16px;
+}
+
+#main-contents__purchased-lotto-section {
+  width     : 90%;
+  height    : 276px;
+  margin    : 8px auto 0px;
+  overflow-y: auto;
+  overflow-x: auto;
+}

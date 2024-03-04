@@ -1,4 +1,4 @@
-import "../style.css";
+import "../css/style.css";
 import HTMLInputView from "./view/HTMLView/HTMLInputView";
 import HTMLOutputView from "./view/HTMLView/HTMLOutputView.js";
 import RetryPlayer from "./controller/RetryPlayer.js";
