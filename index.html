@@ -14,7 +14,7 @@
         <main id="mainWrapper" class="relative">
           <h1 class="fullWidthText">🎱 내 번호 당첨 확인 🎱</h1>
           <form id="moneyInputForm">
-            <div class="formTitle">구입할 금액을 입력해주세요.</div>
+            <label class="formTitle">구입할 금액을 입력해주세요.</ㅣ>
             <div class="inputAndButtonContainer">
               <input id="moneyInput" type="text" placeholder="금액" class="fullWidthInput" />
               <button id="moneySubmit" class="button" >구입</button>
@@ -25,15 +25,15 @@
             <div class="formTitle" id="purchasedLottoCount"></div>
             <ul id="purchasedLottosContainer" class="scrollList hideScroll"></dl>
           </div>
-          <div  id="winningLottoAndBonusInputContainer" style="display: none">
+          <form  id="winningLottoAndBonusInputContainer" style="display: none">
             <div id="winningLottoAndBonusInputTitle"></div>
             <div class="margin" style="margin-top: 20px; width: 100%"> </div>
             <div class="flexBetween">
-              <form id="winningLottoInputForm" ></form>
-              <form id="bonusInputForm" class="flexCol flexEnd"></form>
+              <div id="winningLottoInputForm" ></div>
+              <div id="bonusInputForm" class="flexCol flexEnd"></div>
             </div>
-            <button id="checkResult" class="fullWidthButton positionBottom" >결과 확인하기</button>
-          </div>
+            <button type="submit" id="checkResult" class="fullWidthButton positionBottom" >결과 확인하기</button>
+          </form>
         </main>
       </div>
       <div class="modalBackground" style="display: none">
