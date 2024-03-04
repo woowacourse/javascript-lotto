@@ -10,6 +10,7 @@ export const modal = {
 
   createModalCloseBtn: function () {
     const modalCloseBtn = document.createElement("button");
+    modalCloseBtn.type = "button";
     modalCloseBtn.textContent = OUTPUT_MESSAGE.CLOSE;
     modalCloseBtn.classList.add("modal-close-btn");
 

@@ -235,6 +235,7 @@ class WinningLottoController {
   #createResultBtn() {
     const resultBtn = document.createElement("button");
     resultBtn.id = "result-btn";
+    resultBtn.type = "submit";
     resultBtn.textContent = OUTPUT_MESSAGE.RESULT_BTN;
 
     return resultBtn;
@@ -294,6 +295,7 @@ class WinningLottoController {
 
   #createRetryBtn() {
     const retryBtn = document.createElement("button");
+    retryBtn.type = "button";
     retryBtn.classList.add("retry-btn");
     retryBtn.textContent = OUTPUT_MESSAGE.RETRY;
 
