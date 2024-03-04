@@ -57,6 +57,10 @@
   width: 56px;
 }
 
+.purchase-button.disabled {
+  background-color: rgba(78, 91, 166, 0.5);
+}
+
 /* main lottos output */
 .lottos-container {
   width: 100%;

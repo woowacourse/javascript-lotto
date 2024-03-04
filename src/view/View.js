@@ -3,6 +3,7 @@ import elementHandler from '../handler/elementHandler.js';
 import eventHandler from '../handler/eventHandler.js';
 
 const $purchaseAmount = elementHandler.$('.purchase-input');
+const $purchaseButton = elementHandler.$('.purchase-button');
 
 const $lottosContainer = elementHandler.$('.lottos-container');
 const $lottosText = elementHandler.$('.lottos-text');
@@ -22,6 +23,8 @@ const $restartButton = elementHandler.$('.restart-button');
 const View = {
   renderPurchasedLottos(lottos) {
     $lottosContainer.hidden = false;
+    $purchaseButton.disabled = true;
+    elementHandler.addClassList($purchaseButton, 'disabled');
 
     $lottosText.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
     $lottosList.innerHTML = `${lottos
@@ -74,6 +77,7 @@ const View = {
       $lottosContainer.hidden = true;
       $winningLottoForm.hidden = true;
       $purchaseAmount.value = '';
+      $purchaseButton.disabled = false;
     });
   },
 };

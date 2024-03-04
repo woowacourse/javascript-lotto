@@ -1,4 +1,12 @@
 const elementHandler = {
+  removeClassList(element, className) {
+    element.classList.remove(className);
+  },
+
+  addClassList(element, className) {
+    element.classList.add(className);
+  },
+
   $(className) {
     return document.querySelector(className);
   },
