@@ -1,0 +1,86 @@
+footer {
+  border-top: 1px solid var(--color-border-footer);
+  padding: 28px 0px 36px 0px;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  height: 64px;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+  box-sizing: border-box;
+  -moz-appearance: textfield;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-purchase {
+  height: 36px;
+  width: 56px;
+}
+
+.btn-winnings {
+  height: 36px;
+  width: 100%;
+}
+
+.con-bonus {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: end;
+}
+
+/* TEST: 임시 max-height */
+.con-lotto-numbers {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.con-main {
+  border: 1px solid var(--color-border-con-main);
+  padding: 40px 16px 32px 16px;
+  width: 382px;
+}
+
+.con-inp-winning {
+  display: flex;
+  gap: 8px;
+}
+
+.con-winning {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inp-purchase {
+  height: 36px;
+  padding-left: 5px;
+  width: 310px;
+}
+
+.inp-winnings {
+  height: 36px;
+  width: 34px;
+}
+
+.lab-purchase {
+  width: 100%;
+}
+
+.lab-winnings {
+  margin-bottom: 12px;
+  width: 100%;
+}

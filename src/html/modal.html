@@ -1,47 +1,64 @@
-<div>
-  <div>
-    <p>✖</p>
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>🎱 행운의 로또</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/modal.css" />
+  <link rel="stylesheet" href="../css/font.css" />
+  <link rel="stylesheet" href="../css/color.css" />
+</head>
+
+<body>
+  <div class="modal-background text-content">
+    <div class="con-modal">
+      <button class="btn-close">✖</button>
+
+      <p class="text-title" style="margin-top: 8px">🏆 당첨 통계 🏆</p>
+
+      <table class="text-table-content" style=" margin-top: 33px; width: 100%;">
+        <th>일치 갯수</th>
+        <th>당첨금</th>
+        <th>당첨 갯수</th>
+
+        <tr>
+          <td>3개</td>
+          <td>5,000</td>
+          <td><span>${winning-count}</span>개</td>
+        </tr>
+
+        <tr>
+          <td>4개</td>
+          <td>50,000</td>
+          <td><span>${winning-count}</span>개</td>
+        </tr>
+
+        <tr>
+          <td>5개</td>
+          <td>1,500,000</td>
+          <td><span>${winning-count}</span>개</td>
+        </tr>
+
+        <tr>
+          <td>5개+보너스볼</td>
+          <td>30,000,000</td>
+          <td><span>${winning-count}</span>개</td>
+        </tr>
+
+        <tr>
+          <td>6개</td>
+          <td>2,000,000,000</td>
+          <td><span>${winning-count}</span>개</td>
+        </tr>
+      </table>
+
+      <p class="text-profit-rate" style="margin-top: 32px;">당신의 총 수익률은 <span>${profit-rate}</span>%입니다.</p>
+
+      <button class="btn-restart" style="margin-top: 32px;">다시 시작하기</button>
+    </div>
   </div>
+</body>
 
-  <div>🏆 당첨 통계 🏆</div>
-
-  <table>
-    <th>일치 갯수</th>
-    <th>당첨금</th>
-    <th>당첨 갯수</th>
-
-    <tr>
-      <td>3개</td>
-      <td>5,000</td>
-      <td><span>${winning-count}</span>개</td>
-    </tr>
-
-    <tr>
-      <td>4개</td>
-      <td>50,000</td>
-      <td><span>${winning-count}</span>개</td>
-    </tr>
-
-    <tr>
-      <td>5개</td>
-      <td>1,500,000</td>
-      <td><span>${winning-count}</span>개</td>
-    </tr>
-
-    <tr>
-      <td>5개+보너스볼</td>
-      <td>30,000,000</td>
-      <td><span>${winning-count}</span>개</td>
-    </tr>
-
-    <tr>
-      <td>6개</td>
-      <td>2,000,000,000</td>
-      <td><span>${winning-count}</span>개</td>
-    </tr>
-  </table>
-
-  <p>당신의 총 수익률은 <span>${profit-rate}</span>%입니다.</p>
-
-  <button>다시 시작하기</button>
-</div>
+</html>

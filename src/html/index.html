@@ -6,28 +6,31 @@
   <title>🎱 행운의 로또</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/index.css" />
+  <link rel="stylesheet" href="../css/font.css" />
+  <link rel="stylesheet" href="../css/color.css" />
 </head>
 
 <body>
   <div id="app">
 
-    <header>
-      <p>🎱 행운의 로또</p>
+    <header class="color-white bgcolor-primary">
+      <p class="text-title" style="margin-left: 8vw">🎱 행운의 로또</p>
     </header>
 
-    <main>
-      <div>
-        <p>🎱 내 번호 당첨 확인 🎱</p>
+    <main class="text-content">
+      <div class="con-main" style="margin: 84px 0">
+        <p class="text-title">🎱 내 번호 당첨 확인 🎱</p>
 
-        <form>
-          <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
-          <input type="number" name="purchase-amount" id="purchase-amount">
-          <button type="submit">구입</button>
+        <form style="margin-top: 28px">
+          <label class="lab-purchase" for="inp-purchase" style="margin-bottom: 4px">구입할 금액을 입력해주세요.</label>
+          <input class="inp-purchase no-arrow-input " id="inp-purchase" name="input" placeholder="금액" type="number">
+          <button class="btn-purchase text-caption" name="button" type="submit">구입</button>
         </form>
 
-        <div>
+        <div style="margin-top: 16px;">
           <p>총 <span id="issuedQuantity">${issued-quantity}</span>개를 구매하였습니다.</p>
-          <div>
+          <div class="con-lotto-numbers">
             <p>
               <span>🎟️</span>
               <span>${lotto-numbers}</span>
@@ -35,33 +38,34 @@
           </div>
         </div>
 
-        <form>
-          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+        <form style="margin-top: 24px;">
+          <label class="lab-winnings">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
 
-          <div>
-            <label for="winning-number-1">당첨 번호</label>
-            <div>
-              <input type="number" name="winning-number-list" id="winning-number-1">
-              <input type="number" name="winning-number-list">
-              <input type="number" name="winning-number-list">
-              <input type="number" name="winning-number-list">
-              <input type="number" name="winning-number-list">
-              <input type="number" name="winning-number-list">
+          <div class="con-winning">
+            <label for="lab-winning">당첨 번호</label>
+            <div class="con-inp-winning">
+              <input class="inp-winnings" type="number" name="input-winning-list" id="inp-winning-number">
+              <input class="inp-winnings" type="number" name="input-winning-list">
+              <input class="inp-winnings" type="number" name="input-winning-list">
+              <input class="inp-winnings" type="number" name="input-winning-list">
+              <input class="inp-winnings" type="number" name="input-winning-list">
+              <input class="inp-winnings" type="number" name="input-winning-list">
             </div>
           </div>
 
-          <div>
-            <label for="bonus-number">보너스 번호</label>
-            <input type="number" name="bonus-number" id="bonus-number">
+          <div class="con-bonus">
+            <label for="inp-bonus">보너스 번호</label>
+            <input class="inp-winnings" type="number" name="input-bonus" id="inp-bonus">
           </div>
 
-          <button type="submit">결과 확인하기</button>
+          <button class="btn-winnings text-caption" name="button" style="margin-top: 27px" type="submit">결과
+            확인하기</button>
         </form>
       </div>
     </main>
 
     <footer>
-      <p>Copyright 2023. woowacourse</p>
+      <p class="text-caption color-primary">Copyright 2023. woowacourse</p>
     </footer>
   </div>
 
