@@ -14,7 +14,8 @@ class WebPurchaseLottoServiceController {
 
     const purchaseCount = purchaseLottoService.getPurchaseCount();
     const $purchaseLottoView = document.querySelector('.purchase-lotto__text');
-    $purchaseLottoView.innerHTML = MESSAGE.purchaseCount(purchaseCount);
+
+    $purchaseLottoView.textContent = MESSAGE.purchaseCount(purchaseCount);
 
     const lottosNumbers = purchaseLottoService.getLottos();
 
