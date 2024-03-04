@@ -1,6 +1,5 @@
 export default function generateStatisticsModalHTML(lottoRanks, totalProfitRate) {
   const ranks = lottoRanks.map((rank) => rank[1]);
-  console.log([...ranks].reverse());
   return `<div class="modal-body">
       <div class="lotto-modal">
         <button class="lm-close-btn">X</button>
