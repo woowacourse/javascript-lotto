@@ -1,3 +1,4 @@
+import AppError from '../errors/AppError/AppError.js';
 import './BonusNumberInputField.css';
 import './NumberInputField.js';
 
@@ -18,7 +19,11 @@ class BonusNumberInputField extends HTMLElement {
   }
 
   getValue() {
-    return this.querySelector('number-input-field').getValue();
+    const inputField = this.querySelector('number-input-field');
+    if (!inputField) {
+      throw new AppError('"number-input-field"를 찾을 수 없습니다.');
+    }
+    return inputField.getValue();
   }
 }
 
