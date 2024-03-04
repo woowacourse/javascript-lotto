@@ -18,16 +18,11 @@ class LottoResultModal {
       lottos,
       winningInfo
     );
-
     const results = this.#makeResultTable();
     const returnRate = lottoResult.calculateReturnRate(lottos.length * 1000);
 
     printResultTable(results);
     printReturnRate(returnRate);
-
-    this.#addClickCloseButtonEvent();
-    this.#addClickModalBackgroundEvent();
-    this.#addClickRetryButtonEvent();
 
     this.#$resultModal.classList.remove("hidden");
   }
@@ -88,6 +83,12 @@ class LottoResultModal {
         LottoStoreBox.init();
       },
     });
+  }
+
+  static addClickEvents() {
+    this.#addClickCloseButtonEvent();
+    this.#addClickModalBackgroundEvent();
+    this.#addClickRetryButtonEvent();
   }
 }
 

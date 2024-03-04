@@ -21,9 +21,6 @@ class LottoStoreBox {
     $amountInput.value = "";
     $amountInput.focus();
     WinningLottoForm.hide();
-    //TODO
-    // 다시 시작하기 누를 경우, 아래 콘솔이 여러번 찍힌다.
-    // console.log("????", this.#lottos);
   }
 
   static #initLottos() {
@@ -37,16 +34,26 @@ class LottoStoreBox {
     try {
       this.#lottos = this.#lottoStore.publishLottos(amount[0]);
       printLottos(this.#lottos);
+
+      this.#handleErrorMessage({ type: "init", error: null });
+    } catch (error) {
+      this.#initLottos();
+      WinningLottoForm.hide();
+      this.#handleErrorMessage({ type: "error", error });
+    }
+  }
+
+  static #handleErrorMessage({ type, error }) {
+    if (type === "init") {
       removeErrorMessage({
         location: this.#$amountForm.getElementsByClassName("errorMessage")[0],
       });
-    } catch (error) {
+    }
+    if (type === "error") {
       printErrorMessage({
         location: this.#$amountForm.getElementsByClassName("errorMessage")[0],
         errorMessage: error.message,
       });
-      this.#initLottos();
-      WinningLottoForm.hide();
     }
   }
 

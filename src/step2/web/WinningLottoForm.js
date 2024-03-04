@@ -23,23 +23,36 @@ class WinningLottoForm {
     const rawWinningLotto = readInput(e.target);
 
     try {
-      const winningLotto = new WinningLotto(
-        new Lotto(
-          rawWinningLotto.slice(0, 6).map((number) => Number(number)),
-          getLottoRules()
-        ),
-        Number(rawWinningLotto.slice(6)[0]),
-        getLottoRules()
-      );
+      const winningLotto = this.#makeWinningLotto(rawWinningLotto);
 
-      removeErrorMessage({
-        location:
-          this.#$winningLottoForm.getElementsByClassName("errorMessage")[0],
-      });
+      this.#handleErrorMessage({ type: "init", error: null });
 
       const lottos = LottoStoreBox.getLottos();
       LottoResultModal.open(lottos, winningLotto);
     } catch (error) {
+      this.#handleErrorMessage({ type: "error", error });
+    }
+  }
+
+  static #makeWinningLotto(rawWinningLotto) {
+    return new WinningLotto(
+      new Lotto(
+        rawWinningLotto.slice(0, 6).map((number) => Number(number)),
+        getLottoRules()
+      ),
+      Number(rawWinningLotto.slice(6)[0]),
+      getLottoRules()
+    );
+  }
+
+  static #handleErrorMessage({ type, error }) {
+    if (type === "init") {
+      removeErrorMessage({
+        location:
+          this.#$winningLottoForm.getElementsByClassName("errorMessage")[0],
+      });
+    }
+    if (type === "error") {
       printErrorMessage({
         location:
           this.#$winningLottoForm.getElementsByClassName("errorMessage")[0],
