@@ -22,7 +22,6 @@
     color: var(--lotto-greyscale-1, #FFF);
     font-feature-settings: 'clig' off, 'liga' off;
     height: 2rem;
-    font-family: Roboto;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 700;
