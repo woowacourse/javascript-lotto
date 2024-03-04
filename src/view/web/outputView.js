@@ -23,7 +23,7 @@ const outputView = {
 
     const winningLottoInputs = new Array(LOTTO.count)
       .fill()
-      .map((_, i) => `<input class='squareInput' id='winningLotto-${i + 1}' type='text'>`);
+      .map((_, i) => `<input aria-live='polite' class='squareInput' id='winningLotto-${i + 1}' type='text'>`);
 
     $(
       "#winningLottoInputForm"
@@ -33,7 +33,7 @@ const outputView = {
 
     $(
       "#bonusInputForm"
-    ).innerHTML = `<div class="marginBottomSmall">보너스 번호</div><input class='squareInput' id='bonusInput' type='text'/>`;
+    ).innerHTML = `<div class="marginBottomSmall">보너스 번호</div><input class='squareInput' id='bonusInput' type='text' aria-live='polite' />`;
   },
 
   printRanks(ranks) {

@@ -4,6 +4,7 @@ function toast(errorMessage) {
   const toastElement = document.createElement("div");
   toastElement.classList.add("toast");
   toastElement.textContent = errorMessage;
+  toastElement.setAttribute("aria-live", "assertive");
 
   $("body").appendChild(toastElement);
 
