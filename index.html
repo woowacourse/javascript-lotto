@@ -29,22 +29,28 @@
           <div class="purchase-container">
             <div class="purchase">
               <label for="purchase__input">구입할 금액을 입력해주세요.</label>
-              <input class="purchase__input" placeholder="금액" required />
+              <input
+                type="number"
+                id="purchase__input"
+                placeholder="금액"
+                min="1000"
+                max="100000"
+              />
             </div>
             <div>
-              <button type="submit" class="purchase__btn">
-                <p class="purchase__btn-text">구입</p>
+              <button type="button" class="purchase__button">
+                <p class="purchase__button-text">구입</p>
               </button>
             </div>
           </div>
         </section>
 
-        <section class="purchase-lotto purchase-lotto_hidden">
+        <section class="purchase-lotto hidden">
           <p class="purchase-lotto__text"></p>
-          <ol class="purchase-lotto__list"></ol>
+          <ul class="purchase-lotto__list"></ul>
         </section>
 
-        <section class="winning-lotto-container winning-lotto-container_hidden">
+        <section class="winning-lotto-container hidden">
           <div class="winning-lotto">
             <p class="winning-lotto__text">
               지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
@@ -73,15 +79,15 @@
               </div>
             </div>
           </div>
-          <button type="button" class="winning-lotto__btn">
-            <p class="winning-lotto__btn-text">결과 확인하기</p>
+          <button type="button" class="winning-lotto__button">
+            <p class="winning-lotto__button-text">결과 확인하기</p>
           </button>
         </section>
       </div>
 
-      <section class="winning-result-modal winning-result-modal_hidden">
-        <div class="winning-result winning-result_hidden">
-          <span class="winning-result__close-btn">Ｘ</span>
+      <section class="winning-result-modal hidden">
+        <div class="winning-result hidden">
+          <span class="winning-result__close-button">Ｘ</span>
           <h2 class="winning-result__text">🏆 당첨 통계 🏆</h2>
           <table class="winning-result__table">
             <thead>
@@ -125,8 +131,8 @@
           </table>
 
           <p class="winning-result__return-rate">당신의 총 수익률은 %입니다.</p>
-          <button type="button" class="winning-result__retry-btn">
-            <p class="winning-result__retry-btn-text">다시 시작하기</p>
+          <button type="button" class="winning-result__retry-button">
+            <p class="winning-result__retry-button-text">다시 시작하기</p>
           </button>
         </div>
       </section>

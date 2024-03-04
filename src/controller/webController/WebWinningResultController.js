@@ -39,10 +39,10 @@ class WebWinningResultController {
     );
 
     const $winningResultModal = document.querySelector('.winning-result-modal');
-    $winningResultModal.classList.add('winning-result-modal_visible');
+    $winningResultModal.classList.add('visible');
 
     const $winningResult = document.querySelector('.winning-result');
-    $winningResult.classList.add('winning-result_visible');
+    $winningResult.classList.add('visible');
   }
 
   static setPurchaseLottoObject(purchaseLottoObject) {

@@ -6,7 +6,7 @@ import WebWinningResultController from './WebWinningResultController';
 class WebPurchaseLottoServiceController {
   static playWebPurchaseLottoService() {
     const purchaseLottoConfig = {
-      value: document.querySelector('.purchase__input').value,
+      value: document.getElementById('purchase__input').value,
       factory: inputString => new PurchaseLottoService(inputString),
     };
 
@@ -26,10 +26,10 @@ class WebPurchaseLottoServiceController {
     $lottos.innerHTML = lottosNumbers.map(makeTextNode).join('');
 
     const $lotto = document.querySelector('.purchase-lotto');
-    $lotto.classList.add('purchase-lotto_visible');
+    $lotto.classList.add('visible');
 
     const $winnigLotto = document.querySelector('.winning-lotto-container');
-    $winnigLotto.classList.add('winning-lotto-container_visible');
+    $winnigLotto.classList.add('visible');
 
     const pusrchaseLottoObject = {
       purchaseCountKey: purchaseCount,

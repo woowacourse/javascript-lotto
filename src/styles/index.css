@@ -79,7 +79,7 @@ body {
   text-align: left;
 }
 
-.purchase__input {
+#purchase__input {
   box-sizing: border-box;
   width: 310px;
   height: 36px;
@@ -90,7 +90,7 @@ body {
   border: 1px solid rgba(180, 180, 180, 1);
 }
 
-.purchase__btn {
+.purchase__button {
   width: 56px;
   height: 36px;
   padding: 6px 6px 6px 8px;
@@ -104,7 +104,7 @@ body {
   color: rgba(255, 255, 255, 1);
 }
 
-.purchase__btn-text {
+.purchase__button-text {
   box-sizing: border-box;
   font-family: Roboto;
   width: 42px;
@@ -135,8 +135,7 @@ body {
   padding: 0;
   margin: 0;
   gap: 4px 0;
-  overflow: auto;
-  overflow-x: hidden;
+  overflow: hidden auto;
 }
 
 .purchase-lotto__list li {
@@ -225,7 +224,7 @@ body {
   border: 1px solid rgba(180, 180, 180, 1);
 }
 
-.winning-lotto__btn {
+.winning-lotto__button {
   position: absolute;
   cursor: pointer;
   width: 382px;
@@ -237,7 +236,7 @@ body {
   background: rgba(78, 91, 166, 1);
 }
 
-.winning-lotto__btn-text {
+.winning-lotto__button-text {
   width: 368px;
   height: 24px;
   padding: 4px 6px 4px 6px;
@@ -259,14 +258,6 @@ body {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.winning-result-modal_hidden {
-  display: none;
-}
-
-.winning-result-modal_visible {
-  display: block;
-}
-
 .winning-result {
   position: absolute;
   width: 350px;
@@ -278,7 +269,7 @@ body {
   border-radius: 4px;
 }
 
-.winning-result__close-btn {
+.winning-result__close-button {
   position: absolute;
   top: 16px;
   left: 318px;
@@ -345,7 +336,7 @@ body {
   text-align: center;
 }
 
-.winning-result__retry-btn {
+.winning-result__retry-button {
   position: absolute;
   cursor: pointer;
   width: 318px;
@@ -357,7 +348,7 @@ body {
   background: rgba(78, 91, 166, 1);
 }
 
-.winning-result__retry-btn-text {
+.winning-result__retry-button-text {
   position: relative;
   width: 89px;
   height: 16px;
@@ -395,14 +386,10 @@ body {
   color: rgba(78, 91, 166, 1);
 }
 
-.purchase-lotto_hidden,
-.winning-lotto-container_hidden,
-.winning-result_hidden {
+.hidden {
   display: none;
 }
 
-.purchase-lotto_visible,
-.winning-lotto-container_visible,
-.winning-result_visible {
+.visible {
   display: block;
 }
