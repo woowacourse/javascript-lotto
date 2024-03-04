@@ -30,10 +30,6 @@ body {
   letter-spacing: 1px;
 }
 
-body.modalOpen {
-  overflow-y: hidden;
-}
-
 header {
   height: 64px;
   padding-left: 130px;
@@ -135,28 +131,6 @@ main {
   border: 1px solid var(--color-grayscale-3);
   border-radius: 4px;
   text-align: center;
-}
-
-.modalBackground {
-  background: #00000080;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 99;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modalContainer {
-  width: 350px;
-  height: 500px;
-  border-radius: 4px;
-  background: var(--color-grayscale-1);
-  padding: 15px;
-  position: relative;
 }
 
 .fullWidthButton {
@@ -294,47 +268,4 @@ div {
 
 .hideScroll {
   scrollbar-width: none;
-}
-
-.toast {
-  position: fixed;
-  min-width: 300px;
-  width: fit-content;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: white;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-  padding: 20px 30px;
-  border-radius: 8px;
-  animation: toastAnimation 3s forwards;
-  font-weight: var(--font-caption-weight);
-  font-size: var(--font-caption-size);
-  color: var(--color-lotto-primary);
-}
-
-@keyframes toastAnimation {
-  0% {
-    bottom: -100px;
-    opacity: 0.5;
-  }
-  30% {
-    bottom: 40px;
-    opacity: 1;
-  }
-  70% {
-    bottom: 40px;
-    opacity: 1;
-  }
-  100% {
-    bottom: -100px;
-    opacity: 0.5;
-  }
-}
-
-.disabledButton {
-  background-color: var(--color-grayscale-4);
-}
-
-.disabledInput {
-  color: var(--color-grayscale-4);
 }
