@@ -53,25 +53,27 @@ const ModalSection = {
     const modalContents = document.createElement('div');
     modalContents.className = 'modal-contents';
     modalContainer.appendChild(modalContents);
+    const [modalTitle, totalPrice, restartButton] = this.createModalElement(rateOfRevenue);
+    const modalTable = this.createModalTable(result);
+    modalContents.append(modalTitle, modalTable, totalPrice, restartButton);
 
+    return modalContainer;
+  },
+
+  createModalElement(rateOfRevenue = 0) {
     const modalTitle = document.createElement('p');
     modalTitle.className = 'modal-title';
     modalTitle.textContent = '🏆 당첨 통계 🏆';
-    modalContents.appendChild(modalTitle);
-
-    modalContents.appendChild(this.createModalTable(result));
 
     const totalPrice = document.createElement('div');
     totalPrice.className = 'total-price';
     totalPrice.textContent = `당신의 총 수익률은 ${rateOfRevenue}%입니다`;
-    modalContents.appendChild(totalPrice);
 
     const restartButton = document.createElement('button');
     restartButton.className = 'restart-button button';
     restartButton.textContent = '다시 시작하기';
-    modalContents.appendChild(restartButton);
 
-    return modalContainer;
+    return [modalTitle, totalPrice, restartButton];
   },
 
   createModalTable(result = []) {
@@ -87,8 +89,14 @@ const ModalSection = {
     });
     thead.appendChild(trHead);
     table.appendChild(thead);
+    table.appendChild(this.createTableBody(result));
 
+    return table;
+  },
+
+  createTableBody(result = []) {
     const tbody = document.createElement('tbody');
+    const fragment = document.createDocumentFragment();
     result.forEach((value) => {
       const [matchCount, isBonus, price, winCount] = value;
       const tr = document.createElement('tr');
@@ -105,11 +113,10 @@ const ModalSection = {
       tdWinCount.textContent = `${winCount}개`;
       tr.appendChild(tdWinCount);
 
-      tbody.appendChild(tr);
+      fragment.appendChild(tr);
     });
-    table.appendChild(tbody);
-
-    return table;
+    tbody.appendChild(fragment);
+    return tbody;
   },
 };
 export default ModalSection;
