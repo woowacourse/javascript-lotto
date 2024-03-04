@@ -1,12 +1,3 @@
-export const LOTTO_RULES = Object.freeze({
-  price: 1000,
-  maxQuantity: 100,
-  length: 6,
-  minNumber: 1,
-  maxNumber: 45,
-  exchangeRank: exchangeRank,
-});
-
 export const LOTTO_REWARDS = Object.freeze({
   first: 2_000_000_000,
   second: 30_000_000,
@@ -40,3 +31,12 @@ export const exchangeRank = ({ matchedCount, hasBonusNumber }) => {
       return "nothing";
   }
 };
+
+export const LOTTO_RULES = Object.freeze({
+  price: 1000,
+  maxQuantity: 100,
+  length: 6,
+  minNumber: 1,
+  maxNumber: 45,
+  exchangeRank: exchangeRank,
+});

@@ -1,5 +1,5 @@
-import INPUT_QUERY from "../constants/input-query";
-import Console from "../utils/Console";
+import INPUT_QUERY from "../constants/input-query.js";
+import Console from "../utils/Console.js";
 
 const InputView = {
   async readInput(query) {

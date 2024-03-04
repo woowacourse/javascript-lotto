@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES } from "../constants/message";
-import InvalidInputException from "../exceptions/InvalidInputException";
+import { ERROR_MESSAGES } from "../constants/message.js";
+import InvalidInputException from "../exceptions/InvalidInputException.js";
 
 class LottoRules {
   #price;
@@ -29,8 +29,8 @@ class LottoRules {
   }
 
   validateForLotto(numbers) {
-    this.#validateLottoNumbersType(numbers);
     this.#validateLottoLength(numbers);
+    this.#validateLottoNumbersType(numbers);
     this.#validateLottoUniqueness(numbers);
   }
 
