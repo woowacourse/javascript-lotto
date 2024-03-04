@@ -22,18 +22,21 @@ class WebLottoController {
   }
 
   #moneyInputFormHandler(value) {
-    const $moneyInput = document.getElementById('money-input');
     const $moneyButton = document.getElementById('money-button');
 
+    this.#insertMoney(value);
+    this.#lottoMachine = new LottoMachine(this.#money);
+    $moneyButton.disabled = true;
+    mainPage.generateCountNotice(this.#money.count);
+    mainPage.generatePurchasedLottosNotice(this.#lottoMachine.lottos);
+    mainPage.generateWinningNumbersInputs();
+    this.#readWinningLottoAndBonusNumber();
+  }
+
+  #insertMoney(value) {
+    const $moneyInput = document.getElementById('money-input');
     try {
       this.#money = new Money(value);
-      this.#lottoMachine = new LottoMachine(this.#money);
-
-      $moneyButton.disabled = true;
-      mainPage.generateCountNotice(this.#money.count);
-      mainPage.generatePurchasedLottosNotice(this.#lottoMachine.lottos);
-      mainPage.generateWinningNumbersInputs();
-      this.#readWinningLottoAndBonusNumber();
     } catch (err) {
       errorAlert(err);
       $moneyInput.value = null;
@@ -47,21 +50,22 @@ class WebLottoController {
     $numberInputs[0].focus();
     $numberForm.addEventListener('submit', event => {
       event.preventDefault();
-      try {
-        const numberInputs = Array.from(event.target.numberInput).map(val => {
-          return val.value;
-        });
-        this.#makeWinningLottoAndBonusNumber(numberInputs);
-        this.#openResultModal();
-      } catch (err) {
-        errorAlert(err);
-      }
+      const numberInputs = Array.from(event.target.numberInput).map(val => {
+        return val.value;
+      });
+      this.#makeWinningLottoAndBonusNumber(numberInputs);
     });
   }
 
   #makeWinningLottoAndBonusNumber(numberInputs) {
-    this.#lottoMachine.winningLotto = numberInputs.slice(0, 6).join(LOTTO_RULE.NUMBER_DELIMITER);
-    this.#lottoMachine.bonusNumber = numberInputs[6];
+    try {
+      this.#lottoMachine.winningLotto = numberInputs.slice(0, 6).join(LOTTO_RULE.NUMBER_DELIMITER);
+      this.#lottoMachine.bonusNumber = numberInputs[6];
+
+      this.#openResultModal();
+    } catch (err) {
+      errorAlert(err);
+    }
   }
 
   #openResultModal() {
