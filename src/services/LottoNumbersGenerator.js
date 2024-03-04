@@ -24,8 +24,14 @@ class LottoNumbersGenerator {
   }
 
   static displayGeneratedLottos(generatedLottos) {
-    $('#generated-lotto-contents').innerHTML =
-      OutputWebView.displayGeneratedLottos(generatedLottos);
+    const $generatedLottoContents = $('#generated-lotto-contents');
+    if ($generatedLottoContents) {
+      $generatedLottoContents.remove();
+    }
+
+    $('#generated-lotto-container').appendChild(
+      OutputWebView.displayGeneratedLottos(generatedLottos),
+    );
   }
 }
 

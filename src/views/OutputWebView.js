@@ -9,11 +9,17 @@ const OutputWebView = {
   },
 
   displayGeneratedLottos(generatedLottos) {
-    return generatedLottos
-      .map((lotto) => {
-        return `<li>${WEB_MESSAGES.ticketEmoji} ${lotto.join(', ')}</li>`;
-      })
-      .join('');
+    const $ul = document.createElement('ul');
+    $ul.setAttribute('id', 'generated-lotto-contents');
+    $ul.setAttribute('class', 'generated-lotto-contents');
+
+    generatedLottos.forEach((lotto) => {
+      const $li = document.createElement('li');
+      $li.textContent = `${WEB_MESSAGES.ticketEmoji} ${lotto.join(', ')}`;
+      $ul.appendChild($li);
+    });
+
+    return $ul;
   },
 
   displayStatistics(statistics) {
