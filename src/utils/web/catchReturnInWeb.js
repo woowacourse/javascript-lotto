@@ -1,4 +1,4 @@
-import toast from "../../view/web/toast.js";
+import toast from "../../view/web/toast/toast.js";
 
 async function catchReturnInWeb(callback) {
   while (true) {

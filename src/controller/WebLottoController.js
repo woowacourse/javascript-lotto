@@ -7,8 +7,8 @@ import BonusNumberError from "../error/BonusNumberError.js";
 import LottoError from "../error/LottoError.js";
 import { calculateProfitRate } from "../utils/calculateProfitRate.js";
 import catchReturnInWeb from "../utils/web/catchReturnInWeb.js";
-import modal from "../view/web/modal.js";
-import toast from "../view/web/toast.js";
+import modal from "../view/web/modal/modal.js";
+import toast from "../view/web/toast/toast.js";
 
 class WebLottoController {
   #inputView;
