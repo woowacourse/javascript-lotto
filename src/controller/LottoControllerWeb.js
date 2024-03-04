@@ -37,9 +37,6 @@ function handleClickLottoResult(lottoMachine, money) {
   });
 }
 
-// TODO: 에러 나는 부분 빨간 박스 처리해주기
-// TODO: 로또 출력 많을 때, 더보기 버튼으로 접었다 폈다 하기
-// TODO: 당첨 번호 입력할 때, autoFocusing 및 하나 입력하면 다음 input으로 포커싱해주기
 function executionWinningAndBonusNumbers(lottoMachine, money) {
   const winningBonusNumbersGroup = document.getElementById('winning-bonus-number-input-group');
   try {
@@ -64,13 +61,41 @@ function printLottoResultsAndProfitRate(lottoMachine, money) {
 }
 
 function inputWinningAndBonusNumbers(lottoMachine) {
-  const extractionWinningNumbers = new Array(6)
-    .fill(0)
-    .map((_, idx) => document.getElementById(`winningNumber${idx + 1}`).value);
-  const inputBonusNumber = document.getElementById('bonusNumber').value;
-  const inputWinningNumber = extractionWinningNumbers.filter((num) => num.trim() !== '');
-  lottoMachine.winningLotto = inputWinningNumber.join(',');
-  lottoMachine.bonusNumber = inputBonusNumber;
+  const winningRes = insertWinningNumbers(lottoMachine);
+  if (winningRes.existError) {
+    throw new Error(winningRes.error.message);
+  }
+  const bonusRes = insertBonusNumber(lottoMachine);
+  if (bonusRes.existError) {
+    throw new Error(bonusRes.error.message);
+  }
+}
+
+function insertWinningNumbers(lottoMachine) {
+  try {
+    const extractionWinningNumbers = new Array(6)
+      .fill(0)
+      .map((_, idx) => document.getElementById(`winningNumber${idx + 1}`).value);
+    const inputWinningNumber = extractionWinningNumbers.filter((num) => num.trim() !== '');
+    lottoMachine.winningLotto = inputWinningNumber.join(',');
+    removeErrorLine();
+    return { existError: false };
+  } catch (error) {
+    document.querySelector('.lp-nig-winning-box').classList.add('error-line');
+    return { existError: true, error };
+  }
+}
+
+function insertBonusNumber(lottoMachine) {
+  try {
+    const inputBonusNumber = document.getElementById('bonusNumber').value;
+    lottoMachine.bonusNumber = inputBonusNumber;
+    removeErrorLine();
+    return { existError: false };
+  } catch (error) {
+    document.querySelector('.lp-nig-bonus-box').classList.add('error-line');
+    return { existError: true, error };
+  }
 }
 
 function printPurchaseInfoHTML(findPurchaseInfoHTML, count, lottos) {
@@ -87,4 +112,11 @@ function retryLotto() {
   retryButton.addEventListener('click', () => {
     window.location.reload();
   });
+}
+
+function removeErrorLine() {
+  const errorTag = document.querySelector('.error-line');
+  if (errorTag) {
+    errorTag.classList.remove('error-line');
+  }
 }

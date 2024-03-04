@@ -134,8 +134,8 @@ class LottoMachine {
   }
 
   set bonusNumber(number) {
-    this.#bonusNumber = new BonusNumber(number);
     this.#validateHasRedundantNumber(this.#winningLotto, Number(number));
+    this.#bonusNumber = new BonusNumber(number);
   }
 
   get lottos() {

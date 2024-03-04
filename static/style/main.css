@@ -40,6 +40,11 @@
   margin-top: 5px;
 }
 
+.error-line {
+  outline: 2px solid rgb(245, 59, 59);
+  border-radius: 4px;
+}
+
 /* Footer */
 .lotto-footer {
   height: 80px;
