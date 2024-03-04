@@ -3,10 +3,10 @@ import LOTTO_SYSTEM from "../../constants/lottoSystem";
 import { OUTPUT_MESSAGE } from "../../constants/message";
 
 const OutputView = {
-  printLottos(lottoes) {
-    this.print(lottoes.length + OUTPUT_MESSAGE.purchaseCount);
+  printLottos(lottos) {
+    this.print(lottos.length + OUTPUT_MESSAGE.purchaseCount);
 
-    lottoes.forEach((lotto) => {
+    lottos.forEach((lotto) => {
       this.print(lotto.numbers.sort((a, b) => a - b));
     });
     this.print(SYMBOL.space);

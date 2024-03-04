@@ -13,10 +13,10 @@ class App {
   }
 
   async play() {
-    const lottoes = await this.#purchaseLottos();
+    const lottos = await this.#purchaseLottos();
     const winningLotto = await this.#generateWinningLotto();
 
-    this.#drawLotto(lottoes, winningLotto);
+    this.#drawLotto(lottos, winningLotto);
 
     this.#replay();
   }
@@ -24,10 +24,10 @@ class App {
   async #purchaseLottos() {
     try {
       const purchaseAmount = Number(await InputView.readPurchaseAmount());
-      const lottoes = this.#lottoGame.issueLottoes(purchaseAmount);
-      OutputView.printLottos(lottoes);
+      const lottos = this.#lottoGame.issueLottos(purchaseAmount);
+      OutputView.printLottos(lottos);
 
-      return lottoes;
+      return lottos;
     } catch (error) {
       OutputView.print(error.message);
       return this.#purchaseLottos();
@@ -49,9 +49,9 @@ class App {
     }
   }
 
-  #drawLotto(lottoes, winningLotto) {
+  #drawLotto(lottos, winningLotto) {
     const { rankings, totalProfitRate } = this.#lottoGame.drawLotto(
-      lottoes,
+      lottos,
       winningLotto,
     );
 

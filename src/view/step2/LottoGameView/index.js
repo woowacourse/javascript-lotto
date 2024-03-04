@@ -1,5 +1,5 @@
 import "./style.css";
-import PurchasedLottoes from "../components/PurchasedLottoes";
+import PurchasedLottos from "../components/PurchasedLottos";
 import PurchaseAmount from "../components/PurchaseAmount";
 import WinningLotto from "../components/WinningLotto";
 import DrawButton from "../components/DrawButton";
@@ -46,9 +46,9 @@ class LottoGameView {
     }).render();
   }
 
-  renderPurchasedLottoes({ lottoes }) {
-    new PurchasedLottoes(document.querySelector("#container"), {
-      lottoes,
+  renderPurchasedLottos({ lottos }) {
+    new PurchasedLottos(document.querySelector("#container"), {
+      lottos,
     }).render();
   }
 

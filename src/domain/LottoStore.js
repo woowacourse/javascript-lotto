@@ -23,7 +23,7 @@ class LottoStore {
     );
   }
 
-  issueLottoes(sixNumbersArray) {
+  issueLottos(sixNumbersArray) {
     if (!this.#isValidSixNumbersArray(sixNumbersArray))
       throw new Error(ERROR_MESSAGE.invalidSixNumbersArray);
 

@@ -11,20 +11,20 @@ class LottoGame {
     this.#lottoDrawingMachine = new LottoDrawingMachine();
   }
 
-  issueLottoes(purchaseAmount) {
+  issueLottos(purchaseAmount) {
     const lottoCount = this.#lottoStore.calculateLottoCount(purchaseAmount);
     const randomNumbers = this.#lottoStore.generateLottosNumbers(lottoCount);
-    const lottoes = this.#lottoStore.issueLottoes(randomNumbers);
+    const lottos = this.#lottoStore.issueLottos(randomNumbers);
 
-    return lottoes;
+    return lottos;
   }
 
   generateWinningLotto(winningNumbers, bonusNumber) {
     return new WinningLotto(winningNumbers, bonusNumber);
   }
 
-  drawLotto(lottoes, winningLotto) {
-    const rankings = this.#lottoDrawingMachine.draw(lottoes, winningLotto);
+  drawLotto(lottos, winningLotto) {
+    const rankings = this.#lottoDrawingMachine.draw(lottos, winningLotto);
     const totalProfitRate =
       this.#lottoDrawingMachine.calculateTotalProfitRate(rankings);
 

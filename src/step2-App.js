@@ -7,7 +7,7 @@ class App {
   #lottoGame;
   #lottoGameView;
 
-  #lottoes;
+  #lottos;
 
   constructor($root) {
     this.#$root = $root;
@@ -23,13 +23,13 @@ class App {
   }
 
   #onPurchaseAmountButtonClick(purchaseAmount) {
-    const lottoes = this.#purchaseLottoes(purchaseAmount);
-    if (!lottoes) {
+    const lottos = this.#purchaseLottos(purchaseAmount);
+    if (!lottos) {
       return;
     }
-    this.#lottoes = lottoes;
+    this.#lottos = lottos;
 
-    this.#lottoGameView.renderPurchasedLottoes({ lottoes: this.#lottoes });
+    this.#lottoGameView.renderPurchasedLottos({ lottos: this.#lottos });
     this.#lottoGameView.renderWinningLotto();
     this.#lottoGameView.renderDrawButton({
       onDrawButtonClick: this.#onDrawButtonClick.bind(this),
@@ -46,7 +46,7 @@ class App {
     }
 
     const { rankings, totalProfitRate } = this.#drawLotto(
-      this.#lottoes,
+      this.#lottos,
       winningLotto,
     );
 
@@ -61,9 +61,9 @@ class App {
     this.play();
   }
 
-  #purchaseLottoes(purchaseAmount) {
+  #purchaseLottos(purchaseAmount) {
     try {
-      return this.#lottoGame.issueLottoes(Number(purchaseAmount));
+      return this.#lottoGame.issueLottos(Number(purchaseAmount));
     } catch (error) {
       alert(error.message);
     }
@@ -80,8 +80,8 @@ class App {
     }
   }
 
-  #drawLotto(lottoes, winningLotto) {
-    return this.#lottoGame.drawLotto(lottoes, winningLotto);
+  #drawLotto(lottos, winningLotto) {
+    return this.#lottoGame.drawLotto(lottos, winningLotto);
   }
 }
 

@@ -4,7 +4,7 @@ import WinningLotto from "../src/domain/WinningLotto";
 
 describe("로또추첨기 클래스 테스트", () => {
   test("로또 추첨 기능 테스트", () => {
-    const lottoes = [
+    const lottos = [
       [1, 2, 3, 4, 5, 6],
       [1, 2, 3, 4, 5, 11],
       [14, 3, 1, 24, 15, 2],
@@ -16,7 +16,7 @@ describe("로또추첨기 클래스 테스트", () => {
     const expectedRankings = [1, 2, 5, 3, 4, 0];
 
     const lottodrawingMachine = new LottoDrawingMachine();
-    const rankings = lottodrawingMachine.draw(lottoes, winningLotto);
+    const rankings = lottodrawingMachine.draw(lottos, winningLotto);
 
     expect(rankings).toEqual(expectedRankings);
   });
