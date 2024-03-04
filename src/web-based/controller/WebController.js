@@ -28,19 +28,20 @@ class LottoWebController {
   }
 
   setupEventListeners() {
-    document
-      .querySelector('.form-purchase-amount')
-      .addEventListener('submit', (event) => this.processPurchaseAmount(event));
-    document
-      .querySelector('.form-winning-numbers')
-      .addEventListener('submit', (event) => this.processWinningNumbers(event));
+    document.querySelector('.form-purchase-amount').addEventListener('submit', (event) => {
+      event.preventDefault();
+      this.processPurchaseAmount();
+    });
+    document.querySelector('.form-winning-numbers').addEventListener('submit', (event) => {
+      event.preventDefault();
+      this.processWinningNumbers();
+    });
     document
       .querySelector('.button-restart')
       .addEventListener('click', () => this.processRestart());
   }
 
-  processPurchaseAmount(event) {
-    event.preventDefault();
+  processPurchaseAmount() {
     const inputPurchaseAmountView = document.querySelector('.input-purchase-amount');
     const inputValue = inputPurchaseAmountView.value;
     const purchaseAmount = Number(inputValue);
@@ -81,8 +82,7 @@ class LottoWebController {
     WinningNumbersOutputView.displayWinningNumbersInput();
   }
 
-  processWinningNumbers(event) {
-    event.preventDefault();
+  processWinningNumbers() {
     const inputWinningNumbers = WinningNumbersOutputView.getWinningNumbers();
     const validationResult = this.validateWinningNumbers(inputWinningNumbers);
 
