@@ -1,18 +1,33 @@
 const RandomSection = {
-    showRandomLottos(selector = '', lottos = []){
+    showRandomLottos(selector = '', lottos = []) {
         const randomLottoContainer = document.querySelector(selector);
-        randomLottoContainer.innerHTML = this.createRandomLottos(lottos);
+        randomLottoContainer.appendChild(this.createRandomLottos(lottos));
     },
 
-    createRandomLottos(lottos = []){
-        return `
-        <div>
-        <div class = "random-lottos-result-title">총 ${lottos.length}개를 구매하였습니다.</div>
-            <ul>
-                ${lottos.map((lotto) => `<li class="random-lotto-list">🎟️ <span class = 'lotto-list-p'>${lotto.getNumbers().join(', ')}<span></p></li>`).join('')}
-            </ul>
-        </div>
-        `
+    createRandomLottos(lottos = []) {
+        const containerDiv = document.createElement('div');
+        const titleDiv = document.createElement('div');
+        titleDiv.className = "random-lottos-result-title";
+        titleDiv.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
+        containerDiv.appendChild(titleDiv);
+        containerDiv.appendChild(this.createRandomLottoList(lottos));
+        return containerDiv;
+    },
+
+    createRandomLottoList(lottos = []) {
+        const ul = document.createElement('ul');
+        lottos.forEach(lotto => {
+            const li = document.createElement('li');
+            li.className = "random-lotto-list";
+            const span = document.createElement('span');
+            span.className = 'lotto-list-p';
+            span.textContent = lotto.getNumbers().join(', ');
+
+            li.textContent = '🎟️ ';
+            li.appendChild(span);
+            ul.appendChild(li);
+        });
+        return ul;
     }
 }
 
