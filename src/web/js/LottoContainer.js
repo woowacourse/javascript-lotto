@@ -8,7 +8,6 @@ class LottoContainer {
 
   init() {
     $('.lotto-display').innerHTML = '';
-    $('.lotto-app-container').style.height = '727px';
     this.lottoTicketArray = [];
   }
 
@@ -20,16 +19,6 @@ class LottoContainer {
 
   renderLottoTickets() {
     $('.lotto-display').innerHTML = this.generateLottotemplate();
-    $('.lotto-app-container').style.height = '727px';
-    this.updateHeight();
-  }
-
-  updateHeight() {
-    const lottoBoxHeight = $('.lotto-box').scrollHeight;
-    $('.lotto-box').style.height = `${lottoBoxHeight}px`;
-
-    const containerHeight = $('.lotto-app-container').scrollHeight;
-    $('.lotto-app-container').style.height = `${containerHeight}px`;
   }
 
   generateLottotemplate() {

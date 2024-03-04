@@ -14,7 +14,6 @@ main {
 .lotto-app-container {
   background-color: var(--font-color);
   width: 414px;
-  height: 727px;
   border: 1px solid rgba(0, 0, 0, 0.12);
 
   display: flex;
