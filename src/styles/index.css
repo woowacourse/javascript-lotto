@@ -1,0 +1,445 @@
+@import "reset.css";
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background-color: var(--lotto-greyscale2-color);
+  margin: 0;
+  min-width: 41.4rem;
+}
+
+/* 공통 스타일 속성 */
+
+:root {
+  --lotto-primary-color: #4e5ba6;
+  --lotto-greyscale1-color: #ffffff;
+  --lotto-greyscale2-color: #fcfcfd;
+  --lotto-greyscale3-color: #b4b4b4;
+  --lotto-greyscale4-color: #8b8b8b;
+  --lotto-greyscale5-color: #000000;
+}
+
+.lotto-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 3.6rem;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.lotto-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  letter-spacing: 0.015rem;
+  text-align: left;
+}
+
+.lotto-body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  text-align: left;
+}
+
+.lotto-placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  text-align: left;
+}
+
+.lotto-caption {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  text-align: left;
+}
+
+#main-header {
+  display: flex;
+  background: var(--lotto-primary-color);
+  padding: 1.4rem;
+  padding-left: 14rem;
+}
+
+#header-title {
+  color: var(--lotto-greyscale1-color);
+  text-decoration-line: none;
+}
+
+#main-body {
+  display: flex;
+  justify-content: center;
+}
+
+#content-box {
+  box-sizing: border-box;
+  background-color: var(--lotto-greyscale1-color);
+  width: 41.4rem;
+  min-height: 72.7rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 4rem 1.6rem 3.2rem;
+  margin-top: 8.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#content-box-header {
+  color: var(--lotto-greyscale5-color);
+  display: flex;
+  justify-content: center;
+}
+
+#content-box-budget {
+  margin-top: 2.8rem;
+}
+
+#content-box-input-budget {
+  display: flex;
+  justify-content: space-between;
+}
+
+#content-box-input-budget > input {
+  box-sizing: border-box;
+  display: flex;
+  border: 0.1rem solid var(--lotto-greyscale3-color);
+  border-radius: 0.4rem;
+  width: 31rem;
+  height: 3.6rem;
+  padding: 0.8rem 0.8rem 0.4rem 0.8rem;
+  gap: 1rem;
+}
+
+#content-box-input-budget > button {
+  background-color: var(--lotto-primary-color);
+  color: var(--lotto-greyscale1-color);
+  width: 5.6rem;
+  /* height: 3.6rem; */
+  padding: 0;
+  border-radius: 0.4rem;
+  border: 0rem;
+  text-align: center;
+}
+
+#content-box-input-budget > button:disabled {
+  background-color: var(--lotto-greyscale4-color);
+}
+
+#content-box-budget-label {
+  margin-bottom: 0.4rem;
+}
+
+#after-budget-invisible {
+  display: none;
+}
+
+#after-budget {
+  display: flex;
+  margin-top: 2.8rem;
+  flex-direction: column;
+  height: inherit;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+
+#content-box-lottos {
+  box-sizing: border-box;
+  width: 100%;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+#content-box-lottos::-webkit-scrollbar {
+  width: 10px;
+  height: 20px;
+}
+
+/* 스크롤바 막대 */
+#content-box-lottos::-webkit-scrollbar-thumb {
+  background: var(--lotto-greyscale3-color);
+  border-radius: 12px 12px 12px 12px;
+}
+
+#content-box-lottos-msg {
+  margin-bottom: 0.8rem;
+}
+
+#content-box-msg-combination {
+  margin-top: 2.4rem;
+  white-space: nowrap;
+}
+
+#content-box-input-combination {
+  margin-top: 1.2rem;
+}
+
+#content-box-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+#content-box-numbers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#content-box-numbers-input {
+  box-sizing: border-box;
+  width: 24.4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lotto-bonus-input,
+.lotto-numbers-input {
+  box-sizing: border-box;
+  border: 0.1rem solid var(--lotto-greyscale3-color);
+  border-radius: 0.4rem;
+  width: 3.4rem;
+  height: 3.6rem;
+  padding: 0;
+  text-align: center;
+}
+
+#content-box-bonus {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 7.6rem;
+  height: 6.8rem;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#lotto-input-error {
+  color: red;
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+}
+
+#content-box-result {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin-top: 2.7rem;
+}
+
+#result-btn {
+  width: 100%;
+  background-color: var(--lotto-primary-color);
+  color: var(--lotto-greyscale1-color);
+  height: 3.6rem;
+  padding: 0.6rem 0.6rem 0.6rem 0.8rem;
+  border: none;
+  border-radius: 0.4rem;
+  text-align: center;
+}
+
+/* 하단 */
+
+#footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#footer-msg {
+  margin: auto;
+  margin-top: 2.8rem;
+  margin-bottom: 3.6rem;
+  color: var(--lotto-primary-color);
+}
+
+#division-line {
+  width: 100%;
+  border-top: 0.1rem solid rgba(78, 91, 166, 0.2);
+  margin-top: 6.9rem;
+}
+
+/* 모달 */
+
+#modal {
+  display: none;
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#modal-box {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: var(--lotto-greyscale1-color);
+  width: 35rem;
+  height: 50rem;
+  border-radius: 4px;
+}
+
+#modal-header {
+  margin: 0 1.6rem;
+}
+
+#modal-close-btn {
+  position: absolute;
+  right: 1.6rem;
+  top: 1.6rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+  letter-spacing: 0.125rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+#modal-header-msg {
+  text-align: center;
+  margin: 4rem 0 3.3rem;
+}
+
+/* 모달 표 */
+
+#modal-body {
+  margin-top: 3.3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#modal-body-table {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: 31.9rem;
+  height: 24.7rem;
+  color: var(--lotto-greyscale5-color);
+}
+
+.tg {
+  box-sizing: border-box;
+  width: 31.8rem;
+  white-space: nowrap;
+}
+
+.tg td {
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.12);
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  line-height: 2.4rem;
+  margin: 0.8rem 0;
+  vertical-align: baseline;
+  word-break: normal;
+}
+
+.tg th {
+  box-sizing: border-box;
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.12);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  overflow: hidden;
+  padding: 0.8rem 1.7rem;
+  word-break: normal;
+}
+
+.tg .tg-c3ow {
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0.8rem 0;
+}
+
+.tg .tg-7btt {
+  font-weight: bold;
+  text-align: center;
+  line-height: 2.4rem;
+}
+
+#table-matched {
+  box-sizing: border-box;
+  width: 9.6rem;
+}
+
+#table-prize {
+  box-sizing: border-box;
+  width: 13.4rem;
+}
+
+#table-count {
+  box-sizing: border-box;
+  width: 7.2rem;
+}
+
+#profit-msg {
+  margin-top: 3.2rem;
+  font-family: "Roboto";
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  text-align: center;
+}
+
+#modal-footer {
+  display: flex;
+  justify-content: center;
+  color: var(--lotto-greyscale5-color);
+}
+
+#modal-retry-btn {
+  background-color: var(--lotto-primary-color);
+  color: var(--lotto-greyscale1-color);
+  width: 100%;
+  padding: 0.6rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  margin: 3.2rem 1.6rem 3.2rem;
+  border: none;
+}
+
+/* 발행된 로또 */
+
+#lotto-imoji {
+  display: inline-block;
+  width: 3.4rem;
+  height: 3.6rem;
+  line-height: 3.6rem;
+  margin-right: 0.8rem;
+  box-sizing: border-box;
+  font-size: 3rem;
+  vertical-align: middle;
+}
+
+#issued-lotto-div {
+  display: inline-block;
+  height: 3.6rem;
+  line-height: 3.6rem;
+  vertical-align: middle;
+}
+
+#issued-lotto {
+  margin-top: 0.4rem;
+}

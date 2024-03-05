@@ -1,16 +1,135 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+<head>
+  <meta charset="UTF-8" />
+  <title>🎱 행운의 로또 by 프룬🍒</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/javascript-lotto/src/styles/index.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div id="main-header" class="lotto-title">
+      <a href="/javascript-lotto/dist/" id="header-title" class="lotto-title">🎱 행운의 로또</a>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
-  </body>
+
+    <div id="main-body">
+      <div id="content-box">
+        <div id="content-box-header">
+          <p class="lotto-subtitle">🎱 내 번호 당첨 확인 🎱</p>
+        </div>
+
+        <div id="content-box-budget">
+          <p id="content-box-budget-label" class="lotto-body">구입할 금액을 입력해주세요.</p>
+          <form id="content-box-input-budget">
+            <input type="number" step="1000" min="1000" max="100000" id="budget" name="budget" placeholder="금액" />
+            <button class="lotto-caption">구입</button>
+          </form>
+        </div>
+        <div id="after-budget-invisible">
+          <div id="content-box-lottos">
+            <p id="content-box-lottos-msg" class="lotto-body">총 <span id="issued-lotto-count"></span>개를 구매하였습니다.</p>
+          </div>
+
+          <div>
+            <p id="content-box-msg-combination" class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <form id="content-box-input-combination">
+              <div id="content-box-input">
+                <div id="content-box-numbers">
+                  <p class="lotto-body">당첨 번호</p>
+                  <div id="content-box-numbers-input">
+                    <input class="lotto-numbers-input" />
+                    <input class="lotto-numbers-input" />
+                    <input class="lotto-numbers-input" />
+                    <input class="lotto-numbers-input" />
+                    <input class="lotto-numbers-input" />
+                    <input class="lotto-numbers-input" />
+                  </div>
+                </div>
+                <div id="content-box-bonus">
+                  <p class="lotto-body">보너스 번호</p>
+                  <div id="content-box-bonus-input">
+                    <input class="lotto-bonus-input" maxlength="2" />
+                  </div>
+                </div>
+              </div>
+            <p id="lotto-input-error" class="lotto-body"></p>
+            <div id="content-box-result">
+              <button id="result-btn" class="lotto-caption">결과 확인하기</button>
+            </div>
+          </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div id="footer">
+      <div id="division-line"></div>
+      <p id="footer-msg" class="lotto-caption">Copyright 2023. woowacourse</p>
+    </div>
+
+  </div>
+
+  <div id="modal">
+    <div id="modal-box">
+      <div id="modal-header">
+        <span id="modal-close-btn">X</span>
+        <div id="modal-header-msg" class="lotto-subtitle">🏆당첨 통계🏆</div>
+      </div>
+      <div id="modal-body">
+        <div id="modal-body-table">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th id="table-matched" class="tg-7btt">일치 갯수</th>
+                <th id="table-prize" class="tg-7btt">당첨금</th>
+                <th id="table-count" class="tg-7btt">당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-c3ow lotto-body">3개</td>
+                <td class="tg-c3ow lotto-body">5,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-5"></span>개</td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow lotto-body">4개</td>
+                <td class="tg-c3ow lotto-body">50,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-4"></span>개</td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow lotto-body">5개</td>
+                <td class="tg-c3ow lotto-body">1,500,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-3"></span>개</td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow lotto-body">5개+보너스볼</td>
+                <td class="tg-c3ow lotto-body">30,000,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-2"></span>개</td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow lotto-body">6개</td>
+                <td class="tg-c3ow lotto-body">2,000,000,000</td>
+                <td class="tg-c3ow lotto-body"><span id="lotto-rank-1"></span>개</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="profit-msg">
+          <p>당신의 총 수익률은 <span id="profit-msg-num"></span>%입니다.</p>
+        </div>
+      </div>
+
+      <div id="modal-footer">
+        <button id="modal-retry-btn" class="lotto-caption">다시 시작하기</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./src/js/index.js"></script>
+</body>
+
 </html>
