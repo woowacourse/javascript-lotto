@@ -10,6 +10,7 @@ import startValidation from "../validation/startValidation.js";
 import winningLottoBonusValidation from "../validation/winningLottoBonusValidation.js";
 import winningLottoNumbersValidation from "../validation/winningLottoNumbersValidation.js";
 import winningLottoValidation from "../validation/winningLottoValidation.js";
+import WebView from "../view/WebView.js";
 
 class LottoWebController {
   #webIssuedLottoArray;
@@ -20,9 +21,15 @@ class LottoWebController {
       "submit",
       this.handleWebBudget.bind(this)
     );
-    $("#modal-close-btn").addEventListener("click", this.closeModal.bind());
-    $("#modal-retry-btn").addEventListener("click", this.reloadTag.bind(this));
-    $("#modal").addEventListener("click", this.closeModalOutside.bind(this));
+    $("#modal-close-btn").addEventListener("click", WebView.closeModal.bind());
+    $("#modal-retry-btn").addEventListener(
+      "click",
+      WebView.reloadTag.bind(WebView)
+    );
+    $("#modal").addEventListener(
+      "click",
+      WebView.closeModalOutside.bind(WebView)
+    );
 
     $("#content-box-input-combination").addEventListener(
       "submit",
@@ -49,63 +56,12 @@ class LottoWebController {
       const webIssuedLottoCount = webLotto.calculateIssuedLottoCount();
       this.#webIssuedLottoArray = webLotto.IssuedLotto(webIssuedLottoCount);
 
-      this.handleAfterBudget();
-      this.printWebIssuedLottoArray();
-      this.printWebIssuedLottoCount(webIssuedLottoCount);
+      WebView.handleAfterBudget();
+      WebView.printWebIssuedLottoArray(this.#webIssuedLottoArray);
+      WebView.printWebIssuedLottoCount(webIssuedLottoCount);
     } catch (error) {
       return alert(error.message);
     }
-  }
-
-  /**
-   * after-budget 영역 조절
-   */
-  handleAfterBudget() {
-    $("#after-budget-invisible").id = "after-budget";
-    const form = document.querySelector("#content-box-input-budget");
-    const formInputs = form.querySelectorAll("input, button");
-
-    formInputs.forEach((input) => {
-      input.disabled = true;
-    });
-  }
-
-  printWebIssuedLottoCount(webIssuedLottoCount) {
-    $("#issued-lotto-count").innerHTML = webIssuedLottoCount;
-    return;
-  }
-
-  printWebIssuedLottoArray() {
-    const curr = $("#content-box-lottos-msg");
-
-    this.#webIssuedLottoArray.forEach((array) => {
-      const lottoImoji = Object.assign(document.createElement("div"), {
-        innerHTML: "🎟️",
-        id: "lotto-imoji",
-      });
-
-      const issuedLottoDiv = Object.assign(document.createElement("div"), {
-        innerHTML: array.join(", "),
-        className: "lotto-body",
-        id: "issued-lotto-div",
-      });
-
-      const issuedLotto = document.createElement("div");
-      issuedLotto.id = "issued-lotto";
-      issuedLotto.append(lottoImoji, issuedLottoDiv);
-
-      curr.append(issuedLotto);
-    });
-  }
-
-  removeWebIssuedLottoArray() {
-    const issuedLottos = $$(".issued-lotto");
-    issuedLottos.forEach((lotto) => lotto.remove());
-  }
-
-  removeWebWinningCombinationInput() {
-    $$(".lotto-numbers-input").forEach((input) => (input.value = ""));
-    $(".lotto-bonus-input").value = "";
   }
 
   /**
@@ -129,7 +85,7 @@ class LottoWebController {
         webWinningCombination
       );
     } catch (error) {
-      $("#lotto-input-error").innerHTML = error.message;
+      WebView.printWebWinningCombinationMessage(error.message);
     }
   }
 
@@ -147,7 +103,7 @@ class LottoWebController {
     );
 
     this.calculateWebLottoResult(webWinningCombination);
-    this.openModal();
+    WebView.openModal();
   }
 
   startWebValidate(categories, input) {
@@ -164,20 +120,6 @@ class LottoWebController {
     startValidation(winningLottoValidation.commonCategories, input.bonusNumber);
   }
 
-  openModal() {
-    $("#modal").style.display = "flex";
-  }
-
-  closeModal() {
-    $("#modal").style.display = "none";
-  }
-
-  closeModalOutside(event) {
-    if (event.target.id === "modal") {
-      this.closeModal();
-    }
-  }
-
   calculateWebLottoResult(webWinningCombination) {
     const webLottoResult = lottoResultMaker.calculateLottoResult(
       this.#webIssuedLottoArray,
@@ -188,14 +130,8 @@ class LottoWebController {
 
   calculateWebRankResult(webLottoResult) {
     const webRankResult = lottoRankMaker.calculateLottoRank(webLottoResult);
-    this.printWebRankResult(webRankResult);
+    WebView.printWebRankResult(webRankResult);
     this.calculateWebProfit(webRankResult);
-  }
-
-  printWebRankResult(webRankResult) {
-    Object.keys(webRankResult).forEach((rank) => {
-      $(`#lotto-rank-${rank}`).innerHTML = webRankResult[rank];
-    });
   }
 
   calculateWebProfit(webRankResult) {
@@ -203,22 +139,7 @@ class LottoWebController {
       webRankResult,
       this.#webBudget
     );
-    $("#profit-msg-num").innerHTML = webProfit.toFixed(0);
-  }
-
-  reloadTag() {
-    this.removeWebIssuedLottoArray();
-    this.removeWebWinningCombinationInput();
-    $("#budget").value = "";
-    $("#after-budget").id = "after-budget-invisible";
-    const form = document.querySelector("#content-box-input-budget");
-    const formInputs = form.querySelectorAll("#budget, .lotto-caption");
-
-    formInputs.forEach((input) => {
-      input.disabled = false;
-    });
-
-    this.closeModal();
+    WebView.printWebProfit(webProfit);
   }
 }
 
