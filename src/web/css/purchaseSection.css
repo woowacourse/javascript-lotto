@@ -1,0 +1,20 @@
+.puchase-form {
+  width: 100%;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.purchase-input-text {
+  width: 20.875rem;
+  height: 1.8rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--lotto-greyscale-3, #B4B4B4);
+  margin: 0.4rem 0.4rem 0 0;
+}
+
+.purchase-button {
+  margin: 0.4rem 0 0.4rem 0;
+  flex-grow: 1;
+}

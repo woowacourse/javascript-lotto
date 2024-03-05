@@ -1,0 +1,60 @@
+.modal-container {
+  inset: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.50);
+}
+
+.modal-contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: #ffffff;
+  width: 21.875rem;
+  height: 31.25rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  letter-spacing: 0.00938rem;
+  margin: 2.5rem;
+}
+
+.modal-table {
+  border-collapse: separate;
+  border-spacing: 1.0rem 1rem;
+  text-align: center;
+}
+
+.modal-table td,
+.modal-table th {
+  text-align: center;
+}
+
+.modal-table td {
+  white-space: nowrap;
+}
+
+.modal-table th {
+  font-weight: bold;
+}
+
+.total-price {
+  text-align: center;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.restart-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

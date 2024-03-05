@@ -1,0 +1,78 @@
+.header {
+  display: flex;
+  width: 100%;
+  height: 64px;
+  background: var(--lotto-primary, #4E5BA6);
+  color: var(--lotto-greyscale-1, #FFF);
+}
+
+.header-title {
+  font-size: 30px;
+  margin: auto auto auto 8.12%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-width: 25.875rem;
+  color: var(--lotto-greyscale-5, #000);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  letter-spacing: 0.03125rem;
+}
+
+.main-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.lotto-forms {
+  display: flex;
+  flex-direction: column;
+  width: 25.875rem;
+  height: 45.4375rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin: 5.25rem auto 3rem auto;
+  align-items: center;
+  padding: 0 1rem 0;
+}
+
+.lotto-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 2.25rem;
+  margin: 2.5rem;
+}
+
+.footer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0px;
+  width: 100%;
+  height: 10vh;
+  text-align: center;
+  border-top: 1px solid rgba(78, 91, 166, 0.20);
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright {
+  color: var(--lotto-primary, #4E5BA6);
+  text-align: center;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1rem;
+  letter-spacing: 0.07813rem;
+}

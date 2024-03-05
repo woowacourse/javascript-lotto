@@ -1,4 +1,5 @@
-import LottoController from '../src/controller/LottoController';
+
+import LottoService from '../src/domain/LottoService';
 
 describe('lottoController 클래스 내 수익률을 계산하는 함수를 검사하는 테스트입니다.', () => {
   test.each([
@@ -7,8 +8,6 @@ describe('lottoController 클래스 내 수익률을 계산하는 함수를 검�
     ['1등(보너스 번호 포함) 1회 당첨 시 수익률 100000.0%입니다', [0, 0, 0, 1, 0], 30, '100000.0'],
   ])('%s', (description, winResult, lottoCount, revenue) => {
     // description을 테스트 이름으로 포함
-    const lottoController = new LottoController();
-
     const result = [
       [3, false, 5_000, winResult[0]],
       [4, false, 50_000, winResult[1]],
@@ -17,6 +16,6 @@ describe('lottoController 클래스 내 수익률을 계산하는 함수를 검�
       [6, false, 2_000_000_000, winResult[4]],
     ];
 
-    expect(lottoController.getRateOfRevenue(result, lottoCount)).toBe(revenue);
+    expect(LottoService.getRateOfRevenue(result, lottoCount)).toBe(revenue);
   });
 });
