@@ -18,8 +18,7 @@
     {
       "files": ["./src/web/**"],
       "rules": {
-        "max-lines-per-function": "off",
-        "max-params": "off"
+        "max-lines-per-function": "off"
       }
     }
   ],
