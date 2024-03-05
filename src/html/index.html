@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>🎱 행운의 로또</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/index.css" />
+  <link rel="stylesheet" href="../css/modal.css" />
+  <link rel="stylesheet" href="../css/font.css" />
+  <link rel="stylesheet" href="../css/color.css" />
+</head>
+
+<body>
+  <div id="app">
+
+    <header class="color-white bgcolor-primary">
+      <p class="text-title" style="margin-left: 8vw">🎱 행운의 로또</p>
+    </header>
+
+    <main class="text-content">
+      <div class="con-main" style="margin: 84px 0">
+        <p class="text-title">🎱 내 번호 당첨 확인 🎱</p>
+
+        <form id="form-purchase" style="margin-top: 28px">
+          <label class="lab-purchase" for="inp-purchase" style="margin-bottom: 4px">구입할 금액을 입력해주세요.</label>
+          <input class="inp-purchase no-arrow-input " id="inp-purchase" name="input" placeholder="금액" type="number">
+          <button class="btn-purchase text-caption" name="button" type="submit">구입</button>
+        </form>
+
+        <div id="con-lotto-infos" class="hidden" style="margin-top: 16px;">
+          <p>총 <span id="span-issued-quntity">${issued-quantity}</span>개를 구매하였습니다.</p>
+          <div class="con-lotto-numbers" style="margin-top: 8px;">
+            <p>
+              🎟️<span class="span-lotto-numbers">${lotto-numbers}</span>
+            </p>
+          </div>
+        </div>
+
+        <form id="form-winnings" class="hidden" style="margin-top: 24px;">
+          <label class="lab-winnings">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+
+          <div class="con-winning">
+            <label for="lab-winning">당첨 번호</label>
+            <div class="con-inp-winning">
+              <input class="inp-winnings" type="number" name="input-winning-list" id="inp-winning-number">
+              <input class="inp-winnings" type="number" name="input-winning-list">
+              <input class="inp-winnings" type="number" name="input-winning-list">
+              <input class="inp-winnings" type="number" name="input-winning-list">
+              <input class="inp-winnings" type="number" name="input-winning-list">
+              <input class="inp-winnings" type="number" name="input-winning-list">
+            </div>
+          </div>
+
+          <div class="con-bonus">
+            <label for="inp-bonus">보너스 번호</label>
+            <input class="inp-winnings" type="number" name="input-bonus" id="inp-bonus">
+          </div>
+
+          <button class="btn-winnings text-caption" name="button" style="margin-top: 27px" type="submit">결과
+            확인하기</button>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <p class="text-caption color-primary">Copyright 2023. woowacourse</p>
+    </footer>
+
+    <div id="con-modal" class="con-modal text-content hidden">
+      <div class="modal-popup">
+        <button class="btn-close">✖</button>
+
+        <p class="text-title" style="margin-top: 8px">🏆 당첨 통계 🏆</p>
+
+        <table class="text-table-content" style=" margin-top: 33px; width: 100%;">
+          <th>일치 갯수</th>
+          <th>당첨금</th>
+          <th>당첨 갯수</th>
+
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td><span class="span-winning-count">${winning-count}</span>개</td>
+          </tr>
+
+          <tr>
+            <td>4개</td>
+            <td>50,000</td>
+            <td><span class="span-winning-count">${winning-count}</span>개</td>
+          </tr>
+
+          <tr>
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td><span class="span-winning-count">${winning-count}</span>개</td>
+          </tr>
+
+          <tr>
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td><span class="span-winning-count">${winning-count}</span>개</td>
+          </tr>
+
+          <tr>
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td><span class="span-winning-count">${winning-count}</span>개</td>
+          </tr>
+        </table>
+
+        <p class="text-profit-rate" style="margin-top: 32px;">당신의 총 수익률은 <span
+            class="span-profit-rate">${profit-rate}</span>%입니다.</p>
+
+        <button class="btn-restart text-caption" style="margin-top: 32px;">다시 시작하기</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/step2-index.js"></script>
+</body>
+
+</html>

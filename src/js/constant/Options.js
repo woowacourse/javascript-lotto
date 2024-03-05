@@ -4,6 +4,10 @@ const OPTIONS = {
     winningNumbersDelimiter: ','
   },
 
+  OUTPUT: {
+    lottoNumbersDelimiter: ', '
+  },
+
   LOTTO: {
     price: 1000,
     minNumber: 1,

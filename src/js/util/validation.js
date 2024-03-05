@@ -43,3 +43,11 @@ export const validate = (validation, value, ...args) => {
     throw new Error(`${validation.error(...args)}`);
   }
 };
+
+export const validate2 = (validation, value, ...args) => {
+  if (!validation.function(value, ...args)) {
+    const errorMessage = `${validation.error(...args)}`;
+    alert(errorMessage);
+    throw new Error(errorMessage);
+  }
+};

@@ -1,0 +1,12 @@
+:root {
+  --color-border-con-main: rgba(0, 0, 0, 0.12);
+  --color-border-footer: rgba(78, 91, 166, 0.2);
+  --color-border-table: rgba(0, 0, 0, 0.12);
+  --color-bg-header: rgba(78, 91, 166, 1);
+  --color-bg-modal: white;
+  --color-bg-modal-background: rgba(0, 0, 0, 0.5);
+  --color-button-close: black;
+  --color-text-button: white;
+  --color-text-header: white;
+  --color-bg-button: rgba(78, 91, 166, 1);
+}

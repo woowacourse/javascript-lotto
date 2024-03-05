@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background: var(--color-bg-button);
+  border: 0;
+  border-radius: 4px;
+  color: var(--color-text-button);
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.hidden {
+  display: none !important;
+}
