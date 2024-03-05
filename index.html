@@ -1,16 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+    <div class="app">
+      <header>
+        <h1>🎱 행운의 로또</h1>
+      </header>
+
+      <main>
+        <section>
+          <h2>🎱 내 번호 당첨 확인 🎱</h2>
+          <article>
+            <form id="lotto-purchase-form">
+              <label for="lotto-purchase-input"
+                >구입할 금액을 입력해주세요.
+              </label>
+              <div>
+                <input
+                  id="lotto-purchase-input"
+                  type="number"
+                  placeholder="1000 단위로 입력해주세요."
+                  step="1000"
+                  min="1000"
+                  max="100000"
+                  required
+                />
+                <button id="lotto-purchase-submit">구입</button>
+              </div>
+            </form>
+          </article>
+
+          <article
+            class="generated-lotto-container"
+            id="generated-lotto-container"
+          >
+            <div class="total-ticket-count" id="total-ticket-count"></div>
+          </article>
+
+          <article class="hidden-form" id="hidden-form">
+            <form class="lotto-numbers-form" id="lotto-numbers-form">
+              <fieldset>
+                <legend>
+                  지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+                </legend>
+                <div class="lotto-numbers-input-container">
+                  <div class="winning-numbers-container">
+                    <label>당첨 번호</label>
+                    <div class="winning-numbers">
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                      <input
+                        class="lotto-number-input"
+                        type="number"
+                        min="1"
+                        max="45"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="bonus-number-container">
+                    <label for="bonus-number-input">보너스 번호</label>
+                    <input
+                      id="bonus-number-input"
+                      type="number"
+                      min="1"
+                      max="45"
+                      required
+                    />
+                  </div>
+                </div>
+                <button class="long-button" id="result-button">
+                  결과 확인하기
+                </button>
+              </fieldset>
+            </form>
+          </article>
+        </section>
+
+        <article class="hidden-modal" id="modal-wrapper">
+          <div class="lotto-statistics-container">
+            <button class="close-button" id="close-button">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+            <div class="lotto-statistics-contents">
+              <h3>🏆 당첨 통계 🏆</h3>
+              <table id="lotto-statistics-table">
+                <thead>
+                  <tr>
+                    <th>일치 개수</th>
+                    <th>당첨금</th>
+                    <th>당첨 개수</th>
+                  </tr>
+                </thead>
+              </table>
+              <p class="text" id="profit-text"></p>
+            </div>
+            <button class="long-button" id="restart-button">
+              다시 시작하기
+            </button>
+          </div>
+        </article>
+      </main>
+
+      <footer>
+        <p>Copyright 2024. woowacourse</p>
+      </footer>
     </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

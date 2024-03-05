@@ -1,17 +1,17 @@
-import LOTTO_STATISTICS from '../constants/lotto-statistics.js';
+import { LOTTO_STATISTICS } from '../constants/lotto-statistics.js';
 import LOTTO_RULES from '../constants/lotto-rules.js';
 class LottoCalculator {
-  #lottoStatics;
+  #lottoStatistics;
 
   constructor(lottoNumbers, generatedLottos) {
-    this.#lottoStatics = {
+    this.#lottoStatistics = {
       three: 0,
       four: 0,
       five: 0,
       fiveBonus: 0,
       six: 0,
     };
-    this.#calculateAllLottoStatics(lottoNumbers, generatedLottos);
+    this.#calculateAllLottoStatistics(lottoNumbers, generatedLottos);
   }
 
   getMatchedNumbersLength(winningNumbers, generatedLotto) {
@@ -27,20 +27,20 @@ class LottoCalculator {
   #increaseMatchedNumber(number) {
     Object.keys(LOTTO_STATISTICS).forEach((key) => {
       if (LOTTO_STATISTICS[key].number === number) {
-        this.#lottoStatics[key]++;
+        this.#lottoStatistics[key]++;
       }
     });
   }
 
   #increaseMatchedFiveOrBonusNumber(bonusNumber, generatedLotto) {
     if (this.isEqualBonusNumber(bonusNumber, generatedLotto)) {
-      this.#lottoStatics.fiveBonus++;
+      this.#lottoStatistics.fiveBonus++;
       return;
     }
-    this.#lottoStatics.five++;
+    this.#lottoStatistics.five++;
   }
 
-  #calculateLottoStatics(lottoNumbers, generatedLotto) {
+  #calculateLottoStatistics(lottoNumbers, generatedLotto) {
     const { winningNumbers, bonusNumber } = lottoNumbers;
     const count = this.getMatchedNumbersLength(winningNumbers, generatedLotto);
 
@@ -51,32 +51,33 @@ class LottoCalculator {
     this.#increaseMatchedNumber(count);
   }
 
-  #calculateAllLottoStatics(lottoNumbers, generatedLottos) {
+  #calculateAllLottoStatistics(lottoNumbers, generatedLottos) {
     for (let i = 0; i < generatedLottos.length; i++) {
-      this.#calculateLottoStatics(lottoNumbers, generatedLottos[i]);
+      this.#calculateLottoStatistics(lottoNumbers, generatedLottos[i]);
     }
   }
 
   #calculateTotalPrice() {
     const totalPrice = Object.keys(LOTTO_STATISTICS).reduce(
-      (acc, key) => acc + LOTTO_STATISTICS[key].price * this.#lottoStatics[key],
+      (acc, key) =>
+        acc + LOTTO_STATISTICS[key].price * this.#lottoStatistics[key],
       0,
     );
     return totalPrice;
   }
 
-  calculateTotalProfit(lottoTickets) {
+  calculateTotalProfit(ticketCount) {
     const totalPrice = this.#calculateTotalPrice();
     const totalProfit =
-      (totalPrice / (lottoTickets * LOTTO_RULES.lottoBaseTicketPrice)) * 0.01;
+      (totalPrice / (ticketCount * LOTTO_RULES.lottoBaseTicketPrice)) * 0.01;
     return (
       Math.round(totalProfit * LOTTO_RULES.roundingStandard) /
       LOTTO_RULES.roundingStandard
     );
   }
 
-  get lottoStatics() {
-    return this.#lottoStatics;
+  get lottoStatistics() {
+    return this.#lottoStatistics;
   }
 }
 

@@ -1,7 +1,7 @@
-import Console from '../utils/Console';
-import LOTTO_STATISTICS from '../constants/lotto-statistics';
-import { OUTPUT_MESSAGES } from '../constants/messages';
-import createWinningResult from '../utils/createWinningResult';
+import Console from '../utils/Console.js';
+import { LOTTO_STATISTICS } from '../constants/lotto-statistics.js';
+import { OUTPUT_MESSAGES } from '../constants/messages.js';
+import { createWinningResult } from '../utils/createWinningResult.js';
 
 const OutputView = {
   printTicketCount(count) {
@@ -14,17 +14,17 @@ const OutputView = {
     });
   },
 
-  printWinningStatics(statics) {
-    Console.print(OUTPUT_MESSAGES.winningStatics);
-    Console.print(OUTPUT_MESSAGES.winningStaticsOperation);
-    this.printStatics(statics);
+  printWinningStatistics(statistics) {
+    Console.print(OUTPUT_MESSAGES.winningStatistics);
+    Console.print(OUTPUT_MESSAGES.winningStatisticsOperation);
+    this.printStatistics(statistics);
   },
 
-  printStatics(statics) {
+  printStatistics(statistics) {
     const keys = Object.keys(LOTTO_STATISTICS);
 
     keys.forEach((key) => {
-      const message = createWinningResult(key, statics[key]);
+      const message = createWinningResult(key, statistics[key]);
       Console.print(message);
     });
   },

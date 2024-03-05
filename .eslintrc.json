@@ -1,8 +1,6 @@
 {
   "rules": {
     "max-depth": ["error", 1],
-    "max-lines-per-function": ["error", 10],
-    "max-params": ["error", 2],
     "indent": ["error", 2],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
@@ -14,7 +12,8 @@
   },
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": "latest",

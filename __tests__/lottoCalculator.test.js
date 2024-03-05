@@ -64,7 +64,7 @@ describe('당첨 통계 테스트', () => {
 
     const lottoCalculator = new LottoCalculator(lottoNumbers, generatedLottos);
 
-    expect(lottoCalculator.lottoStatics).toEqual(lottoStatistics);
+    expect(lottoCalculator.lottoStatistics).toEqual(lottoStatistics);
   });
 });
 
