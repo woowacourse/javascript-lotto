@@ -62,3 +62,45 @@ npm run start-step1
 - [x] 1~45 범위의 중복되지 않은 숫자 번호 6개를 랜덤으로 생성한다.
 - [x] 재시작할 경우 구입 금액 입력부터 게임을 다시 시작하고, 종료하는 경우 그대로 프로그램을 종료시킨다.
 - [x] 사용자가 잘못된 값을 입력한 경우 throw문을 사용해 예외를 발생시킨다.
+
+
+# step2 (웹 기반 로또 프로그램)
+
+## 실행방법
+
++ 터미널에
+```bash
+npm run start-step2
+```
+을 입력해주면 프로그램을 시작할 수 있습니다.
+
+## 배포된 사이트
+[로또 게임](https://jinhokim98.github.io/javascript-lotto/dist/)
+
+## 기능목록
+
+- 레이아웃 스타일 생성
+  - [x] 브라우저 기본 css style reset하기
+  - [x] color, typo 미리 선언하기
+  - [x] 공통 header, main, footer 정의하기
+
+- 로또 구매 article
+  - [x] 로또 구매 form 생성
+  - [x] input과 submit button 생성
+  - [x] readMoney와 button 연결
+  - [x] 생성된 결과를 보여주는 output 연결
+  - [x] output 화면 스타일
+
+- 당첨번호, 보너스번호 article
+  - [x] 당첨번호, 보너스번호 form 선언
+  - [x] 각각 input 만들고 결과 확인하기 submit button 생성
+  - [x] readWinningNumbers, readBonusNumber와 button 연결
+  - [x] 생성된 결과를 보여주기 위해 모달 창 생성
+
+- 당첨 통계
+  - [x] 당첨통계 결과 article 레이아웃 설정
+  - [x] 생성된 통계결과 output에 연결
+  - [x] 다시 시작하기 버튼 생성
+  - [x] 다시 시작하기 버튼과 readRestartOrExit 연결
+  - [x] x버튼을 누르면 modal exit 기능 구현
+

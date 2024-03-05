@@ -1,4 +1,4 @@
-import Condition from '../constants/Condition';
+import Condition from '../../constants/Condition';
 
 const { RANK } = Condition;
 
@@ -7,7 +7,7 @@ const MessageGenerator = {
     return lottoTickets.map((lottoTicket) => lottoTicket.getSortedNumbersAscending());
   },
   lottoTicketsCount(count) {
-    return `${count}개를 구매했습니다.`;
+    return `총 ${count}개를 구매했습니다.`;
   },
   prizeDetail(prizeInfo) {
     return `${prizeInfo.detail.MATCH}개 일치${

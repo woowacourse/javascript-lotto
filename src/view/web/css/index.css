@@ -1,0 +1,104 @@
+@import url('./reset.css');
+@import url('./main.css');
+@import url('./modal.css');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  /* color */
+  --primary: #4E5BA6;
+  --primary-opacity-20: #4E5BA633;
+  --grayscale1: #FFFFFF;
+  --grayscale2: #FCFCFD;
+  --grayscale3: #B4B4B4;
+  --grayscale4: #8B8B8B;
+  --grayscale5: #000000;
+  --grayscale5-opacity-12: #0000001F;
+  --grayscale5-opacity-30: rgba(0, 0 ,0, 0.3);
+
+  /* typography */
+  --title-size: 2.4rem;
+  --subtitle-size: 2rem;
+  --body-size: 1.5rem;
+  --caption-size: 1.4rem;
+  --th-size: 1.5rem;
+  --accent-size: 1.5rem;
+
+  --title-weight: 800;
+  --subtitle-weight: 600;
+  --body-weight: 400;
+  --caption-weight: 700;
+  --th-weight: 600;
+  --accent-weight: 700;
+
+  --title-line-height: 3.6rem;
+  --subtitle-line-height: 2.4rem;
+  --body-line-height: 2.4rem;
+  --caption-line-height: 1.6rem;
+  --th-line-height: 2.4rem;
+  --accent-line-height: 2.4rem;
+
+  --title-letter: 0;
+  --subtitle-letter: 0.015rem;
+  --body-letter: 0.05rem;
+  --caption-letter: 0.125rem;
+  --th-letter: 0.05rem;
+  --accent-letter: 0.05rem;
+}
+
+#app {
+  position: relative;
+}
+
+#app .header {
+  display: flex;
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-items: center;
+  width: 100%;
+  height: 6.4rem;
+  background-color: var(--primary);
+}
+
+#app .header h1 {
+  margin-left: 13rem;
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line-height);
+  color: var(--grayscale1);
+}
+
+#app .content {
+  width: 100%;
+  height: 100%;
+  background-color: var(--grayscale1);
+}
+
+#app .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 8rem;
+  border-top: 0.1rem solid var(--primary-opacity-20);
+}
+
+#app .footer h1 {
+  font-size: var(--caption-size);
+  font-weight: var(--caption-weight);
+  line-height: var(--caption-line-height);
+  letter-spacing: var(--caption-letter);
+  color: var(--primary);
+}
