@@ -3,7 +3,6 @@ import Lotto from "../domain/Lotto.js";
 import lottoRankMaker from "../domain/lottoRankMaker.js";
 import lottoResultMaker from "../domain/lottoResultMaker.js";
 import profitCalculator from "../domain/profitCalculator.js";
-import randomLottoArray from "../domain/randomLottoMaker.js";
 import { $, $$ } from "../utils/querySelector.js";
 import budgetValidation from "../validation/budgetValidation.js";
 import commonInputValidation from "../validation/commonInputValidation.js";
@@ -46,31 +45,34 @@ class LottoWebController {
     try {
       startValidation(budgetValidation.categories, this.#webBudget);
 
-      const webIssuedLottoCount = this.calculateWebIssuedLottoCount();
+      const webLotto = new Lotto(this.#webBudget);
+      const webIssuedLottoCount = webLotto.calculateIssuedLottoCount();
+      this.#webIssuedLottoArray = webLotto.IssuedLotto(webIssuedLottoCount);
 
-      $("#after-budget-invisible").id = "after-budget";
-      const form = document.querySelector("#content-box-input-budget");
-      const formInputs = form.querySelectorAll("input, button");
-
-      formInputs.forEach((input) => {
-        input.disabled = true;
-      });
-      this.handleWebIssuedLottoArray(webIssuedLottoCount);
+      this.handleAfterBudget();
+      this.printWebIssuedLottoArray();
+      this.printWebIssuedLottoCount(webIssuedLottoCount);
     } catch (error) {
       return alert(error.message);
     }
   }
 
-  calculateWebIssuedLottoCount() {
-    const webLotto = new Lotto(this.#webBudget);
-    const webIssuedLottoCount = webLotto.calculateIssuedLottoCount();
-    $("#issued-lotto-count").innerHTML = webIssuedLottoCount;
-    return webIssuedLottoCount;
+  /**
+   * after-budget 영역 조절
+   */
+  handleAfterBudget() {
+    $("#after-budget-invisible").id = "after-budget";
+    const form = document.querySelector("#content-box-input-budget");
+    const formInputs = form.querySelectorAll("input, button");
+
+    formInputs.forEach((input) => {
+      input.disabled = true;
+    });
   }
 
-  handleWebIssuedLottoArray(webIssuedLottoCount) {
-    this.#webIssuedLottoArray = randomLottoArray(webIssuedLottoCount);
-    this.printWebIssuedLottoArray();
+  printWebIssuedLottoCount(webIssuedLottoCount) {
+    $("#issued-lotto-count").innerHTML = webIssuedLottoCount;
+    return;
   }
 
   printWebIssuedLottoArray() {
@@ -122,23 +124,33 @@ class LottoWebController {
     };
 
     try {
-      this.validateInput(
-        winningLottoNumbersValidation.winningNumbers,
-        webWinningNumbersInput
-      );
-      this.validateInput(
-        winningLottoBonusValidation.winningBonus,
+      this.validateWebWinningCombinationInput(
+        webWinningNumbersInput,
         webWinningCombination
       );
-
-      this.calculateWebLottoResult(webWinningCombination);
-      this.openModal();
     } catch (error) {
       $("#lotto-input-error").innerHTML = error.message;
     }
   }
 
-  validateInput(categories, input) {
+  validateWebWinningCombinationInput(
+    webWinningNumbersInput,
+    webWinningCombination
+  ) {
+    this.startWebValidate(
+      winningLottoNumbersValidation.winningNumbers,
+      webWinningNumbersInput
+    );
+    this.startWebValidate(
+      winningLottoBonusValidation.winningBonus,
+      webWinningCombination
+    );
+
+    this.calculateWebLottoResult(webWinningCombination);
+    this.openModal();
+  }
+
+  startWebValidate(categories, input) {
     startValidation(categories, input);
 
     if (Array.isArray(input)) {
