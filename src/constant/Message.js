@@ -6,7 +6,7 @@ const MESSAGE = {
     retry: '> 다시 시작하시겠습니까? (y/n) ',
   },
   purchaseCount(count) {
-    return `${count}개를 구매했습니다.`;
+    return `총 ${count}개를 구매했습니다.`;
   },
   lotto(lottoNumbers) {
     return '[' + lottoNumbers.map(number => number.toString()).join(', ') + ']';
@@ -22,7 +22,7 @@ const MESSAGE = {
       .join('\n');
   },
   returnRate(returnRate) {
-    return `총 수익률은 ${returnRate.toFixed(1)}%입니다.`;
+    return `당신의 총 수익률은 ${returnRate.toFixed(1)}%입니다.`;
   },
   winningCharacteristicsHeader: '당첨 통계',
   lineSplitter: '--------------------',
@@ -33,6 +33,7 @@ const MESSAGE = {
     '5-1': '5개 일치, 보너스 볼 일치 (30,000,000원)',
     6: '6개 일치 (2,000,000,000원)',
   },
+  errorCharacter: '[Error]',
 };
 
 export default MESSAGE;

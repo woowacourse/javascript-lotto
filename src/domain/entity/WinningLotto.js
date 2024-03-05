@@ -11,9 +11,7 @@ class WinningLotto {
     this.#winningLottoNumberList = new LottoNumberList(winningNumbers);
   }
   static fromString(winningNumbersString) {
-    const winningNumbers = winningNumbersString
-      .split(',')
-      .map(num => Number(num));
+    const winningNumbers = winningNumbersString.split(',');
     return new WinningLotto(winningNumbers);
   }
 

@@ -1,0 +1,378 @@
+@import 'reset.css';
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: Roboto;
+}
+
+.header {
+  width: 100%;
+  height: 64px;
+  background: rgba(78, 91, 166, 1);
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+.header__text {
+  position: relative;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: left;
+  top: 14px;
+  left: 130px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.header__eight-ball,
+.lotto-container__eight-ball {
+  font-weight: 700;
+}
+
+.lotto-container {
+  position: absolute;
+  width: 414px;
+  height: 727px;
+  top: 148px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.lotto-container__text {
+  position: absolute;
+  width: 382px;
+  top: 52px;
+  left: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-align: center;
+}
+
+.purchase-container {
+  position: absolute;
+  width: 382px;
+  top: 104px;
+  left: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.purchase {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.purchase__label {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+#purchase__input {
+  width: 310px;
+  height: 36px;
+  padding: 8px 8px 0px 8px;
+  border-radius: 4px;
+  border: 1px;
+  gap: 10px;
+  border: 1px solid rgba(180, 180, 180, 1);
+  box-sizing: border-box;
+}
+
+#purchase__button {
+  width: 56px;
+  height: 36px;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: rgba(78, 91, 166, 1);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+
+.purchase__button-text {
+  font-family: Roboto;
+  width: 42px;
+  height: 24px;
+  padding: 4px 6px 4px 6px;
+}
+
+.purchase-lotto__text {
+  position: absolute;
+  width: 310px;
+  height: 24px;
+  top: 196px;
+  left: 16px;
+}
+
+.purchase-lotto__list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 238px;
+  height: 276px;
+  top: 228px;
+  left: 16px;
+  list-style: none;
+  gap: 4px 0;
+  overflow: hidden auto;
+}
+
+.purchase-lotto__list li {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+
+.purchase-lotto__admit-one {
+  width: 34px;
+  height: 36px;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: rgba(0, 0, 0, 1);
+}
+
+.purchase-lotto__list li p {
+  padding: 0 0 0 8px;
+  width: 196px;
+  height: 24px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: rgba(0, 0, 0, 1);
+}
+
+.winning-lotto {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 382px;
+  height: 104px;
+  top: 528px;
+  left: 16px;
+}
+
+.winning-lotto__text {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.winning-lotto-input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-lotto-numbers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 244px;
+  height: 68px;
+}
+
+.winning-lotto-numbers__input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-lotto-bonus-number {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  width: 76px;
+  height: 68px;
+}
+
+.winning-lotto-numbers__input,
+.winning-lotto-bonus-number__input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid rgba(180, 180, 180, 1);
+  box-sizing: border-box;
+}
+
+.winning-lotto__button {
+  position: absolute;
+  cursor: pointer;
+  width: 382px;
+  height: 36px;
+  top: 659px;
+  left: 16px;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: rgba(78, 91, 166, 1);
+}
+
+.winning-lotto__button-text {
+  width: 368px;
+  height: 24px;
+  padding: 4px 6px 4px 6px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.winning-result-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.winning-result {
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+}
+
+.winning-result__close-button {
+  position: absolute;
+  top: 16px;
+  left: 318px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 16px;
+  background-color: white;
+  border: none;
+}
+
+.winning-result__text {
+  position: absolute;
+  width: 318px;
+  top: 41px;
+  left: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-align: center;
+}
+
+.winning-result__table {
+  position: absolute;
+  width: 319px;
+  height: 247px;
+  top: 97px;
+  left: 16px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.winning-result__table tr {
+  height: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.winning-result__table thead th {
+  font-weight: 600;
+  padding: 8px 0;
+}
+
+.winning-result__table tbody td {
+  font-weight: 400;
+  padding: 8px 0;
+}
+
+.winning-result__return-rate {
+  position: absolute;
+  width: 318px;
+  height: 24px;
+  top: 376px;
+  left: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.winning-result__retry-button {
+  position: absolute;
+  cursor: pointer;
+  width: 318px;
+  height: 36px;
+  top: 432px;
+  left: 16px;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: rgba(78, 91, 166, 1);
+}
+
+.winning-result__retry-button-text {
+  position: relative;
+  width: 89px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 1);
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  top: 944px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+.footer__text {
+  position: relative;
+  height: 16px;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-align: center;
+  color: rgba(78, 91, 166, 1);
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
