@@ -1,0 +1,15 @@
+/* 구입금액 */
+.purchase-amount__content {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.purchase-amount__content__input {
+  flex-grow: 1;
+}
+
+.purchase-amount__content__input {
+  padding-left: 12px;
+}

@@ -13,9 +13,7 @@ class LottoGame {
 
   issueLottos(purchaseAmount) {
     const lottoCount = this.#lottoStore.calculateLottoCount(purchaseAmount);
-    console.log(lottoCount);
     const randomNumbers = this.#lottoStore.generateLottosNumbers(lottoCount);
-    console.log(randomNumbers);
     const lottos = this.#lottoStore.issueLottos(randomNumbers);
 
     return lottos;

@@ -1,0 +1,85 @@
+/* 공통 */
+h1 {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  initial-letter: 0.15px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.button--primary {
+  background-color: #4e5ba6;
+  color: #ffffff;
+  padding: 10px 12px;
+  border: 0px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+}
+
+.input {
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  padding: 0;
+}
+
+/* 헤더 */
+header {
+  height: 64px;
+  background-color: #4e5ba6;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding-left: 64px;
+}
+
+/* 푸터 */
+footer {
+  height: 80px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  color: #4e5ba6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 메인 */
+main {
+  margin: 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main > article {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  width: 440px;
+  height: 690px;
+  padding: 36px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+/* 제목 */
+.lotto-game__title {
+  align-self: center;
+}

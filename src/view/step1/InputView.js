@@ -1,5 +1,5 @@
-import { INPUT_MESSAGE } from "../constants/message";
-import readLineAsync from "../utils/readLineAsync";
+import { INPUT_MESSAGE } from "../../constants/message";
+import readLineAsync from "../../utils/readLineAsync";
 
 const InputView = {
   async readPurchaseAmount() {

@@ -1,0 +1,34 @@
+/* 당첨번호, 보너스 번호 */
+.winning-lotto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.winning-lotto__content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-lotto__content__winning-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.winning-lotto__content__bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 8px;
+}
+
+.winning-lotto__input-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.winning-lotto__input {
+  width: 34px;
+  text-align: center;
+}
