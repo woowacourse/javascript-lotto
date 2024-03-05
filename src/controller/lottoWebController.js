@@ -17,24 +17,12 @@ class LottoWebController {
   #webBudget;
 
   async start() {
-    $("#content-box-input-budget").addEventListener(
-      "submit",
-      this.handleWebBudget.bind(this)
-    );
+    $("#content-box-input-budget").addEventListener("submit", this.handleWebBudget.bind(this));
     $("#modal-close-btn").addEventListener("click", WebView.closeModal.bind());
-    $("#modal-retry-btn").addEventListener(
-      "click",
-      WebView.reloadTag.bind(WebView)
-    );
-    $("#modal").addEventListener(
-      "click",
-      WebView.closeModalOutside.bind(WebView)
-    );
+    $("#modal-retry-btn").addEventListener("click", WebView.reloadTag.bind(WebView));
+    $("#modal").addEventListener("click", WebView.closeModalOutside.bind(WebView));
 
-    $("#content-box-input-combination").addEventListener(
-      "submit",
-      this.handleWebWinningCombinationInput.bind(this)
-    );
+    $("#content-box-input-combination").addEventListener("submit", this.handleWebWinningCombinationInput.bind(this));
   }
 
   getWebBudget() {
@@ -80,27 +68,15 @@ class LottoWebController {
     };
 
     try {
-      this.validateWebWinningCombinationInput(
-        webWinningNumbersInput,
-        webWinningCombination
-      );
+      this.validateWebWinningCombinationInput(webWinningNumbersInput, webWinningCombination);
     } catch (error) {
       WebView.printWebWinningCombinationMessage(error.message);
     }
   }
 
-  validateWebWinningCombinationInput(
-    webWinningNumbersInput,
-    webWinningCombination
-  ) {
-    this.startWebValidate(
-      winningLottoNumbersValidation.winningNumbers,
-      webWinningNumbersInput
-    );
-    this.startWebValidate(
-      winningLottoBonusValidation.winningBonus,
-      webWinningCombination
-    );
+  validateWebWinningCombinationInput(webWinningNumbersInput, webWinningCombination) {
+    this.startWebValidate(winningLottoNumbersValidation.winningNumbers, webWinningNumbersInput);
+    this.startWebValidate(winningLottoBonusValidation.winningBonus, webWinningCombination);
 
     this.calculateWebLottoResult(webWinningCombination);
     WebView.openModal();
@@ -121,10 +97,7 @@ class LottoWebController {
   }
 
   calculateWebLottoResult(webWinningCombination) {
-    const webLottoResult = lottoResultMaker.calculateLottoResult(
-      this.#webIssuedLottoArray,
-      webWinningCombination
-    );
+    const webLottoResult = lottoResultMaker.calculateLottoResult(this.#webIssuedLottoArray, webWinningCombination);
     this.calculateWebRankResult(webLottoResult);
   }
 
@@ -135,10 +108,7 @@ class LottoWebController {
   }
 
   calculateWebProfit(webRankResult) {
-    const webProfit = profitCalculator.calculateProfit(
-      webRankResult,
-      this.#webBudget
-    );
+    const webProfit = profitCalculator.calculateProfit(webRankResult, this.#webBudget);
     WebView.printWebProfit(webProfit);
   }
 }
