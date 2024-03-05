@@ -1,4 +1,23 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import './web/style/reset.css';
+import './web/style/global.css';
+
+import './web/component/LottoHeader/LottoHeader';
+import './web/component/LottoFooter/LottoFooter';
+import './web/component/LottoGameApp/LottoGameApp';
+import './web/component/PurchaseForm/PurchaseForm';
+import './web/component/PurchaseResult/PurchaseResult';
+import './web/component/WinningNumbersForm/WinningNumbersForm';
+import './web/component/WinningNumbersInput/WinningNumbersInput';
+import './web/component/BonusNumberInput/BonusNumberInput';
+import './web/component/ResultModal/ResultModal';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.createElement('lotto-header');
+  const app = document.createElement('lotto-game-app');
+  const footer = document.createElement('lotto-footer');
+  document.body.appendChild(header);
+  document.body.appendChild(app);
+  document.body.appendChild(footer);
+
+  app.initiateGame();
+});

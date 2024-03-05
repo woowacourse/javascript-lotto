@@ -1,0 +1,89 @@
+:root {
+  --color-primary: rgb(78 91 166);
+  --color-greyscale-1: rgb(255 255 255);
+  --color-greyscale-2: rgb(252 252 253);
+  --color-greyscale-3: rgb(180 180 180);
+  --color-greyscale-4: rgb(139 139 139);
+  --color-greyscale-5: rgb(0 0 0);
+  --color-lotto-game-border: rgba(0 0 0 / 12%);
+  --color-error-text: rgb(255 0 0);
+  --font-title-size: 24px;
+  --font-subtitle-size: 20px;
+  --font-body-size: 15px;
+  --font-placeholder-size: 15px;
+  --font-caption-size: 14px;
+  --font-title-weight: 800;
+  --font-subtitle-weight: 600;
+  --font-caption-weight: 700;
+}
+
+html {
+  font-family: Roboto, sans-serif;
+  height: 100vh;
+}
+
+body {
+  height: calc(100% - (64px + 80px));
+}
+
+button {
+  background: var(--color-primary);
+  color: var(--color-greyscale-1);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  letter-spacing: 1.25px;
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+button:hover {
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  opacity: 0.85;
+}
+
+button:disabled {
+  background: var(--color-greyscale-4);
+  cursor: inherit;
+}
+
+button:disabled:hover {
+  opacity: inherit;
+}
+
+h1 {
+  font-weight: var(--font-title-weight);
+  font-size: var(--font-title-size);
+  color: var(--color-greyscale-1);
+}
+
+h2 {
+  font-size: var(--font-subtitle-size);
+  font-weight: var(--font-subtitle-weight);
+  color: var(--color-greyscale-5);
+  text-align: center;
+}
+
+input {
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  padding: 8px;
+  height: 36px;
+}
+
+input:disabled {
+  background: rgba(0 0 0 / 5%);
+}
+
+.error-text {
+  font-size: 12px;
+  color: var(--color-error-text);
+  letter-spacing: 0;
+  word-break: keep-all;
+  animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

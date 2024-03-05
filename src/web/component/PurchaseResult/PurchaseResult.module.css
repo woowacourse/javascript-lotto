@@ -1,0 +1,29 @@
+.purchase-result {
+  font-size: var(--font-body-size);
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  height: 300px;
+  animation: fade-in 0.5s;
+}
+
+.purchase-result ul {
+  max-height: 276px;
+  overflow: scroll;
+}
+
+.purchase-result li {
+  list-style-type: none;
+  margin: 6px 0;
+}
+
+.purchase-result li::before {
+  content: '🎟️';
+  font-size: 24px;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
