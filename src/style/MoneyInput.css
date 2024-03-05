@@ -1,0 +1,32 @@
+.money-input-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+  margin: 1.6rem 0rem;
+}
+
+.money-input-form div {
+  display: flex;
+  column-gap: 1.6rem;
+  width: 100%;
+  height: 3.6rem;
+}
+
+.money-input {
+  flex: 1;
+  height: 3.6rem;
+  padding: 0rem 0.8rem;
+  border: 0.1rem solid var(--lotto-greyscale-3);
+  border-radius: 0.4rem;
+}
+
+.money-input-btn {
+  width: 5.6rem;
+  height: 3.6rem;
+  border-radius: 0.4rem;
+  background: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  text-align: center;
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-small);
+}
