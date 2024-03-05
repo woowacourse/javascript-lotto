@@ -11,3 +11,10 @@
   font-size: var(--font-title-size);
   color: var(--color-greyscale-1);
 }
+
+@media (width <= 414px) {
+  .header {
+    padding: 0;
+    justify-content: center;
+  }
+}

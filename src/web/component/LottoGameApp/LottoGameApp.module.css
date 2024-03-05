@@ -27,3 +27,8 @@ lotto-game-app {
   margin-top: 28px;
 }
 
+@media (width <= 414px) {
+  .lotto-game {
+    width: 100vw;
+  }
+}

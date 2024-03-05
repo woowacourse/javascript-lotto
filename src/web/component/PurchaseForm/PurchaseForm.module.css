@@ -13,8 +13,7 @@
 }
 
 .purchase-form input {
-  width: 314px;
-  gap: 10px;
+  width: calc(100% - 66px);
 }
 
 .purchase-form button {
