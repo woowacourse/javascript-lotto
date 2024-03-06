@@ -2,7 +2,6 @@ import WinningResultService from '@src/domain/service/WinningResultService';
 import WinningRewardService from '@src/domain/service/WinningRewardService';
 import LottoNumber from '../../../domain/entity/LottoNumber';
 
-const CLASSNAME_HIDDEN = 'hidden';
 const SELECTOR = {
   WINNING_NUMBERS_INPUTS: '.winning-numbers-inputs',
   BONUS_NUMBER_INPUT: '.bonus-number-inputs__input',
@@ -12,6 +11,8 @@ const SELECTOR = {
   RETURN_RATE: '.result-modal__return-rate',
   PURCHASED_LOTTO_LIST: '.purchased-lotto__list',
 };
+const CLASSNAME_HIDDEN = 'hidden';
+const EMOJI_BLANK_LENGTH = 4;
 
 const Private = {
   getReturnRate(winningResult, purchaseCount) {
@@ -20,7 +21,6 @@ const Private = {
 
   getLottoNumbers() {
     const lottoList = document.querySelector(SELECTOR.PURCHASED_LOTTO_LIST);
-    const EMOJI_BLANK_LENGTH = 4;
     const commaStringToNumbers = (string) =>
       string
         .slice(EMOJI_BLANK_LENGTH)

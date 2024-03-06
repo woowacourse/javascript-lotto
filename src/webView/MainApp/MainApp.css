@@ -1,14 +1,11 @@
 #app {
   width: 414px;
   height: 727px;
-  top: 148px;
-  left: 513px;
 
   box-sizing: border-box;
   margin: 84px auto;
   padding: 32px 15px;
   border: 1px solid #0000001f;
-  align-content: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
