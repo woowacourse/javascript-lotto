@@ -4,6 +4,8 @@
   padding: 4rem 1.6rem 3.2rem 1.6rem;
 
   border: 0.1rem solid rgb(var(--color-grey-scale-3));
+  border-radius: 0.4rem;
+
   background-color: rgb(var(--color-grey-scale-1));
 
   /* text */
