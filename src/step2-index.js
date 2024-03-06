@@ -6,6 +6,7 @@
 
 import './css/theme.css';
 import './css/style.css';
+import './css/modal.css';
 
 import LottoController from './controller/step2-LottoController';
 

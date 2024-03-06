@@ -42,7 +42,6 @@ section {
   width: 100%;
 }
 
-/* section 1 --------------------- */
 #mainTitleSection {
   top: 30px;
   width: 382px;
@@ -50,7 +49,6 @@ section {
   text-align: center;
 }
 
-/* section 2 --------------------- */
 #purchaseInputSection {
   width: 382px;
   display: flex;
@@ -84,7 +82,6 @@ section {
   cursor: pointer;
 }
 
-/* section 3 --------------------- */
 #lottoSection {
   width: 382px;
   display: flex;
@@ -119,7 +116,6 @@ section {
   text-align: center;
 }
 
-/* section 4 --------------------- */
 #winningAndBonusSection {
   width: 382px;
   display: flex;
@@ -176,7 +172,6 @@ section {
   align-items: flex-end;
 }
 
-/* footer ---------------------  */
 footer {
   display: flex;
   align-items: center;
@@ -189,83 +184,4 @@ footer {
 
 footer .caption {
   color: var(--blue);
-}
-
-/* modal ---------------------  */
-#modalContainer {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#modalWrapper {
-  position: relative;
-  width: 350px;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 33px;
-  background-color: var(--white);
-  border: 1px solid var(--gray);
-  border-radius: 4px;
-}
-
-#modalTitle {
-  top: 40px;
-}
-
-#resultTable {
-  width: 318px;
-  height: 247px;
-  text-align: center;
-  border-top: 1px solid var(--gray);
-}
-
-#resultTable tr {
-  font-size: 15px;
-  border-bottom: 1px solid var(--gray);
-}
-
-#resultTable td {
-  font-size: 15px;
-  text-align: center;
-  vertical-align: middle;
-}
-
-#profitResult {
-  font-size: 15px;
-}
-
-#resetButton {
-  width: 318px;
-  height: 36px;
-  padding: 0px 6px;
-  border: none;
-  border-radius: 4px;
-  background-color: var(--blue);
-  color: var(--white);
-  text-align: center;
-  cursor: pointer;
-}
-
-#modalCloseButton {
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background-color: transparent;
-  border: none;
-  text-align: center;
-  cursor: pointer;
-  font-size: 16px;
 }
