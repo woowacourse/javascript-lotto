@@ -2,7 +2,7 @@
 
 .result-modal-backdrop {
   position: fixed;
-  z-index: 1;
+  z-index: var(--z-index-modal-backdrop);
   top: 0;
   left: 0;
   width: 100%;
@@ -13,7 +13,7 @@
   position: fixed;
   background-color: var(--color-lotto-grayscale-1);
   border-radius: 10px;
-  z-index: 2;
+  z-index: var(--z-index-modal-main);
   text-align: center;
   top: 50vh;
   left: 50vw;

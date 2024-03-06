@@ -6,6 +6,9 @@
   --color-lotto-grayscale-4: #8b8b8b;
   --color-lotto-grayscale-5: #000000;
   --color-lotto-error: #dd0000;
+
+  --z-index-modal-main: 101;
+  --z-index-modal-backdrop: 100;
 }
 /* 상수 정의 */
 .hidden {
