@@ -2,21 +2,21 @@ import { ELEMENT_SELECTOR } from "../constants/lotto";
 
 export const registerPurchaseEvent = (purchaseCallback) => {
   const lottoPurchaseForm = document.getElementById(
-    ELEMENT_SELECTOR.purchaseForm,
-  );
-  const lottoPurchaseInput = document.getElementById(
-    ELEMENT_SELECTOR.purchaseInput,
+    ELEMENT_SELECTOR.purchaseForm
   );
 
   lottoPurchaseForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    purchaseCallback(lottoPurchaseInput.value);
+
+    const formData = new FormData(lottoPurchaseForm);
+    const lottoPurchaseAmount = formData.get("lotto-purchase-input");
+    purchaseCallback(lottoPurchaseAmount);
   });
 };
 
 const getWinningLottoNumbers = () => {
   const winningLottoInputs = document.querySelectorAll(
-    ELEMENT_SELECTOR.winningLottoInput,
+    ELEMENT_SELECTOR.winningLottoInput
   );
 
   return [...winningLottoInputs].map((winningNumber) => {
@@ -26,7 +26,7 @@ const getWinningLottoNumbers = () => {
 
 const getBonusNumber = () => {
   const bonusNumber = document.getElementById(
-    ELEMENT_SELECTOR.bonusNumberInput,
+    ELEMENT_SELECTOR.bonusNumberInput
   );
 
   return bonusNumber.value;
@@ -34,7 +34,7 @@ const getBonusNumber = () => {
 
 export const registerRenderResultEvent = (renderResultCallback) => {
   const winningLottoForm = document.getElementById(
-    ELEMENT_SELECTOR.winningLottoForm,
+    ELEMENT_SELECTOR.winningLottoForm
   );
 
   winningLottoForm.addEventListener("submit", (event) => {
@@ -47,10 +47,10 @@ export const registerRenderResultEvent = (renderResultCallback) => {
 
 export const registerCloseModalEvent = (closeCallback) => {
   const modalBackground = document.getElementById(
-    ELEMENT_SELECTOR.modalBackground,
+    ELEMENT_SELECTOR.modalBackground
   );
   const modalCancelButton = document.getElementById(
-    ELEMENT_SELECTOR.modalCancelButton,
+    ELEMENT_SELECTOR.modalCancelButton
   );
 
   modalCancelButton.addEventListener("click", () => {
