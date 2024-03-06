@@ -9,6 +9,7 @@
 
 .app-main {
   height: calc(100vh - 14.4rem);
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +18,7 @@
 .game-container {
   border: 1px solid var(--border-gray);
   padding: 2rem;
+  min-width: 41.4rem;
 }
 
 .purchase-form {
@@ -54,6 +56,7 @@
 }
 
 .winning-lotto-form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
