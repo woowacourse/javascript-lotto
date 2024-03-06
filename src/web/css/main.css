@@ -1,5 +1,3 @@
-@import './variable.css';
-
 .main-container {
   background-color: var(--lotto-greyscale-2);
   display: flex;
