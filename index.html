@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,8 +31,16 @@
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
       <div class="input-container">
         <div id="winning-numbers">
-          <label> 당첨 번호 </label>
-          <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" required />
+          <label for="winning-number-input"> 당첨 번호 </label>
+          <input
+            type="number"
+            id="winning-number-input"
+            class="lotto-number-input"
+            name="winningNumbers"
+            min="1"
+            max="45"
+            required
+          />
           <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" required />
           <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" required />
           <input type="number" class="lotto-number-input" name="winningNumbers" min="1" max="45" required />
@@ -41,8 +49,16 @@
         </div>
 
         <div id="bonus-number">
-          <label> 보너스 번호 </label>
-          <input type="number" class="lotto-number-input" name="bonusNumber" min="1" max="45" required />
+          <label for="bonus-number-input"> 보너스 번호 </label>
+          <input
+            type="number"
+            id="bonus-number-input"
+            class="lotto-number-input"
+            name="bonusNumber"
+            min="1"
+            max="45"
+            required
+          />
         </div>
         <p class="err-msg"></p>
       </div>
@@ -148,12 +164,12 @@
 
     <section id="app">
       <header>
-        <a class="title" href="./index.html">🎱 행운의 로또</a>
+        <h1 class="title"><a href="./index.html">🎱 행운의 로또</a></h1>
       </header>
 
       <main class="flex-column-center">
         <div class="main-content flex-column-center">
-          <p class="title">🎱 내 번호 당첨 확인 🎱</p>
+          <h2 class="title">🎱 내 번호 당첨 확인 🎱</h2>
 
           <!-- PaymentForm -->
           <form is="payment-form" name="paymentAmount"></form>

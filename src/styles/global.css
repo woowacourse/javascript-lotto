@@ -56,7 +56,7 @@ header {
   padding: 1.4rem 13rem;
 }
 
-header > .title {
+header > .title > a {
   color: rgb(var(--color-grey-scale-1));
 }
 
@@ -167,6 +167,8 @@ td {
 }
 
 .title {
+  margin: 0;
+
   font-size: var(--font-large);
   font-weight: var(--weight-extra-bold);
 }
