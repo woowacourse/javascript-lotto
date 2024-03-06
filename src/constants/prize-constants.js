@@ -8,4 +8,4 @@ export const PRIZE = {
 
 export const NO_MATCH_PLACE = 'NONE_PLACE';
 
-export const PERCENTATION = 100;
+export const PERCENTAGE = 100;

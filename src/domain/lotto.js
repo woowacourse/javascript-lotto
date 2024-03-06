@@ -1,3 +1,4 @@
+import ascendingOrderSort from '../utils/ascendingSortArr.js';
 import prize from './prize.js';
 
 class Lotto {
@@ -8,10 +9,10 @@ class Lotto {
   }
 
   getNumbers() {
-    return this.#numbers;
+    return ascendingOrderSort(this.#numbers);
   }
 
-  #getMatchCount({ winningLottoNumbers, bonusNumber }) {
+  #getMatchCountAndIsBonus({ winningLottoNumbers, bonusNumber }) {
     const numberMatchCount = this.#numbers.filter((number) => winningLottoNumbers.includes(number)).length;
 
     const isBonus = this.#numbers.includes(bonusNumber);
@@ -20,7 +21,7 @@ class Lotto {
   }
 
   getRank({ winningLottoNumbers, bonusNumber }) {
-    const { numberMatchCount, isBonus } = this.#getMatchCount({
+    const { numberMatchCount, isBonus } = this.#getMatchCountAndIsBonus({
       winningLottoNumbers,
       bonusNumber,
     });

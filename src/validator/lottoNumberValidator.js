@@ -28,11 +28,11 @@ const lottoNumberValidator = {
   },
 
   validate(numbers) {
-    const formatedNumbers = numbers.map(Number);
-    this.validateNumbersLength(formatedNumbers);
-    this.validateDuplicate(formatedNumbers);
-    this.validateRange(formatedNumbers);
-    this.validateIsNumber(formatedNumbers);
+    const formattedNumbers = numbers.map(Number);
+    this.validateNumbersLength(formattedNumbers);
+    this.validateDuplicate(formattedNumbers);
+    this.validateRange(formattedNumbers);
+    this.validateIsNumber(formattedNumbers);
   },
 };
 

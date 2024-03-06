@@ -3,29 +3,29 @@ import { LOTTO_PRICE } from '../constants/lotto-constants.js';
 import AppError from '../utils/appError.js';
 
 const purchaseAmountValidator = {
-  validateIsNumber(formatedPrice) {
-    if (!Number.isInteger(formatedPrice)) {
+  validateIsNumber(formattedPrice) {
+    if (!Number.isInteger(formattedPrice)) {
       throw new AppError(ERROR.INVALID_PURCHASE_AMOUNT_TYPE);
     }
   },
 
-  validateRange(formatedPrice) {
-    if (formatedPrice < LOTTO_PRICE) {
+  validateRange(formattedPrice) {
+    if (formattedPrice < LOTTO_PRICE) {
       throw new AppError(ERROR.INVALID_PURCHASE_AMOUNT_RANGE);
     }
   },
 
-  validateDivided(formatedPrice) {
-    if (formatedPrice % LOTTO_PRICE !== 0) {
+  validateDivided(formattedPrice) {
+    if (formattedPrice % LOTTO_PRICE !== 0) {
       throw new AppError(ERROR.INVALID_PURCHASE_AMOUNT_DIVIDED);
     }
   },
 
   validate(price) {
-    const formatedPrice = Number(price);
-    this.validateIsNumber(formatedPrice);
-    this.validateRange(formatedPrice);
-    this.validateDivided(formatedPrice);
+    const formattedPrice = Number(price);
+    this.validateIsNumber(formattedPrice);
+    this.validateRange(formattedPrice);
+    this.validateDivided(formattedPrice);
   },
 };
 

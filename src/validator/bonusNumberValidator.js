@@ -22,12 +22,12 @@ const bonusNumberValidator = {
   },
 
   validate({ winningLottoNumbers, bonusNumber }) {
-    const formatedBonusNumber = Number(bonusNumber);
-    this.validateIsNumber(formatedBonusNumber);
-    this.validateRange(formatedBonusNumber);
+    const formattedBonusNumber = Number(bonusNumber);
+    this.validateIsNumber(formattedBonusNumber);
+    this.validateRange(formattedBonusNumber);
     this.validateDuplication({
       winningLottoNumbers,
-      bonusNumber: formatedBonusNumber,
+      bonusNumber: formattedBonusNumber,
     });
   },
 };

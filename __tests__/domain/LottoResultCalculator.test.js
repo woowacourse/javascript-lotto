@@ -8,105 +8,68 @@ describe('LottoResultCalculator 객체 테스트', () => {
     bonusNumber: 7,
   };
 
-  const hasBonusNumberWhatever = '상관없이';
-
-  test.each([
-    {
-      lottoNumbers: [1, 2, 3, 4, 5, 6],
-      matchCount: 6,
-      expectedRank: '1등',
-      hasBonusNumber: hasBonusNumberWhatever,
-      expectedResults: {
-        FIFTH_PLACE: 0,
-        FOURTH_PLACE: 0,
-        THIRD_PLACE: 0,
-        SECOND_PLACE: 0,
-        FIRST_PLACE: 1,
+  describe('구매한 로또들의 총 결과를 객체로 리턴한다.', () => {
+    test.each([
+      {
+        lottoNumbers: [
+          [1, 2, 3, 4, 5, 6], //NOTE: 1등
+          [1, 2, 3, 4, 5, 7], //NOTE: 2등
+        ],
+        description: '1등 1개, 2등 1개',
+        expectedResults: {
+          FIFTH_PLACE: 0,
+          FOURTH_PLACE: 0,
+          THIRD_PLACE: 0,
+          SECOND_PLACE: 1,
+          FIRST_PLACE: 1,
+        },
       },
-    },
-    {
-      lottoNumbers: [1, 2, 3, 4, 5, 7],
-      matchCount: 5,
-      hasBonusNumber: true,
-      expectedRank: '2등',
-      expectedResults: {
-        FIFTH_PLACE: 0,
-        FOURTH_PLACE: 0,
-        THIRD_PLACE: 0,
-        SECOND_PLACE: 1,
-        FIRST_PLACE: 0,
+      {
+        lottoNumbers: [
+          [1, 2, 3, 4, 5, 7], //NOTE: 2등
+          [1, 2, 3, 4, 5, 8], //NOTE: 3등
+        ],
+        description: '2등 1개, 3등 1개',
+        expectedResults: {
+          FIFTH_PLACE: 0,
+          FOURTH_PLACE: 0,
+          THIRD_PLACE: 1,
+          SECOND_PLACE: 1,
+          FIRST_PLACE: 0,
+        },
       },
-    },
-    {
-      lottoNumbers: [1, 2, 3, 4, 5, 8],
-      matchCount: 5,
-      hasBonusNumber: hasBonusNumberWhatever,
-      expectedRank: '3등',
-      expectedResults: {
-        FIFTH_PLACE: 0,
-        FOURTH_PLACE: 0,
-        THIRD_PLACE: 1,
-        SECOND_PLACE: 0,
-        FIRST_PLACE: 0,
+      {
+        lottoNumbers: [
+          [1, 2, 3, 4, 5, 8], // NOTE: 3등
+          [1, 2, 3, 4, 8, 9], // NOTE: 4등
+          [1, 2, 3, 4, 8, 9], // NOTE: 4등
+        ],
+        description: '3등 1개, 4등 2개',
+        expectedResults: {
+          FIFTH_PLACE: 0,
+          FOURTH_PLACE: 2,
+          THIRD_PLACE: 1,
+          SECOND_PLACE: 0,
+          FIRST_PLACE: 0,
+        },
       },
-    },
-    {
-      lottoNumbers: [1, 2, 3, 4, 8, 9],
-      matchCount: 4,
-      hasBonusNumber: hasBonusNumberWhatever,
-      expectedRank: '4등',
-      expectedResults: {
-        FIFTH_PLACE: 0,
-        FOURTH_PLACE: 1,
-        THIRD_PLACE: 0,
-        SECOND_PLACE: 0,
-        FIRST_PLACE: 0,
+      {
+        lottoNumbers: [
+          [1, 8, 9, 10, 11, 12], //NOTE: 꽝을 나타냄
+          [1, 8, 9, 10, 11, 12], //NOTE: 꽝을 나타냄
+          [1, 8, 9, 10, 11, 12], //NOTE: 꽝을 나타냄
+        ],
+        description: '꽝 3개',
+        expectedResults: {
+          FIFTH_PLACE: 0,
+          FOURTH_PLACE: 0,
+          THIRD_PLACE: 0,
+          SECOND_PLACE: 0,
+          FIRST_PLACE: 0,
+        },
       },
-    },
-    {
-      lottoNumbers: [1, 2, 3, 8, 9, 10],
-      matchCount: 3,
-      hasBonusNumber: hasBonusNumberWhatever,
-      expectedRank: '5등',
-      expectedResults: {
-        FIFTH_PLACE: 1,
-        FOURTH_PLACE: 0,
-        THIRD_PLACE: 0,
-        SECOND_PLACE: 0,
-        FIRST_PLACE: 0,
-      },
-    },
-    {
-      lottoNumbers: [1, 8, 9, 10, 11, 12],
-      matchCount: 1,
-      hasBonusNumber: hasBonusNumberWhatever,
-      expectedRank: '꽝',
-      expectedResults: {
-        FIFTH_PLACE: 0,
-        FOURTH_PLACE: 0,
-        THIRD_PLACE: 0,
-        SECOND_PLACE: 0,
-        FIRST_PLACE: 0,
-      },
-    },
-    {
-      lottoNumbers: [1, 8, 9, 10, 11, 12],
-      matchCount: 0,
-      hasBonusNumber: hasBonusNumberWhatever,
-      expectedRank: '꽝',
-      expectedResults: {
-        FIFTH_PLACE: 0,
-        FOURTH_PLACE: 0,
-        THIRD_PLACE: 0,
-        SECOND_PLACE: 0,
-        FIRST_PLACE: 0,
-      },
-    },
-  ])(
-    '로또 번호가 당첨번호와 $matchCount개 일치하고 보너스 번호 일치 여부는 $hasBonusNumber,$expectedRank 이다',
-    ({ lottoNumbers, expectedResults }) => {
-      const lotto = new Lotto(lottoNumbers);
-      const lottoList = [lotto];
+    ])('구매한 로또들의 총 결과는 $description이다.', ({ lottoNumbers, expectedResults }) => {
+      const lottoList = lottoNumbers.map((lottoNumber) => new Lotto(lottoNumber));
 
       const lottoResult = new LottoResultCalculator({
         lottoList,
@@ -115,8 +78,8 @@ describe('LottoResultCalculator 객체 테스트', () => {
       }).getTotalResult();
 
       expect(lottoResult).toEqual(expectedResults);
-    },
-  );
+    });
+  });
 
   test('구매한 로또의 수익률을 계산한다.', () => {
     const LOTTO_LIST = [new Lotto([1, 2, 3, 11, 12, 13])];

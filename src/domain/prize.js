@@ -15,7 +15,7 @@ const prize = {
     return entry ? entry[0] : NO_MATCH_PLACE;
   },
 
-  generateInitiallResultObject: () => {
+  generateInitialResultObject: () => {
     const initialResult = Object.keys(PRIZE).reduce((acc, key) => {
       acc[key] = 0;
       return acc;

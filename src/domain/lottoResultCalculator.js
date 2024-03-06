@@ -1,4 +1,4 @@
-import { NO_MATCH_PLACE, PERCENTATION } from '../constants/prize-constants.js';
+import { NO_MATCH_PLACE, PERCENTAGE } from '../constants/prize-constants.js';
 import excludeKeyFromObject from '../utils/excludeKeyFromObject.js';
 import roundToSecondDecimalPlace from '../utils/roundToSecondDecimalPlace.js';
 
@@ -15,16 +15,16 @@ class LottoResultCalculator {
   }
 
   getTotalResult() {
-    const initialResult = prize.generateInitiallResultObject();
-    const totalResult = this.#lottoList.reduce((acc, lotto) => {
+    const initialResult = prize.generateInitialResultObject();
+
+    this.#lottoList.forEach((lotto) => {
       const rank = lotto.getRank(this.#winningLotto);
       if (rank !== NO_MATCH_PLACE) {
         initialResult[rank] += 1;
       }
-      return acc;
-    }, initialResult);
+    });
 
-    return excludeKeyFromObject({ object: totalResult, removeKey: NO_MATCH_PLACE });
+    return excludeKeyFromObject({ object: initialResult, removeKey: NO_MATCH_PLACE });
   }
 
   #getTotalReward() {
@@ -35,8 +35,9 @@ class LottoResultCalculator {
 
   getProfit(purchaseAmount) {
     const totalReward = this.#getTotalReward();
+    const profitBeforeRound = roundToSecondDecimalPlace(totalReward / purchaseAmount) * 100;
 
-    return roundToSecondDecimalPlace(totalReward / purchaseAmount) * 100;
+    return roundToSecondDecimalPlace(profitBeforeRound);
   }
 }
 
