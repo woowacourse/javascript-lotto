@@ -1,0 +1,26 @@
+.lotto-price-button {
+  width: 3.5rem;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.078rem;
+}
+
+.buy-lottos-form {
+  margin-top: 1.875rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  font-size: 0.9325rem;
+}
+
+.thousand-unit-input {
+  width: 19.375rem;
+  padding: 0.5rem;
+}
+
+.thousand-unit-input::placeholder {
+  color: var(--color-gray);
+}

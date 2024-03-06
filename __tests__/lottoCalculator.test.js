@@ -1,4 +1,4 @@
-import LottoCalculator from '../src/domains/LottoCalculator';
+import LottoCalculator from '../src/step1/domains/LottoCalculator';
 
 describe('당첨 번호와 발행 번호 비교하는 테스트', () => {
   test('당첨 번호와 발행 번호를 비교시 3개가 일치한다.', () => {

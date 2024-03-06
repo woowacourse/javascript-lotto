@@ -23,7 +23,7 @@ class LottoGenerator {
   #generateAllLottos(lottoTickets) {
     const generatedLottos = [];
     for (let ticket = 0; ticket < lottoTickets; ticket++) {
-      generatedLottos.push(this.generateLotto());
+      generatedLottos.push(this.generateRandomLotto());
     }
 
     return generatedLottos;
