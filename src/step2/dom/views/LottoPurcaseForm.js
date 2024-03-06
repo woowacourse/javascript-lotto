@@ -4,31 +4,37 @@ export default class LottoPurchaseForm {
   static #purchaseForm = document.getElementById(ELEMENT_SELECTOR.purchaseForm);
 
   static #purchasedLottoContainer = document.getElementById(
-    ELEMENT_SELECTOR.purchasedLottoContainer,
+    ELEMENT_SELECTOR.purchasedLottoContainer
   );
 
   static #lottoPurchaseInput = document.getElementById(
-    ELEMENT_SELECTOR.purchaseInput,
+    ELEMENT_SELECTOR.purchaseInput
   );
 
-  static #shouldRenderScrollMessage(lottosCount) {
-    return lottosCount > LOTTO_RULES.scrollThreadhold;
+  static #purchasedLottosCount = document.getElementById(
+    "purchased-lottos-count"
+  );
+
+  static #shouldRenderScrollMessage(element) {
+    return element.scrollHeight > element.clientHeight;
   }
 
-  static #renderPurchasedLottosCount(lottosCount) {
+  static #renderPurchasedLottosCount(purchsedContainer, lottosCount) {
     const lottosCountText = document.createElement("span");
     lottosCountText.className = "text-sm font-light";
 
     const lottosCountMessage = `총 ${lottosCount}개를 구매하였습니다.`;
     const scrollMessage = "(스크롤로 구입한 모든 로또를 확인할 수 있습니다.)";
-
     lottosCountText.innerHTML = LottoPurchaseForm.#shouldRenderScrollMessage(
-      lottosCount,
+      purchsedContainer
     )
       ? lottosCountMessage + scrollMessage
       : lottosCountMessage;
 
-    LottoPurchaseForm.#purchasedLottoContainer.appendChild(lottosCountText);
+    LottoPurchaseForm.#purchasedLottoContainer.insertBefore(
+      lottosCountText,
+      LottoPurchaseForm.#purchasedLottoContainer.firstChild
+    );
   }
 
   static focusPurchaseInput() {
@@ -39,20 +45,24 @@ export default class LottoPurchaseForm {
     LottoPurchaseForm.#purchasedLottoContainer.innerHTML = "";
   }
 
-  static renderPurchasedLottos(lottoNumbers, lottosCount) {
+  static renderPurchasedLottos(lottoNumbers) {
     LottoPurchaseForm.removePurchasedLottos();
-    LottoPurchaseForm.#renderPurchasedLottosCount(lottosCount);
-
     const lottosList = document.createElement("ul");
     lottosList.className = "overflow-y-scroll h-20vh";
     lottosList.innerHTML = lottoNumbers.reduce((accHTML, currNumbers) => {
       return (
         accHTML +
-        `<li class="text-sm font-light purchased-lotto">🎟️ ${currNumbers.join(", ")}</li>`
+        `<li class="text-sm font-light purchased-lotto">🎟️ ${currNumbers.join(
+          ", "
+        )}</li>`
       );
     }, "");
 
     LottoPurchaseForm.#purchasedLottoContainer.appendChild(lottosList);
+    LottoPurchaseForm.#renderPurchasedLottosCount(
+      lottosList,
+      lottoNumbers.length
+    );
   }
 
   static resetPurchaseForm() {
