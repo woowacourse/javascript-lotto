@@ -21,17 +21,17 @@ export default class LottoController {
   #renderPurchasedLotto() {
     LottoPurchaseForm.resetPurchaseForm();
     const lottoNumbers = this.#lottos.map((lotto) => lotto.getNumbers());
-    LottoPurchaseForm.renderPurchasedLottos(lottoNumbers, lottoNumbers.length);
+    LottoPurchaseForm.renderPurchasedLottos(lottoNumbers);
   }
 
   #configWinningLotto(winningNumbers, bonusNumber) {
     try {
       const winninbNumberArray = winningNumbers.map((winningNumber) =>
-        Number(winningNumber),
+        Number(winningNumber)
       );
       return new WinningLotto(
         new Lotto(winninbNumberArray),
-        Number(bonusNumber),
+        Number(bonusNumber)
       );
     } catch (error) {
       alert(error.message);
@@ -60,7 +60,7 @@ export default class LottoController {
     lottoResult.generateResult(this.#lottos, winningLotto);
     const lottoRankBoard = lottoResult.getRankBoard();
     const returnRate = lottoResult.calculateReturnRate(
-      this.#lottos.length * LOTTO_RULES.price,
+      this.#lottos.length * LOTTO_RULES.price
     );
 
     WinningResult.renderWinningResult(lottoRankBoard, returnRate);
