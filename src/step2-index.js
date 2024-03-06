@@ -1,5 +1,12 @@
-import './web//css/style.css';
-import lottoWebController from "./controller/lottoWebController.js";
+import './web/css/reset.css';
+import './web/css/common.css';
+import './web/css/button.css';
+import './web/css/gameInput.css';
+import './web/css/gameResult.css';
+import './web/css/layout.css';
+import './web/css/main.css';
+import './web/css/title.css';
+import lottoWebController from './controller/lottoWebController.js';
 
 lottoWebController.lottoWebGamePlay();
 /**

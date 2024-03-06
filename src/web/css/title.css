@@ -1,0 +1,13 @@
+.title {
+  display: flex;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  text-align: left;
+  color: var(--lotto-greyscale-1);
+  background-color: var(--lotto-primary);
+  padding: 1rem;
+
+  width: 100vw;
+  height: 30px;
+}
