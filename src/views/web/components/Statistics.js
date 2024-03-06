@@ -39,9 +39,6 @@ export default class Statistics extends HTMLElement {
   }
 
   connectedCallback() {
-    this.#updateTable();
-    this.#updateProfitRate();
-
     this.#restartBtn.addEventListener('click', this.#dispatchRestartEvent.bind(this));
   }
 

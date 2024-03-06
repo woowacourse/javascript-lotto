@@ -1,8 +1,3 @@
-export const MODAL_EVENTS = {
-  open: 'openModal',
-  close: 'closeModal',
-};
-
 export const MODAL_SELECTOR = 'app-modal';
 
 export default class Modal extends HTMLElement {

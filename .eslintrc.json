@@ -5,15 +5,6 @@
     "no-return-assign": "off",
     "no-return-await": "off",
     "class-methods-use-this": "off"
-    // "import/order": [
-    //   "error",
-    //   {
-    //     "alphabetize": {
-    //       "order": "asc",
-    //       "caseInsensitive": true
-    //     }
-    //   }
-    // ]
   },
   "env": {
     "browser": true,
