@@ -8,7 +8,5 @@ class Header extends BaseComponent {
     </h1>
   </header>`;
   }
-
-  setEvent() {}
 }
 customElements.define('header-bar', Header);

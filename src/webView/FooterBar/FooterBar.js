@@ -6,7 +6,5 @@ class FooterBar extends BaseComponent {
     <div class="footer-content text-lotto-caption">copyright 2023. woowacourse</div>
     </footer>`;
   }
-
-  setEvent() {}
 }
 customElements.define('footer-bar', FooterBar);

@@ -10,7 +10,5 @@ class MainApp extends BaseComponent {
     <result-button class="result hidden"></result-button>
   </main>`;
   }
-
-  setEvent() {}
 }
 customElements.define('main-app', MainApp);
