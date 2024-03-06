@@ -1,6 +1,6 @@
 const rankCounter = {
   incrementCount(count, rank) {
-    // 1 ~ 5등까지만 순위 집계 대상이므로 convertToRank에서 rank값을 리턴받은 경우에만 작동한다.
+    // NOTE: 1 ~ 5등까지만 순위 집계 대상이므로 convertToRank에서 rank값을 리턴받은 경우에만 작동
     if (rank) {
       count[rank] += 1;
     }
@@ -19,7 +19,7 @@ const rankCounter = {
     const initialCount = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
     return matchingResult.reduce(
       (count, result) => this.incrementCount(count, this.convertToRank(result)),
-      initialCount,
+      initialCount
     );
   },
 };
