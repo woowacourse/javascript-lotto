@@ -12,7 +12,7 @@ import LottoController from './controller/step2-LottoController';
 
 const lottoController = new LottoController();
 
-window.onload = function () {
+document.addEventListener('DOMContentLoaded', function () {
   const purchaseForm = document.getElementById('purchaseInputSection');
   const winningAndBonusForm = document.getElementById('winningAndBonusSection');
   const modalContainer = document.getElementById('modalContainer');
@@ -55,4 +55,4 @@ window.onload = function () {
     modalContainer.style.display = 'none';
     window.location.reload();
   });
-};
+});
