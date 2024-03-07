@@ -1,0 +1,96 @@
+:root {
+  --color-lotto-primary: #4e5ba6;
+  --color-lotto-grayscale-1: #ffffff;
+  --color-lotto-grayscale-2: #fcfcfd;
+  --color-lotto-grayscale-3: #b4b4b4;
+  --color-lotto-grayscale-4: #8b8b8b;
+  --color-lotto-grayscale-5: #000000;
+  --color-lotto-error: #dd0000;
+
+  --z-index-modal-main: 101;
+  --z-index-modal-backdrop: 100;
+}
+/* 상수 정의 */
+.hidden {
+  visibility: hidden;
+}
+
+.shade {
+  backdrop-filter: blur(2px);
+}
+
+.border-error {
+  outline: 3px solid red;
+  outline-style: dashed;
+  outline-offset: 5px;
+}
+.text-lotto-title {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  letter-spacing: 0px;
+
+  color: var(--color-lotto-grayscale-5);
+}
+
+.text-lotto-subtitle {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15000000596046448px;
+
+  color: var(--color-lotto-grayscale-5);
+}
+
+.text-lotto-body {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+
+  color: var(--color-lotto-grayscale-5);
+}
+
+.text-lotto-placeholder {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+
+  color: var(--color-lotto-grayscale-4);
+}
+
+.text-lotto-caption {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+
+  color: var(--color-lotto-grayscale-5);
+}
+.text-lotto-error {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+
+  color: var(--color-lotto-error);
+}
+
+.button-primary {
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background: var(--color-lotto-primary);
+  color: var(--color-lotto-grayscale-1);
+  border: none;
+}
+
+.button-primary:hover {
+  cursor: pointer;
+}

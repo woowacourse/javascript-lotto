@@ -5,6 +5,7 @@ const ERROR = Object.freeze({
   beNumber: '[Error] 입력은 숫자형 이어야 합니다.',
   beInRangeNumber: '[Error] 입력은 1~45사이의 숫자여야 합니다.',
   beInteger: '[Error] 입력은 정수여야 합니다.',
+  bePositive: '[Error] 입력은 양수여야 합니다.',
 
   beNotDuplication: '[Error] 로또 번호의 중복은 없어야합니다.',
   countOfWinningNumbers: '[Error] 당첨 번호의 갯수는 6개여야 합니다.',

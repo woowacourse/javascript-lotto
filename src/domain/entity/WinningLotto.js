@@ -4,21 +4,20 @@ import LottoNumber from './LottoNumber';
 import Lotto from './Lotto';
 
 class WinningLotto {
-  #winningLottoNumberList;
+  #lotto;
 
   #bonusNumber;
 
   constructor(winningNumbers) {
-    this.#winningLottoNumberList = new Lotto(winningNumbers);
+    this.#lotto = new Lotto(winningNumbers);
   }
 
   static fromString(winningNumbersString) {
-    const winningNumbers = winningNumbersString.split(',').map((num) => Number(num));
-    return new WinningLotto(winningNumbers);
+    return new WinningLotto(Lotto.fromString(winningNumbersString).getNumbers());
   }
 
   getNumbers() {
-    return this.#winningLottoNumberList.getNumbers();
+    return this.#lotto.getNumbers();
   }
 
   getBonusNumber() {
@@ -51,7 +50,7 @@ class WinningLotto {
   }
 
   validateBonusNumber(bonusNumber) {
-    if (this.#winningLottoNumberList.getNumbers().includes(bonusNumber)) {
+    if (this.#lotto.getNumbers().includes(bonusNumber)) {
       throw new Error(ERROR.bonusNumberDuplication);
     }
   }
@@ -62,7 +61,7 @@ class WinningLotto {
   }
 
   #getMatchLottoCount(lottoNumbers) {
-    const winningNumbers = this.#winningLottoNumberList.getNumbers();
+    const winningNumbers = this.#lotto.getNumbers();
     return winningNumbers.filter((number) => lottoNumbers.includes(number)).length;
   }
 }

@@ -17,8 +17,12 @@ describe('당첨 통계 테스트', () => {
       bonusNumber: 7,
     };
 
-    expect(
-      new WinningResultService(LOTTOS, WINNING_LOTTO).getWinningResult(),
-    ).toEqual({ 3: 1, 4: 1, 5: 1, '5-1': 2, 6: 1 });
+    expect(new WinningResultService(LOTTOS, WINNING_LOTTO).getWinningResults()).toEqual({
+      3: 1,
+      4: 1,
+      5: 1,
+      '5-1': 2,
+      6: 1,
+    });
   });
 });

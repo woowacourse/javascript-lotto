@@ -1,0 +1,45 @@
+/* 당첨 로또 */
+.winning-lotto {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  box-sizing: border-box;
+}
+label.winning-lotto__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-lotto-grayscale-5);
+}
+/* 당첨번호 */
+.winning-lotto-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: content-box;
+}
+
+.winning-lotto-form input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--color-lotto-grayscale-3);
+
+  text-align: center;
+}
+
+.winning-numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-numbers-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+/* 보너스번호 */
+.bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

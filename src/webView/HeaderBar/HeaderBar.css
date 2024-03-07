@@ -1,0 +1,17 @@
+header {
+  background-color: var(--color-lotto-primary);
+  border-bottom: 1px solid #4e5ba633;
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  font-size: 1.5rem;
+  color: var(--color-lotto-grayscale-1);
+  margin-left: 9rem;
+}
+
+.header a {
+  text-decoration: none;
+  color: white;
+}

@@ -26,7 +26,7 @@ class WinningLottoController {
       bonusNumber: winningLotto.getBonusNumber(),
     };
 
-    return new WinningResultService(this.#lottosNumbers, winningLottoObject).getWinningResult();
+    return new WinningResultService(this.#lottosNumbers, winningLottoObject).getWinningResults();
   }
 
   #printWinningCharacteristic(winningResult) {

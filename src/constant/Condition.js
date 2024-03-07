@@ -14,6 +14,7 @@ const CONDITION = Object.freeze({
 
   secondPrizeMatchCount: 5,
   secondPrizeMatchBonusCount: 1,
+  lottoSeparator: ',',
 });
 
 export default CONDITION;

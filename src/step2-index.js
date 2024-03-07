@@ -1,4 +1,24 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+// CSS
+import '@webView/globals.css';
+import '@webView/index.css';
+
+import '@webView/HeaderBar/HeaderBar.css';
+import '@webView/MainApp/MainApp.css';
+import '@webView/MainApp/AppFront/PurchaseLotto.css';
+import '@webView/MainApp/AppFront/PurchasedLotto.css';
+import '@webView/MainApp/AppFront/Lotto.css';
+import '@webView/MainApp/AppFront/WinningLotto.css';
+import '@webView/MainApp/ResultModal/ResultButton.css';
+import '@webView/MainApp/ResultModal/ResultModal.css';
+import '@webView/FooterBar/FooterBar.css';
+
+// JS
+import '@webView/HeaderBar/HeaderBar';
+import '@webView/MainApp/MainApp';
+import '@webView/MainApp/AppFront/PurchaseLotto';
+import '@webView/MainApp/AppFront/PurchasedLotto';
+import '@webView/MainApp/AppFront/Lotto';
+import '@webView/MainApp/AppFront/WinningLotto';
+import '@webView/MainApp/ResultModal/ResultButton';
+import '@webView/MainApp/ResultModal/ResultModal';
+import '@webView/FooterBar/FooterBar';

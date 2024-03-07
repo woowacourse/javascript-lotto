@@ -16,6 +16,7 @@ class PurchaseLottoService {
   #validate(moneyString) {
     this.#validateNotNumber(moneyString);
     this.#validateMultiple(moneyString);
+    this.#validatePositive(moneyString);
   }
 
   #validateNotNumber(moneyString) {
@@ -27,6 +28,11 @@ class PurchaseLottoService {
   #validateMultiple(moneyString) {
     if (Number(moneyString) % CONDITION.pricePerLotto !== 0) {
       throw new Error(ERROR.beMultiple);
+    }
+  }
+  #validatePositive(moneyString) {
+    if (Number(moneyString) <= 0) {
+      throw new Error(ERROR.bePositive);
     }
   }
 
