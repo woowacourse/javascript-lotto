@@ -185,20 +185,17 @@ class LottoController {
     return validatedBonusNumber;
   }
 
-  // 로또 순위 결정
-  determineLottoRanks({ lottos, winningNumbers, bonusNumber }) {
-    return this.#lottoMachine.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
-  }
-
-  // 수익률 계산
-  calculateProfitRate(winningResult) {
-    return this.#lottoMachine.calculateProfitRate(winningResult);
-  }
-
   // 게임 실행
   async executeGame({ lottos, winningNumbers, bonusNumber }) {
-    const winningResult = this.determineLottoRanks({ lottos, winningNumbers, bonusNumber });
-    const profitRate = this.calculateProfitRate(winningResult);
+    // 로또 순위 결정
+    const winningResult = this.#lottoMachine.determineLottoRanks({
+      lottos,
+      winningNumbers,
+      bonusNumber
+    });
+    // 수익률 계산
+    const profitRate = this.#lottoMachine.calculateProfitRate(winningResult);
+
     this.displayWinningResult(winningResult, profitRate);
   }
 
