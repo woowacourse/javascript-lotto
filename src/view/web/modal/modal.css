@@ -1,0 +1,31 @@
+body.modalOpen {
+  overflow-y: hidden;
+}
+
+.modalBackground {
+  background: #00000080;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: 350px;
+  height: 500px;
+  border-radius: 4px;
+  background: var(--color-grayscale-1);
+  padding: 15px;
+  position: relative;
+}
+
+.rightButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}

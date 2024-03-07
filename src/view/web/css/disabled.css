@@ -1,0 +1,7 @@
+.disabledButton {
+  background-color: var(--color-grayscale-4);
+}
+
+.disabledInput {
+  color: var(--color-grayscale-4);
+}

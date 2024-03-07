@@ -2,10 +2,16 @@ import { LOTTO, LOTTO_NUMBER } from "../constants/lotto.js";
 import Lotto from "./Lotto.js";
 import generateRandomNumbers from "../utils/generateRandomNumbers.js";
 import WinningLotto from "./WinningLotto.js";
+import isHaveEmptyInput from "../utils/isHaveEmptyInput.js";
+import CustomError from "../error/CustomError.js";
+import ERROR_MESSAGE from "../error/errorMessage.js";
 
 function generateWinningLotto(numbers) {
-  const parsedNumbers = numbers.split(",").map(Number);
-  const winningLotto = new Lotto(parsedNumbers);
+  const splitNumbers = numbers.split(",");
+
+  if (isHaveEmptyInput(splitNumbers)) throw new CustomError(ERROR_MESSAGE.lottoNumberEmpty);
+
+  const winningLotto = new Lotto(splitNumbers.map(Number));
 
   return new WinningLotto(winningLotto);
 }

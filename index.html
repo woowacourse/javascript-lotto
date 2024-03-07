@@ -9,7 +9,48 @@
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>🎱 행운의 로또</header>
+      <div id="mainContainer">
+        <main id="mainWrapper" class="relative">
+          <h1 class="fullWidthText">🎱 내 번호 당첨 확인 🎱</h1>
+          <form id="moneyInputForm">
+            <label class="formTitle" for="moneyInput">구입할 금액을 입력해주세요.</label>
+            <div class="inputAndButtonContainer">
+              <input id="moneyInput" type="text" placeholder="금액" class="fullWidthInput" />
+              <button id="moneySubmit" class="button" >구입</button>
+            </div>
+          </form>
+          <div id="purchasedContainer" style="display: none">
+            <div class="margin" style="margin-top: 36px; width: 100%"> </div>
+            <div class="formTitle" id="purchasedLottoCount"></div>
+            <ul id="purchasedLottosContainer" class="scrollList hideScroll"></dl>
+          </div>
+          <form  id="winningLottoAndBonusInputContainer" style="display: none">
+            <div id="winningLottoAndBonusInputTitle"></div>
+            <div class="margin" style="margin-top: 20px; width: 100%"> </div>
+            <div class="flexBetween">
+              <div id="winningLottoInputForm" ></div>
+              <div id="bonusInputForm" class="flexCol flexEnd"></div>
+            </div>
+            <button type="submit" id="checkResult" class="fullWidthButton positionBottom" >결과 확인하기</button>
+          </form>
+        </main>
+      </div>
+      <div class="modalBackground" style="display: none">
+        <section class="modalContainer">
+          <div class="rightButtonContainer">
+            <button id="closeModalButton" class="textButton" aria-label="resultClose">✕</button>
+          </div>
+          <h1 class="fullWidthText">🏆 당첨 통계 🏆</h1>
+    
+          <table id='resultTable'>
+            
+          </table>
+          <div class="fullWidthText textStyleBold" id="profitRate"></div>
+          <button class="fullWidthButton positionBottom" id="restartButton">다시 시작하기</button>
+        </section>
+      </div>
+      <footer>Copyright 2023. woowacourse</footer>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>

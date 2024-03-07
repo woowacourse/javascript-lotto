@@ -1,0 +1,34 @@
+.toast {
+  position: fixed;
+  min-width: 300px;
+  width: fit-content;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 20px 30px;
+  border-radius: 8px;
+  animation: toastAnimation 3s forwards;
+  font-weight: var(--font-caption-weight);
+  font-size: var(--font-caption-size);
+  color: var(--color-lotto-primary);
+}
+
+@keyframes toastAnimation {
+  0% {
+    bottom: -100px;
+    opacity: 0.5;
+  }
+  30% {
+    bottom: 40px;
+    opacity: 1;
+  }
+  70% {
+    bottom: 40px;
+    opacity: 1;
+  }
+  100% {
+    bottom: -100px;
+    opacity: 0.5;
+  }
+}
