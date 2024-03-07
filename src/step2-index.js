@@ -23,7 +23,7 @@ window.onload = function () {
 
   purchaseForm.addEventListener('submit', async function (event) {
     event.preventDefault();
-    const purchaseAmount = document.getElementById('purchaseInputField').value;
+    const purchaseAmount = event.target.elements.purchaseInputField.value;
     lottos = await lottoController.purchaseLottos(purchaseAmount);
   });
 
