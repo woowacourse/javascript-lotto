@@ -1,6 +1,7 @@
 import Lotto from '../../domain/Lotto';
 import LottoNumber from '../../domain/LottoNumber';
 import Result from './Result';
+import { INFORMATION, BUTTON } from '../constants/Constants';
 
 const WinningLotto = {
   showWinningLottoInputUI(randomLottos, lottoMoney) {
@@ -8,7 +9,7 @@ const WinningLotto = {
       '#game-winninglotto-input-numbers-information',
     );
     winningLottoInformation.innerHTML =
-      '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
+      INFORMATION.inputWinningLottoAndBonusNumberInformation;
     this.createWinningLottoInteraction();
     this.createBonusLottoInteraction();
     this.createResultButton(randomLottos, lottoMoney);
@@ -18,7 +19,8 @@ const WinningLotto = {
     const winningLottoInputInformation = document.querySelector(
       '#game-winninglotto-input-numbers-information',
     );
-    winningLottoInputInformation.innerHTML = '당첨 번호';
+    winningLottoInputInformation.innerHTML =
+      INFORMATION.inputWinningLottoInformation;
     const winningLottoInteraction = document.querySelector(
       '#game-winninglotto-input-numbers-interaction',
     );
@@ -34,7 +36,8 @@ const WinningLotto = {
     const bonusLottoInputInformation = document.querySelector(
       '#game-winninglotto-input-bonus-information',
     );
-    bonusLottoInputInformation.innerHTML = '보너스 번호';
+    bonusLottoInputInformation.innerHTML =
+      INFORMATION.inputBonusNumberInformation;
     const bonusLottoInputInteraction = document.querySelector(
       '#game-winninglotto-input-bonus-interaction',
     );
@@ -43,9 +46,9 @@ const WinningLotto = {
 
   createResultButton(randomLottos, lottoMoney) {
     const resultButton = document.querySelector('.result-button-container');
-    resultButton.innerHTML =
-      '<button class="result-button"> 결과 확인</button>';
-    resultButton.addEventListener('click', () => {
+    resultButton.innerHTML = `<button class="result-button">${BUTTON.showResult}</button>`;
+    resultButton.addEventListener('click', (event) => {
+      event.preventDefault();
       try {
         const winningNumbers = Array.from(
           document.querySelectorAll('[name="winning-number"]'),

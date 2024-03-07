@@ -1,6 +1,7 @@
 import { calculateTotalPrize } from '../../domain/calculateTotalPrize';
 import getLottoRank from '../../domain/getLottoRank';
 import { calculateProfitRate } from '../../utils/calculateProfitRate';
+import { RESULT } from '../constants/Constants';
 
 const Result = {
   showResult(winningLotto, bonusLottoNumber, randomLottos, lottoMoney) {
@@ -30,15 +31,15 @@ const Result = {
       <button class="button-close">Ⅹ</button>
     </div>
     <div class="result-popup-title">
-      <h1>🏆 당첨 통계 🏆</h1>
+      <h1>${RESULT.title}</h1>
     </div>
     <div id="result-winning-list">
       <table>
         <thead>
           <tr>
-            <th>일치 갯수</th>
-            <th>당첨금</th>
-            <th>당첨 갯수</th>
+            <th>${RESULT.matchNumber}</th>
+            <th>${RESULT.prize}</th>
+            <th>${RESULT.winCount}</th>
           </tr>
         </thead>
         <tbody>
@@ -49,7 +50,7 @@ const Result = {
     <div id="result-profit-rate">
       ${this.showProfitRate(totalPrize, lottoMoney)}
     </div>
-    <button class="button-restart">다시 시작하기</button>
+    <button class="button-restart">${RESULT.restart}</button>
   </div>
 </div>
 </div>
@@ -58,28 +59,28 @@ const Result = {
 
   showResultList(ranks) {
     return `<tr>
-    <td>3개</td>
-    <td>5,000</td>
+    <td>${RESULT.fifth[0]}</td>
+    <td>${RESULT.fifth[1]}</td>
     <td>${ranks[0]}개</td>
   </tr>
   <tr>
-    <td>4개</td>
-    <td>50,000</td>
+    <td>${RESULT.fourth[0]}</td>
+    <td>${RESULT.fourth[1]}</td>
     <td>${ranks[1]}개</td>
   </tr>
   <tr>
-    <td>5개</td>
-    <td>1,500,000</td>
+    <td>${RESULT.third[0]}</td>
+    <td>${RESULT.third[1]}</td>
     <td>${ranks[2]}개</td>
   </tr>
   <tr>
-    <td>5개+보너스볼</td>
-    <td>30,000,000</td>
+    <td>${RESULT.second[0]}</td>
+    <td>${RESULT.second[1]}</td>
     <td>${ranks[3]}개</td>
   </tr>
   <tr>
-    <td>6개</td>
-    <td>2,000,000,000</td>
+    <td>${RESULT.first[0]}</td>
+    <td>${RESULT.first[1]}</td>
     <td>${ranks[4]}개</td>
   </tr>
   `;
