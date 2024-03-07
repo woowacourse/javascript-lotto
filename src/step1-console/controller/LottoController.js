@@ -8,15 +8,13 @@ import LottoResultMaker from "../domain/LottoResultMaker.js";
 import InputView from "../view/InputVIew.js";
 import OutputView from "../view/OutputView.js";
 
+import CustomError from "../utils/CustomError.js";
 import { retryOnError } from "../utils/retryOnError.js";
 import { parseNumber } from "../utils/parseNumber.js";
 
-import { ERROR_MESSAGE } from "../constants/messages.js";
-
+const RETRY_YES = ["y", "Y"];
+const RETRY_NO = ["n", "N"];
 class LottoController {
-  static #RETRY_YES = ["y", "Y"];
-  static #RETRY_NO = ["n", "N"];
-
   async init() {
     const boughtLottos = await this.#processBuyingLottos();
     const winningLotto = await this.#processGettingWinningLotto();
@@ -25,7 +23,7 @@ class LottoController {
 
     const retryChecker = await retryOnError(this.#readRetryChecker.bind(this));
 
-    if (LottoController.#RETRY_YES.includes(retryChecker)) await this.init();
+    if (RETRY_YES.includes(retryChecker)) await this.init();
   }
 
   async #processBuyingLottos() {
@@ -83,7 +81,9 @@ class LottoController {
   async #readLotto() {
     const rawLottoNumbers = await InputView.readWinningNumbers();
     const lottoNumberStrings = rawLottoNumbers.split(",");
-    const lottoNumbers = lottoNumberStrings.map(parseNumber);
+    const lottoNumbers = lottoNumberStrings.map((string) =>
+      parseNumber(string)
+    );
 
     return new Lotto(lottoNumbers);
   }
@@ -104,13 +104,12 @@ class LottoController {
   }
 
   #validateRetryChecker(string) {
-    const RETRY_OPTION = [
-      ...LottoController.#RETRY_YES,
-      ...LottoController.#RETRY_NO,
-    ];
+    const RETRY_OPTIONS = [...RETRY_YES, ...RETRY_NO];
 
-    if (!RETRY_OPTION.includes(string)) {
-      throw new Error(ERROR_MESSAGE.invalidRetryChecker);
+    if (!RETRY_OPTIONS.includes(string)) {
+      throw new CustomError(
+        "유효하지 않은 재시작 옵션입니다. (y/n 중 선택해주세요)"
+      );
     }
   }
 }

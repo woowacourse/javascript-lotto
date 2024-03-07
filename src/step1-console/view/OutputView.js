@@ -2,12 +2,10 @@ import { outputMessageFormatter } from "../constants/messages.js";
 
 class OutputView {
   static printBoughtLottoNumbers(lottoNumbersArray) {
-    this.#printMessage(
-      outputMessageFormatter.boughtLottosCompleted(lottoNumbersArray.length)
-    );
+    this.#printMessage(`${lottoNumbersArray.length}개를 구매했습니다.`);
 
     lottoNumbersArray.forEach((lottoNumbers) =>
-      this.#printMessage(outputMessageFormatter.array(lottoNumbers))
+      this.#printMessage(`[${lottoNumbers.join(", ")}]`)
     );
   }
 

@@ -1,8 +1,9 @@
+import CustomError from "../utils/CustomError.js";
 import { validateTypeInteger } from "../utils/validator.js";
 
-export default class Money {
-  static MIN_AMOUNT = 1;
+const MONEY_MIN = 1;
 
+export default class Money {
   #amount;
 
   constructor(amount) {
@@ -18,8 +19,8 @@ export default class Money {
   }
 
   #validateOverMinAmount(amount) {
-    if (amount < Money.MIN_AMOUNT) {
-      throw new Error(`[ERROR] 금액은 ${Money.MIN_AMOUNT} 이상이어야 합니다.`);
+    if (amount < MONEY_MIN) {
+      throw new CustomError(`금액은 ${MONEY_MIN} 이상이어야 합니다.`);
     }
   }
 }

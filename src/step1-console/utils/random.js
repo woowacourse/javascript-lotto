@@ -1,3 +1,5 @@
+import CustomError from "./CustomError.js";
+
 export default class Random {
   static pickNumbersBetween(minInclusive, maxInclusive, count) {
     this.#validateRange(minInclusive, maxInclusive);
@@ -12,14 +14,14 @@ export default class Random {
 
   static #validateRange(min, max) {
     if (min > max) {
-      throw new Error("[ERROR] 최소값은 최대값보다 작거나 같아야 합니다.");
+      throw new CustomError("최소값은 최대값보다 작거나 같아야 합니다.");
     }
   }
 
   static #validateCount(min, max, count) {
     if (count > max - min + 1) {
-      throw new Error(
-        "[ERROR] 최대값과 최소값의 차이보다 큰 수를 뽑을 수 없습니다."
+      throw new CustomError(
+        "최대값과 최소값의 차이보다 큰 수를 뽑을 수 없습니다."
       );
     }
   }

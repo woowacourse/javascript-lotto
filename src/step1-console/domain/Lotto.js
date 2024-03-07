@@ -6,9 +6,8 @@ import {
   validateLengthEqual,
 } from "../utils/validator.js";
 
+export const LOTTO_NUMBER_LENGTH = 6;
 class Lotto {
-  static NUMBER_COUNT = 6;
-
   #lottoNumbers = [];
 
   constructor(numbers = []) {
@@ -44,7 +43,7 @@ class Lotto {
   }
 
   #validateLottoNumbers(numbers) {
-    validateLengthEqual(numbers.length, Lotto.NUMBER_COUNT);
+    validateLengthEqual(numbers.length, LOTTO_NUMBER_LENGTH);
     validateUniqueElements(numbers);
   }
 

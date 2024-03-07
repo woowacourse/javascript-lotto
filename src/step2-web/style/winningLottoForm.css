@@ -1,0 +1,46 @@
+/* WinningLottoForm */
+.winning-lotto-message {
+  margin: 1.2rem 0 1.1rem 0;
+}
+
+.number-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-numbers-group {
+  width: 65%;
+}
+
+.winning-numbers-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.bonus-number-group {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.check-result-button-style {
+  width: 100%;
+  margin-top: 1.2rem;
+}
+
+.lotto-number-input {
+  width: 1rem;
+  height: 2.13rem;
+  border: var(--size-light-border) solid var(--color-lotto-grey-scale-3);
+  border-radius: var(--size-light-border-radius);
+}
+
+.lotto-number-input[type="number"] {
+  padding: 0 0.6rem;
+}
+.lotto-number-input[type="number"]::-webkit-inner-spin-button,
+.lotto-number-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}

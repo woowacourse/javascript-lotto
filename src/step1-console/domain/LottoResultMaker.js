@@ -1,4 +1,4 @@
-import LottoSeller from "./LottoSeller.js";
+import { LOTTO_PRICE } from "./LottoSeller.js";
 
 import {
   LOTTO_RANK_INITIAL_RESULT,
@@ -20,7 +20,7 @@ class LottoResultMaker {
     const lottoCount = ranks.length;
 
     const prizeAmount = this.#sumPrizeAmount(rankResult);
-    const purchaseAmount = lottoCount * LottoSeller.LOTTO_PRICE;
+    const purchaseAmount = lottoCount * LOTTO_PRICE;
 
     return (prizeAmount / purchaseAmount) * 100;
   }

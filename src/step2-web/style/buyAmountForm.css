@@ -1,0 +1,39 @@
+/* BuyAmountForm */
+.getting-buy-amount {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.buy-amount-message {
+  margin-bottom: 0.5rem;
+}
+
+.buy-amount-form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buy-amount-input {
+  height: 2rem;
+  border-radius: var(--size-light-border-radius);
+  border: 0.04rem solid var(--color-lotto-grey-scale-4);
+  flex-grow: 1;
+  font-size: var(--size-body-text);
+  color: var(--color-lotto-grey-scale-5);
+}
+
+.buy-amount-input[type="number"] {
+  padding: 0 0.5rem;
+}
+
+.buy-amount-input[type="number"]::-webkit-inner-spin-button,
+.buy-amount-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.buy-amount-button-style {
+  width: 15%;
+  margin-left: 0.5rem;
+}

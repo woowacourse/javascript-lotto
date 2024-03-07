@@ -1,5 +1,7 @@
 export const parseNumber = (string) => {
-  if (string === "") {
+  const EXCEPTIONAL_CASES = [""];
+
+  if (EXCEPTIONAL_CASES.includes(string)) {
     return NaN;
   }
 
