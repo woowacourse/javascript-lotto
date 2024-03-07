@@ -27,7 +27,7 @@ class Events {
 
   static modalCloseButtonClickEvent(event) {
     event.preventDefault();
-    ConsoleImplementation.enqueue("n");
+    ConsoleImplementation.enqueue("y");
   }
 }
 
