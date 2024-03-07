@@ -1,0 +1,111 @@
+.app-header {
+  width: 100%;
+  height: 6.4rem;
+  padding-left: 5rem;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+}
+
+.app-main {
+  height: calc(100vh - 14.4rem);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  border: 1px solid var(--border-gray);
+  padding: 2rem;
+  min-width: 41.4rem;
+}
+
+.purchase-form {
+  width: 100%;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+
+.purchase-input-container {
+  width: 100%;
+}
+
+.purchase-input-container > input {
+  width: 80%;
+  height: 3.4rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-gray);
+  text-indent: 1rem;
+}
+
+.purchase-input-container > input::placeholder {
+  color: var(--text-gray);
+  vertical-align: middle;
+  font-size: 1.4rem;
+}
+
+.purchase-input-container > button {
+  width: 15%;
+}
+
+.lottos-container {
+  height: 40%;
+  margin: 2rem 0 2rem 0;
+  line-height: 3rem;
+}
+
+.winning-lotto-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.winning-input {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-gray);
+}
+
+.app-footer {
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 0.1rem solid var(--primary);
+  color: var(--primary);
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-modal);
+}
+
+.modal-content {
+  width: 35rem;
+  height: 50rem;
+  background-color: var(--background-white);
+  border-radius: 1rem;
+  align-items: center;
+}
+
+.cancel-button {
+  background-color: transparent;
+  border: none;
+  margin-left: auto;
+  padding: 1rem 1.5rem 0 0;
+}
+
+.result-container {
+  width: 90%;
+  margin: 1rem 0 1rem 0;
+}
