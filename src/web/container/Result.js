@@ -1,13 +1,17 @@
-import { calculateTotalPrize } from "../../domain/calculateTotalPrize";
-import getLottoRank from "../../domain/getLottoRank";
-import { calculateProfitRate } from "../../utils/calculateProfitRate";
+import { calculateTotalPrize } from '../../domain/calculateTotalPrize';
+import getLottoRank from '../../domain/getLottoRank';
+import { calculateProfitRate } from '../../utils/calculateProfitRate';
 
 const Result = {
   showResult(winningLotto, bonusLottoNumber, randomLottos, lottoMoney) {
     const resultWindowContainer = document.querySelector('.result-window');
-    const ranks = getLottoRank({winningLotto,bonusLottoNumber,randomLottos});
+    const ranks = getLottoRank({
+      winningLotto,
+      bonusLottoNumber,
+      randomLottos,
+    });
     resultWindowContainer.innerHTML = this.showResultWindow(ranks, lottoMoney);
-    resultWindowContainer.classList.toggle('hidden')
+    resultWindowContainer.classList.toggle('hidden');
     const resultCloseButton = document.querySelector('.button-close');
     resultCloseButton.addEventListener('click', () => {
       resultWindowContainer.innerHTML = '';
@@ -49,11 +53,10 @@ const Result = {
   </div>
 </div>
 </div>
-    `
+    `;
   },
 
   showResultList(ranks) {
-    console.log(ranks);
     return `<tr>
     <td>3개</td>
     <td>5,000</td>
@@ -79,16 +82,17 @@ const Result = {
     <td>2,000,000,000</td>
     <td>${ranks[4]}개</td>
   </tr>
-  `
+  `;
   },
 
   showProfitRate(totalPrize, lottoMoney) {
-    console.log(lottoMoney);
-    return`
-    당신의 총 수익률은 ${calculateProfitRate(totalPrize, lottoMoney.getLottoMoney())}%입니다.
-    `
-  }
-}
-
+    return `
+    당신의 총 수익률은 ${calculateProfitRate(
+      totalPrize,
+      lottoMoney.getLottoMoney(),
+    )}%입니다.
+    `;
+  },
+};
 
 export default Result;

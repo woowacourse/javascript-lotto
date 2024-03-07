@@ -1,5 +1,4 @@
 import './web/css/reset.css';
-import './web/css/common.css';
 import './web/css/button.css';
 import './web/css/gameInput.css';
 import './web/css/gameResult.css';
