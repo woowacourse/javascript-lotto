@@ -7,10 +7,14 @@ class PurchaseAmountValidator {
 
   static validate(purchaseAmount) {
     this.validateIsNumber(purchaseAmount);
-    const numberInput = parseInt(purchaseAmount, 10);
+    const numberInput = this.convertToNumber(purchaseAmount);
     this.validateIsInteger(numberInput);
     this.validateIsAtLeast(numberInput, OPTIONS.LOTTO.price);
     return numberInput;
+  }
+
+  static convertToNumber(purchaseAmount) {
+    return parseInt(purchaseAmount, 10);
   }
 
   static validateIsNumber(value) {
