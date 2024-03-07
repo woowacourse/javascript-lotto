@@ -1,6 +1,6 @@
 import { print } from "./console.js";
 
-async function catchReturn(func) {
+async function retryCallbackFunctionOnError(func) {
   while (true) {
     try {
       return await func();
@@ -10,4 +10,4 @@ async function catchReturn(func) {
   }
 }
 
-export default catchReturn;
+export default retryCallbackFunctionOnError;

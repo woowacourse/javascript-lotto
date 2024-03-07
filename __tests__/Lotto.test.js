@@ -1,6 +1,6 @@
 import Lotto from "../src/domain/Lotto.js";
 import LottoNumber from "../src/domain/LottoNumber.js";
-import { ERROR_MESSAGE, PREFIX } from "../src/error/ErrorMessage.js";
+import { PREFIX } from "../src/error/ErrorMessage.js";
 
 describe("로또 기능 테스트", () => {
   test("숫자 6개를 가진 로또를 생성한다.", () => {
@@ -20,7 +20,7 @@ describe("로또 기능 테스트", () => {
     const winningLotto = new Lotto("1,2,3,4,5,6");
     const bonusLottoNumber = new LottoNumber(6);
 
-    expect(() => winningLotto.checkHaveBonus(bonusLottoNumber.getLotto())).toThrow(
+    expect(() => winningLotto.checkHaveBonus(bonusLottoNumber.getLottoNumber())).toThrow(
       PREFIX.error
     );
   });

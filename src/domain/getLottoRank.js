@@ -12,14 +12,13 @@ function getRankIndex(matchCount, isBonus) {
 
 function calcMatchCountAndBonus({ winningLotto, bonusLottoNumber, randomLotto }) {
   const matchCount = getMatchCount(randomLotto.getLotto(), winningLotto.getLotto());
-  const isBonus = randomLotto.getLotto().includes(bonusLottoNumber.getLotto());
+  const isBonus = randomLotto.getLotto().includes(bonusLottoNumber.getLottoNumber());
 
   return { matchCount, isBonus };
 }
 
 function getLottoRank({ winningLotto, bonusLottoNumber, randomLottos }) {
   const ranks = Array.from({ length: 5 }, () => 0);
-
   randomLottos.forEach((randomLotto) => {
     const { matchCount, isBonus } = calcMatchCountAndBonus({ winningLotto, bonusLottoNumber, randomLotto });
     if (matchCount < START_MATCH_COUNT) return;

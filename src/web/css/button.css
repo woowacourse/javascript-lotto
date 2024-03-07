@@ -1,0 +1,33 @@
+.result-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 4px;
+  height: 30px;
+  border: none;
+  color: var(--lotto-greyscale-1);
+  background: var(--lotto-primary);
+  font-weight: 700;
+}
+
+.button-close {
+  border: none;
+  background: none;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 10px 10px 5px 5px;
+}
+
+.button-restart {
+  width: 90%;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  height: 40px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+}

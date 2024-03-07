@@ -1,0 +1,66 @@
+.result-button-container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.result-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.result-popup-container {
+  display: flex;
+  background-color: var(--lotto-greyscale-5-opacity-12);
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.result-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+  height: 430px;
+  background-color: var(--lotto-greyscale-1);
+  border-radius: 4px;
+}
+
+.result-popup-close {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+}
+
+.result-popup-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.result-winning-list {
+  display: flex;
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#result-profit-rate {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.hidden {
+  display: none;
+}

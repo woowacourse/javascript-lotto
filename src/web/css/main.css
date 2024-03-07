@@ -1,0 +1,9 @@
+.main-container {
+  background-color: var(--lotto-greyscale-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: max-content;
+  min-height: calc(100vh - 160px);
+}

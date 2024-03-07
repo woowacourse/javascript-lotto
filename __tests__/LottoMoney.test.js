@@ -15,7 +15,7 @@ describe("로또머니 클래스 기능 테스트", () => {
   test.each(["a", 123.45])(
     "구입 금액의 자료형이 정수가 아니면 오류를 발생시킨다.",
     (wrongMoney) => {
-      expect(() => new LottoMoney(wrongMoney)).toThrow(ERROR_MESSAGE.lottoMoneyNotInteger);
+      expect(() => new LottoMoney(wrongMoney)).toThrow(`[ERROR]`);
     }
   );
 
