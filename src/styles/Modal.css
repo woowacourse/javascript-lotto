@@ -1,0 +1,13 @@
+app-modal > p[slot='header'] {
+  width: 100%;
+
+  /* text */
+  text-align: center;
+  font-size: 2rem;
+  font-weight: var(--weight-semi-bold);
+  line-height: 2rem;
+  letter-spacing: 0.015rem;
+
+  /* spacing */
+  margin: 0.8rem 0 3.3rem;
+}

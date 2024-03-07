@@ -1,0 +1,41 @@
+purchased-lottos {
+  width: 100%;
+  margin-bottom: 2.4rem;
+}
+
+purchased-lottos > .counter {
+  margin-bottom: 0.8rem;
+}
+
+purchased-lottos > .list {
+  height: 15rem;
+  overflow-y: scroll;
+  scrollbar-color: unset;
+
+  list-style: none;
+  padding-left: 0px;
+  margin: 0;
+}
+
+purchased-lottos > .list::-webkit-scrollbar {
+  background: rgb(var(--color-grey-scale-1));
+}
+
+purchased-lottos > .list > li {
+  display: flex;
+  align-items: center;
+
+  height: 3.6rem;
+
+  margin-bottom: 0.4rem;
+}
+
+.ticket-icon {
+  font-size: 3.4rem;
+  margin-right: 0.8rem;
+}
+
+.lotto-numbers {
+  white-space: pre;
+  font-variant-numeric: tabular-nums;
+}

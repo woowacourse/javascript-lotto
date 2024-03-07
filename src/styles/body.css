@@ -1,0 +1,19 @@
+.main-content {
+  width: 100%;
+  max-width: fit-content;
+  padding: 4rem 1.6rem 3.2rem 1.6rem;
+
+  border: 0.1rem solid rgb(var(--color-grey-scale-3));
+  border-radius: 0.4rem;
+
+  background-color: rgb(var(--color-grey-scale-1));
+
+  /* text */
+  line-height: 2.4rem;
+  letter-spacing: 0.05rem;
+  font-size: var(--font-regular);
+}
+
+.main-content > .title {
+  margin-bottom: 2.8rem;
+}

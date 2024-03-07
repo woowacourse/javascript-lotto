@@ -1,9 +1,6 @@
 import { ERROR_MESSAGE } from '../constants';
-import { isEmptyInput, isInteger } from '../utils';
-import {
-  isLottoNumberInRange,
-  isNotInLottoNumber,
-} from './validator/validators';
+import { isEmptyInput, isInteger } from '../utils/validators';
+import { isLottoNumberInRange, isNotInLottoNumber } from './validator/validators';
 
 class WinningLotto {
   #lotto;
@@ -36,21 +33,17 @@ class WinningLotto {
   }
 
   #getMatchedCount(lottoNumbers) {
-    return lottoNumbers.filter((lottoNumber) =>
-      this.#lotto.numbers.includes(lottoNumber),
-    ).length;
+    return lottoNumbers.filter((lottoNumber) => this.#lotto.numbers.includes(lottoNumber)).length;
   }
 
   #validateBonusNumber(bonusNumberInput) {
     const bonusNumber = Number(bonusNumberInput);
 
-    if (isEmptyInput(bonusNumberInput))
-      throw new Error(ERROR_MESSAGE.emptyInput);
+    if (isEmptyInput(bonusNumberInput)) throw new Error(ERROR_MESSAGE.emptyInput);
 
     if (!isInteger(bonusNumber)) throw new Error(ERROR_MESSAGE.notInteger);
 
-    if (!isLottoNumberInRange(bonusNumber))
-      throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
+    if (!isLottoNumberInRange(bonusNumber)) throw new Error(ERROR_MESSAGE.invalidLottoNumberRange);
 
     if (!isNotInLottoNumber(this.#lotto.numbers, bonusNumber)) {
       throw new Error(ERROR_MESSAGE.alreadyInLottoNumber);

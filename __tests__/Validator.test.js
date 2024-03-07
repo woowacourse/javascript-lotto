@@ -9,7 +9,7 @@ import {
   isValidRestartInputForm,
   isValidWinningNumbersForm,
 } from '../src/domains/validator/validators';
-import { isInteger, isIntegers } from '../src/utils';
+import { isInteger, isIntegers } from '../src/utils/validators';
 
 describe('당첨 번호 유효성 검사 기능 테스트', () => {
   test.each(['1/2/3/4/5/6', '1 2 3 4 5 6'])(
@@ -77,12 +77,9 @@ describe('당첨 번호 유효성 검사 기능 테스트', () => {
 });
 
 describe('보너스 번호 유효성 검사 기능 테스트', () => {
-  test.each(['s', ' ', 1.2])(
-    'isInteger - 정수가 아니라면 false를 반환한다. %s',
-    (number) => {
-      expect(isInteger(number)).toBeFalsy();
-    },
-  );
+  test.each(['s', ' ', 1.2])('isInteger - 정수가 아니라면 false를 반환한다. %s', (number) => {
+    expect(isInteger(number)).toBeFalsy();
+  });
 
   test.each([1, 2])('isInteger - 정수가라면 true를 반환한다. %s', (number) => {
     expect(isInteger(number)).toBeTruthy();
@@ -95,12 +92,9 @@ describe('보너스 번호 유효성 검사 기능 테스트', () => {
     },
   );
 
-  test.each([1, 45])(
-    'isLottoNumberInRange - 보너스 번호의 범위가 1~45인 경우 true를 반환한다. %s',
-    (numbers) => {
-      expect(isLottoNumberInRange(numbers)).toBeTruthy();
-    },
-  );
+  test.each([1, 45])('isLottoNumberInRange - 보너스 번호의 범위가 1~45인 경우 true를 반환한다. %s', (numbers) => {
+    expect(isLottoNumberInRange(numbers)).toBeTruthy();
+  });
 
   test('isNotInLottoNumber - 이미 로또 번호에 존재하는 숫자인 경우 false를 반환한다.', () => {
     const LOTTO_NUMBERS = [1, 2, 3, 4, 5, 6];
@@ -118,12 +112,9 @@ describe('보너스 번호 유효성 검사 기능 테스트', () => {
 });
 
 describe('checkPaymentAmount 기능 테스트', () => {
-  test.each([1.1, 's', ''])(
-    'isInteger - 정수가 아니라면 false를 반환한다. %s',
-    (number) => {
-      expect(isInteger(number)).toBeFalsy();
-    },
-  );
+  test.each([1.1, 's', ''])('isInteger - 정수가 아니라면 false를 반환한다. %s', (number) => {
+    expect(isInteger(number)).toBeFalsy();
+  });
 
   test('isInteger - 정수라면 true를 반환한다.', () => {
     const PAYMENT_AMOUNT = 1000;

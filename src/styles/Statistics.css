@@ -1,0 +1,24 @@
+app-modal > statistics-result[slot='body'] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+app-modal > statistics-result[slot='body'] > #statistics-table {
+  width: 100%;
+  max-width: 32rem;
+  margin-bottom: 3.2rem;
+}
+
+app-modal > statistics-result[slot='body'] > #profit-rate {
+  margin-bottom: 3.2rem;
+
+  text-align: center;
+
+  font-size: var(--font-regular);
+  font-weight: var(--weight-bold);
+}
+
+app-modal > statistics-result[slot='body'] > #restart {
+  margin-bottom: 1.6rem;
+}

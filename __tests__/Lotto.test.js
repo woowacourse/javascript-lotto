@@ -1,6 +1,17 @@
 import Lotto from '../src/domains/Lotto';
 
 describe('Lotto 유효성 검사 테스트', () => {
+  test('유효성 검사를 통과한 번호들은 저장된다.', () => {
+    // given
+    const NUMBERS = [1, 2, 3, 4, 5, 6];
+
+    // when
+    const lotto = new Lotto(NUMBERS);
+
+    // then
+    expect(lotto.numbers).toEqual(NUMBERS);
+  });
+
   test.each([
     [1, 2, 3, 4, 5, 0],
     [1, 2, 3, 4, 5, 46],
@@ -27,17 +38,6 @@ describe('Lotto 유효성 검사 테스트', () => {
   ])('로또 번호는 총 6개이어야 한다.', (numbers) => {
     // then
     expect(() => new Lotto(numbers)).toThrow();
-  });
-
-  test('유효성 검사를 통과한 번호들은 저장된다.', () => {
-    // given
-    const NUMBERS = [1, 2, 3, 4, 5, 6];
-
-    // when
-    const lotto = new Lotto(NUMBERS);
-
-    // then
-    expect(lotto.numbers).toEqual(NUMBERS);
   });
 });
 
