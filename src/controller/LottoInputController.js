@@ -22,31 +22,20 @@ class LottoInputController {
   }
 
   async readLottoBoard() {
-    const winningNumbers = await this.#readWinningNumbersUntilOccurError();
-    this.#outputView.printBlankLine();
-    const bonusNumber = await this.#readBonusNumberUntilOccurError(
-      winningNumbers
-    );
+    const { winningNumbers, bonusNumber } =
+      await this.#readWinningNumbersAndBonusNumberUntilOccurError();
+
     const lottoBoard = new LottoBoard(winningNumbers, bonusNumber);
 
     return lottoBoard;
   }
 
-  async #readWinningNumbersUntilOccurError() {
-    const winningNumber = await retryWhenErrorOccurs(
-      this.#readWinningNumbers.bind(this)
+  async #readWinningNumbersAndBonusNumberUntilOccurError() {
+    const readWinningNumbersAndBonusNumber = await retryWhenErrorOccurs(
+      this.#readWinningNumbersAndBonusNumber.bind(this)
     );
 
-    return winningNumber;
-  }
-
-  async #readBonusNumberUntilOccurError(winningNumbers) {
-    const bonusNumber = await retryWhenErrorOccurs(
-      this.#readBonusNumber.bind(this),
-      winningNumbers
-    );
-
-    return bonusNumber;
+    return readWinningNumbersAndBonusNumber;
   }
 
   async #readBuyPrice() {
@@ -57,6 +46,13 @@ class LottoInputController {
     LottoValidator.validateBuyPrice(buyPrice);
 
     return buyPrice;
+  }
+
+  async #readWinningNumbersAndBonusNumber() {
+    const winningNumbers = await this.#readWinningNumbers();
+    this.#outputView.printBlankLine();
+    const bonusNumber = await this.#readBonusNumber(winningNumbers);
+    return { winningNumbers, bonusNumber };
   }
 
   async #readWinningNumbers() {

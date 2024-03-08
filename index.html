@@ -2,15 +2,190 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>🎱 행운의 로또</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="/src/step2-index.js"></script>
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
-    <script type="module" src="./src/js/index.js"></script>
+    <aside id="modal" class="visibility-hidden">
+      <main id="modal__main">
+        <button class="body" id="modal__close-button" tabindex="11">x</button>
+        <h2 class="subtitle" id="modal__title">🏆 당첨 통계 🏆</h2>
+        <table id="modal__result-table">
+          <tr class="modal__result-tr" id="modal__index-th">
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+          </tr>
+          <tr class="modal__result-tr">
+            <td>3개</td>
+            <td>5,000</td>
+            <td class="rank-count">n개</td>
+          </tr>
+          <tr class="modal__result-tr">
+            <td>4개</td>
+            <td>50,000</td>
+            <td class="rank-count">n개</td>
+          </tr>
+          <tr class="modal__result-tr">
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td class="rank-count">n개</td>
+          </tr>
+          <tr class="modal__result-tr">
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td class="rank-count">n개</td>
+          </tr>
+          <tr class="modal__result-tr">
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td class="rank-count">n개</td>
+          </tr>
+        </table>
+
+        <span id="modal__result-span">당신의 총 수익률은 %입니다.</span>
+
+        <button id="modal__retry-button" tabindex="10">다시 시작하기</button>
+      </main>
+    </aside>
+
+    <header>
+      <span class="title" id="header-text">🎱 행운의 로또</span>
+    </header>
+
+    <section class="body" id="main-contents">
+      <h1 class="title" id="contents-title">🎱 내 번호 당첨 확인🎱</h1>
+      <form id="main-contents__price-form">
+        <section id="main-contents__price-input-section">
+          <input
+            id="main-contents__price-input"
+            type="number"
+            placeholder="금액"
+            min="1000"
+            max="10000000000"
+            step="1000"
+            tabindex="1"
+          />
+        </section>
+        <button
+          class="bottom-caption"
+          id="main-contents__price-button"
+          tabindex="2"
+        >
+          구입
+        </button>
+      </form>
+
+      <span id="main-contents__purchased-lotto-span"
+        >총 7개를 구매하였습니다.</span
+      >
+      <section id="main-contents__purchased-lotto-section">
+        <figure class="purchased-lotto">
+          <strong class="lotto-ticket">🎟️</strong
+          ><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+        </figure>
+        <figure class="purchased-lotto">
+          <strong class="lotto-ticket">🎟️</strong
+          ><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+        </figure>
+        <figure class="purchased-lotto">
+          <strong class="lotto-ticket">🎟️</strong
+          ><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+        </figure>
+        <figure class="purchased-lotto">
+          <strong class="lotto-ticket">🎟️</strong
+          ><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+        </figure>
+        <figure class="purchased-lotto">
+          <strong class="lotto-ticket">🎟️</strong
+          ><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+        </figure>
+        <figure class="purchased-lotto">
+          <strong class="lotto-ticket">🎟️</strong
+          ><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+        </figure>
+        <figure class="purchased-lotto">
+          <strong class="lotto-ticket">🎟️</strong
+          ><span class="lotto-number">12, 19, 22, 23, 28, 37</span>
+        </figure>
+      </section>
+
+      <form id="main-contents__winning-lotto-form">
+        <span id="main-contents__winning-lotto-span"
+          >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요</span
+        >
+        <section id="main-contents__winning-number-section">
+          <span id="main-contents__winning-number-span">당첨번호</span>
+          <section id="main-contents__winning-number-inputs">
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+              tabindex="3"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+              tabindex="4"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+              tabindex="5"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+              tabindex="6"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+              tabindex="7"
+            />
+            <input
+              class="winning-number-input"
+              type="number"
+              min="1"
+              max="45"
+              tabindex="8"
+            />
+          </section>
+        </section>
+        <section id="main-contents__bonus-number-section">
+          <span id="main-contents__bonus-number-span">보너스 번호</span>
+          <input
+            class="winning-number-input"
+            id="main-contents__bonus-number-input"
+            type="number"
+            tabindex="9"
+          />
+        </section>
+        <button
+          class="available_button"
+          id="main-contents__winning-lotto-button"
+        >
+          결과 확인하기
+        </button>
+      </form>
+    </section>
+
+    <footer>
+      <caption class="bottom-caption">
+        <p>Copyright 2023. woowacourse</p>
+      </caption>
+    </footer>
   </body>
 </html>

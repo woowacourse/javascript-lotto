@@ -3,6 +3,7 @@ module.exports = {
     es2021: true,
     node: true,
     jest: true,
+    browser: true,
   },
   extends: ["airbnb-base", "prettier"],
   overrides: [
@@ -36,6 +37,7 @@ module.exports = {
     "import/no-unresolved": ["off"],
     "class-methods-use-this": ["off"],
     "no-param-reassign": ["off"],
+    "no-return-assign": ["off"],
     "no-await-in-loop": ["off"],
   },
 };

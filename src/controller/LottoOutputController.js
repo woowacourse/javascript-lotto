@@ -11,6 +11,7 @@ class LottoOutputController {
     const sliced = this.#getSlicedCopiedLottos(lottos);
     const { LOTTO_PRINT_LIMIT } = LottoOutputController;
 
+    this.#outputView.printNumberOfLotto(lottos.length);
     if (LOTTO_PRINT_LIMIT < lottos.length)
       this.#outputView.printBoughtSlicedLottos(sliced, lottos.length);
     else this.#outputView.printBoughtLottos(sliced);
@@ -20,6 +21,7 @@ class LottoOutputController {
     const rankCounts = lottoResult.getRankCounts();
     const getProfitRate = lottoResult.getProfitRate();
 
+    this.#outputView.printLottoResultIntro();
     this.#outputView.printLottoResult(rankCounts, getProfitRate);
   }
 

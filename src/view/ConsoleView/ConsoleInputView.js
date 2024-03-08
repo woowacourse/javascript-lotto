@@ -1,7 +1,7 @@
 import readline from "readline";
 import MESSAGES from "./constants/messages";
 
-class InputView {
+class ConsoleInputView {
   static async readBuyPrice() {
     const buyPrice = await this.#readLineAsync(MESSAGES.INPUT.buyPrice);
     return buyPrice;
@@ -50,4 +50,4 @@ class InputView {
   }
 }
 
-export default InputView;
+export default ConsoleInputView;

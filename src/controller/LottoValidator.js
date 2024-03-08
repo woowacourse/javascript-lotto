@@ -1,5 +1,5 @@
 import LottoSeller from "../domain/LottoSeller.js";
-import MESSAGES from "../view/constants/messages.js";
+import MESSAGES from "../view/ConsoleView/constants/messages.js";
 import NUMBERS from "../domain/constants/numbers.js";
 
 class LottoValidator {
@@ -23,6 +23,7 @@ class LottoValidator {
 
   static validateNonNegativeIntegerString(string) {
     const isNonNegativeInteger = /^[0-9]+$/.test(string);
+    if (string === "") throw new Error(MESSAGES.ERROR.notBlankInLottoNumber);
     if (!isNonNegativeInteger)
       throw new Error(MESSAGES.ERROR.nonNegativeIntegerString);
   }
@@ -32,6 +33,8 @@ class LottoValidator {
   }
 
   static #validateNumberInLottoRange(number) {
+    if (number === 0)
+      throw new Error(MESSAGES.ERROR.notZeroOrBlankInLottoNumber);
     if (number < NUMBERS.minLottoNumber || NUMBERS.maxLottoNumber < number) {
       throw new Error(MESSAGES.ERROR.notInLottoNumberRange);
     }

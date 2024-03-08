@@ -1,6 +1,5 @@
 import retryWhenErrorOccurs from "../utils/retryWhenErrorOccurs";
-
-import MESSAGES from "../view/constants/messages";
+import MESSAGES from "../view/ConsoleView/constants/messages";
 
 class RetryPlayer {
   static MAX_RETRY_STACK_COUNT = 100;

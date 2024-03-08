@@ -68,7 +68,7 @@
 - [x] `LottoController`에서 `parsed` 제거하기
 - [x] `isWinningNumber` 변수 명 처리
 - [x] 에러 메시지 사용자 친화적으로 작성하기
-- [ㅌ] 테스트에서 예외 처리시 예외 문구 확인
+- [x] 테스트에서 예외 처리시 예외 문구 확인
 - [x] 객체 분리하기
   - [x] `inputControll` 분리
   - [x] `outputControll` 분리
@@ -84,6 +84,38 @@
 - [x] `AsyncRetryPlayer` 동작 변경
   - [x] `run` 메소드에 종속X
   - [x] 두 번 이상 실행 안됨 확인
+
+
+2단계
+
+- [x] html, css 기본 구조 만들기
+- [x] view 로직 만들기
+  - [x] 기능
+    - [x] 로또 가격 입력
+    - [x] 로또 출력
+    - [x] 로또 번호 입력
+    - [x] 로또 결과 출력
+  - [x] 콘솔 구현체를 이용해 `readLineAsync`를 변경(InputView)
+  - [x] dom을 통해 `OutputView` 구현하기
+
+- [x] HTML
+  - [x] 시멘틱 태그 더 적극적으로 활용
+  - [x] EOL 에러
+- [x] 컨트롤러 및 뷰 수정
+  - [x] 재시작 로직 변경
+- [x] 기존 설계 변경
+  - [x] view 아래의 Controller라는 이름 변경
+  - [x] 디렉토리 내의 잘못된 이름 변경(git folder name case sensitive 참고)
+  - [x] preventDefault() 없애기
+  - [x] initBody를 InputView 아래로 넣기
+- [x] css 
+  - [x] css 파일 분리하기
+  - [x] 선택자 font 이름 변경
+- [ ] UI 수정
+  - [ ] input 잘못 입력 시 기존 입력 값 지우지 않기
+  - [x] 금액 padding 밑으로 찌그러짐
+  - [x] 로또 스크롤바 위치 고민
+  - [x] padding 피그마처럼 반영
 
 ## 실행 예시
 ``` 

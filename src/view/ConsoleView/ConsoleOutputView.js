@@ -1,17 +1,20 @@
 import MESSAGES from "./constants/messages.js";
 
-class OutputView {
-  static printBoughtLottos(lottos) {
+class ConsoleOutputView {
+  static printNumberOfLotto(numberOfLotto) {
     this.#printMessage(
-      `${lottos.length}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
+      `${numberOfLotto}${MESSAGES.OUTPUT.boughtLottosCompletedTail}`
     );
+  }
+
+  static printBoughtLottos(lottos) {
     const lottoNumberArrayString = this.#getLottoNumberArrayString(lottos);
     this.#printMessage(lottoNumberArrayString);
     this.printBlankLine();
   }
 
   static printBoughtSlicedLottos(lottos, originalNumberOfLotto) {
-    OutputView.printBoughtLottos(lottos);
+    ConsoleOutputView.printBoughtLottos(lottos);
     this.#printMessage(
       `${MESSAGES.OUTPUT.boughtContractedOuttroHead}${originalNumberOfLotto}${MESSAGES.OUTPUT.boughtContractedOuttroTail}`
     );
@@ -71,4 +74,4 @@ class OutputView {
   }
 }
 
-export default OutputView;
+export default ConsoleOutputView;

@@ -1,0 +1,14 @@
+@import url('global.css');
+
+header {
+  height       : 64px;
+  background   : var(--lotto-primary);
+  border-bottom: 1px solid var(--lotto-primary);
+}
+
+#header-text {
+  display: inline-block;
+  margin : 14px 0px auto 130px;
+
+  color: var(--greyscale-1);
+}
