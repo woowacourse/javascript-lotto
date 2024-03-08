@@ -22,7 +22,7 @@
 #purchase-amount-form {
   display: flex;
   flex-direction: column;
-  margin: var(--margin-large) 0 0 0;
+  margin-top: var(--margin-large);
   width: 100%;
 }
 
@@ -35,7 +35,7 @@
 #purchase-amount-input-field {
   display: flex;
   justify-content: space-between;
-  margin: var(--margin-small) 0 0 0;
+  margin-top: var(--margin-small);
 }
 
 #purchase-amount-input {
@@ -46,8 +46,8 @@
 }
 
 #purchase-amount-submit-button {
-  margin: 0 0 0 var(--margin-small);
-  outline: 0;
+  margin-left: var(--margin-small);
+  outline: none;
   width: 56px;
   background-color: var(--lotto-primary);
   font-size: var(--caption-font-size);
@@ -59,7 +59,7 @@
 #purchase-result-container {
   display: flex;
   flex-direction: column;
-  margin: var(--margin-large) 0 0 0;
+  margin-top: var(--margin-large);
   width: 100%;
 }
 
@@ -70,7 +70,7 @@
 }
 
 #purchased-lotto-list {
-  margin: var(--margin-small) 0 0 0;
+  margin-top: var(--margin-small);
   overflow-y: auto;
   width: 100%;
   height: calc(70vh * 0.38);
@@ -99,7 +99,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  margin: var(--margin-large) 0 0 0;
+  margin-top: var(--margin-large);
   width: 100%;
 }
 
@@ -112,7 +112,7 @@
 #winning-numbers-input-field {
   display: flex;
   justify-content: space-between;
-  margin: var(--margin-medium) 0 0 0;
+  margin-top: var(--margin-medium);
   width: 100%;
 }
 
@@ -129,15 +129,15 @@
 #winning-numbers-inputs {
   display: flex;
   flex-wrap: wrap;
-  margin: var(--margin-small) 0 0 0;
+  margin-top: var(--margin-small);
 }
 
 .winning-number-input {
-  margin: 0 var(--margin-xsmall) 0 0;
+  margin-right: var(--margin-xsmall);
   border: 1px solid var(--lotto-grayscale3);
   width: 34px;
   height: 36px;
-  text-indent: 6px;
+  text-align: center;
   border-radius: var(--border-radius);
 }
 
@@ -153,16 +153,16 @@
 }
 
 #bonus-number-input {
-  margin: var(--margin-small) 0 0 0;
+  margin-top: var(--margin-small);
   border: 1px solid var(--lotto-grayscale3);
   width: 34px;
   height: 36px;
-  text-indent: 6px;
+  text-align: center;
   border-radius: var(--border-radius);
 }
 
 #winning-numbers-submit-button {
-  margin: var(--margin-large) 0 0 0;
+  margin-top: var(--margin-large);
   width: 100%;
   background-color: var(--lotto-primary);
   font-size: var(--caption-font-size);

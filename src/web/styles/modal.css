@@ -45,13 +45,13 @@
 }
 
 #lotto-result-title {
-  margin: var(--margin-small) 0 0 0;
+  margin-top: var(--margin-small);
   font-size: var(--subtitle-font-size);
   font-weight: var(--subtitle-font-weight);
 }
 
 #winning-result-table {
-  margin: var(--margin-large) 0 0 0;
+  margin-top: var(--margin-large);
   text-align: center;
 }
 
@@ -71,13 +71,13 @@ th {
 }
 
 #winning-result-profit {
-  margin: var(--margin-large) 0 0 0;
+  margin-top: var(--margin-large);
   font-size: var(--body-font-size);
   font-weight: var(--caption-font-weight);
 }
 
 #lotto-result-restart-button {
-  margin: var(--margin-large) 0 0 0;
+  margin-top: var(--margin-large);
   padding: 6px;
   width: 100%;
   background-color: var(--lotto-primary);
