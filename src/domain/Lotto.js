@@ -8,7 +8,7 @@ class Lotto {
     if (!Validator.checkLottoNumbers(numbers))
       throw new Error(ERROR_MESSAGE.invalidNumbers);
 
-    this._numbers = numbers;
+    this._numbers = numbers.sort((a, b) => a - b);
   }
 
   get numbers() {

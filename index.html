@@ -1,15 +1,68 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>로또 게임</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header class="header">
+        <h1 class="header-text">🎱 행운의 로또</h1>
+      </header>
+      <div class="lotto-container">
+        <h1>🎱 내 번호 당첨 확인 🎱</h1>
+        <section class="purchase-lotto">
+          <h2>구입할 금액을 입력해주세요.</h2>
+          <div class="purchase-lotto_input">
+            <input
+              type="number"
+              placeholder="금액"
+              id="amount"
+              min="0"
+              max="1000000"
+              step="1000"
+            />
+            <button id="purchase-lotto">구입</button>
+          </div>
+        </section>
+        <section id="purchased-lotto-lists"></section>
+      </div>
+      <footer class="footer">
+        <h1>Copyright 2023. woowacourse</h1>
+      </footer>
+    </div>
+    <div>
+
+    <div id="lotto-result" class="modal-wrapper">
+      <div class="modal">
+        <div id="modal-close-button" class="close-modal"><svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.33398 0.78125L7.00977 5.74219L9.68555 0.78125H13.0352L8.9043 7.83203L13.1426 15H9.76367L7.00977 9.94141L4.25586 15H0.857422L5.10547 7.83203L0.964844 0.78125H4.33398Z" fill="black" fill-opacity="0.87"/>
+          </svg>
+          </div>
+          <div class="statistic-title">🏆 당첨 통계 🏆</div>
+        <section class="lotto-statistic">
+          <table id="lotto-result-table">
+            <thead>
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="lotto-profit-rate">당신의 총 수익률은 <p id="profit-value"></p>%입니다.</div>
+        </section>
+        <div>
+          <button id="reset-game">다시 시작하기</button>
+        </div>
+      </div>
     </div>
     <script type="module" src="./src/js/index.js"></script>
   </body>

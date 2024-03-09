@@ -53,6 +53,16 @@ class LottoStore {
     );
   }
 
+  calculateTotalRanking(rankings) {
+    const initialRanking = [0, 0, 0, 0, 0, 0];
+
+    return rankings.reduce((acc, rank) => {
+      acc[rank] += 1;
+
+      return acc;
+    }, initialRanking);
+  }
+
   checkRanking() {
     const secondPlace = 2;
     const thirdPlace = 3;
