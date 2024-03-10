@@ -161,6 +161,12 @@
   border-radius: var(--border-radius);
 }
 
+#winning-numbers-result {
+  margin-top: var(--margin-small);
+  display: flex;
+  align-self: flex-start;
+}
+
 #winning-numbers-submit-button {
   margin-top: var(--margin-large);
   width: 100%;
