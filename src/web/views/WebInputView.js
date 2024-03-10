@@ -1,13 +1,14 @@
+import { purchaseResult } from '../DOM/objects';
 import purchaseAmountValidator from '../../validators/purchaseAmountValidator';
-import WebOutputView from './WebOutputView';
-import { purchaseAmountInput, purchaseResult, winningNumbersResult } from '../DOM/objects';
 import winningNumbersValidator from '../../validators/winningNumbersValidator';
 import bonusNumberValidator from '../../validators/bonusNumberValidator';
+import WebOutputView from './WebOutputView';
 import { $, $$ } from '../../utils/querySelector';
 
 const WebInputView = {
   readPurchaseAmount(event) {
     event.preventDefault();
+    const purchaseAmountInput = $('#purchase-amount-input');
     try {
       purchaseAmountValidator.validate(purchaseAmountInput.value);
       return purchaseAmountInput.value;
