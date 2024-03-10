@@ -5,6 +5,7 @@ const numberValidator = {
   validate(number) {
     this.validateBlank(number);
     this.validateNumber(number);
+    this.validateZero(number);
   },
 
   validateWinningNumber(number) {
@@ -21,6 +22,12 @@ const numberValidator = {
   validateNumber(number) {
     if (isNaN(number)) {
       throw new Error(ERROR_MESSAGE.NOT_A_NUMBER_INPUT);
+    }
+  },
+
+  validateZero(number) {
+    if (parseInt(number, 10) === 0) {
+      throw new Error(ERROR_MESSAGE.ZERO_INPUT);
     }
   },
 
