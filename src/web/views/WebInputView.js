@@ -10,7 +10,6 @@ const WebInputView = {
     event.preventDefault();
     try {
       purchaseAmountValidator.validate(purchaseAmountInput.value);
-      WebOutputView.reset(purchaseResult);
       return purchaseAmountInput.value;
     } catch (e) {
       WebOutputView.printError(purchaseResult, e.message);
