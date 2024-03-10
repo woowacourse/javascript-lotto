@@ -10,6 +10,7 @@ const MESSAGE = {
 };
 
 const ERROR_MESSAGE = {
+  ZERO_INPUT: '[ERROR] 0원을 구입할 수 없습니다.',
   BLANK_INPUT: '[ERROR] 공백이 아닌 값을 입력해주세요.',
   NOT_A_NUMBER_INPUT: '[ERROR] 숫자로 입력해주세요.',
   OUT_OF_RANGE: '[ERROR] 1부터 45 사이의 값으로 입력해주세요.',
