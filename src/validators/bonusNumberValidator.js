@@ -3,7 +3,7 @@ import numberValidator from './numberValidator';
 
 const bonusNumberValidator = {
   validate(bonusNumber, winningNumbers) {
-    numberValidator.validate(bonusNumber);
+    numberValidator.validateWinningNumber(bonusNumber);
     this.validateDuplicate(bonusNumber, winningNumbers);
   },
 
