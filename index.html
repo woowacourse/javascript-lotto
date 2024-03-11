@@ -1,16 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
-  <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
-    <script type="module" src="./src/js/index.js"></script>
+  <body id="app">
+    <header>
+      <nav id="navbar">
+        <a href="./index.html" id="navbar-title">🎱 행운의 로또</a>
+      </nav>
+    </header>
+    <main>
+      <div id="lotto-app">
+        <h1 id="lotto-app-logo">🎱내 번호 당첨 확인🎱</h1>
+        <form id="purchase-amount-form">
+          <label for="purchase-amount-input">구입할 금액을 입력해주세요.</label>
+          <div id="purchase-amount-input-field">
+            <input type="number" id="purchase-amount-input" placeholder="금액" required autofocus />
+            <button type="submit" id="purchase-amount-submit-button">구입</button>
+          </div>
+        </form>
+        <div id="purchase-result-container">
+          <p id="purchase-result"></p>
+          <ul id="purchased-lotto-list"></ul>
+        </div>
+        <form id="winning-numbers-form"></form>
+      </div>
+    </main>
+
+    <footer><p>Copyright 2023. woowacourse</p></footer>
+    <section id="lotto-result-modal-section" class="hide">
+      <div id="lotto-result-modal-overlay">
+        <div id="lotto-result-modal-container"></div>
+      </div>
+    </section>
+    <script type="module" src="./src\step2-index.js"></script>
   </body>
 </html>

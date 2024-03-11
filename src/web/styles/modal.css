@@ -1,0 +1,86 @@
+@import url(./root.css);
+
+#lotto-result-modal-overlay {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#lotto-result-modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  padding: 32px 16px 32px 16px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--lotto-grayscale2);
+  transform: translate(-50%, -50%);
+  border-radius: var(--border-radius);
+}
+
+#modal-close-button {
+  padding: 0;
+  border: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: inherit;
+
+  font-size: var(--caption-font-size);
+  font-weight: var(--caption-font-weight);
+  color: var(--lotto-grayscale5);
+  cursor: pointer;
+}
+
+#lotto-result-title {
+  margin-top: var(--margin-small);
+  font-size: var(--subtitle-font-size);
+  font-weight: var(--subtitle-font-weight);
+}
+
+#winning-result-table {
+  margin-top: var(--margin-large);
+  text-align: center;
+}
+
+td,
+th {
+  padding: 8px;
+  border-top: 1px solid var(--table-border-color);
+  border-bottom: 1px solid var(--table-border-color);
+  height: 24px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+th {
+  font-size: var(--body-font-size);
+  font-weight: var(--subtitle-font-weight);
+}
+
+#winning-result-profit {
+  margin-top: var(--margin-large);
+  font-size: var(--body-font-size);
+  font-weight: var(--caption-font-weight);
+}
+
+#lotto-result-restart-button {
+  margin-top: var(--margin-large);
+  padding: 6px;
+  width: 100%;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-grayscale1);
+  border-radius: var(--border-radius);
+}
