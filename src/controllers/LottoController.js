@@ -15,8 +15,8 @@ class LottoController {
     const lottery = new LotteryMachine(this.#purchaseAmount).makeLottery();
     this.#showPurchaseResult(lottery);
     const matchedResultList = await this.calculateMatchedResultList(lottery);
-    this.#processLottoResult(matchedResultList);
-    this.#processProfit(matchedResultList);
+    this.#showLottoResult(matchedResultList);
+    this.#showProfit(matchedResultList);
   }
 
   #showPurchaseResult(lottery) {
@@ -25,12 +25,12 @@ class LottoController {
     OutputView.printLottery(lottery);
   }
 
-  #processLottoResult(matchedResultList) {
+  #showLottoResult(matchedResultList) {
     const rankList = lottoService.calculateRankCounts(matchedResultList);
     OutputView.printLottoResult(rankList);
   }
 
-  #processProfit(matchedResultList) {
+  #showProfit(matchedResultList) {
     const profit = lottoService.calculateProfit(matchedResultList, this.#purchaseAmount);
     OutputView.printProfit(profit);
   }
