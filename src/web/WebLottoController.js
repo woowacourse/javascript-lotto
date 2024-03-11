@@ -4,19 +4,19 @@ import LotteryMachine from '../domain/services/LotteryMachine';
 import WebInputView from './views/WebInputView';
 import WebOutputView from './views/WebOutputView';
 import lottoService from '../domain/services/lottoService';
-import { $ } from '../utils/querySelector.js';
+import { $ } from '../utils/querySelector';
 
 class WebLottoController {
   #purchaseAmount;
   #lottery;
 
   constructor() {
-    this.showLottoResult = this.showLottoResult.bind(this);
+    this.showLottoResult = this.#showLottoResult.bind(this);
   }
 
   run() {
     this.initApp();
-    this.getPurchaseAmount();
+    this.#getPurchaseAmount();
   }
 
   initApp() {
@@ -32,7 +32,7 @@ class WebLottoController {
     lottoResultModalSection.classList.add('hide');
   }
 
-  getPurchaseAmount() {
+  #getPurchaseAmount() {
     const purchaseAmountForm = $('#purchase-amount-form');
     purchaseAmountForm.addEventListener('submit', e => {
       const purchaseAmount = WebInputView.readPurchaseAmount(e);
@@ -53,32 +53,32 @@ class WebLottoController {
     });
     WebOutputView.printMessage(purchasedLottoList, lottoList.join(''));
     WebOutputView.renderWinningNumbersForm();
-    this.manageFormEvents();
+    this.#manageFormEvents();
   }
 
-  manageFormEvents() {
+  #manageFormEvents() {
     const winningNumbersForm = $('#winning-numbers-form');
-    winningNumbersForm.addEventListener('submit', this.showLottoResult);
+    winningNumbersForm.addEventListener('submit', this.#showLottoResult);
   }
 
-  showLottoResult(event) {
+  #showLottoResult(event) {
     const winningNumbersAndBonus = WebInputView.readWinningAndBonusNumbers(event);
     if (winningNumbersAndBonus) {
       const { winningNumbers, bonusNumber } = winningNumbersAndBonus;
       const matchedResultList = this.#lottery.map(lotto => lotto.getMatchedAmount(winningNumbers, bonusNumber));
       const rankList = lottoService.calculateRankCounts(matchedResultList);
       const profit = lottoService.calculateProfit(matchedResultList, this.#purchaseAmount);
-      this.openResultModal(rankList, profit);
+      this.#openResultModal(rankList, profit);
     }
   }
 
-  openResultModal(rankList, profit) {
+  #openResultModal(rankList, profit) {
     WebOutputView.renderLottoResult(rankList, profit);
     WebOutputView.openModal();
-    this.manageModalEvents();
+    this.#manageModalEvents();
   }
 
-  manageModalEvents() {
+  #manageModalEvents() {
     const modalBackdrop = $('#lotto-result-modal-overlay');
     const modalContainer = $('#lotto-result-modal-container');
     const modalCloseButton = $('#modal-close-button');
