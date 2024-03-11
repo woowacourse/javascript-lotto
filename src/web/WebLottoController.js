@@ -11,7 +11,7 @@ class WebLottoController {
   #lottery;
 
   constructor() {
-    this.showLottoResult = this.#showLottoResult.bind(this);
+    this.showLottoResult = this.showLottoResult.bind(this);
   }
 
   run() {
@@ -58,10 +58,10 @@ class WebLottoController {
 
   #manageFormEvents() {
     const winningNumbersForm = $('#winning-numbers-form');
-    winningNumbersForm.addEventListener('submit', this.#showLottoResult);
+    winningNumbersForm.addEventListener('submit', this.showLottoResult);
   }
 
-  #showLottoResult(event) {
+  showLottoResult(event) {
     const winningNumbersAndBonus = WebInputView.readWinningAndBonusNumbers(event);
     if (winningNumbersAndBonus) {
       const { winningNumbers, bonusNumber } = winningNumbersAndBonus;
