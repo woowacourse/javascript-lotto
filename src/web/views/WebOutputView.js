@@ -5,16 +5,16 @@ const WebOutputView = {
     if (target.classList.contains('error')) {
       target.classList.remove('error');
     }
-    target.innerHTML = message;
+    target.insertAdjacentHTML('beforeend', message);
   },
 
   printError(target, message) {
     target.classList.add('error');
-    target.innerHTML = message;
+    target.insertAdjacentHTML('beforeend', message);
   },
 
   reset(target) {
-    target.innerHTML = '';
+    target.replaceChildren();
   },
 
   renderLottoResult(rankList, profit) {
