@@ -7,11 +7,13 @@ const WebOutputView = {
     if (target.classList.contains('error')) {
       target.classList.remove('error');
     }
+    this.reset(target);
     target.insertAdjacentHTML('beforeend', message);
   },
 
   printError(target, message) {
     target.classList.add('error');
+    this.reset(target);
     target.insertAdjacentHTML('beforeend', message);
   },
 
