@@ -1,0 +1,187 @@
+@import './reset.css';
+@import './theme.css';
+
+/* header */
+header {
+  width: 100%;
+  height: 64px;
+  background-color: var(--blue);
+}
+
+header .title {
+  position: absolute;
+  top: 14px;
+  left: 130px;
+  color: var(--white);
+}
+
+/* main */
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 64px - 64px);
+  background-color: var(--light-gray);
+}
+
+section {
+  position: relative;
+  width: 414px;
+  height: 727px;
+  background-color: var(--white);
+  border: 1px solid var(--gray);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.section-div {
+  width: 100%;
+}
+
+#mainTitleSection {
+  top: 30px;
+  width: 382px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+#purchaseInputSection {
+  width: 382px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#purchaseInputSection div {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+#purchaseInputField {
+  width: 310px;
+  height: 36px;
+  padding: 0px 8px;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+}
+
+#purchaseSubmitButton {
+  width: 56px;
+  height: 36px;
+  padding: 0px 6px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--blue);
+  color: var(--white);
+  text-align: center;
+  cursor: pointer;
+}
+
+#lottoSection {
+  width: 382px;
+  display: flex;
+  flex-direction: column;
+}
+
+#lottoMainTitle {
+  margin-bottom: 8px;
+}
+
+#lottoBox {
+  height: 276px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: scroll;
+}
+
+.lottoTicket {
+  min-height: 36px;
+  max-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.lottoTicketNumber {
+  width: 24px;
+  text-align: center;
+}
+
+#winningAndBonusSection {
+  width: 382px;
+  display: flex;
+  flex-direction: column;
+}
+
+#winningAndBonusTitle {
+  white-space: nowrap;
+  margin-bottom: 8px;
+}
+
+#winningAndBonusInputSection {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.winningAndBonusContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#winningInputContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.inputRectangle {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--gray);
+  text-align: center;
+}
+
+#winningAndBonusSubmitButton {
+  width: 100%;
+  height: 36px;
+  padding: 0px 6px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--blue);
+  color: var(--white);
+  text-align: center;
+  cursor: pointer;
+}
+
+#bonusInputContainer {
+  align-items: flex-end;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 64px;
+  border-top: 1px solid #4e5ba633;
+  background-color: var(--light-gray);
+}
+
+footer .caption {
+  color: var(--blue);
+}

@@ -1,0 +1,62 @@
+/* Fonts */
+.title {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+  text-align: left;
+}
+
+.subtitle {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+}
+
+.body {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.placeholder {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.caption {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: left;
+}
+
+.error-message {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  color: red;
+  min-height: 12px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+/* Colors */
+:root {
+  --blue: #4e5ba6;
+  --white: #ffffff;
+  --light-gray: #fcfcfd;
+  --gray: #b4b4b4;
+  --dark-gray: #8b8b8b;
+  --black: #000000;
+}

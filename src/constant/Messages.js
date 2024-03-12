@@ -7,6 +7,7 @@ export const VARIABLE_ALIAS = {
 
 export const ERROR_MESSAGES = {
   prefix: '[ERROR] ',
+  isNotNumber: (name) => `${name}(은)는 숫자만 가능합니다.`,
   isNotInteger: (name) => `${name}(은)는 정수 값이어야 합니다.`,
   isNotAtLeast: (name, threshold) => `${name}(은)는 ${threshold} 이상이어야 합니다.`,
   hasNotLength: (name, length) => `${name}의 길이는 ${length}이어야 합니다.`,
