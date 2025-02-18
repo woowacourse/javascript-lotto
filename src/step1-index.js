@@ -1,11 +1,13 @@
-// import InputView from "./ui/InputView.js";
+import { purchase } from "./LottoStore.js";
+import InputView from "./ui/InputView.js";
 
-// class App {
-//   async start() {
-//   }
-// }
+class App {
+  async start() {
+    purchase();
+  }
+}
 
-// export default App;
+export default App;
 
-// const app = new App();
-// app.start();
+const app = new App();
+app.start();

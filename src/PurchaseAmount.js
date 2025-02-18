@@ -6,7 +6,7 @@ class PurchaseAmount {
 
     constructor(price) {
         this.#validatePrice(price);
-        this.#price = price;
+        this.#price = Number(price);
     }
 
     #validatePrice(price) {
@@ -14,6 +14,10 @@ class PurchaseAmount {
         if (price < PRICE.UNIT) throw new Error(ERROR_MESSAGE.UNDER_MIN_PRICE);
         if (price > PRICE.MAX) throw new Error(ERROR_MESSAGE.EXCEED_MAX_PRICE);
         if (price % PRICE.UNIT !== 0) throw new Error(ERROR_MESSAGE.NOT_DIVIDED_1000);
+    }
+
+    get price() {
+        return this.#price;
     }
 }
 
