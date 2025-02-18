@@ -1,14 +1,14 @@
 import { ERROR_MESSAGE } from "../../src/constants/error.js";
 import {
   validateLength,
-  validateLottoNumberRange,
+  validateRange,
   validateDuplicate,
 } from "../../src/domain/validateWinningNumbers.js";
 
 describe("domain/validateWinningNumbers", () => {
   test("입력받은 배열이 모두 1~45 사이의 숫자여야 한다.", () => {
     const numbers = [1, 2, 3, 4, 5, 6];
-    expect(() => validateLottoNumberRange(numbers)).not.toThrow();
+    expect(() => validateRange(numbers)).not.toThrow();
   });
 
   test.each([

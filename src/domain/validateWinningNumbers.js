@@ -1,7 +1,10 @@
 import { ERROR_MESSAGE } from "../constants/error.js";
 
 export const validateRange = (numbers) => {
-  if (isNaN(numbers) || numbers.some((number) => number < 1 || number > 45)) {
+  if (
+    isNaN(...numbers) ||
+    numbers.some((number) => number < 1 || number > 45)
+  ) {
     throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
   }
 };
@@ -19,7 +22,7 @@ export const validateDuplicate = (numbers) => {
 };
 
 const validateWinningNumbers = (input) => {
-  const numbers = input.split(",");
+  const numbers = input.split(",").map(Number);
 
   validateRange(numbers);
   validateLength(numbers);

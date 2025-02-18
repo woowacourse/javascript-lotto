@@ -1,4 +1,5 @@
 import Lotto from "../models/Lotto.js";
+import { getWinningNumbers } from "../view/input.js";
 import { printLottoCount, printLottoNumbers } from "../view/output.js";
 
 export const generateLottoNumbers = () => {
@@ -16,7 +17,7 @@ export const generateLottoNumbers = () => {
   return lottoNumbers.sort((a, b) => a - b);
 };
 
-const lottoController = (price) => {
+const lottoController = async (price) => {
   const count = price / 1000;
   printLottoCount(count);
 
@@ -25,6 +26,8 @@ const lottoController = (price) => {
     new Lotto(numbers);
     printLottoNumbers(numbers);
   }
+
+  const winningNumbers = await getWinningNumbers();
 };
 
 export default lottoController;
