@@ -21,3 +21,7 @@ export function readLineAsync(query) {
     });
   });
 }
+
+export function generateRandomNumber(start, end) {
+  return Math.floor(Math.random() * (end + 1 - start)) + start;
+}
