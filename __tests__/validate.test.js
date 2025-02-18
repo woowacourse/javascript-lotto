@@ -1,8 +1,10 @@
 import {
   validateIsNumeric,
+  validateLottoNumberRange,
   validateMaximumValue,
   validateMinimumValue,
   validatePurchaseUnit,
+  validateWinningNumberisNumeric,
 } from "../src/validate";
 
 test("구입급액이 1,000원 단위가 아닐 경우 예외를 발생시킨다.", () => {
@@ -36,5 +38,16 @@ test("구입 금액이 20,000을 초과할 경우 예외를 발생시킨다.", (
 
 test("당첨번호가 숫자가 아닐 경우 예외를 발생시킨다.", () => {
   const numbers = [1, 2, 3, 4, 5, "aa"];
-  expect(() => validateWinningNumberisNumeric(numbers)).toThrow();
+  expect(() => validateWinningNumberisNumeric(numbers)).toThrow(
+    "당첨 번호는 숫자여야 합니다."
+  );
 });
+
+test.each([0, 46])(
+  "로또 번호가 1부터 45 사이가 아니라면 예외를 발생시킨다.",
+  (number) => {
+    expect(() => validateLottoNumberRange(number)).toThrow(
+      "당첨 번호가 1부터 45 사이의 숫자여야 합니다."
+    );
+  }
+);

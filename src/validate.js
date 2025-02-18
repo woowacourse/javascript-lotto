@@ -1,4 +1,9 @@
-import { MAXIMUM_PURCHASE_THRESHOLD, PURCHASE_UNIT } from "./const";
+import {
+  LOTTO_MAX_RANGE,
+  LOTTO_MIN_RANGE,
+  MAXIMUM_PURCHASE_THRESHOLD,
+  PURCHASE_UNIT,
+} from "./const";
 
 const validatePurchaseUnit = (price) => {
   if (price % PURCHASE_UNIT !== 0) {
@@ -30,8 +35,18 @@ const validateMaximumValue = (input) => {
 
 const validateWinningNumberisNumeric = (input) => {
   input.forEach((number) => {
-    validateIsNumeric(number);
+    if (Number.isNaN(Number(number))) {
+      throw new Error(`당첨 번호는 숫자여야 합니다.`);
+    }
   });
+};
+
+const validateLottoNumberRange = (input) => {
+  if (input < LOTTO_MIN_RANGE || input > LOTTO_MAX_RANGE) {
+    throw new Error(
+      `당첨 번호가 ${LOTTO_MIN_RANGE}부터 ${LOTTO_MAX_RANGE} 사이의 숫자여야 합니다.`
+    );
+  }
 };
 
 export {
@@ -40,4 +55,5 @@ export {
   validateMinimumValue,
   validateMaximumValue,
   validateWinningNumberisNumeric,
+  validateLottoNumberRange,
 };
