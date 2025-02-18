@@ -22,3 +22,15 @@ export const isValidPriceRange = (input) => {
     throw new Error(ERROR_MESSAGE.INVALID_PRICE_RANGE);
   }
 };
+
+const validatePrice = (input) => {
+  isNumber(input);
+
+  const price = Number(input);
+  isThousandUnit(price);
+  isValidPriceRange(price);
+
+  return price;
+};
+
+export default validatePrice;
