@@ -2,7 +2,7 @@ import { ERROR } from '../constants/errors.js';
 
 export const hasEmptyString = (input) => {
   if (input === '') {
-    throw new Error(ERROR.IS_PURCHASE_PRICE_EMPTY);
+    throw new Error(ERROR.IS_VALUE_EMPTY);
   }
 };
 
@@ -48,4 +48,15 @@ export const validateWinningNumbers = (input) => {
   }
 
   validateArrayOfWinningNumbers(winningNumbers);
+};
+
+export const validateBonusNumber = (input, winningNumbers) => {
+  const bonusNumber = Number(input);
+
+  hasEmptyString(input);
+  isValueInteger(bonusNumber);
+
+  if (winningNumbers.includes(bonusNumber)) {
+    throw new Error(ERROR.IS_BONUS_NUMBER_DUPLICATED);
+  }
 };
