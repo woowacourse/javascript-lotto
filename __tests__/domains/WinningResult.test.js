@@ -1,4 +1,4 @@
-import WinningResult from "../src/domains/WinningResult";
+import WinningResult from "../../src/domains/WinningResult";
 
 describe("당첨 결과 테스트", () => {
   describe("정상 케이스", () => {
