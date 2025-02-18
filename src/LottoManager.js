@@ -12,7 +12,8 @@ class LottoManager {
 
   generateLottos() {
     for (let i = 0; i < this.#price / PURCHASE_UNIT; i++) {
-      this.#lottos.push(new Lotto());
+      const numbers = [1, 2, 3, 4, 5, 6]; //TODO
+      this.#lottos.push(new Lotto(numbers));
     }
   }
 
