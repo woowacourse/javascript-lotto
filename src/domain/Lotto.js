@@ -11,6 +11,9 @@ class Lotto {
     if (!this.isRangeValid(numbers)) {
       throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.RANGE);
     }
+    if (!this.isDistinct(numbers)) {
+      throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.DUPLICATE);
+    }
     this.#numbers = numbers;
   }
 
@@ -21,9 +24,11 @@ class Lotto {
   isLengthValid(numbers) {
     return numbers.length === LOTTO_NUMBERS.LENGTH;
   }
-
   isRangeValid(numbers) {
     return !numbers.some((number) => number < 1 || number > 45);
+  }
+  isDistinct(numbers) {
+    return new Set(numbers).size === numbers.length;
   }
 }
 
