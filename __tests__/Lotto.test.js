@@ -1,6 +1,7 @@
 import { PRICE_NUM } from "../src/constants/lotto.js";
 import { count } from "../src/utils/count.js";
-import createLotto from "../src/domain/createLotto.js";
+import { createLotto } from "../src/domain/createLotto.js";
+import Lotto from "../src/domain/Lotto.js";
 
 // TODO : 추후 다른 폴더로 변경 예정
 test("입력받은 금액에 해당하는 개수를 구한다.", () => {
@@ -24,4 +25,15 @@ test("정해진 개수만큼 로또를 생성한다.", () => {
 
   // then
   expect(lottos.length).toBe(lottoCount);
+});
+
+test("로또 번호를 가질 수 있다.", () => {
+  // given
+  const lottoNumbers = [1, 2, 3, 4, 5, 6];
+
+  // when
+  const lotto = new Lotto(lottoNumbers);
+
+  // then
+  expect(lotto.getLottoNumbers()).toEqual(lottoNumbers);
 });
