@@ -2,10 +2,6 @@ import readline from "readline";
 
 const readLineAsync = (query) => {
   return new Promise((resolve, reject) => {
-    if (arguments.length !== 1) {
-      reject(new Error("arguments must be 1"));
-    }
-
     if (typeof query !== "string") {
       reject(new Error("query must be string"));
     }
