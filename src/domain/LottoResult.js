@@ -15,5 +15,9 @@ class LottoResult {
   getTotalProfit() {
     return this.lottoStatus.reduce((acc, cur) => acc + cur.REWORD, 0);
   }
+
+  getRate() {
+    return ((this.getTotalProfit() / this.price) * 100).toFixed(1);
+  }
 }
 export default LottoResult;

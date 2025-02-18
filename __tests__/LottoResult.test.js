@@ -31,3 +31,16 @@ test("당첨 내역을 기반으로 총 수입을 구한다.", () => {
   //then
   expect(profit).toEqual(30_050_000);
 });
+
+test("당첨된 내역을 기반으로 수익률을 구한다.", () => {
+  //given
+  const lottoStatus = [{ RANK: 5, COUNT: 3, REWORD: 5000, IS_BONUS: false }];
+  const price = 8000;
+  const lottoResult = new LottoResult(lottoStatus, price);
+
+  //when
+  const rate = lottoResult.getRate();
+
+  //then
+  expect(rate).toEqual("62.5");
+});
