@@ -64,5 +64,44 @@ describe("Winnings 클래스 테스트", () => {
     }).toThrow();
   });
 
-  test("");
+  test("당첨개수 카운트", () => {
+    const lottos = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+    ];
+    const numbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+
+    const winnings = new Winnings(numbers, bonusNumber);
+
+    const statistics = winnings.countStatistics(lottos);
+
+    expect(statistics).toEqual({
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 1,
+      7: 1,
+    });
+  });
+
+  test("수익률 계산", () => {
+    const lottos = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+    ];
+    const numbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+
+    const money = 2000;
+
+    const winnings = new Winnings(numbers, bonusNumber);
+
+    const statistics = winnings.countStatistics(lottos);
+    const winningRate = winnings.calculateWinningRate(statistics, money);
+
+    expect(winningRate).toBe(((30000000 + 2000000000) / money) * 100);
+  });
 });
+
+// 수익률
