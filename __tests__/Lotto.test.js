@@ -37,4 +37,18 @@ describe("로또 객체 생성 테스트", () => {
   ])("로또 번호에 중복이 있는 경우, 에러를 발생시킨다", (numbers) => {
     expect(() => new Lotto(numbers)).toThrow(LOTTO_NUMBERS_ERROR_MESSAGE.DUPLICATE);
   });
+
+  test.each([
+    [
+      [1, 10, 3, 5, 15, 8],
+      [1, 3, 5, 8, 10, 15],
+    ],
+    [
+      [3, 16, 2, 10, 34, 39],
+      [2, 3, 10, 16, 34, 39],
+    ],
+  ])("로또 숫자는 오름차순으로 정렬되어야한다", (numbers, expectedNumbers) => {
+    const lotto = new Lotto(numbers);
+    expect(lotto.numbers).toEqual(expectedNumbers);
+  });
 });

@@ -14,7 +14,7 @@ class Lotto {
     if (!this.isDistinct(numbers)) {
       throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.DUPLICATE);
     }
-    this.#numbers = numbers;
+    this.#numbers = numbers.sort((a, b) => a - b);
   }
 
   get numbers() {
