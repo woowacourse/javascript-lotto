@@ -1,7 +1,11 @@
 import { WINNING_NUMBERS_ERROR_MESSAGES } from "../constants/constants.js";
 
 const validateWinningNumbers = (input) => {
-  const winningNumbers = input.split(",").map((x) => Number(x.trim()));
+  const winningNumbers = input
+    .split(",")
+    .map((el) => el.trim())
+    .filter((el) => el !== "")
+    .map(Number);
 
   if (winningNumbers.length !== 6) {
     throw new Error(WINNING_NUMBERS_ERROR_MESSAGES.INVALID_COUNT);
