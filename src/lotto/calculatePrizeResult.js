@@ -13,6 +13,10 @@ export const calculatePrizeResult = (
   lottoNumbers.forEach((numbers) => {
     const count = findMatchingValues(numbers, winningNumbers).length;
 
+    if (count < 3) {
+      return;
+    }
+
     if (count === 5 && numbers.includes(bonusNumber)) {
       result.set("5B", result.get("5B") + 1 || 1);
       return;

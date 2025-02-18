@@ -68,3 +68,9 @@ export const validationBonusNumber = (bonusNumber, winningNumbers) => {
     throw new CustomError(ERROR_MESSAGE.INVALID_DUPLICATE_BONUS_NUMBER);
   }
 };
+
+export const validationRestartInput = (userInput) => {
+  if (userInput !== "Y" && userInput !== "N") {
+    throw new CustomError(ERROR_MESSAGE.INVALID_RESTART);
+  }
+};

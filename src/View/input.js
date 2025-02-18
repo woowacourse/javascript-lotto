@@ -22,3 +22,10 @@ export const readBonusNumberInput = async () => {
   );
   return Number(userInput);
 };
+
+export const readRestartInput = async () => {
+  const userInput = await readLineAsync(
+    `${LINE_BREAK}${PROMPT_MESSAGE.RESTART_INPUT}${LINE_BREAK}`
+  );
+  return userInput.toUpperCase();
+};
