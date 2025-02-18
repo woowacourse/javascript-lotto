@@ -2,7 +2,6 @@ import Input from "./view/Input.js";
 import validatePurchaseAmount from "./domain/validation/validatePurchaseAmount.js";
 import validateWinningNumbers from "./domain/validation/validateWinningNumbers.js";
 import throwIfInvalid from "./utils/throwIfInvalid.js";
-import { OuterExpressionKinds } from "typescript";
 import Output from "./view/Output.js";
 import validateBonusNumber from "./domain/validation/validateBonusNumber.js";
 
