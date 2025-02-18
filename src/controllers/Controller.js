@@ -1,11 +1,11 @@
-import Input from "./views/Input.js";
-import validatePurchaseAmount from "./validations/validatePurchaseAmount.js";
-import validateWinningNumbers from "./validations/validateWinningNumbers.js";
-import throwIfInvalid from "./utils/throwIfInvalid.js";
-import Output from "./views/Output.js";
-import validateBonusNumber from "./validations/validateBonusNumber.js";
+import Input from "../views/Input.js";
+import validatePurchaseAmount from "../validations/validatePurchaseAmount.js";
+import validateWinningNumbers from "../validations/validateWinningNumbers.js";
+import throwIfInvalid from "../utils/throwIfInvalid.js";
+import Output from "../views/Output.js";
+import validateBonusNumber from "../validations/validateBonusNumber.js";
 
-class App {
+class Controller {
   async start() {
     const { purchaseAmount, winningNumbers, bonusNumber } =
       await this.#getValidatedInputs();
@@ -36,4 +36,5 @@ class App {
     }
   }
 }
-export default App;
+
+export default Controller;
