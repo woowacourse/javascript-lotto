@@ -9,6 +9,9 @@ class Lotto {
   #lottoValidation(numbers) {
     if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.notSixNumbers);
   }
+  get numbers() {
+    return this.#numbers;
+  }
 }
 
 export default Lotto;
