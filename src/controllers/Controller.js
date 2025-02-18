@@ -3,11 +3,13 @@ import validatePurchaseAmount from "../validations/validatePurchaseAmount.js";
 import validateWinningNumbers from "../validations/validateWinningNumbers.js";
 import throwIfInvalid from "../utils/throwIfInvalid.js";
 import validateBonusNumber from "../validations/validateBonusNumber.js";
+import issueLottos from "../domains/IssueLottos.js";
 
 class Controller {
   async start() {
     const { purchaseAmount, winningNumbers, bonusNumber } =
       await this.#getValidatedInputs();
+    const lottos = issueLottos(purchaseAmount);
   }
 
   async #getValidatedInputs() {
