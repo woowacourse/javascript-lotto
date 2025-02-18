@@ -12,7 +12,7 @@ import {
   readWinningNumbersInput,
   readBonusNumberInput,
 } from "./View/input.js";
-import { printLottoNumbers } from "./View/output.js";
+import { printLottoNumbers, printLottoResult } from "./View/output.js";
 
 const app = async () => {
   const lottoPrice = await retryUntilValidInput({
@@ -41,7 +41,7 @@ const app = async () => {
   );
   const totalPrizeMoney = getTotalPrizeMoney(result);
   const revenueRate = (totalPrizeMoney / lottoPrice) * 100;
-  console.log(revenueRate);
+  printLottoResult(result, revenueRate);
 };
 
 app();
