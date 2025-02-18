@@ -2,6 +2,7 @@ import {
   validationLottoPrice,
   validationWinningNumbers,
   validationBonusNumber,
+  validationRestartInput,
 } from "./index.js";
 
 describe("validationLottoPrice 유효성 검사", () => {
@@ -64,4 +65,10 @@ describe("validationBonusNumber 유효성 검사", () => {
       expect(() => validationBonusNumber(number, winningNumbers)).toThrow();
     }
   );
+});
+
+describe("validationRestartInput 유효성 검사", () => {
+  test("재시작 입력에 Y또는 N이 아니면 에러가 발생한다.", () => {
+    expect(() => validationRestartInput("A")).toThrow();
+  });
 });
