@@ -1,4 +1,4 @@
-import LottoMachine from "../src/LottoMachine";
+import LottoMachine from "../src/domains/LottoMachine";
 
 describe("로또 기계 클래스 테스트", () => {
   describe("정상 케이스", () => {

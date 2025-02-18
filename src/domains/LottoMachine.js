@@ -1,4 +1,4 @@
-import generateRandomNumber from "./utils/generateRandomNumber.js";
+import generateRandomNumber from "../utils/generateRandomNumber.js";
 import Lotto from "./Lotto.js";
 
 class LottoMachine {

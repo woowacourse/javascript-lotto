@@ -1,4 +1,4 @@
-import WinningResult from "../src/WinningResult";
+import WinningResult from "../src/domains/WinningResult";
 
 describe("당첨 결과 테스트", () => {
   describe("정상 케이스", () => {
@@ -24,6 +24,4 @@ describe("당첨 결과 테스트", () => {
       expect(result).toEqual([1, 1, 1, 1, 1]);
     });
   });
-
-  describe("예외 케이스", () => {});
 });
