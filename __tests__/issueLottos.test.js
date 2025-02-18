@@ -1,5 +1,4 @@
 import issueLottos from "../src/domains/issueLottos.js";
-import getUniqueRandomNumbers from "../src/utils/getUniqueRandomNumbers.js";
 
 describe("구입 금액에 따른 개수만큼 랜덤한 로또를 발행하는 메서드 테스트", () => {
   // given
