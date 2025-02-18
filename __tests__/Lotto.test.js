@@ -48,3 +48,12 @@ test("로또 번호는 오름차순으로 정렬된다", () => {
   // then
   expect(lotto.getLottoNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
 });
+
+test("하나의 로또 티켓 번호와 내가 입력한 로또 번호간의 공통된 번호 개수를 구한다.", () => {
+  const lottoNumbers = [1, 2, 3, 4, 5, 6];
+  const givenLottoNumber = [2, 3, 4, 5, 6, 7];
+
+  const lotto = new Lotto(lottoNumbers);
+
+  expect(lotto.getSameNumbers(givenLottoNumber)).toBe(5);
+});
