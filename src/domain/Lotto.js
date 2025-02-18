@@ -12,6 +12,10 @@ class Lotto {
     validateLottoNumber(this.#numbers);
   }
 
+  includeNumber(winningNumber) {
+    return this.#numbers.includes(winningNumber);
+  }
+
   get numbers() {
     return this.#numbers;
   }

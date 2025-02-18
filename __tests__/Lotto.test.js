@@ -15,6 +15,14 @@ describe('Lotto 클래스 테스트', () => {
     },
   );
 
+  test('번호 포함 테스트', () => {
+    expect(lotto.includeNumber(1)).toBe(true);
+  });
+
+  test('번호 미포함 테스트', () => {
+    expect(lotto.includeNumber(10)).toBe(false);
+  });
+
   test.each([
     [
       [1, 2, 3, 4, 5, ''],
