@@ -22,6 +22,10 @@ class Lotto {
     if (!numbers.every((number) => number >= 1 && number <= 45)) {
       throw new Error("로또 번호의 범위는 1~45 사이입니다.");
     }
+
+    if (new Set(numbers).size !== 6) {
+      throw new Error("로또 번호는 중복되면 안됩니다.");
+    }
   }
 }
 
