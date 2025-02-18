@@ -4,8 +4,15 @@ function checkIsEmpty(input) {
   }
 }
 
+function checkIsNumber(input) {
+  if (!Number.isNaN(input)) {
+    throw new Error('[ERROR] 숫자 이외의 입력입니다.');
+  }
+}
+
 const Validate = {
   checkIsEmpty,
+  checkIsNumber,
 };
 
 export default Validate;

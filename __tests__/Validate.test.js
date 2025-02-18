@@ -8,4 +8,14 @@ describe('입력 값에 대한 테스트', () => {
     // then
     expect(() => Validate.checkIsEmpty(input)).toThrow('[ERROR]');
   });
+
+  test('숫자 이외의 입력 예외처리', () => {
+    // given
+    const input = '기린';
+
+    // then
+    expect(() => {
+      Validate.checkIsNumber(input);
+    }).toThrow('[ERROR]');
+  });
 });
