@@ -9,11 +9,17 @@ class WinningLotto {
     if (!this.#isRangeValid(bonusNumber)) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.RANGE);
     }
+    if (!this.#isDistinct(numbers, bonusNumber)) {
+      throw new Error(BONUS_NUMBER_ERROR_MESSAGE.DUPLICATE);
+    }
     this.#numbers = new Lotto(numbers);
     this.#bonusNumber = bonusNumber;
   }
   #isRangeValid(bonusNumber) {
     return bonusNumber >= 1 && bonusNumber <= 45;
+  }
+  #isDistinct(numbers, bonusNumber) {
+    return !numbers.includes(bonusNumber);
   }
 }
 

@@ -8,4 +8,5 @@ export const LOTTO_NUMBERS_ERROR_MESSAGE = {
 
 export const BONUS_NUMBER_ERROR_MESSAGE = {
   RANGE: `보너스 번호는 ${LOTTO_NUMBERS.MIN}부터 ${LOTTO_NUMBERS.MAX}사이의 숫자여야 합니다. 다시 입력해 주세요.`,
+  DUPLICATE: "보너스 번호가 당첨 번호와 중복됩니다. 다시 입력해주세요.",
 };
