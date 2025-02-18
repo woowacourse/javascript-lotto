@@ -37,3 +37,14 @@ test("로또 번호를 가질 수 있다.", () => {
   // then
   expect(lotto.getLottoNumbers()).toEqual(lottoNumbers);
 });
+
+test("로또 번호는 오름차순으로 정렬된다", () => {
+  // given
+  const lottoNumbers = [4, 5, 6, 3, 2, 1];
+
+  // when
+  const lotto = new Lotto(lottoNumbers);
+
+  // then
+  expect(lotto.getLottoNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+});
