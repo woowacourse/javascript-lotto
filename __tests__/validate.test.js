@@ -13,13 +13,13 @@ test("구입급액이 1,000원 단위가 아닐 경우 예외를 발생시킨다
   );
 });
 
-test("구입금액이 숫자가 아닐 경우", () => {
+test("구입금액이 숫자가 아닐 경우 예외를 발생시킨다.", () => {
   const price = "aa";
 
   expect(() => validateIsNumeric(price)).toThrow("숫자를 입력해주세요.");
 });
 
-test("구입 금액이 1000원보다 작은 경우", () => {
+test("구입 금액이 1000원보다 작은 경우 예외를 발생시킨다.", () => {
   const price = 500;
 
   expect(() => validateMinimumValue(price)).toThrow(
@@ -27,9 +27,14 @@ test("구입 금액이 1000원보다 작은 경우", () => {
   );
 });
 
-test("구입 금액이 20,000을 초과할 경우", () => {
+test("구입 금액이 20,000을 초과할 경우 예외를 발생시킨다.", () => {
   const price = 25000;
   expect(() => validateMaximumValue(price)).toThrow(
     "구입 금액은 20,000원 이하여야 합니다."
   );
+});
+
+test("당첨번호가 숫자가 아닐 경우 예외를 발생시킨다.", () => {
+  const numbers = [1, 2, 3, 4, 5, "aa"];
+  expect(() => validateWinningNumberisNumeric(numbers)).toThrow();
 });

@@ -28,9 +28,16 @@ const validateMaximumValue = (input) => {
   }
 };
 
+const validateWinningNumberisNumeric = (input) => {
+  input.forEach((number) => {
+    validateIsNumeric(number);
+  });
+};
+
 export {
   validatePurchaseUnit,
   validateIsNumeric,
   validateMinimumValue,
   validateMaximumValue,
+  validateWinningNumberisNumeric,
 };
