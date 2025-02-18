@@ -1,4 +1,9 @@
-import { generateLottoNumbers } from "../../src/controllers/LottoController.js";
+import lottoController, {
+  generateLottoNumbers,
+} from "../../src/controllers/LottoController.js";
+import Lotto from "../../src/models/Lotto.js";
+
+jest.mock("../../src/models/Lotto.js");
 
 describe("controllers/lottoController", () => {
   describe("generateLottoNumbers()", () => {
@@ -20,6 +25,15 @@ describe("controllers/lottoController", () => {
       for (let i = 0; i < numbers.length - 1; i++) {
         expect(numbers[i] < numbers[i + 1]).toBe(true);
       }
+    });
+  });
+
+  describe("lottoController()", () => {
+    test("입력받은 금액만큼 로또 수를 발행한다.", () => {
+      const price = 8000;
+      lottoController(price);
+
+      expect(Lotto).toHaveBeenCalledTimes(8);
     });
   });
 });
