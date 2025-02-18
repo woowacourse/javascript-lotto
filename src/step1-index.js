@@ -1,4 +1,9 @@
-/**
- * step 1의 시작점이 되는 파일입니다.
- * 브라우저 환경에서 사용하는 css 파일 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import { INPUT } from './constants/messages.js';
+import { validatePurchasePrice } from './utils/validaition.js';
+import handleUserInput from './view/handleUserInput.js';
+
+async function run() {
+  const purchasePrice = await handleUserInput(INPUT.PURCHASE_PRICE, validatePurchasePrice);
+}
+
+run();
