@@ -1,8 +1,10 @@
+import { LOTTO_DEFINITION } from '../Constant/Definition.js';
+
 class LottoManager {
   constructor() {}
 
   purchaseLotto(money) {
-    return money / 1000;
+    return money / LOTTO_DEFINITION.ONE_PRICE;
   }
 }
 
