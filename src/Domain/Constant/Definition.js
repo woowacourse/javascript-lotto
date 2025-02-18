@@ -1,3 +1,4 @@
 export const LOTTO_DEFINITION = {
   ONE_PRICE: 1000,
+  NUMBER_COUNTS: 6,
 };
