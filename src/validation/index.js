@@ -12,6 +12,10 @@ export const validationLottoPrice = (price) => {
     throw new CustomError(ERROR_MESSAGE.INVALID_MULTIPLE_OF_THOUSAND);
   }
 
+  if (price < LOTTO_RULE.MIN_PRICE) {
+    throw new CustomError(ERROR_MESSAGE.INVALID_MIN_PRICE);
+  }
+
   if (price > LOTTO_RULE.MAX_PRICE) {
     throw new CustomError(ERROR_MESSAGE.INVALID_OVER_MAX_PRICE);
   }

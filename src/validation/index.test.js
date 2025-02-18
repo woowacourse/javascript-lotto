@@ -11,6 +11,11 @@ describe("validationLottoPrice 유효성 검사", () => {
     expect(() => validationLottoPrice(price)).toThrow();
   });
 
+  test("999원은 최소 구입 금액(1000원)보다 작다.", () => {
+    const price = 999;
+    expect(() => validationLottoPrice(price)).toThrow();
+  });
+
   test("101,000원은 최대 구입 금액(10만원)을 초과한다.", () => {
     const price = 101_000;
     expect(() => validationLottoPrice(price)).toThrow();

@@ -2,6 +2,7 @@ import FrozenMap from "../FrozenMap.js";
 
 export const LOTTO_RULE = Object.freeze({
   MULTIPLE_PRICE: 1000,
+  MIN_PRICE: 1000,
   MAX_PRICE: 100_000,
   MIN_LOTTO_NUMBER: 1,
   MAX_LOTTO_NUMBER: 45,

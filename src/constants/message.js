@@ -12,6 +12,7 @@ export const PROMPT_MESSAGE = Object.freeze({
 export const ERROR_MESSAGE = Object.freeze({
   INVALID_INTEGER: "정수만 입력 가능합니다.",
   INVALID_MULTIPLE_OF_THOUSAND: `${LOTTO_RULE.MULTIPLE_PRICE}원 단위로 입력해 주세요.`,
+  INVALID_MIN_PRICE: `최소 구입 금액은 ${LOTTO_RULE.MIN_PRICE}원입니다.`,
   INVALID_OVER_MAX_PRICE: `최대 구입 금액은 ${LOTTO_RULE.MAX_PRICE}원입니다.`,
   INVALID_LOTTO_NUMBER_RANGE: `${LOTTO_RULE.MIN_LOTTO_NUMBER}부터 ${LOTTO_RULE.MAX_LOTTO_NUMBER}까지의 숫자를 입력해 주세요.`,
   INVALID_DUPLICATE_NUMBER: "중복된 숫자는 입력할 수 없습니다.",
