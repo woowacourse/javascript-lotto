@@ -1,5 +1,4 @@
 {
-  "rules": {},
   "env": {
     "es6": true,
     "node": true
@@ -7,5 +6,9 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "rules": {
+    "max-depth": ["error", 1],
+    "max-params": ["error", 2]
+  }
 }
