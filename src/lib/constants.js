@@ -1,6 +1,5 @@
 const ERROR_MESSAGES_DEFAULT = "[ERROR]";
-
-const ERROR_MESSAGES = {
+export const ERROR_MESSAGES = {
   purchaseAmount: {
     positiveInteger: `${ERROR_MESSAGES_DEFAULT} 양의 정수를 입력해주세요.`,
     thousandUnit: `${ERROR_MESSAGES_DEFAULT} 1,000단위로 입력해주세요.`,
@@ -15,15 +14,18 @@ const ERROR_MESSAGES = {
   },
 };
 
-const INPUT_MESSAGES = {
+export const INPUT_MESSAGES = {
   purchaseAmount: () => "구입금액을 입력해 주세요.",
   winNumber: () => "당첨 번호를 입력해 주세요.",
   bonusNumber: () => "당첨 번호를 입력해 주세요.",
   retry: () => "다시 시작하시겠습니까? (y/n)",
 };
 
-const OUTPUT_MESSAGES = {
+export const OUTPUT_MESSAGES = {
   purchaseCount: (count) => `${count}개를 구매했습니다.`,
 };
 
-export { ERROR_MESSAGES, INPUT_MESSAGES, OUTPUT_MESSAGES };
+export const MIN_LOTTO_NUMBER = 1;
+export const MAX_LOTTO_NUMBER = 45;
+export const LOTTO_PRICE = 1_000;
+export const SEPERATOR = ",";
