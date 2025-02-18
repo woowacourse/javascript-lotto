@@ -10,9 +10,16 @@ function checkIsNumber(input) {
   }
 }
 
+function checkThousandUnit(input) {
+  if (input % 1000 !== 0) {
+    throw new Error('[ERROR] 천원 단위로 떨어지지 않는 입력입니다.');
+  }
+}
+
 const Validate = {
   checkIsEmpty,
   checkIsNumber,
+  checkThousandUnit,
 };
 
 export default Validate;
