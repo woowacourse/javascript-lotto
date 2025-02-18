@@ -1,4 +1,4 @@
-import { PURCHASE_AMOUNT_ERROR_MESSAGES } from "../../constants/constants.js";
+import { PURCHASE_AMOUNT_ERROR_MESSAGES } from "../constants/constants.js";
 
 const validatePurchaseAmount = (input) => {
   const purchaseAmount = Number(input);

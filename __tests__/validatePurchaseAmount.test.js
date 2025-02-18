@@ -1,5 +1,5 @@
 import { PURCHASE_AMOUNT_ERROR_MESSAGES } from "../src/constants/constants.js";
-import validatePurchaseAmount from "../src/domain/validation/validatePurchaseAmount.js";
+import validatePurchaseAmount from "../src/validations/validatePurchaseAmount.js";
 
 describe("구입 금액 유효성 테스트", () => {
   test.each([

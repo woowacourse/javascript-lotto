@@ -1,5 +1,5 @@
 import { WINNING_NUMBERS_ERROR_MESSAGES } from "../src/constants/constants.js";
-import validateWinningNumbers from "../src/domain/validation/validateWinningNumbers.js";
+import validateWinningNumbers from "../src/validations/validateWinningNumbers.js";
 
 describe("당첨 번호 유효성 테스트", () => {
   test.each([

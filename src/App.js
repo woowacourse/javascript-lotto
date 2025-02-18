@@ -1,9 +1,9 @@
-import Input from "./view/Input.js";
-import validatePurchaseAmount from "./domain/validation/validatePurchaseAmount.js";
-import validateWinningNumbers from "./domain/validation/validateWinningNumbers.js";
+import Input from "./views/Input.js";
+import validatePurchaseAmount from "./validations/validatePurchaseAmount.js";
+import validateWinningNumbers from "./validations/validateWinningNumbers.js";
 import throwIfInvalid from "./utils/throwIfInvalid.js";
-import Output from "./view/Output.js";
-import validateBonusNumber from "./domain/validation/validateBonusNumber.js";
+import Output from "./views/Output.js";
+import validateBonusNumber from "./validations/validateBonusNumber.js";
 
 class App {
   async start() {

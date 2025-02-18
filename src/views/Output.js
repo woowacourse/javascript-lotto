@@ -1,6 +1,6 @@
 const Output = {
   printErrorMessage(errorMessage) {
-    console.log(`[ERROR] ${errorMessage}`);
+    console.log(`[ERROR] ${errorMessage}\n`);
   },
 };
 

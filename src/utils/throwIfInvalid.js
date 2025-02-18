@@ -1,4 +1,4 @@
-import Output from "../view/Output.js";
+import Output from "../views/Output.js";
 
 const throwIfInvalid = async (inputFn, validateFn) => {
   while (true) {

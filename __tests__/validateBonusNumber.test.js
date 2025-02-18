@@ -1,5 +1,5 @@
 import { BONUS_NUMBER_ERROR_MESSAGES } from "../src/constants/constants.js";
-import validateBonusNumber from "../src/domain/validation/validateBonusNumber.js";
+import validateBonusNumber from "../src/validations/validateBonusNumber.js";
 
 describe("보너스 번호 유효성 테스트", () => {
   test.each([

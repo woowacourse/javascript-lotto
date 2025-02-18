@@ -1,4 +1,4 @@
-import { BONUS_NUMBER_ERROR_MESSAGES } from "../../constants/constants.js";
+import { BONUS_NUMBER_ERROR_MESSAGES } from "../constants/constants.js";
 
 const validateBonusNumber = (input, winningNumbers) => {
   const bonusNumber = Number(input);
