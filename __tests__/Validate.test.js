@@ -24,4 +24,10 @@ describe('입력 값에 대한 테스트', () => {
       Validate.checkThousandUnit(input);
     }).toThrow('[ERROR]');
   });
+
+  test.each([100001, 999])('구입 금액 범위(1000~100000) 예외처리', (input) => {
+    expect(() => {
+      Validate.checkPriceRange(input);
+    }).toThrow('[ERROR]');
+  });
 });
