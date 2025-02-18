@@ -18,6 +18,9 @@ class App {
 
     console.log(OUTPUT_MESSAGES.purchaseCount(purchaseCount));
     console.log(this.createLotto(purchaseCount));
+
+    const winNumbers = await InputView.readWinNumbers();
+    const bonusNumber = await InputView.readBonusNumber();
   }
 
   createLottoNumber() {
