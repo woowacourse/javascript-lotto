@@ -31,6 +31,8 @@ describe("보너스 번호 유효성 테스트", () => {
   ])(
     "보너스 번호가 $description 에러가 발생한다.",
     ({ input, expectedErrorMessage }) => {
+      // given
+      // when & then
       expect(() => {
         const winningNumbers = [11, 12, 13, 14, 15, 16];
         validateBonusNumber(input, winningNumbers);
