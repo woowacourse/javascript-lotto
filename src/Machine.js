@@ -14,8 +14,6 @@ class Machine {
   }
 
   createLotto() {
-    // 랜덤 숫자 생성
-    // return new Lotto([]);
     return new Lotto([1, 2, 3, 4, 5, 6]);
   }
 
