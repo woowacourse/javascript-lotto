@@ -1,0 +1,23 @@
+import { calculatePrizeResult } from "./calculatePrizeResult.js";
+
+describe("calculatePrizeResult 함수 테스트", () => {
+  test("3개 일치 1개 / 5개 + 보너스 일치 1개", () => {
+    const lottoNumbers = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 40, 41, 42],
+    ];
+    const winningNumbers = [1, 2, 3, 4, 5, 10];
+    const bonusNumber = 6;
+    const result = new Map([
+      [3, 1],
+      [4, 0],
+      [5, 0],
+      ["5B", 1],
+      [6, 0],
+    ]);
+
+    expect(
+      calculatePrizeResult(lottoNumbers, winningNumbers, bonusNumber)
+    ).toEqual(result);
+  });
+});

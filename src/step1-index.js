@@ -1,4 +1,5 @@
-import { generateLottoNumberSets } from "./lotto/store.js";
+import { calculatePrizeResult } from "./lotto/calculatePrizeResult.js";
+import { generateLottoNumberSets } from "./lotto/generateLottoNumberSets.js";
 import { retryUntilValidInput } from "./utils/input.js";
 import {
   validationLottoPrice,
@@ -31,6 +32,12 @@ const app = async () => {
     validator: (bonusNumber) =>
       validationBonusNumber(bonusNumber, winningNumbers),
   });
+
+  const result = calculatePrizeResult(
+    lottoNumbers,
+    winningNumbers,
+    bonusNumber
+  );
 };
 
 app();
