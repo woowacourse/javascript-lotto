@@ -1,4 +1,5 @@
 import Lotto from "../models/Lotto.js";
+import { printLottoCount, printLottoNumbers } from "../view/output.js";
 
 export const generateLottoNumbers = () => {
   // 중복 없이 1~45 사이의 숫자 6개 랜덤 생성, 오름차순 정렬
@@ -17,8 +18,12 @@ export const generateLottoNumbers = () => {
 
 const lottoController = (price) => {
   const count = price / 1000;
+  printLottoCount(count);
+
   for (let i = 0; i < count; i++) {
-    new Lotto(generateLottoNumbers());
+    const numbers = generateLottoNumbers();
+    new Lotto(numbers);
+    printLottoNumbers(numbers);
   }
 };
 
