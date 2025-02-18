@@ -20,20 +20,13 @@ class Controller {
       Input.readWinningNumbers,
       validateWinningNumbers,
     );
-    const bonusNumber = await this.#getValidatedBonusNumber(winningNumbers);
+    const bonusNumber = await throwIfInvalid(
+      Input.readBonusNumber,
+      validateBonusNumber,
+      winningNumbers,
+    );
 
     return { purchaseAmount, winningNumbers, bonusNumber };
-  }
-
-  async #getValidatedBonusNumber(winningNumbers) {
-    while (true) {
-      try {
-        const input = await Input.readBonusNumber();
-        return validateBonusNumber(input, winningNumbers);
-      } catch (error) {
-        Output.printErrorMessage(error.message);
-      }
-    }
   }
 }
 
