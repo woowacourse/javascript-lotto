@@ -1,6 +1,10 @@
 class Lotto {
   constructor(numbers) {
-    this.numbers = numbers;
+    this.numbers = this.sortLottoNumber(numbers);
+  }
+
+  sortLottoNumber(numbers) {
+    return numbers.sort();
   }
 
   getLottoNumbers() {
