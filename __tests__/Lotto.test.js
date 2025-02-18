@@ -18,4 +18,10 @@ describe('Lotto class test', () => {
       new Lotto(testCase);
     }).toThrow(ERROR_MESSAGE.duplicatedNumbers);
   });
+  it('로또 생성했을 때 1-45 외의 숫자가 들어갔을때, 에러를 던진다', () => {
+    const testCase = [45, 1, 2, 3, 4, 46];
+    expect(() => {
+      new Lotto(testCase);
+    }).toThrow(ERROR_MESSAGE.numberOutOfRange);
+  });
 });
