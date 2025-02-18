@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from "./constants/ERROR_MESSAGE.js";
+import ERROR_MESSAGE from "../constants/ERROR_MESSAGE.js";
 
 const purchaseLottoCount = (money) => {
   if (money % 1000 !== 0) {
