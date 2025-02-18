@@ -31,8 +31,13 @@ describe("로또 클래스 테스트", () => {
     });
     
     test("로또 번호의 범위가 1~45 사이가 아니면 에러가 발생한다.", () => {
-      const numbers = [1, 2, 3, 4, 5, 46];
+      const numbers = [0, 2, 3, 4, 5, 46];
       expect(() => new Lotto(numbers)).toThrow("로또 번호의 범위는 1~45 사이입니다.");
+    });
+
+    test("로또 번호가 중복되면 에러가 발생한다.", () => {
+      const numbers = [1, 2, 3, 4, 5, 5];
+      expect(() => new Lotto(numbers)).toThrow("로또 번호는 중복되면 안됩니다.");
     });
   });
 });
