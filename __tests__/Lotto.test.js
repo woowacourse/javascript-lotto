@@ -24,5 +24,10 @@ describe("로또 클래스 테스트", () => {
       const numbers = [null, 1, 2, 3, 4, 5];
       expect(() => new Lotto(numbers)).toThrow("로또 번호는 숫자여야 합니다.");
     });
+
+    test("로또 번호가 6개가 아니면 에러가 발생한다.", () => {
+      const numbers = [1, 2, 3, 4, 5];
+      expect(() => new Lotto(numbers)).toThrow("로또 번호는 6개여야 합니다.");
+    });
   });
 });
