@@ -5,6 +5,7 @@ import {
   validateMinimumValue,
   validatePurchaseUnit,
   validateWinningNumberisNumeric,
+  validateWinningNumberDuplicate,
 } from "../src/validate";
 
 test("구입급액이 1,000원 단위가 아닐 경우 예외를 발생시킨다.", () => {
@@ -51,3 +52,10 @@ test.each([0, 46])(
     );
   }
 );
+
+test("당첨 번호가 서로 중복되는 경우 예외를 발생시킨다.", () => {
+  const numbers = [1, 1, 2, 3, 4, 5];
+  expect(() => {
+    validateWinningNumberDuplicate(numbers);
+  }).toThrow("당첨 번호는 중복되지 않아야 합니다");
+});

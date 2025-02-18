@@ -49,6 +49,12 @@ const validateLottoNumberRange = (input) => {
   }
 };
 
+const validateWinningNumberDuplicate = (input) => {
+  if (input.length !== new Set(input).size) {
+    throw new Error("당첨 번호는 중복되지 않아야 합니다");
+  }
+};
+
 export {
   validatePurchaseUnit,
   validateIsNumeric,
@@ -56,4 +62,5 @@ export {
   validateMaximumValue,
   validateWinningNumberisNumeric,
   validateLottoNumberRange,
+  validateWinningNumberDuplicate,
 };
