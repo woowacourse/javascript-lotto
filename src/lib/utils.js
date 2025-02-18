@@ -27,5 +27,5 @@ export function generateRandomNumber(start, end) {
 }
 
 export function getIntersectCount(array1, array2) {
-  return array1.filter((value, index) => value === array2[index]).length;
+  return array1.filter((value, index) => array2.includes(value)).length;
 }
