@@ -1,10 +1,12 @@
+import Output from "../view/Output.js";
+
 const throwIfInvalid = async (inputFn, validateFn) => {
   while (true) {
     try {
       const input = await inputFn();
       return validateFn(input);
     } catch (error) {
-      console.log(error.message);
+      Output.printErrorMessage(error.message);
     }
   }
 };
