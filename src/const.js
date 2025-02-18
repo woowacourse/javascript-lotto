@@ -1,1 +1,2 @@
 export const PURCHASE_UNIT = 1000;
+export const MAXIMUM_PURCHASE_THRESHOLD = 20000;

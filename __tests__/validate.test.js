@@ -1,5 +1,6 @@
 import {
   validateIsNumeric,
+  validateMaximumValue,
   validateMinimumValue,
   validatePurchaseUnit,
 } from "../src/validate";
@@ -22,6 +23,13 @@ test("구입 금액이 1000원보다 작은 경우", () => {
   const price = 500;
 
   expect(() => validateMinimumValue(price)).toThrow(
-    "구입 금액은 1000원 이상이여야 합니다."
+    "구입 금액은 1,000원 이상이여야 합니다."
+  );
+});
+
+test("구입 금액이 20,000을 초과할 경우", () => {
+  const price = 25000;
+  expect(() => validateMaximumValue(price)).toThrow(
+    "구입 금액은 20,000원 이하여야 합니다."
   );
 });
