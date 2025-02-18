@@ -1,11 +1,28 @@
 {
-  "rules": {},
+  "rules": {
+    // package import를 제외한 모든 import 구문에 대해 확장자를 사용하도록 강제
+    "import/extensions": ["error", "ignorePackages"],
+    // 기타 사소한 오류 해결
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "lines-between-class-members": [
+      "error",
+      "always",
+      { "exceptAfterSingleLine": true }
+    ],
+    // 들여쓰기 깊이 제한
+    "max-depth": ["error", 1],
+    // 함수의 길이 제한
+    "max-lines-per-function": ["error", { "max": 15 }]
+  },
   "env": {
     "es6": true,
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "extends": ["eslint:recommended", "plugin:prettier/recommended"]
 }
