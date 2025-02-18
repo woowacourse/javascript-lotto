@@ -20,3 +20,7 @@ export const ERROR_MESSAGE = Object.freeze({
     "보너스 번호는 당첨 번호와 중복될 수 없습니다.",
   INVALID_RESTART: "y 또는 n을 입력해 주세요.",
 });
+
+export const ERROR_PREFIX = "[ERROR]";
+
+export const LINE_BREAK = "\n";

@@ -1,3 +1,5 @@
+import FrozenMap from "../FrozenMap.js";
+
 export const LOTTO_RULE = Object.freeze({
   MULTIPLE_PRICE: 1000,
   MAX_PRICE: 100_000,
@@ -15,15 +17,15 @@ export const LOTTO_PRIZE_MONEY = new FrozenMap([
 ]);
 
 export const LOTTO_RESULT_MESSAGES_MAP = Array.from(LOTTO_PRIZE_MONEY).reduce(
-  (message, [key, value]) => {
+  (messages, [key, value]) => {
     const prizeMoney = value.toLocaleString();
     if (key === "5B") {
-      message.set(key, `5개 일치, 보너스 볼 일치 (${prizeMoney}원) - `);
-      return message;
+      messages.set(key, `5개 일치, 보너스 볼 일치 (${prizeMoney}원) - `);
+      return messages;
     }
 
-    message.set(key, `${key}개 일치 (${prizeMoney}원) - `);
-    return message;
+    messages.set(key, `${key}개 일치 (${prizeMoney}원) - `);
+    return messages;
   },
   new FrozenMap()
 );
