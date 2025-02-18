@@ -22,11 +22,18 @@ function checkPriceRange(input) {
   }
 }
 
+function checkLottoNumberRange(input) {
+  if (input > 45 || input < 1) {
+    throw new Error('[ERROR] 로또 숫자의 범위는 1 ~ 45 입니다.');
+  }
+}
+
 const Validate = {
   checkIsEmpty,
   checkIsNumber,
   checkThousandUnit,
   checkPriceRange,
+  checkLottoNumberRange,
 };
 
 export default Validate;
