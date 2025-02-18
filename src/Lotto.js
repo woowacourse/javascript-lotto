@@ -14,6 +14,10 @@ class Lotto {
     if (!numbers.every((number) => typeof number === "number")) {
       throw new Error("로또 번호는 숫자여야 합니다.");
     }
+
+    if (numbers.length !== 6) {
+      throw new Error("로또 번호는 6개여야 합니다.");
+    }
   }
 }
 
