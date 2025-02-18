@@ -6,7 +6,13 @@ const InputView = {
         const input = await readLineAsync(INPUT_MESSAGE.AMOUNT);
         
         return input;
-    }
+    },
+
+    async readWinningNumbers() {
+        const input = await readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
+
+        return input;
+    },
 }
 
 export default InputView;
