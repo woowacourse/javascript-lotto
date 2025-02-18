@@ -37,4 +37,11 @@ describe('입력 값에 대한 테스트', () => {
       Validate.checkLottoNumberRange(input);
     }).toThrow('[ERROR]');
   });
+
+  test('당첨 번호 중복 입력 예외처리', () => {
+    expect(() => {
+      const input = [1, 2, 3, 4, 5, 5];
+      Validate.checkWinningNumberDuplicate(input);
+    }).toThrow('[ERROR]');
+  });
 });

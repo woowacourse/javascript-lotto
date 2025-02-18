@@ -28,12 +28,20 @@ function checkLottoNumberRange(input) {
   }
 }
 
+function checkWinningNumberDuplicate(input) {
+  const numbers = new Set(input);
+  if (numbers.size !== 6) {
+    throw new Error('[ERROR] 당첨 번호가 중복 입력되었습니다.');
+  }
+}
+
 const Validate = {
   checkIsEmpty,
   checkIsNumber,
   checkThousandUnit,
   checkPriceRange,
   checkLottoNumberRange,
+  checkWinningNumberDuplicate,
 };
 
 export default Validate;
