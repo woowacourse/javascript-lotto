@@ -7,3 +7,9 @@ export const isNumber = (input) => {
     throw new Error(ERROR_MESSAGE.INVALID_NUMBER);
   }
 };
+
+export const isThousandUnit = (input) => {
+  if (input % 1000 !== 0) {
+    throw new Error(ERROR_MESSAGE.INVALID_THOUSAND_UNIT);
+  }
+};
