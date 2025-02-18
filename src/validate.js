@@ -12,4 +12,10 @@ const validateIsNumeric = (input) => {
   }
 };
 
-export { validatePurchaseUnit, validateIsNumeric };
+const validateMinimumValue = (input) => {
+  if (input < PURCHASE_UNIT) {
+    throw new Error(`구입 금액은 ${PURCHASE_UNIT}원 이상이여야 합니다.`);
+  }
+};
+
+export { validatePurchaseUnit, validateIsNumeric, validateMinimumValue };
