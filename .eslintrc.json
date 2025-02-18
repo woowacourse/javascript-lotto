@@ -1,5 +1,8 @@
 {
-  "rules": {},
+  "rules": {
+    // 들여쓰기 깊이 제한
+    "max-depth": ["error", 1]
+  },
   "env": {
     "es6": true,
     "node": true
