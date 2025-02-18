@@ -13,6 +13,12 @@ const InputView = {
 
         return input;
     },
+
+    async readBonusNumber() {
+        const input = await readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
+
+        return input;
+    }
 }
 
 export default InputView;
