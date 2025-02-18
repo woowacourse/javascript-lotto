@@ -18,4 +18,11 @@ describe("로또 클래스 테스트", () => {
       });
     });
   });
+
+  describe("예외 케이스", () => {
+    test("로또 번호가 숫자가 아니면 에러가 발생한다.", () => {
+      const numbers = [null, 1, 2, 3, 4, 5];
+      expect(() => new Lotto(numbers)).toThrow("로또 번호는 숫자여야 합니다.");
+    });
+  });
 });
