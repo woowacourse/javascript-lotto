@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from '../settings/ErrorMessage';
+import ERROR_MESSAGE from '../settings/ErrorMessage.js';
 
 export default function checkLottoPurchase(input) {
   if (Number(input) < 1000) throw new Error(ERROR_MESSAGE.notEnoughMoney);
