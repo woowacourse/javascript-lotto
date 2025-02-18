@@ -28,3 +28,12 @@ test.each([
   expect(() => new Lotto(lottoNumbers))
     .toThrow('[ERROR] 로또 번호의 숫자 범위 1 ~ 45이다.');
 });
+
+test('로또 번호는 오름차순이여야 한다.', () => {
+  // given
+  const lottoNumbers = [5, 35, 24, 1, 2, 9];
+  // when
+  const lotto = new Lotto(lottoNumbers);
+  // then
+  expect(lotto.getNumbers()).toEqual([1, 2, 5, 9, 24, 35]);
+});
