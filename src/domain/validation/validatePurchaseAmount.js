@@ -13,6 +13,7 @@ const validatePurchaseAmount = (input) => {
   if (purchaseAmount > 100_000) {
     throw new Error();
   }
+  return purchaseAmount;
 };
 
 export default validatePurchaseAmount;

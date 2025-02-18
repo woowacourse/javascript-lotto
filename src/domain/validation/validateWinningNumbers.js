@@ -19,6 +19,8 @@ const validateWinningNumbers = (input) => {
   if (winningNumbers.length !== winningNumbersSet.size) {
     throw new Error();
   }
+
+  return winningNumbers;
 };
 
 export default validateWinningNumbers;
