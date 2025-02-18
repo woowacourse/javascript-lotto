@@ -18,6 +18,12 @@ const InputView = {
         const input = await readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
 
         return input;
+    },
+
+    async readRestart() {
+      const input = await readLineAsync(INPUT_MESSAGE.RESTART);
+
+      return input;
     }
 }
 
