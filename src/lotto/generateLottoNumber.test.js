@@ -1,5 +1,5 @@
 import generateLottoNumber from "./generateLottoNumber";
-import { isInRange, isDuplicate } from "../utils/predicate.js";
+import { isInRange, isDuplicate, hasNotInteger } from "../utils/predicate.js";
 
 describe("generateLottoNumber 함수 테스트", () => {
   test("로또 번호의 개수가 6개이다.", () => {
@@ -30,9 +30,6 @@ describe("generateLottoNumber 함수 테스트", () => {
 
   test("로또 번호가 정수인지 체크한다.", () => {
     const lottoNumbers = generateLottoNumber();
-    const isInteger = lottoNumbers.every((number) =>
-      Number.isSafeInteger(number)
-    );
-    expect(isInteger).toBeTruthy();
+    expect(hasNotInteger(lottoNumbers)).toBeFalsy();
   });
 });

@@ -9,3 +9,7 @@ export const isInRange = (number, min, max) => {
 export const isDuplicate = (array) => {
   return new Set(array).size !== array.length;
 };
+
+export const hasNotInteger = (array) => {
+  return array.some((number) => !Number.isSafeInteger(number));
+};

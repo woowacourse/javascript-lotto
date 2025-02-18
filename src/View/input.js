@@ -8,3 +8,10 @@ export const readLottoPriceInput = async () => {
   );
   return Number(userInput);
 };
+
+export const readWinningNumbersInput = async () => {
+  const userInput = await readLineAsync(
+    `${LINE_BREAK}${PROMPT_MESSAGE.WINNING_NUMBER_INPUT}${LINE_BREAK}`
+  );
+  return userInput.split(",").map(Number);
+};

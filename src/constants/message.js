@@ -3,7 +3,7 @@ import { LOTTO_RULE } from "./lotto.js";
 export const PROMPT_MESSAGE = Object.freeze({
   PURCHASE_PRICE: "구입금액을 입력해 주세요.",
   PURCHASE_QUANTITY: "개를 구매했습니다.",
-  LOTTO_NUMBER_INPUT: "당첨 번호를 입력해 주세요.",
+  WINNING_NUMBER_INPUT: "당첨 번호를 입력해 주세요.",
   BONUS_NUMBER_INPUT: "보너스 번호를 입력해 주세요.",
   LOTTO_RESULT: "당첨 통계\n--------------------",
   RESTART_INPUT: "다시 시작하시겠습니까? (y/n)",
