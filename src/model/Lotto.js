@@ -8,6 +8,8 @@ class Lotto {
   }
   #lottoValidation(numbers) {
     if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.notSixNumbers);
+    if (numbers.length !== new Set(numbers).size)
+      throw new Error(ERROR_MESSAGE.duplicatedNumbers);
   }
   get numbers() {
     return this.#numbers;
