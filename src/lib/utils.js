@@ -25,3 +25,7 @@ export function readLineAsync(query) {
 export function generateRandomNumber(start, end) {
   return Math.floor(Math.random() * (end + 1 - start)) + start;
 }
+
+export function getIntersectCount(array1, array2) {
+  return array1.filter((value, index) => value === array2[index]).length;
+}
