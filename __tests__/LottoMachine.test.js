@@ -9,6 +9,4 @@ describe("로또 기계 클래스 테스트", () => {
       expect(lottoMachine.lottos).toHaveLength(lottoCount);
     });
   });
-
-  describe("예외 케이스", () => {});
 });
