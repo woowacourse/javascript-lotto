@@ -35,6 +35,12 @@ function checkWinningNumberDuplicate(input) {
   }
 }
 
+function checkBonusNumberDuplicate(winningNumber, bonusNumber) {
+  if (winningNumber.includes(bonusNumber)) {
+    throw new Error('[ERROR] 당첨 번호와 중복 입력입니다.');
+  }
+}
+
 const Validate = {
   checkIsEmpty,
   checkIsNumber,
@@ -42,6 +48,7 @@ const Validate = {
   checkPriceRange,
   checkLottoNumberRange,
   checkWinningNumberDuplicate,
+  checkBonusNumberDuplicate,
 };
 
 export default Validate;

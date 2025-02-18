@@ -32,7 +32,7 @@ describe('입력 값에 대한 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  test.each([MIN_LOTTO_NUMBER - 1, MAX_LOTTO_NUMBER + 1])('1~45 범위 밖 입력 예외처리', (input) => {
+  test.each([MIN_LOTTO_NUMBER - 1, MAX_LOTTO_NUMBER + 1])('1 ~ 45 범위 밖 입력 예외처리', (input) => {
     expect(() => {
       Validate.checkLottoNumberRange(input);
     }).toThrow('[ERROR]');
@@ -42,6 +42,15 @@ describe('입력 값에 대한 테스트', () => {
     expect(() => {
       const input = [1, 2, 3, 4, 5, 5];
       Validate.checkWinningNumberDuplicate(input);
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 번호가 당첨 번호와 중복 입력 예외처리', () => {
+    const bonusNumber = 6;
+    const winningNumber = [1, 2, 3, 4, 5, 6];
+
+    expect(() => {
+      Validate.checkBonusNumberDuplicate(winningNumber, bonusNumber);
     }).toThrow('[ERROR]');
   });
 });
