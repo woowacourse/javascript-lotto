@@ -15,3 +15,10 @@ export const readWinningNumbersInput = async () => {
   );
   return userInput.split(",").map(Number);
 };
+
+export const readBonusNumberInput = async () => {
+  const userInput = await readLineAsync(
+    `${PROMPT_MESSAGE.BONUS_NUMBER_INPUT}${LINE_BREAK}`
+  );
+  return Number(userInput);
+};

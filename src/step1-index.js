@@ -3,8 +3,13 @@ import { retryUntilValidInput } from "./utils/input.js";
 import {
   validationLottoPrice,
   validationWinningNumbers,
+  validationBonusNumber,
 } from "./validation/index.js";
-import { readLottoPriceInput, readWinningNumbersInput } from "./View/input.js";
+import {
+  readLottoPriceInput,
+  readWinningNumbersInput,
+  readBonusNumberInput,
+} from "./View/input.js";
 import { printLottoNumbers } from "./View/output.js";
 
 const app = async () => {
@@ -19,6 +24,12 @@ const app = async () => {
   const winningNumbers = await retryUntilValidInput({
     readUserInput: readWinningNumbersInput,
     validator: validationWinningNumbers,
+  });
+
+  const bonusNumber = await retryUntilValidInput({
+    readUserInput: readBonusNumberInput,
+    validator: (bonusNumber) =>
+      validationBonusNumber(bonusNumber, winningNumbers),
   });
 };
 
