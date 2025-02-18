@@ -21,7 +21,9 @@
 - [ ] 예외 발생한 부분부터 입력을 다시 받는다.
 
 - 로또
-  - [ ] 숫자 6개를 가진 로또 1장을 발행한다. - Domain
+  - [x] 숫자 6개를 가진 로또 1장을 발행한다. - Domain
   - [ ] 로또 번호는 오름차순으로 정렬한다. - Domain
+
+## 커밋 컨벤션
 
 - feat, refactor, style, chore, fix, rename, remove
