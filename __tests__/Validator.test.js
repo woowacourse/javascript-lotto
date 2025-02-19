@@ -51,4 +51,13 @@ describe("당첨번호", () => {
       "[ERROR] 당첨번호는 숫자로 입력해야 합니다.",
     );
   });
+
+  test("당첨번호가 소수인 경우에 예외 처리한다.", () => {
+    const input = "1.2,2.3,3.4";
+    const strings = input.split(",");
+
+    expect(() => Validator.validateWinningNumbers(strings)).toThrow(
+      "[ERROR] 당첨번호는 정수로 입력해야 합니다.",
+    );
+  });
 });

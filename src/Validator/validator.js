@@ -23,6 +23,9 @@ const Validator = {
       const winningNumber = Number(winningNumberString);
       if (Number.isNaN(winningNumber))
         throw new Error("[ERROR] 당첨번호는 숫자로 입력해야 합니다.");
+
+      if (!Number.isInteger(winningNumber))
+        throw new Error("[ERROR] 당첨번호는 정수로 입력해야 합니다.");
     });
   },
 };
