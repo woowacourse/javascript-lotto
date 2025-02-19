@@ -43,6 +43,9 @@ class App {
 
     OutputView.printStatistics(lottoRanks);
     OutputView.printProfitRate(profitRate);
+
+    const isRetry = await InputView.readRetry();
+    if (isRetry) await this.run();
   }
 
   calculateProfitRate(profit, price) {

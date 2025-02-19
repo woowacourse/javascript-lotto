@@ -3,14 +3,18 @@ import { readLineAsync } from "../lib/utils.js";
 
 class InputView {
   static async readPurchaseAmount() {
-    const rawPurchaseAmount = await readLineAsync(
-      INPUT_MESSAGES.purchaseAmount()
-    );
+    try {
+      const rawPurchaseAmount = await readLineAsync(
+        INPUT_MESSAGES.purchaseAmount()
+      );
 
-    const purchaseAmount = Number(rawPurchaseAmount);
+      const purchaseAmount = Number(rawPurchaseAmount);
 
-    // Validator.validatePurchaseAmount(purchaseAmount);
-    return purchaseAmount;
+      return purchaseAmount;
+    } catch (error) {
+      console.log(error.message);
+      return await this.readPurchaseAmount();
+    }
   }
 
   static async readWinNumbers() {
@@ -25,6 +29,12 @@ class InputView {
     const bonusNumber = Number(rawBonusNumber);
 
     return bonusNumber;
+  }
+
+  static async readRetry() {
+    const retryCommand = await readLineAsync(INPUT_MESSAGES.retry());
+
+    return retryCommand === "y";
   }
 }
 

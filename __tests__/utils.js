@@ -2,6 +2,7 @@ import {
   checkUniqueArray,
   generateUniqueNumberArray,
   getIntersectCount,
+  retryUntilSuccess,
 } from "../src/lib/utils.js";
 
 describe("utils", () => {
@@ -32,6 +33,18 @@ describe("utils", () => {
       test("중복이 없는 배열인지 체크한다", () => {
         expect(checkUniqueArray([1, 2, 3, 4, 5, 6])).toBeTruthy();
         expect(checkUniqueArray([1, 2, 3, 4, 5, 5])).toBeFalsy();
+      });
+    });
+
+    describe("retryUntilSuccess를 테스트한다.", () => {
+      test("에러 이후에도 재입력 받을 수 있는지 체크한다.", async () => {
+        let i = 0;
+
+        await retryUntilSuccess(() => {
+          if (++i < 3) throw new Error();
+        });
+
+        expect(i).toBe(3);
       });
     });
   });

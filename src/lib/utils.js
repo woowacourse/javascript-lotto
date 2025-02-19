@@ -48,3 +48,12 @@ export function generateRandomNumber(start, end) {
 export function getIntersectCount(array1, array2) {
   return array1.filter((value, index) => array2.includes(value)).length;
 }
+
+export async function retryUntilSuccess(callbackFunction) {
+  try {
+    return await callbackFunction();
+  } catch (error) {
+    console.log(error.message);
+    return retryUntilSuccess(callbackFunction);
+  }
+}
