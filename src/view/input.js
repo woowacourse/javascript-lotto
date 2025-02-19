@@ -16,3 +16,6 @@ export const getBonusNumber = (winningNumbers) => {
     validateBonusNumber(bonusNumber, winningNumbers)
   );
 };
+
+export const getRestart = () =>
+  retryUntilValid("다시 시작하시겠습니까? (y/n)", validateRestart);

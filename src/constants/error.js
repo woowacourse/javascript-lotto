@@ -6,4 +6,5 @@ export const ERROR_MESSAGE = {
   INVALID_LOTTO_NUMBER_LENGTH: "6개의 숫자를 입력해주세요.",
   INVALID_LOTTO_DUPLICATE_NUMBER: "중복된 숫자가 있습니다.",
   INVALID_BONUS_NUMBER: "당첨 번호와 중복되지 않는 숫자를 입력해주세요.",
+  INVALID_RESTART_FORMAT: "y 또는 n을 입력해주세요.",
 };
