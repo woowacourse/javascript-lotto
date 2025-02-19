@@ -1,12 +1,7 @@
 import { ERROR } from '../src/constants/errors.js';
-import {
-  hasEmptyString,
-  isValueInteger,
-  validatePurchasePrice,
-  validateArrayOfWinningNumbers,
-  validateBonusNumber,
-  validateWinningNumbers,
-} from '../src/utils/validaition.js';
+import { hasEmptyString, isValueInteger } from '../src/validation/validateInput.js';
+import { validateBonusNumber, validateWinningNumbers } from '../src/validation/validateLottoNumbers.js';
+import { validatePurchasePrice } from '../src/validation/validatePurchasePrice.js';
 
 describe('구입 금액 유효성 검사 테스트', () => {
   describe('구입 금액 예외 케이스', () => {
