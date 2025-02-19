@@ -1,20 +1,21 @@
+import { SYSTEM_MESSAGE } from "../constants/MESSAGES.js";
 import readLineAsync from "../utils/readLineAsync.js";
 
 const InputView = {
   enterPurchasePrice: async function () {
-    return await readLineAsync("> 구입금액을 입력해 주세요. ");
+    return await readLineAsync(SYSTEM_MESSAGE.ENTER_PURCHASE_PRICE);
   },
 
   enterWinningNumbers: async function () {
-    return await readLineAsync("> 당첨 번호를 입력해 주세요. ");
+    return await readLineAsync(SYSTEM_MESSAGE.ENTER_WINNING_NUMBERS);
   },
 
   enterBonusNumber: async function () {
-    return await readLineAsync("\n> 보너스 번호를 입력해 주세요. ");
+    return await readLineAsync(SYSTEM_MESSAGE.ENTER_BONUS_NUMBER);
   },
 
   enterRestart: async function () {
-    return await readLineAsync("\n> 다시 시작하시겠습니까? (y/n) ");
+    return await readLineAsync(SYSTEM_MESSAGE.ENTER_RESTART);
   },
 };
 

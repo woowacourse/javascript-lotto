@@ -1,3 +1,8 @@
+import {
+  PURCHASE_PRICE,
+  RESTART,
+  SEPARATOR,
+} from "./constants/CONFIGURATIONS.js";
 import LottoMachine from "./domains/LottoMachine.js";
 import WinningResult from "./domains/WinningResult.js";
 import retryUntilValid from "./utils/retryUntilValid.js";
@@ -14,7 +19,7 @@ class App {
       await this.#start();
       const restartInput = await retryUntilValid(this.#getRestart);
 
-      if (restartInput.toLowerCase() !== "y") {
+      if (restartInput.toLowerCase() !== RESTART.YES) {
         break;
       }
     }
@@ -44,13 +49,13 @@ class App {
   async #getPurchasePrice() {
     const lottoPurchasePrice = await InputView.enterPurchasePrice();
     PurchasePriceValidator.validate(Number(lottoPurchasePrice));
-    const lottoCount = lottoPurchasePrice / 1000;
+    const lottoCount = lottoPurchasePrice / PURCHASE_PRICE.UNIT;
     return [lottoPurchasePrice, lottoCount];
   }
 
   async #getWinningNumbers() {
     const winningNumbers = await InputView.enterWinningNumbers();
-    const splittedWinningNumbers = winningNumbers.split(",").map(Number);
+    const splittedWinningNumbers = winningNumbers.split(SEPARATOR).map(Number);
     WinningNumbersValidator.validate(splittedWinningNumbers);
     return splittedWinningNumbers;
   }

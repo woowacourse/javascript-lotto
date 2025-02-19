@@ -1,3 +1,5 @@
+import { PROFIT } from "../constants/CONFIGURATIONS";
+
 class WinningResult {
   #winningNumbers;
   #bonusNumber;
@@ -12,47 +14,48 @@ class WinningResult {
 
     for (const lotto of lottos) {
       const sumSet = new Set([...lotto.numbers, ...this.#winningNumbers]);
-      const duplicateCount = 12 - sumSet.size;
+      const matchCount =
+        lotto.numbers.length + this.#winningNumbers.length - sumSet.size;
 
-      if (duplicateCount === 5 && !lotto.numbers.includes(this.#bonusNumber)) {
+      if (matchCount === 5 && !lotto.numbers.includes(this.#bonusNumber)) {
         counts[2]++;
         continue;
       }
 
-      this.#checkDuplicateCount(duplicateCount, counts);
+      this.#checkMatchCount(matchCount, counts);
     }
 
     return counts;
   }
 
-  #checkDuplicateCount(duplicateCount, counts) {
-    if (duplicateCount === 3) {
+  #checkMatchCount(matchCount, counts) {
+    if (matchCount === 3) {
       counts[0]++;
       return;
     }
 
-    if (duplicateCount === 4) {
+    if (matchCount === 4) {
       counts[1]++;
       return;
     }
 
-    if (duplicateCount === 5) {
+    if (matchCount === 5) {
       counts[3]++;
       return;
     }
 
-    if (duplicateCount === 6) {
+    if (matchCount === 6) {
       counts[4]++;
     }
   }
 
   calculateProfitRate(lottoPurchasePrice, counts) {
     const totalReward =
-      counts[0] * 5000 +
-      counts[1] * 50000 +
-      counts[2] * 1500000 +
-      counts[3] * 30000000 +
-      counts[4] * 2000000000;
+      counts[0] * PROFIT.FIFTH +
+      counts[1] * PROFIT.FOURTH +
+      counts[2] * PROFIT.THIRD +
+      counts[3] * PROFIT.SECOND +
+      counts[4] * PROFIT.FIRST;
     return ((totalReward - lottoPurchasePrice) / lottoPurchasePrice) * 100;
   }
 }

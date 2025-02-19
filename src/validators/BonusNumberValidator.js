@@ -1,13 +1,15 @@
+import { KEY, LOTTO } from "../constants/CONFIGURATIONS.js";
+import { ERROR_MESSAGE } from "../constants/MESSAGES.js";
 import { validateRange, validateType } from "./validate.js";
 
 const BonusNumberValidator = {
   validate: (bonusNumber, winningNumbers) => {
-    validateType("보너스 번호", bonusNumber);
+    validateType(KEY.BONUS_NUMBER, bonusNumber);
     validateRange({
-      key: "보너스 번호",
+      key: KEY.BONUS_NUMBER,
       value: bonusNumber,
-      min: 1,
-      max: 45,
+      min: LOTTO.MIN_NUMBER,
+      max: LOTTO.MAX_NUMBER,
     });
     validateDuplicate(bonusNumber, winningNumbers);
   },
@@ -15,7 +17,7 @@ const BonusNumberValidator = {
 
 const validateDuplicate = (bonusNumber, winningNumbers) => {
   if (winningNumbers.includes(bonusNumber)) {
-    throw new Error("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    throw new Error(ERROR_MESSAGE.BONUS_NUMBER.DUPLICATE);
   }
 };
 

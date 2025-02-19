@@ -1,21 +1,23 @@
+import { KEY, PURCHASE_PRICE } from "../constants/CONFIGURATIONS.js";
+import { ERROR_MESSAGE } from "../constants/MESSAGES.js";
 import { validateRange, validateType } from "./validate.js";
 
 const PurchasePriceValidator = {
   validate: (purchasePrice) => {
-    validateType("구입 금액", purchasePrice);
+    validateType(KEY.PURCHASE_PRICE, purchasePrice);
     validateRange({
-      key: "구입 금액",
+      key: KEY.PURCHASE_PRICE,
       value: purchasePrice,
-      min: 1000,
-      max: 1000000,
+      min: PURCHASE_PRICE.MIN,
+      max: PURCHASE_PRICE.MAX,
     });
     validateUnit(purchasePrice);
   },
 };
 
 const validateUnit = (purchasePrice) => {
-  if (purchasePrice % 1000 !== 0) {
-    throw new Error("구입 금액은 1,000원 단위로 입력해야 합니다.");
+  if (purchasePrice % PURCHASE_PRICE.UNIT !== 0) {
+    throw new Error(ERROR_MESSAGE.PURCHASE.INVALID_UNIT);
   }
 };
 

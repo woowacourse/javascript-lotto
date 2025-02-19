@@ -1,3 +1,6 @@
+import { LOTTO } from "../constants/CONFIGURATIONS.js";
+import { ERROR_MESSAGE } from "../constants/MESSAGES.js";
+
 class Lotto {
   #numbers;
 
@@ -12,19 +15,23 @@ class Lotto {
 
   #validate(numbers) {
     if (!numbers.every((number) => typeof number === "number")) {
-      throw new Error("로또 번호는 숫자여야 합니다.");
+      throw new Error(ERROR_MESSAGE.LOTTO.INVALID_TYPE);
     }
 
-    if (numbers.length !== 6) {
-      throw new Error("로또 번호는 6개여야 합니다.");
+    if (numbers.length !== LOTTO.LENGTH) {
+      throw new Error(ERROR_MESSAGE.LOTTO.INVALID_LENGTH);
     }
 
-    if (!numbers.every((number) => number >= 1 && number <= 45)) {
-      throw new Error("로또 번호의 범위는 1~45 사이입니다.");
+    if (
+      !numbers.every(
+        (number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER
+      )
+    ) {
+      throw new Error(ERROR_MESSAGE.LOTTO.INVALID_RANGE);
     }
 
-    if (new Set(numbers).size !== 6) {
-      throw new Error("로또 번호는 중복되면 안됩니다.");
+    if (new Set(numbers).size !== LOTTO.LENGTH) {
+      throw new Error(ERROR_MESSAGE.LOTTO.DUPLICATE);
     }
   }
 }

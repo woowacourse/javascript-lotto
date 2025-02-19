@@ -1,20 +1,21 @@
+import { LOTTO } from "../constants/CONFIGURATIONS.js";
+import { ERROR_MESSAGE } from "../constants/MESSAGES.js";
+
 const validateType = (key, value) => {
   if (typeof value !== "number" || Number.isNaN(value)) {
-    throw new Error(`${key}은(는) 숫자여야 합니다.`);
+    throw new Error(ERROR_MESSAGE.COMMON.INVALID_TYPE(key));
   }
 };
 
 const validateRange = ({ key, value, min, max }) => {
   if (value < min || value > max) {
-    throw new Error(
-      `${key}은(는) ${min.toLocaleString()} 이상 ${max.toLocaleString()} 이하여야 합니다.`
-    );
+    throw new Error(ERROR_MESSAGE.COMMON.INVALID_RANGE({ key, min, max }));
   }
 };
 
 const validateCount = (key, value) => {
-  if (value.length !== 6) {
-    throw new Error(`${key}은(는) 6개여야 합니다.`);
+  if (value.length !== LOTTO.LENGTH) {
+    throw new Error(ERROR_MESSAGE.COMMON.INVALID_COUNT(key));
   }
 };
 
