@@ -18,10 +18,11 @@ class LottoStatistics {
   compareLottos(machineLottos, winningNumber) {
     machineLottos.forEach((machineLotto) => {
       const sameCount = this.matchSameCount(machineLotto, winningNumber.lotto);
-      if (sameCount !== 5) {
-        return this.increaseCount(sameCount);
-      }
     });
+  }
+
+  hasBonusNumber(machineLotto, bonus) {
+    return machineLotto.includes(bonus);
   }
 
   matchSameCount(machineLotto, winningLotto) {
