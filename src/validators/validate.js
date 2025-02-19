@@ -16,4 +16,10 @@ const validateUnit = (purchasePrice) => {
   }
 };
 
-export { validateType, validateRange, validateUnit };
+const validateCount = (key, value) => {
+  if (value.length !== 6) {
+    throw new Error(`${key}은(는) 6개여야 합니다.`);
+  }
+};
+
+export { validateType, validateRange, validateUnit, validateCount };
