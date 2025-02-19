@@ -43,6 +43,15 @@ describe("구입금액", () => {
 });
 
 describe("당첨번호", () => {
+  test("당첨번호가 중복인 경우에 예외 처리한다.", () => {
+    const input = "1,2,2,3,4,5";
+    const strings = input.split(",");
+
+    expect(() => Validator.validateWinningNumbers(strings)).toThrow(
+      "[ERROR] 당첨번호는 중복없이 입력해야 합니다.",
+    );
+  });
+
   test("당첨번호가 문자인 경우에 예외 처리한다.", () => {
     const input = "a,b,c";
     const strings = input.split(",");

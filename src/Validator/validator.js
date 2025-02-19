@@ -36,6 +36,9 @@ const Validator = {
           "[ERROR] 당첨번호는 1 ~ 45 사이의 숫자로 입력해야 합니다.",
         );
     });
+    if (new Set(winningNumbersInput).size !== winningNumbersInput.length) {
+      throw new Error("[ERROR] 당첨번호는 중복없이 입력해야 합니다.");
+    }
 
     if (winningNumbersInput.length !== 6)
       throw new Error("[ERROR] 당첨번호는 6개를 입력해야 합니다.");
