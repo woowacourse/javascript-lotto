@@ -1,3 +1,4 @@
+import Lotto from "../src/domain/Lotto";
 import LottoMachine from "../src/domain/LottoMachine";
 import createSixRandomNumber from "../src/domain/createSixRandomNumber";
 
@@ -10,7 +11,14 @@ test("1~45 중 6개의 랜덤 값을 생성한다.", () => {
 test("주어진 count 값만큼 난수(6개의 랜덤값) 세트가 생성된다.", () => {
   const count = 3;
 
-  const lottoNumberSet = LottoMachine(3);
+  const lottoNumberSet = LottoMachine(count);
 
   expect(lottoNumberSet).toHaveLength(count);
+});
+
+test("Lotto Machine은 Lotto Instance들을 반환해야한다.", () => {
+  const count = 3;
+
+  const lottoNumberSet = LottoMachine(count);
+  expect(lottoNumberSet[0]).toBeInstanceOf(Lotto);
 });
