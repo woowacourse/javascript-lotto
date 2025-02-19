@@ -7,8 +7,8 @@
 2. [x] 구입 금액에 해당하는 만큼 로또를 발행한다. - domain -> LottoMachine
   - [x] 1~45의 랜덤 숫자 6개를 생성 - domain -> util
   - [x] 6자리 숫자로 로또를 만든다 - domain -> Lotto
+  - [] 로또 번호는 오름차순으로 정렬 - domain -> Lotto
 3. [] 발행된 로또 출력한다. - ui
-  - [] 로또 번호는 오름차순으로 정렬 - domain -> util
 4. [] 당첨 번호를 입력 받는다. - ui
   - [x] 공백 입력 예외처리 - domain -> Validate
   - [x] 숫자 이외의 입력 예외처리 - domain -> Validate
