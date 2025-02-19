@@ -15,6 +15,14 @@ class WinningLotto {
     this.#numbers = new Lotto(numbers);
     this.#bonusNumber = bonusNumber;
   }
+
+  get numbers() {
+    return this.#numbers;
+  }
+  get bonusNumber() {
+    return this.#bonusNumber;
+  }
+
   #isRangeValid(bonusNumber) {
     return bonusNumber >= 1 && bonusNumber <= 45;
   }

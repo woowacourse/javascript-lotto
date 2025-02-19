@@ -3,3 +3,5 @@ export const LOTTO_NUMBERS = {
   MIN: 1,
   MAX: 45,
 };
+
+export const LOTTO_PRICE = 1000;
