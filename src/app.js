@@ -1,26 +1,30 @@
-import readLineAsync from "./util/readLineAsync.js";
 import Validator from "./Validator/validator.js";
+import InputHandler from "./view/InputHandler.js";
 
 class App {
   async getPurchaseMoney() {
-    const input = await readLineAsync("> 구입금액을 입력해 주세요. ");
-    const purchaseMoney = Number(input);
-    Validator.validatePurchaseMoney(purchaseMoney);
-    return purchaseMoney;
+    return InputHandler({
+      inputMessage: "> 구입금액을 입력해 주세요. ",
+      parser: Number,
+      validator: Validator.validatePurchaseMoney,
+    });
   }
 
   async getWinningNumbers() {
-    const input = await readLineAsync("> 당첨 번호를 입력해 주세요. ");
-    const winningNumbers = input.split(",").map((string) => Number(string));
-    Validator.validateWinningNumbers(winningNumbers);
-    return winningNumbers;
+    return InputHandler({
+      inputMessage: "> 당첨 번호를 입력해 주세요. ",
+      parser: (input) => input.split(",").map((string) => Number(string)),
+      validator: Validator.validateWinningNumbers,
+    });
   }
 
   async getBonusNumber(winningNumbers) {
-    const input = await readLineAsync("> 보너스 번호를 입력해 주세요. ");
-    const bonusNumber = Number(input);
-    Validator.validateBonusNumber(winningNumbers, bonusNumber);
-    return bonusNumber;
+    return InputHandler({
+      inputMessage: "> 보너스 번호를 입력해 주세요. ",
+      parser: Number,
+      validator: (bonusNumber) =>
+        Validator.validateBonusNumber(winningNumbers, bonusNumber),
+    });
   }
 
   async run() {
