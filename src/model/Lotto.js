@@ -8,7 +8,7 @@ class Lotto {
 
   constructor(numbers) {
     this.#lottoValidation(numbers);
-    this.#numbers = numbers;
+    this.#numbers = numbers.sort((a, b) => a - b);
   }
   #lottoValidation(numbers) {
     numbers.forEach((number) => isNumber(number));
