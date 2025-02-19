@@ -35,3 +35,14 @@ export async function retryUntilSuccess(callbackFn) {
 export function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
+
+export function makeOneLotto() {
+  const lotto = [];
+  while (lotto.length < 6) {
+    const curNumber = getRandomInt(44) + 1;
+    if (lotto.includes(curNumber)) continue;
+    lotto.push(curNumber);
+  }
+
+  return lotto.sort((a, b) => a - b);
+}

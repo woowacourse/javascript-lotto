@@ -21,3 +21,7 @@ export async function readLineAsync(query) {
     });
   });
 }
+
+export function getLottoAmount(price) {
+  return price / 1000;
+}
