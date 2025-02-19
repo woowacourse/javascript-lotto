@@ -3,6 +3,7 @@
 import LottoCompany from "./domain/LottoCompany.js";
 import LottoShop from "./domain/LottoShop.js";
 import { LOTTO_PRICE, LOTTO_RANK } from "./lib/constants.js";
+import { calculateProfitRate } from "./lib/utils.js";
 import InputView from "./views/InputView.js";
 import OutputView from "./views/OutputView.js";
 
@@ -23,18 +24,13 @@ class App {
     const lottoRanks = lottoCompany.calculateLottoRanks(purchasedLottos);
 
     const totalPrize = this.#calculateTotalProfit(lottoRanks);
-    const profitRate = this.#calculateProfitRate(totalPrize, purchaseAmount);
+    const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
     OutputView.printStatistics(lottoRanks);
     OutputView.printProfitRate(profitRate);
 
     const isRetry = await InputView.readRetry();
     if (isRetry) await this.run();
-  }
-
-  #calculateProfitRate(profit, price) {
-    const profitRate = ((profit / price) * 100).toFixed(1);
-    return Number(profitRate);
   }
 
   #calculateTotalProfit(lottoRanks) {

@@ -37,6 +37,11 @@ export function generateUniqueNumberArray(start, end, length) {
   return array;
 }
 
+export function calculateProfitRate(profit, price) {
+  const profitRate = ((profit / price) * 100).toFixed(1);
+  return Number(profitRate);
+}
+
 export function checkUniqueArray(array) {
   return array.length === new Set(array).size;
 }
