@@ -10,13 +10,13 @@ const validateLottoCount = (numbers) => {
 
 const validateLottoNumberInteger = (numbers) => {
   numbers.forEach((numbers) => {
-    if (LottoNumberValidator.isInteger(numbers)) throw new Error(LOTTO_NUMBER_ERROR_MESSAGES.INTIGER);
+    if (!LottoNumberValidator.isInteger(numbers)) throw new Error(LOTTO_NUMBER_ERROR_MESSAGES.INTIGER);
   });
 };
 
 const validateLottoNumberRange = (numbers) => {
   numbers.forEach((number) => {
-    if (LottoNumberValidator.isValidRange(number)) throw new Error(LOTTO_NUMBER_ERROR_MESSAGES.RANGE);
+    if (!LottoNumberValidator.isValidRange(number)) throw new Error(LOTTO_NUMBER_ERROR_MESSAGES.RANGE);
   });
 };
 

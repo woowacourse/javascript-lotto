@@ -4,6 +4,7 @@ import OutputView from '../view/OutputView.js';
 import { LINE_BREAK, LOTTO_NUMBER_DELIMITER } from '../constants/constants.js';
 import validatePurchaseMoney from '../validations/validate/PurchaseMoneyValidate.js';
 import Lotto from '../domain/Lotto.js';
+import validateBonusNumber from '../validations/validate/BonusNumberValidate.js';
 
 const InputHandler = {
   async purchaseMoney() {
@@ -25,6 +26,19 @@ const InputHandler = {
         const winningNumbers = await InputView.readUserInput(INPUT_MESSAGE.WINNING_NUMBERS);
         OutputView.print(LINE_BREAK);
         return new Lotto(winningNumbers.split(LOTTO_NUMBER_DELIMITER).map(num => Number(num)));
+      } catch (e) {
+        OutputView.print(e.message);
+      }
+    }
+  },
+
+  async bonusNumber(winningNumbers) {
+    while (true) {
+      try {
+        const bonusNumber = await InputView.readUserInput(INPUT_MESSAGE.BONUS_NUMBER);
+        validateBonusNumber(winningNumbers, Number(bonusNumber));
+        OutputView.print(LINE_BREAK);
+        return bonusNumber
       } catch (e) {
         OutputView.print(e.message);
       }

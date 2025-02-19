@@ -7,7 +7,8 @@ class LottoController {
   async run() {
     const lottoMaker = new LottoMaker(await this.inputPurchaseMoney())
     this.printLottoNumber(lottoMaker);
-    const winningNumbers = await this.inputWinningNumbers()
+    const winningNumbers = await this.inputWinningNumbers();
+    const bonusNumber = await this.inputBonusNumber(winningNumbers.numbers);
   }
 
   async inputPurchaseMoney(){
@@ -16,6 +17,10 @@ class LottoController {
 
   async inputWinningNumbers(){
     return await InputHandler.winningNumbers()
+  }
+
+  async inputBonusNumber(winningNumbers){
+    return await InputHandler.bonusNumber(winningNumbers)
   }
 
   printLottoNumber(lottoMaker){

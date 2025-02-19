@@ -6,11 +6,11 @@ export const LottoNumberValidator = {
   },
 
   isInteger(numbers) {
-    return !Number.isInteger(numbers);
+    return Number.isInteger(numbers);
   },
 
   isValidRange(number) {
-    return number < LOTTO_CONDITION.MIN_NUMBER || number > LOTTO_CONDITION.MAX_NUMBER;
+    return number >= LOTTO_CONDITION.MIN_NUMBER && number <= LOTTO_CONDITION.MAX_NUMBER;
   },
 
   isDuplicated(numbers) {
