@@ -8,13 +8,13 @@ class WinningResult {
   }
 
   calculate(lottos) {
-    const counts = Array.from({ length: 5 }, () => 0);
+    const counts = Array(5).fill(0);
 
     for (const lotto of lottos) {
-      const sumSet = new Set([...lotto, ...this.#winningNumbers]);
+      const sumSet = new Set([...lotto.numbers, ...this.#winningNumbers]);
       const duplicateCount = 12 - sumSet.size;
 
-      if (duplicateCount === 5 && !lotto.includes(this.#bonusNumber)) {
+      if (duplicateCount === 5 && !lotto.numbers.includes(this.#bonusNumber)) {
         counts[2]++;
         continue;
       }
@@ -44,6 +44,16 @@ class WinningResult {
     if (duplicateCount === 6) {
       counts[4]++;
     }
+  }
+
+  calculateProfitRate(lottoPurchasePrice, counts) {
+    const totalReward =
+      counts[0] * 5000 +
+      counts[1] * 50000 +
+      counts[2] * 1500000 +
+      counts[3] * 30000000 +
+      counts[4] * 2000000000;
+    return ((totalReward - lottoPurchasePrice) / lottoPurchasePrice) * 100;
   }
 }
 
