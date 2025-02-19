@@ -1,5 +1,5 @@
 import { LOTTO_PRICE } from "../constants/systemConstants.js";
-
+import { LOTTO_NUMBERS } from "../constants/systemConstants.js";
 const validationCondition = {
   isNumber(input) {
     return !isNaN(input);
@@ -12,6 +12,16 @@ const validationCondition = {
   },
   isDivisible(input) {
     return Number(input) % LOTTO_PRICE === 0;
+  },
+
+  isLengthValid(numbers) {
+    return numbers.length === LOTTO_NUMBERS.LENGTH;
+  },
+  isRangeValid(numbers) {
+    return !numbers.some((number) => number < 1 || number > 45);
+  },
+  isDistinct(numbers) {
+    return new Set(numbers).size === numbers.length;
   },
 };
 
