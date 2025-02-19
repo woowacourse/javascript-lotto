@@ -1,11 +1,7 @@
 import { LOTTO_PRIZE_MONEY } from "../constants/lotto.js";
 import { getIntersection } from "../utils/array.js";
 
-export const calculatePrizeResult = (
-  lottoNumbers,
-  winningNumbers,
-  bonusNumber
-) => {
+const calculatePrizeResult = (lottoNumbers, winningNumbers, bonusNumber) => {
   const initResult = Array.from(LOTTO_PRIZE_MONEY).map(([key]) => [key, 0]);
   const result = new Map(initResult);
 
@@ -28,3 +24,5 @@ export const calculatePrizeResult = (
 
   return result;
 };
+
+export default calculatePrizeResult;

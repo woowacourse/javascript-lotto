@@ -1,6 +1,8 @@
-import { calculatePrizeResult } from "./lotto/calculatePrizeResult.js";
-import { generateLottoNumberSets } from "./lotto/generateLottoNumberSets.js";
-import { getTotalPrizeMoney } from "./lotto/getTotalPrizeMoney.js";
+import {
+  calculatePrizeResult,
+  generateLottoNumberSets,
+  getTotalPrizeMoney,
+} from "./lotto/index.js";
 import { retryUntilValidInput } from "./utils/input.js";
 import { getRevenueRate } from "./utils/math.js";
 import {

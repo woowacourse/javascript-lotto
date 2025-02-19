@@ -1,4 +1,4 @@
-import { calculatePrizeResult } from "./calculatePrizeResult.js";
+import calculatePrizeResult from "./calculatePrizeResult.js";
 
 describe("calculatePrizeResult 함수 테스트", () => {
   test("3개 일치 1개 / 5개 + 보너스 일치 1개", () => {

@@ -1,4 +1,4 @@
-import { getTotalPrizeMoney } from "./getTotalPrizeMoney.js";
+import getTotalPrizeMoney from "./getTotalPrizeMoney.js";
 
 describe("generateLottoNumberSets 테스트", () => {
   test("3000원으로 로또 번호를 3개 구매한다.", () => {
