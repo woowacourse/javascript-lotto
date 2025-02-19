@@ -77,11 +77,11 @@ describe("Winnings 클래스 테스트", () => {
     const statistics = winnings.countStatistics(lottos);
 
     expect(statistics).toEqual({
-      3: 0,
-      4: 0,
-      5: 0,
-      6: 1,
-      7: 1,
+      "1등": 1,
+      "2등": 1,
+      "3등": 0,
+      "4등": 0,
+      "5등": 0,
     });
   });
 

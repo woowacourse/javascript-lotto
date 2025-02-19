@@ -25,13 +25,13 @@ Winnings.js
 - ✅ 당첨번호는 1~45 사이의 자연수
 - ✅ 보너스번호는 당첨번호와 중복되면 안됨
 - ✅ 보너스 번호는 1~45 사이의 자연수
-- 당첨통계 계산(머신한테 Lotto 배열을 받아서 당첨 통계 계산) => ([lotto1{}, lotto2{}...])
+- ✅ 당첨통계 계산(머신한테 Lotto 배열을 받아서 당첨 통계 계산) => ([lotto1{}, lotto2{}...])
 
 LottoMachine.js
 
-- #lottos 상태를 저장
-- createLottos() => 로또 배열을 만들어서 반환
-- createLottos() 반환값을 #lottos에 저장해주는 saveLottos()
+- ✅ #lottos 상태를 저장
+- ✅ createLottos() => 로또 배열을 만들어서 반환
+- ✅ createLottos() 반환값을 #lottos에 저장해주는 saveLottos()
 - winnings()에서 받은 당첨통계를 LottoController에 반환해줄 메서드
 
 Validator.js

@@ -40,30 +40,49 @@ export default class Winnings {
 
   countStatistics(lottos) {
     const counter = {
-      3: 0,
-      4: 0,
-      5: 0,
-      6: 0,
-      7: 0,
+      "1등": 0,
+      "2등": 0,
+      "3등": 0,
+      "4등": 0,
+      "5등": 0,
     };
 
     lottos.forEach((lotto) => {
-      const sumNumbers = [...lotto, ...this.numbers];
-      const setLotto = new Set(sumNumbers);
-
-      const matchCount = sumNumbers.length - setLotto.size;
-      if (matchCount < 3) return;
-      if (matchCount === 5) {
-        if (lotto.includes(this.bonusNumber)) {
-          return counter[6]++;
-        }
-        return counter[5]++;
-      }
-      if (matchCount === 6) return counter[7]++;
-      counter[matchCount]++;
+      this.#judgeRank(lotto, counter);
     });
 
     return counter;
+  }
+
+  #judgeRank(lotto, counter) {
+    const matchCount = this.#getMatchCount(lotto);
+    if (this.#isBonusWinning(matchCount, lotto)) return counter["2등"]++;
+    switch (matchCount) {
+      case 3:
+        counter["5등"]++;
+        break;
+      case 4:
+        counter["4등"]++;
+        break;
+      case 5:
+        counter["3등"]++;
+        break;
+      case 6:
+        counter["1등"]++;
+        break;
+    }
+  }
+
+  #isBonusWinning(matchCount, lotto) {
+    if (matchCount === 5 && lotto.includes(this.bonusNumber)) return true;
+    return false;
+  }
+
+  #getMatchCount(lotto) {
+    const sumNumbers = [...lotto, ...this.numbers];
+    const setLotto = new Set(sumNumbers);
+
+    return sumNumbers.length - setLotto.size;
   }
 
   calculateWinningRate(statistics, money) {
