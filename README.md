@@ -50,7 +50,7 @@ Lotto
 
   - [x] count 값 만큼 난수 세트 생성 - Domain
     - [x] 1~45 중 6개의 랜덤 값을 생성 - Domain
-      - [ ] 랜덤 값은 중복될 수 없다. - Domain
+      - [x] 랜덤 값은 중복될 수 없다. - Domain
   - [x] Lotto Instance 생성 및 반환한다. - Domain
 
 - AnswerLottoPack

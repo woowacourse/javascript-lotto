@@ -1,9 +1,13 @@
 const createSixRandomNumber = () => {
-  const randomValue = [];
-  for (let i = 0; i < 6; i++) {
-    randomValue.push(Math.floor(Math.random() * 45) + 1);
+  const randomNumbers = [];
+  while (randomNumbers.length < 6) {
+    const randomNumber = Math.floor(Math.random() * 45) + 1;
+    if (randomNumbers.includes(randomNumber)) {
+      continue;
+    }
+    randomNumbers.push(randomNumber);
   }
-  return randomValue;
+  return randomNumbers;
 };
 
 export default createSixRandomNumber;
