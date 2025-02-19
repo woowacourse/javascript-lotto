@@ -8,7 +8,9 @@ class LottoMachine {
     const randomNumbers = [];
     while (randomNumbers.length < 6) {
       const randomNumber = Math.floor(Math.random() * 45 + 1);
-      randomNumbers.push(randomNumber);
+      if (!randomNumbers.includes(randomNumber)) {
+        randomNumbers.push(randomNumber);
+      }
     }
 
     return randomNumbers;

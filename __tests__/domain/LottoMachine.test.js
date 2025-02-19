@@ -13,3 +13,11 @@ test("무작위로 생성된 숫자의 개수는 6개이다.", () => {
 
   expect(lottoMachine.drawRandomNumbers().length).toBe(6);
 });
+
+test("무작위로 생성된 숫자는 서로 중복되지 않는다.", () => {
+  const lottoMachine = new LottoMachine();
+
+  const randomNumbers = lottoMachine.drawRandomNumbers();
+
+  expect(new Set(randomNumbers).size).toBe(randomNumbers.length);
+});
