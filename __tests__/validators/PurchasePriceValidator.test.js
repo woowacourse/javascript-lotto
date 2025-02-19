@@ -2,15 +2,15 @@ import {
   validateRange,
   validateType,
   validateUnit,
-} from "../../src/validators/PurchasePriceValidator";
+} from "../../src/validators/validate";
 
 describe("구매 금액 검증 테스트", () => {
   describe("예외 케이스", () => {
     test.each(["^", NaN, undefined, {}])(
       "구매 금액이 숫자가 아니면 에러가 발생한다. (입력 값 : %p)",
       (purchasePrice) => {
-        expect(() => validateType(purchasePrice)).toThrow(
-          "구매 금액은 숫자여야 합니다."
+        expect(() => validateType("구매 금액", purchasePrice)).toThrow(
+          "구매 금액은(는) 숫자여야 합니다."
         );
       }
     );
