@@ -1,3 +1,4 @@
+import checkRank from "../domain/checkRank.js";
 import { generateLottoNumbers } from "../domain/generateLottoNumbers.js";
 import updateMatchResult from "../domain/updateMatchResult.js";
 import Lotto from "../models/Lotto.js";
@@ -21,6 +22,16 @@ const lottoController = async (price) => {
 
   lottos.forEach((lotto) => {
     updateMatchResult(lotto, winningNumbers, bonusNumber);
+  });
+
+  let totalReward = 0;
+
+  lottos.forEach((lotto) => {
+    const result = checkRank(
+      lotto.matchResult.matchCount,
+      lotto.matchResult.isBonusMatched
+    );
+    totalReward += result?.REWARD ?? 0;
   });
 };
 
