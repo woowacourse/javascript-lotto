@@ -10,6 +10,12 @@ function checkIsNumber(input) {
   }
 }
 
+function checkWinningNumberCount(input) {
+  if (input.length !== 6) {
+    throw new Error('[ERROR] 6개의 숫자를 입력해주세요.');
+  }
+}
+
 function checkThousandUnit(input) {
   if (input % 1000 !== 0) {
     throw new Error('[ERROR] 천원 단위로 입력해주세요.');
@@ -49,6 +55,7 @@ const Validate = {
   checkLottoNumberRange,
   checkWinningNumberDuplicate,
   checkBonusNumberDuplicate,
+  checkWinningNumberCount,
 };
 
 export default Validate;

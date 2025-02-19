@@ -53,4 +53,10 @@ describe('입력 값에 대한 테스트', () => {
       Validate.checkBonusNumberDuplicate(winningNumber, bonusNumber);
     }).toThrow('[ERROR]');
   });
+
+  test('당첨 번호 6개가 아닌 입력 예외처리', () => {
+    const input = [1, 2, 3, 4, 5];
+
+    expect(() => Validate.checkWinningNumberCount(input)).toThrow('[ERROR]');
+  });
 });
