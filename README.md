@@ -14,6 +14,7 @@
   - [x] 숫자 이외의 입력 예외처리 - domain -> Validate
   - [x] 1~45 범위 밖 입력 예외처리 - domain -> Validate
   - [x] 중복 번호 입력 예외처리 - domain -> Validate
+  - [] 숫자 6개가 아닌 입력 예외처리 - domain -> Validate
 5. [] 보너스 번호를 입력 받는다. - ui
   - [x] 공백 입력 예외처리 - domain -> Validate
   - [x] 숫자 이외의 입력 예외처리 - domain -> Validate
