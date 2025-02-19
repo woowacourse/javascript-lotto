@@ -1,6 +1,12 @@
 class Lotto {
   constructor(numbers) {
     this.numbers = this.sortLottoNumber(numbers);
+    this.validate(this.numbers);
+  }
+
+  validate(numbers) {
+    const validator = new LottoValidator();
+    validator.validate(numbers);
   }
 
   sortLottoNumber(numbers) {
