@@ -42,7 +42,7 @@ Lotto
 - [x] 로또 번호는 6자리이다. - Domain
 - [x] 로또 번호를 오름차순으로 정렬한다 - Domain
 
-- LottoPack
+- LottoPack (사용자 로또 용지)
 
 - [x] 난수(랜덤 번호 6개)세트를 받아서 Lotto를 생성 및 관리한다. - Domain
 
@@ -50,7 +50,20 @@ Lotto
 
   - [x] count 값 만큼 난수 세트 생성 - Domain
     - [x] 1~45 중 6개의 랜덤 값을 생성 - Domain
+      - [ ] 랜덤 값은 중복될 수 없다. - Domain
   - [x] Lotto Instance 생성 및 반환한다. - Domain
+
+- AnswerLottoPack
+
+  - [x] 당첨번호와 보너스 번호를 관리한다 - Domain
+
+### 유효성 검증 도메인
+
+- AnswerPack 관련 도메인
+  - [ ] 당첨 번호는 6개다. - Domain
+  - [ ] 보너스 번호는 1개다. - Domain
+  - [ ] 당첨 번호 및 보너스 번호는 1~45까지이다. - Domain
+  - [ ] 당첨 번호 및 보너스 번호는 중복될 수 없다. - Domain
 
 ### UI
 
