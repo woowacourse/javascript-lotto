@@ -1,7 +1,7 @@
 import { LOTTO } from '../constants/messages.js';
 
 export const getWinningMatchCount = (randomlottos, lottoNumbers) => {
-  let matchedCounts = [];
+  let matchCounts = [0, 0, 0, 0, 0, 0, 0, 0];
 
   randomlottos.forEach((randomLotto) => {
     let match = 0;
@@ -12,11 +12,11 @@ export const getWinningMatchCount = (randomlottos, lottoNumbers) => {
     });
 
     if (match === LOTTO.FIVE_MATCH && randomLotto.includes(lottoNumbers.bonusNumber)) {
-      match = LOTTO.FIVE_WITH_BONUS_MATCH;
+      match = LOTTO.FIVE_WITH_BONUS_MATCH_IDX;
     }
 
-    matchedCounts.push(match);
+    matchCounts[match]++;
   });
 
-  return matchedCounts;
+  return matchCounts;
 };
