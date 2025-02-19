@@ -40,6 +40,13 @@ const Validator = {
     if (winningNumbersInput.length !== 6)
       throw new Error("[ERROR] 당첨번호는 6개를 입력해야 합니다.");
   },
+
+  validateBonusNumber(bonusNumberInput) {
+    const bonusNumber = Number(bonusNumberInput);
+
+    if (Number.isNaN(bonusNumber))
+      throw new Error("[ERROR] 보너스번호는 숫자로 입력해야 합니다.");
+  },
 };
 
 export default Validator;

@@ -88,3 +88,13 @@ describe("당첨번호", () => {
     );
   });
 });
+
+describe("보너스번호", () => {
+  test("보너스번호가 문자인 경우에 예외 처리한다.", () => {
+    const input = "일";
+
+    expect(() => Validator.validateBonusNumber(input)).toThrow(
+      "[ERROR] 보너스번호는 숫자로 입력해야 합니다.",
+    );
+  });
+});
