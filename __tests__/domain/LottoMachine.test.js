@@ -7,3 +7,9 @@ test("입력 받은 금액만큼 로또 개수를 계산한다.", () => {
 
   expect(lottoMachine.getLottoCount(input)).toBe(1);
 });
+
+test("무작위로 생성된 숫자의 개수는 6개이다.", () => {
+  const lottoMachine = new LottoMachine();
+
+  expect(lottoMachine.drawRandomNumbers().length).toBe(6);
+});
