@@ -4,6 +4,7 @@ let lottoManager;
 beforeEach(() => {
   const userLottos = [
     [1, 2, 3, 4, 5, 6],
+    [1, 3, 4, 5, 6, 10],
     [1, 3, 4, 5, 6, 7],
     [1, 4, 5, 6, 7, 8],
     [1, 5, 6, 7, 8, 9],
@@ -31,11 +32,29 @@ test("당첨 번호와 보너스 번호가 중복되는 경우 예외를 발생�
 test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.", () => {
   const countResults = lottoManager.countMatchingNumbers();
 
-  expect(countResults).toEqual([6, 5, 4, 3, 2, 1]);
+  expect(countResults).toEqual([6, 5, 5, 4, 3]);
 });
 
 test("사용자의 로또에 보너스 번호가 존재하는지 확인한다.", () => {
   const countResults = lottoManager.countMatchingNumbers();
 
-  expect(lottoManager.containsBonusNumbers(countResults)).toEqual([true]);
+  expect(lottoManager.containsBonusNumbers(countResults)).toEqual([
+    false,
+    true,
+  ]);
+});
+
+test("당첨 내역을 계산한다.", () => {
+  const countResults = lottoManager.countMatchingNumbers();
+  const isContainBonusNumbers = lottoManager.containsBonusNumbers(countResults);
+
+  expect(
+    lottoManager.calculateWinnings(countResults, isContainBonusNumbers)
+  ).toEqual({
+    firstPrize: 1,
+    secondPrize: 1,
+    thirdPrize: 1,
+    fourthPrize: 1,
+    fifthPrize: 1,
+  });
 });

@@ -31,7 +31,7 @@ class LottoManager {
 
     this.#userLottos.forEach((userLotto) => {
       const matchingCount = this.#compareMatchingNumbers(userLotto);
-      countResults.push(matchingCount);
+      if (matchingCount >= 3) countResults.push(matchingCount);
     });
 
     return countResults;
@@ -45,6 +45,39 @@ class LottoManager {
       return acc;
     }, []);
     return isContainBonusInFive;
+  }
+
+  #switchCountToPrize(countResult, isBonusNumber) {
+    switch (countResult) {
+      case 3:
+        return "fifthPrize";
+      case 4:
+        return "fourthPrize";
+      case 5:
+        if (isBonusNumber) return "secondPrize";
+        return "thirdPrize";
+      case 6:
+        return "firstPrize";
+    }
+  }
+
+  calculateWinnings(countResults, isContainBonusNumbers) {
+    let prizeResult = {
+      firstPrize: 0,
+      secondPrize: 0,
+      thirdPrize: 0,
+      fourthPrize: 0,
+      fifthPrize: 0,
+    };
+
+    countResults.reduce((acc, cur) => {
+      let isBonusNumber;
+      if (cur === 5) isBonusNumber = isContainBonusNumbers.shift();
+      acc[this.#switchCountToPrize(cur, isBonusNumber)] += 1;
+      return acc;
+    }, prizeResult);
+
+    return prizeResult;
   }
 }
 
