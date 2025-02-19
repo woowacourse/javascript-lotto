@@ -24,5 +24,14 @@ describe("보너스 번호 검증 테스트", () => {
         ).toThrow("보너스 번호은(는) 1 이상 45 이하여야 합니다.");
       }
     );
+
+    test("보너스 번호가 당첨 번호와 중복되면 에러가 발생한다.", () => {
+      const bonusNumber = 1;
+      const winningNumbers = [1, 2, 3, 4, 5, 6];
+
+      expect(() => validateDuplicate(bonusNumber, winningNumbers)).toThrow(
+        "보너스 번호는 당첨 번호와 중복될 수 없습니다."
+      );
+    });
   });
 });

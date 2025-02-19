@@ -1,4 +1,4 @@
-import { validateCount, validateRange } from "../../src/validators/validate";
+import { validateCount } from "../../src/validators/validate";
 import {
   validateTypeAll,
   validateRangeAll,
