@@ -3,7 +3,11 @@ import { generateLottoNumbers } from "../domain/generateLottoNumbers.js";
 import updateMatchResult from "../domain/updateMatchResult.js";
 import Lotto from "../models/Lotto.js";
 import { getBonusNumber, getWinningNumbers } from "../view/input.js";
-import { printLottoCount, printLottoNumbers } from "../view/output.js";
+import {
+  printLottoCount,
+  printLottoNumbers,
+  printResult,
+} from "../view/output.js";
 
 const lottoController = async (price) => {
   const count = price / 1000;
@@ -25,14 +29,20 @@ const lottoController = async (price) => {
   });
 
   let totalReward = 0;
+  let resultCount = new Array(6).fill(0);
 
   lottos.forEach((lotto) => {
     const result = checkRank(
       lotto.matchResult.matchCount,
       lotto.matchResult.isBonusMatched
     );
-    totalReward += result?.REWARD ?? 0;
+    if (result) {
+      totalReward += result.REWARD;
+      resultCount[result.RANK]++;
+    }
   });
+
+  printResult(resultCount);
 };
 
 export default lottoController;
