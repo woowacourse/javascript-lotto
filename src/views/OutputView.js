@@ -8,7 +8,7 @@ class OutputView {
   }
 
   static printPurchasedLottos(purchasedLottos) {
-    purchasedLottos.forEach((lotto) => this.#print(lotto));
+    purchasedLottos.forEach((lotto) => this.#print(lotto.numbers));
   }
 
   static printPurchaseCount(purchaseCount) {
