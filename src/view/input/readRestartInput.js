@@ -5,7 +5,7 @@ const readRestartInput = async () => {
   const userInput = await readLineAsync(
     `${LINE_BREAK}${PROMPT_MESSAGE.RESTART_INPUT}${LINE_BREAK}`
   );
-  return userInput.toUpperCase();
+  return userInput.toLowerCase();
 };
 
 export default readRestartInput;

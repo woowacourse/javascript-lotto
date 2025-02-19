@@ -16,6 +16,7 @@ import {
   readRestartInput,
 } from "./view/input/index.js";
 import { printLottoNumbers, printLottoResult } from "./view/output/index.js";
+import { LOTTO_RESTART_COMMAND } from "./constants/lotto.js";
 
 const app = async () => {
   while (true) {
@@ -52,7 +53,7 @@ const app = async () => {
       validator: validationRestartInput,
     });
 
-    if (restartInput === "N") {
+    if (restartInput === LOTTO_RESTART_COMMAND.end) {
       break;
     }
   }

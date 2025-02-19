@@ -30,3 +30,8 @@ export const LOTTO_RESULT_MESSAGES_MAP = Array.from(LOTTO_PRIZE_MONEY).reduce(
   },
   new FrozenMap()
 );
+
+export const LOTTO_RESTART_COMMAND = Object.freeze({
+  restart: "y",
+  end: "n",
+});
