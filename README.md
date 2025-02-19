@@ -32,17 +32,17 @@ LottoMachine.js
 - ✅ #lottos 상태를 저장
 - ✅ createLottos() => 로또 배열을 만들어서 반환
 - ✅ createLottos() 반환값을 #lottos에 저장해주는 saveLottos()
-- winnings()에서 받은 당첨통계를 LottoController에 반환해줄 메서드
+- ✅ winnings()에서 받은 당첨통계를 LottoController에 반환해줄 메서드
 
 Validator.js
 
-- 배열 안에 중복이 있는가?
-- 1~45 사이의 숫자인가? -> isRangeNumber
-- 자연수인가? -> isNaturalNumber
-- 빈 값인가? -> isEmpty
-- 배열 길이가 6인가? isArrayLengthOver
-- ( array, num ) -> 배열안에 num 이 존재하는지? isExistInArray
-- 1000단위로 나누어 떨어지는 숫자인가? isThousandMultiple
+- ✅ 배열 안에 중복이 있는가?
+- ✅ 1~45 사이의 숫자인가? -> isRangeNumber
+- ✅ 자연수인가? -> isNaturalNumber
+- ✅ 빈 값인가? -> isEmpty
+- ✅ 배열 길이가 6인가? isArrayLengthOver
+- ✅ ( array, num ) -> 배열안에 num 이 존재하는지? isExistInArray
+- ✅ 1000단위로 나누어 떨어지는 숫자인가? isThousandMultiple
   => 당첨번호 메서드, 보너스번호 메서드, 구입금액 메서드
 
 view/

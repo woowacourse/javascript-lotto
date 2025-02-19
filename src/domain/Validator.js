@@ -12,7 +12,7 @@ const ValidationUtils = {
   isNumberRangeOver: (number, min, max) => number < min || number > max,
   isNotNaturalNumber: (number) => number % 1 !== 0 || number < 1,
   isDuplicated: (array, element) =>
-    new Set([...array, element]).length !== array.length + 1,
+    new Set([...array, element]).size !== array.length + 1,
   isNotMultiple: (number, unit) => number % unit !== 0,
 };
 

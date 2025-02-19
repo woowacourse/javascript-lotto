@@ -1,41 +1,28 @@
 import DEFINITION from "../constant/definition.js";
+import Validator from "./Validator.js";
 
 export default class Winnings {
   constructor(numbers, bonusNumber) {
-    this.validateUniqueNumbers(numbers);
-    this.validateNumbersRange(numbers);
-    this.validateBonusNumberInNumbers(numbers, bonusNumber);
-    this.validateNaturalNumbers(numbers);
-    this.validateNaturalBonusNumber(bonusNumber);
-    this.validateRangeBonusNumber(bonusNumber);
+    this.validateWinnings(numbers);
+    this.validateBonusNumber(bonusNumber);
+    this.validateWinningsAndBonus(numbers, bonusNumber);
     this.numbers = numbers;
     this.bonusNumber = bonusNumber;
   }
 
-  validateUniqueNumbers(numbers) {
-    const setNumbers = new Set(numbers);
-    if (setNumbers.size !== numbers.length) throw new Error();
+  validateWinnings(numbers) {
+    const errorResults = Validator.winningNumbers(numbers);
+    if (Object.values(errorResults).some((value) => value)) throw new Error();
   }
 
-  validateNumbersRange(numbers) {
-    const isRange = numbers.every((number) => number >= 1 && number <= 45);
-    if (!isRange) throw new Error();
+  validateBonusNumber(bonusNumber) {
+    const errorResults = Validator.bonusNumber(bonusNumber);
+    if (Object.values(errorResults).some((value) => value)) throw new Error();
   }
 
-  validateBonusNumberInNumbers(numbers, bonusNumber) {
-    if (numbers.includes(bonusNumber)) throw new Error();
-  }
-
-  validateNaturalNumbers(numbers) {
-    if (numbers.some((number) => number % 1 !== 0)) throw new Error();
-  }
-
-  validateNaturalBonusNumber(bonusNumber) {
-    if (bonusNumber % 1 !== 0) throw new Error();
-  }
-
-  validateRangeBonusNumber(bonusNumber) {
-    if (bonusNumber > 45 || bonusNumber < 1) throw new Error();
+  validateWinningsAndBonus(numbers, bonusNumber) {
+    const errorResults = Validator.winningsAndBonus(numbers, bonusNumber);
+    if (Object.values(errorResults).some((value) => value)) throw new Error();
   }
 
   countStatistics(lottos) {
