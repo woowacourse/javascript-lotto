@@ -1,3 +1,9 @@
+import InputView from "./view/inputView.js";
+import SYSTEM_MESSAGE from "./constants/systemMessage.js";
 import PurchaseService from "./service/PurchaseService.js";
 
-console.log(PurchaseService.getLottoNumbers());
+const priceInput = await InputView.readUserInput(SYSTEM_MESSAGE.PRICE);
+
+PurchaseService.purchaseLottos(priceInput);
+
+// OutputView.print();
