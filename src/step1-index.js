@@ -40,6 +40,7 @@ export async function run() {
       try {
         targetNumber = await InputView.getInput("> 당첨 번호를 입력해 주세요.");
         Validator.isTargetNumber(targetNumber);
+        targetNumber = targetNumber.split(",").map((a) => Number(a.trim()));
         break;
       } catch (error) {
         OutputView.printMessage(error.message);
