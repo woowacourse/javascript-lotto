@@ -3,18 +3,18 @@ import { generateLottoNumberSets } from "./lotto/generateLottoNumberSets.js";
 import { getTotalPrizeMoney } from "./lotto/getTotalPrizeMoney.js";
 import { retryUntilValidInput } from "./utils/input.js";
 import {
-  validationLottoPrice,
-  validationWinningNumbers,
   validationBonusNumber,
+  validationLottoPrice,
   validationRestartInput,
+  validationWinningNumbers,
 } from "./validation/index.js";
 import {
   readLottoPriceInput,
   readWinningNumbersInput,
   readBonusNumberInput,
   readRestartInput,
-} from "./View/input.js";
-import { printLottoNumbers, printLottoResult } from "./View/output.js";
+} from "./view/input/index.js";
+import { printLottoNumbers, printLottoResult } from "./view/output/index.js";
 
 const app = async () => {
   while (true) {

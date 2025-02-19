@@ -3,7 +3,7 @@ import { LOTTO_RULE } from "../constants/lotto.js";
 import { ERROR_MESSAGE } from "../constants/message.js";
 import { isMultipleOf } from "../utils/predicate.js";
 
-export const validationLottoPrice = (price) => {
+const validationLottoPrice = (price) => {
   if (!Number.isSafeInteger(price)) {
     throw new CustomError(ERROR_MESSAGE.INVALID_INTEGER);
   }
@@ -20,3 +20,5 @@ export const validationLottoPrice = (price) => {
     throw new CustomError(ERROR_MESSAGE.INVALID_OVER_MAX_PRICE);
   }
 };
+
+export default validationLottoPrice;
