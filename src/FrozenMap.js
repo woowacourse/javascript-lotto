@@ -30,6 +30,8 @@ class FrozenMap extends Map {
     if (this.#isFrozen) {
       throw new Error("Freeze 상태에서는 set 메서드를 사용할 수 없습니다.");
     }
+
+    super.set(key, value);
   }
 
   delete() {
