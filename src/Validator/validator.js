@@ -44,7 +44,7 @@ const Validator = {
       throw new Error("[ERROR] 당첨번호는 6개를 입력해야 합니다.");
   },
 
-  validateBonusNumber(bonusNumberInput) {
+  validateBonusNumber(winningNumbers, bonusNumberInput) {
     if (bonusNumberInput === "")
       throw new Error("[ERROR] 보너스번호를 입력해주세요.");
 
@@ -59,6 +59,10 @@ const Validator = {
     if (bonusNumber < 1 || bonusNumber > 45)
       throw new Error(
         "[ERROR] 보너스번호는 1 ~ 45 사이의 숫자로 입력해야 합니다.",
+      );
+    if (winningNumbers.includes(bonusNumber))
+      throw new Error(
+        "[ERROR] 보너스번호는 당첨번호와 중복없이 입력해야 합니다.",
       );
   },
 };

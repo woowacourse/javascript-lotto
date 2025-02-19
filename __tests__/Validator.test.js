@@ -99,10 +99,12 @@ describe("당첨번호", () => {
 });
 
 describe("보너스번호", () => {
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
+
   test("보너스번호가 문자인 경우에 예외 처리한다.", () => {
     const input = "일";
 
-    expect(() => Validator.validateBonusNumber(input)).toThrow(
+    expect(() => Validator.validateBonusNumber(winningNumbers, input)).toThrow(
       "[ERROR] 보너스번호는 숫자로 입력해야 합니다.",
     );
   });
@@ -110,7 +112,7 @@ describe("보너스번호", () => {
   test("보너스번호가 소수인 경우에 예외 처리한다.", () => {
     const input = "1.2";
 
-    expect(() => Validator.validateBonusNumber(input)).toThrow(
+    expect(() => Validator.validateBonusNumber(winningNumbers, input)).toThrow(
       "[ERROR] 보너스번호는 정수로 입력해야 합니다.",
     );
   });
@@ -118,7 +120,7 @@ describe("보너스번호", () => {
   test("보너스번호가 소수인 경우에 예외 처리한다.", () => {
     const input = "";
 
-    expect(() => Validator.validateBonusNumber(input)).toThrow(
+    expect(() => Validator.validateBonusNumber(winningNumbers, input)).toThrow(
       "[ERROR] 보너스번호를 입력해주세요.",
     );
   });
@@ -126,8 +128,16 @@ describe("보너스번호", () => {
   test("보너스번호가 소수인 경우에 예외 처리한다.", () => {
     const input = "50";
 
-    expect(() => Validator.validateBonusNumber(input)).toThrow(
+    expect(() => Validator.validateBonusNumber(winningNumbers, input)).toThrow(
       "[ERROR] 보너스번호는 1 ~ 45 사이의 숫자로 입력해야 합니다.",
+    );
+  });
+
+  test("보너스번호가 소수인 경우에 예외 처리한다.", () => {
+    const input = "1";
+
+    expect(() => Validator.validateBonusNumber(winningNumbers, input)).toThrow(
+      "[ERROR] 보너스번호는 당첨번호와 중복없이 입력해야 합니다.",
     );
   });
 });
