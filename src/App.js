@@ -28,7 +28,7 @@ class App {
     OutputView.printPurchasedLottos(purchasedLottos);
 
     const winNumbers = await InputView.readWinNumbers();
-    const bonusNumber = await InputView.readBonusNumber();
+    const bonusNumber = await InputView.readBonusNumber(winNumbers);
 
     const lottoRanks = purchasedLottos.map((lotto) => {
       const winningLottoCount = getIntersectCount(lotto, winNumbers);

@@ -12,6 +12,9 @@ export const ERROR_MESSAGES = {
     unique: `${ERROR_MESSAGES_DEFAULT} 당첨 번호와 중복되지 않게 입력해주세요.`,
     range: `${ERROR_MESSAGES_DEFAULT} 1개의 1~45 사이의 정수로 입력해주세요.`,
   },
+  retry: {
+    yesOrNo: `${ERROR_MESSAGES_DEFAULT} y 또는 n을 입력해주세요.`,
+  },
 };
 
 export const INPUT_MESSAGES = {
