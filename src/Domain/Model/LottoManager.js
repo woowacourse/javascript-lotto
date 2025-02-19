@@ -1,6 +1,7 @@
 import { LOTTO_DEFINITION } from '../Constant/Definition.js';
 import Lotto from './Lotto.js';
 import { sortAscending } from '../../Utils/sorting.js';
+import { makeNotDuplicatedRandomNumbers } from '../../Utils/math.js';
 
 class LottoManager {
   #lottoList;
@@ -12,7 +13,12 @@ class LottoManager {
   }
   makeLottoList(lottoCount) {
     this.#lottoList = Array.from({ length: lottoCount }, () => {
-      const sortedNumbers = sortAscending([6, 5, 4, 3, 2, 1]);
+      const sortedNumbers = sortAscending(
+        makeNotDuplicatedRandomNumbers(LOTTO_DEFINITION.NUMBER_COUNTS, {
+          min: LOTTO_DEFINITION.MIN_NUMBER,
+          max: LOTTO_DEFINITION.MAX_NUMBER,
+        })
+      );
       new Lotto(sortedNumbers);
     });
   }
