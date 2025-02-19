@@ -9,7 +9,7 @@ describe('보너스 숫자 validation 테스트', () => {
     expect(() => {
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
       checkBonusNumber(lotto, bonusNumber);
-    }).toThrow(ERROR_MESSAGE.duplicatedNumbers);
+    }).toThrow(ERROR_MESSAGE.duplicatedBonusNumbers);
   });
 
   it('보너스 번호가 1-45 외의 숫자가 들어갔을때, 에러를 던진다', () => {
