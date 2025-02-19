@@ -10,7 +10,7 @@ const InputView = {
   },
 
   enterBonusNumber: async function () {
-    return await readLineAsync("> 보너스 번호를 입력해 주세요.");
+    return await readLineAsync("\n> 보너스 번호를 입력해 주세요. ");
   },
 };
 
