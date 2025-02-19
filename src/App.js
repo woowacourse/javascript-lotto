@@ -23,7 +23,7 @@ class App {
     const lottoCompany = new LottoCompany(winNumbers, bonusNumber);
     const lottoRanks = lottoCompany.calculateLottoRanks(purchasedLottos);
 
-    const totalPrize = this.#calculateTotalProfit(lottoRanks);
+    const totalPrize = LottoCompany.calculateTotalProfit(lottoRanks);
     const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
     OutputView.printStatistics(lottoRanks);
@@ -31,15 +31,6 @@ class App {
 
     const isRetry = await InputView.readRetry();
     if (isRetry) await this.run();
-  }
-
-  #calculateTotalProfit(lottoRanks) {
-    return lottoRanks.reduce((prev, cur) => {
-      if (cur === "당첨 없음") return prev;
-      else {
-        return prev + LOTTO_RANK[cur].prize;
-      }
-    }, 0);
   }
 }
 

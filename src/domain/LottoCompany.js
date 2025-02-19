@@ -39,6 +39,15 @@ class LottoCompany {
     }
     return rank;
   }
+
+  static calculateTotalProfit(lottoRanks) {
+    return lottoRanks.reduce((prev, cur) => {
+      if (cur === "당첨 없음") return prev;
+      else {
+        return prev + LOTTO_RANK[cur].prize;
+      }
+    }, 0);
+  }
 }
 
 export default LottoCompany;
