@@ -21,7 +21,7 @@
   - [x] 당첨 번호와 중복 입력 예외처리 - domain -> Validate
 6. [x] 입력받은 당첨번호와 보너스번호를 저장한다. - domain -> Winning
 7. [] 당첨 통계 계산한다. - domain -> Winning
- - [] 각 등수별 당첨 여부 확인 - domain -> Winning
+ - [x] 각 등수별 당첨 여부 확인 - domain -> Winning
 8. [] 당첨 통계를 출력한다. - ui
  - [] 5등부터 1등까지 순서대로 출력 - ui
 9. [] 수익률 계산한다. - domain -> LottoMachine
