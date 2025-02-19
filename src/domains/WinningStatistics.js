@@ -17,17 +17,24 @@ class WinningStatistics {
     lottos.forEach((lotto) => {
       let matchedCount = countMatchingNumbers(winningNumbers, lotto);
       if (matchedCount === 5) {
-        if (lotto.includes(bonusNumber)) {
-          matchedCount = 5.5;
-        }
+        matchedCount = this.#calculateBonusNumber(lotto, bonusNumber);
       }
-      if (matchedCount >= 3) {
-        this.#statistics.set(
-          matchedCount,
-          this.#statistics.get(matchedCount) + 1,
-        );
-      }
+      this.#addMatchedCount(matchedCount);
     });
+  }
+
+  #calculateBonusNumber(lotto, bonusNumber) {
+    if (lotto.includes(bonusNumber)) return 5.5;
+    return 5;
+  }
+
+  #addMatchedCount(matchedCount) {
+    if (matchedCount >= 3) {
+      this.#statistics.set(
+        matchedCount,
+        this.#statistics.get(matchedCount) + 1,
+      );
+    }
   }
 }
 
