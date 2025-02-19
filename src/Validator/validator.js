@@ -17,6 +17,14 @@ const Validator = {
     if (purchaseMoney % 1000 !== 0)
       throw new Error("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
   },
+
+  validateWinningNumbers(winningNumbersInput) {
+    winningNumbersInput.forEach((winningNumberString) => {
+      const winningNumber = Number(winningNumberString);
+      if (Number.isNaN(winningNumber))
+        throw new Error("[ERROR] 당첨번호는 숫자로 입력해야 합니다.");
+    });
+  },
 };
 
 export default Validator;
