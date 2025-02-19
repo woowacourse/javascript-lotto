@@ -12,6 +12,9 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'max-depth': ['error', 1],
+    'max-params': ['error', 2],
+    'max-lines-per-function': ['error', { max: 10 }],
     'import/extensions': 'off',
     'no-restricted-syntax': 'off',
     'no-await-in-loop': 'off',
