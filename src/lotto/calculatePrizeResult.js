@@ -7,7 +7,7 @@ export const calculatePrizeResult = (
   bonusNumber
 ) => {
   const result = new Map(
-    Array.from(LOTTO_PRIZE_MONEY.keys()).map((key) => [key, 0])
+    Array.from(LOTTO_PRIZE_MONEY).map(([key]) => [key, 0])
   );
 
   lottoNumbers.forEach((numbers) => {

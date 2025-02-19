@@ -3,9 +3,11 @@ import { PROMPT_MESSAGE, LINE_BREAK } from "../../constants/message.js";
 
 const printLottoResult = (result, revenueRate) => {
   console.log(`${LINE_BREAK}${PROMPT_MESSAGE.LOTTO_RESULT}`);
-  Array.from(result.entries()).forEach(([key, value]) => {
+
+  result.forEach((value, key) => {
     console.log(`${LOTTO_RESULT_MESSAGES_MAP.get(key)}${value}개`);
   });
+
   console.log(`총 수익률은 ${revenueRate.toLocaleString()}%입니다.`);
 };
 
