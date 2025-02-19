@@ -14,6 +14,9 @@ class LottoController {
 
     const winningNumbers = await this.#readWinningNumbers();
     const bonusNumber = await this.#readBonusNumber(winningNumbers);
+
+    const winning = new Winning(winningNumbers, bonusNumber);
+    winning.calculateRank(lottos);
   }
 
   async #readPrice() {
