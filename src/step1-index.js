@@ -2,6 +2,7 @@ import { calculatePrizeResult } from "./lotto/calculatePrizeResult.js";
 import { generateLottoNumberSets } from "./lotto/generateLottoNumberSets.js";
 import { getTotalPrizeMoney } from "./lotto/getTotalPrizeMoney.js";
 import { retryUntilValidInput } from "./utils/input.js";
+import { getRevenueRate } from "./utils/math.js";
 import {
   validationBonusNumber,
   validationLottoPrice,
@@ -43,7 +44,7 @@ const app = async () => {
       bonusNumber
     );
     const totalPrizeMoney = getTotalPrizeMoney(result);
-    const revenueRate = (totalPrizeMoney / lottoPrice) * 100;
+    const revenueRate = getRevenueRate(totalPrizeMoney, lottoPrice);
     printLottoResult(result, revenueRate);
 
     const restartInput = await retryUntilValidInput({
