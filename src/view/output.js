@@ -1,3 +1,6 @@
+import { PRIZE } from "../constants/prize.js";
+import commaizeNumber from "../utils/commaizeNumber.js";
+
 export const printLottoCount = (count) => {
   console.log(`${count}개를 구매했습니다.`);
 };
@@ -7,16 +10,17 @@ export const printLottoNumbers = (numbers) => {
 };
 
 export const printResult = (resultCount) => {
-  console.log("\n당첨 통계");
-  console.log("---------");
-  console.log(`3개 일치 (5,000원) - ${resultCount[5]}개`);
-  console.log(`4개 일치 (50,000원) - ${resultCount[4]}개`);
-  console.log(`5개 일치 (1,500,000원) - ${resultCount[3]}개`);
-  console.log(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultCount[2]}개`);
-  console.log(`6개 일치 (2,000,000,000원) - ${resultCount[1]}개`);
+  const prizes = Object.values(PRIZE);
+  for (let i = resultCount.length - 1; i >= 1; i--) {
+    console.log(
+      `${prizes[i - 1].WINNING_COUNT}개 일치${
+        i === 2 ? ", 보너스 볼 일치" : ""
+      } (${commaizeNumber(prizes[i - 1].REWARD)})원 - ${resultCount[i]}개`
+    );
+  }
 };
 
 export const printProfitRate = (price, reward) => {
   const rate = (reward / price) * 100;
-  console.log(`총 수익률은 ${rate.toFixed(2)}%입니다.`);
+  console.log(`총 수익률은 ${commaizeNumber(rate.toFixed(2))}%입니다.`);
 };
