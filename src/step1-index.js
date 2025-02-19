@@ -11,6 +11,24 @@ const run = async () => {
     const priceNumber = Number(input); // validation
     return priceNumber;
   });
+
+  const winningLottoNumbers = Input.retry(async () => {
+    const input = await Input.readLineAsync(INPUT.WINNER_NUMBERS);
+    const winningNumbersArray = input.split(","); // validation
+    return winningNumbersArray;
+  });
+
+  const bonusLottoNumber = Input.retry(async () => {
+    const input = await Input.readLineAsync(INPUT.BONUS_NUMBER);
+    const bonusNumber = Number(input); // validation
+    return bonusNumber;
+  });
+
+  const retry = Input.retry(async () => {
+    const input = await Input.readLineAsync(INPUT.RETRY);
+    // validation
+    return input;
+  });
 };
 
 run();
