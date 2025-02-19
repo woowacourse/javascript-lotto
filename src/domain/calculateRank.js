@@ -1,7 +1,9 @@
+import { RANKING } from '../constants/constants.js';
+
 export const calculateRank = (matchCount, isBonusMatch) => {
-  if (matchCount === 6) return 1;
-  if (matchCount === 5 && isBonusMatch) return 2;
-  if (matchCount === 5) return 3;
-  if (matchCount === 4) return 4;
-  if (matchCount === 3) return 5;
+  if (matchCount === RANKING.FIRST.MATCH_COUNT) return RANKING.FIRST;
+  if (matchCount === RANKING.SECOND.MATCH_COUNT && isBonusMatch) return RANKING.SECOND;
+  if (matchCount === RANKING.THIRD.MATCH_COUNT) return RANKING.THIRD.MATCH;
+  if (matchCount === RANKING.FOURTH.MATCH_COUNT) return RANKING.FOURTH;
+  if (matchCount === RANKING.FIFTH.MATCH_COUNT) return RANKING.FIFTH;
 };
