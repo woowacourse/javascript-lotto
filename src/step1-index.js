@@ -1,9 +1,9 @@
 import readLineAsync from './View/InputView.js';
 import systemSettings from './settings/systemSettings.js';
-import { printMessage } from './View/OutputView.js';
+import { printMessage, printPurchasedAmount } from './View/OutputView.js';
 import checkLottoPurchase from './util/checkLottoPurchase.js';
 
 const purchasePrice = await readLineAsync(systemSettings.getPurchasePrice);
 const purchaseAmount = checkLottoPurchase(purchasePrice);
 
-printMessage(systemSettings.printPurchasedAmount());
+printPurchasedAmount(purchaseAmount);
