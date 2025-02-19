@@ -46,6 +46,9 @@ const Validator = {
 
     if (Number.isNaN(bonusNumber))
       throw new Error("[ERROR] 보너스번호는 숫자로 입력해야 합니다.");
+
+    if (!Number.isInteger(bonusNumber))
+      throw new Error("[ERROR] 보너스번호는 정수로 입력해야 합니다.");
   },
 };
 
