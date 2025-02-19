@@ -20,7 +20,11 @@ const Validator = {
 
   validateWinningNumbers(winningNumbersInput) {
     winningNumbersInput.forEach((winningNumberString) => {
+      if (winningNumberString === "")
+        throw new Error("[ERROR] 당첨번호는 공백 없이 입력해야 합니다.");
+
       const winningNumber = Number(winningNumberString);
+
       if (Number.isNaN(winningNumber))
         throw new Error("[ERROR] 당첨번호는 숫자로 입력해야 합니다.");
 
