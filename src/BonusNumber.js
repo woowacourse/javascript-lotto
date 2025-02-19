@@ -13,6 +13,10 @@ class BonusNumber {
     if (number < 1 || number > 45) throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
     if (numbers.includes(number)) throw new Error(ERROR_MESSAGE.DUPLICATE_NUMBER);
   }
+
+  get number() {
+    return this.#number;
+  }
 }
 
 export default BonusNumber;

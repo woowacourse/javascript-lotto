@@ -2,7 +2,6 @@ import { WINNING, KEYS } from "./constant/lotto.js";
 
 const Calculator = {
     winningCount(lottos, {winning, bonus}) {
-      console.log(lottos);
       const winningCount = {
           [KEYS.FIRST]: 0,
           [KEYS.SECOND]: 0,

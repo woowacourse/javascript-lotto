@@ -21,6 +21,8 @@ export const purchase = async () => {
   })
 
   const lottoAndBonus = await readWinningInfo();
+  const winningCount = Calculator.winningCount(lottoNumbers, lottoAndBonus);
+  OutputView.printWinningDetail(winningCount);
 };
 
 const readWinningInfo = async () => {
@@ -28,8 +30,8 @@ const readWinningInfo = async () => {
   const bonusNumber = await InputView.readBonusNumber();
   
   return {
-    lotto: new Lotto(winningNumbers),
-    bonus: new BonusNumber(bonusNumber, winningNumbers)
+    winning: new Lotto(winningNumbers).numbers,
+    bonus: new BonusNumber(bonusNumber, winningNumbers).number
   }
 }
 

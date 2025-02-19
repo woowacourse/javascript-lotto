@@ -17,6 +17,10 @@ class Lotto {
     if (numbersArray.length !== new Set(numbersArray).size) throw new Error(ERROR_MESSAGE.DUPLICATE_NUMBER);
     if (numbersArray.some((num) => num < 1 || num > 45)) throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
   }
+
+  get numbers() {
+    return this.#numbers;
+  }
 }
 
 export default Lotto;
