@@ -9,12 +9,13 @@ class LottoController {
   }
 
   async play() {
-    const parsePrice = await retryUntilValid(
+    const purchaseAmount = await retryUntilValid(
       () => Input.getInput(MESSAGES.input.purchaseAmount),
+      (input) => parseInt(input, 10),
       purchaseAmountValidator
     );
 
-    return parsePrice;
+    return purchaseAmount;
   }
 }
 

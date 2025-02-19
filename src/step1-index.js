@@ -6,4 +6,4 @@
 import LottoController from "./controller/LottoController.js";
 
 const lottoController = new LottoController();
-console.log(await lottoController.play());
+lottoController.play();
