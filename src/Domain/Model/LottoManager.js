@@ -1,5 +1,6 @@
 import { LOTTO_DEFINITION } from '../Constant/Definition.js';
 import Lotto from './Lotto.js';
+import { sortAscending } from '../../Utils/sorting.js';
 
 class LottoManager {
   #lottoList;
@@ -10,10 +11,10 @@ class LottoManager {
     return money / LOTTO_DEFINITION.ONE_PRICE;
   }
   makeLottoList(lottoCount) {
-    this.#lottoList = Array.from(
-      { length: lottoCount },
-      () => new Lotto([1, 2, 3, 4, 5, 6])
-    );
+    this.#lottoList = Array.from({ length: lottoCount }, () => {
+      const sortedNumbers = sortAscending([6, 5, 4, 3, 2, 1]);
+      new Lotto(sortedNumbers);
+    });
   }
   getLottoList() {
     return this.#lottoList;
