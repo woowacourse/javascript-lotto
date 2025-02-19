@@ -1,5 +1,5 @@
 import { LOTTO_RULE } from "../constants/lotto.js";
-import generateLottoNumbers from "./generateLottoNumber.js";
+import generateLottoNumbers from "./generateLottoNumbers.js";
 
 export const generateLottoNumberSets = (price) => {
   const purchaseQuantity = price / LOTTO_RULE.MULTIPLE_PRICE;
