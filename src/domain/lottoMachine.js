@@ -16,6 +16,13 @@ class LottoMachine {
     randomNumbers.sort((a, b) => a - b);
     return randomNumbers;
   }
+
+  drawLotto(count) {
+    return Array.from({ length: count }).map(() => {
+      const randomNumber = this.drawRandomNumbers(1, 45, 6);
+      return new Lotto(randomNumber);
+    });
+  }
 }
 
 export default LottoMachine;
