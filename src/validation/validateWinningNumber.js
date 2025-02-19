@@ -37,7 +37,6 @@ const checkIsDistinct = (winningNumberInput) => {
   }
 };
 const validateWinningNumber = (winningNumberInput) => {
-  console.log("출력+", "".split(","));
   const winningNumbers = winningNumberInput.split(",");
   return runValidators([checkEmptyInput, checkEmptyItem, checkIsNumber, checkLengthValid, checkRange, checkIsDistinct], winningNumbers);
 };

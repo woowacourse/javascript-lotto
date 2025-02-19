@@ -4,7 +4,7 @@ import PurchaseService from "./service/PurchaseService.js";
 import OutputView from "./view/outputView.js";
 import validatePrice from "./validation/validatePrice.js";
 import retryOnError from "./util/retryOnError.js";
-
+import validateWinningNumber from "./validation/validateWinningNumber.js";
 const priceInput = await retryOnError(() => InputView.readUserInput(SYSTEM_MESSAGE.PRICE), OutputView.printError);
 validatePrice(priceInput);
 
@@ -15,6 +15,6 @@ const lottoArray = PurchaseService.getLottoArray(lottoCount);
 OutputView.printLottoArray(lottoArray);
 
 const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER);
-validatePrice(winningNumberInput);
+validateWinningNumber(winningNumberInput);
 
 const bonusNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.BONUS_NUMBER);
