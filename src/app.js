@@ -11,9 +11,15 @@ class App {
     return input;
   }
 
+  async getBonusNumber() {
+    const input = await readLineAsync("> 보너스 번호를 입력해 주세요. ");
+    return input;
+  }
+
   async run() {
     const money = await this.getPurchaseMoney();
     const winningNumbers = await this.getWinningNumbers();
+    const bonusNumber = await this.getBonusNumber();
   }
 }
 
