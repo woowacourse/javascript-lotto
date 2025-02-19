@@ -13,7 +13,7 @@
 
 2. 로또 번호 생성 및 출력
 
-- [ ] 입력 받은 금액만큼 로또 개수를 계산한다. - domain `LottoMachine`
+- [x] 입력 받은 금액만큼 로또 개수를 계산한다. - domain `LottoMachine`
 - [ ] 로또 개수를 출력한다. - UI
 - [ ] 무작위 숫자 6개를 만든다. - domain `util` -> `LottoMachine`
   - [ ] 숫자는 1 ~ 45 사이여야 한다. - domain
