@@ -2,25 +2,6 @@ import LottoManager from "../src/LottoManager";
 
 let lottoManager;
 beforeEach(() => {
-  const price = 5000;
-  lottoManager = new LottoManager(price);
-});
-
-test("구입 금액에 해당하는 만큼 로또를 발행해야 한다", () => {
-  lottoManager.generateLottos();
-  expect(lottoManager.lottos.length).toBe(5);
-});
-
-test("당첨 번호와 보너스 번호가 중복되는 경우 예외를 발생시킨다.", () => {
-  const winningNumbers = [1, 2, 3, 4, 5, 6];
-  const bonusNumber = 1;
-
-  expect(() =>
-    lottoManager.validateBonusNumberUnique(winningNumbers, bonusNumber)
-  ).toThrow("보너스 번호는 당첨 번호와 중복되면 안됩니다.");
-});
-
-test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.", () => {
   const userLottos = [
     [1, 2, 3, 4, 5, 6],
     [1, 3, 4, 5, 6, 7],
@@ -30,13 +11,31 @@ test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.
     [1, 7, 8, 9, 10, 11],
   ];
   const winningNumber = [1, 2, 3, 4, 5, 6];
-  const countResults = lottoManager.countMatchingNumbers(
-    userLottos,
-    winningNumber
-  );
+  const bonusNumber = 7;
 
-  expect(countResults.threeMatch).toBe(1);
-  expect(countResults.fourMatch).toBe(1);
-  expect(countResults.fiveMatch).toBe(1);
-  expect(countResults.sixMatch).toBe(1);
+  lottoManager = new LottoManager(userLottos, winningNumber, bonusNumber);
+});
+
+test("당첨 번호와 보너스 번호가 중복되는 경우 예외를 발생시킨다.", () => {
+  const userLottos = [];
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
+  const bonusNumber = 1;
+
+  lottoManager = new LottoManager(userLottos, winningNumbers, bonusNumber);
+
+  expect(() => lottoManager.validateBonusNumberUnique()).toThrow(
+    "보너스 번호는 당첨 번호와 중복되면 안됩니다."
+  );
+});
+
+test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.", () => {
+  const countResults = lottoManager.countMatchingNumbers();
+
+  expect(countResults).toEqual([6, 5, 4, 3, 2, 1]);
+});
+
+test("사용자의 로또에 보너스 번호가 존재하는지 확인한다.", () => {
+  const countResults = lottoManager.countMatchingNumbers();
+
+  expect(lottoManager.containsBonusNumbers(countResults)).toEqual([true]);
 });
