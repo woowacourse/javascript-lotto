@@ -21,4 +21,10 @@ describe("당첨 번호 관련 도메인 검증", () => {
     const winningNumbers = "1,2,3,4,4,4";
     expect(() => Validation.winningNumbers(winningNumbers)).toThrow();
   });
+
+  test("당첨번호가 들어오면 당첨번호 배열이 반환된다.", () => {
+    const winningNumbers = "1,2,3,4,5,6";
+    const expectWinningNumbers = [1, 2, 3, 4, 5, 6];
+    expect(Validation.winningNumbers(winningNumbers)).toEqual(expectWinningNumbers);
+  });
 });

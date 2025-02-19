@@ -10,7 +10,7 @@ const Validation = {
     return purchaseAmount;
   },
   winningNumbers(input) {
-    const winningNumbers = input.split(",").map((number) => number.trim());
+    const winningNumbers = input.split(",").map((number) => Number(number.trim()));
     if (winningNumbers.length === 1) throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS_FORMAT);
     if (winningNumbers.length !== 6) throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS_COUNT);
     if (winningNumbers.some((number) => isNaN(number))) throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS_TYPE);
@@ -18,6 +18,8 @@ const Validation = {
       throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS_RANGE);
     if (new Set(winningNumbers).size !== winningNumbers.length)
       throw new Error(ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
+
+    return winningNumbers;
   },
 };
 
