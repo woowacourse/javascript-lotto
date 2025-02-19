@@ -7,4 +7,16 @@ describe("models/Lotto", () => {
 
     expect(lotto.numbers).toEqual(numbers);
   });
+
+  test("incrementWinningNumber()가 호출되면 matchResult의 matchCount가 1 증가한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.incrementWinningNumbers();
+    expect(lotto.matchResult.matchedCount).toBe(1);
+  });
+
+  test("markBonusMatched()가 호출되면 matchResult의 isBonusMatched가 true가 된다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.markBonusMatched();
+    expect(lotto.matchResult.isBonusMatched).toBe(true);
+  });
 });
