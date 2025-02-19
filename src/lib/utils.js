@@ -22,6 +22,25 @@ export function readLineAsync(query) {
   });
 }
 
+export function generateUniqueNumberArray(start, end, length) {
+  const array = [];
+  for (let i = 0; i < length; i++) {
+    while (true) {
+      const randomNumber = generateRandomNumber(start, end);
+      if (array.includes(randomNumber)) {
+        continue;
+      }
+      array.push(randomNumber);
+      break;
+    }
+  }
+  return array;
+}
+
+export function checkUniqueArray(array) {
+  return array.length === new Set(array).size;
+}
+
 export function generateRandomNumber(start, end) {
   return Math.floor(Math.random() * (end + 1 - start)) + start;
 }

@@ -1,13 +1,18 @@
 //@ts-check
 
 import {
+  LOTTO_LENGTH,
   LOTTO_PRICE,
   LOTTO_RANK,
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
   OUTPUT_MESSAGES,
 } from "./lib/constants.js";
-import { generateRandomNumber, getIntersectCount } from "./lib/utils.js";
+import {
+  generateRandomNumber,
+  generateUniqueNumberArray,
+  getIntersectCount,
+} from "./lib/utils.js";
 import InputView from "./views/InputView.js";
 import OutputView from "./views/OutputView.js";
 
@@ -33,8 +38,6 @@ class App {
       return rank;
     });
 
-    /**@todo 당첨번호들이 중복되지 않아야 한다. */
-
     const totalPrize = this.calculateTotalProfit(lottoRanks);
     const profitRate = this.calculateProfitRate(totalPrize, purchaseAmount);
 
@@ -49,7 +52,6 @@ class App {
 
   calculateTotalProfit(lottoRanks) {
     return lottoRanks.reduce((prev, cur) => {
-      // prev + cur
       if (cur === "당첨 없음") return prev;
       else {
         return prev + LOTTO_RANK[cur].prize;
@@ -74,9 +76,11 @@ class App {
   }
 
   createLottoNumber() {
-    return new Array(6)
-      .fill("")
-      .map((_) => generateRandomNumber(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
+    return generateUniqueNumberArray(
+      MIN_LOTTO_NUMBER,
+      MAX_LOTTO_NUMBER,
+      LOTTO_LENGTH
+    );
   }
 
   createLotto(purchaseCount) {
