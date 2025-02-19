@@ -1,4 +1,5 @@
 import Lotto from './Lotto';
+import pickNumberInList from './utils/pickNumberInList';
 
 class Machine {
   #lottos;
@@ -14,7 +15,8 @@ class Machine {
   }
 
   createLotto() {
-    return new Lotto([1, 2, 3, 4, 5, 6]);
+    const randomNumbers = pickNumberInList(1, 45);
+    return new Lotto(randomNumbers);
   }
 
   getLottos() {
