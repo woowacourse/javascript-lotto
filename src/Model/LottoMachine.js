@@ -2,12 +2,6 @@ import { getRandomNumberInRange } from '../util/randomNumber';
 import Lotto from './Lotto.js';
 
 class LottoMachine {
-  #price;
-
-  constructor(price) {
-    this.#price = price;
-  }
-
   #generateUniqueRandomNumber(lottoNumbers) {
     const randomNumber = getRandomNumberInRange();
     if (!lottoNumbers.includes(randomNumber)) {
@@ -24,9 +18,9 @@ class LottoMachine {
     return lottoNumbers;
   }
 
-  generateLotto() {
+  generateLotto(price) {
     const lottos = [];
-    for (let i = 0; i < this.#price / 1000; i++) {
+    for (let i = 0; i < price / 1000; i++) {
       const lottoNumbers = this.#generateLottoNumbers();
       lottos.push(new Lotto(lottoNumbers));
     }
