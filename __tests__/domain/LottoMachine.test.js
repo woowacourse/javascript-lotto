@@ -21,3 +21,11 @@ test("무작위로 생성된 숫자는 서로 중복되지 않는다.", () => {
 
   expect(new Set(randomNumbers).size).toBe(randomNumbers.length);
 });
+
+test("무작위로 생성된 숫자는 오름차순으로 정렬되어야 한다.", () => {
+  const lottoMachine = new LottoMachine();
+
+  const randomNumbers = lottoMachine.drawRandomNumbers();
+
+  expect([...randomNumbers].sort((a, b) => a - b)).toStrictEqual(randomNumbers);
+});

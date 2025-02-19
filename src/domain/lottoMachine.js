@@ -13,6 +13,7 @@ class LottoMachine {
       }
     }
 
+    randomNumbers.sort((a, b) => a - b);
     return randomNumbers;
   }
 }

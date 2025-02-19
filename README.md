@@ -18,7 +18,7 @@
 - [x] 무작위 숫자 6개를 만든다. - domain `util` -> `LottoMachine`
   - [x] 숫자는 1 ~ 45 사이여야 한다. - domain
   - [x] 중복된 숫자가 있으면 안된다. - domain
-  - [ ] 오름차순으로 정렬한다. - domain
+  - [x] 오름차순으로 정렬한다. - domain
 - [ ] 생성된 숫자로 로또를 생성한다. - domain `LottoMachine`
 - [ ] 로또 개수만큼 로또를 생성한다. - domain `LottoMachine`
 - [ ] 생성된 로또를 출력한다. - UI
