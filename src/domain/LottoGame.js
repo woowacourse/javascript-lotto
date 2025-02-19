@@ -36,14 +36,6 @@ class LottoGame {
     });
   }
 
-  /*
-  3개 일치 (5,000원) - 1개
-4개 일치 (50,000원) - 0개
-5개 일치 (1,500,000원) - 0개
-5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-6개 일치 (2,000,000,000원) - 0개
-총 수익률은 62.5%입니다.
-  */
   getWinMoney() {
     return (
       this.result["5"] * 5_000 +
@@ -56,7 +48,7 @@ class LottoGame {
 
   getEarningRate(amount) {
     const rawEarningRate = (this.getWinMoney() / (amount * 1000)) * 100;
-    return Number(rawEarningRate.toLocaleString(1));
+    return rawEarningRate.toFixed(1);
   }
 }
 
