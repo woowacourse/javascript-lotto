@@ -33,6 +33,7 @@ export const MAX_LOTTO_NUMBER = 45;
 export const LOTTO_LENGTH = 6;
 export const LOTTO_PRICE = 1_000;
 export const SEPERATOR = ",";
+export const NO_WINNING = "당첨 없음";
 
 export const LOTTO_RANK = {
   1: { winNumber: 6, isBonusNumber: false, prize: 2_000_000_000 },

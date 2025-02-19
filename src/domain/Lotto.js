@@ -1,6 +1,6 @@
 //@ts-check
 
-import { LOTTO_RANK } from "../lib/constants.js";
+import { LOTTO_RANK, NO_WINNING } from "../lib/constants.js";
 
 class Lotto {
   numbers;
@@ -24,9 +24,8 @@ class Lotto {
       }
       return false;
     });
-    if (rank === undefined) {
-      return "당첨 없음";
-    }
+    if (rank === undefined) return NO_WINNING;
+
     return rank;
   }
 }

@@ -2,7 +2,7 @@
 
 import LottoCompany from "./domain/LottoCompany.js";
 import LottoShop from "./domain/LottoShop.js";
-import { LOTTO_PRICE, LOTTO_RANK } from "./lib/constants.js";
+import { LOTTO_PRICE } from "./lib/constants.js";
 import { calculateProfitRate } from "./lib/utils.js";
 import InputView from "./views/InputView.js";
 import OutputView from "./views/OutputView.js";
@@ -10,8 +10,7 @@ import OutputView from "./views/OutputView.js";
 class App {
   async run() {
     const purchaseAmount = await InputView.readPurchaseAmount();
-    const purchaseCount = purchaseAmount / LOTTO_PRICE;
-
+    const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
     OutputView.printPurchaseCount(purchaseCount);
     const purchasedLottos = LottoShop.createLotto(purchaseCount);
 

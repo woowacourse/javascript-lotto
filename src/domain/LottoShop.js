@@ -21,6 +21,10 @@ class LottoShop {
       LOTTO_LENGTH
     );
   }
+
+  static calculateLottoCount(purchaseAmount) {
+    return purchaseAmount / LOTTO_PRICE;
+  }
 }
 
 export default LottoShop;

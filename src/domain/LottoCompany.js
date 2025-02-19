@@ -1,6 +1,6 @@
 //@ts-check
 
-import { LOTTO_RANK } from "../lib/constants.js";
+import { LOTTO_RANK, NO_WINNING } from "../lib/constants.js";
 import { getIntersectCount } from "../lib/utils.js";
 
 class LottoCompany {
@@ -29,24 +29,21 @@ class LottoCompany {
       const info = LOTTO_RANK[rank];
 
       if (info.winNumber === winningLottoCount) {
-        if (!info.isBonusNumber) return true;
-        else if (isBonusNumber) return true;
+        if (!info.isBonusNumber || isBonusNumber) return true;
       }
       return false;
     });
     if (rank === undefined) {
-      return "당첨 없음";
+      return NO_WINNING;
     }
     return rank;
   }
 
   static calculateTotalProfit(lottoRanks) {
-    return lottoRanks.reduce((prev, cur) => {
-      if (cur === "당첨 없음") return prev;
-      else {
-        return prev + LOTTO_RANK[cur].prize;
-      }
-    }, 0);
+    return lottoRanks.reduce(
+      (prev, cur) => (cur === NO_WINNING ? prev : prev + LOTTO_RANK[cur].prize),
+      0
+    );
   }
 }
 
