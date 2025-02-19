@@ -15,6 +15,8 @@ const validateBonusNumber = (input, winningNumbers) => {
   if (winningNumbers.includes(bonusNumber)) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.DUPLICATE_NUMBER);
   }
+
+  return bonusNumber;
 };
 
 export default validateBonusNumber;
