@@ -1,5 +1,5 @@
 import { LOTTO_PRIZE_MONEY } from "../constants/lotto.js";
-import { findMatchingValues } from "../utils/array.js";
+import { getIntersection } from "../utils/array.js";
 
 export const calculatePrizeResult = (
   lottoNumbers,
@@ -10,7 +10,7 @@ export const calculatePrizeResult = (
   const result = new Map(initResult);
 
   lottoNumbers.forEach((numbers) => {
-    const count = findMatchingValues(numbers, winningNumbers).length;
+    const count = getIntersection(numbers, winningNumbers).length;
 
     if (!LOTTO_PRIZE_MONEY.has(count)) {
       return;
