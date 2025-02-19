@@ -34,6 +34,7 @@ class Controller {
       winningNumbers,
       bonusNumber,
     );
+    Output.printStatistics(winningStatistics.statistics);
   }
 }
 
