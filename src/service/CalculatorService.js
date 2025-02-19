@@ -1,12 +1,5 @@
 import countMatchedNumbers from './MatchService.js';
 import systemSettings from '../settings/systemSettings.js';
-const prizeMoney = {
-  THREE_MATCH: 5_000,
-  FOUR_MATCH: 50_000,
-  FIVE_MATCH: 1_500_000,
-  FIVE_MATCH_WITH_BONUS: 30_000_000,
-  SIX_MATCH: 2_000_000_000,
-};
 
 export function calculateWins(lottos, parsedLotto) {
   const { checkedLotto, checkedBonusNumber } = parsedLotto;
@@ -29,4 +22,10 @@ export function calculateWins(lottos, parsedLotto) {
   return systemSettings.winCount;
 }
 
-export default calculateWins;
+export function calculatePrize(winCount, prizeMoney) {
+  let total = 0;
+  for (const [prizeName, prizeCount] of Object.entries(winCount)) {
+    total += prizeMoney[prizeName] * prizeCount;
+  }
+  return total;
+}
