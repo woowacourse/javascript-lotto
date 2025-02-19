@@ -55,7 +55,12 @@ Lotto
 
 - AnswerLottoPack
 
-  - [x] 당첨번호와 보너스 번호를 관리한다 - Domain
+  - [x] 당첨번호와 보너스 번호를 관리한다(해시테이블) - Domain
+
+- CompareMachine
+
+  - [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다.
+    - [ ]
 
 ### 유효성 검증 도메인
 
