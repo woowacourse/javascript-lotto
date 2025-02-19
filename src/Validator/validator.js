@@ -31,6 +31,9 @@ const Validator = {
       if (!Number.isInteger(winningNumber))
         throw new Error("[ERROR] 당첨번호는 정수로 입력해야 합니다.");
     });
+
+    if (winningNumbersInput.length !== 6)
+      throw new Error("[ERROR] 당첨번호는 6개를 입력해야 합니다.");
   },
 };
 
