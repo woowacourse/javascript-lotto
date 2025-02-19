@@ -3,7 +3,7 @@ import { MESSAGES } from "../constants/index.js";
 import { purchaseAmountValidator } from "../validators/index.js";
 import { retryUntilValid } from "../utils/retryUntilValid.js";
 import LottoGenerator from "../domain/LottoGenerator.js";
-
+import Output from "../view/Output.js";
 class LottoController {
   constructor() {
     this.lottoTickets = [];
@@ -12,7 +12,7 @@ class LottoController {
   async play() {
     const purchaseAmount = await this.getPurchaseAmount();
     this.lottoTickets = LottoGenerator.generate(purchaseAmount);
-    console.log(this.lottoTickets);
+    Output.printLottoTickets(this.lottoTickets);
   }
 
   async getPurchaseAmount() {
