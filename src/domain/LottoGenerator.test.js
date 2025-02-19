@@ -1,7 +1,7 @@
 import LottoGenerator from "../domain/LottoGenerator.js";
 import { sortNumber } from "../utils/utils.js";
 
-describe("로또 번호 생성기", () => {
+describe("LottoGenerator 테스트", () => {
   test("입력된 금액에 따라 올바른 개수의 로또를 생성해야 한다", () => {
     const amount = 8000;
     const tickets = LottoGenerator.generate(amount);

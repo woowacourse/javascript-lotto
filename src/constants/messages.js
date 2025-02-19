@@ -10,7 +10,6 @@ export const MESSAGES = Object.freeze({
     divider: "--------------------",
   },
   invalid: {
-    missingCommaSeparator: "당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.",
     numberFormat: "구입 금액은 숫자로만 이루어져야 합니다.",
     lottoNumberCount: "당첨 번호는 6개여야 합니다.",
     duplicateLottoNumber: "당첨 번호는 중복될 수 없습니다.",
