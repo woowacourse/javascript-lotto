@@ -5,7 +5,7 @@ class Lotto {
   constructor(numbers) {
     this.#numbers = numbers;
     this.#matchResult = {
-      matchedCount: 0,
+      matchCount: 0,
       isBonusMatched: false,
     };
   }
@@ -15,7 +15,7 @@ class Lotto {
   }
 
   incrementWinningNumbers() {
-    this.#matchResult.matchedCount += 1;
+    this.#matchResult.matchCount += 1;
   }
 
   markBonusMatched() {
