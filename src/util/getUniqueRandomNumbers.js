@@ -16,5 +16,3 @@ export function getUniqueRandomNumbers(numberRange, count) {
   const shuffled = shuffleArray(numbers);
   return shuffled.slice(0, count);
 }
-
-// const sets = Array.from({ length: 6 }, () => getUniqueRandomNumbers(1, 45, 6));
