@@ -4,7 +4,7 @@
   - [x] 숫자 이외의 입력 예외처리 - domain -> Validate
   - [x]천원 단위로 떨어지지 않는 경우 예외처리 - domain -> Validate
   - [x] 구입 금액 범위(1000~100000) 예외처리  - domain -> Validate
-2. [] 구입 금액에 해당하는 만큼 로또를 발행한다. - domain -> LottoMachine
+2. [x] 구입 금액에 해당하는 만큼 로또를 발행한다. - domain -> LottoMachine
   - [x] 1~45의 랜덤 숫자 6개를 생성 - domain -> util
   - [x] 6자리 숫자로 로또를 만든다 - domain -> Lotto
 3. [] 발행된 로또 출력한다. - ui
