@@ -34,7 +34,11 @@ class Controller {
       winningNumbers,
       bonusNumber,
     );
+
     Output.printStatistics(winningStatistics.statistics);
+    Output.printProfitRatio(
+      winningStatistics.calculateProfitRatio(purchaseAmount),
+    );
   }
 }
 
