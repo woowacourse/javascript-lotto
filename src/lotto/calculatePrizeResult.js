@@ -6,23 +6,24 @@ export const calculatePrizeResult = (
   winningNumbers,
   bonusNumber
 ) => {
-  const result = new Map(
-    Array.from(LOTTO_PRIZE_MONEY).map(([key]) => [key, 0])
-  );
+  const initResult = Array.from(LOTTO_PRIZE_MONEY).map(([key]) => [key, 0]);
+  const result = new Map(initResult);
 
   lottoNumbers.forEach((numbers) => {
     const count = findMatchingValues(numbers, winningNumbers).length;
 
-    if (count < 3) {
+    if (!LOTTO_PRIZE_MONEY.has(count)) {
       return;
     }
 
     if (count === 5 && numbers.includes(bonusNumber)) {
-      result.set("5B", result.get("5B") + 1 || 1);
+      const prevCount = result.get("5B") ?? 0;
+      result.set("5B", prevCount + 1);
       return;
     }
 
-    result.set(count, result.get(count) + 1 || 1);
+    const prevCount = result.get(count) ?? 0;
+    result.set(count, prevCount + 1);
   });
 
   return result;
