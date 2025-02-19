@@ -16,16 +16,15 @@ const validationWinningNumbers = (winningNumbers) => {
     throw new CustomError(ERROR_MESSAGE.INVALID_INTEGER);
   }
 
-  if (
-    winningNumbers.some(
-      (number) =>
-        !isInRange(
-          number,
-          LOTTO_RULE.MIN_LOTTO_NUMBER,
-          LOTTO_RULE.MAX_LOTTO_NUMBER
-        )
-    )
-  ) {
+  const isInvalidLottoNumberRange = winningNumbers.some(
+    (number) =>
+      !isInRange(
+        number,
+        LOTTO_RULE.MIN_LOTTO_NUMBER,
+        LOTTO_RULE.MAX_LOTTO_NUMBER
+      )
+  );
+  if (isInvalidLottoNumberRange) {
     throw new CustomError(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
   }
 };
