@@ -1,5 +1,5 @@
 const compareMachine = (lottoPack, answerLottoPack) => {
-  const result = { 6: 0, "5+1": 0, 4: 0, 3: 0 };
+  const result = { 6: 0, "5+1": 0, 5: 0, 4: 0, 3: 0 };
 
   lottoPack.lottos.forEach((lotto) => {
     let winningCount = 0;
