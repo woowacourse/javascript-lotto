@@ -5,8 +5,8 @@ import {
   PURCHASE_UNIT,
   SECOND_PRIZE,
   THIRD_PRIZE,
-} from "./const";
-import Lotto from "./Lotto";
+} from "./const.js";
+import Lotto from "./Lotto.js";
 
 class LottoManager {
   #userLottos;

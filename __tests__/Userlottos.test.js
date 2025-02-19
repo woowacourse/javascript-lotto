@@ -7,6 +7,5 @@ beforeEach(() => {
 });
 
 test("구입 금액에 해당하는 만큼 로또를 발행해야 한다", () => {
-  userLotto.generateLottos();
   expect(userLotto.lottos.length).toBe(5);
 });

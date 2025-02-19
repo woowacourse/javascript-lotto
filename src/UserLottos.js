@@ -1,5 +1,5 @@
-import { PURCHASE_UNIT } from "./const";
-import Lotto from "./Lotto";
+import { PURCHASE_UNIT } from "./const.js";
+import Lotto from "./Lotto.js";
 
 class UserLottos {
   #price;
@@ -8,6 +8,7 @@ class UserLottos {
   constructor(price) {
     this.#price = price;
     this.#lottos = [];
+    this.generateLottos();
   }
 
   #getRandomNumbers() {
@@ -27,6 +28,10 @@ class UserLottos {
 
   get lottos() {
     return this.#lottos;
+  }
+
+  get price() {
+    return this.#price;
   }
 }
 

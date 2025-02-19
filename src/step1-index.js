@@ -4,10 +4,22 @@
  */
 
 import readLineAsync from "./readLineAsync.js";
+import UserLottos from "./UserLottos.js";
+import LottoManager from "./LottoManager.js";
+import { printUserLottos } from "./output.js";
 
 async function run() {
   const price = await readLineAsync("구입금액을 입력해 주세요.");
+  const userLottos = new UserLottos(price);
+  printUserLottos(userLottos);
+
   const winningNumbers = await readLineAsync("당첨 번호를 입력해 주세요.");
   const bonusNumber = await readLineAsync("보너스 번호를 입력해 주세요.");
+
+  const lottoManager = new LottoManager(
+    userLottos,
+    winningNumbers,
+    bonusNumber
+  );
 }
 run();

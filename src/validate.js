@@ -3,7 +3,7 @@ import {
   LOTTO_MIN_RANGE,
   MAXIMUM_PURCHASE_THRESHOLD,
   PURCHASE_UNIT,
-} from "./const";
+} from "./const.js";
 
 const validatePurchaseUnit = (price) => {
   if (price % PURCHASE_UNIT !== 0) {
