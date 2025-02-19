@@ -3,27 +3,29 @@ import { getRandomNumber } from '../utils/getRandomNumber.js';
 import Lotto from './Lotto.js';
 
 class LottoMaker {
-  #money;
+  #purchaseCount;
   #lottoList;
 
   constructor(money) {
-    this.#money = money;
+    this.calculateLottoCount(money)
     this.#lottoList = [];
+    this.purchase()
   }
 
-  getLottoCount() {
-    return this.#money / LOTTO_CONDITION.PRICE;
+  calculateLottoCount(money) {
+    this.#purchaseCount = money / LOTTO_CONDITION.PRICE;
   }
 
-  make() {
-    const count = this.getLottoCount();
-    for (let i = 0; i < count; i++) {
-      this.#lottoList.push(getRandomNumber());
-    }
+  purchase() {
+    this.#lottoList = Array.from({ length: this.#purchaseCount }, () => this.create(getRandomNumber()));
   }
 
   create(randomNumber) {
     return new Lotto(randomNumber);
+  }
+
+  get purchaseCount(){
+    return this.#purchaseCount;
   }
 
   get lottoList() {

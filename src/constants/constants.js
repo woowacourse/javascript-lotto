@@ -5,6 +5,10 @@ export const LOTTO_CONDITION = {
   PRICE: 1000,
 };
 
+export const MESSAGE = {
+  PURCHASE_COUNT:"개를 구매했습니다.",
+}
+
 export const LOTTO_NUMBER_ERROR_MESSAGES = {
   COUNT: `로또 번호는 ${LOTTO_CONDITION.COUNT}자리여야 합니다.`,
   INTIGER: '로또 번호는 정수여야합니다.',
@@ -31,3 +35,4 @@ export const INPUT_MESSAGE = {
 };
 
 export const LINE_BREAK = '';
+
