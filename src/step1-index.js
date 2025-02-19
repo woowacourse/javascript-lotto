@@ -4,12 +4,17 @@
  */
 
 import lottoController from "./controllers/LottoController.js";
-import { getLottoPrice } from "./view/input.js";
+import { getLottoPrice, getRestart } from "./view/input.js";
 
 const run = async () => {
-  const price = await getLottoPrice();
+  while (true) {
+    const price = await getLottoPrice();
 
-  lottoController(price);
+    await lottoController(price);
+
+    const restart = await getRestart();
+    if (!restart) break;
+  }
 };
 
 run();
