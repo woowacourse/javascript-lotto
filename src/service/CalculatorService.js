@@ -1,5 +1,5 @@
 import countMatchedNumbers from './MatchService.js';
-
+import systemSettings from '../settings/systemSettings.js';
 const prizeMoney = {
   THREE_MATCH: 5_000,
   FOUR_MATCH: 50_000,
@@ -7,17 +7,8 @@ const prizeMoney = {
   FIVE_MATCH_WITH_BONUS: 30_000_000,
   SIX_MATCH: 2_000_000_000,
 };
-const winCount = {
-  NO_MATCH: 0,
-  THREE_MATCH: 0,
-  FOUR_MATCH: 0,
-  FIVE_MATCH: 0,
-  FIVE_MATCH_WITH_BONUS: 0,
-  SIX_MATCH: 0,
-};
 
 function calculateWins(lottos, parsedLotto) {
-  // lottos : Lotto 객체의 배열
   const { checkedLotto, checkedBonusNumber } = parsedLotto;
   lottos.forEach((lotto) => {
     const matchedCount = countMatchedNumbers(
@@ -25,15 +16,16 @@ function calculateWins(lottos, parsedLotto) {
       checkedLotto.numbers,
     );
     const isBonusMatched = lotto.numbers.includes(checkedBonusNumber);
-    if (matchedCount === 6) winCount.SIX_MATCH += 1;
+    if (matchedCount === 6) systemSettings.winCount.SIX_MATCH += 1;
     else if (matchedCount === 5 && isBonusMatched)
-      winCount.FIVE_MATCH_WITH_BONUS += 1;
-    else if (matchedCount === 5 && !isBonusMatched) winCount.FIVE_MATCH += 1;
-    else if (matchedCount === 4) winCount.FOUR_MATCH += 1;
-    else if (matchedCount === 3) winCount.THREE_MATCH += 1;
-    else winCount.NO_MATCH += 1;
+      systemSettings.winCount.FIVE_MATCH_WITH_BONUS += 1;
+    else if (matchedCount === 5 && !isBonusMatched)
+      systemSettings.winCount.FIVE_MATCH += 1;
+    else if (matchedCount === 4) systemSettings.winCount.FOUR_MATCH += 1;
+    else if (matchedCount === 3) systemSettings.winCount.THREE_MATCH += 1;
+    else systemSettings.winCount.NO_MATCH += 1;
   });
-  return winCount;
+  return systemSettings.winCount;
 }
 
 export default calculateWins;
