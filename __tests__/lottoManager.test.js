@@ -47,14 +47,18 @@ test("사용자의 로또에 보너스 번호가 존재하는지 확인한다.",
 test("당첨 내역을 계산한다.", () => {
   const countResults = lottoManager.countMatchingNumbers();
   const isContainBonusNumbers = lottoManager.containsBonusNumbers(countResults);
+  lottoManager.calculateWinnings(countResults, isContainBonusNumbers);
 
-  expect(
-    lottoManager.calculateWinnings(countResults, isContainBonusNumbers)
-  ).toEqual({
+  expect(lottoManager.prizeResult).toEqual({
     firstPrize: 1,
     secondPrize: 1,
     thirdPrize: 1,
     fourthPrize: 1,
     fifthPrize: 1,
   });
+});
+
+test("로또 수익률을 게산한다", () => {
+  const price = 7000;
+  expect(lottoManager.calculateROI(price)).toBe("29022114.29");
 });

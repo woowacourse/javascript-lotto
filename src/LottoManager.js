@@ -1,15 +1,34 @@
-import { PURCHASE_UNIT } from "./const";
+import {
+  FIFTH_PRIZE,
+  FIRST_PRIZE,
+  FOURTH_PRIZE,
+  PURCHASE_UNIT,
+  SECOND_PRIZE,
+  THIRD_PRIZE,
+} from "./const";
 import Lotto from "./Lotto";
 
 class LottoManager {
   #userLottos;
   #winningNumber;
   #bonusNumber;
+  #prizeResult;
 
   constructor(userLottos, winningNumber, bonusNumber) {
     this.#userLottos = userLottos;
     this.#winningNumber = winningNumber;
     this.#bonusNumber = bonusNumber;
+    this.#prizeResult = {
+      firstPrize: 0,
+      secondPrize: 0,
+      thirdPrize: 0,
+      fourthPrize: 0,
+      fifthPrize: 0,
+    };
+  }
+
+  get prizeResult() {
+    return this.#prizeResult;
   }
 
   validateBonusNumberUnique() {
@@ -62,22 +81,34 @@ class LottoManager {
   }
 
   calculateWinnings(countResults, isContainBonusNumbers) {
-    let prizeResult = {
-      firstPrize: 0,
-      secondPrize: 0,
-      thirdPrize: 0,
-      fourthPrize: 0,
-      fifthPrize: 0,
-    };
-
     countResults.reduce((acc, cur) => {
       let isBonusNumber;
       if (cur === 5) isBonusNumber = isContainBonusNumbers.shift();
       acc[this.#switchCountToPrize(cur, isBonusNumber)] += 1;
       return acc;
-    }, prizeResult);
+    }, this.#prizeResult);
+  }
 
-    return prizeResult;
+  #calculateTotalPrize() {
+    return Object.keys(this.#prizeResult).reduce((acc, curr) => {
+      switch (curr) {
+        case "firstPrize":
+          return acc + FIRST_PRIZE;
+        case "secondPrize":
+          return acc + SECOND_PRIZE;
+        case "thirdPrize":
+          return acc + THIRD_PRIZE;
+        case "fourthPrize":
+          return acc + FOURTH_PRIZE;
+        case "fifthPrize":
+          return acc + FIFTH_PRIZE;
+      }
+    }, 0);
+  }
+
+  calculateROI(price) {
+    console.log(typeof this.#calculateTotalPrize());
+    return (((this.#calculateTotalPrize() - price) / price) * 100).toFixed(2);
   }
 }
 
