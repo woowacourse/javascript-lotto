@@ -4,9 +4,11 @@ const validateType = (key, value) => {
   }
 };
 
-const validateRange = (purchasePrice) => {
-  if (purchasePrice < 1000 || purchasePrice > 1000000) {
-    throw new Error("구매 금액은 1,000원 이상 1,000,000원 이하여야 합니다.");
+const validateRange = ({ key, value, min, max }) => {
+  if (value < min || value > max) {
+    throw new Error(
+      `${key}은(는) ${min.toLocaleString()} 이상 ${max.toLocaleString()} 이하여야 합니다.`
+    );
   }
 };
 
