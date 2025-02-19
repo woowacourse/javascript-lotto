@@ -1,3 +1,4 @@
+import CONFIG from './constants/config';
 import Lotto from './Lotto';
 import pickNumberInList from './utils/pickNumberInList';
 
@@ -15,7 +16,11 @@ class Machine {
   }
 
   createLotto() {
-    const randomNumbers = pickNumberInList(1, 45);
+    const randomNumbers = pickNumberInList(
+      CONFIG.MIN.LOTTO_NUMBER,
+      CONFIG.MAX.LOTTO_NUMBER,
+    );
+    console.log(randomNumbers);
     return new Lotto(randomNumbers);
   }
 
