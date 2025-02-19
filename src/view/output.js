@@ -15,3 +15,8 @@ export const printResult = (resultCount) => {
   console.log(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultCount[2]}개`);
   console.log(`6개 일치 (2,000,000,000원) - ${resultCount[1]}개`);
 };
+
+export const printProfitRate = (price, reward) => {
+  const rate = (reward / price) * 100;
+  console.log(`총 수익률은 ${rate.toFixed(2)}%입니다.`);
+};

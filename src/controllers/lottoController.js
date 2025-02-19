@@ -6,6 +6,7 @@ import { getBonusNumber, getWinningNumbers } from "../view/input.js";
 import {
   printLottoCount,
   printLottoNumbers,
+  printProfitRate,
   printResult,
 } from "../view/output.js";
 
@@ -43,6 +44,7 @@ const lottoController = async (price) => {
   });
 
   printResult(resultCount);
+  printProfitRate(price, totalReward);
 };
 
 export default lottoController;
