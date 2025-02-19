@@ -1,5 +1,6 @@
 import LottoMachine from "./domains/LottoMachine.js";
 import WinningResult from "./domains/WinningResult.js";
+import retryUntilValid from "./utils/retryUntilValid.js";
 import { BonusNumberValidator } from "./validators/BonusNumberValidator.js";
 import { PurchasePriceValidator } from "./validators/PurchasePriceValidator.js";
 import { RestartValidator } from "./validators/RestartValidator.js";
@@ -11,21 +12,25 @@ class App {
   async run() {
     while (true) {
       await this.#start();
-      const restart = await InputView.enterRestart();
-      RestartValidator.validate(restart);
-      if (restart !== "y") {
+      const restartInput = await retryUntilValid(this.#getRestart);
+
+      if (restartInput.toLowerCase() !== "y") {
         break;
       }
     }
   }
 
   async #start() {
-    const [lottoPurchasePrice, lottoCount] = await this.#getPurchasePrice();
+    const [lottoPurchasePrice, lottoCount] = await retryUntilValid(
+      this.#getPurchasePrice
+    );
     const lottoMachine = new LottoMachine(lottoCount);
     OutputView.printPurchaseLottos(lottoMachine.lottos);
 
-    const winningNumbers = await this.#getWinningNumbers();
-    const bonusNumber = await this.#getBonusNumber(winningNumbers);
+    const winningNumbers = await retryUntilValid(this.#getWinningNumbers);
+    const bonusNumber = await retryUntilValid(() =>
+      this.#getBonusNumber(winningNumbers)
+    );
     const winningResult = new WinningResult(winningNumbers, bonusNumber);
 
     const winningCounts = winningResult.calculate(lottoMachine.lottos);
@@ -55,6 +60,12 @@ class App {
     const transformedBonusNumber = Number(bonusNumber);
     BonusNumberValidator.validate(transformedBonusNumber, winningNumbers);
     return transformedBonusNumber;
+  }
+
+  async #getRestart() {
+    const restartInput = await InputView.enterRestart();
+    RestartValidator.validate(restartInput);
+    return restartInput;
   }
 }
 
