@@ -11,4 +11,11 @@ describe('로또 ', () => {
     // then
     expect(lotto).toBeDefined();
   });
+
+  test('로또 번호 숫자 오름차순 정렬 테스트', () => {
+    const numbers = [6, 5, 4, 3, 2, 1];
+    const lotto = new Lotto(numbers);
+
+    expect(lotto.numbers).toEqual(numbers.sort((a, b) => a - b));
+  });
 });
