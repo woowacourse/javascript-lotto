@@ -2,10 +2,10 @@ import CustomError from "../CustomError.js";
 import { MESSAGES, SETTINGS } from "../constants/index.js";
 
 export const purchaseAmountValidator = (inputValue) => {
-  parseInt(inputValue, 10);
-  validateInteger(inputValue);
-  validateAboveMinRange(inputValue);
-  validateUnit(inputValue);
+  const purchaseAmount = parseInt(inputValue, 10);
+  validateInteger(purchaseAmount);
+  validateAboveMinRange(purchaseAmount);
+  validateUnit(purchaseAmount);
 };
 
 const validateInteger = (inputValue) => {
