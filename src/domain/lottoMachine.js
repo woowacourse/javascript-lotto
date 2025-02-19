@@ -4,10 +4,10 @@ class LottoMachine {
     return lottoCount;
   }
 
-  drawRandomNumbers() {
+  drawRandomNumbers(min, max, count) {
     const randomNumbers = [];
-    while (randomNumbers.length < 6) {
-      const randomNumber = Math.floor(Math.random() * 45 + 1);
+    while (randomNumbers.length < count) {
+      const randomNumber = Math.floor(Math.random() * max + min);
       if (!randomNumbers.includes(randomNumber)) {
         randomNumbers.push(randomNumber);
       }
