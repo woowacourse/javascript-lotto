@@ -23,6 +23,7 @@ class App {
     const purchaseAmount = await InputView.readPurchaseAmount();
     const purchaseCount = purchaseAmount / LOTTO_PRICE;
 
+    OutputView.printPurchaseCount(purchaseCount);
     const purchasedLottos = this.createLotto(purchaseCount);
 
     OutputView.printPurchasedLottos(purchasedLottos);

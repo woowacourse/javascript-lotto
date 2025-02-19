@@ -19,7 +19,6 @@ class InputView {
     return retryUntilSuccess(async () => {
       const rawWinNumber = await readLineAsync(INPUT_MESSAGES.winNumber());
       const winNumbers = rawWinNumber.split(SEPERATOR).map(Number);
-      // 'a,b,c,d,e,f'.split(',').map(Number)
 
       Validator.validateWinNumbers(winNumbers);
       return winNumbers;

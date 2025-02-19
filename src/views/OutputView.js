@@ -8,7 +8,11 @@ class OutputView {
   }
 
   static printPurchasedLottos(purchasedLottos) {
-    return purchasedLottos.forEach((lotto) => this.#print(lotto));
+    purchasedLottos.forEach((lotto) => this.#print(lotto));
+  }
+
+  static printPurchaseCount(purchaseCount) {
+    this.#print(`${purchaseCount}개를 구매했습니다.`);
   }
 
   static printStatistics(lottoRanks) {
