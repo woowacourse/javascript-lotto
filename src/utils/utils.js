@@ -36,7 +36,7 @@ export function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-export function makeOneLotto() {
+export function makeOneLottoArray() {
   const lotto = [];
   while (lotto.length < 6) {
     const curNumber = getRandomInt(44) + 1;
