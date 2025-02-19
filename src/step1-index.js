@@ -1,5 +1,6 @@
 import { INPUT } from "./constants/message.js";
 import Input from "./view/Input.js";
+import Output from "./view/output.js";
 
 /**
  * step 1의 시작점이 되는 파일입니다.
