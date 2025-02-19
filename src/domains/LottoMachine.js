@@ -9,11 +9,22 @@ class LottoMachine {
   }
 
   #generateLottos(lottoCount) {
-    const lotto = Array.from({ length: 6 }, () =>
-      generateRandomNumber(1, 45)
-    ).sort((a, b) => a - b);
+    const generateLotto = () => this.#generateLotto().sort((a, b) => a - b);
+    return Array.from({ length: lottoCount }, () => new Lotto(generateLotto()));
+  }
 
-    return Array.from({ length: lottoCount }, () => new Lotto(lotto));
+  #generateLotto() {
+    const lotto = [];
+
+    while (lotto.length < 6) {
+      const randomNumber = generateRandomNumber(1, 45);
+
+      if (!lotto.includes(randomNumber)) {
+        lotto.push(randomNumber);
+      }
+    }
+
+    return lotto;
   }
 
   get lottos() {
