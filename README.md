@@ -49,7 +49,7 @@ Lotto
 - LottoMachine
 
 - [ ] 구입 금액에 해당하는 만큼 로또 발행 - Domain
-  - [ ] count 값 만큼 난수 세트 생성 - Domain
+  - [x] count 값 만큼 난수 세트 생성 - Domain
     - [x] 1~45 중 6개의 랜덤 값을 생성 - Domain
   - [ ] Lotto Instance 생성 - Domain
 
