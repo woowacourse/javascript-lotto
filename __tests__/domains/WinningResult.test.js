@@ -2,7 +2,7 @@ import WinningResult from "../../src/domains/WinningResult";
 
 describe("당첨 결과 테스트", () => {
   describe("정상 케이스", () => {
-    test("사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 통계를 계산한다.", () => {
+    test("사용자가 구입한 로또 번호와 당첨 번호를 비교하여 당첨 통계를 계산한다.", () => {
       // given
       const lottos = [
         [1, 2, 3, 4, 5, 6],

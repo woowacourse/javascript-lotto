@@ -1,9 +1,14 @@
-import { validateRange, validateType } from "./validate";
+import { validateRange, validateType } from "./validate.js";
 
 const BonusNumberValidator = {
   validate: (bonusNumber, winningNumbers) => {
-    validateType(bonusNumber);
-    validateRange(bonusNumber);
+    validateType("보너스 번호", bonusNumber);
+    validateRange({
+      key: "보너스 번호",
+      value: bonusNumber,
+      min: 1,
+      max: 45,
+    });
     validateDuplicate(bonusNumber, winningNumbers);
   },
 };

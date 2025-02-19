@@ -1,9 +1,10 @@
-import { validateType, validateRange } from "./validate";
+import { validateType, validateRange, validateCount } from "./validate.js";
 
 const WinningNumbersValidator = {
   validate: (winningNumbers) => {
     validateTypeAll(winningNumbers);
-    validateCount(winningNumbers);
+    validateCount("당첨 번호", winningNumbers);
+    validateRangeAll(winningNumbers);
   },
 };
 
