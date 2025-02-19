@@ -22,5 +22,5 @@ export const retryIfDuplicatedRandomNumbers = () => {
     Array.from({ length: 6 }, () => setRandomNumbers.add(getRandomNumber()));
   }
 
-  return [...setRandomNumbers];
+  return [...setRandomNumbers].sort((a, b) => a - b);
 };
