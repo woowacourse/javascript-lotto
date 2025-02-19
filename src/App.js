@@ -85,7 +85,7 @@ class App {
 
   createLotto(purchaseCount) {
     return Array.from({ length: purchaseCount }, () => {
-      return this.createLottoNumber();
+      return this.createLottoNumber().sort((a, b) => a - b);
     });
   }
 }
