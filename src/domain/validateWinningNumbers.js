@@ -31,9 +31,9 @@ export const validateWinningNumbers = (input) => {
 export const validateBonusNumber = (bonusNumber, winningNumbers) => {
   validateRange(bonusNumber);
 
-  if (winningNumbers.includes(bonusNumber)) {
+  if (winningNumbers.includes(Number(bonusNumber))) {
     throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER);
   }
 
-  return bonusNumber;
+  return Number(bonusNumber);
 };
