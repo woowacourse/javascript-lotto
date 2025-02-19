@@ -8,6 +8,7 @@ import {
 import checkLottoPurchase from './util/checkLottoPurchase.js';
 import Lotto from './model/Lotto.js';
 import { getUniqueRandomNumbers } from './util/getUniqueRandomNumbers.js';
+import checkBonusNumber from './util/checkBonusNumber.js';
 
 // const purchasePrice = await readLineAsync(systemSettings.getPurchasePrice);
 // const purchaseAmount = checkLottoPurchase(purchasePrice);
@@ -26,7 +27,12 @@ import { getUniqueRandomNumbers } from './util/getUniqueRandomNumbers.js';
 
 const winningNumber = await readLineAsync(systemSettings.getWinningNumber);
 
-// const bonusNumber = await readLineAsync(systemSettings.getBonusNumber);
 const userLotto = new Lotto(
   winningNumber.split(',').map((number) => Number(number)),
 );
+const bonusNumber = await readLineAsync(systemSettings.getBonusNumber);
+const { checkedLotto, checkedBonusNumber } = checkBonusNumber(
+  userLotto,
+  Number(bonusNumber),
+);
+console.log(checkedLotto.numbers, checkedBonusNumber);
