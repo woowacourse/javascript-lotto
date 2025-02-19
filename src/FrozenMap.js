@@ -3,10 +3,10 @@ class FrozenMap extends Map {
 
   constructor(entries) {
     super();
-    this.#isFrozen = false; // 초기 값 false
+    this.#isFrozen = false;
 
     if (!entries) {
-      // 생성자에 인자(초기 값)가 없는 경우 early return
+      // 생성자에 인자(초기 값)가 없는 경우
       return;
     }
 
@@ -30,8 +30,6 @@ class FrozenMap extends Map {
     if (this.#isFrozen) {
       throw new Error("Freeze 상태에서는 set 메서드를 사용할 수 없습니다.");
     }
-
-    super.set(key, value);
   }
 
   delete() {

@@ -44,6 +44,7 @@ const app = async () => {
       winningNumbers,
       bonusNumber
     );
+
     const totalPrizeMoney = getTotalPrizeMoney(result);
     const revenueRate = getRevenueRate(totalPrizeMoney, lottoPrice);
     printLottoResult(result, revenueRate);
