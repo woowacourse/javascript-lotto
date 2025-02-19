@@ -3,7 +3,7 @@ const OutputView = {
     console.log(message);
   },
   printError(error) {
-    console.error(error);
+    console.error(error.message);
   },
   printLottoArray(lottoArray) {
     lottoArray.forEach((lotto) => OutputView.print(lotto.numbers));

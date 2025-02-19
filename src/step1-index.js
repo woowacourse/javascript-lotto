@@ -5,16 +5,37 @@ import OutputView from "./view/outputView.js";
 import validatePrice from "./validation/validatePrice.js";
 import retryOnError from "./util/retryOnError.js";
 import validateWinningNumber from "./validation/validateWinningNumber.js";
-const priceInput = await retryOnError(() => InputView.readUserInput(SYSTEM_MESSAGE.PRICE), OutputView.printError);
-validatePrice(priceInput);
+import { parsePrice, parseWinningNumbers, parseBonusNumber } from "./service/ParsingService.js";
+import validateBonusNumber from "./validation/validateBonusNumber.js";
 
-const lottoCount = PurchaseService.getLottoCount(priceInput);
+const getPrice = async () => {
+  const priceInput = await InputView.readUserInput(SYSTEM_MESSAGE.PRICE);
+  validatePrice(priceInput);
+  return parsePrice(priceInput);
+};
+
+const getWinningNumber = async () => {
+  const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER);
+  validateWinningNumber(winningNumberInput);
+  return parseWinningNumbers(winningNumberInput);
+};
+
+const getBonusNumber = async () => {
+  const bonusNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.BONUS_NUMBER);
+  validateBonusNumber(bonusNumberInput, winningNumbers);
+  return parseBonusNumber(bonusNumberInput);
+};
+
+// 가격 입력
+const price = await retryOnError(getPrice, OutputView.printError);
+
+const lottoCount = PurchaseService.getLottoCount(price);
 OutputView.print(SYSTEM_MESSAGE.COUNT(lottoCount));
 
 const lottoArray = PurchaseService.getLottoArray(lottoCount);
 OutputView.printLottoArray(lottoArray);
 
-const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER);
-validateWinningNumber(winningNumberInput);
+// 당첨 번호 입력
+const winningNumbers = await retryOnError(getWinningNumber, OutputView.printError);
 
-const bonusNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.BONUS_NUMBER);
+const bonusNumber = await retryOnError(getBonusNumber, OutputView.printError);
