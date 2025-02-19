@@ -1,9 +1,10 @@
 import { PROMPT_MESSAGE } from "../../constants/message.js";
+import formatLottoNumbers from "../../lotto/formatLottoNumbers.js";
 
-const printLottoNumbers = (lottoNumbers) => {
-  console.log(`${lottoNumbers.length}${PROMPT_MESSAGE.PURCHASE_QUANTITY}`);
-  lottoNumbers.forEach((lottoNumber) => {
-    console.log(`[${lottoNumber.join(", ")}]`);
+const printLottoNumbers = (lottoNumberSets) => {
+  console.log(`${lottoNumberSets.length}${PROMPT_MESSAGE.PURCHASE_QUANTITY}`);
+  lottoNumberSets.forEach((lottoNumbers) => {
+    console.log(formatLottoNumbers(lottoNumbers));
   });
 };
 
