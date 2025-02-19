@@ -1,4 +1,4 @@
-import calculateWins from '../src/service/CalculatorService.js';
+import { calculateWins } from '../src/service/CalculatorService.js';
 import Lotto from '../src/model/Lotto.js';
 
 describe('로또 일치 결과를 반환하는 calculateWins 테스트', () => {
