@@ -1,5 +1,9 @@
+import InputHandler from './input/InputHandler.js';
+
 class LottoController {
-  run() {}
+  run() {
+    InputHandler.getPurchaseMoney();
+  }
 }
 
 export default LottoController;
