@@ -113,4 +113,12 @@ describe("보너스번호", () => {
       "[ERROR] 보너스번호를 입력해주세요.",
     );
   });
+
+  test("보너스번호가 소수인 경우에 예외 처리한다.", () => {
+    const input = "50";
+
+    expect(() => Validator.validateBonusNumber(input)).toThrow(
+      "[ERROR] 보너스번호는 1 ~ 45 사이의 숫자로 입력해야 합니다.",
+    );
+  });
 });

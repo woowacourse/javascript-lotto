@@ -52,6 +52,11 @@ const Validator = {
 
     if (!Number.isInteger(bonusNumber))
       throw new Error("[ERROR] 보너스번호는 정수로 입력해야 합니다.");
+
+    if (bonusNumber < 1 || bonusNumber > 45)
+      throw new Error(
+        "[ERROR] 보너스번호는 1 ~ 45 사이의 숫자로 입력해야 합니다.",
+      );
   },
 };
 
