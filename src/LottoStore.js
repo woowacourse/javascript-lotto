@@ -11,7 +11,6 @@ export const purchase = async () => {
     await InputView.readPurchaseAmount()
   ).price;
 
-  // 임시 코드
   const quantity = purchaseAmount / PRICE.UNIT;
   const lottoNumbers = Array.from({length: quantity}, () => generateLotto());
   lottoNumbers.forEach((nums) => {
