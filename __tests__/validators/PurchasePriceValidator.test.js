@@ -1,7 +1,20 @@
 import { validateRange, validateType } from "../../src/validators/validate";
-import { validateUnit } from "../../src/validators/PurchasePriceValidator";
+import {
+  PurchasePriceValidator,
+  validateUnit,
+} from "../../src/validators/PurchasePriceValidator";
 
 describe("구입 금액 검증 테스트", () => {
+  describe("정상 케이스", () => {
+    test("구입 금액은 숫자여야 하고, 1,000원 단위이며, 1,000 ~ 1,000,000 사이에 있어야 한다.", () => {
+      const lottoPurchasePrice = 10000;
+
+      expect(() =>
+        PurchasePriceValidator.validate(lottoPurchasePrice)
+      ).not.toThrow();
+    });
+  });
+
   describe("예외 케이스", () => {
     test.each(["^", NaN, undefined, {}])(
       "구입 금액이 숫자가 아니면 에러가 발생한다. (입력 값 : %p)",

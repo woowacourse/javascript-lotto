@@ -1,7 +1,21 @@
-import { validateDuplicate } from "../../src/validators/BonusNumberValidator";
+import {
+  BonusNumberValidator,
+  validateDuplicate,
+} from "../../src/validators/BonusNumberValidator";
 import { validateRange, validateType } from "../../src/validators/validate";
 
 describe("보너스 번호 검증 테스트", () => {
+  describe("정상 케이스", () => {
+    test("보너스 번호는 숫자여야 하고, 당첨 번호와 중복되지 않으며, 1 ~ 45 사이에 있어야 한다.", () => {
+      const bonusNumber = 7;
+      const winningNumbers = [1, 2, 3, 4, 5, 6];
+
+      expect(() =>
+        BonusNumberValidator.validate(bonusNumber, winningNumbers)
+      ).not.toThrow();
+    });
+  });
+
   describe("예외 케이스", () => {
     test.each(["^", NaN, undefined, {}])(
       "보너스 번호는 숫자가 아니면 에러가 발생한다. (입력 값 : %p)",
