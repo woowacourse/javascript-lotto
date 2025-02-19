@@ -1,14 +1,13 @@
 export const checkWinningNumbers = (winningNumbers, lotto) => {
-  let matchedCount = 0;
   const myLottoNumber = lotto.numbers;
 
   winningNumbers.forEach((winningNumber) => {
     if (myLottoNumber.includes(winningNumber)) {
-      matchedCount += 1;
+      lotto.incrementWinningNumbers();
     }
   });
 
-  return matchedCount;
+  return lotto.matchResult.matchedCount;
 };
 
 const checkResult = () => {};
