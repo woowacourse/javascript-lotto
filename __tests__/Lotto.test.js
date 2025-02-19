@@ -12,3 +12,12 @@ test('로또 1장을 발행한다.', () => {
   const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
   expect(lotto.getNumbers().length).toBe(LOTTO_DEFINITION.NUMBER_COUNTS);
 });
+
+test('로또 장수에 따라 여러 장 발행한다.', () => {
+  const purchaseMoney = 4000;
+  const lottoManager = new LottoManager();
+  const lottoCount = lottoManager.purchaseLotto(purchaseMoney);
+  lottoManager.makeLottoList(lottoCount);
+
+  expect(lottoManager.getLottoList().length).toBe(4);
+});
