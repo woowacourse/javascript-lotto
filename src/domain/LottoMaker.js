@@ -7,12 +7,12 @@ class LottoMaker {
   #lottoList;
 
   constructor(money) {
-    this.calculateLottoCount(money)
+    this.calculatePurchaseCount(money)
     this.#lottoList = [];
     this.purchase()
   }
 
-  calculateLottoCount(money) {
+  calculatePurchaseCount(money) {
     this.#purchaseCount = money / LOTTO_CONDITION.PRICE;
   }
 

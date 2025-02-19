@@ -1,16 +1,21 @@
 import InputHandler from './input/InputHandler.js';
 import LottoMaker from './domain/LottoMaker.js';
 import OutputView from './view/OutputView.js';
-import { MESSAGE } from './constants/constants.js';
+import { LINE_BREAK, MESSAGE } from './constants/constants.js';
 
 class LottoController {
   async run() {
     const lottoMaker = new LottoMaker(await this.inputPurchaseMoney())
-    this.printLottoNumber(lottoMaker)
+    this.printLottoNumber(lottoMaker);
+    const winningNumbers = await this.inputWinningNumbers()
   }
 
   async inputPurchaseMoney(){
-    return await InputHandler.getPurchaseMoney();
+    return await InputHandler.purchaseMoney();
+  }
+
+  async inputWinningNumbers(){
+    return await InputHandler.winningNumbers()
   }
 
   printLottoNumber(lottoMaker){
@@ -18,6 +23,7 @@ class LottoController {
     lottoMaker.lottoList.forEach((lotto)=>{
       OutputView.print(lotto.numbers);
     })
+    OutputView.print(LINE_BREAK)
   }  
 }
 

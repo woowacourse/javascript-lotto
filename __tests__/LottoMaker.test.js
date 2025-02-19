@@ -6,7 +6,7 @@ describe('Lotto Maker 클래스 테스트', () => {
   test('구입 금액에 따른 로또 발행 테스트', () => {
     const lottoMaker = new LottoMaker(LOTTO_CONDITION.PRICE * 5);
 
-    expect(lottoMaker.getLottoCount()).toBe(5);
+    expect(lottoMaker.purchaseCount).toBe(5);
   });
 
   test('로또 생성 테스트', () => {
