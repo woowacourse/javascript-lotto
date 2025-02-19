@@ -5,6 +5,7 @@ import throwIfInvalid from "../utils/throwIfInvalid.js";
 import validateBonusNumber from "../validations/validateBonusNumber.js";
 import issueLottos from "../domains/IssueLottos.js";
 import Output from "../views/Output.js";
+import WinningStatistics from "../domains/WinningStatistics.js";
 
 class Controller {
   async start() {
@@ -25,6 +26,13 @@ class Controller {
       Input.readBonusNumber,
       validateBonusNumber,
       winningNumbers,
+    );
+
+    const winningStatistics = new WinningStatistics();
+    winningStatistics.calculateWinningResults(
+      lottos,
+      winningNumbers,
+      bonusNumber,
     );
   }
 }
