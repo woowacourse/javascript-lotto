@@ -1,17 +1,17 @@
 import { LOTTO } from '../constants/messages.js';
 
-export const getWinningMatchCount = (lottos, lottoNumbers) => {
+export const getWinningMatchCount = (randomlottos, lottoNumbers) => {
   let matchedCounts = [];
 
-  lottos.forEach((lotto) => {
+  randomlottos.forEach((randomLotto) => {
     let match = 0;
     lottoNumbers.winningNumbers.forEach((winningNumber) => {
-      if (lotto.includes(winningNumber)) {
+      if (randomLotto.includes(winningNumber)) {
         match++;
       }
     });
 
-    if (match === LOTTO.FIVE_MATCH && lotto.includes(lottoNumbers.bonusNumber)) {
+    if (match === LOTTO.FIVE_MATCH && randomLotto.includes(lottoNumbers.bonusNumber)) {
       match = LOTTO.FIVE_WITH_BONUS_MATCH;
     }
 
