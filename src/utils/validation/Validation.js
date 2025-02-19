@@ -4,8 +4,8 @@ const Validation = {
   purchaseAmount(input) {
     const purchaseAmount = Number(input);
 
-    if (!purchaseAmount) throw new Error(ERROR_MESSAGE.NOT_DIVISIBLE_BY_UNIT);
-    if (purchaseAmount % 1000 !== 0) throw new Error(ERROR_MESSAGE.INVALID_INPUT_PRICE);
+    if (!purchaseAmount) throw new Error(ERROR_MESSAGE.INVALID_INPUT_PRICE);
+    if (purchaseAmount % 1000 !== 0) throw new Error(ERROR_MESSAGE.NOT_DIVISIBLE_BY_UNIT);
 
     return purchaseAmount;
   },
@@ -20,6 +20,13 @@ const Validation = {
       throw new Error(ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
 
     return winningNumbers;
+  },
+  bonusNumber(bonusNumberInput, winningNumbers) {
+    const bonusNumber = Number(bonusNumberInput);
+    if (!bonusNumber) throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER_TYPE);
+    if (bonusNumber < 1 || bonusNumber > 45) throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER_RANGE);
+    if (winningNumbers.includes(bonusNumber)) throw new Error(ERROR_MESSAGE.DUPLICATE_BONUS_NUMBER);
+    return bonusNumber;
   },
 };
 
