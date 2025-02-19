@@ -11,7 +11,7 @@ const validationCondition = {
     return Number(input) < LOTTO_PRICE;
   },
   isDivisible(input) {
-    return Number(input) / LOTTO_PRICE === 0;
+    return Number(input) % LOTTO_PRICE === 0;
   },
 };
 

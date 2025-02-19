@@ -2,8 +2,11 @@ const OutputView = {
   print(message) {
     console.log(message);
   },
+  printError(error) {
+    console.error(error);
+  },
   printLottoArray(lottoArray) {
-    lottoArray.forEach((lotto) => console.log(lotto.numbers));
+    lottoArray.forEach((lotto) => OutputView.print(lotto.numbers));
   },
 };
 
