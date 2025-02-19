@@ -8,7 +8,7 @@ const prizeMoney = {
   SIX_MATCH: 2_000_000_000,
 };
 
-function calculateWins(lottos, parsedLotto) {
+export function calculateWins(lottos, parsedLotto) {
   const { checkedLotto, checkedBonusNumber } = parsedLotto;
   lottos.forEach((lotto) => {
     const matchedCount = countMatchedNumbers(
@@ -16,6 +16,7 @@ function calculateWins(lottos, parsedLotto) {
       checkedLotto.numbers,
     );
     const isBonusMatched = lotto.numbers.includes(checkedBonusNumber);
+
     if (matchedCount === 6) systemSettings.winCount.SIX_MATCH += 1;
     else if (matchedCount === 5 && isBonusMatched)
       systemSettings.winCount.FIVE_MATCH_WITH_BONUS += 1;
