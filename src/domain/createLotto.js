@@ -8,11 +8,11 @@ const LOTTO_VALUES = {
 };
 
 export const createLotto = (count) => {
-  return new Array(count).map(() => {
+  return Array.from({ length: count }, () => {
     const lottoNumbers = getUniqueRandomNumbers(
       { min: LOTTO_VALUES.MIN, max: LOTTO_VALUES.MAX },
       LOTTO_VALUES.COUNT
     );
-    new Lotto(lottoNumbers);
+    return new Lotto(lottoNumbers);
   });
 };
