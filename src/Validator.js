@@ -1,4 +1,4 @@
-import { ListChecker, NumberChecker, StringChecker } from "./Checkers";
+import { ListChecker, NumberChecker, StringChecker } from "./Checkers.js";
 
 class Validator {
   // TODO: Validator를 Checker 내 함수로 구성하기
@@ -37,9 +37,9 @@ class Validator {
     if (!ListChecker.isDefineLength(targetArray, 6))
       throw new Error("[ERROR]당첨번호는 쉼표로 구분되어야 한다.");
     targetArray.forEach((num) => {
-      if (!NumberChecker.isMoreThan(Number(num), 45))
+      if (NumberChecker.isMoreThan(Number(num), 45))
         throw new Error("[ERROR]당첨번호의 범위는 1~45이어야한다.");
-      if (!NumberChecker.isLessThan(Number(num), 1))
+      if (NumberChecker.isLessThan(Number(num), 1))
         throw new Error("[ERROR]당첨번호의 범위는 1~45이어야한다.");
     });
   }
@@ -47,14 +47,16 @@ class Validator {
   static isBonusNumber(bonusNumberString) {
     if (!StringChecker.isRegString(bonusNumberString, /^[0-9]+$/))
       throw new Error("[ERROR]보너스 번호는 숫자이어야 한다.");
-    if (!NumberChecker.isMoreThan(Number(bonusNumberString), 45))
+    if (NumberChecker.isMoreThan(Number(bonusNumberString), 45))
       throw new Error("[ERROR]당첨번호의 범위는 1~45이어야한다.");
-    if (!NumberChecker.isLessThan(Number(bonusNumberString), 1))
+    if (NumberChecker.isLessThan(Number(bonusNumberString), 1))
       throw new Error("[ERROR]당첨번호의 범위는 1~45이어야한다.");
   }
 
   static isRestartString(restartString) {
-    if (restartString !== "y" || restartString !== "n")
+    const isIncludeY = restartString === "y";
+    const isIncludeX = restartString === "n";
+    if (!isIncludeY && !isIncludeX)
       throw new Error("[ERROR]다시 시작하기 위한 입력은 y또는 n이어야 한다.");
   }
 }
