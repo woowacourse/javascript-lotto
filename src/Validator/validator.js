@@ -10,6 +10,9 @@ const Validator = {
 
     if (!Number.isInteger(purchaseMoney))
       throw new Error("[ERROR] 구입 금액은 정수로 입력해야 합니다.");
+
+    if (purchaseMoney <= 0)
+      throw new Error("[ERROR] 구입 금액은 양수로 입력해야 합니다.");
   },
 };
 
