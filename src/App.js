@@ -1,5 +1,6 @@
 import LottoMachine from "./domains/LottoMachine.js";
 import { PurchasePriceValidator } from "./validators/PurchasePriceValidator.js";
+import { WinningNumbersValidator } from "./validators/WinningNumbersValidator.js";
 import InputView from "./views/InputView.js";
 import OutputView from "./views/OutputView.js";
 
@@ -11,6 +12,9 @@ class App {
 
     const lottoMachine = new LottoMachine(lottoCount);
     OutputView.printPurchaseLottos(lottoMachine.lottos);
+
+    const winningNumbers = await InputView.enterWinningNumbers();
+    const splittedWinningNumbers = winningNumbers.split(",");
   }
 }
 
