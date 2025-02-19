@@ -10,10 +10,18 @@ class UserLottos {
     this.#lottos = [];
   }
 
+  #getRandomNumbers() {
+    let randomNumbers = [];
+    for (let i = 0; i < 6; i++) {
+      randomNumbers.push(Math.floor(Math.random() * 45) + 1);
+    }
+    return randomNumbers;
+  }
+
   generateLottos() {
     for (let i = 0; i < this.#price / PURCHASE_UNIT; i++) {
-      const numbers = [1, 2, 3, 4, 5, 6]; //TODO
-      this.#lottos.push(new Lotto(numbers));
+      const randomNumbers = this.#getRandomNumbers();
+      this.#lottos.push(new Lotto(randomNumbers));
     }
   }
 
