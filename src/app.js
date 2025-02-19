@@ -1,5 +1,7 @@
 import Validator from "./Validator/validator.js";
 import InputHandler from "./view/InputHandler.js";
+import OutputView from "./view/outputView.js";
+import LottoMachine from "./domain/lottoMachine.js";
 
 class App {
   async getPurchaseMoney() {
@@ -28,7 +30,14 @@ class App {
   }
 
   async run() {
+    const outputView = new OutputView();
     const money = await this.getPurchaseMoney();
+
+    const lottoMachine = new LottoMachine();
+
+    const lottoCount = lottoMachine.getLottoCount(money);
+
+    outputView.printLottoCount(lottoCount);
     const winningNumbers = await this.getWinningNumbers();
     const bonusNumber = await this.getBonusNumber(winningNumbers);
   }
