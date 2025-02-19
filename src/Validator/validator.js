@@ -42,6 +42,9 @@ const Validator = {
   },
 
   validateBonusNumber(bonusNumberInput) {
+    if (bonusNumberInput === "")
+      throw new Error("[ERROR] 보너스번호를 입력해주세요.");
+
     const bonusNumber = Number(bonusNumberInput);
 
     if (Number.isNaN(bonusNumber))
