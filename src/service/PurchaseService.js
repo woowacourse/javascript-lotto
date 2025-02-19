@@ -3,10 +3,6 @@ import Lotto from "../domain/Lotto.js";
 import pickUniqueNumbersInRange from "../util/pickUniqueNumbersInRange.js.js";
 
 const PurchaseService = {
-  purchaseLottos(price) {
-    const count = this.getLottoCount(price);
-    return this.getLottoArray(count);
-  },
   getLottoCount(price) {
     return price / LOTTO_PRICE;
   },
