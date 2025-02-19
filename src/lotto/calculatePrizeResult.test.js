@@ -20,4 +20,25 @@ describe("calculatePrizeResult 함수 테스트", () => {
       calculatePrizeResult(lottoNumbers, winningNumbers, bonusNumber)
     ).toEqual(result);
   });
+
+  test("2개 일치 1개 / 5개 + 보너스 일치 1개, 6개 일치 1개", () => {
+    const lottoNumbers = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 40, 41, 42, 43],
+      [1, 2, 3, 4, 5, 10],
+    ];
+    const winningNumbers = [1, 2, 3, 4, 5, 10];
+    const bonusNumber = 6;
+    const result = new Map([
+      [3, 0],
+      [4, 0],
+      [5, 0],
+      ["5B", 1],
+      [6, 1],
+    ]);
+
+    expect(
+      calculatePrizeResult(lottoNumbers, winningNumbers, bonusNumber)
+    ).toEqual(result);
+  });
 });
