@@ -30,6 +30,11 @@ const Validator = {
 
       if (!Number.isInteger(winningNumber))
         throw new Error("[ERROR] 당첨번호는 정수로 입력해야 합니다.");
+
+      if (winningNumber < 1 || winningNumber > 45)
+        throw new Error(
+          "[ERROR] 당첨번호는 1 ~ 45 사이의 숫자로 입력해야 합니다.",
+        );
     });
 
     if (winningNumbersInput.length !== 6)
