@@ -11,8 +11,25 @@ class LottoStatistics {
     };
   }
 
+  getRankResult() {
+    return this.#rankResult;
+  }
+
+  compareLottos(machineLottos, winningNumber) {
+    machineLottos.forEach((machineLotto) => {
+      const sameCount = this.matchSameCount(machineLotto, winningNumber.lotto);
+      if (sameCount !== 5) {
+        return this.increaseCount(sameCount);
+      }
+    });
+  }
+
   matchSameCount(machineLotto, winningLotto) {
     return machineLotto.filter((number) => winningLotto.includes(number)).length;
+  }
+
+  increaseCount(sameCount) {
+    this.#rankResult[`${sameCount}개 일치`].count += 1;
   }
 }
 

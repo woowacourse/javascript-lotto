@@ -20,7 +20,6 @@ class Machine {
       CONFIG.MIN.LOTTO_NUMBER,
       CONFIG.MAX.LOTTO_NUMBER,
     );
-    console.log(randomNumbers);
     return new Lotto(randomNumbers);
   }
 
