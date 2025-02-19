@@ -1,3 +1,4 @@
+import { validateDuplicate } from "../../src/validators/BonusNumberValidator";
 import { validateRange, validateType } from "../../src/validators/validate";
 
 describe("보너스 번호 검증 테스트", () => {

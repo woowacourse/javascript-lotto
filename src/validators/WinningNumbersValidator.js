@@ -13,12 +13,6 @@ const validateTypeAll = (winningNumbers) => {
   });
 };
 
-const validateCount = () => {
-  if (value.length !== 6) {
-    throw new Error(`은(는) 6개여야 합니다.`);
-  }
-};
-
 const validateRangeAll = (winningNumbers) => {
   winningNumbers.forEach((number) => {
     validateRange({

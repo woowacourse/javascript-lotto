@@ -1,4 +1,4 @@
-import { validateRange, validateType, validateUnit } from "./validate";
+import { validateRange, validateType } from "./validate";
 
 const PurchasePriceValidator = {
   validate: (purchasePrice) => {
@@ -8,4 +8,10 @@ const PurchasePriceValidator = {
   },
 };
 
-export { PurchasePriceValidator };
+const validateUnit = (purchasePrice) => {
+  if (purchasePrice % 1000 !== 0) {
+    throw new Error("구매 금액은 1,000원 단위로 입력해야 합니다.");
+  }
+};
+
+export { PurchasePriceValidator, validateUnit };

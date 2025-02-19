@@ -1,8 +1,5 @@
-import {
-  validateRange,
-  validateType,
-  validateUnit,
-} from "../../src/validators/validate";
+import { validateRange, validateType } from "../../src/validators/validate";
+import { validateUnit } from "../../src/validators/PurchasePriceValidator";
 
 describe("구매 금액 검증 테스트", () => {
   describe("예외 케이스", () => {

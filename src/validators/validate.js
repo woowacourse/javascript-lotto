@@ -12,16 +12,10 @@ const validateRange = ({ key, value, min, max }) => {
   }
 };
 
-const validateUnit = (purchasePrice) => {
-  if (purchasePrice % 1000 !== 0) {
-    throw new Error("구매 금액은 1,000원 단위로 입력해야 합니다.");
-  }
-};
-
 const validateCount = (key, value) => {
   if (value.length !== 6) {
     throw new Error(`${key}은(는) 6개여야 합니다.`);
   }
 };
 
-export { validateType, validateRange, validateUnit, validateCount };
+export { validateType, validateRange, validateCount };
