@@ -14,22 +14,24 @@ class LottoMachine {
     });
   }
 
-  getHasBonusNumbers(enteredLottoNumbers) {
+  getHasBonusNumbers(bonusLottoNumbers) {
     return this.issuedLottoNumbers.map((lotto) => {
-      return lotto.hasBonusNumber(enteredLottoNumbers);
+      return lotto.hasBonusNumber(bonusLottoNumbers);
     });
   }
 
-  getMatchedLottoRank(enteredLottoNumbers) {
+  getMatchedLottoRank(enteredLottoNumbers, bonusLottoNumber) {
     const matchingNumbers = this.getMatchingNumbers(enteredLottoNumbers);
-    const isBonusArray = this.getHasBonusNumbers(enteredLottoNumbers);
+    const isBonusArray = this.getHasBonusNumbers(bonusLottoNumber);
 
     return matchingNumbers.map((matchingNumber, index) => {
       return LOTTO_STATUS.find((status) => {
-        if (status.COUNT === 5 && matchingNumber === 5 && isBonusArray[index])
+        if (
+          status.COUNT === matchingNumber &&
+          isBonusArray[index] === status.IS_BONUS
+        ) {
           return true;
-
-        if (status.COUNT === matchingNumber) return true;
+        }
       });
     });
   }
