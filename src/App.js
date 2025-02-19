@@ -1,4 +1,5 @@
 import LottoMachine from "./domains/LottoMachine.js";
+import WinningResult from "./domains/WinningResult.js";
 import { BonusNumberValidator } from "./validators/BonusNumberValidator.js";
 import { PurchasePriceValidator } from "./validators/PurchasePriceValidator.js";
 import { WinningNumbersValidator } from "./validators/WinningNumbersValidator.js";
@@ -24,6 +25,17 @@ class App {
       transformedBonusNumber,
       splittedWinningNumbers
     );
+
+    const winningResult = new WinningResult(
+      splittedWinningNumbers,
+      transformedBonusNumber
+    );
+    const counts = winningResult.calculate(lottoMachine.lottos);
+    const profitRate = winningResult.calculateProfitRate(
+      lottoPurchasePrice,
+      counts
+    );
+    OutputView.printResult(counts, profitRate);
   }
 }
 
