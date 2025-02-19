@@ -4,7 +4,7 @@ const compareMachine = (lottoPack, answerLottoPack) => {
   lottoPack.lottos.forEach((lotto) => {
     let winningCount = 0;
     let bonusCount = 0;
-    lotto.forEach((number) => {
+    lotto.lottoNumbers.forEach((number) => {
       if (answerLottoPack.answerTable[number] === "당첨 번호") {
         winningCount += 1;
       }

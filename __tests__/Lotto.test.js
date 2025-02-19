@@ -19,11 +19,11 @@ describe("로또 도메인 테스트", () => {
 
   test("로또 번호는 6자리이다.", () => {
     const lotto = new Lotto(lottoNumber);
-    expect(lotto.lottoNumber.length).toBe(6);
+    expect(lotto.lottoNumbers.length).toBe(6);
   });
 
   test("로또 번호는 오름차순으로 정렬된다.", () => {
     const lotto = new Lotto(reverseLottoNumber);
-    expect(lotto.lottoNumber).toEqual(lottoNumber);
+    expect(lotto.lottoNumbers).toEqual(lottoNumber);
   });
 });

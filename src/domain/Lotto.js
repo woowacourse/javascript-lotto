@@ -1,10 +1,15 @@
 class Lotto {
-  constructor(lottoNumber) {
-    this.lottoNumber = this.#ascendingSort(lottoNumber);
+  #lottoNumbers;
+  constructor(lottoNumbers) {
+    this.#lottoNumbers = this.#ascendingSort(lottoNumbers);
   }
 
-  #ascendingSort(lottoNumber) {
-    return lottoNumber.sort((a, b) => a - b);
+  #ascendingSort(lottoNumbers) {
+    return lottoNumbers.sort((a, b) => a - b);
+  }
+
+  get lottoNumbers() {
+    return this.#lottoNumbers;
   }
 }
 
