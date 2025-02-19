@@ -18,7 +18,17 @@ class LottoStatistics {
   compareLottos(machineLottos, winningNumber) {
     machineLottos.forEach((machineLotto) => {
       const sameCount = this.matchSameCount(machineLotto, winningNumber.lotto);
+      const isBonusNumber = this.hasBonusNumber(machineLotto, winningNumber.bonus);
+      this.determineRank(sameCount, isBonusNumber);
     });
+  }
+
+  determineRank(sameCount, isBonusNumber) {
+    if (sameCount === 5 && isBonusNumber) {
+      return this.increaseCount(sameCount, `${sameCount}개 일치, 보너스 볼 일치`);
+    }
+
+    return this.increaseCount(sameCount, `${sameCount}개 일치`);
   }
 
   hasBonusNumber(machineLotto, bonus) {
@@ -29,8 +39,11 @@ class LottoStatistics {
     return machineLotto.filter((number) => winningLotto.includes(number)).length;
   }
 
-  increaseCount(sameCount) {
-    this.#rankResult[`${sameCount}개 일치`].count += 1;
+  increaseCount(sameCount, name) {
+    if (sameCount < 3) {
+      return;
+    }
+    this.#rankResult[name].count += 1;
   }
 }
 
