@@ -18,7 +18,7 @@ const checkRange = (bonusNumberInput) => {
   }
 };
 const checkDuplicate = (winningNumbers, bonusNumberInput) => {
-  if (validationCondition.isBonusDistinct(winningNumbers, bonusNumberInput)) {
+  if (!validationCondition.isBonusDistinct(winningNumbers, bonusNumberInput)) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGE.DUPLICATE);
   }
 };
