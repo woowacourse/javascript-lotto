@@ -9,7 +9,7 @@ const matchToRankTable = {
   "6_true": 1,
 };
 
-const rankInfoTable = {
+export const rankInfoTable = {
   1: { price: 2_000_000_000, message: "6개 일치" },
   2: { price: 30_000_000, message: "5개 일치, 보너스 볼 일치" },
   3: { price: 1_500_000, message: "5개 일치" },
@@ -27,11 +27,11 @@ class LottoCalculator {
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonusNumber;
     this.#prize = new Map([
-      [1, []],
-      [2, []],
-      [3, []],
-      [4, []],
       [5, []],
+      [4, []],
+      [3, []],
+      [2, []],
+      [1, []],
     ]);
   }
 
