@@ -28,7 +28,7 @@ export function generateUniqueNumberArray(start, end, length) {
       const randomNumber = generateRandomNumber(start, end);
       if (prev.includes(randomNumber)) continue;
 
-      return [...cur, randomNumber];
+      return [...prev, randomNumber];
     }
   }, []);
 }
