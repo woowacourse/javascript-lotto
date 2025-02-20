@@ -4,6 +4,7 @@ import { LINE_BREAK, LOTTO_NUMBER_DELIMITER, INPUT_MESSAGE } from '../constants/
 import validatePurchaseMoney from '../validations/validate/PurchaseMoneyValidate.js';
 import Lotto from '../domain/Lotto.js';
 import validateBonusNumber from '../validations/validate/BonusNumberValidate.js';
+import { validateYorN } from '../validations/validate/ReStartValidate.js';
 
 const InputHandler = {
   async purchaseMoney() {
@@ -38,6 +39,19 @@ const InputHandler = {
         validateBonusNumber(winningNumbers, bonusNumber);
         OutputView.print(LINE_BREAK);
         return bonusNumber
+      } catch (e) {
+        OutputView.print(e.message);
+      }
+    }
+  },
+
+  async reStart() {
+    while (true) {
+      try {
+        const input = await InputView.readUserInput(INPUT_MESSAGE.RE_START);
+        validateYorN(input);
+        OutputView.print(LINE_BREAK);
+        return input
       } catch (e) {
         OutputView.print(e.message);
       }
