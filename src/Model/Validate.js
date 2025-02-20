@@ -1,3 +1,5 @@
+import { LOTTO_NUMBER_LENGTH, MAX_LOTTO_NUMBER, MAX_PRICE, MIN_LOTTO_NUMBER, MIN_PRICE } from '../constants/common.js';
+
 function checkIsEmpty(input) {
   if (!input.trim()) {
     throw new Error('[ERROR] 공백 입력이 되었습니다.');
@@ -11,32 +13,32 @@ function checkIsNumber(input) {
 }
 
 function checkWinningNumberCount(input) {
-  if (input.length !== 6) {
-    throw new Error('[ERROR] 6개의 숫자를 입력해주세요.');
+  if (input.length !== LOTTO_NUMBER_LENGTH) {
+    throw new Error(`[ERROR] ${LOTTO_NUMBER_LENGTH}개의 숫자를 입력해주세요.`);
   }
 }
 
 function checkThousandUnit(input) {
-  if (input % 1000 !== 0) {
+  if (input % MIN_PRICE !== 0) {
     throw new Error('[ERROR] 천원 단위로 입력해주세요.');
   }
 }
 
 function checkPriceRange(input) {
-  if (input > 100000 || input < 1000) {
+  if (input > MAX_PRICE || input < MIN_PRICE) {
     throw new Error('[ERROR] 구입 금액 범위는 1,000 ~ 100,000원 입니다.');
   }
 }
 
 function checkLottoNumberRange(input) {
-  if (input > 45 || input < 1) {
+  if (input > MAX_LOTTO_NUMBER || input < MIN_LOTTO_NUMBER) {
     throw new Error('[ERROR] 로또 숫자의 범위는 1 ~ 45 입니다.');
   }
 }
 
 function checkWinningNumberDuplicate(input) {
   const numbers = new Set(input);
-  if (numbers.size !== 6) {
+  if (numbers.size !== LOTTO_NUMBER_LENGTH) {
     throw new Error('[ERROR] 당첨 번호가 중복 입력되었습니다.');
   }
 }

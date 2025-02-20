@@ -1,4 +1,4 @@
-import { PRIZE } from '../constants/common.js';
+import { LOTTO_NUMBER_LENGTH, PRIZE } from '../constants/common.js';
 
 class Winning {
   rankHistory = {
@@ -23,7 +23,7 @@ class Winning {
   calculateRankHistory(boughtLotto) {
     const matchCount = this.winningNumbers.filter((winningNumber) => boughtLotto.includes(winningNumber)).length;
 
-    if (matchCount === 6) {
+    if (matchCount === LOTTO_NUMBER_LENGTH) {
       this.rankHistory.first += 1;
     }
     if (matchCount === 5) {
