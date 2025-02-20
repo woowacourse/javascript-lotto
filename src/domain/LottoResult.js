@@ -1,5 +1,34 @@
 class LottoResult {
-  constructor() {}
+  #winningNumbers;
+  #bonusNumber;
+  #lottoNumbersList;
+
+  constructor(winningLotto, lottoArray) {
+    this.#winningNumbers = winningLotto.numbers;
+    this.#bonusNumber = winningLotto.bonusNumber;
+    this.#lottoNumbersList = lottoArray.map((lotto) => lotto.numbers);
+  }
+
+  #isBonusMatched(lottoNumbers) {
+    return lottoNumbers.includes(this.#bonusNumber);
+  }
+  #calculateMatchCount(lottoNumbers) {
+    return lottoNumbers.filter((number) => this.#winningNumbers.includes(number)).length;
+  }
+
+  calculateResult() {
+    const lottoResult = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, bonus: 0 };
+    this.#lottoNumbersList.forEach((lottoNumbers) => {
+      const matchingCount = this.#calculateMatchCount(lottoNumbers);
+      lottoResult[matchingCount]++;
+
+      if (matchingCount === 5 && this.#isBonusMatched(lottoNumbers)) {
+        lottoResult[5]--;
+        lottoResult["bonus"]++;
+      }
+    });
+    return lottoResult;
+  }
 }
 
 export default LottoResult;

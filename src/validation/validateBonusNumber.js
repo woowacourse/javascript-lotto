@@ -23,8 +23,8 @@ const checkDuplicate = (winningNumbers, bonusNumberInput) => {
   }
 };
 
-const validateBonusNumber = (bonusNumberInput, winningNumbers) => {
-  runValidators([checkIsEmpty, checkIsNumber, checkRange, checkDuplicate, (number) => checkDuplicate(number, winningNumbers)], bonusNumberInput);
+const validateBonusNumber = (winningNumbers, bonusNumberInput) => {
+  runValidators([checkIsEmpty, checkIsNumber, checkRange, (bonusNumberInput) => checkDuplicate(winningNumbers, bonusNumberInput)], bonusNumberInput);
 };
 
 export default validateBonusNumber;

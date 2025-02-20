@@ -1,24 +1,21 @@
 import { BONUS_NUMBER_ERROR_MESSAGE } from "../constants/errorMessage.js";
 import Lotto from "./Lotto.js";
 
-class WinningLotto {
-  #numbers;
+class WinningLotto extends Lotto {
   #bonusNumber;
 
   constructor(numbers, bonusNumber) {
+    super(numbers);
     if (!this.#isRangeValid(bonusNumber)) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.RANGE);
     }
     if (!this.#isDistinct(numbers, bonusNumber)) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.DUPLICATE);
     }
-    this.#numbers = new Lotto(numbers);
+
     this.#bonusNumber = bonusNumber;
   }
 
-  get numbers() {
-    return this.#numbers;
-  }
   get bonusNumber() {
     return this.#bonusNumber;
   }

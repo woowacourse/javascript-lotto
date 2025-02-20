@@ -24,7 +24,7 @@ const validationCondition = {
     return new Set(numbers).size === numbers.length;
   },
   isBonusDistinct(numbers, bonusNumber) {
-    return new Set([...numbers, bonusNumber]).size !== numbers.length;
+    return new Set([...numbers, Number(bonusNumber)]).size !== numbers.length;
   },
   isBonusRangeValid(bonusNumber) {
     return Number(bonusNumber) <= 45 && Number(bonusNumber) >= 1;
