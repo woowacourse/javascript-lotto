@@ -41,3 +41,9 @@ describe('사용자가 구매한 로또 번호와 보너스 번호를 비교한 
     expect(lottoStatistics.hasBonusNumber(machineLotto, bonus)).toBe(false);
   });
 });
+
+test('사용자가 구매한 로또 번호화 당첨 번호를 비교하여 수익률을 구한다.', () => {
+  const  profit = 5000;
+  const investmentCost = 8000;
+  expect(lottoStatistics.calculateRevenueRate(profit, investmentCost)).toBe(62.5);
+});
