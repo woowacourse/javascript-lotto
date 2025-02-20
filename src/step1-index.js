@@ -2,7 +2,7 @@ import { INPUT, LOTTO } from './constants/messages.js';
 import { calculateRevenue } from './domain/calculateRevenue.js';
 import { getRandomLottos } from './domain/getRandomLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
-import { arrayToString } from './utils/arrayToString.js';
+import { getArrayOfStrings } from './utils/getArrayOfStrings.js';
 import { checkReplay } from './utils/checkReplay.js';
 import { parseString } from './utils/parseString.js';
 import { isYesOrNo } from './validation/validateInput.js';
@@ -15,7 +15,7 @@ async function run() {
   const purchasePrice = Number(await handleUserInput(INPUT.PURCHASE_PRICE, validatePurchasePrice));
   const randomlottos = getRandomLottos(purchasePrice / LOTTO.MIN_PURCHASE_PRICE);
   printPurchasedQuantity(purchasePrice / LOTTO.MIN_PURCHASE_PRICE);
-  printRandomLottos(arrayToString(randomlottos));
+  printRandomLottos(getArrayOfStrings(randomlottos));
 
   const stringOfWinningNumbers = await handleUserInput(INPUT.WINNING_NUMBERS, validateWinningNumbers);
   const winningNumbers = parseString(stringOfWinningNumbers);
