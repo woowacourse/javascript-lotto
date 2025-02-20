@@ -36,6 +36,8 @@ class App {
     const lottoMachine = new LottoMachine();
 
     const lottoCount = lottoMachine.getLottoCount(money);
+    const lottos = lottoMachine.drawLotto(lottoCount);
+    outputView.printLotto(lottos);
 
     outputView.printLottoCount(lottoCount);
     const winningNumbers = await this.getWinningNumbers();

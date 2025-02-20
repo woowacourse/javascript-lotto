@@ -5,7 +5,7 @@ class OutputView {
 
   printLotto(lottos) {
     lottos.forEach((lotto) => {
-      console.log(lotto);
+      console.log(`[${lotto.numbers.join(", ")}]`);
     });
   }
 }
