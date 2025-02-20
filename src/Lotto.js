@@ -1,4 +1,4 @@
-import CONFIG from './constants/config.js';
+import { validLottoNumber } from './validation.js';
 
 class Lotto {
   #numbers;
@@ -13,12 +13,7 @@ class Lotto {
   }
 
   #validate(numbers) {
-    const isValidLottoNumber = (
-      number,
-    ) => number >= CONFIG.MIN.LOTTO_NUMBER && number <= CONFIG.MAX.LOTTO_NUMBER;
-    if (!numbers.every(isValidLottoNumber)) {
-      throw new Error('[ERROR] 로또 번호의 숫자 범위 1 ~ 45이다.');
-    }
+    validLottoNumber(numbers);
   }
 }
 
