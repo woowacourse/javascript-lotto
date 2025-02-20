@@ -9,11 +9,6 @@ class Lotto {
     this.numbers = numbers.sort((a, b) => a - b);
   }
 
-  // 로또 번호를 가지고 있다.
-  // 오름차순 정렬
-  // 구매한 로또
-  // 당첨 개수 체크 (IN : 당첨 번호, OUT : 당첨 개수) => numbers(로또 번호)와 당첨 번호 비교
-
   #getRank(winningLottoCount, isBonusNumber) {
     const rank = Object.keys(LOTTO_RANK).find((rank) => {
       const info = LOTTO_RANK[rank];

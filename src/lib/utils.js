@@ -23,7 +23,7 @@ export function readLineAsync(query) {
 }
 
 export function generateUniqueNumberArray(start, end, length) {
-  return new Array(length).fill("").reduce((prev, cur) => {
+  return new Array(length).fill(null).reduce((prev, cur) => {
     while (true) {
       const randomNumber = generateRandomNumber(start, end);
       if (prev.includes(randomNumber)) continue;
@@ -34,8 +34,7 @@ export function generateUniqueNumberArray(start, end, length) {
 }
 
 export function calculateProfitRate(profit, price) {
-  const profitRate = ((profit / price) * 100).toFixed(1);
-  return Number(profitRate);
+  return Number(((profit / price) * 100).toFixed(1));
 }
 
 export function checkUniqueArray(array) {
@@ -47,7 +46,7 @@ export function generateRandomNumber(start, end) {
 }
 
 export function getIntersectCount(array1, array2) {
-  return array1.filter((value, index) => array2.includes(value)).length;
+  return array1.filter((value) => array2.includes(value)).length;
 }
 
 export async function retryUntilSuccess(callbackFunction) {
