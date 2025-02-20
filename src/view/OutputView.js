@@ -1,4 +1,4 @@
-import { OUTPUT_MESSAGE } from '../constants/message.js';
+import { ERROR, OUTPUT_MESSAGE } from '../constants/message.js';
 
 const OutputView = {
   printLottoQuantity(quantity) {
@@ -15,6 +15,9 @@ const OutputView = {
   },
   printRevenueRate(revenueRate) {
     console.log(OUTPUT_MESSAGE.REVENUE_RATE(revenueRate));
+  },
+  printErrorMessage(message) {
+    console.log(ERROR.NORMALIZATION(message));
   },
 };
 

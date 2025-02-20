@@ -20,13 +20,10 @@ class Controller {
   }
 
   async start() {
-    let condition = true;
-    while (condition) {
-      await this.buyLottos();
-      await this.statisticsLottos();
-      this.makeProfit();
-      condition = await InputView.readReStart();
-    }
+    await this.buyLottos();
+    await this.statisticsLottos();
+    this.makeProfit();
+    await this.restart();
   }
 
   async buyLottos() {
@@ -52,6 +49,13 @@ class Controller {
     const profit = this.#lottoStatistics.getProfit();
     const revenueRate = this.#lottoStatistics.calculateRevenueRate(profit, this.#money);
     OutputView.printRevenueRate(revenueRate);
+  }
+
+  async restart() {
+    const condition = await InputView.readReStart();
+    if (condition) {
+      await this.start();
+    }
   }
 }
 export default Controller;

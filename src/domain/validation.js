@@ -3,10 +3,10 @@ import { ERROR } from '../constants/message.js';
 
 function validateMoney(money) {
   if (money <= CONFIG.INITIAL_NUMBER) {
-    throw new Error(ERROR.NORMALIZATION(ERROR.MONEY.EMPTY_VALUE));
+    throw new Error(ERROR.MONEY.EMPTY_VALUE);
   }
   if (money % CONFIG.LOTTO_PRICE !== CONFIG.INITIAL_NUMBER) {
-    throw new Error(ERROR.NORMALIZATION(ERROR.MONEY.REST_VALUE));
+    throw new Error(ERROR.MONEY.REST_VALUE);
   }
 }
 
@@ -16,26 +16,34 @@ function lottoNumberCondition(number) {
 
 function validateLottoNumber(numbers) {
   if (numbers.length !== CONFIG.MAX.LOTTO_LENGTH) {
-    throw new Error(ERROR.NORMALIZATION(ERROR.LOTTO_NUMBER.QUANTITY));
+    throw new Error(ERROR.LOTTO_NUMBER.QUANTITY);
   }
 
   if (!numbers.every(lottoNumberCondition)) {
-    throw new Error(ERROR.NORMALIZATION(ERROR.LOTTO_NUMBER.RANGE));
+    throw new Error(ERROR.LOTTO_NUMBER.RANGE);
   }
 
   if (new Set(numbers).size !== CONFIG.MAX.LOTTO_LENGTH) {
-    throw new Error(ERROR.NORMALIZATION(ERROR.LOTTO_NUMBER.DUPLICATION));
+    throw new Error(ERROR.LOTTO_NUMBER.DUPLICATION);
   }
 }
 
 function validateBonus(bonus, winningLotto) {
   if (!lottoNumberCondition(bonus)) {
-    throw new Error(ERROR.NORMALIZATION(ERROR.BONUS.RANGE));
+    throw new Error(ERROR.BONUS.RANGE);
   }
 
   if (winningLotto.includes(bonus)) {
-    throw new Error(ERROR.NORMALIZATION(ERROR.BONUS.DUPLICATION));
+    throw new Error(ERROR.BONUS.DUPLICATION);
   }
 }
 
-export { validateMoney, validateLottoNumber, validateBonus };
+function validateRestart(lowerCaseInput) {
+  if (lowerCaseInput !== 'y' && lowerCaseInput !== 'n') {
+    throw new Error(ERROR.RESTART.YES_OR_NO);
+  }
+}
+
+export {
+  validateMoney, validateLottoNumber, validateBonus, validateRestart,
+};

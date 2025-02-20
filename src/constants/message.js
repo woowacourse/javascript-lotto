@@ -13,6 +13,9 @@ const ERROR = Object.freeze({
     RANGE: '보너스 번호의 숫자 범위 1 ~ 45이다.',
     DUPLICATION: '보너스 번호는 당첨 로또의 있는 숫자와 중복되면 안된다.',
   },
+  RESTART: {
+    YES_OR_NO: 'y 혹은 n 중에 하나를 입력해주세요.',
+  },
 });
 
 const OUTPUT_MESSAGE = Object.freeze({
