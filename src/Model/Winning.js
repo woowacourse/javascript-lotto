@@ -21,25 +21,21 @@ class Winning {
   }
 
   calculateRankHistory(boughtLotto) {
-    let count = 0;
-    for (let i = 0; i < 6; i++) {
-      if (this.winningNumbers[i] === boughtLotto[i]) {
-        count += 1;
-      }
-    }
-    if (count === 6) {
+    const matchCount = this.winningNumbers.filter((winningNumber) => boughtLotto.includes(winningNumber)).length;
+
+    if (matchCount === 6) {
       this.rankHistory.first += 1;
     }
-    if (count === 5) {
+    if (matchCount === 5) {
       if (boughtLotto.includes(this.bonusNumber)) {
         this.rankHistory.second += 1;
       }
       this.rankHistory.third += 1;
     }
-    if (count === 4) {
+    if (matchCount === 4) {
       this.rankHistory.fourth += 1;
     }
-    if (count === 3) {
+    if (matchCount === 3) {
       this.rankHistory.fifth += 1;
     }
   }
