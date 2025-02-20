@@ -20,7 +20,7 @@ describe('Winning 클래스 테스트', () => {
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
     const winning = new Winning(winningNumbers, bonusNumber);
-    winning.calculateRank(boughtLotto);
+    winning.calculateRankHistory(boughtLotto);
 
     expect(winning.rankHistory[rank]).toEqual(1);
   });

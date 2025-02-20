@@ -12,7 +12,13 @@ class Winning {
     this.bonusNumber = bonusNumber;
   }
 
-  calculateRank(boughtLotto) {
+  calculateRank(boughtLottos) {
+    boughtLottos.forEach((boughtLotto) => {
+      this.calculateRankHistory(boughtLotto.numbers);
+    });
+  }
+
+  calculateRankHistory(boughtLotto) {
     let count = 0;
     for (let i = 0; i < 6; i++) {
       if (this.winningNumbers[i] === boughtLotto[i]) {
