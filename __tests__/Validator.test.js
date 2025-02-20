@@ -17,19 +17,11 @@ describe("유효성 테스트", () => {
     }).toThrow();
   });
 
-  test("로또숫자는 랜덤하고 중복되지 않는 6개 로또숫자여야한다.", () => {
+  test("당첨 번호는 중복되지 않는 6개 로또숫자여야한다.", () => {
     const lotto = [1, 2, 3, 4, 5, 5];
 
     expect(() => {
-      Validator.isUniqueLotto(lotto);
-    }).toThrow();
-  });
-
-  test("로또는 오름차순으로 정렬되어야 한다.", () => {
-    const lotto = [3, 1, 2, 3, 4, 5];
-
-    expect(() => {
-      Validator.isUphillList(lotto);
+      Validator.isTargetNumber(lotto);
     }).toThrow();
   });
 
@@ -47,7 +39,6 @@ describe("유효성 테스트", () => {
     }).toThrow();
   });
 
-  // TODO : 처음에 if 로직 잘못됐었을때 테스트 통과한 이유 알아보기
   test("당첨번호의 범위는 1~45이어야한다.", () => {
     const targetNumer = "1,2,3,4,5,49";
     expect(() => {
