@@ -1,6 +1,7 @@
 import {
   LOTTO_DEFINITION,
   LOTTO_PRIZE_DEFINITION,
+  LOTTO_PRIZE_MONEY_DEFINITION,
 } from '../Constant/Definition.js';
 import Lotto from './Lotto.js';
 import { sortAscending } from '../../Utils/sorting.js';
@@ -68,6 +69,12 @@ class LottoManager {
     } else {
       return LOTTO_PRIZE_DEFINITION.NONE;
     }
+  }
+  calculatePrize(result) {
+    return Object.entries(result).reduce(
+      (acc, [key, count]) => acc + LOTTO_PRIZE_MONEY_DEFINITION[key] * count,
+      0
+    );
   }
 }
 

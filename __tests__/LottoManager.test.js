@@ -4,6 +4,7 @@ import Lotto from '../src/Domain/Model/Lotto.js';
 import {
   LOTTO_DEFINITION,
   LOTTO_PRIZE_DEFINITION,
+  LOTTO_PRIZE_MONEY_DEFINITION,
 } from '../src/Domain/Constant/Definition.js';
 import { makeNotDuplicatedRandomNumbers } from '../src/Utils/math.js';
 
@@ -91,4 +92,22 @@ test('당첨 내역을 반환한다.', () => {
     FIFTH_PRIZE: 1,
     NONE: 0,
   });
+});
+
+test('수익률을 반환한다.', () => {
+  const result = {
+    FIRST_PRIZE: 1,
+    SECOND_PRIZE: 0,
+    THIRD_PRIZE: 1,
+    FOURTH_PRIZE: 0,
+    FIFTH_PRIZE: 0,
+    NONE: 0,
+  };
+
+  const lottoManager = new LottoManager();
+  const prize = lottoManager.calculatePrize(result);
+  expect(prize).toBe(
+    LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE +
+      LOTTO_PRIZE_MONEY_DEFINITION.THIRD_PRIZE
+  );
 });
