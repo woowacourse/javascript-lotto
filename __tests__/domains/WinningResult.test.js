@@ -18,7 +18,6 @@ describe('당첨 결과 테스트', () => {
 
     test('사용자가 구입한 로또 번호와 당첨 번호를 비교하여 당첨 등수별 수량을 계산할 수 있다.', () => {
       const result = winningResult.calculate(lottos);
-      console.log(result);
       expect(result).toEqual([1, 1, 1, 1, 1]);
     });
 
