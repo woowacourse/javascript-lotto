@@ -81,6 +81,6 @@ describe("LottoGame 객체 테스트", () => {
 
     lottoGame.result = result;
 
-    expect(lottoGame.getEarningRate(amount)).toBe(62.5);
+    expect(lottoGame.getEarningRate(amount)).toBe("62.5");
   });
 });
