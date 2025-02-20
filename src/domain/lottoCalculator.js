@@ -21,6 +21,7 @@ class LottoCalculator {
   #winningNumbers;
   #bonusNumber;
   #prize;
+  #totalPrice;
 
   constructor(winningNumbers, bonusNumber) {
     this.#winningNumbers = winningNumbers;
@@ -45,10 +46,22 @@ class LottoCalculator {
     }
   }
 
-  calculateTotalPrice() {}
+  calculateTotalPrice() {
+    let totalPrice = 0;
+    this.#prize.forEach((value, rank) => {
+      const info = rankInfoTable[rank];
+      totalPrice += info.price * value.length;
+    });
+
+    this.#totalPrice = totalPrice;
+  }
 
   get prize() {
     return this.#prize;
+  }
+
+  get totalPrice() {
+    return this.#totalPrice;
   }
 }
 

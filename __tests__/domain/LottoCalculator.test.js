@@ -43,4 +43,13 @@ describe("로또 등수 계산", () => {
 
     expect(lottoCalculator.prize.get(5)[0]).toBe(lotto);
   });
+
+  test("등수에따른 수익 금액을 확인한다.", () => {
+    const lotto = new Lotto([4, 5, 6, 8, 9, 10]);
+
+    lottoCalculator.calculatePrize(lotto);
+    lottoCalculator.calculateTotalPrice();
+
+    expect(lottoCalculator.totalPrice).toBe(5_000);
+  });
 });
