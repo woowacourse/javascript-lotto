@@ -1,7 +1,7 @@
 import { INPUT, OUTPUT, RETRY_STRING } from "./constants/message.js";
 import Input from "./view/Input.js";
 import Output from "./view/Output.js";
-import { count } from "./utils/count.js";
+import { divideByUnit } from "./utils/count.js";
 import { createLotto } from "./domain/createLotto.js";
 import PriceValidator from "./validation/PriceValidator.js";
 import LottoValidator from "./validation/LottoValidator.js";
@@ -11,6 +11,7 @@ import LottoMachine from "./domain/LottoMachine.js";
 import LottoResult from "./domain/LottoResult.js";
 import { PRICE } from "./constants/price.js";
 import { throwError } from "./utils/throwError.js";
+import Ticket from "./domain/Ticket.js";
 
 /**
  * step 1의 시작점이 되는 파일입니다.
@@ -19,16 +20,14 @@ import { throwError } from "./utils/throwError.js";
 const run = async () => {
   const price = await Input.retry(async () => {
     const input = await Input.readLineAsync(INPUT.PRICE);
-    const priceNumber = new PriceValidator().validatePrice(Number(input));
+    new PriceValidator().validatePrice(Number(input));
     return Number(input);
   });
 
-  // TODO: 변수명 변경
-  const countNumber = count(PRICE.UNIT, price);
-
+  const countNumber = divideByUnit(PRICE.UNIT, price);
   Output.print(`${countNumber}${OUTPUT.BUY_COUNT}`);
 
-  const lottos = createLotto(countNumber);
+  const lottos = Ticket.createLottos(countNumber);
   Output.printLottoNumber(lottos);
 
   const winningLotto = await Input.retry(async () => {
@@ -72,7 +71,7 @@ const start = async () => {
     return input.toLowerCase();
   });
 
-  if (retry === "y") await run();
+  if (retry === "y") await start();
 };
 
 start();

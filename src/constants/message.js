@@ -20,6 +20,8 @@ export const ERROR = Object.freeze({
   INCLUDE: "보너스 번호는 로또 번호와 중복될 수 없습니다.",
   UNIT: "구입 금액은 1000원 단위로 입력해야 합니다.",
   INVALID_RETRY_STRING: "y 또는 n을 입력해주세요.",
+  LENGTH: "로또 번호는 6개여야 합니다.",
+  DUPLICATE: "중복된 숫자가 있습니다.",
 });
 
 export const RETRY_STRING = Object.freeze(["y", "Y", "n", "N"]);
