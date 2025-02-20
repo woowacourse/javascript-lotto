@@ -6,9 +6,19 @@ import validateBonusNumber from "../validations/validateBonusNumber.js";
 import issueLottos from "../domains/IssueLottos.js";
 import Output from "../views/Output.js";
 import WinningStatistics from "../domains/WinningStatistics.js";
+import validateRestartConfirm from "../validations/validateRestartConfirm.js";
 
 class Controller {
   async start() {
+    await this.#issue();
+    const restartConfirm = await throwIfInvalid(
+      Input.readRestartConfirm,
+      validateRestartConfirm,
+    );
+    if (restartConfirm === "y") await this.start();
+  }
+
+  async #issue() {
     const purchaseAmount = await throwIfInvalid(
       Input.readPurchaseAmount,
       validatePurchaseAmount,

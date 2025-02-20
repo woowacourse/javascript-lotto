@@ -12,6 +12,10 @@ const Input = {
   readBonusNumber() {
     return readLineAsync("\n> 보너스 번호를 입력해 주세요. ");
   },
+
+  readRestartConfirm() {
+    return readLineAsync("\n> 다시 시작하시겠습니까? (y/n) ");
+  },
 };
 
 export default Input;

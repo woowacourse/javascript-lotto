@@ -19,3 +19,5 @@ export const BONUS_NUMBER_ERROR_MESSAGES = Object.freeze({
   OUT_OF_RANGE: "보너스 번호의 범위는 1 이상 45 이하여야 합니다.",
   DUPLICATE_NUMBER: "보너스 번호는 당첨 번호와 중복될 수 없습니다.",
 });
+
+export const RESTART_ERROR_MESSAGE = "Y, y, N, n 중 하나를 입력해야 합니다.";
