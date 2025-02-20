@@ -21,6 +21,16 @@ const Calculator = {
       })
 
       return winningCount;
+    },
+
+    TotalPrize(winningCount) {
+      let total = 0;
+
+      Object.values(KEYS).forEach((key) => {
+        total += WINNING[key].PRIZES * winningCount[key];
+      });
+
+      return total;
     }
 }
 

@@ -22,7 +22,13 @@ export const purchase = async () => {
 
   const lottoAndBonus = await readWinningInfo();
   const winningCount = Calculator.winningCount(lottoNumbers, lottoAndBonus);
+  OutputView.printWinningDetailTitle();
   OutputView.printWinningDetail(winningCount);
+
+  // 총 상금 계산
+  const totalPrize = Calculator.TotalPrize(winningCount);
+  // 수익률 계산
+  // 재시작 여부 입력 받기
 };
 
 const readWinningInfo = async () => {
