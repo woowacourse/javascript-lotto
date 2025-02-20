@@ -1,4 +1,4 @@
-import CONFIG from './constants/config.js';
+import CONFIG from '../constants/config.js';
 
 function validateMoney(money) {
   if (money <= 0) {

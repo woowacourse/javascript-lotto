@@ -1,4 +1,4 @@
-import Machine from '../src/Machine.js';
+import Machine from "../src/domain/model/Machine.js";
 
 test('구입 금액만큼 로또를 발행한다.', () => {
   const money = 8000;

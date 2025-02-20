@@ -1,8 +1,8 @@
-import Machine from '../Machine.js';
-import LottoStatistics from '../LottoStatistics.js';
+import Machine from '../domain/model/Machine.js';
+import LottoStatistics from '../domain/model/LottoStatistics.js';
 
 import readLineAsync from '../view/InputView.js';
-import { validateMoney, validateLottoNumber, validateBonus } from '../validation.js';
+import { validateMoney, validateLottoNumber, validateBonus } from '../domain/validation.js';
 import OutputView from '../view/OutputView.js';
 
 class Controller {

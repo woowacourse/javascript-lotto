@@ -1,4 +1,4 @@
-import LottoStatistics from '../src/LottoStatistics';
+import LottoStatistics from "../src/domain/model/LottoStatistics.js";
 
 let lottoStatistics;
 beforeEach(() => {

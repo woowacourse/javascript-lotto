@@ -1,4 +1,4 @@
-import { validateMoney, validateLottoNumber, validateBonus } from "../src/validation";
+import { validateMoney, validateLottoNumber, validateBonus } from "../src/domain/validation";
 
 describe('로또 구입 금액',() => {
   test('로또 구입 금액은 1,000원으로 나누어떨어져야 한다.',() => {

@@ -1,4 +1,4 @@
-import Lotto from '../src/Lotto';
+import Lotto from '../src/domain/model/Lotto.js';
 
 test('숫자 6개를 가진 로또 1장을 발행한다.', () => {
   // given
