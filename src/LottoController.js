@@ -1,6 +1,6 @@
 import InputHandler from './input/InputHandler.js';
 import OutputView from './view/OutputView.js';
-import { LINE_BREAK, LOTTO_CONDITION, MESSAGE, RANKING } from './constants/constants.js';
+import { LINE_BREAK, LOTTO_CONDITION, MESSAGE} from './constants/constants.js';
 import LottoMatch from './domain/LottoMatch.js';
 import { calculateRank } from './domain/calculateRank.js';
 import LottoResult from './domain/LottoResult.js';
@@ -10,48 +10,25 @@ import { YES } from './constants/constants.js';
 import { purchaseLotto } from './domain/purchaseLotto.js';
 
 class LottoController {
-  #lottoList
-  #lottoResult
-
   async run() {
-    this.#lottoList = purchaseLotto(await this.inputPurchaseMoney())
-    this.printLottoNumber(this.#lottoList.length);
-    const winningNumbers = await this.inputWinningNumbers();
-    const bonusNumber = await this.inputBonusNumber(winningNumbers.numbers);
+    const lottoList = purchaseLotto(await InputHandler.purchaseMoney())
+    this.printLottoNumber(lottoList);
+    const winningNumbers = await InputHandler.winningNumbers();
+    const bonusNumber = await InputHandler.bonusNumber(winningNumbers.numbers);
     
     const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
-    this.#lottoResult = new LottoResult();
+    const lottoResult = new LottoResult();
 
-    this.calculateRank(lottoMatch)
-    this.printStatstics()
+    lottoList.forEach((lotto)=>{
+      lotto.ranking = calculateRank(lottoMatch.winningNumbers(lotto),lottoMatch.bonusNumber(lotto))
+      lottoResult.addRankingCount(lotto.ranking);
+    })
+    this.printStatstics(lottoResult)
 
-    const winningRate = this.calculateWinningRate()
+    const winningRate = calculateWinningRate(LOTTO_CONDITION.PRICE*lottoList.length,calculateTotalPrize(lottoList))
     this.printWinningRate(winningRate)
 
     await this.reStart()
-  }
-
-  async inputPurchaseMoney(){
-    return await InputHandler.purchaseMoney();
-  }
-
-  async inputWinningNumbers(){
-    return await InputHandler.winningNumbers()
-  }
-
-  async inputBonusNumber(winningNumbers){
-    return await InputHandler.bonusNumber(winningNumbers)
-  }
-
-  calculateRank(lottoMatch){
-    this.#lottoList.forEach((lotto)=>{
-      lotto.ranking = calculateRank(lottoMatch.winningNumbers(lotto),lottoMatch.bonusNumber(lotto))
-      this.#lottoResult.addRankingCount(lotto.ranking);
-    })
-  }
-
-  calculateWinningRate(){
-    return calculateWinningRate(LOTTO_CONDITION.PRICE*this.#lottoList.length,calculateTotalPrize(this.#lottoList))
   }
 
   async reStart(){
@@ -61,16 +38,16 @@ class LottoController {
     }
   }
   
-  printStatstics(){
+  printStatstics(lottoResult){
     OutputView.print(MESSAGE.STATISTICS)
     OutputView.print(MESSAGE.LINE)
-    const result = this.#lottoResult.result
+    const result = lottoResult.result
     OutputView.printLottoResult(result)
   } 
 
-  printLottoNumber(){
-    OutputView.print(this.#lottoList.length+MESSAGE.PURCHASE_COUNT)
-    this.#lottoList.forEach((lotto)=>{
+  printLottoNumber(lottoList){
+    OutputView.print(lottoList.length+MESSAGE.PURCHASE_COUNT)
+    lottoList.forEach((lotto)=>{
       OutputView.print(lotto.numbers);
     })
     OutputView.print(LINE_BREAK)

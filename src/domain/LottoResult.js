@@ -1,5 +1,3 @@
-import { RANKING } from "../constants/constants.js"
-
 class LottoResult {
     #result
 

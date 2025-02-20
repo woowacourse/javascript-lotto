@@ -7,7 +7,7 @@ describe('로또 등수 판별 테스트', () => {
     [5, false, 3],
     [4, false, 4],
     [3, false, 5],
-  ])(`등수가 일치한지 판별`, (matchCount, isBonusMatch, rank) => {
+  ])(`등수가 일치하는지 판별`, (matchCount, isBonusMatch, rank) => {
     expect(calculateRank(matchCount, isBonusMatch)).toBe(rank);
   });
 });
