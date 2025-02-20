@@ -1,10 +1,9 @@
 import ERROR_MESSAGE from '../settings/ErrorMessage.js';
-import { printError } from '../View/OutputView.js';
-import isInteger from './isInteger.js';
-import isNumber from './isNumber.js';
-import isPositive from './isPositive.js';
+import isInteger from '../util/isInteger.js';
+import isNumber from '../util/isNumber.js';
+import isPositive from '../util/isPositive.js';
 
-export default function checkLottoPurchase(input) {
+export default function validateLottoPurchase(input) {
   isNumber(input);
   isInteger(input);
   isPositive(input);
