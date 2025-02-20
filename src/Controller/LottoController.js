@@ -17,6 +17,7 @@ class LottoController {
 
     const winning = new Winning(winningNumbers, bonusNumber);
     winning.calculateRank(lottos);
+    OutputView.printWinningHistory(winning.rankHistory);
   }
 
   async #readPrice() {
