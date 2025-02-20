@@ -1,9 +1,32 @@
 import { purchase } from "./LottoStore.js";
 import InputView from "./ui/InputView.js";
+import { validateRestart } from "./util/validate.js";
 
 class App {
+  #running;
+
+  constructor() {
+    this.#running = true;
+  }
+
   async start() {
-    purchase();
+    while(this.#running) {
+      await purchase();
+
+      const answer = await this.getRestartAnswer();
+      this.endGame(answer);
+    }
+  }
+
+  async getRestartAnswer() {
+    const answer = await InputView.readRestart();
+    validateRestart(answer);
+
+    return answer;
+  }
+
+  endGame(answer) {
+    if (answer.toLowerCase() === 'n') this.#running = false;
   }
 }
 
