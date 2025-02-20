@@ -39,7 +39,7 @@ export const validateBonusNumber = (input, winningNumbers) => {
   }
 };
 
-export const checkRangeOfLottoNumber = (input) => {
+const checkRangeOfLottoNumber = (input) => {
   if (input < LOTTO.MIN_RANDOM_NUMBER || input > LOTTO.MAX_RANDOM_NUMBER) {
     throw new Error(ERROR.NOT_RANGE_OF_WINNING_NUMBER);
   }
