@@ -20,6 +20,10 @@ const systemSettings = {
     FIVE_MATCH_WITH_BONUS: 30_000_000,
     SIX_MATCH: 2_000_000_000,
   },
+  lottoSize: 6,
+  lottoPrice: 1_000,
+  minLottoNumber: 1,
+  maxLottoNumber: 45,
 };
 
 export default systemSettings;

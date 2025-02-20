@@ -66,8 +66,14 @@ async function playGame() {
   const lottos = [];
 
   for (let i = 0; i < purchaseAmount; i++) {
-    const numberRange = { min: 1, max: 45 };
-    const numbers = getUniqueRandomNumbers(numberRange, 6);
+    const numberRange = {
+      min: systemSettings.minLottoNumber,
+      max: systemSettings.maxLottoNumber,
+    };
+    const numbers = getUniqueRandomNumbers(
+      numberRange,
+      systemSettings.lottoSize,
+    );
     const lotto = new Lotto(numbers);
     printLotto(lotto);
     lottos.push(lotto);
