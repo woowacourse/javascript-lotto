@@ -10,7 +10,8 @@ export const MESSAGES = Object.freeze({
     divider: "--------------------",
   },
   invalid: {
-    numberFormat: "구입 금액은 숫자로만 이루어져야 합니다.",
+    numberFormat: "숫자만 입력 가능합니다.",
+    decimalNumber: "소수는 입력할 수 없습니다.",
     lottoNumberCount: "당첨 번호는 6개여야 합니다.",
     duplicateLottoNumber: "당첨 번호는 중복될 수 없습니다.",
     lottoNumberRange: "당첨 번호는 1에서 45 사이의 숫자여야 합니다.",

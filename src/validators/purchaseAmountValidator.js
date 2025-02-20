@@ -8,8 +8,12 @@ export const purchaseAmountValidator = (inputValue) => {
 };
 
 const validateInteger = (inputValue) => {
-  if (!Number.isInteger(inputValue)) {
+  if (isNaN(inputValue)) {
     throw new CustomError(MESSAGES.invalid.numberFormat);
+  }
+
+  if (!Number.isInteger(inputValue)) {
+    throw new CustomError(MESSAGES.invalid.decimalNumber);
   }
 };
 

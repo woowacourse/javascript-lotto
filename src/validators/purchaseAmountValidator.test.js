@@ -12,6 +12,12 @@ describe("PurchaseAmount 테스트", () => {
     );
   });
 
+  test("구입 금액에 소수점이 있으면 에러를 띄운다.", () => {
+    expect(() => purchaseAmountValidator(1000.5)).toThrow(
+      MESSAGES.invalid.decimalNumber
+    );
+  });
+
   test("구입 금액이 1000원으로 나누어 떨어지지 않을 경우 에러를 띄운다.", () => {
     expect(() => purchaseAmountValidator(2025)).toThrow(
       MESSAGES.invalid.purchaseAmount

@@ -9,8 +9,11 @@ export const lottoNumberValidator = (inputValue) => {
 };
 
 const validateNumberOnly = (numbers) => {
-  if (!numbers.every((num) => Number.isInteger(Number(num)))) {
+  if (!numbers.every((num) => !Number.isNaN(Number(num)))) {
     throw new CustomError(MESSAGES.invalid.numberFormat);
+  }
+  if (!numbers.every((num) => Number.isInteger(Number(num)))) {
+    throw new CustomError(MESSAGES.invalid.decimalNumber);
   }
 };
 
