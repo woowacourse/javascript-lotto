@@ -66,3 +66,12 @@ InputView.js
 
 controller/
 LottoController.js
+
+---
+
+## Todo List
+
+[] 상수화 분리
+[] 메인 컨트롤러 역할 부담 중화
+[] LottoMachine 의 역할 강화
+[] 피셔 에이츠 셔플
