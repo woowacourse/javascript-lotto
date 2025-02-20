@@ -1,5 +1,5 @@
-import { LOTTO_CONDITION, RANKING } from '../src/constants/constants';
-import { calculateWinningRate } from '../src/domain/calculateWinningRate';
+import { LOTTO_CONDITION, RANKING } from '../../src/constants/constants';
+import { calculateWinningRate } from '../../src/domain/calculateWinningRate';
 
 describe('수익률 판별 테스트', () => {
   test.each([

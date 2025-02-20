@@ -1,4 +1,4 @@
-import validateLottoNumber from '../validations/validate/LottoNumberValidate.js';
+import validateLottoNumber from '../validations/validate/lottoNumberValidate.js';
 
 class Lotto {
   #numbers;

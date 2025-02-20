@@ -1,5 +1,5 @@
-import Lotto from '../src/domain/Lotto.js';
-import { LOTTO_CONDITION, LOTTO_NUMBER_ERROR_MESSAGES } from '../src/constants/constants.js';
+import Lotto from '../../src/domain/Lotto.js';
+import { LOTTO_CONDITION, LOTTO_NUMBER_ERROR_MESSAGES } from '../../src/constants/constants.js';
 
 describe('Lotto 클래스 테스트', () => {
   const lotto = new Lotto([1, 2, 3, 4, 5, 6]);

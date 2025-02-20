@@ -19,7 +19,6 @@ class LottoController {
     this.printLottoNumber(this.#lottoList.length);
     const winningNumbers = await this.inputWinningNumbers();
     const bonusNumber = await this.inputBonusNumber(winningNumbers.numbers);
-  
     
     const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
     this.#lottoResult = new LottoResult();

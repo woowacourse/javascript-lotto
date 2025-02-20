@@ -1,5 +1,5 @@
-import Lotto from '../src/domain/Lotto.js';
-import LottoMatch from '../src/domain/LottoMatch.js';
+import Lotto from '../../src/domain/Lotto.js';
+import LottoMatch from '../../src/domain/LottoMatch.js';
 
 describe('LottoMatch 클래스 테스트', () => {
   test.each([

@@ -1,15 +1,15 @@
 import { LOTTO_CONDITION } from "../../constants/constants.js";
 
-export const BonusNumberValidator = {
+export const bonusNumberValidator = {
   isInteger(number) {
     return Number.isInteger(number);
   },
 
-isValidRange(number) {
+  isValidRange(number) {
      return number >= LOTTO_CONDITION.MIN_NUMBER && number <= LOTTO_CONDITION.MAX_NUMBER;
   },
 
-isDuplicated(winningNumbers, bonusNumber) {
+  isDuplicated(winningNumbers, bonusNumber) {
     return winningNumbers.includes(bonusNumber);
  },
 };

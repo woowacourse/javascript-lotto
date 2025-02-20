@@ -1,4 +1,4 @@
-import { calculateRank } from '../src/domain/calculateRank.js';
+import { calculateRank } from "../../src/domain/calculateRank.js";
 
 describe('로또 등수 판별 테스트', () => {
   test.each([

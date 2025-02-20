@@ -1,22 +1,22 @@
 
-import { BonusNumberValidator } from "../validator/BonusNumberValidator.js";
+import { bonusNumberValidator } from "../validator/bonusNumberValidator.js";
 import { BONUS_NUMBER_ERROR_MESSAGES } from "../../constants/constants.js";
 import runValidators from "../../utils/runValidators.js";
 
 const validateInteger = (winningNumbers,bonusNumber) => {
-  if (!BonusNumberValidator.isInteger(bonusNumber)) {
+  if (!bonusNumberValidator.isInteger(bonusNumber)) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.INTIGER);
   }
 };
 
 const validateRange = (winningNumbers, bonusNumber) => {  
-  if (!BonusNumberValidator.isValidRange(bonusNumber)) {
+  if (!bonusNumberValidator.isValidRange(bonusNumber)) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.RANGE);
   }
 };
 
 const validateDuplicate = (winningNumbers, bonusNumber) => {  
-    if (BonusNumberValidator.isDuplicated(winningNumbers, bonusNumber)) {
+    if (bonusNumberValidator.isDuplicated(winningNumbers, bonusNumber)) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGES.DUPLICATE);
     }
   };

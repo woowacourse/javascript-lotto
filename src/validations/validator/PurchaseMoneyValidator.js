@@ -1,6 +1,6 @@
 import { LOTTO_CONDITION } from '../../constants/constants.js';
 
-export const PurchaseMoneyValidator = {
+export const purchaseMoneyValidator = {
   isInteger(input) {
     return Number.isInteger(input);
   },

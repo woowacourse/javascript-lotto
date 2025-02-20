@@ -1,6 +1,6 @@
-import { calculateTotalPrize } from "../src/domain/calculateTotalPrize.js";
-import Lotto from "../src/domain/Lotto.js";
-import { RANKING } from "../src/constants/constants.js";
+import { calculateTotalPrize } from "../../src/domain/calculateTotalPrize.js";
+import Lotto from "../../src/domain/Lotto.js";
+import { RANKING } from "../../src/constants/constants.js";
 
 const suiLotto = new Lotto([1,2,3,4,5,6]);
 const sangchuLotto = new Lotto([6,7,8,9,10,11]);

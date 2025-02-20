@@ -1,6 +1,6 @@
 import { LOTTO_CONDITION } from '../../constants/constants.js';
 
-export const LottoNumberValidator = {
+export const lottoNumberValidator = {
   isValidCount(numbers) {
     return numbers.length !== LOTTO_CONDITION.COUNT;
   },

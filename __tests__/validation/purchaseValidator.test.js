@@ -1,5 +1,5 @@
-import validatePurchaseMoney from '../src/validations/validate/PurchaseMoneyValidate.js';
-import { PURCHASE_NUMBER_ERROR_MESSAGES, LOTTO_CONDITION } from '../src/constants/constants.js';
+import validatePurchaseMoney from '../../src/validations/validate/purchaseMoneyValidate.js';
+import { PURCHASE_NUMBER_ERROR_MESSAGES, LOTTO_CONDITION } from '../../src/constants/constants.js';
 
 test.each([1.5, ''])('정수가 아닌 경우 에러 발생', (input) => {
   expect(() => validatePurchaseMoney(input)).toThrow(PURCHASE_NUMBER_ERROR_MESSAGES.INTIGER);
