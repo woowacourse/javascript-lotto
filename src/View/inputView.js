@@ -13,3 +13,6 @@ export const getBonusNumberInput = () => {
   return readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
 };
 
+export const getRetryInput = () => {
+  return readLineAsync(INPUT_MESSAGE.RETRY);
+};

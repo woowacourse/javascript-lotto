@@ -2,6 +2,7 @@ import {
   getPurchaseAmountInput,
   getBonusNumberInput,
   getWinningNumbersInput,
+  getRetryInput,
 } from './View/inputView.js';
 
 class App {
@@ -19,6 +20,10 @@ class App {
   async run() {
     const { purchaseAmountInput, winningNumbersInput, bonusNumberInput } =
       this.#initialize();
+  }
+
+  async retryRun() {
+    const retry = await getRetryInput();
   }
 }
 export default App;
