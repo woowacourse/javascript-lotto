@@ -1,8 +1,8 @@
-import Validation from "../src/utils/validation/Validation";
+import validateBonusNumber from "../src/domain/validation/validateBonusNumber";
 
 describe("보너스 번호 관련 도메인 검증", () => {
   const winningNumbers = [1, 2, 3, 4, 5, 6];
-  const validationBonusNumber = Validation.bonusNumber(winningNumbers);
+  const validationBonusNumber = validateBonusNumber(winningNumbers);
   test("숫자가 아닌 값이 들어오면 에러가 발생한다.", () => {
     const bonusNumber = "가나다";
     expect(() => validationBonusNumber(bonusNumber)).toThrow();
