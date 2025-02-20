@@ -7,11 +7,15 @@ class Lotto {
 
   matchCount(numbers) {
     let matchCount = 0;
-    this.#numbers.forEach((number) => {
-      matchCount += numbers.includes(number);
+    numbers.forEach((number) => {
+      matchCount += this.isMatch(number);
     });
 
     return matchCount;
+  }
+
+  isMatch(number) {
+    return this.#numbers.includes(number);
   }
 
   get numbers() {
