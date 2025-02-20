@@ -13,7 +13,7 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
 
     // then
     expect(
-      machine.getMatchedLottoRank(enteredLottoNumbers, bonusNumber)
+      machine.getMatchedLottoStatus(enteredLottoNumbers, bonusNumber)
     ).toEqual([{ RANK: 2, COUNT: 5, REWORD: 30_000_000, IS_BONUS: true }]);
   });
 
@@ -28,7 +28,7 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
 
     // then
     expect(
-      machine.getMatchedLottoRank(enteredLottoNumbers, bonusNumber)
+      machine.getMatchedLottoStatus(enteredLottoNumbers, bonusNumber)
     ).toEqual([{ RANK: 3, COUNT: 5, REWORD: 1_500_000, IS_BONUS: false }]);
   });
 });
