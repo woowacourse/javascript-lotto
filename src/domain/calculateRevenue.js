@@ -1,18 +1,14 @@
 import { LOTTO } from '../constants/messages.js';
 
 export const calculateRevenue = (matchCounts, purchasePrice) => {
-  return Number(
-    (
-      (matchCounts.reduce((acc, cur, idx) => {
-        if (idx >= 3) {
-          acc += cur * calculateRevenueByMatch(idx);
-        }
-        return acc;
-      }, 0) /
-        purchasePrice) *
-      100
-    ).toFixed(1),
-  );
+  const sumOfLottoPrize = matchCounts.reduce((acc, cur, idx) => {
+    if (idx >= 3) {
+      acc += cur * calculateRevenueByMatch(idx);
+    }
+    return acc;
+  }, 0);
+
+  return Number(((sumOfLottoPrize / purchasePrice) * 100).toFixed(1));
 };
 
 export const calculateRevenueByMatch = (matchCount) => {
