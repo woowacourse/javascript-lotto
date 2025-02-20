@@ -9,3 +9,7 @@ export const getWinningNumbersInput = () => {
   return readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
 };
 
+export const getBonusNumberInput = () => {
+  return readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
+};
+
