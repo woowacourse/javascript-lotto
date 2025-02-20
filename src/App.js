@@ -2,7 +2,6 @@
 
 import LottoCompany from "./domain/LottoCompany.js";
 import LottoShop from "./domain/LottoShop.js";
-import { LOTTO_PRICE } from "./lib/constants.js";
 import { calculateProfitRate } from "./lib/utils.js";
 import InputView from "./views/InputView.js";
 import OutputView from "./views/OutputView.js";
@@ -22,7 +21,7 @@ class App {
     const lottoCompany = new LottoCompany(winNumbers, bonusNumber);
     const lottoRanks = lottoCompany.calculateLottoRanks(purchasedLottos);
 
-    const totalPrize = LottoCompany.calculateTotalProfit(lottoRanks);
+    const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
     const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
     OutputView.printStatistics(lottoRanks);

@@ -38,7 +38,7 @@ class LottoCompany {
     return rank ?? NO_WINNING;
   }
 
-  static calculateTotalProfit(lottoRanks) {
+  calculateTotalProfit(lottoRanks) {
     return lottoRanks.reduce(
       (prev, cur) => (cur === NO_WINNING ? prev : prev + LOTTO_RANK[cur].prize),
       0
