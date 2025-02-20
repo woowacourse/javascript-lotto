@@ -18,6 +18,10 @@ class WinningLotto extends Lotto {
     ).length;
     return matchingNumbers;
   }
+
+  checkBonusNumber(lotto) {
+    return lotto.getNumbers().includes(this.#bonusNumber);
+  }
 }
 
 export default WinningLotto;
