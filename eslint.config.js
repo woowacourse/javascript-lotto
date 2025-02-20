@@ -11,7 +11,7 @@ export default [
       prettier: eslintPluginPrettier,
     },
     rules: {
-      "max-depth": ["error", 2],
+      "max-depth": ["error", 1],
       "max-params": ["error", 3],
       ...eslintConfigPrettier.rules,
       "prettier/prettier": "error",

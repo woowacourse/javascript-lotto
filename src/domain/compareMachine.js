@@ -14,12 +14,11 @@ const compareMachine = (lottoPack, answerLottoPack) => {
         bonusCount += 1;
       }
     });
-    if (winningCount >= 3) {
-      if (winningCount === 5 && bonusCount === 1) {
-        result["5+1"]++;
-      } else {
-        result[winningCount]++;
-      }
+
+    if (winningCount === 5 && bonusCount === 1) {
+      result["5+1"]++;
+    } else if (winningCount >= 3) {
+      result[winningCount]++;
     }
   });
   return result;

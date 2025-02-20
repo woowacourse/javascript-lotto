@@ -1,8 +1,9 @@
 import LottoMachine from "../src/domain/LottoMachine";
-import createSixRandomNumber from "../src/domain/createSixRandomNumber";
+import createSixRandomNumbers from "../src/domain/createSixRandomNumbers";
 
 test("1~45 중 6개의 랜덤 값을 생성한다.", () => {
-  const randomValue = createSixRandomNumber();
+  const randomValue = createSixRandomNumbers();
+  console.log(randomValue);
   expect(randomValue).toHaveLength(6);
   expect(randomValue.every((num) => num >= 1 && num <= 45)).toBe(true);
 });

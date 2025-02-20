@@ -43,14 +43,12 @@ class Controller {
   }
 
   async retryCheckInput(prompt, validation) {
-    while (true) {
-      try {
-        const input = await prompt();
-        const value = validation(input);
-        return value;
-      } catch (error) {
-        Console.print(error.message);
-      }
+    try {
+      const input = await prompt();
+      return validation(input);
+    } catch (error) {
+      Console.print(error.message);
+      return this.retryCheckInput(prompt, validation);
     }
   }
 }
