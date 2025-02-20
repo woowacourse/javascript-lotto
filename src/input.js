@@ -6,6 +6,7 @@ import {
   validateMaximumValue,
   validateMinimumValue,
   validatePurchaseUnit,
+  validateRestartInput,
   validateWinningNumberDuplicate,
 } from "./validate.js";
 
@@ -55,6 +56,13 @@ export const inputBonusNumber = async (winningNumber) => {
   }
 };
 
-export const inputAskForRestart = () => {
-  return readLineAsync("\n다시 시작하시겠습니까? (y/n)");
+export const inputAskForRestart = async () => {
+  try {
+    const answer = await readLineAsync("\n다시 시작하시겠습니까? (y/n)");
+    validateRestartInput(answer);
+    return answer;
+  } catch (error) {
+    console.log(error.message);
+    return await inputAskForRestart();
+  }
 };

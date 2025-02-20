@@ -7,6 +7,7 @@ import {
   validateWinningNumberisNumeric,
   validateWinningNumberDuplicate,
   validateBonusNumberUnique,
+  validateRestartInput,
 } from "../src/validate";
 
 test("구입급액이 1,000원 단위가 아닐 경우 예외를 발생시킨다.", () => {
@@ -67,5 +68,11 @@ test("당첨 번호와 보너스 번호가 중복되는 경우 예외를 발생�
 
   expect(() => validateBonusNumberUnique(winningNumbers, bonusNumber)).toThrow(
     "보너스 번호는 당첨 번호와 중복되면 안됩니다."
+  );
+});
+
+test("재시작 여부 입력 시 y/n이 아닐 경우 예외를 발생시킨다.", () => {
+  expect(() => validateRestartInput("o")).toThrow(
+    "입력은 y 또는 n만 가능합니다."
   );
 });

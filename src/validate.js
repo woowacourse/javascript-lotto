@@ -61,6 +61,11 @@ const validateBonusNumberUnique = (winningNumber, bonusNumber) => {
     throw new Error("보너스 번호는 당첨 번호와 중복되면 안됩니다.");
 };
 
+const validateRestartInput = (input) => {
+  if (input !== "y" || input !== "n")
+    throw new Error("입력은 y 또는 n만 가능합니다.");
+};
+
 export {
   validatePurchaseUnit,
   validateIsNumeric,
@@ -70,4 +75,5 @@ export {
   validateLottoNumberRange,
   validateWinningNumberDuplicate,
   validateBonusNumberUnique,
+  validateRestartInput,
 };
