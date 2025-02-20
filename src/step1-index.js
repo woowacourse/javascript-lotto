@@ -6,6 +6,7 @@ import {
   printPrizeHeader,
   printPrize,
   printRevenueRate,
+  printError,
 } from './View/OutputView.js';
 import checkLottoPurchase from './util/checkLottoPurchase.js';
 import Lotto from './model/Lotto.js';
@@ -13,10 +14,18 @@ import { getUniqueRandomNumbers } from './util/getUniqueRandomNumbers.js';
 import checkBonusNumber from './util/checkBonusNumber.js';
 import { calculateWins, calculatePrize } from './service/CalculatorService.js';
 
-const purchasePrice = await readLineAsync(systemSettings.getPurchasePrice);
-const purchaseAmount = checkLottoPurchase(purchasePrice);
-
-printPurchasedAmount(purchaseAmount);
+async function getPurchasePrice() {
+  try {
+    const purchasePrice = await readLineAsync(systemSettings.getPurchasePrice);
+    const purchaseAmount = checkLottoPurchase(purchasePrice);
+    printPurchasedAmount(purchaseAmount);
+    return { purchasePrice, purchaseAmount };
+  } catch (error) {
+    printError(error.message);
+    await getPurchasePrice();
+  }
+}
+const { purchasePrice, purchaseAmount } = await getPurchasePrice();
 
 const lottos = [];
 
