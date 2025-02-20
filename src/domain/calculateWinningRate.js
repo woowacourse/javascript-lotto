@@ -1,3 +1,4 @@
 export const calculateWinningRate = (price, prize) => {
-  return ((prize / price) * 100).toFixed(2);
+  const rate = (prize / price) * 100;
+  return Number(rate % 1 === 0 ? rate.toString() : rate.toFixed(2));
 };
