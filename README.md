@@ -145,3 +145,4 @@ Lotto
 - [x] controller 분리
 - [x] printLn 메서드 추가
 - [x] 수익률 소수점 1자리
+- [ ] error메세지 출력 메서드 추가

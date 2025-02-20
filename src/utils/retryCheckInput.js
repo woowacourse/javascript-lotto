@@ -5,7 +5,7 @@ const retryCheckInput = async (prompt, validation) => {
     const input = await prompt();
     return validation(input);
   } catch (error) {
-    Console.print(error.message);
+    Console.printError(error.message);
     return retryCheckInput(prompt, validation);
   }
 };

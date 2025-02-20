@@ -30,6 +30,11 @@ class Console {
   static println() {
     console.log();
   }
+
+  static printError(input) {
+    console.log(`[ERROR] ${input}`);
+    console.log();
+  }
 }
 
 export default Console;
