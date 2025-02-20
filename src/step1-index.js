@@ -13,6 +13,7 @@ import Lotto from './model/Lotto.js';
 import { getUniqueRandomNumbers } from './util/getUniqueRandomNumbers.js';
 import checkBonusNumber from './util/checkBonusNumber.js';
 import { calculateWins, calculatePrize } from './service/CalculatorService.js';
+import { checkUserRetry } from './util/checkUserRetry.js';
 
 async function getPurchasePrice() {
   try {
@@ -24,17 +25,6 @@ async function getPurchasePrice() {
     printError(error.message);
     return await getPurchasePrice();
   }
-}
-const { purchasePrice, purchaseAmount } = await getPurchasePrice();
-
-const lottos = [];
-
-for (let i = 0; i < purchaseAmount; i++) {
-  const numberRange = { min: 1, max: 45 };
-  const numbers = getUniqueRandomNumbers(numberRange, 6);
-  const lotto = new Lotto(numbers);
-  printLotto(lotto);
-  lottos.push(lotto);
 }
 async function getWinningNumber() {
   try {
@@ -48,31 +38,60 @@ async function getWinningNumber() {
     return await getWinningNumber();
   }
 }
-
-const userLotto = await getWinningNumber();
-
-async function getBonusNumber() {
+async function getBonusNumber(userLotto) {
   try {
     const bonusNumber = await readLineAsync(systemSettings.getBonusNumber);
-
     const parsedLotto = checkBonusNumber(userLotto, Number(bonusNumber));
     return parsedLotto;
   } catch (error) {
     printError(error.message);
-    return await getBonusNumber();
+    return await getBonusNumber(userLotto);
   }
 }
 
-const parsedLotto = await getBonusNumber();
+async function getUserRetry() {
+  try {
+    const userRetry = await readLineAsync(`${systemSettings.askUserRetry}`);
+    checkUserRetry(userRetry);
+    return userRetry;
+  } catch (error) {
+    printError(error.message);
+    return await getUserRetry();
+  }
+}
 
-const winCount = calculateWins(lottos, parsedLotto);
+async function playGame() {
+  const { purchasePrice, purchaseAmount } = await getPurchasePrice();
 
-const total = calculatePrize(winCount, systemSettings.prizeMoney);
+  const lottos = [];
 
-const revenueRate = (total / Number(purchasePrice)) * 100;
+  for (let i = 0; i < purchaseAmount; i++) {
+    const numberRange = { min: 1, max: 45 };
+    const numbers = getUniqueRandomNumbers(numberRange, 6);
+    const lotto = new Lotto(numbers);
+    printLotto(lotto);
+    lottos.push(lotto);
+  }
 
-printPrizeHeader();
+  const userLotto = await getWinningNumber();
 
-printPrize(systemSettings);
+  const parsedLotto = await getBonusNumber(userLotto);
 
-printRevenueRate(revenueRate);
+  const winCount = calculateWins(lottos, parsedLotto);
+
+  const total = calculatePrize(winCount, systemSettings.prizeMoney);
+
+  const revenueRate = (total / Number(purchasePrice)) * 100;
+
+  printPrizeHeader();
+
+  printPrize(systemSettings);
+
+  printRevenueRate(revenueRate);
+  const userRetry = await getUserRetry();
+  return userRetry;
+}
+
+const userRetry = await playGame();
+
+if (userRetry === 'y') await playGame();
