@@ -7,12 +7,11 @@ import { PRICE } from "./constant/price.js";
 import Calculator from "./Calculator.js";
 import Lotto from "./Lotto.js";
 import BonusNumber from "./BonusNumber.js";
+import InputHandler from "./util/InputHandler.js";
 
 
 export const purchase = async () => {
-  const purchaseAmount = new PurchaseAmount(
-    await InputView.readPurchaseAmount()
-  ).price;
+  const purchaseAmount = await InputHandler.getPurchaseAmount();
 
   const quantity = purchaseAmount / PRICE.UNIT;
   const lottoNumbers = Array.from({length: quantity}, () => generateLotto());
@@ -28,14 +27,13 @@ export const purchase = async () => {
   const totalPrize = Calculator.totalPrize(winningCount);
   const yieldRate = Calculator.yieldRate(purchaseAmount, totalPrize);
   OutputView.printYieldRate(yieldRate);
-
-  // 재시작 여부 입력 받기
 };
 
 const readWinningInfo = async () => {
-  const winningNumbers = await InputView.readWinningNumbers();
-  const bonusNumber = await InputView.readBonusNumber();
-  
+  const winningNumbers = await InputHandler.getWinningNumbers();
+  const bonusNumber = await InputHandler.getBonusNumber(winningNumbers);
+
+  // here!!
   return {
     winning: new Lotto(winningNumbers).numbers,
     bonus: new BonusNumber(bonusNumber, winningNumbers).number
