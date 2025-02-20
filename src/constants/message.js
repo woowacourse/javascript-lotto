@@ -18,4 +18,5 @@ export const ERROR = Object.freeze({
   NOT_NUMBER: "숫자가 아닌 값은 입력할 수 없습니다.",
   INVALID_RANGE: "범위를 벗어난 입력은 할 수 없습니다.",
   INCLUDE: "보너스 번호는 로또 번호와 중복될 수 없습니다.",
+  UNIT: "구입 금액은 1000원 단위로 입력해야 합니다.",
 });
