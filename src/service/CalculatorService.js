@@ -29,3 +29,7 @@ export function calculatePrize(winCount, prizeMoney) {
   }
   return total;
 }
+
+export function calculateRevenueRate(total, purchasePrice) {
+  return (total / Number(purchasePrice)) * 100;
+}

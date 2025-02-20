@@ -10,7 +10,11 @@ import {
 } from './View/OutputView.js';
 import Lotto from './model/Lotto.js';
 import { getUniqueRandomNumbers } from './util/getUniqueRandomNumbers.js';
-import { calculateWins, calculatePrize } from './service/CalculatorService.js';
+import {
+  calculateWins,
+  calculatePrize,
+  calculateRevenueRate,
+} from './service/CalculatorService.js';
 import validateUserRetry from './Validation/validateUserRetry.js';
 import validateLottoPurchase from './Validation/validateLottoPurchase.js';
 import validateBonusNumber from './Validation/validateBonusNumber.js';
@@ -60,9 +64,7 @@ async function getUserRetry() {
   }
 }
 
-async function playGame() {
-  const { purchasePrice, purchaseAmount } = await getPurchasePrice();
-
+function makeLotto(purchaseAmount) {
   const lottos = [];
 
   for (let i = 0; i < purchaseAmount; i++) {
@@ -78,23 +80,26 @@ async function playGame() {
     printLotto(lotto);
     lottos.push(lotto);
   }
+  return lottos;
+}
+async function playGame() {
+  const { purchasePrice, purchaseAmount } = await getPurchasePrice();
+
+  const lottos = makeLotto(purchaseAmount);
 
   const userLotto = await getWinningNumber();
-
   const parsedLotto = await getBonusNumber(userLotto);
 
   const winCount = calculateWins(lottos, parsedLotto);
-
   const total = calculatePrize(winCount, systemSettings.prizeMoney);
-
-  const revenueRate = (total / Number(purchasePrice)) * 100;
+  const revenueRate = calculateRevenueRate(total, purchasePrice);
 
   printPrizeHeader();
-
   printPrize(systemSettings);
-
   printRevenueRate(revenueRate);
+
   const userRetry = await getUserRetry();
+
   return userRetry;
 }
 
