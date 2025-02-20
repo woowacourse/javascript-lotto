@@ -3,6 +3,7 @@ import {
   LOTTO_PURCHASE_AMOUNT,
   LOTTO_WINNING_NUMBERS,
   LOTTO_BONUS_NUMBER,
+  RETRY_MESSAGE,
 } from '../Constant/errorMessage.js';
 import { LOTTO_DEFINITION } from '../../Domain/Constant/definition.js';
 
@@ -123,4 +124,14 @@ export const validateBonusNumber = (input, winningNumbersInput) => {
   validateInteger(input);
   validateBonusNumberRange(input);
   validateWinningNumberHasBonusNumber(input, winningNumbersInput);
+};
+
+//입력된 값이 y or n 인지 확인 아니라면 에러 출력
+export const isNotYorN = (input) => {
+  return input !== 'y' || input !== 'n';
+};
+export const validateYorN = (input) => {
+  if (isNotYorN(input)) {
+    throw new Error(RETRY_MESSAGE);
+  }
 };

@@ -18,13 +18,15 @@ class LottoManager {
 
   makeLottoList(lottoCount) {
     this.#lottoList = Array.from({ length: lottoCount }, () => {
-      const sortedNumbers = sortAscending(
-        makeNotDuplicatedRandomNumbers(LOTTO_DEFINITION.NUMBER_COUNTS, {
+      const numbers = makeNotDuplicatedRandomNumbers(
+        LOTTO_DEFINITION.NUMBER_COUNTS,
+        {
           min: LOTTO_DEFINITION.MIN_NUMBER,
           max: LOTTO_DEFINITION.MAX_NUMBER,
-        })
+        }
       );
-      new Lotto(sortedNumbers);
+      sortAscending(numbers);
+      return new Lotto(numbers);
     });
   }
 
@@ -75,6 +77,9 @@ class LottoManager {
       (acc, [key, count]) => acc + LOTTO_PRIZE_MONEY_DEFINITION[key] * count,
       0
     );
+  }
+  calculateProfit(totalLottoPrize, purchaseAmount) {
+    return (totalLottoPrize / purchaseAmount) * 100;
   }
 }
 

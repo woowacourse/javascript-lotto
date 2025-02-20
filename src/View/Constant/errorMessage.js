@@ -23,3 +23,5 @@ export const LOTTO_BONUS_NUMBER = {
   INVALID_BONUS_RANGE: `${ERROR_PREFIX} 보너스 번호는 1 이상 45 이하의 정수여야 합니다.${NEW_LINE}`,
   DUPLICATE_BONUS_NUMBER: `${ERROR_PREFIX} 보너스 번호는 당첨 번호와 중복될 수 없습니다.${NEW_LINE}`,
 };
+
+export const RETRY_MESSAGE = `${ERROR_PREFIX} 'y' 또는 'n'가 아닙니다.${NEW_LINE}`;
