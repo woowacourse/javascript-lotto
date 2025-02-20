@@ -1,5 +1,6 @@
-import DEFINITION from "../constant/definition.js";
+import DEFINITION from "../constant/Definition.js";
 import Validator from "./Validator.js";
+import { RANK } from "../constant/Definition.js";
 
 export default class Winnings {
   constructor(numbers, bonusNumber) {
@@ -27,11 +28,11 @@ export default class Winnings {
 
   countStatistics(lottos) {
     const counter = {
-      "1등": 0,
-      "2등": 0,
-      "3등": 0,
-      "4등": 0,
-      "5등": 0,
+      [RANK.FIFTH]: 0,
+      [RANK.FOURTH]: 0,
+      [RANK.THIRD]: 0,
+      [RANK.SECOND]: 0,
+      [RANK.FIRST]: 0,
     };
 
     lottos.forEach((lotto) => {
@@ -43,25 +44,29 @@ export default class Winnings {
 
   #judgeRank(lotto, counter) {
     const matchCount = this.#getMatchCount(lotto);
-    if (this.#isBonusWinning(matchCount, lotto)) return counter["2등"]++;
+    if (this.#isBonusWinning(matchCount, lotto)) return counter[RANK.SECOND]++;
     switch (matchCount) {
       case 3:
-        counter["5등"]++;
+        counter[RANK.FIFTH]++;
         break;
       case 4:
-        counter["4등"]++;
+        counter[RANK.FOURTH]++;
         break;
       case 5:
-        counter["3등"]++;
+        counter[RANK.THIRD]++;
         break;
       case 6:
-        counter["1등"]++;
+        counter[RANK.FIRST]++;
         break;
     }
   }
 
   #isBonusWinning(matchCount, lotto) {
-    if (matchCount === 5 && lotto.includes(this.bonusNumber)) return true;
+    if (
+      matchCount === DEFINITION.LOTTO_RULE[RANK.SECOND] &&
+      lotto.includes(this.bonusNumber)
+    )
+      return true;
     return false;
   }
 

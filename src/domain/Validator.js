@@ -14,6 +14,8 @@ const ValidationUtils = {
   isDuplicated: (array, element) =>
     new Set([...array, element]).size !== array.length + 1,
   isNotMultiple: (number, unit) => number % unit !== 0,
+  isYN: (string) =>
+    string.toLowerCase() !== "y" && string.toLowerCase() !== "n",
 };
 
 const Validator = {
@@ -31,14 +33,14 @@ const Validator = {
         6,
         6
       ),
+      IS_NOT_NATURAL_NUMBER_IN_ARRAY:
+        ValidationUtils.isNotNaturalNumberInArray(numbers),
       IS_DUPLICATED_NUMBER: ValidationUtils.isDuplicatedNumber(numbers),
       IS_ARRAY_NUMBER_RANGE_OVER: ValidationUtils.isArrayNumberRangeOver(
         numbers,
         1,
         45
       ),
-      IS_NOT_NATURAL_NUMBER_IN_ARRAY:
-        ValidationUtils.isNotNaturalNumberInArray(numbers),
     };
 
     return errorResults;
@@ -66,6 +68,14 @@ const Validator = {
         10000000000
       ),
       IS_NOT_MULTIPLE: ValidationUtils.isNotMultiple(purchasePrice, 1000),
+    };
+
+    return errorResults;
+  },
+
+  restart: (restart) => {
+    const errorResults = {
+      IS_NOT_YN: ValidationUtils.isYN(restart),
     };
 
     return errorResults;
