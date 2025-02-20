@@ -1,3 +1,5 @@
+import { MESSAGE } from './constants.js';
+
 function printErrorMessage(errorMessage) {
   console.log(`${errorMessage}\n`);
 }
@@ -9,17 +11,17 @@ function printLottos(lottos) {
 }
 
 function printWinningHistory(rankHistory) {
-  console.log(`당첨 통계`);
+  console.log(`${MESSAGE.WINNING_RATE_TITLE}`);
   console.log(`--------------------`);
-  console.log(`3개 일치 (5,000원) - ${rankHistory.fifth}개`);
-  console.log(`4개 일치 (50,000원) - ${rankHistory.fourth}개`);
-  console.log(`5개 일치 (1,500,000원) - ${rankHistory.third}개`);
-  console.log(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankHistory.second}개`);
-  console.log(`6개 일치 (2,000,000,000원) - ${rankHistory.first}개`);
+  console.log(`${MESSAGE.MATCH_THREE(rankHistory.fifth)}`);
+  console.log(`${MESSAGE.MATCH_FOUR(rankHistory.fourth)}`);
+  console.log(`${MESSAGE.MATCH_FIVE(rankHistory.third)}`);
+  console.log(`${MESSAGE.MATCH_FIVE_AND_BONUS(rankHistory.second)}`);
+  console.log(`${MESSAGE.MATCH_SIX(rankHistory.first)}`);
 }
 
 function printPrizeRate(rate) {
-  console.log(`총 수익률은 ${rate.toLocaleString()}%입니다.`);
+  console.log(`${MESSAGE.PRIZE_RATE_RESULT(rate)}`);
 }
 
 const OutputView = {
