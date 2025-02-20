@@ -1,4 +1,43 @@
-/**
- * step 1의 시작점이 되는 파일입니다.
- * 브라우저 환경에서 사용하는 css 파일 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import systemSettings from './settings/systemSettings.js';
+import {
+  printPrizeHeader,
+  printPrize,
+  printRevenueRate,
+} from './View/OutputView.js';
+import {
+  getPurchasePrice,
+  getWinningNumber,
+  getBonusNumber,
+  getUserRetry,
+} from './service/ParsingService.js';
+import {
+  calculateWins,
+  calculatePrize,
+  calculateRevenueRate,
+} from './service/CalculatorService.js';
+import makeLotto from './service/LottoService.js';
+
+async function playGame() {
+  const { purchasePrice, purchaseAmount } = await getPurchasePrice();
+
+  const lottos = makeLotto(purchaseAmount);
+
+  const userLotto = await getWinningNumber();
+  const parsedLotto = await getBonusNumber(userLotto);
+
+  const winCount = calculateWins(lottos, parsedLotto);
+  const total = calculatePrize(winCount, systemSettings.prizeMoney);
+  const revenueRate = calculateRevenueRate(total, purchasePrice);
+
+  printPrizeHeader();
+  printPrize(systemSettings);
+  printRevenueRate(revenueRate);
+
+  const userRetry = await getUserRetry();
+
+  return userRetry;
+}
+
+const userRetry = await playGame();
+
+if (userRetry === 'y') await playGame();
