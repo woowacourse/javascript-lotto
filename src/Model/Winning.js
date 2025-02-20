@@ -46,11 +46,15 @@ class Winning {
 
   getTotalPrize() {
     let totalPrize = 0;
-
     for (let rank in this.rankHistory) {
-      if (this.rankHistory[rank]) {
-        totalPrize += PRIZE[rank] * this.rankHistory[rank];
-      }
+      totalPrize = this.#sumPrize(rank, totalPrize);
+    }
+    return totalPrize;
+  }
+
+  #sumPrize(rank, totalPrize) {
+    if (this.rankHistory[rank]) {
+      totalPrize += PRIZE[rank] * this.rankHistory[rank];
     }
     return totalPrize;
   }
