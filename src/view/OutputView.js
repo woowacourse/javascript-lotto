@@ -1,19 +1,20 @@
+import { OUTPUT_MESSAGE } from '../constants/message.js';
+
 const OutputView = {
   printLottoQuantity(quantity) {
-    console.log(`${quantity}개를 구매했습니다.`);
+    console.log(OUTPUT_MESSAGE.LOTTO_QUANTITY(quantity));
   },
-  printSingLotto(lotto) {
-    console.log(`[${lotto.join(', ')}]`);
+  printSingleLotto(lotto) {
+    console.log(OUTPUT_MESSAGE.SINGLE_LOTTO(lotto));
   },
   printRankResult(key, value) {
-    console.log(`${key} (${(value.price).toLocaleString()}원) - ${value.count}개`);
+    console.log(OUTPUT_MESSAGE.RANK_RESULT(key, value));
   },
   printRankResultHeadLine() {
-    console.log('\n당첨 통계');
-    console.log('--------------------');
+    console.log(OUTPUT_MESSAGE.RANK_RESULT_HEADLINE);
   },
   printRevenueRate(revenueRate) {
-    console.log(`총 수익률은 ${revenueRate}%입니다.`);
+    console.log(OUTPUT_MESSAGE.REVENUE_RATE(revenueRate));
   },
 };
 

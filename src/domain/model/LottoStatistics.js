@@ -1,3 +1,5 @@
+import CONFIG from '../../constants/config.js';
+
 class LottoStatistics {
   #rankResult;
 
@@ -40,7 +42,7 @@ class LottoStatistics {
   }
 
   increaseCount(sameCount, name) {
-    if (sameCount < 3) {
+    if (sameCount < CONFIG.MIN.RANK_COUNT) {
       return;
     }
     this.#rankResult[name].count += 1;
@@ -53,7 +55,7 @@ class LottoStatistics {
   getProfit() {
     return Object.keys(this.#rankResult).reduce(
       (acc, key) => acc + (this.#rankResult[key].price * this.#rankResult[key].count),
-      0,
+      CONFIG.INITIAL_NUMBER,
     );
   }
 }

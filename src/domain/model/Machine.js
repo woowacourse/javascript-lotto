@@ -10,8 +10,7 @@ class Machine {
   }
 
   createLottos(money) {
-    const lottoPrice = 1000;
-    const quantity = money / lottoPrice;
+    const quantity = money / CONFIG.LOTTO_PRICE;
     this.#lottos = Array.from({ length: quantity }).map(() => this.createLotto());
   }
 
