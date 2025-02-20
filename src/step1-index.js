@@ -10,9 +10,7 @@ const run = async () => {
   const price = await getLottoPrice();
   await lottoController(price);
 
-  if (await getRestart()) {
-    return run();
-  }
+  if (await getRestart()) run();
 };
 
 run();
