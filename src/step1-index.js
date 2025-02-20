@@ -1,9 +1,10 @@
 import readLineAsync from './View/InputView.js';
 import systemSettings from './settings/systemSettings.js';
 import {
-  printMessage,
   printPurchasedAmount,
   printLotto,
+  printPrizeHeader,
+  printPrize,
 } from './View/OutputView.js';
 import checkLottoPurchase from './util/checkLottoPurchase.js';
 import Lotto from './model/Lotto.js';
@@ -40,5 +41,9 @@ const winCount = calculateWins(lottos, parsedLotto);
 const total = calculatePrize(winCount, systemSettings.prizeMoney);
 
 const result = (total / Number(purchasePrice)) * 100;
+
+printPrizeHeader();
+
+printPrize(systemSettings);
 
 console.log(`${result.toFixed(1)}%`);
