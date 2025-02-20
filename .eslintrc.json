@@ -44,6 +44,6 @@
       "version": "detect"
     }
   },
-  "extends": ["airbnb", "eslint:recommended"],
+  "extends": ["airbnb", "eslint:recommended", "prettier"],
   "plugins": ["simple-import-sort"]
 }
