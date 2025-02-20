@@ -22,13 +22,14 @@ class LottoResult {
     this.#lottoNumbersList.forEach((lottoNumbers) => {
       const matchingCount = this.#calculateMatchCount(lottoNumbers);
 
-      if (matchingCount >= 3) {
-        lottoResult[matchingCount]++;
-      }
+      if (matchingCount < 3) return;
+
       if (matchingCount === 5 && this.#isBonusMatched(lottoNumbers)) {
-        lottoResult[5]--;
         lottoResult["bonus"]++;
+        return;
       }
+
+      lottoResult[matchingCount]++;
     });
     return lottoResult;
   }

@@ -11,7 +11,7 @@ const SYSTEM_MESSAGE = {
   WINNING_STATISTICS: (matchingCount) => `당첨 통계\n--------------------
   3개 일치(${formatNumber(LOTTO_PRIZE[3])}) - ${matchingCount[3]}개
   4개 일치(${formatNumber(LOTTO_PRIZE[4])}) - ${matchingCount[4]}개
-  3개 일치(${formatNumber(LOTTO_PRIZE[5])}) - ${matchingCount[5]}개
+  5개 일치(${formatNumber(LOTTO_PRIZE[5])}) - ${matchingCount[5]}개
   5개 일치, 보너스 볼 일치(${formatNumber(LOTTO_PRIZE["bonus"])}) - ${matchingCount["bonus"]}개
   6개 일치(${formatNumber(LOTTO_PRIZE[6])}) - ${matchingCount[6]}개`,
 

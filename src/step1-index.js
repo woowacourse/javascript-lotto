@@ -1,7 +1,7 @@
 import OutputView from "./view/OutputView.js";
 import retryOnError from "./util/retryOnError.js";
 import { getRetryInput } from "./service/InputService.js";
-import { PurchaseController } from "./controller/PuchaseController.js";
+import { PurchaseController } from "./controller/PurchaseController.js";
 import { WinningController } from "./controller/WinningController.js";
 import { ResultController } from "./controller/ResultController.js";
 import { ProfitController } from "./controller/ProfitController.js";

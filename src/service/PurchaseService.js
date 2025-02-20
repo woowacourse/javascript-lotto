@@ -6,12 +6,5 @@ export const getLottoCount = (price) => {
   return price / LOTTO_PRICE;
 };
 
-export const getLottoArray = (count) => {
-  const lottoArray = [];
-
-  for (let i = 0; i < count; i++) {
-    const lottoNumbers = pickUniqueNumbersInRange(LOTTO_NUMBERS.MIN, LOTTO_NUMBERS.MAX, LOTTO_NUMBERS.LENGTH);
-    lottoArray.push(new Lotto(lottoNumbers));
-  }
-  return lottoArray;
-};
+export const getLottoArray = (count) =>
+  Array.from({ length: count }, () => new Lotto(pickUniqueNumbersInRange(LOTTO_NUMBERS.MIN, LOTTO_NUMBERS.MAX, LOTTO_NUMBERS.LENGTH)));
