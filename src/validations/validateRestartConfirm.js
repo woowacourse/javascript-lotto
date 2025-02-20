@@ -1,10 +1,11 @@
 import { RESTART_ERROR_MESSAGE, YES, NO } from "../constants/constants.js";
+import throwIfInvalid from "../utils/throwIfInvalid.js";
 
 const validateRestartConfirm = (input) => {
   const restartConfirm = input.toLowerCase();
-  if (![YES, NO].includes(restartConfirm)) {
-    throw new Error(RESTART_ERROR_MESSAGE);
-  }
+  const isValidRestartConfirm = ![YES, NO].includes(restartConfirm);
+  throwIfInvalid(isValidRestartConfirm, RESTART_ERROR_MESSAGE);
+
   return restartConfirm;
 };
 

@@ -4,34 +4,63 @@ import {
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
 } from "../constants/constants.js";
+import throwIfInvalid from "../utils/throwIfInvalid.js";
 
-const validateWinningNumbers = (input) => {
-  const winningNumbers = input
+const parseWinningNumbers = (input) => {
+  return input
     .split(",")
     .map((el) => el.trim())
     .filter((el) => el !== "")
     .map(Number);
+};
 
-  if (winningNumbers.length !== LOTTO_LENGTH) {
-    throw new Error(WINNING_NUMBERS_ERROR_MESSAGES.INVALID_COUNT);
-  }
+const checkLength = (winningNumbers) => {
+  throwIfInvalid(
+    winningNumbers.length !== LOTTO_LENGTH,
+    WINNING_NUMBERS_ERROR_MESSAGES.INVALID_COUNT,
+  );
+};
+
+const checkIsNumber = (winningNumber) => {
+  throwIfInvalid(
+    Number.isNaN(winningNumber),
+    WINNING_NUMBERS_ERROR_MESSAGES.NOT_A_NUMBER,
+  );
+};
+
+const chechIsInteger = (winningNumber) => {
+  throwIfInvalid(
+    !Number.isInteger(winningNumber),
+    WINNING_NUMBERS_ERROR_MESSAGES.NOT_AN_INTEGER,
+  );
+};
+
+const checkIsInRange = (winningNumber) => {
+  throwIfInvalid(
+    MIN_LOTTO_NUMBER > winningNumber || MAX_LOTTO_NUMBER < winningNumber,
+    WINNING_NUMBERS_ERROR_MESSAGES.OUT_OF_RANGE,
+  );
+};
+
+const checkIsNotDuplicate = (winningNumbers, winningNumbersSet) => {
+  throwIfInvalid(
+    winningNumbers.length !== winningNumbersSet.size,
+    WINNING_NUMBERS_ERROR_MESSAGES.DUPLICATE_NUMBER,
+  );
+};
+
+const validateWinningNumbers = (input) => {
+  const winningNumbers = parseWinningNumbers(input);
+  checkLength(winningNumbers);
 
   winningNumbers.forEach((winningNumber) => {
-    if (Number.isNaN(winningNumber)) {
-      throw new Error(WINNING_NUMBERS_ERROR_MESSAGES.NOT_A_NUMBER);
-    }
-    if (!Number.isInteger(winningNumber)) {
-      throw new Error(WINNING_NUMBERS_ERROR_MESSAGES.NOT_AN_INTEGER);
-    }
-    if (MIN_LOTTO_NUMBER > winningNumber || MAX_LOTTO_NUMBER < winningNumber) {
-      throw new Error(WINNING_NUMBERS_ERROR_MESSAGES.OUT_OF_RANGE);
-    }
+    checkIsNumber(winningNumber);
+    chechIsInteger(winningNumber);
+    checkIsInRange(winningNumber);
   });
 
   const winningNumbersSet = new Set(winningNumbers);
-  if (winningNumbers.length !== winningNumbersSet.size) {
-    throw new Error(WINNING_NUMBERS_ERROR_MESSAGES.DUPLICATE_NUMBER);
-  }
+  checkIsNotDuplicate(winningNumbers, winningNumbersSet);
 
   return winningNumbers;
 };
