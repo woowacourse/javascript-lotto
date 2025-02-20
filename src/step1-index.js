@@ -50,11 +50,20 @@ async function getWinningNumber() {
 }
 
 const userLotto = await getWinningNumber();
-console.log(userLotto.numbers);
 
-const bonusNumber = await readLineAsync(systemSettings.getBonusNumber);
+async function getBonusNumber() {
+  try {
+    const bonusNumber = await readLineAsync(systemSettings.getBonusNumber);
 
-const parsedLotto = checkBonusNumber(userLotto, Number(bonusNumber));
+    const parsedLotto = checkBonusNumber(userLotto, Number(bonusNumber));
+    return parsedLotto;
+  } catch (error) {
+    printError(error.message);
+    return await getBonusNumber();
+  }
+}
+
+const parsedLotto = await getBonusNumber();
 
 const winCount = calculateWins(lottos, parsedLotto);
 
