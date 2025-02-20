@@ -6,7 +6,6 @@ import LottoPack from "./domain/LottoPack.js";
 import LottoMachine from "./domain/LottoMachine.js";
 import OutputView from "./view/OutputView.js";
 import AnswerLottoPack from "./domain/AnswerLottoPack.js";
-import compareMachine from "./domain/compareMachine.js";
 import profitCalculator from "./domain/profitCalculator.js";
 class Controller {
   async start() {
@@ -16,7 +15,9 @@ class Controller {
     );
     const count = purchaseLottoCount(purchaseAmount);
     OutputView.purchaseCount(count);
+
     const lottoNumberSet = LottoMachine(count);
+
     const lottoPack = new LottoPack(lottoNumberSet);
     OutputView.lottoPack(lottoPack);
 
@@ -28,14 +29,14 @@ class Controller {
       async () => await InputView.bonusNumber(),
       Validation.bonusNumber(winningNumbers),
     );
-
     const answerLottoPack = new AnswerLottoPack(winningNumbers, bonusNumber);
-    const winningResult = compareMachine(lottoPack, answerLottoPack);
 
+    lottoPack.playCompare(answerLottoPack.answerTable);
+
+    const winningResult = lottoPack.checkCountResult;
     OutputView.winningStatistics(winningResult);
 
     const profitRate = profitCalculator(purchaseAmount, winningResult);
-
     OutputView.profitRate(profitRate);
 
     const restart = await this.retryCheckInput(async () => await InputView.restart(), Validation.restart);

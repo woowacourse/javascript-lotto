@@ -1,3 +1,5 @@
+import { BONUS, WINNING } from "../constants/constant.js";
+
 class Lotto {
   #lottoNumbers;
   constructor(lottoNumbers) {
@@ -8,8 +10,18 @@ class Lotto {
     return lottoNumbers.sort((a, b) => a - b);
   }
 
-  get lottoNumbers() {
-    return this.#lottoNumbers;
+  compareWinningNumbers(answerTable) {
+    let winningCount = 0;
+    let bonusCount = 0;
+    this.#lottoNumbers.forEach((number) => {
+      if (answerTable[number] === WINNING) {
+        winningCount += 1;
+      }
+      if (answerTable[number] === BONUS) {
+        bonusCount += 1;
+      }
+    });
+    return { winningCount, bonusCount };
   }
 }
 

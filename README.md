@@ -130,7 +130,9 @@ Lotto
 
 - [ ] purchaseLottoCount -> LottoMachine 내부로 이동
 - [ ] answerLottoPack -> 함수로 변경 (return 값으로 정답 테이블 (해시테이블))
-- [ ] lotto 객체 내부에서 값을 체크 할 수 있게 변경 -> lotto 객체 내부로 정답 테이블로 넘겨준다. (객체 지향)
+- [x] lotto 객체 내부에서 값을 체크 할 수 있게 변경 -> lotto 객체 내부로 정답 테이블로 넘겨준다. (객체 지향)
+- [x] lottoPack 객체 스스로 저장할 수 있게 변경
+- [x] compareMachine 함수 제거
 - [x] InputMessage 상수화
 - [x] OutputMessage 상수화
 - [x] 공통 값 상수화
@@ -138,3 +140,4 @@ Lotto
   - [x] createSixRandomNumber 로직 변경
   - [x] retryCheckInput 로직 변경
 - [x] 6개 랜덤 넘버 생성 함수 분리
+- [ ] if문 condition 함수 분리
