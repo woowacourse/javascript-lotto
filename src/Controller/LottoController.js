@@ -9,23 +9,38 @@ class LottoController {
     let restart = 'y';
     while (restart === 'y' || restart === 'Y') {
       const lottoMachine = new LottoMachine();
-      const price = await this.#readPrice();
-
-      const lottos = lottoMachine.generateLotto(price);
-      OutputView.printLottos(lottos);
-
-      const winningNumbers = await this.#readWinningNumbers();
-      const bonusNumber = await this.#readBonusNumber(winningNumbers);
+      const { price, lottos } = await this.#buyLotto(lottoMachine);
+      const { winningNumbers, bonusNumber } = await this.#getWinningNumbers();
 
       const winning = new Winning(winningNumbers, bonusNumber);
-      winning.calculateRank(lottos);
-      OutputView.printWinningHistory(winning.rankHistory);
-
-      const prizeRate = winning.getCalculatedPrizeRate(price);
-      OutputView.printPrizeRate(prizeRate);
+      this.#processWinningResult(winning, lottos);
+      this.#processPrizeResult(winning, price);
 
       restart = await this.#readRestart();
     }
+  }
+
+  async #buyLotto(lottoMachine) {
+    const price = await this.#readPrice();
+    const lottos = lottoMachine.generateLotto(price);
+    OutputView.printLottos(lottos);
+    return { price, lottos };
+  }
+
+  async #getWinningNumbers() {
+    const winningNumbers = await this.#readWinningNumbers();
+    const bonusNumber = await this.#readBonusNumber(winningNumbers);
+    return { winningNumbers, bonusNumber };
+  }
+
+  #processWinningResult(winning, lottos) {
+    winning.calculateRank(lottos);
+    OutputView.printWinningHistory(winning.rankHistory);
+  }
+
+  #processPrizeResult(winning, price) {
+    const prizeRate = winning.getCalculatedPrizeRate(price);
+    OutputView.printPrizeRate(prizeRate);
   }
 
   async #readPrice() {
@@ -101,6 +116,7 @@ class LottoController {
     try {
       const restart = await InputView.readRestart();
       this.#validateRestart(restart);
+
       return restart;
     } catch (error) {
       OutputView.printErrorMessage(error);
