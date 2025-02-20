@@ -144,4 +144,4 @@ Lotto
 - [ ] if문 condition 함수 분리
 - [x] controller 분리
 - [x] printLn 메서드 추가
-- [] 수익률 소수점 1자리
+- [x] 수익률 소수점 1자리
