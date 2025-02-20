@@ -1,3 +1,5 @@
+import { BONUS, WINNING } from "../constants/constant.js";
+
 class AnswerLottoPack {
   #answerTable = {};
 
@@ -10,9 +12,9 @@ class AnswerLottoPack {
 
   #generateAnswerTable(winningNumbers, bonusNumber) {
     winningNumbers.forEach((number) => {
-      this.#answerTable[number] = "당첨 번호";
+      this.#answerTable[number] = WINNING;
     });
-    this.#answerTable[bonusNumber] = "보너스 번호";
+    this.#answerTable[bonusNumber] = BONUS;
   }
 
   get answerTable() {

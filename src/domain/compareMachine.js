@@ -1,3 +1,5 @@
+import { BONUS, WINNING } from "../constants/constant.js";
+
 const compareMachine = (lottoPack, answerLottoPack) => {
   const result = { 6: 0, "5+1": 0, 5: 0, 4: 0, 3: 0 };
 
@@ -5,10 +7,10 @@ const compareMachine = (lottoPack, answerLottoPack) => {
     let winningCount = 0;
     let bonusCount = 0;
     lotto.lottoNumbers.forEach((number) => {
-      if (answerLottoPack.answerTable[number] === "당첨 번호") {
+      if (answerLottoPack.answerTable[number] === WINNING) {
         winningCount += 1;
       }
-      if (answerLottoPack.answerTable[number] === "보너스 번호") {
+      if (answerLottoPack.answerTable[number] === BONUS) {
         bonusCount += 1;
       }
     });
