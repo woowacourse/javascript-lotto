@@ -31,7 +31,7 @@ describe('validate', () => {
         const numbers = [1,2,3,4,5,6];
         const number = '6';
   
-        expect(() => validateBonusNumber(number, numbers)).toThrow(ERROR_MESSAGE.DUPLICATE_NUMBER);
+        expect(() => validateBonusNumber(number, numbers)).toThrow(ERROR_MESSAGE.DUPLICATE_BONUS_NUMBER);
       });
     })
   })
@@ -49,7 +49,7 @@ describe('validate', () => {
   
           const numbers = '1,2,3,4,5,5';
     
-          expect(() => validateWinningNumbers(numbers)).toThrow(ERROR_MESSAGE.DUPLICATE_NUMBER);
+          expect(() => validateWinningNumbers(numbers)).toThrow(ERROR_MESSAGE.DUPLICATE_WINNING_NUMBER);
         });
   
         test(`1~45 사이의 숫자가 아닌 값이 포함되어 있는 경우`, () => {
