@@ -17,8 +17,9 @@
         "js": "always"
       }
     ],
+    "no-constant-condition": "off",
     "func-style": ["off"],
-    "no-ternary": "warn", // 삼항연산자를 사용하지 않는다.
+    // "no-ternary": "warn", // 삼항연산자를 사용하지 않는다.
     "lines-between-class-members": ["warn", "always", { "exceptAfterSingleLine": true }],
     "no-unused-vars": "off",
     "import/no-cycle": "off",

@@ -25,27 +25,28 @@ describe('utils', () => {
 
       expect(uniqueNumberArray).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
     });
+  });
 
-    describe('checkUniqueArray', () => {
-      test('중복이 없는 배열인지 체크한다.', () => {
-        expect(checkUniqueArray([1, 2])).toBeTruthy();
-        expect(checkUniqueArray([1, 1])).toBeFalsy();
-      });
-    });
-
-    describe('retryUntilSuccess', () => {
-      test('에러 이후에도 재입력 받을 수 있는지 체크한다.', async () => {
-        let i = 0;
-
-        await retryUntilSuccess(() => {
-          i += 1;
-          if (i < 3) throw new Error();
-        });
-
-        expect(i).toBe(3);
-      });
+  describe('checkUniqueArray', () => {
+    test('중복이 없는 배열인지 체크한다.', () => {
+      expect(checkUniqueArray([1, 2])).toBeTruthy();
+      expect(checkUniqueArray([1, 1])).toBeFalsy();
     });
   });
+
+  describe('retryUntilSuccess', () => {
+    test('에러 이후에도 재입력 받을 수 있는지 체크한다.', async () => {
+      let i = 0;
+
+      await retryUntilSuccess(() => {
+        i += 1;
+        if (i < 3) throw new Error();
+      });
+
+      expect(i).toBe(3);
+    });
+  });
+
   describe('calculateMatchCount', () => {
     test('배열에서 몇 개가 일치하는 지 계산한다.', () => {
       const matchCount = calculateMatchCount([1, 1, 2, 2, 3, NO_WINNING], 1);

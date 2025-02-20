@@ -23,8 +23,8 @@ class LottoCompany {
   }
 
   #getRank(winningLottoCount, isBonusNumber) {
-    const rank = Object.keys(LOTTO_RANK).find((rank) => {
-      const lottoRankInfo = LOTTO_RANK[rank];
+    const rank = Object.keys(LOTTO_RANK).find((currentRank) => {
+      const lottoRankInfo = LOTTO_RANK[currentRank];
 
       return (lottoRankInfo.winNumber === winningLottoCount && !lottoRankInfo.isBonusNumberRequired) || isBonusNumber;
     });

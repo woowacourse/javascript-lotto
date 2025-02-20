@@ -1,5 +1,3 @@
-// @ts-check
-
 import LottoCompany from './domain/LottoCompany.js';
 import LottoShop from './domain/LottoShop.js';
 import { calculateProfitRate } from './lib/utils.js';
