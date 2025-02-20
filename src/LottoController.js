@@ -8,6 +8,7 @@ import LottoResult from './domain/LottoResult.js';
 import { calculateTotalPrize } from './domain/calculateTotalPrize.js';
 import { calculateWinningRate } from './domain/calculateWinningRate.js';
 import { YES } from './constants/constants.js';
+import { printLottoResult } from './utils/printLottoResult.js';
 
 class LottoController {
   #lottoList
@@ -66,19 +67,10 @@ class LottoController {
     OutputView.print(MESSAGE.STATISTICS)
     OutputView.print(MESSAGE.LINE)
     const result = this.#lottoResult.result
-    this.printLottoResults(result)
+    printLottoResult(result)
   } 
 
-  printLottoResults(result) {
-    Object.keys(RANKING).reverse().forEach((key) => {
-      const ranking = RANKING[key];
-      const resultCount = result[ranking.RANK];
-      if (ranking.RANK === 2) {
-        return OutputView.print(`${ranking.MATCH_COUNT}개 일치, 보너스 볼 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}`);
-      }
-      return OutputView.print(`${ranking.MATCH_COUNT}개 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}개`);
-    })
-  }
+  
 
   printLottoNumber(lottoMaker){
     OutputView.print(lottoMaker.purchaseCount+MESSAGE.PURCHASE_COUNT)
