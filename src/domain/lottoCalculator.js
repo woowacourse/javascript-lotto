@@ -22,6 +22,7 @@ class LottoCalculator {
   #bonusNumber;
   #prize;
   #totalPrice;
+  #profit;
 
   constructor(winningNumbers, bonusNumber) {
     this.#winningNumbers = winningNumbers;
@@ -57,7 +58,7 @@ class LottoCalculator {
   }
 
   calculateProfit(purchaseMoney) {
-    return (this.#totalPrice / purchaseMoney) * 100;
+    this.#profit = (this.#totalPrice / purchaseMoney) * 100;
   }
 
   get prize() {
@@ -66,6 +67,10 @@ class LottoCalculator {
 
   get totalPrice() {
     return this.#totalPrice;
+  }
+
+  get profit() {
+    return this.#profit;
   }
 }
 

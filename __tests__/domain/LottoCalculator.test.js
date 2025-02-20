@@ -65,7 +65,8 @@ describe("로또 등수 계산", () => {
 
     lottoCalculator.calculatePrize(lotto);
     lottoCalculator.calculateTotalPrice();
+    lottoCalculator.calculateProfit(purchaseMoney);
 
-    expect(lottoCalculator.calculateProfit(purchaseMoney)).toBe(500);
+    expect(lottoCalculator.profit).toBe(500);
   });
 });

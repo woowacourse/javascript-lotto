@@ -7,36 +7,34 @@ class App {
   #lottoCalculator;
 
   async run() {
-    const money = await InputView.getPurchaseMoney();
+    const purchaseMoney = await InputView.getPurchaseMoney();
 
     const lottoMachine = new LottoMachine();
 
-    const lottoCount = lottoMachine.getLottoCount(money);
+    const lottoCount = lottoMachine.getLottoCount(purchaseMoney);
     const lottos = lottoMachine.drawLotto(lottoCount);
+    OutputView.printLottoCount(lottoCount);
     OutputView.printLotto(lottos);
 
-    OutputView.printLottoCount(lottoCount);
     const winningNumbers = await InputView.getWinningNumbers();
     const bonusNumber = await InputView.getBonusNumber(winningNumbers);
-
     this.#lottoCalculator = new LottoCalculator(winningNumbers, bonusNumber);
 
+    this.calculateResult(lottos, purchaseMoney);
+    this.printResult();
+
+    await this.restart();
+  }
+
+  calculateResult(lottos, purchaseMoney) {
     lottos.forEach((lotto) => {
       this.#lottoCalculator.calculatePrize(lotto);
     });
     this.#lottoCalculator.calculateTotalPrice();
-    const profit = this.#lottoCalculator.calculateProfit(money);
-
-    this.printResult(profit);
-
-    const restartAnswer = await InputView.getRestartRequest();
-
-    if (restartAnswer === "y") {
-      await this.run();
-    }
+    this.#lottoCalculator.calculateProfit(purchaseMoney);
   }
 
-  printResult(profit) {
+  printResult() {
     console.log("당첨 통계");
     console.log("--------------------");
     this.#lottoCalculator.prize.forEach((rankLottos, rank) => {
@@ -47,7 +45,14 @@ class App {
         }개`
       );
     });
-    console.log(`총 수익률은 ${profit}%입니다.`);
+    console.log(`총 수익률은 ${this.#lottoCalculator.profit}%입니다.`);
+  }
+
+  async restart() {
+    const restartAnswer = await InputView.getRestartRequest();
+    if (restartAnswer === "y") {
+      await this.run();
+    }
   }
 }
 
