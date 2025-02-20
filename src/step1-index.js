@@ -1,52 +1,23 @@
-import InputView from "./view/inputView.js";
-import SYSTEM_MESSAGE from "./constants/systemMessage.js";
-import PurchaseService from "./service/PurchaseService.js";
-import OutputView from "./view/outputView.js";
-import validatePrice from "./validation/validatePrice.js";
+import OutputView from "./view/OutputView.js";
 import retryOnError from "./util/retryOnError.js";
-import validateWinningNumber from "./validation/validateWinningNumber.js";
-import { parsePrice, parseWinningNumbers, parseBonusNumber } from "./service/ParsingService.js";
-import validateBonusNumber from "./validation/validateBonusNumber.js";
-import WinningLotto from "./domain/WinningLotto.js";
-import LottoResult from "./domain/LottoResult.js";
-import { calculateProfitRate } from "./service/ProfitService.js";
+import { getRetryInput } from "./service/InputService.js";
+import { PurchaseController } from "./controller/PuchaseController.js";
+import { WinningController } from "./controller/WinningController.js";
+import { ResultController } from "./controller/ResultController.js";
+import { ProfitController } from "./controller/ProfitController.js";
 
-const getPrice = async () => {
-  const priceInput = await InputView.readUserInput(SYSTEM_MESSAGE.PRICE);
-  validatePrice(priceInput);
-  return parsePrice(priceInput);
+const runLotto = async () => {
+  while (true) {
+    const { lottoArray, lottoCount } = await PurchaseController();
+    const winningLotto = await WinningController();
+    const matchingCount = ResultController(winningLotto, lottoArray);
+    ProfitController(matchingCount, lottoCount);
+
+    const yesOrNo = await retryOnError(getRetryInput, OutputView.printError);
+    if (yesOrNo === "n") {
+      break;
+    }
+  }
 };
 
-const getWinningNumber = async () => {
-  const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER);
-  validateWinningNumber(winningNumberInput);
-  return parseWinningNumbers(winningNumberInput);
-};
-
-const getBonusNumber = async () => {
-  const bonusNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.BONUS_NUMBER);
-  validateBonusNumber(winningNumbers, bonusNumberInput);
-  return parseBonusNumber(bonusNumberInput);
-};
-
-// 가격 입력
-const price = await retryOnError(getPrice, OutputView.printError);
-
-const lottoCount = PurchaseService.getLottoCount(price);
-OutputView.print(SYSTEM_MESSAGE.COUNT(lottoCount));
-
-const lottoArray = PurchaseService.getLottoArray(lottoCount);
-OutputView.printLottoArray(lottoArray);
-
-// 당첨 번호 입력
-const winningNumbers = await retryOnError(getWinningNumber, OutputView.printError);
-const bonusNumber = await retryOnError(getBonusNumber, OutputView.printError);
-const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-
-const lottoResult = new LottoResult(winningLotto, lottoArray);
-
-const matchingCount = lottoResult.calculateResult();
-const profitRate = calculateProfitRate(matchingCount, lottoCount);
-
-OutputView.printMatchingCount(matchingCount);
-OutputView.print(SYSTEM_MESSAGE.PROFIT(profitRate));
+await runLotto();

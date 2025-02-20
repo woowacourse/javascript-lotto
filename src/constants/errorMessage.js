@@ -22,3 +22,8 @@ export const PRICE_ERROR_MESSAGE = {
   UNDER_PRICE: `${LOTTO_PRICE}원보다 큰 수를 입력해주세요`,
   INDIVISIBLE: `구입 금액은 ${LOTTO_PRICE}원 단위여야 합니다.`,
 };
+
+export const RETRY_ERROR_MESSAGE = {
+  EMPTY: "입력값이 비어있습니다. y 또는 n을 입력해주세요.",
+  INVALID: "잘못된 입력입니다. y 또는 n만 입력 가능합니다.",
+};
