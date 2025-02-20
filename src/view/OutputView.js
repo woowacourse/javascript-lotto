@@ -12,6 +12,7 @@ const OutputView = {
   },
 
   winningStatistics(winningResult) {
+    Console.println();
     Console.print(`당첨 통계`);
     Console.print(`--------------------`);
     Console.print(`3개 일치 (5,000원) - ${winningResult[3]}개`);
@@ -23,6 +24,7 @@ const OutputView = {
 
   profitRate(profitRate) {
     Console.print(OUTPUT_MESSAGE.PROFIT_RATE(profitRate));
+    Console.println();
   },
 };
 export default OutputView;
