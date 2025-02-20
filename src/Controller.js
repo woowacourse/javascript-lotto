@@ -13,13 +13,10 @@ class Controller {
       async () => await InputView.purchaseAmount(),
       Validation.purchaseAmount,
     );
-    const count = purchaseLottoCount(purchaseAmount);
+
+    const { count, lottoPack } = LottoMachine(purchaseAmount);
     OutputView.purchaseCount(count);
-
-    const lottoNumberSet = LottoMachine(count);
-
-    const lottoPack = new LottoPack(lottoNumberSet);
-    OutputView.lottoPack(lottoPack);
+    OutputView.lottoPack(lottoPack.lottos);
 
     const winningNumbers = await this.retryCheckInput(
       async () => await InputView.winningNumbers(),

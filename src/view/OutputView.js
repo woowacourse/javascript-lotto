@@ -4,8 +4,8 @@ const OutputView = {
   purchaseCount(count) {
     Console.print(OUTPUT_MESSAGE.PURCHASE_COUNT(count));
   },
-  lottoPack(lottoPack) {
-    lottoPack.lottos.forEach((lotto) => {
+  lottoPack(lottos) {
+    lottos.forEach((lotto) => {
       Console.print(OUTPUT_MESSAGE.LOTTO_NUMBERS(lotto.lottoNumbers));
     });
     Console.println();

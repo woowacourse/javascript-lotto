@@ -23,6 +23,10 @@ class Lotto {
     });
     return { winningCount, bonusCount };
   }
+
+  get lottoNumbers() {
+    return this.#lottoNumbers;
+  }
 }
 
 export default Lotto;
