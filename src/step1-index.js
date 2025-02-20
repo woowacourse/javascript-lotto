@@ -48,4 +48,5 @@ const lottoResult = new LottoResult(winningLotto, lottoArray);
 const matchingCount = lottoResult.calculateResult();
 const profitRate = calculateProfitRate(matchingCount, lottoCount);
 
+OutputView.printMatchingCount(matchingCount);
 OutputView.print(SYSTEM_MESSAGE.PROFIT(profitRate));
