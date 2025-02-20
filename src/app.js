@@ -63,7 +63,11 @@ class App {
 
     this.printResult(profit);
 
-    await this.getRestartRequest();
+    const restartAnswer = await this.getRestartRequest();
+
+    if (restartAnswer === "y") {
+      await this.run();
+    }
   }
 
   printResult(profit) {
