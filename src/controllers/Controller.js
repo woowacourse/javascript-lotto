@@ -1,7 +1,7 @@
 import Input from "../views/Input.js";
 import validatePurchaseAmount from "../validations/validatePurchaseAmount.js";
 import validateWinningNumbers from "../validations/validateWinningNumbers.js";
-import throwIfInvalid from "../utils/throwIfInvalid.js";
+import getValidInput from "../utils/getValidInput.js";
 import validateBonusNumber from "../validations/validateBonusNumber.js";
 import issueLottos from "../domains/issueLottos.js";
 import Output from "../views/Output.js";
@@ -12,7 +12,7 @@ import { YES } from "../constants/constants.js";
 class Controller {
   async start() {
     await this.#runLottoGame();
-    const restartConfirm = await throwIfInvalid(
+    const restartConfirm = await getValidInput(
       Input.readRestartConfirm,
       validateRestartConfirm,
     );
@@ -37,18 +37,18 @@ class Controller {
   }
 
   async #getPurchaseAmount() {
-    return await throwIfInvalid(
+    return await getValidInput(
       Input.readPurchaseAmount,
       validatePurchaseAmount,
     );
   }
 
   async #getWinningAndBonusNumbers() {
-    const winningNumbers = await throwIfInvalid(
+    const winningNumbers = await getValidInput(
       Input.readWinningNumbers,
       validateWinningNumbers,
     );
-    const bonusNumber = await throwIfInvalid(
+    const bonusNumber = await getValidInput(
       Input.readBonusNumber,
       validateBonusNumber,
       winningNumbers,

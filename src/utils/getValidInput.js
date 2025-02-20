@@ -1,6 +1,6 @@
 import Output from "../views/Output.js";
 
-const throwIfInvalid = async (inputFn, validateFn, ...additionalArgs) => {
+const getValidInput = async (inputFn, validateFn, ...additionalArgs) => {
   while (true) {
     try {
       const input = await inputFn();
@@ -11,4 +11,4 @@ const throwIfInvalid = async (inputFn, validateFn, ...additionalArgs) => {
   }
 };
 
-export default throwIfInvalid;
+export default getValidInput;
