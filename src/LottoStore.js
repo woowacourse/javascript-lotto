@@ -1,18 +1,12 @@
-import PurchaseAmount from "./PurchaseAmount.js";
-import InputView from "./ui/InputView.js";
 import OutputView from './ui/OutputView.js';
-import LOTTO from "./constant/lotto.js";
-import { getRandomNumber } from "./util/random.js";
 import { PRICE } from "./constant/price.js";
 import Calculator from "./Calculator.js";
-import Lotto from "./Lotto.js";
-import BonusNumber from "./BonusNumber.js";
 import InputHandler from "./util/InputHandler.js";
+import generateLotto from './LottoMachine.js';
 
 
 export const purchase = async () => {
   const purchaseAmount = await InputHandler.getPurchaseAmount();
-
   const quantity = purchaseAmount / PRICE.UNIT;
   const lottoNumbers = Array.from({length: quantity}, () => generateLotto());
   lottoNumbers.forEach((nums) => {
@@ -33,20 +27,9 @@ const readWinningInfo = async () => {
   const winningNumbers = await InputHandler.getWinningNumbers();
   const bonusNumber = await InputHandler.getBonusNumber(winningNumbers);
 
-  // here!!
   return {
-    winning: new Lotto(winningNumbers).numbers,
-    bonus: new BonusNumber(bonusNumber, winningNumbers).number
+    winning: winningNumbers,
+    bonus: bonusNumber
   }
 }
 
-export const generateLotto = () => {
-  const lotto = new Set();
-
-  while (lotto.size < LOTTO.LENGTH) {
-    const randomNumber = getRandomNumber();
-    lotto.add(randomNumber);
-  }
-
-  return Array.from(lotto).sort((a,b) => a - b);
-}
