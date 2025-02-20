@@ -7,11 +7,15 @@ class LottoMachine {
     const lottoNumbers = [];
     while (lottoNumbers.length !== LOTTO_NUMBER_LENGTH) {
       const randomNumber = getRandomNumberInRange();
-      if (!lottoNumbers.includes(randomNumber)) {
-        lottoNumbers.push(randomNumber);
-      }
+      this.#saveUniqueLottoNumber(lottoNumbers, randomNumber);
     }
     return lottoNumbers;
+  }
+
+  #saveUniqueLottoNumber(lottoNumbers, randomNumber) {
+    if (!lottoNumbers.includes(randomNumber)) {
+      lottoNumbers.push(randomNumber);
+    }
   }
 
   generateLotto(price) {
