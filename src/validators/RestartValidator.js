@@ -13,4 +13,4 @@ const RestartValidator = {
   },
 };
 
-export { RestartValidator };
+export default RestartValidator;

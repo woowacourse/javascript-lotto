@@ -1,14 +1,10 @@
-import {
-  PURCHASE_PRICE,
-  RESTART,
-  SEPARATOR,
-} from './constants/CONFIGURATIONS.js';
+import { PURCHASE_PRICE, RESTART, SEPARATOR } from './constants/CONFIGURATIONS.js';
 import LottoMachine from './domains/LottoMachine.js';
 import WinningResult from './domains/WinningResult.js';
 import retryUntilValid from './utils/retryUntilValid.js';
 import { BonusNumberValidator } from './validators/BonusNumberValidator.js';
 import { PurchasePriceValidator } from './validators/PurchasePriceValidator.js';
-import { RestartValidator } from './validators/RestartValidator.js';
+import RestartValidator from './validators/RestartValidator.js';
 import { WinningNumbersValidator } from './validators/WinningNumbersValidator.js';
 import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
@@ -24,24 +20,29 @@ class App {
   }
 
   async #start() {
-    const [lottoPurchasePrice, lottoCount] = await retryUntilValid(
-      this.#getPurchasePrice,
-    );
+    const [lottoPurchasePrice, lottoMachine] = await this.#processLottoPurchase();
+    const winningResult = await this.#preProcess();
+
+    const winningCounts = winningResult.calculate(lottoMachine.lottos);
+    const profitRate = winningResult.calculateProfitRate(lottoPurchasePrice, winningCounts);
+    OutputView.printResult(winningCounts, profitRate);
+  }
+
+  async #processLottoPurchase() {
+    const [lottoPurchasePrice, lottoCount] = await retryUntilValid(this.#getPurchasePrice);
     const lottoMachine = new LottoMachine(lottoCount);
     OutputView.printPurchaseLottos(lottoMachine.lottos);
 
+    return [lottoPurchasePrice, lottoMachine];
+  }
+
+  async #preProcess() {
     const winningNumbers = await retryUntilValid(this.#getWinningNumbers);
     const bonusNumber = await retryUntilValid(() => {
       return this.#getBonusNumber(winningNumbers);
     });
-    const winningResult = new WinningResult(winningNumbers, bonusNumber);
 
-    const winningCounts = winningResult.calculate(lottoMachine.lottos);
-    const profitRate = winningResult.calculateProfitRate(
-      lottoPurchasePrice,
-      winningCounts,
-    );
-    OutputView.printResult(winningCounts, profitRate);
+    return new WinningResult(winningNumbers, bonusNumber);
   }
 
   async #getPurchasePrice() {

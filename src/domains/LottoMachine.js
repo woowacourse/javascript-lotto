@@ -23,12 +23,15 @@ class LottoMachine {
         LOTTO.MAX_NUMBER,
       );
 
-      if (!lotto.includes(randomNumber)) {
-        lotto.push(randomNumber);
-      }
+      this.#checkHasLotto(lotto, randomNumber);
     }
-
     return lotto;
+  }
+
+  #checkHasLotto(lotto, randomNumber) {
+    if (!lotto.includes(randomNumber)) {
+      lotto.push(randomNumber);
+    }
   }
 
   get lottos() {

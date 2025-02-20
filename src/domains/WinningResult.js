@@ -11,42 +11,18 @@ class WinningResult {
 
   calculate(lottos) {
     const counts = Array(5).fill(0);
-
-    for (const lotto of lottos) {
-      const sumSet = new Set([...lotto.numbers, ...this.#winningNumbers]);
-      const matchCount =
-        lotto.numbers.length + this.#winningNumbers.length - sumSet.size;
-
-      if (matchCount === 5 && !lotto.numbers.includes(this.#bonusNumber)) {
+    lottos.forEach((lotto) => {
+      const matchCount = this.#getMatchCount(lotto);
+      if (matchCount === 6) counts[4] += 1;
+      if (matchCount === 5 && lotto.numbers.includes(this.#bonusNumber))
+        counts[3] += 1;
+      if (matchCount === 5 && !lotto.numbers.includes(this.#bonusNumber))
         counts[2] += 1;
-        continue;
-      }
-
-      this.#checkMatchCount(matchCount, counts);
-    }
+      if (matchCount === 4) counts[1] += 1;
+      if (matchCount === 3) counts[0] += 1;
+    });
 
     return counts;
-  }
-
-  #checkMatchCount(matchCount, counts) {
-    if (matchCount === 3) {
-      counts[0] += 1;
-      return;
-    }
-
-    if (matchCount === 4) {
-      counts[1] += 1;
-      return;
-    }
-
-    if (matchCount === 5) {
-      counts[3] += 1;
-      return;
-    }
-
-    if (matchCount === 6) {
-      counts[4] += 1;
-    }
   }
 
   calculateProfitRate(lottoPurchasePrice, counts) {
@@ -55,6 +31,14 @@ class WinningResult {
       return acc + curr * PROFIT[i];
     }, 0);
     return ((totalReward - lottoPurchasePrice) / lottoPurchasePrice) * 100;
+  }
+
+  #getMatchCount(lotto) {
+    const sumSet = new Set([...lotto.numbers, ...this.#winningNumbers]);
+    const matchCount =
+      lotto.numbers.length + this.#winningNumbers.length - sumSet.size;
+
+    return matchCount;
   }
 }
 
