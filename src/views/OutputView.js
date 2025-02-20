@@ -1,5 +1,3 @@
-// @ts-check
-
 import { LOTTO_RANK, OUTPUT_MESSAGES } from '../lib/constants.js';
 import { calculateMatchCount } from '../lib/utils.js';
 
@@ -41,6 +39,10 @@ class OutputView {
 
   static printProfitRate(profitRate) {
     console.log(`총 수익률은 ${profitRate}%입니다.`);
+  }
+
+  static printErrorMessage(error) {
+    this.#print(error.message);
   }
 }
 

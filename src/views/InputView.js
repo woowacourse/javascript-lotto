@@ -4,44 +4,36 @@ import Validator from '../validator/Validator.js';
 
 class InputView {
   static async readPurchaseAmount() {
-    return retryUntilSuccess(async () => {
-      const rawPurchaseAmount = await readLineAsync(INPUT_MESSAGES.purchaseAmount());
+    const rawPurchaseAmount = await readLineAsync(INPUT_MESSAGES.purchaseAmount());
 
-      const purchaseAmount = Number(rawPurchaseAmount);
-      Validator.validatePurchaseAmount(purchaseAmount);
-      return purchaseAmount;
-    });
+    const purchaseAmount = Number(rawPurchaseAmount);
+    Validator.validatePurchaseAmount(purchaseAmount);
+    return purchaseAmount;
   }
 
   static async readWinNumbers() {
-    return retryUntilSuccess(async () => {
-      const rawWinNumber = await readLineAsync(INPUT_MESSAGES.winNumber());
-      const winNumbers = rawWinNumber.split(SEPERATOR).map(Number);
+    const rawWinNumber = await readLineAsync(INPUT_MESSAGES.winNumber());
+    const winNumbers = rawWinNumber.split(SEPERATOR).map(Number);
 
-      Validator.validateWinNumbers(winNumbers);
-      return winNumbers;
-    });
+    Validator.validateWinNumbers(winNumbers);
+    return winNumbers;
   }
 
   static async readBonusNumber(winNumbers) {
-    return retryUntilSuccess(async () => {
-      const rawBonusNumber = await readLineAsync(INPUT_MESSAGES.bonusNumber());
-      const bonusNumber = Number(rawBonusNumber);
+    const rawBonusNumber = await readLineAsync(INPUT_MESSAGES.bonusNumber());
+    const bonusNumber = Number(rawBonusNumber);
 
-      Validator.validateBonusNumber(bonusNumber, winNumbers);
+    Validator.validateBonusNumber(bonusNumber, winNumbers);
 
-      return bonusNumber;
-    });
+    return bonusNumber;
   }
 
   static async readRetry() {
-    return retryUntilSuccess(async () => {
-      const retryCommand = await readLineAsync(INPUT_MESSAGES.retry());
+    const retryCommand = await readLineAsync(INPUT_MESSAGES.retry());
 
-      Validator.validateRetry(retryCommand);
+    Validator.validateRetry(retryCommand);
 
-      return retryCommand === COMMAND.yes;
-    });
+    return retryCommand === COMMAND.yes;
   }
 }
 
