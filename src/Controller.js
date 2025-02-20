@@ -4,6 +4,7 @@ class Controller {
     await InputView.purchaseAmount();
     await InputView.winningNumbers();
     await InputView.bonusNumber();
+    await InputView.restart();
   }
 }
 export default Controller;
