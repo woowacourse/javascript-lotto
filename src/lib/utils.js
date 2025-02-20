@@ -23,18 +23,14 @@ export function readLineAsync(query) {
 }
 
 export function generateUniqueNumberArray(start, end, length) {
-  const array = [];
-  for (let i = 0; i < length; i++) {
+  return new Array(length).fill("").reduce((prev, cur) => {
     while (true) {
       const randomNumber = generateRandomNumber(start, end);
-      if (array.includes(randomNumber)) {
-        continue;
-      }
-      array.push(randomNumber);
-      break;
+      if (prev.includes(randomNumber)) continue;
+
+      return [...cur, randomNumber];
     }
-  }
-  return array;
+  }, []);
 }
 
 export function calculateProfitRate(profit, price) {

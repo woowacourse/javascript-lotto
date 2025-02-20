@@ -1,5 +1,6 @@
 import {
   LOTTO_LENGTH,
+  LOTTO_PRICE,
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
 } from "../lib/constants.js";

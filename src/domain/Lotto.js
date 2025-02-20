@@ -19,7 +19,7 @@ class Lotto {
       const info = LOTTO_RANK[rank];
 
       if (info.winNumber === winningLottoCount) {
-        if (!info.isBonusNumber) return true;
+        if (!info.isBonusNumberRequired) return true;
         else if (isBonusNumber) return true;
       }
       return false;

@@ -42,9 +42,9 @@ export const COMMAND = {
 };
 
 export const LOTTO_RANK = {
-  1: { winNumber: 6, isBonusNumber: false, prize: 2_000_000_000 },
-  2: { winNumber: 5, isBonusNumber: true, prize: 30_000_000 },
-  3: { winNumber: 5, isBonusNumber: false, prize: 1_500_000 },
-  4: { winNumber: 4, isBonusNumber: false, prize: 50_000 },
-  5: { winNumber: 3, isBonusNumber: false, prize: 5_000 },
+  1: { winNumber: 6, isBonusNumberRequired: false, prize: 2_000_000_000 },
+  2: { winNumber: 5, isBonusNumberRequired: true, prize: 30_000_000 },
+  3: { winNumber: 5, isBonusNumberRequired: false, prize: 1_500_000 },
+  4: { winNumber: 4, isBonusNumberRequired: false, prize: 50_000 },
+  5: { winNumber: 3, isBonusNumberRequired: false, prize: 5_000 },
 };

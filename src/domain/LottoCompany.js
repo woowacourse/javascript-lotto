@@ -6,6 +6,7 @@ import { getIntersectCount } from "../lib/utils.js";
 class LottoCompany {
   #winNumbers;
   #bonusNumber;
+
   constructor(winNumbers, bonusNumber) {
     this.#winNumbers = winNumbers;
     this.#bonusNumber = bonusNumber;
@@ -26,17 +27,15 @@ class LottoCompany {
 
   #getRank(winningLottoCount, isBonusNumber) {
     const rank = Object.keys(LOTTO_RANK).find((rank) => {
-      const info = LOTTO_RANK[rank];
+      const lottoRankInfo = LOTTO_RANK[rank];
 
-      if (info.winNumber === winningLottoCount) {
-        if (!info.isBonusNumber || isBonusNumber) return true;
-      }
-      return false;
+      return (
+        (lottoRankInfo.winNumber === winningLottoCount &&
+          !lottoRankInfo.isBonusNumberRequired) ||
+        isBonusNumber
+      );
     });
-    if (rank === undefined) {
-      return NO_WINNING;
-    }
-    return rank;
+    return rank ?? NO_WINNING;
   }
 
   static calculateTotalProfit(lottoRanks) {
