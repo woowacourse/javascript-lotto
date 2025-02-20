@@ -39,9 +39,13 @@ class LottoCalculator {
     const isMatchBonus = lotto.isMatch(this.#bonusNumber);
     const tableKey = `${matchCount}_${isMatchBonus}`;
 
-    const rank = matchToRankTable[tableKey];
-    this.#prize.set(rank, [...this.#prize.get(rank), lotto]);
+    if (matchCount >= 3) {
+      const rank = matchToRankTable[tableKey];
+      this.#prize.set(rank, [...this.#prize.get(rank), lotto]);
+    }
   }
+
+  calculateTotalPrice() {}
 
   get prize() {
     return this.#prize;
