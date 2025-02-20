@@ -1,4 +1,4 @@
-import createSixRandomNumber from "./createSixRandomNumber";
+import createSixRandomNumber from "./createSixRandomNumber.js";
 const LottoMachine = (count) => {
   const lottoNumberSet = [];
   for (let i = 1; i <= count; i++) {
