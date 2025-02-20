@@ -68,9 +68,7 @@ class App {
     outputView.printLottoCount(lottoCounts);
 
     lottoManager.makeLottoList(lottoCounts);
-    // console.log('lottoManager.getLottoList()', lottoManager.getLottoList());
-    // TODO: ${lottoCounts}개를 구매했습니다.
-    // TODO: lotto 구매한만큼(lottoList) 보여주기
+    outputView.printLottoList(lottoManager.getLottoList());
 
     const winningNumbers = await this.#initializeWinningNumbers();
     const bonusNumber = await this.#initializeBonusNumber(winningNumbers);

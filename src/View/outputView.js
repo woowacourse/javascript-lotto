@@ -3,7 +3,14 @@ export const outputView = {
   printLottoCount(lottoCounts) {
     console.log(`${lottoCounts}개를 구매했습니다.`);
   },
+  printLottoList(lottoList) {
+    lottoList.forEach((lotto) => {
+      console.log(`[${lotto.getNumbers().join(', ')}]`);
+    });
+    console.log('');
+  },
   printLottoResultInstruction() {
+    console.log('');
     console.log('당첨 통계');
     console.log('--------------------');
   },
