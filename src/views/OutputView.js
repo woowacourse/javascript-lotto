@@ -1,6 +1,7 @@
 //@ts-check
 
-import { LOTTO_RANK } from "../lib/constants.js";
+import { LOTTO_RANK, OUTPUT_MESSAGES } from "../lib/constants.js";
+import { calculateMatchCount } from "../lib/utils.js";
 
 class OutputView {
   static #print(message) {
@@ -16,14 +17,12 @@ class OutputView {
   }
 
   static printStatistics(lottoRanks) {
-    this.#print("당첨 통계");
-    this.#print("------------");
+    this.#print(OUTPUT_MESSAGES.statistics());
+    this.#print(OUTPUT_MESSAGES.divider());
 
     [...Object.keys(LOTTO_RANK)].reverse().forEach((rank) => {
       const bonusOutput = this.#getBonusOutput(LOTTO_RANK[rank].isBonusNumber);
-      const rankCount = lottoRanks.filter(
-        (lottoRank) => lottoRank === rank
-      ).length;
+      const rankCount = calculateMatchCount(lottoRanks, rank);
       this.#print(
         `${LOTTO_RANK[rank].winNumber}개 일치${bonusOutput} (${LOTTO_RANK[
           rank
@@ -31,6 +30,7 @@ class OutputView {
       );
     });
   }
+
   static #getBonusOutput(isBonusNumber) {
     if (isBonusNumber) {
       return ", 보너스 볼 일치";

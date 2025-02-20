@@ -26,6 +26,8 @@ export const INPUT_MESSAGES = {
 
 export const OUTPUT_MESSAGES = {
   purchaseCount: (count) => `${count}개를 구매했습니다.`,
+  statistics: () => "당첨 통계",
+  divider: () => "------------",
 };
 
 export const MIN_LOTTO_NUMBER = 1;

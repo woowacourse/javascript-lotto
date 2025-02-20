@@ -62,3 +62,7 @@ export async function retryUntilSuccess(callbackFunction) {
     return retryUntilSuccess(callbackFunction);
   }
 }
+
+export function calculateMatchCount(array, number) {
+  return array.filter((item) => item === number).length;
+}

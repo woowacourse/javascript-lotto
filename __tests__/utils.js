@@ -1,4 +1,6 @@
+import { NO_WINNING } from "../src/lib/constants.js";
 import {
+  calculateMatchCount,
   checkUniqueArray,
   generateUniqueNumberArray,
   getIntersectCount,
@@ -46,6 +48,13 @@ describe("utils", () => {
 
         expect(i).toBe(3);
       });
+    });
+  });
+  describe("calculateMatchCount를 테스트한다", () => {
+    test("배열에서 몇 개가 일치하는 지를 계산한다.", () => {
+      const matchCount = calculateMatchCount([1, 1, 2, 2, 3, NO_WINNING], 1);
+
+      expect(matchCount).toBe(2);
     });
   });
 });
