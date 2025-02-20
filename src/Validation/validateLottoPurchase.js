@@ -1,6 +1,6 @@
 import ERROR_MESSAGE from '../settings/ErrorMessage.js';
-import validateNumber from './validateNumber.js';
 import systemSettings from '../settings/systemSettings.js';
+import validateNumber from './validateNumber.js';
 
 export default function validateLottoPurchase(input) {
   const money = validateNumber(input);

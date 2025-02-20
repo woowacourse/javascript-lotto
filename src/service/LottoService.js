@@ -1,6 +1,6 @@
+import Lotto from '../model/Lotto.js';
 import systemSettings from '../settings/systemSettings.js';
 import { getUniqueRandomNumbers } from '../util/getUniqueRandomNumbers.js';
-import Lotto from '../model/Lotto.js';
 import { printLotto } from '../View/OutputView.js';
 
 export default function makeLotto(purchaseAmount) {

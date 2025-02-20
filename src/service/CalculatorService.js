@@ -1,5 +1,5 @@
-import countMatchedNumbers from '../util/countMatchedNumbers.js';
 import systemSettings from '../settings/systemSettings.js';
+import countMatchedNumbers from '../util/countMatchedNumbers.js';
 
 export function calculateWins(lottos, parsedLotto) {
   const { checkedLotto, checkedBonusNumber } = parsedLotto;

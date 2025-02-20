@@ -5,16 +5,16 @@ import {
   printRevenueRate,
 } from './View/OutputView.js';
 import {
-  calculateWins,
-  calculatePrize,
-  calculateRevenueRate,
-} from './service/CalculatorService.js';
-import {
   getPurchasePrice,
   getWinningNumber,
   getBonusNumber,
   getUserRetry,
 } from './service/ParsingService.js';
+import {
+  calculateWins,
+  calculatePrize,
+  calculateRevenueRate,
+} from './service/CalculatorService.js';
 import makeLotto from './service/LottoService.js';
 
 async function playGame() {

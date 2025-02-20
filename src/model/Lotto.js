@@ -1,7 +1,7 @@
 import ERROR_MESSAGE from '../settings/ErrorMessage.js';
+import systemSettings from '../settings/systemSettings.js';
 import validateNumberInRange from '../Validation/validateNumberInRange.js';
 import validateNumber from '../Validation/validateNumber.js';
-import systemSettings from '../settings/systemSettings.js';
 
 class Lotto {
   #numbers;

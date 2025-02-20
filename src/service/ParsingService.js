@@ -1,10 +1,10 @@
-import validateBonusNumber from '../Validation/validateBonusNumber.js';
-import readLineAsync from '../View/InputView.js';
-import validateLottoPurchase from '../Validation/validateLottoPurchase.js';
-import systemSettings from '../settings/systemSettings.js';
-import { printPurchasedAmount, printError } from '../View/OutputView.js';
-import validateUserRetry from '../Validation/validateUserRetry.js';
 import Lotto from '../model/Lotto.js';
+import systemSettings from '../settings/systemSettings.js';
+import readLineAsync from '../View/InputView.js';
+import { printPurchasedAmount, printError } from '../View/OutputView.js';
+import validateBonusNumber from '../Validation/validateBonusNumber.js';
+import validateLottoPurchase from '../Validation/validateLottoPurchase.js';
+import validateUserRetry from '../Validation/validateUserRetry.js';
 
 async function getPurchasePrice() {
   try {
