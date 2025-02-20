@@ -15,6 +15,7 @@ class Controller {
     OutputView.purchaseCount(count);
     const lottoNumberSet = LottoMachine(count);
     const lottoPack = new LottoPack(lottoNumberSet);
+    OutputView.lottoPack(lottoPack);
 
     const winningNumbers = await this.retryCheckInput(
       async () => await InputView.winningNumbers(),
