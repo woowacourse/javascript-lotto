@@ -1,21 +1,16 @@
-import { validateEmptySpace } from './Validation/inputView.js';
-
 export const readUserInputUntilSuccess = async ({
   readUserInput,
-  validation,
   formatter,
 }) => {
   try {
     const input = await readUserInput();
-    validateEmptySpace(input);
-
-    const formattedInput = formatter(input);
-    validation(formattedInput);
-
-    return formattedInput;
+    return formatter(input);
   } catch (error) {
     console.error(error.message);
-    return readUserInputUntilSuccess({ readUserInput, validation, formatter });
+    return readUserInputUntilSuccess({
+      readUserInput,
+      formatter,
+    });
   }
 };
 

@@ -8,7 +8,7 @@ export const COMMON_ERROR_MESSAGE = {
 
 export const LOTTO_PURCHASE_AMOUNT = {
   INVALID_PURCHASE_UNIT: `${ERROR_PREFIX} 로또 구입 금액은 1000원 단위의 정수여야 합니다.${NEW_LINE}`,
-  INVALID_MAX_PURCHASE: `${ERROR_PREFIX} 로또 구입 금액은 1회 10만원 이하만 가능합니다.${NEW_LINE}`,
+  INVALID_PURCHASE_RANGE: `${ERROR_PREFIX} 로또 구입 금액은 1회 1000원 이상 10만원 이하만 가능합니다.${NEW_LINE}`,
 };
 
 export const LOTTO_WINNING_NUMBERS = {

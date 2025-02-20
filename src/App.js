@@ -5,25 +5,37 @@ import {
   getRetryInput,
 } from './View/inputView.js';
 import { readUserInputUntilSuccess, convertFormat } from './View/utils.js';
-import { validatePurchaseAmount } from './View/Validation/inputView.js';
+import {
+  validateEmptySpace,
+  validatePurchaseAmount,
+  validateWinningNumbers,
+} from './View/Validation/inputView.js';
 class App {
   async #initialize() {
     const purchaseAmountInput = await readUserInputUntilSuccess({
       readUserInput: getPurchaseAmountInput,
-      validation: validatePurchaseAmount,
-      formatter: convertFormat.toNumber,
+      formatter: (input) => {
+        validateEmptySpace(input);
+        const convertedInput = convertFormat.toNumber(input);
+        validatePurchaseAmount(convertedInput);
+        return convertedInput;
+      },
     });
 
     const winningNumbersInput = await readUserInputUntilSuccess({
       readUserInput: getWinningNumbersInput,
-      validation: (input) => input,
-      formatter: convertFormat.splitByComma,
+      formatter: (input) => {
+        validateEmptySpace(input);
+      },
     });
 
     const bonusNumberInput = await readUserInputUntilSuccess({
       readUserInput: getBonusNumberInput,
-      validation: (input) => input,
-      formatter: convertFormat.toNumber,
+      formatter: (input) => {
+        validateEmptySpace(input);
+        const convertedInput = convertFormat.toNumber(input);
+        return convertedInput;
+      },
     });
 
     return {
