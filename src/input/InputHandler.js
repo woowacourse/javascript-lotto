@@ -8,7 +8,6 @@ import { validateYorN } from '../validations/validate/ReStartValidate.js';
 
 const InputHandler = {
   async purchaseMoney() {
-    while (true) {
       try {
         const purchaseMoney = await InputView.readUserInput(INPUT_MESSAGE.PURCHASE);
         validatePurchaseMoney(Number(purchaseMoney));
@@ -16,24 +15,22 @@ const InputHandler = {
         return purchaseMoney;
       } catch (e) {
         OutputView.print(e.message);
+        return await this.purchaseMoney()
       }
-    }
   },
 
   async winningNumbers() {
-    while (true) {
       try {
         const winningNumbers = await InputView.readUserInput(INPUT_MESSAGE.WINNING_NUMBERS);
         OutputView.print(LINE_BREAK);
         return new Lotto(winningNumbers.split(LOTTO_NUMBER_DELIMITER).map(num => Number(num)));
       } catch (e) {
         OutputView.print(e.message);
+        return await this.winningNumbers()
       }
-    }
   },
 
   async bonusNumber(winningNumbers) {
-    while (true) {
       try {
         const bonusNumber = Number(await InputView.readUserInput(INPUT_MESSAGE.BONUS_NUMBER));
         validateBonusNumber(winningNumbers, bonusNumber);
@@ -41,12 +38,11 @@ const InputHandler = {
         return bonusNumber
       } catch (e) {
         OutputView.print(e.message);
+        return await this.bonusNumber(winningNumbers)
       }
-    }
   },
 
   async reStart() {
-    while (true) {
       try {
         const input = await InputView.readUserInput(INPUT_MESSAGE.RE_START);
         validateYorN(input);
@@ -54,8 +50,8 @@ const InputHandler = {
         return input
       } catch (e) {
         OutputView.print(e.message);
+        return await this.reStart()
       }
-    }
   },
 };
 
