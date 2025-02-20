@@ -14,6 +14,7 @@ const ERROR_MESSAGE = Object.freeze({
   notANote:
     '[ERROR] 금액은 1,000원 단위로 입력하셔야 합니다. 다시 입력해주세요.',
   notEnoughMoney: '[ERROR] 최소 금액은 1,000원 입니다. 다시 입력해주세요.',
+  invalidCommand: '[ERROR] 유효하지 않은 입력입니다. y/n으로 입력해주세요.',
 });
 
 export default ERROR_MESSAGE;
