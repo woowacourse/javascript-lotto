@@ -4,7 +4,7 @@ import { getRandomNumber } from '../utils/getRandomNumber.js';
 export const getRandomLottos = (quantity) => {
   const lottos = [];
   Array.from({ length: quantity }, () => {
-    const lotto = retryIfDuplicatedRandomNumbers();
+    const lotto = getUnduplicatedRandomLottos();
 
     lottos.push(lotto);
   });
@@ -12,13 +12,13 @@ export const getRandomLottos = (quantity) => {
   return lottos;
 };
 
-export const retryIfDuplicatedRandomNumbers = () => {
-  const setRandomNumbers = new Set();
+const getUnduplicatedRandomLottos = () => {
+  const randomNumberSet = new Set();
 
-  while (setRandomNumbers.size !== LOTTO.MAX_LENGTH) {
-    setRandomNumbers.clear();
-    Array.from({ length: LOTTO.MAX_LENGTH }, () => setRandomNumbers.add(getRandomNumber()));
+  while (randomNumberSet.size !== LOTTO.MAX_LENGTH) {
+    randomNumberSet.clear();
+    Array.from({ length: LOTTO.MAX_LENGTH }, () => randomNumberSet.add(getRandomNumber()));
   }
 
-  return [...setRandomNumbers].sort((a, b) => a - b);
+  return [...randomNumberSet].sort((a, b) => a - b);
 };
