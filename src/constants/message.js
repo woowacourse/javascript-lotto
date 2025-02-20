@@ -7,7 +7,7 @@ export const INPUT = Object.freeze({
 
 export const OUTPUT = Object.freeze({
   BUY_COUNT: "개를 구매했습니다.",
-  WINNING_HISTORY: "당첨통계",
+  WINNING_HISTORY: `\n당첨통계`,
   LINE: "--------------------",
 });
 

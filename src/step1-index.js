@@ -44,6 +44,9 @@ const run = async () => {
     return Number(input);
   });
 
+  Output.print(OUTPUT.WINNING_HISTORY);
+  Output.print(OUTPUT.LINE);
+
   const lottoMachine = new LottoMachine(lottos);
 
   const lottoStatus = lottoMachine.getMatchedLottoStatus(
