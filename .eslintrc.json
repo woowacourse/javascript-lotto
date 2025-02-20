@@ -1,11 +1,42 @@
 {
-  "rules": {},
+  "rules": {
+    // "max-lines-per-function": ["error", 15],
+    "max-depth": ["error", 1],
+    "max-classes-per-file" : ["error",3],
+    // "prettier/prettier": ["error"],
+    // "lines-between-class-members": [
+    //   "error",
+    //   "always",
+    //   { "exceptAfterSingleLine": true }
+    // ],
+    // "no-console": "off",
+    // "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "import/extensions": "off",
+    // "class-methods-use-this": "off",
+    // "no-await-in-loop": "off"
+    "eslint-plugin-import/prefer-default-export" : "off"
+  },
   "env": {
     "es6": true,
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["__tests__/**"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "max-depth": "off",
+        "prettier/prettier": "off"
+      }
+    }
+  ]
 }
