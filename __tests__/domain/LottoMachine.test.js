@@ -29,3 +29,11 @@ test("무작위로 생성된 숫자는 오름차순으로 정렬되어야 한다
 
   expect([...randomNumbers].sort((a, b) => a - b)).toStrictEqual(randomNumbers);
 });
+
+test("생성된 숫자로 로또를 생성한다", () => {
+  const lottoMachine = new LottoMachine();
+
+  const randomNumbers = lottoMachine.drawRandomNumbers(1, 45, 6);
+
+  expect([...randomNumbers].sort((a, b) => a - b)).toStrictEqual(randomNumbers);
+});
