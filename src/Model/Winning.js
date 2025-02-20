@@ -20,17 +20,21 @@ class Winning {
     });
   }
 
+  updateSecondOrThirdPlace(boughtLotto) {
+    if (boughtLotto.includes(this.bonusNumber)) {
+      this.rankHistory.second += 1;
+      return;
+    }
+    this.rankHistory.third += 1;
+  }
+
   calculateRankHistory(boughtLotto) {
     const matchCount = this.winningNumbers.filter((winningNumber) => boughtLotto.includes(winningNumber)).length;
-
     if (matchCount === LOTTO_NUMBER_LENGTH) {
       this.rankHistory.first += 1;
     }
     if (matchCount === 5) {
-      if (boughtLotto.includes(this.bonusNumber)) {
-        this.rankHistory.second += 1;
-      }
-      this.rankHistory.third += 1;
+      this.updateSecondOrThirdPlace(boughtLotto);
     }
     if (matchCount === 4) {
       this.rankHistory.fourth += 1;
