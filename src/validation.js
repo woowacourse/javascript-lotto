@@ -26,4 +26,10 @@ function validateLottoNumber(numbers) {
   }
 }
 
-export { validateMoney, validateLottoNumber };
+function validateBonus(bonus) {
+  if (!lottoNumberCondition(bonus)) {
+    throw new Error('[ERROR] 보너스 번호의 숫자 범위 1 ~ 45이다.');
+  }
+}
+
+export { validateMoney, validateLottoNumber, validateBonus };
