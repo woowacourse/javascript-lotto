@@ -20,6 +20,10 @@ function validateLottoNumber(numbers) {
   if (!numbers.every(lottoNumberCondition)) {
     throw new Error('[ERROR] 로또 번호의 숫자 범위 1 ~ 45이다.');
   }
+
+  if (new Set(numbers).size !== 6) {
+    throw new Error('[ERROR] 로또 번호의 숫자는 중복될 수 없다.');
+  }
 }
 
 export { validateMoney, validateLottoNumber };
