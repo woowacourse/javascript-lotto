@@ -23,7 +23,7 @@ const Validator = {
 
       if (winningNumber < 1 || winningNumber > 45)
         throw new Error(
-          "[ERROR] 당첨번호는 1 ~ 45 사이의 숫자로 입력해야 합니다.",
+          "[ERROR] 당첨번호는 1 ~ 45 사이의 숫자로 입력해야 합니다."
         );
     });
     if (new Set(winningNumbers).size !== winningNumbers.length) {
@@ -43,12 +43,17 @@ const Validator = {
 
     if (bonusNumber < 1 || bonusNumber > 45)
       throw new Error(
-        "[ERROR] 보너스번호는 1 ~ 45 사이의 숫자로 입력해야 합니다.",
+        "[ERROR] 보너스번호는 1 ~ 45 사이의 숫자로 입력해야 합니다."
       );
     if (winningNumbers.includes(bonusNumber))
       throw new Error(
-        "[ERROR] 보너스번호는 당첨번호와 중복없이 입력해야 합니다.",
+        "[ERROR] 보너스번호는 당첨번호와 중복없이 입력해야 합니다."
       );
+  },
+
+  validateRestartRequest(input) {
+    if (!(input === "y" || input === "n"))
+      throw new Error("[ERROR] 재시작 여부는 y or n으로 입력해야 합니다.");
   },
 };
 

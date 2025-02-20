@@ -32,6 +32,13 @@ class App {
     });
   }
 
+  async getRestartRequest() {
+    return InputHandler({
+      inputMessage: "> 다시 시작하시겠습니까? (y/n)",
+      validator: Validator.validateRestartRequest,
+    });
+  }
+
   async run() {
     const outputView = new OutputView();
     const money = await this.getPurchaseMoney();
@@ -55,6 +62,8 @@ class App {
     const profit = this.#lottoCalculator.calculateProfit(money);
 
     this.printResult(profit);
+
+    await this.getRestartRequest();
   }
 
   printResult(profit) {
