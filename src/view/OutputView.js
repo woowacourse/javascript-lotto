@@ -9,8 +9,11 @@ const OutputView = {
     console.log(`${key} (${(value.price).toLocaleString()}원) - ${value.count}개`);
   },
   printRankResultHeadLine() {
-    console.log('당첨 통계');
+    console.log('\n당첨 통계');
     console.log('--------------------');
+  },
+  printRevenueRate(revenueRate) {
+    console.log(`총 수익률은 ${revenueRate}%입니다.`);
   },
 };
 
