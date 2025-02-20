@@ -13,6 +13,10 @@ function lottoNumberCondition(number) {
 }
 
 function validateLottoNumber(numbers) {
+  if (numbers.length !== 6) {
+    throw new Error('[ERROR] 로또 번호는 6자리여야 한다.');
+  }
+
   if (!numbers.every(lottoNumberCondition)) {
     throw new Error('[ERROR] 로또 번호의 숫자 범위 1 ~ 45이다.');
   }

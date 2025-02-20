@@ -2,7 +2,7 @@ import Machine from '../Machine.js';
 import LottoStatistics from '../LottoStatistics.js';
 
 import readLineAsync from '../view/InputView.js';
-import { validationMoney, validLottoNumber } from '../validation.js';
+import { validateMoney, validateLottoNumber } from '../validation.js';
 
 class Controller {
   #machine;
@@ -30,14 +30,14 @@ class Controller {
   async readMoney() {
     const input = await readLineAsync('> 구입금액을 입력해 주세요.');
     const money = parseInt(input, 10);
-    validationMoney(money);
+    validateMoney(money);
     return money;
   }
 
   async readWinningLotto() {
     const input = await readLineAsync('> 당첨 번호를 입력해 주세요.');
     const winningLotto = input?.split(',').map((item) => parseInt(item, 10));
-    validLottoNumber(winningLotto);
+    validateLottoNumber(winningLotto);
     return winningLotto;
   }
 
