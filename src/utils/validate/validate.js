@@ -1,6 +1,7 @@
 import {
   LOTTO_MAX_RANGE,
   LOTTO_MIN_RANGE,
+  MAX_LOTTO_LENGTH,
   MAXIMUM_PURCHASE_THRESHOLD,
   PURCHASE_UNIT,
 } from "../../config/const.js";
@@ -66,7 +67,7 @@ const validateRestartInput = (input) => {
 };
 
 const validateWinningNumbersLength = (winningNumber) => {
-  if (winningNumber.length !== 6) {
+  if (winningNumber.length !== MAX_LOTTO_LENGTH) {
     throw new Error("당첨 번호는 6개여야 합니다.");
   }
 };

@@ -7,3 +7,6 @@ export const SECOND_PRIZE = 30000000;
 export const THIRD_PRIZE = 1500000;
 export const FOURTH_PRIZE = 50000;
 export const FIFTH_PRIZE = 5000;
+export const MIN_MATCH_COUNT = 3;
+export const BONUS_NUMBER_THRESHOLD = 5;
+export const MAX_LOTTO_LENGTH = 6;

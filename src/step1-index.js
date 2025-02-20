@@ -5,11 +5,7 @@
 
 import UserLottos from "../src/domain/UserLottos.js";
 import LottoComparer from "../src/domain/LottoComparer.js";
-import {
-  printUserLottos,
-  printWinningResult,
-  printROI,
-} from "../src/view/output.js";
+import { printUserLottos, printResult } from "../src/view/output.js";
 import {
   inputAskForRestart,
   inputPrice,
@@ -23,15 +19,12 @@ async function run() {
   printUserLottos(userLottos);
 
   const winningLotto = await inputWinningLotto();
-
   const lottoComparer = new LottoComparer(userLottos.lottos, winningLotto);
-
   const countResults = lottoComparer.countMatchingNumbers();
   const lottoPrize = new LottoPrize(countResults);
   lottoPrize.calculateWinnings();
 
-  printWinningResult(lottoPrize.prizeResult);
-  printROI(lottoPrize.calculateROI(price));
+  printResult(lottoPrize.prizeResult, lottoPrize.calculateROI(price));
 
   const isRestart = await inputAskForRestart();
   if (isRestart === "y") return await run();
