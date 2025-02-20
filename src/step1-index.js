@@ -5,6 +5,7 @@ import {
   printLotto,
   printPrizeHeader,
   printPrize,
+  printRevenueRate,
 } from './View/OutputView.js';
 import checkLottoPurchase from './util/checkLottoPurchase.js';
 import Lotto from './model/Lotto.js';
@@ -40,10 +41,10 @@ const winCount = calculateWins(lottos, parsedLotto);
 
 const total = calculatePrize(winCount, systemSettings.prizeMoney);
 
-const result = (total / Number(purchasePrice)) * 100;
+const revenueRate = (total / Number(purchasePrice)) * 100;
 
 printPrizeHeader();
 
 printPrize(systemSettings);
 
-console.log(`${result.toFixed(1)}%`);
+printRevenueRate(revenueRate);

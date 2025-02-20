@@ -37,3 +37,7 @@ export function printPrize(systemSettings) {
 6개 일치 (${prizeMoney.SIX_MATCH.toLocaleString()}원) - ${winCount.SIX_MATCH}개
   `);
 }
+
+export function printRevenueRate(revenueRate) {
+  console.log(`총 수익률은 ${revenueRate.toFixed(1)}%입니다.`);
+}
