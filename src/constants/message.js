@@ -17,4 +17,5 @@ export const ERROR = Object.freeze({
   EMPTY: "빈 값은 입력할 수 없습니다.",
   NOT_NUMBER: "숫자가 아닌 값은 입력할 수 없습니다.",
   INVALID_RANGE: "범위를 벗어난 입력은 할 수 없습니다.",
+  INCLUDE: "보너스 번호는 로또 번호와 중복될 수 없습니다.",
 });
