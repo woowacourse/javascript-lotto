@@ -11,6 +11,13 @@ class WinningLotto extends Lotto {
   getBonusNumber() {
     return this.#bonusNumber;
   }
+
+  countMatchingNumbers(lotto) {
+    const matchingNumbers = this.getNumbers().filter((number) =>
+      lotto.getNumbers().includes(number)
+    ).length;
+    return matchingNumbers;
+  }
 }
 
 export default WinningLotto;
