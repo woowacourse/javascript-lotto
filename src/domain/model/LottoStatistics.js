@@ -27,10 +27,10 @@ class LottoStatistics {
 
   determineRank(sameCount, isBonusNumber) {
     if (sameCount === 5 && isBonusNumber) {
-      return this.increaseCount(sameCount, `${sameCount}개 일치, 보너스 볼 일치`);
+      return this.increaseCount(sameCount, CONFIG.RANK_OBJECT_KEY.BONUS(sameCount));
     }
 
-    return this.increaseCount(sameCount, `${sameCount}개 일치`);
+    return this.increaseCount(sameCount, CONFIG.RANK_OBJECT_KEY(sameCount));
   }
 
   hasBonusNumber(machineLotto, bonus) {

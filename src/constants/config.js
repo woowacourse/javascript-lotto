@@ -9,6 +9,10 @@ const CONFIG = Object.freeze({
   }),
   LOTTO_PRICE: 1000,
   INITIAL_NUMBER: 0,
+  RANK_OBJECT_KEY: Object.freeze({
+    BONUS: (sameCount) => `${sameCount}개 일치, 보너스 볼 일치`,
+    NORMAL: (sameCount) => `${sameCount}개 일치`,
+  }),
 });
 
 export default CONFIG;
