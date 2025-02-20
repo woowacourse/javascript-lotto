@@ -39,5 +39,6 @@ export const outputView = {
     console.log(
       `총 수익률은 ${Number(profit.toFixed(1)).toLocaleString()}%입니다.`
     );
+    console.log('');
   },
 };

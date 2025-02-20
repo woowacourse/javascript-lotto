@@ -59,6 +59,18 @@ class App {
     return bonusNumberInput;
   }
 
+  async #initializeRetry() {
+    const retryInput = await readUserInputUntilSuccess({
+      readUserInput: getRetryInput,
+      formatter: (input) => {
+        validateEmptySpace(input);
+        validateYorN(input);
+        return input;
+      },
+    });
+    return retryInput;
+  }
+
   async run() {
     const purchaseAmount = await this.#initializePurchaseAmount();
 
@@ -84,10 +96,15 @@ class App {
     outputView.printLottoResultInstruction();
     outputView.printLottoResult(lottoResult);
     outputView.printProfit(lottoProfit);
+
+    await this.retryRun();
   }
 
   async retryRun() {
-    const retry = await getRetryInput();
+    const retry = await this.#initializeRetry();
+    if (retry === 'y') {
+      await this.run();
+    }
   }
 }
 export default App;

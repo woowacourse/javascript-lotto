@@ -126,12 +126,11 @@ export const validateBonusNumber = (input, winningNumbersInput) => {
   validateWinningNumberHasBonusNumber(input, winningNumbersInput);
 };
 
-//입력된 값이 y or n 인지 확인 아니라면 에러 출력
-export const isNotYorN = (input) => {
-  return input !== 'y' || input !== 'n';
+export const isYorN = (input) => {
+  return input === 'y' || input === 'n';
 };
 export const validateYorN = (input) => {
-  if (isNotYorN(input)) {
+  if (isYorN(input) === false) {
     throw new Error(RETRY_MESSAGE);
   }
 };
