@@ -22,7 +22,7 @@ async function getPurchasePrice() {
     return { purchasePrice, purchaseAmount };
   } catch (error) {
     printError(error.message);
-    await getPurchasePrice();
+    return await getPurchasePrice();
   }
 }
 const { purchasePrice, purchaseAmount } = await getPurchasePrice();
@@ -36,12 +36,22 @@ for (let i = 0; i < purchaseAmount; i++) {
   printLotto(lotto);
   lottos.push(lotto);
 }
+async function getWinningNumber() {
+  try {
+    const winningNumber = await readLineAsync(systemSettings.getWinningNumber);
+    const userLotto = new Lotto(
+      winningNumber.split(',').map((number) => Number(number)),
+    );
+    return userLotto;
+  } catch (error) {
+    printError(error.message);
+    return await getWinningNumber();
+  }
+}
 
-const winningNumber = await readLineAsync(systemSettings.getWinningNumber);
+const userLotto = await getWinningNumber();
+console.log(userLotto.numbers);
 
-const userLotto = new Lotto(
-  winningNumber.split(',').map((number) => Number(number)),
-);
 const bonusNumber = await readLineAsync(systemSettings.getBonusNumber);
 
 const parsedLotto = checkBonusNumber(userLotto, Number(bonusNumber));
