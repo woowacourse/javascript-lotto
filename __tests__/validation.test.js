@@ -14,4 +14,12 @@ describe('로또 구입 금액',() => {
         validationMoney(money);
     }).toThrow();
   });
+
+  test.each([
+    [0], [-1000] 
+  ])('로또 구입 금액은 0원 이하일 경우 에러를 발생한다..',(money) => {
+    expect(() => {
+        validationMoney(money);
+    }).toThrow();
+  });
 })
