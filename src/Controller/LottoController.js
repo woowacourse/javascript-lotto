@@ -20,6 +20,7 @@ class LottoController {
     OutputView.printWinningHistory(winning.rankHistory);
 
     const prizeRate = winning.getCalculatedPrizeRate(price);
+    OutputView.printPrizeRate(prizeRate);
   }
 
   async #readPrice() {

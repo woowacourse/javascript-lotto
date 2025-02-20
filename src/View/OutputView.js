@@ -18,10 +18,15 @@ function printWinningHistory(rankHistory) {
   console.log(`6개 일치 (2,000,000,000원) - ${rankHistory.first}개`);
 }
 
+function printPrizeRate(rate) {
+  console.log(`총 수익률은 ${rate}%입니다.`);
+}
+
 const OutputView = {
   printErrorMessage,
   printLottos,
   printWinningHistory,
+  printPrizeRate,
 };
 
 export default OutputView;
