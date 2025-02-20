@@ -1,7 +1,6 @@
 import checkRank from "../domain/checkRank.js";
-import { generateLottoNumbers } from "../domain/generateLottoNumbers.js";
+import { generateLottos } from "../domain/generateLottos.js";
 import updateMatchResult from "../domain/updateMatchResult.js";
-import Lotto from "../models/Lotto.js";
 import { getBonusNumber, getWinningNumbers } from "../view/input.js";
 import {
   printLottoCount,
@@ -11,16 +10,9 @@ import {
 } from "../view/output.js";
 
 const lottoController = async (price) => {
-  const count = price / 1000;
-  printLottoCount(count);
-
-  const lottos = [];
-
-  for (let i = 0; i < count; i++) {
-    const numbers = generateLottoNumbers();
-    lottos.push(new Lotto(numbers));
-    printLottoNumbers(numbers);
-  }
+  const lottos = generateLottos(price);
+  printLottoCount(lottos.length);
+  lottos.forEach((lotto) => printLottoNumbers(lotto.numbers));
 
   const winningNumbers = await getWinningNumbers();
   const bonusNumber = await getBonusNumber(winningNumbers);
