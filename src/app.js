@@ -1,4 +1,5 @@
-import LottoCalculator, { rankInfoTable } from "./domain/lottoCalculator.js";
+import { RANK_INFO_TABLE } from "./constant/rank.js";
+import LottoCalculator from "./domain/lottoCalculator.js";
 import LottoMachine from "./domain/lottoMachine.js";
 import InputView from "./view/InputView.js";
 import OutputView from "./view/outputView.js";
@@ -38,7 +39,7 @@ class App {
     console.log("당첨 통계");
     console.log("--------------------");
     this.#lottoCalculator.prize.forEach((rankLottos, rank) => {
-      const info = rankInfoTable[rank];
+      const info = RANK_INFO_TABLE[rank];
       console.log(
         `${info.message} (${info.price.toLocaleString()}원) - ${
           rankLottos.length
