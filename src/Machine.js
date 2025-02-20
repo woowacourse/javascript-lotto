@@ -1,6 +1,6 @@
-import CONFIG from './constants/config';
-import Lotto from './Lotto';
-import pickNumberInList from './utils/pickNumberInList';
+import CONFIG from './constants/config.js';
+import Lotto from './Lotto.js';
+import pickNumberInList from './utils/pickNumberInList.js';
 
 class Machine {
   #lottos;
