@@ -10,14 +10,14 @@ class Lotto {
     return lottoNumbers.sort((a, b) => a - b);
   }
 
-  compareWinningNumbers(answerTable) {
+  compareWinningNumbers(answerLotto) {
     let winningCount = 0;
     let bonusCount = 0;
     this.#lottoNumbers.forEach((number) => {
-      if (answerTable[number] === WINNING) {
+      if (answerLotto[number] === WINNING) {
         winningCount += 1;
       }
-      if (answerTable[number] === BONUS) {
+      if (answerLotto[number] === BONUS) {
         bonusCount += 1;
       }
     });

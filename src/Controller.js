@@ -1,12 +1,10 @@
 import Console from "./utils/Console.js";
 import Validation from "./utils/validation/Validation.js";
 import InputView from "./view/InputView.js";
-import purchaseLottoCount from "./domain/purchaseLottoCount.js";
-import LottoPack from "./domain/LottoPack.js";
 import LottoMachine from "./domain/LottoMachine.js";
 import OutputView from "./view/OutputView.js";
-import AnswerLottoPack from "./domain/AnswerLottoPack.js";
 import profitCalculator from "./domain/profitCalculator.js";
+import generateAnswerLotto from "./domain/AnswerLottoPack.js";
 class Controller {
   async start() {
     const purchaseAmount = await this.retryCheckInput(
@@ -26,9 +24,9 @@ class Controller {
       async () => await InputView.bonusNumber(),
       Validation.bonusNumber(winningNumbers),
     );
-    const answerLottoPack = new AnswerLottoPack(winningNumbers, bonusNumber);
+    const answerLotto = generateAnswerLotto(winningNumbers, bonusNumber);
 
-    lottoPack.playCompare(answerLottoPack.answerTable);
+    lottoPack.playCompare(answerLotto);
 
     const winningResult = lottoPack.checkCountResult;
     OutputView.winningStatistics(winningResult);

@@ -1,24 +1,13 @@
 import { BONUS, WINNING } from "../constants/constant.js";
 
-class AnswerLottoPack {
-  #answerTable = {};
+const generateAnswerLotto = (winningNumbers, bonusNumber) => {
+  const answerLotto = {};
 
-  constructor(winningNumbers, bonusNumber) {
-    this.winningNumbers = winningNumbers;
-    this.bonusNumber = bonusNumber;
+  winningNumbers.forEach((number) => {
+    answerLotto[number] = WINNING;
+  });
+  answerLotto[bonusNumber] = BONUS;
+  return answerLotto;
+};
 
-    this.#generateAnswerTable(this.winningNumbers, this.bonusNumber);
-  }
-
-  #generateAnswerTable(winningNumbers, bonusNumber) {
-    winningNumbers.forEach((number) => {
-      this.#answerTable[number] = WINNING;
-    });
-    this.#answerTable[bonusNumber] = BONUS;
-  }
-
-  get answerTable() {
-    return this.#answerTable;
-  }
-}
-export default AnswerLottoPack;
+export default generateAnswerLotto;

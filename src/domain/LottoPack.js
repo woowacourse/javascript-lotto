@@ -12,9 +12,9 @@ class LottoPack {
     });
   }
 
-  playCompare(answerTable) {
+  playCompare(answerLotto) {
     this.#lottos.forEach((lotto) => {
-      const { winningCount, bonusCount } = lotto.compareWinningNumbers(answerTable);
+      const { winningCount, bonusCount } = lotto.compareWinningNumbers(answerLotto);
       this.#saveCheckCount(winningCount, bonusCount);
     });
   }
