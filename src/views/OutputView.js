@@ -1,20 +1,20 @@
-import { SEPARATOR } from "../constants/CONFIGURATIONS.js";
-import { RESULT_MESSAGE } from "../constants/MESSAGES.js";
+import { SEPARATOR } from '../constants/CONFIGURATIONS.js';
+import { RESULT_MESSAGE } from '../constants/MESSAGES.js';
 
 const OutputView = {
-  print: function (message) {
+  print(message) {
     console.log(message);
   },
 
-  printPurchaseLottos: function (purchaseLottos) {
+  printPurchaseLottos(purchaseLottos) {
     this.print(`${purchaseLottos.length}개를 구입했습니다.`);
     purchaseLottos.forEach((purchaseLotto) => {
       this.print(`[${purchaseLotto.numbers.join(`${SEPARATOR} `)}]`);
     });
-    this.print("");
+    this.print('');
   },
 
-  printResult: function (counts, profitRate) {
+  printResult(counts, profitRate) {
     this.print(RESULT_MESSAGE.WINNING);
     this.print(RESULT_MESSAGE.DIVIDER);
     this.print(RESULT_MESSAGE.MATCH_3(counts[0]));

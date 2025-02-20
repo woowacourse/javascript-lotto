@@ -1,9 +1,9 @@
-const SEPARATOR = ",";
+const SEPARATOR = ',';
 
 const KEY = Object.freeze({
-  PURCHASE_PRICE: "구입 금액",
-  WINNING_NUMBERS: "당첨 번호",
-  BONUS_NUMBER: "보너스 번호",
+  PURCHASE_PRICE: '구입 금액',
+  WINNING_NUMBERS: '당첨 번호',
+  BONUS_NUMBER: '보너스 번호',
 });
 
 const PURCHASE_PRICE = Object.freeze({
@@ -19,16 +19,10 @@ const LOTTO = Object.freeze({
 });
 
 const RESTART = Object.freeze({
-  YES: "y",
-  NO: "n",
+  YES: 'y',
+  NO: 'n',
 });
 
-const PROFIT = Object.freeze({
-  FIRST: 2000000000,
-  SECOND: 30000000,
-  THIRD: 1500000,
-  FOURTH: 50000,
-  FIFTH: 5000,
-});
+const PROFIT = Object.freeze([5000, 50000, 1500000, 30000000, 2000000000]);
 
 export { SEPARATOR, KEY, PURCHASE_PRICE, LOTTO, RESTART, PROFIT };

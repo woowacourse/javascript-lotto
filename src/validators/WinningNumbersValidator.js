@@ -1,13 +1,5 @@
-import { KEY, LOTTO } from "../constants/CONFIGURATIONS.js";
-import { validateType, validateRange, validateCount } from "./validate.js";
-
-const WinningNumbersValidator = {
-  validate: (winningNumbers) => {
-    validateTypeAll(winningNumbers);
-    validateCount(KEY.WINNING_NUMBERS, winningNumbers);
-    validateRangeAll(winningNumbers);
-  },
-};
+import { KEY, LOTTO } from '../constants/CONFIGURATIONS.js';
+import { validateType, validateRange, validateCount } from './validate.js';
 
 const validateTypeAll = (winningNumbers) => {
   winningNumbers.forEach((number) => {
@@ -24,6 +16,14 @@ const validateRangeAll = (winningNumbers) => {
       max: LOTTO.MAX_NUMBER,
     });
   });
+};
+
+const WinningNumbersValidator = {
+  validate: (winningNumbers) => {
+    validateTypeAll(winningNumbers);
+    validateCount(KEY.WINNING_NUMBERS, winningNumbers);
+    validateRangeAll(winningNumbers);
+  },
 };
 
 export { WinningNumbersValidator, validateTypeAll, validateRangeAll };

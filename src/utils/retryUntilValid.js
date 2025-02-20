@@ -1,10 +1,9 @@
 const retryUntilValid = async (func, ...arg) => {
-  while (true) {
-    try {
-      return await func(...arg);
-    } catch (error) {
-      console.log(`${error.message}\n`);
-    }
+  try {
+    return await func(...arg);
+  } catch (error) {
+    console.log(`${error.message}\n`);
+    return retryUntilValid(func, ...arg);
   }
 };
 

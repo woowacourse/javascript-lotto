@@ -1,4 +1,4 @@
-import { PROFIT } from "../constants/CONFIGURATIONS";
+import { PROFIT } from '../constants/CONFIGURATIONS.js';
 
 class WinningResult {
   #winningNumbers;
@@ -18,7 +18,7 @@ class WinningResult {
         lotto.numbers.length + this.#winningNumbers.length - sumSet.size;
 
       if (matchCount === 5 && !lotto.numbers.includes(this.#bonusNumber)) {
-        counts[2]++;
+        counts[2] += 1;
         continue;
       }
 
@@ -30,32 +30,30 @@ class WinningResult {
 
   #checkMatchCount(matchCount, counts) {
     if (matchCount === 3) {
-      counts[0]++;
+      counts[0] += 1;
       return;
     }
 
     if (matchCount === 4) {
-      counts[1]++;
+      counts[1] += 1;
       return;
     }
 
     if (matchCount === 5) {
-      counts[3]++;
+      counts[3] += 1;
       return;
     }
 
     if (matchCount === 6) {
-      counts[4]++;
+      counts[4] += 1;
     }
   }
 
   calculateProfitRate(lottoPurchasePrice, counts) {
-    const totalReward =
-      counts[0] * PROFIT.FIFTH +
-      counts[1] * PROFIT.FOURTH +
-      counts[2] * PROFIT.THIRD +
-      counts[3] * PROFIT.SECOND +
-      counts[4] * PROFIT.FIRST;
+    // eslint-disable-next-line max-params
+    const totalReward = counts.reduce((acc, curr, i) => {
+      return acc + curr * PROFIT[i];
+    }, 0);
     return ((totalReward - lottoPurchasePrice) / lottoPurchasePrice) * 100;
   }
 }

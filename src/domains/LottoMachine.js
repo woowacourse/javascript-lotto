@@ -1,6 +1,6 @@
-import { LOTTO } from "../constants/CONFIGURATIONS.js";
-import generateRandomNumber from "../utils/generateRandomNumber.js";
-import Lotto from "./Lotto.js";
+import { LOTTO } from '../constants/CONFIGURATIONS.js';
+import generateRandomNumber from '../utils/generateRandomNumber.js';
+import Lotto from './Lotto.js';
 
 class LottoMachine {
   #lottos = [];
@@ -20,7 +20,7 @@ class LottoMachine {
     while (lotto.length < LOTTO.LENGTH) {
       const randomNumber = generateRandomNumber(
         LOTTO.MIN_NUMBER,
-        LOTTO.MAX_NUMBER
+        LOTTO.MAX_NUMBER,
       );
 
       if (!lotto.includes(randomNumber)) {

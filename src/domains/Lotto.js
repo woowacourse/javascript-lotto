@@ -1,5 +1,5 @@
-import { LOTTO } from "../constants/CONFIGURATIONS.js";
-import { ERROR_MESSAGE } from "../constants/MESSAGES.js";
+import { LOTTO } from '../constants/CONFIGURATIONS.js';
+import { ERROR_MESSAGE } from '../constants/MESSAGES.js';
 
 class Lotto {
   #numbers;
@@ -14,7 +14,7 @@ class Lotto {
   }
 
   #validate(numbers) {
-    if (!numbers.every((number) => typeof number === "number")) {
+    if (!numbers.every((number) => typeof number === 'number')) {
       throw new Error(ERROR_MESSAGE.LOTTO.INVALID_TYPE);
     }
 
@@ -24,7 +24,7 @@ class Lotto {
 
     if (
       !numbers.every(
-        (number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER
+        (number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER,
       )
     ) {
       throw new Error(ERROR_MESSAGE.LOTTO.INVALID_RANGE);

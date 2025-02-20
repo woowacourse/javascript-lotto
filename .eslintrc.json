@@ -1,5 +1,26 @@
 {
-  "rules": {},
+  "rules": {
+    "max-lines-per-function": ["error", 15],
+    "max-params": ["error", 2],
+    "lines-between-class-members": [
+      "error",
+      "always",
+      { "exceptAfterSingleLine": true }
+    ],
+    "max-depth": ["error", 1],
+    "no-console": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "import/extensions": "off",
+    "class-methods-use-this": "off",
+    "no-await-in-loop": "off",
+    "arrow-body-style": "off",
+    "no-return-await": "off",
+    "no-constant-condition": "off",
+    "object-curly-newline": [
+      "error",
+      { "ExportDeclaration": { "multiline": true, "minProperties": 3 } }
+    ]
+  },
   "env": {
     "es6": true,
     "node": true
@@ -7,5 +28,10 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:prettier/recommended"
+  ],
+  "ignorePatterns": ["__tests__/**"]
 }
