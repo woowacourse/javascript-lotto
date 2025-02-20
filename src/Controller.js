@@ -4,6 +4,7 @@ import InputView from "./view/InputView.js";
 import purchaseLottoCount from "./domain/purchaseLottoCount.js";
 import LottoPack from "./domain/LottoPack.js";
 import LottoMachine from "./domain/LottoMachine.js";
+import OutputView from "./view/OutputView.js";
 class Controller {
   async start() {
     const purchaseAmount = await this.retryCheckInput(
@@ -11,8 +12,8 @@ class Controller {
       Validation.purchaseAmount,
     );
     const count = purchaseLottoCount(purchaseAmount);
+    OutputView.purchaseCount(count);
     const lottoNumberSet = LottoMachine(count);
-
     const lottoPack = new LottoPack(lottoNumberSet);
 
     const winningNumbers = await this.retryCheckInput(
