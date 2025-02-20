@@ -1,5 +1,5 @@
 import InputView from "../ui/InputView.js";
-import { validateBonusNumber, validatePurchaseAmount, validateWinningNumbers } from "./validate.js";
+import { validateBonusNumber, validatePurchaseAmount, validateWinningNumbers,validateRestart } from "./validate.js";
 
 const InputHandler = {
   async getPurchaseAmount() {
@@ -36,6 +36,18 @@ const InputHandler = {
         console.log(error.message);
       }
     }
+  },
+
+  async getRestartAnswer() {
+    while (true) {
+      try {
+        const restartAnswer = await InputView.readRestart();
+        validateRestart(restartAnswer);
+        return restartAnswer;
+      } catch (error) {
+        console.log(error.message);
+      }
+  }
   },
 };
 

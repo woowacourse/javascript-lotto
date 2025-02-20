@@ -1,6 +1,6 @@
-import InputView from "./ui/InputView.js";
 import purchase from "./LottoStore.js";
-import { validateRestart } from "./util/validate.js";
+import InputHandler from './util/InputHandler.js'
+
 
 class App {
   #running;
@@ -19,8 +19,7 @@ class App {
   }
 
   async getRestartAnswer() {
-    const answer = await InputView.readRestart();
-    validateRestart(answer);
+    const answer = await InputHandler.getRestartAnswer();
 
     return answer;
   }

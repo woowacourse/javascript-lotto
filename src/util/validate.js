@@ -4,7 +4,7 @@ import { LOTTO } from "../constant/lotto.js";
 
 export const validateRestart = (answer) => {
   if (answer.toLowerCase() !== "y" && answer.toLowerCase() !== "n") {
-    throw new Error();
+    throw new Error(ERROR_MESSAGE.YES_OR_NO);
   }
 };
 

@@ -8,6 +8,7 @@ const ERROR_MESSAGE = {
     LOTTO_LENGTH: `[ERROR] 당첨 번호는 ${LOTTO.LENGTH}개여야 합니다.`,
     DUPLICATE_NUMBER: '[ERROR] 중복된 숫자가 있습니다.',
     NUMBER_OUT_OF_RANGE: '[ERROR] 1과 45 사이의 숫자를 입력해주세요.',
+    YES_OR_NO: '[ERROR] Y 혹은 N으로 입력해 주세요.'
 }
 
 export default ERROR_MESSAGE;
