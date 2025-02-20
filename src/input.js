@@ -51,6 +51,10 @@ export const inputBonusNumber = async (winningNumber) => {
     return bonusNumber;
   } catch (error) {
     console.log(error.message);
-    return await inputBonusNumber();
+    return await inputBonusNumber(winningNumber);
   }
+};
+
+export const inputAskForRestart = () => {
+  return readLineAsync("\n다시 시작하시겠습니까? (y/n)");
 };

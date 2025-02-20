@@ -7,27 +7,38 @@ import readLineAsync from "./readLineAsync.js";
 import UserLottos from "./UserLottos.js";
 import LottoManager from "./LottoManager.js";
 import { printUserLottos, printWinningResult, printROI } from "./output.js";
-import { inputBonusNumber, inputPrice, inputWinningNumbers } from "./input.js";
+import {
+  inputAskForRestart,
+  inputBonusNumber,
+  inputPrice,
+  inputWinningNumbers,
+} from "./input.js";
 
 async function run() {
-  const price = await inputPrice();
-  const userLottos = new UserLottos(price);
-  printUserLottos(userLottos);
+  while (true) {
+    const price = await inputPrice();
+    const userLottos = new UserLottos(price);
+    printUserLottos(userLottos);
 
-  const winningNumbers = await inputWinningNumbers();
-  const bonusNumber = await inputBonusNumber(winningNumbers);
+    const winningNumbers = await inputWinningNumbers();
+    const bonusNumber = await inputBonusNumber(winningNumbers);
 
-  const lottoManager = new LottoManager(
-    userLottos.lottos,
-    winningNumbers,
-    bonusNumber
-  );
+    const lottoManager = new LottoManager(
+      userLottos.lottos,
+      winningNumbers,
+      bonusNumber
+    );
 
-  const countResults = lottoManager.countMatchingNumbers();
-  const isContainBonusNumbers = lottoManager.containsBonusNumbers(countResults);
-  lottoManager.calculateWinnings(countResults, isContainBonusNumbers);
+    const countResults = lottoManager.countMatchingNumbers();
+    const isContainBonusNumbers =
+      lottoManager.containsBonusNumbers(countResults);
+    lottoManager.calculateWinnings(countResults, isContainBonusNumbers);
 
-  printWinningResult(lottoManager.prizeResult);
-  printROI(lottoManager.calculateROI(price));
+    printWinningResult(lottoManager.prizeResult);
+    printROI(lottoManager.calculateROI(price));
+
+    const isRestart = await inputAskForRestart();
+    if (isRestart === "n") break;
+  }
 }
 run();
