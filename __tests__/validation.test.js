@@ -40,4 +40,12 @@ describe('로또 숫자',() => {
     expect(() => validateLottoNumber(lottoNumbers))
       .toThrow('[ERROR] 로또 번호의 숫자 범위 1 ~ 45이다.');
   });
+
+  test.each([
+    [[1, 1, 2, 3, 4, 5]], [[41, 42, 43, 44, 45, 45]],
+  ])('로또의 번호의 숫자는 중복된 숫자가 있으면 안된다.', (lottoNumbers) => {
+    // then
+    expect(() => validateLottoNumber(lottoNumbers))
+      .toThrow('[ERROR] 로또 번호의 숫자는 중복될 수 없다.');
+  });
 });
