@@ -4,7 +4,7 @@ import { getRandomLottos } from './domain/getRandomLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
 import { arrayToString } from './utils/arrayToString.js';
 import { checkReplay } from './utils/checkReplay.js';
-import { parseWinningNumbers } from './utils/parseString.js';
+import { parseString } from './utils/parseString.js';
 import { isYesOrNo } from './validation/validateInput.js';
 import { validateBonusNumber, validateWinningNumbers } from './validation/validateLottoNumbers.js';
 import { validatePurchasePrice } from './validation/validatePurchasePrice.js';
@@ -18,7 +18,7 @@ async function run() {
   printRandomLottos(arrayToString(randomlottos));
 
   const stringOfWinningNumbers = await handleUserInput(INPUT.WINNING_NUMBERS, validateWinningNumbers);
-  const winningNumbers = parseWinningNumbers(stringOfWinningNumbers);
+  const winningNumbers = parseString(stringOfWinningNumbers);
 
   const bonusNumber = await handleUserInput(INPUT.BONUS_NUMBER, validateBonusNumber, winningNumbers);
   const lottoNumbers = { winningNumbers, bonusNumber };
