@@ -4,16 +4,12 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#validate(numbers);
+    validateLottoNumber(numbers);
     this.#numbers = numbers;
   }
 
   getNumbers() {
     return this.#numbers.sort((a, b) => a - b);
-  }
-
-  #validate(numbers) {
-    validateLottoNumber(numbers);
   }
 }
 
