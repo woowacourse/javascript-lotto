@@ -137,3 +137,4 @@ Lotto
 - [x] depth 1 규칙 활성화
   - [x] createSixRandomNumber 로직 변경
   - [x] retryCheckInput 로직 변경
+- [x] 6개 랜덤 넘버 생성 함수 분리
