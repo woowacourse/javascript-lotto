@@ -15,7 +15,9 @@ class Controller {
       async () => await InputView.bonusNumber(),
       Validation.bonusNumber(winningNumbers),
     );
-    await InputView.restart();
+
+    const restart = await this.retryCheckInput(async () => await InputView.restart(), Validation.restart);
+    if (restart) this.start();
   }
 
   async retryCheckInput(prompt, validation) {

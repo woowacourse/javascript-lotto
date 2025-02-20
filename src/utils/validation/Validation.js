@@ -30,6 +30,16 @@ const Validation = {
       return bonusNumber;
     };
   },
+  restart(input) {
+    if (input !== "y" && input !== "n") throw new Error(ERROR_MESSAGE.INVALID_RESTART_FORMAT);
+
+    if (input === "y") {
+      return true;
+    }
+    if (input === "n") {
+      return false;
+    }
+  },
 };
 
 export default Validation;
