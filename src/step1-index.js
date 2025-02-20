@@ -7,7 +7,7 @@ import readLineAsync from "./readLineAsync.js";
 import UserLottos from "./UserLottos.js";
 import LottoManager from "./LottoManager.js";
 import { printUserLottos, printWinningResult, printROI } from "./output.js";
-import { inputPrice, inputWinningNumbers } from "./input.js";
+import { inputBonusNumber, inputPrice, inputWinningNumbers } from "./input.js";
 
 async function run() {
   const price = await inputPrice();
@@ -15,9 +15,7 @@ async function run() {
   printUserLottos(userLottos);
 
   const winningNumbers = await inputWinningNumbers();
-  const bonusNumber = Number(
-    await readLineAsync("\n보너스 번호를 입력해 주세요.")
-  );
+  const bonusNumber = await inputBonusNumber(winningNumbers);
 
   const lottoManager = new LottoManager(
     userLottos.lottos,

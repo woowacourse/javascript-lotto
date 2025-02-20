@@ -31,11 +31,6 @@ class LottoManager {
     return this.#prizeResult;
   }
 
-  validateBonusNumberUnique() {
-    if (this.#winningNumber.includes(this.#bonusNumber))
-      throw new Error("보너스 번호는 당첨 번호와 중복되면 안됩니다.");
-  }
-
   #compareMatchingNumbers(userLotto) {
     return userLotto.reduce((acc, lottoNumber) => {
       if (this.#winningNumber.includes(lottoNumber)) {

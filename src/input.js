@@ -1,5 +1,6 @@
 import readLineAsync from "./readLineAsync.js";
 import {
+  validateBonusNumberUnique,
   validateIsNumeric,
   validateLottoNumberRange,
   validateMaximumValue,
@@ -36,5 +37,20 @@ export const inputWinningNumbers = async () => {
   } catch (error) {
     console.log(error.message);
     return await inputWinningNumbers();
+  }
+};
+
+export const inputBonusNumber = async (winningNumber) => {
+  try {
+    const bonusNumber = Number(
+      await readLineAsync("\n보너스 번호를 입력해 주세요.")
+    );
+    validateIsNumeric(bonusNumber);
+    validateLottoNumberRange(bonusNumber);
+    validateBonusNumberUnique(winningNumber, bonusNumber);
+    return bonusNumber;
+  } catch (error) {
+    console.log(error.message);
+    return await inputBonusNumber();
   }
 };

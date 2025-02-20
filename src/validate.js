@@ -55,6 +55,11 @@ const validateWinningNumberDuplicate = (input) => {
   }
 };
 
+const validateBonusNumberUnique = (winningNumber, bonusNumber) => {
+  if (winningNumber.includes(bonusNumber))
+    throw new Error("보너스 번호는 당첨 번호와 중복되면 안됩니다.");
+};
+
 export {
   validatePurchaseUnit,
   validateIsNumeric,
@@ -63,4 +68,5 @@ export {
   validateWinningNumberisNumeric,
   validateLottoNumberRange,
   validateWinningNumberDuplicate,
+  validateBonusNumberUnique,
 };

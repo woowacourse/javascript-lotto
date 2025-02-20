@@ -18,18 +18,6 @@ beforeEach(() => {
   lottoManager = new LottoManager(userLottos, winningNumber, bonusNumber);
 });
 
-test("당첨 번호와 보너스 번호가 중복되는 경우 예외를 발생시킨다.", () => {
-  const userLottos = [];
-  const winningNumbers = [1, 2, 3, 4, 5, 6];
-  const bonusNumber = 1;
-
-  lottoManager = new LottoManager(userLottos, winningNumbers, bonusNumber);
-
-  expect(() => lottoManager.validateBonusNumberUnique()).toThrow(
-    "보너스 번호는 당첨 번호와 중복되면 안됩니다."
-  );
-});
-
 test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.", () => {
   const countResults = lottoManager.countMatchingNumbers();
 
@@ -64,6 +52,5 @@ test("로또 수익률을 게산한다", () => {
   const countResults = lottoManager.countMatchingNumbers();
   const isContainBonusNumbers = lottoManager.containsBonusNumbers(countResults);
   lottoManager.calculateWinnings(countResults, isContainBonusNumbers);
-
   expect(lottoManager.calculateROI(price)).toBe("29022114.29");
 });
