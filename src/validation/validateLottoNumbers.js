@@ -1,4 +1,5 @@
 import { ERROR } from '../constants/errors.js';
+import { LOTTO } from '../constants/messages.js';
 import { hasEmptyString, isValueInteger } from './validateInput.js';
 
 const validateArrayOfWinningNumbers = (winningNumbers) => {
@@ -7,7 +8,7 @@ const validateArrayOfWinningNumbers = (winningNumbers) => {
     hasEmptyString(value);
     isValueInteger(winningNumber);
 
-    if (winningNumber < 1 || winningNumber > 45) {
+    if (winningNumber < LOTTO.MIN_RANDOM_NUMBER || winningNumber > LOTTO.MAX_RANDOM_NUMBER) {
       throw new Error(ERROR.NOT_RANGE_OF_WINNING_NUMBER);
     }
   });

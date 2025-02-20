@@ -1,3 +1,4 @@
+import { LOTTO } from '../constants/messages.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 
 export const getRandomLottos = (quantity) => {
@@ -14,9 +15,9 @@ export const getRandomLottos = (quantity) => {
 export const retryIfDuplicatedRandomNumbers = () => {
   const setRandomNumbers = new Set();
 
-  while (setRandomNumbers.size !== 6) {
+  while (setRandomNumbers.size !== LOTTO.MAX_LENGTH) {
     setRandomNumbers.clear();
-    Array.from({ length: 6 }, () => setRandomNumbers.add(getRandomNumber()));
+    Array.from({ length: LOTTO.MAX_LENGTH }, () => setRandomNumbers.add(getRandomNumber()));
   }
 
   return [...setRandomNumbers].sort((a, b) => a - b);
