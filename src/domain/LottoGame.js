@@ -14,6 +14,10 @@ class LottoGame {
     this.lottoes = this.getLottos(amount);
   }
 
+  getGameResult() {
+    return this.result;
+  }
+
   getLottos(amount) {
     const allLottos = [];
     for (let i = 0; i < amount; i += 1) {
@@ -27,7 +31,6 @@ class LottoGame {
     this.lottoes.forEach((lotto) => {
       const correctNumber = lotto.getCorretNumber(targetNumber);
       const isBonus = lotto.hasBonusNumber(bonusNumber);
-
       if (correctNumber === 3) this.result["5"] += 1;
       if (correctNumber === 4) this.result["4"] += 1;
       if (correctNumber === 5 && !isBonus) this.result["3"] += 1;

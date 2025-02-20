@@ -3,6 +3,10 @@ class Lotto {
     this.numbers = numbers;
   }
 
+  getLottoNumbers() {
+    return this.numbers;
+  }
+
   getCorretNumber(targetNumber) {
     let correctNumber = 0;
     for (let i = 0; i < 6; i += 1) {

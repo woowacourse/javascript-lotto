@@ -10,7 +10,7 @@ class App {
     const lottoGame = new LottoGame(lottoNum);
     OutputView.printMessage(`${lottoNum}개를 구매했습니다.`);
     lottoGame.lottoes.forEach((lotto) => {
-      OutputView.printMessage(lotto.numbers);
+      OutputView.printMessage(lotto.getLottoNumbers());
     });
 
     const targetNumber = await loopWhileValid(this.#getTargetNumber);
@@ -22,7 +22,7 @@ class App {
     OutputView.printMessage("당첨 통계");
     OutputView.printMessage("--------------------");
     OutputView.printWinning(
-      lottoGame.result,
+      lottoGame.getGameResult(),
       lottoGame.getEarningRate(lottoNum),
     );
     OutputView.printBlank();
