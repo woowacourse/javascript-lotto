@@ -10,6 +10,7 @@ import {
   validatePurchaseAmount,
   validateEmptySpaceInWinningNumbers,
   validateWinningNumbers,
+  validateBonusNumber,
 } from './View/Validation/inputView.js';
 class App {
   async #initialize() {
@@ -41,7 +42,7 @@ class App {
       formatter: (input) => {
         validateEmptySpace(input);
         const convertedInput = convertFormat.toNumber(input);
-        // validatePurchaseAmount(convertedInput);
+        validateBonusNumber(convertedInput, winningNumbersInput);
         return convertedInput;
       },
     });

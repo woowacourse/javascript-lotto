@@ -2,6 +2,7 @@ import {
   COMMON_ERROR_MESSAGE,
   LOTTO_PURCHASE_AMOUNT,
   LOTTO_WINNING_NUMBERS,
+  LOTTO_BONUS_NUMBER,
 } from '../Constant/errorMessage.js';
 import { LOTTO_DEFINITION } from '../../Domain/Constant/definition.js';
 
@@ -101,4 +102,25 @@ export const validateWinningNumbers = (input) => {
   validateDuplicateWinningNumbers(input);
   validateWinningNumbersRange(input);
   validateWinningNumbersInteger(input);
+};
+
+const validateBonusNumberRange = (input) => {
+  if (hasWrongRange(input)) {
+    throw new Error(LOTTO_BONUS_NUMBER.INVALID_BONUS_RANGE);
+  }
+};
+const hasDuplicateBonusNumber = (input, winningNumbersInput) => {
+  return winningNumbersInput.includes(input);
+};
+
+const validateWinningNumberHasBonusNumber = (input, winningNumbersInput) => {
+  if (hasDuplicateBonusNumber(input, winningNumbersInput)) {
+    throw new Error(LOTTO_BONUS_NUMBER.DUPLICATE_BONUS_NUMBER);
+  }
+};
+
+export const validateBonusNumber = (input, winningNumbersInput) => {
+  validateInteger(input);
+  validateBonusNumberRange(input);
+  validateWinningNumberHasBonusNumber(input, winningNumbersInput);
 };
