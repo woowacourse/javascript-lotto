@@ -1,6 +1,6 @@
 import CONFIG from './constants/config.js';
 
-function validationMoney(money) {
+function validateMoney(money) {
   if (money <= 0) {
     throw new Error();
   }
@@ -8,14 +8,14 @@ function validationMoney(money) {
     throw new Error();
   }
 }
-function isValidLottoNumber(number) {
+function lottoNumberCondition(number) {
   return number >= CONFIG.MIN.LOTTO_NUMBER && number <= CONFIG.MAX.LOTTO_NUMBER;
 }
 
-function validLottoNumber(numbers) {
-  if (!numbers.every(isValidLottoNumber)) {
+function validateLottoNumber(numbers) {
+  if (!numbers.every(lottoNumberCondition)) {
     throw new Error('[ERROR] 로또 번호의 숫자 범위 1 ~ 45이다.');
   }
 }
 
-export { validationMoney, validLottoNumber };
+export { validateMoney, validateLottoNumber };
