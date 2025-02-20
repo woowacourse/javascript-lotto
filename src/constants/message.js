@@ -23,6 +23,13 @@ const OUTPUT_MESSAGE = Object.freeze({
   REVENUE_RATE: (revenueRate) => `총 수익률은 ${revenueRate}%입니다.`,
 });
 
+const INPUT_MESSAGE = Object.freeze({
+  READ_MONEY: '> 구입금액을 입력해 주세요.',
+  READ_WINNING_LOTTO: '\n> 당첨 번호를 입력해 주세요.',
+  READ_BONUS: '\n> 보너스 번호를 입력해 주세요.',
+  READ_RESTART: '\n> 다시 시작하시겠습니까? (y/n)',
+});
+
 export {
-  ERROR, OUTPUT_MESSAGE,
+  ERROR, OUTPUT_MESSAGE, INPUT_MESSAGE,
 };

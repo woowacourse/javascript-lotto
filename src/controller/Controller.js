@@ -1,4 +1,5 @@
 import CONFIG from '../constants/config.js';
+import INPUT_MESSAGE from '../constants/message.js';
 
 import readLineAsync from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
@@ -56,33 +57,33 @@ class Controller {
   }
 
   async readMoney() {
-    const input = await readLineAsync('> 구입금액을 입력해 주세요.');
+    const input = await readLineAsync(INPUT_MESSAGE.READ_MONEY);
     const money = parseInt(input, 10);
     validateMoney(money);
     return money;
   }
 
   async readWinningLotto() {
-    const input = await readLineAsync('\n> 당첨 번호를 입력해 주세요.');
+    const input = await readLineAsync(INPUT_MESSAGE.READ_WINNING_LOTTO);
     const winningLotto = input?.split(',').map((item) => parseInt(item, 10));
     validateLottoNumber(winningLotto);
     return winningLotto;
   }
 
   async readBonus(winningLotto) {
-    const input = await readLineAsync('\n> 보너스 번호를 입력해 주세요.');
+    const input = await readLineAsync(INPUT_MESSAGE.READ_BONUS);
     const bonus = parseInt(input, 10);
     validateBonus(bonus, winningLotto);
     return bonus;
   }
 
   async readReStart() {
-    const input = await readLineAsync('\n> 다시 시작하시겠습니까? (y/n)');
-    if (input.toLowerCase() === 'n') {
-      return false;
-    }
-    return true;
+    const ANSWER_NO = 'n';
+    const ANSWER_YES = 'y';
+    const input = await readLineAsync(INPUT_MESSAGE.READ_RESTART);
+    const lowerCaseInput = input.toLowerCase();
+
+    return !(lowerCaseInput === ANSWER_NO) && lowerCaseInput === ANSWER_YES;
   }
 }
-
 export default Controller;
