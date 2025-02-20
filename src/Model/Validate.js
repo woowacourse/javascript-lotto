@@ -47,6 +47,12 @@ function checkBonusNumberDuplicate(winningNumber, bonusNumber) {
   }
 }
 
+function checkRestartChar(restart) {
+  if (!['y', 'n', 'Y', 'N'].includes(restart)) {
+    throw new Error('[ERROR] y 또는 n을 입력해주세요.');
+  }
+}
+
 const Validate = {
   checkIsEmpty,
   checkIsNumber,
@@ -56,6 +62,7 @@ const Validate = {
   checkWinningNumberDuplicate,
   checkBonusNumberDuplicate,
   checkWinningNumberCount,
+  checkRestartChar,
 };
 
 export default Validate;

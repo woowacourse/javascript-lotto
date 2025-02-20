@@ -12,10 +12,15 @@ async function readBonusNumbers() {
   return await readLineAsync('> 보너스 번호를 입력해 주세요. ');
 }
 
+async function readRestart() {
+  return await readLineAsync('> 다시 시작하시겠습니까? (y/n) ');
+}
+
 const InputView = {
   readPrice,
   readWinningNumbers,
   readBonusNumbers,
+  readRestart,
 };
 
 export default InputView;

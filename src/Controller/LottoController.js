@@ -6,21 +6,26 @@ import Winning from '../Model/Winning.js';
 
 class LottoController {
   async start() {
-    const lottoMachine = new LottoMachine();
-    const price = await this.#readPrice();
+    let restart = 'y';
+    while (restart === 'y' || restart === 'Y') {
+      const lottoMachine = new LottoMachine();
+      const price = await this.#readPrice();
 
-    const lottos = lottoMachine.generateLotto(price);
-    OutputView.printLottos(lottos);
+      const lottos = lottoMachine.generateLotto(price);
+      OutputView.printLottos(lottos);
 
-    const winningNumbers = await this.#readWinningNumbers();
-    const bonusNumber = await this.#readBonusNumber(winningNumbers);
+      const winningNumbers = await this.#readWinningNumbers();
+      const bonusNumber = await this.#readBonusNumber(winningNumbers);
 
-    const winning = new Winning(winningNumbers, bonusNumber);
-    winning.calculateRank(lottos);
-    OutputView.printWinningHistory(winning.rankHistory);
+      const winning = new Winning(winningNumbers, bonusNumber);
+      winning.calculateRank(lottos);
+      OutputView.printWinningHistory(winning.rankHistory);
 
-    const prizeRate = winning.getCalculatedPrizeRate(price);
-    OutputView.printPrizeRate(prizeRate);
+      const prizeRate = winning.getCalculatedPrizeRate(price);
+      OutputView.printPrizeRate(prizeRate);
+
+      restart = await this.#readRestart();
+    }
   }
 
   async #readPrice() {
@@ -87,6 +92,24 @@ class LottoController {
       Validate.checkIsNumber(bonusNumber);
       Validate.checkLottoNumberRange(bonusNumber);
       Validate.checkBonusNumberDuplicate(winningNumbers, bonusNumber);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async #readRestart() {
+    try {
+      const restart = await InputView.readRestart();
+      this.#validateRestart(restart);
+      return restart;
+    } catch (error) {
+      OutputView.printErrorMessage(error);
+    }
+  }
+
+  #validateRestart(restart) {
+    try {
+      Validate.checkRestartChar(restart);
     } catch (error) {
       throw error;
     }

@@ -28,6 +28,6 @@
  - [x] 전체 당첨 금액 합산 - domain -> Winning
  - [x] 소숫점 두번째 자리 이하 버림하여 계산. - domain -> util
 10. [x] 계산된 수익률 출력한다. - ui
-11. [] 다시 시작 여부를 입력한다 - ui
-12. [] 다시 시작한다. - domain -> LottoMachine
-  - [] 재시작 또는 종료 - domain
+11. [x] 다시 시작 여부를 입력한다 - ui
+12. [x] 다시 시작한다. - domain -> Controller
+  - [x] 재시작 또는 종료 - domain
