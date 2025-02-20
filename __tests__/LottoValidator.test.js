@@ -1,4 +1,3 @@
-import Lotto from "../src/domain/Lotto.js";
 import LottoValidator from "../src/validation/LottoValidator.js";
 
 describe("로또 숫자 유효성 검사를 진행한다", () => {
