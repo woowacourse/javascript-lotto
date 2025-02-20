@@ -8,6 +8,8 @@ import validateWinningNumber from "./validation/validateWinningNumber.js";
 import { parsePrice, parseWinningNumbers, parseBonusNumber } from "./service/ParsingService.js";
 import validateBonusNumber from "./validation/validateBonusNumber.js";
 import WinningLotto from "./domain/WinningLotto.js";
+import LottoResult from "./domain/LottoResult.js";
+import { calculateProfitRate } from "./service/ProfitService.js";
 
 const getPrice = async () => {
   const priceInput = await InputView.readUserInput(SYSTEM_MESSAGE.PRICE);
@@ -40,3 +42,10 @@ OutputView.printLottoArray(lottoArray);
 const winningNumbers = await retryOnError(getWinningNumber, OutputView.printError);
 const bonusNumber = await retryOnError(getBonusNumber, OutputView.printError);
 const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+const lottoResult = new LottoResult(winningLotto, lottoArray);
+
+const matchingCount = lottoResult.calculateResult();
+const profitRate = calculateProfitRate(matchingCount, lottoCount);
+
+OutputView.print(SYSTEM_MESSAGE.PROFIT(profitRate));

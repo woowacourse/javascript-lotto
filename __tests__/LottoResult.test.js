@@ -9,7 +9,7 @@ describe("로또 당첨 결과 및 수익률 테스트", () => {
     const lotto1 = new Lotto([1, 2, 3, 4, 5, 6]);
     const lotto2 = new Lotto([2, 9, 11, 31, 10, 18]);
     const lottoArray = [lotto1, lotto2];
-    const expectedResult = { 1: 1, 2: 0, 3: 0, 4: 0, 5: 1, 6: 0, bonus: 0 };
+    const expectedResult = { 3: 0, 4: 0, 5: 1, 6: 0, bonus: 0 };
 
     //when
     const lottoResult = new LottoResult(winningLotto, lottoArray);

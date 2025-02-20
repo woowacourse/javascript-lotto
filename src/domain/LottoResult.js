@@ -17,11 +17,14 @@ class LottoResult {
   }
 
   calculateResult() {
-    const lottoResult = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, bonus: 0 };
+    const lottoResult = { 3: 0, 4: 0, 5: 0, 6: 0, bonus: 0 };
+
     this.#lottoNumbersList.forEach((lottoNumbers) => {
       const matchingCount = this.#calculateMatchCount(lottoNumbers);
-      lottoResult[matchingCount]++;
 
+      if (matchingCount >= 3) {
+        lottoResult[matchingCount]++;
+      }
       if (matchingCount === 5 && this.#isBonusMatched(lottoNumbers)) {
         lottoResult[5]--;
         lottoResult["bonus"]++;
