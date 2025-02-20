@@ -8,6 +8,7 @@ import {
 import { retryUntilValid } from "../utils/retryUntilValid.js";
 import LottoGenerator from "../domain/LottoGenerator.js";
 import Output from "../view/Output.js";
+import ProfitCalculator from "../domain/ProfitCalculator.js";
 class LottoController {
   constructor() {
     this.lottoTickets = [];
@@ -17,11 +18,13 @@ class LottoController {
   async play() {
     const purchaseAmount = await this.getPurchaseAmount();
     this.lottoTickets = LottoGenerator.generate(purchaseAmount);
+
     Output.printLottoTickets(this.lottoTickets);
+
     this.lottoNumber = await this.getLottoNumber();
-    Output.print(this.lottoNumber);
     const bonusNumber = await this.getBonusNumber();
-    Output.print(bonusNumber);
+
+    this.calculateAndDisplayResults(bonusNumber);
   }
 
   async getPurchaseAmount() {
@@ -35,7 +38,7 @@ class LottoController {
 
   async getLottoNumber() {
     const lottoNumber = await retryUntilValid(
-      () => Input.getInput(`${"\n" + MESSAGES.input.lottoNumber}`),
+      () => Input.getInput("\n" + MESSAGES.input.lottoNumber),
       (input) => input.split(",").map(Number),
       lottoNumberValidator
     );
@@ -44,11 +47,22 @@ class LottoController {
 
   async getBonusNumber() {
     const bonusNumber = await retryUntilValid(
-      () => Input.getInput(`${"\n" + MESSAGES.input.bonusNumber}`),
+      () => Input.getInput("\n" + MESSAGES.input.bonusNumber),
       (input) => Number(input),
       (bonusNumber) => bonusNumberValidator(bonusNumber, this.lottoNumber)
     );
     return bonusNumber;
+  }
+
+  calculateAndDisplayResults(bonusNumber) {
+    const calculator = new ProfitCalculator(
+      this.lottoTickets,
+      this.lottoNumber,
+      bonusNumber
+    );
+
+    const results = calculator.getResults();
+    Output.printMatchResults(results);
   }
 }
 

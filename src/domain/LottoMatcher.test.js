@@ -1,4 +1,4 @@
-import LottoMatcher from "../domain/LottoMatcher.js";
+import LottoMatcher from "./LottoMatcher.js";
 
 describe("LottoMatcher 테스트", () => {
   const winningNumbers = [1, 2, 3, 4, 5, 6];
