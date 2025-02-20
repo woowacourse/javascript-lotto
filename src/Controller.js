@@ -7,14 +7,14 @@ class Controller {
       async () => await InputView.purchaseAmount(),
       Validation.purchaseAmount,
     );
-    console.log(purchaseAmount);
     const winningNumbers = await this.retryCheckInput(
       async () => await InputView.winningNumbers(),
       Validation.winningNumbers,
     );
-    console.log(winningNumbers);
-    const bonusNumber = await this.retryCheckInput(async () => await InputView.bonusNumber(), Validation.bonusNumber);
-    console.log(bonusNumber);
+    const bonusNumber = await this.retryCheckInput(
+      async () => await InputView.bonusNumber(),
+      Validation.bonusNumber(winningNumbers),
+    );
     await InputView.restart();
   }
 
@@ -22,7 +22,6 @@ class Controller {
     while (true) {
       try {
         const input = await prompt();
-        console.log(input);
         const value = validation(input);
         return value;
       } catch (error) {

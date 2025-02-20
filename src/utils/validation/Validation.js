@@ -21,12 +21,14 @@ const Validation = {
 
     return winningNumbers;
   },
-  bonusNumber(bonusNumberInput, winningNumbers) {
-    const bonusNumber = Number(bonusNumberInput);
-    if (!bonusNumber) throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER_TYPE);
-    if (bonusNumber < 1 || bonusNumber > 45) throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER_RANGE);
-    if (winningNumbers.includes(bonusNumber)) throw new Error(ERROR_MESSAGE.DUPLICATE_BONUS_NUMBER);
-    return bonusNumber;
+  bonusNumber(winningNumbers) {
+    return (bonusNumberInput) => {
+      const bonusNumber = Number(bonusNumberInput);
+      if (!bonusNumber) throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER_TYPE);
+      if (bonusNumber < 1 || bonusNumber > 45) throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER_RANGE);
+      if (winningNumbers.includes(bonusNumber)) throw new Error(ERROR_MESSAGE.DUPLICATE_BONUS_NUMBER);
+      return bonusNumber;
+    };
   },
 };
 
