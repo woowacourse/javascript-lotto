@@ -1,15 +1,16 @@
+import Lotto from "../src/Lotto";
 import LottoManager from "../src/LottoManager";
 
 let lottoManager;
 beforeEach(() => {
   const userLottos = [
-    [1, 2, 3, 4, 5, 6],
-    [1, 3, 4, 5, 6, 10],
-    [1, 3, 4, 5, 6, 7],
-    [1, 4, 5, 6, 7, 8],
-    [1, 5, 6, 7, 8, 9],
-    [1, 6, 7, 8, 9, 10],
-    [1, 7, 8, 9, 10, 11],
+    new Lotto([1, 2, 3, 4, 5, 6]),
+    new Lotto([1, 3, 4, 5, 6, 10]),
+    new Lotto([1, 3, 4, 5, 6, 7]),
+    new Lotto([1, 4, 5, 6, 7, 8]),
+    new Lotto([1, 5, 6, 7, 8, 9]),
+    new Lotto([1, 6, 7, 8, 9, 10]),
+    new Lotto([1, 7, 8, 9, 10, 11]),
   ];
   const winningNumber = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
@@ -60,5 +61,9 @@ test("당첨 내역을 계산한다.", () => {
 
 test("로또 수익률을 게산한다", () => {
   const price = 7000;
+  const countResults = lottoManager.countMatchingNumbers();
+  const isContainBonusNumbers = lottoManager.containsBonusNumbers(countResults);
+  lottoManager.calculateWinnings(countResults, isContainBonusNumbers);
+
   expect(lottoManager.calculateROI(price)).toBe("29022114.29");
 });

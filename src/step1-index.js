@@ -6,20 +6,31 @@
 import readLineAsync from "./readLineAsync.js";
 import UserLottos from "./UserLottos.js";
 import LottoManager from "./LottoManager.js";
-import { printUserLottos } from "./output.js";
+import { printUserLottos, printWinningResult, printROI } from "./output.js";
 
 async function run() {
   const price = await readLineAsync("구입금액을 입력해 주세요.");
   const userLottos = new UserLottos(price);
   printUserLottos(userLottos);
 
-  const winningNumbers = await readLineAsync("당첨 번호를 입력해 주세요.");
-  const bonusNumber = await readLineAsync("보너스 번호를 입력해 주세요.");
+  const winningNumbers = (await readLineAsync("\n당첨 번호를 입력해 주세요."))
+    .split(",")
+    .map(Number);
+  const bonusNumber = Number(
+    await readLineAsync("\n보너스 번호를 입력해 주세요.")
+  );
 
   const lottoManager = new LottoManager(
-    userLottos,
+    userLottos.lottos,
     winningNumbers,
     bonusNumber
   );
+
+  const countResults = lottoManager.countMatchingNumbers();
+  const isContainBonusNumbers = lottoManager.containsBonusNumbers(countResults);
+  lottoManager.calculateWinnings(countResults, isContainBonusNumbers);
+
+  printWinningResult(lottoManager.prizeResult);
+  printROI(lottoManager.calculateROI(price));
 }
 run();

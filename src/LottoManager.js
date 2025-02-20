@@ -49,7 +49,7 @@ class LottoManager {
     const countResults = [];
 
     this.#userLottos.forEach((userLotto) => {
-      const matchingCount = this.#compareMatchingNumbers(userLotto);
+      const matchingCount = this.#compareMatchingNumbers(userLotto.numbers);
       if (matchingCount >= 3) countResults.push(matchingCount);
     });
 
@@ -59,7 +59,7 @@ class LottoManager {
   containsBonusNumbers(countResults) {
     const isContainBonusInFive = countResults.reduce((acc, cur, index) => {
       if (cur === 5) {
-        acc.push(this.#userLottos[index].includes(this.#bonusNumber));
+        acc.push(this.#userLottos[index].numbers.includes(this.#bonusNumber));
       }
       return acc;
     }, []);
@@ -93,21 +93,20 @@ class LottoManager {
     return Object.keys(this.#prizeResult).reduce((acc, curr) => {
       switch (curr) {
         case "firstPrize":
-          return acc + FIRST_PRIZE;
+          return acc + FIRST_PRIZE * this.#prizeResult[curr];
         case "secondPrize":
-          return acc + SECOND_PRIZE;
+          return acc + SECOND_PRIZE * this.#prizeResult[curr];
         case "thirdPrize":
-          return acc + THIRD_PRIZE;
+          return acc + THIRD_PRIZE * this.#prizeResult[curr];
         case "fourthPrize":
-          return acc + FOURTH_PRIZE;
+          return acc + FOURTH_PRIZE * this.#prizeResult[curr];
         case "fifthPrize":
-          return acc + FIFTH_PRIZE;
+          return acc + FIFTH_PRIZE * this.#prizeResult[curr];
       }
     }, 0);
   }
 
   calculateROI(price) {
-    console.log(typeof this.#calculateTotalPrize());
     return (((this.#calculateTotalPrize() - price) / price) * 100).toFixed(2);
   }
 }
