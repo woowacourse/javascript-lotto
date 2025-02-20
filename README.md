@@ -134,3 +134,6 @@ Lotto
 - [x] InputMessage 상수화
 - [x] OutputMessage 상수화
 - [x] 공통 값 상수화
+- [x] depth 1 규칙 활성화
+  - [x] createSixRandomNumber 로직 변경
+  - [x] retryCheckInput 로직 변경
