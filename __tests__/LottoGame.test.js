@@ -18,8 +18,8 @@ describe("LottoGame 객체 테스트", () => {
   test("구매할 횟수를 입력하면 그만큼의 로또가 발행된다.", () => {
     const amount = 3;
     const lottoGame = new LottoGame(amount);
-    expect(lottoGame.lottoes.length).toBe(3);
-    expect(lottoGame.lottoes.every((lotto) => lotto instanceof Lotto)).toBe(
+    expect(lottoGame.lottos.length).toBe(3);
+    expect(lottoGame.lottos.every((lotto) => lotto instanceof Lotto)).toBe(
       true,
     );
   });
@@ -44,7 +44,7 @@ describe("LottoGame 객체 테스트", () => {
     const lottoGame = new LottoGame(1);
     const targetNumber = [1, 2, 3, 9, 10, 11];
     const bonusNumber = 12;
-    lottoGame.lottoes = [new Lotto([1, 2, 3, 4, 5, 6])];
+    lottoGame.lottos = [new Lotto([1, 2, 3, 4, 5, 6])];
     lottoGame.calculate(targetNumber, bonusNumber);
     expect(lottoGame.result).toEqual({
       1: 0,
@@ -59,7 +59,7 @@ describe("LottoGame 객체 테스트", () => {
     const lottoGame = new LottoGame(1);
     const targetNumber = [1, 2, 3, 9, 10, 11];
     const bonusNumber = 12;
-    lottoGame.lottoes = [
+    lottoGame.lottos = [
       new Lotto([1, 2, 3, 4, 5, 6]),
       new Lotto([1, 2, 3, 9, 20, 21]),
     ];

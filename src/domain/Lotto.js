@@ -9,7 +9,7 @@ class Lotto {
     return this.numbers;
   }
 
-  getCorretNumber(targetNumber) {
+  getCorrectNumber(targetNumber) {
     let correctNumber = 0;
     for (let i = 0; i < Constants.LOTTO.NUMBER_LENGTH; i += 1) {
       correctNumber += this.#addCorrectNumber(targetNumber, this.numbers[i]);

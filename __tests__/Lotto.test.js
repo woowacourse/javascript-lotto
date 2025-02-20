@@ -20,8 +20,8 @@ describe("로또 테스트", () => {
       const numbers = [1, 2, 3, 4, 5, 6];
       const lotto = new Lotto(numbers);
 
-      const corretNumber = lotto.getCorretNumber(targetNumber);
-      expect(corretNumber).toBe(result);
+      const correctNumber = lotto.getCorrectNumber(targetNumber);
+      expect(correctNumber).toBe(result);
     },
   );
 

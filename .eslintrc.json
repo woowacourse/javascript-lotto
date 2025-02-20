@@ -2,6 +2,7 @@
   "rules": {
     // "max-lines-per-function": ["error", 15],
     "max-depth": ["error", 1],
+    "max-classes-per-file" : ["error",3],
     // "prettier/prettier": ["error"],
     // "lines-between-class-members": [
     //   "error",

@@ -12,7 +12,7 @@ class LottoGame {
       5: 0,
     };
 
-    this.lottoes = this.getLottos(amount);
+    this.lottos = this.getLottos(amount);
   }
 
   getGameResult() {
@@ -29,8 +29,8 @@ class LottoGame {
   }
 
   calculate(targetNumber, bonusNumber) {
-    this.lottoes.forEach((lotto) => {
-      const correctNumber = lotto.getCorretNumber(targetNumber);
+    this.lottos.forEach((lotto) => {
+      const correctNumber = lotto.getCorrectNumber(targetNumber);
       const isBonus = lotto.hasBonusNumber(bonusNumber);
       if (correctNumber === Constants.LOTTO.CORRECT_NUMBER.FIFTH)
         this.result["5"] += 1;

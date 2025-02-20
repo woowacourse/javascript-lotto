@@ -10,11 +10,13 @@ class App {
     const lottoNum = await loopWhileValid(this.#getLottoNum);
     const lottoGame = new LottoGame(lottoNum);
     OutputView.printMessage(`${lottoNum}개를 구매했습니다.`);
-    lottoGame.lottoes.forEach((lotto) => {
+    lottoGame.lottos.forEach((lotto) => {
       OutputView.printMessage(lotto.getLottoNumber());
     });
 
+    OutputView.printBlank();
     const targetNumber = await loopWhileValid(this.#getTargetNumber);
+    OutputView.printBlank();
     const bonusNumber = await loopWhileValid(
       this.#getBonusNumber,
       targetNumber,

@@ -9,13 +9,7 @@ export class ListChecker {
   }
 
   static isUphillList(list) {
-    let currentMaxNum = 0;
-    for (let i = 0; i < list.length; i += 1) {
-      if (currentMaxNum >= list[i]) return false;
-      currentMaxNum = list[i];
-    }
-
-    return true;
+    return list.every((element, i) => i === 0 || list[i - 1] < element);
   }
 
   static includeValue(targetList, values) {
