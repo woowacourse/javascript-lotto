@@ -8,6 +8,6 @@ export const validatePurchasePrice = (input) => {
   isValueInteger(value);
 
   if (value < 1000) {
-    throw new Error(ERROR.IS_LOWER_THAN_MINIMUM_OF_PUCHASE_PRICE);
+    throw new Error(ERROR.LOWER_THAN_MINIMUM_OF_PUCHASE_PRICE);
   }
 };

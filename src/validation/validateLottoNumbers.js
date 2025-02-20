@@ -8,7 +8,7 @@ const validateArrayOfWinningNumbers = (winningNumbers) => {
     isValueInteger(winningNumber);
 
     if (winningNumber < 1 || winningNumber > 45) {
-      throw new Error(ERROR.IS_NOT_RANGE_OF_WINNING_NUMBER);
+      throw new Error(ERROR.NOT_RANGE_OF_WINNING_NUMBER);
     }
   });
 };
@@ -18,11 +18,11 @@ export const validateWinningNumbers = (input) => {
   const winningNumberSet = new Set(winningNumbers);
 
   if (winningNumberSet.size !== 6) {
-    throw new Error(ERROR.IS_DUPLICATED_WINNING_NUMBER);
+    throw new Error(ERROR.DUPLICATED_WINNING_NUMBER);
   }
 
   if (winningNumbers.length !== 6) {
-    throw new Error(ERROR.IS_NOT_SAME_LENGTH_OF_WINNING_NUMBER);
+    throw new Error(ERROR.NOT_SAME_LENGTH_OF_WINNING_NUMBER);
   }
 
   validateArrayOfWinningNumbers(winningNumbers);
@@ -35,6 +35,6 @@ export const validateBonusNumber = (input, winningNumbers) => {
   isValueInteger(bonusNumber);
 
   if (winningNumbers.includes(bonusNumber)) {
-    throw new Error(ERROR.IS_BONUS_NUMBER_DUPLICATED);
+    throw new Error(ERROR.DUPLICATED_BONUS_NUMBER);
   }
 };
