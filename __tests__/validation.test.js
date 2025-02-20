@@ -1,7 +1,7 @@
-import isNumber from '../src/util/isNumber.js';
-import ERROR_MESSAGE from '../src/settings/ErrorMessage.js';
-import isInteger from '../src/util/isInteger.js';
-import isPositive from '../src/util/isPositive.js';
+import isNumber from '../src/Validation/validateNumber.js';
+import ERROR_MESSAGE from '../src/Validation/validateNumber.js';
+import isInteger from '../src/Validation/validateNumber.js';
+import isPositive from '../src/Validation/validateNumber.js';
 
 describe('인풋 validation 테스트', () => {
   describe('isNumber Validation test', () => {
