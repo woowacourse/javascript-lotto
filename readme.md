@@ -1,5 +1,42 @@
 # javascript-lotto 
 
+## 폴더 구조
+
+```
+├── __test__
+│   ├── BonusNumberValidator.test.js
+│   ├── Lotto.test.js
+│   ├── LottoMachine.test.js
+│   ├── LottoResult.test.js
+│   ├── LottoValidator.test.js
+│   ├── PriceValidator.test.js
+│   └── Validator.test.js
+└── src/
+    ├── constants/
+    │   ├── lotto.js
+    │   ├── message.js
+    │   └── price.js   
+    ├── domain/
+    │   ├── Lotto.js
+    │   ├── LottoMachine.js
+    │   ├── LottoResult.js
+    │   └── Ticket.js
+    ├── utils/
+    │   ├── count.js
+    │   ├── random.js
+    │   └── throwError.js    
+    ├── validation/
+    │   ├── BonusNumberValidator.js
+    │   ├── LottoValidator.js
+    │   ├── PriceValidator.js
+    │   └── Validator.js     
+    ├── view/
+    │   ├── Input.js
+    │   └── Output.js   
+    ├── step1-index.js
+    └── step2-index.js
+```
+
 ## 기능 목록
 
 ### **입력**
