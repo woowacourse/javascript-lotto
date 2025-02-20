@@ -1,4 +1,3 @@
-import { PRIZE } from "../constants/prize.js";
 import commaizeNumber from "../utils/commaizeNumber.js";
 
 export const printLottoCount = (count) => {
@@ -9,15 +8,16 @@ export const printLottoNumbers = (numbers) => {
   console.log(numbers);
 };
 
-export const printResult = (resultCount) => {
-  const prizes = Object.values(PRIZE);
-  for (let i = resultCount.length - 1; i >= 1; i--) {
+export const printResult = (result) => {
+  console.log("당첨 통계\n--------------------");
+  result.reverse().map(({ rank, winningCriteria, reward, count }) => {
+    const bonusText = rank === "SECOND" ? ", 보너스 볼 일치" : "";
     console.log(
-      `${prizes[i - 1].WINNING_COUNT}개 일치${
-        i === 2 ? ", 보너스 볼 일치" : ""
-      } (${commaizeNumber(prizes[i - 1].REWARD)})원 - ${resultCount[i]}개`
+      `${winningCriteria}개 일치${bonusText} (${commaizeNumber(
+        reward
+      )}원) - ${count}개`
     );
-  }
+  });
 };
 
 export const printProfitRate = (price, reward) => {

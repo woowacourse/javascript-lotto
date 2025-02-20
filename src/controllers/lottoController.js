@@ -1,4 +1,5 @@
 import checkWinningResults from "../domain/checkWinningResults.js";
+import formatResults from "../domain/formatResults.js";
 import { generateLottos } from "../domain/generateLottos.js";
 import { getBonusNumber, getWinningNumbers } from "../view/input.js";
 import {
@@ -21,7 +22,7 @@ const lottoController = async (price) => {
     bonusNumber,
   });
 
-  printResult(resultCount);
+  printResult(formatResults(resultCount));
   printProfitRate(price, totalReward);
 };
 
