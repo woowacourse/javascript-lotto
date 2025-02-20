@@ -1,4 +1,4 @@
-import { validateMoney, validateLottoNumber } from "../src/validation";
+import { validateMoney, validateLottoNumber, validateBonus } from "../src/validation";
 
 describe('로또 구입 금액',() => {
   test('로또 구입 금액은 1,000원으로 나누어떨어져야 한다.',() => {
@@ -49,3 +49,13 @@ describe('로또 숫자',() => {
       .toThrow('[ERROR] 로또 번호의 숫자는 중복될 수 없다.');
   });
 });
+
+describe('보너스 숫자', () => {
+  test.each([
+    [0], [46],
+  ])('보너스 번호의 숫자 범위는 1 미만 혹은 45 초과하면 에러가 발생한다.', (bonus) => {
+    // then
+    expect(() => validateBonus(bonus))
+      .toThrow('[ERROR] 보너스 번호의 숫자 범위 1 ~ 45이다.');
+  });
+})
