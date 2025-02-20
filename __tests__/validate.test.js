@@ -1,6 +1,5 @@
 import ERROR_MESSAGE from "../src/constant/error.js";
 import LOTTO from "../src/constant/lotto.js";
-
 import { validateBonusNumber, validateRestart, validateWinningNumbers } from "../src/util/validate.js";
 
 describe('validate', () => {

@@ -1,8 +1,8 @@
 import OutputView from './ui/OutputView.js';
-import { PRICE } from "./constant/price.js";
 import Calculator from "./Calculator.js";
 import InputHandler from "./util/InputHandler.js";
 import generateLotto from './LottoMachine.js';
+import { PRICE } from "./constant/price.js";
 
 
 export const purchase = async () => {

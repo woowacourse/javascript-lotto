@@ -1,5 +1,5 @@
-import { WINNING } from "../constant/lotto.js";
 import OUTPUT_MESSAGE from "../constant/output.js";
+import { WINNING } from "../constant/lotto.js";
 
 const OutputView = {
   printLotto(lotto) {

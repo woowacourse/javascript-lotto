@@ -1,5 +1,5 @@
-import { purchase } from "./LottoStore.js";
 import InputView from "./ui/InputView.js";
+import { purchase } from "./LottoStore.js";
 import { validateRestart } from "./util/validate.js";
 
 class App {
