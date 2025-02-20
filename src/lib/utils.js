@@ -27,13 +27,13 @@ export function generateRandomNumber(start, end) {
 }
 
 export function generateUniqueRandomValue(array, { start, end }) {
-  const randomNumber = generateRandomNumber({ start, end });
+  const randomNumber = generateRandomNumber(start, end);
   if (array.includes(randomNumber)) return generateUniqueRandomValue(array, { start, end });
 
   return randomNumber;
 }
 
-export function generateUniqueNumberArray({ start, end }, length) {
+export function generateUniqueNumbers({ start, end }, length) {
   return new Array(length).fill(null).reduce((prev) => {
     const uniqueRandomValue = generateUniqueRandomValue(prev, { start, end });
 

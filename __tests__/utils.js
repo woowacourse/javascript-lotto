@@ -2,7 +2,7 @@ import { NO_WINNING } from '../src/lib/constants.js';
 import {
   calculateMatchCount,
   checkUniqueArray,
-  generateUniqueNumberArray,
+  generateUniqueNumbers,
   getIntersectCount,
   retryUntilSuccess,
 } from '../src/lib/utils.js';
@@ -19,11 +19,11 @@ describe('utils', () => {
     });
   });
 
-  describe('generateUniqueNumberArray', () => {
+  describe('generateUniqueNumbers', () => {
     test('중복되지 않는 숫자로 구성된 배열을 만든다.', () => {
-      const uniqueNumberArray = generateUniqueNumberArray(1, 6, 6);
+      const uniqueNumbers = generateUniqueNumbers({ start: 1, end: 6 }, 6);
 
-      expect(uniqueNumberArray).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
+      expect(uniqueNumbers).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
     });
   });
 

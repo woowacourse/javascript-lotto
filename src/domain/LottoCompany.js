@@ -1,5 +1,3 @@
-// @ts-check
-
 import { LOTTO_RANK, NO_WINNING } from '../lib/constants.js';
 import { getIntersectCount } from '../lib/utils.js';
 
@@ -14,8 +12,8 @@ class LottoCompany {
 
   calculateLottoRanks(purchasedLottos) {
     return purchasedLottos.map((lotto) => {
-      const winningLottoCount = getIntersectCount(lotto.numbers, this.#winNumbers);
-      const isBonusNumber = lotto.numbers.includes(this.#bonusNumber);
+      const winningLottoCount = lotto.calculateMatchWinning(this.#winNumbers);
+      const isBonusNumber = lotto.includes(this.#bonusNumber);
 
       const rank = this.#getRank(winningLottoCount, isBonusNumber);
       return rank;

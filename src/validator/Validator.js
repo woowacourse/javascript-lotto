@@ -11,7 +11,7 @@ class Validator {
   }
 
   static validatePurchaseAmount(purchaseAmount) {
-    if (this.#checkIsPositiveInteger(purchaseAmount)) {
+    if (!this.#checkIsPositiveInteger(purchaseAmount)) {
       throw new Error(ERROR_MESSAGES.purchaseAmount.positiveInteger);
     }
 

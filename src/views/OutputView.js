@@ -1,5 +1,3 @@
-// @ts-check
-
 import { LOTTO_RANK, OUTPUT_MESSAGES } from '../lib/constants.js';
 import { calculateMatchCount } from '../lib/utils.js';
 
