@@ -1,4 +1,4 @@
-import { INPUT_MESSAGES, SEPERATOR } from "../lib/constants.js";
+import { COMMAND, INPUT_MESSAGES, SEPERATOR } from "../lib/constants.js";
 import { readLineAsync, retryUntilSuccess } from "../lib/utils.js";
 import Validator from "../validator/Validator.js";
 
@@ -42,7 +42,7 @@ class InputView {
 
       Validator.validateRetry(retryCommand);
 
-      return retryCommand === "y";
+      return retryCommand === COMMAND.yes;
     });
   }
 }

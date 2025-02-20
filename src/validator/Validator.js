@@ -1,4 +1,5 @@
 import {
+  COMMAND,
   ERROR_MESSAGES,
   LOTTO_PRICE,
   MAX_LOTTO_NUMBER,
@@ -58,7 +59,7 @@ class Validator {
   }
 
   static validateRetry(retryCommand) {
-    if (retryCommand !== "y" && retryCommand !== "n") {
+    if (retryCommand !== COMMAND.yes && retryCommand !== COMMAND.no) {
       throw new Error(ERROR_MESSAGES.retry.yesOrNo);
     }
   }
