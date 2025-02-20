@@ -1,11 +1,47 @@
 {
-  "rules": {},
   "env": {
-    "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "rules": {
+    "no-process-exit": "warn",
+    "no-console": "off",
+    "import/extensions": [
+      "warn",
+      "never",
+      {
+        "js": "always"
+      }
+    ],
+    "no-constant-condition": "off",
+    "func-style": ["off"],
+
+    "lines-between-class-members": ["warn", "always", { "exceptAfterSingleLine": true }],
+    "no-unused-vars": "off",
+    "import/no-cycle": "off",
+    "no-new": "off",
+    "no-restricted-syntax": "off",
+    "import/prefer-default-export": "off",
+    "no-return-await": "off",
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn",
+    "no-empty-function": "off",
+    "class-methods-use-this": "off",
+    "no-useless-constructor": "off",
+    "max-len": "off",
+    "no-continue": "off",
+    "max-params": ["warn", 2],
+    "max-depth": ["warn", 1]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": ["airbnb", "eslint:recommended", "prettier"],
+  "plugins": ["simple-import-sort"]
 }
