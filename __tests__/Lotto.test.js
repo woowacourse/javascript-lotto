@@ -1,7 +1,7 @@
-import { PRICE_NUM } from "../src/constants/lotto.js";
 import { count } from "../src/utils/count.js";
 import { createLotto } from "../src/domain/createLotto.js";
 import Lotto from "../src/domain/Lotto.js";
+import { PRICE } from "../src/constants/price.js";
 
 // TODO : 추후 다른 폴더로 변경 예정
 test("입력받은 금액에 해당하는 개수를 구한다.", () => {
@@ -9,7 +9,7 @@ test("입력받은 금액에 해당하는 개수를 구한다.", () => {
   const money = 1000;
 
   // when
-  const result = count(money, PRICE_NUM);
+  const result = count(money, PRICE.UNIT);
 
   // then
   expect(result).toBe(1);
@@ -36,6 +36,15 @@ test("로또 번호를 가질 수 있다.", () => {
 
   // then
   expect(lotto.getLottoNumbers()).toEqual(lottoNumbers);
+});
+
+test("로또 번호중에 중복된 숫자가 있으면 로또 객체가 생성이 되지 않는다.", () => {
+  //given
+  const lottoNumber = [1, 2, 3, 3, 4, 5];
+  //when //then
+  expect(() => {
+    new Lotto(lottoNumber);
+  }).toThrow("[ERROR]");
 });
 
 test("로또 번호는 오름차순으로 정렬된다", () => {

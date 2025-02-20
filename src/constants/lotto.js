@@ -1,4 +1,8 @@
-export const PRICE_NUM = 1000;
+export const LOTTO_NUMBER = {
+  MIN: 1,
+  MAX: 45,
+  LENGTH: 6,
+};
 
 export const LOTTO_STATUS = [
   { RANK: 1, COUNT: 6, REWORD: 2_000_000_000, IS_BONUS: false },
