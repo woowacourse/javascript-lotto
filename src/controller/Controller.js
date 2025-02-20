@@ -1,5 +1,5 @@
 import CONFIG from '../constants/config.js';
-import INPUT_MESSAGE from '../constants/message.js';
+import { INPUT_MESSAGE } from '../constants/message.js';
 
 import readLineAsync from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
