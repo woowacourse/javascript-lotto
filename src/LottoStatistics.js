@@ -17,8 +17,8 @@ class LottoStatistics {
 
   compareLottos(machineLottos, winningNumber) {
     machineLottos.forEach((machineLotto) => {
-      const sameCount = this.matchSameCount(machineLotto, winningNumber.lotto);
-      const isBonusNumber = this.hasBonusNumber(machineLotto, winningNumber.bonus);
+      const sameCount = this.matchSameCount(machineLotto.getNumbers(), winningNumber.lotto);
+      const isBonusNumber = this.hasBonusNumber(machineLotto.getNumbers(), winningNumber.bonus);
       this.determineRank(sameCount, isBonusNumber);
     });
   }
@@ -48,6 +48,13 @@ class LottoStatistics {
 
   calculateRevenueRate(profit, investmentCost) {
     return Number(((profit / investmentCost) * 100).toFixed(1));
+  }
+
+  getProfit() {
+    return Object.keys(this.#rankResult).reduce(
+      (acc, key) => acc + (this.#rankResult[key].price * this.#rankResult[key].count),
+      0,
+    );
   }
 }
 
