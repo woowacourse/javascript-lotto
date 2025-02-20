@@ -7,7 +7,6 @@ import LottoResult from './domain/LottoResult.js';
 import { calculateTotalPrize } from './domain/calculateTotalPrize.js';
 import { calculateWinningRate } from './domain/calculateWinningRate.js';
 import { YES } from './constants/constants.js';
-import { printLottoResult } from './utils/printLottoResult.js';
 import { purchaseLotto } from './domain/purchaseLotto.js';
 
 class LottoController {
@@ -66,7 +65,7 @@ class LottoController {
     OutputView.print(MESSAGE.STATISTICS)
     OutputView.print(MESSAGE.LINE)
     const result = this.#lottoResult.result
-    printLottoResult(result)
+    OutputView.printLottoResult(result)
   } 
 
   printLottoNumber(){
