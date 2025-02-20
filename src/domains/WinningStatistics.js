@@ -1,6 +1,7 @@
 import countMatchingNumbers from "../utils/countMatchingNumbers.js";
 import { MATCH_KEY, MATCH_PRIZE } from "../constants/constants.js";
 class WinningStatistics {
+  #lottos = [];
   #statistics = new Map([
     [MATCH_KEY.THREE, { count: 0, amount: MATCH_PRIZE.THREE }],
     [MATCH_KEY.FOUR, { count: 0, amount: MATCH_PRIZE.FOUR }],
@@ -11,6 +12,10 @@ class WinningStatistics {
     ],
     [MATCH_KEY.SIX, { count: 0, amount: MATCH_PRIZE.SIX }],
   ]);
+
+  constructor(lottos) {
+    this.#lottos = lottos;
+  }
 
   get statistics() {
     return this.#statistics;
@@ -28,8 +33,8 @@ class WinningStatistics {
     );
   }
 
-  calculateWinningResults(lottos, winningNumbers, bonusNumber) {
-    lottos.forEach((lotto) => {
+  calculateWinningResults(winningNumbers, bonusNumber) {
+    this.#lottos.forEach((lotto) => {
       const matchedCount = countMatchingNumbers(winningNumbers, lotto);
       if (matchedCount === MATCH_KEY.FIVE) {
         this.#addMatchedCount(this.#calculateBonusNumber(lotto, bonusNumber));

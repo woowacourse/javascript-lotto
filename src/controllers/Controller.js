@@ -11,7 +11,7 @@ import { YES } from "../constants/constants.js";
 
 class Controller {
   async start() {
-    await this.#issue();
+    await this.#runLottoGame();
     const restartConfirm = await throwIfInvalid(
       Input.readRestartConfirm,
       validateRestartConfirm,
@@ -19,37 +19,41 @@ class Controller {
     if (restartConfirm === YES) await this.start();
   }
 
-  async #issue() {
-    const purchaseAmount = await throwIfInvalid(
-      Input.readPurchaseAmount,
-      validatePurchaseAmount,
-    );
-
+  async #runLottoGame() {
+    const purchaseAmount = await this.#getPurchaseAmount();
     const lottos = issueLottos(purchaseAmount);
     Output.printIssuedLottos(purchaseAmount, lottos);
 
-    const winningNumbers = await throwIfInvalid(
-      Input.readWinningNumbers,
-      validateWinningNumbers,
-    );
+    const { winningNumbers, bonusNumber } =
+      await this.#getWinningAndBonusNumbers();
 
-    const bonusNumber = await throwIfInvalid(
-      Input.readBonusNumber,
-      validateBonusNumber,
-      winningNumbers,
-    );
-
-    const winningStatistics = new WinningStatistics();
-    winningStatistics.calculateWinningResults(
-      lottos,
-      winningNumbers,
-      bonusNumber,
-    );
+    const winningStatistics = new WinningStatistics(lottos);
+    winningStatistics.calculateWinningResults(winningNumbers, bonusNumber);
 
     Output.printStatistics(winningStatistics.statistics);
     Output.printProfitRatio(
       winningStatistics.calculateProfitRatio(purchaseAmount),
     );
+  }
+
+  async #getPurchaseAmount() {
+    return await throwIfInvalid(
+      Input.readPurchaseAmount,
+      validatePurchaseAmount,
+    );
+  }
+
+  async #getWinningAndBonusNumbers() {
+    const winningNumbers = await throwIfInvalid(
+      Input.readWinningNumbers,
+      validateWinningNumbers,
+    );
+    const bonusNumber = await throwIfInvalid(
+      Input.readBonusNumber,
+      validateBonusNumber,
+      winningNumbers,
+    );
+    return { winningNumbers, bonusNumber };
   }
 }
 

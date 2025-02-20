@@ -94,12 +94,8 @@ describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익
     "calculateWinningResults 메서드 테스트: $description",
     ({ lottos, expectedStatistics }) => {
       // when
-      const winningStatistics = new WinningStatistics();
-      winningStatistics.calculateWinningResults(
-        lottos,
-        winningNumbers,
-        bonusNumber,
-      );
+      const winningStatistics = new WinningStatistics(lottos);
+      winningStatistics.calculateWinningResults(winningNumbers, bonusNumber);
 
       // then
       expect(winningStatistics.statistics).toEqual(expectedStatistics);
@@ -142,12 +138,8 @@ describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익
       const purchaseAmount = lottos.length * MIN_UNIT;
 
       // when
-      const winningStatistics = new WinningStatistics();
-      winningStatistics.calculateWinningResults(
-        lottos,
-        winningNumbers,
-        bonusNumber,
-      );
+      const winningStatistics = new WinningStatistics(lottos);
+      winningStatistics.calculateWinningResults(winningNumbers, bonusNumber);
       const profitRatio =
         winningStatistics.calculateProfitRatio(purchaseAmount);
 
