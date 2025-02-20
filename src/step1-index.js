@@ -3,17 +3,20 @@
  * 브라우저 환경에서 사용하는 css 파일 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import readLineAsync from "./readLineAsync.js";
-import UserLottos from "./UserLottos.js";
-import LottoComparisonManager from "./LottoComparisonManager.js";
-import { printUserLottos, printWinningResult, printROI } from "./output.js";
+import UserLottos from "../src/domain/UserLottos.js";
+import LottoComparisonManager from "../src/domain/LottoComparisonManager.js";
+import {
+  printUserLottos,
+  printWinningResult,
+  printROI,
+} from "../src/view/output.js";
 import {
   inputAskForRestart,
   inputBonusNumber,
   inputPrice,
   inputWinningNumbers,
-} from "./input.js";
-import LottoPrizeManager from "./LottoPrizeManager.js";
+} from "../src/view/input.js";
+import LottoPrizeManager from "../src/domain/LottoPrizeManager.js";
 
 async function run() {
   const price = await inputPrice();
@@ -32,7 +35,6 @@ async function run() {
   const countResults = lottoComparisonManager.countMatchingNumbers();
   const isContainBonusNumbers =
     lottoComparisonManager.containsBonusNumbers(countResults);
-  console.log(countResults, isContainBonusNumbers);
   const lottoPrizeManager = new LottoPrizeManager(
     countResults,
     isContainBonusNumbers

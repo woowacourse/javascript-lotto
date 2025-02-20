@@ -1,6 +1,6 @@
-import Lotto from "../src/Lotto";
-import LottoComparisonManager from "../src/LottoComparisonManager";
-import LottoPrizeManager from "../src/LottoPrizeManager";
+import Lotto from "../src/domain/Lotto.js";
+import LottoComparisonManager from "../src/domain/LottoComparisonManager.js";
+import LottoPrizeManager from "../src/domain/LottoPrizeManager.js";
 
 let lottoComparisonManager;
 let lottoPrizeManager;

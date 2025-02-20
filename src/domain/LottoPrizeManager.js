@@ -4,7 +4,7 @@ import {
   FOURTH_PRIZE,
   SECOND_PRIZE,
   THIRD_PRIZE,
-} from "./const.js";
+} from "../config/const.js";
 
 class LottoPrizeManager {
   #countResults;

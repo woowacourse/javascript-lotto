@@ -1,4 +1,4 @@
-import { PURCHASE_UNIT } from "./const.js";
+import { PURCHASE_UNIT } from "../config/const.js";
 import Lotto from "./Lotto.js";
 
 class UserLottos {

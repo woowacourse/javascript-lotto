@@ -1,4 +1,4 @@
-import UserLottos from "../src/UserLottos";
+import UserLottos from "../src/domain/UserLottos.js";
 
 let userLotto;
 beforeEach(() => {

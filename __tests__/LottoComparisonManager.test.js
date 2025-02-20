@@ -1,5 +1,5 @@
-import Lotto from "../src/Lotto.js";
-import LottoComparisonManager from "../src/LottoComparisonManager.js";
+import Lotto from "../src/domain/Lotto.js";
+import LottoComparisonManager from "../src/domain/LottoComparisonManager.js";
 
 let lottoComparisonManager;
 beforeEach(() => {

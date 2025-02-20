@@ -3,7 +3,7 @@ import {
   LOTTO_MIN_RANGE,
   MAXIMUM_PURCHASE_THRESHOLD,
   PURCHASE_UNIT,
-} from "./const.js";
+} from "../../config/const.js";
 
 const validatePurchaseUnit = (price) => {
   if (price % PURCHASE_UNIT !== 0) {
@@ -56,7 +56,6 @@ const validateWinningNumberDuplicate = (input) => {
 };
 
 const validateBonusNumberUnique = (winningNumber, bonusNumber) => {
-  console.log(winningNumber);
   if (winningNumber.includes(bonusNumber))
     throw new Error("보너스 번호는 당첨 번호와 중복되면 안됩니다.");
 };
@@ -64,6 +63,12 @@ const validateBonusNumberUnique = (winningNumber, bonusNumber) => {
 const validateRestartInput = (input) => {
   if (input !== "y" || input !== "n")
     throw new Error("입력은 y 또는 n만 가능합니다.");
+};
+
+const validateWinningNumbersLength = (winningNumber) => {
+  if (winningNumber.length !== 6) {
+    throw new Error("당첨 번호는 6개여야 합니다.");
+  }
 };
 
 export {
@@ -76,4 +81,5 @@ export {
   validateWinningNumberDuplicate,
   validateBonusNumberUnique,
   validateRestartInput,
+  validateWinningNumbersLength,
 };

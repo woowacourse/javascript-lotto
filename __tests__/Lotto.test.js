@@ -1,4 +1,4 @@
-import Lotto from "../src/Lotto";
+import Lotto from "../src/domain/Lotto.js";
 
 test("로또 번호를 오름차순으로 정렬한다.", () => {
   const numbers = [9, 8, 7, 6, 5, 4];
