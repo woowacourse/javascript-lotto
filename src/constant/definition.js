@@ -1,11 +1,28 @@
+export const RANK = {
+  FIRST: "1등",
+  SECOND: "2등",
+  THIRD: "3등",
+  FOURTH: "4등",
+  FIFTH: "5등",
+};
+
 const DEFINITION = {
   LOTTO_PRISE: {
-    "5등": 5000,
-    "4등": 50000,
-    "3등": 1500000,
-    "2등": 30000000,
-    "1등": 2000000000,
+    [RANK.FIFTH]: 5000,
+    [RANK.FOURTH]: 50000,
+    [RANK.THIRD]: 1500000,
+    [RANK.SECOND]: 30000000,
+    [RANK.FIRST]: 2000000000,
   },
+  LOTTO_RULE: {
+    [RANK.FIFTH]: 3,
+    [RANK.FOURTH]: 4,
+    [RANK.THIRD]: 5,
+    [RANK.SECOND]: 5,
+    [RANK.FIRST]: 6,
+  },
+  SPLIT: ", ",
+  EMPTY: "",
 };
 
 export default DEFINITION;
