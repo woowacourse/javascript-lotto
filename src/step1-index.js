@@ -5,12 +5,11 @@
 
 import App from "./App.js";
 
-export async function run() {
+export default async function run() {
   const app = new App();
-
-  while (true) {
-    const retryAnswer = await app.run();
-    if (retryAnswer === "n") break;
+  let retryAnswer = "y";
+  while (retryAnswer !== "n") {
+    retryAnswer = await app.run();
   }
 }
 

@@ -1,7 +1,7 @@
 {
   "rules": {
     // "max-lines-per-function": ["error", 15],
-    // "max-depth": ["error", 1],
+    "max-depth": ["error", 1],
     // "prettier/prettier": ["error"],
     // "lines-between-class-members": [
     //   "error",
@@ -10,9 +10,10 @@
     // ],
     // "no-console": "off",
     // "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    // "import/extensions": "off",
+    "import/extensions": "off",
     // "class-methods-use-this": "off",
     // "no-await-in-loop": "off"
+    "eslint-plugin-import/prefer-default-export" : "off"
   },
   "env": {
     "es6": true,
