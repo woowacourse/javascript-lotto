@@ -1,10 +1,13 @@
-import Validation from "./utils/validation/Validation.js";
 import InputView from "./view/InputView.js";
 import LottoMachine from "./domain/LottoMachine.js";
 import OutputView from "./view/OutputView.js";
 import profitCalculator from "./domain/profitCalculator.js";
 import generateAnswerLotto from "./domain/AnswerLottoPack.js";
 import retryCheckInput from "./utils/retryCheckInput.js";
+import validatePurchaseAmount from "./domain/validation/validatePurchaseAmount.js";
+import validateWinningNumbers from "./domain/validation/validateWinningNumbers.js";
+import validateBonusNumber from "./domain/validation/validateBonusNumber.js";
+import validateRestart from "./domain/validation/validateRestart.js";
 class Controller {
   async start() {
     const purchaseAmount = await this.purchaseAmountInput();
@@ -28,28 +31,22 @@ class Controller {
   }
 
   async purchaseAmountInput() {
-    const purchaseAmount = await retryCheckInput(
-      async () => await InputView.purchaseAmount(),
-      Validation.purchaseAmount,
-    );
+    const purchaseAmount = await retryCheckInput(async () => await InputView.purchaseAmount(), validatePurchaseAmount);
     return purchaseAmount;
   }
 
   async answerLottoInput() {
-    const winningNumbers = await retryCheckInput(
-      async () => await InputView.winningNumbers(),
-      Validation.winningNumbers,
-    );
+    const winningNumbers = await retryCheckInput(async () => await InputView.winningNumbers(), validateWinningNumbers);
     const bonusNumber = await retryCheckInput(
       async () => await InputView.bonusNumber(),
-      Validation.bonusNumber(winningNumbers),
+      validateBonusNumber(winningNumbers),
     );
 
     return { winningNumbers, bonusNumber };
   }
 
   async reStart() {
-    const restart = await retryCheckInput(async () => await InputView.restart(), Validation.restart);
+    const restart = await retryCheckInput(async () => await InputView.restart(), validateRestart);
     if (restart) this.start();
   }
 }

@@ -141,7 +141,7 @@ Lotto
   - [x] createSixRandomNumber 로직 변경
   - [x] retryCheckInput 로직 변경
 - [x] 6개 랜덤 넘버 생성 함수 분리
-- [ ] if문 condition 함수 분리
+- [x] if문 condition 함수 분리
 - [x] controller 분리
 - [x] printLn 메서드 추가
 - [x] 수익률 소수점 1자리
