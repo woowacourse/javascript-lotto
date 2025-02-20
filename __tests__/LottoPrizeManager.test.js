@@ -25,13 +25,8 @@ beforeEach(() => {
   );
 
   const countResults = lottoComparisonManager.countMatchingNumbers();
-  const isContainBonusNumbers =
-    lottoComparisonManager.containsBonusNumbers(countResults);
-  lottoPrizeManager = new LottoPrizeManager(
-    countResults,
-    isContainBonusNumbers
-  );
-  lottoPrizeManager.calculateWinnings(countResults, isContainBonusNumbers);
+  lottoPrizeManager = new LottoPrizeManager(countResults);
+  lottoPrizeManager.calculateWinnings(countResults);
 });
 
 test("당첨 내역을 계산한다.", () => {

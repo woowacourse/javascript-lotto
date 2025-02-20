@@ -33,12 +33,7 @@ async function run() {
   );
 
   const countResults = lottoComparisonManager.countMatchingNumbers();
-  const isContainBonusNumbers =
-    lottoComparisonManager.containsBonusNumbers(countResults);
-  const lottoPrizeManager = new LottoPrizeManager(
-    countResults,
-    isContainBonusNumbers
-  );
+  const lottoPrizeManager = new LottoPrizeManager(countResults);
 
   lottoPrizeManager.calculateWinnings();
   printWinningResult(lottoPrizeManager.prizeResult);

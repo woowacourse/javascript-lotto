@@ -19,24 +19,19 @@ class LottoComparisonManager {
   }
 
   countMatchingNumbers() {
-    const countResults = [];
-
-    this.#userLottos.forEach((userLotto) => {
-      const matchingCount = this.#compareMatchingNumbers(userLotto.numbers);
-      if (matchingCount >= 3) countResults.push(matchingCount);
-    });
-
-    return countResults;
-  }
-
-  containsBonusNumbers(countResults) {
-    const isContainBonusInFive = countResults.reduce((acc, cur, index) => {
-      if (cur === 5) {
-        acc.push(this.#userLottos[index].numbers.includes(this.#bonusNumber));
+    return this.#userLottos.reduce((acc, cur, index) => {
+      const matchingCount = this.#compareMatchingNumbers(cur.numbers);
+      if (matchingCount < 3) return acc;
+      const isBonus = this.#userLottos[index].numbers.includes(
+        this.#bonusNumber
+      );
+      if (matchingCount === 5 && isBonus) {
+        acc.push("bonus");
+        return acc;
       }
+      acc.push(matchingCount);
       return acc;
     }, []);
-    return isContainBonusInFive;
   }
 }
 

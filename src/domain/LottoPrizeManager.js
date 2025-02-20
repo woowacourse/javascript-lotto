@@ -29,9 +29,7 @@ class LottoPrizeManager {
 
   calculateWinnings() {
     this.#countResults.reduce((acc, cur) => {
-      let isBonusNumber;
-      if (cur === 5) isBonusNumber = this.#isContainBonusNumbers.shift();
-      acc[this.#switchCountToPrize(cur, isBonusNumber)] += 1;
+      acc[this.#switchCountToPrize(cur)] += 1;
       return acc;
     }, this.#prizeResult);
   }
@@ -40,15 +38,16 @@ class LottoPrizeManager {
     return (((this.#calculateTotalPrize() - price) / price) * 100).toFixed(2);
   }
 
-  #switchCountToPrize(countResult, isBonusNumber) {
+  #switchCountToPrize(countResult) {
     switch (countResult) {
       case 3:
         return "fifthPrize";
       case 4:
         return "fourthPrize";
       case 5:
-        if (isBonusNumber) return "secondPrize";
         return "thirdPrize";
+      case "bonus":
+        return "secondPrize";
       case 6:
         return "firstPrize";
     }
