@@ -12,8 +12,10 @@ import {
   validateWinningNumbers,
   validateBonusNumber,
 } from './View/Validation/inputView.js';
+import LottoManager from './Domain/Model/LottoManager.js';
+
 class App {
-  async #initialize() {
+  async #initializePurchaseAmount() {
     const purchaseAmountInput = await readUserInputUntilSuccess({
       readUserInput: getPurchaseAmountInput,
       formatter: (input) => {
@@ -23,7 +25,10 @@ class App {
         return convertedInput;
       },
     });
-
+    return purchaseAmountInput
+  }
+  
+  async #initializeWinningNumbers (){
     const winningNumbersInput = await readUserInputUntilSuccess({
       readUserInput: getWinningNumbersInput,
       formatter: (input) => {
@@ -36,27 +41,36 @@ class App {
         return numbers;
       },
     });
+    return winningNumbersInput,
+  }
 
-    const bonusNumberInput = await readUserInputUntilSuccess({
-      readUserInput: getBonusNumberInput,
-      formatter: (input) => {
-        validateEmptySpace(input);
-        const convertedInput = convertFormat.toNumber(input);
-        validateBonusNumber(convertedInput, winningNumbersInput);
-        return convertedInput;
-      },
-    });
-
-    return {
-      purchaseAmountInput,
-      winningNumbersInput,
-      bonusNumberInput,
-    };
+  async #initializeBonusNumbers(){
+      const bonusNumberInput = await readUserInputUntilSuccess({
+        readUserInput: getBonusNumberInput,
+        formatter: (input) => {
+          validateEmptySpace(input);
+          const convertedInput = convertFormat.toNumber(input);
+          validateBonusNumber(convertedInput, winningNumbersInput);
+          return convertedInput;
+        },
+      });
+    return bonusNumberInput;
   }
 
   async run() {
-    const { purchaseAmountInput, winningNumbersInput, bonusNumberInput } =
-      await this.#initialize();
+    const purchaseAmountInput = await this.#initializePurchaseAmount(); 
+
+    const lottoManager = new LottoManager();
+    const lottoCounts = lottoManager.purchaseLotto(purchaseAmountInput)
+    lottoManager.makeLottoList(lottoCounts);
+    // TODO: ${lottoCounts}개를 구매했습니다. view
+    // TODO: lotto 구매한만큼(lottoList) 보여주기
+    
+    const winningNumbersInput = await this.#initializeBonusNumbers();
+    
+    const bonusNumberInput = await this.#initializeBonusNumbers();
+
+
   }
 
   async retryRun() {
