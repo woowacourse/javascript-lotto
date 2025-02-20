@@ -8,7 +8,11 @@ class Lotto {
     this.#numbers = numbers.sort((a, b) => a - b);
     this.#validate();
   }
-  
+
+  set ranking(ranking){
+    this.#ranking=ranking
+  }
+
   #validate() {
     validateLottoNumber(this.#numbers);
   }
@@ -19,6 +23,10 @@ class Lotto {
 
   get numbers() {
     return this.#numbers;
+  }
+
+  get ranking(){
+    return this.#ranking;
   }
 }
 
