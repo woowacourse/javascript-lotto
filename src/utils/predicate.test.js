@@ -11,12 +11,12 @@ describe("isMultipleOf 함수 테스트", () => {
 });
 
 describe("isInRange 함수 테스트", () => {
-  test("5는 1과 10 사이에 있다.", () => {
-    expect(isInRange(5, 1, 10)).toBeTruthy();
+  test("1는 1과 10 사이에 있다.", () => {
+    expect(isInRange(1, 1, 10)).toBeTruthy();
   });
 
-  test("11은 1과 10 사이에 없다.", () => {
-    expect(isInRange(11, 1, 10)).toBeFalsy();
+  test("0은 1과 10 사이에 없다.", () => {
+    expect(isInRange(0, 1, 10)).toBeFalsy();
   });
 });
 
