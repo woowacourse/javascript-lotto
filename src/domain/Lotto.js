@@ -12,7 +12,7 @@ class Lotto {
   }
 
   sortLottoNumber(numbers) {
-    return numbers.sort();
+    return numbers.sort((a, b) => a - b);
   }
 
   getLottoNumbers() {
