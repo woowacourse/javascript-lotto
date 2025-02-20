@@ -1,23 +1,33 @@
-import readline from 'readline';
+import readLineAsync from './readLineAsync.js';
+import { INPUT_MESSAGE } from '../constants/message.js';
+import { validateMoney, validateLottoNumber, validateBonus } from '../domain/validation.js';
+import CONFIG from '../constants/config.js';
 
-export default function readLineAsync(query) {
-  return new Promise((resolve, reject) => {
-    if (arguments.length !== 1) {
-      reject(new Error('arguments must be 1'));
-    }
+const InputView = {
+  async readMoney() {
+    const input = await readLineAsync(INPUT_MESSAGE.READ_MONEY);
+    const money = parseInt(input, CONFIG.DECIMAL);
+    validateMoney(money);
+    return money;
+  },
+  async readWinningLotto() {
+    const input = await readLineAsync(INPUT_MESSAGE.READ_WINNING_LOTTO);
+    const winningLotto = input?.split(',').map((item) => parseInt(item, CONFIG.DECIMAL));
+    validateLottoNumber(winningLotto);
+    return winningLotto;
+  },
+  async readBonus(winningLotto) {
+    const input = await readLineAsync(INPUT_MESSAGE.READ_BONUS);
+    const bonus = parseInt(input, CONFIG.DECIMAL);
+    validateBonus(bonus, winningLotto);
+    return bonus;
+  },
+  async readReStart() {
+    const input = await readLineAsync(INPUT_MESSAGE.READ_RESTART);
+    const lowerCaseInput = input.toLowerCase();
 
-    if (typeof query !== 'string') {
-      reject(new Error('query must be string'));
-    }
+    return !(lowerCaseInput === CONFIG.ANSWER_NO) && lowerCaseInput === CONFIG.ANSWER_YES;
+  },
+};
 
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    rl.question(query, (input) => {
-      rl.close();
-      resolve(input);
-    });
-  });
-}
+export default InputView;

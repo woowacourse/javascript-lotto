@@ -1,2 +1,2 @@
 __tests__/*.js
-src/view/InputView.js
+src/view/readLineAsync.js

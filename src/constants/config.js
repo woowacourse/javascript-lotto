@@ -13,6 +13,10 @@ const CONFIG = Object.freeze({
     BONUS: (sameCount) => `${sameCount}개 일치, 보너스 볼 일치`,
     NORMAL: (sameCount) => `${sameCount}개 일치`,
   }),
+  SECOND_PRIZE_MATCH_COUNT: 5,
+  DECIMAL: 10,
+  ANSWER_NO: 'n',
+  ANSWER_YES: 'y',
 });
 
 export default CONFIG;

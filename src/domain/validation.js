@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import CONFIG from '../constants/config.js';
 import { ERROR } from '../constants/message.js';
 

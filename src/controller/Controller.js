@@ -1,12 +1,10 @@
 import CONFIG from '../constants/config.js';
-import { INPUT_MESSAGE } from '../constants/message.js';
 
-import readLineAsync from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
+import InputView from '../view/InputView.js';
 
 import Machine from '../domain/model/Machine.js';
 import LottoStatistics from '../domain/model/LottoStatistics.js';
-import { validateMoney, validateLottoNumber, validateBonus } from '../domain/validation.js';
 
 class Controller {
   #machine;
@@ -25,14 +23,14 @@ class Controller {
     let condition = true;
     while (condition) {
       await this.buyLottos();
-      await this.statisticLottos();
-      this.revenueLottos();
-      condition = await this.readReStart();
+      await this.statisticsLottos();
+      this.makeProfit();
+      condition = await InputView.readReStart();
     }
   }
 
   async buyLottos() {
-    this.#money = await this.readMoney();
+    this.#money = await InputView.readMoney();
     this.#machine.createLottos(this.#money);
     OutputView.printLottoQuantity(this.#machine.getLottoQuantity());
     this.#machine.getLottos().forEach((lotto) => (
@@ -40,9 +38,9 @@ class Controller {
     ));
   }
 
-  async statisticLottos() {
-    const winningLotto = await this.readWinningLotto();
-    const bonus = await this.readBonus(winningLotto);
+  async statisticsLottos() {
+    const winningLotto = await InputView.readWinningLotto();
+    const bonus = await InputView.readBonus(winningLotto);
     const winningNumber = { bonus, lotto: winningLotto };
     this.#lottoStatistics.compareLottos(this.#machine.getLottos(), winningNumber);
     const rankResult = this.#lottoStatistics.getRankResult();
@@ -50,40 +48,10 @@ class Controller {
     Object.keys(rankResult).forEach((key) => { OutputView.printRankResult(key, rankResult[key]); });
   }
 
-  async revenueLottos() {
+  async makeProfit() {
     const profit = this.#lottoStatistics.getProfit();
     const revenueRate = this.#lottoStatistics.calculateRevenueRate(profit, this.#money);
     OutputView.printRevenueRate(revenueRate);
-  }
-
-  async readMoney() {
-    const input = await readLineAsync(INPUT_MESSAGE.READ_MONEY);
-    const money = parseInt(input, 10);
-    validateMoney(money);
-    return money;
-  }
-
-  async readWinningLotto() {
-    const input = await readLineAsync(INPUT_MESSAGE.READ_WINNING_LOTTO);
-    const winningLotto = input?.split(',').map((item) => parseInt(item, 10));
-    validateLottoNumber(winningLotto);
-    return winningLotto;
-  }
-
-  async readBonus(winningLotto) {
-    const input = await readLineAsync(INPUT_MESSAGE.READ_BONUS);
-    const bonus = parseInt(input, 10);
-    validateBonus(bonus, winningLotto);
-    return bonus;
-  }
-
-  async readReStart() {
-    const ANSWER_NO = 'n';
-    const ANSWER_YES = 'y';
-    const input = await readLineAsync(INPUT_MESSAGE.READ_RESTART);
-    const lowerCaseInput = input.toLowerCase();
-
-    return !(lowerCaseInput === ANSWER_NO) && lowerCaseInput === ANSWER_YES;
   }
 }
 export default Controller;

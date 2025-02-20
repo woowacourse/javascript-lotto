@@ -19,18 +19,19 @@ class LottoStatistics {
 
   compareLottos(machineLottos, winningNumber) {
     machineLottos.forEach((machineLotto) => {
-      const sameCount = this.matchSameCount(machineLotto.getNumbers(), winningNumber.lotto);
-      const isBonusNumber = this.hasBonusNumber(machineLotto.getNumbers(), winningNumber.bonus);
+      const machineLottoNumbers = machineLotto.getNumbers();
+      const sameCount = this.matchSameCount(machineLottoNumbers, winningNumber.lotto);
+      const isBonusNumber = this.hasBonusNumber(machineLottoNumbers, winningNumber.bonus);
       this.determineRank(sameCount, isBonusNumber);
     });
   }
 
   determineRank(sameCount, isBonusNumber) {
-    if (sameCount === 5 && isBonusNumber) {
+    if (sameCount === CONFIG.SECOND_PRIZE_MATCH_COUNT && isBonusNumber) {
       return this.increaseCount(sameCount, CONFIG.RANK_OBJECT_KEY.BONUS(sameCount));
     }
 
-    return this.increaseCount(sameCount, CONFIG.RANK_OBJECT_KEY(sameCount));
+    return this.increaseCount(sameCount, CONFIG.RANK_OBJECT_KEY.NORMAL(sameCount));
   }
 
   hasBonusNumber(machineLotto, bonus) {
@@ -42,10 +43,11 @@ class LottoStatistics {
   }
 
   increaseCount(sameCount, name) {
+    const ONE_TICKET = 1;
     if (sameCount < CONFIG.MIN.RANK_COUNT) {
       return;
     }
-    this.#rankResult[name].count += 1;
+    this.#rankResult[name].count += ONE_TICKET;
   }
 
   calculateRevenueRate(profit, investmentCost) {
