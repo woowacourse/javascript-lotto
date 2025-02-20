@@ -1,7 +1,7 @@
 import getTotalPrizeMoney from "./getTotalPrizeMoney.js";
 
 describe("generateLottoNumberSets 테스트", () => {
-  test("3000원으로 로또 번호를 3개 구매한다.", () => {
+  test("3개 일치 - 1개, 6개 일치 - 1개이면 2,000,005,000원의 상금을 받는다.", () => {
     const result = new Map([
       [3, 1],
       [4, 0],
