@@ -1,4 +1,6 @@
-import { LOTTO_LENGTH, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../lib/constants.js';
+import {
+  LOTTO_LENGTH, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER,
+} from '../lib/constants.js';
 import { generateUniqueNumberArray } from '../lib/utils.js';
 import Lotto from './Lotto.js';
 

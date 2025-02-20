@@ -26,16 +26,16 @@ export function generateRandomNumber(start, end) {
   return Math.floor(Math.random() * (end + 1 - start)) + start;
 }
 
-export function generateUniqueRandomValue(array, start, end) {
-  const randomNumber = generateRandomNumber(start, end);
-  if (array.includes(randomNumber)) return generateUniqueRandomValue(array, start, end);
+export function generateUniqueRandomValue(array, { start, end }) {
+  const randomNumber = generateRandomNumber({ start, end });
+  if (array.includes(randomNumber)) return generateUniqueRandomValue(array, { start, end });
 
   return randomNumber;
 }
 
-export function generateUniqueNumberArray(start, end, length) {
+export function generateUniqueNumberArray({ start, end }, length) {
   return new Array(length).fill(null).reduce((prev) => {
-    const uniqueRandomValue = generateUniqueRandomValue(prev, start, end);
+    const uniqueRandomValue = generateUniqueRandomValue(prev, { start, end });
 
     return [...prev, uniqueRandomValue];
   }, []);
