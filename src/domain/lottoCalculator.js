@@ -56,6 +56,10 @@ class LottoCalculator {
     this.#totalPrice = totalPrice;
   }
 
+  calculateProfit(purchaseMoney) {
+    return (this.#totalPrice / purchaseMoney) * 100;
+  }
+
   get prize() {
     return this.#prize;
   }
