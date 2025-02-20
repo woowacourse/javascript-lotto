@@ -6,4 +6,5 @@ export const ERROR = Object.freeze({
   NOT_SAME_LENGTH_OF_WINNING_NUMBER: '당첨 번호는 6개여야 해요.',
   DUPLICATED_WINNING_NUMBER: '당첨 번호는 중복될 수 없어요.',
   DUPLICATED_BONUS_NUMBER: '보너스 번호는 당첨 번호와 중복될 수 없어요.',
+  CHECK_REPLAY_GAME: '재시작 여부는 y 또는 n으로 입력해 주세요.',
 });
