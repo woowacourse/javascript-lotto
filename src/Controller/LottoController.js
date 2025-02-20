@@ -6,16 +6,20 @@ import Winning from '../Model/Winning.js';
 
 class LottoController {
   async start() {
-    let restart = 'y';
-    while (restart === 'y' || restart === 'Y') {
-      const { price, lottos } = await this.#buyLotto();
-      const { winningNumbers, bonusNumber } = await this.#getWinningNumbers();
+    const { price, lottos } = await this.#buyLotto();
+    const { winningNumbers, bonusNumber } = await this.#getWinningNumbers();
 
-      const winning = new Winning(winningNumbers, bonusNumber);
-      this.#processWinningResult(winning, lottos);
-      this.#processPrizeResult(winning, price);
+    const winning = new Winning(winningNumbers, bonusNumber);
+    this.#processWinningResult(winning, lottos);
+    this.#processPrizeResult(winning, price);
 
-      restart = await this.#readRestart();
+    const restart = await this.#readRestart();
+    return this.#runRestart(restart);
+  }
+
+  #runRestart(restart) {
+    if (restart === 'y' || restart === 'Y') {
+      this.start();
     }
   }
 
@@ -44,14 +48,13 @@ class LottoController {
   }
 
   async #readPrice() {
-    while (true) {
-      try {
-        const price = await InputView.readPrice();
-        this.#validatePrice(price);
-        return price;
-      } catch (error) {
-        OutputView.printErrorMessage(error.message);
-      }
+    try {
+      const price = await InputView.readPrice();
+      this.#validatePrice(price);
+      return price;
+    } catch (error) {
+      OutputView.printErrorMessage(error.message);
+      return this.#readPrice();
     }
   }
 
@@ -73,6 +76,7 @@ class LottoController {
       return winningNumbers.split(',').map(Number);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
+      return this.#readWinningNumbers();
     }
   }
 
@@ -98,6 +102,7 @@ class LottoController {
       return Number(bonusNumber);
     } catch (error) {
       OutputView.printErrorMessage(error);
+      return this.#readBonusNumber(winningNumbers);
     }
   }
 
@@ -116,10 +121,10 @@ class LottoController {
     try {
       const restart = await InputView.readRestart();
       this.#validateRestart(restart);
-
       return restart;
     } catch (error) {
       OutputView.printErrorMessage(error);
+      return this.#readRestart();
     }
   }
 
