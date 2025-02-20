@@ -1,5 +1,8 @@
 {
-  "rules": {},
+  "rules": {
+    "max-depth": ["error", 2],
+    "max-params": ["error", 3]
+  },
   "env": {
     "es6": true,
     "node": true
