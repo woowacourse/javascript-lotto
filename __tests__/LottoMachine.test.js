@@ -9,4 +9,14 @@ describe('로또 머신 테스트', () => {
 
     expect(lottos.length).toBe(count);
   });
+
+  test('중복되지 않는 로또 번호 저장 테스트', () => {
+    const lottoMachine = new LottoMachine();
+    const lottoNumbers = [1];
+    const randomNumber = 1;
+    const result = [...lottoNumbers];
+    lottoMachine.saveUniqueLottoNumber(result, randomNumber);
+
+    expect(result.length).toEqual(lottoNumbers.length);
+  });
 });

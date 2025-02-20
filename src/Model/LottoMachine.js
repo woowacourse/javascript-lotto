@@ -7,12 +7,12 @@ class LottoMachine {
     const lottoNumbers = [];
     while (lottoNumbers.length !== LOTTO_NUMBER_LENGTH) {
       const randomNumber = getRandomNumberInRange();
-      this.#saveUniqueLottoNumber(lottoNumbers, randomNumber);
+      this.saveUniqueLottoNumber(lottoNumbers, randomNumber);
     }
     return lottoNumbers;
   }
 
-  #saveUniqueLottoNumber(lottoNumbers, randomNumber) {
+  saveUniqueLottoNumber(lottoNumbers, randomNumber) {
     if (!lottoNumbers.includes(randomNumber)) {
       lottoNumbers.push(randomNumber);
     }
