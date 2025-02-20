@@ -1,4 +1,4 @@
-import LOTTO from '../src/constant/lotto.js';
+import { LOTTO } from '../src/constant/lotto.js';
 import generateLotto from '../src/LottoMachine.js';
 
 

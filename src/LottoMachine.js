@@ -1,5 +1,5 @@
-import LOTTO from "./constant/lotto.js";
-import { getRandomNumber } from "./util/random.js";
+import getRandomNumber from "./util/random.js";
+import { LOTTO } from "./constant/lotto.js";
 
 const generateLotto = () => {
   const lotto = new Set();

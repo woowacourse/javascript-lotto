@@ -1,6 +1,6 @@
 import ERROR_MESSAGE from "../constant/error.js";
-import LOTTO from "../constant/lotto.js";
-import { PRICE } from "../constant/price.js";
+import PRICE from "../constant/price.js";
+import { LOTTO } from "../constant/lotto.js";
 
 export const validateRestart = (answer) => {
   if (answer.toLowerCase() !== "y" && answer.toLowerCase() !== "n") {

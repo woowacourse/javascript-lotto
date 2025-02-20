@@ -2,10 +2,10 @@ import OutputView from './ui/OutputView.js';
 import Calculator from "./Calculator.js";
 import InputHandler from "./util/InputHandler.js";
 import generateLotto from './LottoMachine.js';
-import { PRICE } from "./constant/price.js";
+import PRICE from "./constant/price.js";
 
 
-export const purchase = async () => {
+const purchase = async () => {
   const purchaseAmount = await InputHandler.getPurchaseAmount();
   const quantity = purchaseAmount / PRICE.UNIT;
   const lottoNumbers = Array.from({length: quantity}, () => generateLotto());
@@ -33,3 +33,4 @@ const readWinningInfo = async () => {
   }
 }
 
+export default purchase;

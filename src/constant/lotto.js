@@ -1,4 +1,4 @@
-const LOTTO = {
+export const LOTTO = {
     MIN_RANDOM_VALUE: 1,
     MAX_RANDOM_VALUE: 45,
     LENGTH: 6,
@@ -39,7 +39,3 @@ export const WINNING = {
         PRIZES: 5_000
     }
 }
-
-
-
-export default LOTTO;

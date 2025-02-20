@@ -1,4 +1,4 @@
-import LOTTO from "./lotto.js";
+import { LOTTO } from "./lotto.js";
 
 const ERROR_MESSAGE = {
     NOT_A_NUMBER: '[ERROR] 숫자를 입력해주세요.',
