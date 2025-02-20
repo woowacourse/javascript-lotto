@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from "../../src/constants/error.js";
 import validateRestart, {
   validateFormat,
-} from "../../src/domain/validateRestart.js";
+} from "../../src/validations/validateRestart.js";
 
 describe("validations/validateRestart", () => {
   test("입력이 y, n인지 확인한다.", () => {

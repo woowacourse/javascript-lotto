@@ -4,7 +4,7 @@ import {
   validateRange,
   validateDuplicate,
   validateBonusNumber,
-} from "../../src/domain/validateWinningNumbers.js";
+} from "../../src/validations/validateWinningNumbers.js";
 
 describe("validations/validateWinningNumbers", () => {
   describe("validateWinningNumbers()", () => {

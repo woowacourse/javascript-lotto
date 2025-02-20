@@ -3,7 +3,7 @@ import {
   isNumber,
   isThousandUnit,
   isValidPriceRange,
-} from "../../src/domain/validatePrice.js";
+} from "../../src/validations/validatePrice.js";
 
 describe("validations/validatePrice", () => {
   test.each([["0"], ["1"], ["1000"]])(
