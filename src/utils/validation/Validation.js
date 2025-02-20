@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from "../../constants/ERROR_MESSAGE";
+import ERROR_MESSAGE from "../../constants/ERROR_MESSAGE.js";
 
 const Validation = {
   purchaseAmount(input) {
