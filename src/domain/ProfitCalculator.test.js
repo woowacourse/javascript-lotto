@@ -17,7 +17,7 @@ describe("ProfitCalculator 테스트", () => {
       bonusNumber
     );
 
-    profit.getResults(); //TODO: getResults()를 호출하지 않으면 결과가 계산되지 않는 문제 해결
+    profit.getResults();
     expect(profit.calculateProfitRate()).toBe("1000000.0");
   });
 });

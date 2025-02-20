@@ -4,6 +4,7 @@ import {
   purchaseAmountValidator,
   lottoNumberValidator,
   bonusNumberValidator,
+  restartValidator,
 } from "../validators/index.js";
 import { retryUntilValid } from "../utils/retryUntilValid.js";
 import LottoGenerator from "../domain/LottoGenerator.js";
@@ -16,15 +17,26 @@ class LottoController {
   }
 
   async play() {
-    const purchaseAmount = await this.getPurchaseAmount();
-    this.lottoTickets = LottoGenerator.generate(purchaseAmount);
+    do {
+      const purchaseAmount = await this.getPurchaseAmount();
+      this.lottoTickets = LottoGenerator.generate(purchaseAmount);
 
-    Output.printLottoTickets(this.lottoTickets);
+      Output.printLottoTickets(this.lottoTickets);
 
-    this.lottoNumber = await this.getLottoNumber();
-    const bonusNumber = await this.getBonusNumber();
+      this.lottoNumber = await this.getLottoNumber();
+      const bonusNumber = await this.getBonusNumber();
 
-    this.calculateAndDisplayResults(bonusNumber);
+      this.calculateAndDisplayResults(bonusNumber);
+    } while (await this.getRestartChoice());
+  }
+
+  async getRestartChoice() {
+    const restartInput = await retryUntilValid(
+      () => Input.getInput("\n" + MESSAGES.input.askRestart),
+      (input) => input.trim().toLowerCase(),
+      restartValidator
+    );
+    return restartInput === "y";
   }
 
   async getPurchaseAmount() {

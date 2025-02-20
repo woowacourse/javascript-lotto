@@ -3,7 +3,7 @@ export const MESSAGES = Object.freeze({
     purchaseAmount: "> 구입금액을 입력해 주세요. ",
     lottoNumber: "> 당첨 번호를 입력해 주세요. ",
     bonusNumber: "> 보너스 번호를 입력해 주세요. ",
-    askRestart: "> 다시 시작하시겠습니까? (y/n)",
+    askRestart: "> 다시 시작하시겠습니까? (y/n) ",
   },
   output: {
     result: "당첨 통계",
