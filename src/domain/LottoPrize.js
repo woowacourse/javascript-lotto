@@ -6,14 +6,12 @@ import {
   THIRD_PRIZE,
 } from "../config/const.js";
 
-class LottoPrizeManager {
+class LottoPrize {
   #countResults;
-  #isContainBonusNumbers;
   #prizeResult;
 
-  constructor(countResults, isContainBonusNumbers) {
+  constructor(countResults) {
     this.#countResults = countResults;
-    this.#isContainBonusNumbers = isContainBonusNumbers;
     this.#prizeResult = {
       firstPrize: 0,
       secondPrize: 0,
@@ -35,6 +33,7 @@ class LottoPrizeManager {
   }
 
   calculateROI(price) {
+    if (this.#calculateTotalPrize() === 0) return 0;
     return (((this.#calculateTotalPrize() - price) / price) * 100).toFixed(2);
   }
 
@@ -71,4 +70,4 @@ class LottoPrizeManager {
   }
 }
 
-export default LottoPrizeManager;
+export default LottoPrize;

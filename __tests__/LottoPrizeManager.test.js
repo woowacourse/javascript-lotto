@@ -1,9 +1,9 @@
 import Lotto from "../src/domain/Lotto.js";
-import LottoComparisonManager from "../src/domain/LottoComparisonManager.js";
-import LottoPrizeManager from "../src/domain/LottoPrizeManager.js";
+import LottoComparer from "../src/domain/LottoComparer.js";
+import LottoPrize from "../src/domain/LottoPrize.js";
 
-let lottoComparisonManager;
-let lottoPrizeManager;
+let lottoComparer;
+let lottoPrize;
 
 beforeEach(() => {
   const userLottos = [
@@ -17,20 +17,20 @@ beforeEach(() => {
   ];
   const winningNumber = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
+  const winningLotto = {
+    winningNumbers: winningNumber,
+    bonusNumber: bonusNumber,
+  };
 
-  lottoComparisonManager = new LottoComparisonManager(
-    userLottos,
-    winningNumber,
-    bonusNumber
-  );
+  lottoComparer = new LottoComparer(userLottos, winningLotto);
 
-  const countResults = lottoComparisonManager.countMatchingNumbers();
-  lottoPrizeManager = new LottoPrizeManager(countResults);
-  lottoPrizeManager.calculateWinnings(countResults);
+  const countResults = lottoComparer.countMatchingNumbers();
+  lottoPrize = new LottoPrize(countResults);
+  lottoPrize.calculateWinnings(countResults);
 });
 
 test("당첨 내역을 계산한다.", () => {
-  expect(lottoPrizeManager.prizeResult).toEqual({
+  expect(lottoPrize.prizeResult).toEqual({
     firstPrize: 1,
     secondPrize: 1,
     thirdPrize: 1,
@@ -41,5 +41,5 @@ test("당첨 내역을 계산한다.", () => {
 
 test("로또 수익률을 게산한다", () => {
   const price = 7000;
-  expect(lottoPrizeManager.calculateROI(price)).toBe("29022114.29");
+  expect(lottoPrize.calculateROI(price)).toBe("29022114.29");
 });

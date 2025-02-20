@@ -51,3 +51,13 @@ export const inputAskForRestart = async () => {
     return await inputAskForRestart();
   }
 };
+
+export const inputWinningLotto = async () => {
+  const winningNumbers = await inputWinningNumbers();
+  const bonusNumber = await inputBonusNumber(winningNumbers);
+
+  return {
+    winningNumbers: winningNumbers,
+    bonusNumber: bonusNumber,
+  };
+};

@@ -4,7 +4,7 @@
  */
 
 import UserLottos from "../src/domain/UserLottos.js";
-import LottoComparisonManager from "../src/domain/LottoComparisonManager.js";
+import LottoComparer from "../src/domain/LottoComparer.js";
 import {
   printUserLottos,
   printWinningResult,
@@ -12,36 +12,28 @@ import {
 } from "../src/view/output.js";
 import {
   inputAskForRestart,
-  inputBonusNumber,
   inputPrice,
-  inputWinningNumbers,
+  inputWinningLotto,
 } from "../src/view/input.js";
-import LottoPrizeManager from "../src/domain/LottoPrizeManager.js";
+import LottoPrize from "./domain/LottoPrize.js";
 
 async function run() {
   const price = await inputPrice();
   const userLottos = new UserLottos(price);
   printUserLottos(userLottos);
 
-  const winningNumbers = await inputWinningNumbers();
-  const bonusNumber = await inputBonusNumber(winningNumbers);
+  const winningLotto = await inputWinningLotto();
 
-  const lottoComparisonManager = new LottoComparisonManager(
-    userLottos.lottos,
-    winningNumbers,
-    bonusNumber
-  );
+  const lottoComparer = new LottoComparer(userLottos.lottos, winningLotto);
 
-  const countResults = lottoComparisonManager.countMatchingNumbers();
-  const lottoPrizeManager = new LottoPrizeManager(countResults);
+  const countResults = lottoComparer.countMatchingNumbers();
+  const lottoPrize = new LottoPrize(countResults);
+  lottoPrize.calculateWinnings();
 
-  lottoPrizeManager.calculateWinnings();
-  printWinningResult(lottoPrizeManager.prizeResult);
-  printROI(lottoPrizeManager.calculateROI(price));
+  printWinningResult(lottoPrize.prizeResult);
+  printROI(lottoPrize.calculateROI(price));
 
   const isRestart = await inputAskForRestart();
-  if (isRestart === "n") {
-    return await run();
-  }
+  if (isRestart === "y") return await run();
 }
 run();

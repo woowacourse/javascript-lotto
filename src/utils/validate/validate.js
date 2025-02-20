@@ -61,7 +61,7 @@ const validateBonusNumberUnique = (winningNumber, bonusNumber) => {
 };
 
 const validateRestartInput = (input) => {
-  if (input !== "y" || input !== "n")
+  if (input !== "y" && input !== "n")
     throw new Error("입력은 y 또는 n만 가능합니다.");
 };
 

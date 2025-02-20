@@ -1,7 +1,7 @@
 import Lotto from "../src/domain/Lotto.js";
-import LottoComparisonManager from "../src/domain/LottoComparisonManager.js";
+import LottoComparer from "../src/domain/LottoComparer.js";
 
-let lottoComparisonManager;
+let lottoComparer;
 beforeEach(() => {
   const userLottos = [
     new Lotto([1, 2, 3, 4, 5, 6]),
@@ -15,15 +15,15 @@ beforeEach(() => {
   const winningNumber = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
 
-  lottoComparisonManager = new LottoComparisonManager(
-    userLottos,
-    winningNumber,
-    bonusNumber
-  );
+  const winningLotto = {
+    winningNumbers: winningNumber,
+    bonusNumber: bonusNumber,
+  };
+  lottoComparer = new LottoComparer(userLottos, winningLotto);
 });
 
 test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.", () => {
-  const countResults = lottoComparisonManager.countMatchingNumbers();
+  const countResults = lottoComparer.countMatchingNumbers();
 
   expect(countResults).toEqual([6, 5, "bonus", 4, 3]);
 });

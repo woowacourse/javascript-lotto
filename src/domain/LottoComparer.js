@@ -1,12 +1,12 @@
-class LottoComparisonManager {
+class LottoComparer {
   #userLottos;
   #winningNumber;
   #bonusNumber;
 
-  constructor(userLottos, winningNumber, bonusNumber) {
+  constructor(userLottos, winningLotto) {
     this.#userLottos = userLottos;
-    this.#winningNumber = winningNumber;
-    this.#bonusNumber = bonusNumber;
+    this.#winningNumber = winningLotto.winningNumbers;
+    this.#bonusNumber = winningLotto.bonusNumber;
   }
 
   #compareMatchingNumbers(userLotto) {
@@ -35,4 +35,4 @@ class LottoComparisonManager {
   }
 }
 
-export default LottoComparisonManager;
+export default LottoComparer;
