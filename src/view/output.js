@@ -1,4 +1,11 @@
-import { PURCHASE_UNIT } from "../config/const.js";
+import {
+  FIFTH_PRIZE,
+  FIRST_PRIZE,
+  FOURTH_PRIZE,
+  PURCHASE_UNIT,
+  SECOND_PRIZE,
+  THIRD_PRIZE,
+} from "../config/const.js";
 
 const printUserLottos = (userLottos) => {
   printLottoCount(userLottos.price);
@@ -11,16 +18,25 @@ const printLottoCount = (price) => {
   console.log(`${Number(price / PURCHASE_UNIT)}개를 구매했습니다.`);
 };
 
+const prizeSummary = [
+  { count: "3개", prize: FIFTH_PRIZE, label: "fifthPrize" },
+  { count: "4개", prize: FOURTH_PRIZE, label: "fourthPrize" },
+  { count: "5개", prize: THIRD_PRIZE, label: "thirdPrize" },
+  { count: "5개 + 보너스 볼", prize: SECOND_PRIZE, label: "secondPrize" },
+  { count: "6개", prize: FIRST_PRIZE, label: "firstPrize" },
+];
+
 const printResult = (prizeResult, ROI) => {
   let resultMessage = "";
   resultMessage += "\n당첨 통계\n";
   resultMessage += "--------------------\n";
-  resultMessage += `3개 일치 (5,000원) - ${prizeResult.fifthPrize}개\n`;
-  resultMessage += `4개 일치 (50,000원) - ${prizeResult.fourthPrize}개\n`;
-  resultMessage += `5개 일치 (1,500,000원) - ${prizeResult.thirdPrize}개\n`;
-  resultMessage += `5개 일치, 보너스 볼 일치 (30,000,000원) - ${prizeResult.secondPrize}개\n`;
-  resultMessage += `6개 일치 (2,000,000,000원) - ${prizeResult.firstPrize}개\n`;
-  resultMessage += `총 수익률은 ${ROI}%입니다.`;
+  resultMessage += prizeSummary
+    .map(
+      ({ count, prize, label }) =>
+        `${count} 일치 (${prize.toLocaleString()}원) - ${prizeResult[label]}개`
+    )
+    .join("\n");
+  resultMessage += `\n총 수익률은 ${ROI}%입니다.`;
 
   console.log(resultMessage);
 };
