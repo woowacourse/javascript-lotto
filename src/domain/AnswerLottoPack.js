@@ -7,6 +7,7 @@ const generateAnswerLotto = (winningNumbers, bonusNumber) => {
     answerLotto[number] = WINNING;
   });
   answerLotto[bonusNumber] = BONUS;
+
   return answerLotto;
 };
 
