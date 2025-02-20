@@ -1,6 +1,5 @@
 import Lotto from "../src/domain/Lotto.js";
 import LottoGame from "../src/domain/LottoGame.js";
-import Validator from "../src/Validator.js";
 import { makeOneLottoArray } from "../src/utils/utils.js";
 import { ListChecker } from "../src/Checkers.js";
 

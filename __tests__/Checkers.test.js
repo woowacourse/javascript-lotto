@@ -70,4 +70,14 @@ describe("ListChecker 테스트", () => {
     expect(ListChecker.isUphillList(TRUE_LIST)).toBeTruthy()
     expect(ListChecker.isUphillList(FALSE_LIST)).toBeFalsy()
   })
+
+  test('List와 값를 받았을때 그 안에 값이 있는지 검사한다.', () => {
+    const LIST = [1,2,3];
+    const TRUE_VALUE = 1;
+    const FALSE_VALUE = 4;
+
+    expect(ListChecker.includeValue(LIST, TRUE_VALUE)).toBeTruthy();
+    expect(ListChecker.includeValue(LIST, FALSE_VALUE)).toBeFalsy();
+
+  });
 });

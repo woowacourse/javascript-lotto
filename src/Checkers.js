@@ -17,6 +17,11 @@ export class ListChecker {
 
     return true;
   }
+
+  static includeValue(targetList, values) {
+    const isInclude = targetList.includes(values);
+    return isInclude;
+  }
 }
 
 export class StringChecker {

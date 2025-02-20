@@ -1,5 +1,5 @@
 import LottoGame from "./domain/LottoGame.js";
-import Validator from "./Validator.js";
+import Validator from "./domain/Validator.js";
 import InputView from "./view/InputView.js";
 import OutputView from "./view/OutputView.js";
 import loopWhileValid from "./utils/loopWhileValid.js";
@@ -14,7 +14,10 @@ class App {
     });
 
     const targetNumber = await loopWhileValid(this.#getTargetNumber);
-    const bonusNumber = await loopWhileValid(this.#getBonusNumber);
+    const bonusNumber = await loopWhileValid(
+      this.#getBonusNumber,
+      targetNumber,
+    );
 
     lottoGame.calculate(targetNumber, bonusNumber);
 
@@ -49,11 +52,11 @@ class App {
     return targetNumberList;
   }
 
-  async #getBonusNumber() {
+  async #getBonusNumber(targetNumber) {
     const bonusNumber =
       await InputView.getInput("> 보너스 번호를 입력해 주세요.");
-    Validator.isBonusNumber(bonusNumber);
-    return bonusNumber;
+    Validator.isBonusNumber(bonusNumber, targetNumber);
+    return Number(bonusNumber);
   }
 
   async #getRestartString() {

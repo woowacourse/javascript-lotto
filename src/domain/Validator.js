@@ -1,4 +1,4 @@
-import { ListChecker, NumberChecker, StringChecker } from "./Checkers.js";
+import { ListChecker, NumberChecker, StringChecker } from "../Checkers.js";
 
 class Validator {
   static isPrice(priceString) {
@@ -20,13 +20,16 @@ class Validator {
     });
   }
 
-  static isBonusNumber(bonusNumberString) {
+  static isBonusNumber(bonusNumberString, targetNumber) {
     if (!StringChecker.isRegString(bonusNumberString, /^[0-9]+$/))
       throw new Error("[ERROR]보너스 번호는 숫자이어야 한다.");
     if (NumberChecker.isMoreThan(Number(bonusNumberString), 45))
       throw new Error("[ERROR]당첨번호의 범위는 1~45이어야한다.");
     if (NumberChecker.isLessThan(Number(bonusNumberString), 1))
       throw new Error("[ERROR]당첨번호의 범위는 1~45이어야한다.");
+
+    if (ListChecker.includeValue(targetNumber, Number(bonusNumberString)))
+      throw new Error("[ERROR] 보너스 번호는 당첨번호와 중복될수 없다.");
   }
 
   static isRestartString(restartString) {

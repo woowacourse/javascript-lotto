@@ -1,4 +1,4 @@
-import Validator from "../src/Validator.js";
+import Validator from "../src/domain/Validator.js";
 
 describe("유효성 테스트", () => {
   test("금액은 1,000원으로 나누어 떨어져야 한다. ", () => {
@@ -60,10 +60,21 @@ describe("유효성 테스트", () => {
     }).toThrow();
   });
 
+    test('보너스 번호는 당첨번호와 중복될 수 없다.', () => {
+      const bonusNumber = "1";
+      const targetNumber = [1,2,3,4,5,6];
+
+      expect(() => {
+        Validator.isBonusNumber(bonusNumber,targetNumber)
+      }).toThrow();
+    
+  });
   test("다시 시작하기 위한 입력은 y또는 n이어야 한다.", () => {
     const restartString = "yes";
     expect(() => {
       Validator.isRestartString(restartString);
     }).toThrow();
   });
+
+
 });
