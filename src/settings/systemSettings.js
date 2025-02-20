@@ -2,6 +2,8 @@ const systemSettings = {
   getPurchasePrice: '> 구입금액을 입력해 주세요.',
   getWinningNumber: '> 당첨 번호를 입력해 주세요.',
   getBonusNumber: '> 보너스 번호를 입력해 주세요.',
+  askUserRetry: '> 다시 시작하시겠습니까? (y/n)',
+
   winCount: {
     NO_MATCH: 0,
     THREE_MATCH: 0,
