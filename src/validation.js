@@ -26,9 +26,13 @@ function validateLottoNumber(numbers) {
   }
 }
 
-function validateBonus(bonus) {
+function validateBonus(bonus, winningLotto) {
   if (!lottoNumberCondition(bonus)) {
     throw new Error('[ERROR] 보너스 번호의 숫자 범위 1 ~ 45이다.');
+  }
+
+  if (winningLotto.includes(bonus)) {
+    throw new Error('[ERROR] 보너스 번호는 당첨 로또의 있는 숫자와 중복되면 안된다.');
   }
 }
 

@@ -2,7 +2,7 @@ import Machine from '../Machine.js';
 import LottoStatistics from '../LottoStatistics.js';
 
 import readLineAsync from '../view/InputView.js';
-import { validateMoney, validateLottoNumber } from '../validation.js';
+import { validateMoney, validateLottoNumber, validateBonus } from '../validation.js';
 
 class Controller {
   #machine;
@@ -20,7 +20,7 @@ class Controller {
       const money = await this.readMoney();
       this.#machine.createLottos(money);
       const winningLotto = await this.readWinningLotto();
-      const bonus = await this.readBonus();
+      const bonus = await this.readBonus(winningLotto);
       const winningNumber = { bonus, lotto: winningLotto };
       this.#lottoStatistics.compareLottos(this.#machine.getLottos(), winningNumber);
       condition = await this.readReStart();
@@ -41,9 +41,10 @@ class Controller {
     return winningLotto;
   }
 
-  async readBonus() {
+  async readBonus(winningLotto) {
     const input = await readLineAsync('> 보너스 번호를 입력해 주세요.');
     const bonus = parseInt(input, 10);
+    validateBonus(bonus, winningLotto);
     return bonus;
   }
 
