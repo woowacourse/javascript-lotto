@@ -142,3 +142,4 @@ Lotto
   - [x] retryCheckInput 로직 변경
 - [x] 6개 랜덤 넘버 생성 함수 분리
 - [ ] if문 condition 함수 분리
+- [x] controller 분리
