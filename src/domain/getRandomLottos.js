@@ -14,10 +14,7 @@ export const getRandomLottos = (quantity) => {
 export const retryIfDuplicatedRandomNumbers = () => {
   const setRandomNumbers = new Set();
 
-  while (1) {
-    if (setRandomNumbers.size === 6) {
-      break;
-    }
+  while (setRandomNumbers.size !== 6) {
     setRandomNumbers.clear();
     Array.from({ length: 6 }, () => setRandomNumbers.add(getRandomNumber()));
   }
