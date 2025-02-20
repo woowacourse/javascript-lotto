@@ -52,7 +52,9 @@ InputView.js
 - 구입금액 입력
 - 보너스번호 입력
 - 다시 시작하시겠습니까?(Y/N)
+
   OutputView.js
+
 - n개를 구매했습니다
 - 구매한 로또리스트 출력
 - newLine
@@ -60,6 +62,7 @@ InputView.js
 - 당첨 통계
 - n개 일치 (n원) - n개
 - 총 수익률
+- 로또 번호 오름차순 정렬
 
 controller/
 LottoController.js
