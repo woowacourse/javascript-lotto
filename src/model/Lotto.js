@@ -1,8 +1,7 @@
 import ERROR_MESSAGE from '../settings/ErrorMessage.js';
 import validateNumberInRange from '../Validation/validateNumberInRange.js';
-import isInteger from '../util/isInteger.js';
-import isNumber from '../util/isNumber.js';
-import isPositive from '../util/isPositive.js';
+import validateNumber from '../Validation/validateNumber.js';
+
 class Lotto {
   #numbers;
 
@@ -11,9 +10,7 @@ class Lotto {
     this.#numbers = numbers.sort((a, b) => a - b);
   }
   #lottoValidation(numbers) {
-    numbers.forEach((number) => isNumber(number));
-    numbers.forEach((number) => isInteger(number));
-    numbers.forEach((number) => isPositive(number));
+    numbers.forEach((number) => validateNumber(number));
     if (numbers.length !== 6) throw new Error(ERROR_MESSAGE.notSixNumbers);
     if (numbers.length !== new Set(numbers).size)
       throw new Error(ERROR_MESSAGE.duplicatedNumbers);
