@@ -1,5 +1,6 @@
 import Lotto from "./Lotto.js";
 import { makeOneLottoArray } from "../utils/utils.js";
+import Constants from "../constant/Constants.js";
 
 class LottoGame {
   constructor(amount) {
@@ -31,27 +32,32 @@ class LottoGame {
     this.lottoes.forEach((lotto) => {
       const correctNumber = lotto.getCorretNumber(targetNumber);
       const isBonus = lotto.hasBonusNumber(bonusNumber);
-      console.log(typeof bonusNumber);
-      if (correctNumber === 3) this.result["5"] += 1;
-      if (correctNumber === 4) this.result["4"] += 1;
-      if (correctNumber === 5 && !isBonus) this.result["3"] += 1;
-      if (correctNumber === 5 && isBonus) this.result["2"] += 1;
-      if (correctNumber === 6) this.result["1"] += 1;
+      if (correctNumber === Constants.LOTTO.CORRECT_NUMBER.FIFTH)
+        this.result["5"] += 1;
+      if (correctNumber === Constants.LOTTO.CORRECT_NUMBER.FOURTH)
+        this.result["4"] += 1;
+      if (correctNumber === Constants.LOTTO.CORRECT_NUMBER.THIRD && !isBonus)
+        this.result["3"] += 1;
+      if (correctNumber === Constants.LOTTO.CORRECT_NUMBER.SECOND && isBonus)
+        this.result["2"] += 1;
+      if (correctNumber === Constants.LOTTO.CORRECT_NUMBER.FIRST)
+        this.result["1"] += 1;
     });
   }
 
   getWinMoney() {
     return (
-      this.result["5"] * 5_000 +
-      this.result["4"] * 50_000 +
-      this.result["3"] * 1_500_000 +
-      this.result["2"] * 30_000_000 +
-      this.result["1"] * 2_000_000_000
+      this.result["5"] * Constants.LOTTO.PRIZE.FIFTH +
+      this.result["4"] * Constants.LOTTO.PRIZE.FOURTH +
+      this.result["3"] * Constants.LOTTO.PRIZE.THIRD +
+      this.result["2"] * Constants.LOTTO.PRIZE.SECOND +
+      this.result["1"] * Constants.LOTTO.PRIZE.FIRST
     );
   }
 
   getEarningRate(amount) {
-    const rawEarningRate = (this.getWinMoney() / (amount * 1000)) * 100;
+    const rawEarningRate =
+      (this.getWinMoney() / (amount * Constants.LOTTO.UNIT)) * 100;
     return rawEarningRate.toFixed(1);
   }
 }

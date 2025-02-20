@@ -1,15 +1,17 @@
+import Constants from "../constant/Constants.js";
+
 class Lotto {
   constructor(numbers) {
     this.numbers = numbers;
   }
 
-  getLottoNumbers() {
+  getLottoNumber() {
     return this.numbers;
   }
 
   getCorretNumber(targetNumber) {
     let correctNumber = 0;
-    for (let i = 0; i < 6; i += 1) {
+    for (let i = 0; i < Constants.LOTTO.NUMBER_LENGTH; i += 1) {
       correctNumber += this.#addCorrectNumber(targetNumber, this.numbers[i]);
     }
     return correctNumber;

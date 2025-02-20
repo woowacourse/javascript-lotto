@@ -3,6 +3,7 @@ import Validator from "./domain/Validator.js";
 import InputView from "./view/InputView.js";
 import OutputView from "./view/OutputView.js";
 import loopWhileValid from "./utils/loopWhileValid.js";
+import Constants from "./constant/Constants.js";
 
 class App {
   async run() {
@@ -10,7 +11,7 @@ class App {
     const lottoGame = new LottoGame(lottoNum);
     OutputView.printMessage(`${lottoNum}개를 구매했습니다.`);
     lottoGame.lottoes.forEach((lotto) => {
-      OutputView.printMessage(lotto.getLottoNumbers());
+      OutputView.printMessage(lotto.getLottoNumber());
     });
 
     const targetNumber = await loopWhileValid(this.#getTargetNumber);
@@ -35,33 +36,34 @@ class App {
   }
 
   async #getLottoNum() {
-    const rawPriceString =
-      await InputView.getInput("> 구입금액을 입력해 주세요.");
+    const rawPriceString = await InputView.getInput(Constants.MESSAGE.PRICE);
     Validator.isPrice(rawPriceString);
-    const lottoNum = Number(rawPriceString) / 1000;
+    const lottoNum = Number(rawPriceString) / Constants.LOTTO.UNIT;
     return lottoNum;
   }
 
   async #getTargetNumber() {
-    const targetNumber =
-      await InputView.getInput("> 당첨 번호를 입력해 주세요.");
+    const targetNumber = await InputView.getInput(
+      Constants.MESSAGE.TARGET_NUMBER,
+    );
     Validator.isTargetNumber(targetNumber);
     const targetNumberList = targetNumber
-      .split(",")
+      .split(Constants.OPERATOR.SEPARATOR)
       .map((a) => Number(a.trim()));
     return targetNumberList;
   }
 
   async #getBonusNumber(targetNumber) {
-    const bonusNumber =
-      await InputView.getInput("> 보너스 번호를 입력해 주세요.");
+    const bonusNumber = await InputView.getInput(
+      Constants.MESSAGE.BONUS_NUMBER,
+    );
     Validator.isBonusNumber(bonusNumber, targetNumber);
     return Number(bonusNumber);
   }
 
   async #getRestartString() {
     const retryAnswer = await InputView.getInput(
-      "> 다시 시작하시겠습니까? (y/n) ",
+      Constants.MESSAGE.RESTART_STRING,
     );
     Validator.isRestartString(retryAnswer);
     return retryAnswer;
