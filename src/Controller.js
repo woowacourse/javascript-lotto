@@ -2,7 +2,7 @@ import InputView from "./view/InputView.js";
 import LottoMachine from "./domain/LottoMachine.js";
 import OutputView from "./view/OutputView.js";
 import profitCalculator from "./domain/profitCalculator.js";
-import generateAnswerLotto from "./domain/AnswerLottoPack.js";
+import generateAnswerLotto from "./domain/generateAnswerLotto.js";
 import retryCheckInput from "./utils/retryCheckInput.js";
 import validatePurchaseAmount from "./domain/validation/validatePurchaseAmount.js";
 import validateWinningNumbers from "./domain/validation/validateWinningNumbers.js";

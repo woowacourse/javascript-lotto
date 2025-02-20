@@ -1,4 +1,4 @@
-import generateAnswerLotto from "../src/domain/AnswerLottoPack";
+import generateAnswerLotto from "../src/domain/generateAnswerLotto";
 test("당첨 번호와 보너스 번호를 관리한다.", () => {
   const winningNumbers = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
