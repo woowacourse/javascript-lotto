@@ -1,11 +1,16 @@
-import { LOTTO_STATUS } from "../constants/lotto";
-//TODO: depth 줄이기
+import { LOTTO_STATUS } from "../constants/lotto.js";
 
 class LottoMachine {
   issuedLottoNumbers;
 
   constructor(issuedLottoNumbers) {
     this.issuedLottoNumbers = issuedLottoNumbers;
+    this.matchedLottoStatus = [];
+  }
+
+  updateStatus(callback) {
+    const currentStatus = LOTTO_STATUS.find(callback);
+    this.matchedLottoStatus.push(currentStatus);
   }
 
   getMatchingNumbers(enteredLottoNumbers) {
@@ -20,20 +25,28 @@ class LottoMachine {
     });
   }
 
-  getMatchedLottoRank(enteredLottoNumbers, bonusLottoNumber) {
+  updateFinalStatus(matchingNumbers, isBonusArray) {
+    matchingNumbers.forEach((matchingNumber, index) => {
+      if (matchingNumber < 3) return;
+
+      if (matchingNumber === 5 && isBonusArray[index]) {
+        this.updateStatus((status) => status.COUNT === 5 && status.IS_BONUS);
+        return;
+      }
+
+      this.updateStatus(
+        (status) => status.COUNT === matchingNumber && !status.IS_BONUS
+      );
+    });
+  }
+
+  getMatchedLottoStatus(enteredLottoNumbers, bonusLottoNumber) {
     const matchingNumbers = this.getMatchingNumbers(enteredLottoNumbers);
     const isBonusArray = this.getHasBonusNumbers(bonusLottoNumber);
 
-    return matchingNumbers.map((matchingNumber, index) => {
-      return LOTTO_STATUS.find((status) => {
-        if (
-          status.COUNT === matchingNumber &&
-          isBonusArray[index] === status.IS_BONUS
-        ) {
-          return true;
-        }
-      });
-    });
+    this.updateFinalStatus(matchingNumbers, isBonusArray);
+
+    return this.matchedLottoStatus;
   }
 }
 

@@ -46,7 +46,7 @@ const run = async () => {
 
   const lottoMachine = new LottoMachine(lottos);
 
-  const lottoStatus = lottoMachine.getMatchedLottoRank(
+  const lottoStatus = lottoMachine.getMatchedLottoStatus(
     winningLotto.getLottoNumbers(),
     bonusLottoNumber
   );
