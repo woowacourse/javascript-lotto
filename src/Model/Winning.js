@@ -1,3 +1,5 @@
+import { PRIZE } from '../constants/common.js';
+
 class Winning {
   rankHistory = {
     first: 0,
@@ -40,6 +42,17 @@ class Winning {
     if (count === 3) {
       this.rankHistory.fifth += 1;
     }
+  }
+
+  getTotalPrize() {
+    let totalPrize = 0;
+
+    for (let rank in this.rankHistory) {
+      if (this.rankHistory[rank]) {
+        totalPrize += PRIZE[rank] * this.rankHistory[rank];
+      }
+    }
+    return totalPrize;
   }
 }
 

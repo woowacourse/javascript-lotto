@@ -24,4 +24,18 @@ describe('Winning 클래스 테스트', () => {
 
     expect(winning.rankHistory[rank]).toEqual(1);
   });
+
+  test('당첨 금액 전체 합산 테스트', () => {
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const winning = new Winning(winningNumbers, bonusNumber);
+
+    winning.rankHistory.first = 1;
+    winning.rankHistory.second = 1;
+    winning.rankHistory.third = 1;
+    winning.rankHistory.fourth = 1;
+    winning.rankHistory.fifth = 1;
+
+    expect(winning.getTotalPrize()).toEqual(2031555000);
+  });
 });
