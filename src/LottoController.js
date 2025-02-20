@@ -10,29 +10,27 @@ import { calculateWinningRate } from './domain/calculateWinningRate.js';
 import { YES } from './constants/constants.js';
 
 class LottoController {
+  #lottoList
+  #lottoResult
+
   async run() {
     const lottoMaker = new LottoMaker(await this.inputPurchaseMoney())
     this.printLottoNumber(lottoMaker);
     const winningNumbers = await this.inputWinningNumbers();
     const bonusNumber = await this.inputBonusNumber(winningNumbers.numbers);
-    const lottoList = lottoMaker.lottoList;
+    this.#lottoList = lottoMaker.lottoList;
     
     const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
-    const lottoResult = new LottoResult();
-    lottoList.forEach((lotto)=>{
-      lotto.ranking = calculateRank(lottoMatch.winningNumbers(lotto),lottoMatch.bonusNumber(lotto))
-      lottoResult.addRankingCount(lotto.ranking);
-    })
-    OutputView.print(MESSAGE.STATISTICS)
-    OutputView.print(MESSAGE.LINE)
-    const result = lottoResult.result
-    OutputView.print(`${RANKING.FIFTH.MATCH_COUNT}개 일치 ${RANKING.FIFTH.PRIZE.toLocaleString()}원) - ${result[5]}개\n${RANKING.FOURTH.MATCH_COUNT}개 일치 (${RANKING.FOURTH.PRIZE.toLocaleString()}원) - ${result[4]}개\n${RANKING.THIRD.MATCH_COUNT}개 일치 (${RANKING.THIRD.PRIZE.toLocaleString()}원) - ${result[3]}개\n${RANKING.SECOND.MATCH_COUNT}개 일치, 보너스 볼 일치 (${RANKING.SECOND.PRIZE.toLocaleString()}원) - ${result[2]}개\n${RANKING.FIRST.MATCH_COUNT}개 일치 (${RANKING.FIRST.PRIZE.toLocaleString()}원) - ${result[1]}개\n`)
-    const winningRate = calculateWinningRate(LOTTO_CONDITION.PRICE*lottoMaker.purchaseCount,calculateTotalPrize(lottoList))
-    OutputView.print(`총 수익률은 ${winningRate}%입니다.`);
+    this.#lottoResult = new LottoResult();
+
+    this.calculateRank(lottoMatch)
+    this.printStatstics()
+
+    const winningRate = this.calculateWinningRate(lottoMaker)
+    this.printWinningRate(winningRate)
 
     await this.reStart()
   }
-
 
   async inputPurchaseMoney(){
     return await InputHandler.purchaseMoney();
@@ -46,6 +44,42 @@ class LottoController {
     return await InputHandler.bonusNumber(winningNumbers)
   }
 
+  calculateRank(lottoMatch){
+    this.#lottoList.forEach((lotto)=>{
+      lotto.ranking = calculateRank(lottoMatch.winningNumbers(lotto),lottoMatch.bonusNumber(lotto))
+      this.#lottoResult.addRankingCount(lotto.ranking);
+    })
+  }
+
+  calculateWinningRate(lottoMaker){
+    return calculateWinningRate(LOTTO_CONDITION.PRICE*lottoMaker.purchaseCount,calculateTotalPrize(this.#lottoList))
+  }
+
+  async reStart(){
+    const reStart = await InputHandler.reStart();
+    if(reStart===YES){
+      return this.run();
+    }
+  }
+  
+  printStatstics(){
+    OutputView.print(MESSAGE.STATISTICS)
+    OutputView.print(MESSAGE.LINE)
+    const result = this.#lottoResult.result
+    this.printLottoResults(result)
+  } 
+
+  printLottoResults(result) {
+    Object.keys(RANKING).reverse().forEach((key) => {
+      const ranking = RANKING[key];
+      const resultCount = result[ranking.RANK];
+      if (ranking.RANK === 2) {
+        return OutputView.print(`${ranking.MATCH_COUNT}개 일치, 보너스 볼 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}`);
+      }
+      return OutputView.print(`${ranking.MATCH_COUNT}개 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}개`);
+    })
+  }
+
   printLottoNumber(lottoMaker){
     OutputView.print(lottoMaker.purchaseCount+MESSAGE.PURCHASE_COUNT)
     lottoMaker.lottoList.forEach((lotto)=>{
@@ -54,11 +88,8 @@ class LottoController {
     OutputView.print(LINE_BREAK)
   }
 
-  async reStart(){
-    const reStart = await InputHandler.reStart();
-    if(reStart===YES){
-      return this.run();
-    }
+  printWinningRate(winningRate){
+    OutputView.print(`총 수익률은 ${winningRate}%입니다.`);
   }
 
 }
