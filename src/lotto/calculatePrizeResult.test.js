@@ -40,4 +40,19 @@ describe("calculatePrizeResult 함수 테스트", () => {
       calculatePrizeResult(lottoNumbers, winningNumbers, bonusNumber)
     ).toEqual(result);
   });
+
+  test("0개 일치", () => {
+    const lottoNumbers = [[40, 41, 42, 43, 44, 45]];
+    const result = new Map([
+      [3, 0],
+      [4, 0],
+      [5, 0],
+      ["5B", 0],
+      [6, 0],
+    ]);
+
+    expect(
+      calculatePrizeResult(lottoNumbers, winningNumbers, bonusNumber)
+    ).toEqual(result);
+  });
 });
