@@ -133,3 +133,4 @@ Lotto
 - [ ] lotto 객체 내부에서 값을 체크 할 수 있게 변경 -> lotto 객체 내부로 정답 테이블로 넘겨준다. (객체 지향)
 - [x] InputMessage 상수화
 - [x] OutputMessage 상수화
+- [x] 공통 값 상수화
