@@ -24,9 +24,10 @@ class WinningStatistics {
 
   calculateWinningResults(lottos, winningNumbers, bonusNumber) {
     lottos.forEach((lotto) => {
-      let matchedCount = countMatchingNumbers(winningNumbers, lotto);
+      const matchedCount = countMatchingNumbers(winningNumbers, lotto);
       if (matchedCount === 5) {
-        matchedCount = this.#calculateBonusNumber(lotto, bonusNumber);
+        this.#addMatchedCount(this.#calculateBonusNumber(lotto, bonusNumber));
+        return;
       }
       this.#addMatchedCount(matchedCount);
     });
