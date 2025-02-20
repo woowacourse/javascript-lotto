@@ -54,6 +54,12 @@ class Winning {
     }
     return totalPrize;
   }
+
+  getCalculatedPrizeRate(price) {
+    const totalPrize = this.getTotalPrize();
+    const prizeRate = ((totalPrize / price) * 100).toFixed(1);
+    return Number(prizeRate);
+  }
 }
 
 export default Winning;

@@ -38,4 +38,15 @@ describe('Winning 클래스 테스트', () => {
 
     expect(winning.getTotalPrize()).toEqual(2031555000);
   });
+
+  test('수익률 계산 테스트', () => {
+    const price = 8000;
+    const winningNumbers = [1, 2, 3, 4, 5, 6];
+    const bonusNumber = 7;
+    const winning = new Winning(winningNumbers, bonusNumber);
+
+    winning.rankHistory.fifth = 1;
+
+    expect(winning.getCalculatedPrizeRate(price)).toEqual(62.5);
+  });
 });

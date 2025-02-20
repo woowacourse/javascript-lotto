@@ -24,9 +24,9 @@
 7. [x] 각 등수별 당첨 여부 확인 - domain -> Winning
 8. [x] 당첨 통계를 출력한다. - ui
  - [x] 5등부터 1등까지 순서대로 출력 - ui
-9. [] 수익률 계산한다. - domain -> Winning
+9. [x] 수익률 계산한다. - domain -> Winning
  - [x] 전체 당첨 금액 합산 - domain -> Winning
- - [] 소숫점 두번째 자리 이하 버림하여 계산. - domain -> util
+ - [x] 소숫점 두번째 자리 이하 버림하여 계산. - domain -> util
 10. [] 계산된 수익률 출력한다. - ui
 11. [] 다시 시작 여부를 입력한다 - ui
 12. [] 다시 시작한다. - domain -> LottoMachine
