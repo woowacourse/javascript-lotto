@@ -16,7 +16,6 @@ describe("Lotto 클래스 테스트", () => {
 
   test("로또 숫자가 모두 1~45인지", () => {
     const lottoNumers = Lotto.generateLottoNumbers();
-    console.log(lottoNumers);
     const isRange = lottoNumers.every((number) => number >= 1 && number <= 45);
 
     expect(isRange).toBe(true);
