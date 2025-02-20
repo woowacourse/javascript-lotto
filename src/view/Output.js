@@ -1,38 +1,44 @@
+import DEFINITION, { RANK } from "../constant/Definition.js";
+import ERROR from "../constant/Error.js";
+import { OUTPUT_MESSAGE } from "../constant/Message.js";
+
 const Output = {
   print(message) {
     console.log(message);
   },
 
   lottoAmount(lottoAmount) {
-    Output.print(`${lottoAmount}개를 구매했습니다.`);
+    this.print(OUTPUT_MESSAGE.LOTTO_AMOUNT(lottoAmount));
   },
 
-  // 한줄씩 넘기냐 아니면 전체를 넘겨서 출력하냐
   lottoNumbers(lottoNumbers) {
     const copyLottoNumbers = [...lottoNumbers];
     copyLottoNumbers.sort((a, b) => a - b);
-    Output.print(`[${copyLottoNumbers.join(", ")}]`);
+    this.print(`[${copyLottoNumbers.join(DEFINITION.SPLIT)}]`);
   },
 
   winningStatistics() {
-    Output.print("당첨 통계");
-  },
-
-  boundary() {
-    Output.print("--------------------");
+    this.print(OUTPUT_MESSAGE.WINNING_STATISTICS);
+    this.print(OUTPUT_MESSAGE.BOUNDARY);
   },
 
   newLine() {
-    Output.print("");
+    this.print(DEFINITION.EMPTY);
   },
 
-  matchResult(matchCount, amount) {
-    const prize = DEFINITION.PRIZE[matchCount].toLocaleString();
-    Output.print(`${matchCount}개 일치 (${prize}원) - ${amount}개`);
+  matchResult(rank, amount) {
+    const prize = DEFINITION.LOTTO_PRISE[rank].toLocaleString();
+    this.print(OUTPUT_MESSAGE.MATCH_RESULT(rank, amount, prize));
   },
 
   winningRate(rate) {
-    Output.print(`총 수익률은 ${rate}%입니다.`);
+    this.print(OUTPUT_MESSAGE.WINNING_RATE(rate));
+  },
+
+  printErrorResults(errorResults, errorName) {
+    Object.entries(errorResults).forEach(([key, value]) => {
+      if (value) this.print(`${ERROR[errorName][key]}`);
+    });
   },
 };
 

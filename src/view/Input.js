@@ -1,31 +1,8 @@
+import readline from "readline";
+import { INPUT_MESSAGE } from "../constant/Message.js";
+
 const Input = {
-  async purchasePrice() {
-    const purchasePrice = await Input.readLineAsync(
-      "구입금액을 입력해 주세요."
-    );
-    return purchasePrice;
-  },
-
-  async winningNumbers() {
-    const winningNumbers = await Input.readLineAsync(
-      "당첨 번호를 입력해 주세요. "
-    );
-    return winningNumbers;
-  },
-
-  async purchasePrice() {
-    const bonusNumber = await Input.readLineAsync(
-      "보너스 번호를 입력해 주세요. "
-    );
-    return bonusNumber;
-  },
-
-  async restart() {
-    const restart = await Input.readLineAsync("다시 시작하시겠습니까? (y/n) ");
-    return restart;
-  },
-
-  readLineAsync(query) {
+  async readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
         reject(new Error("arguments must be 1"));
@@ -45,6 +22,29 @@ const Input = {
         resolve(input);
       });
     });
+  },
+  async purchasePrice() {
+    const purchasePrice = await this.readLineAsync(
+      INPUT_MESSAGE.PURCHASE_PRISE
+    );
+    return purchasePrice;
+  },
+
+  async winningNumbers() {
+    const winningNumbers = await this.readLineAsync(
+      INPUT_MESSAGE.WINNING_NUMBERS
+    );
+    return winningNumbers;
+  },
+
+  async bonusNumber() {
+    const bonusNumber = await this.readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
+    return bonusNumber;
+  },
+
+  async restart() {
+    const restart = await this.readLineAsync(INPUT_MESSAGE.RESTART);
+    return restart;
   },
 };
 
