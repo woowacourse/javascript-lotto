@@ -1,0 +1,51 @@
+const matchToRankTable = {
+  "3_false": 5,
+  "3_true": 5,
+  "4_false": 4,
+  "4_true": 4,
+  "5_false": 3,
+  "5_true": 2,
+  "6_false": 1,
+  "6_true": 1,
+};
+
+const rankInfoTable = {
+  1: { price: 2_000_000_000, message: "6개 일치" },
+  2: { price: 30_000_000, message: "5개 일치, 보너스 볼 일치" },
+  3: { price: 1_500_000, message: "5개 일치" },
+  4: { price: 50_000, message: "4개 일치" },
+  5: { price: 5_000, message: "3개 일치" },
+};
+
+class LottoCalculator {
+  #winningNumbers;
+  #bonusNumber;
+  #prize;
+
+  constructor(winningNumbers, bonusNumber) {
+    this.#winningNumbers = winningNumbers;
+    this.#bonusNumber = bonusNumber;
+    this.#prize = new Map([
+      [1, []],
+      [2, []],
+      [3, []],
+      [4, []],
+      [5, []],
+    ]);
+  }
+
+  calculatePrize(lotto) {
+    const matchCount = lotto.countNumbersMatch(this.#winningNumbers);
+    const isMatchBonus = lotto.isMatch(this.#bonusNumber);
+    const tableKey = `${matchCount}_${isMatchBonus}`;
+
+    const rank = matchToRankTable[tableKey];
+    this.#prize.set(rank, [...this.#prize.get(rank), lotto]);
+  }
+
+  get prize() {
+    return this.#prize;
+  }
+}
+
+export default LottoCalculator;
