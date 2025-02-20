@@ -15,27 +15,23 @@ const checkWinningResults = (lottos, result) => {
   const { winningNumbers, bonusNumber } = result;
 
   lottos.forEach((lotto) =>
-    updateMatchResult(lotto, winningNumbers, bonusNumber)
+    updateMatchResult(lotto, winningNumbers, bonusNumber),
   );
 
-  let totalReward = 0;
-  const resultCount = new Array(6).fill(0);
-
-  lottos.forEach((lotto) => {
-    const result = checkRank(
-      lotto.matchResult.matchCount,
-      lotto.matchResult.isBonusMatched
+  return lottos
+    .map((lotto) =>
+      checkRank(lotto.matchResult.matchCount, lotto.matchResult.isBonusMatched),
+    )
+    .filter(Boolean)
+    .reduce(
+      (acc, result) => ({
+        totalReward: acc.totalReward + result.REWARD,
+        resultCount: acc.resultCount.map((count, index) =>
+          index === result.RANK ? count + 1 : count,
+        ),
+      }),
+      { totalReward: 0, resultCount: new Array(6).fill(0) },
     );
-    if (result) {
-      totalReward += result.REWARD;
-      resultCount[result.RANK]++;
-    }
-  });
-
-  return {
-    totalReward,
-    resultCount,
-  };
 };
 
 export default checkWinningResults;

@@ -4,7 +4,7 @@ const retryUntilValid = async (promptMessage, validateFunc) => {
   try {
     const input = await readLineAsync(promptMessage);
     const validatedInput = validateFunc(input);
-    if (validatedInput !== null) return validatedInput;
+    return validatedInput;
   } catch (err) {
     console.log(err);
     return retryUntilValid(promptMessage, validateFunc);

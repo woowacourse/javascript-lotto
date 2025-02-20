@@ -7,13 +7,11 @@ import lottoController from "./controllers/LottoController.js";
 import { getLottoPrice, getRestart } from "./view/input.js";
 
 const run = async () => {
-  while (true) {
-    const price = await getLottoPrice();
+  const price = await getLottoPrice();
+  await lottoController(price);
 
-    await lottoController(price);
-
-    const restart = await getRestart();
-    if (!restart) break;
+  if (await getRestart()) {
+    return run();
   }
 };
 
