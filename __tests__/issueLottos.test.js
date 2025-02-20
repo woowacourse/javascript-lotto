@@ -1,9 +1,10 @@
 import issueLottos from "../src/domains/issueLottos.js";
+import { MIN_UNIT } from "../src/constants/constants.js";
 
 describe("구입 금액에 따른 개수만큼 랜덤한 로또를 발행하는 메서드 테스트", () => {
   // given
-  const purchaseAmount = 8_000;
-  const lottoCount = purchaseAmount / 1_000;
+  const purchaseAmount = MIN_UNIT * 8;
+  const lottoCount = purchaseAmount / MIN_UNIT;
 
   test("구입 금액에 따라 발행할 로또 개수를 반환한다.", () => {
     // when

@@ -1,4 +1,9 @@
-import { WINNING_NUMBERS_ERROR_MESSAGES } from "../constants/constants.js";
+import {
+  WINNING_NUMBERS_ERROR_MESSAGES,
+  LOTTO_LENGTH,
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
+} from "../constants/constants.js";
 
 const validateWinningNumbers = (input) => {
   const winningNumbers = input
@@ -7,7 +12,7 @@ const validateWinningNumbers = (input) => {
     .filter((el) => el !== "")
     .map(Number);
 
-  if (winningNumbers.length !== 6) {
+  if (winningNumbers.length !== LOTTO_LENGTH) {
     throw new Error(WINNING_NUMBERS_ERROR_MESSAGES.INVALID_COUNT);
   }
 
@@ -18,7 +23,7 @@ const validateWinningNumbers = (input) => {
     if (!Number.isInteger(winningNumber)) {
       throw new Error(WINNING_NUMBERS_ERROR_MESSAGES.NOT_AN_INTEGER);
     }
-    if (1 > winningNumber || 45 < winningNumber) {
+    if (MIN_LOTTO_NUMBER > winningNumber || MAX_LOTTO_NUMBER < winningNumber) {
       throw new Error(WINNING_NUMBERS_ERROR_MESSAGES.OUT_OF_RANGE);
     }
   });

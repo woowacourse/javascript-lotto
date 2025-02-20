@@ -3,10 +3,11 @@ import validatePurchaseAmount from "../validations/validatePurchaseAmount.js";
 import validateWinningNumbers from "../validations/validateWinningNumbers.js";
 import throwIfInvalid from "../utils/throwIfInvalid.js";
 import validateBonusNumber from "../validations/validateBonusNumber.js";
-import issueLottos from "../domains/IssueLottos.js";
+import issueLottos from "../domains/issueLottos.js";
 import Output from "../views/Output.js";
 import WinningStatistics from "../domains/WinningStatistics.js";
 import validateRestartConfirm from "../validations/validateRestartConfirm.js";
+import { YES } from "../constants/constants.js";
 
 class Controller {
   async start() {
@@ -15,7 +16,7 @@ class Controller {
       Input.readRestartConfirm,
       validateRestartConfirm,
     );
-    if (restartConfirm === "y") await this.start();
+    if (restartConfirm === YES) await this.start();
   }
 
   async #issue() {

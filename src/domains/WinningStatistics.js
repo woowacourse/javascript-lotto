@@ -1,12 +1,15 @@
 import countMatchingNumbers from "../utils/countMatchingNumbers.js";
-
+import { MATCH_KEY, MATCH_PRIZE } from "../constants/constants.js";
 class WinningStatistics {
   #statistics = new Map([
-    [3, { count: 0, amount: 5000 }],
-    [4, { count: 0, amount: 50_000 }],
-    [5, { count: 0, amount: 1_500_000 }],
-    [5.5, { count: 0, amount: 30_000_000 }],
-    [6, { count: 0, amount: 2_000_000_000 }],
+    [MATCH_KEY.THREE, { count: 0, amount: MATCH_PRIZE.THREE }],
+    [MATCH_KEY.FOUR, { count: 0, amount: MATCH_PRIZE.FOUR }],
+    [MATCH_KEY.FIVE, { count: 0, amount: MATCH_PRIZE.FIVE }],
+    [
+      MATCH_KEY.FIVE_AND_BONUS,
+      { count: 0, amount: MATCH_PRIZE.FIVE_AND_BONUS },
+    ],
+    [MATCH_KEY.SIX, { count: 0, amount: MATCH_PRIZE.SIX }],
   ]);
 
   get statistics() {
@@ -18,14 +21,17 @@ class WinningStatistics {
       (sum, { count, amount }) => sum + count * amount,
       0,
     );
-
-    return ((profitAmount / purchaseAmount) * 100).toFixed(1);
+    const PERCENTAGE = 100;
+    const DECIMAL_POINT = 1;
+    return ((profitAmount / purchaseAmount) * PERCENTAGE).toFixed(
+      DECIMAL_POINT,
+    );
   }
 
   calculateWinningResults(lottos, winningNumbers, bonusNumber) {
     lottos.forEach((lotto) => {
       const matchedCount = countMatchingNumbers(winningNumbers, lotto);
-      if (matchedCount === 5) {
+      if (matchedCount === MATCH_KEY.FIVE) {
         this.#addMatchedCount(this.#calculateBonusNumber(lotto, bonusNumber));
         return;
       }
@@ -34,12 +40,12 @@ class WinningStatistics {
   }
 
   #calculateBonusNumber(lotto, bonusNumber) {
-    if (lotto.includes(bonusNumber)) return 5.5;
-    return 5;
+    if (lotto.includes(bonusNumber)) return MATCH_KEY.FIVE_AND_BONUS;
+    return MATCH_KEY.FIVE;
   }
 
   #addMatchedCount(matchedCount) {
-    if (matchedCount >= 3) {
+    if (matchedCount >= MATCH_KEY.THREE) {
       this.#statistics.set(matchedCount, {
         ...this.#statistics.get(matchedCount),
         count: this.#statistics.get(matchedCount).count + 1,

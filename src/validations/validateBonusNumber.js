@@ -1,4 +1,8 @@
-import { BONUS_NUMBER_ERROR_MESSAGES } from "../constants/constants.js";
+import {
+  BONUS_NUMBER_ERROR_MESSAGES,
+  MIN_LOTTO_NUMBER,
+  MAX_LOTTO_NUMBER,
+} from "../constants/constants.js";
 
 const validateBonusNumber = (input, winningNumbers) => {
   const bonusNumber = Number(input);
@@ -9,7 +13,7 @@ const validateBonusNumber = (input, winningNumbers) => {
   if (!Number.isInteger(bonusNumber)) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.NOT_AN_INTEGER);
   }
-  if (1 > bonusNumber || 45 < bonusNumber) {
+  if (MIN_LOTTO_NUMBER > bonusNumber || MAX_LOTTO_NUMBER < bonusNumber) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.OUT_OF_RANGE);
   }
   if (winningNumbers.includes(bonusNumber)) {

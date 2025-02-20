@@ -1,10 +1,16 @@
-import { RESTART_ERROR_MESSAGE } from "../src/constants/constants.js";
+import {
+  RESTART_ERROR_MESSAGE,
+  YES,
+  NO,
+  UPPER_YES,
+  UPPER_NO,
+} from "../src/constants/constants.js";
 import validateRestartConfirm from "../src/validations/validateRestartConfirm.js";
 
 describe("재실행 입력에 대한 유효성 테스트", () => {
   test.each([
     {
-      description: "Y, y, N, n 중 하나의 문자가 아닌 경우",
+      description: `${UPPER_YES}, ${YES}, ${UPPER_NO}, ${NO} 중 하나의 문자가 아닌 경우`,
       input: "a",
     },
     {
@@ -16,12 +22,12 @@ describe("재실행 입력에 대한 유효성 테스트", () => {
       input: "",
     },
     {
-      description: "y와 n이 함께 들어온 경우",
-      input: "yn",
+      description: `${YES}와 ${NO}이 함께 들어온 경우`,
+      input: `${YES}${NO}`,
     },
     {
       description: "중복으로 잘못 입력한 경우",
-      input: "YY",
+      input: `${UPPER_YES}${UPPER_YES}`,
     },
   ])("$description 에러가 발생한다.", ({ input }) => {
     // given
@@ -31,8 +37,8 @@ describe("재실행 입력에 대한 유효성 테스트", () => {
     }).toThrow(RESTART_ERROR_MESSAGE);
   });
 
-  test.each([["Y", "y", "N", "n"]])(
-    "Y, y, N, n 중 하나인 경우 정상적으로 동작한다.",
+  test.each([[UPPER_YES, YES, UPPER_NO, NO]])(
+    `${UPPER_YES}, ${YES}, ${UPPER_NO}, ${NO} 중 하나인 경우 정상적으로 동작한다.`,
     (input) => {
       // given
       // when & then
