@@ -47,7 +47,7 @@ class LottoStatistics {
   }
 
   calculateRevenueRate(profit, investmentCost) {
-    return (profit / investmentCost) * 100;
+    return Number(((profit / investmentCost) * 100).toFixed(1));
   }
 }
 
