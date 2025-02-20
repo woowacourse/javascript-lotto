@@ -5,6 +5,8 @@ import purchaseLottoCount from "./domain/purchaseLottoCount.js";
 import LottoPack from "./domain/LottoPack.js";
 import LottoMachine from "./domain/LottoMachine.js";
 import OutputView from "./view/OutputView.js";
+import AnswerLottoPack from "./domain/AnswerLottoPack.js";
+import compareMachine from "./domain/compareMachine.js";
 class Controller {
   async start() {
     const purchaseAmount = await this.retryCheckInput(
@@ -25,6 +27,9 @@ class Controller {
       async () => await InputView.bonusNumber(),
       Validation.bonusNumber(winningNumbers),
     );
+
+    const answerLottoPack = new AnswerLottoPack(winningNumbers, bonusNumber);
+    const result = compareMachine(lottoPack, answerLottoPack);
 
     const restart = await this.retryCheckInput(async () => await InputView.restart(), Validation.restart);
     if (restart) this.start();
