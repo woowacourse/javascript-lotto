@@ -3,6 +3,7 @@ import LottoStatistics from '../LottoStatistics.js';
 
 import readLineAsync from '../view/InputView.js';
 import { validateMoney, validateLottoNumber, validateBonus } from '../validation.js';
+import OutputView from '../view/OutputView.js';
 
 class Controller {
   #machine;
@@ -19,6 +20,8 @@ class Controller {
     while (condition) {
       const money = await this.readMoney();
       this.#machine.createLottos(money);
+      OutputView.printLottoQuantity(this.#machine.getLottoQuantity());
+
       const winningLotto = await this.readWinningLotto();
       const bonus = await this.readBonus(winningLotto);
       const winningNumber = { bonus, lotto: winningLotto };
