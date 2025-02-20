@@ -1,19 +1,17 @@
-import {
-  COMMAND,
-  ERROR_MESSAGES,
-  LOTTO_PRICE,
-  MAX_LOTTO_NUMBER,
-  MIN_LOTTO_NUMBER,
-} from "../lib/constants.js";
-import { checkUniqueArray } from "../lib/utils.js";
+import { COMMAND, ERROR_MESSAGES, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../lib/constants.js';
+import { checkUniqueArray } from '../lib/utils.js';
 
 class Validator {
+  static #checkIsPositiveInteger(value) {
+    return !Number.isNaN(value) && value > 0 && Number.isInteger(value);
+  }
+
+  static #checkIsInLottoNumberRange(value) {
+    return value >= MIN_LOTTO_NUMBER && value <= MAX_LOTTO_NUMBER;
+  }
+
   static validatePurchaseAmount(purchaseAmount) {
-    if (
-      Number.isNaN(purchaseAmount) ||
-      purchaseAmount <= 0 ||
-      !Number.isInteger(purchaseAmount)
-    ) {
+    if (this.#checkIsPositiveInteger(purchaseAmount)) {
       throw new Error(ERROR_MESSAGES.purchaseAmount.positiveInteger);
     }
 
@@ -25,14 +23,7 @@ class Validator {
   static validateWinNumbers(winNumbers) {
     if (
       winNumbers.length !== 6 ||
-      winNumbers.some(
-        (number) =>
-          number < MIN_LOTTO_NUMBER ||
-          number > MAX_LOTTO_NUMBER ||
-          Number.isNaN(number) ||
-          number <= 0 ||
-          !Number.isInteger(number)
-      )
+      winNumbers.some((number) => !this.#checkIsInLottoNumberRange(number) || !this.#checkIsPositiveInteger(winNumbers))
     ) {
       throw new Error(ERROR_MESSAGES.winNumber.range);
     }
@@ -43,13 +34,7 @@ class Validator {
   }
 
   static validateBonusNumber(bonusNumber, winNumbers) {
-    if (
-      Number.isNaN(bonusNumber) ||
-      bonusNumber <= 0 ||
-      !Number.isInteger(bonusNumber) ||
-      bonusNumber < MIN_LOTTO_NUMBER ||
-      bonusNumber > MAX_LOTTO_NUMBER
-    ) {
+    if (!this.#checkIsPositiveInteger(bonusNumber) || !this.#checkIsInLottoNumberRange(bonusNumber)) {
       throw new Error(ERROR_MESSAGES.bonusNumber.range);
     }
 

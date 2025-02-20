@@ -1,13 +1,13 @@
-import readline from "readline";
+import readline from 'readline';
 
 export function readLineAsync(query) {
   return new Promise((resolve, reject) => {
     if (arguments.length !== 1) {
-      reject(new Error("arguments must be 1"));
+      reject(new Error('arguments must be 1'));
     }
 
-    if (typeof query !== "string") {
-      reject(new Error("query must be string"));
+    if (typeof query !== 'string') {
+      reject(new Error('query must be string'));
     }
 
     const rl = readline.createInterface({
@@ -22,14 +22,22 @@ export function readLineAsync(query) {
   });
 }
 
-export function generateUniqueNumberArray(start, end, length) {
-  return new Array(length).fill(null).reduce((prev, cur) => {
-    while (true) {
-      const randomNumber = generateRandomNumber(start, end);
-      if (prev.includes(randomNumber)) continue;
+export function generateRandomNumber(start, end) {
+  return Math.floor(Math.random() * (end + 1 - start)) + start;
+}
 
-      return [...cur, randomNumber];
-    }
+export function generateUniqueRandomValue(array, { start, end }) {
+  const randomNumber = generateRandomNumber({ start, end });
+  if (array.includes(randomNumber)) return generateUniqueRandomValue(array, { start, end });
+
+  return randomNumber;
+}
+
+export function generateUniqueNumberArray({ start, end }, length) {
+  return new Array(length).fill(null).reduce((prev) => {
+    const uniqueRandomValue = generateUniqueRandomValue(prev, { start, end });
+
+    return [...prev, uniqueRandomValue];
   }, []);
 }
 
@@ -39,10 +47,6 @@ export function calculateProfitRate(profit, price) {
 
 export function checkUniqueArray(array) {
   return array.length === new Set(array).size;
-}
-
-export function generateRandomNumber(start, end) {
-  return Math.floor(Math.random() * (end + 1 - start)) + start;
 }
 
 export function getIntersectCount(array1, array2) {
