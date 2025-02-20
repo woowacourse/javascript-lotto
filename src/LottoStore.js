@@ -8,10 +8,9 @@ import PRICE from "./constant/price.js";
 const purchase = async () => {
   const purchaseAmount = await InputHandler.getPurchaseAmount();
   const quantity = purchaseAmount / PRICE.UNIT;
+  OutputView.printQuantity(quantity);
   const lottoNumbers = Array.from({length: quantity}, () => generateLotto());
-  lottoNumbers.forEach((nums) => {
-    OutputView.printLotto(nums);
-  })
+  lottoNumbers.forEach((nums) => { OutputView.printLotto(nums); })
 
   const lottoAndBonus = await readWinningInfo();
   const winningCount = Calculator.winningCount(lottoNumbers, lottoAndBonus);
