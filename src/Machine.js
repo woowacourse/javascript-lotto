@@ -26,6 +26,10 @@ class Machine {
   getLottos() {
     return this.#lottos;
   }
+
+  getLottoQuantity() {
+    return this.#lottos.length;
+  }
 }
 
 export default Machine;
