@@ -4,15 +4,17 @@ import Output from "../view/Output.js";
 import { throwError } from "../util/util.js";
 import Winnings from "../domain/Winnings.js";
 import { inputHandler } from "../util/InputHandler.js";
+import Input from "../view/Input.js";
+import { INPUT_MESSAGE } from "../constant/Message.js";
 
 export default class Main {
   async play() {
-    const purchasePrice = await this.inputPurchasePrice();
+    const purchasePrice = await Input.purchasePrice();
     const lottos = LottoMachine.createLottos(purchasePrice);
     this.printLottos(lottos);
 
-    const winningNumbers = await this.inputWinningNumbers();
-    const bonusNumber = await this.inputBonus(winningNumbers);
+    const winningNumbers = await Input.inputWinningNumbers();
+    const bonusNumber = await Input.inputBonus(winningNumbers);
     this.printStatistics({
       winningNumbers,
       bonusNumber,
@@ -23,49 +25,9 @@ export default class Main {
     this.inputRestart();
   }
 
-  async inputPurchasePrice() {
-    const purchasePrice = await inputHandler({
-      inputMethod: "purchasePrice",
-      parser: "toNumber",
-      errorName: "PURCHASE_PRICE",
-      validatorMethod: "purchasePrice",
-    });
-    Output.newLine();
-    return purchasePrice;
-  }
-
-  async inputWinningNumbers() {
-    const winningNumbers = await inputHandler({
-      inputMethod: "winningNumbers",
-      parser: "toSplitNumberArray",
-      validatorMethod: "winningNumbers",
-      errorName: "WINNING_NUMBERS",
-    });
-    Output.newLine();
-    return winningNumbers;
-  }
-
-  async inputBonus(winningNumbers) {
-    try {
-      const bonusNumber = await inputHandler({
-        inputMethod: "bonusNumber",
-        parser: "toNumber",
-        errorName: "BONUS_NUMBER",
-        validatorMethod: "bonusNumber",
-      });
-      const error = Validator.winningsAndBonus(winningNumbers, bonusNumber);
-      Output.printErrorResults(error, "WINNINGS_AND_BONUS");
-      throwError(error);
-      Output.newLine();
-      return bonusNumber;
-    } catch {
-      return this.inputBonus(winningNumbers);
-    }
-  }
-
   async inputRestart() {
     const restart = await inputHandler({
-      inputMethod: "restart",
+      promptMessage: INPUT_MESSAGE.RESTART,
       errorName: "RESTART",
       validatorMethod: "restart",
     });

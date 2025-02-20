@@ -3,15 +3,16 @@ import Input from "../view/Input.js";
 import Output from "../view/Output.js";
 import Parser from "./Parser.js";
 import { throwError } from "./util.js";
+import readline from "readline";
 
 export async function inputHandler({
-  inputMethod,
+  promptMessage,
   parser,
   validatorMethod,
   errorName,
 }) {
   try {
-    const userInput = await userInputEmptyHandler(inputMethod);
+    const userInput = await userInputEmptyHandler(promptMessage);
     const parsedUserInput = parser ? Parser[parser](userInput) : userInput;
     const parsedUserInputError = Validator[validatorMethod](parsedUserInput);
     Output.printErrorResults(parsedUserInputError, errorName);
@@ -19,7 +20,7 @@ export async function inputHandler({
     return parsedUserInput;
   } catch (error) {
     return inputHandler({
-      inputMethod,
+      promptMessage,
       parser,
       validatorMethod,
       errorName,
@@ -27,10 +28,32 @@ export async function inputHandler({
   }
 }
 
-async function userInputEmptyHandler(inputMethod) {
-  const userInput = await Input[inputMethod]();
+async function userInputEmptyHandler(promptMessage) {
+  const userInput = await readLineAsync(promptMessage);
   const userInputError = Validator.userInput(userInput);
   Output.printErrorResults(userInputError, "USER_INPUT");
   throwError(userInputError);
   return userInput;
+}
+
+export async function readLineAsync(query) {
+  return new Promise((resolve, reject) => {
+    if (arguments.length !== 1) {
+      reject(new Error("arguments must be 1"));
+    }
+
+    if (typeof query !== "string") {
+      reject(new Error("query must be string"));
+    }
+
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    rl.question(query, (input) => {
+      rl.close();
+      resolve(input);
+    });
+  });
 }

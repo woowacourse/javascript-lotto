@@ -1,50 +1,49 @@
 import readline from "readline";
 import { INPUT_MESSAGE } from "../constant/Message.js";
+import { inputHandler, readLineAsync } from "../util/InputHandler.js";
+import Output from "./Output.js";
+import Validator from "../domain/Validator.js";
+import { throwError } from "../util/util.js";
 
 const Input = {
-  async readLineAsync(query) {
-    return new Promise((resolve, reject) => {
-      if (arguments.length !== 1) {
-        reject(new Error("arguments must be 1"));
-      }
-
-      if (typeof query !== "string") {
-        reject(new Error("query must be string"));
-      }
-
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      });
-
-      rl.question(query, (input) => {
-        rl.close();
-        resolve(input);
-      });
-    });
-  },
   async purchasePrice() {
-    const purchasePrice = await this.readLineAsync(
-      INPUT_MESSAGE.PURCHASE_PRISE
-    );
+    const purchasePrice = await inputHandler({
+      promptMessage: INPUT_MESSAGE.PURCHASE_PRISE,
+      parser: "toNumber",
+      errorName: "PURCHASE_PRICE",
+      validatorMethod: "purchasePrice",
+    });
+    Output.newLine();
     return purchasePrice;
   },
 
-  async winningNumbers() {
-    const winningNumbers = await this.readLineAsync(
-      INPUT_MESSAGE.WINNING_NUMBERS
-    );
+  async inputWinningNumbers() {
+    const winningNumbers = await inputHandler({
+      promptMessage: INPUT_MESSAGE.WINNING_NUMBERS,
+      parser: "toSplitNumberArray",
+      validatorMethod: "winningNumbers",
+      errorName: "WINNING_NUMBERS",
+    });
+    Output.newLine();
     return winningNumbers;
   },
 
-  async bonusNumber() {
-    const bonusNumber = await this.readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
-    return bonusNumber;
-  },
-
-  async restart() {
-    const restart = await this.readLineAsync(INPUT_MESSAGE.RESTART);
-    return restart;
+  async inputBonus(winningNumbers) {
+    try {
+      const bonusNumber = await inputHandler({
+        promptMessage: INPUT_MESSAGE.BONUS_NUMBER,
+        parser: "toNumber",
+        errorName: "BONUS_NUMBER",
+        validatorMethod: "bonusNumber",
+      });
+      const error = Validator.winningsAndBonus(winningNumbers, bonusNumber);
+      Output.printErrorResults(error, "WINNINGS_AND_BONUS");
+      throwError(error);
+      Output.newLine();
+      return bonusNumber;
+    } catch {
+      return this.inputBonus(winningNumbers);
+    }
   },
 };
 
