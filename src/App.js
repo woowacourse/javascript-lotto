@@ -8,6 +8,7 @@ import { readUserInputUntilSuccess, convertFormat } from './View/utils.js';
 import {
   validateEmptySpace,
   validatePurchaseAmount,
+  validateEmptySpaceInWinningNumbers,
   validateWinningNumbers,
 } from './View/Validation/inputView.js';
 class App {
@@ -26,6 +27,12 @@ class App {
       readUserInput: getWinningNumbersInput,
       formatter: (input) => {
         validateEmptySpace(input);
+        const splittedInput = convertFormat.splitByComma(input);
+
+        validateEmptySpaceInWinningNumbers(splittedInput);
+        const numbers = splittedInput.map(Number);
+        validateWinningNumbers(numbers);
+        return numbers;
       },
     });
 
@@ -34,6 +41,7 @@ class App {
       formatter: (input) => {
         validateEmptySpace(input);
         const convertedInput = convertFormat.toNumber(input);
+        // validatePurchaseAmount(convertedInput);
         return convertedInput;
       },
     });

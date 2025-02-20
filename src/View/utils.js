@@ -7,7 +7,7 @@ export const readUserInputUntilSuccess = async ({
     return formatter(input);
   } catch (error) {
     console.error(error.message);
-    return readUserInputUntilSuccess({
+    return await readUserInputUntilSuccess({
       readUserInput,
       formatter,
     });

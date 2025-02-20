@@ -1,7 +1,9 @@
 import {
   COMMON_ERROR_MESSAGE,
   LOTTO_PURCHASE_AMOUNT,
+  LOTTO_WINNING_NUMBERS,
 } from '../Constant/errorMessage.js';
+import { LOTTO_DEFINITION } from '../../Domain/Constant/definition.js';
 
 const hasEmptySpace = (input) => {
   return input.includes(' ') || input.trim() === '';
@@ -39,7 +41,7 @@ const validatePurchaseAmountUnit = (input) => {
 
 const validatePurchaseAmountRange = (input) => {
   if (isInvalidPurchaseAmountRange(input)) {
-    throw new Error(LOTTO_PURCHASE_AMOUNT.INVALID_MAX_PURCHASE);
+    throw new Error(LOTTO_PURCHASE_AMOUNT.INVALID_PURCHASE_RANGE);
   }
 };
 
@@ -47,4 +49,56 @@ export const validatePurchaseAmount = (input) => {
   validateInteger(input);
   validatePurchaseAmountUnit(input);
   validatePurchaseAmountRange(input);
+};
+
+export const hasEmptySpaceInArray = (input) => {
+  return input.some((input) => hasEmptySpace(input));
+};
+
+export const validateEmptySpaceInWinningNumbers = (input) => {
+  if (hasEmptySpaceInArray(input)) {
+    throw new Error(LOTTO_WINNING_NUMBERS.INVALID_LOTTO_NUMBERS);
+  }
+};
+
+const hasWrongLength = (input) => {
+  return LOTTO_DEFINITION.NUMBER_COUNTS !== new Set(input).size;
+};
+
+export const validateWrongWinningNumbersLength = (input) => {
+  if (hasWrongLength(input)) {
+    throw new Error(LOTTO_WINNING_NUMBERS.INVALID_LOTTO_COUNT);
+  }
+};
+
+const hasDuplicate = (input) => {
+  return input.length !== new Set(input).size;
+};
+
+export const validateDuplicateWinningNumbers = (input) => {
+  if (hasDuplicate(input)) {
+    throw new Error(LOTTO_WINNING_NUMBERS.DUPLICATE_LOTTO_NUMBERS);
+  }
+};
+
+const hasWrongRange = (input) => {
+  return input < 1 || input > 45;
+};
+
+const validateWinningNumbersRange = (input) => {
+  if (input.some((number) => hasWrongRange(number))) {
+    throw new Error(LOTTO_WINNING_NUMBERS.INVALID_LOTTO_RANGE);
+  }
+};
+const validateWinningNumbersInteger = (input) => {
+  if (input.some((number) => !isInteger(number))) {
+    throw new Error(COMMON_ERROR_MESSAGE.NOT_INTEGER);
+  }
+};
+
+export const validateWinningNumbers = (input) => {
+  validateWrongWinningNumbersLength(input);
+  validateDuplicateWinningNumbers(input);
+  validateWinningNumbersRange(input);
+  validateWinningNumbersInteger(input);
 };
