@@ -1,10 +1,10 @@
-//@ts-check
+// @ts-check
 
-import LottoCompany from "./domain/LottoCompany.js";
-import LottoShop from "./domain/LottoShop.js";
-import { calculateProfitRate } from "./lib/utils.js";
-import InputView from "./views/InputView.js";
-import OutputView from "./views/OutputView.js";
+import LottoCompany from './domain/LottoCompany.js';
+import LottoShop from './domain/LottoShop.js';
+import { calculateProfitRate } from './lib/utils.js';
+import InputView from './views/InputView.js';
+import OutputView from './views/OutputView.js';
 
 class App {
   async run() {

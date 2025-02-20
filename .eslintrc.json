@@ -9,6 +9,7 @@
   },
   "rules": {
     "no-process-exit": "warn",
+    "no-console": "off",
     "import/extensions": [
       "warn",
       "never",
@@ -16,7 +17,7 @@
         "js": "always"
       }
     ],
-    "func-style": ["warn", "expression"],
+    "func-style": ["off"],
     "no-ternary": "warn", // 삼항연산자를 사용하지 않는다.
     "lines-between-class-members": ["warn", "always", { "exceptAfterSingleLine": true }],
     "no-unused-vars": "off",

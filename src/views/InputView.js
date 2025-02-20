@@ -1,13 +1,11 @@
-import { COMMAND, INPUT_MESSAGES, SEPERATOR } from "../lib/constants.js";
-import { readLineAsync, retryUntilSuccess } from "../lib/utils.js";
-import Validator from "../validator/Validator.js";
+import { COMMAND, INPUT_MESSAGES, SEPERATOR } from '../lib/constants.js';
+import { readLineAsync, retryUntilSuccess } from '../lib/utils.js';
+import Validator from '../validator/Validator.js';
 
 class InputView {
   static async readPurchaseAmount() {
     return retryUntilSuccess(async () => {
-      const rawPurchaseAmount = await readLineAsync(
-        INPUT_MESSAGES.purchaseAmount()
-      );
+      const rawPurchaseAmount = await readLineAsync(INPUT_MESSAGES.purchaseAmount());
 
       const purchaseAmount = Number(rawPurchaseAmount);
       Validator.validatePurchaseAmount(purchaseAmount);

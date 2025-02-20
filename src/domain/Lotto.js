@@ -1,6 +1,6 @@
-//@ts-check
+// @ts-check
 
-import { LOTTO_RANK, NO_WINNING } from "../lib/constants.js";
+import { LOTTO_RANK, NO_WINNING } from '../lib/constants.js';
 
 class Lotto {
   numbers;
@@ -15,7 +15,7 @@ class Lotto {
 
       if (info.winNumber === winningLottoCount) {
         if (!info.isBonusNumberRequired) return true;
-        else if (isBonusNumber) return true;
+        if (isBonusNumber) return true;
       }
       return false;
     });

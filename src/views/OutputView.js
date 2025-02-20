@@ -1,7 +1,7 @@
-//@ts-check
+// @ts-check
 
-import { LOTTO_RANK, OUTPUT_MESSAGES } from "../lib/constants.js";
-import { calculateMatchCount } from "../lib/utils.js";
+import { LOTTO_RANK, OUTPUT_MESSAGES } from '../lib/constants.js';
+import { calculateMatchCount } from '../lib/utils.js';
 
 class OutputView {
   static #print(message) {
@@ -26,16 +26,17 @@ class OutputView {
       this.#print(
         `${LOTTO_RANK[rank].winNumber}개 일치${bonusOutput} (${LOTTO_RANK[
           rank
-        ].prize.toLocaleString()}) - ${rankCount}개`
+        ].prize.toLocaleString()}) - ${rankCount}개`,
       );
     });
   }
 
   static #getBonusOutput(isBonusNumber) {
     if (isBonusNumber) {
-      return ", 보너스 볼 일치";
+      return ', 보너스 볼 일치';
     }
-    return "";
+
+    return '';
   }
 
   static printProfitRate(profitRate) {
