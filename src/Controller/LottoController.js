@@ -8,8 +8,7 @@ class LottoController {
   async start() {
     let restart = 'y';
     while (restart === 'y' || restart === 'Y') {
-      const lottoMachine = new LottoMachine();
-      const { price, lottos } = await this.#buyLotto(lottoMachine);
+      const { price, lottos } = await this.#buyLotto();
       const { winningNumbers, bonusNumber } = await this.#getWinningNumbers();
 
       const winning = new Winning(winningNumbers, bonusNumber);
@@ -20,7 +19,8 @@ class LottoController {
     }
   }
 
-  async #buyLotto(lottoMachine) {
+  async #buyLotto() {
+    const lottoMachine = new LottoMachine();
     const price = await this.#readPrice();
     const lottos = lottoMachine.generateLotto(price);
     OutputView.printLottos(lottos);
