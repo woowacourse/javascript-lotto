@@ -17,6 +17,10 @@ export const OUTPUT = Object.freeze({
 });
 
 export const LOTTO = Object.freeze({
+  MIN_PURCHASE_PRICE: 1000,
+  MAX_RANDOM_NUMBER: 45,
+  MIN_RANDOM_NUMBER: 1,
+  MAX_LENGTH: 6,
   FIVE_WITH_BONUS_MATCH_IDX: 7,
   SIX_MATCH: 6,
   FIVE_WITH_BONUS_MATCH: 5.5,
