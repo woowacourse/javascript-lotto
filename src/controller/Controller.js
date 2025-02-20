@@ -29,6 +29,10 @@ class Controller {
       const bonus = await this.readBonus(winningLotto);
       const winningNumber = { bonus, lotto: winningLotto };
       this.#lottoStatistics.compareLottos(this.#machine.getLottos(), winningNumber);
+      const rankResult = this.#lottoStatistics.getRankResult();
+      Object.keys(rankResult).forEach((key) => {
+        OutputView.printRankResult(key, rankResult[key]);
+      });
       condition = await this.readReStart();
     }
   }

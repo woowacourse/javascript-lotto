@@ -5,6 +5,10 @@ const OutputView = {
   printSingLotto(lotto) {
     console.log(`[${lotto.join(', ')}]`);
   },
+  printRankResult(key, value) {
+    console.log(`${key} (${(value.price).toLocaleString()}원) - ${value.count}개`);
+  },
+
 };
 
 export default OutputView;
