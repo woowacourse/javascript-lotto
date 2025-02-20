@@ -3,7 +3,7 @@ import validateRestart, {
   validateFormat,
 } from "../../src/domain/validateRestart.js";
 
-describe("domain/validateRestart", () => {
+describe("validations/validateRestart", () => {
   test("입력이 y, n인지 확인한다.", () => {
     const input = "y";
 

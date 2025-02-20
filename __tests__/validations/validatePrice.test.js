@@ -5,7 +5,7 @@ import {
   isValidPriceRange,
 } from "../../src/domain/validatePrice.js";
 
-describe("domain/validatePrice", () => {
+describe("validations/validatePrice", () => {
   test.each([["0"], ["1"], ["1000"]])(
     "입력된 값이 양의 정수여야 한다.",
     (input) => {
