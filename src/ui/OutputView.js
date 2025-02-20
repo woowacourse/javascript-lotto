@@ -16,6 +16,10 @@ const OutputView = {
     keys.forEach((key) => {
         console.log(`${WINNING[key].LABEL} (${WINNING[key].PRIZES.toLocaleString()}원) - ${winningCount[key]}개\n`);
     })
+  },
+
+  printYieldRate(yieldRate) {
+    console.log(`총 수익률은 ${yieldRate}%입니다.`);
   }
 }
 

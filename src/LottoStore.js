@@ -25,9 +25,10 @@ export const purchase = async () => {
   OutputView.printWinningDetailTitle();
   OutputView.printWinningDetail(winningCount);
 
-  // 총 상금 계산
-  const totalPrize = Calculator.TotalPrize(winningCount);
-  // 수익률 계산
+  const totalPrize = Calculator.totalPrize(winningCount);
+  const yieldRate = Calculator.yieldRate(purchaseAmount, totalPrize);
+  OutputView.printYieldRate(yieldRate);
+
   // 재시작 여부 입력 받기
 };
 

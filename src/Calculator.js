@@ -23,7 +23,7 @@ const Calculator = {
       return winningCount;
     },
 
-    TotalPrize(winningCount) {
+  totalPrize(winningCount) {
       let total = 0;
 
       Object.values(KEYS).forEach((key) => {
@@ -31,6 +31,10 @@ const Calculator = {
       });
 
       return total;
+    },
+
+    yieldRate(amount, totalPrize) {
+      return ((totalPrize / amount ) * 100).toFixed(1);
     }
 }
 
