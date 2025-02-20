@@ -45,6 +45,10 @@ class LottoStatistics {
     }
     this.#rankResult[name].count += 1;
   }
+
+  calculateRevenueRate(profit, investmentCost) {
+    return (profit / investmentCost) * 100;
+  }
 }
 
 export default LottoStatistics;
