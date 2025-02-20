@@ -6,7 +6,7 @@ const Input = {
       return await callback();
     } catch (e) {
       console.log(e.message);
-      return await callback;
+      return Input.retry(callback);
     }
   },
   readLineAsync: (query) => {
