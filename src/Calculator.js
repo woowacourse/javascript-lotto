@@ -6,15 +6,32 @@ const Calculator = {
 
     lottos.forEach((lotto) => {
       const matchCount = lotto.filter((num) => winning.includes(num)).length;
+      const hasBonus = this.hasBonus(lotto, bonus);
 
-      if (matchCount === WINNING[KEYS.FIRST].MATCH) winningCount[KEYS.FIRST] += 1;
-      if (matchCount === WINNING[KEYS.SECOND].MATCH && lotto.includes(bonus)) winningCount[KEYS.SECOND] += 1;
-      if (matchCount === WINNING[KEYS.THIRD].MATCH) winningCount[KEYS.THIRD] += 1;
-      if (matchCount === WINNING[KEYS.FOURTH].MATCH) winningCount[KEYS.FOURTH] += 1;
-      if (matchCount === WINNING[KEYS.FIFTH].MATCH) winningCount[KEYS.FIFTH] += 1;
+      const matchKey = this.getMatchKey(matchCount, hasBonus);
+      this.increaseCount(winningCount, matchKey);
     });
 
     return winningCount;
+  },
+
+  hasBonus(lotto, bonus) {
+    return lotto.includes(bonus);
+  },
+
+  getMatchKey(matchCount, hasBonus) {
+    if (matchCount === WINNING[KEYS.FIRST].MATCH) return KEYS.FIRST;
+    if (matchCount === WINNING[KEYS.SECOND].MATCH && hasBonus) return KEYS.SECOND;
+    if (matchCount === WINNING[KEYS.THIRD].MATCH) return KEYS.THIRD;
+    if (matchCount === WINNING[KEYS.FOURTH].MATCH) return KEYS.FOURTH;
+    if (matchCount === WINNING[KEYS.FIFTH].MATCH) return KEYS.FIFTH;
+  },
+
+  increaseCount(winningCount, matchKey) {
+    if (matchKey) {
+      winningCount[matchKey] += 1;
+    }
+    return;
   },
 
   totalPrize(winningCount) {
