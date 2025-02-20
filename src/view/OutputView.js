@@ -8,7 +8,10 @@ const OutputView = {
   printRankResult(key, value) {
     console.log(`${key} (${(value.price).toLocaleString()}원) - ${value.count}개`);
   },
-
+  printRankResultHeadLine() {
+    console.log('당첨 통계');
+    console.log('--------------------');
+  },
 };
 
 export default OutputView;
