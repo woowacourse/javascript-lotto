@@ -19,7 +19,7 @@ function printWinningHistory(rankHistory) {
 }
 
 function printPrizeRate(rate) {
-  console.log(`총 수익률은 ${rate}%입니다.`);
+  console.log(`총 수익률은 ${rate.toLocaleString()}%입니다.`);
 }
 
 const OutputView = {
