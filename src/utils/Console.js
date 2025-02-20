@@ -26,6 +26,10 @@ class Console {
   static print(input) {
     console.log(input);
   }
+
+  static println() {
+    console.log();
+  }
 }
 
 export default Console;

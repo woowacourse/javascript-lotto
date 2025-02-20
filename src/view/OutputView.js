@@ -1,12 +1,14 @@
 import Console from "../utils/Console.js";
+import OUTPUT_MESSAGE from "../constants/OUTPUT_MESSAGE.js";
 const OutputView = {
   purchaseCount(count) {
-    Console.print(`${count}개를 구매했습니다.`);
+    Console.print(OUTPUT_MESSAGE.PURCHASE_COUNT(count));
   },
   lottoPack(lottoPack) {
     lottoPack.lottos.forEach((lotto) => {
-      Console.print(`[${lotto.lottoNumbers.join(", ")}]`);
+      Console.print(OUTPUT_MESSAGE.LOTTO_NUMBERS(lotto.lottoNumbers));
     });
+    Console.println();
   },
 
   winningStatistics(winningResult) {
@@ -20,7 +22,7 @@ const OutputView = {
   },
 
   profitRate(profitRate) {
-    Console.print(`총 수익률은 ${profitRate}%입니다.`);
+    Console.print(OUTPUT_MESSAGE.PROFIT_RATE(profitRate));
   },
 };
 export default OutputView;

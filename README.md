@@ -132,4 +132,4 @@ Lotto
 - [ ] answerLottoPack -> 함수로 변경 (return 값으로 정답 테이블 (해시테이블))
 - [ ] lotto 객체 내부에서 값을 체크 할 수 있게 변경 -> lotto 객체 내부로 정답 테이블로 넘겨준다. (객체 지향)
 - [x] InputMessage 상수화
-- [ ] OuputMessage 상수화
+- [x] OutputMessage 상수화
