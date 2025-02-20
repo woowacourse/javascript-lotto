@@ -1,5 +1,5 @@
 import Lotto from '../src/Domain/Model/Lotto.js';
-import { LOTTO_DEFINITION } from '../src/Domain/Constant/Definition.js';
+import { LOTTO_DEFINITION } from '../src/Domain/Constant/definition.js';
 import { sortAscending } from '../src/Utils/sorting.js';
 
 test('로또 1장을 발행한다.', () => {

@@ -2,7 +2,7 @@ import {
   LOTTO_DEFINITION,
   LOTTO_PRIZE_DEFINITION,
   LOTTO_PRIZE_MONEY_DEFINITION,
-} from '../Constant/Definition.js';
+} from '../Constant/definition.js';
 import Lotto from './Lotto.js';
 import { sortAscending } from '../../Utils/sorting.js';
 import { makeNotDuplicatedRandomNumbers } from '../../Utils/math.js';

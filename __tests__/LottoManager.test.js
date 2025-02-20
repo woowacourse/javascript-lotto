@@ -5,7 +5,7 @@ import {
   LOTTO_DEFINITION,
   LOTTO_PRIZE_DEFINITION,
   LOTTO_PRIZE_MONEY_DEFINITION,
-} from '../src/Domain/Constant/Definition.js';
+} from '../src/Domain/Constant/definition.js';
 import { makeNotDuplicatedRandomNumbers } from '../src/Utils/math.js';
 
 test('구입 금액에 해당하는 로또 장수를 구한다.', () => {
