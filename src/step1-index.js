@@ -1,4 +1,23 @@
-/**
- * step 1의 시작점이 되는 파일입니다.
- * 브라우저 환경에서 사용하는 css 파일 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import OutputView from "./view/OutputView.js";
+import retryOnError from "./util/retryOnError.js";
+import { getRetryInput } from "./service/InputService.js";
+import { PurchaseController } from "./controller/PurchaseController.js";
+import { WinningController } from "./controller/WinningController.js";
+import { ResultController } from "./controller/ResultController.js";
+import { ProfitController } from "./controller/ProfitController.js";
+
+const runLotto = async () => {
+  while (true) {
+    const { lottoArray, lottoCount } = await PurchaseController();
+    const winningLotto = await WinningController();
+    const matchingCount = ResultController(winningLotto, lottoArray);
+    ProfitController(matchingCount, lottoCount);
+
+    const yesOrNo = await retryOnError(getRetryInput, OutputView.printError);
+    if (yesOrNo === "n") {
+      break;
+    }
+  }
+};
+
+await runLotto();
