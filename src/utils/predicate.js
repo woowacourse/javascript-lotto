@@ -1,5 +1,5 @@
 export const isMultipleOf = (number, multiple) => {
-  if (isNaN(number) || isNaN(multiple)) {
+  if (typeof number !== "number" || typeof multiple !== "number") {
     throw new Error("인자가 숫자가 아닙니다.");
   }
 
@@ -7,7 +7,11 @@ export const isMultipleOf = (number, multiple) => {
 };
 
 export const isInRange = (number, min, max) => {
-  if (isNaN(number) || isNaN(min) || isNaN(max)) {
+  if (
+    typeof number !== "number" ||
+    typeof min !== "number" ||
+    typeof max !== "number"
+  ) {
     throw new Error("인자가 숫자가 아닙니다.");
   }
 

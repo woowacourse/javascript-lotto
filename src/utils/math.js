@@ -1,5 +1,5 @@
 export const getRevenueRate = (revenue, cost) => {
-  if (isNaN(revenue) || isNaN(cost)) {
+  if (typeof revenue !== "number" || typeof cost !== "number") {
     throw new Error("인자가 숫자가 아닙니다.");
   }
 

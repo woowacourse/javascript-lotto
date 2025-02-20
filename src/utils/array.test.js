@@ -7,4 +7,10 @@ describe("getIntersection 함수 테스트", () => {
 
     expect(getIntersection(array1, array2)).toHaveLength(5);
   });
+
+  test("배열이 아닌 값을 입력하면 에러가 발생한다.", () => {
+    expect(() => getIntersection("123", [1, 2, 3, 4, 5, 6])).toThrow(
+      "인자가 배열이 아닙니다."
+    );
+  });
 });

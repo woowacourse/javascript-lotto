@@ -7,4 +7,10 @@ describe("getRevenueRate 함수 테스트", () => {
 
     expect(getRevenueRate(revenue, cost)).toBe(5_000);
   });
+
+  test("숫자가 아닌 값을 입력하면 에러가 발생한다.", () => {
+    expect(() => getRevenueRate("50,000", 1_000)).toThrow(
+      "인자가 숫자가 아닙니다."
+    );
+  });
 });
