@@ -7,9 +7,10 @@ import readLineAsync from "./readLineAsync.js";
 import UserLottos from "./UserLottos.js";
 import LottoManager from "./LottoManager.js";
 import { printUserLottos, printWinningResult, printROI } from "./output.js";
+import { inputPrice } from "./input.js";
 
 async function run() {
-  const price = await readLineAsync("구입금액을 입력해 주세요.");
+  const price = await inputPrice();
   const userLottos = new UserLottos(price);
   printUserLottos(userLottos);
 
