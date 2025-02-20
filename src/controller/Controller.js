@@ -21,6 +21,9 @@ class Controller {
       const money = await this.readMoney();
       this.#machine.createLottos(money);
       OutputView.printLottoQuantity(this.#machine.getLottoQuantity());
+      this.#machine.getLottos().forEach((lotto) => (
+        OutputView.printSingLotto(lotto.getNumbers())
+      ));
 
       const winningLotto = await this.readWinningLotto();
       const bonus = await this.readBonus(winningLotto);
