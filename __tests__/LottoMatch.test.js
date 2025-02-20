@@ -9,7 +9,7 @@ describe('LottoMatch 클래스 테스트', () => {
     [new Lotto([1, 2, 3, 14, 15, 16]), 3],
     [new Lotto([1, 2, 13, 14, 15, 16]), 2],
   ])(`등수가 일치한지 판별`, (lotto, expectedMatchCount) => {
-    const lottoMatch = new LottoMatch([1, 2, 3, 4, 5, 6], 7);
+    const lottoMatch = new LottoMatch(new Lotto([1, 2, 3, 4, 5, 6]), 7);
 
     expect(lottoMatch.winningNumbers(lotto)).toBe(expectedMatchCount);
   });
@@ -18,6 +18,6 @@ describe('LottoMatch 클래스 테스트', () => {
     const lottoMatch = new LottoMatch([1, 2, 3, 4, 5, 6], 7);
     const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
 
-    expect(lottoMatch.BonusNumber(lotto)).toBe(true);
+    expect(lottoMatch.bonusNumber(lotto)).toBe(true);
   });
 });

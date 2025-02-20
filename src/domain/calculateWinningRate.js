@@ -1,3 +1,3 @@
-export const calculateWinningRate = (price, prizeMoney) => {
-  return (prizeMoney / price) * 100;
+export const calculateWinningRate = (price, prize) => {
+  return (prize / price) * 100;
 };

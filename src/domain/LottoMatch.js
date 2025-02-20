@@ -8,11 +8,11 @@ class LottoMatch {
   }
 
   winningNumbers(lotto) {
-    const matchCount = this.#winningNumbers.filter((number) => lotto.includeNumber(number)).length;
+    const matchCount = this.#winningNumbers.numbers.filter((number) => lotto.includeNumber(number)).length;
     return matchCount;
   }
 
-  BonusNumber(lotto) {
+  bonusNumber(lotto) {
     return lotto.includeNumber(this.#bonusNumber);
   }
 }

@@ -7,6 +7,8 @@ export const LOTTO_CONDITION = {
 
 export const MESSAGE = {
   PURCHASE_COUNT:"개를 구매했습니다.",
+  STATISTICS:"당첨 통계",
+  LINE:"--------------------"
 }
 
 export const LOTTO_NUMBER_ERROR_MESSAGES = {
@@ -29,15 +31,15 @@ export const BONUS_NUMBER_ERROR_MESSAGES = {
 }
 
 export const RANKING = {
-  FIRST: { RANK: 1, MATCH_COUNT: 6, PRIZE_MONEY: 2_000_000_000 },
-  SECOND: { RANK: 2, MATCH_COUNT: 5, PRIZE_MONEY: 30_000_000 },
-  THIRD: { RANK: 3, MATCH_COUNT: 5, PRIZE_MONEY: 1_500_000 },
-  FOURTH: { RANK: 4, MATCH_COUNT: 4, PRIZE_MONEY: 50_000 },
-  FIFTH: { RANK: 5, MATCH_COUNT: 3, PRIZE_MONEY: 5_000 },
+  FIRST: { RANK: 1, MATCH_COUNT: 6, PRIZE: 2_000_000_000 },
+  SECOND: { RANK: 2, MATCH_COUNT: 5, PRIZE: 30_000_000 },
+  THIRD: { RANK: 3, MATCH_COUNT: 5, PRIZE: 1_500_000 },
+  FOURTH: { RANK: 4, MATCH_COUNT: 4, PRIZE: 50_000 },
+  FIFTH: { RANK: 5, MATCH_COUNT: 3, PRIZE: 5_000 },
 };
 
 export const INPUT_MESSAGE = {
-  PURCHASE_MONEY: '구입금액을 입력해 주세요.',
+  PURCHASE: '구입금액을 입력해 주세요.',
   WINNING_NUMBERS: '당첨 번호를 입력해 주세요.',
   BONUS_NUMBER: '보너스 번호를 입력해 주세요.'
 };
