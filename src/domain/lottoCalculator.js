@@ -47,13 +47,13 @@ class LottoCalculator {
   }
 
   calculateTotalPrice() {
-    let totalPrice = 0;
-    this.#prize.forEach((value, rank) => {
-      const info = rankInfoTable[rank];
-      totalPrice += info.price * value.length;
-    });
-
-    this.#totalPrice = totalPrice;
+    this.#totalPrice = Array.from(this.#prize.entries()).reduce(
+      (sum, [rank, rankLottos]) => {
+        const info = rankInfoTable[rank];
+        return sum + info.price * rankLottos.length;
+      },
+      0
+    );
   }
 
   calculateProfit(purchaseMoney) {

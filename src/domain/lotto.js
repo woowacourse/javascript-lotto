@@ -6,12 +6,7 @@ class Lotto {
   }
 
   countNumbersMatch(numbers) {
-    let matchCount = 0;
-    numbers.forEach((number) => {
-      matchCount += this.isMatch(number);
-    });
-
-    return matchCount;
+    return numbers.reduce((acc, number) => acc + this.isMatch(number), 0);
   }
 
   isMatch(number) {
