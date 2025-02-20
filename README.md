@@ -19,6 +19,47 @@
 
 ## 🌳 프로젝트 구조
 
+```
+javascript-lotto
+├─ .npmrc
+├─ .prettierrc
+├─ README.md
+├─ __tests__
+│  ├─ Lotto.test.js
+│  ├─ LottoManager.test.js
+│  └─ WinningLotto.test.js
+├─ eslint.config.js
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ public
+└─ src
+   ├─ App.js : 컨트롤러
+   ├─ Domain
+   │  ├─ Constant
+   │  │  └─ definition.js : 로또 규칙
+   │  └─ Model
+   │     ├─ Lotto.js : 로또
+   │     ├─ LottoManager.js : 로또 매니저
+   │     └─ WinningLotto.js : 당첨 로또
+   ├─ Utils
+   │  ├─ math.js : 무작위 수 생성, 중복되지 않는 수 생성
+   │  └─ sorting.js : 정렬 함수
+   ├─ View
+   │  ├─ Constant
+   │  │  ├─ errorMessage.js : 유효성 검사 관련 에러 메시지
+   │  │  ├─ message.js : 메세지에서 공통으로 사용되는 상수
+   │  │  └─ query.js : readLineAsync에서 사용하는 쿼리
+   │  ├─ Validation
+   │  │  └─ inputView.js : 입력값 유효성 검사
+   │  ├─ inputView.js : 입력 관련 함수
+   │  ├─ outputView.js : 출력 관련 함수
+   │  ├─ readLineAsync.js : 입력
+   │  └─ utils.js : 공용 함수
+   ├─ step1-index.js : step1 진입점
+   └─ step2-index.js : step2 진입점
+
+```
 
 ## 기능 작업 목록
 
