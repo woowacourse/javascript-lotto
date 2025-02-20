@@ -40,6 +40,10 @@ class OutputView {
   static printProfitRate(profitRate) {
     console.log(`총 수익률은 ${profitRate}%입니다.`);
   }
+
+  static printErrorMessage(error) {
+    this.#print(error.message);
+  }
 }
 
 export default OutputView;

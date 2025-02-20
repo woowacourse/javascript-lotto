@@ -53,12 +53,12 @@ export function getIntersectCount(array1, array2) {
   return array1.filter((value) => array2.includes(value)).length;
 }
 
-export async function retryUntilSuccess(callbackFunction) {
+export async function retryUntilSuccess(callbackFunction, onError) {
   try {
     return await callbackFunction();
   } catch (error) {
-    console.log(error.message);
-    return retryUntilSuccess(callbackFunction);
+    onError?.(error);
+    return retryUntilSuccess(callbackFunction, onError);
   }
 }
 
