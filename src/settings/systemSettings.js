@@ -1,9 +1,20 @@
-const systemSettings = {
-  getPurchasePrice: '> 구입금액을 입력해 주세요.',
-  getWinningNumber: '> 당첨 번호를 입력해 주세요.',
-  getBonusNumber: '> 보너스 번호를 입력해 주세요.',
-  askUserRetry: '> 다시 시작하시겠습니까? (y/n)',
+// 더 명확하게 역할별로 세팅 값을 분리.
 
+const userPrompts = {
+  askPurchasePrice: '> 구입금액을 입력해 주세요.',
+  askWinningNumber: '> 당첨 번호를 입력해 주세요.',
+  askBonusNumber: '> 보너스 번호를 입력해 주세요.',
+  askUserRetry: '> 다시 시작하시겠습니까? (y/n)',
+};
+
+const lottoGameSettings = {
+  lottoSize: 6,
+  lottoPrice: 1_000,
+  minLottoNumber: 1,
+  maxLottoNumber: 45,
+};
+
+const lottoResults = {
   winCount: {
     NO_MATCH: 0,
     THREE_MATCH: 0,
@@ -20,10 +31,5 @@ const systemSettings = {
     FIVE_MATCH_WITH_BONUS: 30_000_000,
     SIX_MATCH: 2_000_000_000,
   },
-  lottoSize: 6,
-  lottoPrice: 1_000,
-  minLottoNumber: 1,
-  maxLottoNumber: 45,
 };
-
-export default systemSettings;
+export { lottoResults, lottoGameSettings, userPrompts };
