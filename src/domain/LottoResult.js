@@ -12,7 +12,7 @@ class LottoResult {
     }
 
     addRankingCount(ranking){
-        this.#result[ranking]++
+        if(ranking!==null) this.#result[ranking]++
     }
 
     get result(){
