@@ -32,7 +32,7 @@ class LottoMachine {
   }
 
   get lottos() {
-    return this.#lottos;
+    return [...this.#lottos];
   }
 }
 
