@@ -11,7 +11,7 @@ class Lotto {
   }
 
   get numbers() {
-    return this.#numbers;
+    return [...this.#numbers];
   }
 
   incrementWinningNumbers() {
@@ -23,7 +23,7 @@ class Lotto {
   }
 
   get matchResult() {
-    return this.#matchResult;
+    return Object.assign({}, this.#matchResult);
   }
 }
 
