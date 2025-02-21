@@ -1,3 +1,3 @@
-export const arrayToString = (arrays) => {
+export const getArrayOfStrings = (arrays) => {
   return arrays.map((arr) => `[${arr.join(', ')}]`);
 };
