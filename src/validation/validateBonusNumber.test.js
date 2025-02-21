@@ -1,6 +1,6 @@
 import validateBonusNumber from "./validateBonusNumber.js";
 import CustomError from "../CustomError.js";
-import { ERROR_MESSAGE } from "../constants/message.js";
+import { ERROR_MESSAGE, ERROR_PREFIX } from "../constants/message.js";
 import { LOTTO_RULE } from "../constants/lotto.js";
 
 describe("validateBonusNumber 유효성 검사", () => {
@@ -8,7 +8,7 @@ describe("validateBonusNumber 유효성 검사", () => {
     const bonusNumber = 1.5;
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     expect(() => validateBonusNumber(bonusNumber, winningNumbers)).toThrow(
-      new CustomError(ERROR_MESSAGE.INVALID_INTEGER)
+      new CustomError(ERROR_MESSAGE.INVALID_INTEGER, ERROR_PREFIX.typeError)
     );
   });
 
@@ -17,7 +17,7 @@ describe("validateBonusNumber 유효성 검사", () => {
     (number) => {
       const winningNumbers = [2, 3, 4, 5, 6, 7];
       expect(() => validateBonusNumber(number, winningNumbers)).toThrow(
-        new CustomError(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE)
+        new CustomError(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE, ERROR_PREFIX.rangeError)
       );
     }
   );
@@ -26,7 +26,7 @@ describe("validateBonusNumber 유효성 검사", () => {
     const bonusNumber = 1;
     const numbers = [1, 2, 3, 4, 5, 6];
     expect(() => validateBonusNumber(bonusNumber, numbers)).toThrow(
-      new CustomError(ERROR_MESSAGE.INVALID_DUPLICATE_BONUS_NUMBER)
+      new CustomError(ERROR_MESSAGE.INVALID_DUPLICATE_BONUS_NUMBER, ERROR_PREFIX.duplicateError)
     );
   });
 

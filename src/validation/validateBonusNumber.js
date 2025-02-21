@@ -1,11 +1,11 @@
 import CustomError from "../CustomError.js";
-import { ERROR_MESSAGE } from "../constants/message.js";
+import { ERROR_MESSAGE, ERROR_PREFIX } from "../constants/message.js";
 import { LOTTO_RULE } from "../constants/lotto.js";
 import { isInRange, isDuplicate } from "../utils/predicate.js";
 
 const validateBonusNumber = (bonusNumber, winningNumbers) => {
   if (!Number.isSafeInteger(bonusNumber)) {
-    throw new CustomError(ERROR_MESSAGE.INVALID_INTEGER);
+    throw new CustomError(ERROR_MESSAGE.INVALID_INTEGER, ERROR_PREFIX.typeError);
   }
 
   if (
@@ -15,11 +15,11 @@ const validateBonusNumber = (bonusNumber, winningNumbers) => {
       LOTTO_RULE.MAX_LOTTO_NUMBER
     )
   ) {
-    throw new CustomError(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE);
+    throw new CustomError(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE, ERROR_PREFIX.rangeError);
   }
 
   if (isDuplicate([bonusNumber, ...winningNumbers])) {
-    throw new CustomError(ERROR_MESSAGE.INVALID_DUPLICATE_BONUS_NUMBER);
+    throw new CustomError(ERROR_MESSAGE.INVALID_DUPLICATE_BONUS_NUMBER, ERROR_PREFIX.duplicateError);
   }
 };
 

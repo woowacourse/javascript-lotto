@@ -22,6 +22,12 @@ export const ERROR_MESSAGE = Object.freeze({
   INVALID_RESTART: `${LOTTO_RESTART_COMMAND.restart} 또는 ${LOTTO_RESTART_COMMAND.end}을 입력해 주세요.`,
 });
 
-export const ERROR_PREFIX = "[ERROR]";
+export const ERROR_PREFIX = Object.freeze({
+  typeError: "[Type Error]",
+  invalidInputError: "[Invalid Input Error]",
+  rangeError: "[Range Error]",
+  duplicateError: "[Duplicate Error]",
+  lengthError: "[Length Error]",  
+});
 
 export const LINE_BREAK = "\n";
