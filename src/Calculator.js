@@ -1,8 +1,8 @@
 import { WINNING, KEYS } from "./constant/lotto.js";
 
 const Calculator = {
-  winningCount(lottos, { winning, bonus }) {
-    const winningCount = {
+  countWinningRanks(lottos, { winning, bonus }) {
+    const winningRanks = {
       [KEYS.FIRST]: 0,
       [KEYS.SECOND]: 0,
       [KEYS.THIRD]: 0,
@@ -11,39 +11,39 @@ const Calculator = {
     };
 
     lottos.forEach((lotto) => {
-      const matchCount = lotto.filter((num) => winning.includes(num)).length;
+      const matchedCount = lotto.filter((num) => winning.includes(num)).length;
       const hasBonus = this.hasBonus(lotto, bonus);
 
-      const matchKey = this.getMatchKey(matchCount, hasBonus);
-      this.increaseCount(winningCount, matchKey);
+      const matchedKey = this.getMatchedKey(matchedCount, hasBonus);
+      this.increaseCount(winningRanks, matchedKey);
     });
 
-    return winningCount;
+    return winningRanks;
   },
 
   hasBonus(lotto, bonus) {
     return lotto.includes(bonus);
   },
 
-  getMatchKey(matchCount, hasBonus) {
-    if (matchCount === WINNING[KEYS.FIRST].MATCH) return KEYS.FIRST;
-    if (matchCount === WINNING[KEYS.SECOND].MATCH && hasBonus)
+  getMatchedKey(matchedCount, hasBonus) {
+    if (matchedCount === WINNING[KEYS.FIRST].MATCH) return KEYS.FIRST;
+    if (matchedCount === WINNING[KEYS.SECOND].MATCH && hasBonus)
       return KEYS.SECOND;
-    if (matchCount === WINNING[KEYS.THIRD].MATCH) return KEYS.THIRD;
-    if (matchCount === WINNING[KEYS.FOURTH].MATCH) return KEYS.FOURTH;
-    if (matchCount === WINNING[KEYS.FIFTH].MATCH) return KEYS.FIFTH;
+    if (matchedCount === WINNING[KEYS.THIRD].MATCH) return KEYS.THIRD;
+    if (matchedCount === WINNING[KEYS.FOURTH].MATCH) return KEYS.FOURTH;
+    if (matchedCount === WINNING[KEYS.FIFTH].MATCH) return KEYS.FIFTH;
   },
 
-  increaseCount(winningCount, matchKey) {
-    if (matchKey) {
-      winningCount[matchKey] += 1;
+  increaseCount(winningRanks, matchedKey) {
+    if (matchedKey) {
+      winningRanks[matchedKey] += 1;
     }
     return;
   },
 
-  totalPrize(winningCount) {
+  totalPrize(winningRanks) {
     const total = Object.values(KEYS).reduce((total, key) => {
-      return total + WINNING[key].PRIZES * winningCount[key];
+      return total + WINNING[key].PRIZES * winningRanks[key];
     }, 0);
 
     return total;

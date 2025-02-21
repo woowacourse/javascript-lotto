@@ -9,23 +9,23 @@ describe("", () => {
     [[[1, 2, 3, 4, 7, 10]], 1, "4등"],
     [[[1, 2, 3, 8, 7, 10]], 1, "5등"],
   ])("일치하는 개수에 맞는 등수의 값이 증가한다.", (lottos, expected, key) => {
-    const winningCount = Calculator.winningCount(lottos, {
+    const winningRanks = Calculator.countWinningRanks(lottos, {
       winning: [1, 2, 3, 4, 5, 6],
       bonus: 9,
     });
 
-    expect(winningCount[key]).toBe(expected);
+    expect(winningRanks[key]).toBe(expected);
   });
 
   test("당첨금을 계산한다.", () => {
-    const winningCount = {
+    const winningRanks = {
       [KEYS.FIRST]: 0,
       [KEYS.SECOND]: 0,
       [KEYS.THIRD]: 2,
       [KEYS.FOURTH]: 0,
       [KEYS.FIFTH]: 0,
     };
-    const totalPrize = Calculator.totalPrize(winningCount);
+    const totalPrize = Calculator.totalPrize(winningRanks);
 
     expect(totalPrize).toBe(3_000_000);
   });
