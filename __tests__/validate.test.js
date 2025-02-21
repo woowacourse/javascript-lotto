@@ -21,7 +21,7 @@ describe("validate", () => {
   describe("BonusNumber", () => {
     describe("예외 케이스", () => {
       test(`숫자가 아닌 값인 경우`, () => {
-        const numbers = [1, 2, 3, 4, 5, 6];
+        const numbers = "1, 2, 3, 4, 5, 6";
         const number = "에리얼";
 
         expect(() =>
@@ -32,7 +32,7 @@ describe("validate", () => {
       });
 
       test(`${LOTTO.MIN_RANDOM_VALUE}~${LOTTO.MAX_RANDOM_VALUE} 사이의 숫자가 아닌 경우`, () => {
-        const numbers = [1, 2, 3, 4, 5, 6];
+        const numbers = "1, 2, 3, 4, 5, 6";
         const number = "46";
 
         expect(() => validateBonusNumber(number, numbers)).toThrow(
@@ -41,7 +41,7 @@ describe("validate", () => {
       });
 
       test(`중복된 번호가 있는 경우`, () => {
-        const numbers = [1, 2, 3, 4, 5, 6];
+        const numbers = "1, 2, 3, 4, 5, 6";
         const number = "6";
 
         expect(() => validateBonusNumber(number, numbers)).toThrow(

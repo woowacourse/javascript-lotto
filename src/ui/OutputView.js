@@ -10,10 +10,8 @@ const OutputView = {
     console.log(OUTPUT_MESSAGE.WINNING_DETAILS_TITLE);
   },
 
-  printWinningDetail(winningCount) {
-    const keys = Object.keys(winningCount).reverse();
-
-    keys.forEach((key) => {
+  printWinningDetail(winningCount, rankKeys) {
+    rankKeys.forEach((key) => {
       console.log(
         `${WINNING[key].LABEL} (${WINNING[key].PRIZES.toLocaleString()}원) - ${winningCount[key]}개`,
       );

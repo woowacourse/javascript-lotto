@@ -35,11 +35,13 @@ export const validateWinningNumbers = (numbers) => {
     throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
 };
 
-export const validateBonusNumber = (numberInput, numbers) => {
-  const number = Number(numberInput);
-  if (isNaN(number)) throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
-  if (number < LOTTO.MIN_RANDOM_VALUE || number > LOTTO.MAX_RANDOM_VALUE)
+export const validateBonusNumber = (bonus, winning) => {
+  const winningNumbers = winning.split(LOTTO.SPLITTER).map(Number);
+  const bonusNumber = Number(bonus);
+
+  if (isNaN(bonusNumber)) throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
+  if (bonusNumber < LOTTO.MIN_RANDOM_VALUE || bonusNumber > LOTTO.MAX_RANDOM_VALUE)
     throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
-  if (numbers.includes(number))
+  if (winningNumbers.includes(bonusNumber))
     throw new Error(ERROR_MESSAGE.DUPLICATE_BONUS_NUMBER);
 };
