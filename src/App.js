@@ -16,6 +16,7 @@ class App {
 
     OutputView.printBlank();
     const targetNumber = await loopWhileValid(this.#getTargetNumber);
+
     OutputView.printBlank();
     const bonusNumber = await loopWhileValid(
       this.#getBonusNumber,
@@ -24,15 +25,12 @@ class App {
 
     lottoGame.calculate(targetNumber, bonusNumber);
 
-    OutputView.printBlank();
-    OutputView.printMessage("당첨 통계");
-    OutputView.printMessage("--------------------");
     OutputView.printWinning(
       lottoGame.getGameResult(),
       lottoGame.getEarningRate(lottoNum),
     );
-    OutputView.printBlank();
 
+    OutputView.printBlank();
     const retryAnswer = await loopWhileValid(this.#getRestartString);
     return retryAnswer;
   }
