@@ -21,7 +21,7 @@ class Lotto {
   }
 
   #checkType(numbers) {
-    if (!numbers.every((number) => typeof number === 'number')) {
+    if (numbers.some((number) => typeof number !== 'number')) {
       throw new Error(ERROR_MESSAGE.LOTTO.INVALID_TYPE);
     }
   }
@@ -33,7 +33,7 @@ class Lotto {
   }
 
   #checkRange(numbers) {
-    if (!numbers.every((number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER)) {
+    if (numbers.some((number) => number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER)) {
       throw new Error(ERROR_MESSAGE.LOTTO.INVALID_RANGE);
     }
   }
