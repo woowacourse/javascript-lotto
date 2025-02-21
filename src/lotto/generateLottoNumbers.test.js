@@ -1,13 +1,14 @@
 import generateLottoNumbers from "./generateLottoNumbers.js";
 import { isInRange, isDuplicate, hasNotInteger } from "../utils/predicate.js";
+import { LOTTO_RULE } from "../constants/lotto.js";
 
 describe("generateLottoNumbers 함수 테스트", () => {
-  test("로또 번호의 개수가 6개이다.", () => {
+  test(`로또 번호의 개수가 ${LOTTO_RULE.LOTTO_LENGTH}개이다.`, () => {
     const lottoNumbers = generateLottoNumbers();
     expect(lottoNumbers.length).toBe(6);
   });
 
-  test("로또 번호는 1부터 45까지의 숫자이다.", () => {
+  test(`로또 번호는 ${LOTTO_RULE.MIN_PRICE}부터 ${LOTTO_RULE.MAX_PRICE}까지의 숫자이다.`, () => {
     const lottoNumbers = generateLottoNumbers();
     const isAllNumbersBetweenOneAndFortyFive = lottoNumbers.every((number) =>
       isInRange(number, 1, 45)
