@@ -32,7 +32,7 @@ async function getWinningNumber() {
     return await getWinningNumber();
   }
 }
-async function getBonusNumber(userLotto) {
+async function applyBonusNumber(userLotto) {
   try {
     const bonusNumber = await readLineAsync(userPrompts.askBonusNumber);
     const parsedLotto = validateBonusNumber(
@@ -42,7 +42,7 @@ async function getBonusNumber(userLotto) {
     return parsedLotto;
   } catch (error) {
     printError(error.message);
-    return await getBonusNumber(userLotto);
+    return await applyBonusNumber(userLotto);
   }
 }
 
@@ -57,4 +57,4 @@ async function getUserRetry() {
   }
 }
 
-export { getPurchasePrice, getWinningNumber, getBonusNumber, getUserRetry };
+export { getPurchasePrice, getWinningNumber, applyBonusNumber, getUserRetry };

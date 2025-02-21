@@ -7,8 +7,8 @@ import {
 import {
   getPurchasePrice,
   getWinningNumber,
-  getBonusNumber,
   getUserRetry,
+  applyBonusNumber,
 } from './service/ParsingService.js';
 import {
   calculateWins,
@@ -23,7 +23,7 @@ async function playGame() {
   const lottos = makeLotto(purchaseAmount);
 
   const userLotto = await getWinningNumber();
-  const parsedLotto = await getBonusNumber(userLotto);
+  const parsedLotto = await applyBonusNumber(userLotto);
 
   const winCount = calculateWins(lottos, parsedLotto);
   const total = calculatePrize(winCount, lottoResults.prizeMoney);
