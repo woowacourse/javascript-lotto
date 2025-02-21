@@ -1,9 +1,10 @@
 import LottoValidator from "../validation/LottoValidator.js";
 
 class Lotto {
+  #numbers;
   constructor(numbers) {
-    this.numbers = this.sortLottoNumber(numbers);
-    this.validate(this.numbers);
+    this.#numbers = this.sortLottoNumber(numbers);
+    this.validate(this.#numbers);
   }
 
   validate(numbers) {
@@ -16,16 +17,16 @@ class Lotto {
   }
 
   getLottoNumbers() {
-    return this.numbers;
+    return this.#numbers;
   }
 
   getSameNumbers(givenLottoNumber) {
-    return this.numbers.filter((number) => givenLottoNumber.includes(number))
+    return this.#numbers.filter((number) => givenLottoNumber.includes(number))
       .length;
   }
 
   hasBonusNumber(bonusNumber) {
-    return this.numbers.includes(bonusNumber);
+    return this.#numbers.includes(bonusNumber);
   }
 }
 
