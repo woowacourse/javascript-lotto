@@ -1,5 +1,5 @@
-import { ERROR } from "../src/constants/message.js";
-import LottoValidator from "../src/validation/LottoValidator.js";
+import { ERROR } from "../../src/constants/message.js";
+import LottoValidator from "../../src/validation/LottoValidator.js";
 
 describe("로또 숫자 유효성 검사를 진행한다", () => {
   test("로또 번호중에 중복된 숫자가 있으면 오류를 발생시킨다.", () => {

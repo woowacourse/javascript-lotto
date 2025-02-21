@@ -1,5 +1,5 @@
-import Lotto from "../src/domain/Lotto.js";
-import LottoMachine from "../src/domain/LottoMachine.js";
+import Lotto from "../../src/domain/Lotto.js";
+import LottoMachine from "../../src/domain/LottoMachine.js";
 
 describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를 기반으로 로또 상태를 매칭한다", () => {
   test("숫자 5개가 일치하고 보너스 숫자가 존재하는 경우 2등을 반환한다.", () => {

@@ -1,4 +1,4 @@
-import LottoResult from "../src/domain/LottoResult.js";
+import LottoResult from "../../src/domain/LottoResult.js";
 
 test("발행된 로또의 당첨 내역을 계산한다.", () => {
   //given

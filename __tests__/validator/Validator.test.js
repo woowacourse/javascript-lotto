@@ -1,5 +1,5 @@
-import { ERROR } from "../src/constants/message.js";
-import Validator from "../src/validation/validator.js";
+import { ERROR } from "../../src/constants/message.js";
+import Validator from "../../src/validation/validator.js";
 
 describe("입력 값 유효성 테스트를 진행한다.", () => {
   test("입력이 비어있으면 오류를 발생시킨다.", () => {
