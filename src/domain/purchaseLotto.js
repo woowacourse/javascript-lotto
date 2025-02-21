@@ -8,6 +8,6 @@ export const purchaseLotto = (purchaseMoney) =>{
     return Array.from({ length: purchaeCount }, () => createLotto(getRandomNumber(LOTTO_CONDITION.MIN_NUMBER,LOTTO_CONDITION.MAX_NUMBER)));
 }
 
-const createLotto = (ramdomNumber) =>{
-    return new Lotto(ramdomNumber)
+const createLotto = (randomNumbers) =>{
+    return new Lotto(randomNumbers)
 }
