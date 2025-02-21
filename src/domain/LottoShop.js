@@ -4,7 +4,7 @@ import Lotto from './Lotto.js';
 
 class LottoShop {
   static calculateLottoCount(purchaseAmount) {
-    return purchaseAmount / LOTTO_PRICE;
+    return Math.floor(purchaseAmount / LOTTO_PRICE);
   }
 
   static createLotto(purchaseCount) {
