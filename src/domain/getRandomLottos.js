@@ -1,5 +1,5 @@
 import { LOTTO } from '../constants/messages.js';
-import { getRandomNumber } from '../utils/getRandomNumber.js';
+import { getRandomNumber } from './getRandomNumber.js';
 
 export const getRandomLottos = (quantity) => {
   const lottos = [];
