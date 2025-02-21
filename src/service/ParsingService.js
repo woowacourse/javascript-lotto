@@ -9,7 +9,7 @@ import validateUserRetry from '../Validation/validateUserRetry.js';
 async function getPurchasePrice() {
   try {
     const purchasePrice = await readLineAsync(userPrompts.askPurchasePrice);
-    const purchaseAmount = validateLottoPurchase(purchasePrice);
+    const purchaseAmount = validateLottoPurchase(purchasePrice.trim());
     printPurchasedAmount(purchaseAmount);
     return { purchasePrice, purchaseAmount };
   } catch (error) {
@@ -21,7 +21,10 @@ async function getWinningNumber() {
   try {
     const winningNumber = await readLineAsync(userPrompts.askWinningNumber);
     const userLotto = new Lotto(
-      winningNumber.split(',').map((number) => Number(number)),
+      winningNumber
+        .trim()
+        .split(',')
+        .map((number) => Number(number)),
     );
     return userLotto;
   } catch (error) {
@@ -32,7 +35,10 @@ async function getWinningNumber() {
 async function getBonusNumber(userLotto) {
   try {
     const bonusNumber = await readLineAsync(userPrompts.askBonusNumber);
-    const parsedLotto = validateBonusNumber(userLotto, Number(bonusNumber));
+    const parsedLotto = validateBonusNumber(
+      userLotto,
+      Number(bonusNumber.trim()),
+    );
     return parsedLotto;
   } catch (error) {
     printError(error.message);
