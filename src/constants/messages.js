@@ -9,6 +9,9 @@ export const LOTTO = Object.freeze({
   FIVE_MATCH: 5,
   FOUR_MATCH: 4,
   THREE_MATCH: 3,
+});
+
+export const MATCH = Object.freeze({
   PRIZE_OF_SIX_MATCH: 2000000000,
   PRIZE_OF_FIVE_WITH_BONUS_MATCH: 30000000,
   PRIZE_OF_FIVE_MATCH: 1500000,

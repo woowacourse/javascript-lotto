@@ -1,4 +1,4 @@
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO, MATCH } from '../constants/messages.js';
 
 export const calculateRevenue = (matchCounts, purchasePrice) => {
   return Number(
@@ -16,10 +16,10 @@ export const calculateRevenue = (matchCounts, purchasePrice) => {
 };
 
 export const calculateRevenueByMatch = (matchCount) => {
-  if (matchCount === LOTTO.SIX_MATCH) return LOTTO.PRIZE_OF_SIX_MATCH;
-  else if (matchCount === LOTTO.FIVE_WITH_BONUS_MATCH_IDX) return LOTTO.PRIZE_OF_FIVE_WITH_BONUS_MATCH;
-  else if (matchCount === LOTTO.FIVE_MATCH) return LOTTO.PRIZE_OF_FIVE_MATCH;
-  else if (matchCount === LOTTO.FOUR_MATCH) return LOTTO.PRIZE_OF_FOUR_MATCH;
-  else if (matchCount === LOTTO.THREE_MATCH) return LOTTO.PRIZE_OF_THREE_MATCH;
+  if (matchCount === LOTTO.SIX_MATCH) return MATCH.PRIZE_OF_SIX_MATCH;
+  else if (matchCount === LOTTO.FIVE_WITH_BONUS_MATCH_IDX) return MATCH.PRIZE_OF_FIVE_WITH_BONUS_MATCH;
+  else if (matchCount === LOTTO.FIVE_MATCH) return MATCH.PRIZE_OF_FIVE_MATCH;
+  else if (matchCount === LOTTO.FOUR_MATCH) return MATCH.PRIZE_OF_FOUR_MATCH;
+  else if (matchCount === LOTTO.THREE_MATCH) return MATCH.PRIZE_OF_THREE_MATCH;
   return 0;
 };
