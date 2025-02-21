@@ -3,7 +3,7 @@ import { WINNING } from "../constant/lotto.js";
 
 const OutputView = {
   printLotto(lotto) {
-    console.log(`[${lotto.join(', ')}]`);
+    console.log(`[${lotto.join(", ")}]`);
   },
 
   printWinningDetailTitle() {
@@ -12,10 +12,12 @@ const OutputView = {
 
   printWinningDetail(winningCount) {
     const keys = Object.keys(winningCount).reverse();
-    
+
     keys.forEach((key) => {
-        console.log(`${WINNING[key].LABEL} (${WINNING[key].PRIZES.toLocaleString()}원) - ${winningCount[key]}개`);
-    })
+      console.log(
+        `${WINNING[key].LABEL} (${WINNING[key].PRIZES.toLocaleString()}원) - ${winningCount[key]}개`,
+      );
+    });
   },
 
   printYieldRate(yieldRate) {
@@ -24,7 +26,7 @@ const OutputView = {
 
   printQuantity(quantity) {
     console.log(`${quantity}${OUTPUT_MESSAGE.QUANTITY}`);
-  }
-}
+  },
+};
 
 export default OutputView;

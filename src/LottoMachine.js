@@ -9,8 +9,7 @@ const generateLotto = () => {
     lotto.add(randomNumber);
   }
 
-  return Array.from(lotto).sort((a,b) => a - b);
-}
-
+  return Array.from(lotto).sort((a, b) => a - b);
+};
 
 export default generateLotto;

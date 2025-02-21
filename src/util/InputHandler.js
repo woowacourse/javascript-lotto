@@ -1,5 +1,10 @@
 import InputView from "../ui/InputView.js";
-import { validateBonusNumber, validatePurchaseAmount, validateWinningNumbers,validateRestart } from "./validate.js";
+import {
+  validateBonusNumber,
+  validatePurchaseAmount,
+  validateWinningNumbers,
+  validateRestart,
+} from "./validate.js";
 
 const InputHandler = {
   async getPurchaseAmount() {
@@ -47,7 +52,7 @@ const InputHandler = {
       } catch (error) {
         console.log(error.message);
       }
-  }
+    }
   },
 };
 
