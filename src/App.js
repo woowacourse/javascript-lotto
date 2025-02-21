@@ -20,20 +20,20 @@ class App {
   }
 
   async #start() {
-    const [lottoPurchasePrice, lottoMachine] = await this.#processLottoPurchase();
+    const { lottoPurchasePrice, lottos } = await this.#processLottoPurchase();
     const winningResult = await this.#generateWinningResult();
 
-    const winningCounts = winningResult.calculate(lottoMachine.lottos);
+    const winningCounts = winningResult.calculate(lottos);
     const profitRate = winningResult.calculateProfitRate(lottoPurchasePrice, winningCounts);
     OutputView.printResult(winningCounts, profitRate);
   }
 
   async #processLottoPurchase() {
-    const [lottoPurchasePrice, lottoCount] = await retryUntilValid(this.#getPurchasePrice);
+    const { lottoPurchasePrice, lottoCount } = await retryUntilValid(this.#getPurchasePrice);
     const lottoMachine = new LottoMachine(lottoCount);
     OutputView.printPurchaseLottos(lottoMachine.lottos);
 
-    return [lottoPurchasePrice, lottoMachine];
+    return { lottoPurchasePrice, lottos: lottoMachine.lottos };
   }
 
   async #generateWinningResult() {
@@ -49,7 +49,7 @@ class App {
     const lottoPurchasePrice = await InputView.enterPurchasePrice();
     PurchasePriceValidator.validate(Number(lottoPurchasePrice));
     const lottoCount = lottoPurchasePrice / PURCHASE_PRICE.UNIT;
-    return [lottoPurchasePrice, lottoCount];
+    return { lottoPurchasePrice, lottoCount };
   }
 
   async #getWinningNumbers() {
