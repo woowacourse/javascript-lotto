@@ -1,4 +1,4 @@
-import readLineAsync from "../view/readLineAsync.js";
+import readLineAsync from "./readLineAsync.js";
 
 const retryUntilValid = async (promptMessage, validateFunc) => {
   try {

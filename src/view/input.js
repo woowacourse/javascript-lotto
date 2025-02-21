@@ -4,7 +4,7 @@ import {
   validateBonusNumber,
   validateWinningNumbers,
 } from "../validations/validateWinningNumbers.js";
-import retryUntilValid from "../utils/retryUntilValid.js";
+import retryUntilValid from "./retryUntilValid.js";
 
 export const getLottoPrice = () =>
   retryUntilValid("구입금액을 입력해 주세요. ", validatePrice);
@@ -14,7 +14,7 @@ export const getWinningNumbers = () =>
 
 export const getBonusNumber = (winningNumbers) =>
   retryUntilValid("\n보너스 번호를 입력해 주세요. ", (bonusNumber) =>
-    validateBonusNumber(bonusNumber, winningNumbers)
+    validateBonusNumber(bonusNumber, winningNumbers),
   );
 
 export const getRestart = () =>
