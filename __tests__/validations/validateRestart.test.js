@@ -7,13 +7,13 @@ describe("validations/validateRestart", () => {
   test("입력이 y, n인지 확인한다.", () => {
     const input = "y";
 
-    expect(() => validateFormat(input)).not.toThrow();
+    expect(validateFormat(input)).toBe(true);
   });
 
   test("입력이 y, n가 아니면 에러를 반환한다.", () => {
     const input = "x";
 
-    expect(() => validateFormat(input)).toThrow(
+    expect(() => validateRestart(input)).toThrow(
       ERROR_MESSAGE.INVALID_RESTART_FORMAT
     );
   });
@@ -23,7 +23,7 @@ describe("validations/validateRestart", () => {
     ["Y", true],
     ["n", false],
     ["N", false],
-  ])("입력에 따라 true or false를 반환한다.", (input, expectedReturn) => {
+  ])("입력이 %s면 %s를 반환한다.", (input, expectedReturn) => {
     expect(validateRestart(input)).toBe(expectedReturn);
   });
 });

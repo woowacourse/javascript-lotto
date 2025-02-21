@@ -14,7 +14,7 @@ export const isThousandUnit = (input) => {
 };
 
 export const isValidPriceRange = (input) => {
-  return input > MIN_PRICE && input < MAX_PRICE;
+  return input >= MIN_PRICE && input <= MAX_PRICE;
 };
 
 const validatePrice = (input) => {
