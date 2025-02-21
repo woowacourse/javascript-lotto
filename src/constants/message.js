@@ -1,5 +1,5 @@
-import { LOTTO_NUMBER } from "./lotto";
-import { PRICE } from "./price";
+import { LOTTO_NUMBER } from "./lotto.js";
+import { PRICE } from "./price.js";
 
 export const INPUT = Object.freeze({
   PRICE: "> 구입금액을 입력해주세요.",
