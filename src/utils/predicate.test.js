@@ -1,4 +1,4 @@
-import { isMultipleOf, isInRange, isDuplicate } from "./predicate.js";
+import { isMultipleOf, isInRange, isDuplicate, hasNotInteger } from "./predicate.js";
 
 describe("isMultipleOf 함수 테스트", () => {
   test("5000은 1000으로 나눠진다.", () => {
@@ -27,5 +27,15 @@ describe("isDuplicate 함수 테스트", () => {
 
   test("중복된 배열을 입력하면 true를 반환한다.", () => {
     expect(isDuplicate([1, 2, 3, 4, 5, 5])).toBeTruthy();
+  });
+});
+
+describe("hasNotInteger 함수 테스트", () => {
+  test("안전한 정숫값 배열을 입력하면 false를 반환한다.", () => {
+    expect(hasNotInteger([1, 2, 3, 4, 5, 6])).toBeFalsy();
+  });
+
+  test("안전하지 않은 정숫값이 포함된 배열을 입력하면 true를 반환한다.", () => {
+    expect(hasNotInteger([1, 2, 3, 4, 5, 2 ** 53])).toBeTruthy();
   });
 });
