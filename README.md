@@ -146,3 +146,37 @@ Lotto
 - [x] printLn 메서드 추가
 - [x] 수익률 소수점 1자리
 - [ ] error메세지 출력 메서드 추가
+
+### 피드백 바탕 -> 리팩토링 사항
+
+기능(피드백 바탕)
+
+- [ ] WINNING_PRICE -> numeric separator로 변경
+- [ ] 로또 체크 갯수 상수화
+- [ ] Lotto 클래스 수정
+  - [ ] compareWinningNumbers() 메서드 내부 수정 (let 제거)
+  - [ ] 정렬 후 -> 복사본 저장
+  - [ ] getter return 복사본 return하기
+- [ ] import 문 띄어쓰기
+- [ ] `validate-` 함수 -> 값 가공 함수 분리
+- [ ] validateReStart 메서드 -> 동작 통일화
+- [ ] pushRandomNumbers 함수 -> domain 폴더로 이동
+
+기능(자체 리팩토링)
+
+- [ ] Controller 클래스
+  - [ ] 함수로 변경 및 네이밍 변경
+  - [ ] 메서드 내부 분리
+- [ ] LottoMachine (현금(input) -> LottoPack(로또 용지)(output))
+- [ ] LottoPack 클래스 수정
+  - [ ] count 값 관리
+  - [ ] getter -> 복사본 return
+- [ ] profitCalculator 도메인 분리
+- [ ] Validator 객체 메서드명 및 파라미터 변경
+- [ ] async/await 불필요한 곳 제거
+- [ ] OutputView 객체 -> winningStatisics 내부 변경
+
+- 테스트 코드
+- [ ] 도메인 테스트 재작성
+- [ ] 테스트명 수정
+- [ ] 테스트 코드 -> 상수 및 변수 처리
