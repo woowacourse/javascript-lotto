@@ -1,8 +1,10 @@
 import readLineAsync from "../utils/readLineAsync.js";
-import { validateBonusNumber } from "../utils/validate/validateBonusNumber.js";
-import { validatePrice } from "../utils/validate/validatePrice.js";
-import { validateWinningNumbers } from "../utils/validate/validateWinningNumbers.js";
-import { vaildateRestart } from "../utils/validate/vaildateRestart.js";
+import {
+  validateBonusNumber,
+  validatePrice,
+  validateRestart,
+  validateWinningNumbers,
+} from "../utils/validate/Validator.js";
 
 export const inputPrice = async () => {
   try {
@@ -44,7 +46,7 @@ export const inputBonusNumber = async (winningNumber) => {
 export const inputAskForRestart = async () => {
   try {
     const answer = await readLineAsync("\n다시 시작하시겠습니까? (y/n)");
-    vaildateRestart(answer);
+    validateRestart(answer);
     return answer;
   } catch (error) {
     console.log(error.message);
