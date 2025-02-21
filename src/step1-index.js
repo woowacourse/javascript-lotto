@@ -1,6 +1,5 @@
 import purchase from "./LottoStore.js";
-import InputHandler from './util/InputHandler.js'
-
+import InputHandler from "./util/InputHandler.js";
 
 class App {
   #running;
@@ -10,7 +9,7 @@ class App {
   }
 
   async start() {
-    while(this.#running) {
+    while (this.#running) {
       await purchase();
 
       const answer = await this.getRestartAnswer();
@@ -25,7 +24,7 @@ class App {
   }
 
   endGame(answer) {
-    if (answer.toLowerCase() === 'n') this.#running = false;
+    if (answer.toLowerCase() === "n") this.#running = false;
   }
 }
 
