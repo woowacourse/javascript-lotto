@@ -15,8 +15,8 @@ class LottoResult {
         if(ranking!==null) this.#result[ranking]++
     }
 
-    get result(){
-        return this.#result;
+    get result() {
+        return Object.freeze({ ...this.#result });
     }
 }
 
