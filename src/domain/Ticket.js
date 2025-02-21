@@ -4,7 +4,6 @@ import Lotto from "./Lotto.js";
 
 const Ticket = {
   checkAndAddLottoNumbers: (store, number) => {
-    if (store.has(number)) return;
     store.add(number);
   },
 
