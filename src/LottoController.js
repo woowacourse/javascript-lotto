@@ -1,13 +1,14 @@
 import InputHandler from './input/InputHandler.js';
 import OutputView from './view/OutputView.js';
 import { LINE_BREAK, LOTTO_CONDITION, MESSAGE} from './constants/constants.js';
-import LottoMatch from './domain/LottoMatch.js';
 import { calculateRank } from './domain/calculateRank.js';
 import LottoResult from './domain/LottoResult.js';
+import WinningLotto from './domain/WinningLotto.js';
 import { calculateTotalPrize } from './domain/calculateTotalPrize.js';
 import { calculateWinningRate } from './domain/calculateWinningRate.js';
 import { YES } from './constants/constants.js';
 import { purchaseLotto } from './domain/purchaseLotto.js';
+import { matchLotto } from './domain/matchLotto.js';
 
 class LottoController {
   async run() {
@@ -15,12 +16,12 @@ class LottoController {
     this.printLottoNumber(lottoList);
     const winningNumbers = await InputHandler.winningNumbers();
     const bonusNumber = await InputHandler.bonusNumber(winningNumbers.numbers);
-    
-    const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
+
     const lottoResult = new LottoResult();
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber)
 
     lottoList.forEach((lotto)=>{
-      lotto.ranking = calculateRank(lottoMatch.winningNumbers(lotto),lottoMatch.bonusNumber(lotto))
+      lotto.ranking = calculateRank(matchLotto.winningNumbers(winningLotto, lotto), matchLotto.bonusNumber(winningLotto, lotto))
       lottoResult.addRankingCount(lotto.ranking);
     })
     this.printStatstics(lottoResult)
