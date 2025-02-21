@@ -21,7 +21,7 @@ class App {
 
   async #start() {
     const [lottoPurchasePrice, lottoMachine] = await this.#processLottoPurchase();
-    const winningResult = await this.#preProcess();
+    const winningResult = await this.#generateWinningResult();
 
     const winningCounts = winningResult.calculate(lottoMachine.lottos);
     const profitRate = winningResult.calculateProfitRate(lottoPurchasePrice, winningCounts);
@@ -36,7 +36,7 @@ class App {
     return [lottoPurchasePrice, lottoMachine];
   }
 
-  async #preProcess() {
+  async #generateWinningResult() {
     const winningNumbers = await retryUntilValid(this.#getWinningNumbers);
     const bonusNumber = await retryUntilValid(() => {
       return this.#getBonusNumber(winningNumbers);
