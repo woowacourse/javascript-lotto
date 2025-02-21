@@ -6,11 +6,11 @@ import { validatePurchasePrice } from '../src/validation/validatePurchasePrice.j
 describe('구입 금액 유효성 검사 테스트', () => {
   describe('구입 금액 예외 케이스', () => {
     test('구입 금액은 빈 값일 수 없다.', () => {
-      expect(() => hasEmptyString('')).toThrow(ERROR.IS_PURCHASE_PRICE_EMPTY);
+      expect(() => hasEmptyString('')).toThrow(ERROR.EMPTY_VALUE);
     });
 
     test.each(['a', 2.1])('구입 금액은 문자와 실수가 아니여야 한다.', (value) => {
-      expect(() => isValueInteger(value)).toThrow(ERROR.IS_NOT_POSITIVE_INTEGER);
+      expect(() => isValueInteger(value)).toThrow(ERROR.NOT_POSITIVE_INTEGER);
     });
 
     test.each([1, 4, 3])('구입 금액은 양의 정수여야 한다.', (value) => {
