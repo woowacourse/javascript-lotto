@@ -2,7 +2,7 @@ import { ERROR } from '../constants/errors.js';
 
 export const hasEmptyString = (input) => {
   if (input === '') {
-    throw new Error(ERROR.VALUE_EMPTY);
+    throw new Error(ERROR.EMPTY_VALUE);
   }
 };
 
