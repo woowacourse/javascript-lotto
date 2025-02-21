@@ -1,5 +1,3 @@
-import Constants from "../constant/Constants.js";
-
 class Lotto {
   constructor(numbers) {
     this.numbers = numbers;
@@ -10,16 +8,7 @@ class Lotto {
   }
 
   getCorrectNumber(targetNumber) {
-    let correctNumber = 0;
-    for (let i = 0; i < Constants.LOTTO.NUMBER_LENGTH; i += 1) {
-      correctNumber += this.#addCorrectNumber(targetNumber, this.numbers[i]);
-    }
-    return correctNumber;
-  }
-
-  #addCorrectNumber(targetNumber, number) {
-    if (targetNumber.includes(number)) return 1;
-    return 0;
+    return this.numbers.filter(num => targetNumber.includes(num)).length;
   }
 
   hasBonusNumber(bonusNumber) {
