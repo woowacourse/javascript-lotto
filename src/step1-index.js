@@ -1,4 +1,4 @@
-import { INPUT, LOTTO } from './constants/messages.js';
+import { LOTTO } from './constants/messages.js';
 import { calculateRevenue } from './domain/calculateRevenue.js';
 import { getRandomLottos } from './domain/getRandomLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
@@ -31,5 +31,12 @@ async function run() {
   const yesOrNo = await handleUserInput(INPUT.REPLAY_GAME, isYesOrNo);
   await checkReplay(yesOrNo, run);
 }
+
+const INPUT = Object.freeze({
+  PURCHASE_PRICE: '> 구입금액을 입력해 주세요.',
+  WINNING_NUMBERS: '> 당첨 번호를 입력해 주세요. ',
+  BONUS_NUMBER: '\n> 보너스 번호를 입력해 주세요. ',
+  REPLAY_GAME: '> 다시 시작하시겠습니까? (y/n) ',
+});
 
 run();
