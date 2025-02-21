@@ -1,7 +1,7 @@
 import Calculator from "../src/Calculator.js";
 import { KEYS } from "../src/constant/lotto.js";
 
-describe("", () => {
+describe("Caculator", () => {
   test.each([
     [[[1, 2, 3, 4, 5, 6]], 1, "1등"],
     [[[1, 2, 3, 4, 5, 9]], 1, "2등"],

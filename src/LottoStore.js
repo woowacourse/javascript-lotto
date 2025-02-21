@@ -13,7 +13,7 @@ const purchase = async () => {
     OutputView.printLotto(nums);
   });
 
-  const lottoAndBonus = await readWinningInfo();
+  const lottoAndBonus = await readWinningNumbersAndBonusNumber();
   const winningRanks = Calculator.countWinningRanks(lottoNumbers, lottoAndBonus);
   OutputView.printWinningDetailTitle();
 
@@ -25,7 +25,7 @@ const purchase = async () => {
   OutputView.printYieldRate(yieldRate);
 };
 
-const readWinningInfo = async () => {
+const readWinningNumbersAndBonusNumber = async () => {
   const winningNumbers = await InputHandler.getWinningNumbers();
   const bonusNumber = await InputHandler.getBonusNumber(winningNumbers);
 
