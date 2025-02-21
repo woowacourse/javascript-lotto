@@ -1,4 +1,4 @@
-import { LOTTO_RULE } from "./lotto.js";
+import { LOTTO_RULE, LOTTO_RESTART_COMMAND } from "./lotto.js";
 
 export const PROMPT_MESSAGE = Object.freeze({
   PURCHASE_PRICE: "구입금액을 입력해 주세요.",
@@ -19,7 +19,7 @@ export const ERROR_MESSAGE = Object.freeze({
   INVALID_LOTTO_LENGTH: `${LOTTO_RULE.LOTTO_LENGTH}개의 숫자를 입력해 주세요.`,
   INVALID_DUPLICATE_BONUS_NUMBER:
     "보너스 번호는 당첨 번호와 중복될 수 없습니다.",
-  INVALID_RESTART: "y 또는 n을 입력해 주세요.",
+  INVALID_RESTART: `${LOTTO_RESTART_COMMAND.restart} 또는 ${LOTTO_RESTART_COMMAND.end}을 입력해 주세요.`,
 });
 
 export const ERROR_PREFIX = "[ERROR]";
