@@ -8,7 +8,7 @@ class LottoShop {
   }
 
   static createLotto(purchaseCount) {
-    return Array.from({ length: purchaseCount }, () => new Lotto(this.#createLottoNumber()));
+    return Array.from({ length: purchaseCount }, () => new Lotto(LottoShop.#createLottoNumber()));
   }
 
   static #createLottoNumber() {
