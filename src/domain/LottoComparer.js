@@ -1,4 +1,4 @@
-import { BONUS_NUMBER_THRESHOLD, MIN_MATCH_COUNT } from "../config/const.js";
+import { MIN_MATCH_COUNT } from "../config/const.js";
 
 class LottoComparer {
   #lottoTicket;
@@ -27,7 +27,7 @@ class LottoComparer {
       const isBonus = this.#lottoTicket[index].numbers.includes(
         winningLotto.bonusNumber
       );
-      if (matchingCount === BONUS_NUMBER_THRESHOLD && isBonus) {
+      if (matchingCount === 5 && isBonus) {
         acc.push("bonus");
         return acc;
       }

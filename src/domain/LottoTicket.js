@@ -1,9 +1,4 @@
-import {
-  LOTTO_MAX_RANGE,
-  LOTTO_MIN_RANGE,
-  MAX_LOTTO_LENGTH,
-  PURCHASE_UNIT,
-} from "../config/const.js";
+import { LOTTO } from "../config/const.js";
 import Lotto from "./Lotto.js";
 
 class LottoTicket {
@@ -15,16 +10,16 @@ class LottoTicket {
 
   #getRandomNumbers() {
     let randomNumbers = new Set();
-    while (randomNumbers.size < MAX_LOTTO_LENGTH) {
+    while (randomNumbers.size < LOTTO.maxLength) {
       randomNumbers.add(
-        Math.floor(Math.random() * LOTTO_MAX_RANGE) + LOTTO_MIN_RANGE
+        Math.floor(Math.random() * LOTTO.RANGE.max) + LOTTO.RANGE.min
       );
     }
     return [...randomNumbers];
   }
 
   #generateLottos(price) {
-    return Array.from({ length: price / PURCHASE_UNIT }).reduce((acc) => {
+    return Array.from({ length: price / LOTTO.PURCHASE.unit }).reduce((acc) => {
       const randomNumbers = this.#getRandomNumbers();
       acc.push(new Lotto(randomNumbers));
       return acc;

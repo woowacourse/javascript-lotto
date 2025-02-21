@@ -1,14 +1,10 @@
-import {
-  LOTTO_MAX_RANGE,
-  LOTTO_MIN_RANGE,
-  MAX_LOTTO_LENGTH,
-  MAXIMUM_PURCHASE_THRESHOLD,
-  PURCHASE_UNIT,
-} from "../../config/const.js";
+import { LOTTO } from "../../config/const.js";
 
 const validatePurchaseUnit = (price) => {
-  if (price % PURCHASE_UNIT !== 0) {
-    throw new Error(`구입 금액은 ${PURCHASE_UNIT}원 단위로 입력해주세요.`);
+  if (price % LOTTO.PURCHASE.unit !== 0) {
+    throw new Error(
+      `구입 금액은 ${LOTTO.PURCHASE.unit}원 단위로 입력해주세요.`
+    );
   }
 };
 
@@ -19,17 +15,17 @@ const validateIsNumeric = (input) => {
 };
 
 const validateMinimumValue = (input) => {
-  if (input < PURCHASE_UNIT) {
+  if (input < LOTTO.PURCHASE.unit) {
     throw new Error(
-      `구입 금액은 ${PURCHASE_UNIT.toLocaleString()}원 이상이여야 합니다.`
+      `구입 금액은 ${LOTTO.PURCHASE.unit.toLocaleString()}원 이상이여야 합니다.`
     );
   }
 };
 
 const validateMaximumValue = (input) => {
-  if (input > MAXIMUM_PURCHASE_THRESHOLD) {
+  if (input > LOTTO.PURCHASE.maxThreshold) {
     throw new Error(
-      `구입 금액은 ${MAXIMUM_PURCHASE_THRESHOLD.toLocaleString()}원 이하여야 합니다.`
+      `구입 금액은 ${LOTTO.PURCHASE.maxThreshold.toLocaleString()}원 이하여야 합니다.`
     );
   }
 };
@@ -43,9 +39,9 @@ const validateWinningNumberisNumeric = (input) => {
 };
 
 const validateLottoNumberRange = (input) => {
-  if (input < LOTTO_MIN_RANGE || input > LOTTO_MAX_RANGE) {
+  if (input < LOTTO.RANGE.min || input > LOTTO.RANGE.max) {
     throw new Error(
-      `당첨 번호가 ${LOTTO_MIN_RANGE}부터 ${LOTTO_MAX_RANGE} 사이의 숫자여야 합니다.`
+      `당첨 번호가 ${LOTTO.RANGE.min}부터 ${LOTTO.RANGE.max} 사이의 숫자여야 합니다.`
     );
   }
 };
@@ -67,7 +63,7 @@ const validateRestartInput = (input) => {
 };
 
 const validateWinningNumbersLength = (winningNumber) => {
-  if (winningNumber.length !== MAX_LOTTO_LENGTH) {
+  if (winningNumber.length !== LOTTO.maxLength) {
     throw new Error("당첨 번호는 6개여야 합니다.");
   }
 };
