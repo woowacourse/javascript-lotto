@@ -1,0 +1,16 @@
+.lotto-dashboard {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #b4b4b4;
+  padding: 20px 10px;
+  border-radius: 5px;
+}
+
+.lotto-header {
+  font-size: larger;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
