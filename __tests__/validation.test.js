@@ -5,7 +5,7 @@ import isPositive from '../src/Validation/validateNumber.js';
 
 describe('인풋 validation 테스트', () => {
   describe('isNumber Validation test', () => {
-    it('isNumber는 숫자가 아닐때 에러를 던져야 한다.', () => {
+    it(`isNumber는 숫자가 아닐때 ${ERROR_MESSAGE.notANumber}에러를 던져야 한다.`, () => {
       const testCase = 'a';
       expect(() => {
         isNumber(testCase);
@@ -17,7 +17,7 @@ describe('인풋 validation 테스트', () => {
     });
   });
   describe('isInteger Validation test', () => {
-    it('isInteger는 정수가 아닐 때 에러를 던져야 한다.', () => {
+    it(`isInteger는 정수가 아닐 때 ${ERROR_MESSAGE.notInteger}에러를 던져야 한다.`, () => {
       const testCase = '1.5';
       expect(() => {
         isInteger(testCase);
@@ -30,17 +30,17 @@ describe('인풋 validation 테스트', () => {
     });
   });
   describe('isPositive Validation test', () => {
-    it('isPositive는 양수가 아닐 때 에러를 던져야 한다.', () => {
+    it(`isPositive는 양수가 아닐 때 ${ERROR_MESSAGE.notPositive}에러를 던져야 한다.`, () => {
       const testCase = '-1';
       expect(() => {
         isPositive(testCase);
       }).toThrow(ERROR_MESSAGE.notPositive);
     });
-    it('isPositive는 숫자일 때 그 값을 그대로 반환한다.', () => {
+    it('isPositive는 양수일 때 그 값을 그대로 반환한다.', () => {
       const testCase = '1';
       expect(isPositive(testCase)).toBe(1);
     });
-    it('isPositive는 0일 때 에러를 던져야 한다.', () => {
+    it(`isPositive는 0일 때 ${ERROR_MESSAGE.notPositive}에러를 던져야 한다.`, () => {
       const testCase = '0';
       expect(() => {
         isPositive(testCase);
