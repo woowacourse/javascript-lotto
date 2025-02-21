@@ -13,7 +13,7 @@ import ProfitCalculator from "../domain/ProfitCalculator.js";
 class LottoController {
   constructor() {
     this.lottoTickets = [];
-    this.lottoNumber = [];
+    this.winningNumber = [];
   }
 
   async play() {
@@ -23,7 +23,7 @@ class LottoController {
 
       Output.printLottoTickets(this.lottoTickets);
 
-      this.lottoNumber = await this.getLottoNumber();
+      this.winningNumber = await this.getWinningNumber();
       const bonusNumber = await this.getBonusNumber();
 
       this.calculateAndDisplayResults(bonusNumber);
@@ -48,20 +48,20 @@ class LottoController {
     return purchaseAmount;
   }
 
-  async getLottoNumber() {
-    const lottoNumber = await retryUntilValid(
-      () => Input.getInput("\n" + MESSAGES.input.lottoNumber),
+  async getWinningNumber() {
+    const winningNumber = await retryUntilValid(
+      () => Input.getInput("\n" + MESSAGES.input.winningNumber),
       (input) => input.split(",").map(Number),
       lottoNumberValidator
     );
-    return lottoNumber;
+    return winningNumber;
   }
 
   async getBonusNumber() {
     const bonusNumber = await retryUntilValid(
       () => Input.getInput("\n" + MESSAGES.input.bonusNumber),
       (input) => Number(input),
-      (bonusNumber) => bonusNumberValidator(bonusNumber, this.lottoNumber)
+      (bonusNumber) => bonusNumberValidator(bonusNumber, this.winningNumber)
     );
     return bonusNumber;
   }
@@ -69,7 +69,7 @@ class LottoController {
   calculateAndDisplayResults(bonusNumber) {
     const calculator = new ProfitCalculator(
       this.lottoTickets,
-      this.lottoNumber,
+      this.winningNumber,
       bonusNumber
     );
 
