@@ -1,3 +1,4 @@
 export const getIntersection = (array1, array2) => {
-  return array1.filter((value) => array2.includes(value));
+  const arraySet = new Set(array2);
+  return array1.filter((value) => arraySet.has(value));
 };
