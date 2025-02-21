@@ -22,7 +22,7 @@ class Lotto {
     validateLottoNumber(this.#numbers);
   }
 
-  includeNumber(winningNumber) {
+  isContained(winningNumber) {
     return this.#numbers.includes(winningNumber);
   }
 
