@@ -3,18 +3,6 @@ import { ERROR_MESSAGE } from "../constants/error.js";
 const MIN_PRICE = 1_000;
 const MAX_PRICE = 1_000_000;
 
-// export const isNumber = (input) => {
-//   const regex = /^[0-9]*$/;
-
-//   return regex.test(input)) {
-// };
-
-// const validateXXX = (xxx) => {
-//   if(!isNumber(xxx)) throw Error('blah blah')
-//   // if( ... )
-//   // if( ... )
-//   // if( ... )
-// }}
 export const isNumber = (input) => {
   const regex = /^[0-9]*$/;
 
