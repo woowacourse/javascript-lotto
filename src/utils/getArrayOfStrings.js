@@ -1,6 +1,3 @@
-export const getArrayOfStrings = (arrays) => {
-  return arrays.reduce((acc, cur) => {
-    acc.push(`[${cur.join(', ')}]`);
-    return acc;
-  }, []);
+export const arrayToString = (arrays) => {
+  return arrays.map((arr) => `[${arr.join(', ')}]`);
 };
