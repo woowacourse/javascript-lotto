@@ -26,23 +26,30 @@ describe("유효성 테스트", () => {
   });
 
   test("당첨번호는 쉼표로 구분되어야 한다.", () => {
-    const tartgetNumer = "1,2,3,4.5,6";
+    const targetNumber = "1,2,3,4.5,6";
     expect(() => {
-      Validator.isTargetNumber(tartgetNumer);
+      Validator.isTargetNumber(targetNumber);
     }).toThrow();
   });
 
   test("당첨번호의 갯수는 6개여야한다.", () => {
-    const tartgetNumer = "1,2,3,4,5";
+    const targetNumber = "1,2,3,4,5";
     expect(() => {
-      Validator.isTargetNumber(tartgetNumer);
+      Validator.isTargetNumber(targetNumber);
+    }).toThrow();
+  });
+
+  test("당첨번호는 숫자이어야한다.", () => {
+    const targetNumber = "1,2,3,4,5,yes";
+    expect(() => {
+      Validator.isTargetNumber(targetNumber);
     }).toThrow();
   });
 
   test("당첨번호의 범위는 1~45이어야한다.", () => {
-    const targetNumer = "1,2,3,4,5,49";
+    const targetNumber = "1,2,3,4,5,49";
     expect(() => {
-      Validator.isTargetNumber(targetNumer);
+      Validator.isTargetNumber(targetNumber);
     }).toThrow();
   });
 

@@ -32,7 +32,7 @@ const Constants = Object.freeze({
     PRICE_TYPE: "[ERROR] 금액은 숫자로 입력해야 한다.",
     PRICE_UNIT: "[ERROR] 금액은 1,000원으로 나누어 떨어져야 한다.",
     TARGET_NUMBER_LENGTH: "[ERROR] 당첨번호는 쉼표로 구분되어야 한다.",
-    LOTTO_NUMBER_RANGE: "[ERROR] 당첨번호의 범위는 1~45이어야한다.",
+    LOTTO_NUMBER_RANGE: "[ERROR] 당첨번호는 1~45 사이의 숫자이어야한다.",
     BONUS_NUMBER_TYPE: "[ERROR] 보너스 번호는 숫자이어야 한다.",
     BONUS_NUMBER_RANGE: "[ERROR] 보너스 번호의 범위는 1~45이어야한다.",
     BONUS_NUMBER_DUPLICATE: "[ERROR] 보너스 번호는 당첨번호와 중복될수 없다.",
