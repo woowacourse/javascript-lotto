@@ -1,5 +1,5 @@
 import LottoGenerator from "../domain/LottoGenerator.js";
-import { sortNumber } from "../utils/utils.js";
+import { sortNumbersAscending } from "../utils/sortNumbersAscending.js";
 
 describe("LottoGenerator 테스트", () => {
   test("입력된 금액에 따라 올바른 개수의 로또를 생성해야 한다", () => {
@@ -41,7 +41,7 @@ describe("LottoGenerator 테스트", () => {
     const tickets = LottoGenerator.generate(1000);
 
     tickets.forEach((ticket) => {
-      const sorted = sortNumber([...ticket]);
+      const sorted = sortNumbersAscending([...ticket]);
       expect(ticket).toEqual(sorted);
     });
   });

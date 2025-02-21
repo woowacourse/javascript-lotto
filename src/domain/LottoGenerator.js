@@ -1,5 +1,5 @@
 import { SETTINGS } from "../constants/index.js";
-import { sortNumber } from "../utils/utils.js";
+import { sortNumbersAscending } from "../utils/sortNumbersAscending.js";
 
 class LottoGenerator {
   static generate(amount) {
@@ -21,7 +21,7 @@ class LottoGenerator {
       numbers.add(randomNumber);
     }
 
-    return sortNumber(Array.from(numbers));
+    return sortNumbersAscending(Array.from(numbers));
   }
 }
 

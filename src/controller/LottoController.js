@@ -10,6 +10,7 @@ import { retryUntilValid } from "../utils/retryUntilValid.js";
 import LottoGenerator from "../domain/LottoGenerator.js";
 import Output from "../view/Output.js";
 import ProfitCalculator from "../domain/ProfitCalculator.js";
+
 class LottoController {
   constructor() {
     this.lottoTickets = [];
