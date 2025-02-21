@@ -3,7 +3,7 @@
  * 브라우저 환경에서 사용하는 css 파일 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import UserLottos from "../src/domain/UserLottos.js";
+import LottoTicket from "../src/domain/LottoTicket.js";
 import LottoComparer from "../src/domain/LottoComparer.js";
 import { printUserLottos, printResult } from "../src/view/output.js";
 import {
@@ -15,12 +15,12 @@ import LottoPrize from "./domain/LottoPrize.js";
 
 async function run() {
   const price = await inputPrice();
-  const userLottos = new UserLottos(price);
-  printUserLottos(userLottos);
+  const lottoTicket = new LottoTicket(price);
+  printUserLottos(price, lottoTicket);
 
   const winningLotto = await inputWinningLotto();
-  const lottoComparer = new LottoComparer(userLottos.lottos, winningLotto);
-  const countResults = lottoComparer.countMatchingNumbers();
+  const lottoComparer = new LottoComparer(lottoTicket.lottos);
+  const countResults = lottoComparer.countMatchingNumbers(winningLotto);
   const lottoPrize = new LottoPrize(countResults);
   lottoPrize.calculateWinnings();
 

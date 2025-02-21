@@ -7,9 +7,9 @@ import {
   THIRD_PRIZE,
 } from "../config/const.js";
 
-const printUserLottos = (userLottos) => {
-  printLottoCount(userLottos.price);
-  userLottos.lottos.forEach((userLotto) => {
+const printUserLottos = (price, lottoTicket) => {
+  printLottoCount(price);
+  lottoTicket.lottos.forEach((userLotto) => {
     console.log(userLotto.numbers);
   });
 };

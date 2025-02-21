@@ -6,14 +6,11 @@ import {
 } from "../config/const.js";
 import Lotto from "./Lotto.js";
 
-class UserLottos {
-  #price;
+class LottoTicket {
   #lottos;
 
   constructor(price) {
-    this.#price = price;
-    this.#lottos = [];
-    this.generateLottos();
+    this.#lottos = this.#generateLottos(price);
   }
 
   #getRandomNumbers() {
@@ -26,20 +23,17 @@ class UserLottos {
     return [...randomNumbers];
   }
 
-  generateLottos() {
-    for (let i = 0; i < this.#price / PURCHASE_UNIT; i++) {
+  #generateLottos(price) {
+    return Array.from({ length: price / PURCHASE_UNIT }).reduce((acc) => {
       const randomNumbers = this.#getRandomNumbers();
-      this.#lottos.push(new Lotto(randomNumbers));
-    }
+      acc.push(new Lotto(randomNumbers));
+      return acc;
+    }, []);
   }
 
   get lottos() {
     return this.#lottos;
   }
-
-  get price() {
-    return this.#price;
-  }
 }
 
-export default UserLottos;
+export default LottoTicket;

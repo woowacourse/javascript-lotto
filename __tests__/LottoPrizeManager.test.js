@@ -6,7 +6,7 @@ let lottoComparer;
 let lottoPrize;
 
 beforeEach(() => {
-  const userLottos = [
+  const lottoTicket = [
     new Lotto([1, 2, 3, 4, 5, 6]),
     new Lotto([1, 3, 4, 5, 6, 10]),
     new Lotto([1, 3, 4, 5, 6, 7]),
@@ -15,16 +15,16 @@ beforeEach(() => {
     new Lotto([1, 6, 7, 8, 9, 10]),
     new Lotto([1, 7, 8, 9, 10, 11]),
   ];
-  const winningNumber = [1, 2, 3, 4, 5, 6];
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
   const winningLotto = {
-    winningNumbers: winningNumber,
+    winningNumbers: winningNumbers,
     bonusNumber: bonusNumber,
   };
 
-  lottoComparer = new LottoComparer(userLottos, winningLotto);
+  lottoComparer = new LottoComparer(lottoTicket);
 
-  const countResults = lottoComparer.countMatchingNumbers();
+  const countResults = lottoComparer.countMatchingNumbers(winningLotto);
   lottoPrize = new LottoPrize(countResults);
   lottoPrize.calculateWinnings(countResults);
 });
