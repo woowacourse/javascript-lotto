@@ -3,27 +3,19 @@ import INPUT_MESSAGE from "../constant/input.js";
 
 const InputView = {
   async readPurchaseAmount() {
-    const input = await readLineAsync(INPUT_MESSAGE.AMOUNT);
-
-    return input;
+    return await readLineAsync(INPUT_MESSAGE.AMOUNT);
   },
 
   async readWinningNumbers() {
-    const input = await readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
-
-    return input;
+    return await readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
   },
 
   async readBonusNumber() {
-    const input = await readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
-
-    return input;
+    return await readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
   },
 
   async readRestart() {
-    const input = await readLineAsync(INPUT_MESSAGE.RESTART);
-
-    return input;
+    return await readLineAsync(INPUT_MESSAGE.RESTART);
   },
 };
 
