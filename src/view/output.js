@@ -1,4 +1,5 @@
-import { LOTTO, OUTPUT } from '../constants/messages.js';
+import { LOTTO } from '../domain/lottoConstants.js';
+import { OUTPUT } from './viewConstants.js';
 
 export const printPurchasedQuantity = (quantity) => {
   console.log(OUTPUT.PURCHASED_QUANTITY(quantity));

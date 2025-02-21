@@ -1,4 +1,4 @@
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO } from './lottoConstants.js';
 
 export const getWinningMatchCount = (randomlottos, lottoNumbers) => {
   let matchCounts = [0, 0, 0, 0, 0, 0, 0, 0];

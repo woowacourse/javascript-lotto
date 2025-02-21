@@ -1,5 +1,5 @@
-import { ERROR } from '../constants/errors.js';
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO } from '../domain/lottoConstants.js';
+import { ERROR } from './errorConstants.js';
 import { hasEmptyString, isValueInteger } from './validateInput.js';
 
 export const validatePurchasePrice = (input) => {

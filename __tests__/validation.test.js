@@ -1,4 +1,4 @@
-import { ERROR } from '../src/constants/errors.js';
+import { ERROR } from '../src/validation/errorConstants.js';
 import { hasEmptyString, isValueInteger } from '../src/validation/validateInput.js';
 import { validateBonusNumber, validateWinningNumbers } from '../src/validation/validateLottoNumbers.js';
 import { validatePurchasePrice } from '../src/validation/validatePurchasePrice.js';

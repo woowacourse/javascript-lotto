@@ -1,4 +1,4 @@
-import { ERROR } from '../constants/errors.js';
+import { ERROR } from './errorConstants.js';
 
 export const hasEmptyString = (input) => {
   if (input === '') {

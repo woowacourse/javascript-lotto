@@ -1,4 +1,4 @@
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO } from './lottoConstants.js';
 
 export const calculateRevenue = (matchCounts, purchasePrice) => {
   const sumOfLottoPrize = matchCounts.reduce(

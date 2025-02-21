@@ -1,4 +1,5 @@
-import { INPUT, LOTTO } from './constants/messages.js';
+import { INPUT } from './view/viewConstants.js';
+import { LOTTO } from './domain/lottoConstants.js';
 import { calculateRevenue } from './domain/calculateRevenue.js';
 import { getRandomLottos } from './domain/getRandomLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
