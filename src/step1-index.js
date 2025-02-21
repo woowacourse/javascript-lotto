@@ -6,10 +6,10 @@ import {
 import { retryUntilValidInput } from "./utils/input.js";
 import { getRevenueRate } from "./utils/math.js";
 import {
-  validationBonusNumber,
-  validationLottoPrice,
-  validationRestartInput,
-  validationWinningNumbers,
+  validateBonusNumber,
+  validateLottoPrice,
+  validateRestartInput,
+  validateWinningNumbers,
 } from "./validation/index.js";
 import {
   readLottoPriceInput,
@@ -24,7 +24,7 @@ const app = async () => {
   while (true) {
     const lottoPrice = await retryUntilValidInput({
       readUserInput: readLottoPriceInput,
-      validator: validationLottoPrice,
+      validator: validateLottoPrice,
     });
 
     const lottoNumbers = generateLottoNumberSets(lottoPrice);
@@ -32,13 +32,13 @@ const app = async () => {
 
     const winningNumbers = await retryUntilValidInput({
       readUserInput: readWinningNumbersInput,
-      validator: validationWinningNumbers,
+      validator: validateWinningNumbers,
     });
 
     const bonusNumber = await retryUntilValidInput({
       readUserInput: readBonusNumberInput,
       validator: (bonusNumber) =>
-        validationBonusNumber(bonusNumber, winningNumbers),
+        validateBonusNumber(bonusNumber, winningNumbers),
     });
 
     const result = calculatePrizeResult(
@@ -53,7 +53,7 @@ const app = async () => {
 
     const restartInput = await retryUntilValidInput({
       readUserInput: readRestartInput,
-      validator: validationRestartInput,
+      validator: validateRestartInput,
     });
 
     if (restartInput === LOTTO_RESTART_COMMAND.end) {

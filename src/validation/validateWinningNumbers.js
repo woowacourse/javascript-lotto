@@ -3,7 +3,7 @@ import { ERROR_MESSAGE } from "../constants/message.js";
 import CustomError from "../CustomError.js";
 import { isInRange, isDuplicate, hasNotInteger } from "../utils/predicate.js";
 
-const validationWinningNumbers = (winningNumbers) => {
+const validateWinningNumbers = (winningNumbers) => {
   if (winningNumbers.length !== LOTTO_RULE.LOTTO_LENGTH) {
     throw new CustomError(ERROR_MESSAGE.INVALID_LOTTO_LENGTH);
   }
@@ -29,4 +29,4 @@ const validationWinningNumbers = (winningNumbers) => {
   }
 };
 
-export default validationWinningNumbers;
+export default validateWinningNumbers;

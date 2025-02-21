@@ -82,14 +82,14 @@
  ┃ ┗ 📜predicate.test.js
  ┣ 📂validation // 유효성 검사 로직
  ┃ ┣ 📜index.js
- ┃ ┣ 📜validationBonusNumber.js
- ┃ ┣ 📜validationBonusNumber.test.js
- ┃ ┣ 📜validationLottoPrice.js
- ┃ ┣ 📜validationLottoPrice.test.js
- ┃ ┣ 📜validationRestartInput.js
- ┃ ┣ 📜validationRestartInput.test.js
- ┃ ┣ 📜validationWinningNumbers.js
- ┃ ┗ 📜validationWinningNumbers.test.js
+ ┃ ┣ 📜validateBonusNumber.js
+ ┃ ┣ 📜validateBonusNumber.test.js
+ ┃ ┣ 📜validateLottoPrice.js
+ ┃ ┣ 📜validateLottoPrice.test.js
+ ┃ ┣ 📜validateRestartInput.js
+ ┃ ┣ 📜validateRestartInput.test.js
+ ┃ ┣ 📜validateWinningNumbers.js
+ ┃ ┗ 📜validateWinningNumbers.test.js
  ┣ 📂view // 입출력 관련
  ┃ ┣ 📂input
  ┃ ┃ ┣ 📜index.js

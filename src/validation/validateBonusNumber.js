@@ -3,7 +3,7 @@ import { ERROR_MESSAGE } from "../constants/message.js";
 import { LOTTO_RULE } from "../constants/lotto.js";
 import { isInRange, isDuplicate } from "../utils/predicate.js";
 
-const validationBonusNumber = (bonusNumber, winningNumbers) => {
+const validateBonusNumber = (bonusNumber, winningNumbers) => {
   if (!Number.isSafeInteger(bonusNumber)) {
     throw new CustomError(ERROR_MESSAGE.INVALID_INTEGER);
   }
@@ -23,4 +23,4 @@ const validationBonusNumber = (bonusNumber, winningNumbers) => {
   }
 };
 
-export default validationBonusNumber;
+export default validateBonusNumber;

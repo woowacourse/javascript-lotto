@@ -1,4 +1,4 @@
-export { default as validationBonusNumber } from "./validationBonusNumber.js";
-export { default as validationWinningNumbers } from "./validationWinningNumbers.js";
-export { default as validationLottoPrice } from "./validationLottoPrice.js";
-export { default as validationRestartInput } from "./validationRestartInput.js";
+export { default as validateBonusNumber } from "./validateBonusNumber.js";
+export { default as validateWinningNumbers } from "./validateWinningNumbers.js";
+export { default as validateLottoPrice } from "./validateLottoPrice.js";
+export { default as validateRestartInput } from "./validateRestartInput.js";
