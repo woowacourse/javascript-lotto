@@ -27,23 +27,19 @@ class Lotto {
   }
 
   #checkLength(numbers) {
-    if (numbers.length !== LOTTO.LENGTH) {
+    if (numbers.length !== LOTTO.NUMBER_LENGTH) {
       throw new Error(ERROR_MESSAGE.LOTTO.INVALID_LENGTH);
     }
   }
 
   #checkRange(numbers) {
-    if (
-      !numbers.every(
-        (number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER,
-      )
-    ) {
+    if (!numbers.every((number) => number >= LOTTO.MIN_NUMBER && number <= LOTTO.MAX_NUMBER)) {
       throw new Error(ERROR_MESSAGE.LOTTO.INVALID_RANGE);
     }
   }
 
   #checkDuplicated(numbers) {
-    if (new Set(numbers).size !== LOTTO.LENGTH) {
+    if (new Set(numbers).size !== LOTTO.NUMBER_LENGTH) {
       throw new Error(ERROR_MESSAGE.LOTTO.DUPLICATE);
     }
   }

@@ -20,7 +20,7 @@ const validateRange = ({ key, value, min, max }) => {
 };
 
 const validateCount = (key, value) => {
-  if (value.length !== LOTTO.LENGTH) {
+  if (value.length !== LOTTO.NUMBER_LENGTH) {
     throw new Error(ERROR_MESSAGE.COMMON.INVALID_COUNT(key));
   }
 };

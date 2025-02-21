@@ -15,7 +15,7 @@ const PURCHASE_PRICE = Object.freeze({
 const LOTTO = Object.freeze({
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
-  LENGTH: 6,
+  NUMBER_LENGTH: 6,
 });
 
 const RESTART = Object.freeze({

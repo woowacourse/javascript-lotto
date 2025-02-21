@@ -8,7 +8,7 @@ describe('로또 클래스 테스트', () => {
 
     test('로또 한 장의 번호는 6개이다.', () => {
       const lotto = new Lotto(numbers);
-      expect(lotto.numbers).toHaveLength(LOTTO.LENGTH);
+      expect(lotto.numbers).toHaveLength(LOTTO.NUMBER_LENGTH);
     });
 
     test('로또 번호의 범위는 1~45 사이이다.', () => {
