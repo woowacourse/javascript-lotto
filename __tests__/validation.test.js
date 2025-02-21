@@ -40,5 +40,11 @@ describe('인풋 validation 테스트', () => {
       const testCase = '1';
       expect(isPositive(testCase)).toBe(1);
     });
+    it('isPositive는 0일 때 에러를 던져야 한다.', () => {
+      const testCase = '0';
+      expect(() => {
+        isPositive(testCase);
+      }).toThrow(ERROR_MESSAGE.notPositive);
+    });
   });
 });

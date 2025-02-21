@@ -1,7 +1,7 @@
 import validateLottoPurchase from '../src/Validation/validateLottoPurchase.js';
 import ERROR_MESSAGE from '../src/settings/ErrorMessage.js';
 
-it('로또 구입 최소 금액은 1000원 미만일때 에러를 던진다.', () => {
+it(`로또 구입 최소 금액은 1000원 미만일때 에러를 던진다.`, () => {
   const testCase = 900;
   expect(() => {
     validateLottoPurchase(testCase);

@@ -25,7 +25,6 @@ describe('로또 일치 결과를 반환하는 calculateWins 테스트', () => {
     const checkedLotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const checkedBonusNumber = 7;
     const parsedLotto = { checkedLotto, checkedBonusNumber };
-    console.log(parsedLotto);
 
     const winCount = calculateWins(lottos, parsedLotto);
     expect(winCount.FIVE_MATCH).toBe(1);

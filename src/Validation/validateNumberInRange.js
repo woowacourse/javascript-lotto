@@ -1,12 +1,12 @@
 import ERROR_MESSAGE from '../settings/ErrorMessage.js';
-import systemSettings from '../settings/systemSettings.js';
+import { lottoGameSettings } from '../settings/systemSettings.js';
 
 export default function validateNumberInRange(numbers) {
   if (
     numbers.some(
       (number) =>
-        number < systemSettings.minLottoNumber ||
-        number > systemSettings.maxLottoNumber,
+        number < lottoGameSettings.minLottoNumber ||
+        number > lottoGameSettings.maxLottoNumber,
     )
   )
     throw new Error(ERROR_MESSAGE.numberOutOfRange);

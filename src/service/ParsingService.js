@@ -1,5 +1,5 @@
 import Lotto from '../model/Lotto.js';
-import systemSettings from '../settings/systemSettings.js';
+import { userPrompts } from '../settings/systemSettings.js';
 import readLineAsync from '../View/InputView.js';
 import { printPurchasedAmount, printError } from '../View/OutputView.js';
 import validateBonusNumber from '../Validation/validateBonusNumber.js';
@@ -8,7 +8,7 @@ import validateUserRetry from '../Validation/validateUserRetry.js';
 
 async function getPurchasePrice() {
   try {
-    const purchasePrice = await readLineAsync(systemSettings.getPurchasePrice);
+    const purchasePrice = await readLineAsync(userPrompts.askPurchasePrice);
     const purchaseAmount = validateLottoPurchase(purchasePrice);
     printPurchasedAmount(purchaseAmount);
     return { purchasePrice, purchaseAmount };
@@ -19,7 +19,7 @@ async function getPurchasePrice() {
 }
 async function getWinningNumber() {
   try {
-    const winningNumber = await readLineAsync(systemSettings.getWinningNumber);
+    const winningNumber = await readLineAsync(userPrompts.askWinningNumber);
     const userLotto = new Lotto(
       winningNumber.split(',').map((number) => Number(number)),
     );
@@ -31,7 +31,7 @@ async function getWinningNumber() {
 }
 async function getBonusNumber(userLotto) {
   try {
-    const bonusNumber = await readLineAsync(systemSettings.getBonusNumber);
+    const bonusNumber = await readLineAsync(userPrompts.askBonusNumber);
     const parsedLotto = validateBonusNumber(userLotto, Number(bonusNumber));
     return parsedLotto;
   } catch (error) {
@@ -42,7 +42,7 @@ async function getBonusNumber(userLotto) {
 
 async function getUserRetry() {
   try {
-    const userRetry = await readLineAsync(`${systemSettings.askUserRetry}`);
+    const userRetry = await readLineAsync(`${userPrompts.askUserRetry}`);
     validateUserRetry(userRetry);
     return userRetry;
   } catch (error) {

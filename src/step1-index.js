@@ -1,4 +1,4 @@
-import systemSettings from './settings/systemSettings.js';
+import { lottoResults } from './settings/systemSettings.js';
 import {
   printPrizeHeader,
   printPrize,
@@ -26,11 +26,11 @@ async function playGame() {
   const parsedLotto = await getBonusNumber(userLotto);
 
   const winCount = calculateWins(lottos, parsedLotto);
-  const total = calculatePrize(winCount, systemSettings.prizeMoney);
+  const total = calculatePrize(winCount, lottoResults.prizeMoney);
   const revenueRate = calculateRevenueRate(total, purchasePrice);
 
   printPrizeHeader();
-  printPrize(systemSettings);
+  printPrize(lottoResults);
   printRevenueRate(revenueRate);
 
   const userRetry = await getUserRetry();

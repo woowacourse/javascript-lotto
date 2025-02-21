@@ -1,5 +1,5 @@
 import Lotto from '../model/Lotto.js';
-import systemSettings from '../settings/systemSettings.js';
+import { lottoGameSettings } from '../settings/systemSettings.js';
 import { getUniqueRandomNumbers } from '../util/getUniqueRandomNumbers.js';
 import { printLotto } from '../View/OutputView.js';
 
@@ -8,12 +8,12 @@ export default function makeLotto(purchaseAmount) {
 
   for (let i = 0; i < purchaseAmount; i++) {
     const numberRange = {
-      min: systemSettings.minLottoNumber,
-      max: systemSettings.maxLottoNumber,
+      min: lottoGameSettings.minLottoNumber,
+      max: lottoGameSettings.maxLottoNumber,
     };
     const numbers = getUniqueRandomNumbers(
       numberRange,
-      systemSettings.lottoSize,
+      lottoGameSettings.lottoSize,
     );
     const lotto = new Lotto(numbers);
     printLotto(lotto);
