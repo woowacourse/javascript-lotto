@@ -1,3 +1,4 @@
+import { ERROR } from "../src/constants/message.js";
 import PriceValidator from "../src/validation/PriceValidator.js";
 
 describe("입력한 구매 금액에 대한 유효성 검사를 진행한다", () => {
@@ -6,7 +7,7 @@ describe("입력한 구매 금액에 대한 유효성 검사를 진행한다", (
 
     const priceValidator = new PriceValidator();
 
-    expect(() => priceValidator.checkThousandUnit(price)).toThrow("[ERROR]");
+    expect(() => priceValidator.checkThousandUnit(price)).toThrow(ERROR.UNIT);
   });
 
   test.each([500, 1000000])(
@@ -14,7 +15,9 @@ describe("입력한 구매 금액에 대한 유효성 검사를 진행한다", (
     (price) => {
       const priceValidator = new PriceValidator();
 
-      expect(() => priceValidator.validatePrice(price)).toThrow("[ERROR]");
+      expect(() => priceValidator.validatePrice(price)).toThrow(
+        ERROR.INVALID_RANGE
+      );
     }
   );
 });

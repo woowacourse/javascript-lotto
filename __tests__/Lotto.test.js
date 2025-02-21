@@ -2,6 +2,7 @@ import { divideByUnit } from "../src/utils/count.js";
 import Lotto from "../src/domain/Lotto.js";
 import { PRICE } from "../src/constants/price.js";
 import Ticket from "../src/domain/Ticket.js";
+import { ERROR } from "../src/constants/message.js";
 
 test("입력받은 금액에 해당하는 개수를 구한다.", () => {
   // given
@@ -42,7 +43,7 @@ test("로또 번호중에 중복된 숫자가 있으면 로또 객체가 생성�
   //when //then
   expect(() => {
     new Lotto(lottoNumber);
-  }).toThrow("[ERROR]");
+  }).toThrow(ERROR.DUPLICATE);
 });
 
 test("로또 번호는 오름차순으로 정렬된다", () => {

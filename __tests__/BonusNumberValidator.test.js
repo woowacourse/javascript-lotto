@@ -1,3 +1,4 @@
+import { ERROR } from "../src/constants/message";
 import BonusNumberValidator from "../src/validation/BonusNumberValidator";
 
 describe("보너스 번호 유효성 검사를 진행한다", () => {
@@ -8,6 +9,6 @@ describe("보너스 번호 유효성 검사를 진행한다", () => {
 
     expect(() =>
       bonusValidator.validateBonusNumber(lottoNumbers, bonusNumber)
-    ).toThrow("[ERROR]");
+    ).toThrow(ERROR.INCLUDE);
   });
 });
