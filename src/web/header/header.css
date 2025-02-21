@@ -6,6 +6,7 @@ header {
   background-color: #4e5ba6;
   font-weight: bold;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   padding: 0 80px;
+  flex-shrink: 0;
 }
