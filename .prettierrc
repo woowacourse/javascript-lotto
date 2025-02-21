@@ -1,5 +1,6 @@
 {
   "endOfLine": "auto",
   "singleQuote": true,
-  "bracketSpacing": true
+  "bracketSpacing": true,
+  "printWidth": 100
 }
