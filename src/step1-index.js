@@ -42,6 +42,16 @@ const getNeededLottoNumbers = async () => {
   return { winningLotto, bonusLottoNumber };
 };
 
+async function retryInput() {
+  return await Input.retry(async () => {
+    const input = await Input.readLineAsync(INPUT.RETRY);
+    if (!RETRY_STRING.includes(input)) {
+      throwError(ERROR);
+    }
+    return input.toLowerCase();
+  });
+}
+
 const game = async () => {
   const price = await priceInput();
 
@@ -69,17 +79,13 @@ const game = async () => {
 };
 
 const start = async () => {
-  await game();
+  while (true) {
+    await game();
 
-  const retry = await Input.retry(async () => {
-    const input = await Input.readLineAsync(INPUT.RETRY);
-    if (!RETRY_STRING.includes(input)) {
-      throwError(ERROR);
-    }
-    return input.toLowerCase();
-  });
+    const retry = await retryInput();
 
-  if (retry === "y") await game();
+    if (retry === "n") break;
+  }
 };
 
 start();
