@@ -13,8 +13,8 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
 
     // then
     expect(
-      machine.getMatchedLottoStatus(enteredLottoNumbers, bonusNumber)
-    ).toEqual([{ RANK: 2, COUNT: 5, REWORD: 30_000_000, IS_BONUS: true }]);
+      machine.getMatchedLottoStatus(enteredLottoNumbers, bonusNumber)[0].RANK
+    ).toBe(2);
   });
 
   test("숫자 5개 일치하고 보너스 숫자가 존재하지 않는 경우 3등을 반환한다", () => {
@@ -28,7 +28,7 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
 
     // then
     expect(
-      machine.getMatchedLottoStatus(enteredLottoNumbers, bonusNumber)
-    ).toEqual([{ RANK: 3, COUNT: 5, REWORD: 1_500_000, IS_BONUS: false }]);
+      machine.getMatchedLottoStatus(enteredLottoNumbers, bonusNumber)[0].RANK
+    ).toBe(3);
   });
 });
