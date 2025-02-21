@@ -32,8 +32,8 @@
 
 ## Header
 
-- navBar UI
-  - navBar CSS
+- [x] navBar UI
+  - [x] navBar CSS
 
 ## Body
 
@@ -57,8 +57,8 @@
 
 ## Footer
 
-- 'Copyright 2023. woowacourse' Footer 컴포넌트 UI
-  - CSS
+- [ ] 'Copyright 2023. woowacourse' Footer 컴포넌트 UI
+  - [ ] footer CSS
 
 ## 당첨 통계
 
