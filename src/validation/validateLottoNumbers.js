@@ -3,7 +3,7 @@ import { LOTTO } from '../constants/messages.js';
 import { hasEmptyString, isValueInteger } from './validateInput.js';
 
 const validateArrayOfWinningNumbers = (winningNumbers) => {
-  winningNumbers.forEach((value) => {
+  winningNumbers.some((value) => {
     const winningNumber = Number(value);
     hasEmptyString(value);
     isValueInteger(winningNumber);
