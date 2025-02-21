@@ -1,6 +1,7 @@
 import validationBonusNumber from "./validationBonusNumber.js";
 import CustomError from "../CustomError.js";
 import { ERROR_MESSAGE } from "../constants/message.js";
+import { LOTTO_RULE } from "../constants/lotto.js";
 
 describe("validationBonusNumber 유효성 검사", () => {
   test("보너스 번호가 정수가 아니면 에러가 발생한다.", () => {
@@ -12,7 +13,7 @@ describe("validationBonusNumber 유효성 검사", () => {
   });
 
   test.each([[0], [46]])(
-    "보너스 번호가 1 ~ 45에 포함되지 않으면 에러가 발생한다.",
+    `보너스 번호가 ${LOTTO_RULE.MIN_LOTTO_NUMBER} ~ ${LOTTO_RULE.MAX_LOTTO_NUMBER}에 포함되지 않으면 에러가 발생한다.`,
     (number) => {
       const winningNumbers = [2, 3, 4, 5, 6, 7];
       expect(() => validationBonusNumber(number, winningNumbers)).toThrow(
