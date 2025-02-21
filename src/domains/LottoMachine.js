@@ -17,7 +17,7 @@ class LottoMachine {
   #generateLotto() {
     const lotto = [];
 
-    while (LOTTO.NUMBER_LENGTH < LOTTO.NUMBER_LENGTH) {
+    while (lotto.length < LOTTO.NUMBER_LENGTH) {
       const randomNumber = generateRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER);
 
       this.#checkHasLotto(lotto, randomNumber);
