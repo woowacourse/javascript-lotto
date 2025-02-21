@@ -1,4 +1,5 @@
 import validateLottoNumber from '../validations/validate/lottoNumberValidate.js';
+import { RANKING, RANKING_ERROR_MESSAGES } from '../constants/constants.js';
 
 class Lotto {
   #numbers;
@@ -10,6 +11,10 @@ class Lotto {
   }
 
   set ranking(ranking){
+    const isValidRanking = Object.values(RANKING).some(rank => rank.RANK === ranking);
+    if(!isValidRanking){
+      throw new Error(RANKING_ERROR_MESSAGES)
+    }
     this.#ranking=ranking
   }
 
