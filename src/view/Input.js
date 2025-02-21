@@ -17,7 +17,7 @@ const Input = {
     return purchasePrice;
   },
 
-  async inputWinningNumbers() {
+  async winningNumbers() {
     const winningNumbers = await inputHandler({
       promptMessage: INPUT_MESSAGE.WINNING_NUMBERS,
       parser: "toSplitNumberArray",
@@ -28,7 +28,7 @@ const Input = {
     return winningNumbers;
   },
 
-  async inputBonus(winningNumbers) {
+  async bonusNumber(winningNumbers) {
     try {
       const bonusNumber = await inputHandler({
         promptMessage: INPUT_MESSAGE.BONUS_NUMBER,
@@ -42,8 +42,20 @@ const Input = {
       Output.newLine();
       return bonusNumber;
     } catch {
-      return this.inputBonus(winningNumbers);
+      return this.bonusNumber(winningNumbers);
     }
+  },
+  async restartLotto() {
+    const restart = await inputHandler({
+      promptMessage: INPUT_MESSAGE.RESTART,
+      errorName: "RESTART",
+      validatorMethod: "restart",
+    });
+
+    if (restart.toLowerCase() === "y") {
+      return true;
+    }
+    return false;
   },
 };
 

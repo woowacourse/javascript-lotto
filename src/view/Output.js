@@ -6,6 +6,13 @@ const Output = {
   print(message) {
     console.log(message);
   },
+  printLottos(lottos) {
+    this.lottoAmount(lottos.length);
+    lottos.forEach((lotto) => {
+      this.lottoNumbers(lotto.numbers);
+    });
+    this.newLine();
+  },
 
   lottoAmount(lottoAmount) {
     this.print(OUTPUT_MESSAGE.LOTTO_AMOUNT(lottoAmount));
