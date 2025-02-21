@@ -33,7 +33,7 @@ describe("validationWinningNumbers 유효성 검사", () => {
     }
   );
 
-  test("당첨 번호가 유효성 검사를 통과한다.", () => {
+  test("당첨 번호 [1, 2, 3, 4, 5, 6]이면 에러가 발생하지 않는다.", () => {
     const numbers = [1, 2, 3, 4, 5, 6];
     expect(() => validationWinningNumbers(numbers)).not.toThrow();
   });

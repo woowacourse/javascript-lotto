@@ -29,7 +29,7 @@ describe("validationBonusNumber 유효성 검사", () => {
     );
   });
 
-  test("보너스 번호가 유효성 검사를 통과한다", () => {
+  test("보너스 번호가 45이면 에러가 발생하지 않는다.", () => {
     const bonusNumber = 45;
     const numbers = [1, 2, 3, 4, 5, 6];
     expect(() => validationBonusNumber(bonusNumber, numbers)).not.toThrow();
