@@ -1,26 +1,45 @@
-import { lottoResults } from '../settings/systemSettings.js';
 import countMatchedNumbers from '../util/countMatchedNumbers.js';
+
+function getWinCategory(matchedCount, isBonusMatched) {
+  switch (matchedCount) {
+    case 6:
+      return 'SIX_MATCH';
+    case 5:
+      return isBonusMatched ? 'FIVE_MATCH_WITH_BONUS' : 'FIVE_MATCH';
+    case 4:
+      return 'FOUR_MATCH';
+    case 3:
+      return 'THREE_MATCH';
+    default:
+      return 'NO_MATCH';
+  }
+}
 
 export function calculateWins(lottos, parsedLotto) {
   const { checkedLotto, checkedBonusNumber } = parsedLotto;
+
+  const winCount = {
+    SIX_MATCH: 0,
+    FIVE_MATCH_WITH_BONUS: 0,
+    FIVE_MATCH: 0,
+    FOUR_MATCH: 0,
+    THREE_MATCH: 0,
+    NO_MATCH: 0,
+  };
+
   lottos.forEach((lotto) => {
     const matchedCount = countMatchedNumbers(
       lotto.numbers,
       checkedLotto.numbers,
     );
     const isBonusMatched = lotto.numbers.includes(checkedBonusNumber);
-
-    if (matchedCount === 6) lottoResults.winCount.SIX_MATCH += 1;
-    else if (matchedCount === 5 && isBonusMatched)
-      lottoResults.winCount.FIVE_MATCH_WITH_BONUS += 1;
-    else if (matchedCount === 5 && !isBonusMatched)
-      lottoResults.winCount.FIVE_MATCH += 1;
-    else if (matchedCount === 4) lottoResults.winCount.FOUR_MATCH += 1;
-    else if (matchedCount === 3) lottoResults.winCount.THREE_MATCH += 1;
-    else lottoResults.winCount.NO_MATCH += 1;
+    const category = getWinCategory(matchedCount, isBonusMatched);
+    winCount[category] += 1;
   });
-  return lottoResults.winCount;
+
+  return winCount;
 }
+
 export function calculatePrize(winCount, prizeMoney) {
   return Object.entries(winCount).reduce(
     (totalPrize, [prizeName, prizeCount]) => {

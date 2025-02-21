@@ -18,9 +18,7 @@ export function printPrizeHeader() {
   console.log('당첨 통계\n--------------------');
 }
 
-export function printPrize(lottoResults) {
-  const { prizeMoney, winCount } = lottoResults;
-
+export function printPrize(prizeMoney, winCount) {
   console.log(`
 3개 일치 (${prizeMoney.THREE_MATCH.toLocaleString()}원) - ${
     winCount.THREE_MATCH

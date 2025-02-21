@@ -30,7 +30,7 @@ async function playGame() {
   const revenueRate = calculateRevenueRate(total, purchasePrice);
 
   printPrizeHeader();
-  printPrize(lottoResults);
+  printPrize(lottoResults.prizeMoney, winCount);
   printRevenueRate(revenueRate);
 
   const userRetry = await getUserRetry();
