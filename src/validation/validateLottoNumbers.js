@@ -1,4 +1,4 @@
-import { ERROR } from './errors.js';
+import { ERROR } from './errorMessages.js';
 import { LOTTO } from '../constants/messages.js';
 import { hasEmptyString, isValueInteger } from './validateInput.js';
 
