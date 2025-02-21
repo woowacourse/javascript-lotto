@@ -2,7 +2,7 @@ export const isMultipleOf = (number, multiple) => {
   return number % multiple === 0;
 };
 
-export const isInRange = (number, min, max) => {
+export const isInRange = (number, min = -Infinity, max = Infinity) => {
   return number >= min && number <= max;
 };
 

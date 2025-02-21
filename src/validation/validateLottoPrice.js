@@ -1,14 +1,14 @@
 import CustomError from "../CustomError.js";
 import { LOTTO_RULE } from "../constants/lotto.js";
 import { ERROR_MESSAGE } from "../constants/message.js";
-import { isMultipleOf } from "../utils/predicate.js";
+import { isInRange, isMultipleOf } from "../utils/predicate.js";
 
 const validateLottoPrice = (price) => {
   if (!Number.isSafeInteger(price)) {
     throw new CustomError(ERROR_MESSAGE.INVALID_INTEGER);
   }
 
-  if (price < LOTTO_RULE.MIN_PRICE) {
+  if (!isInRange(price, LOTTO_RULE.MIN_PRICE)) {
     throw new CustomError(ERROR_MESSAGE.INVALID_MIN_PRICE);
   }
 
@@ -16,7 +16,7 @@ const validateLottoPrice = (price) => {
     throw new CustomError(ERROR_MESSAGE.INVALID_MULTIPLE_OF_THOUSAND);
   }
 
-  if (price > LOTTO_RULE.MAX_PRICE) {
+  if (!isInRange(price, null, LOTTO_RULE.MAX_PRICE)) {
     throw new CustomError(ERROR_MESSAGE.INVALID_OVER_MAX_PRICE);
   }
 };
