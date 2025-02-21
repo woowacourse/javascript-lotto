@@ -12,20 +12,14 @@ class LottoGame {
       5: 0,
     };
 
-    this.lottos = this.getLottos(amount);
+    this.lottos = Array.from(
+      { length: amount },
+      () => new Lotto(makeOneLottoArray()),
+    );
   }
 
   getGameResult() {
     return this.result;
-  }
-
-  getLottos(amount) {
-    const allLottos = [];
-    for (let i = 0; i < amount; i += 1) {
-      const currentLotto = makeOneLottoArray();
-      allLottos.push(new Lotto(currentLotto));
-    }
-    return allLottos;
   }
 
   calculate(targetNumber, bonusNumber) {

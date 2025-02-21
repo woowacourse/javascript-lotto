@@ -15,12 +15,16 @@ class Validator {
       .map((a) => a.trim());
     if (!ListChecker.isDefineLength(targetArray, 6))
       throw new Error(Constants.ERROR.TARGET_NUMBER_LENGTH);
-    targetArray.forEach((num) => {
-      if (NumberChecker.isMoreThan(Number(num), Constants.LOTTO.MAX_NUMBER))
-        throw new Error(Constants.ERROR.LOTTO_NUMBER_RANGE);
-      if (NumberChecker.isLessThan(Number(num), Constants.LOTTO.MIN_NUMBER))
-        throw new Error(Constants.ERROR.LOTTO_NUMBER_RANGE);
-    });
+
+    if (
+      targetArray.some(
+        (num) =>
+          NumberChecker.isMoreThan(Number(num), Constants.LOTTO.MAX_NUMBER) ||
+          NumberChecker.isLessThan(Number(num), Constants.LOTTO.MIN_NUMBER),
+      )
+    ) {
+      throw new Error(Constants.ERROR.LOTTO_NUMBER_RANGE);
+    }
   }
 
   static isBonusNumber(bonusNumberString, targetNumber) {
