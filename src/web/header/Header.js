@@ -1,3 +1,5 @@
+import './header.css';
+
 export default function Header() {
   const navBar = document.createElement('header');
   const title = document.createElement('h1');
