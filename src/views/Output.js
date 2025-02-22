@@ -1,13 +1,12 @@
-import { MATCH_KEY, MIN_UNIT, MATCH_PRIZE } from "../constants/constants.js";
+import { MATCH_KEY, MATCH_PRIZE } from "../constants/constants.js";
 
 const Output = {
   printErrorMessage(errorMessage) {
     console.log(`[ERROR] ${errorMessage}\n`);
   },
 
-  printIssuedLottos(purchaseAmount, lottos) {
-    const lottoCount = purchaseAmount / MIN_UNIT;
-    console.log(`${lottoCount}개를 구매했습니다.`);
+  printIssuedLottos(lottos) {
+    console.log(`${lottos.length}개를 구매했습니다.`);
     lottos.forEach((lotto) => console.log(`[${lotto.join(", ")}]`));
   },
 
