@@ -52,7 +52,7 @@ class LottoPack {
   }
 
   get lottos() {
-    return this.#lottos;
+    return [...this.#lottos];
   }
 }
 

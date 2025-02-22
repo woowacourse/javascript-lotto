@@ -169,7 +169,7 @@ Lotto
 - [ ] LottoMachine (현금(input) -> LottoPack(로또 용지)(output))
 - [ ] LottoPack 클래스 수정
   - [ ] count 값 관리
-  - [ ] getter -> 복사본 return
+  - [x] getter -> 복사본 return
   - [x] playCompare 메서드명 변경 -> compareAndReturnResult
   - [x] return 값 추가 -> #checkCountResult 필드값 return
 - [x] Lotto 클래스 수정
