@@ -13,11 +13,6 @@ class LottoStatus {
     this.#matchedLottoStatus = [];
   }
 
-  updateStatus(callback) {
-    const currentStatus = LOTTO_STATUS.find(callback);
-    this.#matchedLottoStatus.push(currentStatus);
-  }
-
   countMatchingNumbers(numbers) {
     return numbers.filter((number) =>
       this.#enteredLottoNumbers.includes(number)
@@ -40,26 +35,24 @@ class LottoStatus {
     });
   }
 
-  updateFinalStatus(matchingNumbers, isBonusArray) {
-    matchingNumbers.forEach((matchingNumber, index) => {
-      if (matchingNumber < 3) return;
-
-      if (matchingNumber === 5 && isBonusArray[index]) {
-        this.updateStatus((status) => status.COUNT === 5 && status.IS_BONUS);
-        return;
-      }
-
-      this.updateStatus(
-        (status) => status.COUNT === matchingNumber && !status.IS_BONUS
+  getLottoStatus(matchCount, isBonus) {
+    if (matchCount === 5) {
+      return LOTTO_STATUS.find(
+        (item) => item.COUNT === matchCount && item.IS_BONUS === isBonus
       );
-    });
+    }
+    return LOTTO_STATUS.find((item) => item.COUNT === matchCount);
   }
 
-  calculateRanks() {
-    const matchingNumbers = this.getMatchingCounts();
+  matchLottoStatus() {
+    const matchingCounts = this.getMatchingCounts();
     const isBonusArray = this.getHasBonusNumbers();
 
-    this.updateFinalStatus(matchingNumbers, isBonusArray);
+    this.#matchedLottoStatus = matchingCounts
+      .map((matchCount, index) =>
+        this.getLottoStatus(matchCount, isBonusArray[index])
+      )
+      .filter((status) => status);
   }
 
   getMatchedLottoStatus() {

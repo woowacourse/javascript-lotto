@@ -8,15 +8,15 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
     const bonusLottoNumber = 7;
 
     // when
-    const rank = new LottoStatus({
+    const lottoStatus = new LottoStatus({
       issuedLottoNumbers,
       enteredLottoNumbers,
       bonusLottoNumber,
     });
-    rank.calculateRanks();
+    lottoStatus.matchLottoStatus();
 
     // then
-    expect(rank.getMatchedLottoStatus()).toEqual([
+    expect(lottoStatus.getMatchedLottoStatus()).toEqual([
       {
         RANK: 2,
         COUNT: 5,
@@ -33,15 +33,15 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
     const bonusLottoNumber = 40;
 
     // when
-    const rank = new LottoStatus({
+    const lottoStatus = new LottoStatus({
       issuedLottoNumbers,
       enteredLottoNumbers,
       bonusLottoNumber,
     });
-    rank.calculateRanks();
+    lottoStatus.matchLottoStatus();
 
     // then
-    expect(rank.getMatchedLottoStatus(enteredLottoNumbers)).toEqual([
+    expect(lottoStatus.getMatchedLottoStatus(enteredLottoNumbers)).toEqual([
       {
         RANK: 3,
         COUNT: 5,
