@@ -1,4 +1,5 @@
 import { LOTTO_NUMBERS_ERROR_MESSAGE } from "../constants/errorMessage.js";
+import { LOTTO_NUMBERS } from "../constants/systemConstants.js";
 import runValidators from "../util/runValidators.js";
 import validationCondition from "./validateCondition.js";
 
@@ -20,7 +21,7 @@ const checkIsNumber = (winningNumberInput) => {
 };
 
 const checkLengthValid = (winningNumberInput) => {
-  if (!validationCondition.isLengthValid(winningNumberInput)) {
+  if (!validationCondition.isLengthValid(winningNumberInput, LOTTO_NUMBERS.LENGTH)) {
     throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.LENGTH);
   }
 };

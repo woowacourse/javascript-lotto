@@ -1,6 +1,7 @@
 import runValidators from "../util/runValidators.js";
 import validationCondition from "./validateCondition.js";
 import { PRICE_ERROR_MESSAGE } from "../constants/errorMessage.js";
+import { LOTTO_PRICE } from "../constants/systemConstants.js";
 
 const checkEmptyInput = (priceInput) => {
   if (validationCondition.isEmpty(priceInput)) {
@@ -15,13 +16,13 @@ const checkIsNumber = (priceInput) => {
 };
 
 const checkUnderPrice = (priceInput) => {
-  if (validationCondition.isUnder(priceInput)) {
+  if (validationCondition.isUnder(priceInput, LOTTO_PRICE)) {
     throw new Error(PRICE_ERROR_MESSAGE.UNDER_PRICE);
   }
 };
 
 const checkDivisiblePrice = (priceInput) => {
-  if (!validationCondition.isDivisible(priceInput)) {
+  if (!validationCondition.isDivisible(priceInput, LOTTO_PRICE)) {
     throw new Error(PRICE_ERROR_MESSAGE.INDIVISIBLE);
   }
 };
