@@ -3,6 +3,7 @@ import './randomLottos.css';
 export default function randomLottos(playLotto, randomLottosArray) {
   const purchasedLottoQuantity = document.createElement('p');
   purchasedLottoQuantity.innerText = `총 ${randomLottosArray.length}개를 구매하였습니다.`;
+  purchasedLottoQuantity.className = 'purchaesd-quantity';
   playLotto.appendChild(purchasedLottoQuantity);
 
   const randomLottos = document.createElement('div');

@@ -35,6 +35,7 @@ export default function PlayLotto() {
 
       const winningNumberInputHeader = document.createElement('p');
       winningNumberInputHeader.innerText = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
+      winningNumberInputHeader.className = 'header';
       playLotto.appendChild(winningNumberInputHeader);
     } catch (error) {
       alert(error.message);

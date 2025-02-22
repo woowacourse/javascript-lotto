@@ -33,3 +33,7 @@ button:hover {
   background-color: #3f4e8f;
   scale: 1.1;
 }
+
+.header {
+  font-weight: bold;
+}
