@@ -1,9 +1,9 @@
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import { LINE_BREAK, LOTTO_NUMBER_DELIMITER, INPUT_MESSAGE } from '../constants/constants.js';
-import validatePurchaseMoney from '../validations/validate/PurchaseMoneyValidate.js';
+import validatePurchaseMoney from '../validations/validate/validatePurchaseMoney.js';
 import Lotto from '../domain/Lotto.js';
-import validateReStart from '../validations/validate/ReStartValidate.js';
+import validateReStart from '../validations/validate/validateRestart.js';
 
 const InputHandler = {
   async purchaseMoney() {

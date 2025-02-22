@@ -1,4 +1,4 @@
-import validatePurchaseMoney from '../../src/validations/validate/purchaseMoneyValidate.js';
+import validatePurchaseMoney from '../../src/validations/validate/validatePurchaseMoney.js';
 import { PURCHASE_NUMBER_ERROR_MESSAGES, LOTTO_CONDITION } from '../../src/constants/constants.js';
 
 test.each([1.5, ''])('정수가 아닌 경우 에러 발생', (input) => {

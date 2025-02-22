@@ -1,5 +1,5 @@
 import { BONUS_NUMBER_ERROR_MESSAGES, LOTTO_CONDITION } from "../../src/constants/constants.js";
-import validateBonusNumber from "../../src/validations/validate/bonusNumberValidate.js";
+import validateBonusNumber from "../../src/validations/validate/validateBonusNumber.js";
 import Lotto from "../../src/domain/Lotto.js";
 
 const winningNumbers = new Lotto([1,2,3,4,5,6])

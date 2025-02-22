@@ -1,4 +1,4 @@
-import validateReStart from "../../src/validations/validate/reStartValidate.js";
+import validateReStart from "../../src/validations/validate/validateRestart.js";
 import { Y_OR_NO_ERROR_MESSAGE } from "../../src/constants/constants.js";
 import {YES} from "../../src/constants/constants.js";
 import { NO } from "../../src/constants/constants.js";

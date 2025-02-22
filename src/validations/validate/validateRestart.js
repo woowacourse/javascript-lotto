@@ -1,7 +1,7 @@
 import { Y_OR_NO_ERROR_MESSAGE, YES, NO } from "../../constants/constants.js";
 import runValidators from "../../utils/runValidators.js";
 
-export const reStartValidator = {
+const reStartValidator = {
   isYesOrNo(input){
     return input===YES||input===NO;
   },
