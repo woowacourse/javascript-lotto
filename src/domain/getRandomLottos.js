@@ -1,24 +1,28 @@
 import { LOTTO } from '../constants/messages.js';
-import { getRandomNumber } from '../utils/getRandomNumber.js';
 
 export const getRandomLottos = (quantity) => {
   const lottos = [];
   Array.from({ length: quantity }, () => {
-    const lotto = retryIfDuplicatedRandomNumbers();
-
+    const lotto = generateLotto();
     lottos.push(lotto);
   });
 
   return lottos;
 };
 
-export const retryIfDuplicatedRandomNumbers = () => {
-  const setRandomNumbers = new Set();
+export const generateLotto = () => {
+  const numbers = Array.from({ length: LOTTO.MAX_LOTTO_NUMBER }, (_, index) => index + 1);
 
-  while (setRandomNumbers.size !== LOTTO.MAX_LENGTH) {
-    setRandomNumbers.clear();
-    Array.from({ length: LOTTO.MAX_LENGTH }, () => setRandomNumbers.add(getRandomNumber()));
-  }
+  const shuffle = (arr) => {
+    const array = [...arr];
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
 
-  return [...setRandomNumbers].sort((a, b) => a - b);
+  return shuffle(numbers)
+    .slice(0, 6)
+    .sort((a, b) => a - b);
 };
