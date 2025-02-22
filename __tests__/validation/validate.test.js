@@ -3,7 +3,7 @@ import {
   validateEmpty,
   validateNumber,
   validateRange,
-} from "../../src/validation/Validate.js";
+} from "../../src/validation/validate.js";
 
 describe("입력 값 유효성 테스트를 진행한다.", () => {
   test("입력이 비어있으면 오류를 발생시킨다.", () => {

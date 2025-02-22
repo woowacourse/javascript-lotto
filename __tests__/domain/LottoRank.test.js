@@ -13,7 +13,6 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
       enteredLottoNumbers,
       bonusLottoNumber,
     });
-    lottoStatus.matchLottoStatus();
     const matchedLottoStatus = lottoStatus.getMatchedLottoStatus();
 
     // then
@@ -32,7 +31,6 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
       enteredLottoNumbers,
       bonusLottoNumber,
     });
-    lottoStatus.matchLottoStatus();
     const matchedLottoStatus = lottoStatus.getMatchedLottoStatus();
 
     // then
