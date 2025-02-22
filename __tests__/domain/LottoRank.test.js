@@ -1,4 +1,3 @@
-import Lotto from "../../src/domain/Lotto.js";
 import LottoRank from "../../src/domain/LottoRank.js";
 
 describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를 기반으로 로또 Rank를 매칭한다", () => {
@@ -6,11 +5,15 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
     // given
     const issuedLottoNumbers = [[2, 3, 4, 5, 6, 7]];
     const enteredLottoNumbers = [1, 2, 3, 4, 5, 6];
-    const bonusNumber = 7;
+    const bonusLottoNumber = 7;
 
     // when
-    const rank = new LottoRank(issuedLottoNumbers);
-    rank.calculateRank(enteredLottoNumbers, bonusNumber);
+    const rank = new LottoRank({
+      issuedLottoNumbers,
+      enteredLottoNumbers,
+      bonusLottoNumber,
+    });
+    rank.calculateRank();
 
     // then
     expect(rank.getMatchedLottoStatus()).toEqual([
@@ -27,11 +30,15 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
     // given
     const issuedLottoNumbers = [[2, 3, 4, 5, 6, 7]];
     const enteredLottoNumbers = [1, 2, 3, 4, 5, 6];
-    const bonusNumber = 40;
+    const bonusLottoNumber = 40;
 
     // when
-    const rank = new LottoRank(issuedLottoNumbers);
-    rank.calculateRank(enteredLottoNumbers, bonusNumber);
+    const rank = new LottoRank({
+      issuedLottoNumbers,
+      enteredLottoNumbers,
+      bonusLottoNumber,
+    });
+    rank.calculateRank();
 
     // then
     expect(rank.getMatchedLottoStatus(enteredLottoNumbers)).toEqual([

@@ -65,10 +65,12 @@ const game = async () => {
   Output.print(OUTPUT.WINNING_HISTORY);
   Output.print(OUTPUT.LINE);
 
-  const lottoRank = new LottoRank(
-    lottos.map((lotto) => lotto.getLottoNumbers())
-  );
-  lottoRank.calculateRank(winningLotto.getLottoNumbers(), bonusLottoNumber);
+  const lottoRank = new LottoRank({
+    issuedLottoNumbers: lottos.map((lotto) => lotto.getLottoNumbers()),
+    enteredLottoNumbers: winningLotto.getLottoNumbers(),
+    bonusLottoNumber,
+  });
+  lottoRank.calculateRank();
   const lottoStatus = lottoRank.getMatchedLottoStatus();
 
   const lottoResult = new LottoResult(lottoStatus, price);
