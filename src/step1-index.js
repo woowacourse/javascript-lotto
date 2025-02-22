@@ -79,7 +79,7 @@ const start = async () => {
     return input.toLowerCase();
   });
 
-  if (retry === "y") await game();
+  if (retry === "y") await start();
 };
 
 start();
