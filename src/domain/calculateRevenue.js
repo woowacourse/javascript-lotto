@@ -1,25 +1,22 @@
-import { LOTTO, MATCH } from '../constants/messages.js';
+import { LOTTO } from '../constants/messages.js';
 
 export const calculateRevenue = (matchCounts, purchasePrice) => {
-  return Number(
-    (
-      (matchCounts.reduce((acc, cur, idx) => {
-        if (idx >= 3) {
-          acc += cur * calculateRevenueByMatch(idx);
-        }
-        return acc;
-      }, 0) /
-        purchasePrice) *
-      100
-    ).toFixed(1),
-  );
+  const totalRevenue = matchCounts
+    .map((matchCount, idx) => ({ matchCount, idx }))
+    .filter(({ idx }) => idx >= 3)
+    .reduce((acc, { matchCount, idx }) => acc + matchCount * calculateRevenueByMatch(idx), 0);
+
+  return Number(((totalRevenue / purchasePrice) * 100).toFixed(1));
 };
 
+export const PRIZE_OF_MATCH_COUNT = Object.freeze({
+  [LOTTO.SIX_MATCH]: 2000000000,
+  [LOTTO.FIVE_WITH_BONUS_MATCH_IDX]: 30000000,
+  [LOTTO.FIVE_MATCH]: 1500000,
+  [LOTTO.FOUR_MATCH]: 50000,
+  [LOTTO.THREE_MATCH]: 5000,
+});
+
 export const calculateRevenueByMatch = (matchCount) => {
-  if (matchCount === LOTTO.SIX_MATCH) return MATCH.PRIZE_OF_SIX_MATCH;
-  else if (matchCount === LOTTO.FIVE_WITH_BONUS_MATCH_IDX) return MATCH.PRIZE_OF_FIVE_WITH_BONUS_MATCH;
-  else if (matchCount === LOTTO.FIVE_MATCH) return MATCH.PRIZE_OF_FIVE_MATCH;
-  else if (matchCount === LOTTO.FOUR_MATCH) return MATCH.PRIZE_OF_FOUR_MATCH;
-  else if (matchCount === LOTTO.THREE_MATCH) return MATCH.PRIZE_OF_THREE_MATCH;
-  return 0;
+  return PRIZE_OF_MATCH_COUNT[matchCount] || 0;
 };
