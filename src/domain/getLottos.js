@@ -1,6 +1,6 @@
 import { LOTTO } from '../constants/messages.js';
 
-export const getRandomLottos = (quantity) => {
+export const getLottos = (quantity) => {
   const lottos = [];
   Array.from({ length: quantity }, () => {
     const lotto = generateLotto();
