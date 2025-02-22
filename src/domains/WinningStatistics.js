@@ -3,14 +3,14 @@ import { MATCH_KEY, MATCH_PRIZE } from "../constants/constants.js";
 class WinningStatistics {
   #lottos = [];
   #statistics = new Map([
-    [MATCH_KEY.THREE, { count: 0, amount: MATCH_PRIZE.THREE }],
-    [MATCH_KEY.FOUR, { count: 0, amount: MATCH_PRIZE.FOUR }],
-    [MATCH_KEY.FIVE, { count: 0, amount: MATCH_PRIZE.FIVE }],
+    [MATCH_KEY.THREE, { count: 0, amount: MATCH_PRIZE[MATCH_KEY.THREE] }],
+    [MATCH_KEY.FOUR, { count: 0, amount: MATCH_PRIZE[MATCH_KEY.FOUR] }],
+    [MATCH_KEY.FIVE, { count: 0, amount: MATCH_PRIZE[MATCH_KEY.FIVE] }],
     [
       MATCH_KEY.FIVE_AND_BONUS,
-      { count: 0, amount: MATCH_PRIZE.FIVE_AND_BONUS },
+      { count: 0, amount: MATCH_PRIZE[MATCH_KEY.FIVE_AND_BONUS] },
     ],
-    [MATCH_KEY.SIX, { count: 0, amount: MATCH_PRIZE.SIX }],
+    [MATCH_KEY.SIX, { count: 0, amount: MATCH_PRIZE[MATCH_KEY.SIX] }],
   ]);
 
   constructor(lottos) {

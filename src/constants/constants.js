@@ -19,11 +19,11 @@ export const MATCH_KEY = Object.freeze({
 });
 
 export const MATCH_PRIZE = Object.freeze({
-  THREE: 5_000,
-  FOUR: 50_000,
-  FIVE: 1_500_000,
-  FIVE_AND_BONUS: 30_000_000,
-  SIX: 2_000_000_000,
+  [MATCH_KEY.THREE]: 5_000,
+  [MATCH_KEY.FOUR]: 50_000,
+  [MATCH_KEY.FIVE]: 1_500_000,
+  [MATCH_KEY.FIVE_AND_BONUS]: 30_000_000,
+  [MATCH_KEY.SIX]: 2_000_000_000,
 });
 
 export const PURCHASE_AMOUNT_ERROR_MESSAGES = Object.freeze({
