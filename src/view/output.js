@@ -15,9 +15,9 @@ export const printPurchasedQuantity = (quantity) => {
   console.log(OUTPUT.PURCHASED_QUANTITY(quantity));
 };
 
-export const printRandomLottos = (randomLottos) => {
-  randomLottos.forEach((randomLotto) => {
-    console.log(randomLotto);
+export const printLottos = (lottos) => {
+  lottos.forEach((lotto) => {
+    console.log(lotto);
   });
 };
 
