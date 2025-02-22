@@ -186,5 +186,9 @@ Lotto
   - [x] Lotto 도메인
   - [x] LottoPack 도메인
   - [x] LottoMachine 도메인
+    - [x] purchaseLottoCount 도메인
+    - [ ] generateLottoNumbersSet 도메인
+      - [ ] createSixRandomNumbers 도메인
+        - [ ] pushRandomNumbers 도메인
 - [ ] 테스트명 수정
 - [ ] 테스트 코드 -> 상수 및 변수 처리
