@@ -1,26 +1,27 @@
 import { LOTTO_STATUS } from "../constants/lotto.js";
 
 class LottoMachine {
-  issuedLottoNumbers;
+  #issuedLottoNumbers;
+  #matchedLottoStatus;
 
   constructor(issuedLottoNumbers) {
-    this.issuedLottoNumbers = issuedLottoNumbers;
-    this.matchedLottoStatus = [];
+    this.#issuedLottoNumbers = issuedLottoNumbers;
+    this.#matchedLottoStatus = [];
   }
 
   updateStatus(callback) {
     const currentStatus = LOTTO_STATUS.find(callback);
-    this.matchedLottoStatus.push(currentStatus);
+    this.#matchedLottoStatus.push(currentStatus);
   }
 
   getMatchingNumbers(enteredLottoNumbers) {
-    return this.issuedLottoNumbers.map((lotto) => {
+    return this.#issuedLottoNumbers.map((lotto) => {
       return lotto.getSameNumbersLength(enteredLottoNumbers);
     });
   }
 
   getHasBonusNumbers(bonusLottoNumbers) {
-    return this.issuedLottoNumbers.map((lotto) => {
+    return this.#issuedLottoNumbers.map((lotto) => {
       return lotto.hasNumber(bonusLottoNumbers);
     });
   }
@@ -44,7 +45,7 @@ class LottoMachine {
   }
 
   getMatchedLottoStatus() {
-    return this.matchedLottoStatus;
+    return this.#matchedLottoStatus;
   }
 }
 
