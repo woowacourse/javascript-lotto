@@ -10,8 +10,8 @@ function shuffleArray(array) {
   return array;
 }
 
-export function getUniqueRandomNumbers(numberRange, count) {
-  const { min, max } = numberRange;
+export function getUniqueRandomNumbers(numberRange) {
+  const { min, max, count } = numberRange;
   const numbers = createNumberArray(min, max);
   const shuffled = shuffleArray(numbers);
   return shuffled.slice(0, count);

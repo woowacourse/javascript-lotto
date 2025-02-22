@@ -10,11 +10,9 @@ export default function makeLotto(purchaseAmount) {
     const numberRange = {
       min: systemSettings.minLottoNumber,
       max: systemSettings.maxLottoNumber,
+      count: systemSettings.lottoSize,
     };
-    const numbers = getUniqueRandomNumbers(
-      numberRange,
-      systemSettings.lottoSize,
-    );
+    const numbers = getUniqueRandomNumbers(numberRange);
     const lotto = new Lotto(numbers);
     printLotto(lotto);
     lottos.push(lotto);
