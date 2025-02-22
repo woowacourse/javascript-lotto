@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from '../settings/ErrorMessage.js';
+import ERROR_MESSAGE from '../constants/ErrorMessage.js';
 
 export default function validateUserRetry(userInput) {
   if (userInput.toLowerCase() !== 'y' && userInput.toLowerCase() !== 'n')
