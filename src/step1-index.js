@@ -20,7 +20,8 @@ async function run() {
   const stringOfWinningNumbers = await handleUserInput(INPUT.WINNING_NUMBERS, validateWinningNumbers);
   const winningNumbers = parseWinningNumbers(stringOfWinningNumbers);
 
-  const bonusNumber = await handleUserInput(INPUT.BONUS_NUMBER, validateBonusNumber, winningNumbers);
+  const stirngOfbonusNumber = await handleUserInput(INPUT.BONUS_NUMBER, validateBonusNumber, winningNumbers);
+  const bonusNumber = Number(stirngOfbonusNumber);
   const lottoNumbers = { winningNumbers, bonusNumber };
 
   const matchCounts = getWinningMatchCount(randomlottos, lottoNumbers);
