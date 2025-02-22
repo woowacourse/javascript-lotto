@@ -9,8 +9,8 @@ class Lotto {
     this.#validate();
   }
 
-  set ranking(ranking){
-    this.#ranking=ranking
+  set ranking(ranking) {
+    this.#ranking = ranking;
   }
 
   #validate() {
@@ -25,7 +25,7 @@ class Lotto {
     return this.#numbers;
   }
 
-  get ranking(){
+  get ranking() {
     return this.#ranking;
   }
 }

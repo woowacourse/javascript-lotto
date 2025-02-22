@@ -1,25 +1,23 @@
-import { RANKING } from "../constants/constants.js"
-
 class LottoResult {
-    #result
+  #result;
 
-    constructor(){
-        this.#result={
-            1:0,
-            2:0,
-            3:0,
-            4:0,
-            5:0
-        }
-    }
+  constructor() {
+    this.#result = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+    };
+  }
 
-    addRankingCount(ranking){
-        this.#result[ranking]++
-    }
+  addRankingCount(ranking) {
+    this.#result[ranking] += 1;
+  }
 
-    get result(){
-        return this.#result;
-    }
+  get result() {
+    return this.#result;
+  }
 }
 
-export default LottoResult
+export default LottoResult;

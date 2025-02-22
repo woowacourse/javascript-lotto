@@ -7,9 +7,9 @@ class LottoMaker {
   #lottoList;
 
   constructor(money) {
-    this.calculatePurchaseCount(money)
+    this.calculatePurchaseCount(money);
     this.#lottoList = [];
-    this.purchase()
+    this.purchase();
   }
 
   calculatePurchaseCount(money) {
@@ -24,7 +24,7 @@ class LottoMaker {
     return new Lotto(randomNumber);
   }
 
-  get purchaseCount(){
+  get purchaseCount() {
     return this.#purchaseCount;
   }
 

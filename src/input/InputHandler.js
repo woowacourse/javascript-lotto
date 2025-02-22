@@ -8,53 +8,51 @@ import { validateYorN } from '../validations/validate/ReStartValidate.js';
 
 const InputHandler = {
   async purchaseMoney() {
-      try {
-        const purchaseMoney = await InputView.readUserInput(INPUT_MESSAGE.PURCHASE);
-        validatePurchaseMoney(Number(purchaseMoney));
-        OutputView.print(LINE_BREAK);
-        return purchaseMoney;
-      } catch (e) {
-        OutputView.print(e.message);
-        return await this.purchaseMoney()
-      }
+    try {
+      const purchaseMoney = await InputView.readUserInput(INPUT_MESSAGE.PURCHASE);
+      validatePurchaseMoney(Number(purchaseMoney));
+      OutputView.print(LINE_BREAK);
+      return purchaseMoney;
+    } catch (e) {
+      OutputView.print(e.message);
+      return await this.purchaseMoney();
+    }
   },
 
   async winningNumbers() {
-      try {
-        const winningNumbers = await InputView.readUserInput(INPUT_MESSAGE.WINNING_NUMBERS);
-        OutputView.print(LINE_BREAK);
-        return new Lotto(winningNumbers.split(LOTTO_NUMBER_DELIMITER).map(num => Number(num)));
-      } catch (e) {
-        OutputView.print(e.message);
-        return await this.winningNumbers()
-      }
+    try {
+      const winningNumbers = await InputView.readUserInput(INPUT_MESSAGE.WINNING_NUMBERS);
+      OutputView.print(LINE_BREAK);
+      return new Lotto(winningNumbers.split(LOTTO_NUMBER_DELIMITER).map((num) => Number(num)));
+    } catch (e) {
+      OutputView.print(e.message);
+      return await this.winningNumbers();
+    }
   },
 
   async bonusNumber(winningNumbers) {
-      try {
-        const bonusNumber = Number(await InputView.readUserInput(INPUT_MESSAGE.BONUS_NUMBER));
-        validateBonusNumber(winningNumbers, bonusNumber);
-        OutputView.print(LINE_BREAK);
-        return bonusNumber
-      } catch (e) {
-        OutputView.print(e.message);
-        return await this.bonusNumber(winningNumbers)
-      }
+    try {
+      const bonusNumber = Number(await InputView.readUserInput(INPUT_MESSAGE.BONUS_NUMBER));
+      validateBonusNumber(winningNumbers, bonusNumber);
+      OutputView.print(LINE_BREAK);
+      return bonusNumber;
+    } catch (e) {
+      OutputView.print(e.message);
+      return await this.bonusNumber(winningNumbers);
+    }
   },
 
   async reStart() {
-      try {
-        const input = await InputView.readUserInput(INPUT_MESSAGE.RE_START);
-        validateYorN(input);
-        OutputView.print(LINE_BREAK);
-        return input
-      } catch (e) {
-        OutputView.print(e.message);
-        return await this.reStart()
-      }
+    try {
+      const input = await InputView.readUserInput(INPUT_MESSAGE.RE_START);
+      validateYorN(input);
+      OutputView.print(LINE_BREAK);
+      return input;
+    } catch (e) {
+      OutputView.print(e.message);
+      return await this.reStart();
+    }
   },
 };
-
-
 
 export default InputHandler;
