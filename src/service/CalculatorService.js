@@ -1,5 +1,13 @@
-import systemSettings from '../constants/systemSettings.js';
 import countMatchedNumbers from '../util/countMatchedNumbers.js';
+
+const winCount = {
+  NO_MATCH: 0,
+  THREE_MATCH: 0,
+  FOUR_MATCH: 0,
+  FIVE_MATCH: 0,
+  FIVE_MATCH_WITH_BONUS: 0,
+  SIX_MATCH: 0,
+};
 
 export function calculateWins(lottos, parsedLotto) {
   const { checkedLotto, checkedBonusNumber } = parsedLotto;
@@ -10,16 +18,24 @@ export function calculateWins(lottos, parsedLotto) {
     );
     const isBonusMatched = lotto.numbers.includes(checkedBonusNumber);
 
-    if (matchedCount === 6) systemSettings.winCount.SIX_MATCH += 1;
-    else if (matchedCount === 5 && isBonusMatched)
-      systemSettings.winCount.FIVE_MATCH_WITH_BONUS += 1;
-    else if (matchedCount === 5 && !isBonusMatched)
-      systemSettings.winCount.FIVE_MATCH += 1;
-    else if (matchedCount === 4) systemSettings.winCount.FOUR_MATCH += 1;
-    else if (matchedCount === 3) systemSettings.winCount.THREE_MATCH += 1;
-    else systemSettings.winCount.NO_MATCH += 1;
+    switch (matchedCount) {
+      case 6:
+        winCount.SIX_MATCH += 1;
+        break;
+      case 5:
+        winCount[isBonusMatched ? 'FIVE_MATCH_WITH_BONUS' : 'FIVE_MATCH'] += 1;
+        break;
+      case 4:
+        winCount.FOUR_MATCH += 1;
+        break;
+      case 3:
+        winCount.THREE_MATCH += 1;
+        break;
+      default:
+        winCount.NO_MATCH += 1;
+    }
   });
-  return systemSettings.winCount;
+  return winCount;
 }
 
 export function calculatePrize(winCount, prizeMoney) {
