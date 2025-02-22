@@ -28,16 +28,16 @@ export const inputWinningNumbers = async () => {
   }
 };
 
-export const inputBonusNumber = async (winningNumber) => {
+export const inputBonusNumber = async (winningNumbers) => {
   try {
     const bonusNumber = Number(
       await readLineAsync("\n보너스 번호를 입력해 주세요.")
     );
-    validateBonusNumber(winningNumber, bonusNumber);
+    validateBonusNumber(winningNumbers, bonusNumber);
     return bonusNumber;
   } catch (error) {
     console.log(error.message);
-    return await inputBonusNumber(winningNumber);
+    return await inputBonusNumber(winningNumbers);
   }
 };
 
@@ -50,14 +50,4 @@ export const inputAskForRestart = async () => {
     console.log(error.message);
     return await inputAskForRestart();
   }
-};
-
-export const inputWinningLotto = async () => {
-  const winningNumbers = await inputWinningNumbers();
-  const bonusNumber = await inputBonusNumber(winningNumbers);
-
-  return {
-    winningNumbers: winningNumbers,
-    bonusNumber: bonusNumber,
-  };
 };

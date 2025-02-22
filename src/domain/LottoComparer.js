@@ -1,39 +1,40 @@
 import { PRIZE } from "../config/const.js";
 
 class LottoComparer {
-  #userLottos;
-  #winningNumber;
+  #winningNumbers;
   #bonusNumber;
 
-  constructor(userLottos, winningLotto) {
-    this.#userLottos = userLottos;
-    this.#winningNumber = winningLotto.winningNumbers;
-    this.#bonusNumber = winningLotto.bonusNumber;
+  constructor(winningNumbers, bonusNumber) {
+    this.#winningNumbers = winningNumbers;
+    this.#bonusNumber = bonusNumber;
   }
 
-  #compareMatchingNumbers(userLotto) {
-    return userLotto.reduce((acc, lottoNumber) => {
-      if (this.#winningNumber.includes(lottoNumber)) {
-        acc += 1;
-      }
-      return acc;
-    }, 0);
+  lottoCompareResult(generatedLottos) {
+    let compareResult = [];
+    generatedLottos.forEach((lotto) => {
+      const matchingCount = this.#getMatchingCount(lotto);
+      this.#getResult(matchingCount, lotto, compareResult);
+    });
+    return compareResult;
   }
 
-  countMatchingNumbers() {
-    return this.#userLottos.reduce((acc, cur, index) => {
-      const matchingCount = this.#compareMatchingNumbers(cur.numbers);
-      if (matchingCount < PRIZE.MIN_MATCH_COUNT) return acc;
-      const isBonus = this.#userLottos[index].numbers.includes(
-        this.#bonusNumber
-      );
-      if (matchingCount === PRIZE.BONUS_MATCH_COUNT && isBonus) {
-        acc.push("bonus");
-        return acc;
-      }
-      acc.push(matchingCount);
-      return acc;
-    }, []);
+  #getMatchingCount(lotto) {
+    return lotto.numbers.filter((number) =>
+      this.#winningNumbers.includes(number)
+    ).length;
+  }
+
+  #getResult(matchingCount, lotto, compareResult) {
+    if (matchingCount >= PRIZE.MIN_MATCH_COUNT) {
+      compareResult.push({
+        matchCount: matchingCount,
+        hasBonus: this.#hasBonusNumber(matchingCount, lotto),
+      });
+    }
+  }
+
+  #hasBonusNumber(matchingCount, lotto) {
+    return matchingCount === 5 && lotto.numbers.includes(this.#bonusNumber);
   }
 }
 

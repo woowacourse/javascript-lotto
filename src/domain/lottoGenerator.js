@@ -1,6 +1,14 @@
 import { PURCHASE, LOTTO } from "../config/const.js";
 import Lotto from "./Lotto.js";
 
+function getGenerateLottos(price) {
+  let generatedLottos = [];
+  for (let i = 0; i < price / PURCHASE.UNIT; i++) {
+    generatedLottos.push(new Lotto(getRandomNumbers()));
+  }
+  return generatedLottos;
+}
+
 function getRandomNumbers() {
   const randomNumbers = new Set();
   while (randomNumbers.size < LOTTO.MAX_LENGTH) {
@@ -9,14 +17,6 @@ function getRandomNumbers() {
     );
   }
   return [...randomNumbers];
-}
-
-function getGenerateLottos(price) {
-  let generatedLottos = [];
-  for (let i = 0; i < price / PURCHASE.UNIT; i++) {
-    generatedLottos.push(new Lotto(getRandomNumbers()));
-  }
-  return generatedLottos;
 }
 
 export default getGenerateLottos;

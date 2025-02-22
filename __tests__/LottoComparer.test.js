@@ -1,9 +1,8 @@
 import Lotto from "../src/domain/Lotto.js";
 import LottoComparer from "../src/domain/LottoComparer.js";
 
-let lottoComparer;
-beforeEach(() => {
-  const userLottos = [
+test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.", () => {
+  const generatedLottos = [
     new Lotto([1, 2, 3, 4, 5, 6]),
     new Lotto([1, 3, 4, 5, 6, 10]),
     new Lotto([1, 3, 4, 5, 6, 7]),
@@ -12,18 +11,17 @@ beforeEach(() => {
     new Lotto([1, 6, 7, 8, 9, 10]),
     new Lotto([1, 7, 8, 9, 10, 11]),
   ];
-  const winningNumber = [1, 2, 3, 4, 5, 6];
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
 
-  const winningLotto = {
-    winningNumbers: winningNumber,
-    bonusNumber: bonusNumber,
-  };
-  lottoComparer = new LottoComparer(userLottos, winningLotto);
-});
+  const lottoComparer = new LottoComparer(winningNumbers, bonusNumber);
+  const compareResult = lottoComparer.lottoCompareResult(generatedLottos);
 
-test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.", () => {
-  const countResults = lottoComparer.countMatchingNumbers();
-
-  expect(countResults).toEqual([6, 5, "bonus", 4, 3]);
+  expect(compareResult).toEqual([
+    { matchCount: 6, hasBonus: false },
+    { matchCount: 5, hasBonus: false },
+    { matchCount: 5, hasBonus: true },
+    { matchCount: 4, hasBonus: false },
+    { matchCount: 3, hasBonus: false },
+  ]);
 });

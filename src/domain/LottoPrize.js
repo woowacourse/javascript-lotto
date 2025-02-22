@@ -1,11 +1,11 @@
 import { PRIZE } from "../config/const.js";
 
 class LottoPrize {
-  #countResults;
+  #compareResult;
   #prizeResult;
 
-  constructor(countResults) {
-    this.#countResults = countResults;
+  constructor(compareResult) {
+    this.#compareResult = compareResult;
     this.#prizeResult = {
       firstPrize: 0,
       secondPrize: 0,
@@ -19,31 +19,19 @@ class LottoPrize {
     return this.#prizeResult;
   }
 
-  calculateWinnings() {
-    this.#countResults.reduce((acc, cur) => {
-      acc[this.#switchCountToPrize(cur)] += 1;
-      return acc;
-    }, this.#prizeResult);
+  calculateTotalPrizeCount() {
+    this.#compareResult.forEach(({ matchCount, hasBonus }) => {
+      if (matchCount === 6) ++this.#prizeResult.firstPrize;
+      else if (matchCount === 5 && hasBonus) ++this.#prizeResult.secondPrize;
+      else if (matchCount === 5 && !hasBonus) ++this.#prizeResult.thirdPrize;
+      else if (matchCount === 4) ++this.#prizeResult.fourthPrize;
+      else if (matchCount === 3) ++this.#prizeResult.fifthPrize;
+    });
   }
 
   calculateROI(price) {
     if (this.#calculateTotalPrize() === 0) return 0;
     return (((this.#calculateTotalPrize() - price) / price) * 100).toFixed(2);
-  }
-
-  #switchCountToPrize(countResult) {
-    switch (countResult) {
-      case 3:
-        return "fifthPrize";
-      case 4:
-        return "fourthPrize";
-      case 5:
-        return "thirdPrize";
-      case "bonus":
-        return "secondPrize";
-      case 6:
-        return "firstPrize";
-    }
   }
 
   #calculateTotalPrize() {
