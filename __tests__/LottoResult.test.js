@@ -32,9 +32,11 @@ test("당첨 내역을 기반으로 총 수입을 구한다.", () => {
   expect(profit).toEqual(30_050_000);
 });
 
-test("당첨된 내역을 기반으로 수익률을 구한다.", () => {
+test.each([
+  [[{ RANK: 5, COUNT: 3, REWORD: 5000, IS_BONUS: false }], "62.5"],
+  [[], "0.0"],
+])("당첨된 내역을 기반으로 수익률을 구한다.", (lottoStatus, result) => {
   //given
-  const lottoStatus = [{ RANK: 5, COUNT: 3, REWORD: 5000, IS_BONUS: false }];
   const price = 8000;
   const lottoResult = new LottoResult(lottoStatus, price);
 
@@ -42,5 +44,5 @@ test("당첨된 내역을 기반으로 수익률을 구한다.", () => {
   const rate = lottoResult.calculateRate();
 
   //then
-  expect(rate).toEqual("62.5");
+  expect(rate).toEqual(result);
 });
