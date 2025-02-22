@@ -1,6 +1,6 @@
 import { getRandomLottos } from '../../../domain/getRandomLottos';
 import { LOTTO } from '../../../domain/lottoConstants';
-import randomLottos from '../randomLottos/randomLottos';
+import randomLottos from '../randomLottos/RandomLottos';
 import { getArrayOfStrings } from '../utils/getArrayOfStrings';
 import './PlayLotto.css';
 
