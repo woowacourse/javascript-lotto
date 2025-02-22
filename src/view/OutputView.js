@@ -22,6 +22,7 @@ const OutputView = {
   },
 
   printStatstics(lottoResult){
+    OutputView.print(LINE_BREAK);
     OutputView.print(MESSAGE.STATISTICS)
     OutputView.print(MESSAGE.LINE)
     OutputView.printLottoResult(lottoResult.result)

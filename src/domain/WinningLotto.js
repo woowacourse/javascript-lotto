@@ -1,3 +1,5 @@
+import validateBonusNumber from "../validations/validate/bonusNumberValidate.js";
+
 class WinningLotto {
   #winningLotto;
   #bonusNumber;
@@ -5,6 +7,7 @@ class WinningLotto {
   constructor(winningLotto, bonusNumber) {
     this.#winningLotto = winningLotto
     this.#bonusNumber = bonusNumber
+    validateBonusNumber(this.#winningLotto, this.#bonusNumber);
   }
 
   matchedWinningCount(lotto){

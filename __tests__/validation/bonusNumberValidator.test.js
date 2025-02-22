@@ -1,7 +1,8 @@
 import { BONUS_NUMBER_ERROR_MESSAGES, LOTTO_CONDITION } from "../../src/constants/constants.js";
 import validateBonusNumber from "../../src/validations/validate/bonusNumberValidate.js";
+import Lotto from "../../src/domain/Lotto.js";
 
-const winningNumbers = [1,2,3,4,5,6]
+const winningNumbers = new Lotto([1,2,3,4,5,6])
 test.each([1.5, ''])('정수가 아닌 경우 에러 발생', (input) => {
     expect(() => validateBonusNumber(winningNumbers, input)).toThrow(BONUS_NUMBER_ERROR_MESSAGES.INTIGER);
   });

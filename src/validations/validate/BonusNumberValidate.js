@@ -4,7 +4,7 @@ import { numberUtils } from "../utils/numberUtils.js";
 
 const bonusNumberValidator = {
   isDuplicated(winningNumbers, bonusNumber) {
-    return winningNumbers.includes(bonusNumber);
+    return winningNumbers.hasNumber(bonusNumber);
  },
 };
 
