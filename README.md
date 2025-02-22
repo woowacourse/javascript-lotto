@@ -37,17 +37,18 @@
 
 ## Body
 
-- '🎱내 번호 당첨 확인🎱' 컴포넌트 UI
-  - CSS
-- 구매 금액 입력
-  - '구입할 금액을 입력해주세요.' 컴포넌트 UI
-    - CSS
-  - 구매 입력 Input 태그 및 Button 컴포넌트 UI
-    - CSS
-- 총 #개를 구매하였습니다' 컴포넌트 UI
-  - CSS
-- 구입한 로또들의 리스트 컴포넌트 UI
-  - CSS
+- [x] '🎱내 번호 당첨 확인🎱' 컴포넌트 UI
+  - [x] CSS
+- [x] 구매 금액 입력
+  - [x] '구입할 금액을 입력해주세요.' 컴포넌트 UI
+    - [x] CSS
+  - [x] 구매 입력 Input 태그 및 Button 컴포넌트 UI
+    - [x] CSS
+  - [x] 구입금액 javascript 로직
+- [x] 총 #개를 구매하였습니다' 컴포넌트 UI
+  - [x] CSS
+- [x] 구입한 로또들의 리스트 컴포넌트 UI
+  - [x] CSS
 - '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.' 컴포넌트 UI
   - CSS
 - 당첨번호와 보너스 번호 컴포넌트 UI
@@ -57,8 +58,8 @@
 
 ## Footer
 
-- [ ] 'Copyright 2023. woowacourse' Footer 컴포넌트 UI
-  - [ ] footer CSS
+- [x] 'Copyright 2023. woowacourse' Footer 컴포넌트 UI
+  - [x] footer CSS
 
 ## 당첨 통계
 
