@@ -1,5 +1,5 @@
 import { LOTTO_NUMBER_LENGTH, MIN_PRICE } from '../constants/common.js';
-import { getRandomNumberInRange } from '../util/randomNumber.js';
+import { getRandomNumberInRange } from '../util/createNumber.js';
 import Lotto from './Lotto.js';
 
 class LottoMachine {
