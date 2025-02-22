@@ -163,9 +163,9 @@ Lotto
 
 기능(자체 리팩토링)
 
-- [ ] Controller 클래스
-  - [ ] 함수로 변경 및 네이밍 변경
-  - [ ] 메서드 내부 분리
+- [x] Controller 클래스
+  - [x] 함수로 변경 및 네이밍 변경
+  - [x] 메서드 내부 분리
 - [x] LottoMachine (현금(input) -> LottoPack(로또 용지)(output))
 - [x] LottoPack 클래스 수정
   - [x] count 값 관리
@@ -177,7 +177,7 @@ Lotto
   - [x] getter return 복사본 return하기
 - [x] profitCalculator 도메인 분리
 - [x] Validator 객체 메서드명 및 파라미터 변경
-- [ ] async/await 불필요한 곳 제거
+- [x] async/await 불필요한 곳 제거
 - [ ] OutputView 객체 -> winningStatisics 내부 변경
 - [ ] 파일 및 폴더 정리
 
