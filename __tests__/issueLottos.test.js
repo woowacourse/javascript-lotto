@@ -17,11 +17,12 @@ describe("구입 금액에 따른 개수만큼 랜덤한 로또를 발행하는 
   test("발행된 로또는 오름차순 정렬이 되어 반환된다.", () => {
     // when
     const lottos = issueLottos(purchaseAmount);
-    const sortedLottos = lottos.map((lotto) => lotto.sort((a, b) => a - b));
 
     // then
-    lottos.forEach((lotto, index) => {
-      expect(lotto).toEqual(sortedLottos[index]);
+    lottos.forEach((lotto) => {
+      for (let i = 0; i < lotto.length - 1; i++) {
+        expect(lotto[i]).toBeLessThan(lotto[i + 1]);
+      }
     });
   });
 });
