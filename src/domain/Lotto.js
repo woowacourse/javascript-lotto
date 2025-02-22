@@ -20,7 +20,7 @@ class Lotto {
     return this.numbers;
   }
 
-  getSameNumbers(givenLottoNumber) {
+  getSameNumbersLength(givenLottoNumber) {
     return this.numbers.filter((number) => givenLottoNumber.includes(number))
       .length;
   }

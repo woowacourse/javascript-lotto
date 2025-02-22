@@ -65,7 +65,7 @@ const game = async () => {
   const lottoHistory = lottoResult.getWinningHistory();
 
   Output.printWinningHistory(lottoHistory);
-  Output.printTotalProfit(lottoResult.getRate());
+  Output.printTotalProfit(lottoResult.calculateRate());
 };
 
 const start = async () => {

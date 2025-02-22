@@ -16,12 +16,12 @@ class LottoResult {
     return this.winningHistory;
   }
 
-  getTotalProfit() {
+  calculateTotalProfit() {
     return this.lottoStatus.reduce((acc, cur) => acc + cur.REWORD, 0);
   }
 
-  getRate() {
-    return ((this.getTotalProfit() / this.price) * 100).toFixed(1);
+  calculateRate() {
+    return ((this.calculateTotalProfit() / this.price) * 100).toFixed(1);
   }
 }
 export default LottoResult;

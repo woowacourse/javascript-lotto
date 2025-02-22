@@ -62,7 +62,7 @@ test("하나의 로또 티켓 번호와 내가 입력한 로또 번호간의 공
 
   const lotto = new Lotto(lottoNumbers);
 
-  expect(lotto.getSameNumbers(givenLottoNumber)).toBe(5);
+  expect(lotto.getSameNumbersLength(givenLottoNumber)).toBe(5);
 });
 
 test("로또 번호에 보너스 번호가 포함되는지 확인한다.", () => {

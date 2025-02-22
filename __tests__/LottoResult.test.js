@@ -26,7 +26,7 @@ test("당첨 내역을 기반으로 총 수입을 구한다.", () => {
   const lottoResult = new LottoResult(lottoStatus, price);
 
   //when
-  const profit = lottoResult.getTotalProfit();
+  const profit = lottoResult.calculateTotalProfit();
 
   //then
   expect(profit).toEqual(30_050_000);
@@ -39,7 +39,7 @@ test("당첨된 내역을 기반으로 수익률을 구한다.", () => {
   const lottoResult = new LottoResult(lottoStatus, price);
 
   //when
-  const rate = lottoResult.getRate();
+  const rate = lottoResult.calculateRate();
 
   //then
   expect(rate).toEqual("62.5");

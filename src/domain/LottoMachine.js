@@ -15,7 +15,7 @@ class LottoMachine {
 
   getMatchingNumbers(enteredLottoNumbers) {
     return this.issuedLottoNumbers.map((lotto) => {
-      return lotto.getSameNumbers(enteredLottoNumbers);
+      return lotto.getSameNumbersLength(enteredLottoNumbers);
     });
   }
 
@@ -25,7 +25,7 @@ class LottoMachine {
     });
   }
 
-  updateFinalStatus(matchingNumbers, isBonusArray) {
+  updateAllLottoStatus(matchingNumbers, isBonusArray) {
     matchingNumbers.forEach((matchingNumber, index) => {
       if (matchingNumber < 3) return;
 
@@ -44,7 +44,7 @@ class LottoMachine {
     const matchingNumbers = this.getMatchingNumbers(enteredLottoNumbers);
     const isBonusArray = this.getHasBonusNumbers(bonusLottoNumber);
 
-    this.updateFinalStatus(matchingNumbers, isBonusArray);
+    this.updateAllLottoStatus(matchingNumbers, isBonusArray);
 
     return this.matchedLottoStatus;
   }
