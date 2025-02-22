@@ -15,16 +15,17 @@ class LottoPack {
     this.#lottos = this.#generateLottos(lottos);
   }
 
-  #generateLottos(lottos) {
-    return lottos.map((lottoNumbers) => {
-      return new Lotto(lottoNumbers);
-    });
-  }
-
-  playCompare(answerLotto) {
+  compareAndReturnResult(answerLotto) {
     this.#lottos.forEach((lotto) => {
       const { winningCount, bonusCount } = lotto.compareWinningNumbers(answerLotto);
       this.#saveCheckCount(winningCount, bonusCount);
+    });
+    return this.#checkCountResult;
+  }
+
+  #generateLottos(lottos) {
+    return lottos.map((lottoNumbers) => {
+      return new Lotto(lottoNumbers);
     });
   }
 
@@ -52,10 +53,6 @@ class LottoPack {
 
   get lottos() {
     return this.#lottos;
-  }
-
-  get checkCountResult() {
-    return this.#checkCountResult;
   }
 }
 

@@ -172,6 +172,8 @@ Lotto
 - [ ] LottoPack 클래스 수정
   - [ ] count 값 관리
   - [ ] getter -> 복사본 return
+  - [x] playCompare 메서드명 변경 -> compareAndReturnResult
+  - [x] return 값 추가 -> #checkCountResult 필드값 return
 - [ ] profitCalculator 도메인 분리
 - [ ] Validator 객체 메서드명 및 파라미터 변경
 - [ ] async/await 불필요한 곳 제거
