@@ -19,15 +19,6 @@ class Lotto {
   getLottoNumbers() {
     return this.#numbers;
   }
-
-  getSameNumbers(givenLottoNumber) {
-    return this.#numbers.filter((number) => givenLottoNumber.includes(number))
-      .length;
-  }
-
-  hasBonusNumber(bonusNumber) {
-    return this.#numbers.includes(bonusNumber);
-  }
 }
 
 export default Lotto;

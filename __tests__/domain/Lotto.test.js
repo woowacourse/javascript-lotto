@@ -34,21 +34,4 @@ describe("로또 클래스 테스트", () => {
     // then
     expect(lotto.getLottoNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
   });
-
-  test("하나의 로또 티켓 번호와 내가 입력한 로또 번호간의 공통된 번호 개수를 구한다.", () => {
-    const lottoNumbers = [1, 2, 3, 4, 5, 6];
-    const givenLottoNumber = [2, 3, 4, 5, 6, 7];
-
-    const lotto = new Lotto(lottoNumbers);
-
-    expect(lotto.getSameNumbers(givenLottoNumber)).toBe(5);
-  });
-
-  test("로또 번호에 보너스 번호가 포함되는지 확인한다.", () => {
-    const lottoNumbers = [1, 2, 3, 4, 5, 6];
-    const lotto = new Lotto(lottoNumbers);
-    const bonusNumber = 3;
-
-    expect(lotto.hasBonusNumber(bonusNumber)).toBeTruthy();
-  });
 });

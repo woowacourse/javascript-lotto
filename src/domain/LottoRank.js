@@ -1,6 +1,6 @@
 import { LOTTO_STATUS } from "../constants/lotto.js";
 
-class LottoMachine {
+class LottoRank {
   #issuedLottoNumbers;
   #matchedLottoStatus;
 
@@ -14,15 +14,24 @@ class LottoMachine {
     this.#matchedLottoStatus.push(currentStatus);
   }
 
+  getSameNumbers(numbers, enteredLottoNumbers) {
+    return numbers.filter((number) => enteredLottoNumbers.includes(number))
+      .length;
+  }
+
+  hasBonusNumber(numbers, bonusNumber) {
+    return numbers.includes(bonusNumber);
+  }
+
   getMatchingNumbers(enteredLottoNumbers) {
-    return this.#issuedLottoNumbers.map((lotto) => {
-      return lotto.getSameNumbers(enteredLottoNumbers);
+    return this.#issuedLottoNumbers.map((numbers) => {
+      return this.getSameNumbers(numbers, enteredLottoNumbers);
     });
   }
 
   getHasBonusNumbers(bonusLottoNumbers) {
-    return this.#issuedLottoNumbers.map((lotto) => {
-      return lotto.hasBonusNumber(bonusLottoNumbers);
+    return this.#issuedLottoNumbers.map((numbers) => {
+      return this.hasBonusNumber(numbers, bonusLottoNumbers);
     });
   }
 
@@ -41,14 +50,16 @@ class LottoMachine {
     });
   }
 
-  getMatchedLottoStatus(enteredLottoNumbers, bonusLottoNumber) {
+  calculateRank(enteredLottoNumbers, bonusLottoNumber) {
     const matchingNumbers = this.getMatchingNumbers(enteredLottoNumbers);
     const isBonusArray = this.getHasBonusNumbers(bonusLottoNumber);
 
     this.updateFinalStatus(matchingNumbers, isBonusArray);
+  }
 
+  getMatchedLottoStatus() {
     return this.#matchedLottoStatus;
   }
 }
 
-export default LottoMachine;
+export default LottoRank;

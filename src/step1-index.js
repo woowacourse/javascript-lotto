@@ -5,7 +5,7 @@ import { divideByUnit } from "./utils/count.js";
 import PriceValidator from "./validation/PriceValidator.js";
 import BonusNumberValidator from "./validation/BonusNumberValidator.js";
 import Lotto from "./domain/Lotto.js";
-import LottoMachine from "./domain/LottoMachine.js";
+import LottoRank from "./domain/LottoRank.js";
 import LottoResult from "./domain/LottoResult.js";
 import { PRICE } from "./constants/price.js";
 import { throwError } from "./utils/throwError.js";
@@ -65,11 +65,11 @@ const game = async () => {
   Output.print(OUTPUT.WINNING_HISTORY);
   Output.print(OUTPUT.LINE);
 
-  const lottoMachine = new LottoMachine(lottos);
-  const lottoStatus = lottoMachine.getMatchedLottoStatus(
-    winningLotto.getLottoNumbers(),
-    bonusLottoNumber
+  const lottoRank = new LottoRank(
+    lottos.map((lotto) => lotto.getLottoNumbers())
   );
+  lottoRank.calculateRank(winningLotto.getLottoNumbers(), bonusLottoNumber);
+  const lottoStatus = lottoRank.getMatchedLottoStatus();
 
   const lottoResult = new LottoResult(lottoStatus, price);
   const lottoHistory = lottoResult.getWinningHistory();
