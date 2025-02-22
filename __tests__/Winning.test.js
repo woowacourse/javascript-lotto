@@ -22,13 +22,13 @@ describe('Winning 클래스 테스트', () => {
     [[1, 2, 3, 4, 5, 10], 'third'],
     [[1, 2, 3, 4, 10, 11], 'fourth'],
     [[1, 2, 3, 9, 10, 11], 'fifth'],
-  ])('당첨 등수 통계 계산 테스트', (boughtLotto, rank) => {
+  ])('각 등수에 대한 당첨 횟수가 올바른지 확인한다.', (boughtLotto, rank) => {
     winning.calculateRankHistory(boughtLotto);
 
     expect(winning.rankHistory[rank]).toEqual(1);
   });
 
-  test('당첨 금액 전체 합산 테스트', () => {
+  test('전체 당첨 금액 합산 결과가 올바른지 확인한다.', () => {
     winning.rankHistory.first = 1;
     winning.rankHistory.second = 1;
     winning.rankHistory.third = 1;
@@ -38,7 +38,7 @@ describe('Winning 클래스 테스트', () => {
     expect(winning.getTotalPrize()).toEqual(2031555000);
   });
 
-  test('수익률 계산 테스트', () => {
+  test('수익률 계산이 올바른지 확인한다.', () => {
     const price = 8000;
 
     winning.rankHistory.fifth = 1;
