@@ -5,11 +5,12 @@ import { printPurchasedAmount, printError } from '../View/OutputView.js';
 import validateBonusNumber from '../Validation/validateBonusNumber.js';
 import validateLottoPurchase from '../Validation/validateLottoPurchase.js';
 import validateUserRetry from '../Validation/validateUserRetry.js';
+import { LOTTO_PRICE } from '../constants/MagicNumber.js';
 
 async function getPurchasePrice() {
   try {
     const purchasePrice = await readLineAsync(INPUT_MESSAGE.getPurchasePrice);
-    const purchaseAmount = validateLottoPurchase(purchasePrice);
+    const purchaseAmount = validateLottoPurchase(purchasePrice) / LOTTO_PRICE;
     printPurchasedAmount(purchaseAmount);
     return { purchasePrice, purchaseAmount };
   } catch (error) {

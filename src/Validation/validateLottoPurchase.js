@@ -7,5 +7,5 @@ export default function validateLottoPurchase(input) {
   if (money < LOTTO_PRICE) throw new Error(ERROR_MESSAGE.notEnoughMoney);
 
   if (money % LOTTO_PRICE !== 0) throw new Error(ERROR_MESSAGE.notANote);
-  return money / LOTTO_PRICE;
+  return money;
 }
