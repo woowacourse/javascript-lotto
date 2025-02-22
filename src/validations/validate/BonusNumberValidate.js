@@ -1,8 +1,13 @@
-
-import { bonusNumberValidator } from "../validator/bonusNumberValidator.js";
 import { BONUS_NUMBER_ERROR_MESSAGES } from "../../constants/constants.js";
 import runValidators from "../../utils/runValidators.js";
 import { numberUtils } from "../utils/numberUtils.js";
+
+const bonusNumberValidator = {
+  isDuplicated(winningNumbers, bonusNumber) {
+    return winningNumbers.includes(bonusNumber);
+ },
+};
+
 
 const validateInteger = (winningNumbers,bonusNumber) => {
   if (!numberUtils.isInteger(bonusNumber)) {

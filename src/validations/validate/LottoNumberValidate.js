@@ -1,7 +1,20 @@
-import { lottoNumberValidator } from '../validator/lottoNumberValidator.js';
 import { LOTTO_NUMBER_ERROR_MESSAGES } from '../../constants/constants.js';
 import runValidators from '../../utils/runValidators.js';
 import { numberUtils } from '../utils/numberUtils.js';
+import { LOTTO_CONDITION } from '../../constants/constants.js';
+
+const lottoNumberValidator = {
+  isValidCount(numbers) {
+    return numbers.length !== LOTTO_CONDITION.COUNT;
+  },
+
+
+  isDuplicated(numbers) {
+    const lottoSet = new Set(numbers);
+
+    return numbers.length !== lottoSet.size;
+  },
+}
 
 const validateLottoCount = (numbers) => {
   if (lottoNumberValidator.isValidCount(numbers)) {

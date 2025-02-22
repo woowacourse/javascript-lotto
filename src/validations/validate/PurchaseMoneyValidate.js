@@ -1,7 +1,17 @@
 import { PURCHASE_NUMBER_ERROR_MESSAGES } from '../../constants/constants.js';
 import runValidators from '../../utils/runValidators.js';
-import { purchaseMoneyValidator } from '../validator/purchaseMoneyValidator.js';
 import { numberUtils } from '../utils/numberUtils.js';
+import { LOTTO_CONDITION } from '../../constants/constants.js';
+
+const purchaseMoneyValidator = {
+  isValidUnit(input) {
+    return input % LOTTO_CONDITION.PRICE === 0;
+  },
+
+  isValidRange(input) {
+    return LOTTO_CONDITION.PRICE <= input;
+  },
+};
 
 const validatePurchaseMoneyInteger = (input) => {
   if (!numberUtils.isInteger(input)) {
