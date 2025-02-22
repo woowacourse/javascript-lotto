@@ -1,7 +1,7 @@
 import runValidators from "../util/runValidators.js";
 import validationCondition from "./validateCondition.js";
-import { PRICE_ERROR_MESSAGE } from "../constants/errorMessage.js";
-import { LOTTO_PRICE } from "../constants/systemConstants.js";
+import { PRICE_ERROR_MESSAGE } from "../lottoConstants/errorMessage.js";
+import { LOTTO_PRICE } from "../lottoConstants/systemConstants.js";
 
 const checkEmptyInput = (priceInput) => {
   if (validationCondition.isEmpty(priceInput)) {

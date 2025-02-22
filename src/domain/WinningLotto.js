@@ -1,4 +1,4 @@
-import { BONUS_NUMBER_ERROR_MESSAGE } from "../constants/errorMessage.js";
+import { BONUS_NUMBER_ERROR_MESSAGE } from "../lottoConstants/errorMessage.js";
 import Lotto from "./Lotto.js";
 
 class WinningLotto extends Lotto {

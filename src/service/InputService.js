@@ -1,4 +1,4 @@
-import SYSTEM_MESSAGE from "../constants/systemMessage.js";
+import SYSTEM_MESSAGE from "../lottoConstants/systemMessage.js";
 import validatePrice from "../validation/validatePrice.js";
 import validateWinningNumber from "../validation/validateWinningNumber.js";
 import validateBonusNumber from "../validation/validateBonusNumber.js";

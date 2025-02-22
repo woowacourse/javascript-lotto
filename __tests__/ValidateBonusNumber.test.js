@@ -1,4 +1,4 @@
-import { BONUS_NUMBER_ERROR_MESSAGE } from "../src/constants/errorMessage";
+import { BONUS_NUMBER_ERROR_MESSAGE } from "../src/lottoConstants/errorMessage";
 import validateBonusNumber from "../src/validation/validateBonusNumber";
 
 describe("보너스 번호 유효성 검사", () => {

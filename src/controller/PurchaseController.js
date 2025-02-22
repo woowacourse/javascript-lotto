@@ -1,4 +1,4 @@
-import SYSTEM_MESSAGE from "../constants/systemMessage.js";
+import SYSTEM_MESSAGE from "../lottoConstants/systemMessage.js";
 import { getPrice } from "../service/InputService.js";
 import { getLottoArray, getLottoCount } from "../service/PurchaseService.js";
 import retryOnError from "../util/retryOnError.js";

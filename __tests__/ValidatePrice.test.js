@@ -1,6 +1,6 @@
-import { PRICE_ERROR_MESSAGE } from "../src/constants/errorMessage.js";
 import validatePrice from "../src/validation/validatePrice.js";
-import { LOTTO_PRICE } from "../src/constants/systemConstants.js";
+import { PRICE_ERROR_MESSAGE } from "../src/lottoConstants/errorMessage.js";
+import { LOTTO_PRICE } from "../src/lottoConstants/systemConstants.js";
 
 describe("구입금액에 대한 유효성 검사를 진행한다", () => {
   test("빈 값을 입력할 경우 에러 발생", () => {

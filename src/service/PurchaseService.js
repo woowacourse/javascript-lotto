@@ -1,4 +1,4 @@
-import { LOTTO_NUMBERS, LOTTO_PRICE } from "../constants/systemConstants.js";
+import { LOTTO_NUMBERS, LOTTO_PRICE } from "../lottoConstants/systemConstants.js";
 import Lotto from "../domain/Lotto.js";
 import pickUniqueNumbersInRange from "../util/pickUniqueNumbersInRange.js.js";
 

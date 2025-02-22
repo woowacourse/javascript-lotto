@@ -1,4 +1,4 @@
-import SYSTEM_MESSAGE from "../constants/systemMessage.js";
+import SYSTEM_MESSAGE from "../lottoConstants/systemMessage.js";
 import { calculateProfitRate } from "../service/ProfitService.js";
 import OutputView from "../view/OutputView.js";
 

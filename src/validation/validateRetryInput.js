@@ -1,6 +1,6 @@
 import validationCondition from "./validateCondition.js";
 import runValidators from "../util/runValidators.js";
-import { RETRY_ERROR_MESSAGE } from "../constants/errorMessage.js";
+import { RETRY_ERROR_MESSAGE } from "../lottoConstants/errorMessage.js";
 
 const checkIsEmpty = (retryInput) => {
   if (validationCondition.isEmpty(retryInput)) {

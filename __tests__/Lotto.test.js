@@ -1,5 +1,6 @@
-import { LOTTO_NUMBERS_ERROR_MESSAGE } from "../src/constants/errorMessage.js";
 import Lotto from "../src/domain/Lotto.js";
+import { LOTTO_NUMBERS_ERROR_MESSAGE } from "../src/lottoConstants/errorMessage.js";
+
 describe("로또 객체 생성 테스트", () => {
   test("로또 번호는 숫자 배열이 입력되면, 로또 숫자를 필드로 갖는다", () => {
     // given
