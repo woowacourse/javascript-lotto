@@ -5,6 +5,10 @@ describe("구입 금액 도메인 검증", () => {
     const purchaseAmount = "가나다";
     expect(() => parseAndValidatePurchaseAmount(purchaseAmount)).toThrow();
   });
+  test("0 값이 들어오면 에러가 발생한다.", () => {
+    const purchaseAmount = 0;
+    expect(() => parseAndValidatePurchaseAmount(purchaseAmount)).toThrow();
+  });
   test("1,000원 단위가 아니라면 에러가 발생한다.", () => {
     const purchaseAmount = "3200";
     expect(() => parseAndValidatePurchaseAmount(purchaseAmount)).toThrow();

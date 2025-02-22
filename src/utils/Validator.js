@@ -12,6 +12,10 @@ const Validator = {
     return !input;
   },
 
+  isZero(input) {
+    return input === 0;
+  },
+
   isNotDivisible(purchaseAmount) {
     return purchaseAmount % LOTTO_PURCHASE_UNIT !== 0;
   },

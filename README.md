@@ -180,6 +180,7 @@ Lotto
 - [x] async/await 불필요한 곳 제거
 - [x] OutputView 객체 -> winningStatisics 내부 변경
 - [x] 파일 및 폴더 정리
+- [ ] 구매금액 0 입력시, 에러처리
 
 - 테스트 코드
 - [x] 도메인 테스트 재작성
