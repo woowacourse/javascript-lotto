@@ -15,20 +15,14 @@ class LottoMachine {
   }
 
   #generateLotto() {
-    const lotto = [];
+    const lottoSet = new Set();
 
-    while (lotto.length < LOTTO.NUMBER_LENGTH) {
+    while (lottoSet.size < LOTTO.NUMBER_LENGTH) {
       const randomNumber = generateRandomNumber(LOTTO.MIN_NUMBER, LOTTO.MAX_NUMBER);
-
-      this.#checkHasLotto(lotto, randomNumber);
+      lottoSet.add(randomNumber);
     }
-    return lotto;
-  }
 
-  #checkHasLotto(lotto, randomNumber) {
-    if (!lotto.includes(randomNumber)) {
-      lotto.push(randomNumber);
-    }
+    return [...lottoSet];
   }
 
   get lottos() {
