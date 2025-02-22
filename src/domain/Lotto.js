@@ -1,15 +1,10 @@
-import LottoValidator from "../validation/LottoValidator.js";
+import validateLotto from "../validation/validateLotto.js";
 
 class Lotto {
   #numbers;
   constructor(numbers) {
     this.#numbers = this.sortLottoNumber(numbers);
-    this.validate(this.#numbers);
-  }
-
-  validate(numbers) {
-    const validator = new LottoValidator();
-    validator.validateLotto(numbers);
+    validateLotto(this.#numbers);
   }
 
   sortLottoNumber(numbers) {

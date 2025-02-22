@@ -58,6 +58,6 @@ describe("LottoResult 클래스 테스트", () => {
     const rate = lottoResult.getRate();
 
     //then
-    expect(rate).toEqual("62.5");
+    expect(rate).toEqual(62.5);
   });
 });

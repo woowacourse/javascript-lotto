@@ -1,14 +1,14 @@
 import Lotto from "../domain/Lotto.js";
 import Input from "../view/Input.js";
-import PriceValidator from "../validation/PriceValidator.js";
-import BonusNumberValidator from "../validation/BonusNumberValidator.js";
+import validatePrice from "../validation/validatePrice.js";
+import validateBonusNumber from "../validation/validateBonusNumber.js";
 import { INPUT, ERROR, RETRY_STRING } from "../constants/message.js";
 import { throwError } from "../utils/throwError.js";
 
 export const getPrice = async () =>
   Input.retry(async () => {
     const input = await Input.readLineAsync(INPUT.PRICE);
-    new PriceValidator().validatePrice(Number(input));
+    validatePrice(Number(input));
     return Number(input);
   });
 
@@ -22,10 +22,10 @@ export const getNeededLottoNumbers = async () => {
 
   const bonusLottoNumber = await Input.retry(async () => {
     const input = await Input.readLineAsync(INPUT.BONUS_NUMBER);
-    new BonusNumberValidator().validateBonusNumber(
-      winningLotto.getLottoNumbers(),
-      Number(input)
-    );
+    validateBonusNumber({
+      enterdLottoNumbers: winningLotto.getLottoNumbers(),
+      bonusLottoNumber: Number(input),
+    });
     return Number(input);
   });
   return { winningLotto, bonusLottoNumber };
