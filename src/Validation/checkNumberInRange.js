@@ -4,7 +4,7 @@ import {
   MIN_LOTTO_NUMBER,
 } from '../constants/MagicNumber.js';
 
-export default function validateNumberInRange(numbers) {
+export default function checkNumberInRange(numbers) {
   if (
     numbers.some(
       (number) => number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER,

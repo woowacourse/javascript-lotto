@@ -1,6 +1,6 @@
 import ERROR_MESSAGE from '../constants/ErrorMessage.js';
 
-export default function validateNumber(input) {
+export default function checkNumber(input) {
   return isPositive(isInteger(isNumber(input)));
 }
 export function isNumber(input) {
