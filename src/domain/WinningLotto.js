@@ -1,4 +1,5 @@
 import { BONUS_NUMBER_ERROR_MESSAGE } from "../lottoConstants/errorMessage.js";
+import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants.js";
 import Lotto from "./Lotto.js";
 
 class WinningLotto extends Lotto {
@@ -21,7 +22,7 @@ class WinningLotto extends Lotto {
   }
 
   #isRangeValid(bonusNumber) {
-    return bonusNumber >= 1 && bonusNumber <= 45;
+    return bonusNumber >= LOTTO_NUMBERS.MIN && bonusNumber <= LOTTO_NUMBERS.MAX;
   }
   #isDistinct(numbers, bonusNumber) {
     return !numbers.includes(bonusNumber);

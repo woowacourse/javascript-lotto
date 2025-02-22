@@ -1,3 +1,5 @@
+import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants";
+
 const validationCondition = {
   isNumber(input) {
     return !isNaN(input);
@@ -16,7 +18,7 @@ const validationCondition = {
     return numbers.length === length;
   },
   isRangeValid(numbers) {
-    return !numbers.some((number) => number < 1 || number > 45);
+    return !numbers.some((number) => number < LOTTO_NUMBERS.MIN || number > LOTTO_NUMBERS.MAX);
   },
   isDistinct(numbers) {
     return new Set(numbers).size === numbers.length;
@@ -25,7 +27,7 @@ const validationCondition = {
     return new Set([...numbers, Number(bonusNumber)]).size !== numbers.length;
   },
   isBonusRangeValid(bonusNumber) {
-    return Number(bonusNumber) <= 45 && Number(bonusNumber) >= 1;
+    return Number(bonusNumber) <= LOTTO_NUMBERS.MAX && Number(bonusNumber) >= LOTTO_NUMBERS.MIN;
   },
 };
 
