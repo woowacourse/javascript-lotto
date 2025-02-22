@@ -11,4 +11,6 @@ export default function validateNumberInRange(numbers) {
     )
   )
     throw new Error(ERROR_MESSAGE.numberOutOfRange);
+
+  return numbers;
 }
