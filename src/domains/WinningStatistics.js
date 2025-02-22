@@ -18,7 +18,7 @@ class WinningStatistics {
   }
 
   get statistics() {
-    return this.#statistics;
+    return new Map(this.#statistics);
   }
 
   calculateProfitRatio(purchaseAmount) {
