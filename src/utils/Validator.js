@@ -16,32 +16,34 @@ const Validator = {
     return purchaseAmount % LOTTO_PURCHASE_UNIT !== 0;
   },
 
-  isFormat(winningNumbers) {
-    return winningNumbers.length === 1;
+  isFormat(numbers) {
+    return numbers.length === 1;
   },
 
-  isNotNumber(winningNumbers) {
-    return winningNumbers.some((number) => isNaN(number));
+  isNotNumber(numbers) {
+    return numbers.some((number) => isNaN(number));
   },
 
-  isMaxLength(winningNumbers) {
-    return winningNumbers.length !== LOTTO_NUMBER_MAX_LENGTH;
+  isMaxLength(numbers) {
+    return numbers.length !== LOTTO_NUMBER_MAX_LENGTH;
   },
 
-  isWinningNumbersRange(winningNumbers) {
-    return !winningNumbers.every((num) => num >= LOTTO_NUMBER_START && num <= LOTTO_NUMBER_END);
+  isWinningNumbersRange(numbers) {
+    return !numbers.every((num) => num >= LOTTO_NUMBER_START && num <= LOTTO_NUMBER_END);
   },
 
-  isDuplicate(winningNumbers) {
-    return new Set(winningNumbers).size !== winningNumbers.length;
+  isDuplicate(numbers) {
+    return new Set(numbers).size !== numbers.length;
   },
 
-  isBonusNumberRange(bonusNumber) {
-    return bonusNumber < LOTTO_NUMBER_START || bonusNumber > LOTTO_NUMBER_END;
+  isBonusNumberRange(number) {
+    return number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END;
   },
-  isIncludeNumber(winningNumbers, bonusNumber) {
-    return winningNumbers.includes(bonusNumber);
+
+  isIncludeNumber(Numbers, number) {
+    return Numbers.includes(number);
   },
+
   isYesOrNo(input) {
     return input !== YES && input !== NO;
   },

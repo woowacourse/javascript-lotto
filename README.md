@@ -176,7 +176,7 @@ Lotto
   - [x] 정렬 후 -> 복사본 저장
   - [x] getter return 복사본 return하기
 - [x] profitCalculator 도메인 분리
-- [ ] Validator 객체 메서드명 및 파라미터 변경
+- [x] Validator 객체 메서드명 및 파라미터 변경
 - [ ] async/await 불필요한 곳 제거
 - [ ] OutputView 객체 -> winningStatisics 내부 변경
 - [ ] 파일 및 폴더 정리
