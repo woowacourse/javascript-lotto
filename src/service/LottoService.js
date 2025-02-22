@@ -1,5 +1,9 @@
+import {
+  LOTTO_SIZE,
+  MAX_LOTTO_NUMBER,
+  MIN_LOTTO_NUMBER,
+} from '../constants/MagicNumber.js';
 import Lotto from '../model/Lotto.js';
-import systemSettings from '../settings/systemSettings.js';
 import { getUniqueRandomNumbers } from '../util/getUniqueRandomNumbers.js';
 import { printLotto } from '../View/OutputView.js';
 
@@ -8,9 +12,9 @@ export default function makeLotto(purchaseAmount) {
 
   for (let i = 0; i < purchaseAmount; i++) {
     const numberRange = {
-      min: systemSettings.minLottoNumber,
-      max: systemSettings.maxLottoNumber,
-      count: systemSettings.lottoSize,
+      min: MIN_LOTTO_NUMBER,
+      max: MAX_LOTTO_NUMBER,
+      count: LOTTO_SIZE,
     };
     const numbers = getUniqueRandomNumbers(numberRange);
     const lotto = new Lotto(numbers);

@@ -1,0 +1,12 @@
+export const PRIZE_MONEY = {
+  NO_MATCH: 0,
+  THREE_MATCH: 5_000,
+  FOUR_MATCH: 50_000,
+  FIVE_MATCH: 1_500_000,
+  FIVE_MATCH_WITH_BONUS: 30_000_000,
+  SIX_MATCH: 2_000_000_000,
+};
+export const LOTTO_SIZE = 6;
+export const LOTTO_PRICE = 1_000;
+export const MIN_LOTTO_NUMBER = 1;
+export const MAX_LOTTO_NUMBER = 45;

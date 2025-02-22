@@ -1,5 +1,5 @@
 import ERROR_MESSAGE from '../constants/ErrorMessage.js';
-import systemSettings from '../constants/systemSettings.js';
+import { LOTTO_SIZE } from '../constants/MagicNumber.js';
 import validateNumberInRange from '../Validation/validateNumberInRange.js';
 import validateNumber from '../Validation/validateNumber.js';
 
@@ -12,7 +12,7 @@ class Lotto {
   }
   #lottoValidation(numbers) {
     numbers.forEach((number) => validateNumber(number));
-    if (numbers.length !== systemSettings.lottoSize)
+    if (numbers.length !== LOTTO_SIZE)
       throw new Error(ERROR_MESSAGE.notSixNumbers);
     if (numbers.length !== new Set(numbers).size)
       throw new Error(ERROR_MESSAGE.duplicatedNumbers);

@@ -1,3 +1,5 @@
+import { PRIZE_MONEY } from '../constants/MagicNumber.js';
+
 export function printMessage(message) {
   console.log(message);
 }
@@ -18,23 +20,21 @@ export function printPrizeHeader() {
   console.log('당첨 통계\n--------------------');
 }
 
-export function printPrize(systemSettings) {
-  const { prizeMoney, winCount } = systemSettings;
-
+export function printPrize(winCount) {
   console.log(`
-3개 일치 (${prizeMoney.THREE_MATCH.toLocaleString()}원) - ${
+3개 일치 (${PRIZE_MONEY.THREE_MATCH.toLocaleString()}원) - ${
     winCount.THREE_MATCH
   }개
-4개 일치 (${prizeMoney.FOUR_MATCH.toLocaleString()}원) - ${
+4개 일치 (${PRIZE_MONEY.FOUR_MATCH.toLocaleString()}원) - ${
     winCount.FOUR_MATCH
   }개
-5개 일치 (${prizeMoney.FIVE_MATCH.toLocaleString()}원) - ${
+5개 일치 (${PRIZE_MONEY.FIVE_MATCH.toLocaleString()}원) - ${
     winCount.FIVE_MATCH
   }개
-5개 일치, 보너스 볼 일치 (${prizeMoney.FIVE_MATCH_WITH_BONUS.toLocaleString()}원) - ${
+5개 일치, 보너스 볼 일치 (${PRIZE_MONEY.FIVE_MATCH_WITH_BONUS.toLocaleString()}원) - ${
     winCount.FIVE_MATCH_WITH_BONUS
   }개
-6개 일치 (${prizeMoney.SIX_MATCH.toLocaleString()}원) - ${winCount.SIX_MATCH}개
+6개 일치 (${PRIZE_MONEY.SIX_MATCH.toLocaleString()}원) - ${winCount.SIX_MATCH}개
   `);
 }
 

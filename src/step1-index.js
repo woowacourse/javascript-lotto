@@ -1,4 +1,3 @@
-import systemSettings from './settings/systemSettings.js';
 import {
   printPrizeHeader,
   printPrize,
@@ -16,6 +15,7 @@ import {
   calculateRevenueRate,
 } from './service/CalculatorService.js';
 import makeLotto from './service/LottoService.js';
+import { PRIZE_MONEY } from './constants/MagicNumber.js';
 
 async function playGame() {
   const { purchasePrice, purchaseAmount } = await getPurchasePrice();
@@ -26,11 +26,11 @@ async function playGame() {
   const parsedLotto = await getBonusNumber(userLotto);
 
   const winCount = calculateWins(lottos, parsedLotto);
-  const total = calculatePrize(winCount, systemSettings.prizeMoney);
+  const total = calculatePrize(winCount, PRIZE_MONEY);
   const revenueRate = calculateRevenueRate(total, purchasePrice);
 
   printPrizeHeader();
-  printPrize(systemSettings);
+  printPrize(winCount);
   printRevenueRate(revenueRate);
 
   const userRetry = await getUserRetry();

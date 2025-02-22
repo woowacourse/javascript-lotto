@@ -1,13 +1,11 @@
 import ERROR_MESSAGE from '../constants/ErrorMessage.js';
-import systemSettings from '../constants/systemSettings.js';
+import { LOTTO_PRICE } from '../constants/MagicNumber.js';
 import validateNumber from './validateNumber.js';
 
 export default function validateLottoPurchase(input) {
   const money = validateNumber(input);
-  if (money < systemSettings.lottoPrice)
-    throw new Error(ERROR_MESSAGE.notEnoughMoney);
-  if (money % systemSettings.lottoPrice !== 0)
-    throw new Error(ERROR_MESSAGE.notANote);
+  if (money < LOTTO_PRICE) throw new Error(ERROR_MESSAGE.notEnoughMoney);
 
-  return money / systemSettings.lottoPrice;
+  if (money % LOTTO_PRICE !== 0) throw new Error(ERROR_MESSAGE.notANote);
+  return money / LOTTO_PRICE;
 }
