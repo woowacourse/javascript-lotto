@@ -6,7 +6,7 @@
 ├── __test__
 │   ├── BonusNumberValidator.test.js
 │   ├── Lotto.test.js
-│   ├── LottoRank.test.js
+│   ├── LottoStatus.test.js
 │   ├── LottoResult.test.js
 │   ├── LottoValidator.test.js
 │   ├── PriceValidator.test.js
@@ -18,7 +18,7 @@
     │   └── price.js
     ├── domain/
     │   ├── Lotto.js
-    │   ├── LottoRank.js
+    │   ├── LottoStatus.js
     │   ├── LottoResult.js
     │   └── Ticket.js
     ├── utils/

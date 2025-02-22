@@ -1,4 +1,4 @@
-import LottoRank from "../../src/domain/LottoRank.js";
+import LottoStatus from "../../src/domain/LottoStatus.js";
 
 describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를 기반으로 로또 Rank를 매칭한다", () => {
   test("숫자 5개가 일치하고 보너스 숫자가 존재하는 경우 2등을 반환한다.", () => {
@@ -8,12 +8,12 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
     const bonusLottoNumber = 7;
 
     // when
-    const rank = new LottoRank({
+    const rank = new LottoStatus({
       issuedLottoNumbers,
       enteredLottoNumbers,
       bonusLottoNumber,
     });
-    rank.calculateRank();
+    rank.calculateRanks();
 
     // then
     expect(rank.getMatchedLottoStatus()).toEqual([
@@ -33,12 +33,12 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
     const bonusLottoNumber = 40;
 
     // when
-    const rank = new LottoRank({
+    const rank = new LottoStatus({
       issuedLottoNumbers,
       enteredLottoNumbers,
       bonusLottoNumber,
     });
-    rank.calculateRank();
+    rank.calculateRanks();
 
     // then
     expect(rank.getMatchedLottoStatus(enteredLottoNumbers)).toEqual([

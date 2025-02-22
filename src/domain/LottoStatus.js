@@ -1,6 +1,6 @@
 import { LOTTO_STATUS } from "../constants/lotto.js";
 
-class LottoRank {
+class LottoStatus {
   #issuedLottoNumbers;
   #enteredLottoNumbers;
   #bonusLottoNumber;
@@ -24,16 +24,15 @@ class LottoRank {
     ).length;
   }
 
-  getMatchingNumbers() {
+  getMatchingCounts() {
     return this.#issuedLottoNumbers.map((numbers) => {
       return this.countMatchingNumbers(numbers);
     });
   }
-  
+
   hasBonusNumber(numbers) {
     return numbers.includes(this.#bonusLottoNumber);
   }
-
 
   getHasBonusNumbers() {
     return this.#issuedLottoNumbers.map((numbers) => {
@@ -56,8 +55,8 @@ class LottoRank {
     });
   }
 
-  calculateRank() {
-    const matchingNumbers = this.getMatchingNumbers();
+  calculateRanks() {
+    const matchingNumbers = this.getMatchingCounts();
     const isBonusArray = this.getHasBonusNumbers();
 
     this.updateFinalStatus(matchingNumbers, isBonusArray);
@@ -68,4 +67,4 @@ class LottoRank {
   }
 }
 
-export default LottoRank;
+export default LottoStatus;
