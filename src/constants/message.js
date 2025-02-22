@@ -6,7 +6,7 @@ export const PROMPT_MESSAGE = Object.freeze({
   WINNING_NUMBER_INPUT: "당첨 번호를 입력해 주세요.",
   BONUS_NUMBER_INPUT: "보너스 번호를 입력해 주세요.",
   LOTTO_RESULT: "당첨 통계\n--------------------",
-  RESTART_INPUT: "다시 시작하시겠습니까? (y/n)",
+  RESTART_INPUT: `다시 시작하시겠습니까? (${LOTTO_RESTART_COMMAND.restart}/${LOTTO_RESTART_COMMAND.end})`,
 });
 
 export const ERROR_MESSAGE = Object.freeze({
