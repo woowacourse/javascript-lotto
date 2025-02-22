@@ -1,14 +1,3 @@
-export const MATCH_TO_RANK_TABLE = {
-  "3_false": 5,
-  "3_true": 5,
-  "4_false": 4,
-  "4_true": 4,
-  "5_false": 3,
-  "5_true": 2,
-  "6_false": 1,
-  "6_true": 1,
-};
-
 export const RANK_INFO_TABLE = {
   1: { price: 2_000_000_000, message: "6개 일치" },
   2: { price: 30_000_000, message: "5개 일치, 보너스 볼 일치" },

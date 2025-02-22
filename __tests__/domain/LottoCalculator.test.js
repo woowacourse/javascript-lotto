@@ -11,7 +11,11 @@ describe("로또 등수 계산", () => {
 
     lottoCalculator.calculatePrize(lotto);
 
-    expect(lottoCalculator.prize.get(1)[0]).toBe(lotto);
+    const firstRankLottos = lottoCalculator.prize.find(
+      (prize) => prize.rank === 1
+    ).lottos;
+
+    expect(firstRankLottos[0]).toBe(lotto);
   });
 
   test("2등 조건 일치 확인", () => {
@@ -20,7 +24,11 @@ describe("로또 등수 계산", () => {
 
     lottoCalculator.calculatePrize(lotto);
 
-    expect(lottoCalculator.prize.get(2)[0]).toBe(lotto);
+    const secondRankLottos = lottoCalculator.prize.find(
+      (prize) => prize.rank === 2
+    ).lottos;
+
+    expect(secondRankLottos[0]).toBe(lotto);
   });
 
   test("3등 조건 일치 확인", () => {
@@ -29,23 +37,37 @@ describe("로또 등수 계산", () => {
 
     lottoCalculator.calculatePrize(lotto);
 
-    expect(lottoCalculator.prize.get(3)[0]).toBe(lotto);
+    const thirdRankLottos = lottoCalculator.prize.find(
+      (prize) => prize.rank === 3
+    ).lottos;
+
+    expect(thirdRankLottos[0]).toBe(lotto);
   });
+
   test("4등 조건 일치 확인", () => {
     const lotto = new Lotto([3, 4, 5, 6, 8, 9]);
     const lottoCalculator = new LottoCalculator(winningNumbers, bonusNumber);
 
     lottoCalculator.calculatePrize(lotto);
 
-    expect(lottoCalculator.prize.get(4)[0]).toBe(lotto);
+    const fourthRankLottos = lottoCalculator.prize.find(
+      (prize) => prize.rank === 4
+    ).lottos;
+
+    expect(fourthRankLottos[0]).toBe(lotto);
   });
+
   test("5등 조건 일치 확인", () => {
     const lotto = new Lotto([4, 5, 6, 8, 9, 10]);
     const lottoCalculator = new LottoCalculator(winningNumbers, bonusNumber);
 
     lottoCalculator.calculatePrize(lotto);
 
-    expect(lottoCalculator.prize.get(5)[0]).toBe(lotto);
+    const fifthRankLottos = lottoCalculator.prize.find(
+      (prize) => prize.rank === 5
+    ).lottos;
+
+    expect(fifthRankLottos[0]).toBe(lotto);
   });
 
   test("등수에따른 수익 금액을 확인한다.", () => {

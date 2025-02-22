@@ -1,4 +1,4 @@
-import { MATCH_TO_RANK_TABLE, RANK_INFO_TABLE } from "../constant/rank.js";
+import { RANK_INFO_TABLE } from "../constant/rank.js";
 
 class LottoCalculator {
   #winningNumbers;
@@ -10,34 +10,40 @@ class LottoCalculator {
   constructor(winningNumbers, bonusNumber) {
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonusNumber;
-    this.#prize = new Map([
-      [5, []],
-      [4, []],
-      [3, []],
-      [2, []],
-      [1, []],
-    ]);
+    this.#prize = [
+      { rank: 1, lottos: [] },
+      { rank: 2, lottos: [] },
+      { rank: 3, lottos: [] },
+      { rank: 4, lottos: [] },
+      { rank: 5, lottos: [] },
+    ];
   }
 
   calculatePrize(lotto) {
     const matchCount = lotto.countNumbersMatch(this.#winningNumbers);
     const isMatchBonus = lotto.isMatch(this.#bonusNumber);
-    const tableKey = `${matchCount}_${isMatchBonus}`;
 
-    if (matchCount >= 3) {
-      const rank = MATCH_TO_RANK_TABLE[tableKey];
-      this.#prize.set(rank, [...this.#prize.get(rank), lotto]);
+    const rank = this.calculateRank(matchCount, isMatchBonus);
+
+    if (rank > 0) {
+      this.#prize[rank - 1].lottos.push(lotto);
     }
   }
 
+  calculateRank(matchCount, isMatchBonus) {
+    if (matchCount === 6) return 1;
+    if (matchCount === 5 && isMatchBonus) return 2;
+    if (matchCount === 5) return 3;
+    if (matchCount === 4) return 4;
+    if (matchCount === 3) return 5;
+    return 0;
+  }
+
   calculateTotalPrice() {
-    this.#totalPrice = Array.from(this.#prize.entries()).reduce(
-      (sum, [rank, rankLottos]) => {
-        const info = RANK_INFO_TABLE[rank];
-        return sum + info.price * rankLottos.length;
-      },
-      0
-    );
+    this.#totalPrice = this.#prize.reduce((sum, prize) => {
+      const info = RANK_INFO_TABLE[prize.rank];
+      return sum + info.price * prize.lottos.length;
+    }, 0);
   }
 
   calculateProfit(purchaseMoney) {
