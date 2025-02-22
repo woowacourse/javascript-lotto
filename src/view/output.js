@@ -7,10 +7,10 @@ import {
   THIRD_PRIZE,
 } from "../config/const.js";
 
-const printUserLottos = (userLottos) => {
-  printLottoCount(userLottos.price);
-  userLottos.lottos.forEach((userLotto) => {
-    console.log(userLotto.numbers);
+const printUserLottos = (price, generatedLottos) => {
+  printLottoCount(price);
+  generatedLottos.forEach((lotto) => {
+    console.log(lotto.numbers);
   });
 };
 
