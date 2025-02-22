@@ -1,5 +1,5 @@
-import { LOTTO_NUMBER_END, LOTTO_NUMBER_MAX_LENGTH, LOTTO_NUMBER_START } from "../constants/constant.js";
-import generateRandomNumber from "../utils/generateRandomNumber.js";
+import { LOTTO_NUMBER_END, LOTTO_NUMBER_MAX_LENGTH, LOTTO_NUMBER_START } from "../../constants/constant.js";
+import generateRandomNumber from "../../utils/generateRandomNumber.js";
 
 const pushRandomNumbers = (randomNumbers) => {
   while (randomNumbers.length < LOTTO_NUMBER_MAX_LENGTH) {

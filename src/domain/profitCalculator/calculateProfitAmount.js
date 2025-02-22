@@ -1,4 +1,4 @@
-import WINNING_PRICE from "../constants/WINNING_PRICE.js";
+import WINNING_PRICE from "../../constants/WINNING_PRICE.js";
 
 const calculateProfitAmount = (winningResult) => {
   const totalWinningAmount = Object.entries(winningResult).reduce((proceeds, [matchCount, winningCount]) => {

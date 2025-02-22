@@ -1,4 +1,4 @@
-import Validator from "../utils/Validator.js";
+import Validator from "../../utils/Validator.js";
 import pushRandomNumbers from "./pushRandomNumbers.js";
 
 const createSixRandomNumbers = () => {

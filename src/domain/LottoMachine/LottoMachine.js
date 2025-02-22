@@ -1,4 +1,4 @@
-import LottoPack from "./LottoPack.js";
+import LottoPack from "../LottoPack.js";
 import generateLottoNumbersSet from "./generateLottoNumbersSet.js";
 import purchaseLottoCount from "./purchaseLottoCount.js";
 

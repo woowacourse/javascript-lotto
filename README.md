@@ -179,7 +179,7 @@ Lotto
 - [x] Validator 객체 메서드명 및 파라미터 변경
 - [x] async/await 불필요한 곳 제거
 - [x] OutputView 객체 -> winningStatisics 내부 변경
-- [ ] 파일 및 폴더 정리
+- [x] 파일 및 폴더 정리
 
 - 테스트 코드
 - [ ] 도메인 테스트 재작성

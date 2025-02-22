@@ -1,5 +1,5 @@
 import Lotto from "../src/domain/Lotto.js";
-import purchaseLottoCount from "../src/domain/purchaseLottoCount.js";
+import purchaseLottoCount from "../src/domain/LottoMachine/purchaseLottoCount.js";
 
 test("로또의 1장 가격은 1000원이다.", () => {
   const money = 1000;

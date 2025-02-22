@@ -1,5 +1,5 @@
-import LottoMachine from "../src/domain/LottoMachine";
-import createSixRandomNumbers from "../src/domain/createSixRandomNumbers";
+import LottoMachine from "../src/domain/LottoMachine/LottoMachine";
+import createSixRandomNumbers from "../src/domain/LottoMachine/createSixRandomNumbers";
 
 test("1~45 중 6개의 랜덤 값을 생성한다.", () => {
   const randomValue = createSixRandomNumbers();

@@ -1,4 +1,4 @@
-import { LOTTO_PURCHASE_UNIT } from "../constants/constant.js";
+import { LOTTO_PURCHASE_UNIT } from "../../constants/constant.js";
 
 const purchaseLottoCount = (money) => money / LOTTO_PURCHASE_UNIT;
 

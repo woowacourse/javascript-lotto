@@ -1,4 +1,4 @@
-import processDecimalPoint from "../utils/processDecimalPoint.js";
+import processDecimalPoint from "../../utils/processDecimalPoint.js";
 import calculateProfitAmount from "./calculateProfitAmount.js";
 import calculateProfitRate from "./calculateProfitRate.js";
 

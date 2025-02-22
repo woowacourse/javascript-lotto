@@ -1,6 +1,6 @@
 import WINNING_PRICE from "../src/constants/WINNING_PRICE";
-import profitCalculator from "../src/domain/profitCalculator";
 import { MATCH_COUNT } from "../src/constants/constant";
+import profitCalculator from "../src/domain/profitCalculator/profitCalculator";
 
 test("구매한 금액과 당첨결과를 바탕으로 수익률을 구한다.", () => {
   const winningResult = {
