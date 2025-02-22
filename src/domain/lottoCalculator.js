@@ -3,31 +3,32 @@ import { RANK_INFO_TABLE } from "../constant/rank.js";
 class LottoCalculator {
   #winningNumbers;
   #bonusNumber;
-  #prize;
-  #totalPrice;
-  #profit;
 
   constructor(winningNumbers, bonusNumber) {
     this.#winningNumbers = winningNumbers;
     this.#bonusNumber = bonusNumber;
-    this.#prize = [
-      { rank: 1, lottos: [] },
-      { rank: 2, lottos: [] },
-      { rank: 3, lottos: [] },
-      { rank: 4, lottos: [] },
-      { rank: 5, lottos: [] },
-    ];
   }
 
-  calculatePrize(lotto) {
-    const matchCount = lotto.countNumbersMatch(this.#winningNumbers);
-    const isMatchBonus = lotto.isMatch(this.#bonusNumber);
+  calculatePrize(lottos) {
+    return lottos.reduce(
+      (result, lotto) => {
+        const matchCount = lotto.countNumbersMatch(this.#winningNumbers);
+        const isMatchBonus = lotto.isMatch(this.#bonusNumber);
+        const rank = this.calculateRank(matchCount, isMatchBonus);
 
-    const rank = this.calculateRank(matchCount, isMatchBonus);
-
-    if (rank > 0) {
-      this.#prize[rank - 1].lottos.push(lotto);
-    }
+        if (rank > 0) {
+          result[rank - 1].lottos.push(lotto);
+        }
+        return result;
+      },
+      [
+        { rank: 1, lottos: [] },
+        { rank: 2, lottos: [] },
+        { rank: 3, lottos: [] },
+        { rank: 4, lottos: [] },
+        { rank: 5, lottos: [] },
+      ]
+    );
   }
 
   calculateRank(matchCount, isMatchBonus) {
@@ -39,27 +40,15 @@ class LottoCalculator {
     return 0;
   }
 
-  calculateTotalPrice() {
-    this.#totalPrice = this.#prize.reduce((sum, prize) => {
-      const info = RANK_INFO_TABLE[prize.rank];
-      return sum + info.price * prize.lottos.length;
+  calculateTotalPrice(prize) {
+    return prize.reduce((sum, prizeGroup) => {
+      const info = RANK_INFO_TABLE[prizeGroup.rank];
+      return sum + info.price * prizeGroup.lottos.length;
     }, 0);
   }
 
-  calculateProfit(purchaseMoney) {
-    this.#profit = (this.#totalPrice / purchaseMoney) * 100;
-  }
-
-  get prize() {
-    return this.#prize;
-  }
-
-  get totalPrice() {
-    return this.#totalPrice;
-  }
-
-  get profit() {
-    return this.#profit;
+  calculateProfit(totalPrice, purchaseMoney) {
+    return (totalPrice / purchaseMoney) * 100;
   }
 }
 
