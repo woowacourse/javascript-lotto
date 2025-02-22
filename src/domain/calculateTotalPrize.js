@@ -7,6 +7,7 @@ const add = (acc, lotto) => {
     }
     return acc;
 };
+  
 
 export const calculateTotalPrize = (lottoList) => {
     const prize = lottoList.reduce((acc, lotto) => add(acc, lotto), 0);

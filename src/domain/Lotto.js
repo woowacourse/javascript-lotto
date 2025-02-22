@@ -12,9 +12,11 @@ class Lotto {
 
   set ranking(ranking){
     const isValidRanking = Object.values(RANKING).some(rank => rank.RANK === ranking);
+
     if(!isValidRanking && ranking!==null){
       throw new Error(RANKING_ERROR_MESSAGES)
     }
+    
     this.#ranking=ranking
   }
 

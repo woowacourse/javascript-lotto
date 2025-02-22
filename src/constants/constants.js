@@ -26,6 +26,8 @@ export const PURCHASE_NUMBER_ERROR_MESSAGES = {
 
 export const RANKING_ERROR_MESSAGES = 'ranking 값이 유효하지 않습니다.'
 
+export const PRICE_ERROR = '올바르지 않은 가격입니다.'
+
 export const Y_OR_NO_ERROR_MESSAGE = "y/n를 입력해주세요."
 
 export const BONUS_NUMBER_ERROR_MESSAGES = {

@@ -1,4 +1,4 @@
-import { LOTTO_CONDITION, RANKING } from '../../src/constants/constants';
+import { LOTTO_CONDITION, PRICE_ERROR, RANKING } from '../../src/constants/constants';
 import { calculateWinningRate } from '../../src/domain/calculateWinningRate';
 
 describe('수익률 판별 테스트', () => {
@@ -15,5 +15,9 @@ describe('수익률 판별 테스트', () => {
     ],
   ])('수익률이 올바르게 계산 됐는지 판단', (price, prize, winningRate) => {
     expect(calculateWinningRate(price, prize)).toBe(winningRate);
+  });
+
+  test('가격이 0원 이하일 경우 에러 발생', () => {
+    expect(()=>calculateWinningRate(0, 0)).toThrow(PRICE_ERROR);
   });
 });
