@@ -5,6 +5,15 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
+    this.validate(numbers);
+    this.#numbers = numbers.sort((a, b) => a - b);
+  }
+
+  get numbers() {
+    return this.#numbers;
+  }
+
+  validate(numbers) {
     if (!this.isLengthValid(numbers)) {
       throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.LENGTH);
     }
@@ -14,13 +23,7 @@ class Lotto {
     if (!this.isDistinct(numbers)) {
       throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.DUPLICATE);
     }
-    this.#numbers = numbers.sort((a, b) => a - b);
   }
-
-  get numbers() {
-    return this.#numbers;
-  }
-
   isLengthValid(numbers) {
     return numbers.length === LOTTO_NUMBERS.LENGTH;
   }
