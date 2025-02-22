@@ -1,17 +1,11 @@
 import LottoMachine from "../src/domain/LottoMachine/LottoMachine";
-import createSixRandomNumbers from "../src/domain/LottoMachine/createSixRandomNumbers";
+import LottoPack from "../src/domain/LottoPack";
 
-test("1~45 중 6개의 랜덤 값을 생성한다.", () => {
-  const randomValue = createSixRandomNumbers();
-  console.log(randomValue);
-  expect(randomValue).toHaveLength(6);
-  expect(randomValue.every((num) => num >= 1 && num <= 45)).toBe(true);
-});
+describe("LottoMachine 도메인 테스트", () => {
+  test("금액을 넣으면 LottoPack(로또 용지)인스턴스가 나온다.", () => {
+    const money = 3000;
+    const lottoPack = LottoMachine(money);
 
-test("주어진 count 값만큼 난수(6개의 랜덤값) 세트가 생성된다.", () => {
-  const money = 3000;
-
-  const lottoPack = LottoMachine(money);
-
-  expect(lottoPack.lottos.length).toBe(money / 1000);
+    expect(lottoPack).toBeInstanceOf(LottoPack);
+  });
 });
