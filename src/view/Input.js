@@ -1,4 +1,3 @@
-import readline from "readline";
 import { INPUT_MESSAGE } from "../constant/Message.js";
 import { inputHandler, readLineAsync } from "../util/InputHandler.js";
 import Output from "./Output.js";

@@ -6,6 +6,10 @@ export const RANK = {
   FIFTH: "5등",
 };
 
+export const PRICE = {
+  LOTTO: 1000,
+};
+
 const DEFINITION = {
   LOTTO_PRISE: {
     [RANK.FIFTH]: 5000,

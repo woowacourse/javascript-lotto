@@ -9,7 +9,7 @@ const Output = {
   printLottos(lottos) {
     this.lottoAmount(lottos.length);
     lottos.forEach((lotto) => {
-      this.lottoNumbers(lotto.numbers);
+      this.lottoNumbers(lotto);
     });
     this.newLine();
   },
