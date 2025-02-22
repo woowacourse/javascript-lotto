@@ -6,6 +6,7 @@ import {
   MIN_PRICE,
 } from '../src/constants/common.js';
 import Validate from '../src/Model/Validate.js';
+import { getLottoNumberArray } from '../src/util/createNumber.js';
 
 describe('입력 값에 대한 테스트', () => {
   test('공백 입력 시 에러가 발생한다.', () => {
@@ -53,7 +54,7 @@ describe('입력 값에 대한 테스트', () => {
 
   test('보너스 번호가 당첨 번호와 중복 입력된 경우 에러가 발생한다.', () => {
     const bonusNumber = 6;
-    const winningNumber = Array.from({ length: LOTTO_NUMBER_LENGTH }, (_, i) => i + 1);
+    const winningNumber = getLottoNumberArray();
 
     expect(() => {
       Validate.checkBonusNumberDuplicate(winningNumber, bonusNumber);

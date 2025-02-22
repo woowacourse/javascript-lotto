@@ -1,5 +1,6 @@
 import { LOTTO_NUMBER_LENGTH, PRIZE } from '../src/constants/common.js';
 import Winning from '../src/Model/Winning.js';
+import { getLottoNumberArray } from '../src/util/createNumber.js';
 
 describe('Winning 클래스 테스트', () => {
   let winningNumbers;
@@ -7,7 +8,7 @@ describe('Winning 클래스 테스트', () => {
   let winning;
 
   beforeEach(() => {
-    winningNumbers = Array.from({ length: LOTTO_NUMBER_LENGTH }, (_, i) => i + 1);
+    winningNumbers = getLottoNumberArray();
     bonusNumber = 7;
     winning = new Winning(winningNumbers, bonusNumber);
   });
