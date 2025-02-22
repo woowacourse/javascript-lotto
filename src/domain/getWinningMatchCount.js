@@ -1,27 +1,24 @@
 import { LOTTO } from '../constants/messages.js';
 
 export const getWinningMatchCount = (randomlottos, lottoNumbers) => {
-  let matchCounts = [0, 0, 0, 0, 0, 0, 0, 0];
+  const test = randomlottos.reduce(
+    (matchCounts, cur) => {
+      let match = plusIfWinningNumbers(lottoNumbers, cur);
+      if (match === LOTTO.FIVE_MATCH && cur.includes(lottoNumbers.bonusNumber)) {
+        match = LOTTO.FIVE_WITH_BONUS_MATCH_IDX;
+      }
 
-  randomlottos.forEach((randomLotto) => {
-    let match = plusIfWinningNumbers(lottoNumbers, randomLotto);
+      matchCounts[match]++;
+      return matchCounts;
+    },
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  );
 
-    if (match === LOTTO.FIVE_MATCH && randomLotto.includes(lottoNumbers.bonusNumber)) {
-      match = LOTTO.FIVE_WITH_BONUS_MATCH_IDX;
-    }
-
-    matchCounts[match]++;
-  });
-
-  return matchCounts;
+  return test;
 };
 
 const plusIfWinningNumbers = (lottoNumbers, randomLotto) => {
-  let match = 0;
-  lottoNumbers.winningNumbers.forEach((winningNumber) => {
-    if (randomLotto.includes(winningNumber)) {
-      match++;
-    }
-  });
-  return match;
+  return lottoNumbers.winningNumbers.reduce((match, winningNumber) => {
+    return match + (randomLotto.includes(winningNumber) ? 1 : 0);
+  }, 0);
 };
