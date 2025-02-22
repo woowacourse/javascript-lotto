@@ -16,11 +16,11 @@ describe('Lotto 클래스 테스트', () => {
   );
 
   test('번호 포함 테스트', () => {
-    expect(lotto.isContained(1)).toBe(true);
+    expect(lotto.hasNumber(1)).toBe(true);
   });
 
   test('번호 미포함 테스트', () => {
-    expect(lotto.isContained(10)).toBe(false);
+    expect(lotto.hasNumber(10)).toBe(false);
   });
 
   test.each([

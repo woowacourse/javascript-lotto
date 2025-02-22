@@ -8,11 +8,11 @@ class WinningLotto {
   }
 
   matchedWinningCount(lotto){
-    return this.#winningLotto.numbers.filter((number) => lotto.isContained(number)).length;
+    return this.#winningLotto.numbers.filter((number) => lotto.hasNumber(number)).length;
   }
 
   isBonusMatched(lotto) {
-    return lotto.isContained(this.#bonusNumber);
+    return lotto.hasNumber(this.#bonusNumber);
   }
 }
 

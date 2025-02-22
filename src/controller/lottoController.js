@@ -16,7 +16,7 @@ export const lottoController = {
         const lottoResult = lottoService.calculateLottoResult(lottoList, winningLotto)
         OutputView.printStatstics(lottoResult)
 
-        const winningRate = lottoService.calculateWinningRate(lottoList)
+        const winningRate = lottoService.calculateWinningRate(lottoList, lottoResult)
         OutputView.print(`총 수익률은 ${winningRate}%입니다.`)
 
         gameService.reStart(await InputHandler.reStart())
