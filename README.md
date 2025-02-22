@@ -191,5 +191,6 @@ Lotto
       - [x] createSixRandomNumbers 도메인
         - [x] pushRandomNumbers 도메인
           - [x] generateRandomNumber 도메인
+  - [x] generateAnswerLotto 도메인
 - [ ] 테스트명 수정
 - [ ] 테스트 코드 -> 상수 및 변수 처리
