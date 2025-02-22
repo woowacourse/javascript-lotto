@@ -18,4 +18,4 @@ export const WINNING_HISTORY = Object.freeze({
   3: 0,
   4: 0,
   5: 0,
-});
+})
