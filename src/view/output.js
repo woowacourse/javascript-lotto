@@ -33,7 +33,7 @@ const Output = {
     });
   },
   printTotalProfit: (totalProfit) => {
-    console.log(`총 수익률은 ${totalProfit}%입니다.\n`);
+    console.log(`총 수익률은 ${totalProfit.toFixed(1)}%입니다.\n`);
   },
 };
 

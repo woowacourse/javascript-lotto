@@ -21,7 +21,7 @@ class LottoResult {
   }
 
   getRate() {
-    return ((this.getTotalProfit() / this.price) * 100).toFixed(1);
+    return (this.getTotalProfit() / this.price) * 100;
   }
 }
 export default LottoResult;
