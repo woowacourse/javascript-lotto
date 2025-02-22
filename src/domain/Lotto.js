@@ -4,12 +4,11 @@ export default class Lotto {
   }
 
   static generateLottoNumbers() {
-    const randomNumbers = [];
-    while (randomNumbers.length < 6) {
+    const randomNumbers = new Set();
+    while (randomNumbers.size < 6) {
       const randomNumber = Math.floor(Math.random() * 44 + 1);
-      if (randomNumbers.includes(randomNumber)) continue;
-      randomNumbers.push(randomNumber);
+      randomNumbers.add(randomNumber);
     }
-    return randomNumbers;
+    return Array.from(randomNumbers);
   }
 }
