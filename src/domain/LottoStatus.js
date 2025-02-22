@@ -11,6 +11,7 @@ class LottoStatus {
     this.#enteredLottoNumbers = enteredLottoNumbers;
     this.#bonusLottoNumber = bonusLottoNumber;
     this.#matchedLottoStatus = [];
+    this.matchLottoStatus();
   }
 
   countMatchingNumbers(numbers) {
