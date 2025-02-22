@@ -1,11 +1,4 @@
-import {
-  FIFTH_PRIZE,
-  FIRST_PRIZE,
-  FOURTH_PRIZE,
-  PURCHASE_UNIT,
-  SECOND_PRIZE,
-  THIRD_PRIZE,
-} from "../config/const.js";
+import { PURCHASE, PRIZE } from "../config/const.js";
 
 const printUserLottos = (price, generatedLottos) => {
   printLottoCount(price);
@@ -15,15 +8,15 @@ const printUserLottos = (price, generatedLottos) => {
 };
 
 const printLottoCount = (price) => {
-  console.log(`${Number(price / PURCHASE_UNIT)}개를 구매했습니다.`);
+  console.log(`${Number(price / PURCHASE.UNIT)}개를 구매했습니다.`);
 };
 
 const prizeSummary = [
-  { count: "3개", prize: FIFTH_PRIZE, label: "fifthPrize" },
-  { count: "4개", prize: FOURTH_PRIZE, label: "fourthPrize" },
-  { count: "5개", prize: THIRD_PRIZE, label: "thirdPrize" },
-  { count: "5개 + 보너스 볼", prize: SECOND_PRIZE, label: "secondPrize" },
-  { count: "6개", prize: FIRST_PRIZE, label: "firstPrize" },
+  { count: "3개", prize: PRIZE.FIFTH, label: "fifthPrize" },
+  { count: "4개", prize: PRIZE.FOURTH, label: "fourthPrize" },
+  { count: "5개", prize: PRIZE.THIRD, label: "thirdPrize" },
+  { count: "5개 + 보너스 볼", prize: PRIZE.SECOND, label: "secondPrize" },
+  { count: "6개", prize: PRIZE.FIRST, label: "firstPrize" },
 ];
 
 const printResult = (prizeResult, ROI) => {

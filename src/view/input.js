@@ -6,7 +6,7 @@ import { vaildateRestart } from "../utils/validate/validateRestart.js";
 
 export const inputPrice = async () => {
   try {
-    const price = Number(await readLineAsync("구입금액을 입력해 주세요."));
+    const price = Number(await readLineAsync("구입 금액을 입력해 주세요."));
     validatePrice(price);
     return price;
   } catch (error) {

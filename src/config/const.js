@@ -1,12 +1,20 @@
-export const PURCHASE_UNIT = 1000;
-export const MAXIMUM_PURCHASE_THRESHOLD = 20000;
-export const LOTTO_MAX_RANGE = 45;
-export const LOTTO_MIN_RANGE = 1;
-export const FIRST_PRIZE = 2000000000;
-export const SECOND_PRIZE = 30000000;
-export const THIRD_PRIZE = 1500000;
-export const FOURTH_PRIZE = 50000;
-export const FIFTH_PRIZE = 5000;
-export const MIN_MATCH_COUNT = 3;
-export const BONUS_NUMBER_THRESHOLD = 5;
-export const MAX_LOTTO_LENGTH = 6;
+export const PURCHASE = {
+  UNIT: 1000,
+  MAX_AMOUNT: 20000,
+};
+
+export const LOTTO = {
+  MAX_NUMBER: 45,
+  MIN_NUMBER: 1,
+  MAX_LENGTH: 6,
+};
+
+export const PRIZE = {
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
+  MIN_MATCH_COUNT: 3,
+  BONUS_MATCH_COUNT: 5,
+};

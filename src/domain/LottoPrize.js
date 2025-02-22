@@ -1,10 +1,4 @@
-import {
-  FIFTH_PRIZE,
-  FIRST_PRIZE,
-  FOURTH_PRIZE,
-  SECOND_PRIZE,
-  THIRD_PRIZE,
-} from "../config/const.js";
+import { PRIZE } from "../config/const.js";
 
 class LottoPrize {
   #countResults;
@@ -56,15 +50,15 @@ class LottoPrize {
     return Object.keys(this.#prizeResult).reduce((acc, curr) => {
       switch (curr) {
         case "firstPrize":
-          return acc + FIRST_PRIZE * this.#prizeResult[curr];
+          return acc + PRIZE.FIRST * this.#prizeResult[curr];
         case "secondPrize":
-          return acc + SECOND_PRIZE * this.#prizeResult[curr];
+          return acc + PRIZE.SECOND * this.#prizeResult[curr];
         case "thirdPrize":
-          return acc + THIRD_PRIZE * this.#prizeResult[curr];
+          return acc + PRIZE.THIRD * this.#prizeResult[curr];
         case "fourthPrize":
-          return acc + FOURTH_PRIZE * this.#prizeResult[curr];
+          return acc + PRIZE.FOURTH * this.#prizeResult[curr];
         case "fifthPrize":
-          return acc + FIFTH_PRIZE * this.#prizeResult[curr];
+          return acc + PRIZE.FIFTH * this.#prizeResult[curr];
       }
     }, 0);
   }

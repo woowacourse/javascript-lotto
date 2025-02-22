@@ -1,16 +1,11 @@
-import {
-  LOTTO_MAX_RANGE,
-  LOTTO_MIN_RANGE,
-  MAX_LOTTO_LENGTH,
-  PURCHASE_UNIT,
-} from "../config/const.js";
+import { PURCHASE, LOTTO } from "../config/const.js";
 import Lotto from "./Lotto.js";
 
 function getRandomNumbers() {
   const randomNumbers = new Set();
-  while (randomNumbers.size < MAX_LOTTO_LENGTH) {
+  while (randomNumbers.size < LOTTO.MAX_LENGTH) {
     randomNumbers.add(
-      Math.floor(Math.random() * LOTTO_MAX_RANGE) + LOTTO_MIN_RANGE
+      Math.floor(Math.random() * LOTTO.MAX_NUMBER) + LOTTO.MIN_NUMBER
     );
   }
   return [...randomNumbers];
@@ -18,7 +13,7 @@ function getRandomNumbers() {
 
 function getGenerateLottos(price) {
   let generatedLottos = [];
-  for (let i = 0; i < price / PURCHASE_UNIT; i++) {
+  for (let i = 0; i < price / PURCHASE.UNIT; i++) {
     generatedLottos.push(new Lotto(getRandomNumbers()));
   }
   return generatedLottos;
