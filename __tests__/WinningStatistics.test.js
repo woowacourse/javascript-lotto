@@ -1,9 +1,38 @@
+import { create } from "domain";
 import {
   MATCH_KEY,
   MIN_UNIT,
   MATCH_PRIZE,
 } from "../src/constants/constants.js";
 import WinningStatistics from "../src/domains/WinningStatistics.js";
+
+const createWinningStatisticsMap = (counts = {}) => {
+  return new Map([
+    [
+      MATCH_KEY.THREE,
+      { count: counts[MATCH_KEY.THREE] ?? 0, amount: MATCH_PRIZE.THREE },
+    ],
+    [
+      MATCH_KEY.FOUR,
+      { count: counts[MATCH_KEY.FOUR] ?? 0, amount: MATCH_PRIZE.FOUR },
+    ],
+    [
+      MATCH_KEY.FIVE,
+      { count: counts[MATCH_KEY.FIVE] ?? 0, amount: MATCH_PRIZE.FIVE },
+    ],
+    [
+      MATCH_KEY.FIVE_AND_BONUS,
+      {
+        count: counts[MATCH_KEY.FIVE_AND_BONUS] ?? 0,
+        amount: MATCH_PRIZE.FIVE_AND_BONUS,
+      },
+    ],
+    [
+      MATCH_KEY.SIX,
+      { count: counts[MATCH_KEY.SIX] ?? 0, amount: MATCH_PRIZE.SIX },
+    ],
+  ]);
+};
 
 describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익률 계산", () => {
   // given
@@ -14,45 +43,20 @@ describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익
     {
       description: "발행된 로또가 당첨 번호 중 2개와 일치하는 경우",
       lottos: [[1, 2, 7, 8, 9, 10]],
-      expectedStatistics: new Map([
-        [MATCH_KEY.THREE, { count: 0, amount: MATCH_PRIZE.THREE }],
-        [MATCH_KEY.FOUR, { count: 0, amount: MATCH_PRIZE.FOUR }],
-        [MATCH_KEY.FIVE, { count: 0, amount: MATCH_PRIZE.FIVE }],
-        [
-          MATCH_KEY.FIVE_AND_BONUS,
-          { count: 0, amount: MATCH_PRIZE.FIVE_AND_BONUS },
-        ],
-        [MATCH_KEY.SIX, { count: 0, amount: MATCH_PRIZE.SIX }],
-      ]),
+      expectedStatistics: createWinningStatisticsMap(),
     },
     {
       description: "발행된 로또가 당첨 번호 중 5개와 일치하는 경우",
       lottos: [[1, 2, 3, 4, 5, 10]],
-      expectedStatistics: new Map([
-        [MATCH_KEY.THREE, { count: 0, amount: MATCH_PRIZE.THREE }],
-        [MATCH_KEY.FOUR, { count: 0, amount: MATCH_PRIZE.FOUR }],
-        [MATCH_KEY.FIVE, { count: 1, amount: MATCH_PRIZE.FIVE }],
-        [
-          MATCH_KEY.FIVE_AND_BONUS,
-          { count: 0, amount: MATCH_PRIZE.FIVE_AND_BONUS },
-        ],
-        [MATCH_KEY.SIX, { count: 0, amount: MATCH_PRIZE.SIX }],
-      ]),
+      expectedStatistics: createWinningStatisticsMap({ [MATCH_KEY.FIVE]: 1 }),
     },
     {
       description:
         "발행된 로또가 당첨 번호 중 5개 + 보너스 번호와 일치하는 경우",
       lottos: [[1, 2, 3, 4, 5, 7]],
-      expectedStatistics: new Map([
-        [MATCH_KEY.THREE, { count: 0, amount: MATCH_PRIZE.THREE }],
-        [MATCH_KEY.FOUR, { count: 0, amount: MATCH_PRIZE.FOUR }],
-        [MATCH_KEY.FIVE, { count: 0, amount: MATCH_PRIZE.FIVE }],
-        [
-          MATCH_KEY.FIVE_AND_BONUS,
-          { count: 1, amount: MATCH_PRIZE.FIVE_AND_BONUS },
-        ],
-        [MATCH_KEY.SIX, { count: 0, amount: MATCH_PRIZE.SIX }],
-      ]),
+      expectedStatistics: createWinningStatisticsMap({
+        [MATCH_KEY.FIVE_AND_BONUS]: 1,
+      }),
     },
     {
       description: "모든 발행된 로또들이 모두 낙첨되는 경우",
@@ -61,16 +65,7 @@ describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익
         [1, 7, 8, 9, 10, 11], // 1개 일치
         [1, 2, 7, 8, 9, 10], // 2개 일치
       ],
-      expectedStatistics: new Map([
-        [MATCH_KEY.THREE, { count: 0, amount: MATCH_PRIZE.THREE }],
-        [MATCH_KEY.FOUR, { count: 0, amount: MATCH_PRIZE.FOUR }],
-        [MATCH_KEY.FIVE, { count: 0, amount: MATCH_PRIZE.FIVE }],
-        [
-          MATCH_KEY.FIVE_AND_BONUS,
-          { count: 0, amount: MATCH_PRIZE.FIVE_AND_BONUS },
-        ],
-        [MATCH_KEY.SIX, { count: 0, amount: MATCH_PRIZE.SIX }],
-      ]),
+      expectedStatistics: createWinningStatisticsMap(),
     },
     {
       description: "모든 발행된 로또들이 당첨 번호 중 6개 모두 당첨되는 경우",
@@ -79,16 +74,11 @@ describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익
         [1, 2, 3, 4, 7, 8], // 4개 일치
         [1, 2, 3, 4, 5, 6], // 6개 일치
       ],
-      expectedStatistics: new Map([
-        [MATCH_KEY.THREE, { count: 1, amount: MATCH_PRIZE.THREE }],
-        [MATCH_KEY.FOUR, { count: 1, amount: MATCH_PRIZE.FOUR }],
-        [MATCH_KEY.FIVE, { count: 0, amount: MATCH_PRIZE.FIVE }],
-        [
-          MATCH_KEY.FIVE_AND_BONUS,
-          { count: 0, amount: MATCH_PRIZE.FIVE_AND_BONUS },
-        ],
-        [MATCH_KEY.SIX, { count: 1, amount: MATCH_PRIZE.SIX }],
-      ]),
+      expectedStatistics: createWinningStatisticsMap({
+        [MATCH_KEY.THREE]: 1,
+        [MATCH_KEY.FOUR]: 1,
+        [MATCH_KEY.SIX]: 1,
+      }),
     },
   ])(
     "calculateWinningResults 메서드 테스트: $description",
