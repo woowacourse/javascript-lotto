@@ -48,7 +48,7 @@ const game = async () => {
   const countNumber = divideByUnit(PRICE.UNIT, price);
   Output.print(`${countNumber}${OUTPUT.BUY_COUNT}`);
 
-  const lottos = Ticket.createLottos(countNumber);
+  const lottos = Ticket.issueLottos(countNumber);
   Output.printLottoNumber(lottos);
 
   const { winningLotto, bonusLottoNumber } = await getNeededLottoNumbers();

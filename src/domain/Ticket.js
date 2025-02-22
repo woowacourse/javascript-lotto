@@ -3,7 +3,7 @@ import { getRandomNumber } from "../utils/random.js";
 import Lotto from "./Lotto.js";
 
 const Ticket = {
-  issueLottoNumbers: () => {
+  generateLottoNumbers: () => {
     const randomNumberStore = new Set();
     while (randomNumberStore.size < LOTTO_NUMBER.LENGTH) {
       const number = getRandomNumber(LOTTO_NUMBER.MIN, LOTTO_NUMBER.MAX);
@@ -12,9 +12,9 @@ const Ticket = {
     return [...randomNumberStore];
   },
 
-  createLottos: (count) => {
+  issueLottos: (count) => {
     return Array.from({ length: count }, () => {
-      const lottoNumbers = Ticket.issueLottoNumbers();
+      const lottoNumbers = Ticket.generateLottoNumbers();
       return new Lotto(lottoNumbers);
     });
   },
