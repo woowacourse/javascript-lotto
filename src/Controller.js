@@ -12,9 +12,8 @@ import parseAndValidateRestart from "./domain/processors/parseAndValidateRestart
 class Controller {
   async start() {
     const purchaseAmount = await this.purchaseAmountInput();
-    const { count, lottoPack } = LottoMachine(purchaseAmount);
-
-    OutputView.purchaseCount(count);
+    const lottoPack = LottoMachine(purchaseAmount);
+    OutputView.purchaseCount(lottoPack.count);
     OutputView.lottoPack(lottoPack.lottos);
 
     const { winningNumbers, bonusNumber } = await this.answerLottoInput();

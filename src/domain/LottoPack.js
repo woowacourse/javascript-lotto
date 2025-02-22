@@ -3,6 +3,7 @@ import { MATCH_COUNT } from "../constants/constant.js";
 
 class LottoPack {
   #lottos;
+  #count;
   #checkCountResult = {
     [MATCH_COUNT.SIX]: 0,
     [MATCH_COUNT.FIVE_BONUS]: 0,
@@ -11,8 +12,9 @@ class LottoPack {
     [MATCH_COUNT.THREE]: 0,
   };
 
-  constructor(lottos) {
+  constructor(lottos, count) {
     this.#lottos = this.#generateLottos(lottos);
+    this.#count = count;
   }
 
   compareAndReturnResult(answerLotto) {
@@ -53,6 +55,9 @@ class LottoPack {
 
   get lottos() {
     return [...this.#lottos];
+  }
+  get count() {
+    return this.#count;
   }
 }
 

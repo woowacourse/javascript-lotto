@@ -166,9 +166,9 @@ Lotto
 - [ ] Controller 클래스
   - [ ] 함수로 변경 및 네이밍 변경
   - [ ] 메서드 내부 분리
-- [ ] LottoMachine (현금(input) -> LottoPack(로또 용지)(output))
-- [ ] LottoPack 클래스 수정
-  - [ ] count 값 관리
+- [x] LottoMachine (현금(input) -> LottoPack(로또 용지)(output))
+- [x] LottoPack 클래스 수정
+  - [x] count 값 관리
   - [x] getter -> 복사본 return
   - [x] playCompare 메서드명 변경 -> compareAndReturnResult
   - [x] return 값 추가 -> #checkCountResult 필드값 return

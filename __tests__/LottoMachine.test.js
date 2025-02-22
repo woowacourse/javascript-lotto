@@ -11,7 +11,7 @@ test("1~45 중 6개의 랜덤 값을 생성한다.", () => {
 test("주어진 count 값만큼 난수(6개의 랜덤값) 세트가 생성된다.", () => {
   const money = 3000;
 
-  const { count, lottoPack } = LottoMachine(money);
+  const lottoPack = LottoMachine(money);
 
   expect(lottoPack.lottos.length).toBe(money / 1000);
 });
