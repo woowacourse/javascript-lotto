@@ -11,53 +11,53 @@ class LottoStatus {
     this.#enteredLottoNumbers = enteredLottoNumbers;
     this.#bonusLottoNumber = bonusLottoNumber;
     this.#matchedLottoStatus = [];
-    this.matchLottoStatus();
+    this.#matchLottoStatus();
   }
 
-  countMatchingNumbers(numbers) {
+  getMatchedLottoStatus() {
+    return this.#matchedLottoStatus;
+  }
+
+  #matchLottoStatus() {
+    const matchingCounts = this.#getMatchingCounts();
+    const isBonusArray = this.#getHasBonusNumbers();
+
+    this.#matchedLottoStatus = matchingCounts
+      .map((matchCount, index) =>
+        this.#getLottoStatus(matchCount, isBonusArray[index])
+      )
+      .filter((status) => status);
+  }
+
+  #countMatchingNumbers(numbers) {
     return numbers.filter((number) =>
       this.#enteredLottoNumbers.includes(number)
     ).length;
   }
 
-  getMatchingCounts() {
+  #getMatchingCounts() {
     return this.#issuedLottoNumbers.map((numbers) => {
-      return this.countMatchingNumbers(numbers);
+      return this.#countMatchingNumbers(numbers);
     });
   }
 
-  hasBonusNumber(numbers) {
+  #hasBonusNumber(numbers) {
     return numbers.includes(this.#bonusLottoNumber);
   }
 
-  getHasBonusNumbers() {
+  #getHasBonusNumbers() {
     return this.#issuedLottoNumbers.map((numbers) => {
-      return this.hasBonusNumber(numbers);
+      return this.#hasBonusNumber(numbers);
     });
   }
 
-  getLottoStatus(matchCount, isBonus) {
+  #getLottoStatus(matchCount, isBonus) {
     if (matchCount === 5) {
       return LOTTO_STATUS.find(
         (item) => item.COUNT === matchCount && item.IS_BONUS === isBonus
       );
     }
     return LOTTO_STATUS.find((item) => item.COUNT === matchCount);
-  }
-
-  matchLottoStatus() {
-    const matchingCounts = this.getMatchingCounts();
-    const isBonusArray = this.getHasBonusNumbers();
-
-    this.#matchedLottoStatus = matchingCounts
-      .map((matchCount, index) =>
-        this.getLottoStatus(matchCount, isBonusArray[index])
-      )
-      .filter((status) => status);
-  }
-
-  getMatchedLottoStatus() {
-    return this.#matchedLottoStatus;
   }
 }
 

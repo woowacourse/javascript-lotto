@@ -3,11 +3,11 @@ import validateLotto from "../validation/validateLotto.js";
 class Lotto {
   #numbers;
   constructor(numbers) {
-    this.#numbers = this.sortLottoNumber(numbers);
+    this.#numbers = this.#sortLottoNumber(numbers);
     validateLotto(this.#numbers);
   }
 
-  sortLottoNumber(numbers) {
+  #sortLottoNumber(numbers) {
     return numbers.sort((a, b) => a - b);
   }
 
