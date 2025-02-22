@@ -25,8 +25,8 @@ beforeEach(() => {
       hasBonus: false,
     },
   ];
-  lottoPrize = new LottoPrize(compareResult);
-  lottoPrize.calculateTotalPrizeCount();
+  lottoPrize = new LottoPrize();
+  lottoPrize.calculateTotalPrizeCount(compareResult);
 });
 
 test("당첨 내역을 계산한다.", () => {

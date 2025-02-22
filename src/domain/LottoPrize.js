@@ -1,11 +1,9 @@
 import { PRIZE } from "../config/const.js";
 
 class LottoPrize {
-  #compareResult;
   #prizeResult;
 
-  constructor(compareResult) {
-    this.#compareResult = compareResult;
+  constructor() {
     this.#prizeResult = {
       firstPrize: 0,
       secondPrize: 0,
@@ -19,8 +17,8 @@ class LottoPrize {
     return this.#prizeResult;
   }
 
-  calculateTotalPrizeCount() {
-    this.#compareResult.forEach(({ matchCount, hasBonus }) => {
+  calculateTotalPrizeCount(compareResult) {
+    compareResult.forEach(({ matchCount, hasBonus }) => {
       if (matchCount === 6) ++this.#prizeResult.firstPrize;
       else if (matchCount === 5 && hasBonus) ++this.#prizeResult.secondPrize;
       else if (matchCount === 5 && !hasBonus) ++this.#prizeResult.thirdPrize;

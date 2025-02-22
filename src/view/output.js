@@ -3,7 +3,7 @@ import { PURCHASE, PRIZE } from "../config/const.js";
 const printUserLottos = (price, generatedLottos) => {
   printLottoCount(price);
   generatedLottos.forEach((lotto) => {
-    console.log(lotto.numbers);
+    console.log(lotto);
   });
 };
 

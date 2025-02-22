@@ -12,12 +12,12 @@ import {
   inputWinningNumbers,
 } from "../src/view/input.js";
 import LottoPrize from "./domain/LottoPrize.js";
-import getGenerateLottos from "./domain/lottoGenerator.js";
+import LottoGenerator from "./domain/LottoGenerator.js";
 
 async function run() {
   const price = await inputPrice();
 
-  const generatedLottos = getGenerateLottos(price);
+  const generatedLottos = LottoGenerator.getGenerateLottos(price);
   printUserLottos(price, generatedLottos);
 
   const winningNumbers = await inputWinningNumbers();
@@ -25,8 +25,9 @@ async function run() {
 
   const lottoComparer = new LottoComparer(winningNumbers, bonusNumber);
   const compareResult = lottoComparer.lottoCompareResult(generatedLottos);
-  const lottoPrize = new LottoPrize(compareResult);
-  lottoPrize.calculateTotalPrizeCount();
+
+  const lottoPrize = new LottoPrize();
+  lottoPrize.calculateTotalPrizeCount(compareResult);
 
   printResult(lottoPrize.prizeResult, lottoPrize.calculateROI(price));
 
