@@ -5,6 +5,7 @@ import { PurchaseController } from "./controller/PurchaseController.js";
 import { WinningController } from "./controller/WinningController.js";
 import { ResultController } from "./controller/ResultController.js";
 import { ProfitController } from "./controller/ProfitController.js";
+import { RETRY_ANSWER } from "./lottoConstants/systemConstants.js";
 
 const runLotto = async () => {
   while (true) {
@@ -14,7 +15,7 @@ const runLotto = async () => {
     ProfitController(matchingCount, lottoCount);
 
     const yesOrNo = await retryOnError(getRetryInput, OutputView.printError);
-    if (yesOrNo === "n") {
+    if (yesOrNo === RETRY_ANSWER.NO) {
       break;
     }
   }
