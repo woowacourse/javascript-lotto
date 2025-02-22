@@ -1,5 +1,3 @@
-import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants.js";
-
 const validationCondition = {
   isNumber(input) {
     return !isNaN(input);
