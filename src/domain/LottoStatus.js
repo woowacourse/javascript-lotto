@@ -52,12 +52,11 @@ class LottoStatus {
   }
 
   #getLottoStatus(matchCount, isBonus) {
-    if (matchCount === 5) {
-      return LOTTO_STATUS.find(
-        (item) => item.COUNT === matchCount && item.IS_BONUS === isBonus
-      );
-    }
-    return LOTTO_STATUS.find((item) => item.COUNT === matchCount);
+    return LOTTO_STATUS.find(
+      (status) =>
+        status.COUNT === matchCount &&
+        (status.IS_BONUS === null || status.IS_BONUS === isBonus)
+    );
   }
 }
 
