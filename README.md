@@ -154,10 +154,8 @@ Lotto
 - [x] WINNING_PRICE -> numeric separator로 변경
 - [x] 객체 상수 -> Object.freeze 적용
 - [x] 로또 체크 갯수 상수화
-- [ ] Lotto 클래스 수정
-  - [ ] compareWinningNumbers() 메서드 내부 수정 (let 제거)
-  - [ ] 정렬 후 -> 복사본 저장
-  - [ ] getter return 복사본 return하기
+- [x] Lotto 클래스 수정
+  - [x] compareWinningNumbers() 메서드 내부 수정 (let 제거)
 - [ ] import 문 띄어쓰기
 - [ ] `validate-` 함수 -> 값 가공 함수 분리
 - [ ] validateReStart 메서드 -> 동작 통일화
@@ -174,6 +172,9 @@ Lotto
   - [ ] getter -> 복사본 return
   - [x] playCompare 메서드명 변경 -> compareAndReturnResult
   - [x] return 값 추가 -> #checkCountResult 필드값 return
+- [x] Lotto 클래스 수정
+  - [x] 정렬 후 -> 복사본 저장
+  - [x] getter return 복사본 return하기
 - [ ] profitCalculator 도메인 분리
 - [ ] Validator 객체 메서드명 및 파라미터 변경
 - [ ] async/await 불필요한 곳 제거
