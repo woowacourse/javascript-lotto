@@ -1,6 +1,6 @@
 const ValidationUtils = {
   isEmpty: (string) => string.trim().length === 0,
-  isCorrectedArrayLength: (array, min, max) =>
+  isValidArrayLength: (array, min, max) =>
     array.length < min || array.length > max,
   isDuplicatedNumber: (array) => new Set(array).size !== array.length,
   isArrayNumberRangeOver: (numbers, min, max) =>
@@ -28,11 +28,7 @@ const Validator = {
   },
   winningNumbers: (numbers) => {
     const errorResults = {
-      IS_WRONG_ARRAY_LENGTH: ValidationUtils.isCorrectedArrayLength(
-        numbers,
-        6,
-        6
-      ),
+      IS_WRONG_ARRAY_LENGTH: ValidationUtils.isValidArrayLength(numbers, 6, 6),
       IS_NOT_NATURAL_NUMBER_IN_ARRAY:
         ValidationUtils.isNotNaturalNumberInArray(numbers),
       IS_DUPLICATED_NUMBER: ValidationUtils.isDuplicatedNumber(numbers),
