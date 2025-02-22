@@ -25,7 +25,10 @@ class LottoMachine {
     });
   }
 
-  updateAllLottoStatus(matchingNumbers, isBonusArray) {
+  updateAllLottoStatus(enteredLottoNumbers, bonusLottoNumber) {
+    const matchingNumbers = this.getMatchingNumbers(enteredLottoNumbers);
+    const isBonusArray = this.getHasBonusNumbers(bonusLottoNumber);
+
     matchingNumbers.forEach((matchingNumber, index) => {
       if (matchingNumber < 3) return;
 
@@ -40,12 +43,7 @@ class LottoMachine {
     });
   }
 
-  getMatchedLottoStatus(enteredLottoNumbers, bonusLottoNumber) {
-    const matchingNumbers = this.getMatchingNumbers(enteredLottoNumbers);
-    const isBonusArray = this.getHasBonusNumbers(bonusLottoNumber);
-
-    this.updateAllLottoStatus(matchingNumbers, isBonusArray);
-
+  getMatchedLottoStatus() {
     return this.matchedLottoStatus;
   }
 }

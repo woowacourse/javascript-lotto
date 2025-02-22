@@ -56,10 +56,11 @@ const game = async () => {
   Output.print(OUTPUT.LINE);
 
   const lottoMachine = new LottoMachine(lottos);
-  const lottoStatus = lottoMachine.getMatchedLottoStatus(
+  lottoMachine.updateAllLottoStatus(
     winningLotto.getLottoNumbers(),
     bonusLottoNumber
   );
+  const lottoStatus = lottoMachine.getMatchedLottoStatus();
 
   const lottoResult = new LottoResult(lottoStatus, price);
   const lottoHistory = lottoResult.getWinningHistory();
