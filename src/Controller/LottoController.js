@@ -6,12 +6,17 @@ import Winning from '../Model/Winning.js';
 
 class LottoController {
   async start() {
-    const { price, lottos } = await this.#buyLotto();
-    const { winningNumbers, bonusNumber } = await this.#getWinningNumbers();
+    const { price, lottos } = await this.#getLottos();
+    OutputView.printLottos(lottos);
 
+    const { winningNumbers, bonusNumber } = await this.#getWinningNumbers();
     const winning = new Winning(winningNumbers, bonusNumber);
-    this.#processWinningResult(winning, lottos);
-    this.#processPrizeResult(winning, price);
+    winning.calculateRank(lottos);
+    OutputView.printWinningHistory(winning.rankHistory);
+
+    const prizeRate = winning.getCalculatedPrizeRate(price);
+    winning.getCalculatedPrizeRate(price);
+    OutputView.printPrizeRate(prizeRate);
 
     const restart = await this.#readRestart();
     return this.#runRestart(restart);
@@ -23,28 +28,18 @@ class LottoController {
     }
   }
 
-  async #buyLotto() {
+  async #getLottos() {
     const lottoMachine = new LottoMachine();
     const price = await this.#readPrice();
     const lottos = lottoMachine.generateLotto(price);
-    OutputView.printLottos(lottos);
     return { price, lottos };
   }
 
   async #getWinningNumbers() {
     const winningNumbers = await this.#readWinningNumbers();
     const bonusNumber = await this.#readBonusNumber(winningNumbers);
+
     return { winningNumbers, bonusNumber };
-  }
-
-  #processWinningResult(winning, lottos) {
-    winning.calculateRank(lottos);
-    OutputView.printWinningHistory(winning.rankHistory);
-  }
-
-  #processPrizeResult(winning, price) {
-    const prizeRate = winning.getCalculatedPrizeRate(price);
-    OutputView.printPrizeRate(prizeRate);
   }
 
   async #readPrice() {
