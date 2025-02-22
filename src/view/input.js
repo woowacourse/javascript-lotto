@@ -2,7 +2,7 @@ import readLineAsync from "../utils/readLineAsync.js";
 import { validateBonusNumber } from "../utils/validate/validateBonusNumber.js";
 import { validatePrice } from "../utils/validate/validatePrice.js";
 import { validateWinningNumbers } from "../utils/validate/validateWinningNumbers.js";
-import { vaildateRestart } from "../utils/validate/vaildateRestart.js";
+import { vaildateRestart } from "../utils/validate/validateRestart.js";
 
 export const inputPrice = async () => {
   try {
