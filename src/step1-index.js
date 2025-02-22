@@ -70,7 +70,7 @@ const game = async () => {
     enteredLottoNumbers: winningLotto.getLottoNumbers(),
     bonusLottoNumber,
   });
-  lottoStatus.calculateRanks();
+  lottoStatus.matchLottoStatus();
   const matchedlottoStatus = lottoStatus.getMatchedLottoStatus();
 
   const lottoResult = new LottoResult(matchedlottoStatus, price);
