@@ -1,9 +1,8 @@
 import { RANKING } from "../constants/constants.js";
-
 class LottoResult {
     #result
 
-    constructor(){
+    constructor(rankingList){
         this.#result={
             1:0,
             2:0,
@@ -11,13 +10,26 @@ class LottoResult {
             4:0,
             5:0
         }
+
+        rankingList.forEach( ranking => {
+            this.#validate(ranking)
+            this.#addRankingCount(ranking)
+        });
     }
 
-    addRankingCount(ranking){
+    #validate(ranking){
+        const isValidRanking = Object.values(RANKING).some(rank => rank.RANK === ranking);
+
+        if(!isValidRanking && ranking!==null){
+          throw new Error(RANKING_ERROR_MESSAGES)
+        }
+    }
+
+    #addRankingCount(ranking){
         if(ranking!==null) this.#result[ranking]++
     }
 
-    findPrize(rank) {
+    #findPrize(rank) {
         if (rank === null) {
             return 0;
         }
@@ -31,7 +43,7 @@ class LottoResult {
 
     get totalPrize() {
         return Object.entries(this.#result).reduce((total, [rank, count]) => {
-            return total + this.findPrize(rank) * count;
+            return total + this.#findPrize(rank) * count;
         }, 0);
     }
 }

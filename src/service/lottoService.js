@@ -12,13 +12,10 @@ export const lottoService =  {
     },
 
     calculateLottoResult(lottoList, winningLotto) {
-        const lottoResult = new LottoResult();
-
-        lottoList.forEach((lotto)=>{
-                lottoResult.addRankingCount(calculateRank(matchLotto.winningNumbers(winningLotto, lotto), matchLotto.bonusNumber(winningLotto, lotto)))
+        const rankingList = lottoList.map((lotto)=>{
+            return calculateRank(matchLotto.winningNumbers(winningLotto, lotto), matchLotto.bonusNumber(winningLotto, lotto))
         })
-
-        return lottoResult
+       return new LottoResult(rankingList)
     },
 
     calculateWinningRate(lottoList, lottoResult){
