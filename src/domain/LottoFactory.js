@@ -2,7 +2,7 @@ import { LOTTO_NUMBER } from "../constants/lotto.js";
 import { getRandomNumber } from "../utils/random.js";
 import Lotto from "./Lotto.js";
 
-const Ticket = {
+const LottoFactory = {
   generateLottoNumbers: () => {
     const randomNumberStore = new Set();
     while (randomNumberStore.size < LOTTO_NUMBER.LENGTH) {
@@ -14,10 +14,10 @@ const Ticket = {
 
   issueLottos: (count) => {
     return Array.from({ length: count }, () => {
-      const lottoNumbers = Ticket.generateLottoNumbers();
+      const lottoNumbers = LottoFactory.generateLottoNumbers();
       return new Lotto(lottoNumbers);
     });
   },
 };
 
-export default Ticket;
+export default LottoFactory;

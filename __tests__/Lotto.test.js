@@ -1,7 +1,7 @@
 import { divideByUnit } from "../src/utils/count.js";
 import Lotto from "../src/domain/Lotto.js";
 import { PRICE } from "../src/constants/price.js";
-import Ticket from "../src/domain/Ticket.js";
+import LottoFactory from "../src/domain/LottoFactory.js";
 
 test("입력받은 금액에 해당하는 개수를 구한다.", () => {
   // given
@@ -19,7 +19,7 @@ test("정해진 개수만큼 로또를 생성한다.", () => {
   const lottoCount = 3;
 
   // when
-  const lottos = Ticket.issueLottos(lottoCount);
+  const lottos = LottoFactory.issueLottos(lottoCount);
 
   // then
   expect(lottos.length).toBe(lottoCount);

@@ -9,7 +9,7 @@ import LottoMachine from "./domain/LottoMachine.js";
 import LottoResult from "./domain/LottoResult.js";
 import { PRICE } from "./constants/price.js";
 import { throwError } from "./utils/throwError.js";
-import Ticket from "./domain/Ticket.js";
+import LottoFactory from "./domain/LottoFactory.js";
 
 /**
  * step 1의 시작점이 되는 파일입니다.
@@ -48,7 +48,7 @@ const game = async () => {
   const countNumber = divideByUnit(PRICE.UNIT, price);
   Output.print(`${countNumber}${OUTPUT.BUY_COUNT}`);
 
-  const lottos = Ticket.issueLottos(countNumber);
+  const lottos = LottoFactory.issueLottos(countNumber);
   Output.printLottoNumber(lottos);
 
   const { winningLotto, bonusLottoNumber } = await getNeededLottoNumbers();
