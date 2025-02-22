@@ -1,7 +1,16 @@
 import Lotto from "./Lotto.js";
+import { MATCH_COUNT } from "../constants/constant.js";
+
 class LottoPack {
   #lottos;
-  #checkCountResult = { 6: 0, "5+1": 0, 5: 0, 4: 0, 3: 0 };
+  #checkCountResult = {
+    [MATCH_COUNT.SIX]: 0,
+    [MATCH_COUNT.FIVE_BONUS]: 0,
+    [MATCH_COUNT.FIVE]: 0,
+    [MATCH_COUNT.FOUR]: 0,
+    [MATCH_COUNT.THREE]: 0,
+  };
+
   constructor(lottos) {
     this.#lottos = this.#generateLottos(lottos);
   }
@@ -20,11 +29,25 @@ class LottoPack {
   }
 
   #saveCheckCount(winningCount, bonusCount) {
-    if (winningCount === 5 && bonusCount === 1) {
-      this.#checkCountResult["5+1"]++;
-    } else if (winningCount >= 3) {
-      this.#checkCountResult[winningCount]++;
+    if (winningCount >= 3) {
+      const matchKey = this.#mappingWinningCount(winningCount, bonusCount);
+      this.#checkCountResult[matchKey]++;
     }
+  }
+
+  #mappingWinningCount(winningCount, bonusCount) {
+    if (winningCount === 5 && bonusCount === 1) {
+      return MATCH_COUNT.FIVE_BONUS;
+    }
+
+    const matchMap = {
+      6: MATCH_COUNT.SIX,
+      5: MATCH_COUNT.FIVE,
+      4: MATCH_COUNT.FOUR,
+      3: MATCH_COUNT.THREE,
+    };
+
+    return matchMap[winningCount];
   }
 
   get lottos() {

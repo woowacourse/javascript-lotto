@@ -153,7 +153,7 @@ Lotto
 
 - [x] WINNING_PRICE -> numeric separator로 변경
 - [x] 객체 상수 -> Object.freeze 적용
-- [ ] 로또 체크 갯수 상수화
+- [x] 로또 체크 갯수 상수화
 - [ ] Lotto 클래스 수정
   - [ ] compareWinningNumbers() 메서드 내부 수정 (let 제거)
   - [ ] 정렬 후 -> 복사본 저장

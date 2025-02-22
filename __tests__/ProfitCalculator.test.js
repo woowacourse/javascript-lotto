@@ -1,18 +1,19 @@
 import WINNING_PRICE from "../src/constants/WINNING_PRICE";
 import profitCalculator from "../src/domain/profitCalculator";
+import { MATCH_COUNT } from "../src/constants/constant";
 
 test("구매한 금액과 당첨결과를 바탕으로 수익률을 구한다.", () => {
   const winningResult = {
-    6: 1,
-    "5+1": 0,
-    5: 0,
-    4: 0,
-    3: 0,
+    [MATCH_COUNT.SIX]: 1,
+    [MATCH_COUNT.FIVE_BONUS]: 0,
+    [MATCH_COUNT.FIVE]: 0,
+    [MATCH_COUNT.FOUR]: 0,
+    [MATCH_COUNT.THREE]: 0,
   };
 
   const money = 5000;
 
   const rate = profitCalculator(money, winningResult);
 
-  expect(rate).toBe((WINNING_PRICE["6"] / money) * 100);
+  expect(rate).toBe((WINNING_PRICE[MATCH_COUNT.SIX] / money) * 100);
 });

@@ -1,9 +1,11 @@
+import { MATCH_COUNT } from "../constants/constant.js";
+
 const WINNING_PRICE = Object.freeze({
-  6: 2_000_000_000,
-  "5+1": 30_000_000,
-  5: 1_500_000,
-  4: 50_000,
-  3: 5_000,
+  [MATCH_COUNT.SIX]: 2_000_000_000,
+  [MATCH_COUNT.FIVE_BONUS]: 30_000_000,
+  [MATCH_COUNT.FIVE]: 1_500_000,
+  [MATCH_COUNT.FOUR]: 50_000,
+  [MATCH_COUNT.THREE]: 5_000,
 });
 
 export default WINNING_PRICE;
