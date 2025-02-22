@@ -42,7 +42,9 @@ const checkIsInRange = (winningNumber) => {
   );
 };
 
-const checkIsNotDuplicate = (winningNumbers, winningNumbersSet) => {
+const checkIsNotDuplicate = (winningNumbers) => {
+  const winningNumbersSet = new Set(winningNumbers);
+
   throwIfInvalid(
     winningNumbers.length !== winningNumbersSet.size,
     WINNING_NUMBERS_ERROR_MESSAGES.DUPLICATE_NUMBER,
@@ -59,8 +61,7 @@ const validateWinningNumbers = (input) => {
     checkIsInRange(winningNumber);
   });
 
-  const winningNumbersSet = new Set(winningNumbers);
-  checkIsNotDuplicate(winningNumbers, winningNumbersSet);
+  checkIsNotDuplicate(winningNumbers);
 
   return winningNumbers;
 };
