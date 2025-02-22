@@ -17,11 +17,9 @@ const OutputView = {
     Console.println();
     Console.print(`당첨 통계`);
     Console.print(`--------------------`);
-    Console.print(`${MATCH_COUNT.THREE} - ${winningResult[MATCH_COUNT.THREE]}개`);
-    Console.print(`${MATCH_COUNT.FOUR} - ${winningResult[MATCH_COUNT.FOUR]}개`);
-    Console.print(`${MATCH_COUNT.FIVE} - ${winningResult[MATCH_COUNT.FIVE]}개`);
-    Console.print(`${MATCH_COUNT.FIVE_BONUS} - ${winningResult[MATCH_COUNT.FIVE_BONUS]}개`);
-    Console.print(`${MATCH_COUNT.SIX} - ${winningResult[MATCH_COUNT.SIX]}개`);
+    Object.values(MATCH_COUNT).forEach((count) => {
+      Console.print(`${count} - ${winningResult[count]}개`);
+    });
   },
 
   profitRate(profitRate) {

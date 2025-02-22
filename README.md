@@ -178,7 +178,7 @@ Lotto
 - [x] profitCalculator 도메인 분리
 - [x] Validator 객체 메서드명 및 파라미터 변경
 - [x] async/await 불필요한 곳 제거
-- [ ] OutputView 객체 -> winningStatisics 내부 변경
+- [x] OutputView 객체 -> winningStatisics 내부 변경
 - [ ] 파일 및 폴더 정리
 
 - 테스트 코드
