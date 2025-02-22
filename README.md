@@ -194,7 +194,7 @@ Lotto
   - [x] generateAnswerLotto 도메인
   - [ ] profitCalculator 도메인
     - [x] calculateProfitAmount 도메인
-    - [ ] calculateProfitRate 도메인
+    - [x] calculateProfitRate 도메인
     - [ ] processDecimalPoint 도메인
 - [ ] 테스트명 수정
 - [ ] 테스트 코드 -> 상수 및 변수 처리
