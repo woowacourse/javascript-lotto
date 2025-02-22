@@ -4,18 +4,11 @@ import Lotto from './Lotto.js';
 
 class LottoMachine {
   #generateLottoNumbers() {
-    const lottoNumbers = [];
-    while (lottoNumbers.length !== LOTTO_NUMBER_LENGTH) {
-      const randomNumber = getRandomNumberInRange();
-      this.saveUniqueLottoNumber(lottoNumbers, randomNumber);
+    const lottoNumbers = new Set();
+    while (lottoNumbers.size < LOTTO_NUMBER_LENGTH) {
+      lottoNumbers.add(getRandomNumberInRange());
     }
-    return lottoNumbers;
-  }
-
-  saveUniqueLottoNumber(lottoNumbers, randomNumber) {
-    if (!lottoNumbers.includes(randomNumber)) {
-      lottoNumbers.push(randomNumber);
-    }
+    return Array.from(lottoNumbers);
   }
 
   generateLotto(price) {

@@ -1,4 +1,4 @@
-import { MIN_PRICE } from '../src/constants/common.js';
+import { MIN_PRICE, LOTTO_NUMBER_LENGTH } from '../src/constants/common.js';
 import LottoMachine from '../src/Model/LottoMachine.js';
 
 describe('로또 머신 테스트', () => {
@@ -10,13 +10,13 @@ describe('로또 머신 테스트', () => {
     expect(lottos.length).toBe(count);
   });
 
-  test('중복되지 않는 로또 번호 저장 테스트', () => {
+  test('로또 한장에 중복되지 않는 번호가 저장되었는지 테스트', () => {
     const lottoMachine = new LottoMachine();
-    const lottoNumbers = [1];
-    const randomNumber = 1;
-    const result = [...lottoNumbers];
-    lottoMachine.saveUniqueLottoNumber(result, randomNumber);
+    const lottos = lottoMachine.generateLotto(MIN_PRICE);
 
-    expect(result.length).toEqual(lottoNumbers.length);
+    lottos.forEach((lotto) => {
+      const uniqueNumbers = new Set(lotto.numbers);
+      expect(uniqueNumbers.size).toBe(LOTTO_NUMBER_LENGTH);
+    });
   });
 });
