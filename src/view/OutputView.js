@@ -1,4 +1,4 @@
-import { RANKING } from "../constants/constants.js";
+import { RANKING, MESSAGE, LINE_BREAK } from "../constants/constants.js";
 
 const OutputView = {
   print(message) {
@@ -19,7 +19,22 @@ const OutputView = {
     }
 
     return this.print(`${ranking.MATCH_COUNT}개 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}개`);
+  },
+
+  printStatstics(lottoResult){
+    OutputView.print(MESSAGE.STATISTICS)
+    OutputView.print(MESSAGE.LINE)
+    OutputView.printLottoResult(lottoResult.result)
+  }, 
+  
+  printLottoNumber(lottoList){
+    OutputView.print(lottoList.length+MESSAGE.PURCHASE_COUNT)
+    lottoList.forEach((lotto)=>{
+      OutputView.print(lotto.numbers);
+    })
+    OutputView.print(LINE_BREAK)
   }
+
 };
 
 export default OutputView;
