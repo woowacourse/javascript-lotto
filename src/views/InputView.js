@@ -1,7 +1,7 @@
 import { YES, NO } from "../constants/constants.js";
 import readLineAsync from "../utils/readLineAsync.js";
 
-const Input = {
+const InputReader = {
   readPurchaseAmount() {
     return readLineAsync("> 구입금액을 입력해 주세요. ");
   },
@@ -19,4 +19,4 @@ const Input = {
   },
 };
 
-export default Input;
+export default InputReader;

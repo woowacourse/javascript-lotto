@@ -1,4 +1,4 @@
-import Output from "../views/Output.js";
+import OutputView from "../views/OutputView.js";
 
 const getValidInput = async (inputFn, validateFn, ...additionalArgs) => {
   while (true) {
@@ -6,7 +6,7 @@ const getValidInput = async (inputFn, validateFn, ...additionalArgs) => {
       const input = await inputFn();
       return validateFn(input, ...additionalArgs);
     } catch (error) {
-      Output.printErrorMessage(error.message);
+      OutputView.printErrorMessage(error.message);
     }
   }
 };

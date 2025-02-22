@@ -1,6 +1,6 @@
 import { MATCH_KEY, MATCH_PRIZE } from "../constants/constants.js";
 
-const Output = {
+const OutputView = {
   printErrorMessage(errorMessage) {
     console.log(`[ERROR] ${errorMessage}\n`);
   },
@@ -31,4 +31,4 @@ const Output = {
   },
 };
 
-export default Output;
+export default OutputView;
