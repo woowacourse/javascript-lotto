@@ -157,7 +157,7 @@ Lotto
 - [x] Lotto 클래스 수정
   - [x] compareWinningNumbers() 메서드 내부 수정 (let 제거)
 - [x] import 문 띄어쓰기
-- [ ] `validate-` 함수 -> 값 가공 함수 분리
+- [x] `validate-` 함수 -> 값 가공 함수 분리
 - [ ] validateReStart 메서드 -> 동작 통일화
 - [ ] pushRandomNumbers 함수 -> domain 폴더로 이동
 

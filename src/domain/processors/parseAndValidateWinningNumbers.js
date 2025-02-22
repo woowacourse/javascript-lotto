@@ -1,9 +1,10 @@
 import ERROR_MESSAGE from "../../constants/ERROR_MESSAGE.js";
-import { LOTTO_NUMBER_SPLITER } from "../../constants/constant.js";
+import Parser from "../../utils/Parser.js";
 import Validator from "../../utils/Validator.js";
 
-const validateWinningNumbers = (input) => {
-  const winningNumbers = input.split(LOTTO_NUMBER_SPLITER).map((number) => Number(number.trim()));
+const parseAndValidateWinningNumbers = (input) => {
+  const winningNumbers = Parser.splitWinningNumbers(input);
+
   if (Validator.isFormat(winningNumbers)) throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS_FORMAT);
   if (Validator.isMaxLength(winningNumbers)) throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS_COUNT);
   if (Validator.isNotNumber(winningNumbers)) throw new Error(ERROR_MESSAGE.INVALID_WINNING_NUMBERS_TYPE);
@@ -12,4 +13,4 @@ const validateWinningNumbers = (input) => {
 
   return winningNumbers;
 };
-export default validateWinningNumbers;
+export default parseAndValidateWinningNumbers;

@@ -45,12 +45,6 @@ const Validator = {
   isYesOrNo(input) {
     return input !== YES && input !== NO;
   },
-  isYes(input) {
-    return input === YES;
-  },
-  isNo(input) {
-    return input === NO;
-  },
 };
 
 export default Validator;
