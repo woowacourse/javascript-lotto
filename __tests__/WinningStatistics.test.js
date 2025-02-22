@@ -67,7 +67,7 @@ describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익
         [1, 2, 3, 4, 7, 8], // 4개 일치
         [1, 2, 3, 4, 5, 6], // 6개 일치
       ],
-      expectedProfitRatio: "66668500.0",
+      expectedProfitRatio: "66,668,500.0",
     },
     {
       lottos: [

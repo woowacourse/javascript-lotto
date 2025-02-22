@@ -21,8 +21,12 @@ class WinningStatistics {
     );
     const PERCENTAGE = 100;
     const DECIMAL_POINT = 1;
-    return ((profitAmount / purchaseAmount) * PERCENTAGE).toFixed(
-      DECIMAL_POINT,
+    return ((profitAmount / purchaseAmount) * PERCENTAGE).toLocaleString(
+      "ko-KR",
+      {
+        minimumFractionDigits: DECIMAL_POINT,
+        maximumFractionDigits: DECIMAL_POINT,
+      },
     );
   }
 
