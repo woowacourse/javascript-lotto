@@ -1,5 +1,3 @@
-import Lotto from "../src/domain/Lotto.js";
-import LottoComparer from "../src/domain/LottoComparer.js";
 import LottoPrize from "../src/domain/LottoPrize.js";
 
 let lottoPrize;

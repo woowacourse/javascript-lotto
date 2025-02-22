@@ -1,4 +1,5 @@
 import { LOTTO, PURCHASE } from "../src/config/const.js";
+import { ERROR_MESSAGE } from "../src/config/message.js";
 import {
   validateIsNumeric,
   validateLottoNumberRange,
@@ -17,28 +18,28 @@ describe("구입 금액 입력 예외 테스트", () => {
     const price = 1500;
 
     expect(() => validatePurchaseUnit(price)).toThrow(
-      `구입 금액은 ${PURCHASE.UNIT.toLocaleString()}원 단위로 입력해주세요.`
+      ERROR_MESSAGE.PURCHASE_UNIT
     );
   });
 
   test("구입 금액이 숫자가 아닐 경우 예외를 발생시킨다.", () => {
     const price = "aa";
 
-    expect(() => validateIsNumeric(price)).toThrow("숫자를 입력해주세요.");
+    expect(() => validateIsNumeric(price)).toThrow(ERROR_MESSAGE.IS_NUMERIC);
   });
 
   test(`구입 금액이 ${PURCHASE.UNIT.toLocaleString()}원보다 작은 경우 예외를 발생시킨다.`, () => {
     const price = 500;
 
     expect(() => validateMinimumValue(price)).toThrow(
-      `구입 금액은 ${PURCHASE.UNIT.toLocaleString()}원 이상이여야 합니다.`
+      ERROR_MESSAGE.PURCHASE_MIN_VALUE
     );
   });
 
   test(`구입 금액이 ${PURCHASE.MAX_AMOUNT.toLocaleString()}원을 초과할 경우 예외를 발생시킨다.`, () => {
     const price = 25000;
     expect(() => validateMaximumValue(price)).toThrow(
-      `구입 금액은 ${PURCHASE.MAX_AMOUNT.toLocaleString()}원 이하여야 합니다.`
+      ERROR_MESSAGE.PURCHASE_MAX_VALUE
     );
   });
 });
@@ -47,14 +48,14 @@ describe("당첨 번호와 보너스 번호 입력 예외 테스트", () => {
   test("당첨번호가 숫자가 아닐 경우 예외를 발생시킨다.", () => {
     const numbers = [1, 2, 3, 4, 5, "aa"];
     expect(() => validateWinningNumberisNumeric(numbers)).toThrow(
-      "당첨 번호는 숫자여야 합니다."
+      ERROR_MESSAGE.WINNING_NUMBER_IS_NUMERIC
     );
   });
 
   test(`당첨 번호가 ${LOTTO.MIN_NUMBER}부터 ${LOTTO.MAX_NUMBER} 사이가 아니라면 예외를 발생시킨다.`, () => {
     const number = 46;
     expect(() => validateLottoNumberRange(number)).toThrow(
-      `당첨 번호가 ${LOTTO.MIN_NUMBER}부터 ${LOTTO.MAX_NUMBER} 사이의 숫자여야 합니다.`
+      ERROR_MESSAGE.LOTTO_NUMBER_RANGE
     );
   });
 
@@ -62,13 +63,13 @@ describe("당첨 번호와 보너스 번호 입력 예외 테스트", () => {
     const numbers = [1, 1, 2, 3, 4, 5];
     expect(() => {
       validateWinningNumberDuplicate(numbers);
-    }).toThrow("당첨 번호는 중복되지 않아야 합니다");
+    }).toThrow(ERROR_MESSAGE.WINNING_NUMBER_DUPLICATE);
   });
 
   test(`당첨 번호가 ${LOTTO.MAX_LENGTH}개가 아닐 경우 예외를 발생기킨다`, () => {
     const winningNumber = [1, 2, 3, 4, 5, 6, 7];
     expect(() => validateWinningNumbersLength(winningNumber)).toThrow(
-      `당첨 번호는 ${LOTTO.MAX_LENGTH}개여야 합니다.`
+      ERROR_MESSAGE.WINNING_NUMBERS_LENGTH
     );
   });
 
@@ -78,12 +79,10 @@ describe("당첨 번호와 보너스 번호 입력 예외 테스트", () => {
 
     expect(() =>
       validateBonusNumberUnique(winningNumbers, bonusNumber)
-    ).toThrow("보너스 번호는 당첨 번호와 중복되면 안됩니다.");
+    ).toThrow(ERROR_MESSAGE.BONUS_NUMBER_UNIQUE);
   });
 });
 
 test("재시작 여부 입력 시 y/n이 아닐 경우 예외를 발생시킨다.", () => {
-  expect(() => validateRestartInput("o")).toThrow(
-    "입력은 y 또는 n만 가능합니다."
-  );
+  expect(() => validateRestartInput("o")).toThrow(ERROR_MESSAGE.RESTART_INPUT);
 });
