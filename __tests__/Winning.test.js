@@ -1,4 +1,4 @@
-import { LOTTO_NUMBER_LENGTH } from '../src/constants/common.js';
+import { LOTTO_NUMBER_LENGTH, PRIZE } from '../src/constants/common.js';
 import Winning from '../src/Model/Winning.js';
 
 describe('Winning 클래스 테스트', () => {
@@ -35,7 +35,11 @@ describe('Winning 클래스 테스트', () => {
     winning.rankHistory.fourth = 1;
     winning.rankHistory.fifth = 1;
 
-    expect(winning.getTotalPrize()).toEqual(2031555000);
+    const expectedTotalPrize = Object.keys(winning.rankHistory)
+      .map((rank) => PRIZE[rank] * winning.rankHistory[rank])
+      .reduce((total, prize) => total + prize, 0);
+
+    expect(winning.getTotalPrize()).toEqual(expectedTotalPrize);
   });
 
   test('수익률 계산이 올바른지 확인한다.', () => {
