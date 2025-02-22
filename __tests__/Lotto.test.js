@@ -70,5 +70,5 @@ test("로또 번호에 보너스 번호가 포함되는지 확인한다.", () =>
   const lotto = new Lotto(lottoNumbers);
   const bonusNumber = 3;
 
-  expect(lotto.hasBonusNumber(bonusNumber)).toBeTruthy();
+  expect(lotto.hasNumber(bonusNumber)).toBeTruthy();
 });
