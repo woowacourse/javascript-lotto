@@ -8,6 +8,7 @@ import validatePurchaseAmount from "./domain/validation/validatePurchaseAmount.j
 import validateWinningNumbers from "./domain/validation/validateWinningNumbers.js";
 import validateBonusNumber from "./domain/validation/validateBonusNumber.js";
 import validateRestart from "./domain/validation/validateRestart.js";
+
 class Controller {
   async start() {
     const purchaseAmount = await this.purchaseAmountInput();

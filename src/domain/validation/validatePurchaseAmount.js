@@ -1,5 +1,6 @@
 import ERROR_MESSAGE from "../../constants/ERROR_MESSAGE.js";
 import Validator from "../../utils/Validator.js";
+
 const validatePurchaseAmount = (input) => {
   const purchaseAmount = Number(input);
 

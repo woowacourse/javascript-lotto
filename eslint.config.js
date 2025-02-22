@@ -15,6 +15,11 @@ export default [
       "max-params": ["error", 3],
       ...eslintConfigPrettier.rules,
       "prettier/prettier": "error",
+      "padding-line-between-statements": [
+        "error",
+        { blankLine: "always", prev: "import", next: "*" },
+        { blankLine: "any", prev: "import", next: "import" },
+      ],
     },
   },
 ];

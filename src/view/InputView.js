@@ -1,5 +1,6 @@
 import Console from "../utils/Console.js";
 import INPUT_MESSAGE from "../constants/INPUT_MESSAGE.js";
+
 const InputView = {
   async purchaseAmount() {
     return await Console.readLineAsync(INPUT_MESSAGE.PURCHASE_AMOUNT);
