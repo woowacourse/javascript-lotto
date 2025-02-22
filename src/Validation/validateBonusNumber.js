@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from '../settings/ErrorMessage.js';
+import ERROR_MESSAGE from '../constants/ErrorMessage.js';
 import validateNumber from './validateNumber.js';
 import validateNumberInRange from './validateNumberInRange.js';
 

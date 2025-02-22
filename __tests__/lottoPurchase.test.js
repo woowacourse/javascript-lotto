@@ -1,5 +1,5 @@
 import validateLottoPurchase from '../src/Validation/validateLottoPurchase.js';
-import ERROR_MESSAGE from '../src/settings/ErrorMessage.js';
+import ERROR_MESSAGE from '../src/constants/ErrorMessage.js';
 
 describe('로또 구입 금액 유효성 테스트', () => {
   describe('로또 구입 최소 금액 테스트', () => {

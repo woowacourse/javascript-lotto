@@ -1,5 +1,5 @@
-import ERROR_MESSAGE from '../settings/ErrorMessage.js';
-import systemSettings from '../settings/systemSettings.js';
+import ERROR_MESSAGE from '../constants/ErrorMessage.js';
+import systemSettings from '../constants/systemSettings.js';
 
 export default function validateNumberInRange(numbers) {
   if (

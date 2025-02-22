@@ -1,4 +1,4 @@
-import systemSettings from '../settings/systemSettings.js';
+import systemSettings from '../constants/systemSettings.js';
 import countMatchedNumbers from '../util/countMatchedNumbers.js';
 
 export function calculateWins(lottos, parsedLotto) {

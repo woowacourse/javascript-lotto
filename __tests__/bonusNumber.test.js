@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from '../src/settings/ErrorMessage.js';
+import ERROR_MESSAGE from '../src/constants/ErrorMessage.js';
 import Lotto from '../src/model/Lotto.js';
 import validateBonusNumber from '../src/Validation/validateBonusNumber.js';
 import validateNumberInRange from '../src/Validation/validateNumberInRange.js';
