@@ -187,7 +187,7 @@ Lotto
   - [x] LottoPack 도메인
   - [x] LottoMachine 도메인
     - [x] purchaseLottoCount 도메인
-    - [ ] generateLottoNumbersSet 도메인
+    - [x] generateLottoNumbersSet 도메인
       - [x] createSixRandomNumbers 도메인
         - [x] pushRandomNumbers 도메인
           - [x] generateRandomNumber 도메인
