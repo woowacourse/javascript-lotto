@@ -1,24 +1,24 @@
 import { RANK_INFO_TABLE } from "./constant/rank.js";
 import LottoCalculator from "./domain/lottoCalculator.js";
 import LottoMachine from "./domain/lottoMachine.js";
-import InputView from "./view/InputView.js";
-import OutputView from "./view/outputView.js";
+import inputView from "./view/InputView.js";
+import outputView from "./view/outputView.js";
 
 class App {
   #lottoCalculator;
 
   async run() {
-    const purchaseMoney = await InputView.getPurchaseMoney();
+    const purchaseMoney = await inputView.getPurchaseMoney();
 
     const lottoMachine = new LottoMachine();
 
     const lottoCount = lottoMachine.getLottoCount(purchaseMoney);
     const lottos = lottoMachine.drawLotto(lottoCount);
-    OutputView.printLottoCount(lottoCount);
-    OutputView.printLotto(lottos);
+    outputView.printLottoCount(lottoCount);
+    outputView.printLotto(lottos);
 
-    const winningNumbers = await InputView.getWinningNumbers();
-    const bonusNumber = await InputView.getBonusNumber(winningNumbers);
+    const winningNumbers = await inputView.getWinningNumbers();
+    const bonusNumber = await inputView.getBonusNumber(winningNumbers);
     this.#lottoCalculator = new LottoCalculator(winningNumbers, bonusNumber);
 
     this.calculateResult(lottos, purchaseMoney);
@@ -50,7 +50,7 @@ class App {
   }
 
   async restart() {
-    const restartAnswer = await InputView.getRestartRequest();
+    const restartAnswer = await inputView.getRestartRequest();
     if (restartAnswer === "y") {
       await this.run();
     }

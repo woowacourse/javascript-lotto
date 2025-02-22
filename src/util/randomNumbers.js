@@ -1,6 +1,6 @@
-import { CONSTANT } from "../constant/constant";
+import { CONSTANT } from "../constant/constant.js";
 
-export default drawRandomNumbers = (count) => {
+export default function drawRandomNumbers(count) {
   const randomNumbers = new Set();
   while (randomNumbers.size < count) {
     const randomNumber = Math.floor(
@@ -10,4 +10,4 @@ export default drawRandomNumbers = (count) => {
   }
 
   return Array.from(randomNumbers).sort((a, b) => a - b);
-};
+}

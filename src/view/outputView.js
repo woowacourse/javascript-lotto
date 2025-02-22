@@ -1,13 +1,13 @@
-class OutputView {
-  static printLottoCount(lottoCount) {
+const outputView = {
+  printLottoCount(lottoCount) {
     console.log(`${lottoCount}개를 구매했습니다.`);
-  }
+  },
 
-  static printLotto(lottos) {
+  printLotto(lottos) {
     lottos.forEach((lotto) => {
       console.log(`[${lotto.numbers.join(", ")}]`);
     });
-  }
-}
+  },
+};
 
-export default OutputView;
+export default outputView;
