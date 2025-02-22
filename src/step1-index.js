@@ -1,4 +1,4 @@
-import { INPUT, OUTPUT, RETRY_STRING } from "./constants/message.js";
+import { INPUT, OUTPUT, RETRY_STRING, ERROR } from "./constants/message.js";
 import Input from "./view/Input.js";
 import Output from "./view/Output.js";
 import { divideByUnit } from "./utils/count.js";
@@ -74,7 +74,7 @@ const start = async () => {
   const retry = await Input.retry(async () => {
     const input = await Input.readLineAsync(INPUT.RETRY);
     if (!RETRY_STRING.includes(input)) {
-      throwError(ERROR);
+      throwError(ERROR.INVALID_RETRY_STRING);
     }
     return input.toLowerCase();
   });
