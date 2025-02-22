@@ -2,9 +2,9 @@ import Lotto from '../model/Lotto.js';
 import INPUT_MESSAGE from '../constants/InputMessage.js';
 import readLineAsync from '../View/InputView.js';
 import { printPurchasedAmount, printError } from '../View/OutputView.js';
-import validateBonusNumber from '../Validation/validateBonusNumber.js';
-import validateLottoPurchase from '../Validation/validateLottoPurchase.js';
-import validateUserRetry from '../Validation/validateUserRetry.js';
+import validateBonusNumber from '../Validation/checkBonusNumber.js';
+import validateLottoPurchase from '../Validation/checkLottoPurchase.js';
+import validateUserRetry from '../Validation/checkUserRetry.js';
 import { LOTTO_PRICE } from '../constants/MagicNumber.js';
 
 async function getPurchasePrice() {

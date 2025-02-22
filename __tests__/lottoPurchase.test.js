@@ -1,4 +1,4 @@
-import validateLottoPurchase from '../src/Validation/validateLottoPurchase.js';
+import validateLottoPurchase from '../src/Validation/checkLottoPurchase.js';
 import ERROR_MESSAGE from '../src/constants/ErrorMessage.js';
 
 describe('로또 구입 금액 유효성 테스트', () => {

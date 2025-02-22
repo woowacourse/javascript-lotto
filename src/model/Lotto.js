@@ -1,7 +1,7 @@
 import ERROR_MESSAGE from '../constants/ErrorMessage.js';
 import { LOTTO_SIZE } from '../constants/MagicNumber.js';
-import validateNumberInRange from '../Validation/validateNumberInRange.js';
-import validateNumber from '../Validation/validateNumber.js';
+import validateNumberInRange from '../Validation/checkNumberInRange.js';
+import validateNumber from '../Validation/checkNumber.js';
 
 class Lotto {
   #numbers;

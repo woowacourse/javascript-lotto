@@ -1,6 +1,6 @@
 import ERROR_MESSAGE from '../constants/ErrorMessage.js';
 import { LOTTO_PRICE } from '../constants/MagicNumber.js';
-import validateNumber from './validateNumber.js';
+import validateNumber from './checkNumber.js';
 
 export default function validateLottoPurchase(input) {
   const money = validateNumber(input);

@@ -1,6 +1,6 @@
 import ERROR_MESSAGE from '../constants/ErrorMessage.js';
-import validateNumber from './validateNumber.js';
-import validateNumberInRange from './validateNumberInRange.js';
+import validateNumber from './checkNumber.js';
+import validateNumberInRange from './checkNumberInRange.js';
 
 export default function validateBonusNumber(lotto, bonusNumber) {
   validateNumber(bonusNumber);
