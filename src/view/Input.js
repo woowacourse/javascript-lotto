@@ -1,5 +1,5 @@
 import { INPUT_MESSAGE } from "../constant/Message.js";
-import { inputHandler, readLineAsync } from "../util/InputHandler.js";
+import { inputHandler } from "../util/InputHandler.js";
 import Output from "./Output.js";
 import Validator from "../domain/Validator.js";
 import { throwError } from "../util/util.js";

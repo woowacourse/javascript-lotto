@@ -1,6 +1,4 @@
 import { PRICE } from "../constant/Definition.js";
-import Lotto from "../domain/Lotto.js";
-
 class LottoMachine {
   #lottos;
 

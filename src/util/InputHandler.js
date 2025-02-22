@@ -1,5 +1,4 @@
 import Validator from "../domain/Validator.js";
-import Input from "../view/Input.js";
 import Output from "../view/Output.js";
 import Parser from "./Parser.js";
 import { throwError } from "./util.js";
