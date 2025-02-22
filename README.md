@@ -145,7 +145,7 @@ Lotto
 - [x] controller 분리
 - [x] printLn 메서드 추가
 - [x] 수익률 소수점 1자리
-- [ ] error메세지 출력 메서드 추가
+- [x] error메세지 출력 메서드 추가
 
 ### 피드백 바탕 -> 리팩토링 사항
 
@@ -192,5 +192,9 @@ Lotto
         - [x] pushRandomNumbers 도메인
           - [x] generateRandomNumber 도메인
   - [x] generateAnswerLotto 도메인
+  - [ ] profitCalculator 도메인
+    - [ ] calculateProfitAmount 도메인
+    - [ ] calculateProfitRate 도메인
+    - [ ] processDecimalPoint 도메인
 - [ ] 테스트명 수정
 - [ ] 테스트 코드 -> 상수 및 변수 처리
