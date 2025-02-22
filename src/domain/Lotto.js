@@ -12,7 +12,8 @@ class Lotto {
   }
 
   sortLottoNumber(numbers) {
-    return numbers.sort((a, b) => a - b);
+    const arr = [...numbers];
+    return arr.sort((a, b) => a - b);
   }
 
   getLottoNumbers() {
