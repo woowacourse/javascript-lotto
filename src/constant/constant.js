@@ -1,0 +1,6 @@
+const CONSTANT = {
+  MIN_LOTTO_VALUE: 1,
+  MAX_LOTTO_VALUE: 45,
+};
+
+export { CONSTANT };
