@@ -4,8 +4,8 @@ describe("LottoResult 클래스 테스트", () => {
   test("발행된 로또의 당첨 내역을 계산한다.", () => {
     //given
     const lottoStatus = [
-      { RANK: 2, COUNT: 5, REWORD: 30_000_000, IS_BONUS: true },
-      { RANK: 4, COUNT: 4, REWORD: 50_000, IS_BONUS: false },
+      { RANK: 2, COUNT: 5, REWARD: 30_000_000, IS_BONUS: true },
+      { RANK: 4, COUNT: 4, REWARD: 50_000, IS_BONUS: false },
     ];
     const price = 1000;
     const lottoResult = new LottoResult(lottoStatus, price);
@@ -21,8 +21,8 @@ describe("LottoResult 클래스 테스트", () => {
     test("당첨 내역이 있을 경우", () => {
       //given
       const lottoStatus = [
-        { RANK: 2, COUNT: 5, REWORD: 30_000_000, IS_BONUS: true },
-        { RANK: 4, COUNT: 4, REWORD: 50_000, IS_BONUS: false },
+        { RANK: 2, COUNT: 5, REWARD: 30_000_000, IS_BONUS: true },
+        { RANK: 4, COUNT: 4, REWARD: 50_000, IS_BONUS: false },
       ];
       const price = 1000;
       const lottoResult = new LottoResult(lottoStatus, price);
@@ -50,7 +50,7 @@ describe("LottoResult 클래스 테스트", () => {
 
   test("당첨된 내역을 기반으로 수익률을 구한다.", () => {
     //given
-    const lottoStatus = [{ RANK: 5, COUNT: 3, REWORD: 5000, IS_BONUS: false }];
+    const lottoStatus = [{ RANK: 5, COUNT: 3, REWARD: 5000, IS_BONUS: false }];
     const price = 8000;
     const lottoResult = new LottoResult(lottoStatus, price);
 

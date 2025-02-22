@@ -15,7 +15,7 @@ const Output = {
   },
   printWinningHistory: (history) => {
     Object.entries(history).forEach(([rank, count]) => {
-      const { REWORD, COUNT: MATCH_COUNT } = LOTTO_STATUS.find(
+      const { REWARD, COUNT: MATCH_COUNT } = LOTTO_STATUS.find(
         (status) => status.RANK === Number(rank)
       );
       if (Number(rank) === 2) {
