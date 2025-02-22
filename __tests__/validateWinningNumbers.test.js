@@ -45,4 +45,15 @@ describe("당첨 번호 유효성 테스트", () => {
       validateWinningNumbers(input);
     }).toThrow(expectedErrorMessage);
   });
+
+  test.each(["1,2,3,4,5,6", "40,41,42,43,44,45"])(
+    "당첨 번호가 %s 인 경우 총 6개의 숫자로 이루어져 있으며 중복 숫자 없고 범위 안에 들기 때문에 정상적으로 동작한다.",
+    (input) => {
+      // given
+      // when & then
+      expect(() => {
+        validateWinningNumbers(input);
+      }).not.toThrow();
+    },
+  );
 });

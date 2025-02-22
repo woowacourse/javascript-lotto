@@ -43,4 +43,16 @@ describe("보너스 번호 유효성 테스트", () => {
       }).toThrow(expectedErrorMessage);
     },
   );
+
+  test.each(["7", "45"])(
+    "보너스 번호가 당첨 번호들과 중복되지 않는 경우 정상적으로 동작한다.",
+    (input) => {
+      // given
+      // when & then
+      expect(() => {
+        const winningNumbers = [1, 2, 3, 4, 5, 6];
+        validateBonusNumber(input, winningNumbers);
+      }).not.toThrow();
+    },
+  );
 });

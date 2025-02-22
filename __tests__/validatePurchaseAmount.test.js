@@ -37,4 +37,15 @@ describe("구입 금액 유효성 테스트", () => {
       }).toThrow(expectedErrorMessage);
     },
   );
+
+  test.each([
+    [`${MIN_UNIT}`, "구입 금액의 최솟값 이상을 만족하므로"],
+    [`${MAX_AMOUNT}`, "구입 금액의 최댓값 이하를 만족하므로"],
+  ])("구입 금액이 %s인 경우 %s 정상적으로 동작한다.", (input) => {
+    // given
+    // when & then
+    expect(() => {
+      validatePurchaseAmount(input);
+    }).not.toThrow();
+  });
 });
