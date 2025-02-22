@@ -18,7 +18,7 @@ describe("두 개의 숫자 배열에서 서로 일치하는 숫자의 개수를
       checkingArray: [1, 2],
       expectedReturnNumber: 2,
     },
-  ])("$descripion", ({ checkingArray, expectedReturnNumber }) => {
+  ])("$description", ({ checkingArray, expectedReturnNumber }) => {
     // given
     const referenceArray = [1, 2];
 

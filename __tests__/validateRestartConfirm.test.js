@@ -37,8 +37,8 @@ describe("재실행 입력에 대한 유효성 테스트", () => {
     }).toThrow(RESTART_ERROR_MESSAGE);
   });
 
-  test.each([[UPPER_YES, YES, UPPER_NO, NO]])(
-    `${UPPER_YES}, ${YES}, ${UPPER_NO}, ${NO} 중 하나인 경우 정상적으로 동작한다.`,
+  test.each([UPPER_YES, YES, UPPER_NO, NO])(
+    `%s인 경우 정상적으로 동작한다.`,
     (input) => {
       // given
       // when & then
