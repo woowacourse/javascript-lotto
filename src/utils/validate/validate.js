@@ -8,7 +8,9 @@ import {
 
 const validatePurchaseUnit = (price) => {
   if (price % PURCHASE_UNIT !== 0) {
-    throw new Error(`구입 금액은 ${PURCHASE_UNIT}원 단위로 입력해주세요.`);
+    throw new Error(
+      `구입 금액은 ${PURCHASE_UNIT.toLocaleString()}원 단위로 입력해주세요.`
+    );
   }
 };
 

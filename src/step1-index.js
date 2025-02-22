@@ -11,11 +11,11 @@ import {
   inputWinningLotto,
 } from "../src/view/input.js";
 import LottoPrize from "./domain/LottoPrize.js";
-import generateLottos from "./domain/lottoGenerator.js";
+import getGenerateLottos from "./domain/lottoGenerator.js";
 
 async function run() {
   const price = await inputPrice();
-  const generatedLottos = generateLottos(price);
+  const generatedLottos = getGenerateLottos(price);
   printUserLottos(price, generatedLottos);
 
   const winningLotto = await inputWinningLotto();

@@ -16,13 +16,12 @@ function getRandomNumbers() {
   return [...randomNumbers];
 }
 
-function generateLottos(price) {
+function getGenerateLottos(price) {
   let generatedLottos = [];
   for (let i = 0; i < price / PURCHASE_UNIT; i++) {
-    const randomNumbers = getRandomNumbers();
-    generatedLottos.push(new Lotto(randomNumbers));
+    generatedLottos.push(new Lotto(getRandomNumbers()));
   }
   return generatedLottos;
 }
 
-export default generateLottos;
+export default getGenerateLottos;
