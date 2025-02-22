@@ -39,10 +39,13 @@ export function calculateWins(lottos, parsedLotto) {
 }
 
 export function calculatePrize(winCount, prizeMoney) {
-  let total = 0;
-  for (const [prizeName, prizeCount] of Object.entries(winCount)) {
-    total += prizeMoney[prizeName] * prizeCount;
-  }
+  const total = Object.entries(winCount).reduce(
+    (acc, [prizeName, prizeCount]) => {
+      return acc + prizeMoney[prizeName] * prizeCount;
+    },
+    0,
+  );
+
   return total;
 }
 
