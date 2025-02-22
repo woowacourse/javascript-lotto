@@ -28,7 +28,7 @@ const checkIsNumber = (winningNumber) => {
   );
 };
 
-const chechIsInteger = (winningNumber) => {
+const checkIsInteger = (winningNumber) => {
   throwIfInvalid(
     !Number.isInteger(winningNumber),
     WINNING_NUMBERS_ERROR_MESSAGES.NOT_AN_INTEGER,
@@ -55,7 +55,7 @@ const validateWinningNumbers = (input) => {
 
   winningNumbers.forEach((winningNumber) => {
     checkIsNumber(winningNumber);
-    chechIsInteger(winningNumber);
+    checkIsInteger(winningNumber);
     checkIsInRange(winningNumber);
   });
 
