@@ -182,7 +182,7 @@ Lotto
 - [x] 파일 및 폴더 정리
 
 - 테스트 코드
-- [ ] 도메인 테스트 재작성
+- [x] 도메인 테스트 재작성
   - [x] Lotto 도메인
   - [x] LottoPack 도메인
   - [x] LottoMachine 도메인
@@ -195,6 +195,6 @@ Lotto
   - [ ] profitCalculator 도메인
     - [x] calculateProfitAmount 도메인
     - [x] calculateProfitRate 도메인
-    - [ ] processDecimalPoint 도메인
-- [ ] 테스트명 수정
-- [ ] 테스트 코드 -> 상수 및 변수 처리
+    - [x] processDecimalPoint 도메인
+- [x] 테스트명 수정
+- [x] 테스트 코드 -> 상수 및 변수 처리
