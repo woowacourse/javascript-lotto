@@ -1,4 +1,4 @@
-import InputContainer from '../inputContainer/InputContainer';
+import PlayLotto from '../playLotto/playLotto';
 import './lottoDashboard.css';
 
 export default function lottoDashboard() {
@@ -10,7 +10,7 @@ export default function lottoDashboard() {
   lottoHeader.className = 'lotto-header';
 
   lottoDashboard.appendChild(lottoHeader);
-  lottoDashboard.appendChild(InputContainer());
+  lottoDashboard.appendChild(PlayLotto());
 
   return lottoDashboard;
 }
