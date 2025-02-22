@@ -2,15 +2,16 @@
 import { bonusNumberValidator } from "../validator/bonusNumberValidator.js";
 import { BONUS_NUMBER_ERROR_MESSAGES } from "../../constants/constants.js";
 import runValidators from "../../utils/runValidators.js";
+import { numberUtils } from "../utils/numberUtils.js";
 
 const validateInteger = (winningNumbers,bonusNumber) => {
-  if (!bonusNumberValidator.isInteger(bonusNumber)) {
+  if (!numberUtils.isInteger(bonusNumber)) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.INTIGER);
   }
 };
 
 const validateRange = (winningNumbers, bonusNumber) => {  
-  if (!bonusNumberValidator.isValidRange(bonusNumber)) {
+  if (!numberUtils.isLottoRange(bonusNumber)) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.RANGE);
   }
 };

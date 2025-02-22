@@ -1,6 +1,7 @@
 import { lottoNumberValidator } from '../validator/lottoNumberValidator.js';
 import { LOTTO_NUMBER_ERROR_MESSAGES } from '../../constants/constants.js';
 import runValidators from '../../utils/runValidators.js';
+import { numberUtils } from '../utils/numberUtils.js';
 
 const validateLottoCount = (numbers) => {
   if (lottoNumberValidator.isValidCount(numbers)) {
@@ -10,13 +11,13 @@ const validateLottoCount = (numbers) => {
 
 const validateLottoNumberInteger = (numbers) => {
   numbers.forEach((numbers) => {
-    if (!lottoNumberValidator.isInteger(numbers)) throw new Error(LOTTO_NUMBER_ERROR_MESSAGES.INTIGER);
+    if (!numberUtils.isInteger(numbers)) throw new Error(LOTTO_NUMBER_ERROR_MESSAGES.INTIGER);
   });
 };
 
 const validateLottoNumberRange = (numbers) => {
   numbers.forEach((number) => {
-    if (!lottoNumberValidator.isValidRange(number)) throw new Error(LOTTO_NUMBER_ERROR_MESSAGES.RANGE);
+    if (!numberUtils.isLottoRange(number)) throw new Error(LOTTO_NUMBER_ERROR_MESSAGES.RANGE);
   });
 };
 

@@ -1,10 +1,6 @@
 import { LOTTO_CONDITION } from '../../constants/constants.js';
 
 export const purchaseMoneyValidator = {
-  isInteger(input) {
-    return Number.isInteger(input);
-  },
-
   isValidUnit(input) {
     return input % LOTTO_CONDITION.PRICE === 0;
   },
