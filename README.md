@@ -159,7 +159,7 @@ Lotto
 - [x] import 문 띄어쓰기
 - [x] `validate-` 함수 -> 값 가공 함수 분리
 - [x] validateReStart 함수 -> 동작 통일화
-- [ ] pushRandomNumbers 함수 -> domain 폴더로 이동
+- [x] pushRandomNumbers 함수 -> domain 폴더로 이동
 
 기능(자체 리팩토링)
 
@@ -179,6 +179,7 @@ Lotto
 - [ ] Validator 객체 메서드명 및 파라미터 변경
 - [ ] async/await 불필요한 곳 제거
 - [ ] OutputView 객체 -> winningStatisics 내부 변경
+- [ ] 파일 및 폴더 정리
 
 - 테스트 코드
 - [ ] 도메인 테스트 재작성

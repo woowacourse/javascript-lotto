@@ -1,4 +1,4 @@
-import pushRandomNumbers from "../utils/pushRandomNumbers.js";
+import pushRandomNumbers from "./pushRandomNumbers.js";
 
 const createSixRandomNumbers = () => {
   const initialRandomNumbers = [];
