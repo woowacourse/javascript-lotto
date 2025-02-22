@@ -16,6 +16,7 @@ describe('인풋 validation 테스트', () => {
       expect(isNumber(testCase)).toBe(1);
     });
   });
+
   describe('isInteger Validation test', () => {
     it('isInteger는 정수가 아닐 때 에러를 던져야 한다.', () => {
       const testCase = '1.5';
@@ -29,6 +30,7 @@ describe('인풋 validation 테스트', () => {
       expect(isInteger(testCase)).toBe(1);
     });
   });
+
   describe('isPositive Validation test', () => {
     it('isPositive는 양수가 아닐 때 에러를 던져야 한다.', () => {
       const testCase = '-1';
