@@ -27,7 +27,7 @@ const checkLengthValid = (winningNumberInput) => {
 };
 
 const checkRange = (winningNumberInput) => {
-  if (!validationCondition.isRangeValid(winningNumberInput)) {
+  if (!validationCondition.isRangeValid(winningNumberInput, LOTTO_NUMBERS.MIN, LOTTO_NUMBERS.MAX)) {
     throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.RANGE);
   }
 };

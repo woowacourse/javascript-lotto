@@ -1,4 +1,4 @@
-import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants";
+import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants.js";
 
 const validationCondition = {
   isNumber(input) {
@@ -17,8 +17,8 @@ const validationCondition = {
   isLengthValid(numbers, length) {
     return numbers.length === length;
   },
-  isRangeValid(numbers) {
-    return !numbers.some((number) => number < LOTTO_NUMBERS.MIN || number > LOTTO_NUMBERS.MAX);
+  isRangeValid(numbers, min, max) {
+    return !numbers.some((number) => number < min || number > max);
   },
   isDistinct(numbers) {
     return new Set(numbers).size === numbers.length;
@@ -26,8 +26,8 @@ const validationCondition = {
   isBonusDistinct(numbers, bonusNumber) {
     return new Set([...numbers, Number(bonusNumber)]).size !== numbers.length;
   },
-  isBonusRangeValid(bonusNumber) {
-    return Number(bonusNumber) <= LOTTO_NUMBERS.MAX && Number(bonusNumber) >= LOTTO_NUMBERS.MIN;
+  isBonusRangeValid(bonusNumber, min, max) {
+    return Number(bonusNumber) <= max && Number(bonusNumber) >= min;
   },
 };
 

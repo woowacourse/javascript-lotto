@@ -1,6 +1,7 @@
 import validationCondition from "./validateCondition.js";
 import runValidators from "../util/runValidators.js";
 import { BONUS_NUMBER_ERROR_MESSAGE } from "../lottoConstants/errorMessage.js";
+import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants.js";
 
 const checkIsEmpty = (bonusNumberInput) => {
   if (validationCondition.isEmpty(bonusNumberInput)) {
@@ -13,7 +14,7 @@ const checkIsNumber = (bonusNumberInput) => {
   }
 };
 const checkRange = (bonusNumberInput) => {
-  if (!validationCondition.isBonusRangeValid(bonusNumberInput)) {
+  if (!validationCondition.isBonusRangeValid(bonusNumberInput, LOTTO_NUMBERS.MIN, LOTTO_NUMBERS.MAX)) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGE.RANGE);
   }
 };

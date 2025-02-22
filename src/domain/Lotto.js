@@ -1,5 +1,6 @@
 import { LOTTO_NUMBERS_ERROR_MESSAGE } from "../lottoConstants/errorMessage.js";
 import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants.js";
+import validationCondition from "../validation/validateCondition.js";
 
 class Lotto {
   #numbers;
@@ -14,24 +15,15 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (!this.isLengthValid(numbers)) {
+    if (!validationCondition.isLengthValid(numbers, LOTTO_NUMBERS.LENGTH)) {
       throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.LENGTH);
     }
-    if (!this.isRangeValid(numbers)) {
+    if (!validationCondition.isRangeValid(numbers, LOTTO_NUMBERS.MIN, LOTTO_NUMBERS.MAX)) {
       throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.RANGE);
     }
-    if (!this.isDistinct(numbers)) {
+    if (!validationCondition.isDistinct(numbers)) {
       throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.DUPLICATE);
     }
-  }
-  isLengthValid(numbers) {
-    return numbers.length === LOTTO_NUMBERS.LENGTH;
-  }
-  isRangeValid(numbers) {
-    return !numbers.some((number) => number < 1 || number > 45);
-  }
-  isDistinct(numbers) {
-    return new Set(numbers).size === numbers.length;
   }
 }
 
