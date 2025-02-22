@@ -1,8 +1,10 @@
+import { WINNING_HISTORY } from "../constants/lotto.js";
+
 class LottoResult {
   constructor(matchedLottoStatus, price) {
     this.matchedLottoStatus = matchedLottoStatus;
     this.price = price;
-    this.winningHistory = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+    this.winningHistory = { ...WINNING_HISTORY };
     this.updateWinningHistory();
   }
 

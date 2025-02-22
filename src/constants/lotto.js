@@ -11,3 +11,11 @@ export const LOTTO_STATUS = Object.freeze([
   { RANK: 4, COUNT: 4, REWORD: 50_000, IS_BONUS: false },
   { RANK: 5, COUNT: 3, REWORD: 5000, IS_BONUS: false },
 ]);
+
+export const WINNING_HISTORY = Object.freeze({
+  1: 0,
+  2: 0,
+  3: 0,
+  4: 0,
+  5: 0,
+});
