@@ -1,4 +1,4 @@
-import { LOTTO_NUMBERS, LOTTO_PRICE } from "./systemConstants.js";
+import { LOTTO_NUMBERS, LOTTO_PRICE, RETRY_ANSWER } from "./systemConstants.js";
 
 export const LOTTO_NUMBERS_ERROR_MESSAGE = {
   EMPTY: "로또 번호를 입력해주세요",
@@ -24,6 +24,6 @@ export const PRICE_ERROR_MESSAGE = {
 };
 
 export const RETRY_ERROR_MESSAGE = {
-  EMPTY: "입력값이 비어있습니다. y 또는 n을 입력해주세요.",
-  INVALID: "잘못된 입력입니다. y 또는 n만 입력 가능합니다.",
+  EMPTY: `입력값이 비어있습니다. ${RETRY_ANSWER.YES} 또는 ${RETRY_ANSWER.NO}을 입력해주세요.`,
+  INVALID: `잘못된 입력입니다. ${RETRY_ANSWER.YES} 또는 ${RETRY_ANSWER.NO}만 입력 가능합니다.`,
 };

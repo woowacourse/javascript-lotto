@@ -13,3 +13,8 @@ export const LOTTO_PRIZE = {
   6: 2000000000,
   bonus: 30000000,
 };
+
+export const RETRY_ANSWER = {
+  YES: "y",
+  NO: "n",
+};
