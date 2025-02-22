@@ -1,5 +1,3 @@
-import LottoController from './LottoController.js';
-
-const lottoController = new LottoController();
+import { lottoController } from "./controller/lottoController.js";
 
 lottoController.run();

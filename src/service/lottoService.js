@@ -1,10 +1,11 @@
-import { calculateRank } from "./domain/calculateRank.js";
-import LottoResult from "./domain/LottoResult.js";
-import { matchLotto } from "./domain/matchLotto.js";
-import { calculateWinningRate } from "./domain/calculateWinningRate.js";
-import { LOTTO_CONDITION} from "./constants/constants.js";
-import { calculateTotalPrize } from "./domain/calculateTotalPrize.js";
-import { purchaseLotto } from "./domain/purchaseLotto.js";
+import { calculateRank } from "../domain/calculateRank.js";
+import LottoResult from "../domain/LottoResult.js";
+import { matchLotto } from "../domain/matchLotto.js";
+import { calculateWinningRate } from "../domain/calculateWinningRate.js";
+import { LOTTO_CONDITION} from "../constants/constants.js";
+import { calculateTotalPrize } from "../domain/calculateTotalPrize.js";
+import { purchaseLotto } from "../domain/purchaseLotto.js";
+
 
 export const lottoService =  {
     purchaseLotto(purchaseMoney){
