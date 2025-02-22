@@ -1,4 +1,5 @@
 import Calculator from "../src/Calculator.js";
+import Ranking from "../src/Ranking.js";
 import { KEYS } from "../src/constant/lotto.js";
 
 describe("Caculator", () => {
@@ -9,7 +10,7 @@ describe("Caculator", () => {
     [[[1, 2, 3, 4, 7, 10]], 1, "4등"],
     [[[1, 2, 3, 8, 7, 10]], 1, "5등"],
   ])("일치하는 개수에 맞는 등수의 값이 증가한다.", (lottos, expected, key) => {
-    const winningRanks = Calculator.countWinningRanks(lottos, {
+    const winningRanks = Ranking.countWinningRanks(lottos, {
       winning: [1, 2, 3, 4, 5, 6],
       bonus: 9,
     });

@@ -1,5 +1,6 @@
 import OutputView from "./ui/OutputView.js";
 import Calculator from "./Calculator.js";
+import Ranking from "./Ranking.js";
 import InputHandler from "./util/InputHandler.js";
 import generateLotto from "./LottoMachine.js";
 import PRICE from "./constant/price.js";
@@ -14,7 +15,7 @@ const purchase = async () => {
   });
 
   const lottoAndBonus = await readWinningNumbersAndBonusNumber();
-  const winningRanks = Calculator.countWinningRanks(lottoNumbers, lottoAndBonus);
+  const winningRanks = Ranking.countWinningRanks(lottoNumbers, lottoAndBonus);
   OutputView.printWinningDetailTitle();
 
   const rankKeys = Object.keys(winningRanks).reverse();
