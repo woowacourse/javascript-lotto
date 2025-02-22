@@ -1,9 +1,7 @@
 const getUniqueRandomNumbers = (min, max, count) => {
-  const randomNumbers = new Set();
-  while (randomNumbers.size < count) {
-    randomNumbers.add(Math.floor(Math.random() * (max - min + 1)) + min);
-  }
-  return Array.from(randomNumbers);
+  const numbers = Array.from({ length: max - min + 1 }, (_, i) => i + min);
+  numbers.sort(() => Math.random() - 0.5);
+  return numbers.slice(0, count);
 };
 
 export default getUniqueRandomNumbers;
