@@ -2,15 +2,16 @@ import { LOTTO_STATUS } from "../constants/lotto.js";
 
 class LottoMachine {
   #issuedLottoNumbers;
+  #matchedLottoStatus;
 
   constructor(issuedLottoNumbers) {
     this.#issuedLottoNumbers = issuedLottoNumbers;
-    this.matchedLottoStatus = [];
+    this.#matchedLottoStatus = [];
   }
 
   updateStatus(callback) {
     const currentStatus = LOTTO_STATUS.find(callback);
-    this.matchedLottoStatus.push(currentStatus);
+    this.#matchedLottoStatus.push(currentStatus);
   }
 
   getMatchingNumbers(enteredLottoNumbers) {
@@ -46,7 +47,7 @@ class LottoMachine {
 
     this.updateFinalStatus(matchingNumbers, isBonusArray);
 
-    return this.matchedLottoStatus;
+    return this.#matchedLottoStatus;
   }
 }
 
