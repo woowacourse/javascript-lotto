@@ -3,12 +3,16 @@ class LottoResult {
     this.lottoStatus = lottoStatus;
     this.price = price;
     this.winningHistory = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+    this.updateWinningHistory();
   }
 
-  getWinningHistory() {
+  updateWinningHistory() {
     this.lottoStatus.forEach((status) => {
       this.winningHistory[status.RANK] += 1;
     });
+  }
+
+  getWinningHistory() {
     return this.winningHistory;
   }
 
