@@ -1,4 +1,4 @@
-import { LOTTO_NUMBER_LENGTH } from '../src/constants/common.js';
+import { LOTTO_NUMBER_LENGTH, PRIZE } from '../src/constants/common.js';
 import Winning from '../src/Model/Winning.js';
 
 describe('Winning 클래스 테스트', () => {
@@ -29,20 +29,25 @@ describe('Winning 클래스 테스트', () => {
   });
 
   test('당첨 금액 전체 합산 테스트', () => {
-    winning.rankHistory.first = 1;
-    winning.rankHistory.second = 1;
-    winning.rankHistory.third = 1;
-    winning.rankHistory.fourth = 1;
-    winning.rankHistory.fifth = 1;
+    winning.calculateRankHistory([1, 2, 3, 4, 5, 6]);
+    winning.calculateRankHistory([1, 2, 3, 4, 5, 7]);
+    winning.calculateRankHistory([1, 2, 3, 4, 5, 10]);
+    winning.calculateRankHistory([1, 2, 3, 4, 10, 11]);
+    winning.calculateRankHistory([1, 2, 3, 9, 10, 11]);
 
-    expect(winning.getTotalPrize()).toEqual(2031555000);
+    const price = 5000;
+
+    const expectedTotalPrize = PRIZE.first + PRIZE.second + PRIZE.third + PRIZE.fourth + PRIZE.fifth;
+    const calculatedPrizeRate = winning.getCalculatedPrizeRate(price);
+
+    expect((calculatedPrizeRate / 100) * price).toEqual(expectedTotalPrize);
   });
 
   test('수익률 계산 테스트', () => {
     const price = 8000;
 
-    winning.rankHistory.fifth = 1;
+    winning.calculateRankHistory([1, 2, 3, 9, 10, 11]);
 
-    expect(winning.getCalculatedPrizeRate(price)).toEqual(62.5);
+    expect(winning.getCalculatedPrizeRate(price)).toBe(Number(((PRIZE.fifth / price) * 100).toFixed(1)));
   });
 });
