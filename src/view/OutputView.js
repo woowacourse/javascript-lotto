@@ -1,12 +1,14 @@
-import { RANKING, MESSAGE, LINE_BREAK } from "../constants/constants.js";
+import { RANKING, MESSAGE, LINE_BREAK } from '../constants/constants.js';
 
 const OutputView = {
   print(message) {
     return console.log(message);
   },
 
-  printLottoResult(result){
-     Object.keys(RANKING).reverse().forEach((key) => {
+  printLottoResult(result) {
+    Object.keys(RANKING)
+      .reverse()
+      .forEach((key) => {
         const ranking = RANKING[key];
         const resultCount = result[ranking.RANK];
         return this.checkSecond(ranking, resultCount);
@@ -15,27 +17,28 @@ const OutputView = {
 
   checkSecond(ranking, resultCount) {
     if (ranking.RANK === 2) {
-      return this.print(`${ranking.MATCH_COUNT}개 일치, 보너스 볼 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}개`);
+      return this.print(
+        `${ranking.MATCH_COUNT}개 일치, 보너스 볼 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}개`,
+      );
     }
 
     return this.print(`${ranking.MATCH_COUNT}개 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}개`);
   },
 
-  printStatstics(lottoResult){
+  printStatstics(lottoResult) {
     OutputView.print(LINE_BREAK);
-    OutputView.print(MESSAGE.STATISTICS)
-    OutputView.print(MESSAGE.LINE)
-    OutputView.printLottoResult(lottoResult.result)
-  }, 
-  
-  printLottoNumber(lottoList){
-    OutputView.print(lottoList.length+MESSAGE.PURCHASE_COUNT)
-    lottoList.forEach((lotto)=>{
-      OutputView.print(lotto.numbers);
-    })
-    OutputView.print(LINE_BREAK)
-  }
+    OutputView.print(MESSAGE.STATISTICS);
+    OutputView.print(MESSAGE.LINE);
+    OutputView.printLottoResult(lottoResult.result);
+  },
 
+  printLottoNumber(lottoList) {
+    OutputView.print(lottoList.length + MESSAGE.PURCHASE_COUNT);
+    lottoList.forEach((lotto) => {
+      OutputView.print(lotto.numbers);
+    });
+    OutputView.print(LINE_BREAK);
+  },
 };
 
 export default OutputView;

@@ -1,51 +1,51 @@
-import { RANKING } from "../constants/constants.js";
+import { RANKING } from '../constants/constants.js';
 class LottoResult {
-    #result
+  #result;
 
-    constructor(rankingList){
-        this.#result={
-            1:0,
-            2:0,
-            3:0,
-            4:0,
-            5:0
-        }
+  constructor(rankingList) {
+    this.#result = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+    };
 
-        rankingList.forEach( ranking => {
-            this.#validate(ranking)
-            this.#addRankingCount(ranking)
-        });
+    rankingList.forEach((ranking) => {
+      this.#validate(ranking);
+      this.#addRankingCount(ranking);
+    });
+  }
+
+  #validate(ranking) {
+    const isValidRanking = Object.values(RANKING).some((rank) => rank.RANK === ranking);
+
+    if (!isValidRanking && ranking !== null) {
+      throw new Error(RANKING_ERROR_MESSAGES);
     }
+  }
 
-    #validate(ranking){
-        const isValidRanking = Object.values(RANKING).some(rank => rank.RANK === ranking);
+  #addRankingCount(ranking) {
+    if (ranking !== null) this.#result[ranking]++;
+  }
 
-        if(!isValidRanking && ranking!==null){
-          throw new Error(RANKING_ERROR_MESSAGES)
-        }
+  #findPrize(rank) {
+    if (rank === null) {
+      return 0;
     }
+    const rankingKey = Object.keys(RANKING).find((key) => RANKING[key].RANK === Number(rank));
+    return RANKING[rankingKey].PRIZE;
+  }
 
-    #addRankingCount(ranking){
-        if(ranking!==null) this.#result[ranking]++
-    }
+  get result() {
+    return Object.freeze({ ...this.#result });
+  }
 
-    #findPrize(rank) {
-        if (rank === null) {
-            return 0;
-        }
-        const rankingKey = Object.keys(RANKING).find(key => RANKING[key].RANK === Number(rank));
-        return RANKING[rankingKey].PRIZE
-    }
-    
-    get result() {
-        return Object.freeze({ ...this.#result });
-    }
-
-    get totalPrize() {
-        return Object.entries(this.#result).reduce((total, [rank, count]) => {
-            return total + this.#findPrize(rank) * count;
-        }, 0);
-    }
+  get totalPrize() {
+    return Object.entries(this.#result).reduce((total, [rank, count]) => {
+      return total + this.#findPrize(rank) * count;
+    }, 0);
+  }
 }
 
-export default LottoResult
+export default LottoResult;

@@ -8,13 +8,12 @@ const lottoNumberValidator = {
     return numbers.length !== LOTTO_CONDITION.COUNT;
   },
 
-
   isDuplicated(numbers) {
     const lottoSet = new Set(numbers);
 
     return numbers.length !== lottoSet.size;
   },
-}
+};
 
 const validateLottoCount = (numbers) => {
   if (lottoNumberValidator.isValidCount(numbers)) {

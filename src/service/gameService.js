@@ -1,10 +1,10 @@
-import { YES } from "../constants/constants.js";
-import { lottoController } from "../controller/lottoController.js";
+import { YES } from '../constants/constants.js';
+import { lottoController } from '../controller/lottoController.js';
 
-export const gameService =  {
-    reStart(input){
-        if(input===YES){
-            lottoController.run();
-        } 
-    },
-}
+export const gameService = {
+  reStart(input) {
+    if (input === YES) {
+      lottoController.run();
+    }
+  },
+};

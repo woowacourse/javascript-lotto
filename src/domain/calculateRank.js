@@ -6,5 +6,5 @@ export const calculateRank = (matchCount, isBonusMatch) => {
   if (matchCount === RANKING.THIRD.MATCH_COUNT) return RANKING.THIRD.RANK;
   if (matchCount === RANKING.FOURTH.MATCH_COUNT) return RANKING.FOURTH.RANK;
   if (matchCount === RANKING.FIFTH.MATCH_COUNT) return RANKING.FIFTH.RANK;
-  return null
+  return null;
 };

@@ -1,3 +1,3 @@
-import { lottoController } from "./controller/lottoController.js";
+import { lottoController } from './controller/lottoController.js';
 
 lottoController.run();

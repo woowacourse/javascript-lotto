@@ -2,9 +2,8 @@ import Lotto from '../../src/domain/Lotto.js';
 import WinningLotto from '../../src/domain/WinningLotto.js';
 import { matchLotto } from '../../src/domain/matchLotto.js';
 
-
 describe('LottoMatch 클래스 테스트', () => {
-  const winningLotto = new WinningLotto(new Lotto([1,2,3,4,5,6]),7)
+  const winningLotto = new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), 7);
 
   test.each([
     [new Lotto([1, 2, 3, 4, 5, 6]), 6],
@@ -13,7 +12,6 @@ describe('LottoMatch 클래스 테스트', () => {
     [new Lotto([1, 2, 3, 14, 15, 16]), 3],
     [new Lotto([1, 2, 13, 14, 15, 16]), 2],
   ])(`등수가 일치한지 판별`, (lotto, expectedMatchCount) => {
-
     expect(matchLotto.winningNumbers(winningLotto, lotto)).toBe(expectedMatchCount);
   });
 
