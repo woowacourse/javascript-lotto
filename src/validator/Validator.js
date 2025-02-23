@@ -1,5 +1,6 @@
+//@ts-check
 import { COMMAND, ERROR_MESSAGES, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../lib/constants.js';
-import { checkUniqueArray } from '../lib/utils.js';
+import { checkUniqueArray } from '../util/lotto.js';
 
 class Validator {
   static validatePurchaseAmount(purchaseAmount) {

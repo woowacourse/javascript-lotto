@@ -1,5 +1,3 @@
-import { getIntersectCount } from '../lib/utils.js';
-
 class Lotto {
   #numbers;
 

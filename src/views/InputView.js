@@ -1,5 +1,7 @@
+//@ts-check
+
 import { COMMAND, INPUT_MESSAGES, SEPERATOR } from '../lib/constants.js';
-import { readLineAsync, retryUntilSuccess } from '../lib/utils.js';
+import { readLineAsync } from '../util/io.js';
 import Validator from '../validator/Validator.js';
 
 class InputView {

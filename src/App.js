@@ -1,6 +1,8 @@
+//@ts-check
 import LottoCompany from './domain/LottoCompany.js';
 import LottoShop from './domain/LottoShop.js';
-import { calculateProfitRate, retryUntilSuccess } from './lib/utils.js';
+import { calculateProfitRate } from './util/calculator.js';
+import { retryUntilSuccess } from './util/io.js';
 import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
 

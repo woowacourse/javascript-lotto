@@ -1,19 +1,38 @@
-const ERROR_MESSAGES_DEFAULT = '[ERROR]';
+export const MIN_LOTTO_NUMBER = 1;
+export const MAX_LOTTO_NUMBER = 45;
+export const LOTTO_LENGTH = 6;
+export const LOTTO_PRICE = 1_000;
+export const SEPERATOR = ',';
+export const NO_WINNING = '당첨 없음';
+export const COMMAND = {
+  yes: 'y',
+  no: 'n',
+};
+export const ERROR_MESSAGES_DEFAULT = '[ERROR]';
+export const LOTTO_NUMBER_LENGTH = 6;
+export const BONUS_NUMBER_LENGTH = 1;
+
+export const appendErrorPrefix = (message) => `${ERROR_MESSAGES_DEFAULT} ${message}`;
+
 export const ERROR_MESSAGES = {
   purchaseAmount: {
-    positiveInteger: `${ERROR_MESSAGES_DEFAULT} 양의 정수를 입력해주세요.`,
-    thousandUnit: `${ERROR_MESSAGES_DEFAULT} 1,000단위로 입력해주세요.`,
+    positiveInteger: appendErrorPrefix('양의 정수를 입력해주세요.'),
+    thousandUnit: appendErrorPrefix(`${LOTTO_PRICE.toLocaleString()}단위로 입력해주세요.`),
   },
   winNumber: {
-    unique: `${ERROR_MESSAGES_DEFAULT} 중복되지 않은 숫자로 입력해주세요.`,
-    range: `${ERROR_MESSAGES_DEFAULT} 6개의 1~45 사이의 정수로 입력해주세요.`,
+    unique: appendErrorPrefix('중복되지 않은 숫자로 입력해주세요.'),
+    range: appendErrorPrefix(
+      `${LOTTO_NUMBER_LENGTH}개의 ${MIN_LOTTO_NUMBER}~${MAX_LOTTO_NUMBER} 사이의 정수로 입력해주세요.`,
+    ),
   },
   bonusNumber: {
-    unique: `${ERROR_MESSAGES_DEFAULT} 당첨 번호와 중복되지 않게 입력해주세요.`,
-    range: `${ERROR_MESSAGES_DEFAULT} 1개의 1~45 사이의 정수로 입력해주세요.`,
+    unique: appendErrorPrefix('당첨 번호와 중복되지 않게 입력해주세요.'),
+    range: appendErrorPrefix(
+      `${BONUS_NUMBER_LENGTH}개의 ${MIN_LOTTO_NUMBER}~${MAX_LOTTO_NUMBER} 사이의 정수로 입력해주세요.`,
+    ),
   },
   retry: {
-    yesOrNo: `${ERROR_MESSAGES_DEFAULT} y 또는 n을 입력해주세요.`,
+    yesOrNo: appendErrorPrefix(`${COMMAND.yes} 또는 ${COMMAND.no}을 입력해주세요.`),
   },
 };
 
@@ -28,17 +47,6 @@ export const OUTPUT_MESSAGES = {
   purchaseCount: (count) => `${count}개를 구매했습니다.`,
   statistics: () => '당첨 통계',
   divider: () => '------------',
-};
-
-export const MIN_LOTTO_NUMBER = 1;
-export const MAX_LOTTO_NUMBER = 45;
-export const LOTTO_LENGTH = 6;
-export const LOTTO_PRICE = 1_000;
-export const SEPERATOR = ',';
-export const NO_WINNING = '당첨 없음';
-export const COMMAND = {
-  yes: 'y',
-  no: 'n',
 };
 
 export const LOTTO_RANK = {

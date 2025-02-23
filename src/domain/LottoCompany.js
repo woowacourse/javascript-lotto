@@ -1,5 +1,5 @@
 import { LOTTO_RANK, NO_WINNING } from '../lib/constants.js';
-import { getIntersectCount } from '../lib/utils.js';
+import { getIntersectCount } from '../util/lotto.js';
 
 class LottoCompany {
   #winNumbers;

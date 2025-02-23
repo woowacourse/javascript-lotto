@@ -1,5 +1,6 @@
+//@ts-check
 import { LOTTO_LENGTH, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../lib/constants.js';
-import { generateUniqueNumbers } from '../lib/utils.js';
+import { generateUniqueNumbers } from '../util/lotto.js';
 import Lotto from './Lotto.js';
 
 class LottoShop {
