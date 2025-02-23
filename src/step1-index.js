@@ -13,12 +13,18 @@ class App {
       await purchase();
 
       const answer = await InputHandler.getRestartAnswer();
-      this.endGame(answer);
+      this.handleRestart(answer);
     }
   }
 
-  endGame(answer) {
-    if (answer.toLowerCase() === "n") this.#running = false;
+  handleRestart(answer) {
+    if (answer.toLowerCase() === RESTART_ANSWER.NO) {
+      this.endGame();
+    }
+  }
+
+  endGame() {
+    this.#running = false;
   }
 }
 
