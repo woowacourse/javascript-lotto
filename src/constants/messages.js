@@ -19,6 +19,7 @@ export const MESSAGES = Object.freeze({
     bonusNumberCount: "보너스 번호는 1개여야 합니다.",
     bonusNumberRange: "보너스 번호는 1에서 45 사이의 숫자여야 합니다.",
     minimumPurchase: "최소 구입 금액은 1,000원입니다.",
+    maximumPurchase: "최대 구입 금액은 100,000원입니다.",
     purchaseAmount: "구입 금액은 1,000원 단위여야 합니다.",
     restartInput: "잘못된 입력입니다. 다시 입력해 주세요.",
   },

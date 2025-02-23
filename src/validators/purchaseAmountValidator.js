@@ -3,7 +3,7 @@ import { MESSAGES, SETTINGS } from "../constants/index.js";
 
 export const purchaseAmountValidator = (inputValue) => {
   validateInteger(inputValue);
-  validateAboveMinRange(inputValue);
+  validatePriceRange(inputValue);
   validateUnit(inputValue);
 };
 
@@ -17,9 +17,13 @@ const validateInteger = (inputValue) => {
   }
 };
 
-const validateAboveMinRange = (inputValue) => {
+const validatePriceRange = (inputValue) => {
   if (inputValue < SETTINGS.priceUnit) {
     throw new CustomError(MESSAGES.invalid.minimumPurchase);
+  }
+
+  if (inputValue > SETTINGS.maxPriceLimit) {
+    throw new CustomError(MESSAGES.invalid.maximumPurchase);
   }
 };
 

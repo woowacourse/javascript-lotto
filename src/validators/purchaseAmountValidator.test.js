@@ -18,15 +18,21 @@ describe("PurchaseAmount 테스트", () => {
     );
   });
 
-  test("구입 금액이 1000원으로 나누어 떨어지지 않을 경우 에러를 띄운다.", () => {
+  test("구입 금액이 1,000원으로 나누어 떨어지지 않을 경우 에러를 띄운다.", () => {
     expect(() => purchaseAmountValidator(2025)).toThrow(
       MESSAGES.invalid.purchaseAmount
     );
   });
 
-  test("구입 금액이 1000원 미만이면 에러를 던진다.", () => {
+  test("구입 금액이 1,000원 미만이면 에러를 던진다.", () => {
     expect(() => purchaseAmountValidator(999)).toThrow(
       MESSAGES.invalid.minimumPurchase
+    );
+  });
+
+  test("구입 금액이 100,000원 초과이면 에러를 던진다.", () => {
+    expect(() => purchaseAmountValidator(101000)).toThrow(
+      MESSAGES.invalid.maximumPurchase
     );
   });
 });
