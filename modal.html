@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또 당첨 통계</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Pretendard Variable", sans-serif;
+      }
+
+      body {
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal {
+        width: 400px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 18px;
+        font-weight: bold;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #ddd;
+      }
+
+      .modal-header span {
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .modal-content {
+        margin-top: 20px;
+      }
+
+      .modal-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+
+      .modal-table th,
+      .modal-table td {
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .modal-table th {
+        background: #f8f8f8;
+        font-weight: bold;
+      }
+
+      .modal-footer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #4e5ba6;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #3b4885;
+      }
+
+      /* 모달 활성화 */
+      .show {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 모달 트리거 버튼 -->
+    <button class="btn" id="openModalBtn">당첨 통계 보기</button>
+
+    <!-- 모달 오버레이 -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-header">
+          <span>🏆 당첨 통계 🏆</span>
+          <span id="closeModalBtn">×</span>
+        </div>
+        <div class="modal-content">
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>일치 개수</th>
+                <th>당첨금</th>
+                <th>당첨 개수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td>n개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td>n개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="margin-top: 10px">당신의 총 수익률은 %입니다.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="restartBtn">다시 시작하기</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const openModalBtn = document.getElementById("openModalBtn");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      const modalOverlay = document.getElementById("modalOverlay");
+      const restartBtn = document.getElementById("restartBtn");
+
+      // 모달 열기
+      openModalBtn.addEventListener("click", () => {
+        modalOverlay.classList.add("show");
+      });
+
+      // 모달 닫기 (X 버튼)
+      closeModalBtn.addEventListener("click", () => {
+        modalOverlay.classList.remove("show");
+      });
+
+      // 모달 닫기 (오버레이 클릭 시)
+      modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) {
+          modalOverlay.classList.remove("show");
+        }
+      });
+
+      // 다시 시작 버튼 클릭 시 (여기선 그냥 모달 닫기만)
+      restartBtn.addEventListener("click", () => {
+        modalOverlay.classList.remove("show");
+      });
+    </script>
+  </body>
+</html>
