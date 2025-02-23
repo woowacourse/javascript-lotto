@@ -4,12 +4,9 @@ import { generateUniqueNumbers } from '../util/lotto.js';
 import Lotto from './Lotto.js';
 
 class LottoShop {
-  static calculateLottoCount(purchaseAmount) {
-    return purchaseAmount / LOTTO_PRICE;
-  }
-
-  static createLotto(purchaseCount) {
-    return Array.from({ length: purchaseCount }, () => new Lotto(this.#createLottoNumber()));
+  static purchaseLotto(purchaseAmount) {
+    const purchaseCount = purchaseAmount / LOTTO_PRICE;
+    return new Array(purchaseCount).fill(null).map(() => new Lotto(this.#createLottoNumber()));
   }
 
   static #createLottoNumber() {
