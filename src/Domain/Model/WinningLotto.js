@@ -16,10 +16,7 @@ class WinningLotto {
   }
 
   countMatchingNumbers(lotto) {
-    const matchingNumbers = this.#lotto
-      .getNumbers()
-      .filter((number) => lotto.getNumbers().includes(number)).length;
-    return matchingNumbers;
+    return this.#lotto.match(lotto);
   }
 
   checkBonusNumber(lotto) {
