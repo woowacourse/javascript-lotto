@@ -11,3 +11,7 @@
   --lotto-greyscale-4: #8b8b8b;
   --lotto-greyscale-5: #000000;
 }
+
+#main-container {
+  background-color: #fbfbfd;
+}
