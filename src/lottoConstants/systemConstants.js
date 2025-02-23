@@ -1,5 +1,6 @@
 export const LOTTO_NUMBERS = {
   LENGTH: 6,
+  BONUS_LEGNTH: 1,
   MIN: 1,
   MAX: 45,
 };
