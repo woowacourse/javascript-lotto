@@ -16,7 +16,9 @@ import {
 import Lotto from './Domain/Model/Lotto.js';
 import LottoMachine from './Domain/Model/LottoMachine.js';
 import WinningLotto from './Domain/Model/WinningLotto.js';
+import LottoManager from './Domain/Model/LottoManager.js';
 import { outputView } from './View/outputView.js';
+
 class App {
   async #initializePurchaseAmount() {
     const purchaseAmountInput = await readUserInputUntilSuccess({
@@ -94,12 +96,14 @@ class App {
       bonusNumber,
     );
 
-    const lottoResult = lottoMachine.compareWinningLotto(winningLotto);
-    const totalLottoPrize = lottoMachine.calculatePrize(lottoResult);
-    const lottoProfit = lottoMachine.calculateProfit(
-      totalLottoPrize,
-      purchaseAmount,
+    const lottoManager = new LottoManager(
+      winningLotto,
+      lottoMachine.getLottoList(),
     );
+
+    const lottoResult = lottoManager.compareWinningLotto();
+    const totalLottoPrize = lottoManager.calculatePrize(lottoResult);
+    const lottoProfit = lottoManager.calculateProfit(totalLottoPrize);
 
     outputView.printLottoResultInstruction();
     outputView.printLottoResult(lottoResult);
