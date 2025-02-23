@@ -27,6 +27,7 @@ button {
   padding: 0.38rem;
   text-align: center;
   padding: 0.4rem 0.5rem;
+  cursor: pointer;
 }
 
 .title {
@@ -108,11 +109,35 @@ button {
   justify-content: center;
   gap: 0.25rem;
 }
+.purchase-button {
+  width: 3.5rem;
+  height: 2.25rem;
+}
+
 .input-container {
   display: flex;
   gap: 1rem;
 }
-.input {
+.price-input {
   width: 19.3rem;
   min-height: 2rem;
+}
+
+.lotto-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.lotto-image {
+  width: 34px;
+}
+.lotto-numbers-container {
+  display: flex;
+  flex-direction: column;
+}
+.lotto-numbers-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
+  <!-- header -->
   <body>
     <div class="header-container">
       <h1 class="title header-navigator">🎱 행운의 로또</h1>
@@ -17,11 +18,21 @@
       <div class="lotto-card">
         <div class="title">🎱 내 번호 당첨 확인 🎱</div>
 
+        <!-- price input -->
         <div class="purchase-container">
           <div class="body">구입할 금액을 입력해 주세요</div>
           <div class="input-container">
-            <input placeholder="금액" class="input" />
-            <button class="caption">구입</button>
+            <input type="number" placeholder="금액" class="price-input" />
+            <button class="caption purchase-button">구입</button>
+          </div>
+        </div>
+
+        <!-- lotto -->
+        <div class="lotto-container">
+          <div class="body lotto-count"></div>
+
+          <div class="body lotto-numbers-container">
+            <div class="lotto-numbers-item"></div>
           </div>
         </div>
       </div>
