@@ -1,3 +1,5 @@
+import deepFreeze from '../utils/deepFreeze.js';
+
 const SYSTEM_MESSAGE = Object.freeze({
   ENTER_PURCHASE_PRICE: '> 구입금액을 입력해 주세요. ',
   ENTER_WINNING_NUMBERS: '> 당첨 번호를 입력해 주세요. ',
@@ -18,7 +20,7 @@ const RESULT_MESSAGE = Object.freeze({
     `총 수익률은 ${profitRate.toFixed(1).toLocaleString()}%입니다.`,
 });
 
-const ERROR_MESSAGE = Object.freeze({
+const ERROR_MESSAGE = deepFreeze({
   PURCHASE: {
     INVALID_UNIT: '구입 금액은 1,000원 단위로 입력해야 합니다.',
   },
