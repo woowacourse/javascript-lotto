@@ -1,13 +1,16 @@
-import {
-  generateLottos,
-  generateLottoNumbers,
-} from "../../src/domain/generateLottos.js";
 import Lotto from "../../src/models/Lotto.js";
+import {
+  generateLottoNumbers,
+  generateLottos,
+} from "../../src/utils/generateLottos.js";
 
-describe("domain/generateLottos", () => {
+describe("utils/generateLottos", () => {
   describe("generatedLottoNumbers()", () => {
-    test("생성된 로또 번호는 6개여야 한다.", () => {
-      const lottoNumbers = generateLottoNumbers();
+    test.each([
+      [generateLottoNumbers(1, 45, 6)],
+      [generateLottoNumbers(1, 45, 6)],
+      [generateLottoNumbers(1, 45, 6)],
+    ])("랜덤 생성된 로또 번호는 항상 6개여야 한다. (%#)", (lottoNumbers) => {
       expect(lottoNumbers).toHaveLength(6);
     });
 
@@ -26,14 +29,6 @@ describe("domain/generateLottos", () => {
       [generateLottoNumbers()],
       [generateLottoNumbers()],
       [generateLottoNumbers()],
-    ])("랜덤 생성된 로또 번호는 항상 6개여야 한다. (%#)", (lottoNumbers) => {
-      expect(lottoNumbers).toHaveLength(6);
-    });
-
-    test.each([
-      [generateLottoNumbers()],
-      [generateLottoNumbers()],
-      [generateLottoNumbers()],
     ])(
       "랜덤 생성된 숫자가 1~45 범위를 벗어나지 않아야 한다. (%#)",
       (numbers) => {
@@ -41,7 +36,7 @@ describe("domain/generateLottos", () => {
           expect(num).toBeGreaterThanOrEqual(1);
           expect(num).toBeLessThanOrEqual(45);
         });
-      },
+      }
     );
   });
 
@@ -58,7 +53,7 @@ describe("domain/generateLottos", () => {
         const lottos = generateLottos(price);
         expect(lottos.length).toBe(expectedCount);
         expect(lottos.every((lotto) => lotto instanceof Lotto)).toBe(true);
-      },
+      }
     );
   });
 });

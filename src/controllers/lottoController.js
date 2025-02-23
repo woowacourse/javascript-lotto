@@ -1,6 +1,6 @@
 import checkWinningResults from "../domain/checkWinningResults.js";
 import formatResults from "../domain/formatResults.js";
-import { generateLottos } from "../domain/generateLottos.js";
+import { generateLottos } from "../utils/generateLottos.js";
 import { getBonusNumber, getWinningNumbers } from "../view/input.js";
 import {
   printLottoCount,
