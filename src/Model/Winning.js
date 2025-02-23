@@ -45,18 +45,10 @@ class Winning {
   }
 
   #getTotalPrize() {
-    let totalPrize = 0;
-    for (let rank in this.#rankHistory) {
-      totalPrize = this.#sumPrize(rank, totalPrize);
-    }
-    return totalPrize;
-  }
-
-  #sumPrize(rank, totalPrize) {
-    if (this.#rankHistory[rank]) {
-      totalPrize += PRIZE[rank] * this.#rankHistory[rank];
-    }
-    return totalPrize;
+    return Object.entries(this.rankHistory)
+      .reduce((total, [rank, count]) => {
+        return total + PRIZE[rank] * count;
+      }, 0);
   }
 
   getCalculatedPrizeRate(price) {
