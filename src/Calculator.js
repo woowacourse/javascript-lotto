@@ -62,7 +62,7 @@ const Calculator = {
   },
 
   getYieldRate(amount, totalPrize) {
-    return ((totalPrize / amount) * 100).toFixed(1);
+    return (totalPrize / amount) * 100;
   },
 };
 

@@ -25,7 +25,7 @@ const OutputView = {
   },
 
   printYieldRate(yieldRate) {
-    console.log(`총 수익률은 ${yieldRate}%입니다.${NEW_LINE}`);
+    console.log(`총 수익률은 ${yieldRate.toFixed(1)}%입니다.${NEW_LINE}`);
   },
 
   printQuantity(quantity) {

@@ -35,7 +35,8 @@ describe("", () => {
     const amount = "5000";
     const totalPrize = 50_000;
     const yieldRate = Calculator.getYieldRate(amount, totalPrize);
+    const expectedYieldRate = 1_000;
 
-    expect(yieldRate).toBe("1000.0");
+    expect(yieldRate).toBe(expectedYieldRate);
   });
 });
