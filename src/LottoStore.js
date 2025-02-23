@@ -4,9 +4,17 @@ import Ranking from "./Ranking.js";
 import InputHandler from "./util/InputHandler.js";
 import generateLotto from "./LottoMachine.js";
 import PRICE from "./constant/price.js";
+import InputView from "./ui/InputView.js";
+
+import {
+  validateBonusNumber,
+  validatePurchaseAmount,
+  validateWinningNumbers,
+  validateRestart,
+} from "./util/validate.js";
 
 const purchase = async () => {
-  const purchaseAmount = await InputHandler.getPurchaseAmount();
+  const purchaseAmount = await InputHandler.getValidatedInput(InputView.readPurchaseAmount, validatePurchaseAmount);
   const quantity = purchaseAmount / PRICE.UNIT;
   OutputView.printQuantity(quantity);
   const lottoNumbers = generateLottoNumbers(quantity);
@@ -34,8 +42,9 @@ const displayLottoNumbers = (lottoNumbers) => {
 };
 
 const readWinningNumbersAndBonusNumber = async () => {
-  const winningNumbers = await InputHandler.getWinningNumbers();
-  const bonusNumber = await InputHandler.getBonusNumber(winningNumbers);
+  const winningNumbers = await InputHandler.getValidatedInput(InputView.readWinningNumbers, validateWinningNumbers);
+  const bonusNumber = await InputHandler.getValidatedInput(InputView.readBonusNumber, validateBonusNumber, winningNumbers);
+
 
   return {
     winning: winningNumbers,

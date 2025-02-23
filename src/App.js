@@ -1,6 +1,8 @@
 import purchase from "./LottoStore.js";
 import InputHandler from "./util/InputHandler.js";
 import RESTART_ANSWER from "./constant/answer.js";
+import InputView from "./ui/InputView.js";
+import { validateRestart } from "./util/validate.js";
 
 class App {
   #running;
@@ -13,7 +15,7 @@ class App {
     while (this.#running) {
       await purchase();
 
-      const answer = await InputHandler.getRestartAnswer();
+      const answer = await InputHandler.getValidatedInput(InputView.readRestart, validateRestart);
       this.endGame(answer);
     }
   }
