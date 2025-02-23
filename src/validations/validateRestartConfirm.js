@@ -1,4 +1,5 @@
-import { RESTART_ERROR_MESSAGE, YES, NO } from "../constants/constants.js";
+import { YES, NO } from "../constants/validateConstants.js";
+import { RESTART_ERROR_MESSAGE } from "../constants/errorConstants.js";
 import throwIfInvalid from "../utils/throwIfInvalid.js";
 
 const validateRestartConfirm = (input) => {

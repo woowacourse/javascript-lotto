@@ -4,7 +4,7 @@ import {
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
   LOTTO_LENGTH,
-} from "../constants/constants.js";
+} from "../constants/validateConstants.js";
 
 const issueLottos = (purchaseAmount) => {
   const lottoCount = purchaseAmount / MIN_UNIT;
@@ -13,7 +13,7 @@ const issueLottos = (purchaseAmount) => {
     return getUniqueRandomNumbers(
       MIN_LOTTO_NUMBER,
       MAX_LOTTO_NUMBER,
-      LOTTO_LENGTH,
+      LOTTO_LENGTH
     ).sort((a, b) => a - b);
   });
 };

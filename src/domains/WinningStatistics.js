@@ -1,5 +1,5 @@
 import countMatchingNumbers from "../utils/countMatchingNumbers.js";
-import { MATCH_KEY, MATCH_PRIZE } from "../constants/constants.js";
+import { MATCH_KEY, MATCH_PRIZE } from "../constants/statisticConstants.js";
 class WinningStatistics {
   #lottos = [];
   #statistics = new Map([
@@ -24,12 +24,12 @@ class WinningStatistics {
   calculateProfitRatio(purchaseAmount) {
     const profitAmount = Array.from(this.#statistics.values()).reduce(
       (sum, { count, amount }) => sum + count * amount,
-      0,
+      0
     );
     const PERCENTAGE = 100;
     const DECIMAL_POINT = 1;
     return ((profitAmount / purchaseAmount) * PERCENTAGE).toFixed(
-      DECIMAL_POINT,
+      DECIMAL_POINT
     );
   }
 

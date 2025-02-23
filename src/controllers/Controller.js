@@ -7,14 +7,14 @@ import issueLottos from "../domains/issueLottos.js";
 import Output from "../views/Output.js";
 import WinningStatistics from "../domains/WinningStatistics.js";
 import validateRestartConfirm from "../validations/validateRestartConfirm.js";
-import { YES } from "../constants/constants.js";
+import { YES } from "../constants/validateConstants.js";
 
 class Controller {
   async start() {
     await this.#runLottoGame();
     const restartConfirm = await getValidInput(
       Input.readRestartConfirm,
-      validateRestartConfirm,
+      validateRestartConfirm
     );
     if (restartConfirm === YES) await this.start();
   }
@@ -32,26 +32,26 @@ class Controller {
 
     Output.printStatistics(winningStatistics.statistics);
     Output.printProfitRatio(
-      winningStatistics.calculateProfitRatio(purchaseAmount),
+      winningStatistics.calculateProfitRatio(purchaseAmount)
     );
   }
 
   async #getPurchaseAmount() {
     return await getValidInput(
       Input.readPurchaseAmount,
-      validatePurchaseAmount,
+      validatePurchaseAmount
     );
   }
 
   async #getWinningAndBonusNumbers() {
     const winningNumbers = await getValidInput(
       Input.readWinningNumbers,
-      validateWinningNumbers,
+      validateWinningNumbers
     );
     const bonusNumber = await getValidInput(
       Input.readBonusNumber,
       validateBonusNumber,
-      winningNumbers,
+      winningNumbers
     );
     return { winningNumbers, bonusNumber };
   }
