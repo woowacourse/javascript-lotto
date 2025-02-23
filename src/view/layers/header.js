@@ -1,12 +1,10 @@
+import headerContents from "./header.html?raw"
 import "./header.css"
 
 const createHeader = async () => {
-  const contents = await fetch("/header.html");
-  const parsedContents = await contents.text();
-
   const header = document.createElement("header");
-  header.className = `header-container`;
-  header.innerHTML = parsedContents;
+  header.className = "header-container";
+  header.innerHTML = headerContents;
 
   document.getElementById("app").prepend(header);
 };
