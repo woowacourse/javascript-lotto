@@ -1,0 +1,118 @@
+@charset "utf-8";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+:root {
+  --lotto-primary: #4E5BA6;
+  --lotto-primary-alpha: #4E5BA6CC
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000000;
+  --lotto-greyscale-5-alpha: #0000001F
+}
+
+body {
+}
+
+.header {
+  width: 100%;
+  height: 64px;
+  position: fixed;
+  background-color: var(--lotto-primary);
+}
+
+.header nav {
+  width: 1440px;
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header nav h1 a {
+  margin-left: 130px;
+  font-weight: 800;
+  color: #ffffff;
+  text-decoration: none;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 64px;
+  padding-bottom: 80px;
+  background-color: #b4b4b4;
+}
+
+.lotto-box {
+  width: 414px;
+  height: 727px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 16px 32px;
+  border-radius: 4px;
+  border: solid 1px var(--lotto-greyscale-5-alpha);
+  background-color: #fff;
+}
+
+.lotto-box label {
+    margin-bottom: 4px;
+    color: var(--lotto-greyscale-5);
+}
+
+.lotto-box h1 {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.lotto-form .amount-field {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lotto-form .amount {
+    width: calc(100% - 72px);
+  height: 36px;
+  padding-left: 8px;
+  border-radius: 4px;
+  border: solid 1px var(--lotto-greyscale-3);
+}
+
+.lotto-form .btn-buy {
+  width: 56px;
+  height: 36px;
+  text-align: center;
+  margin-left: 16px;
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  color: #ffffff;
+}
+
+
+.lotto-form {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  bottom: 0px;
+  border-top: 1px solid var(--lotto-primary-alpha);
+}
+
+footer div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  color: var(--lotto-primary);
+}
