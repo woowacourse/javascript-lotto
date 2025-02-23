@@ -26,8 +26,9 @@ describe("", () => {
       [KEYS.FIFTH]: 0,
     };
     const totalPrize = Calculator.totalPrize(winningCount);
+    const expectedTotalPrize = 3_000_000;
 
-    expect(totalPrize).toBe(3_000_000);
+    expect(totalPrize).toBe(expectedTotalPrize);
   });
 
   test("수익률을 계산한다.", () => {
