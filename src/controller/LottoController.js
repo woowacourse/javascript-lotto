@@ -1,4 +1,4 @@
-import Input from "../view/Input.js";
+import { getInput } from "../view/Input.js";
 import { MESSAGES } from "../constants/index.js";
 import {
   purchaseAmountValidator,
@@ -7,7 +7,7 @@ import {
   restartValidator,
 } from "../validators/index.js";
 import { retryUntilValid } from "../utils/retryUntilValid.js";
-import LottoGenerator from "../domain/LottoGenerator.js";
+import { generateLotto } from "../domain/LottoGenerator.js";
 import Output from "../view/Output.js";
 import ProfitCalculator from "../domain/ProfitCalculator.js";
 class LottoController {
@@ -19,7 +19,7 @@ class LottoController {
   async play() {
     do {
       const purchaseAmount = await this.getPurchaseAmount();
-      this.lottoTickets = LottoGenerator.generate(purchaseAmount);
+      this.lottoTickets = generateLotto(purchaseAmount);
 
       Output.printLottoTickets(this.lottoTickets);
 
@@ -32,7 +32,7 @@ class LottoController {
 
   async getRestartChoice() {
     const restartInput = await retryUntilValid(
-      () => Input.getInput("\n" + MESSAGES.input.askRestart),
+      () => getInput("\n" + MESSAGES.input.askRestart),
       (input) => input.trim().toLowerCase(),
       restartValidator
     );
@@ -41,7 +41,7 @@ class LottoController {
 
   async getPurchaseAmount() {
     const purchaseAmount = await retryUntilValid(
-      () => Input.getInput(MESSAGES.input.purchaseAmount),
+      () => getInput(MESSAGES.input.purchaseAmount),
       (input) => Number(input),
       purchaseAmountValidator
     );
@@ -50,7 +50,7 @@ class LottoController {
 
   async getLottoNumber() {
     const lottoNumber = await retryUntilValid(
-      () => Input.getInput("\n" + MESSAGES.input.lottoNumber),
+      () => getInput("\n" + MESSAGES.input.lottoNumber),
       (input) => input.split(",").map(Number),
       lottoNumberValidator
     );
@@ -59,7 +59,7 @@ class LottoController {
 
   async getBonusNumber() {
     const bonusNumber = await retryUntilValid(
-      () => Input.getInput("\n" + MESSAGES.input.bonusNumber),
+      () => getInput("\n" + MESSAGES.input.bonusNumber),
       (input) => Number(input),
       (bonusNumber) => bonusNumberValidator(bonusNumber, this.lottoNumber)
     );
