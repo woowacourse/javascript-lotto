@@ -1,7 +1,8 @@
 #lotto-header {
-  width: 1440;
-  height: 64;
+  width: 1440px;
+  height: 64px;
   border-bottom-width: 1px;
+  color: var(--lotto-primary);
 }
 
 #lotto-title {
@@ -10,4 +11,5 @@
   font-size: 24px;
   line-height: 36px;
   letter-spacing: 0px;
+  color: var(--lotto-greyscale-1);
 }
