@@ -28,19 +28,24 @@ class Winning {
     this.#increaseRankingHistory('third');
   }
 
+  #getRankHandler(boughtLotto) {
+    return {
+      6: () => this.#increaseRankingHistory('first'),
+      5: () => this.#updateSecondOrThirdPlace(boughtLotto),
+      4: () => this.#increaseRankingHistory('fourth'),
+      3: () => this.#increaseRankingHistory('fifth'),
+    };
+  }
+
   calculateRankHistory(boughtLotto) {
-    const matchCount = this.winningNumbers.filter((winningNumber) => boughtLotto.includes(winningNumber)).length;
-    if (matchCount === LOTTO_NUMBER_LENGTH) {
-      this.#increaseRankingHistory('first');
-    }
-    if (matchCount === 5) {
-      this.#updateSecondOrThirdPlace(boughtLotto);
-    }
-    if (matchCount === 4) {
-      this.#increaseRankingHistory('fourth');
-    }
-    if (matchCount === 3) {
-      this.#increaseRankingHistory('fifth');
+    const matchCount = this.winningNumbers.filter(
+      (winningNumber) => boughtLotto.includes(winningNumber)
+    ).length;
+
+    const rankHandler = this.#getRankHandler(boughtLotto);
+
+    if (rankHandler[matchCount]) {
+      rankHandler[matchCount]();
     }
   }
 
