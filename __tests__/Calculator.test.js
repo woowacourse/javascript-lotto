@@ -9,12 +9,12 @@ describe("Calculator test", () => {
     [[[1, 2, 3, 4, 7, 10]], 1, "4등"],
     [[[1, 2, 3, 8, 7, 10]], 1, "5등"],
   ])("일치하는 개수에 맞는 등수의 값이 증가한다.", (lottos, expected, key) => {
-    const winningCount = Calculator.getWinningCount(lottos, {
+    const winningCounts = Calculator.getWinningCounts(lottos, {
       winning: [1, 2, 3, 4, 5, 6],
       bonus: 9,
     });
 
-    expect(winningCount[key]).toBe(expected);
+    expect(winningCounts[key]).toBe(expected);
   });
 
   test("꽝이면 증가하지 않는다.", () => {
@@ -26,10 +26,10 @@ describe("Calculator test", () => {
       winning: [1, 2, 3, 4, 5, 6],
       bonus: 9,
     };
-    const winningCount = Calculator.getWinningCount(lottos, winningInfo);
+    const winningCounts = Calculator.getWinningCounts(lottos, winningInfo);
     const expected = [0, 0, 0, 0, 0];
 
-    expect(Object.values(winningCount)).toEqual(expected);
+    expect(Object.values(winningCounts)).toEqual(expected);
   });
 
   test("당첨금을 계산한다.", () => {

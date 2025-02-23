@@ -1,8 +1,8 @@
 import { WINNING, KEYS } from "./constant/lotto.js";
 
 const Calculator = {
-  getWinningCount(lottos, winningInfo) {
-    const winningCount = {
+  getWinningCounts(lottos, winningInfo) {
+    const winningCounts = {
       [KEYS.FIRST]: 0,
       [KEYS.SECOND]: 0,
       [KEYS.THIRD]: 0,
@@ -12,10 +12,10 @@ const Calculator = {
 
     lottos.forEach((lotto) => {
       const matchedKey = this.getMatchedKey(lotto, winningInfo);
-      this.handleWinningCount(winningCount, matchedKey);
+      this.handleWinningCount(winningCounts, matchedKey);
     });
 
-    return winningCount;
+    return winningCounts;
   },
 
   getMatchedKey(lotto, winningInfo) {
@@ -43,14 +43,14 @@ const Calculator = {
     if (matchedCount === WINNING[KEYS.FIFTH].MATCH) return KEYS.FIFTH;
   },
 
-  handleWinningCount(winningCount, matchedKey) {
+  handleWinningCount(winningCounts, matchedKey) {
     if (matchedKey) {
-      this.increaseCount(winningCount, matchedKey);
+      this.increaseCount(winningCounts, matchedKey);
     }
   },
 
-  increaseCount(winningCount, matchedKey) {
-    winningCount[matchedKey] += 1;
+  increaseCount(winningCounts, matchedKey) {
+    winningCounts[matchedKey] += 1;
   },
 
   getTotalPrize(winningCount) {
