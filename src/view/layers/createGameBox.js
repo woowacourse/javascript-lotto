@@ -1,0 +1,12 @@
+import gameBoxContents from './gameBox.html?raw';
+import './gameBox.css';
+
+const createGameBox = async () => {
+  const section = document.createElement('section');
+  section.className = 'gameBox-container';
+  section.innerHTML = gameBoxContents;
+
+  document.getElementById('main-container').prepend(section);
+};
+
+export default createGameBox;
