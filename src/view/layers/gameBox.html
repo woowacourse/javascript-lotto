@@ -4,12 +4,20 @@
   </div>
 
   <form>
-    <div id="gameBox-purchaseInput">
-      <label for="gameBox-price">구입할 금액을 입력해주세요.</label>
-      <div>
-        <input type="text" id="gameBox-price" placeholder="금액" />
-        <button type="submit" id="gameBox-purchaseButton">구입</button>
+    <div id="gameBox-purchaseInput-container">
+      <div id="gameBox-purchaseInput">
+        <label for="gameBox-price" id="gameBox-label"
+          >구입할 금액을 입력해주세요.</label
+        >
+        <input
+          type="text"
+          id="gameBox-price"
+          placeholder="금액"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = '금액'"
+        />
       </div>
+      <button type="submit" id="gameBox-purchaseButton">구입</button>
     </div>
   </form>
 </div>

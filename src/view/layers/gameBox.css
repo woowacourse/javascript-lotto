@@ -2,7 +2,7 @@
   width: 414px;
   height: 727px;
   top: 148px;
-  left: 513px;
+  padding: 16px;
   background-color: var(--lotto-greyscale-1);
   border-style: solid;
   border-color: #e4e4e4;
@@ -11,9 +11,7 @@
 #gameBox-header {
   width: 382px;
   height: 36px;
-  top: 40px;
-  left: 16px;
-  position: relative;
+  margin: 24px 0;
 }
 
 #gameBox-title {
@@ -26,9 +24,59 @@
   color: var(--lotto-greyscale-5);
 }
 
-#purchaseInput {
+#gameBox-purchaseInput-container {
   width: 382px;
   height: 64px;
-  top: 104px;
-  left: 16px;
+  margin: 4px 0;
+
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+
+#gameBox-purchaseInput {
+  display: flex;
+  flex-direction: column;
+}
+
+#gameBox-label {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+#gameBox-price {
+  width: 310px;
+  height: 36px;
+  padding: 8px;
+
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+  line-height: 20px;
+}
+
+#gameBox-price::placeholder {
+  color: var(--lotto-greyscale-3);
+}
+
+#gameBox-price:focus {
+  outline: none;
+}
+
+#gameBox-purchaseButton {
+  width: 56px;
+  height: 36px;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 6px 6px 8px;
+  background-color: var(--lotto-primary);
+
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--lotto-greyscale-1);
+  line-height: 16px;
+  letter-spacing: 1.25px;
 }
