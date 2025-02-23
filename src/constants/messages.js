@@ -1,4 +1,4 @@
-export const LOTTO = Object.freeze({
+export const LOTTO_SYSTEM = Object.freeze({
   MIN_PURCHASE_PRICE: 1000,
   MAX_LOTTO_NUMBER: 45,
   MIN_LOTTO_NUMBER: 1,
