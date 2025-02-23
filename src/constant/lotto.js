@@ -12,30 +12,38 @@ export const KEYS = {
   FIFTH: "5등",
 };
 
+const MATCHES = {
+  [KEYS.FIRST]: 6,
+  [KEYS.SECOND]: 5,
+  [KEYS.THIRD]: 5,
+  [KEYS.FOURTH]: 4,
+  [KEYS.FIFTH]: 3,
+};
+
 export const WINNING = {
   [KEYS.FIRST]: {
-    MATCH: 6,
-    LABEL: "6개 일치",
+    MATCH: MATCHES[KEYS.FIRST],
+    LABEL: `${MATCHES[KEYS.FIRST]}개 일치`,
     PRIZES: 2_000_000_000,
   },
   [KEYS.SECOND]: {
-    MATCH: 5,
-    LABEL: "5개 일치, 보너스 볼 일치",
+    MATCH: MATCHES[KEYS.SECOND],
+    LABEL: `${MATCHES[KEYS.SECOND]}개 일치, 보너스 볼 일치`,
     PRIZES: 30_000_000,
   },
   [KEYS.THIRD]: {
-    MATCH: 5,
-    LABEL: "5개 일치",
+    MATCH: MATCHES[KEYS.THIRD],
+    LABEL: `${MATCHES[KEYS.THIRD]}개 일치`,
     PRIZES: 1_500_000,
   },
   [KEYS.FOURTH]: {
-    MATCH: 4,
-    LABEL: "4개 일치",
+    MATCH: MATCHES[KEYS.FOURTH],
+    LABEL: `${MATCHES[KEYS.FOURTH]}개 일치`,
     PRIZES: 50_000,
   },
   [KEYS.FIFTH]: {
-    MATCH: 3,
-    LABEL: "3개 일치",
+    MATCH: MATCHES[KEYS.FIFTH],
+    LABEL: `${MATCHES[KEYS.FIFTH]}개 일치`,
     PRIZES: 5_000,
   },
 };
