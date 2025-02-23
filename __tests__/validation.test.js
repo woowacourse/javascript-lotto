@@ -3,6 +3,7 @@ import {
   validateMoney,
   validateLottoNumber,
   validateBonus,
+  validateRestart,
 } from '../src/domain/validation';
 
 describe('로또 구입 금액', () => {
@@ -74,11 +75,22 @@ describe('보너스 숫자', () => {
     },
   );
 
-  test('보너스 번호는 당첨 로또의 있는 숫자와 중복되면 안된다.', () => {
-    const bonus = 6;
+  test.each([[1], [6]])(
+    '보너스 번호는 당첨 로또의 있는 숫자와 중복되면 안된다.',
+    () => {
+      const bonus = 6;
 
-    expect(() => validateBonus(bonus, winningLotto)).toThrow(
-      ERROR.BONUS.DUPLICATION,
-    );
-  });
+      expect(() => validateBonus(bonus, winningLotto)).toThrow(
+        ERROR.BONUS.DUPLICATION,
+      );
+    },
+  );
+});
+
+test('재시작 여부는 y 혹은 n이 아닐시 에러가 발생한다.', () => {
+  const lowerCaseInput = 'a';
+
+  expect(() => validateRestart(lowerCaseInput)).toThrow(
+    ERROR.RESTART.YES_OR_NO,
+  );
 });
