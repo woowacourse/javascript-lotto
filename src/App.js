@@ -26,6 +26,7 @@ class App {
         validatePurchaseAmount(convertedInput);
         return convertedInput;
       },
+      onError: (error) => outputView.printErrorMessage(error),
     });
     return purchaseAmountInput;
   }
@@ -42,6 +43,7 @@ class App {
         validateWinningNumbers(numbers);
         return numbers;
       },
+      onError: (error) => outputView.printErrorMessage(error),
     });
     return winningNumbersInput;
   }
@@ -55,6 +57,7 @@ class App {
         validateBonusNumber(convertedInput, winningNumbersInput);
         return convertedInput;
       },
+      onError: (error) => outputView.printErrorMessage(error),
     });
     return bonusNumberInput;
   }
@@ -67,6 +70,7 @@ class App {
         validateYorN(input);
         return input;
       },
+      onError: (error) => outputView.printErrorMessage(error),
     });
     return retryInput;
   }
@@ -90,7 +94,7 @@ class App {
     const totalLottoPrize = lottoManager.calculatePrize(lottoResult);
     const lottoProfit = lottoManager.calculateProfit(
       totalLottoPrize,
-      purchaseAmount
+      purchaseAmount,
     );
 
     outputView.printLottoResultInstruction();

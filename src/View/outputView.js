@@ -1,4 +1,5 @@
 import { LOTTO_PRIZE_MONEY_DEFINITION } from '../Domain/Constant/definition.js';
+
 export const outputView = {
   printLottoCount(lottoCounts) {
     console.log(`${lottoCounts}개를 구매했습니다.`);
@@ -37,8 +38,11 @@ export const outputView = {
   },
   printProfit(profit) {
     console.log(
-      `총 수익률은 ${Number(profit.toFixed(1)).toLocaleString()}%입니다.`
+      `총 수익률은 ${Number(profit.toFixed(1)).toLocaleString()}%입니다.`,
     );
     console.log('');
+  },
+  printErrorMessage(error) {
+    console.error(error.message);
   },
 };
