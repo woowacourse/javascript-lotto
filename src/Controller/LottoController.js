@@ -59,14 +59,10 @@ class LottoController {
   }
 
   #validatePrice(price) {
-    try {
-      Validate.checkIsEmpty(price);
-      Validate.checkIsNumber(price);
-      Validate.checkThousandUnit(price);
-      Validate.checkPriceRange(price);
-    } catch (error) {
-      throw error;
-    }
+    Validate.checkIsEmpty(price);
+    Validate.checkIsNumber(price);
+    Validate.checkThousandUnit(price);
+    Validate.checkPriceRange(price);
   }
 
   async #readWinningNumbers() {
@@ -81,18 +77,14 @@ class LottoController {
   }
 
   #validateWinningNumbers(numbers) {
-    try {
-      Validate.checkIsEmpty(numbers);
-      const winningNumbers = numbers.split(',');
-      winningNumbers.forEach((winningNumber) => {
-        Validate.checkIsEmpty(winningNumber);
-        Validate.checkIsNumber(winningNumber);
-        Validate.checkLottoNumberRange(winningNumber);
-      });
-      Validate.checkWinningNumberDuplicate(winningNumbers);
-    } catch (error) {
-      throw error;
-    }
+    Validate.checkIsEmpty(numbers);
+    const winningNumbers = numbers.split(',');
+    winningNumbers.forEach((winningNumber) => {
+      Validate.checkIsEmpty(winningNumber);
+      Validate.checkIsNumber(winningNumber);
+      Validate.checkLottoNumberRange(winningNumber);
+    });
+    Validate.checkWinningNumberDuplicate(winningNumbers);
   }
 
   async #readBonusNumber(winningNumbers) {
@@ -101,20 +93,16 @@ class LottoController {
       this.#validateBonusNumber(bonusNumber, winningNumbers);
       return Number(bonusNumber);
     } catch (error) {
-      OutputView.printErrorMessage(error);
+      OutputView.printErrorMessage(error.message);
       return this.#readBonusNumber(winningNumbers);
     }
   }
 
   #validateBonusNumber(bonusNumber, winningNumbers) {
-    try {
-      Validate.checkIsEmpty(bonusNumber);
-      Validate.checkIsNumber(bonusNumber);
-      Validate.checkLottoNumberRange(bonusNumber);
-      Validate.checkBonusNumberDuplicate(winningNumbers, bonusNumber);
-    } catch (error) {
-      throw error;
-    }
+    Validate.checkIsEmpty(bonusNumber);
+    Validate.checkIsNumber(bonusNumber);
+    Validate.checkLottoNumberRange(bonusNumber);
+    Validate.checkBonusNumberDuplicate(winningNumbers, bonusNumber);
   }
 
   async #readRestart() {
@@ -123,17 +111,13 @@ class LottoController {
       this.#validateRestart(restart);
       return restart;
     } catch (error) {
-      OutputView.printErrorMessage(error);
+      OutputView.printErrorMessage(error.message);
       return this.#readRestart();
     }
   }
 
   #validateRestart(restart) {
-    try {
-      Validate.checkRestartChar(restart);
-    } catch (error) {
-      throw error;
-    }
+    Validate.checkRestartChar(restart);
   }
 }
 
