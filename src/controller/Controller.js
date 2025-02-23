@@ -12,16 +12,20 @@ class Controller {
   #money;
 
   constructor() {
-    this.#machine = new LottoMachine();
-    this.#lottoStatistics = new LottoStatistics();
     this.#money = INITIAL_NUMBER;
   }
 
   async start() {
+    await this.lottoInit();
     await this.buyLottos();
     await this.statisticsLottos();
     this.makeProfit();
     await this.restart();
+  }
+
+  async lottoInit() {
+    this.#machine = new LottoMachine();
+    this.#lottoStatistics = new LottoStatistics();
   }
 
   async buyLottos() {
