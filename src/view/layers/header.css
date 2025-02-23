@@ -2,7 +2,7 @@
   width: 1440px;
   height: 64px;
   border-bottom-width: 1px;
-  color: var(--lotto-primary);
+  background-color: var(--lotto-primary);
 }
 
 #lotto-title {
