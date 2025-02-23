@@ -1,4 +1,5 @@
 import LottoStatistics from '../src/domain/model/LottoStatistics.js';
+import { ONE_TICKET } from '../src/domain/constants.js';
 
 let lottoStatistics;
 beforeEach(() => {
@@ -12,24 +13,18 @@ test('사용자가 구매한 로또 번호와 당첨 번호의 일치 개수를 
   expect(lottoStatistics.matchSameCount(machineLotto, winningLotto)).toBe(3);
 });
 
-test('사용자가 구매한 로또 번호와 당첨된 번호가 5개 일치하고 보너스 번호도 일치할 경우, 해당 복권의 숫자를 +1 증가시킨다.', () => {
-  const sameCount = 5;
-  const isBonusNumber = true;
-  lottoStatistics.determineRank(sameCount, isBonusNumber);
-  expect(lottoStatistics.getRankResult()['second'].count).toBe(1);
-});
-
 test.each([
-  [3, 'fifth'],
-  [4, 'fourth'],
-  [6, 'first'],
-  [5, 'third'],
+  [3, false, 'fifth'],
+  [4, false, 'fourth'],
+  [6, false, 'first'],
+  [5, false, 'third'],
+  [5, true, 'second'],
 ])(
   '사용자가 구매한 로또 번호와 당첨된 번호가 %s개 일치하면 해당 복권의 숫자를 +1 증가시킨다.',
-  (sameCount, prize) => {
-    lottoStatistics.determineRank(sameCount, false);
+  (sameCount, bonus, prize) => {
+    lottoStatistics.determineRank(sameCount, bonus);
 
-    expect(lottoStatistics.getRankResult()[prize].count).toBe(1);
+    expect(lottoStatistics.getRankResult()[prize].count).toBe(ONE_TICKET);
   },
 );
 
