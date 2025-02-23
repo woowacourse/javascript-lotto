@@ -27,19 +27,28 @@ test('로또 6장 구매해서 1,2,3,4,5,6등 각각 1번씩 당첨된 내역을
 });
 
 test('1등(2_000_000_000) 1장, 3등(1_500_000) 1장 당첨금액을 반환한다.', () => {
-  const result = {
-    FIRST_PRIZE: 1,
-    SECOND_PRIZE: 0,
-    THIRD_PRIZE: 1,
-    FOURTH_PRIZE: 0,
-    FIFTH_PRIZE: 0,
-    NONE: 0,
-  };
-
-  const lottoManager = new LottoManager();
+  const lottoList = [
+    new Lotto([1, 2, 3, 4, 5, 6]),
+    new Lotto([1, 2, 3, 4, 5, 9]),
+  ];
+  const winningLotto = new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), 7);
+  const lottoManager = new LottoManager(winningLotto, lottoList);
+  const result = lottoManager.compareWinningLotto();
   const prize = lottoManager.calculatePrize(result);
+
   expect(prize).toBe(
     LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE +
       LOTTO_PRIZE_MONEY_DEFINITION.THIRD_PRIZE,
   );
+});
+
+test('1000원으로 1등(2,000,000,000원) 로또 1장 구매 시 수익률 200,000,000을 반환한다.', () => {
+  const lottoList = [new Lotto([1, 2, 3, 4, 5, 6])];
+  const winningLotto = new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), 7);
+  const lottoManager = new LottoManager(winningLotto, lottoList);
+  const result = lottoManager.compareWinningLotto();
+  const prize = lottoManager.calculatePrize(result);
+  const profit = lottoManager.calculateProfit(prize);
+
+  expect(profit).toBe(200_000_000);
 });
