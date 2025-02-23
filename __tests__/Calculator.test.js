@@ -1,7 +1,7 @@
 import Calculator from "../src/Calculator.js";
 import { KEYS } from "../src/constant/lotto.js";
 
-describe("", () => {
+describe("Calculator test", () => {
   test.each([
     [[[1, 2, 3, 4, 5, 6]], 1, "1등"],
     [[[1, 2, 3, 4, 5, 9]], 1, "2등"],
@@ -15,6 +15,21 @@ describe("", () => {
     });
 
     expect(winningCount[key]).toBe(expected);
+  });
+
+  test("꽝이면 증가하지 않는다.", () => {
+    const lottos = [
+      [7, 8, 9, 10, 11, 12],
+      [13, 14, 15, 16, 17, 18],
+    ];
+    const winningInfo = {
+      winning: [1, 2, 3, 4, 5, 6],
+      bonus: 9,
+    };
+    const winningCount = Calculator.getWinningCount(lottos, winningInfo);
+    const expected = [0, 0, 0, 0, 0];
+
+    expect(Object.values(winningCount)).toEqual(expected);
   });
 
   test("당첨금을 계산한다.", () => {
