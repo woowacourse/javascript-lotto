@@ -44,7 +44,7 @@ const Output = {
 
   printErrorResults(errorResults, errorName) {
     Object.entries(errorResults).forEach(([key, value]) => {
-      if (value) this.print(`${ERROR[errorName][key]}`);
+      if (value) this.print(`${errorName[key]}`);
     });
   },
 };

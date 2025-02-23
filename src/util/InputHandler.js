@@ -1,6 +1,6 @@
+import ERROR from "../constant/Error.js";
 import Validator from "../domain/Validator.js";
 import Output from "../view/Output.js";
-import Parser from "./Parser.js";
 import { throwError } from "./util.js";
 import readline from "readline";
 
@@ -12,8 +12,8 @@ export async function inputHandler({
 }) {
   try {
     const userInput = await userInputEmptyHandler(promptMessage);
-    const parsedUserInput = parser ? Parser[parser](userInput) : userInput;
-    const parsedUserInputError = Validator[validatorMethod](parsedUserInput);
+    const parsedUserInput = parser ? parser(userInput) : userInput;
+    const parsedUserInputError = validatorMethod(parsedUserInput);
     Output.printErrorResults(parsedUserInputError, errorName);
     throwError(parsedUserInputError);
     return parsedUserInput;
@@ -30,7 +30,7 @@ export async function inputHandler({
 async function userInputEmptyHandler(promptMessage) {
   const userInput = await readLineAsync(promptMessage);
   const userInputError = Validator.userInput(userInput);
-  Output.printErrorResults(userInputError, "USER_INPUT");
+  Output.printErrorResults(userInputError, ERROR.USER_INPUT);
   throwError(userInputError);
   return userInput;
 }
