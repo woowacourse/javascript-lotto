@@ -1,4 +1,4 @@
-import LottoMatcher from "./LottoMatcher.js";
+import { calculateRank } from "./LottoMatcher.js";
 import { SETTINGS } from "../constants/index.js";
 
 class ProfitCalculator {
@@ -22,12 +22,7 @@ class ProfitCalculator {
 
   calculateResults() {
     this.lottoTickets.forEach((ticket) => {
-      const matchResult = new LottoMatcher(
-        ticket,
-        this.winningNumbers,
-        this.bonusNumber
-      );
-      const rank = matchResult.calculateRank();
+      const rank = calculateRank(ticket, this.winningNumbers, this.bonusNumber);
       this.rankCounts[rank]++;
     });
   }

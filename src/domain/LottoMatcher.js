@@ -1,36 +1,21 @@
 import { SETTINGS } from "../constants/index.js";
 
-class LottoMatcher {
-  constructor(numbers, winningNumbers, bonusNumber) {
-    this.numbers = numbers;
-    this.winningNumbers = winningNumbers;
-    this.bonusNumber = bonusNumber;
-  }
+export const countMatches = (numbers, winningNumbers) => {
+  return numbers.filter((number) => winningNumbers.includes(number)).length;
+};
 
-  countMatches() {
-    return this.numbers.filter((number) => this.winningNumbers.includes(number))
-      .length;
-  }
+export const hasBonusMatch = (numbers, bonusNumber) => {
+  return numbers.includes(bonusNumber);
+};
 
-  hasBonusMatch() {
-    return this.numbers.includes(this.bonusNumber);
-  }
+export const calculateRank = (numbers, winningNumbers, bonusNumber) => {
+  const matchCount = countMatches(numbers, winningNumbers);
 
-  calculateRank() {
-    const matchCount = this.countMatches();
+  if (matchCount === SETTINGS.rewards.first.matchCount) return "first";
+  if (matchCount === SETTINGS.rewards.second.matchCount && hasBonusMatch(numbers, bonusNumber)) return "second";
+  if (matchCount === SETTINGS.rewards.third.matchCount) return "third";
+  if (matchCount === SETTINGS.rewards.fourth.matchCount) return "fourth";
+  if (matchCount === SETTINGS.rewards.fifth.matchCount) return "fifth";
 
-    if (matchCount === SETTINGS.rewards.first.matchCount) return "first";
-    if (
-      matchCount === SETTINGS.rewards.second.matchCount &&
-      this.hasBonusMatch()
-    )
-      return "second";
-    if (matchCount === SETTINGS.rewards.third.matchCount) return "third";
-    if (matchCount === SETTINGS.rewards.fourth.matchCount) return "fourth";
-    if (matchCount === SETTINGS.rewards.fifth.matchCount) return "fifth";
-
-    return "none";
-  }
-}
-
-export default LottoMatcher;
+  return "none";
+};
