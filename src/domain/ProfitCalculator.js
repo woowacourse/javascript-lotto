@@ -16,7 +16,7 @@ class ProfitCalculator {
       third: 0,
       fourth: 0,
       fifth: 0,
-      none: 0,
+      none: 0
     };
   }
 
@@ -28,15 +28,17 @@ class ProfitCalculator {
   }
 
   calculateTotalPrize() {
-    return Object.entries(this.rankCounts).reduce((total, [rank, count]) => {
-      if (rank === "none") return total;
-      return total + SETTINGS.rewards[rank].amount * count;
-    }, 0);
+    return Object.entries(this.rankCounts)
+      .reduce((total, [rank, count]) => {
+        if (rank === "none") return total;
+        return total + SETTINGS.rewards[rank].amount * count;
+      }, 0);
   }
 
   calculateProfitRate() {
     const totalPurchaseAmount = this.lottoTickets.length * SETTINGS.priceUnit;
     const totalPrize = this.calculateTotalPrize();
+
     const profitRate = (totalPrize / totalPurchaseAmount) * 100;
     return profitRate.toFixed(1);
   }
@@ -46,7 +48,7 @@ class ProfitCalculator {
     return {
       rankCounts: this.rankCounts,
       totalPrize: this.calculateTotalPrize(),
-      profitRate: this.calculateProfitRate(),
+      profitRate: this.calculateProfitRate()
     };
   }
 }

@@ -25,6 +25,7 @@ const validateLength = (numbers) => {
 
 const validateDuplicate = (numbers) => {
   const uniqueNumbers = new Set(numbers);
+
   if (uniqueNumbers.size !== numbers.length) {
     throw new CustomError(MESSAGES.invalid.duplicateLottoNumber);
   }
@@ -32,8 +33,8 @@ const validateDuplicate = (numbers) => {
 
 const validateRange = (numbers) => {
   if (
-    !numbers.every((num) => {
-      return num >= SETTINGS.numberRange.min && num <= SETTINGS.numberRange.max;
+    !numbers.every((number) => {
+      return number >= SETTINGS.numberRange.min && number <= SETTINGS.numberRange.max;
     })
   ) {
     throw new CustomError(MESSAGES.invalid.lottoNumberRange);

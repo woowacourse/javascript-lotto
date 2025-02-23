@@ -11,7 +11,10 @@ export const createLottoNumbers = () => {
   const numbers = new Set();
 
   while (numbers.size < SETTINGS.numberCount) {
-    const randomNumber = Math.floor(Math.random() * SETTINGS.numberRange.max) + SETTINGS.numberRange.min;
+    const randomNumber = Math.floor(
+        Math.random()
+        * SETTINGS.numberRange.max)
+      + SETTINGS.numberRange.min;
     numbers.add(randomNumber);
   }
 
