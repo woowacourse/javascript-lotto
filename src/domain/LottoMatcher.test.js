@@ -4,7 +4,7 @@ describe("LottoMatcher 테스트", () => {
   const winningNumbers = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
 
-  test("로또 번호와 당첨 번호가 몇 개 일치하는지 정확한 개수를 계산한다", () => {
+  test("로또 번호와 당첨 번호가 몇 개 일치하는지 정확한 개수를 계산한다.", () => {
     const matchResult = new LottoMatcher(
       [1, 2, 3, 10, 20, 30],
       winningNumbers,
@@ -29,7 +29,7 @@ describe("LottoMatcher 테스트", () => {
     expect(matchResultWithoutBonus.hasBonusMatch()).toBe(false);
   });
 
-  test("5개 일치 + 보너스 번호 시 2등이어야 한다", () => {
+  test("5개 일치 + 보너스 번호 시 2등이어야 한다.", () => {
     const matchResult = new LottoMatcher(
       [1, 2, 3, 4, 5, 7],
       winningNumbers,

@@ -30,19 +30,19 @@ describe("lottoNumberValidator", () => {
     );
   });
 
-  test("당첨 번호가 중복된 경우 에러를 띄운다", () => {
+  test("당첨 번호가 중복된 경우 에러를 띄운다.", () => {
     expect(() => lottoNumberValidator([1, 2, 3, 3, 4, 5])).toThrow(
       MESSAGES.invalid.duplicateLottoNumber
     );
   });
 
-  test("당첨 번호가 1보다 작은 경우", () => {
+  test("당첨 번호가 1보다 작은 경우 에러를 띄운다.", () => {
     expect(() => lottoNumberValidator([0, 2, 3, 4, 5, 6])).toThrow(
       MESSAGES.invalid.lottoNumberRange
     );
   });
 
-  test("당첨 번호가 45보다 큰 경우", () => {
+  test("당첨 번호가 45보다 큰 경우 에러를 띄운다.", () => {
     expect(() => lottoNumberValidator([1, 2, 3, 4, 5, 46])).toThrow(
       MESSAGES.invalid.lottoNumberRange
     );
