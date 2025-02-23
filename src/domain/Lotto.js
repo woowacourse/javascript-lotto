@@ -7,14 +7,6 @@ class Lotto {
     this.#numbers = numbers.sort((a, b) => a - b);
   }
 
-  calculateMatchWinning(winNumbers) {
-    return getIntersectCount(this.#numbers, winNumbers);
-  }
-
-  includes(bonusNumbers) {
-    return this.#numbers.includes(bonusNumbers);
-  }
-
   get numbers() {
     return this.#numbers;
   }

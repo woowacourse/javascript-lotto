@@ -12,12 +12,20 @@ class LottoCompany {
 
   calculateLottoRanks(purchasedLottos) {
     return purchasedLottos.map((lotto) => {
-      const winningLottoCount = lotto.calculateMatchWinning(this.#winNumbers);
-      const isBonusNumber = lotto.includes(this.#bonusNumber);
+      const winningLottoCount = this.#getMatchCount(lotto.numbers, this.#winNumbers);
+      const isBonusNumber = this.#checkBonusNumber(lotto.numbers);
 
       const rank = this.#getRank(winningLottoCount, isBonusNumber);
       return rank;
     });
+  }
+
+  #getMatchCount(lottoNumbers, winNumbers) {
+    return getIntersectCount(lottoNumbers, winNumbers);
+  }
+
+  #checkBonusNumber(lottoNumbers) {
+    return lottoNumbers.includes(this.#bonusNumber);
   }
 
   #getRank(winningLottoCount, isBonusNumber) {
