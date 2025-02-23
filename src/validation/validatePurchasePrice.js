@@ -1,5 +1,5 @@
 import { ERROR } from './errorMessages.js';
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO_SYSTEM } from '../constants/messages.js';
 import { hasEmptyString, isValueInteger } from './validateInput.js';
 
 export const validatePurchasePrice = (input) => {
@@ -8,7 +8,7 @@ export const validatePurchasePrice = (input) => {
   hasEmptyString(input);
   isValueInteger(value);
 
-  if (value < LOTTO.MIN_PURCHASE_PRICE) {
+  if (value < LOTTO_SYSTEM.MIN_PURCHASE_PRICE) {
     throw new Error(ERROR.LOWER_THAN_MINIMUM_OF_PUCHASE_PRICE);
   }
 };

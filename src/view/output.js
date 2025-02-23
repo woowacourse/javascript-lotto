@@ -1,4 +1,4 @@
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO_SYSTEM } from '../constants/messages.js';
 
 const OUTPUT = Object.freeze({
   PURCHASED_QUANTITY: (quantity) => `${quantity}개를 구매했습니다.`,
@@ -24,10 +24,10 @@ export const printLottos = (lottos) => {
 export const printStatistics = (matchCounts, revenue) => {
   console.log(OUTPUT.STATISTICS_HEADER);
 
-  console.log(OUTPUT.TRHEE_MATCH(matchCounts[LOTTO.THREE_MATCH]));
-  console.log(OUTPUT.FOUR_MATCH(matchCounts[LOTTO.FOUR_MATCH]));
-  console.log(OUTPUT.FIVE_MATCH(matchCounts[LOTTO.FIVE_MATCH]));
-  console.log(OUTPUT.FIVE_WITH_BONUS_MATCH(matchCounts[LOTTO.FIVE_WITH_BONUS_MATCH_IDX]));
-  console.log(OUTPUT.SIX_MATCH(matchCounts[LOTTO.SIX_MATCH]));
+  console.log(OUTPUT.TRHEE_MATCH(matchCounts[LOTTO_SYSTEM.THREE_MATCH]));
+  console.log(OUTPUT.FOUR_MATCH(matchCounts[LOTTO_SYSTEM.FOUR_MATCH]));
+  console.log(OUTPUT.FIVE_MATCH(matchCounts[LOTTO_SYSTEM.FIVE_MATCH]));
+  console.log(OUTPUT.FIVE_WITH_BONUS_MATCH(matchCounts[LOTTO_SYSTEM.FIVE_WITH_BONUS_MATCH_IDX]));
+  console.log(OUTPUT.SIX_MATCH(matchCounts[LOTTO_SYSTEM.SIX_MATCH]));
   console.log(OUTPUT.TOTAL_REVENUE(revenue));
 };

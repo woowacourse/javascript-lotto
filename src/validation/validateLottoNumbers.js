@@ -1,5 +1,5 @@
 import { ERROR } from './errorMessages.js';
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO_SYSTEM } from '../constants/messages.js';
 import { hasEmptyString, isValueInteger } from './validateInput.js';
 
 export const validateLottoNumbers = (lottoNumbers) => {
@@ -15,7 +15,7 @@ export const validateLottoNumbers = (lottoNumbers) => {
 };
 
 export const checkRangeOfLottoNumber = (input) => {
-  if (input < LOTTO.MIN_LOTTO_NUMBER || input > LOTTO.MAX_LOTTO_NUMBER) {
+  if (input < LOTTO_SYSTEM.MIN_LOTTO_NUMBER || input > LOTTO_SYSTEM.MAX_LOTTO_NUMBER) {
     throw new Error(ERROR.NOT_RANGE_OF_WINNING_NUMBER);
   }
 };
@@ -24,11 +24,11 @@ export const validateWinningNumbers = (input) => {
   const winningNumbers = input.split(',');
   const winningNumberSet = new Set(winningNumbers);
 
-  if (winningNumbers.length !== LOTTO.MAX_LENGTH) {
+  if (winningNumbers.length !== LOTTO_SYSTEM.MAX_LENGTH) {
     throw new Error(ERROR.NOT_SAME_LENGTH_OF_WINNING_NUMBER);
   }
 
-  if (winningNumberSet.size !== LOTTO.MAX_LENGTH) {
+  if (winningNumberSet.size !== LOTTO_SYSTEM.MAX_LENGTH) {
     throw new Error(ERROR.DUPLICATED_WINNING_NUMBER);
   }
 
