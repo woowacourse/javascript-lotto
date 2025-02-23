@@ -1,5 +1,5 @@
-import headerContents from "./header.html?raw"
-import "./header.css"
+import headerContents from "./header.html?raw";
+import "./header.css";
 
 const createHeader = async () => {
   const header = document.createElement("header");
