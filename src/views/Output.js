@@ -6,10 +6,10 @@ const Output = {
     console.log(`[ERROR] ${errorMessage}\n`);
   },
 
-  printIssuedLottos(purchaseAmount, lottos) {
-    const lottoCount = purchaseAmount / MIN_UNIT;
+  printIssuedLottos(lottos) {
+    const lottoCount = lottos.length;
     console.log(`${lottoCount}개를 구매했습니다.`);
-    lottos.forEach((lotto) => console.log(`[${lotto.join(", ")}]`));
+    console.log(lottos.map((lotto) => lotto.join(", ")).join("\n"));
   },
 
   printStatistics(statistics) {

@@ -22,7 +22,7 @@ class Controller {
   async #runLottoGame() {
     const purchaseAmount = await this.#getPurchaseAmount();
     const lottos = issueLottos(purchaseAmount);
-    Output.printIssuedLottos(purchaseAmount, lottos);
+    Output.printIssuedLottos(lottos);
 
     const { winningNumbers, bonusNumber } =
       await this.#getWinningAndBonusNumbers();
