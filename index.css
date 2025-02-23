@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --lotto-primary: #4e5ba6;
   --lotto-greyscale-1: #ffffff;
