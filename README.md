@@ -114,14 +114,14 @@
 
 [ ] 공통 질문에 대한 피드백
 [x] 상수의 응집도를 높이기 위해 constants 분류
-[ ] 겹치는 key constants 수정
-[ ] 정상적으로 쓰이는 케이스에 대해 테스트가 이루어지지 않음 (bonusNumber, purchaseAmount, winningNumbers)
-[ ] getValidInput와 readLineAsync를 view에 위치시키는 것은 어떤지
+[x] 겹치는 key constants 수정
+[x] 정상적으로 쓰이는 케이스에 대해 테스트가 이루어지지 않음 (bonusNumber, purchaseAmount, winningNumbers)
+[x] getValidInput와 readLineAsync를 view에 위치시키는 것은 어떤지
 [ ] getuniqueRandomNumbers에서 shuffle을 사용하는 것은 어떤지
 [ ] Lotto 미션인데 제일 중요한 Lotto 인스턴스가 없다는 것..
-[ ] Output에서 map으로 변환 가능한 부분 + lotto.length를 쓰면 어떤지
+[x] Output에서 map으로 변환 가능한 부분 + lotto.length를 쓰면 어떤지
 [ ] controller가 사실상 application의 역할을 수행하는 모습이다. controller는 인자가 없어도 되는지?
-[ ] 무엇을 의미하는지 알기 어려운 checkingArray
-[ ] expect에 상수를 쓰면 스펙을 이해하기 어려운 부분
+[x] 무엇을 의미하는지 알기 어려운 checkingArray
+[x] expect에 상수를 쓰면 스펙을 이해하기 어려운 부분
 [ ] 각 케이스별로 each를 써서 묶어야하는 부분
-[ ] LottoNumber.test를 만들어서 로또 번호와 보너스 번호에 대한 테스트를 구분하는 것이 어떤지
+[x] LottoNumber.test를 만들어서 로또 번호와 보너스 번호에 대한 테스트를 구분하는 것이 어떤지

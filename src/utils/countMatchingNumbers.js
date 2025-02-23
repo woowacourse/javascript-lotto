@@ -1,6 +1,5 @@
-const countMatchingNumbers = (referenceArray, checkingArray) => {
-  return checkingArray.filter((number) => referenceArray.includes(number))
-    .length;
+const countMatchingNumbers = (winningNumbers, userNumbers) => {
+  return userNumbers.filter((number) => winningNumbers.includes(number)).length;
 };
 
 export default countMatchingNumbers;
