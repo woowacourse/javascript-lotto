@@ -9,7 +9,7 @@ describe("", () => {
     [[[1, 2, 3, 4, 7, 10]], 1, "4등"],
     [[[1, 2, 3, 8, 7, 10]], 1, "5등"],
   ])("일치하는 개수에 맞는 등수의 값이 증가한다.", (lottos, expected, key) => {
-    const winningCount = Calculator.winningCount(lottos, {
+    const winningCount = Calculator.getWinningCount(lottos, {
       winning: [1, 2, 3, 4, 5, 6],
       bonus: 9,
     });
@@ -25,7 +25,7 @@ describe("", () => {
       [KEYS.FOURTH]: 0,
       [KEYS.FIFTH]: 0,
     };
-    const totalPrize = Calculator.totalPrize(winningCount);
+    const totalPrize = Calculator.getTotalPrize(winningCount);
     const expectedTotalPrize = 3_000_000;
 
     expect(totalPrize).toBe(expectedTotalPrize);
@@ -34,7 +34,7 @@ describe("", () => {
   test("수익률을 계산한다.", () => {
     const amount = "5000";
     const totalPrize = 50_000;
-    const yieldRate = Calculator.yieldRate(amount, totalPrize);
+    const yieldRate = Calculator.getYieldRate(amount, totalPrize);
 
     expect(yieldRate).toBe("1000.0");
   });

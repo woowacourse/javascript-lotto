@@ -14,12 +14,12 @@ const purchase = async () => {
   });
 
   const lottoAndBonus = await readWinningInfo();
-  const winningCount = Calculator.winningCount(lottoNumbers, lottoAndBonus);
+  const winningCount = Calculator.getWinningCount(lottoNumbers, lottoAndBonus);
   OutputView.printWinningDetailTitle();
   OutputView.printWinningDetail(winningCount);
 
-  const totalPrize = Calculator.totalPrize(winningCount);
-  const yieldRate = Calculator.yieldRate(purchaseAmount, totalPrize);
+  const totalPrize = Calculator.getTotalPrize(winningCount);
+  const yieldRate = Calculator.getYieldRate(purchaseAmount, totalPrize);
   OutputView.printYieldRate(yieldRate);
 };
 
