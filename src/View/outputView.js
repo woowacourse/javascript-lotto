@@ -1,4 +1,5 @@
 import { LOTTO_PRIZE_MONEY_DEFINITION } from '../Domain/Constant/definition.js';
+import { EMPTY_LINE } from './Constant/message.js';
 
 export const outputView = {
   printLottoCount(lottoCounts) {
@@ -8,10 +9,10 @@ export const outputView = {
     lottoNumbersList.forEach((lottoNumbers) => {
       console.log(`[${lottoNumbers.join(', ')}]`);
     });
-    console.log('');
+    console.log(EMPTY_LINE);
   },
   printLottoResultInstruction() {
-    console.log('');
+    console.log(EMPTY_LINE);
     console.log('당첨 통계');
     console.log('--------------------');
   },
@@ -34,13 +35,13 @@ export const outputView = {
     keys.forEach((key) => {
       console.log(message[key]);
     });
-    console.log('');
+    console.log(EMPTY_LINE);
   },
   printProfit(profit) {
     console.log(
       `총 수익률은 ${Number(profit.toFixed(1)).toLocaleString()}%입니다.`,
     );
-    console.log('');
+    console.log(EMPTY_LINE);
   },
   printErrorMessage(error) {
     console.error(error.message);
