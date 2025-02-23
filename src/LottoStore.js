@@ -1,26 +1,19 @@
 import OutputView from "./ui/OutputView.js";
 import Calculator from "./Calculator.js";
 import InputHandler from "./util/InputHandler.js";
+import LottoCenter from "./LottoCenter.js";
 import generateLotto from "./LottoMachine.js";
-import PRICE from "./constant/price.js";
 
 const purchase = async () => {
   const purchaseAmount = await InputHandler.getPurchaseAmount();
-  const quantity = purchaseAmount / PRICE.UNIT;
-  OutputView.printQuantity(quantity);
-  const lottoNumbers = Array.from({ length: quantity }, () => generateLotto());
-  OutputView.printLottos(lottoNumbers);
+  const lottos = getLottos(purchaseAmount);
+  showLottos(lottos);
 
   const lottoAndBonus = await readWinningInfo();
-  const winningCounts = Calculator.getWinningCounts(
-    lottoNumbers,
-    lottoAndBonus
-  );
-  OutputView.printWinningDetailTitle();
-  OutputView.printWinningDetail(winningCounts);
+  const winningCounts = LottoCenter.getWinningCounts(lottos, lottoAndBonus);
+  showWinningDetail(winningCounts);
 
-  const totalPrize = Calculator.getTotalPrize(winningCounts);
-  const yieldRate = Calculator.getYieldRate(purchaseAmount, totalPrize);
+  const yieldRate = getYieldRate(winningCounts, purchaseAmount);
   OutputView.printYieldRate(yieldRate);
 };
 
@@ -32,6 +25,27 @@ const readWinningInfo = async () => {
     winning: winningNumbers,
     bonus: bonusNumber,
   };
+};
+
+const getLottos = (purchaseAmount) => {
+  const quantity = Calculator.getQuantity(purchaseAmount);
+  return Array.from({ length: quantity }, () => generateLotto());
+};
+
+const getYieldRate = (winningCounts, purchaseAmount) => {
+  const totalPrize = Calculator.getTotalPrize(winningCounts);
+
+  return Calculator.getYieldRate(purchaseAmount, totalPrize);
+};
+
+const showWinningDetail = (winningCounts) => {
+  OutputView.printWinningDetailTitle();
+  OutputView.printWinningDetail(winningCounts);
+};
+
+const showLottos = (lottos) => {
+  OutputView.printQuantity(lottos.length);
+  OutputView.printLottos(lottos);
 };
 
 export default purchase;
