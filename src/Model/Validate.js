@@ -55,16 +55,37 @@ function checkRestartChar(restart) {
   }
 }
 
+function validatePrice(price) {
+  checkIsEmpty(price);
+  checkIsNumber(price);
+  checkThousandUnit(price);
+  checkPriceRange(price);
+}
+
+function validateWinningNumbers(numbers) {
+  checkIsEmpty(numbers);
+  const winningNumbers = numbers.split(',');
+  winningNumbers.forEach((winningNumber) => {
+    checkIsEmpty(winningNumber);
+    checkIsNumber(winningNumber);
+    checkWinningNumberCount(winningNumbers);
+    checkLottoNumberRange(winningNumber);
+  });
+  checkWinningNumberDuplicate(winningNumbers);
+}
+
+function validateBonusNumber(bonusNumber, winningNumbers) {
+  checkIsEmpty(bonusNumber);
+  checkIsNumber(bonusNumber);
+  checkLottoNumberRange(bonusNumber);
+  checkBonusNumberDuplicate(winningNumbers, bonusNumber);
+}
+
 const Validate = {
-  checkIsEmpty,
-  checkIsNumber,
-  checkThousandUnit,
-  checkPriceRange,
-  checkLottoNumberRange,
-  checkWinningNumberDuplicate,
-  checkBonusNumberDuplicate,
-  checkWinningNumberCount,
   checkRestartChar,
+  validatePrice,
+  validateWinningNumbers,
+  validateBonusNumber,
 };
 
 export default Validate;

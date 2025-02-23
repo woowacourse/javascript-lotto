@@ -50,7 +50,7 @@ class LottoController {
   async #readPrice() {
     try {
       const price = await InputView.readPrice();
-      this.#validatePrice(price);
+      Validate.validatePrice(price);
       return price;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -58,17 +58,10 @@ class LottoController {
     }
   }
 
-  #validatePrice(price) {
-    Validate.checkIsEmpty(price);
-    Validate.checkIsNumber(price);
-    Validate.checkThousandUnit(price);
-    Validate.checkPriceRange(price);
-  }
-
   async #readWinningNumbers() {
     try {
       const winningNumbers = await InputView.readWinningNumbers();
-      this.#validateWinningNumbers(winningNumbers);
+      Validate.validateWinningNumbers(winningNumbers);
       return winningNumbers.split(',').map(Number);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -76,22 +69,10 @@ class LottoController {
     }
   }
 
-  #validateWinningNumbers(numbers) {
-    Validate.checkIsEmpty(numbers);
-    const winningNumbers = numbers.split(',');
-    winningNumbers.forEach((winningNumber) => {
-      Validate.checkIsEmpty(winningNumber);
-      Validate.checkIsNumber(winningNumber);
-      Validate.checkWinningNumberCount(winningNumbers);
-      Validate.checkLottoNumberRange(winningNumber);
-    });
-    Validate.checkWinningNumberDuplicate(winningNumbers);
-  }
-
   async #readBonusNumber(winningNumbers) {
     try {
       const bonusNumber = await InputView.readBonusNumbers();
-      this.#validateBonusNumber(bonusNumber, winningNumbers);
+      Validate.validateBonusNumber(bonusNumber, winningNumbers);
       return Number(bonusNumber);
     } catch (error) {
       OutputView.printErrorMessage(error.message);
@@ -99,26 +80,15 @@ class LottoController {
     }
   }
 
-  #validateBonusNumber(bonusNumber, winningNumbers) {
-    Validate.checkIsEmpty(bonusNumber);
-    Validate.checkIsNumber(bonusNumber);
-    Validate.checkLottoNumberRange(bonusNumber);
-    Validate.checkBonusNumberDuplicate(winningNumbers, bonusNumber);
-  }
-
   async #readRestart() {
     try {
       const restart = await InputView.readRestart();
-      this.#validateRestart(restart);
+      Validate.checkRestartChar(restart);
       return restart;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.#readRestart();
     }
-  }
-
-  #validateRestart(restart) {
-    Validate.checkRestartChar(restart);
   }
 }
 
