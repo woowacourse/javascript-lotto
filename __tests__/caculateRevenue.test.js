@@ -1,4 +1,4 @@
-import { LOTTO } from '../src/constants/messages.js';
+import { LOTTO_SYSTEM } from '../src/constants/messages.js';
 import { calculateRevenue, calculateRevenueByMatch, PRIZE_OF_MATCH_COUNT } from '../src/domain/calculateRevenue.js';
 
 describe('로또 1개 샀을 때, 수익률 계산 테스트', () => {
@@ -62,6 +62,6 @@ describe('calculateRevenueByMatch', () => {
   });
 
   test('당첨 번호 일치 개수가 5개이고, 보너스 번호가 일치하면, 상금은 30000000원이여야 한다.', () => {
-    expect(calculateRevenueByMatch(LOTTO.FIVE_WITH_BONUS_MATCH_IDX)).toBe(30000000);
+    expect(calculateRevenueByMatch(LOTTO_SYSTEM.FIVE_WITH_BONUS_MATCH_IDX)).toBe(30000000);
   });
 });
