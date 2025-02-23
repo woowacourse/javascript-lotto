@@ -8,7 +8,7 @@ describe("models/Lotto", () => {
       const myLotto = new Lotto([1, 2, 3, 4, 5, 6]);
 
       // When
-      const result = myLotto.updateMatchCount(winningNumbers);
+      const result = myLotto.getMatchCount(winningNumbers);
 
       // Then
       expect(result).toBe(6);
@@ -21,7 +21,7 @@ describe("models/Lotto", () => {
       const myLotto = new Lotto([1, 2, 3, 4, 5, 6]);
 
       // When
-      const result = myLotto.updateBonusMatched(bonusNumber);
+      const result = myLotto.getBonusMatched(bonusNumber);
 
       // Then
       expect(result).toBe(true);

@@ -13,14 +13,14 @@ import checkRank from "./checkRank.js";
 const checkWinningResults = (lottos, result) => {
   const { winningNumbers, bonusNumber } = result;
 
-  lottos.forEach((lotto) =>
-    lotto.updateMatchResult(winningNumbers, bonusNumber)
-  );
-
   return lottos
-    .map((lotto) =>
-      checkRank(lotto.matchResult.matchCount, lotto.matchResult.isBonusMatched)
-    )
+    .map((lotto) => {
+      const { matchCount, isBonusMatched } = lotto.getMatchResult(
+        winningNumbers,
+        bonusNumber
+      );
+      return checkRank(matchCount, isBonusMatched);
+    })
     .filter(Boolean)
     .reduce(
       (acc, result) => ({

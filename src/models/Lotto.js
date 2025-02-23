@@ -1,55 +1,31 @@
 class Lotto {
   #numbers;
-  #matchResult;
 
   constructor(numbers) {
     this.#numbers = numbers;
-    this.#matchResult = {
-      matchCount: 0,
-      isBonusMatched: false,
-    };
   }
 
-  updateMatchCount = (winningNumbers) => {
-    const myLottoNumber = this.#numbers;
-
-    winningNumbers.forEach((winningNumber) => {
-      if (myLottoNumber.includes(winningNumber)) {
-        this.incrementWinningNumbers();
-      }
-    });
-
-    return this.#matchResult.matchCount;
+  getMatchCount = (winningNumbers) => {
+    return winningNumbers.reduce(
+      (count, winningNumber) =>
+        this.#numbers.includes(winningNumber) ? count + 1 : count,
+      0
+    );
   };
 
-  updateBonusMatched = (bonusNumber) => {
-    const myLottoNumber = this.#numbers;
-    if (myLottoNumber.includes(bonusNumber)) {
-      this.markBonusMatched();
-      return true;
-    }
-    return false;
+  getBonusMatched = (bonusNumber) => {
+    return this.#numbers.includes(bonusNumber);
   };
 
-  updateMatchResult = (winningNumbers, bonusNumber) => {
-    this.updateMatchCount(winningNumbers);
-    this.updateBonusMatched(bonusNumber);
+  getMatchResult = (winningNumbers, bonusNumber) => {
+    return {
+      matchCount: this.getMatchCount(winningNumbers),
+      isBonusMatched: this.getBonusMatched(bonusNumber),
+    };
   };
 
   get numbers() {
     return this.#numbers;
-  }
-
-  incrementWinningNumbers() {
-    this.#matchResult.matchCount += 1;
-  }
-
-  markBonusMatched() {
-    this.#matchResult.isBonusMatched = true;
-  }
-
-  get matchResult() {
-    return this.#matchResult;
   }
 }
 
