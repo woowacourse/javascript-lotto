@@ -1,9 +1,10 @@
 import OUTPUT_MESSAGE from "../constant/output.js";
+import STRING from "../constant/string.js";
 import { WINNING } from "../constant/lotto.js";
 
 const OutputView = {
   printLotto(lotto) {
-    console.log(`[${lotto.join(", ")}]`);
+    console.log(`[${lotto.join(STRING.PRINT_LOTTO_SPLITTER)}]`);
   },
 
   printWinningDetailTitle() {
