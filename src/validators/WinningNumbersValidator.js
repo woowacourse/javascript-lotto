@@ -1,5 +1,5 @@
 import { KEY, LOTTO } from '../constants/CONFIGURATIONS.js';
-import { validateType, validateRange, validateCount } from './validate.js';
+import { validateType, validateRange, validateCount, validateHasDuplicated } from './validate.js';
 
 const validateTypeAll = (winningNumbers) => {
   winningNumbers.forEach((number) => {
@@ -23,6 +23,7 @@ const WinningNumbersValidator = {
     validateTypeAll(winningNumbers);
     validateCount(KEY.WINNING_NUMBERS, winningNumbers);
     validateRangeAll(winningNumbers);
+    validateHasDuplicated(KEY.WINNING_NUMBERS, winningNumbers);
   },
 };
 

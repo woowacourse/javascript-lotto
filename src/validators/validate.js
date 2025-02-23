@@ -19,10 +19,16 @@ const validateRange = ({ key, value, min, max }) => {
   }
 };
 
+const validateHasDuplicated = (key, values) => {
+  if (new Set(values).size !== values.length) {
+    throw new Error(ERROR_MESSAGE.COMMON.DUPLICATE(key));
+  }
+};
+
 const validateCount = (key, value) => {
   if (value.length !== LOTTO.NUMBER_LENGTH) {
     throw new Error(ERROR_MESSAGE.COMMON.INVALID_COUNT(key));
   }
 };
 
-export { validateType, validateRange, validateCount };
+export { validateType, validateRange, validateCount, validateHasDuplicated };

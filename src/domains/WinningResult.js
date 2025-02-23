@@ -1,11 +1,14 @@
 import { PROFIT } from '../constants/CONFIGURATIONS.js';
+import { BonusNumberValidator } from '../validators/BonusNumberValidator.js';
+import Lotto from './Lotto.js';
 
 class WinningResult {
   #winningNumbers;
   #bonusNumber;
 
   constructor(winningNumbers, bonusNumber) {
-    this.#winningNumbers = winningNumbers;
+    this.#winningNumbers = new Lotto(winningNumbers).numbers;
+    BonusNumberValidator.validate(bonusNumber, winningNumbers);
     this.#bonusNumber = bonusNumber;
   }
 
@@ -14,10 +17,8 @@ class WinningResult {
     lottos.forEach((lotto) => {
       const matchCount = this.#getMatchCount(lotto);
       if (matchCount === 6) counts[4] += 1;
-      if (matchCount === 5 && lotto.numbers.includes(this.#bonusNumber))
-        counts[3] += 1;
-      if (matchCount === 5 && !lotto.numbers.includes(this.#bonusNumber))
-        counts[2] += 1;
+      if (matchCount === 5 && lotto.numbers.includes(this.#bonusNumber)) counts[3] += 1;
+      if (matchCount === 5 && !lotto.numbers.includes(this.#bonusNumber)) counts[2] += 1;
       if (matchCount === 4) counts[1] += 1;
       if (matchCount === 3) counts[0] += 1;
     });
@@ -35,8 +36,7 @@ class WinningResult {
 
   #getMatchCount(lotto) {
     const sumSet = new Set([...lotto.numbers, ...this.#winningNumbers]);
-    const matchCount =
-      lotto.numbers.length + this.#winningNumbers.length - sumSet.size;
+    const matchCount = lotto.numbers.length + this.#winningNumbers.length - sumSet.size;
 
     return matchCount;
   }
