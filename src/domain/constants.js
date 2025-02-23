@@ -13,5 +13,6 @@ const RANK_RULE = Object.freeze({
 });
 
 const INITIAL_NUMBER = 0;
+const ONE_TICKET = 1;
 
-export { INITIAL_NUMBER, LOTTO_RULE, RANK_RULE };
+export { INITIAL_NUMBER, LOTTO_RULE, RANK_RULE, ONE_TICKET };

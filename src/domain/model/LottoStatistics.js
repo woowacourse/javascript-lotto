@@ -1,15 +1,15 @@
-import { INITIAL_NUMBER, RANK_RULE } from '../constants.js';
+import { INITIAL_NUMBER, ONE_TICKET } from '../constants.js';
 
 class LottoStatistics {
   #rankResult;
 
   constructor() {
     this.#rankResult = {
-      '3개 일치': { count: 0, price: 5000 },
-      '4개 일치': { count: 0, price: 50000 },
-      '5개 일치': { count: 0, price: 1500000 },
-      '5개 일치, 보너스 볼 일치': { count: 0, price: 30000000 },
-      '6개 일치': { count: 0, price: 2000000000 },
+      first: { count: 0, price: 2000000000 },
+      second: { count: 0, price: 30000000 },
+      third: { count: 0, price: 1500000 },
+      fourth: { count: 0, price: 50000 },
+      fifth: { count: 0, price: 5000 },
     };
   }
 
@@ -33,17 +33,13 @@ class LottoStatistics {
   }
 
   determineRank(sameCount, isBonusNumber) {
-    if (sameCount === RANK_RULE.SECOND_PRIZE_MATCH_COUNT && isBonusNumber) {
-      return this.increaseCount(
-        sameCount,
-        RANK_RULE.BONUS_OBJECT_KEY(sameCount),
-      );
-    }
-
-    return this.increaseCount(
-      sameCount,
-      RANK_RULE.NORMAL_OBJECT_KEY(sameCount),
-    );
+    if (sameCount === 6) this.#rankResult.first.count += ONE_TICKET;
+    if (sameCount === 5 && isBonusNumber)
+      this.#rankResult.second.count += ONE_TICKET;
+    if (sameCount === 5 && !isBonusNumber)
+      this.#rankResult.third.count += ONE_TICKET;
+    if (sameCount === 4) this.#rankResult.fourth.count += ONE_TICKET;
+    if (sameCount === 3) this.#rankResult.fifth.count += ONE_TICKET;
   }
 
   hasBonusNumber(machineLotto, bonus) {
@@ -53,14 +49,6 @@ class LottoStatistics {
   matchSameCount(machineLotto, winningLotto) {
     return machineLotto.filter((number) => winningLotto.includes(number))
       .length;
-  }
-
-  increaseCount(sameCount, name) {
-    const ONE_TICKET = 1;
-    if (sameCount < RANK_RULE.MIN_COUNT) {
-      return;
-    }
-    this.#rankResult[name].count += ONE_TICKET;
   }
 
   calculateRevenueRate(profit, investmentCost) {

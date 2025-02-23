@@ -1,3 +1,5 @@
+import rankToString from '../utils/rankToString.js';
+
 const ERROR = Object.freeze({
   NORMALIZATION: (message) => `[ERROR] ${message}`,
   MONEY: {
@@ -21,7 +23,8 @@ const ERROR = Object.freeze({
 const OUTPUT_MESSAGE = Object.freeze({
   LOTTO_QUANTITY: (quantity) => `${quantity}개를 구매했습니다.`,
   SINGLE_LOTTO: (lotto) => `[${lotto.join(', ')}]`,
-  RANK_RESULT: (name, { count, price }) => `${name} (${(price).toLocaleString()}원) - ${count}개`,
+  RANK_RESULT: (rank, { count, price }) =>
+    `${rankToString(rank)} (${price.toLocaleString()}원) - ${count}개`,
   RANK_RESULT_HEADLINE: '\n당첨 통계\n--------------------',
   REVENUE_RATE: (revenueRate) => `총 수익률은 ${revenueRate}%입니다.`,
 });
@@ -33,6 +36,4 @@ const INPUT_MESSAGE = Object.freeze({
   READ_RESTART: '\n> 다시 시작하시겠습니까? (y/n)',
 });
 
-export {
-  ERROR, OUTPUT_MESSAGE, INPUT_MESSAGE,
-};
+export { ERROR, OUTPUT_MESSAGE, INPUT_MESSAGE };

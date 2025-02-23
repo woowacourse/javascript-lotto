@@ -43,9 +43,9 @@ class Controller {
     );
     const rankResult = this.#lottoStatistics.getRankResult();
     OutputView.printRankResultHeadLine();
-    Object.keys(rankResult).forEach((key) => {
+    Object.keys(rankResult).reduceRight((_, key) => {
       OutputView.printRankResult(key, rankResult[key]);
-    });
+    }, null);
   }
 
   async makeProfit() {
