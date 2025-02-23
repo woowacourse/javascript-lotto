@@ -26,3 +26,10 @@
   text-align: center;
   color: var(--lotto-greyscale-5);
 }
+
+#purchaseInput {
+  width: 382px;
+  height: 64px;
+  top: 104px;
+  left: 16px;
+}
