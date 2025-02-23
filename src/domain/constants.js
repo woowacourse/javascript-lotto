@@ -8,8 +8,6 @@ const LOTTO_RULE = Object.freeze({
 const RANK_RULE = Object.freeze({
   MIN_COUNT: 3,
   SECOND_PRIZE_MATCH_COUNT: 5,
-  BONUS_OBJECT_KEY: (sameCount) => `${sameCount}개 일치, 보너스 볼 일치`,
-  NORMAL_OBJECT_KEY: (sameCount) => `${sameCount}개 일치`,
 });
 
 const INITIAL_NUMBER = 0;
