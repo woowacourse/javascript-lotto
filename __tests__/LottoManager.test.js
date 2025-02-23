@@ -29,7 +29,7 @@ test('로또 1장당 범위내에서 중복되지 않는 랜덤한 번호 6개�
     {
       min: LOTTO_DEFINITION.MIN_NUMBER,
       max: LOTTO_DEFINITION.MAX_NUMBER,
-    }
+    },
   );
   expect(lottoNumbers.length).toBe(LOTTO_DEFINITION.NUMBER_COUNTS);
 });
@@ -44,13 +44,13 @@ test('당첨 내역을 반환한다.', () => {
     new Lotto([1, 2, 3, 4, 8, 9]),
     new Lotto([1, 2, 3, 8, 9, 10]),
   ];
-  const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+  const winningLotto = new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), 7);
 
   const matchingCounts = lottoList.map((lotto) =>
-    winningLotto.countMatchingNumbers(lotto)
+    winningLotto.countMatchingNumbers(lotto),
   );
   const hasBonusNumbers = lottoList.map((lotto) =>
-    winningLotto.checkBonusNumber(lotto)
+    winningLotto.checkBonusNumber(lotto),
   );
 
   const result = {
@@ -108,6 +108,6 @@ test('수익률을 반환한다.', () => {
   const prize = lottoManager.calculatePrize(result);
   expect(prize).toBe(
     LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE +
-      LOTTO_PRIZE_MONEY_DEFINITION.THIRD_PRIZE
+      LOTTO_PRIZE_MONEY_DEFINITION.THIRD_PRIZE,
   );
 });

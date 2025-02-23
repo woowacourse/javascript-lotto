@@ -1,11 +1,14 @@
-import Lotto from './Lotto.js';
-
-class WinningLotto extends Lotto {
+class WinningLotto {
   #bonusNumber;
+  #lotto;
 
-  constructor(numbers, bonusNumber) {
-    super(numbers);
+  constructor(lotto, bonusNumber) {
+    this.#lotto = lotto;
     this.#bonusNumber = bonusNumber;
+  }
+
+  getNumbers() {
+    return [...this.#lotto.getNumbers()];
   }
 
   getBonusNumber() {
@@ -13,9 +16,9 @@ class WinningLotto extends Lotto {
   }
 
   countMatchingNumbers(lotto) {
-    const matchingNumbers = this.getNumbers().filter((number) =>
-      lotto.getNumbers().includes(number)
-    ).length;
+    const matchingNumbers = this.#lotto
+      .getNumbers()
+      .filter((number) => lotto.getNumbers().includes(number)).length;
     return matchingNumbers;
   }
 

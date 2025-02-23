@@ -13,6 +13,7 @@ import {
   validateBonusNumber,
   validateYorN,
 } from './View/Validation/inputView.js';
+import Lotto from './Domain/Model/Lotto.js';
 import LottoManager from './Domain/Model/LottoManager.js';
 import WinningLotto from './Domain/Model/WinningLotto.js';
 import { outputView } from './View/outputView.js';
@@ -89,7 +90,10 @@ class App {
     const winningNumbers = await this.#initializeWinningNumbers();
     const bonusNumber = await this.#initializeBonusNumber(winningNumbers);
 
-    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    const winningLotto = new WinningLotto(
+      new Lotto(winningNumbers),
+      bonusNumber,
+    );
     const lottoResult = lottoManager.compareWinningLotto(winningLotto);
     const totalLottoPrize = lottoManager.calculatePrize(lottoResult);
     const lottoProfit = lottoManager.calculateProfit(
