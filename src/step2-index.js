@@ -1,117 +1,57 @@
-import { LOTTO_NUMBERS } from "./lottoConstants/systemConstants.js";
+import { ResultController } from "./controller/ResultController.js";
+import WinningLotto from "./domain/WinningLotto.js";
 import { getLottoArray, getLottoCount } from "./service/PurchaseService.js";
+import { displayCount, displayLotto, displayResultButton } from "./ui/displayLotto.js";
+import { displayWinning } from "./ui/displayWinning.js";
 
 const runLotto = () => {
+  purchaseLotto();
+};
+
+const purchaseLotto = () => {
+  const lottoArray = [];
   document.querySelector(".purchase-button").addEventListener("click", () => {
     const inputPrice = document.querySelector(".price-input").value;
 
     const lottoCount = getLottoCount(inputPrice);
     displayCount(lottoCount);
 
-    const lottoArray = getLottoArray(lottoCount);
+    lottoArray.push(...getLottoArray(lottoCount));
     displayLotto(lottoArray);
     displayWinning();
     displayResultButton();
+
+    displayResult(lottoArray);
   });
 };
 
-const displayLotto = (lottoArray) => {
-  const lottoContainer = document.querySelector(".lotto-numbers-container");
+const displayResult = (lottoArray) => {
+  const resultButton = document.querySelector(".result-button");
 
-  lottoArray.forEach((lotto) => {
-    const lottoNumbersItem = document.createElement("div");
-    lottoNumbersItem.classList.add("lotto-numbers-item");
-
-    const lottoItem = document.createElement("div");
-    lottoItem.classList.add("lotto-numbers");
-    lottoItem.textContent = lotto.numbers.join(", ");
-
-    const lottoImage = document.createElement("img");
-    lottoImage.classList.add("lotto-image");
-    lottoImage.src = "public/lotto.png";
-    lottoImage.alt = "로또 이미지";
-
-    lottoNumbersItem.appendChild(lottoImage);
-    lottoNumbersItem.appendChild(lottoItem);
-    lottoContainer.appendChild(lottoNumbersItem);
-  });
-};
-
-const displayCount = (lottoCount) => {
-  const countContainer = document.querySelector(".lotto-count");
-  const countText = document.createElement("div");
-  countText.classList.add("count");
-  countText.textContent = `총 ${lottoCount} 개를 구매하였습니다.`;
-
-  countContainer.appendChild(countText);
-};
-
-const displayWinning = () => {
-  const winningContainer = document.querySelector(".winning-numbers");
-  const winningInputContainer = document.querySelector(".winning-bonus-container");
-
-  const winningPrompt = document.createElement("div");
-  winningPrompt.classList.add("winning-prompt");
-  winningPrompt.textContent = `지난 주 당첨번호 ${LOTTO_NUMBERS.LENGTH}개와 보너스 번호 ${LOTTO_NUMBERS.BONUS_LEGNTH}개를 입력해주세요.`;
-
-  winningContainer.appendChild(winningPrompt);
-  winningInputContainer.appendChild(displayWinningInput());
-  winningInputContainer.appendChild(displayBonusInput());
-  winningContainer.appendChild(winningInputContainer);
-};
-
-const displayWinningInput = () => {
-  const winningInputWrap = document.querySelector(".winning-input-wrap");
-  const winningInputContainer = document.createElement("div");
-  winningInputContainer.classList.add("winning-input-container");
-
-  const winningInputLabel = document.createElement("div");
-  winningInputLabel.textContent = "당첨 번호";
-
-  winningInputWrap.appendChild(winningInputLabel);
-
-  for (let i = 0; i < LOTTO_NUMBERS.LENGTH; i++) {
-    const winningInput = document.createElement("input");
-    winningInput.min = LOTTO_NUMBERS.MIN;
-    winningInput.max = LOTTO_NUMBERS.MAX;
-    winningInput.classList.add("winning-input");
-    winningInputContainer.appendChild(winningInput);
+  if (resultButton) {
+    resultButton.addEventListener("click", () => {
+      console.log(setResult(lottoArray));
+      // 모달창
+    });
   }
-
-  winningInputWrap.appendChild(winningInputContainer);
-  return winningInputWrap;
 };
 
-const displayBonusInput = () => {
-  const bonusInputWrap = document.querySelector(".bonus-input-wrap");
-  const bonusInputContainer = document.createElement("div");
-  bonusInputContainer.classList.add("bonus-input-container");
+// parsing 리팩토링
+const setWinningLotto = () => {
+  const winningInputs = document.querySelectorAll(".winning-input");
+  const winningNumbers = [];
+  winningInputs.forEach((input) => winningNumbers.push(Number(input.value)));
 
-  const bonusInputLabel = document.createElement("div");
-  bonusInputLabel.textContent = "보너스 번호";
-  bonusInputContainer.appendChild(bonusInputLabel);
+  const bonusNumber = Number(document.querySelector(".bonus-input").value);
 
-  const bonusInput = document.createElement("input");
-  bonusInput.min = LOTTO_NUMBERS.MIN;
-  bonusInput.max = LOTTO_NUMBERS.MAX;
-  bonusInput.step = "1";
-  bonusInput.type = "number";
-  bonusInput.classList.add("winning-input");
-  bonusInputContainer.appendChild(bonusInput);
-
-  bonusInputWrap.appendChild(bonusInputContainer);
-
-  return bonusInputWrap;
+  const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+  return winningLotto;
 };
 
-const displayResultButton = () => {
-  const resultButtonContainer = document.querySelector(".result-button-container");
-  const resultButton = document.createElement("button");
-  resultButton.classList.add("result-button");
-  resultButton.textContent = "결과 확인하기";
-
-  resultButtonContainer.appendChild(resultButton);
-  return resultButtonContainer;
+const setResult = (lottoArray) => {
+  const winningLotto = setWinningLotto();
+  const matchingCount = ResultController(winningLotto, lottoArray);
+  return matchingCount;
 };
 
 runLotto();
