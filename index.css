@@ -1,3 +1,8 @@
+:root {
+  --lotto-primary: #4e5ba6;
+  --lotto-greyscale-1: #ffffff;
+}
+
 #app {
   width: 1440px;
   height: 1024px;
