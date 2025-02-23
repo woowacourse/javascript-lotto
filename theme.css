@@ -1,0 +1,36 @@
+:root {
+  --primary-color: #4e5ba6;
+
+  --grey-100: #ffffff;
+  --grey-200: #fcfcfd;
+  --grey-300: #b4b4b4;
+  --grey-400: #8b8b8b;
+  --grey-500: #000000;
+
+  --primary-font: 'Roboto', sans-serif;
+
+  --title-font-size: 24px;
+  --title-font-weight: 800;
+  --title-line-height: 36px;
+
+  --subtitle-font-size: 20px;
+  --subtitle-font-weight: 600;
+  --subtitle-line-height: 24px;
+  --subtitle-letter-spacing: 0.15px;
+
+  --body-font-size: 15px;
+  --body-font-weight: 400;
+  --body-line-height: 24px;
+  --body-letter-spacing: 0.5px;
+
+  --placeholder-font-size: 15px;
+  --placeholder-font-weight: 400;
+  --placeholder-line-height: 24px;
+  --placeholder-font-color: #8b8b8b;
+  --placeholder-letter-spacing: 0.5px;
+
+  --caption-font-size: 14px;
+  --caption-font-weight: 400;
+  --caption-line-height: 16px;
+  --caption-letter-spacing: 1.25px;
+}
