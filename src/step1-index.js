@@ -12,15 +12,9 @@ class App {
     while (this.#running) {
       await purchase();
 
-      const answer = await this.getRestartAnswer();
+      const answer = await InputHandler.getRestartAnswer();
       this.endGame(answer);
     }
-  }
-
-  async getRestartAnswer() {
-    const answer = await InputHandler.getRestartAnswer();
-
-    return answer;
   }
 
   endGame(answer) {
