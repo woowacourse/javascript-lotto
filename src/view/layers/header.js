@@ -1,3 +1,5 @@
+import "./header.css"
+
 const createHeader = async () => {
   const contents = await fetch("/header.html");
   const parsedContents = await contents.text();
