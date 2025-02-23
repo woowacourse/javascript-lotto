@@ -1,10 +1,10 @@
 import {
-  RESTART_ERROR_MESSAGE,
   YES,
   NO,
   UPPER_YES,
   UPPER_NO,
-} from "../src/constants/constants.js";
+} from "../src/constants/validateConstants.js";
+import { RESTART_ERROR_MESSAGE } from "../src/constants/errorConstants.js";
 import validateRestartConfirm from "../src/validations/validateRestartConfirm.js";
 
 describe("재실행 입력에 대한 유효성 테스트", () => {
@@ -45,6 +45,6 @@ describe("재실행 입력에 대한 유효성 테스트", () => {
       expect(() => {
         validateRestartConfirm(input);
       }).not.toThrow();
-    },
+    }
   );
 });

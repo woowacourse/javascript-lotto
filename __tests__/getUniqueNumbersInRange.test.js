@@ -3,7 +3,7 @@ import {
   MIN_LOTTO_NUMBER,
   MAX_LOTTO_NUMBER,
   LOTTO_LENGTH,
-} from "../src/constants/constants.js";
+} from "../src/constants/validateConstants.js";
 
 describe("주어진 범위 안에서 중복되지 않는 숫자를 개수만큼 반환하는 메서드 테스트", () => {
   // given

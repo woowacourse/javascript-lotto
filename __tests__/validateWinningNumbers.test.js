@@ -2,8 +2,8 @@ import {
   LOTTO_LENGTH,
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
-  WINNING_NUMBERS_ERROR_MESSAGES,
-} from "../src/constants/constants.js";
+} from "../src/constants/validateConstants.js";
+import { WINNING_NUMBERS_ERROR_MESSAGES } from "../src/constants/errorConstants.js";
 import validateWinningNumbers from "../src/validations/validateWinningNumbers.js";
 
 describe("당첨 번호 유효성 테스트", () => {

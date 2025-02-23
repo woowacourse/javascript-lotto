@@ -1,8 +1,5 @@
-import {
-  PURCHASE_AMOUNT_ERROR_MESSAGES,
-  MIN_UNIT,
-  MAX_AMOUNT,
-} from "../src/constants/constants.js";
+import { MIN_UNIT, MAX_AMOUNT } from "../src/constants/validateConstants.js";
+import { PURCHASE_AMOUNT_ERROR_MESSAGES } from "../src/constants/errorConstants.js";
 import validatePurchaseAmount from "../src/validations/validatePurchaseAmount.js";
 
 describe("구입 금액 유효성 테스트", () => {
@@ -35,6 +32,6 @@ describe("구입 금액 유효성 테스트", () => {
       expect(() => {
         validatePurchaseAmount(input);
       }).toThrow(expectedErrorMessage);
-    },
+    }
   );
 });

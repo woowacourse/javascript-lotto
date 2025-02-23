@@ -1,8 +1,5 @@
-import {
-  MATCH_KEY,
-  MIN_UNIT,
-  MATCH_PRIZE,
-} from "../src/constants/constants.js";
+import { MIN_UNIT } from "../src/constants/validateConstants.js";
+import { MATCH_KEY, MATCH_PRIZE } from "../src/constants/statisticConstants.js";
 import WinningStatistics from "../src/domains/WinningStatistics.js";
 
 describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익률 계산", () => {
@@ -99,7 +96,7 @@ describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익
 
       // then
       expect(winningStatistics.statistics).toEqual(expectedStatistics);
-    },
+    }
   );
 
   test.each([
@@ -145,6 +142,6 @@ describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익
 
       // then
       expect(profitRatio).toEqual(expectedProfitRatio);
-    },
+    }
   );
 });

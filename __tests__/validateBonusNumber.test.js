@@ -1,8 +1,8 @@
 import {
-  BONUS_NUMBER_ERROR_MESSAGES,
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
-} from "../src/constants/constants.js";
+} from "../src/constants/validateConstants.js";
+import { BONUS_NUMBER_ERROR_MESSAGES } from "../src/constants/errorConstants.js";
 import validateBonusNumber from "../src/validations/validateBonusNumber.js";
 
 describe("보너스 번호 유효성 테스트", () => {
@@ -41,6 +41,6 @@ describe("보너스 번호 유효성 테스트", () => {
         const winningNumbers = [11, 12, 13, 14, 15, 16];
         validateBonusNumber(input, winningNumbers);
       }).toThrow(expectedErrorMessage);
-    },
+    }
   );
 });

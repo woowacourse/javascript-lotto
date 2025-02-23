@@ -1,4 +1,4 @@
-import { YES, NO } from "../constants/constants.js";
+import { YES, NO } from "../constants/validateConstants.js";
 import readLineAsync from "../utils/readLineAsync.js";
 
 const Input = {

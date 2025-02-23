@@ -1,5 +1,5 @@
 import issueLottos from "../src/domains/issueLottos.js";
-import { MIN_UNIT } from "../src/constants/constants.js";
+import { MIN_UNIT } from "../src/constants/validateConstants.js";
 
 describe("구입 금액에 따른 개수만큼 랜덤한 로또를 발행하는 메서드 테스트", () => {
   // given
