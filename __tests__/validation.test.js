@@ -75,16 +75,18 @@ describe('당첨 번호 유효성 검사 테스트', () => {
 });
 
 describe('보너스 번호 유효성 검사 테스트', () => {
-  test('보너스 번호 예외 케이스: 보너스 번호는 당첨 번호와 중복될 수 없다.', () => {
+  test('보너스 번호는 당첨 번호와 중복될 수 없다.', () => {
     const testWinningNumbers = [1, 2, 3, 4, 5, 6];
-    const testBonusNumber = '5';
-    expect(() => validateBonusNumber(testBonusNumber, testWinningNumbers)).toThrow();
+    const validate = validateBonusNumber(testWinningNumbers);
+    const testBonusNumber = '6';
+    expect(() => validate(testBonusNumber)).toThrow();
   });
 
   test('보너스 번호 통과 케이스.', () => {
     const testWinningNumbers = [1, 2, 3, 4, 5, 6];
+    const validate = validateBonusNumber(testWinningNumbers);
     const testBonusNumber = '7';
-    expect(() => validateBonusNumber(testBonusNumber, testWinningNumbers)).not.toThrow();
+    expect(() => validate(testBonusNumber)).not.toThrow();
   });
 });
 
