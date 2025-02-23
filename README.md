@@ -113,7 +113,7 @@
 ### 피드백
 
 [ ] 공통 질문에 대한 피드백
-[ ] 상수의 응집도를 높이기 위해 constants 분류
+[x] 상수의 응집도를 높이기 위해 constants 분류
 [ ] 겹치는 key constants 수정
 [ ] 정상적으로 쓰이는 케이스에 대해 테스트가 이루어지지 않음 (bonusNumber, purchaseAmount, winningNumbers)
 [ ] getValidInput와 readLineAsync를 view에 위치시키는 것은 어떤지

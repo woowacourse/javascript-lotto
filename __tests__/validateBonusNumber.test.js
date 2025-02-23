@@ -43,4 +43,20 @@ describe("보너스 번호 유효성 테스트", () => {
       }).toThrow(expectedErrorMessage);
     }
   );
+
+  test.each([
+    {
+      description: "최소값 경계인 경우",
+      input: `${MIN_LOTTO_NUMBER}`,
+    },
+    {
+      description: "최대값 경계인 경우",
+      input: `${MAX_LOTTO_NUMBER}`,
+    },
+  ])("보너스 번호가 $description 정상적으로 통과해야한다.", ({ input }) => {
+    expect(() => {
+      const winningNumbers = [11, 12, 13, 14, 15, 16];
+      validateBonusNumber(input, winningNumbers);
+    }).not.toThrow();
+  });
 });
