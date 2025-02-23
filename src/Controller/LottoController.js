@@ -82,6 +82,7 @@ class LottoController {
     winningNumbers.forEach((winningNumber) => {
       Validate.checkIsEmpty(winningNumber);
       Validate.checkIsNumber(winningNumber);
+      Validate.checkWinningNumberCount(winningNumbers);
       Validate.checkLottoNumberRange(winningNumber);
     });
     Validate.checkWinningNumberDuplicate(winningNumbers);
