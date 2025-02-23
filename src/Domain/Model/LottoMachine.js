@@ -6,8 +6,6 @@ import { makeNotDuplicatedRandomNumbers } from '../../Utils/math.js';
 class LottoMachine {
   #lottoList;
 
-  constructor() {}
-
   purchaseLotto(money) {
     return Math.floor(money / LOTTO_DEFINITION.ONE_PRICE);
   }
