@@ -35,7 +35,7 @@ export const validateWinningNumbers = (input) => {
   validateLottoNumbers(winningNumbers);
 };
 
-export const validateBonusNumber = (input, winningNumbers) => {
+export const validateBonusNumber = (winningNumbers) => (input) => {
   const bonusNumber = Number(input);
   validateLottoNumbers(input);
 
