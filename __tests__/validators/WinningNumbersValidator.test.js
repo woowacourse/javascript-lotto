@@ -1,6 +1,6 @@
 import { KEY, LOTTO } from '../../src/constants/CONFIGURATIONS';
 import { ERROR_MESSAGE } from '../../src/constants/MESSAGES';
-import { validateCount } from '../../src/validators/validate';
+import { validateCount, validateHasDuplicated } from '../../src/validators/validate';
 import {
   validateTypeAll,
   validateRangeAll,
@@ -12,9 +12,7 @@ describe('당첨 번호 검증', () => {
     test('당첨 번호는 모두 숫자이며, 6개여야 하고, 1~45 범위 내에 있어야 한다.', () => {
       const winningNumbers = [1, 2, 3, 4, 5, 6];
 
-      expect(() =>
-        WinningNumbersValidator.validate(winningNumbers),
-      ).not.toThrow();
+      expect(() => WinningNumbersValidator.validate(winningNumbers)).not.toThrow();
     });
   });
 
@@ -44,6 +42,14 @@ describe('당첨 번호 검증', () => {
           min: LOTTO.MIN_NUMBER,
           max: LOTTO.MAX_NUMBER,
         }),
+      );
+    });
+
+    test('당첨 번호에 중복된 값이 있으면 에러가 발생한다.', () => {
+      const winningNumbers = [1, 1, 3, 4, 5, 45];
+
+      expect(() => validateHasDuplicated(KEY.WINNING_NUMBERS, winningNumbers)).toThrow(
+        ERROR_MESSAGE.COMMON.DUPLICATE(KEY.WINNING_NUMBERS),
       );
     });
   });
