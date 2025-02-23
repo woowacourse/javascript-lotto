@@ -16,8 +16,8 @@ class LottoGenerator {
   static createLottoNumbers() {
     const numbers = new Set();
 
-    while (numbers.size < 6) {
-      const randomNumber = Math.floor(Math.random() * 45) + 1;
+    while (numbers.size < SETTINGS.numberCount) {
+      const randomNumber = Math.floor(Math.random() * SETTINGS.numberRange.max) + SETTINGS.numberRange.min;
       numbers.add(randomNumber);
     }
 
