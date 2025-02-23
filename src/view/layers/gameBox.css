@@ -8,3 +8,21 @@
   border-style: solid;
   border-color: #e4e4e4;
 }
+
+#gameBox-header {
+  width: 382px;
+  height: 36px;
+  top: 40px;
+  left: 16px;
+  position: relative;
+}
+
+#gameBox-title {
+  font-family: Roboto, sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: var(--lotto-greyscale-5);
+}
