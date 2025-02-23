@@ -1,0 +1,42 @@
+{
+  "postcssSorting.config": {
+    "order": [
+      "custom-properties",
+      "dollar-variables",
+      "declarations",
+      "at-rules",
+      "rules"
+    ],
+    "properties-order": [
+      "display",
+      "list-style",
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "float",
+      "clear",
+      "width",
+      "height",
+      "padding",
+      "margin",
+      "border",
+      "background",
+      "color",
+      "font",
+      "font-weight",
+      "font-size",
+      "line-height",
+      "font-family",
+      "letter-spacing",
+      "text-decoration",
+      "text-align",
+      "vertical-align",
+      "white-space",
+      "content",
+      "animation"
+    ]
+  },
+  "editor.formatOnSave": true
+}
