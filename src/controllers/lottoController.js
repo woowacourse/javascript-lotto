@@ -1,5 +1,6 @@
 import checkWinningResults from "../domain/checkWinningResults.js";
 import formatResults from "../domain/formatResults.js";
+import LottoGame from "../models/LottoGame.js";
 import { generateLottos } from "../utils/generateLottos.js";
 import { getBonusNumber, getWinningNumbers } from "../view/input.js";
 import {
@@ -17,12 +18,13 @@ const lottoController = async (price) => {
   const winningNumbers = await getWinningNumbers();
   const bonusNumber = await getBonusNumber(winningNumbers);
 
-  const { resultCount, totalReward } = checkWinningResults(lottos, {
+  const lottoGame = new LottoGame();
+  const { rankCount, totalReward } = lottoGame.playLotto(lottos, {
     winningNumbers,
     bonusNumber,
   });
 
-  printResult(formatResults(resultCount));
+  printResult(formatResults(rankCount));
   printProfitRate(price, totalReward);
 };
 
