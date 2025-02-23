@@ -9,21 +9,25 @@ const purchase = async () => {
   const purchaseAmount = await InputHandler.getPurchaseAmount();
   const quantity = purchaseAmount / PRICE.UNIT;
   OutputView.printQuantity(quantity);
-  const lottoNumbers = Array.from({ length: quantity }, () => generateLotto());
-  lottoNumbers.forEach((nums) => {
-    OutputView.printLotto(nums);
-  });
+  const lottoNumbers = generateLottoNumbers();
 
-  const lottoAndBonus = await readWinningNumbersAndBonusNumber();
-  const winningRanks = Ranking.countWinningRanks(lottoNumbers, lottoAndBonus);
+  const winningAndBonus = await readWinningNumbersAndBonusNumber();
+  const winningRanks = Ranking.countWinningRanks(lottoNumbers, winningAndBonus);
   OutputView.printWinningDetailTitle();
-
   const rankKeys = Object.keys(winningRanks).reverse();
   OutputView.printWinningDetail(winningRanks, rankKeys);
 
   const totalPrize = Calculator.totalPrize(winningRanks);
   const yieldRate = Calculator.yieldRate(purchaseAmount, totalPrize);
   OutputView.printYieldRate(yieldRate);
+};
+
+const generateLottoNumbers = () => {
+  const lottoNumbers = Array.from({ length: quantity }, () => generateLotto());
+  lottoNumbers.forEach((nums) => {
+    OutputView.printLotto(nums);
+  });
+  return lottoNumbers;
 };
 
 const readWinningNumbersAndBonusNumber = async () => {
