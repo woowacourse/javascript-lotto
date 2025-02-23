@@ -59,7 +59,7 @@ class LottoManager {
   calculateProfit(totalLottoPrize) {
     return (
       (totalLottoPrize /
-        (LOTTO_DEFINITION.ONE_PRICE * this.#lottoList.length)) *
+        (LOTTO_DEFINITION.PRICE_UNIT * this.#lottoList.length)) *
       100
     );
   }

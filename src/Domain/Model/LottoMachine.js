@@ -7,7 +7,7 @@ class LottoMachine {
   #lottoList;
 
   purchaseLotto(money) {
-    return Math.floor(money / LOTTO_DEFINITION.ONE_PRICE);
+    return Math.floor(money / LOTTO_DEFINITION.PRICE_UNIT);
   }
 
   #makeLotto() {
