@@ -1,8 +1,16 @@
-#lotto-header {
+.header-container {
   width: 100%;
   height: 64px;
   border-bottom-width: 1px;
   background-color: var(--lotto-primary);
+}
+
+#lotto-header {
+  width: 147px;
+  height: 36px;
+  top: 14px;
+  left: 130px;
+  position: relative;
 }
 
 #lotto-title {
