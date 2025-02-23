@@ -1,11 +1,11 @@
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO_SYSTEM } from '../constants/messages.js';
 
-export const getWinningMatchCount = (lottos, lottoNumbers) => {
+export const getWinningMatchCount = (lottos, winningLotto) => {
   return lottos.reduce(
     (matchCounts, lotto) => {
-      let match = plusIfWinningNumbers(lottoNumbers, lotto);
-      if (match === LOTTO.FIVE_MATCH && lotto.includes(lottoNumbers.bonusNumber)) {
-        match = LOTTO.FIVE_WITH_BONUS_MATCH_IDX;
+      let match = lotto.getMatchingCount(winningLotto);
+      if (match === LOTTO_SYSTEM.FIVE_MATCH && lotto.includes(winningLotto.getBonusNumber())) {
+        match = LOTTO_SYSTEM.FIVE_WITH_BONUS_MATCH_IDX;
       }
 
       matchCounts[match]++;
@@ -13,10 +13,4 @@ export const getWinningMatchCount = (lottos, lottoNumbers) => {
     },
     [0, 0, 0, 0, 0, 0, 0, 0],
   );
-};
-
-const plusIfWinningNumbers = (lottoNumbers, lotto) => {
-  return lottoNumbers.winningNumbers.reduce((match, winningNumber) => {
-    return match + (lotto.includes(winningNumber) ? 1 : 0);
-  }, 0);
 };
