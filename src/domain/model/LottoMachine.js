@@ -2,7 +2,7 @@ import Lotto from './Lotto.js';
 import pickNumberInList from '../../utils/pickNumberInList.js';
 import { LOTTO_RULE } from '../constants.js';
 
-class Machine {
+class LottoMachine {
   #lottos;
 
   constructor() {
@@ -30,4 +30,4 @@ class Machine {
   }
 }
 
-export default Machine;
+export default LottoMachine;

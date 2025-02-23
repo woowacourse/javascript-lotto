@@ -1,6 +1,6 @@
 import OutputView from '../view/OutputView.js';
 import InputView from '../view/InputView.js';
-import Machine from '../domain/model/Machine.js';
+import LottoMachine from '../domain/model/LottoMachine.js';
 import LottoStatistics from '../domain/model/LottoStatistics.js';
 import { INITIAL_NUMBER } from '../domain/constants.js';
 
@@ -12,7 +12,7 @@ class Controller {
   #money;
 
   constructor() {
-    this.#machine = new Machine();
+    this.#machine = new LottoMachine();
     this.#lottoStatistics = new LottoStatistics();
     this.#money = INITIAL_NUMBER;
   }
