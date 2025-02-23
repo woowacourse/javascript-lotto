@@ -3,8 +3,10 @@ import NEW_LINE from "../constant/newLine.js";
 import { WINNING } from "../constant/lotto.js";
 
 const OutputView = {
-  printLotto(lotto) {
-    console.log(`[${lotto.join(", ")}]`);
+  printLottos(lottos) {
+    lottos.forEach((lotto) => {
+      console.log(`[${lotto.join(", ")}]`);
+    });
   },
 
   printWinningDetailTitle() {

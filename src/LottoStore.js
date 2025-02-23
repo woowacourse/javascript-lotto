@@ -9,9 +9,7 @@ const purchase = async () => {
   const quantity = purchaseAmount / PRICE.UNIT;
   OutputView.printQuantity(quantity);
   const lottoNumbers = Array.from({ length: quantity }, () => generateLotto());
-  lottoNumbers.forEach((nums) => {
-    OutputView.printLotto(nums);
-  });
+  OutputView.printLottos(lottoNumbers);
 
   const lottoAndBonus = await readWinningInfo();
   const winningCounts = Calculator.getWinningCounts(
@@ -21,7 +19,7 @@ const purchase = async () => {
   OutputView.printWinningDetailTitle();
   OutputView.printWinningDetail(winningCounts);
 
-  const totalPrize = Calculator.getTotalPrize(winningCount);
+  const totalPrize = Calculator.getTotalPrize(winningCounts);
   const yieldRate = Calculator.getYieldRate(purchaseAmount, totalPrize);
   OutputView.printYieldRate(yieldRate);
 };
