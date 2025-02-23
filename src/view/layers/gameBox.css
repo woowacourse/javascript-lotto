@@ -1,0 +1,10 @@
+.gameBox-container {
+  width: 414px;
+  height: 727px;
+  top: 148px;
+  left: 513px;
+  position: relative;
+  background-color: var(--lotto-greyscale-1);
+  border-style: solid;
+  border-color: #e4e4e4;
+}
