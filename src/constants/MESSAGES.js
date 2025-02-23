@@ -11,11 +11,9 @@ const RESULT_MESSAGE = Object.freeze({
   MATCH_3: (count) => `3개 일치 (5,000원) - ${count}개`,
   MATCH_4: (count) => `4개 일치 (50,000원) - ${count}개`,
   MATCH_5: (count) => `5개 일치 (1,500,000원) - ${count}개`,
-  MATCH_5_BONUS: (count) =>
-    `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
+  MATCH_5_BONUS: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개`,
   MATCH_6: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
-  PROFITRATE: (profitRate) =>
-    `총 수익률은 ${profitRate.toFixed(1).toLocaleString()}%입니다.`,
+  PROFITRATE: (profitRate) => `총 수익률은 ${profitRate.toFixed(1).toLocaleString()}%입니다.`,
 });
 
 const ERROR_MESSAGE = Object.freeze({
@@ -39,6 +37,7 @@ const ERROR_MESSAGE = Object.freeze({
     INVALID_RANGE: ({ key, min, max }) =>
       `${key}은(는) ${min.toLocaleString()} 이상 ${max.toLocaleString()} 이하여야 합니다.`,
     INVALID_COUNT: (key) => `${key}은(는) 6개여야 합니다.`,
+    DUPLICATE: (key) => `${key}은(는) 중복되면 안됩니다.`,
   },
 });
 

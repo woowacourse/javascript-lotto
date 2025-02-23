@@ -2,6 +2,7 @@ const SEPARATOR = ',';
 
 const KEY = Object.freeze({
   PURCHASE_PRICE: '구입 금액',
+  PURCHASE_COUNT: '로또 구매 개수',
   WINNING_NUMBERS: '당첨 번호',
   BONUS_NUMBER: '보너스 번호',
 });
