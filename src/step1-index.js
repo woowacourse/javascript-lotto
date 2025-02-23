@@ -1,8 +1,8 @@
-import { LOTTO } from './constants/messages.js';
+import { LOTTO_SYSTEM } from './constants/messages.js';
 import { calculateRevenue } from './domain/calculateRevenue.js';
 import { getLottos } from './domain/getLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
-import { arrayToString } from './utils/arrayToString.js';
+import WinningLotto from './domain/WinningLotto.js';
 import { checkReplay } from './utils/checkReplay.js';
 import { parseWinningNumbers } from './utils/parseString.js';
 import { isYesOrNo } from './validation/validateInput.js';
@@ -13,17 +13,17 @@ import { printPurchasedQuantity, printLottos, printStatistics } from './view/out
 
 async function run() {
   const purchasePrice = Number(await handleUserInput(INPUT.PURCHASE_PRICE, validatePurchasePrice));
-  const quantityOfLottos = Math.floor(purchasePrice / LOTTO.MIN_PURCHASE_PRICE);
+  const quantityOfLottos = Math.floor(purchasePrice / LOTTO_SYSTEM.MIN_PURCHASE_PRICE);
   const lottos = getLottos(quantityOfLottos);
   printPurchasedQuantity(quantityOfLottos);
-  printLottos(arrayToString(lottos));
+  printLottos(lottos.map((lotto) => `[${lotto.getNumbers().join(', ')}]`));
 
   const stringOfWinningNumbers = await handleUserInput(INPUT.WINNING_NUMBERS, validateWinningNumbers);
   const winningNumbers = parseWinningNumbers(stringOfWinningNumbers);
 
   const stirngOfbonusNumber = await handleUserInput(INPUT.BONUS_NUMBER, validateBonusNumber(winningNumbers));
   const bonusNumber = Number(stirngOfbonusNumber);
-  const lottoNumbers = { winningNumbers, bonusNumber };
+  const lottoNumbers = new WinningLotto(winningNumbers, bonusNumber);
 
   const matchCounts = getWinningMatchCount(lottos, lottoNumbers);
   const revenue = calculateRevenue(matchCounts, purchasePrice);
