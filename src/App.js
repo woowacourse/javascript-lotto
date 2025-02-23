@@ -5,19 +5,19 @@ import {
   getRetryInput,
 } from './View/inputView.js';
 import { readUserInputUntilSuccess, convertFormat } from './View/utils.js';
-import {
-  validateEmptySpace,
-  validatePurchaseAmount,
-  validateEmptySpaceInWinningNumbers,
-  validateWinningNumbers,
-  validateBonusNumber,
-  validateYorN,
-} from './View/Validation/inputView.js';
 import Lotto from './Domain/Model/Lotto.js';
 import LottoMachine from './Domain/Model/LottoMachine.js';
 import WinningLotto from './Domain/Model/WinningLotto.js';
 import LottoManager from './Domain/Model/LottoManager.js';
 import { outputView } from './View/outputView.js';
+import { validatePurchaseAmount } from './View/Validation/purchaseAmount.js';
+import {
+  validateEmptySpaceInWinningNumbers,
+  validateWinningNumbers,
+} from './View/Validation/winningNumbers.js';
+import { validateBonusNumber } from './View/Validation/bonusNumber.js';
+import { validateYorN } from './View/Validation/retry.js';
+import { validateEmptySpace } from './View/Validation/util.js';
 
 class App {
   async #initializePurchaseAmount() {
