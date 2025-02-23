@@ -15,7 +15,10 @@ class App {
     while (this.#running) {
       await purchase();
 
-      const answer = await InputHandler.getValidatedInput(InputView.readRestart, validateRestart);
+      const answer = await InputHandler.getValidatedInput(
+        InputView.readRestart,
+        validateRestart,
+      );
       this.endGame(answer);
     }
   }

@@ -25,11 +25,12 @@ describe("Ranking", () => {
     expect(Ranking.hasBonus([1, 2, 3, 4, 5, 6], 7)).toBe(false);
   });
 
-  test.each([
-    [WINNING[KEYS.SECOND].MATCH, false],
-  ])("일치하는 개수에 맞는 등수의 문자열을 반환한다.", (key, hasBonus) => {
-    const rank = Ranking.getMatchedKey(key, hasBonus);
+  test.each([[WINNING[KEYS.SECOND].MATCH, false]])(
+    "일치하는 개수에 맞는 등수의 문자열을 반환한다.",
+    (key, hasBonus) => {
+      const rank = Ranking.getMatchedKey(key, hasBonus);
 
-    expect(rank).toBe("3등");
-  });
+      expect(rank).toBe("3등");
+    },
+  );
 });

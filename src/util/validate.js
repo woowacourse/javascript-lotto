@@ -5,7 +5,7 @@ import STRING from "../constant/string.js";
 import { LOTTO } from "../constant/lotto.js";
 
 export const validateRestart = (answer) => {
-  if (typeof(answer) !== 'string') throw new Error(ERROR_MESSAGE.YES_OR_NO);
+  if (typeof answer !== "string") throw new Error(ERROR_MESSAGE.YES_OR_NO);
   if (
     answer.toLowerCase() !== RESTART_ANSWER.YES &&
     answer.toLowerCase() !== RESTART_ANSWER.NO
@@ -22,7 +22,9 @@ export const validatePurchaseAmount = (price) => {
 };
 
 export const validateWinningNumbers = (numbers) => {
-  const numbersArray = numbers.split(STRING.WINNNG_NUMBERS_SPLITTER).map(Number);
+  const numbersArray = numbers
+    .split(STRING.WINNNG_NUMBERS_SPLITTER)
+    .map(Number);
   if (numbersArray.length < LOTTO.LENGTH)
     throw new Error(ERROR_MESSAGE.LOTTO_LENGTH);
   if (numbersArray.some((num) => isNaN(num)))
@@ -38,11 +40,16 @@ export const validateWinningNumbers = (numbers) => {
 };
 
 export const validateBonusNumber = (bonus, winning) => {
-  const winningNumbers = winning.split(STRING.WINNNG_NUMBERS_SPLITTER).map(Number);
+  const winningNumbers = winning
+    .split(STRING.WINNNG_NUMBERS_SPLITTER)
+    .map(Number);
   const bonusNumber = Number(bonus);
 
   if (isNaN(bonusNumber)) throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
-  if (bonusNumber < LOTTO.MIN_RANDOM_VALUE || bonusNumber > LOTTO.MAX_RANDOM_VALUE)
+  if (
+    bonusNumber < LOTTO.MIN_RANDOM_VALUE ||
+    bonusNumber > LOTTO.MAX_RANDOM_VALUE
+  )
     throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
   if (winningNumbers.includes(bonusNumber))
     throw new Error(ERROR_MESSAGE.DUPLICATE_BONUS_NUMBER);

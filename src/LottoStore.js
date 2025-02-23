@@ -14,7 +14,10 @@ import {
 } from "./util/validate.js";
 
 const purchase = async () => {
-  const purchaseAmount = await InputHandler.getValidatedInput(InputView.readPurchaseAmount, validatePurchaseAmount);
+  const purchaseAmount = await InputHandler.getValidatedInput(
+    InputView.readPurchaseAmount,
+    validatePurchaseAmount,
+  );
   const quantity = purchaseAmount / PRICE.UNIT;
   OutputView.printQuantity(quantity);
   const lottoNumbers = generateLottoNumbers(quantity);
@@ -42,9 +45,15 @@ const displayLottoNumbers = (lottoNumbers) => {
 };
 
 const readWinningNumbersAndBonusNumber = async () => {
-  const winningNumbers = await InputHandler.getValidatedInput(InputView.readWinningNumbers, validateWinningNumbers);
-  const bonusNumber = await InputHandler.getValidatedInput(InputView.readBonusNumber, validateBonusNumber, winningNumbers);
-
+  const winningNumbers = await InputHandler.getValidatedInput(
+    InputView.readWinningNumbers,
+    validateWinningNumbers,
+  );
+  const bonusNumber = await InputHandler.getValidatedInput(
+    InputView.readBonusNumber,
+    validateBonusNumber,
+    winningNumbers,
+  );
 
   return {
     winning: winningNumbers,
