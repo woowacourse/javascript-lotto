@@ -1,4 +1,4 @@
-import { LOTTO_SYSTEM } from '../constants/messages.js';
+import { LOTTO_SYSTEM } from '../constants/LottoSystem.js';
 
 export const getWinningMatchCount = (lottos, winningLotto) => {
   return lottos.reduce(

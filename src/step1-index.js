@@ -1,4 +1,4 @@
-import { LOTTO_SYSTEM } from './constants/messages.js';
+import { LOTTO_SYSTEM } from './constants/LottoSystem.js';
 import { calculateRevenue } from './domain/calculateRevenue.js';
 import { getLottos } from './domain/getLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';

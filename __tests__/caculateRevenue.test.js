@@ -1,5 +1,5 @@
-import { LOTTO_SYSTEM } from '../src/constants/messages.js';
-import { calculateRevenue, calculateRevenueByMatch, PRIZE_OF_MATCH_COUNT } from '../src/domain/calculateRevenue.js';
+import { LOTTO_SYSTEM } from '../src/constants/LottoSystem.js';
+import { calculateRevenue, calculateRevenueByMatch } from '../src/domain/calculateRevenue.js';
 
 describe('로또 1개 샀을 때, 수익률 계산 테스트', () => {
   let purchasePrice;

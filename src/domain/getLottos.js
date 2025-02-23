@@ -1,4 +1,4 @@
-import { LOTTO_SYSTEM } from '../constants/messages.js';
+import { LOTTO_SYSTEM } from '../constants/LottoSystem.js';
 import Lotto from './Lotto.js';
 
 export const getLottos = (quantity) => {
