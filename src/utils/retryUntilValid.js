@@ -1,4 +1,4 @@
-import Output from "../view/Output.js";
+import { outputPrint } from "../view/Output.js";
 
 export const retryUntilValid = async (getInputFn, parseFn, validator) => {
   while (true) {
@@ -8,7 +8,7 @@ export const retryUntilValid = async (getInputFn, parseFn, validator) => {
       validator(result);
       return result;
     } catch (error) {
-      Output.print(error.message);
+      outputPrint(error.message);
     }
   }
 };

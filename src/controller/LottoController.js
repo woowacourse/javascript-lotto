@@ -1,15 +1,16 @@
 import { getInput } from "../view/Input.js";
+import { printLottoTickets, printMatchResults } from "../view/Output.js";
+import { generateLotto } from "../domain/LottoGenerator.js";
+import ProfitCalculator from "../domain/ProfitCalculator.js";
 import { MESSAGES } from "../constants/index.js";
 import {
   purchaseAmountValidator,
   lottoNumberValidator,
   bonusNumberValidator,
-  restartValidator,
+  restartValidator
 } from "../validators/index.js";
 import { retryUntilValid } from "../utils/retryUntilValid.js";
-import { generateLotto } from "../domain/LottoGenerator.js";
-import Output from "../view/Output.js";
-import ProfitCalculator from "../domain/ProfitCalculator.js";
+
 class LottoController {
   constructor() {
     this.lottoTickets = [];
@@ -21,7 +22,7 @@ class LottoController {
       const purchaseAmount = await this.getPurchaseAmount();
       this.lottoTickets = generateLotto(purchaseAmount);
 
-      Output.printLottoTickets(this.lottoTickets);
+      printLottoTickets(this.lottoTickets);
 
       this.lottoNumber = await this.getLottoNumber();
       const bonusNumber = await this.getBonusNumber();
@@ -74,7 +75,7 @@ class LottoController {
     );
 
     const results = calculator.getResults();
-    Output.printMatchResults(results);
+    printMatchResults(results);
   }
 }
 
