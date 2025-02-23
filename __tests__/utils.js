@@ -1,11 +1,8 @@
+//@ts-check
 import { NO_WINNING } from '../src/lib/constants.js';
-import {
-  calculateMatchCount,
-  checkUniqueArray,
-  generateUniqueNumbers,
-  getIntersectCount,
-  retryUntilSuccess,
-} from '../src/lib/utils.js';
+import { calculateMatchCount } from '../src/util/calculator.js';
+import { retryUntilSuccess } from '../src/util/io.js';
+import { checkUniqueArray, generateUniqueNumbers, getIntersectCount } from '../src/util/lotto.js';
 
 describe('utils', () => {
   describe('getIntersectCount', () => {
