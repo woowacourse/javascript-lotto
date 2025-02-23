@@ -5,6 +5,7 @@ import STRING from "../constant/string.js";
 import { LOTTO } from "../constant/lotto.js";
 
 export const validateRestart = (answer) => {
+  if (typeof(answer) !== 'string') throw new Error(ERROR_MESSAGE.YES_OR_NO);
   if (
     answer.toLowerCase() !== RESTART_ANSWER.YES &&
     answer.toLowerCase() !== RESTART_ANSWER.NO

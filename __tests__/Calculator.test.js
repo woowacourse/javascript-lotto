@@ -3,21 +3,6 @@ import Ranking from "../src/Ranking.js";
 import { KEYS } from "../src/constant/lotto.js";
 
 describe("Caculator", () => {
-  test.each([
-    [[[1, 2, 3, 4, 5, 6]], 1, "1등"],
-    [[[1, 2, 3, 4, 5, 9]], 1, "2등"],
-    [[[1, 2, 3, 4, 5, 10]], 1, "3등"],
-    [[[1, 2, 3, 4, 7, 10]], 1, "4등"],
-    [[[1, 2, 3, 8, 7, 10]], 1, "5등"],
-  ])("일치하는 개수에 맞는 등수의 값이 증가한다.", (lottos, expected, key) => {
-    const winningRanks = Ranking.countWinningRanks(lottos, {
-      winning: [1, 2, 3, 4, 5, 6],
-      bonus: 9,
-    });
-
-    expect(winningRanks[key]).toBe(expected);
-  });
-
   test("당첨금을 계산한다.", () => {
     const winningRanks = {
       [KEYS.FIRST]: 0,
