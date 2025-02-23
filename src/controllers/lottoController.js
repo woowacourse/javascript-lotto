@@ -1,4 +1,3 @@
-import checkWinningResults from "../domain/checkWinningResults.js";
 import formatResults from "../domain/formatResults.js";
 import LottoGame from "../models/LottoGame.js";
 import { generateLottos } from "../utils/generateLottos.js";

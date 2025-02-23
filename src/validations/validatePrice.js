@@ -1,7 +1,5 @@
 import { ERROR_MESSAGE } from "../constants/error.js";
-
-const MIN_PRICE = 1_000;
-const MAX_PRICE = 1_000_000;
+import { LOTTO } from "../constants/lotto.js";
 
 export const isNumber = (input) => {
   const regex = /^[0-9]*$/;
@@ -10,11 +8,11 @@ export const isNumber = (input) => {
 };
 
 export const isThousandUnit = (input) => {
-  return input % 1000 == 0;
+  return input % LOTTO.PRICE_STEP == 0;
 };
 
 export const isValidPriceRange = (input) => {
-  return input >= MIN_PRICE && input <= MAX_PRICE;
+  return input >= LOTTO.MIN_PRICE && input <= LOTTO.MAX_PRICE;
 };
 
 const validatePrice = (input) => {
