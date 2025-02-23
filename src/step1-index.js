@@ -9,13 +9,17 @@ class App {
     this.#running = true;
   }
 
-  async start() {
+  async run() {
     while (this.#running) {
-      await purchase();
+      await this.start();
 
       const answer = await InputHandler.getRestartAnswer();
       this.handleRestart(answer);
     }
+  }
+
+  async start() {
+    await purchase();
   }
 
   handleRestart(answer) {
@@ -32,4 +36,4 @@ class App {
 export default App;
 
 const app = new App();
-app.start();
+app.run();
