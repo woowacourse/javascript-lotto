@@ -13,7 +13,7 @@ class LottoManager {
   constructor() {}
 
   purchaseLotto(money) {
-    return money / LOTTO_DEFINITION.ONE_PRICE;
+    return Math.floor(money / LOTTO_DEFINITION.ONE_PRICE);
   }
 
   makeLottoList(lottoCount) {
