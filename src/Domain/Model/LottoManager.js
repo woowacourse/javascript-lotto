@@ -57,7 +57,6 @@ class LottoManager {
   }
 
   calculateProfit(totalLottoPrize) {
-    //TODO: 수익률 반환 test 만들어야함
     return (
       (totalLottoPrize /
         (LOTTO_DEFINITION.ONE_PRICE * this.#lottoList.length)) *
