@@ -1,21 +1,22 @@
-import CONFIG from '../constants/config.js';
+import { INITIAL_NUMBER, LOTTO_RULE } from './constants.js';
 import { ERROR } from '../constants/message.js';
+import { ANSWER_NO, ANSWER_YES } from '../view/constants.js';
 
 function validateMoney(money) {
-  if (money <= CONFIG.INITIAL_NUMBER) {
+  if (money <= INITIAL_NUMBER) {
     throw new Error(ERROR.MONEY.EMPTY_VALUE);
   }
-  if (money % CONFIG.LOTTO_PRICE !== CONFIG.INITIAL_NUMBER) {
+  if (money % LOTTO_RULE.PRICE !== INITIAL_NUMBER) {
     throw new Error(ERROR.MONEY.REST_VALUE);
   }
 }
 
 function lottoNumberCondition(number) {
-  return number >= CONFIG.MIN.LOTTO_NUMBER && number <= CONFIG.MAX.LOTTO_NUMBER;
+  return number >= LOTTO_RULE.MIN_RANGE && number <= LOTTO_RULE.MAX_RANGE;
 }
 
 function validateLottoNumber(numbers) {
-  if (numbers.length !== CONFIG.MAX.LOTTO_LENGTH) {
+  if (numbers.length !== LOTTO_RULE.LENGTH) {
     throw new Error(ERROR.LOTTO_NUMBER.QUANTITY);
   }
 
@@ -23,7 +24,7 @@ function validateLottoNumber(numbers) {
     throw new Error(ERROR.LOTTO_NUMBER.RANGE);
   }
 
-  if (new Set(numbers).size !== CONFIG.MAX.LOTTO_LENGTH) {
+  if (new Set(numbers).size !== LOTTO_RULE.LENGTH) {
     throw new Error(ERROR.LOTTO_NUMBER.DUPLICATION);
   }
 }
@@ -39,11 +40,9 @@ function validateBonus(bonus, winningLotto) {
 }
 
 function validateRestart(lowerCaseInput) {
-  if (lowerCaseInput !== 'y' && lowerCaseInput !== 'n') {
+  if (lowerCaseInput !== ANSWER_YES && lowerCaseInput !== ANSWER_NO) {
     throw new Error(ERROR.RESTART.YES_OR_NO);
   }
 }
 
-export {
-  validateMoney, validateLottoNumber, validateBonus, validateRestart,
-};
+export { validateMoney, validateLottoNumber, validateBonus, validateRestart };

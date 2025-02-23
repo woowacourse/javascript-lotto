@@ -1,9 +1,12 @@
-import CONFIG from '../constants/config.js';
+import { LOTTO_RULE } from '../domain/constants.js';
 
-export default function pickNumberInList(min, max) {
+export default function pickNumberInList() {
   const randomNumbers = new Set();
-  while (randomNumbers.size < CONFIG.MAX.LOTTO_LENGTH) {
-    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+  while (randomNumbers.size < LOTTO_RULE.LENGTH) {
+    const randomNumber =
+      Math.floor(
+        Math.random() * (LOTTO_RULE.MAX_RANGE - LOTTO_RULE.MIN_RANGE + 1),
+      ) + LOTTO_RULE.MIN_RANGE;
     randomNumbers.add(randomNumber);
   }
   return [...randomNumbers];

@@ -1,6 +1,6 @@
-import CONFIG from '../../constants/config.js';
 import Lotto from './Lotto.js';
 import pickNumberInList from '../../utils/pickNumberInList.js';
+import { LOTTO_RULE } from '../constants.js';
 
 class Machine {
   #lottos;
@@ -10,15 +10,14 @@ class Machine {
   }
 
   createLottos(money) {
-    const quantity = money / CONFIG.LOTTO_PRICE;
-    this.#lottos = Array.from({ length: quantity }).map(() => this.createLotto());
+    const quantity = money / LOTTO_RULE.PRICE;
+    this.#lottos = Array.from({ length: quantity }).map(() =>
+      this.createLotto(),
+    );
   }
 
   createLotto() {
-    const randomNumbers = pickNumberInList(
-      CONFIG.MIN.LOTTO_NUMBER,
-      CONFIG.MAX.LOTTO_NUMBER,
-    );
+    const randomNumbers = pickNumberInList();
     return new Lotto(randomNumbers);
   }
 

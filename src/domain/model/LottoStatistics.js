@@ -1,4 +1,4 @@
-import CONFIG from '../../constants/config.js';
+import { INITIAL_NUMBER, RANK_RULE } from '../constants.js';
 
 class LottoStatistics {
   #rankResult;
@@ -20,18 +20,30 @@ class LottoStatistics {
   compareLottos(machineLottos, winningNumber) {
     machineLottos.forEach((machineLotto) => {
       const machineLottoNumbers = machineLotto.getNumbers();
-      const sameCount = this.matchSameCount(machineLottoNumbers, winningNumber.lotto);
-      const isBonusNumber = this.hasBonusNumber(machineLottoNumbers, winningNumber.bonus);
+      const sameCount = this.matchSameCount(
+        machineLottoNumbers,
+        winningNumber.lotto,
+      );
+      const isBonusNumber = this.hasBonusNumber(
+        machineLottoNumbers,
+        winningNumber.bonus,
+      );
       this.determineRank(sameCount, isBonusNumber);
     });
   }
 
   determineRank(sameCount, isBonusNumber) {
-    if (sameCount === CONFIG.SECOND_PRIZE_MATCH_COUNT && isBonusNumber) {
-      return this.increaseCount(sameCount, CONFIG.RANK_OBJECT_KEY.BONUS(sameCount));
+    if (sameCount === RANK_RULE.SECOND_PRIZE_MATCH_COUNT && isBonusNumber) {
+      return this.increaseCount(
+        sameCount,
+        RANK_RULE.BONUS_OBJECT_KEY(sameCount),
+      );
     }
 
-    return this.increaseCount(sameCount, CONFIG.RANK_OBJECT_KEY.NORMAL(sameCount));
+    return this.increaseCount(
+      sameCount,
+      RANK_RULE.NORMAL_OBJECT_KEY(sameCount),
+    );
   }
 
   hasBonusNumber(machineLotto, bonus) {
@@ -39,12 +51,13 @@ class LottoStatistics {
   }
 
   matchSameCount(machineLotto, winningLotto) {
-    return machineLotto.filter((number) => winningLotto.includes(number)).length;
+    return machineLotto.filter((number) => winningLotto.includes(number))
+      .length;
   }
 
   increaseCount(sameCount, name) {
     const ONE_TICKET = 1;
-    if (sameCount < CONFIG.MIN.RANK_COUNT) {
+    if (sameCount < RANK_RULE.MIN_COUNT) {
       return;
     }
     this.#rankResult[name].count += ONE_TICKET;
@@ -56,8 +69,9 @@ class LottoStatistics {
 
   getProfit() {
     return Object.keys(this.#rankResult).reduce(
-      (acc, key) => acc + (this.#rankResult[key].price * this.#rankResult[key].count),
-      CONFIG.INITIAL_NUMBER,
+      (acc, key) =>
+        acc + this.#rankResult[key].price * this.#rankResult[key].count,
+      INITIAL_NUMBER,
     );
   }
 }

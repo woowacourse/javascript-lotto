@@ -1,16 +1,19 @@
 import readLineAsync from './readLineAsync.js';
-import { INPUT_MESSAGE } from '../constants/message.js';
-import {
-  validateMoney, validateLottoNumber, validateBonus, validateRestart,
-} from '../domain/validation.js';
-import CONFIG from '../constants/config.js';
 import OutputView from './OutputView.js';
+import { INPUT_MESSAGE } from '../constants/message.js';
+import { DECIMAL, ANSWER_NO, ANSWER_YES } from './constants.js';
+import {
+  validateMoney,
+  validateLottoNumber,
+  validateBonus,
+  validateRestart,
+} from '../domain/validation.js';
 
 const InputView = {
   async readMoney() {
     try {
       const input = await readLineAsync(INPUT_MESSAGE.READ_MONEY);
-      const money = parseInt(input, CONFIG.DECIMAL);
+      const money = parseInt(input, DECIMAL);
       validateMoney(money);
       return money;
     } catch (error) {
@@ -21,7 +24,9 @@ const InputView = {
   async readWinningLotto() {
     try {
       const input = await readLineAsync(INPUT_MESSAGE.READ_WINNING_LOTTO);
-      const winningLotto = input?.split(',').map((item) => parseInt(item, CONFIG.DECIMAL));
+      const winningLotto = input
+        ?.split(',')
+        .map((item) => parseInt(item, DECIMAL));
       validateLottoNumber(winningLotto);
       return winningLotto;
     } catch (error) {
@@ -32,7 +37,7 @@ const InputView = {
   async readBonus(winningLotto) {
     try {
       const input = await readLineAsync(INPUT_MESSAGE.READ_BONUS);
-      const bonus = parseInt(input, CONFIG.DECIMAL);
+      const bonus = parseInt(input, DECIMAL);
       validateBonus(bonus, winningLotto);
       return bonus;
     } catch (error) {
@@ -45,7 +50,7 @@ const InputView = {
       const input = await readLineAsync(INPUT_MESSAGE.READ_RESTART);
       const lowerCaseInput = input.toLowerCase();
       validateRestart(lowerCaseInput);
-      return !(lowerCaseInput === CONFIG.ANSWER_NO) && lowerCaseInput === CONFIG.ANSWER_YES;
+      return !(lowerCaseInput === ANSWER_NO) && lowerCaseInput === ANSWER_YES;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.readReStart();
