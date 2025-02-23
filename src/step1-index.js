@@ -1,5 +1,6 @@
 import purchase from "./LottoStore.js";
 import InputHandler from "./util/InputHandler.js";
+import RESTART_ANSWER from "./constant/answer.js";
 
 class App {
   #running;
