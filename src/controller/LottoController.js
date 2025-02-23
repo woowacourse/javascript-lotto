@@ -1,4 +1,4 @@
-import { getInput } from "../view/Input.js";
+import { getInput, retryUntilValid } from "../view/Input.js";
 import { printLottoTickets, printMatchResults } from "../view/Output.js";
 import { generateLotto } from "../domain/LottoGenerator.js";
 import ProfitCalculator from "../domain/ProfitCalculator.js";
@@ -9,7 +9,6 @@ import {
   bonusNumberValidator,
   restartValidator
 } from "../validators/index.js";
-import { retryUntilValid } from "../utils/retryUntilValid.js";
 
 class LottoController {
   constructor() {
