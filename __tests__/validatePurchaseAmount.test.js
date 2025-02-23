@@ -34,4 +34,23 @@ describe("구입 금액 유효성 테스트", () => {
       }).toThrow(expectedErrorMessage);
     }
   );
+
+  test.each([
+    {
+      description: `${MIN_UNIT.toLocaleString()}원 이상인 경우`,
+      input: `${MIN_UNIT}`,
+    },
+    {
+      description: `${MIN_UNIT.toLocaleString()}원 단위인 경우`,
+      input: `${MIN_UNIT}` * 3,
+    },
+    {
+      description: `${MAX_AMOUNT.toLocaleString()}원 이하인 경우`,
+      input: `${MAX_AMOUNT}`,
+    },
+  ])("구입 금액이 $description 정상적으로 통과해야한다.", ({ input }) => {
+    expect(() => {
+      validatePurchaseAmount(input);
+    }).not.toThrow();
+  });
 });
