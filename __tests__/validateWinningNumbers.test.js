@@ -45,4 +45,23 @@ describe("당첨 번호 유효성 테스트", () => {
       validateWinningNumbers(input);
     }).toThrow(expectedErrorMessage);
   });
+
+  test.each([
+    {
+      description: `당첨 번호의 숫자가 ${LOTTO_LENGTH}개인 경우`,
+      input: "1,2,3,4,5,6",
+    },
+    {
+      description: `당첨 번호 중 최솟값이 ${MIN_LOTTO_NUMBER} 이상인 경우`,
+      input: `${MIN_LOTTO_NUMBER},2,3,4,5,6`,
+    },
+    {
+      description: `당첨 번호 중 최댓값이 ${MAX_LOTTO_NUMBER} 이하인 경우`,
+      input: `40,41,42,43,44,${MAX_LOTTO_NUMBER}`,
+    },
+  ])("$description 정상적으로 통과해야한다.", ({ input }) => {
+    expect(() => {
+      validateWinningNumbers(input);
+    }).not.toThrow();
+  });
 });
