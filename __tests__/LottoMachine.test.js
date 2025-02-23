@@ -1,7 +1,6 @@
 import LottoMachine from '../src/Domain/Model/LottoMachine.js';
-
 import { LOTTO_DEFINITION } from '../src/Domain/Constant/definition.js';
-import { makeNotDuplicatedRandomNumbers } from '../src/Utils/math.js';
+import { makeNotDuplicatedRandomNumbers } from '../src/Utils/array.js';
 
 test('구입 금액에 해당하는 로또 장수를 구한다.', () => {
   const lottoMachine = new LottoMachine();
