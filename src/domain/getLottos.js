@@ -1,17 +1,18 @@
-import { LOTTO } from '../constants/messages.js';
+import { LOTTO_SYSTEM } from '../constants/messages.js';
+import Lotto from './Lotto.js';
 
 export const getLottos = (quantity) => {
   const lottos = [];
   Array.from({ length: quantity }, () => {
-    const lotto = generateLotto();
-    lottos.push(lotto);
+    const numbers = generateLotto();
+    lottos.push(new Lotto(numbers));
   });
 
   return lottos;
 };
 
 export const generateLotto = () => {
-  const numbers = Array.from({ length: LOTTO.MAX_LOTTO_NUMBER }, (_, index) => index + 1);
+  const numbers = Array.from({ length: LOTTO_SYSTEM.MAX_LOTTO_NUMBER }, (_, index) => index + 1);
 
   const shuffle = (arr) => {
     const array = [...arr];
