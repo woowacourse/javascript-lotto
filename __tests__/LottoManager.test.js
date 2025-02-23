@@ -3,13 +3,14 @@ import WinningLotto from '../src/Domain/Model/WinningLotto.js';
 import Lotto from '../src/Domain/Model/Lotto.js';
 import { LOTTO_PRIZE_MONEY_DEFINITION } from '../src/Domain/Constant/definition.js';
 
-test('로또 6장 구매해서 1,2,3,4,5,6등 각각 1번씩 당첨된 내역을 반환한다.', () => {
+test('로또 7장 구매해서 1등,2등,3등,4등,5등,6등,당첨안됨 각각 1번씩 당첨된 내역을 반환한다.', () => {
   const lottoList = [
     new Lotto([1, 2, 3, 4, 5, 6]),
     new Lotto([1, 2, 3, 4, 5, 7]),
     new Lotto([1, 2, 3, 4, 5, 8]),
     new Lotto([1, 2, 3, 4, 8, 9]),
     new Lotto([1, 2, 3, 8, 9, 10]),
+    new Lotto([1, 2, 7, 8, 9, 10]),
   ];
   const winningLotto = new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), 7);
 
@@ -22,7 +23,7 @@ test('로또 6장 구매해서 1,2,3,4,5,6등 각각 1번씩 당첨된 내역을
     THIRD_PRIZE: 1,
     FOURTH_PRIZE: 1,
     FIFTH_PRIZE: 1,
-    NONE: 0,
+    NONE: 1,
   });
 });
 
