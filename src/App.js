@@ -14,7 +14,7 @@ import {
   validateYorN,
 } from './View/Validation/inputView.js';
 import Lotto from './Domain/Model/Lotto.js';
-import LottoManager from './Domain/Model/LottoManager.js';
+import LottoMachine from './Domain/Model/LottoMachine.js';
 import WinningLotto from './Domain/Model/WinningLotto.js';
 import { outputView } from './View/outputView.js';
 class App {
@@ -79,13 +79,12 @@ class App {
   async run() {
     const purchaseAmount = await this.#initializePurchaseAmount();
 
-    const lottoManager = new LottoManager();
-    const lottoCounts = lottoManager.purchaseLotto(purchaseAmount);
+    const lottoMachine = new LottoMachine();
+    const lottoCounts = lottoMachine.purchaseLotto(purchaseAmount);
+    lottoMachine.makeLottoList(lottoCounts);
 
     outputView.printLottoCount(lottoCounts);
-
-    lottoManager.makeLottoList(lottoCounts);
-    outputView.printLottoList(lottoManager.getLottoNumbersList());
+    outputView.printLottoList(lottoMachine.getLottoNumbersList());
 
     const winningNumbers = await this.#initializeWinningNumbers();
     const bonusNumber = await this.#initializeBonusNumber(winningNumbers);
@@ -94,9 +93,10 @@ class App {
       new Lotto(winningNumbers),
       bonusNumber,
     );
-    const lottoResult = lottoManager.compareWinningLotto(winningLotto);
-    const totalLottoPrize = lottoManager.calculatePrize(lottoResult);
-    const lottoProfit = lottoManager.calculateProfit(
+
+    const lottoResult = lottoMachine.compareWinningLotto(winningLotto);
+    const totalLottoPrize = lottoMachine.calculatePrize(lottoResult);
+    const lottoProfit = lottoMachine.calculateProfit(
       totalLottoPrize,
       purchaseAmount,
     );

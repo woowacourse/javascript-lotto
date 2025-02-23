@@ -7,7 +7,7 @@ import Lotto from './Lotto.js';
 import { sortAscending } from '../../Utils/sorting.js';
 import { makeNotDuplicatedRandomNumbers } from '../../Utils/math.js';
 
-class LottoManager {
+class LottoMachine {
   #lottoList;
 
   constructor() {}
@@ -84,4 +84,4 @@ class LottoManager {
   }
 }
 
-export default LottoManager;
+export default LottoMachine;

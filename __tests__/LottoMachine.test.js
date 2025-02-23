@@ -1,4 +1,4 @@
-import LottoManager from '../src/Domain/Model/LottoManager.js';
+import LottoMachine from '../src/Domain/Model/LottoMachine.js';
 import WinningLotto from '../src/Domain/Model/WinningLotto.js';
 import Lotto from '../src/Domain/Model/Lotto.js';
 import {
@@ -9,18 +9,18 @@ import {
 import { makeNotDuplicatedRandomNumbers } from '../src/Utils/math.js';
 
 test('구입 금액에 해당하는 로또 장수를 구한다.', () => {
-  const lottoManager = new LottoManager();
+  const lottoMachine = new LottoMachine();
   const purchaseMoney = 5000;
-  const lottoCount = lottoManager.purchaseLotto(purchaseMoney);
+  const lottoCount = lottoMachine.purchaseLotto(purchaseMoney);
   expect(lottoCount).toBe(5);
 });
 
 test('로또 장수에 따라 여러 장 발행한다.', () => {
   const purchaseMoney = 4000;
-  const lottoManager = new LottoManager();
-  const lottoCount = lottoManager.purchaseLotto(purchaseMoney);
-  lottoManager.makeLottoList(lottoCount);
-  expect(lottoManager.getLottoNumbersList().length).toBe(4);
+  const lottoMachine = new LottoMachine();
+  const lottoCount = lottoMachine.purchaseLotto(purchaseMoney);
+  lottoMachine.makeLottoList(lottoCount);
+  expect(lottoMachine.getLottoNumbersList().length).toBe(4);
 });
 
 test('로또 1장당 범위내에서 중복되지 않는 랜덤한 번호 6개를 만든다.', () => {
@@ -104,8 +104,8 @@ test('수익률을 반환한다.', () => {
     NONE: 0,
   };
 
-  const lottoManager = new LottoManager();
-  const prize = lottoManager.calculatePrize(result);
+  const lottoMachine = new LottoMachine();
+  const prize = lottoMachine.calculatePrize(result);
   expect(prize).toBe(
     LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE +
       LOTTO_PRIZE_MONEY_DEFINITION.THIRD_PRIZE,

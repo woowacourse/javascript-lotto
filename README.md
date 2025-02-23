@@ -26,7 +26,7 @@ javascript-lotto
 ├─ README.md
 ├─ __tests__
 │  ├─ Lotto.test.js
-│  ├─ LottoManager.test.js
+│  ├─ LottoMachine.test.js
 │  └─ WinningLotto.test.js
 ├─ eslint.config.js
 ├─ index.html
@@ -40,7 +40,7 @@ javascript-lotto
    │  │  └─ definition.js : 로또 규칙
    │  └─ Model
    │     ├─ Lotto.js : 로또
-   │     ├─ LottoManager.js : 로또 매니저
+   │     ├─ LottoMachine.js : 로또 기계 (로또 구매 및 발행)
    │     └─ WinningLotto.js : 당첨 로또
    ├─ Utils
    │  ├─ math.js : 무작위 수 생성, 중복되지 않는 수 생성
