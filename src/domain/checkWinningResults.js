@@ -1,4 +1,3 @@
-import updateMatchResult from "./updateMatchResult.js";
 import checkRank from "./checkRank.js";
 
 /**
@@ -15,22 +14,22 @@ const checkWinningResults = (lottos, result) => {
   const { winningNumbers, bonusNumber } = result;
 
   lottos.forEach((lotto) =>
-    updateMatchResult(lotto, winningNumbers, bonusNumber),
+    lotto.updateMatchResult(winningNumbers, bonusNumber)
   );
 
   return lottos
     .map((lotto) =>
-      checkRank(lotto.matchResult.matchCount, lotto.matchResult.isBonusMatched),
+      checkRank(lotto.matchResult.matchCount, lotto.matchResult.isBonusMatched)
     )
     .filter(Boolean)
     .reduce(
       (acc, result) => ({
         totalReward: acc.totalReward + result.REWARD,
         resultCount: acc.resultCount.map((count, index) =>
-          index === result.RANK ? count + 1 : count,
+          index === result.RANK ? count + 1 : count
         ),
       }),
-      { totalReward: 0, resultCount: new Array(6).fill(0) },
+      { totalReward: 0, resultCount: new Array(6).fill(0) }
     );
 };
 

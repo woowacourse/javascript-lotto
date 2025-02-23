@@ -1,10 +1,6 @@
-import {
-  updateBonusMatched,
-  updateMatchCount,
-} from "../../src/domain/updateMatchResult.js";
 import Lotto from "../../src/models/Lotto.js";
 
-describe("domain/updateMatchResult", () => {
+describe("models/Lotto", () => {
   describe("updateMatchCount", () => {
     test("당첨번호와 로또 인스턴스를 받아서 매칭 개수를 반환한다.", () => {
       // Given
@@ -12,7 +8,7 @@ describe("domain/updateMatchResult", () => {
       const myLotto = new Lotto([1, 2, 3, 4, 5, 6]);
 
       // When
-      const result = updateMatchCount(myLotto, winningNumbers);
+      const result = myLotto.updateMatchCount(winningNumbers);
 
       // Then
       expect(result).toBe(6);
@@ -25,7 +21,7 @@ describe("domain/updateMatchResult", () => {
       const myLotto = new Lotto([1, 2, 3, 4, 5, 6]);
 
       // When
-      const result = updateBonusMatched(myLotto, bonusNumber);
+      const result = myLotto.updateBonusMatched(bonusNumber);
 
       // Then
       expect(result).toBe(true);

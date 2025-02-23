@@ -10,6 +10,32 @@ class Lotto {
     };
   }
 
+  updateMatchCount = (winningNumbers) => {
+    const myLottoNumber = this.#numbers;
+
+    winningNumbers.forEach((winningNumber) => {
+      if (myLottoNumber.includes(winningNumber)) {
+        this.incrementWinningNumbers();
+      }
+    });
+
+    return this.#matchResult.matchCount;
+  };
+
+  updateBonusMatched = (bonusNumber) => {
+    const myLottoNumber = this.#numbers;
+    if (myLottoNumber.includes(bonusNumber)) {
+      this.markBonusMatched();
+      return true;
+    }
+    return false;
+  };
+
+  updateMatchResult = (winningNumbers, bonusNumber) => {
+    this.updateMatchCount(winningNumbers);
+    this.updateBonusMatched(bonusNumber);
+  };
+
   get numbers() {
     return this.#numbers;
   }
