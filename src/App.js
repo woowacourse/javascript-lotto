@@ -85,7 +85,7 @@ class App {
     outputView.printLottoCount(lottoCounts);
 
     lottoManager.makeLottoList(lottoCounts);
-    outputView.printLottoList(lottoManager.getLottoList());
+    outputView.printLottoList(lottoManager.getLottoNumbersList());
 
     const winningNumbers = await this.#initializeWinningNumbers();
     const bonusNumber = await this.#initializeBonusNumber(winningNumbers);

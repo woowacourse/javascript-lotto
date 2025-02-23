@@ -4,9 +4,9 @@ export const outputView = {
   printLottoCount(lottoCounts) {
     console.log(`${lottoCounts}개를 구매했습니다.`);
   },
-  printLottoList(lottoList) {
-    lottoList.forEach((lotto) => {
-      console.log(`[${lotto.getNumbers().join(', ')}]`);
+  printLottoList(lottoNumbersList) {
+    lottoNumbersList.forEach((lottoNumbers) => {
+      console.log(`[${lottoNumbers.join(', ')}]`);
     });
     console.log('');
   },

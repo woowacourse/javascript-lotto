@@ -23,15 +23,15 @@ class LottoManager {
         {
           min: LOTTO_DEFINITION.MIN_NUMBER,
           max: LOTTO_DEFINITION.MAX_NUMBER,
-        }
+        },
       );
       sortAscending(numbers);
       return new Lotto(numbers);
     });
   }
 
-  getLottoList() {
-    return this.#lottoList;
+  getLottoNumbersList() {
+    return this.#lottoList.map((lotto) => lotto.getNumbers());
   }
 
   compareWinningLotto(winningLotto) {
@@ -44,10 +44,10 @@ class LottoManager {
       NONE: 0,
     };
     const matchingCounts = this.#lottoList.map((lotto) =>
-      winningLotto.countMatchingNumbers(lotto)
+      winningLotto.countMatchingNumbers(lotto),
     );
     const hasBonusNumbers = this.#lottoList.map((lotto) =>
-      winningLotto.checkBonusNumber(lotto)
+      winningLotto.checkBonusNumber(lotto),
     );
     matchingCounts.forEach((counts, index) => {
       const hasBonusNumber = hasBonusNumbers[index];
@@ -75,10 +75,11 @@ class LottoManager {
   calculatePrize(result) {
     return Object.entries(result).reduce(
       (acc, [key, count]) => acc + LOTTO_PRIZE_MONEY_DEFINITION[key] * count,
-      0
+      0,
     );
   }
   calculateProfit(totalLottoPrize, purchaseAmount) {
+    //TODO: 수익률 반환 test 만들어야함
     return (totalLottoPrize / purchaseAmount) * 100;
   }
 }

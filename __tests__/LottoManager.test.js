@@ -20,7 +20,7 @@ test('로또 장수에 따라 여러 장 발행한다.', () => {
   const lottoManager = new LottoManager();
   const lottoCount = lottoManager.purchaseLotto(purchaseMoney);
   lottoManager.makeLottoList(lottoCount);
-  expect(lottoManager.getLottoList().length).toBe(4);
+  expect(lottoManager.getLottoNumbersList().length).toBe(4);
 });
 
 test('로또 1장당 범위내에서 중복되지 않는 랜덤한 번호 6개를 만든다.', () => {
