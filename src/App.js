@@ -80,13 +80,11 @@ class App {
 
   async run() {
     const purchaseAmount = await this.#initializePurchaseAmount();
-
-    const lottoMachine = new LottoMachine();
-    const lottoCounts = lottoMachine.purchaseLotto(purchaseAmount);
-    lottoMachine.makeLottoList(lottoCounts);
+    const { lottoCounts, lottoNumbersList, lottoList } =
+      this.buyLottos(purchaseAmount);
 
     outputView.printLottoCount(lottoCounts);
-    outputView.printLottoList(lottoMachine.getLottoNumbersList());
+    outputView.printLottoList(lottoNumbersList);
 
     const winningNumbers = await this.#initializeWinningNumbers();
     const bonusNumber = await this.#initializeBonusNumber(winningNumbers);
@@ -96,20 +94,33 @@ class App {
       bonusNumber,
     );
 
-    const lottoManager = new LottoManager(
+    const { lottoResult, lottoProfit } = this.getLottoResult(
       winningLotto,
-      lottoMachine.getLottoList(),
+      lottoList,
     );
-
-    const lottoResult = lottoManager.compareWinningLotto();
-    const totalLottoPrize = lottoManager.calculatePrize(lottoResult);
-    const lottoProfit = lottoManager.calculateProfit(totalLottoPrize);
 
     outputView.printLottoResultInstruction();
     outputView.printLottoResult(lottoResult);
     outputView.printProfit(lottoProfit);
 
     await this.retryRun();
+  }
+
+  buyLottos(purchaseAmount) {
+    const lottoMachine = new LottoMachine();
+    const lottoCounts = lottoMachine.purchaseLotto(purchaseAmount);
+    lottoMachine.makeLottoList(lottoCounts);
+    const lottoNumbersList = lottoMachine.getLottoNumbersList();
+    const lottoList = lottoMachine.getLottoList();
+    return { lottoCounts, lottoNumbersList, lottoList };
+  }
+
+  getLottoResult(winningLotto, lottoList) {
+    const lottoManager = new LottoManager(winningLotto, lottoList);
+    const lottoResult = lottoManager.compareWinningLotto();
+    const totalLottoPrize = lottoManager.calculatePrize(lottoResult);
+    const lottoProfit = lottoManager.calculateProfit(totalLottoPrize);
+    return { lottoResult, lottoProfit };
   }
 
   async retryRun() {
