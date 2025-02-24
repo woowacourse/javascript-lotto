@@ -62,14 +62,17 @@ function ResultRow(type, prize, count) {
   resultRow.className = 'result-rows';
 
   const typeOfMatch = document.createElement('div');
+  typeOfMatch.className = 'result-col';
   typeOfMatch.innerText = type;
   resultRow.appendChild(typeOfMatch);
 
   const winningPrize = document.createElement('div');
+  winningPrize.className = 'result-col';
   winningPrize.innerText = prize;
   resultRow.appendChild(winningPrize);
 
   const matchCounts = document.createElement('div');
+  matchCounts.className = 'result-col';
   matchCounts.innerText = count;
   resultRow.appendChild(matchCounts);
 
