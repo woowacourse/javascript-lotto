@@ -23,6 +23,15 @@
   border-radius: 5px;
 }
 
+.close-button {
+  background-color: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  padding: 6px 6px;
+}
+
 .result-header {
   font-size: 18px;
   font-weight: bold;
