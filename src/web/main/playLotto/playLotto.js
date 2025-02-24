@@ -58,7 +58,7 @@ export default function PlayLotto() {
           validateWinningNumbers(winningNumbersArray.join(','));
           validateBonusNumber(bonusNumber.value, winningNumbersArray);
 
-          ResultDashboard(playLotto);
+          ResultDashboard(playLotto, matchCounts);
         } catch (error) {
           alert(error.message);
         }
