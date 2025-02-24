@@ -21,7 +21,7 @@ class LottoGame {
   playLotto(lottos, result) {
     const { winningNumbers, bonusNumber } = result;
 
-    const gameResults = lottos
+    return lottos
       .map((lotto) => {
         const { matchCount, isBonusMatched } = lotto.getMatchResult(
           winningNumbers,
@@ -30,11 +30,6 @@ class LottoGame {
         return this.checkRank(matchCount, isBonusMatched);
       })
       .filter(Boolean);
-
-    return {
-      totalReward: this.calcTotalReward(gameResults),
-      rankCount: this.getRankCount(gameResults),
-    };
   }
 
   checkRank(matchCount, isBonusMatched) {

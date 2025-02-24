@@ -18,10 +18,12 @@ const lottoController = async (price) => {
   const winningNumbers = await getWinningNumbers();
   const bonusNumber = await getBonusNumber(winningNumbers);
 
-  const { rankCount, totalReward } = lottoGame.playLotto(lottos, {
+  const gameResults = lottoGame.playLotto(lottos, {
     winningNumbers,
     bonusNumber,
   });
+  const totalReward = lottoGame.calcTotalReward(gameResults);
+  const rankCount = lottoGame.getRankCount(gameResults);
 
   printResult(formatResults(rankCount));
   printProfitRate(price, totalReward);

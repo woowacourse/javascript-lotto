@@ -63,18 +63,24 @@ describe("models/LottoGame", () => {
   });
 
   describe("playLotto()", () => {
-    test("당첨된 로또에 맞춰 총상금액과 총 당첨의 개수를 반환한다.", () => {
+    test("당첨된 로또들에 맞춰 결과를 반환한다.", () => {
       //given
       const myLotto = [new Lotto([1, 2, 3, 4, 5, 6])];
       const result = { winningNumbers: [1, 2, 3, 4, 5, 7], bonusNumber: 6 };
       const lottoGame = new LottoGame();
 
       //when
-      const { rankCount, totalReward } = lottoGame.playLotto(myLotto, result);
+      const gameResults = lottoGame.playLotto(myLotto, result);
 
       //then
-      expect(rankCount).toEqual([0, 0, 1, 0, 0, 0]);
-      expect(totalReward).toBe(30_000_000);
+      expect(gameResults).toEqual([
+        {
+          RANK: 2,
+          WINNING_CRITERIA: 5,
+          BONUS_MATCHED: true,
+          REWARD: 30_000_000,
+        },
+      ]);
     });
 
     test("매치된 숫자와 보너스 매치 여부에 따라 등수를 반환한다.", () => {
