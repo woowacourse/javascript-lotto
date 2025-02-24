@@ -29,7 +29,7 @@ class LottoMaker {
   }
 
   get lottoList() {
-    return this.#lottoList;
+    return [...this.#lottoList];
   }
 }
 
