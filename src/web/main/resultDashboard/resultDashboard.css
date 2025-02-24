@@ -1,6 +1,6 @@
 .result-background {
   width: 100vw;
-  height: 200vh;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px 10px;
   border-radius: 5px;
@@ -19,7 +19,7 @@
   padding: 30px 10px;
   z-index: 11;
   position: absolute;
-  top: 50%;
+  top: 15%;
   border-radius: 5px;
 }
 
@@ -45,10 +45,11 @@
 }
 
 .result-rows {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: space-evenly;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
   gap: 80px;
   font-weight: bold;
   padding: 0 20px;
@@ -56,6 +57,8 @@
 
 .result-col {
   font-weight: bold;
+  text-align: center;
+  width: 120px;
 }
 
 .divider-line {
