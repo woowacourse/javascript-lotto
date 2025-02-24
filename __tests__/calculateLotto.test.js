@@ -1,6 +1,7 @@
 import {
   calculateLottoTickets,
   calculateLottoPrize,
+  calculateLottoProfit,
 } from '../src/Utils/calculateLotto';
 import { LOTTO_PRIZE_MONEY_DEFINITION } from '../src/Domain/Constant/definition.js';
 
@@ -10,7 +11,7 @@ test('구입 금액에 해당하는 로또 장수를 구한다.', () => {
   expect(lottoCount).toBe(5);
 });
 
-test('수익률을 반환한다.', () => {
+test('수익금을 반환한다.', () => {
   const result = {
     FIRST_PRIZE: 1,
     SECOND_PRIZE: 0,
@@ -24,4 +25,11 @@ test('수익률을 반환한다.', () => {
     LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE +
       LOTTO_PRIZE_MONEY_DEFINITION.THIRD_PRIZE
   );
+});
+
+test('수익률을 반환한다.', () => {
+  const totalLottoPrize = LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE;
+  const purchaseAmount = 1000;
+  const profit = calculateLottoProfit(totalLottoPrize, purchaseAmount);
+  expect(profit).toBe(LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE / 10);
 });
