@@ -71,6 +71,10 @@ body {
   cursor: pointer;
 }
 
+.lotto-history-list {
+  padding: 0;
+}
+
 .lotto-history-item {
   list-style-type: none;
   padding: 0px;
