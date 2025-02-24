@@ -1,4 +1,4 @@
-import { PROMPT_MESSAGE } from "../../../constants/message.js";
+import { PROMPT_MESSAGE } from "../../../../constants/message.js";
 import "./lottoNumbersBox.css";
 
 const createLottoNumbersBox = (lottoNumbers) => {

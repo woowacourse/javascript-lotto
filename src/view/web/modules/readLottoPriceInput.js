@@ -1,6 +1,6 @@
 import { generateLottoNumberSets } from "../../../lotto/index.js";
 import { validateLottoPrice } from "../../../validation/index.js";
-import createLottoNumbersBox from "../layers/createLottoNumbersBox.js";
+import createLottoNumbersBox from "../layers/lottoNumbersBox/createLottoNumbersBox.js";
 
 const readLottoPriceInput = () => {
   const purchaseForm = document.getElementById("gameBox-purchaseInput-form");
