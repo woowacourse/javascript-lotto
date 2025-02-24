@@ -1,0 +1,6 @@
+#lottoGame {
+  width: fit-content;
+  border: 1px solid var(--lotto-greyscale-5-12);
+  background-color: var(--lotto-greyscale-1);
+  border-radius: 4px;
+}
