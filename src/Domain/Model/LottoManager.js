@@ -14,7 +14,7 @@ class LottoManager {
   }
 
   getLottoList() {
-    return this.#lottoList;
+    return [...this.#lottoList];
   }
 
   makeLottoList(lottoTickets) {
