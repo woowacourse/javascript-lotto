@@ -1,6 +1,7 @@
 import { generateLottoNumberSets } from "../../../lotto/index.js";
 import { validateLottoPrice } from "../../../validation/index.js";
 import createLottoBox from "../layers/lottoBox/createLottoBox.js";
+import createWinningLottoBox from "../layers/winningLottoBox/createWinningLottoBox.js";
 
 const readLottoPriceInput = () => {
   const purchaseForm = document.getElementById("gameBox-purchaseInput-form");
@@ -9,9 +10,11 @@ const readLottoPriceInput = () => {
     event.preventDefault();
 
     const lottoBox = document.getElementById("lotto-container");
+    const winningLottoBox = document.getElementById("winningLotto-container");
 
-    if (lottoBox) {
+    if (lottoBox && winningLottoBox) {
       lottoBox.remove();
+      winningLottoBox.remove();
     }
 
     const priceInput = document.getElementById("gameBox-price").value;
@@ -19,6 +22,7 @@ const readLottoPriceInput = () => {
     const lottoNumbers = generateLottoNumberSets(validPrice);
 
     createLottoBox(lottoNumbers);
+    createWinningLottoBox();
   });
 };
 
