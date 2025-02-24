@@ -36,7 +36,7 @@ export default class {
       const $lottoResult = document.querySelectorAll(".hidden");
 
       $lottoResult.forEach(($el) => {
-        $el.className = "show";
+        $el.classList.add("show");
       });
     });
 
