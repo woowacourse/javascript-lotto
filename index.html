@@ -4,12 +4,38 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
     <title>Document</title>
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+    <div id="app" class="header">
+      <h1 class="header-title">🎱 행운의 로또</h1>
+    </div>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🎱 내 번호 당첨 확인 🎱</div>
+        </div>
+        <div class="card-content">
+          <div class="purchase-container">
+            <div class="purchase-text">구입할 금액을 입력해주세요.</div>
+            <div class="input-container">
+              <form>
+                <input class="input" placeholder="금액"></input>
+                <button class="purchase-button">구입</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
