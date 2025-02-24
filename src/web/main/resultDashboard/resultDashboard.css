@@ -9,3 +9,8 @@
   top: 0;
   left: 0;
 }
+
+.result-header {
+  font-size: 18px;
+  font-weight: bold;
+}
