@@ -1,4 +1,5 @@
 import { LOTTO_STATUS } from "../constants/lotto.js";
+import countMatchingNumbers from "../utils/countMatchingNumbers.js";
 
 class LottoStatus {
   #issuedLottoNumbers;
@@ -29,15 +30,9 @@ class LottoStatus {
       .filter((status) => status);
   }
 
-  #countMatchingNumbers(numbers) {
-    return numbers.filter((number) =>
-      this.#enteredLottoNumbers.includes(number)
-    ).length;
-  }
-
   #getMatchingCounts() {
     return this.#issuedLottoNumbers.map((numbers) => {
-      return this.#countMatchingNumbers(numbers);
+      return countMatchingNumbers(numbers, this.#enteredLottoNumbers);
     });
   }
 
@@ -47,6 +42,7 @@ class LottoStatus {
 
   #getHasBonusNumbers() {
     return this.#issuedLottoNumbers.map((numbers) => {
+      return this.#hasBonusNumber(numbers);
       return this.#hasBonusNumber(numbers);
     });
   }
