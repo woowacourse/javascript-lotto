@@ -9,23 +9,38 @@ import {
   validateBonusNumber,
   validatePurchaseAmount,
   validateWinningNumbers,
-  validateRestart,
 } from "./util/validate.js";
 import retryAsync from "./util/retryAsync.js";
 
 const purchase = async () => {
+  const { purchaseAmount, lottoNumbers } = await handlePurchase();
+  const winningRanks = await handleWinningNumbers(lottoNumbers);
+  handleResult(purchaseAmount, winningRanks);
+};
+
+const handlePurchase = async () => {
   const purchaseAmount = await retryAsync(getPurchaseAmount);
   const quantity = purchaseAmount / PRICE.UNIT;
+
   OutputView.printQuantity(quantity);
   const lottoNumbers = generateLottoNumbers(quantity);
   displayLottoNumbers(lottoNumbers);
 
+  return { purchaseAmount, lottoNumbers };
+};
+
+const handleWinningNumbers = async (lottoNumbers) => {
   const winningAndBonus = await readWinningNumbersAndBonusNumber();
   const winningRanks = Ranking.countWinningRanks(lottoNumbers, winningAndBonus);
+
   OutputView.printWinningDetailTitle();
   const rankKeys = Object.keys(winningRanks).reverse();
   OutputView.printWinningDetail(winningRanks, rankKeys);
 
+  return winningRanks;
+};
+
+const handleResult = (purchaseAmount, winningRanks) => {
   const totalPrize = Calculator.getTotalPrize(winningRanks);
   const yieldRate = Calculator.getYieldRate(purchaseAmount, totalPrize);
   OutputView.printYieldRate(yieldRate);
