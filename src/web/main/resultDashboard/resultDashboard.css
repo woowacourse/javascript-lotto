@@ -14,3 +14,10 @@
   font-size: 18px;
   font-weight: bold;
 }
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
