@@ -1,4 +1,4 @@
-import LottoResult from '../src/domain/LottoResult.js';
+import LottoResult from '../../src/domain/LottoResult.js';
 
 describe('LottoResult 클래스 테스트', () => {
   test('addRankingCount 메서드를 사용하면 등수 카운트가 증가한다', () => {

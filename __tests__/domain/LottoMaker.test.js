@@ -1,5 +1,5 @@
-import LottoMaker from '../src/domain/LottoMaker.js';
-import { LOTTO_CONDITION } from '../src/constants/constants.js';
+import LottoMaker from '../../src/domain/LottoMaker.js';
+import { LOTTO_CONDITION } from '../../src/constants/constants.js';
 
 describe('LottoMaker 클래스 테스트', () => {
   let lottoMaker;

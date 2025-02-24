@@ -1,5 +1,5 @@
-import validateBonusNumber from '../src/validations/validate/BonusNumberValidate.js';
-import { BONUS_NUMBER_ERROR_MESSAGES, LOTTO_CONDITION } from '../src/constants/constants.js';
+import validateBonusNumber from '../../src/validations/validate/BonusNumberValidate.js';
+import { BONUS_NUMBER_ERROR_MESSAGES, LOTTO_CONDITION } from '../../src/constants/constants.js';
 
 const winningNumbers = [1, 2, 3, 4, 5, 6];
 

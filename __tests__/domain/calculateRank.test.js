@@ -1,4 +1,4 @@
-import { calculateRank } from '../src/domain/calculateRank.js';
+import { calculateRank } from '../../src/domain/calculateRank.js';
 
 describe('calculateRank 함수 테스트', () => {
   test.each([
