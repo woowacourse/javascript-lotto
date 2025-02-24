@@ -1,3 +1,4 @@
+import { LOTTO_MATCH_CRITERIA } from "./constants/systemConstants.js";
 import SYSTEM_MESSAGE from "./constants/systemMessage.js";
 import WinningLotto from "./domain/WinningLotto.js";
 import { getRetryInput, getBonusNumber, getPrice, getWinningNumber } from "./service/InputService.js";
@@ -26,9 +27,9 @@ const calculateMatchingResult = (winningLotto, lottoArray) => {
   lottoArray.forEach((lotto) => {
     const matchingCount = lotto.match(winningLotto).length;
 
-    if (matchingCount < 3) return;
+    if (matchingCount < LOTTO_MATCH_CRITERIA.MIN_MATCH_COUNT) return;
 
-    if (matchingCount === 5 && lotto.has(winningLotto.bonusNumber)) {
+    if (matchingCount === LOTTO_MATCH_CRITERIA.BONUS_MATCH_COUNT && lotto.has(winningLotto.bonusNumber)) {
       matchingResult["bonus"]++;
       return;
     }

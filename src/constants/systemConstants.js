@@ -13,3 +13,8 @@ export const LOTTO_PRIZE = {
   6: 2000000000,
   bonus: 30000000,
 };
+
+export const LOTTO_MATCH_CRITERIA = {
+  MIN_MATCH_COUNT: 3,
+  BONUS_MATCH_COUNT: 5,
+};
