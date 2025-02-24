@@ -13,10 +13,9 @@ class WinningLotto extends Lotto {
   }
 
   countMatchingNumbers(lotto) {
-    const matchingNumbers = this.getNumbers().filter((number) =>
-      lotto.getNumbers().includes(number)
-    ).length;
-    return matchingNumbers;
+    const winningNumbersSet = new Set(this.getNumbers());
+    return lotto.getNumbers().filter((number) => winningNumbersSet.has(number))
+      .length;
   }
 
   checkBonusNumber(lotto) {
