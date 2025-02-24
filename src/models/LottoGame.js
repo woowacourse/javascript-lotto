@@ -1,6 +1,23 @@
+import { LOTTO } from "../constants/lotto.js";
 import { PRIZE } from "../constants/prize.js";
+import Lotto from "./Lotto.js";
 
 class LottoGame {
+  generateLottos(price) {
+    const count = price / LOTTO.PRICE_STEP;
+    return Array.from(
+      { length: count },
+      () =>
+        new Lotto(
+          this.generateLottoNumbers(
+            LOTTO.MIN_LOTTO_NUMBER,
+            LOTTO.MAX_LOTTO_NUMBER,
+            LOTTO.LOTTO_NUMBER_COUNT
+          )
+        )
+    );
+  }
+
   playLotto(lottos, result) {
     const { winningNumbers, bonusNumber } = result;
 
@@ -50,6 +67,16 @@ class LottoGame {
         ),
       new Array(6).fill(0)
     );
+  }
+
+  generateLottoNumbers(min, max, count) {
+    const numbers = new Set();
+
+    while (numbers.size < count) {
+      numbers.add(Math.floor(Math.random() * (max - min + 1)) + min);
+    }
+
+    return [...numbers].sort((a, b) => a - b);
   }
 }
 export default LottoGame;
