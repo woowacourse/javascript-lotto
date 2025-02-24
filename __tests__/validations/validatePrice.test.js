@@ -1,8 +1,7 @@
-import { ERROR_MESSAGE } from "../../src/constants/error.js";
 import {
   isNumber,
-  isThousandUnit,
   isValidPriceRange,
+  isValidPriceUnit,
 } from "../../src/validations/validatePrice.js";
 
 describe("validations/validatePrice", () => {
@@ -23,13 +22,13 @@ describe("validations/validatePrice", () => {
   test("1000원 단위로 입력한다.", () => {
     const input = 1000;
 
-    expect(isThousandUnit(input)).toBe(true);
+    expect(isValidPriceUnit(input)).toBe(true);
   });
 
   test("1000원 단위로 입력하지 않으면 에러를 출력한다.", () => {
     const input = 1500;
 
-    expect(isThousandUnit(input)).toBe(false);
+    expect(isValidPriceUnit(input)).toBe(false);
   });
 
   test("1000원 이상 10만원 이하여야 한다.", () => {

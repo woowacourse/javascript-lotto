@@ -7,7 +7,7 @@ export const isNumber = (input) => {
   return regex.test(input);
 };
 
-export const isThousandUnit = (input) => {
+export const isValidPriceUnit = (input) => {
   return input % LOTTO.PRICE_STEP == 0;
 };
 
