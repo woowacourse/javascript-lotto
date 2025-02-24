@@ -17,7 +17,7 @@ import {
   hasDuplicateBonusNumber,
   isYorN,
 } from './validateUtils.js';
-import { convertFormat } from './View/utils.js';
+import { convertFormat } from './View/Utils/utils.js';
 
 class Validator {
   static validateEmptySpace = (input) => {

@@ -1,4 +1,4 @@
-import readLineAsync from './readLineAsync.js';
+import readLineAsync from './Utils/readLineAsync.js';
 import { INPUT_MESSAGE } from './Constant/query.js';
 
 export const getPurchaseAmountInput = () => {

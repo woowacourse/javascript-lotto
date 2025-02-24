@@ -1,4 +1,4 @@
-import { readUserInputUntilSuccess } from './View/utils.js';
+import { readUserInputUntilSuccess } from './View/Utils/utils.js';
 import {
   getPurchaseAmountInput,
   getBonusNumberInput,
