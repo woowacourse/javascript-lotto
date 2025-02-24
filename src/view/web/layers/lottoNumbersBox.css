@@ -1,0 +1,8 @@
+.lotto-numbers-container {
+  width: 238px;
+
+  display: flex;
+  flex-direction: column;
+
+  list-style-type: none;
+}

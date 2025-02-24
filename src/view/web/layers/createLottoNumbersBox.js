@@ -1,3 +1,5 @@
+import "./lottoNumbersBox.css";
+
 const createLottoNumbersBox = (lottoNumbers) => {
   const gameBox = document.getElementsByClassName("gameBox-container")[0];
   const ul = document.createElement("ul");
@@ -5,9 +7,11 @@ const createLottoNumbersBox = (lottoNumbers) => {
 
   lottoNumbers.forEach((numbers, index) => {
     const li = document.createElement("li");
+    li.className = "lotto-numbers";
     li.id = `lotto-numbers-${index}`;
 
     const span = document.createElement("span");
+    span.className = "lotto-icon";
     span.id = `lotto-icon-${index}`;
     span.append("🎟️");
 
