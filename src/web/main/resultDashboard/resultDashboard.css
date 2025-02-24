@@ -4,10 +4,22 @@
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px 10px;
   border-radius: 5px;
-  z-index: 10;
+  z-index: 5;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.result-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  z-index: 11;
+  position: absolute;
+  top: 50%;
+  border-radius: 5px;
 }
 
 .result-header {
@@ -22,12 +34,22 @@
   justify-content: center;
 }
 
-.result-cols {
+.result-rows {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  font-weight: bold;
+  padding: 0 20px;
+}
+
+.result-col {
   font-weight: bold;
 }
 
 .divider-line {
-  width: 100%;
+  width: 95%;
   border: 1px solid #b4b4b4;
   margin: 10px 0;
 }
