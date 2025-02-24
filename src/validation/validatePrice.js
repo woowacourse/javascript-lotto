@@ -8,8 +8,8 @@ const checkEmptyInput = (priceInput) => {
   }
 };
 
-const checkIsNumber = (priceInput) => {
-  if (!validationCondition.isNumber(priceInput)) {
+const checkisInteger = (priceInput) => {
+  if (!validationCondition.isInteger(priceInput)) {
     throw new Error(PRICE_ERROR_MESSAGE.NUMBER);
   }
 };
@@ -25,6 +25,6 @@ const checkDivisiblePrice = (priceInput) => {
     throw new Error(PRICE_ERROR_MESSAGE.INDIVISIBLE);
   }
 };
-const validatePrice = (priceInput) => runValidators([checkEmptyInput, checkIsNumber, checkUnderPrice, checkDivisiblePrice], priceInput);
+const validatePrice = (priceInput) => runValidators([checkEmptyInput, checkisInteger, checkUnderPrice, checkDivisiblePrice], priceInput);
 
 export default validatePrice;

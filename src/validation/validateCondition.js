@@ -1,8 +1,8 @@
 import { LOTTO_PRICE } from "../constants/systemConstants.js";
 import { LOTTO_NUMBERS } from "../constants/systemConstants.js";
 const validationCondition = {
-  isNumber(input) {
-    return !isNaN(input);
+  isInteger(input) {
+    return Number.isInteger(Number(input));
   },
   isEmpty(input) {
     return input === "" || input.length === 0;
