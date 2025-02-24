@@ -45,7 +45,7 @@ export default function PlayLotto() {
 
       const { winningNumbersArray, bonusNumber } = WinningNumbers(playLotto);
 
-      const matchCounts = getWinningMatchCount(ramdomlottos, {
+      const matchCounts = getWinningMatchCount(randomlottos, {
         winningNumbers: winningNumbersArray,
         bonusNumber: bonusNumber.value,
       });
