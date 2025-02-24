@@ -4,8 +4,9 @@ class Lotto {
   constructor(numbers) {
     this.#numbers = numbers;
   }
+
   getNumbers() {
-    return this.#numbers;
+    return [...this.#numbers];
   }
 }
 
