@@ -9,11 +9,11 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
 
     // when
     const lottoStatus = new LottoStatus({
-      issuedLottoNumbers,
       enteredLottoNumbers,
       bonusLottoNumber,
     });
-    const matchedLottoStatus = lottoStatus.getMatchedLottoStatus();
+    const matchedLottoStatus =
+      lottoStatus.getMatchedLottoStatus(issuedLottoNumbers);
 
     // then
     expect(matchedLottoStatus).toEqual([expect.objectContaining({ RANK: 2 })]);
@@ -27,11 +27,11 @@ describe("발행한 로또 번호와 입력한 로또 번호의 일치 갯수를
 
     // when
     const lottoStatus = new LottoStatus({
-      issuedLottoNumbers,
       enteredLottoNumbers,
       bonusLottoNumber,
     });
-    const matchedLottoStatus = lottoStatus.getMatchedLottoStatus();
+    const matchedLottoStatus =
+      lottoStatus.getMatchedLottoStatus(issuedLottoNumbers);
 
     // then
     expect(matchedLottoStatus).toEqual([expect.objectContaining({ RANK: 3 })]);

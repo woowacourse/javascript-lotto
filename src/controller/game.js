@@ -20,12 +20,13 @@ const game = async () => {
   Output.print(OUTPUT.WINNING_HISTORY);
   Output.print(OUTPUT.LINE);
 
+  const issuedLottoNumbers = lottos.map((lotto) => lotto.getLottoNumbers());
   const lottoStatus = new LottoStatus({
-    issuedLottoNumbers: lottos.map((lotto) => lotto.getLottoNumbers()),
     enteredLottoNumbers: winningLotto.getLottoNumbers(),
     bonusLottoNumber,
   });
-  const matchedlottoStatus = lottoStatus.getMatchedLottoStatus();
+  const matchedlottoStatus =
+    lottoStatus.getMatchedLottoStatus(issuedLottoNumbers);
 
   const lottoResult = new LottoResult(matchedlottoStatus, price);
   const lottoHistory = lottoResult.getWinningHistory();

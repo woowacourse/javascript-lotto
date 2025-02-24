@@ -7,31 +7,28 @@ class LottoStatus {
   #bonusLottoNumber;
   #matchedLottoStatus;
 
-  constructor({ issuedLottoNumbers, enteredLottoNumbers, bonusLottoNumber }) {
-    this.#issuedLottoNumbers = issuedLottoNumbers;
+  constructor({ enteredLottoNumbers, bonusLottoNumber }) {
     this.#enteredLottoNumbers = enteredLottoNumbers;
     this.#bonusLottoNumber = bonusLottoNumber;
-    this.#matchedLottoStatus = [];
-    this.#matchLottoStatus();
   }
 
-  getMatchedLottoStatus() {
-    return this.#matchedLottoStatus;
+  getMatchedLottoStatus(issuedLottoNumbers) {
+    return this.#matchLottoStatus(issuedLottoNumbers);
   }
 
-  #matchLottoStatus() {
-    const matchingCounts = this.#getMatchingCounts();
-    const isBonusArray = this.#getHasBonusNumbers();
+  #matchLottoStatus(issuedLottoNumbers) {
+    const matchingCounts = this.#getMatchingCounts(issuedLottoNumbers);
+    const isBonusArray = this.#getHasBonusNumbers(issuedLottoNumbers);
 
-    this.#matchedLottoStatus = matchingCounts
+    return matchingCounts
       .map((matchCount, index) =>
         this.#getLottoStatus(matchCount, isBonusArray[index])
       )
       .filter((status) => status);
   }
 
-  #getMatchingCounts() {
-    return this.#issuedLottoNumbers.map((numbers) => {
+  #getMatchingCounts(issuedLottoNumbers) {
+    return issuedLottoNumbers.map((numbers) => {
       return countMatchingNumbers(numbers, this.#enteredLottoNumbers);
     });
   }
@@ -40,9 +37,8 @@ class LottoStatus {
     return numbers.includes(this.#bonusLottoNumber);
   }
 
-  #getHasBonusNumbers() {
-    return this.#issuedLottoNumbers.map((numbers) => {
-      return this.#hasBonusNumber(numbers);
+  #getHasBonusNumbers(issuedLottoNumbers) {
+    return issuedLottoNumbers.map((numbers) => {
       return this.#hasBonusNumber(numbers);
     });
   }

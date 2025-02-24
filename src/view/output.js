@@ -20,13 +20,13 @@ const Output = {
       );
       if (Number(rank) === 2) {
         return console.log(
-          `${MATCH_COUNT}개 일치, 보너스 볼 일치(${REWORD.toLocaleString(
+          `${MATCH_COUNT}개 일치, 보너스 볼 일치(${REWARD.toLocaleString(
             "ko-KR"
           )}원) - ${count}개`
         );
       }
       console.log(
-        `${MATCH_COUNT}개 일치 (${REWORD.toLocaleString(
+        `${MATCH_COUNT}개 일치 (${REWARD.toLocaleString(
           "ko-KR"
         )}원) - ${count}개`
       );
