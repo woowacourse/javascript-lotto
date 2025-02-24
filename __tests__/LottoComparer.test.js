@@ -19,11 +19,10 @@ beforeEach(() => {
 test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.", () => {
   const winningNumbers = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
-  const winningLotto = {
-    winningNumbers: winningNumbers,
-    bonusNumber: bonusNumber,
-  };
-  const countResults = lottoComparer.countMatchingNumbers(winningLotto);
+  const countResults = lottoComparer.countMatchingNumbers(
+    winningNumbers,
+    bonusNumber
+  );
 
   expect(countResults).toEqual([6, 5, "bonus", 4, 3]);
 });

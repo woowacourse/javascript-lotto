@@ -17,14 +17,13 @@ beforeEach(() => {
   ];
   const winningNumbers = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
-  const winningLotto = {
-    winningNumbers: winningNumbers,
-    bonusNumber: bonusNumber,
-  };
 
   lottoComparer = new LottoComparer(lottos);
 
-  const countResults = lottoComparer.countMatchingNumbers(winningLotto);
+  const countResults = lottoComparer.countMatchingNumbers(
+    winningNumbers,
+    bonusNumber
+  );
   lottoPrize = new LottoPrize(countResults);
   lottoPrize.calculateWinnings(countResults);
 });

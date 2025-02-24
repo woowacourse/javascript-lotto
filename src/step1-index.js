@@ -8,8 +8,9 @@ import LottoComparer from "../src/domain/LottoComparer.js";
 import { printUserLottos, printResult } from "../src/view/output.js";
 import {
   inputAskForRestart,
+  inputBonusNumber,
   inputPrice,
-  inputWinningLotto,
+  inputWinningNumbers,
 } from "../src/view/input.js";
 import LottoPrize from "./domain/LottoPrize.js";
 
@@ -18,9 +19,14 @@ async function run() {
   const lottos = LottoManager.generateLottos(price);
   printUserLottos(price, lottos);
 
-  const winningLotto = await inputWinningLotto();
+  const winningNumbers = await inputWinningNumbers();
+  const bonusNumber = await inputBonusNumber(winningNumbers);
+
   const lottoComparer = new LottoComparer(lottos);
-  const countResults = lottoComparer.countMatchingNumbers(winningLotto);
+  const countResults = lottoComparer.countMatchingNumbers(
+    winningNumbers,
+    bonusNumber
+  );
   const lottoPrize = new LottoPrize(countResults);
   lottoPrize.calculateWinnings();
 

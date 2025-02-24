@@ -1,5 +1,3 @@
-import { LOTTO } from "../config/const";
-
 class Lotto {
   #numbers;
 
@@ -15,6 +13,10 @@ class Lotto {
       }
       return acc;
     }, 0);
+  }
+
+  compareBonusNumbers(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
   }
 
   get numbers() {

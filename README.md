@@ -46,3 +46,4 @@
 - [x] UserLotto에서 #price 인스턴스 제거
 - [x] UserLotto 클래스 명 변경 또는 함수로 변경
   - LottoManager 클래스로 변경 및 static 함수로 사용
+- [x] countMatchingNumbers 함수 로직 분리
