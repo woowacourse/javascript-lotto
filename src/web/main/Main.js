@@ -1,4 +1,4 @@
-import lottoDashboard from './lottoDashboard/lottoDashboard';
+import lottoDashboard from './lottoDashboard/LottoDashboard';
 import './main.css';
 
 export default function Main() {
