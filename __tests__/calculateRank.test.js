@@ -1,13 +1,13 @@
 import { calculateRank } from '../src/domain/calculateRank.js';
 
-describe('로또 등수 판별 테스트', () => {
+describe('calculateRank 함수 테스트', () => {
   test.each([
     [6, false, 1],
     [5, true, 2],
     [5, false, 3],
     [4, false, 4],
     [3, false, 5],
-  ])(`등수가 일치한지 판별`, (matchCount, isBonusMatch, rank) => {
+  ])(`일치하는 개수(%i)와 보너스 여부(%s)에 따라 등수가 %i인지 확인한다`, (matchCount, isBonusMatch, rank) => {
     expect(calculateRank(matchCount, isBonusMatch)).toBe(rank);
   });
 });
