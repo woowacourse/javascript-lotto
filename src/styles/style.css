@@ -28,6 +28,8 @@ body {
 .lotto-winning-result-container {
   height: 700px;
   width: 400px;
+  display: flex;
+  flex-direction: column;
   margin: 20px 0 20px 0;
   margin: 0 auto;
   padding: 16px;
@@ -88,12 +90,19 @@ body {
   font-size: 20px;
 }
 
+.lotto-winning-info-form {
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .hidden {
   visibility: hidden;
 }
 
 .show {
-  display: block;
+  visibility: visible;
 }
 
 .full-button {
@@ -105,4 +114,32 @@ body {
   font-weight: bold;
   color: white;
   text-align: center;
+}
+
+.lotto-number-input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 27px;
+}
+
+.lotto-number-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bonus-input-wrap {
+  align-items: flex-end;
+}
+
+.lotto-numbers-wrap {
+  display: flex;
+  gap: 8px;
+}
+
+.number-input {
+  height: 36px;
+  width: 34px;
+  border-radius: 4px;
+  border: 1px solid var(--light-gray);
 }

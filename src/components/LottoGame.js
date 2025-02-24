@@ -3,6 +3,7 @@ import LottoPurchaseHistory from "./LottoPurchaseHistory.js";
 import LottoFactory from "../domain/LottoFactory.js";
 import { divideByUnit } from "../utils/count.js";
 import { PRICE } from "../constants/price.js";
+import LottoWinningInfoForm from "./LottoWinningInfoForm.js";
 
 export default class LottoGame {
   #target;
@@ -37,5 +38,6 @@ export default class LottoGame {
 
     new PurchaseForm($div, this.setLottoTransaction);
     new LottoPurchaseHistory($div, countNumber, lottos);
+    new LottoWinningInfoForm($div);
   }
 }
