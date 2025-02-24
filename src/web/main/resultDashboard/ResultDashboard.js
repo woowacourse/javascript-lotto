@@ -10,6 +10,8 @@ export default function ResultDashboard(playLotto, matchCounts, revenue) {
   ResultContainer(resultDashboard, matchCounts);
   Revenue(resultDashboard, revenue);
 
+  ReplayLottoButton(resultDashboard);
+
   playLotto.appendChild(resultBackground);
   playLotto.appendChild(resultDashboard);
 }
@@ -114,4 +116,15 @@ function Revenue(resultDashboard, revenue) {
   revenueTag.className = 'revenue';
   revenueTag.innerText = `당신의 총 수익률은 ${revenue}%입니다.`;
   resultDashboard.appendChild(revenueTag);
+}
+
+function ReplayLottoButton(resultDashboard) {
+  const replayLottoButton = document.createElement('button');
+  replayLottoButton.innerText = '다시 구매하기';
+  replayLottoButton.className = 'replay-lotto-button';
+  replayLottoButton.addEventListener('click', () => {
+    location.reload();
+  });
+
+  resultDashboard.appendChild(replayLottoButton);
 }
