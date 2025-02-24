@@ -19,8 +19,8 @@ const validatePrice = (input) => {
   if (!isNumber(input)) throw new Error(ERROR_MESSAGE.INVALID_NUMBER);
 
   const price = Number(input);
-  if (!isThousandUnit(price))
-    throw new Error(ERROR_MESSAGE.INVALID_THOUSAND_UNIT);
+  if (!isValidPriceUnit(price))
+    throw new Error(ERROR_MESSAGE.INVALID_PRICE_UNIT);
   if (!isValidPriceRange(price))
     throw new Error(ERROR_MESSAGE.INVALID_PRICE_RANGE);
 
