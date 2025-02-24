@@ -1,3 +1,4 @@
+import { calculateRevenue } from '../../../domain/calculateRevenue';
 import { getRandomLottos } from '../../../domain/getRandomLottos';
 import { getWinningMatchCount } from '../../../domain/getWinningMatchCount';
 import { LOTTO } from '../../../domain/lottoConstants';
@@ -57,7 +58,9 @@ export default function PlayLotto() {
             bonusNumber: bonusNumber.value,
           });
 
-          ResultDashboard(playLotto, matchCounts);
+          const revenue = calculateRevenue(matchCounts, priceInput.value);
+
+          ResultDashboard(playLotto, matchCounts, revenue);
         } catch (error) {
           alert(error.message);
         }
