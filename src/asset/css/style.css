@@ -12,13 +12,118 @@
   --lotto-greyscale-5-alpha: #0000001f;
 }
 
-body {
+app {
+  width: 100%;
+  height: 100%;
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+  z-index: 10;
+}
+
+#modal-background.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-box {
+  width: 350px;
+  height: 500px;
+  margin: 47px 16px 29px;
+  padding: 16px 16px;
+  border-radius: 4px;
+  background-color: #fff;
+  z-index: 99;
+}
+
+.close-modal-btn {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.modal-box .modal-content h2 {
+  font-weight: 600;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.modal-box table {
+  width: 100%;
+  margin-top: 33px;
+  border-top: 1px solid var(--lotto-greyscale-5-alpha);
+  border-bottom: 1px solid var(--lotto-greyscale-5-alpha);
+}
+.modal-box table tr {
+  height: 40px;
+}
+
+.modal-box table th {
+  font-size: 15px;
+  font-weight: 600;
+  line-heigth: 24px;
+  text-align: center;
+}
+
+.modal-box .modal-table-1th {
+  width: 96px;
+}
+
+.modal-box .modal-table-2th {
+  width: 134px;
+}
+
+.modal-box .modal-table-3th {
+  width: 72px;
+}
+
+.modal-box table td {
+  width: 23px;
+  height: 24px;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 1.6;
+  text-align: center;
+  border-top: 1px solid var(--lotto-greyscale-5-alpha);
+}
+
+.modal-box p {
+  margin-top: 32px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--lotto-greyscale-5);
+}
+
+.modal-box button {
+  width: 100%;
+  height: 36px;
+  text-align: center;
+  border-radius: 4px;
+  margin-top: 32px;
+  color: var(--lotto-greyscale-1);
+  background-color: var(--lotto-primary);
 }
 
 .header {
   width: 100%;
   height: 64px;
-  position: fixed;
+  position: sticky;
+  top: 0;
   background-color: var(--lotto-primary);
 }
 
@@ -52,6 +157,7 @@ container
   align-items: center;
   padding-top: 64px;
   padding-bottom: 80px;
+  //overflow: auto;
 }
 
 .lotto-box {
@@ -112,15 +218,50 @@ amount 시작
 
  */
 
+.lotto-results-box::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  //background-color: var(--lotto-primary-alpha);
+}
+
+/* 스크롤바 막대 꾸미기 */
+.lotto-results-box::-webkit-scrollbar-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--lotto-primary-alpha); /* 스크롤바 막대 색상 */
+  border-radius: 50px 50px 50px 50px;
+}
+
+.lotto-results-box::-webkit-scrollbar-thumb:hover {
+  background: var(--lotto-primary);
+}
+
+/* 스크롤바 트랙 꾸미기 */
+.lotto-results-box::-webkit-scrollbar-track {
+  width: 2px;
+  height: 2px;
+  //background-color: var(--lotto-primary-alpha);
+}
+
 .lotto-results-box {
   width: 100%;
   height: 276px;
-  overflow-y: auto;
   margin-top: 12px;
   margin-bottom: 24px;
+  display: flex;
+  gap: 40px;
+  flex-direction: row;
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.lotto-results-box ul {
+  width: 200px;
+  height: 264px;
 }
 
 .lotto-results-box ul li {
+  width: 200px;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
@@ -152,6 +293,7 @@ winning 시작
   width: 34px;
   height: 36px;
   font-size: 15px;
+  text-align: center;
   border-radius: 4px;
   border: solid 1px #b4b4b4;
 }
@@ -178,7 +320,6 @@ winning 시작
   color: var(--lotto-greyscale-1);
 }
 |
-
 /* 
 
 
@@ -196,7 +337,7 @@ footer {
   display: block;
   width: 100%;
   height: 80px;
-  position: fixed;
+  position: sticky;
   bottom: 0px;
   background-color: var(--lotto-greyscale-1);
   border-top: 1px solid var(--lotto-primary-alpha);
