@@ -48,3 +48,5 @@
   - LottoManager 클래스로 변경 및 static 함수로 사용
 - [x] countMatchingNumbers 함수 로직 분리
 - [x] filter를 사용해서 일치하는 로또 번호 갯수 구하기
+- [x] 일치 개수 + 보너스 일치 여부만 판단
+- [x] 일치 판단기준 변환

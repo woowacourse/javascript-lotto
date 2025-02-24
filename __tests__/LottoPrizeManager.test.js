@@ -14,22 +14,26 @@ beforeEach(() => {
     new Lotto([1, 7, 8, 9, 10, 11]),
   ];
   lottoPrize = new LottoPrize(lottos);
-  const winningNumbers = [1, 2, 3, 4, 5, 6];
-  const bonusNumber = 7;
-  lottoPrize.calculateWinnings(winningNumbers, bonusNumber);
 });
 
 test("당첨 내역을 계산한다.", () => {
-  expect(lottoPrize.prizeResult).toEqual({
-    firstPrize: 1,
-    secondPrize: 1,
-    thirdPrize: 1,
-    fourthPrize: 1,
-    fifthPrize: 1,
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
+  const bonusNumber = 7;
+  const prizeResult = lottoPrize.calculateWinnings(winningNumbers, bonusNumber);
+  expect(prizeResult).toEqual({
+    6: 1,
+    "5+bonus": 1,
+    5: 1,
+    4: 1,
+    3: 1,
   });
 });
 
 test("로또 수익률을 게산한다", () => {
   const price = 7000;
-  expect(lottoPrize.calculateROI(price)).toBe("29022114.29");
+  const winningNumbers = [1, 2, 3, 4, 5, 6];
+  const bonusNumber = 7;
+  const prizeResult = lottoPrize.calculateWinnings(winningNumbers, bonusNumber);
+
+  expect(lottoPrize.calculateROI(price, prizeResult)).toBe("29022114.29");
 });

@@ -12,15 +12,15 @@ const printLottoCount = (price) => {
 };
 
 const prizeSummary = [
-  { count: "3개", prize: LOTTO.PRIZES.fifth, label: "fifthPrize" },
-  { count: "4개", prize: LOTTO.PRIZES.fourth, label: "fourthPrize" },
-  { count: "5개", prize: LOTTO.PRIZES.third, label: "thirdPrize" },
+  { count: "3개", prize: LOTTO.PRIZES.fifth, label: 3 },
+  { count: "4개", prize: LOTTO.PRIZES.fourth, label: 4 },
+  { count: "5개", prize: LOTTO.PRIZES.third, label: 5 },
   {
     count: "5개 + 보너스 볼",
     prize: LOTTO.PRIZES.second,
-    label: "secondPrize",
+    label: "5+bonus",
   },
-  { count: "6개", prize: LOTTO.PRIZES.first, label: "firstPrize" },
+  { count: "6개", prize: LOTTO.PRIZES.first, label: 6 },
 ];
 
 const printResult = (prizeResult, ROI) => {

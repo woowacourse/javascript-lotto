@@ -22,9 +22,9 @@ async function run() {
   const bonusNumber = await inputBonusNumber(winningNumbers);
 
   const lottoPrize = new LottoPrize(lottos);
-  lottoPrize.calculateWinnings(winningNumbers, bonusNumber);
+  const prizeResult = lottoPrize.calculateWinnings(winningNumbers, bonusNumber);
 
-  printResult(lottoPrize.prizeResult, lottoPrize.calculateROI(price));
+  printResult(prizeResult, lottoPrize.calculateROI(price, prizeResult));
 
   const isRestart = await inputAskForRestart();
   if (isRestart === "y") return await run();

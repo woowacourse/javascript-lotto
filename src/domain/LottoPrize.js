@@ -1,79 +1,73 @@
 import { LOTTO, MIN_MATCH_COUNT } from "../config/const.js";
 
 class LottoPrize {
-  #prizeResult;
   #lottos;
 
   constructor(lottos) {
     this.#lottos = lottos;
-    this.#prizeResult = {
-      firstPrize: 0,
-      secondPrize: 0,
-      thirdPrize: 0,
-      fourthPrize: 0,
-      fifthPrize: 0,
-    };
-  }
-
-  get prizeResult() {
-    return this.#prizeResult;
   }
 
   calculateWinnings(winningNumbers, bonusNumber) {
-    const countResults = this.#calculateMatchingCount(
-      winningNumbers,
-      bonusNumber
+    const matchingCountResult = this.#calculateMatchingCount(winningNumbers);
+    const bonusChanceResult = this.#calculateBonusChance(bonusNumber);
+    return matchingCountResult.reduce(
+      (acc, curr, index) => {
+        acc[this.#determineMatchResult(curr, bonusChanceResult[index])] += 1;
+        return acc;
+      },
+      {
+        6: 0,
+        "5+bonus": 0,
+        5: 0,
+        4: 0,
+        3: 0,
+      }
     );
-    countResults.reduce((acc, cur) => {
-      acc[this.#switchCountToPrize(cur)] += 1;
-      return acc;
-    }, this.#prizeResult);
   }
 
-  calculateROI(price) {
-    if (this.#calculateTotalPrize() === 0) return 0;
-    return (((this.#calculateTotalPrize() - price) / price) * 100).toFixed(2);
+  calculateROI(price, prizeResult) {
+    if (this.#calculateTotalPrize(prizeResult) === 0) return 0;
+
+    return (
+      ((this.#calculateTotalPrize(prizeResult) - price) / price) *
+      100
+    ).toFixed(2);
   }
 
-  #calculateMatchingCount(winningNumbers, bonusNumber) {
+  #calculateMatchingCount(winningNumbers) {
     return this.#lottos.reduce((acc, curr) => {
       const matchingCount = curr.compareMatchingNumbers(winningNumbers);
-      const isBonus = curr.compareBonusNumbers(bonusNumber);
-
-      return matchingCount < MIN_MATCH_COUNT
-        ? acc
-        : [...acc, matchingCount === 5 && isBonus ? "bonus" : matchingCount];
+      return matchingCount < MIN_MATCH_COUNT ? acc : [...acc, matchingCount];
     }, []);
   }
 
-  #switchCountToPrize(countResult) {
-    switch (countResult) {
-      case 3:
-        return "fifthPrize";
-      case 4:
-        return "fourthPrize";
-      case 5:
-        return "thirdPrize";
-      case "bonus":
-        return "secondPrize";
-      case 6:
-        return "firstPrize";
-    }
+  #calculateBonusChance(bonusNumber) {
+    return this.#lottos.reduce((acc, curr) => {
+      const isBonus = curr.compareBonusNumbers(bonusNumber);
+      return [...acc, isBonus];
+    }, []);
   }
 
-  #calculateTotalPrize() {
-    return Object.keys(this.#prizeResult).reduce((acc, curr) => {
+  #determineMatchResult(matchCount, bonusMatchResult) {
+    if (matchCount === 5 && bonusMatchResult) {
+      return "5+bonus";
+    }
+    return matchCount;
+  }
+
+  #calculateTotalPrize(prizeResult) {
+    return Object.keys(prizeResult).reduce((acc, curr) => {
       switch (curr) {
-        case "firstPrize":
-          return acc + LOTTO.PRIZES.first * this.#prizeResult[curr];
-        case "secondPrize":
-          return acc + LOTTO.PRIZES.second * this.#prizeResult[curr];
-        case "thirdPrize":
-          return acc + LOTTO.PRIZES.third * this.#prizeResult[curr];
-        case "fourthPrize":
-          return acc + LOTTO.PRIZES.fourth * this.#prizeResult[curr];
-        case "fifthPrize":
-          return acc + LOTTO.PRIZES.fifth * this.#prizeResult[curr];
+        case "6":
+          return acc + LOTTO.PRIZES.first * prizeResult[curr];
+        case "5+bonus":
+          return acc + LOTTO.PRIZES.second * prizeResult[curr];
+        case "5":
+          return acc + LOTTO.PRIZES.third * prizeResult[curr];
+        case "4":
+          return acc + LOTTO.PRIZES.fourth * prizeResult[curr];
+        case "3":
+          return acc + LOTTO.PRIZES.fifth * prizeResult[curr];
       }
     }, 0);
   }
