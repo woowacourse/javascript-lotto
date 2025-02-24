@@ -8,12 +8,14 @@ class LottoTicket {
     this.#lottos = this.#generateLottos(price);
   }
 
+  #generateRandomNumber() {
+    return Math.floor(Math.random() * LOTTO.RANGE.max) + LOTTO.RANGE.min;
+  }
+
   #getRandomNumbers() {
     let randomNumbers = new Set();
     while (randomNumbers.size < LOTTO.maxLength) {
-      randomNumbers.add(
-        Math.floor(Math.random() * LOTTO.RANGE.max) + LOTTO.RANGE.min
-      );
+      randomNumbers.add(this.#generateRandomNumber());
     }
     return [...randomNumbers];
   }
