@@ -10,6 +10,9 @@
   </head>
   <body>
     <div id="app">
+      <div id="modal-background">
+
+      </div>
       <header class="header">
         <nav>
           <h1><a href="#">🎱 행운의 로또</a></h1>
@@ -42,6 +45,42 @@
               <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
               <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
              </ul>
+             <ul>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+             </ul>
+             <ul>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+             </ul>
+             <ul>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+             </ul>
+             <ul>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
+             </ul>
            </div>
            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
 
@@ -51,22 +90,22 @@
               <div class="winning-box">
                 <label>당첨 번호</label>
                 <div>
-                  <input type="text" id="winning1" class="winning-number">
-                  <input type="text" id="winning2" class="winning-number">
-                  <input type="text" id="winning3" class="winning-number">
-                  <input type="text" id="winning4" class="winning-number">
-                  <input type="text" id="winning5" class="winning-number">
-                  <input type="text" id="winning6" class="winning-number">
+                  <input type="text" id="winning1" class="winning-number" maxlength='2'>
+                  <input type="text" id="winning2" class="winning-number" maxlength='2'>
+                  <input type="text" id="winning3" class="winning-number" maxlength='2'>
+                  <input type="text" id="winning4" class="winning-number" maxlength='2'>
+                  <input type="text" id="winning5" class="winning-number" maxlength='2'>
+                  <input type="text" id="winning6" class="winning-number" maxlength='2'>
                 </div>
               </div>
               <div class="bonus-box">
                 <label>보너스 번호</label>
                 <div>
-                  <input type="text" id="bonus" class="winning-number">
+                  <input type="text" id="bonus" class="winning-number" maxlength='2'>
                 </div>
               </div>
             </div>
-             <button type="submit" class="btn-lotto-result">결과 확인하기</button>
+             <button type="submit" class="btn-lotto-result" id="open-modal-btn">결과 확인하기</button>
             </form>
           </div>
 
@@ -79,5 +118,6 @@
       </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
+    <script src="./src/modal.js" ></script>
   </body>
 </html>
