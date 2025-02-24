@@ -1,3 +1,4 @@
+import calcProfitRate from "../domain/calcProfitRate.js";
 import formatResults from "../domain/formatResults.js";
 import LottoGame from "../models/LottoGame.js";
 import {
@@ -33,7 +34,7 @@ const lottoController = async () => {
   const rankCount = lottoGame.getRankCount(gameResults);
 
   printResult(formatResults(rankCount));
-  printProfitRate(price, totalReward);
+  printProfitRate(calcProfitRate(price, totalReward));
 
   if (await getRestart()) lottoController();
 };

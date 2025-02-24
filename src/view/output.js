@@ -20,7 +20,6 @@ export const printResult = (result) => {
   });
 };
 
-export const printProfitRate = (price, reward) => {
-  const rate = (reward / price) * 100;
-  console.log(`총 수익률은 ${commaizeNumber(rate.toFixed(2))}%입니다.`);
+export const printProfitRate = (profitRate) => {
+  console.log(`총 수익률은 ${commaizeNumber(profitRate.toFixed(2))}%입니다.`);
 };
