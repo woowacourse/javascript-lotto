@@ -27,7 +27,6 @@ const readLottoPriceInput = () => {
 const checkPrice = (priceInput) => {
   try {
     const price = Number(priceInput);
-    console.log(price);
     validateLottoPrice(price);
     return price;
   } catch (error) {
