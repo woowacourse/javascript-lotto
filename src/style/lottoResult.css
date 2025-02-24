@@ -19,9 +19,61 @@
 
 #lottoResult .inner {
   min-width: 318px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
 }
 
 #lottoResult .title {
   display: flex;
   justify-content: center;
+}
+
+#lottoResult .statistics {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#lottoResult .statistics .name {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-top: 1px solid var(--lotto-greyscale-5-12);
+  border-bottom: 1px solid var(--lotto-greyscale-5-12);
+}
+
+#lottoResult .statistics .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--lotto-greyscale-5-12);
+}
+
+#lottoResult .statistics .match_count {
+  min-width: 89px;
+  text-align: center;
+}
+
+#lottoResult .statistics .price {
+  min-width: 100px;
+  text-align: center;
+}
+
+#lottoResult .statistics .winning_count {
+  min-width: 61px;
+  text-align: center;
+}
+
+#lottoResult .profit_rate {
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+#lottoResult #restartButton {
+  padding: 10px 0;
+  width: 100%;
 }
