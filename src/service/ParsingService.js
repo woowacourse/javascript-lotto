@@ -7,15 +7,19 @@ import checkLottoPurchase from '../Validation/checkLottoPurchase.js';
 import checkUserRetry from '../Validation/checkUserRetry.js';
 import { LOTTO_PRICE } from '../constants/MagicNumber.js';
 
-async function getPurchasePrice() {
+async function getPurchasePrice(inputMethod) {
   try {
-    const purchasePrice = await readLineAsync(INPUT_MESSAGE.getPurchasePrice);
+    const purchasePrice = await inputMethod();
     const purchaseAmount = checkLottoPurchase(purchasePrice) / LOTTO_PRICE;
     printPurchasedAmount(purchaseAmount);
     return { purchasePrice, purchaseAmount };
   } catch (error) {
     printError(error.message);
-    return await getPurchasePrice();
+    if (typeof window === 'undefined') {
+      printError(error.message);
+      return await getPurchasePrice();
+    }
+    return;
   }
 }
 async function getWinningNumber() {
