@@ -1,4 +1,5 @@
 import { getRandomLottos } from '../../../domain/getRandomLottos';
+import { getWinningMatchCount } from '../../../domain/getWinningMatchCount';
 import { LOTTO } from '../../../domain/lottoConstants';
 import { validateBonusNumber, validateWinningNumbers } from '../../../validation/validateLottoNumbers';
 import randomLottos from '../randomLottos/RandomLottos';
@@ -43,6 +44,11 @@ export default function PlayLotto() {
       playLotto.appendChild(winningNumberInputHeader);
 
       const { winningNumbersArray, bonusNumber } = WinningNumbers(playLotto);
+
+      const matchCounts = getWinningMatchCount(ramdomlottos, {
+        winningNumbers: winningNumbersArray,
+        bonusNumber: bonusNumber.value,
+      });
 
       const resultButton = document.createElement('button');
       resultButton.innerText = '결과 확인하기';
