@@ -25,7 +25,7 @@ class Lotto {
     return numbers.length === LOTTO_NUMBERS.LENGTH;
   }
   isRangeValid(numbers) {
-    return !numbers.some((number) => number < 1 || number > 45);
+    return !numbers.some((number) => number < LOTTO_NUMBERS.MIN || number > LOTTO_NUMBERS.MAX);
   }
   isDistinct(numbers) {
     return new Set(numbers).size === numbers.length;
