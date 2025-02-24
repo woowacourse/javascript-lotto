@@ -1,4 +1,6 @@
 #lotto-container {
+  width: 238px;
+  height: 276px;
   margin: 28px 0;
 
   display: flex;
