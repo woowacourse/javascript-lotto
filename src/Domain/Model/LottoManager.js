@@ -51,13 +51,13 @@ class LottoManager {
     );
     matchingCounts.forEach((counts, index) => {
       const hasBonusNumber = hasBonusNumbers[index];
-      const lottoResult = this.#checkCondition(hasBonusNumber, counts);
+      const lottoResult = this.#countLottoResult(hasBonusNumber, counts);
       result[lottoResult] += 1;
     });
     return result;
   }
 
-  #checkCondition(hasBonusNumber, counts) {
+  #countLottoResult(hasBonusNumber, counts) {
     if (counts === 6) {
       return LOTTO_PRIZE_DEFINITION.FIRST_PRIZE;
     } else if (counts === 5 && hasBonusNumber) {
