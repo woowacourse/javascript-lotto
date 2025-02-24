@@ -30,14 +30,10 @@ class LottoManager {
   }
 
   compareWinningLotto(winningLotto) {
-    const result = {
-      FIRST_PRIZE: 0,
-      SECOND_PRIZE: 0,
-      THIRD_PRIZE: 0,
-      FOURTH_PRIZE: 0,
-      FIFTH_PRIZE: 0,
-      NONE: 0,
-    };
+    const result = Object.values(LOTTO_PRIZE_DEFINITION).reduce(
+      (acc, prize) => ({ ...acc, [prize]: 0 }),
+      {}
+    );
     const matchingCounts = this.#lottoList.map((lotto) =>
       winningLotto.countMatchingNumbers(lotto)
     );
