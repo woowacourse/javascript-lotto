@@ -1,4 +1,5 @@
 import getRandomNumber from "./util/random.js";
+import Lotto from "./Lotto.js";
 import { LOTTO } from "./constant/lotto.js";
 
 const generateLotto = () => {
@@ -12,7 +13,7 @@ const generateLotto = () => {
     lotto.add(randomNumber);
   }
 
-  return sortLottoNumbers(Array.from(lotto));
+  return new Lotto(sortLottoNumbers(Array.from(lotto)));
 };
 
 const sortLottoNumbers = (numbers) => {

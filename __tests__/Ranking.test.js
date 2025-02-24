@@ -1,13 +1,14 @@
+import Lotto from "../src/Lotto.js";
 import Ranking from "../src/Ranking.js";
 import { KEYS, WINNING } from "../src/constant/lotto.js";
 
 describe("Ranking", () => {
   test.each([
-    [[[1, 2, 3, 4, 5, 6]], 1, "1등"],
-    [[[1, 2, 3, 4, 5, 9]], 1, "2등"],
-    [[[1, 2, 3, 4, 5, 10]], 1, "3등"],
-    [[[1, 2, 3, 4, 7, 10]], 1, "4등"],
-    [[[1, 2, 3, 8, 7, 10]], 1, "5등"],
+    [[new Lotto([1, 2, 3, 4, 5, 6])], 1, "1등"],
+    [[new Lotto([1, 2, 3, 4, 5, 9])], 1, "2등"],
+    [[new Lotto([1, 2, 3, 4, 5, 10])], 1, "3등"],
+    [[new Lotto([1, 2, 3, 4, 7, 10])], 1, "4등"],
+    [[new Lotto([1, 2, 3, 8, 7, 10])], 1, "5등"],
   ])("일치하는 개수에 맞는 등수의 값이 증가한다.", (lottos, expected, key) => {
     const winningRanks = Ranking.countWinningRanks(lottos, {
       winning: [1, 2, 3, 4, 5, 6],
@@ -18,11 +19,11 @@ describe("Ranking", () => {
   });
 
   test("보너스 번호 일치", () => {
-    expect(Ranking.hasBonus([1, 2, 3, 4, 5, 6], 6)).toBe(true);
+    expect(new Lotto([1, 2, 3, 4, 5, 6]).hasBonus(3)).toBe(true);
   });
 
   test("보너스 번호 불일치", () => {
-    expect(Ranking.hasBonus([1, 2, 3, 4, 5, 6], 7)).toBe(false);
+    expect(new Lotto([1, 2, 3, 4, 5, 6]).hasBonus(7)).toBe(false);
   });
 
   test.each([[WINNING[KEYS.SECOND].MATCH, false]])(

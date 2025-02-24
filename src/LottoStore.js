@@ -13,8 +13,8 @@ import {
 import retryAsync from "./util/retryAsync.js";
 
 const purchase = async () => {
-  const { purchaseAmount, lottoNumbers } = await handlePurchase();
-  const winningRanks = await handleWinningNumbers(lottoNumbers);
+  const { purchaseAmount, lottos } = await handlePurchase();
+  const winningRanks = await handleWinningNumbers(lottos);
   handleResult(purchaseAmount, winningRanks);
 };
 
@@ -23,15 +23,15 @@ const handlePurchase = async () => {
   const quantity = purchaseAmount / PRICE.UNIT;
 
   OutputView.printQuantity(quantity);
-  const lottoNumbers = generateLottoNumbers(quantity);
-  displayLottoNumbers(lottoNumbers);
+  const lottos = generateLottos(quantity);
+  displayLottoNumbers(lottos);
 
-  return { purchaseAmount, lottoNumbers };
+  return { purchaseAmount, lottos };
 };
 
-const handleWinningNumbers = async (lottoNumbers) => {
+const handleWinningNumbers = async (lottos) => {
   const winningAndBonus = await readWinningNumbersAndBonusNumber();
-  const winningRanks = Ranking.countWinningRanks(lottoNumbers, winningAndBonus);
+  const winningRanks = Ranking.countWinningRanks(lottos, winningAndBonus);
 
   OutputView.printWinningDetailTitle();
   const rankKeys = Object.keys(winningRanks).reverse();
@@ -67,13 +67,13 @@ const getBonusNumber = async (winningNumbers) => {
   return bonusNumber;
 };
 
-const generateLottoNumbers = (quantity) => {
+const generateLottos = (quantity) => {
   return Array.from({ length: quantity }, () => generateLotto());
 };
 
-const displayLottoNumbers = (lottoNumbers) => {
-  lottoNumbers.forEach((nums) => {
-    OutputView.printLotto(nums);
+const displayLottoNumbers = (lottos) => {
+  lottos.forEach((lotto) => {
+    OutputView.printLotto(lotto.numbers);
   });
 };
 

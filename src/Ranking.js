@@ -13,17 +13,13 @@ const Ranking = {
     };
 
     lottos.forEach((lotto) => {
-      const matchedCount = lotto.filter((num) => winning.includes(num)).length;
-      const hasBonus = this.hasBonus(lotto, bonus);
+      const matchedCount = lotto.getMatchedCount(winning);
+      const hasBonus = lotto.hasBonus(bonus);
       const matchedKey = this.getMatchedKey(matchedCount, hasBonus);
       Ranking[increaseCount](winningRanks, matchedKey);
     });
 
     return winningRanks;
-  },
-
-  hasBonus(lotto, bonus) {
-    return lotto.includes(bonus);
   },
 
   getMatchedKey(matchedCount, hasBonus) {

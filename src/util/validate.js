@@ -25,7 +25,7 @@ export const validateWinningNumbers = (numbers) => {
   const numbersArray = numbers
     .split(STRING.WINNNG_NUMBERS_SPLITTER)
     .map(Number);
-    
+
   if (numbersArray.length < LOTTO.LENGTH)
     throw new Error(ERROR_MESSAGE.LOTTO_LENGTH);
   if (numbersArray.some((num) => isNaN(num)))
@@ -34,7 +34,7 @@ export const validateWinningNumbers = (numbers) => {
     throw new Error(ERROR_MESSAGE.DUPLICATE_WINNING_NUMBER);
   if (
     numbersArray.some(
-      (num) => num < LOTTO.MIN_RANDOM_VALUE || num > LOTTO.MAX_RANDOM_VALUE
+      (num) => num < LOTTO.MIN_RANDOM_VALUE || num > LOTTO.MAX_RANDOM_VALUE,
     )
   )
     throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
