@@ -8,7 +8,7 @@ const OutputView = {
     console.error(error.message);
   },
   printLottoArray(lottoArray) {
-    lottoArray.forEach((lotto) => OutputView.print(lotto.numbers));
+    lottoArray.forEach((lotto) => OutputView.print(lotto.toString()));
   },
   printMatchingCount(matchingCount) {
     OutputView.print(SYSTEM_MESSAGE.WINNING_STATISTICS(matchingCount));

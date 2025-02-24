@@ -2,6 +2,7 @@ import { BONUS_NUMBER_ERROR_MESSAGE } from "../constants/errorMessage.js";
 import Lotto from "./Lotto.js";
 
 class WinningLotto {
+  #lotto;
   #bonusNumber;
 
   constructor(numbers, bonusNumber) {
@@ -11,9 +12,13 @@ class WinningLotto {
     if (!this.#isDistinct(numbers, bonusNumber)) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.DUPLICATE);
     }
-    this.lotto = new Lotto(numbers);
+    this.#lotto = new Lotto(numbers);
 
     this.#bonusNumber = bonusNumber;
+  }
+
+  has(number) {
+    return this.#lotto.has(number);
   }
 
   get bonusNumber() {

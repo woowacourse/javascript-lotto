@@ -1,30 +1,30 @@
 class LottoResult {
-  #winningNumbers;
+  #winningLotto;
   #bonusNumber;
-  #lottoNumbersList;
+  #lottoArray;
 
   constructor(winningLotto, lottoArray) {
-    this.#winningNumbers = winningLotto.numbers;
     this.#bonusNumber = winningLotto.bonusNumber;
-    this.#lottoNumbersList = lottoArray.map((lotto) => lotto.numbers);
+    this.#winningLotto = winningLotto;
+    this.#lottoArray = lottoArray;
   }
 
-  #isBonusMatched(lottoNumbers) {
-    return lottoNumbers.includes(this.#bonusNumber);
+  #isBonusMatched(lotto) {
+    return lotto.has(this.#bonusNumber);
   }
-  #calculateMatchCount(lottoNumbers) {
-    return lottoNumbers.filter((number) => this.#winningNumbers.includes(number)).length;
+  #calculateMatchCount(lotto) {
+    return lotto.match(this.#winningLotto).length;
   }
 
   calculateResult() {
     const lottoResult = { 3: 0, 4: 0, 5: 0, 6: 0, bonus: 0 };
 
-    this.#lottoNumbersList.forEach((lottoNumbers) => {
-      const matchingCount = this.#calculateMatchCount(lottoNumbers);
+    this.#lottoArray.forEach((lotto) => {
+      const matchingCount = this.#calculateMatchCount(lotto);
 
       if (matchingCount < 3) return;
 
-      if (matchingCount === 5 && this.#isBonusMatched(lottoNumbers)) {
+      if (matchingCount === 5 && this.#isBonusMatched(lotto)) {
         lottoResult["bonus"]++;
         return;
       }

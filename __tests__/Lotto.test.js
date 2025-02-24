@@ -10,15 +10,19 @@ describe("로또 객체 생성 테스트", () => {
   });
 
   test.each([
-    [1, 3, 5, 6, 7, 46],
-    [-2, 3, 4, 0, 56, 2],
+    [
+      [1, 3, 5, 6, 7, 46],
+      [-2, 3, 4, 0, 56, 2],
+    ],
   ])("로또 번호가 1에서 45 사이 값이 아닐 경우, 에러를 발생시킨다", (numbers) => {
     expect(() => new Lotto(numbers)).toThrow(LOTTO_NUMBERS_ERROR_MESSAGE.RANGE);
   });
 
   test.each([
-    [1, 3, 5, 6, 7, 45],
-    [10, 15, 20, 25, 30, 45],
+    [
+      [1, 3, 5, 6, 7, 45],
+      [10, 15, 20, 25, 30, 45],
+    ],
   ])("로또 번호가 1에서 45 사이 값이면, 정상적으로 생성된다", (numbers) => {
     expect(() => new Lotto(numbers)).not.toThrow();
   });
@@ -32,17 +36,3 @@ describe("로또 객체 생성 테스트", () => {
     expect(() => new Lotto(numbers)).toThrow(LOTTO_NUMBERS_ERROR_MESSAGE.DUPLICATE);
   });
 
-  test.each([
-    [
-      [1, 10, 3, 5, 15, 8],
-      [1, 3, 5, 8, 10, 15],
-    ],
-    [
-      [3, 16, 2, 10, 34, 39],
-      [2, 3, 10, 16, 34, 39],
-    ],
-  ])("로또 숫자는 오름차순으로 정렬되어야한다", (numbers, expectedNumbers) => {
-    const lotto = new Lotto(numbers);
-    expect(lotto.numbers).toEqual(expectedNumbers);
-  });
-});

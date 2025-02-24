@@ -17,8 +17,8 @@ class Lotto {
     this.#numbers = numbers.sort((a, b) => a - b);
   }
 
-  get numbers() {
-    return this.#numbers;
+  toString() {
+    return String(this.#numbers);
   }
 
   isLengthValid(numbers) {
@@ -29,6 +29,14 @@ class Lotto {
   }
   isDistinct(numbers) {
     return new Set(numbers).size === numbers.length;
+  }
+
+  has(number) {
+    return this.#numbers.includes(number);
+  }
+
+  match(lotto) {
+    return this.#numbers.filter((number) => lotto.has(number));
   }
 }
 
