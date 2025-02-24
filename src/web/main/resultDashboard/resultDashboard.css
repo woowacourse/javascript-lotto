@@ -66,6 +66,13 @@
 }
 
 .revenue {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
+  margin: 20px 0;
+}
+
+.replay-lotto-button {
+  width: 100%;
+  font-size: 18px;
+  margin-top: 20px;
 }
