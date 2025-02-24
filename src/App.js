@@ -4,7 +4,7 @@ import {
   getWinningNumbersInput,
   getRetryInput,
 } from './View/inputView.js';
-import { readUserInputUntilSuccess, convertFormat } from './View/utils.js';
+import { outputView } from './View/outputView.js';
 import {
   validateEmptySpace,
   validatePurchaseAmount,
@@ -13,9 +13,14 @@ import {
   validateBonusNumber,
   validateYorN,
 } from './View/Validation/inputView.js';
+import { readUserInputUntilSuccess, convertFormat } from './View/utils.js';
 import LottoManager from './Domain/Model/LottoManager.js';
 import WinningLotto from './Domain/Model/WinningLotto.js';
-import { outputView } from './View/outputView.js';
+import {
+  calculateLottoTickets,
+  calculateLottoPrize,
+  calculateLottoProfit,
+} from './Utils/calculateLotto.js';
 class App {
   async #initializePurchaseAmount() {
     const purchaseAmountInput = await readUserInputUntilSuccess({
@@ -75,11 +80,11 @@ class App {
     const purchaseAmount = await this.#initializePurchaseAmount();
 
     const lottoManager = new LottoManager();
-    const lottoCounts = lottoManager.purchaseLotto(purchaseAmount);
+    const lottoTickets = calculateLottoTickets(purchaseAmount);
 
-    outputView.printLottoCount(lottoCounts);
+    outputView.printLottoCount(lottoTickets);
 
-    lottoManager.makeLottoList(lottoCounts);
+    lottoManager.makeLottoList(lottoTickets);
     outputView.printLottoList(lottoManager.getLottoList());
 
     const winningNumbers = await this.#initializeWinningNumbers();
@@ -87,11 +92,8 @@ class App {
 
     const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     const lottoResult = lottoManager.compareWinningLotto(winningLotto);
-    const totalLottoPrize = lottoManager.calculatePrize(lottoResult);
-    const lottoProfit = lottoManager.calculateProfit(
-      totalLottoPrize,
-      purchaseAmount
-    );
+    const totalLottoPrize = calculateLottoPrize(lottoResult);
+    const lottoProfit = calculateLottoProfit(totalLottoPrize, purchaseAmount);
 
     outputView.printLottoResultInstruction();
     outputView.printLottoResult(lottoResult);

@@ -1,7 +1,6 @@
 import {
   LOTTO_DEFINITION,
   LOTTO_PRIZE_DEFINITION,
-  LOTTO_PRIZE_MONEY_DEFINITION,
 } from '../Constant/definition.js';
 import Lotto from './Lotto.js';
 import { sortAscending } from '../../Utils/sorting.js';
@@ -12,12 +11,12 @@ class LottoManager {
 
   constructor() {}
 
-  purchaseLotto(money) {
-    return money / LOTTO_DEFINITION.ONE_PRICE;
+  getLottoList() {
+    return this.#lottoList;
   }
 
-  makeLottoList(lottoCount) {
-    this.#lottoList = Array.from({ length: lottoCount }, () => {
+  makeLottoList(lottoTickets) {
+    this.#lottoList = Array.from({ length: lottoTickets }, () => {
       const numbers = makeNotDuplicatedRandomNumbers(
         LOTTO_DEFINITION.NUMBER_COUNTS,
         {
@@ -28,10 +27,6 @@ class LottoManager {
       sortAscending(numbers);
       return new Lotto(numbers);
     });
-  }
-
-  getLottoList() {
-    return this.#lottoList;
   }
 
   compareWinningLotto(winningLotto) {
@@ -71,15 +66,6 @@ class LottoManager {
     } else {
       return LOTTO_PRIZE_DEFINITION.NONE;
     }
-  }
-  calculatePrize(result) {
-    return Object.entries(result).reduce(
-      (acc, [key, count]) => acc + LOTTO_PRIZE_MONEY_DEFINITION[key] * count,
-      0
-    );
-  }
-  calculateProfit(totalLottoPrize, purchaseAmount) {
-    return (totalLottoPrize / purchaseAmount) * 100;
   }
 }
 
