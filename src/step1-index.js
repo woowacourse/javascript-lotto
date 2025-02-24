@@ -29,7 +29,7 @@ const calculateMatchingResult = (winningLotto, lottoArray) => {
 
     if (matchingCount < LOTTO_MATCH_CRITERIA.MIN_MATCH_COUNT) return;
 
-    if (matchingCount === LOTTO_MATCH_CRITERIA.BONUS_MATCH_COUNT && lotto.has(winningLotto.bonusNumber)) {
+    if (matchingCount === LOTTO_MATCH_CRITERIA.BONUS_MATCH_COUNT && winningLotto.isBonusMatched(lotto)) {
       matchingResult["bonus"]++;
       return;
     }

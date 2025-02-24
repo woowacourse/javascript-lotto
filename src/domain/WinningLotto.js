@@ -23,8 +23,8 @@ class WinningLotto {
     return this.#lotto.has(number);
   }
 
-  get bonusNumber() {
-    return this.#bonusNumber;
+  isBonusMatched(lotto) {
+    return lotto.has(this.#bonusNumber);
   }
 }
 
