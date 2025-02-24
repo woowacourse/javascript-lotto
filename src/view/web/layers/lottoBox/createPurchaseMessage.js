@@ -1,11 +1,11 @@
 import { PROMPT_MESSAGE } from "../../../../constants/message.js";
 
 const createPurchaseMessage = (lottoNumbers) => {
-  const purchaseQuantityMessage = `${lottoNumbers.length}${PROMPT_MESSAGE.PURCHASE_QUANTITY}`;
+  const purchaseMessage = `${lottoNumbers.length}${PROMPT_MESSAGE.PURCHASE_QUANTITY}`;
 
   const purchaseMessageSpan = document.createElement("span");
-  purchaseMessageSpan.id = "purchase-quantity-message";
-  purchaseMessageSpan.append(purchaseQuantityMessage);
+  purchaseMessageSpan.id = "purchase-message";
+  purchaseMessageSpan.append(purchaseMessage);
 
   document.getElementById("lotto-container").appendChild(purchaseMessageSpan);
 };
