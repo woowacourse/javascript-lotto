@@ -16,6 +16,7 @@ export default class LottoPurchaseHistory {
     const $div = document.createElement("div");
     const $text = document.createElement("p");
     const $ul = document.createElement("ul");
+    $div.className = "hidden";
     $ul.className = "lotto-history-list";
 
     $text.innerText = `총 ${this.#countNumber}${OUTPUT.BUY_COUNT}`;

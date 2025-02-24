@@ -87,3 +87,11 @@ body {
 .lotto-history-item-text {
   font-size: 20px;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+.show {
+  display: block;
+}
