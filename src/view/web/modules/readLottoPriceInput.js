@@ -8,7 +8,7 @@ const readLottoPriceInput = () => {
   purchaseForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const lottoBox = document.getElementsByClassName("lotto-container")[0];
+    const lottoBox = document.getElementById("lotto-container");
 
     if (lottoBox) {
       lottoBox.remove();
