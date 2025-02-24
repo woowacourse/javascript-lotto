@@ -1,3 +1,5 @@
+import PurchaseForm from "./PurchaseForm.js";
+
 export default class LottoGame {
   constructor($target) {
     this.render($target);
@@ -16,5 +18,7 @@ export default class LottoGame {
     $div.appendChild($title);
     $container.appendChild($div);
     $target.appendChild($container);
+
+    new PurchaseForm($div);
   }
 }
