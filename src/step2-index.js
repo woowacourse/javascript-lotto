@@ -1,3 +1,4 @@
+import Modal from "./common/Modal.js";
 import Nav from "./components/layout/Nav.js";
 import LottoGame from "./components/LottoGame.js";
 /**
@@ -19,6 +20,7 @@ class App {
     $body.appendChild($container);
 
     new LottoGame($container);
+    new Modal($body);
   }
 }
 
