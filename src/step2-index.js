@@ -3,14 +3,32 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const lottoGame = document.getElementById("lottoGame");
+import { LOTTO_NUMBER_SPLITER } from "./constants/constant";
+import LottoMachine from "./domain/LottoMachine/LottoMachine";
+import parseAndValidatePurchaseAmount from "./domain/processors/parseAndValidatePurchaseAmount";
 
-  if (lottoGame) {
-    const lottoGameTitle = document.createElement("h1"); // `title` 대신 `h1` 사용
-    lottoGameTitle.classList.add("title");
-    lottoGameTitle.innerText = "🎱 내 번호 당첨 확인 🎱";
+const lottoGame = document.getElementById("lottoGame");
 
-    lottoGame.appendChild(lottoGameTitle);
+const purchaseAmountInput = document.getElementById("purchaseAmount");
+const purchaseButton = document.getElementById("purchaseButton");
+
+purchaseButton.addEventListener("click", () => {
+  try {
+    const purchaseAmount = parseAndValidatePurchaseAmount(purchaseAmountInput.value);
+    const lottoPack = LottoMachine(purchaseAmount);
+
+    const purchaseCount = document.createElement("span");
+    purchaseCount.innerText = `총 ${lottoPack.count}개를 구매했습니다.`;
+    const lottoSet = document.createElement("div");
+    lottoSet.classList.add("lottoSet");
+    lottoPack.lottos.forEach((lotto) => {
+      const lottoNumber = document.createElement("span");
+      lottoNumber.innerText = `${lotto.lottoNumbers.join(LOTTO_NUMBER_SPLITER)}`;
+      lottoSet.appendChild(lottoNumber);
+    });
+    lottoGame.appendChild(purchaseCount);
+    lottoGame.appendChild(lottoSet);
+  } catch (error) {
+    alert(error);
   }
 });
