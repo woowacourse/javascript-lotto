@@ -4,7 +4,6 @@
  */
 
 import LottoManager from "../src/domain/LottoManager.js";
-import LottoComparer from "../src/domain/LottoComparer.js";
 import { printUserLottos, printResult } from "../src/view/output.js";
 import {
   inputAskForRestart,
@@ -22,13 +21,8 @@ async function run() {
   const winningNumbers = await inputWinningNumbers();
   const bonusNumber = await inputBonusNumber(winningNumbers);
 
-  const lottoComparer = new LottoComparer(lottos);
-  const countResults = lottoComparer.countMatchingNumbers(
-    winningNumbers,
-    bonusNumber
-  );
-  const lottoPrize = new LottoPrize(countResults);
-  lottoPrize.calculateWinnings();
+  const lottoPrize = new LottoPrize(lottos);
+  lottoPrize.calculateWinnings(winningNumbers, bonusNumber);
 
   printResult(lottoPrize.prizeResult, lottoPrize.calculateROI(price));
 

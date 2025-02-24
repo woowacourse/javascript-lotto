@@ -1,4 +1,4 @@
-import { LOTTO } from "../config/const.js";
+import { LOTTO, MIN_MATCH_COUNT } from "../config/const.js";
 import Lotto from "./Lotto.js";
 
 class LottoManager {

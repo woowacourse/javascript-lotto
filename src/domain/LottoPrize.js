@@ -1,11 +1,11 @@
-import { LOTTO } from "../config/const.js";
+import { LOTTO, MIN_MATCH_COUNT } from "../config/const.js";
 
 class LottoPrize {
-  #countResults;
   #prizeResult;
+  #lottos;
 
-  constructor(countResults) {
-    this.#countResults = countResults;
+  constructor(lottos) {
+    this.#lottos = lottos;
     this.#prizeResult = {
       firstPrize: 0,
       secondPrize: 0,
@@ -19,8 +19,12 @@ class LottoPrize {
     return this.#prizeResult;
   }
 
-  calculateWinnings() {
-    this.#countResults.reduce((acc, cur) => {
+  calculateWinnings(winningNumbers, bonusNumber) {
+    const countResults = this.#calculateMatchingCount(
+      winningNumbers,
+      bonusNumber
+    );
+    countResults.reduce((acc, cur) => {
       acc[this.#switchCountToPrize(cur)] += 1;
       return acc;
     }, this.#prizeResult);
@@ -29,6 +33,17 @@ class LottoPrize {
   calculateROI(price) {
     if (this.#calculateTotalPrize() === 0) return 0;
     return (((this.#calculateTotalPrize() - price) / price) * 100).toFixed(2);
+  }
+
+  #calculateMatchingCount(winningNumbers, bonusNumber) {
+    return this.#lottos.reduce((acc, curr) => {
+      const matchingCount = curr.compareMatchingNumbers(winningNumbers);
+      const isBonus = curr.compareBonusNumbers(bonusNumber);
+
+      return matchingCount < MIN_MATCH_COUNT
+        ? acc
+        : [...acc, matchingCount === 5 && isBonus ? "bonus" : matchingCount];
+    }, []);
   }
 
   #switchCountToPrize(countResult) {

@@ -1,10 +1,8 @@
 import Lotto from "../src/domain/Lotto.js";
-import LottoComparer from "../src/domain/LottoComparer.js";
+import LottoManager from "../src/domain/LottoManager.js";
 import LottoPrize from "../src/domain/LottoPrize.js";
 
-let lottoComparer;
 let lottoPrize;
-
 beforeEach(() => {
   const lottos = [
     new Lotto([1, 2, 3, 4, 5, 6]),
@@ -15,17 +13,10 @@ beforeEach(() => {
     new Lotto([1, 6, 7, 8, 9, 10]),
     new Lotto([1, 7, 8, 9, 10, 11]),
   ];
+  lottoPrize = new LottoPrize(lottos);
   const winningNumbers = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
-
-  lottoComparer = new LottoComparer(lottos);
-
-  const countResults = lottoComparer.countMatchingNumbers(
-    winningNumbers,
-    bonusNumber
-  );
-  lottoPrize = new LottoPrize(countResults);
-  lottoPrize.calculateWinnings(countResults);
+  lottoPrize.calculateWinnings(winningNumbers, bonusNumber);
 });
 
 test("당첨 내역을 계산한다.", () => {
