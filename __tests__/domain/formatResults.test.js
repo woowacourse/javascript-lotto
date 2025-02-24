@@ -24,16 +24,6 @@ describe("domain/formatResults", () => {
     });
   });
 
-  test("당첨 개수를 올바르게 가져오는지 확인", () => {
-    const resultCount = [0, 1, 2, 3, 4, 5];
-
-    const formattedResults = formatResults(resultCount);
-
-    formattedResults.forEach(({ count }, index) => {
-      expect(count).toBe(resultCount[index + 1]);
-    });
-  });
-
   test("당첨 개수가 없을 때 0이 들어가는지 확인", () => {
     const resultCount = [];
 

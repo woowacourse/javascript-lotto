@@ -131,7 +131,13 @@ describe("models/LottoGame", () => {
 
       const lottoGame = new LottoGame();
 
-      expect(lottoGame.getRankCount(gameResults)).toEqual([0, 0, 0, 2, 0, 0]);
+      expect(lottoGame.getRankCount(gameResults)).toEqual({
+        FIRST: 0,
+        SECOND: 0,
+        THIRD: 2,
+        FOURTH: 0,
+        FIFTH: 0,
+      });
     });
   });
 });

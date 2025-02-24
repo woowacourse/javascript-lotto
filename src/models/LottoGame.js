@@ -55,12 +55,19 @@ class LottoGame {
   }
 
   getRankCount(gameResults) {
-    return gameResults.reduce(
+    const rankCount = gameResults.reduce(
       (resultCount, result) =>
         resultCount.map((count, index) =>
           index === result.RANK ? count + 1 : count
         ),
       new Array(6).fill(0)
+    );
+
+    return Object.fromEntries(
+      Object.entries(PRIZE).map(([key], index) => [
+        key,
+        rankCount[index + 1] || 0,
+      ])
     );
   }
 
