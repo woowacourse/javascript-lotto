@@ -3,7 +3,7 @@ import "./gameBox.css";
 
 const createGameBox = () => {
   const section = document.createElement("section");
-  section.id = "gameBox-container";
+  section.id = "game-container";
   section.innerHTML = gameBoxContents;
 
   document.getElementById("main-container").prepend(section);
