@@ -1,18 +1,18 @@
 import InputHandler from './input/InputHandler.js';
 import LottoMaker from './domain/LottoMaker.js';
 import OutputView from './view/OutputView.js';
-import { LINE_BREAK, LOTTO_CONDITION, MESSAGE, RANKING } from './constants/constants.js';
+import { LINE_BREAK, LOTTO_CONDITION, MESSAGE } from './constants/constants.js';
 import LottoMatch from './domain/LottoMatch.js';
 import { calculateRank } from './domain/calculateRank.js';
-import LottoResult from './domain/LottoResult.js';
+import LottoRank from './domain/LottoRank.js';
 import { calculateTotalPrize } from './domain/calculateTotalPrize.js';
 import { calculateWinningRate } from './domain/calculateWinningRate.js';
 import { YES } from './constants/constants.js';
-import { printLottoResult } from './utils/printLottoResult.js';
+import { printLottoRank } from './utils/printLottoRank.js';
 
 class LottoController {
   #lottoList;
-  #lottoResult;
+  #lottoRank;
 
   async run() {
     const lottoMaker = new LottoMaker(await this.inputPurchaseMoney());
@@ -22,7 +22,7 @@ class LottoController {
     this.#lottoList = lottoMaker.lottoList;
 
     const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
-    this.#lottoResult = new LottoResult();
+    this.#lottoRank = new LottoRank();
 
     this.calculateRank(lottoMatch);
     this.printStatstics();
@@ -47,8 +47,8 @@ class LottoController {
 
   calculateRank(lottoMatch) {
     this.#lottoList.forEach((lotto) => {
-      lotto.ranking = calculateRank(lottoMatch.winningNumbers(lotto), lottoMatch.bonusNumber(lotto));
-      this.#lottoResult.addRankingCount(lotto.ranking);
+      lotto.ranking = calculateRank(lottoMatch.countMatchingNumbers(lotto), lottoMatch.hasBonusNumber(lotto));
+      this.#lottoRank.addRankingCount(lotto.ranking);
     });
   }
 
@@ -66,8 +66,8 @@ class LottoController {
   printStatstics() {
     OutputView.print(MESSAGE.STATISTICS);
     OutputView.print(MESSAGE.LINE);
-    const result = this.#lottoResult.result;
-    printLottoResult(result);
+    const rank = this.#lottoRank.rank;
+    printLottoRank(rank);
   }
 
   printLottoNumber(lottoMaker) {

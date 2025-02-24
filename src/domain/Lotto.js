@@ -17,7 +17,7 @@ class Lotto {
     validateLottoNumber(numbers);
   }
 
-  includeNumber(winningNumber) {
+  hasBonusNumber(winningNumber) {
     return this.#numbers.includes(winningNumber);
   }
 

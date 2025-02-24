@@ -7,13 +7,13 @@ class LottoMatch {
     this.#bonusNumber = bonusNumber;
   }
 
-  winningNumbers(lotto) {
-    const matchCount = this.#winningNumbers.numbers.filter((number) => lotto.includeNumber(number)).length;
+  countMatchingNumbers(lotto) {
+    const matchCount = this.#winningNumbers.numbers.filter((number) => lotto.hasBonusNumber(number)).length;
     return matchCount;
   }
 
-  bonusNumber(lotto) {
-    return lotto.includeNumber(this.#bonusNumber);
+  hasBonusNumber(lotto) {
+    return lotto.hasBonusNumber(this.#bonusNumber);
   }
 }
 
