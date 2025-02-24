@@ -61,7 +61,30 @@
   gap: 8px;
 }
 
-.lottoSet {
+#lottoGame .answer_lotto_section {
+  padding-top: 24px;
   display: flex;
   flex-direction: column;
+  gap: 12px;
+}
+
+#lottoGame .answer_lotto_section .answer_lotto {
+  display: flex;
+  justify-content: space-between;
+}
+
+#lottoGame .answer_lotto_section .answer_lotto .answer_lotto_number {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#lottoGame .answer_lotto_section .answer_lotto .answer_lotto_number:has(.bonus_input) {
+  align-items: flex-end;
+}
+
+#lottoGame .answer_lotto_section input {
+  width: 34px;
+  height: 36px;
+  text-align: center;
 }
