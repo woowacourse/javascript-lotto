@@ -1,0 +1,22 @@
+.winning-number-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.winning-number-headers {
+  display: flex;
+  justify-content: space-between;
+  width: 87%;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.winning-number-input-container {
+  display: flex;
+  justify-content: space-between;
+  width: 87%;
+}
