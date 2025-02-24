@@ -1,25 +1,20 @@
 const createLottoNumbersList = (lottoNumbers) => {
-  const ul = document.createElement("ul");
-  ul.className = "lotto-list";
+  const lottoListHTML = `
+    <ul class="lotto-list">
+      ${lottoNumbers
+        .map(
+          (numbers, index) => `
+        <li class="lotto-numbers" id="lotto-numbers-${index}">
+          <span class="lotto-icon" id="lotto-icon-${index}">🎟️</span>
+          ${numbers.join(", ")}
+        </li>
+      `,
+        )
+        .join("")}
+    </ul>
+  `;
 
-  lottoNumbers.forEach((numbers, index) => {
-    const li = document.createElement("li");
-    li.className = "lotto-numbers";
-    li.id = `lotto-numbers-${index}`;
-
-    const span = document.createElement("span");
-    span.className = "lotto-icon";
-    span.id = `lotto-icon-${index}`;
-    span.append("🎟️");
-
-    const textNode = document.createTextNode(numbers.join(", "));
-
-    li.appendChild(span);
-    li.appendChild(textNode);
-    ul.appendChild(li);
-
-    document.getElementById("lotto-container").appendChild(ul);
-  });
+  document.getElementById("lotto-container").innerHTML += lottoListHTML;
 };
 
 export default createLottoNumbersList;
