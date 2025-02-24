@@ -3,7 +3,7 @@ import LottoComparer from "../src/domain/LottoComparer.js";
 
 let lottoComparer;
 beforeEach(() => {
-  const lottoTicket = [
+  const lottos = [
     new Lotto([1, 2, 3, 4, 5, 6]),
     new Lotto([1, 3, 4, 5, 6, 10]),
     new Lotto([1, 3, 4, 5, 6, 7]),
@@ -13,7 +13,7 @@ beforeEach(() => {
     new Lotto([1, 7, 8, 9, 10, 11]),
   ];
 
-  lottoComparer = new LottoComparer(lottoTicket);
+  lottoComparer = new LottoComparer(lottos);
 });
 
 test("사용자의 로또와 당첨 번호가 몇 개 동일한지 비교한다.", () => {

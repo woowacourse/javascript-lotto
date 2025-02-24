@@ -43,3 +43,6 @@
 - [x] randomNumber 함수로 분리
 - [x] for문을 사용한 명령형 프로그래밍을 쓰기보다 map,reduce와 같은 선언형 프로그래밍 형식으로 작성하기
 - [x] Lotto class에게 역할을 부여해주기.
+- [x] UserLotto에서 #price 인스턴스 제거
+- [x] UserLotto 클래스 명 변경 또는 함수로 변경
+  - LottoManager 클래스로 변경 및 static 함수로 사용

@@ -1,3 +1,5 @@
+import { LOTTO } from "../config/const";
+
 class Lotto {
   #numbers;
 

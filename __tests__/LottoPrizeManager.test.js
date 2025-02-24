@@ -6,7 +6,7 @@ let lottoComparer;
 let lottoPrize;
 
 beforeEach(() => {
-  const lottoTicket = [
+  const lottos = [
     new Lotto([1, 2, 3, 4, 5, 6]),
     new Lotto([1, 3, 4, 5, 6, 10]),
     new Lotto([1, 3, 4, 5, 6, 7]),
@@ -22,7 +22,7 @@ beforeEach(() => {
     bonusNumber: bonusNumber,
   };
 
-  lottoComparer = new LottoComparer(lottoTicket);
+  lottoComparer = new LottoComparer(lottos);
 
   const countResults = lottoComparer.countMatchingNumbers(winningLotto);
   lottoPrize = new LottoPrize(countResults);

@@ -1,8 +1,8 @@
 import { LOTTO } from "../config/const.js";
 
-const printUserLottos = (price, lottoTicket) => {
+const printUserLottos = (price, lottos) => {
   printLottoCount(price);
-  lottoTicket.lottos.forEach((userLotto) => {
+  lottos.forEach((userLotto) => {
     console.log(userLotto.numbers);
   });
 };
