@@ -58,6 +58,12 @@ table {
   border-spacing: 0;
 }
 
+#app{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
 .title{
   font-weight: 800;
   font-size: 24px;

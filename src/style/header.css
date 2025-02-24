@@ -1,8 +1,8 @@
-.header {
+header {
   background-color: var(--lotto-primary);
   padding: 14px 130px;
 }
 
-.header .title {
+header .title {
   color: var(--lotto-greyscale-1);
 }

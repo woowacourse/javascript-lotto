@@ -1,0 +1,15 @@
+footer {
+  width: 100%;
+  border-top: 1px solid var(--lotto-primary);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .caption {
+  color: var(--lotto-primary);
+  padding: 28px 0 36px;
+}
