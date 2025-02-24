@@ -1,0 +1,36 @@
+<div>
+  <h3>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h3>
+  <form id="winningNumbersBox-numbersInput-form">
+    <div id="winningNumbersBox-numbersInput-container">
+      <div>
+        <label
+          for="winningNumbersBox-winningNumbers"
+          id="winningNumbersBox-winningNumbers-label"
+          >당첨 번호</label
+        >
+        <input
+          type="text"
+          id="winningNumbersBox-winningNumbers"
+          autocomplete="one-time-code"
+          inputmode="numeric"
+        />
+      </div>
+      <div>
+        <label
+          for="winningNumbersBox-bonusNumber"
+          id="winningNumbersBox-bonusNumber-label"
+          >보너스 번호</label
+        >
+        <input
+          type="text"
+          id="winningNumbersBox-bonusNumber"
+          autocomplete="one-time-code"
+          inputmode="numeric"
+        />
+      </div>
+      <button type="submit" id="winningNumbersBox-submitNumbersButton">
+        결과 확인하기
+      </button>
+    </div>
+  </form>
+</div>
