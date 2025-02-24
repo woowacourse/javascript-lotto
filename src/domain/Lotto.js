@@ -5,16 +5,16 @@ class Lotto {
   #ranking;
 
   constructor(numbers) {
+    this.#validate(numbers);
     this.#numbers = numbers.sort((a, b) => a - b);
-    this.#validate();
   }
 
   set ranking(ranking) {
     this.#ranking = ranking;
   }
 
-  #validate() {
-    validateLottoNumber(this.#numbers);
+  #validate(numbers) {
+    validateLottoNumber(numbers);
   }
 
   includeNumber(winningNumber) {
