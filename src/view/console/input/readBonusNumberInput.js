@@ -1,5 +1,5 @@
-import { readLineAsync } from "../../utils/input.js";
-import { PROMPT_MESSAGE, LINE_BREAK } from "../../constants/message.js";
+import { readLineAsync } from '../../../utils/input.js';
+import { PROMPT_MESSAGE, LINE_BREAK } from '../../../constants/message.js';
 
 const readBonusNumberInput = async () => {
   const userInput = await readLineAsync(

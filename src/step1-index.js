@@ -16,8 +16,11 @@ import {
   readWinningNumbersInput,
   readBonusNumberInput,
   readRestartInput,
-} from "./view/input/index.js";
-import { printLottoNumbers, printLottoResult } from "./view/output/index.js";
+} from "./view/console/input/index.js";
+import {
+  printLottoNumbers,
+  printLottoResult,
+} from "./view/console/output/index.js";
 import { LOTTO_RESTART_COMMAND } from "./constants/lotto.js";
 
 const app = async () => {
@@ -44,7 +47,7 @@ const app = async () => {
     const result = calculatePrizeResult(
       lottoNumbers,
       winningNumbers,
-      bonusNumber
+      bonusNumber,
     );
 
     const totalPrizeMoney = getTotalPrizeMoney(result);

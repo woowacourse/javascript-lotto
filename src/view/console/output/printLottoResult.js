@@ -1,5 +1,5 @@
-import { LOTTO_RESULT_MESSAGES_MAP } from "../../constants/lotto.js";
-import { PROMPT_MESSAGE, LINE_BREAK } from "../../constants/message.js";
+import { LOTTO_RESULT_MESSAGES_MAP } from "../../../constants/lotto.js";
+import { PROMPT_MESSAGE, LINE_BREAK } from "../../../constants/message.js";
 
 const printLottoResult = (result, revenueRate) => {
   console.log(`${LINE_BREAK}${PROMPT_MESSAGE.LOTTO_RESULT}`);
