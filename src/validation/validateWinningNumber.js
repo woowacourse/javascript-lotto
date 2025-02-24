@@ -13,7 +13,7 @@ const checkEmptyItem = (winningNumberInput) => {
     throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.EMPTY_ITEM);
   }
 };
-const checkisInteger = (winningNumberInput) => {
+const checkIsInteger = (winningNumberInput) => {
   if (winningNumberInput.some((number) => !validationCondition.isInteger(number))) {
     throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.NUMBER);
   }
@@ -37,8 +37,7 @@ const checkIsDistinct = (winningNumberInput) => {
   }
 };
 const validateWinningNumber = (winningNumberInput) => {
-  const winningNumbers = winningNumberInput.split(",");
-  return runValidators([checkEmptyInput, checkEmptyItem, checkisInteger, checkLengthValid, checkRange, checkIsDistinct], winningNumbers);
+  return runValidators([checkEmptyInput, checkEmptyItem, checkIsInteger, checkLengthValid, checkRange, checkIsDistinct], winningNumberInput);
 };
 
 export default validateWinningNumber;

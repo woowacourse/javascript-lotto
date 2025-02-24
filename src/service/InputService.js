@@ -14,7 +14,9 @@ export const getPrice = async () => {
 
 export const getWinningNumber = async () => {
   const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER);
-  validateWinningNumber(winningNumberInput);
+  const winningNumbers = winningNumberInput.split(",");
+
+  validateWinningNumber(winningNumbers);
   return parseWinningNumbers(winningNumberInput);
 };
 
