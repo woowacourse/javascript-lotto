@@ -1,9 +1,9 @@
 export default class Modal {
-  constructor($target) {
-    this.render($target);
+  constructor($target, childRender) {
+    this.render($target, childRender);
   }
 
-  render($target) {
+  render($target, childRender) {
     const $modalBg = document.createElement("div"); // 그림자
     const $modal = document.createElement("div"); //찐모달
     const $buttonWrap = document.createElement("div");
@@ -24,6 +24,7 @@ export default class Modal {
 
     $buttonWrap.appendChild($button);
     $modal.appendChild($buttonWrap);
+    childRender($modal);
     $modalBg.appendChild($modal);
     $target.appendChild($modalBg);
   }
