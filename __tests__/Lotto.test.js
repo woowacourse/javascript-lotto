@@ -35,4 +35,4 @@ describe("로또 객체 생성 테스트", () => {
   ])("로또 번호에 중복이 있는 경우, 에러를 발생시킨다", (numbers) => {
     expect(() => new Lotto(numbers)).toThrow(LOTTO_NUMBERS_ERROR_MESSAGE.DUPLICATE);
   });
-
+});
