@@ -26,6 +26,8 @@ export const displayWinningInput = () => {
 
   for (let i = 0; i < LOTTO_NUMBERS.LENGTH; i++) {
     const winningInput = document.createElement("input");
+    winningInput.type = "number";
+    winningInput.pattern = "^[0-9]+$";
     winningInput.min = LOTTO_NUMBERS.MIN;
     winningInput.max = LOTTO_NUMBERS.MAX;
     winningInput.classList.add("winning-input");

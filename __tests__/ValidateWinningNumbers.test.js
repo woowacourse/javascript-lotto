@@ -1,4 +1,4 @@
-import { LOTTO_NUMBERS_ERROR_MESSAGE, PRICE_ERROR_MESSAGE } from "../src/lottoConstants/errorMessage.js";
+import { LOTTO_NUMBERS_ERROR_MESSAGE } from "../src/lottoConstants/errorMessage.js";
 import validateWinningNumber from "../src/validation/validateWinningNumber.js";
 
 describe("당첨 번호에 대한 유효성을 진행한다", () => {

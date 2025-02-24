@@ -12,11 +12,15 @@ const InputView = {
     return await readLineAsync(message);
   },
   readWebInput(tagName) {
-    return document.querySelector(`.${tagName}`).value;
+    const inputElement = document.querySelector(`.${tagName}`);
+    // inputElement.value = "";
+    return inputElement.value;
   },
   readWebInputs(tagName) {
-    const inputs = document.querySelectorAll(`${tagName}`);
-    return Array.from(inputs).map((input) => input.value);
+    const inputs = document.querySelectorAll(`.${tagName}`);
+    return Array.from(inputs)
+      .map((input) => input.value)
+      .join(", ");
   },
 };
 export default InputView;

@@ -8,11 +8,12 @@ const retryOnErrorForTerminal = async (asyncFn, onError) => {
   }
 };
 
-const retryOnErrorWeb = (asyncFn) => {
+const retryOnErrorWeb = async (asyncFn) => {
   try {
-    return asyncFn();
+    return await asyncFn();
   } catch (error) {
-    alert(error);
+    alert(error.message);
+    await asyncFn();
   }
 };
 
@@ -20,7 +21,7 @@ const isWebEnvironMent = typeof window !== "undefined";
 
 const retryOnError = async (func, onError) => {
   if (isWebEnvironMent) {
-    return retryOnErrorWeb(func);
+    return await retryOnErrorWeb(func);
   }
   return await retryOnErrorForTerminal(func, onError);
 };

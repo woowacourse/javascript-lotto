@@ -1,57 +1,29 @@
+import { PurchaseController } from "./controller/PurchaseController.js";
 import { ResultController } from "./controller/ResultController.js";
-import WinningLotto from "./domain/WinningLotto.js";
-import { getLottoArray, getLottoCount } from "./service/PurchaseService.js";
+import { WinningController } from "./controller/WinningController.js";
+import { calculateProfitRate } from "./service/ProfitService.js";
 import { displayCount, displayLotto, displayResultButton } from "./ui/displayLotto.js";
 import { displayWinning } from "./ui/displayWinning.js";
 
 const runLotto = () => {
-  purchaseLotto();
-};
+  const purchaseButton = document.querySelector(".purchase-button");
 
-const purchaseLotto = () => {
-  const lottoArray = [];
-  document.querySelector(".purchase-button").addEventListener("click", () => {
-    const inputPrice = document.querySelector(".price-input").value;
-
-    const lottoCount = getLottoCount(inputPrice);
+  purchaseButton.addEventListener("click", async () => {
+    const { lottoArray, lottoCount } = await PurchaseController();
     displayCount(lottoCount);
-
-    lottoArray.push(...getLottoArray(lottoCount));
     displayLotto(lottoArray);
     displayWinning();
     displayResultButton();
+    purchaseButton.disabled = true;
 
-    displayResult(lottoArray);
-  });
-};
-
-const displayResult = (lottoArray) => {
-  const resultButton = document.querySelector(".result-button");
-
-  if (resultButton) {
-    resultButton.addEventListener("click", () => {
-      console.log(setResult(lottoArray));
-      // 모달창
+    const resultButton = document.querySelector(".result-button-container");
+    resultButton.addEventListener("click", async () => {
+      const winningLotto = await WinningController();
+      const matchingCount = ResultController(winningLotto, lottoArray);
+      const profitRate = calculateProfitRate(matchingCount, lottoCount);
+      console.log(matchingCount, profitRate);
     });
-  }
-};
-
-// parsing 리팩토링
-const setWinningLotto = () => {
-  const winningInputs = document.querySelectorAll(".winning-input");
-  const winningNumbers = [];
-  winningInputs.forEach((input) => winningNumbers.push(Number(input.value)));
-
-  const bonusNumber = Number(document.querySelector(".bonus-input").value);
-
-  const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-  return winningLotto;
-};
-
-const setResult = (lottoArray) => {
-  const winningLotto = setWinningLotto();
-  const matchingCount = ResultController(winningLotto, lottoArray);
-  return matchingCount;
+  });
 };
 
 runLotto();

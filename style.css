@@ -35,6 +35,10 @@ button {
   text-align: center;
   padding: 0.4rem 0.5rem;
   cursor: pointer;
+  &:disabled {
+    background-color: var(--lotto-greyscale-4);
+    cursor: not-allowed;
+  }
 }
 
 .title {
