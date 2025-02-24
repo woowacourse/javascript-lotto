@@ -7,7 +7,7 @@ const createLottoBox = (lottoNumbers) => {
   lottoBox.id = "lotto-container";
   lottoBox.class = "purchased-rendered";
 
-  document.getElementById("gameBox-container").appendChild(lottoBox);
+  document.getElementById("game-container").appendChild(lottoBox);
 
   createPurchaseMessage(lottoNumbers);
   createLottoList(lottoNumbers);

@@ -4,7 +4,7 @@ import createLottoBox from "../layers/lottoBox/createLottoBox.js";
 import createWinningLottoBox from "../layers/winningLottoBox/createWinningLottoBox.js";
 
 const readLottoPriceInput = () => {
-  const purchaseForm = document.getElementById("gameBox-purchaseInput-form");
+  const purchaseForm = document.getElementById("game-purchaseInput-form");
 
   purchaseForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -12,7 +12,7 @@ const readLottoPriceInput = () => {
     const targets = document.querySelectorAll(".purchase-rendered");
     targets.forEach((target) => target.remove());
 
-    const priceInput = document.getElementById("gameBox-price").value;
+    const priceInput = document.getElementById("game-price").value;
     const validPrice = checkPrice(priceInput);
     const lottoNumbers = generateLottoNumberSets(validPrice);
 

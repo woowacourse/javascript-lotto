@@ -6,7 +6,7 @@ const createWinningLottoBox = () => {
   div.class = "purchased-rendered";
   div.innerHTML = winningLottoBoxContents;
 
-  document.getElementById("gameBox-container").appendChild(div);
+  document.getElementById("game-container").appendChild(div);
 };
 
 export default createWinningLottoBox;
