@@ -37,6 +37,23 @@ describe("재실행 입력에 대한 유효성 테스트", () => {
     }).toThrow(RESTART_ERROR_MESSAGE);
   });
 
+  test.each([
+    {
+      description: `${YES}와 ${NO}이 함께 들어온 경우`,
+      input: `${YES}${NO}`,
+    },
+    {
+      description: "중복으로 잘못 입력한 경우",
+      input: `${UPPER_YES}${UPPER_YES}`,
+    },
+  ])("$description 에러가 발생한다.", ({ input }) => {
+    // given
+    // when & then
+    expect(() => {
+      validateRestartConfirm(input);
+    }).toThrow(RESTART_ERROR_MESSAGE);
+  });
+
   test.each([[UPPER_YES, YES, UPPER_NO, NO]])(
     `${UPPER_YES}, ${YES}, ${UPPER_NO}, ${NO} 중 하나인 경우 정상적으로 동작한다.`,
     (input) => {
