@@ -1,6 +1,6 @@
 .result-background {
   width: 100vw;
-  height: 100vh;
+  height: 200vh;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px 10px;
   border-radius: 5px;
@@ -47,7 +47,7 @@
 .result-rows {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: space-evenly;
   justify-content: center;
   gap: 80px;
   font-weight: bold;
@@ -63,4 +63,9 @@
   border: 1px solid #b4b4b4;
   opacity: 0.5;
   margin: 10px 0;
+}
+
+.revenue {
+  font-size: 20px;
+  font-weight: bold;
 }
