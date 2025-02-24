@@ -5,15 +5,8 @@ import {
   getRetryInput,
 } from './View/inputView.js';
 import { outputView } from './View/outputView.js';
-import {
-  validateEmptySpace,
-  validatePurchaseAmount,
-  validateEmptySpaceInWinningNumbers,
-  validateWinningNumbers,
-  validateBonusNumber,
-  validateYorN,
-} from './View/Validation/inputView.js';
-import { readUserInputUntilSuccess, convertFormat } from './View/utils.js';
+import Validator from './View/Validation/Validator.js';
+import { readUserInputUntilSuccess } from './View/utils.js';
 import LottoManager from './Domain/Model/LottoManager.js';
 import WinningLotto from './Domain/Model/WinningLotto.js';
 import {
@@ -26,10 +19,7 @@ class App {
     const purchaseAmountInput = await readUserInputUntilSuccess({
       readUserInput: getPurchaseAmountInput,
       formatter: (input) => {
-        validateEmptySpace(input);
-        const convertedInput = convertFormat.toNumber(input);
-        validatePurchaseAmount(convertedInput);
-        return convertedInput;
+        Validator.validatePurchaseAmount(input);
       },
     });
     return purchaseAmountInput;
@@ -39,13 +29,7 @@ class App {
     const winningNumbersInput = await readUserInputUntilSuccess({
       readUserInput: getWinningNumbersInput,
       formatter: (input) => {
-        validateEmptySpace(input);
-        const splittedInput = convertFormat.splitByComma(input);
-
-        validateEmptySpaceInWinningNumbers(splittedInput);
-        const numbers = splittedInput.map(Number);
-        validateWinningNumbers(numbers);
-        return numbers;
+        Validator.validateWinningNumbers(input);
       },
     });
     return winningNumbersInput;
@@ -55,10 +39,7 @@ class App {
     const bonusNumberInput = await readUserInputUntilSuccess({
       readUserInput: getBonusNumberInput,
       formatter: (input) => {
-        validateEmptySpace(input);
-        const convertedInput = convertFormat.toNumber(input);
-        validateBonusNumber(convertedInput, winningNumbersInput);
-        return convertedInput;
+        Validator.validateBonusNumber(input, winningNumbersInput);
       },
     });
     return bonusNumberInput;
@@ -68,9 +49,7 @@ class App {
     const retryInput = await readUserInputUntilSuccess({
       readUserInput: getRetryInput,
       formatter: (input) => {
-        validateEmptySpace(input);
-        validateYorN(input);
-        return input;
+        Validator.validateRetryInput(input);
       },
     });
     return retryInput;
