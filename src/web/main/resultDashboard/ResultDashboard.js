@@ -38,7 +38,7 @@ function ResultBackground(playLotto) {
 
 function ResultCols(resultDashboard) {
   const resultCols = document.createElement('div');
-  resultCols.className = 'result-cols';
+  resultCols.className = 'result-rows';
 
   const typeOfMatch = document.createElement('p');
   typeOfMatch.innerText = '일치 갯수';

@@ -16,6 +16,7 @@
   align-items: center;
   justify-content: center;
   background-color: white;
+  padding: 30px 10px;
   z-index: 11;
   position: absolute;
   top: 50%;
@@ -51,5 +52,6 @@
 .divider-line {
   width: 95%;
   border: 1px solid #b4b4b4;
+  opacity: 0.5;
   margin: 10px 0;
 }
