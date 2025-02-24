@@ -4,6 +4,7 @@
  */
 
 import { getUIInput } from './service/InputService.js';
+import makeLotto from './service/LottoService.js';
 import { getPurchasePrice } from './service/ParsingService.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,11 +13,31 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
     try {
       const { purchaseAmount } = await getPurchasePrice(getUIInput);
-      const result = document.createElement('div');
-      result.classList.add('purchase-result');
-      result.textContent = `${purchaseAmount}개를 구매하였습니다.`;
-      document.querySelector('.input-container').appendChild(result);
+      const purchaseResult = document.createElement('div');
+      purchaseResult.classList.add('purchase-result');
+      purchaseResult.textContent = `총 ${purchaseAmount}개를 구매하였습니다.`;
+      document.querySelector('.lotto-container').appendChild(purchaseResult);
+
+      const lottos = makeLotto(purchaseAmount);
+      lottos.forEach((lotto) => {
+        const lottoWrapper = document.createElement('div');
+        lottoWrapper.classList.add('lotto-wrapper');
+
+        const lottoTicket = document.createElement('div');
+        lottoTicket.classList.add('lotto-ticket');
+        lottoTicket.textContent = '🎟️';
+
+        const lottoNumbers = document.createElement('div');
+        lottoNumbers.classList.add('lotto-numbers');
+        lottoNumbers.textContent = `${lotto.numbers.join(', ')}`;
+
+        lottoWrapper.appendChild(lottoTicket);
+        lottoWrapper.appendChild(lottoNumbers);
+
+        document.querySelector('.lotto-container').appendChild(lottoWrapper);
+      });
     } catch (error) {
+      console.log(error);
       console.error('Error:', error.message);
     }
   });

@@ -115,8 +115,31 @@ header {
   width: 100%;
   height: 24px;
   color: var(--grey-500);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter-spacing);
 }
 
+.lotto-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.lotto-ticket {
+  font-size: 2rem;
+}
+
+.lotto-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0 10px;
+  align-items: center;
+}
 footer {
   display: flex;
   height: 80px;
