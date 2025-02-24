@@ -9,8 +9,6 @@ export default function randomLottos(playLotto, randomLottosArray) {
   const randomLottos = document.createElement('div');
   randomLottos.className = 'random-lottos';
 
-  console.log(randomLottosArray);
-
   randomLottosArray.forEach((randomLotto) => {
     const oneLotto = document.createElement('div');
     oneLotto.className = 'one-lotto';
