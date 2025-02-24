@@ -2,9 +2,9 @@ import { PROMPT_MESSAGE } from "../../../../constants/message.js";
 import "./lottoNumbersBox.css";
 
 const createLottoNumbersBox = (lottoNumbers) => {
-  const gameBox = document.getElementsByClassName("gameBox-container")[0];
+  const gameBox = document.getElementById("gameBox-container");
   const lottoNumbersBox = document.createElement("div");
-  lottoNumbersBox.className = "lotto-numbers-container";
+  lottoNumbersBox.id = "lotto-numbers-container";
   gameBox.appendChild(lottoNumbersBox);
 
   const purchaseMessageSpan = document.createElement("span");
