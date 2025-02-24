@@ -22,8 +22,7 @@ class LottoTicket {
 
   #generateLottos(price) {
     return Array.from({ length: price / LOTTO.PURCHASE.unit }).reduce((acc) => {
-      const randomNumbers = this.#getRandomNumbers();
-      acc.push(new Lotto(randomNumbers));
+      acc.push(new Lotto(this.#getRandomNumbers()));
       return acc;
     }, []);
   }

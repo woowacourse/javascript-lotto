@@ -6,6 +6,15 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  compareMatchingNumbers(lotto) {
+    return lotto.reduce((acc, curr) => {
+      if (this.#numbers.includes(curr)) {
+        acc += 1;
+      }
+      return acc;
+    }, 0);
+  }
+
   get numbers() {
     return this.#numbers;
   }

@@ -7,21 +7,10 @@ class LottoComparer {
     this.#lottoTicket = lottoTicket;
   }
 
-  #compareMatchingNumbers(winningNumbers, userLotto) {
-    return userLotto.reduce((acc, lottoNumber) => {
-      if (winningNumbers.includes(lottoNumber)) {
-        acc += 1;
-      }
-      return acc;
-    }, 0);
-  }
-
   countMatchingNumbers(winningLotto) {
-    console.log(winningLotto.winningNumbers);
-    return this.#lottoTicket.reduce((acc, cur, index) => {
-      const matchingCount = this.#compareMatchingNumbers(
-        winningLotto.winningNumbers,
-        cur.numbers
+    return this.#lottoTicket.reduce((acc, curr, index) => {
+      const matchingCount = curr.compareMatchingNumbers(
+        winningLotto.winningNumbers
       );
       if (matchingCount < MIN_MATCH_COUNT) return acc;
       const isBonus = this.#lottoTicket[index].numbers.includes(
