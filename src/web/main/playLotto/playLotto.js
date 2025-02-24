@@ -2,6 +2,7 @@ import { getRandomLottos } from '../../../domain/getRandomLottos';
 import { LOTTO } from '../../../domain/lottoConstants';
 import { validateBonusNumber, validateWinningNumbers } from '../../../validation/validateLottoNumbers';
 import randomLottos from '../randomLottos/RandomLottos';
+import ResultDashboard from '../resultDashboard/ResultDashboard';
 import { getArrayOfStrings } from '../utils/getArrayOfStrings';
 import WinningNumbers from '../winningNumbers/winningNumbers';
 import './PlayLotto.css';
@@ -50,6 +51,8 @@ export default function PlayLotto() {
         try {
           validateWinningNumbers(winningNumbersArray.join(','));
           validateBonusNumber(bonusNumber.value, winningNumbersArray);
+
+          ResultDashboard(playLotto);
         } catch (error) {
           alert(error.message);
         }
