@@ -28,7 +28,17 @@ export default class LottoWinningInfoForm {
     </div>
 `;
 
-    new Button($form, () => {}, "결과 확인하기");
+    new Button(
+      $form,
+      () => {
+        const $modalBg = document.querySelector(".modal-bg");
+        const $container = document.querySelector(".modal");
+
+        $modalBg.classList.add("modal-bg-show");
+        $container.classList.add("modal-show");
+      },
+      "결과 확인하기"
+    );
     $target.appendChild($form);
   }
 }
