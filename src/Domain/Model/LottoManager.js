@@ -34,15 +34,10 @@ class LottoManager {
       (acc, prize) => ({ ...acc, [prize]: 0 }),
       {}
     );
-    const matchingCounts = this.#lottoList.map((lotto) =>
-      winningLotto.countMatchingNumbers(lotto)
-    );
-    const hasBonusNumbers = this.#lottoList.map((lotto) =>
-      winningLotto.checkBonusNumber(lotto)
-    );
-    matchingCounts.forEach((counts, index) => {
-      const hasBonusNumber = hasBonusNumbers[index];
-      const lottoResult = this.#countLottoResult(hasBonusNumber, counts);
+    this.#lottoList.forEach((lotto) => {
+      const matchCounts = winningLotto.countMatchingNumbers(lotto);
+      const hasBonusNumber = winningLotto.checkBonusNumber(lotto);
+      const lottoResult = this.#countLottoResult(hasBonusNumber, matchCounts);
       result[lottoResult] += 1;
     });
     return result;
