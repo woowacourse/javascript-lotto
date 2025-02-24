@@ -5,12 +5,13 @@ import {
   calculateLottoPrize,
   calculateLottoProfit,
 } from '../Utils/calculateLotto.js';
+import { generateRandomLottoNumbers } from '../Utils/lottoNumberGenerator.js';
 
 class LottoService {
   static initializeLotto(purchaseAmount) {
     const lottoManager = new LottoManager();
     const lottoTickets = calculateLottoTickets(purchaseAmount);
-    lottoManager.makeLottoList(lottoTickets);
+    lottoManager.makeLottoList(lottoTickets, generateRandomLottoNumbers);
     return { lottoManager, lottoTickets };
   }
 
