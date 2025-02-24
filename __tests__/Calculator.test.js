@@ -11,7 +11,7 @@ describe("Caculator", () => {
       [KEYS.FOURTH]: 0,
       [KEYS.FIFTH]: 0,
     };
-    const totalPrize = Calculator.totalPrize(winningRanks);
+    const totalPrize = Calculator.getTotalPrize(winningRanks);
 
     expect(totalPrize).toBe(3_000_000);
   });
@@ -19,7 +19,7 @@ describe("Caculator", () => {
   test("수익률을 계산한다.", () => {
     const amount = "5000";
     const totalPrize = 50_000;
-    const yieldRate = Calculator.yieldRate(amount, totalPrize);
+    const yieldRate = Calculator.getYieldRate(amount, totalPrize);
 
     expect(yieldRate).toBe("1000.0");
   });

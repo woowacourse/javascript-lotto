@@ -26,8 +26,8 @@ const purchase = async () => {
   const rankKeys = Object.keys(winningRanks).reverse();
   OutputView.printWinningDetail(winningRanks, rankKeys);
 
-  const totalPrize = Calculator.totalPrize(winningRanks);
-  const yieldRate = Calculator.yieldRate(purchaseAmount, totalPrize);
+  const totalPrize = Calculator.getTotalPrize(winningRanks);
+  const yieldRate = Calculator.getYieldRate(purchaseAmount, totalPrize);
   OutputView.printYieldRate(yieldRate);
 };
 
