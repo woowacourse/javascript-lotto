@@ -13,7 +13,7 @@ class LottoTicket {
   }
 
   #getRandomNumbers() {
-    let randomNumbers = new Set();
+    const randomNumbers = new Set();
     while (randomNumbers.size < LOTTO.maxLength) {
       randomNumbers.add(this.#generateRandomNumber());
     }
