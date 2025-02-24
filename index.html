@@ -15,9 +15,9 @@
   </head>
 
   <body>
-    <div id="app" class="header">
+    <header id="app" class="header">
       <h1 class="header-title">🎱 행운의 로또</h1>
-    </div>
+    </header>
     <div class="container">
       <div class="card">
         <div class="card-header">
@@ -28,14 +28,17 @@
             <label class="purchase-text">구입할 금액을 입력해주세요.</label>
             <div class="input-container">
               <form class="input-form">
-                <input class="input" placeholder="금액"></input>
-                <button class="purchase-button">구입</button>
+                <input class="input" id='purchase-price' placeholder="금액"></input>
+                <button id="purchase-button" class="purchase-button">구입</button>
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <footer>
+      <div>Copyright 2023. woowacourse</div>
+    </footer>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
