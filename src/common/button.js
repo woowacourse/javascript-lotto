@@ -7,6 +7,7 @@ export default class Button {
     const $button = document.createElement("button");
     $button.innerText = text;
     $button.className = "full-button";
+    $button.type = "button";
 
     $button.addEventListener("click", onClick);
     $target.appendChild($button);
