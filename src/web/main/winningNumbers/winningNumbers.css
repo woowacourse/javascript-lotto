@@ -15,8 +15,31 @@
   font-weight: bold;
 }
 
-.winning-number-input-container {
+.winning-and-bonus-input-container {
   display: flex;
   justify-content: space-between;
-  width: 87%;
+  margin: 10px 0;
+  gap: 85px;
+}
+
+.winning-inputs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.winning-input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+.bonus-input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 20px;
 }
