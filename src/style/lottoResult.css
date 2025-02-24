@@ -1,0 +1,26 @@
+#lottoResult {
+  width: fit-content;
+  border: 1px solid var(--lotto-greyscale-5-12);
+  background-color: var(--lotto-greyscale-1);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 16px 32px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#lottoReuslt .close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+#lottoResult .inner {
+  min-width: 318px;
+}
+
+#lottoResult .title {
+  display: flex;
+  justify-content: center;
+}
