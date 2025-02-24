@@ -13,7 +13,12 @@ class App {
   render() {
     const $body = document.querySelector("body");
     new Nav();
-    new LottoGame($body);
+
+    const $container = document.createElement("div");
+    $container.classList = "container";
+    $body.appendChild($container);
+
+    new LottoGame($container);
   }
 }
 
