@@ -6,11 +6,8 @@ class Lotto {
   }
 
   getMatchCount = (winningNumbers) => {
-    return winningNumbers.reduce(
-      (count, winningNumber) =>
-        this.#numbers.includes(winningNumber) ? count + 1 : count,
-      0
-    );
+    return this.#numbers.filter((number) => winningNumbers.includes(number))
+      .length;
   };
 
   getBonusMatched = (bonusNumber) => {
