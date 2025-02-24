@@ -5,10 +5,11 @@ export const LOTTO_CONDITION = {
   PRICE: 1000,
 };
 
-export const MESSAGE = {
+export const OUTPUT_MESSAGE = {
   PURCHASE_COUNT: '개를 구매했습니다.',
   STATISTICS: '당첨 통계',
   LINE: '--------------------',
+  WINNING_RATE: '총 수익률은 {}%입니다.',
 };
 
 export const LOTTO_NUMBER_ERROR_MESSAGES = {
