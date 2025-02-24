@@ -1,5 +1,7 @@
 import { WINNING, KEYS } from "./constant/lotto.js";
 
+const increaseCount = Symbol("increaseCount");
+
 const Ranking = {
   countWinningRanks(lottos, { winning, bonus }) {
     const winningRanks = {
@@ -14,7 +16,7 @@ const Ranking = {
       const matchedCount = lotto.filter((num) => winning.includes(num)).length;
       const hasBonus = this.hasBonus(lotto, bonus);
       const matchedKey = this.getMatchedKey(matchedCount, hasBonus);
-      this.increaseCount(winningRanks, matchedKey);
+      Ranking[increaseCount](winningRanks, matchedKey);
     });
 
     return winningRanks;
@@ -33,7 +35,7 @@ const Ranking = {
     if (matchedCount === WINNING[KEYS.FIFTH].MATCH) return KEYS.FIFTH;
   },
 
-  increaseCount(winningRanks, matchedKey) {
+  [increaseCount](winningRanks, matchedKey) {
     if (matchedKey) {
       winningRanks[matchedKey] += 1;
     }
