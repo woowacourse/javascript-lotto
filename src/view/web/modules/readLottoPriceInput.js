@@ -9,13 +9,8 @@ const readLottoPriceInput = () => {
   purchaseForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const lottoBox = document.getElementById("lotto-container");
-    const winningLottoBox = document.getElementById("winningLotto-container");
-
-    if (lottoBox && winningLottoBox) {
-      lottoBox.remove();
-      winningLottoBox.remove();
-    }
+    const targets = document.querySelectorAll(".purchase-rendered");
+    targets.forEach((target) => target.remove());
 
     const priceInput = document.getElementById("gameBox-price").value;
     const validPrice = checkPrice(priceInput);
