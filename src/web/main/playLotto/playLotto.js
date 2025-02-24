@@ -1,7 +1,9 @@
 import { getRandomLottos } from '../../../domain/getRandomLottos';
 import { LOTTO } from '../../../domain/lottoConstants';
+import { validateBonusNumber, validateWinningNumbers } from '../../../validation/validateLottoNumbers';
 import randomLottos from '../randomLottos/RandomLottos';
 import { getArrayOfStrings } from '../utils/getArrayOfStrings';
+import WinningNumbers from '../winningNumbers/winningNumbers';
 import './PlayLotto.css';
 
 export default function PlayLotto() {
@@ -36,7 +38,21 @@ export default function PlayLotto() {
       const winningNumberInputHeader = document.createElement('p');
       winningNumberInputHeader.innerText = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
       winningNumberInputHeader.className = 'header';
+
       playLotto.appendChild(winningNumberInputHeader);
+
+      const { winningNumbersArray, bonusNumber } = WinningNumbers(playLotto);
+
+      const resultButton = document.createElement('button');
+      resultButton.innerText = '결과 확인하기';
+      resultButton.className = 'result-button';
+      resultButton.addEventListener('click', () => {
+        console.log('당첨번호', winningNumbersArray, bonusNumber.value);
+        validateWinningNumbers(winningNumbersArray.join(','));
+        validateBonusNumber(bonusNumber.value, winningNumbersArray);
+      });
+
+      playLotto.appendChild(resultButton);
     } catch (error) {
       alert(error.message);
     }
