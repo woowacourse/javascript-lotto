@@ -8,6 +8,14 @@ const readLottoPriceInput = () => {
   purchaseForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    const lottoNumbersBox = document.getElementsByClassName(
+      "lotto-numbers-container",
+    )[0];
+
+    if (lottoNumbersBox) {
+      lottoNumbersBox.remove();
+    }
+
     const priceInput = document.getElementById("gameBox-price").value;
     const validPrice = checkPrice(priceInput);
     const lottoNumbers = generateLottoNumberSets(validPrice);
