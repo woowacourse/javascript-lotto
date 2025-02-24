@@ -7,25 +7,26 @@ import { parseBonusNumber, parsePrice, parseWinningNumbers } from "./ParsingServ
 import validateRetryInput from "../validation/validateRetryInput.js";
 
 export const getPrice = async () => {
-  const priceInput = await InputView.readUserInput(SYSTEM_MESSAGE.PRICE);
+  const priceInput = await InputView.readUserInput(SYSTEM_MESSAGE.PRICE, "price-input");
   validatePrice(priceInput);
   return parsePrice(priceInput);
 };
 
 export const getWinningNumber = async () => {
-  const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER);
+  const isMultipleValue = true;
+  const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER, "winning-input", isMultipleValue);
   validateWinningNumber(winningNumberInput);
   return parseWinningNumbers(winningNumberInput);
 };
 
 export const getBonusNumber = async (winningNumbers) => {
-  const bonusNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.BONUS_NUMBER);
+  const bonusNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.BONUS_NUMBER, "bonus-input");
   validateBonusNumber(winningNumbers, bonusNumberInput);
   return parseBonusNumber(bonusNumberInput);
 };
 
 export const getRetryInput = async () => {
-  const retryInput = await InputView.readUserInput(SYSTEM_MESSAGE.RETRY);
+  const retryInput = await InputView.readUserInput(SYSTEM_MESSAGE.RETRY, "retry-input");
   validateRetryInput(retryInput);
   return retryInput;
 };
