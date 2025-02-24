@@ -1,0 +1,11 @@
+.result-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px 10px;
+  border-radius: 5px;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
