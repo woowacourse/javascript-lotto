@@ -45,11 +45,6 @@ export default function PlayLotto() {
 
       const { winningNumbersArray, bonusNumber } = WinningNumbers(playLotto);
 
-      const matchCounts = getWinningMatchCount(randomlottos, {
-        winningNumbers: winningNumbersArray,
-        bonusNumber: bonusNumber.value,
-      });
-
       const resultButton = document.createElement('button');
       resultButton.innerText = '결과 확인하기';
       resultButton.className = 'result-button';
@@ -57,6 +52,10 @@ export default function PlayLotto() {
         try {
           validateWinningNumbers(winningNumbersArray.join(','));
           validateBonusNumber(bonusNumber.value, winningNumbersArray);
+          const matchCounts = getWinningMatchCount(randomlottos, {
+            winningNumbers: winningNumbersArray,
+            bonusNumber: bonusNumber.value,
+          });
 
           ResultDashboard(playLotto, matchCounts);
         } catch (error) {
