@@ -1,4 +1,4 @@
-import createLottoNumbersList from "./createLottoNumbersList.js";
+import createLottoList from "./createLottoList.js";
 import createPurchaseMessage from "./createPurchaseMessage.js";
 import "./lottoBox.css";
 
@@ -9,7 +9,7 @@ const createLottoBox = (lottoNumbers) => {
   document.getElementById("gameBox-container").appendChild(lottoBox);
 
   createPurchaseMessage(lottoNumbers);
-  createLottoNumbersList(lottoNumbers);
+  createLottoList(lottoNumbers);
 };
 
 export default createLottoBox;
