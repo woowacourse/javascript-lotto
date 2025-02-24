@@ -10,7 +10,7 @@ export const printLottoNumbers = (numbers) => {
 
 export const printResult = (result) => {
   console.log("당첨 통계\n--------------------");
-  result.reverse().map(({ rank, winningCriteria, reward, count }) => {
+  result.map(({ rank, winningCriteria, reward, count }) => {
     const bonusText = rank === "SECOND" ? ", 보너스 볼 일치" : "";
     console.log(
       `${winningCriteria}개 일치${bonusText} (${commaizeNumber(

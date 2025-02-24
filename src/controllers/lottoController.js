@@ -33,7 +33,7 @@ const lottoController = async () => {
   const totalReward = lottoGame.calcTotalReward(gameResults);
   const rankCount = lottoGame.getRankCount(gameResults);
 
-  printResult(formatResults(rankCount));
+  printResult(formatResults(rankCount).reverse());
   printProfitRate(calcProfitRate(price, totalReward));
 
   if (await getRestart()) lottoController();
