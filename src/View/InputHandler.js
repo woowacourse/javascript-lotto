@@ -1,11 +1,11 @@
-import { readUserInputUntilSuccess } from './View/Utils/utils.js';
+import { readUserInputUntilSuccess } from './Utils/utils.js';
 import {
   getPurchaseAmountInput,
   getBonusNumberInput,
   getWinningNumbersInput,
   getRetryInput,
-} from './View/inputView.js';
-import Validator from './View/Validation/Validator.js';
+} from './inputView.js';
+import Validator from './Validation/Validator.js';
 
 class InputHandler {
   static async getPurchaseAmount() {

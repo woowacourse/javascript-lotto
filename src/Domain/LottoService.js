@@ -1,10 +1,10 @@
-import LottoManager from './Domain/Model/LottoManager.js';
-import WinningLotto from './Domain/Model/WinningLotto.js';
+import LottoManager from './Model/LottoManager.js';
+import WinningLotto from './Model/WinningLotto.js';
 import {
   calculateLottoTickets,
   calculateLottoPrize,
   calculateLottoProfit,
-} from './Utils/calculateLotto.js';
+} from '../Utils/calculateLotto.js';
 
 class LottoService {
   static initializeLotto(purchaseAmount) {
@@ -18,11 +18,15 @@ class LottoService {
     return new WinningLotto(winningNumbers, bonusNumber);
   }
 
-  static processWinningLotto(lottoManager, winningLotto) {
+  static compareWinningLotto(lottoManager, winningLotto) {
     const lottoResult = lottoManager.compareWinningLotto(winningLotto);
+    return lottoResult;
+  }
+
+  static processWinningLotto(lottoResult, purchaseAmount) {
     const totalLottoPrize = calculateLottoPrize(lottoResult);
     const lottoProfit = calculateLottoProfit(totalLottoPrize, purchaseAmount);
-    return { lottoResult, lottoProfit };
+    return lottoProfit;
   }
 }
 

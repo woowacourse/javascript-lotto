@@ -1,4 +1,4 @@
-import InputHandler from './Domain/InputHandler.js';
+import InputHandler from './View/InputHandler.js';
 import { outputView } from './View/outputView.js';
 import LottoService from './Domain/LottoService.js';
 
@@ -13,16 +13,21 @@ class App {
     outputView.printLottoList(lottoManager.getLottoList());
 
     const winningNumbers = await InputHandler.getWinningNumbers();
-    const bonusNumber = await InputHandler.getBonusNumber();
+    const bonusNumber = await InputHandler.getBonusNumber(winningNumbers);
 
     const winningLotto = LottoService.initializeWinningLotto(
       winningNumbers,
       bonusNumber
     );
 
-    const { lottoResult, lottoProfit } = LottoService.processWinningLotto(
+    const lottoResult = LottoService.compareWinningLotto(
       lottoManager,
       winningLotto
+    );
+
+    const lottoProfit = LottoService.processWinningLotto(
+      lottoResult,
+      purchaseAmount
     );
 
     outputView.printLottoResultInstruction();
