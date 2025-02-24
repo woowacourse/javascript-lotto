@@ -5,10 +5,41 @@
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  padding: 40px 16px 32px;
+}
+
+#lottoGame .inner {
+  min-width: 382px;
+}
+
+#lottoGame .title {
+  display: flex;
+  justify-content: center;
+}
+
+#lottoGame .purchase_amount_section {
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
 }
 
 #lottoGame .purchase_amount {
   display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  height: 36px;
+}
+
+#lottoGame .purchase_amount input {
+  width: 100%;
+  padding: 8px 0 4px 8px;
+}
+
+#lottoGame .purchase_amount button {
+  min-width: fit-content;
+  padding: 0 14px;
 }
 
 .lottoSet {
