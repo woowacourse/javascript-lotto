@@ -1,6 +1,6 @@
 import './resultDashboard.css';
 
-export default function ResultDashboard(playLotto, matchCounts) {
+export default function ResultDashboard(playLotto, matchCounts, revenue) {
   const resultDashboard = document.createElement('div');
   resultDashboard.className = 'result-dashboard';
 
@@ -8,6 +8,7 @@ export default function ResultDashboard(playLotto, matchCounts) {
   CloseButton(resultDashboard, resultBackground);
   ResultHeader(resultDashboard);
   ResultContainer(resultDashboard, matchCounts);
+  Revenue(resultDashboard, revenue);
 
   playLotto.appendChild(resultBackground);
   playLotto.appendChild(resultDashboard);
@@ -106,4 +107,11 @@ function DividerLine(resultContainer) {
   const dividerLine = document.createElement('div');
   dividerLine.className = 'divider-line';
   resultContainer.appendChild(dividerLine);
+}
+
+function Revenue(resultDashboard, revenue) {
+  const revenueTag = document.createElement('div');
+  revenueTag.className = 'revenue';
+  revenueTag.innerText = `당신의 총 수익률은 ${revenue}%입니다.`;
+  resultDashboard.appendChild(revenueTag);
 }
