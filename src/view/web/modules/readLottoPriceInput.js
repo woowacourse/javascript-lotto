@@ -9,7 +9,7 @@ const readLottoPriceInput = () => {
   purchaseForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const targets = document.querySelectorAll(".purchase-rendered");
+    const targets = document.querySelectorAll(".purchased-rendered");
     targets.forEach((target) => target.remove());
 
     const priceInput = document.getElementById("game-price").value;

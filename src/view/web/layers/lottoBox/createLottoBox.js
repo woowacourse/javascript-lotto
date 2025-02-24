@@ -5,7 +5,7 @@ import "./lottoBox.css";
 const createLottoBox = (lottoNumbers) => {
   const lottoBox = document.createElement("div");
   lottoBox.id = "lotto-container";
-  lottoBox.class = "purchased-rendered";
+  lottoBox.className = "purchased-rendered";
 
   document.getElementById("game-container").appendChild(lottoBox);
 
