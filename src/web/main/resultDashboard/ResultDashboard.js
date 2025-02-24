@@ -6,6 +6,11 @@ export default function ResultDashboard(playLotto) {
 
   ResultBackground(resultDashboard);
 
+  const resultHeader = document.createElement('h1');
+  resultHeader.innerText = '🏆 당첨 통계 🏆';
+  resultHeader.className = 'result-header';
+  resultDashboard.appendChild(resultHeader);
+
   playLotto.appendChild(resultDashboard);
 }
 
