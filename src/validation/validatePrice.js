@@ -1,12 +1,9 @@
 import runValidators from "../util/runValidators.js";
 import validationCondition from "./validateCondition.js";
 import { PRICE_ERROR_MESSAGE } from "../constants/errorMessage.js";
+import checkEmptyInput from "./checkEmptyInput.js";
 
-const checkEmptyInput = (priceInput) => {
-  if (validationCondition.isEmpty(priceInput)) {
-    throw new Error(PRICE_ERROR_MESSAGE.EMPTY);
-  }
-};
+const checkEmpty = (priceInput) => checkEmptyInput(priceInput, PRICE_ERROR_MESSAGE.EMPTY);
 
 const checkIsInteger = (priceInput) => {
   if (!validationCondition.isInteger(priceInput)) {
@@ -25,6 +22,6 @@ const checkDivisiblePrice = (priceInput) => {
     throw new Error(PRICE_ERROR_MESSAGE.INDIVISIBLE);
   }
 };
-const validatePrice = (priceInput) => runValidators([checkEmptyInput, checkIsInteger, checkUnderPrice, checkDivisiblePrice], priceInput);
+const validatePrice = (priceInput) => runValidators([checkEmpty, checkIsInteger, checkUnderPrice, checkDivisiblePrice], priceInput);
 
 export default validatePrice;

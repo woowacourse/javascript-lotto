@@ -1,13 +1,9 @@
 import { LOTTO_NUMBERS_ERROR_MESSAGE } from "../constants/errorMessage.js";
 import runValidators from "../util/runValidators.js";
+import checkEmptyInput from "./checkEmptyInput.js";
 import validationCondition from "./validateCondition.js";
 
-const checkEmptyInput = (winningNumberInput) => {
-  if (validationCondition.isEmpty(winningNumberInput)) {
-    throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.EMPTY);
-  }
-};
-
+const checkEmpty = (winningNumberInput) => checkEmptyInput(winningNumberInput, LOTTO_NUMBERS_ERROR_MESSAGE.EMPTY);
 const checkEmptyItem = (winningNumberInput) => {
   if (winningNumberInput.some((number) => validationCondition.isEmpty(number))) {
     throw new Error(LOTTO_NUMBERS_ERROR_MESSAGE.EMPTY_ITEM);
@@ -37,7 +33,7 @@ const checkIsDistinct = (winningNumberInput) => {
   }
 };
 const validateWinningNumber = (winningNumberInput) => {
-  return runValidators([checkEmptyInput, checkEmptyItem, checkIsInteger, checkLengthValid, checkRange, checkIsDistinct], winningNumberInput);
+  return runValidators([checkEmpty, checkEmptyItem, checkIsInteger, checkLengthValid, checkRange, checkIsDistinct], winningNumberInput);
 };
 
 export default validateWinningNumber;

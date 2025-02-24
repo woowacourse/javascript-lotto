@@ -1,12 +1,8 @@
-import validationCondition from "./validateCondition.js";
 import runValidators from "../util/runValidators.js";
 import { RETRY_ERROR_MESSAGE } from "../constants/errorMessage.js";
+import checkEmptyInput from "./checkEmptyInput.js";
 
-const checkIsEmpty = (retryInput) => {
-  if (validationCondition.isEmpty(retryInput)) {
-    throw new Error(RETRY_ERROR_MESSAGE.EMPTY);
-  }
-};
+const checkEmpty = (retryInput) => checkEmptyInput(retryInput, RETRY_ERROR_MESSAGE.EMPTY);
 
 const checkIsValidCharacter = (retryInput) => {
   if (!["y", "n"].includes(retryInput.toLowerCase())) {
@@ -15,7 +11,7 @@ const checkIsValidCharacter = (retryInput) => {
 };
 
 const validateRetryInput = (retryInput) => {
-  runValidators([checkIsEmpty, checkIsValidCharacter], retryInput);
+  runValidators([checkEmpty, checkIsValidCharacter], retryInput);
 };
 
 export default validateRetryInput;

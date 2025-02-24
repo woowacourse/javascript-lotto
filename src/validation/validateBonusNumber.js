@@ -1,12 +1,10 @@
 import validationCondition from "./validateCondition.js";
 import runValidators from "../util/runValidators.js";
 import { BONUS_NUMBER_ERROR_MESSAGE } from "../constants/errorMessage.js";
+import checkEmptyInput from "./checkEmptyInput.js";
 
-const checkIsEmpty = (bonusNumberInput) => {
-  if (validationCondition.isEmpty(bonusNumberInput)) {
-    throw new Error(BONUS_NUMBER_ERROR_MESSAGE.EMPTY);
-  }
-};
+const checkEmpty = (bonusNumberInput) => checkEmptyInput(bonusNumberInput, BONUS_NUMBER_ERROR_MESSAGE.EMPTY);
+
 const checkIsInteger = (bonusNumberInput) => {
   if (!validationCondition.isInteger(bonusNumberInput)) {
     throw new Error(BONUS_NUMBER_ERROR_MESSAGE.NUMBER);
@@ -26,7 +24,7 @@ const checkDuplicate = (winningNumbers, bonusNumberInput) => {
 const checkDuplicatedWinningNumber = (winningNumbers) => (bonusNumberInput) => checkDuplicate(winningNumbers, bonusNumberInput);
 
 const validateBonusNumber = (winningNumbers, bonusNumberInput) => {
-  runValidators([checkIsEmpty, checkIsInteger, checkRange, checkDuplicatedWinningNumber(winningNumbers)], bonusNumberInput);
+  runValidators([checkEmpty, checkIsInteger, checkRange, checkDuplicatedWinningNumber(winningNumbers)], bonusNumberInput);
 };
 
 export default validateBonusNumber;
