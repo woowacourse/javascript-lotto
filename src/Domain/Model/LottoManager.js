@@ -9,7 +9,9 @@ import { makeNotDuplicatedRandomNumbers } from '../../Utils/math.js';
 class LottoManager {
   #lottoList;
 
-  constructor() {}
+  constructor() {
+    this.#lottoList = [];
+  }
 
   getLottoList() {
     return this.#lottoList;
