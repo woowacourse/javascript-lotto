@@ -47,9 +47,12 @@ export default function PlayLotto() {
       resultButton.innerText = '결과 확인하기';
       resultButton.className = 'result-button';
       resultButton.addEventListener('click', () => {
-        console.log('당첨번호', winningNumbersArray, bonusNumber.value);
-        validateWinningNumbers(winningNumbersArray.join(','));
-        validateBonusNumber(bonusNumber.value, winningNumbersArray);
+        try {
+          validateWinningNumbers(winningNumbersArray.join(','));
+          validateBonusNumber(bonusNumber.value, winningNumbersArray);
+        } catch (error) {
+          alert(error.message);
+        }
       });
 
       playLotto.appendChild(resultButton);
