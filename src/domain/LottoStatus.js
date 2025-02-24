@@ -2,10 +2,8 @@ import { LOTTO_STATUS } from "../constants/lotto.js";
 import countMatchingNumbers from "../utils/countMatchingNumbers.js";
 
 class LottoStatus {
-  #issuedLottoNumbers;
   #enteredLottoNumbers;
   #bonusLottoNumber;
-  #matchedLottoStatus;
 
   constructor({ enteredLottoNumbers, bonusLottoNumber }) {
     this.#enteredLottoNumbers = enteredLottoNumbers;
@@ -28,9 +26,9 @@ class LottoStatus {
   }
 
   #getMatchingCounts(issuedLottoNumbers) {
-    return issuedLottoNumbers.map((numbers) => {
-      return countMatchingNumbers(numbers, this.#enteredLottoNumbers);
-    });
+    return issuedLottoNumbers.map((numbers) =>
+      countMatchingNumbers(numbers, this.#enteredLottoNumbers)
+    );
   }
 
   #hasBonusNumber(numbers) {
@@ -38,9 +36,7 @@ class LottoStatus {
   }
 
   #getHasBonusNumbers(issuedLottoNumbers) {
-    return issuedLottoNumbers.map((numbers) => {
-      return this.#hasBonusNumber(numbers);
-    });
+    return issuedLottoNumbers.map((numbers) => this.#hasBonusNumber(numbers));
   }
 
   #getLottoStatus(matchCount, isBonus) {
