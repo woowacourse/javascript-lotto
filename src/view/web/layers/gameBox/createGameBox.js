@@ -1,7 +1,7 @@
 import gameBoxContents from "./gameBox.html?raw";
 import "./gameBox.css";
 
-const createGameBox = async () => {
+const createGameBox = () => {
   const section = document.createElement("section");
   section.className = "gameBox-container";
   section.innerHTML = gameBoxContents;

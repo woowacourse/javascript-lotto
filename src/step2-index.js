@@ -4,8 +4,8 @@ import readLottoPriceInput from "./view/web/modules/readLottoPriceInput.js";
 
 const app = async () => {
   document.addEventListener("DOMContentLoaded", async () => {
-    await createHeader();
-    await createGameBox();
+    createHeader();
+    createGameBox();
     readLottoPriceInput();
   });
 };
