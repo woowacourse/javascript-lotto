@@ -1,3 +1,4 @@
+import { LOTTO } from "../src/config/const.js";
 import Validate from "../src/utils/validate/Validate.js";
 
 let validate;
@@ -5,7 +6,7 @@ beforeEach(() => {
   validate = new Validate();
 });
 
-test("구입급액이 1,000원 단위가 아닐 경우 예외를 발생시킨다.", () => {
+test(`구입급액이 ${LOTTO.PURCHASE.unit}원 단위가 아닐 경우 예외를 발생시킨다.`, () => {
   const price = 1500;
 
   expect(() => validate.purchaseUnit(price)).toThrow(
@@ -19,7 +20,7 @@ test("구입금액이 숫자가 아닐 경우 예외를 발생시킨다.", () =>
   expect(() => validate.isNumeric(price)).toThrow("숫자를 입력해주세요.");
 });
 
-test("구입 금액이 1000원보다 작은 경우 예외를 발생시킨다.", () => {
+test(`구입 금액이 ${LOTTO.PURCHASE.unit.toLocaleString()}원보다 작은 경우 예외를 발생시킨다.`, () => {
   const price = 500;
 
   expect(() => validate.minimumValue(price)).toThrow(
@@ -27,7 +28,7 @@ test("구입 금액이 1000원보다 작은 경우 예외를 발생시킨다.", 
   );
 });
 
-test("구입 금액이 20,000을 초과할 경우 예외를 발생시킨다.", () => {
+test(`구입 금액이 ${LOTTO.PURCHASE.maxThreshold.toLocaleString()}을 초과할 경우 예외를 발생시킨다.`, () => {
   const price = 25000;
   expect(() => validate.maximumValue(price)).toThrow(
     "구입 금액은 20,000원 이하여야 합니다."
