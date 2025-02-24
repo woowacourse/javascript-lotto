@@ -1,6 +1,11 @@
 import formatResults from "../domain/formatResults.js";
 import LottoGame from "../models/LottoGame.js";
-import { getBonusNumber, getWinningNumbers } from "../view/input.js";
+import {
+  getBonusNumber,
+  getLottoPrice,
+  getRestart,
+  getWinningNumbers,
+} from "../view/input.js";
 import {
   printLottoCount,
   printLottoNumbers,
@@ -8,7 +13,9 @@ import {
   printResult,
 } from "../view/output.js";
 
-const lottoController = async (price) => {
+const lottoController = async () => {
+  const price = await getLottoPrice();
+
   const lottoGame = new LottoGame();
   const lottos = lottoGame.generateLottos(price);
 
@@ -27,6 +34,8 @@ const lottoController = async (price) => {
 
   printResult(formatResults(rankCount));
   printProfitRate(price, totalReward);
+
+  if (await getRestart()) lottoController();
 };
 
 export default lottoController;
