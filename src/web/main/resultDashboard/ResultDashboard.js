@@ -1,21 +1,65 @@
 import './resultDashboard.css';
 
-export default function ResultDashboard(playLotto) {
+export default function ResultDashboard(playLotto, matchCounts) {
   const resultDashboard = document.createElement('div');
   resultDashboard.className = 'result-dashboard';
 
-  ResultBackground(resultDashboard);
+  ResultBackground(playLotto);
+  ResultHeader(resultDashboard);
 
-  const resultHeader = document.createElement('h1');
-  resultHeader.innerText = '🏆 당첨 통계 🏆';
-  resultHeader.className = 'result-header';
-  resultDashboard.appendChild(resultHeader);
+  ResultContainer(resultDashboard, matchCounts);
 
   playLotto.appendChild(resultDashboard);
 }
 
-function ResultBackground(resultDashboard) {
+function ResultHeader(resultDashboard) {
+  const resultHeader = document.createElement('h1');
+  resultHeader.innerText = '🏆 당첨 통계 🏆';
+  resultHeader.className = 'result-header';
+  resultDashboard.appendChild(resultHeader);
+}
+
+function ResultContainer(resultDashboard, matchCounts) {
+  const resultContainer = document.createElement('div');
+
+  DividerLine(resultContainer);
+  ResultCols(resultContainer);
+  DividerLine(resultContainer);
+
+  resultContainer.className = 'result-container';
+  resultDashboard.appendChild(resultContainer);
+}
+
+function ResultBackground(playLotto) {
   const resultBackground = document.createElement('div');
   resultBackground.className = 'result-background';
-  resultDashboard.appendChild(resultBackground);
+  playLotto.appendChild(resultBackground);
+}
+
+function ResultCols(resultDashboard) {
+  const resultCols = document.createElement('div');
+  resultCols.className = 'result-cols';
+
+  const typeOfMatch = document.createElement('p');
+  typeOfMatch.innerText = '일치 갯수';
+  typeOfMatch.className = 'result-col';
+  resultCols.appendChild(typeOfMatch);
+
+  const winningPrize = document.createElement('p');
+  winningPrize.innerText = '당첨금';
+  winningPrize.className = 'result-col';
+  resultCols.appendChild(winningPrize);
+
+  const matchCounts = document.createElement('p');
+  matchCounts.innerText = '당첨 횟수';
+  matchCounts.className = 'result-col';
+  resultCols.appendChild(matchCounts);
+
+  resultDashboard.appendChild(resultCols);
+}
+
+function DividerLine(resultContainer) {
+  const dividerLine = document.createElement('div');
+  dividerLine.className = 'divider-line';
+  resultContainer.appendChild(dividerLine);
 }
