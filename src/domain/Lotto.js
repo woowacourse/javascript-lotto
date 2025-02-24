@@ -7,12 +7,8 @@ class Lotto {
   }
 
   compareMatchingNumbers(lotto) {
-    return lotto.reduce((acc, curr) => {
-      if (this.#numbers.includes(curr)) {
-        acc += 1;
-      }
-      return acc;
-    }, 0);
+    return lotto.filter((lottoNumber) => this.#numbers.includes(lottoNumber))
+      .length;
   }
 
   compareBonusNumbers(bonusNumber) {

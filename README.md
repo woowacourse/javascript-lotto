@@ -47,3 +47,4 @@
 - [x] UserLotto 클래스 명 변경 또는 함수로 변경
   - LottoManager 클래스로 변경 및 static 함수로 사용
 - [x] countMatchingNumbers 함수 로직 분리
+- [x] filter를 사용해서 일치하는 로또 번호 갯수 구하기
