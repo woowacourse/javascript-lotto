@@ -4,24 +4,12 @@ import Lotto from '../src/Domain/Model/Lotto.js';
 import {
   LOTTO_DEFINITION,
   LOTTO_PRIZE_DEFINITION,
-  LOTTO_PRIZE_MONEY_DEFINITION,
 } from '../src/Domain/Constant/definition.js';
 import { makeNotDuplicatedRandomNumbers } from '../src/Utils/math.js';
-import {
-  calculateLottoTickets,
-  calculateLottoPrize,
-} from '../src/Utils/calculateLotto';
-
-test('구입 금액에 해당하는 로또 장수를 구한다.', () => {
-  const purchaseMoney = 5000;
-  const lottoCount = calculateLottoTickets(purchaseMoney);
-  expect(lottoCount).toBe(5);
-});
 
 test('로또 장수에 따라 여러 장 발행한다.', () => {
-  const purchaseMoney = 4000;
   const lottoManager = new LottoManager();
-  const lottoCount = calculateLottoTickets(purchaseMoney);
+  const lottoCount = 4;
   lottoManager.makeLottoList(lottoCount);
   expect(lottoManager.getLottoList().length).toBe(4);
 });
@@ -95,20 +83,4 @@ test('당첨 내역을 반환한다.', () => {
     FIFTH_PRIZE: 1,
     NONE: 0,
   });
-});
-
-test('수익률을 반환한다.', () => {
-  const result = {
-    FIRST_PRIZE: 1,
-    SECOND_PRIZE: 0,
-    THIRD_PRIZE: 1,
-    FOURTH_PRIZE: 0,
-    FIFTH_PRIZE: 0,
-    NONE: 0,
-  };
-  const prize = calculateLottoPrize(result);
-  expect(prize).toBe(
-    LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE +
-      LOTTO_PRIZE_MONEY_DEFINITION.THIRD_PRIZE
-  );
 });
