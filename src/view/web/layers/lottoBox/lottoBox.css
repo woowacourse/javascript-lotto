@@ -1,4 +1,4 @@
-.lotto-numbers-container {
+.lotto-container {
   margin: 28px 0;
 
   display: flex;
@@ -6,7 +6,7 @@
   gap: 8px;
 }
 
-.lotto-numbers-list {
+.lotto-list {
   width: 238px;
 
   list-style-type: none;

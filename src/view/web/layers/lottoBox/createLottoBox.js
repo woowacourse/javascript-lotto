@@ -1,20 +1,20 @@
 import { PROMPT_MESSAGE } from "../../../../constants/message.js";
-import "./lottoNumbersBox.css";
+import "./lottoBox.css";
 
-const createLottoNumbersBox = (lottoNumbers) => {
+const createLottoBox = (lottoNumbers) => {
   const gameBox = document.getElementById("gameBox-container");
-  const lottoNumbersBox = document.createElement("div");
-  lottoNumbersBox.id = "lotto-numbers-container";
-  gameBox.appendChild(lottoNumbersBox);
+  const lottoBox = document.createElement("div");
+  lottoBox.id = "lotto-container";
+  gameBox.appendChild(lottoBox);
 
   const purchaseMessageSpan = document.createElement("span");
   const purchaseQuantityMessage = `${lottoNumbers.length}${PROMPT_MESSAGE.PURCHASE_QUANTITY}`;
   purchaseMessageSpan.id = "purchase-quantity-message";
   purchaseMessageSpan.append(purchaseQuantityMessage);
-  lottoNumbersBox.appendChild(purchaseMessageSpan);
+  lottoBox.appendChild(purchaseMessageSpan);
 
   const ul = document.createElement("ul");
-  ul.className = "lotto-numbers-list";
+  ul.className = "lotto-list";
 
   lottoNumbers.forEach((numbers, index) => {
     const li = document.createElement("li");
@@ -31,8 +31,8 @@ const createLottoNumbersBox = (lottoNumbers) => {
     li.appendChild(span);
     li.appendChild(textNode);
     ul.appendChild(li);
-    lottoNumbersBox.appendChild(ul);
+    lottoBox.appendChild(ul);
   });
 };
 
-export default createLottoNumbersBox;
+export default createLottoBox;
