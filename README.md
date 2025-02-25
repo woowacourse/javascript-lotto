@@ -1,3 +1,8 @@
+## step1
+
+<details>
+  <summary>step1 요약</summary>
+
 - [x] 로또 구입 금액을 입력한다. -> ui
   - [x] 구입 금액 입력 받기 -> ui
   - [x] 예외 처리 -> domain
@@ -51,3 +56,35 @@
 - [x] 일치 개수 + 보너스 일치 여부만 판단
 - [x] 일치 판단기준 변환
 - [x] error 변수 상수화
+
+</details>
+
+## step2
+
+**요구사항**
+
+- [ ] package.json > "homepage" 값에 본인의 GitHub username 입력
+- [ ] npm run deploy 스크립트를 실행해서 배포
+- [ ] 목적에 맞는 HTML 태그를 사용
+- [ ] CSS 속성 선언 순서의 일관성을 고려
+- [ ] CSS 속성은 가능하면 축약형(shorthand)을 사용
+- [ ] flexbox를 활용해 레이아웃을 구성
+
+**진행계획**
+
+- [ ] figma를 통해 css 기본 속성 정의
+- 로또 구매 화면 제작
+  - # main contents
+  - [ ] card title 제작
+  - [ ] card input 입력창 제작
+  - [ ] 로또 출력 화면 제작
+  - [ ] 당첨번호 및 보너스 번호 입력 창 제작
+  - [ ] 결과 확인 버튼 제작
+  - # layout
+  - [ ] header 제작
+  - [ ] footer 제작
+- 당첨 통계 모달 화면 제작
+  - [ ] 통계 title 제작
+  - [ ] 일치 결과 화면 제작
+  - [ ] 수익률 출력 화면 제작
+  - [ ] restart 버튼 제작
