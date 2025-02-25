@@ -18,6 +18,7 @@
 
 #winningLotto-numbersInput-container {
   display: flex;
+  gap: 62px;
 }
 
 .winningLotto-numbersInput-label {
@@ -26,4 +27,25 @@
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
+}
+
+#winningLotto-winningNumbers-container {
+  width: 244px;
+  height: 36px;
+
+  display: flex;
+  gap: 8px;
+}
+
+#winningLotto-bonusNumber-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.winningLotto-number {
+  width: 34px;
+  height: 36px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
 }
