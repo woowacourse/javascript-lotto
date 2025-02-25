@@ -1,12 +1,18 @@
-import { LOTTO } from '../constants/CONFIGURATIONS.js';
+import { LOTTO, PURCHASE_PRICE } from '../constants/CONFIGURATIONS.js';
 import generateRandomNumber from '../utils/generateRandomNumber.js';
 import Lotto from './Lotto.js';
+import WinningResult from './WinningResult.js';
 
 class LottoMachine {
   #lottos = [];
 
-  constructor(lottoCount) {
+  constructor(lottoPurchasePrice) {
+    const lottoCount = lottoPurchasePrice / PURCHASE_PRICE.UNIT;
     this.#lottos = this.#generateLottos(lottoCount);
+  }
+
+  get lottos() {
+    return this.#lottos;
   }
 
   #generateLottos(lottoCount) {
@@ -17,9 +23,19 @@ class LottoMachine {
     return Array.from({ length: lottoCount }, () => new Lotto(generateLotto()));
   }
 
-  get lottos() {
-    return this.#lottos;
+  calculateResult({ winningNumbers, bonusNumber }, lottoPurchasePrice) {
+    const winningResult = new WinningResult(winningNumbers, bonusNumber);
+
+    const winningCounts = winningResult.calculate(this.#lottos);
+    const profitRate = winningResult.calculateProfitRate(
+      lottoPurchasePrice,
+      winningCounts,
+    );
+
+    return [winningCounts, profitRate];
   }
+
+  
 }
 
 export default LottoMachine;
