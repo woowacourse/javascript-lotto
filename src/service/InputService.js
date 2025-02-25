@@ -20,3 +20,13 @@ export function getUIWinningNumber() {
   );
   return winningNumbers.map((input) => input.value.trim()).join(',');
 }
+
+export async function getConsoleBonusNumber() {
+  return await readLineAsync(INPUT_MESSAGE.getBonusNumber);
+}
+
+export function getUIBonusNumber() {
+  const bonusNumber = document.getElementById('bonusnum-input');
+
+  return bonusNumber.value;
+}

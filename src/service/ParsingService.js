@@ -34,9 +34,9 @@ async function getWinningNumber(inputMethod) {
     return await getWinningNumber();
   }
 }
-async function getBonusNumber(userLotto) {
+async function getBonusNumber(userLotto, inputMethod) {
   try {
-    const bonusNumber = await readLineAsync(INPUT_MESSAGE.getBonusNumber);
+    const bonusNumber = await inputMethod();
     const parsedLotto = checkBonusNumber(userLotto, Number(bonusNumber));
     return parsedLotto;
   } catch (error) {

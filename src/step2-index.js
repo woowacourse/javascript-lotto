@@ -3,18 +3,29 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
+import { PRIZE_MONEY } from './constants/MagicNumber.js';
 import {
+  calculatePrize,
+  calculateRevenueRate,
+  calculateWins,
+} from './service/CalculatorService.js';
+import {
+  getUIBonusNumber,
   getUIPurchasePrice,
   getUIWinningNumber,
 } from './service/InputService.js';
 import makeLotto from './service/LottoService.js';
 import {
+  getBonusNumber,
   getPurchasePrice,
   getWinningNumber,
 } from './service/ParsingService.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const purchaseButton = document.getElementById('purchase-button');
+  const resultButton = document.getElementById('check-result-btn');
+
+  let lottos = [];
   purchaseButton.addEventListener('click', async (event) => {
     event.preventDefault();
     try {
@@ -24,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       purchaseResult.textContent = `총 ${purchaseAmount}개를 구매하였습니다.`;
       document.querySelector('.purchase-message').appendChild(purchaseResult);
 
-      const lottos = makeLotto(purchaseAmount);
+      lottos = makeLotto(purchaseAmount);
       lottos.forEach((lotto) => {
         const lottoWrapper = document.createElement('div');
         lottoWrapper.classList.add('lotto-wrapper');
@@ -49,12 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Error:', error.message);
     }
   });
-  const resultButton = document.getElementById('check-result-btn');
   resultButton.addEventListener('click', async (event) => {
     event.preventDefault();
     try {
-      const winningNumber = await getWinningNumber(getUIWinningNumber);
-      console.log(winningNumber);
+      const userLotto = await getWinningNumber(getUIWinningNumber);
+      const parsedLotto = await getBonusNumber(userLotto, getUIBonusNumber);
+
+      const winCount = calculateWins(lottos, parsedLotto);
+      const total = calculatePrize(winCount, PRIZE_MONEY);
+
+      console.log(winCount, total);
     } catch (error) {
       console.log(error);
     }
