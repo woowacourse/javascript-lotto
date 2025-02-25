@@ -1,5 +1,3 @@
-import GameController from "./controller/GameController.js";
+import runLottoGame from "./controller/GameController.js";
 
-const game = new GameController();
-
-await game.run();
+await runLottoGame();
