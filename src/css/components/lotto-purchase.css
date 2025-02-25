@@ -1,0 +1,34 @@
+.lotto-purchase__title {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.lotto-purchase__description {
+  padding-top: 8px;
+}
+
+.lotto-purchase__form {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.lotto-purchase__input {
+  width: 310px;
+  height: 36px;
+  border: solid 1px var(--lotto-greyscale-3-color);
+  border-radius: var(--border-radius);
+  padding: 10px;
+}
+
+.lotto-purchase__input::placeholder {
+  font-size: var(--body-text-size);
+  color: var(--lotto-greyscale-4-color);
+}
+
+.lotto-purchase__button {
+  width: 56px;
+  height: 36px;
+}

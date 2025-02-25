@@ -1,0 +1,51 @@
+.winning-lotto {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.winning-lotto__description {
+  margin: 3px 0 3px 0;
+}
+
+.winning-lotto__numbers {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0 8px 0;
+}
+
+.winning-lotto__form {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.winning-lotto__inputs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.winning-lotto__input {
+  width: 34px;
+  height: 36px;
+  border: solid 1px var(--lotto-greyscale-3-color);
+  border-radius: var(--border-radius);
+}
+
+.winning-lotto__winning-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.winning-lotto__result-button {
+  width: 382px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
