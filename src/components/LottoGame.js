@@ -44,6 +44,14 @@ export default class LottoGame {
     this.render();
   };
 
+  setInit = () => {
+    this.#lottoTransaction = { price: 0, lottos: [] };
+    this.#winningLottoInfo = { winningNumbers: [], bonusNumber: 0 };
+    this.#lottoResult = { lottoHistory: [], rate: 0 };
+    this.#show = false;
+    this.render();
+  };
+
   render() {
     this.#target.innerHTML = "";
 
@@ -87,7 +95,11 @@ export default class LottoGame {
     const lottoHistory = lottoResult.getWinningHistory();
     const rate = lottoResult.calculateRate();
 
-    const winningStatistic = new WinningStatistic(lottoHistory, rate);
+    const winningStatistic = new WinningStatistic(
+      lottoHistory,
+      rate,
+      this.setInit
+    );
 
     new Modal(this.#target, ($target) => winningStatistic.render($target));
   }

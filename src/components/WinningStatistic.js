@@ -2,15 +2,15 @@ import Button from "../common/button.js";
 import { LOTTO_STATUS } from "../constants/lotto.js";
 
 export default class WinningStatistic {
-  constructor(lottoHistory, rate) {
-    this.init(lottoHistory, rate);
+  constructor(lottoHistory, rate, setInit) {
+    this.init(lottoHistory, rate, setInit);
   }
 
   render($target) {
     $target.appendChild(this.$div);
   }
 
-  init(lottoHistory, rate) {
+  init(lottoHistory, rate, setInit) {
     this.$div = document.createElement("div");
     const $title = document.createElement("p");
     this.$div.className = "winning-static-container";
@@ -68,6 +68,7 @@ export default class WinningStatistic {
 
         $modalBg.classList.remove("modal-bg-show");
         $container.classList.remove("modal-show");
+        setInit();
       },
       "다시 시작하기"
     );
