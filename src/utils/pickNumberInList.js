@@ -1,6 +1,4 @@
-import { LOTTO_RULE } from '../domain/constants.js';
-
-export default function pickNumberInList() {
+export default function pickNumberInList(LOTTO_RULE) {
   const randomNumbers = new Set();
   while (randomNumbers.size < LOTTO_RULE.LENGTH) {
     const randomNumber =

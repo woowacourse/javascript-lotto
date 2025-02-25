@@ -17,7 +17,7 @@ class LottoMachine {
   }
 
   createLotto() {
-    const randomNumbers = pickNumberInList();
+    const randomNumbers = pickNumberInList(LOTTO_RULE);
     return new Lotto(randomNumbers);
   }
 
