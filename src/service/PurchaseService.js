@@ -8,3 +8,9 @@ export const getLottoCount = (price) => {
 
 export const getLottoArray = (count) =>
   Array.from({ length: count }, () => new Lotto(pickUniqueNumbersInRange(LOTTO_NUMBERS.MIN, LOTTO_NUMBERS.MAX, LOTTO_NUMBERS.LENGTH)));
+
+export const purchaseLottos = (price) => {
+  const lottoCount = getLottoCount(price);
+  const lottoArray = getLottoArray(lottoCount);
+  return { lottoArray, lottoCount };
+};

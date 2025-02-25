@@ -3,7 +3,7 @@ import validatePrice from "../validation/validatePrice.js";
 import validateWinningNumber from "../validation/validateWinningNumber.js";
 import validateBonusNumber from "../validation/validateBonusNumber.js";
 import InputView from "../view/inputView.js";
-import { parseBonusNumber, parsePrice, parseWinningNumbers } from "./ParsingService.js";
+import { parseBonusNumber, parsePrice, parseWinningNumbers } from "../input/parseInput.js";
 import validateRetryInput from "../validation/validateRetryInput.js";
 
 export const getPrice = async () => {
