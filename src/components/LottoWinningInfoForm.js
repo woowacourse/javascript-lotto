@@ -1,4 +1,6 @@
 import Button from "../common/button.js";
+import LottoValidator from "../validation/LottoValidator.js";
+import BonusNumberValidator from "../validation/BonusNumberValidator.js";
 
 export default class LottoWinningInfoForm {
   #setWinningLottoInfo;
@@ -44,10 +46,28 @@ export default class LottoWinningInfoForm {
           winningNumbers.push(Number($lottoNumber.value));
         });
 
+        try {
+          new LottoValidator().validateLotto(winningNumbers);
+        } catch (e) {
+          alert(e.message);
+          return;
+        }
+
         const $bonusNumber = document.querySelector(
           ".bonus-input-wrap > .number-input"
         );
+
         const bonusNumber = Number($bonusNumber.value);
+
+        try {
+          new BonusNumberValidator().validateBonusNumber(
+            winningNumbers,
+            bonusNumber
+          );
+        } catch (e) {
+          alert(e.message);
+          return;
+        }
 
         this.#setWinningLottoInfo({ winningNumbers, bonusNumber });
       },
