@@ -34,6 +34,13 @@ const restart_button = lotto_result.querySelector(".restart_button");
 let purchaseAmount = null;
 let lottoPack = null;
 
+purchase_amount_input.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    purchase_button.click();
+    purchase_amount_input.blur();
+  }
+});
+
 purchase_button.addEventListener("click", () => {
   try {
     purchaseAmount = parseAndValidatePurchaseAmount(purchase_amount_input.value);
