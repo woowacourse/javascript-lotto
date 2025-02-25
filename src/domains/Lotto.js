@@ -1,5 +1,8 @@
-import { KEY } from '../constants/CONFIGURATIONS';
-import { LottoNumbersValidator, validateDuplicate } from '../validators/LottoNumbersValidator';
+import { KEY } from '../constants/CONFIGURATIONS.js';
+import {
+  LottoNumbersValidator,
+  validateDuplicate,
+} from '../validators/LottoNumbersValidator.js';
 
 class Lotto {
   #numbers;
