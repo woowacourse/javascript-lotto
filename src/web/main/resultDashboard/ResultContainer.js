@@ -1,3 +1,4 @@
+import { LOTTO } from '../../../domain/lottoConstants';
 import { createElement } from '../../utils/dom';
 import DividerLine from './DividerLine';
 import ResultCols from './ResultCols';
@@ -17,14 +18,14 @@ export default function ResultContainer(resultDashboard, matchCounts) {
 }
 
 function RowsOfTotalResult(resultContainer, matchCounts) {
-  resultContainer.appendChild(ResultRow('3개', '5,000', matchCounts[3]));
+  resultContainer.appendChild(ResultRow('3개', '5,000', matchCounts[LOTTO.THREE_MATCH]));
   DividerLine(resultContainer);
-  resultContainer.appendChild(ResultRow('4개', '50,000', matchCounts[4]));
+  resultContainer.appendChild(ResultRow('4개', '50,000', matchCounts[LOTTO.FOUR_MATCH]));
   DividerLine(resultContainer);
-  resultContainer.appendChild(ResultRow('5개', '1,500,000', matchCounts[5]));
+  resultContainer.appendChild(ResultRow('5개', '1,500,000', matchCounts[LOTTO.FIVE_MATCH]));
   DividerLine(resultContainer);
-  resultContainer.appendChild(ResultRow('5개+보너스볼', '30,000,000', matchCounts[7]));
+  resultContainer.appendChild(ResultRow('5개+보너스볼', '30,000,000', matchCounts[LOTTO.FIVE_WITH_BONUS_MATCH_IDX]));
   DividerLine(resultContainer);
-  resultContainer.appendChild(ResultRow('6개', '2,000,000,000', matchCounts[6]));
+  resultContainer.appendChild(ResultRow('6개', '2,000,000,000', matchCounts[LOTTO.SIX_MATCH]));
   DividerLine(resultContainer);
 }
