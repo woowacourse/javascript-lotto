@@ -215,3 +215,21 @@ table {
   color: var(--caption-color);
   letter-spacing: var(--caption-spacing);
 }
+
+.header {
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  height: 64px;
+  font-family: var(--font-family);
+  font-size: var(--title-size);
+  line-height: var(--title-line-height);
+  font-weight: var(--title-weight);
+  letter-spacing: var(--title-spacing);
+  padding-left: 130px;
+}
+
+.header h1 {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
