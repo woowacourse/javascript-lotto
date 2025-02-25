@@ -3,13 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <div id="app">
+      <div class="navbar__menu">
       <h1>🎱 행운의 로또</h1>
+      </div>
+      <div class="lotto__body">
+        <div class="lotto__box">
+          <h1>🎱 내 번호 당첨 확인 🎱</h1>
+          <p>구입할 금액을 입력해 주세요</p>
+          <div class="lotto__input">
+            <div class="lotto__input__empty"></div>
+            <div class="lotto__input__btn"></div>
+          </div>
+        <p>총 7개를 구매하였습니다.</p>
+        <div class="lotto__list">
+          <div class="random__lotto">
+            <!-- 아이콘이랑, 배열 출력하는거 -->
+          </div>
+          <!-- 근데 이거 한번에 여러개 출력하는거 어케하더랑 -->
+        </div>
+        <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+        <div class="target__lotto__input">
+          <div class="target__lotto"></div>
+          <div class="bonus__number"></div>
+        </div>
+        <div class="result__btn">
+          <p>결과 확인하기</p>
+        </div>
+        </div>
+      </div>
+      <div class="lotto__bottom">
+        <p>Copyright 2023. woowacourse</p>
+      </div>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>

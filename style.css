@@ -1,0 +1,43 @@
+ :root{
+      /* Color */
+    --lotto-primary: #4E5BA6;
+    --lotto-greyscale-1 : #FFFFFF;
+    --lotto-greyscale-2:#FCFCFD;
+    --lotto-greyscale-3:#B4B4B4;
+    --lotto-greyscale-4: #8B8B8B;
+    --lotto-greyscale-5:#000000;
+
+
+
+      /* Font size */
+    --font-lotto-title :24px;
+  --font-lotto-subtitle:20px;
+  --font-lotto-body:15px;
+  --font-lotto-placeholder:15px;
+  --font-lotto-caption:14px;
+
+
+
+  /* font weight */
+  --weight-extrabold: 800;
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+
+
+
+
+ }
+ .navbar__menu{
+   display: flex;
+   background-color: var(--lotto-primary);
+   color: var(--lotto-greyscale-1);
+   height: 64px;
+   align-items: center;
+ }
+
+ .navbar__menu h1{
+    margin-left: 130px;
+    font-size: var(--lotto-title);
+
+ }
