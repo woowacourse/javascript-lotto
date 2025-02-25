@@ -11,13 +11,12 @@ const InputView = {
     const { readLineAsync } = await import("../util/readLineAsync.js");
     return await readLineAsync(message);
   },
-  readWebInput(tagName) {
-    const inputElement = document.querySelector(`.${tagName}`);
-    // inputElement.value = "";
+  readWebInput(name) {
+    const inputElement = document.querySelector(`[name=${name}]`);
     return inputElement.value;
   },
-  readWebInputs(tagName) {
-    const inputs = document.querySelectorAll(`.${tagName}`);
+  readWebInputs(name) {
+    const inputs = document.querySelectorAll(`[name=${name}]`);
     return Array.from(inputs)
       .map((input) => input.value)
       .join(", ");

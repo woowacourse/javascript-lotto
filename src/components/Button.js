@@ -1,7 +1,11 @@
-export const Button = (prompt) => {
-  const resultButton = document.createElement("button");
-  resultButton.classList.add("large-button");
-  resultButton.textContent = prompt;
+export const Button = (label, onClick) => {
+  const button = document.createElement("button");
+  button.classList.add("large-button");
+  button.textContent = label;
 
-  return resultButton;
+  if (onClick) {
+    button.addEventListener("click", onClick);
+  }
+
+  return button;
 };

@@ -179,14 +179,6 @@ button {
   display: flex;
   gap: 0.5rem;
 }
-.winning-input {
-  width: 1rem;
-  height: 2.2rem;
-}
-.bonus-input {
-  width: 1rem;
-  height: 2.2rem;
-}
 .bonus-input-wrap {
   display: flex;
   flex-direction: column;
@@ -196,4 +188,11 @@ button {
 
 .result-button-container {
   width: 100%;
+}
+
+/*modal*/
+.modal-background {
+  width: 100vh;
+  height: 100vh;
+  background-color: rgba(252, 252, 253, 1);
 }

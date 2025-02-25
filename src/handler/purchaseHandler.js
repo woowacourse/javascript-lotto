@@ -3,6 +3,7 @@ import { LottoNumbers } from "../components/LottoNumbers.js";
 import { Button } from "../components/Button.js";
 import { Prompt } from "../components/Prompt.js";
 import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants.js";
+import { showResult } from "../step2-index.js";
 
 export const purchaseHandler = (lottoCount, lottoArray) => {
   const countPrompt = `총 ${lottoCount}개를 구매했습니다.`;
@@ -15,7 +16,10 @@ export const purchaseHandler = (lottoCount, lottoArray) => {
 
   displayComponent(".winning-bonus-container", WinningInput(), BonusInput());
 
-  displayComponent(".result-button-container", Button("결과 확인하기"));
+  displayComponent(
+    ".result-button-container",
+    Button("결과 확인하기", () => showResult(lottoCount, lottoArray))
+  );
 };
 
 const displayComponent = (parentElement, ...childElement) => {

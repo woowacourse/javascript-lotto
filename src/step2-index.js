@@ -8,19 +8,23 @@ const runLotto = () => {
   const purchaseButton = document.querySelector(".purchase-button");
 
   purchaseButton.addEventListener("click", async () => {
-    const { lottoArray, lottoCount } = await PurchaseController();
-    purchaseHandler(lottoCount, lottoArray);
-
-    purchaseButton.disabled = true;
-
-    const resultButton = document.querySelector(".result-button-container");
-    resultButton.addEventListener("click", async () => {
-      const winningLotto = await WinningController();
-      const matchingCount = ResultController(winningLotto, lottoArray);
-      const profitRate = calculateProfitRate(matchingCount, lottoCount);
-      console.log(matchingCount, profitRate);
-    });
+    purchaseLotto();
   });
+};
+
+const purchaseLotto = async () => {
+  const purchaseButton = document.querySelector(".purchase-button");
+  const { lottoArray, lottoCount } = await PurchaseController();
+  purchaseHandler(lottoCount, lottoArray);
+
+  purchaseButton.disabled = true;
+};
+
+export const showResult = async (lottoCount, lottoArray) => {
+  const winningLotto = await WinningController();
+  const matchingCount = ResultController(winningLotto, lottoArray);
+  const profitRate = calculateProfitRate(matchingCount, lottoCount);
+  console.log(matchingCount, profitRate);
 };
 
 runLotto();

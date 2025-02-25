@@ -14,13 +14,13 @@ export const getPrice = async () => {
 
 export const getWinningNumber = async () => {
   const isMultipleValue = true;
-  const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER, "winning-input", isMultipleValue);
+  const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER, "winning-number", isMultipleValue);
   validateWinningNumber(winningNumberInput);
   return parseWinningNumbers(winningNumberInput);
 };
 
 export const getBonusNumber = async (winningNumbers) => {
-  const bonusNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.BONUS_NUMBER, "bonus-input");
+  const bonusNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.BONUS_NUMBER, "bonus-number");
   validateBonusNumber(winningNumbers, bonusNumberInput);
   return parseBonusNumber(bonusNumberInput);
 };
