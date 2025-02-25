@@ -11,6 +11,7 @@
 }
 body {
   color: var(--lotto-greyscale-5);
+  font-family: "Roboto";
 }
 input {
   border: 1px solid var(--lotto-greyscale-3);
