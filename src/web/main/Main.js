@@ -1,9 +1,9 @@
-import lottoDashboard from './lottoDashboard/LottoDashboard';
+import LottoDashboard from './lottoDashboard/LottoDashboard';
 import './main.css';
 
 export default function Main() {
   const main = document.createElement('main');
 
-  main.appendChild(lottoDashboard());
+  main.appendChild(LottoDashboard());
   return main;
 }
