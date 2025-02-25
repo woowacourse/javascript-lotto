@@ -9,18 +9,19 @@ export default function randomLottos(playLotto, randomLottosArray) {
   playLotto.appendChild(purchasedLottoQuantity);
 
   const randomLottos = createElement('div', { class: 'random-lottos' });
+  CreateOneLotto(randomLottos, randomLottosArray);
 
+  playLotto.appendChild(randomLottos);
+}
+
+function CreateOneLotto(randomLottos, randomLottosArray) {
   randomLottosArray.forEach((randomLotto) => {
     const oneLotto = createElement('div', { class: 'one-lotto' });
-
     const lottoImage = createElement('img', { src: './lotto.png' });
-
     const randomLottoNumbers = createElement('span', { textContent: randomLotto });
 
     oneLotto.appendChild(lottoImage);
     oneLotto.appendChild(randomLottoNumbers);
     randomLottos.appendChild(oneLotto);
   });
-
-  playLotto.appendChild(randomLottos);
 }
