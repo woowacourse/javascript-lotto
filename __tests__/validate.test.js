@@ -1,5 +1,6 @@
 import ERROR_MESSAGE from "../src/constant/error.js";
 import RESTART_ANSWER from "../src/constant/answer.js";
+import SPLITTER from "../src/constant/splitter.js";
 import { LOTTO } from "../src/constant/lotto.js";
 import {
   validateBonusNumber,
@@ -65,25 +66,25 @@ describe("validate", () => {
       test(`중복되는 번호가 있는 경우`, () => {
         const duplicateNumbers = "1,2,3,4,5,5";
 
-        expect(() => validateWinningNumbers(duplicateNumbers)).toThrow(
-          ERROR_MESSAGE.DUPLICATE_WINNING_NUMBER
-        );
+        expect(() =>
+          validateWinningNumbers(duplicateNumbers, SPLITTER)
+        ).toThrow(ERROR_MESSAGE.DUPLICATE_WINNING_NUMBER);
       });
 
       test(`${LOTTO.MIN_RANDOM_VALUE}~${LOTTO.MAX_RANDOM_VALUE}사이의 숫자가 아닌 값이 포함되어 있는 경우`, () => {
         const outOfRangeNumbers = "1,2,3,4,5,66";
 
-        expect(() => validateWinningNumbers(outOfRangeNumbers)).toThrow(
-          ERROR_MESSAGE.NUMBER_OUT_OF_RANGE
-        );
+        expect(() =>
+          validateWinningNumbers(outOfRangeNumbers, SPLITTER)
+        ).toThrow(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
       });
 
       test(`숫자가 아닌 값이 포함되어 있는 경우`, () => {
         const numbersWithNonNumber = "1,a,3,4,5,6";
 
-        expect(() => validateWinningNumbers(numbersWithNonNumber)).toThrow(
-          ERROR_MESSAGE.NOT_A_NUMBER
-        );
+        expect(() =>
+          validateWinningNumbers(numbersWithNonNumber, SPLITTER)
+        ).toThrow(ERROR_MESSAGE.NOT_A_NUMBER);
       });
     });
   });

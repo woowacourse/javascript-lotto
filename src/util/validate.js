@@ -3,8 +3,6 @@ import PRICE from "../constant/price.js";
 import RESTART_ANSWER from "../constant/answer.js";
 import { LOTTO } from "../constant/lotto.js";
 
-const SPLITTER = ",";
-
 export const validateRestart = (answer) => {
   if (
     answer.toLowerCase() !== RESTART_ANSWER.YES &&
@@ -21,8 +19,8 @@ export const validatePurchaseAmount = (price) => {
   if (price % PRICE.UNIT !== 0) throw new Error(ERROR_MESSAGE.NOT_DIVIDED_1000);
 };
 
-export const validateWinningNumbers = (numbers) => {
-  const numbersArray = numbers.split(SPLITTER).map(Number);
+export const validateWinningNumbers = (numbers, splitter) => {
+  const numbersArray = numbers.split(splitter).map(Number);
   if (numbersArray.length < LOTTO.LENGTH)
     throw new Error(ERROR_MESSAGE.LOTTO_LENGTH);
   if (numbersArray.some((num) => isNaN(num)))

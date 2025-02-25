@@ -1,4 +1,5 @@
 import InputView from "../ui/InputView.js";
+import SPLITTER from "../constant/splitter.js";
 import {
   validateBonusNumber,
   validatePurchaseAmount,
@@ -23,7 +24,7 @@ const InputHandler = {
     while (true) {
       try {
         const winningNumbers = await InputView.readWinningNumbers();
-        validateWinningNumbers(winningNumbers);
+        validateWinningNumbers(winningNumbers, SPLITTER);
         return winningNumbers;
       } catch (error) {
         console.log(error.message);
