@@ -48,8 +48,18 @@
   height: 36px;
   border: 1px solid var(--lotto-greyscale-3);
   border-radius: 4px;
+
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
 }
 
 .winningLotto-number:focus {
   outline-color: var(--lotto-greyscale-4);
+}
+
+#winningLotto-bonusNumber {
+  color: var(--lotto-primary);
 }
