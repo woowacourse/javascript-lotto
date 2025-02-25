@@ -48,7 +48,7 @@ main .container {
     border: 1px solid #0000001F;
 }
 
-main p {
+main .lotto-title {
     margin: 40px 0 28px 0;
     padding: 0 16px;
     border: 0;
@@ -107,6 +107,48 @@ main button {
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
+}
+
+main .lotto-count {
+    margin: 28px 0 0 0;
+    padding: 0 0 0 16px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+}
+
+main .lotto-container {
+    width: 238px;
+    height: 276px;
+    padding: 0 0 0 16px;
+    overflow-y: auto;
+}
+
+main .lotto {
+    width: 238px;
+    height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 0 4px 0;
+}
+
+main .lotto-img {
+    width: 34px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+}
+
+main .lotto-numbers {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    padding: 4px ;
 }
 
 footer {
