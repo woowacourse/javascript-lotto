@@ -1,7 +1,7 @@
 import { getRetryInput, getBonusNumber, getPrice, getWinningNumber } from "../service/InputService.js";
 import { calculateProfitRate } from "../service/ProfitService.js";
 import { getLottoArray, getLottoCount } from "../service/PurchaseService.js";
-import { calculateMatchingResult } from "../service/LottoService.js";
+import { calculateMatchingResult } from "../service/MatchingService.js";
 import WinningLotto from "../domain/WinningLotto.js";
 import retryOnError from "../util/retryOnError.js";
 import OutputView from "../view/OutputView.js";
