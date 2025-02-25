@@ -171,6 +171,10 @@ table {
   --caption-spacing: 1.25px;
 }
 
+body {
+  background-color: var(--lotto-greyscale-2);
+}
+
 .lotto-title {
   font-family: var(--font-family);
   font-size: var(--title-size);
@@ -232,4 +236,40 @@ table {
   display: flex;
   align-items: center;
   height: 100%;
+}
+
+.footer {
+  background-color: var(--lotto-greyscale-2);
+  color: var(--lotto-primary);
+  height: 80px;
+  font-family: var(--font-family);
+  font-size: var(--caption-size);
+  line-height: var(--caption-line-height);
+  font-weight: var(--caption-weight);
+  letter-spacing: var(--caption-spacing);
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #4E5BA633;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 144px);
+}
+
+.main-contents {
+  width: 414px;
+  height: 570px;
+  background-color: var(--lotto-greyscale-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #0000001F
 }
