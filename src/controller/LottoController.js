@@ -2,7 +2,7 @@ import InputHandler from '../input/InputHandler.js';
 import LottoMaker from '../domain/LottoMaker.js';
 import LottoMatch from '../domain/LottoMatch.js';
 import LottoGame from '../domain/LottoGame.js';
-import LottoViewController from './LottoViewController.js';
+import LottoOutputView from '../view/LottoOutputView.js';
 import { YES } from '../constants/constants.js';
 import { LOTTO_CONDITION } from '../constants/constants.js';
 
@@ -10,7 +10,7 @@ class LottoController {
   async run() {
     const purchaseMoney = await InputHandler.purchaseMoney();
     const lottoMaker = new LottoMaker(purchaseMoney);
-    LottoViewController.printLottoNumber(lottoMaker);
+    LottoOutputView.printLottoNumber(lottoMaker);
 
     const winningNumbers = await InputHandler.winningNumbers();
     const bonusNumber = await InputHandler.bonusNumber(winningNumbers.numbers);
@@ -24,14 +24,14 @@ class LottoController {
       );
     });
 
-    LottoViewController.printStatistics(lottoGame.rank);
+    LottoOutputView.printStatistics(lottoGame.rank);
 
     const winningRate = LottoGame.calculateWinningRate(
       LOTTO_CONDITION.PRICE * lottoMaker.lottoList.length,
       LottoGame.calculateTotalPrize(lottoGame.rank),
     );
 
-    LottoViewController.printWinningRate(winningRate);
+    LottoOutputView.printWinningRate(winningRate);
 
     await this.reStart();
   }
