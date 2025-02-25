@@ -54,6 +54,8 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  max-height: 276px;
+  overflow-y: scroll;
 }
 
 #lottoGame .lotto_pack_section .lotto_pack .lotto {

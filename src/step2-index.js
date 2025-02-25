@@ -7,27 +7,32 @@ import { LOTTO_NUMBER_SPLITER } from "./constants/constant";
 import LottoMachine from "./domain/LottoMachine/LottoMachine";
 import parseAndValidatePurchaseAmount from "./domain/processors/parseAndValidatePurchaseAmount";
 
-const lottoGame = document.getElementById("lottoGame");
+const lotto_game = document.getElementById("lottoGame");
+const purchase_amount_input = document.getElementById("purchaseAmount");
+const purchase_button = document.getElementById("purchaseButton");
 
-const purchaseAmountInput = document.getElementById("purchaseAmount");
-const purchaseButton = document.getElementById("purchaseButton");
+const lotto_pack_section = document.querySelector(".lotto_pack_section");
+const purchase_count = document.querySelector(".purchase_count");
+const lotto_pack = document.querySelector(".lotto_pack");
 
-purchaseButton.addEventListener("click", () => {
+purchase_button.addEventListener("click", () => {
   try {
-    const purchaseAmount = parseAndValidatePurchaseAmount(purchaseAmountInput.value);
+    const purchaseAmount = parseAndValidatePurchaseAmount(purchase_amount_input.value);
     const lottoPack = LottoMachine(purchaseAmount);
 
-    const purchaseCount = document.createElement("span");
-    purchaseCount.innerText = `총 ${lottoPack.count}개를 구매했습니다.`;
-    const lottoSet = document.createElement("div");
-    lottoSet.classList.add("lottoSet");
+    purchase_count.textContent = `총 ${lottoPack.count}개를 구매했습니다.`;
+
     lottoPack.lottos.forEach((lotto) => {
-      const lottoNumber = document.createElement("span");
-      lottoNumber.innerText = `${lotto.lottoNumbers.join(LOTTO_NUMBER_SPLITER)}`;
-      lottoSet.appendChild(lottoNumber);
+      lotto_pack.innerHTML += `
+            <div class="lotto">
+                <img src="ticket.png" alt="로또" width="34px" height="36px" />
+                <span>${lotto.lottoNumbers.join(LOTTO_NUMBER_SPLITER)}</span>
+            </div>
+              `;
     });
-    lottoGame.appendChild(purchaseCount);
-    lottoGame.appendChild(lottoSet);
+
+    lotto_pack_section.appendChild(purchase_count);
+    lotto_pack_section.appendChild(lotto_pack);
   } catch (error) {
     alert(error);
   }
