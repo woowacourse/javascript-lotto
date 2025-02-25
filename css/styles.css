@@ -1,1 +1,7 @@
 @import "./variables.css";
+
+@import "/css/lotto.css";
+
+body {
+  background-color: var(--lotto-greyscale-2);
+}

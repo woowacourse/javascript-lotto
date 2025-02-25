@@ -77,7 +77,7 @@
 - 로또 구매 화면 제작
   - # main contents
   - [x] html 뼈대 구성
-  - [ ] card title 제작
+  - [x] card title 제작
   - [ ] card input 입력창 제작
   - [ ] 로또 출력 화면 제작
   - [ ] 당첨번호 및 보너스 번호 입력 창 제작
