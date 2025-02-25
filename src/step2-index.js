@@ -9,6 +9,7 @@ import generateAnswerLotto from "./domain/generateAnswerLotto";
 import parseAndValidateBonusNumber from "./domain/processors/parseAndValidateBonusNumber";
 import parseAndValidatePurchaseAmount from "./domain/processors/parseAndValidatePurchaseAmount";
 import parseAndValidateWinningNumbers from "./domain/processors/parseAndValidateWinningNumbers";
+import profitCalculator from "./domain/profitCalculator/profitCalculator";
 
 const lotto_game = document.getElementById("lottoGame");
 const purchase_amount_input = lotto_game.querySelector("#purchaseAmount");
@@ -23,16 +24,17 @@ const reuslt_button = lotto_game.querySelector(".reuslt_button_section #resultBu
 
 const lotto_result_modal = document.querySelector(".lotto_result_modal");
 // const close_modal = lotto_result_modal.querySelector(".close");
-
-const statistics = lotto_result_modal.querySelector(".statistics");
+const lotto_result = document.getElementById("lottoResult");
+const statistics = lotto_result.querySelector(".statistics");
 const statistics_rows = statistics.querySelectorAll(".row");
-const user_counts = statistics.querySelectorAll(".user_count");
+const profit_rate = lotto_result.querySelector(".profit_rate");
 
+let purchaseAmount = null;
 let lottoPack = null;
 
 purchase_button.addEventListener("click", () => {
   try {
-    const purchaseAmount = parseAndValidatePurchaseAmount(purchase_amount_input.value);
+    purchaseAmount = parseAndValidatePurchaseAmount(purchase_amount_input.value);
     lottoPack = LottoMachine(purchaseAmount);
 
     purchase_count.textContent = `총 ${lottoPack.count}개를 구매했습니다.`;
@@ -73,7 +75,6 @@ reuslt_button.addEventListener("click", () => {
     const answerLotto = generateAnswerLotto(winningNumbers, bonusNumber);
 
     const winningResult = lottoPack.compareAndReturnResult(answerLotto);
-
     statistics_rows.forEach((row) => {
       const price = row.querySelector(".price").textContent;
       const matchedKey = Object.keys(winningResult).find((key) => key.includes(price));
@@ -81,6 +82,9 @@ reuslt_button.addEventListener("click", () => {
         row.querySelector(".user_count").textContent = `${winningResult[matchedKey]}개`;
       }
     });
+
+    const profitRate = profitCalculator(purchaseAmount, winningResult);
+    profit_rate.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
 
     lotto_result_modal.showModal();
   } catch (error) {
