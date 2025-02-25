@@ -1,6 +1,5 @@
 import PurchaseForm from "./PurchaseForm.js";
 import LottoPurchaseHistory from "./LottoPurchaseHistory.js";
-import LottoFactory from "../domain/LottoFactory.js";
 import { divideByUnit } from "../utils/count.js";
 import { PRICE } from "../constants/price.js";
 import LottoWinningInfoForm from "./LottoWinningInfoForm.js";
@@ -15,6 +14,7 @@ export default class LottoGame {
     this.#target = $target;
     this.#lottoTransaction = { price: 0, lottos: [] };
     this.#winningLottoInfo = { winningNumbers: [], bonusNumber: 0 };
+    this.#show = false;
     this.render();
   }
 
@@ -47,10 +47,14 @@ export default class LottoGame {
     this.#target.appendChild($div);
 
     const countNumber = divideByUnit(PRICE.UNIT, this.#lottoTransaction.price);
-    const lottos = LottoFactory.issueLottos(countNumber);
 
     new PurchaseForm($div, this.setLottoTransaction, this.setShow);
-    new LottoPurchaseHistory($div, countNumber, lottos, this.#show);
+    new LottoPurchaseHistory(
+      $div,
+      countNumber,
+      this.#lottoTransaction.lottos,
+      this.#show
+    );
     new LottoWinningInfoForm($div, this.setWinningLottoInfo, this.#show);
   }
 }

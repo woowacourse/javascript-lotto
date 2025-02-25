@@ -1,4 +1,8 @@
-export default class {
+import { PRICE } from "../constants/price.js";
+import LottoFactory from "../domain/LottoFactory.js";
+import { divideByUnit } from "../utils/count.js";
+
+export default class PurchaseForm {
   #setLottoTransaction;
   #setShow;
 
@@ -34,7 +38,12 @@ export default class {
     $form.appendChild($div);
 
     $button.addEventListener("click", () => {
-      this.#setLottoTransaction({ price: $input.value });
+      const price = $input.value;
+
+      const countNumber = divideByUnit(PRICE.UNIT, price);
+      const lottos = LottoFactory.issueLottos(countNumber);
+
+      this.#setLottoTransaction({ price, lottos });
       this.#setShow(true);
     });
 
