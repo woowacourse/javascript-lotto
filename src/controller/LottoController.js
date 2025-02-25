@@ -1,10 +1,10 @@
 import InputHandler from '../input/InputHandler.js';
 import LottoMaker from '../domain/LottoMaker.js';
 import LottoMatch from '../domain/LottoMatch.js';
-import LottoRank from '../domain/LottoRank.js';
+import LottoGame from '../domain/LottoGame.js';
 import LottoViewController from './LottoViewController.js';
-import LottoService from '../service/LottoService.js';
 import { YES } from '../constants/constants.js';
+import { LOTTO_CONDITION } from '../constants/constants.js';
 
 class LottoController {
   async run() {
@@ -15,13 +15,23 @@ class LottoController {
     const bonusNumber = await LottoViewController.getBonusNumber(winningNumbers.numbers);
 
     const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
-    const lottoRank = new LottoRank();
+    const lottoGame = new LottoGame();
 
-    LottoService.getRank(lottoMaker.lottoList, lottoMatch, lottoRank);
-    LottoViewController.printStatistics(lottoRank.rank);
+    lottoMaker.lottoList.forEach((lotto) => {
+      lottoGame.addRankingCount(
+        LottoGame.calculateRank(lottoMatch.countMatchingNumbers(lotto), lottoMatch.hasBonusNumber(lotto)),
+      );
+    });
 
-    const winningRate = LottoService.getWinningRate(lottoMaker, lottoMaker.lottoList);
+    LottoViewController.printStatistics(lottoGame.rank);
+
+    const winningRate = LottoGame.calculateWinningRate(
+      LOTTO_CONDITION.PRICE * lottoMaker.purchaseCount,
+      LottoGame.calculateTotalPrize(lottoGame.rank),
+    );
+
     LottoViewController.printWinningRate(winningRate);
+
     await this.reStart();
   }
 
@@ -31,6 +41,8 @@ class LottoController {
       return this.run();
     }
   }
+
+  createLotto() {}
 }
 
 export default LottoController;

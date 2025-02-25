@@ -8,8 +8,7 @@ class LottoMatch {
   }
 
   countMatchingNumbers(lotto) {
-    const matchCount = this.#winningNumbers.numbers.filter((number) => lotto.hasBonusNumber(number)).length;
-    return matchCount;
+    return this.#winningNumbers.numbers.filter((number) => lotto.hasBonusNumber(number)).length;
   }
 
   hasBonusNumber(lotto) {
