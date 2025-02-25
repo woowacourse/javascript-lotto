@@ -34,8 +34,6 @@ class LottoMachine {
 
     return [winningCounts, profitRate];
   }
-
-  
 }
 
 export default LottoMachine;

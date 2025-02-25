@@ -31,10 +31,7 @@ const ERROR_MESSAGE = deepFreeze({
     INVALID_INPUT: 'y 또는 n을 입력해주세요.',
   },
   LOTTO: {
-    INVALID_TYPE: '로또 번호는 숫자여야 합니다.',
-    INVALID_LENGTH: '로또 번호는 6개여야 합니다.',
-    INVALID_RANGE: '로또 번호의 범위는 1~45 사이입니다.',
-    DUPLICATE: '로또 번호는 중복되면 안됩니다.',
+    DUPLICATE: '로또 번호는 중복될 수 없습니다.',
   },
   COMMON: {
     INVALID_TYPE: (key) => `${key}은(는) 숫자여야 합니다.`,

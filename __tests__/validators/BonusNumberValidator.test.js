@@ -2,7 +2,7 @@ import { KEY, LOTTO } from '../../src/constants/CONFIGURATIONS';
 import { ERROR_MESSAGE } from '../../src/constants/MESSAGES';
 import {
   BonusNumberValidator,
-  validateDuplicate,
+  validateDuplicateBonus,
 } from '../../src/validators/BonusNumberValidator';
 import { validateRange, validateType } from '../../src/validators/validate';
 
@@ -52,7 +52,7 @@ describe('보너스 번호 검증 테스트', () => {
       const bonusNumber = 1;
       const winningNumbers = [1, 2, 3, 4, 5, 6];
 
-      expect(() => validateDuplicate(bonusNumber, winningNumbers)).toThrow(
+      expect(() => validateDuplicateBonus(bonusNumber, winningNumbers)).toThrow(
         ERROR_MESSAGE.BONUS_NUMBER.DUPLICATE,
       );
     });

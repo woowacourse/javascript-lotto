@@ -1,10 +1,10 @@
-import { SEPARATOR } from '../constants/CONFIGURATIONS.js';
+import { KEY, SEPARATOR } from '../constants/CONFIGURATIONS.js';
 import { SYSTEM_MESSAGE } from '../constants/MESSAGES.js';
 import readLineAsync from '../utils/readLineAsync.js';
 import { BonusNumberValidator } from '../validators/BonusNumberValidator.js';
 import { PurchasePriceValidator } from '../validators/PurchasePriceValidator.js';
 import RestartValidator from '../validators/RestartValidator.js';
-import { WinningNumbersValidator } from '../validators/WinningNumbersValidator.js';
+import { LottoNumbersValidator } from '../validators/LottoNumbersValidator.js';
 
 const InputView = {
   async enterPurchasePrice() {
@@ -20,7 +20,7 @@ const InputView = {
       SYSTEM_MESSAGE.ENTER_WINNING_NUMBERS,
     );
     const splittedWinningNumbers = winningNumbers.split(SEPARATOR).map(Number);
-    WinningNumbersValidator.validate(splittedWinningNumbers);
+    LottoNumbersValidator.validate(KEY.WINNING_NUMBERS, splittedWinningNumbers);
     return splittedWinningNumbers;
   },
 

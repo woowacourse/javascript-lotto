@@ -4,8 +4,8 @@ import { validateCount } from '../../src/validators/validate';
 import {
   validateTypeAll,
   validateRangeAll,
-  WinningNumbersValidator,
-} from '../../src/validators/WinningNumbersValidator';
+  LottoNumbersValidator,
+} from '../../src/validators/LottoNumbersValidator';
 
 describe('당첨 번호 검증', () => {
   describe('정상 케이스', () => {
@@ -13,7 +13,7 @@ describe('당첨 번호 검증', () => {
       const winningNumbers = [1, 2, 3, 4, 5, 6];
 
       expect(() =>
-        WinningNumbersValidator.validate(winningNumbers),
+        LottoNumbersValidator.validate(KEY.WINNING_NUMBERS, winningNumbers),
       ).not.toThrow();
     });
   });
@@ -22,9 +22,9 @@ describe('당첨 번호 검증', () => {
     test('당첨 번호가 숫자가 아니면 에러가 발생한다.', () => {
       const winningNumbers = [null, 1, 2, 3, 4, 5];
 
-      expect(() => validateTypeAll(winningNumbers)).toThrow(
-        ERROR_MESSAGE.COMMON.INVALID_TYPE(KEY.WINNING_NUMBERS),
-      );
+      expect(() =>
+        validateTypeAll(KEY.WINNING_NUMBERS, winningNumbers),
+      ).toThrow(ERROR_MESSAGE.COMMON.INVALID_TYPE(KEY.WINNING_NUMBERS));
     });
 
     test(`당첨 번호가 ${LOTTO.LENGTH}개가 아니면 에러가 발생한다.`, () => {
@@ -38,7 +38,9 @@ describe('당첨 번호 검증', () => {
     test(`당첨 번호의 범위가 ${LOTTO.MIN_NUMBER}~${LOTTO.MAX_NUMBER} 사이가 아니면 에러가 발생한다.`, () => {
       const winningNumbers = [0, 2, 3, 4, 5, 46];
 
-      expect(() => validateRangeAll(winningNumbers)).toThrow(
+      expect(() =>
+        validateRangeAll(KEY.WINNING_NUMBERS, winningNumbers),
+      ).toThrow(
         ERROR_MESSAGE.COMMON.INVALID_RANGE({
           key: KEY.WINNING_NUMBERS,
           min: LOTTO.MIN_NUMBER,
