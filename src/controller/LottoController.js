@@ -12,8 +12,8 @@ class LottoController {
     const lottoMaker = new LottoMaker(purchaseMoney);
     LottoViewController.printLottoNumber(lottoMaker);
 
-    const winningNumbers = await LottoViewController.getWinningNumbers();
-    const bonusNumber = await LottoViewController.getBonusNumber(winningNumbers.numbers);
+    const winningNumbers = await InputHandler.winningNumbers();
+    const bonusNumber = await InputHandler.bonusNumber(winningNumbers.numbers);
 
     const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
     const lottoGame = new LottoGame();
