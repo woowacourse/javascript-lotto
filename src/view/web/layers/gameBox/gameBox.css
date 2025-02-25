@@ -57,7 +57,7 @@
 }
 
 #game-price:focus {
-  outline: none;
+  outline-color: var(--lotto-greyscale-4);
 }
 
 #game-purchaseButton {

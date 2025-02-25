@@ -49,3 +49,7 @@
   border: 1px solid var(--lotto-greyscale-3);
   border-radius: 4px;
 }
+
+.winningLotto-number:focus {
+  outline-color: var(--lotto-greyscale-4);
+}
