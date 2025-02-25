@@ -10,12 +10,14 @@ const showLottos = (count) => {
   text.textContent = `총 ${count}개를 구매했습니다.`;
 
   const lottos = Ticket.createLottos(count);
+  console.log(lottos);
   lottoStore.setLottos(lottos);
   const ul = document.createElement("ul");
   lottosNumber.appendChild(ul);
 
-  for (let i = 0; lottos.length; i++) {
+  for (let i = 0; i < lottos.length; i++) {
     const lotto = lottos[i];
+    console.log(lotto);
     const li = document.createElement("li");
     li.textContent = lotto.getLottoNumbers().join(", ");
     ul.appendChild(li);

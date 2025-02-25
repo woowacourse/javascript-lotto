@@ -6,10 +6,12 @@
 import { PRICE } from "./constants/price.js";
 import buyLotto from "./event/buyLottos.js";
 import showLottos from "./event/showLottos.js";
+import showResult from "./event/showResult.js";
 import { divideByUnit } from "./utils/count.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   buyLotto();
+  showResult();
 });
 
 document.addEventListener("priceUpdated", (event) => {
