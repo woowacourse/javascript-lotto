@@ -1,15 +1,16 @@
 import Button from "../common/button.js";
+import { LOTTO_STATUS } from "../constants/lotto.js";
 
 export default class WinningStatistic {
-  constructor() {
-    this.init();
+  constructor(lottoHistory, rate) {
+    this.init(lottoHistory, rate);
   }
 
   render($target) {
     $target.appendChild(this.$div);
   }
 
-  init() {
+  init(lottoHistory, rate) {
     this.$div = document.createElement("div");
     const $title = document.createElement("p");
     this.$div.className = "winning-static-container";
@@ -23,20 +24,32 @@ export default class WinningStatistic {
           <th scope="col">당첨금</td>
           <th scope="col">당첨 갯수</td>
         </tr>
-        <tr class="tabel-row">
-          <td>3개</td>
-          <td>5,000</td>
-          <td>n개</td>
-        </tr>
-        <tr class="tabel-row">
-          <td>1개</td>
-          <td>10,000</td>
-          <td>n개</td>
-        </tr>
+        ${Object.entries(lottoHistory)
+          .reverse()
+          .map(([rank, count]) => {
+            const { REWORD, COUNT: MATCH_COUNT } = LOTTO_STATUS.find(
+              (status) => status.RANK === Number(rank)
+            );
+            if (Number(rank) === 2) {
+              return `
+            <tr class="tabel-row">
+              <td>5개+보너스볼</td>
+              <td>${REWORD.toLocaleString("ko-KR")}</td>
+              <td>${count}개</td>
+            </tr>`;
+            }
+            return `
+            <tr class="tabel-row">
+              <td>${MATCH_COUNT}개</td>
+              <td>${REWORD.toLocaleString("ko-KR")}</td>
+              <td>${count}개</td>
+            </tr>`;
+          })
+          .join("")}
     `;
 
     const $rateText = document.createElement("p");
-    $rateText.innerText = `당신의 총 수익률은 ${20.0}입니다.`;
+    $rateText.innerText = `당신의 총 수익률은 ${rate}입니다.`;
     $rateText.className = "rate-text";
     const $footer = document.createElement("div");
     $footer.className = "winning-static-footer";
@@ -55,7 +68,6 @@ export default class WinningStatistic {
 
         $modalBg.classList.remove("modal-bg-show");
         $container.classList.remove("modal-show");
-        // setState초기화
       },
       "다시 시작하기"
     );
