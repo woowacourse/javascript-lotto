@@ -239,3 +239,17 @@ td {
   justify-content: flex-end;
   flex-grow: 1;
 }
+
+.footer {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.footer-text {
+  color: var(--main-color);
+  font-size: 14px;
+  font-weight: bold;
+}

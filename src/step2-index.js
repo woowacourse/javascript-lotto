@@ -1,4 +1,5 @@
 import Nav from "./components/layout/Nav.js";
+import Footer from "./components/layout/Footer.js";
 import LottoGame from "./components/LottoGame.js";
 
 /**
@@ -14,12 +15,12 @@ class App {
   render() {
     const $body = document.querySelector("body");
     new Nav();
-
     const $container = document.createElement("div");
     $container.classList = "container";
     $body.appendChild($container);
 
     new LottoGame($container);
+    new Footer($body);
   }
 }
 
