@@ -21,47 +21,6 @@ describe("models/LottoGame", () => {
     );
   });
 
-  describe("generateLottoNumbers()", () => {
-    test("랜덤 생성된 로또 번호는 항상 6개여야 한다.", () => {
-      const lottoGame = new LottoGame();
-
-      const generatedLottoNumbers = lottoGame.generateLottoNumbers(1, 45, 6);
-
-      expect(generatedLottoNumbers).toHaveLength(6);
-    });
-
-    test("생성된 숫자가 중복이 없어야 한다.", () => {
-      const lottoGame = new LottoGame();
-
-      const generatedLottoNumbers = lottoGame.generateLottoNumbers(1, 45, 6);
-      const generateLottoNumbersSet = new Set(generatedLottoNumbers);
-      expect(generateLottoNumbersSet.size).toBe(generatedLottoNumbers.length);
-    });
-
-    test("생성된 숫자가 오름차순으로 정렬되어야 한다.", () => {
-      const lottoGame = new LottoGame();
-
-      const generatedLottoNumbers = lottoGame.generateLottoNumbers(1, 45, 6);
-      expect(generatedLottoNumbers).toEqual(
-        [...generatedLottoNumbers].sort((a, b) => a - b)
-      );
-    });
-
-    test.each([
-      [new LottoGame().generateLottoNumbers(1, 45, 6)],
-      [new LottoGame().generateLottoNumbers(1, 45, 6)],
-      [new LottoGame().generateLottoNumbers(1, 45, 6)],
-    ])(
-      "랜덤 생성된 숫자가 1~45 범위를 벗어나지 않아야 한다. (%#)",
-      (numbers) => {
-        numbers.forEach((num) => {
-          expect(num).toBeGreaterThanOrEqual(1);
-          expect(num).toBeLessThanOrEqual(45);
-        });
-      }
-    );
-  });
-
   describe("playLotto()", () => {
     test("당첨된 로또들에 맞춰 결과를 반환한다.", () => {
       //given

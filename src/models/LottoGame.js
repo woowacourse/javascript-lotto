@@ -1,5 +1,6 @@
 import { LOTTO } from "../constants/lotto.js";
 import { PRIZE } from "../constants/prize.js";
+import generateRandomNumbers from "../utils/generateRandomNumbers.js";
 import Lotto from "./Lotto.js";
 
 class LottoGame {
@@ -9,7 +10,7 @@ class LottoGame {
       { length: count },
       () =>
         new Lotto(
-          this.generateLottoNumbers(
+          generateRandomNumbers(
             LOTTO.MIN_LOTTO_NUMBER,
             LOTTO.MAX_LOTTO_NUMBER,
             LOTTO.LOTTO_NUMBER_COUNT
@@ -69,16 +70,6 @@ class LottoGame {
         rankCount[index + 1] || 0,
       ])
     );
-  }
-
-  generateLottoNumbers(min, max, count) {
-    const numbers = new Set();
-
-    while (numbers.size < count) {
-      numbers.add(Math.floor(Math.random() * (max - min + 1)) + min);
-    }
-
-    return [...numbers].sort((a, b) => a - b);
   }
 }
 export default LottoGame;
