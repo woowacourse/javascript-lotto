@@ -23,7 +23,7 @@ class LottoViewController {
   }
 
   static printLottoNumber(lottoMaker) {
-    OutputView.print(`${lottoMaker.purchaseCount}${OUTPUT_MESSAGE.PURCHASE_COUNT}`);
+    OutputView.print(`${lottoMaker.lottoList.length}${OUTPUT_MESSAGE.PURCHASE_COUNT}`);
     lottoMaker.lottoList.forEach((lotto) => {
       OutputView.print(lotto.numbers);
     });

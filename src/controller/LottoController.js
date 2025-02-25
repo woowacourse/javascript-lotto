@@ -26,7 +26,7 @@ class LottoController {
     LottoViewController.printStatistics(lottoGame.rank);
 
     const winningRate = LottoGame.calculateWinningRate(
-      LOTTO_CONDITION.PRICE * lottoMaker.purchaseCount,
+      LOTTO_CONDITION.PRICE * lottoMaker.lottoList.length,
       LottoGame.calculateTotalPrize(lottoGame.rank),
     );
 
