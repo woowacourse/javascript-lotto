@@ -5,11 +5,11 @@ class LottoGame {
 
   constructor() {
     this.#rank = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
+      [RANKING.FIRST.RANK]: 0,
+      [RANKING.SECOND.RANK]: 0,
+      [RANKING.THIRD.RANK]: 0,
+      [RANKING.FOURTH.RANK]: 0,
+      [RANKING.FIFTH.RANK]: 0,
     };
   }
 
