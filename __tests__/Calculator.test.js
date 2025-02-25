@@ -17,7 +17,7 @@ describe("Calculator test", () => {
   });
 
   test("수익률을 계산한다.", () => {
-    const amount = "5000";
+    const amount = 5_000;
     const totalPrize = 50_000;
     const yieldRate = Calculator.getYieldRate(amount, totalPrize);
     const expectedYieldRate = 1_000;
@@ -26,7 +26,7 @@ describe("Calculator test", () => {
   });
 
   test("구매 수량을 계산한다.", () => {
-    const amount = "5000";
+    const amount = 5_000;
     const quantity = Calculator.getQuantity(amount);
     const expectedQuantity = 5;
 

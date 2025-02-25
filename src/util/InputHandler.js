@@ -13,7 +13,7 @@ const InputHandler = {
       try {
         const purchaseAmount = await InputView.readPurchaseAmount();
         validatePurchaseAmount(purchaseAmount);
-        return purchaseAmount;
+        return Number(purchaseAmount);
       } catch (error) {
         console.log(error.message);
       }
