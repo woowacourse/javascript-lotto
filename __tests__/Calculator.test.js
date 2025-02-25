@@ -1,4 +1,5 @@
 import Calculator from "../src/Calculator.js";
+import { WINNING } from "../src/constant/lotto.js";
 import { KEYS } from "../src/constant/lotto.js";
 
 describe("Calculator test", () => {
@@ -11,7 +12,8 @@ describe("Calculator test", () => {
       [KEYS.FIFTH]: 0,
     };
     const totalPrize = Calculator.getTotalPrize(winningCount);
-    const expectedTotalPrize = 3_000_000;
+    const expectedTotalPrize =
+      winningCount[KEYS.THIRD] * WINNING[KEYS.THIRD].PRIZES;
 
     expect(totalPrize).toBe(expectedTotalPrize);
   });
