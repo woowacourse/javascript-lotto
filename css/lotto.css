@@ -21,3 +21,32 @@
   justify-content: space-between;
   color: var(--lotto-greyscale-5);
 }
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input input {
+  display: flex;
+  width: 310px;
+  height: 36px;
+  gap: 10px;
+  padding: 8px 8px 0px;
+  border: 1px solid var(--lotto-greyscale-3);
+}
+
+.input button {
+  width: 56px;
+  border-radius: 4px;
+  padding: 6px 6px 6px 8px;
+  text-align: center;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}

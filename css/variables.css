@@ -41,6 +41,9 @@
 
 .button,
 .catption {
-  width: 180;
-  height: 24;
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
 }
