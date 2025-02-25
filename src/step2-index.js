@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const purchaseResult = document.createElement('div');
       purchaseResult.classList.add('purchase-result');
       purchaseResult.textContent = `총 ${purchaseAmount}개를 구매하였습니다.`;
-      document.querySelector('.lotto-container').appendChild(purchaseResult);
+      document.querySelector('.purchase-message').appendChild(purchaseResult);
 
       const lottos = makeLotto(purchaseAmount);
       lottos.forEach((lotto) => {
@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         lottoWrapper.appendChild(lottoTicket);
         lottoWrapper.appendChild(lottoNumbers);
 
-        document.querySelector('.lotto-container').appendChild(lottoWrapper);
+        document.querySelector('.lotto-content').appendChild(lottoWrapper);
+        button.disabled = true;
       });
     } catch (error) {
       console.log(error);
