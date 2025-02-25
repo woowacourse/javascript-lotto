@@ -1,6 +1,5 @@
-import { INITIAL_NUMBER, LOTTO_RULE } from './constants.js';
+import { INITIAL_NUMBER, LOTTO_RULE, ANSWER } from './constants.js';
 import { ERROR } from '../constants/message.js';
-import { ANSWER_NO, ANSWER_YES } from '../view/constants.js';
 
 function validateMoney(money) {
   if (money <= INITIAL_NUMBER) {
@@ -40,7 +39,7 @@ function validateBonus(bonus, winningLotto) {
 }
 
 function validateRestart(lowerCaseInput) {
-  if (lowerCaseInput !== ANSWER_YES && lowerCaseInput !== ANSWER_NO) {
+  if (lowerCaseInput !== ANSWER.RE_START && lowerCaseInput !== ANSWER.END) {
     throw new Error(ERROR.RESTART.YES_OR_NO);
   }
 }

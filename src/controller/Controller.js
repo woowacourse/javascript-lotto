@@ -2,7 +2,7 @@ import OutputView from '../view/OutputView.js';
 import InputView from '../view/InputView.js';
 import LottoMachine from '../domain/model/LottoMachine.js';
 import LottoStatistics from '../domain/model/LottoStatistics.js';
-import { INITIAL_NUMBER } from '../domain/constants.js';
+import { ANSWER, INITIAL_NUMBER } from '../domain/constants.js';
 
 class Controller {
   #machine;
@@ -62,8 +62,8 @@ class Controller {
   }
 
   async restart() {
-    const condition = await InputView.readReStart();
-    if (condition) {
+    const conditionValue = await InputView.readReStart();
+    if (conditionValue === ANSWER.RE_START) {
       await this.start();
     }
   }

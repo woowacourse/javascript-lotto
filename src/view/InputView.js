@@ -1,7 +1,7 @@
 import readLineAsync from './readLineAsync.js';
 import OutputView from './OutputView.js';
 import { INPUT_MESSAGE } from '../constants/message.js';
-import { DECIMAL, ANSWER_NO, ANSWER_YES } from './constants.js';
+import { DECIMAL } from './constants.js';
 import {
   validateMoney,
   validateLottoNumber,
@@ -50,7 +50,7 @@ const InputView = {
       const input = await readLineAsync(INPUT_MESSAGE.READ_RESTART);
       const lowerCaseInput = input.toLowerCase();
       validateRestart(lowerCaseInput);
-      return !(lowerCaseInput === ANSWER_NO) && lowerCaseInput === ANSWER_YES;
+      return lowerCaseInput;
     } catch (error) {
       OutputView.printErrorMessage(error.message);
       return this.readReStart();
