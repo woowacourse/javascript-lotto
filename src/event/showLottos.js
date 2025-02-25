@@ -1,4 +1,5 @@
 import Ticket from "../domain/Ticket.js";
+import lottoStore from "../domain/lottoStore.js";
 const showLottos = (count) => {
   const whenBuyed = document.querySelector(".whenBuyed");
   const buyedLottos = document.querySelector(".buyedLottos");
@@ -9,6 +10,7 @@ const showLottos = (count) => {
   text.textContent = `총 ${count}개를 구매했습니다.`;
 
   const lottos = Ticket.createLottos(count);
+  lottoStore.setLottos(lottos);
   const ul = document.createElement("ul");
   lottosNumber.appendChild(ul);
 
@@ -17,7 +19,6 @@ const showLottos = (count) => {
     const li = document.createElement("li");
     li.textContent = lotto.getLottoNumbers().join(", ");
     ul.appendChild(li);
-    console.log(li);
   }
 
   console.log("개수", count);
