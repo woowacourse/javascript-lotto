@@ -13,7 +13,7 @@ export const LOTTO_PURCHASE_UNIT = 1000;
 export const YES = "y";
 export const NO = "n";
 
-export const LOTTO_NUMBER_SPLITER = ", ";
+export const LOTTO_NUMBER_SPLITER = ",";
 
 export const MATCH_COUNT = Object.freeze({
   THREE: "3개 일치 (5,000원)",
