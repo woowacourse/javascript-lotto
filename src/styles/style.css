@@ -1,0 +1,54 @@
+@import "./theme.css";
+
+html {
+  font-size: 62.5%;
+}
+
+.lotto-title {
+  color: var(--color-on-surface-high-emphasis);
+  font-family: var(--font-primary);
+  font-size: var(--font-title-size);
+  font-weight: var(--font-title-weight);
+  line-height: var(--font-title-line-height);
+  font-feature-settings: var(--font-feature-settings);
+}
+
+.lotto-subtitle {
+  color: var(--color-on-surface-high-emphasis);
+  font-family: var(--font-primary);
+  font-size: var(--font-subtitle-size);
+  font-weight: var(--font-subtitle-weight);
+  line-height: var(--font-subtitle-line-height);
+  letter-spacing: var(--font-subtitle-letter-spacing);
+  font-feature-settings: var(--font-feature-settings);
+}
+
+.lotto-body {
+  color: var(--color-on-surface-high-emphasis);
+  font-family: var(--font-primary);
+  font-size: var(--font-body-size);
+  font-weight: var(--font-body-weight);
+  line-height: var(--font-body-line-height);
+  letter-spacing: var(--font-body-letter-spacing);
+  font-feature-settings: var(--font-feature-settings);
+}
+
+.lotto-placeholder {
+  color: var(--color-placeholder);
+  font-family: var(--font-primary);
+  font-size: var(--font-placeholder-size);
+  font-weight: var(--font-placeholder-weight);
+  line-height: var(--font-placeholder-line-height);
+  letter-spacing: var(--font-placeholder-letter-spacing);
+  font-feature-settings: var(--font-feature-settings);
+}
+
+.lotto-caption {
+  color: var(--color-on-surface-high-emphasis);
+  font-family: var(--font-primary);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  line-height: var(--font-caption-line-height);
+  letter-spacing: var(--font-caption-letter-spacing);
+  font-feature-settings: var(--font-feature-settings);
+}
