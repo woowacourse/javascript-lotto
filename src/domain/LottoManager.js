@@ -15,10 +15,10 @@ class LottoManager {
   }
 
   static generateLottos(price) {
-    return Array.from({ length: price / LOTTO.PURCHASE.unit }).reduce((acc) => {
-      acc.push(new Lotto(this.#getRandomNumbers()));
-      return acc;
-    }, []);
+    return Array.from(
+      { length: price / LOTTO.PURCHASE.unit },
+      () => new Lotto(this.#getRandomNumbers())
+    );
   }
 }
 

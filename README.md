@@ -73,7 +73,7 @@
 
 **진행계획**
 
-- [ ] figma를 통해 css 기본 속성 정의
+- [x] figma를 통해 css 기본 속성 정의
 - 로또 구매 화면 제작
   - # main contents
   - [ ] card title 제작
