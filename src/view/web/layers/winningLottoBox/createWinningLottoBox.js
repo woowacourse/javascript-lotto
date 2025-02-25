@@ -1,4 +1,5 @@
 import winningLottoBoxContents from "./winningLottoBox.html?raw";
+import "./winningLottoBox.css";
 
 const createWinningLottoBox = () => {
   const div = document.createElement("div");

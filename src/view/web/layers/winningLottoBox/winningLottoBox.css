@@ -1,0 +1,29 @@
+#winningLotto-container {
+  width: 382px;
+  height: 104px;
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#winningLotto-numbersInput-message {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+#winningLotto-numbersInput-container {
+  display: flex;
+}
+
+.winningLotto-numbersInput-label {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
