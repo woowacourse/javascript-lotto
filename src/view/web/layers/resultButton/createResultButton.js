@@ -1,4 +1,5 @@
 import resultButtonContents from "./resultButton.html?raw";
+import "./resultButton.css";
 
 const createResultButton = () => {
   document

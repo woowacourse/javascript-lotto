@@ -3,6 +3,9 @@
   height: 727px;
   padding: 16px;
 
+  display: flex;
+  flex-direction: column;
+
   background-color: var(--lotto-greyscale-1);
   border: 1px solid #e4e4e4;
 }
@@ -39,7 +42,6 @@
 
 #game-purchaseInput {
   display: flex;
-  align-items: center;
   gap: 10px;
 }
 
