@@ -76,6 +76,7 @@
 - [x] figma를 통해 css 기본 속성 정의
 - 로또 구매 화면 제작
   - # main contents
+  - [x] html 뼈대 구성
   - [ ] card title 제작
   - [ ] card input 입력창 제작
   - [ ] 로또 출력 화면 제작
