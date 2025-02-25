@@ -6,6 +6,7 @@ import WinningLotto from "../domain/WinningLotto.js";
 import retryOnError from "../util/retryOnError.js";
 import OutputView from "../view/OutputView.js";
 import SYSTEM_MESSAGE from "../constants/systemMessage.js";
+import Lotto from "../domain/Lotto.js";
 
 export const runLottoGame = async () => {
   while (true) {
@@ -17,7 +18,8 @@ export const runLottoGame = async () => {
 
     const winningNumbers = await retryOnError(getWinningNumber, OutputView.printError);
     const bonusNumber = await retryOnError(() => getBonusNumber(winningNumbers), OutputView.printError);
-    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+    const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
 
     const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
     const profitRate = calculateProfitRate(matchingResult, lottoCount);

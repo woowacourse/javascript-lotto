@@ -1,20 +1,18 @@
 import { BONUS_NUMBER_ERROR_MESSAGE } from "../constants/errorMessage.js";
-import { LOTTO_NUMBERS } from "../constants/systemConstants.js";
 import validationCondition from "../validation/validateCondition.js";
-import Lotto from "./Lotto.js";
 
 class WinningLotto {
   #lotto;
   #bonusNumber;
 
-  constructor(numbers, bonusNumber) {
+  constructor(lotto, bonusNumber) {
     if (!validationCondition.isBonusRangeValid(bonusNumber)) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.RANGE);
     }
-    if (!validationCondition.isBonusDistinct(numbers, bonusNumber)) {
+    if (lotto.has(bonusNumber)) {
       throw new Error(BONUS_NUMBER_ERROR_MESSAGE.DUPLICATE);
     }
-    this.#lotto = new Lotto(numbers);
+    this.#lotto = lotto;
 
     this.#bonusNumber = bonusNumber;
   }
