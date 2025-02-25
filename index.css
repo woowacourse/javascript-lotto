@@ -27,3 +27,27 @@ header h1 {
     text-align: center;
     font-size: 24px;
 }
+
+
+main {
+    width: 100%;
+    height: 800px;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    height: 80px;
+    border-top: 1px solid #4E5BA633
+}
+
+footer p {
+    color: #4E5BA6;
+    margin: 28px 0 36px 0;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+}
