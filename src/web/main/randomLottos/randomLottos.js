@@ -1,23 +1,21 @@
+import { createElement } from '../../utils/dom';
 import './randomLottos.css';
 
 export default function randomLottos(playLotto, randomLottosArray) {
-  const purchasedLottoQuantity = document.createElement('p');
-  purchasedLottoQuantity.innerText = `총 ${randomLottosArray.length}개를 구매하였습니다.`;
-  purchasedLottoQuantity.className = 'purchaesd-quantity';
+  const purchasedLottoQuantity = createElement('span', {
+    class: 'purchaesd-quantity',
+    textContent: `총 ${randomLottosArray.length}개를 구매하였습니다.`,
+  });
   playLotto.appendChild(purchasedLottoQuantity);
 
-  const randomLottos = document.createElement('div');
-  randomLottos.className = 'random-lottos';
+  const randomLottos = createElement('div', { class: 'random-lottos' });
 
   randomLottosArray.forEach((randomLotto) => {
-    const oneLotto = document.createElement('div');
-    oneLotto.className = 'one-lotto';
+    const oneLotto = createElement('div', { class: 'one-lotto' });
 
-    const lottoImage = document.createElement('img');
-    lottoImage.src = './lotto.png';
+    const lottoImage = createElement('img', { src: './lotto.png' });
 
-    const randomLottoNumbers = document.createElement('p');
-    randomLottoNumbers.innerText = randomLotto;
+    const randomLottoNumbers = createElement('span', { textContent: randomLotto });
 
     oneLotto.appendChild(lottoImage);
     oneLotto.appendChild(randomLottoNumbers);
