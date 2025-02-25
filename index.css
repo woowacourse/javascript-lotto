@@ -107,10 +107,11 @@ main button {
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
+    cursor: pointer;
 }
 
 main .lotto-count {
-    margin: 28px 0 0 0;
+    margin: 28px 0 8px 0;
     padding: 0 0 0 16px;
     font-weight: 400;
     font-size: 15px;
@@ -119,7 +120,7 @@ main .lotto-count {
 }
 
 main .lotto-container {
-    width: 238px;
+    width: 382px;
     height: 276px;
     padding: 0 0 0 16px;
     overflow-y: auto;
@@ -148,7 +149,68 @@ main .lotto-numbers {
     font-size: 15px;
     line-height: 24px;
     letter-spacing: 0.5px;
-    padding: 4px ;
+    padding: 4px;
+}
+
+main .winning-number-and-bonus {
+    width: 100%;
+    height: 104px;
+    margin: 24px 0 0 0;
+}
+
+main .winning-number-and-bonus-message {
+    margin: 0;
+    padding: 0 16px 0 16px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+}
+
+main .winning-number-and-bonus-input {
+    margin: 0 16px 0 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .winning-number {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+main .bonus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+main .number-input {
+    width: 34px;
+    height: 36px;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+main .submit {
+    width: 382px;
+    height: 36px;
+    top: 659px;
+    left: 16px;
+    border-radius: 4px;
+    padding: 6px 6px 6px 8px;
+    background-color: #4E5BA6;
+    color: white;
+    cursor: pointer;
+    margin: 27px 16px 32px 16px;
+}
+
+main label {
+    margin: 12px 0 8px 0;
 }
 
 footer {
