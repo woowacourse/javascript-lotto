@@ -1,0 +1,90 @@
+:root {
+  /* 색상 변수 */
+  --color-on-surface-high-emphasis: rgba(0, 0, 0, 0.87);
+  --color-placeholder: #8b8b8b;
+  --lotto-primary: #4e5ba6;
+  --lotto-greyscale-1: #fff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000;
+
+  /* 폰트 설정 */
+  --font-primary: "Roboto", sans-serif;
+  --font-feature-settings: "liga" off, "clig" off;
+
+  /* Title 스타일 */
+  --font-title-size: 24px;
+  --font-title-weight: 800;
+  --font-title-line-height: 36px;
+
+  /* Subtitle 스타일 */
+  --font-subtitle-size: 20px;
+  --font-subtitle-weight: 600;
+  --font-subtitle-line-height: 24px;
+  --font-subtitle-letter-spacing: 0.15px;
+
+  /* Body 스타일 */
+  --font-body-size: 15px;
+  --font-body-weight: 400;
+  --font-body-line-height: 24px;
+  --font-body-letter-spacing: 0.5px;
+
+  /* Placeholder 스타일 */
+  --font-placeholder-size: 15px;
+  --font-placeholder-weight: 400;
+  --font-placeholder-line-height: 24px;
+  --font-placeholder-letter-spacing: 0.5px;
+
+  /* Button/Caption 스타일 */
+  --font-caption-size: 14px;
+  --font-caption-weight: 700;
+  --font-caption-line-height: 16px;
+  --font-caption-letter-spacing: 1.25px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: var(--font-title-size);
+  font-weight: var(--font-title-weight);
+  line-height: var(--font-title-line-height);
+  font-feature-settings: var(--font-feature-settings);
+}
+
+.subtitle {
+  font-family: var(--font-primary);
+  font-size: var(--font-subtitle-size);
+  font-weight: var(--font-subtitle-weight);
+  line-height: var(--font-subtitle-line-height);
+  letter-spacing: var(--font-subtitle-letter-spacing);
+  font-feature-settings: var(--font-feature-settings);
+}
+
+.body {
+  font-family: var(--font-primary);
+  font-size: var(--font-body-size);
+  font-weight: var(--font-body-weight);
+  line-height: var(--font-body-line-height);
+  letter-spacing: var(--font-body-letter-spacing);
+  font-feature-settings: var(--font-feature-settings);
+}
+
+.placeholder {
+  color: var(--color-placeholder);
+  font-family: var(--font-primary);
+  font-size: var(--font-placeholder-size);
+  font-weight: var(--font-placeholder-weight);
+  line-height: var(--font-placeholder-line-height);
+  letter-spacing: var(--font-placeholder-letter-spacing);
+  font-feature-settings: var(--font-feature-settings);
+}
+
+.caption {
+  color: var(--color-on-surface-high-emphasis);
+  font-family: var(--font-primary);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  line-height: var(--font-caption-line-height);
+  letter-spacing: var(--font-caption-letter-spacing);
+  font-feature-settings: var(--font-feature-settings);
+}
