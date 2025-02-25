@@ -24,6 +24,10 @@ const reuslt_button = lotto_game.querySelector(".reuslt_button_section #resultBu
 const lotto_result_modal = document.querySelector(".lotto_result_modal");
 // const close_modal = lotto_result_modal.querySelector(".close");
 
+const statistics = lotto_result_modal.querySelector(".statistics");
+const statistics_rows = statistics.querySelectorAll(".row");
+const user_counts = statistics.querySelectorAll(".user_count");
+
 let lottoPack = null;
 
 purchase_button.addEventListener("click", () => {
@@ -69,6 +73,14 @@ reuslt_button.addEventListener("click", () => {
     const answerLotto = generateAnswerLotto(winningNumbers, bonusNumber);
 
     const winningResult = lottoPack.compareAndReturnResult(answerLotto);
+
+    statistics_rows.forEach((row) => {
+      const price = row.querySelector(".price").textContent;
+      const matchedKey = Object.keys(winningResult).find((key) => key.includes(price));
+      if (matchedKey) {
+        row.querySelector(".user_count").textContent = `${winningResult[matchedKey]}개`;
+      }
+    });
 
     lotto_result_modal.showModal();
   } catch (error) {
