@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 28px;
   width: 414px;
   height: 727px;
   top: 148px;
@@ -40,6 +41,7 @@
   gap: 10px;
   padding: 8px 8px 0px;
   border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
 }
 
 .input button {
@@ -49,4 +51,18 @@
   text-align: center;
   background-color: var(--lotto-primary);
   color: var(--lotto-greyscale-1);
+}
+
+.lotto-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lotto-container_lotto {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  color: var(--lotto-greyscale-5);
 }
