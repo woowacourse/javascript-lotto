@@ -43,8 +43,8 @@ describe("validate", () => {
       });
 
       test(`중복된 번호가 있는 경우`, () => {
-        const numbers = [1, 2, 3, 4, 5, 6];
-        const duplicateNumber = "6";
+        const duplicateNumber = 6;
+        const numbers = [1, 2, 3, 4, 5, duplicateNumber];
 
         expect(() => validateBonusNumber(duplicateNumber, numbers)).toThrow(
           ERROR_MESSAGE.DUPLICATE_BONUS_NUMBER
