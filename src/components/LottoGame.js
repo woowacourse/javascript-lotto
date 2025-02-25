@@ -3,17 +3,23 @@ import LottoPurchaseHistory from "./LottoPurchaseHistory.js";
 import { divideByUnit } from "../utils/count.js";
 import { PRICE } from "../constants/price.js";
 import LottoWinningInfoForm from "./LottoWinningInfoForm.js";
+import WinningStatistic from "./WinningStatistic.js";
+import Modal from "../common/Modal.js";
+import LottoMachine from "../domain/LottoMachine.js";
+import LottoResult from "../domain/LottoResult.js";
 
 export default class LottoGame {
   #target;
   #lottoTransaction;
   #winningLottoInfo;
+  #lottoResult;
   #show;
 
   constructor($target) {
     this.#target = $target;
     this.#lottoTransaction = { price: 0, lottos: [] };
     this.#winningLottoInfo = { winningNumbers: [], bonusNumber: 0 };
+    this.#lottoResult = { lottoHistory: [], rate: 0 };
     this.#show = false;
     this.render();
   }
@@ -25,6 +31,11 @@ export default class LottoGame {
 
   setWinningLottoInfo = (newState) => {
     this.#winningLottoInfo = { ...this.#winningLottoInfo, ...newState };
+    this.render();
+  };
+
+  setLottoResult = (newState) => {
+    this.#lottoResult = { ...this.#lottoResult, ...newState };
     this.render();
   };
 
@@ -56,5 +67,28 @@ export default class LottoGame {
       this.#show
     );
     new LottoWinningInfoForm($div, this.setWinningLottoInfo, this.#show);
+
+    // TODO: 분리 필요
+    const { winningNumbers, bonusNumber } = this.#winningLottoInfo;
+
+    if (winningNumbers.length === 0 && bonusNumber === 0) return;
+
+    const lottoMachine = new LottoMachine(this.#lottoTransaction.lottos);
+    lottoMachine.updateAllLottoStatus(
+      this.#winningLottoInfo.winningNumbers,
+      this.#winningLottoInfo.bonusNumber
+    );
+
+    const lottoStatus = lottoMachine.getMatchedLottoStatus();
+    const lottoResult = new LottoResult(
+      lottoStatus,
+      this.#lottoTransaction.price
+    );
+    const lottoHistory = lottoResult.getWinningHistory();
+    const rate = lottoResult.calculateRate();
+
+    const winningStatistic = new WinningStatistic(lottoHistory, rate);
+
+    new Modal(this.#target, ($target) => winningStatistic.render($target));
   }
 }
