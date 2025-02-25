@@ -1,5 +1,5 @@
 import { createElement } from '../../utils/dom';
-import PlayLotto from '../playLotto/playLotto';
+import PlayLotto from '../playLotto/PlayLotto';
 import './lottoDashboard.css';
 
 export default function LottoDashboard() {
