@@ -92,6 +92,21 @@ button {
   cursor: pointer;
 }
 
+/*button*/
+.large-button {
+  width: 100%;
+}
+
+/*input*/
+.price-input {
+  width: 19.3rem;
+  min-height: 2rem;
+}
+.lotto-number-input {
+  width: 1rem;
+  height: 2.2rem;
+}
+
 /*lotto*/
 .content-container {
   width: 100vw;
@@ -109,9 +124,10 @@ button {
   flex-direction: column;
   gap: 1.75rem;
   padding: 2.5rem 1rem;
-  min-height: 45.4rem;
+  min-height: 30rem;
   margin: 3rem 0;
 }
+
 .purchase-container {
   width: 100%;
   display: flex;
@@ -120,14 +136,9 @@ button {
   justify-content: center;
   gap: 0.25rem;
 }
-
 .input-container {
   display: flex;
   gap: 1rem;
-}
-.price-input {
-  width: 19.3rem;
-  min-height: 2rem;
 }
 
 .lotto-container {
@@ -149,15 +160,14 @@ button {
   align-items: center;
   gap: 0.5rem;
 }
+
 .winning-bonus-container {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.winning-numbers {
+.winning-prompt {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
 }
 .winning-input-wrap {
   display: flex;
@@ -176,15 +186,13 @@ button {
   width: 1rem;
   height: 2.2rem;
 }
-.bonus-input-container {
+.bonus-input-wrap {
   display: flex;
   flex-direction: column;
   align-items: end;
   gap: 0.5rem;
 }
+
 .result-button-container {
-  width: 100%;
-}
-.result-button {
   width: 100%;
 }
