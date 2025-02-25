@@ -1,0 +1,217 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:root {
+  --lotto-primary: #4E5BA6;
+
+  --lotto-greyscale-1: #FFFFFF;
+  --lotto-greyscale-2: #FCFCFD;
+  --lotto-greyscale-3: #B4B4B4;
+  --lotto-greyscale-4: #8B8B8B;
+  --lotto-greyscale-5: #000000;
+
+  --font-family: 'Roboto', sans-serif;
+
+  --title-size: 24px;
+  --title-line-height: 36px;
+  --title-weight: 800;
+  --title-color: rgba(0, 0, 0, 0.87);
+  --title-spacing: 0;
+
+  --subtitle-size: 20px;
+  --subtitle-line-height: 24px;
+  --subtitle-weight: 600;
+  --subtitle-color: rgba(0, 0, 0, 0.87);
+  --subtitle-spacing: 0.15px;
+
+  --body-size: 15px;
+  --body-line-height: 24px;
+  --body-weight: 400;
+  --body-color: rgba(0, 0, 0, 0.87);
+  --body-spacing: 0.5px;
+
+  --placeholder-size: 15px;
+  --placeholder-line-height: 24px;
+  --placeholder-weight: 400;
+  --placeholder-color: var(--lotto-greyscale-4);
+  --placeholder-spacing: 0.5px;
+
+  --caption-size: 14px;
+  --caption-line-height: 16px;
+  --caption-weight: 700;
+  --caption-color: rgba(0, 0, 0, 0.87);
+  --caption-spacing: 1.25px;
+}
+
+.lotto-title {
+  font-family: var(--font-family);
+  font-size: var(--title-size);
+  line-height: var(--title-line-height);
+  font-weight: var(--title-weight);
+  color: var(--title-color);
+  letter-spacing: var(--title-spacing);
+}
+
+.lotto-subtitle {
+  font-family: var(--font-family);
+  font-size: var(--subtitle-size);
+  line-height: var(--subtitle-line-height);
+  font-weight: var(--subtitle-weight);
+  color: var(--subtitle-color);
+  letter-spacing: var(--subtitle-spacing);
+}
+
+.lotto-body {
+  font-family: var(--font-family);
+  font-size: var(--body-size);
+  line-height: var(--body-line-height);
+  font-weight: var(--body-weight);
+  color: var(--body-color);
+  letter-spacing: var(--body-spacing);
+}
+
+.lotto-placeholder {
+  font-family: var(--font-family);
+  font-size: var(--placeholder-size);
+  line-height: var(--placeholder-line-height);
+  font-weight: var(--placeholder-weight);
+  color: var(--placeholder-color);
+  letter-spacing: var(--placeholder-spacing);
+}
+
+.lotto-caption {
+  font-family: var(--font-family);
+  font-size: var(--caption-size);
+  line-height: var(--caption-line-height);
+  font-weight: var(--caption-weight);
+  color: var(--caption-color);
+  letter-spacing: var(--caption-spacing);
+}
