@@ -9,7 +9,7 @@ class Lotto {
   }
 
   getNumbers() {
-    return this.#numbers.sort((a, b) => a - b);
+    return this.#numbers;
   }
 }
 
