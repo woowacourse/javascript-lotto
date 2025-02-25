@@ -82,7 +82,7 @@
   letter-spacing: 0.5px;
 }
 
-#lottoResult #restartButton {
+#lottoResult .restart_button {
   padding: 10px 0;
   width: 100%;
 }

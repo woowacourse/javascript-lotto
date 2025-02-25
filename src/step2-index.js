@@ -29,6 +29,8 @@ const statistics = lotto_result.querySelector(".statistics");
 const statistics_rows = statistics.querySelectorAll(".row");
 const profit_rate = lotto_result.querySelector(".profit_rate");
 
+const restart_button = lotto_result.querySelector(".restart_button");
+
 let purchaseAmount = null;
 let lottoPack = null;
 
@@ -101,4 +103,22 @@ const answerLottoInput = (winningNumbersInput, bonusNumberInput) => {
 
 lotto_result_modal.addEventListener("click", (e) => {
   if (e.target === e.currentTarget) lotto_result_modal.close();
+});
+
+restart_button.addEventListener("click", () => {
+  lotto_result_modal.close();
+  purchase_amount_input.value = "";
+  purchase_count.textContent = "";
+  lotto_pack.replaceChildren();
+
+  answer_lotto_section.classList.add("opacity-0");
+  reuslt_button.classList.add("opacity-0");
+
+  const winning_numbers = lotto_game.querySelectorAll(".winning_number");
+  const bonus_number = lotto_game.querySelector(".bonus_number");
+
+  winning_numbers.forEach((element) => {
+    element.value = "";
+  });
+  bonus_number.value = "";
 });
