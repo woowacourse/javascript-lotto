@@ -9,6 +9,5 @@ export async function getConsoleInput() {
 // UI 입력 방식
 export function getUIInput() {
   const inputElement = document.getElementById('purchase-price');
-  console.log(inputElement);
   return inputElement ? inputElement.value : null;
 }
