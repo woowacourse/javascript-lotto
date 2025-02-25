@@ -1,3 +1,4 @@
+import { createElement } from '../../utils/dom';
 import './winningNumbers.css';
 
 export default function WinningNumbers(playLotto) {
@@ -8,21 +9,13 @@ export default function WinningNumbers(playLotto) {
   const { winningNumbersArray, bonusNumber } = WinningNumberInputs(winningNumberContainer);
 
   playLotto.appendChild(winningNumberContainer);
-
   return { winningNumbersArray, bonusNumber };
 }
 
 function WinningNumberHeaders(winningNumberContainer) {
-  const winningNumberHeaders = document.createElement('div');
-  winningNumberHeaders.className = 'winning-number-headers';
-
-  const winningNumberHeader = document.createElement('p');
-  winningNumberHeader.innerText = '당첨 번호';
-  winningNumberHeader.className = 'header';
-
-  const bonusNumberHeader = document.createElement('p');
-  bonusNumberHeader.innerText = '보너스 번호';
-  bonusNumberHeader.className = 'header';
+  const winningNumberHeaders = createElement('div', { class: 'winning-number-headers' });
+  const winningNumberHeader = createElement('span', { class: 'header', textContent: '당첨 번호' });
+  const bonusNumberHeader = createElement('span', { class: 'header', textContent: '보너스 번호' });
 
   winningNumberHeaders.appendChild(winningNumberHeader);
   winningNumberHeaders.appendChild(bonusNumberHeader);
@@ -30,17 +23,14 @@ function WinningNumberHeaders(winningNumberContainer) {
 }
 
 function WinningNumberInputs(winningNumberContainer) {
-  const winningAndBonusInputContainer = document.createElement('div');
-  winningAndBonusInputContainer.className = 'winning-and-bonus-input-container';
+  const winningAndBonusInputContainer = createElement('div', { class: 'winning-and-bonus-input-container' });
 
   const winningNumbersArray = new Array(6).fill(0);
   const bonusNumber = { value: 0 };
-  const winningInputs = document.createElement('div');
+  const winningInputs = createElement('div');
   winningInputs.className = 'winning-inputs';
   Array.from({ length: 6 }, (_, idx) => {
-    const winningNumberInput = document.createElement('input');
-    winningNumberInput.type = 'text';
-    winningNumberInput.className = 'winning-input';
+    const winningNumberInput = createElement('input', { type: 'text', class: 'winning-input' });
     winningNumberInput.addEventListener('input', (e) => {
       winningNumbersArray[idx] = Number(e.target.value);
     });
@@ -49,9 +39,7 @@ function WinningNumberInputs(winningNumberContainer) {
   });
   winningAndBonusInputContainer.appendChild(winningInputs);
 
-  const bonusNumberInput = document.createElement('input');
-  bonusNumberInput.type = 'text';
-  bonusNumberInput.className = 'bonus-input';
+  const bonusNumberInput = createElement('input', { type: 'text', class: 'bonus-input' });
   bonusNumberInput.addEventListener('input', (e) => {
     bonusNumber.value = Number(e.target.value);
   });
