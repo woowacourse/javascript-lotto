@@ -63,8 +63,9 @@
 
 **요구사항**
 
-- [ ] package.json > "homepage" 값에 본인의 GitHub username 입력
-- [ ] npm run deploy 스크립트를 실행해서 배포
+- [x] package.json > "homepage" 값에 본인의 GitHub username 입력
+- [x] npm run deploy 스크립트를 실행해서 배포
+  - https://mun-kyeong.github.io/javascript-lotto/index.html 링크로 배포 완료
 - [ ] 목적에 맞는 HTML 태그를 사용
 - [ ] CSS 속성 선언 순서의 일관성을 고려
 - [ ] CSS 속성은 가능하면 축약형(shorthand)을 사용
