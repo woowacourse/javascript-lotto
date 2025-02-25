@@ -1,0 +1,38 @@
+#container {
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  height: 60px;
+  background: #4e5ba6;
+  color: white;
+  font: 800 24px sans-serif;
+  margin: 0;
+  padding: 0px 130px;
+  display: flex;
+  align-items: center;
+}
+
+#footer {
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#line {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+#copyright {
+  color: #4e5ba6;
+  font: 700 14px sans-serif;
+}
