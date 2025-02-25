@@ -52,6 +52,12 @@ html {
   letter-spacing: var(--font-caption-letter-spacing);
   font-feature-settings: var(--font-feature-settings);
 }
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 #header-layout {
   display: flex;
 
@@ -63,8 +69,63 @@ html {
 
 .header-layout-title {
   color: var(--lotto-greyscale-1);
-  background: var(--lotto-primary);
 
   margin-top: 1.4rem;
   margin-left: 13rem;
+}
+
+#main-layout {
+  display: flex;
+  flex-direction: column;
+
+  width: 41.4rem;
+  height: 72.7rem;
+  margin-top: 8.4rem;
+  padding: 1.6rem;
+  background-color: pink;
+}
+
+.main-header {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  color: var(--lotto-greyscale-5);
+}
+
+.amount-input-section {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 2.8rem;
+}
+
+.amount-input-section-title {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.amount-input {
+  width: 100%;
+  height: 2.8rem;
+
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--lotto-greyscale-1);
+
+  ::placeholder {
+    color: var(--lotto-greyscale-5);
+  }
+}
+
+.amount-input-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.6rem;
+  padding: 0.6rem 0.6rem 0.6rem 0.8rem;
+
+  color: var(--lotto-greyscale-1);
+  border-radius: 4px;
+  border: none;
+  background: var(--lotto-primary);
 }
