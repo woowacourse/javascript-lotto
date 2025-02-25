@@ -16,16 +16,19 @@ import {
 } from './service/CalculatorService.js';
 import makeLotto from './service/LottoService.js';
 import { PRIZE_MONEY } from './constants/MagicNumber.js';
-import { getConsoleInput } from './service/InputService.js';
+import {
+  getConsolePurchasePrice,
+  getConsoleWinningNumber,
+} from './service/InputService.js';
 
 async function playGame() {
   const { purchasePrice, purchaseAmount } = await getPurchasePrice(
-    getConsoleInput,
+    getConsolePurchasePrice,
   );
 
   const lottos = makeLotto(purchaseAmount);
 
-  const userLotto = await getWinningNumber();
+  const userLotto = await getWinningNumber(getConsoleWinningNumber);
   const parsedLotto = await getBonusNumber(userLotto);
 
   const winCount = calculateWins(lottos, parsedLotto);

@@ -22,9 +22,9 @@ async function getPurchasePrice(inputMethod) {
     return;
   }
 }
-async function getWinningNumber() {
+async function getWinningNumber(inputMethod) {
   try {
-    const winningNumber = await readLineAsync(INPUT_MESSAGE.getWinningNumber);
+    const winningNumber = await inputMethod();
     const userLotto = new Lotto(
       winningNumber.split(',').map((number) => Number(number)),
     );

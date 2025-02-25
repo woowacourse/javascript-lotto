@@ -3,16 +3,22 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import { getUIInput } from './service/InputService.js';
+import {
+  getUIPurchasePrice,
+  getUIWinningNumber,
+} from './service/InputService.js';
 import makeLotto from './service/LottoService.js';
-import { getPurchasePrice } from './service/ParsingService.js';
+import {
+  getPurchasePrice,
+  getWinningNumber,
+} from './service/ParsingService.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const button = document.getElementById('purchase-button');
-  button.addEventListener('click', async (event) => {
+  const purchaseButton = document.getElementById('purchase-button');
+  purchaseButton.addEventListener('click', async (event) => {
     event.preventDefault();
     try {
-      const { purchaseAmount } = await getPurchasePrice(getUIInput);
+      const { purchaseAmount } = await getPurchasePrice(getUIPurchasePrice);
       const purchaseResult = document.createElement('div');
       purchaseResult.classList.add('purchase-result');
       purchaseResult.textContent = `총 ${purchaseAmount}개를 구매하였습니다.`;
@@ -35,11 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
         lottoWrapper.appendChild(lottoNumbers);
 
         document.querySelector('.lotto-content').appendChild(lottoWrapper);
-        button.disabled = true;
+        purchaseButton.disabled = true;
       });
     } catch (error) {
+      //todo: 에러 발생시 에러 메시지 띄우기
       console.log(error);
       console.error('Error:', error.message);
+    }
+  });
+  const resultButton = document.getElementById('check-result-btn');
+  resultButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+    try {
+      const winningNumber = await getWinningNumber(getUIWinningNumber);
+      console.log(winningNumber);
+    } catch (error) {
+      console.log(error);
     }
   });
 });
