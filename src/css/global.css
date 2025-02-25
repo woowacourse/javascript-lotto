@@ -1,0 +1,44 @@
+@import url("./layout.css");
+
+:root {
+  --lotto-primary-color: #4e5ba6;
+  --lotto-greyscale-1-color: #ffffff;
+  --lotto-greyscale-2-color: #fcfcfd;
+  --lotto-greyscale-3-color: #b4b4b4;
+  --lotto-greyscale-4-color: #8b8b8b;
+  --lotto-greyscale-5-color: #000000;
+
+  --border-color: rgba(0, 0, 0, 0.12);
+  --border-radius: 4px;
+
+  --body-text-size: 15px;
+  --body-font-weight: 400;
+
+  --button-text-size: 14px;
+  --button-font-weight: 700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: var(--body-text-size);
+  font-weight: var(--body-font-weight);
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: var(--button-text-size);
+  font-weight: var(--button-font-weight);
+  background-color: var(--lotto-primary-color);
+  color: var(--lotto-greyscale-1-color);
+  border-radius: var(--border-radius);
+}
+
+li {
+  list-style-type: none;
+}

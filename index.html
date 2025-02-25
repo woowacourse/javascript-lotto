@@ -8,7 +8,138 @@
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header class="lotto-header">
+        <h2 class="lotto-header__title">🎱 행운의 로또</h2>
+      </header>
+      <main>
+        <section class="lotto-purchase">
+          <h2 class="lotto-purchase__title">🎱 내 번호 당첨 확인 🎱</h2>
+          <p class="lotto-purchase__description">구입할 금액을 입력해주세요.</p>
+          <form class="lotto-purchase__form">
+            <input
+              class="lotto-purchase__input"
+              type="number"
+              placeholder="금액"
+              min="1000"
+              max="100000"
+              step="1000"
+              required
+            />
+            <button class="lotto-purchase__button">구입</button>
+          </form>
+        </section>
+
+        <section class="issued-lotto">
+          <p class="issued-lotto__description">총 7개를 구매하였습니다.</p>
+          <ul class="issued-lotto__list">
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="winning-lotto">
+          <p class="winning-lotto__description">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+          </p>
+          <p class="winning-lotto__numbers">
+            <span>당첨 번호</span><span>보너스 번호</span>
+          </p>
+          <form class="winning-lotto__form">
+            <div class="winning-lotto__inputs">
+              <div class="winning-lotto__winning-numbers">
+                <input
+                  class="winning-lotto__input"
+                  min="1"
+                  max="45"
+                  type="number"
+                />
+                <input
+                  class="winning-lotto__input"
+                  min="1"
+                  max="45"
+                  type="number"
+                />
+                <input
+                  class="winning-lotto__input"
+                  min="1"
+                  max="45"
+                  type="number"
+                />
+                <input
+                  class="winning-lotto__input"
+                  min="1"
+                  max="45"
+                  type="number"
+                />
+                <input
+                  class="winning-lotto__input"
+                  min="1"
+                  max="45"
+                  type="number"
+                />
+                <input
+                  class="winning-lotto__input"
+                  min="1"
+                  max="45"
+                  type="number"
+                />
+              </div>
+              <div class="winning-lotto__bonus-number">
+                <input
+                  class="winning-lotto__input"
+                  min="1"
+                  max="45"
+                  type="number"
+                />
+              </div>
+            </div>
+            <button class="winning-lotto__result-button">결과 확인하기</button>
+          </form>
+        </section>
+      </main>
+      <footer>Copyright 2023. woowacourse</footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
