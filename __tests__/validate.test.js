@@ -64,7 +64,8 @@ describe("validate", () => {
       });
 
       test(`중복되는 번호가 있는 경우`, () => {
-        const duplicateNumbers = "1,2,3,4,5,5";
+        const duplicateNumber = 5;
+        const duplicateNumbers = `1,2,3,4,${duplicateNumber},${duplicateNumber}`;
 
         expect(() =>
           validateWinningNumbers(duplicateNumbers, SPLITTER)
