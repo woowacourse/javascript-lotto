@@ -18,8 +18,8 @@ export default class Modal {
     $button.className = "modal-close-button";
 
     $button.addEventListener("click", () => {
-      $modalBg.classList.remove("modal-bg-show");
-      $modal.classList.remove("modal-show");
+      $modalBg.classList.add("modal-none");
+      $modal.classList.add("modal-none");
     });
 
     $buttonWrap.appendChild($button);
