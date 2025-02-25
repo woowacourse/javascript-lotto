@@ -8,7 +8,8 @@ import { LOTTO_CONDITION } from '../constants/constants.js';
 
 class LottoController {
   async run() {
-    const lottoMaker = new LottoMaker(await LottoViewController.getPurchaseMoney());
+    const purchaseMoney = await InputHandler.purchaseMoney();
+    const lottoMaker = new LottoMaker(purchaseMoney);
     LottoViewController.printLottoNumber(lottoMaker);
 
     const winningNumbers = await LottoViewController.getWinningNumbers();
