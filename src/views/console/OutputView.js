@@ -1,4 +1,4 @@
-import { MATCH_KEY, MATCH_PRIZE } from "../constants/constants.js";
+import { MATCH_KEY, MATCH_PRIZE } from "../../constants/constants.js";
 
 const OutputView = {
   printErrorMessage(errorMessage) {

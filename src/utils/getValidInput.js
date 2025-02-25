@@ -1,4 +1,4 @@
-import OutputView from "../views/OutputView.js";
+import OutputView from "../views/console/OutputView.js";
 
 const getValidInput = async (inputFn, validateFn, ...additionalArgs) => {
   while (true) {

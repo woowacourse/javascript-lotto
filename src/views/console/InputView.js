@@ -1,5 +1,5 @@
-import { YES, NO } from "../constants/constants.js";
-import readLineAsync from "../utils/readLineAsync.js";
+import { YES, NO } from "../../constants/constants.js";
+import readLineAsync from "../../utils/readLineAsync.js";
 
 const InputView = {
   readPurchaseAmount() {
