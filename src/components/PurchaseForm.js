@@ -1,9 +1,11 @@
 export default class {
   #setLottoTransaction;
+  #setShow;
 
-  constructor($target, setLottoTransaction) {
+  constructor($target, setLottoTransaction, setShow) {
     this.render($target);
     this.#setLottoTransaction = setLottoTransaction;
+    this.#setShow = setShow;
   }
 
   render($target) {
@@ -33,11 +35,7 @@ export default class {
 
     $button.addEventListener("click", () => {
       this.#setLottoTransaction({ price: $input.value });
-      const $lottoResult = document.querySelectorAll(".hidden");
-
-      $lottoResult.forEach(($el) => {
-        $el.classList.add("show");
-      });
+      this.#setShow(true);
     });
 
     $target.appendChild($form);

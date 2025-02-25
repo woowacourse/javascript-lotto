@@ -1,13 +1,16 @@
 import Button from "../common/button.js";
 
 export default class LottoWinningInfoForm {
-  constructor($target) {
+  #show;
+
+  constructor($target, show) {
+    this.#show = show;
     this.render($target);
   }
 
   render($target) {
     const $form = document.createElement("form");
-    $form.className = "hidden lotto-winning-info-form";
+    $form.className = `${!this.#show ? "hidden" : ""} lotto-winning-info-form`;
 
     $form.innerHTML = `
     <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
@@ -28,17 +31,7 @@ export default class LottoWinningInfoForm {
     </div>
 `;
 
-    new Button(
-      $form,
-      () => {
-        const $modalBg = document.querySelector(".modal-bg");
-        const $container = document.querySelector(".modal");
-
-        $modalBg.classList.add("modal-bg-show");
-        $container.classList.add("modal-show");
-      },
-      "결과 확인하기"
-    );
+    new Button($form, () => {}, "결과 확인하기");
     $target.appendChild($form);
   }
 }

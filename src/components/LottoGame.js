@@ -8,15 +8,21 @@ import LottoWinningInfoForm from "./LottoWinningInfoForm.js";
 export default class LottoGame {
   #target;
   #lottoTransaction;
+  #show;
 
   constructor($target) {
     this.#target = $target;
     this.#lottoTransaction = { price: 0, lottos: [] };
-    this.render($target);
+    this.render();
   }
 
   setLottoTransaction = (newState) => {
     this.#lottoTransaction = { ...this.#lottoTransaction, ...newState };
+    this.render();
+  };
+
+  setShow = (newState) => {
+    this.#show = newState;
     this.render();
   };
 
@@ -36,8 +42,8 @@ export default class LottoGame {
     const countNumber = divideByUnit(PRICE.UNIT, this.#lottoTransaction.price);
     const lottos = LottoFactory.issueLottos(countNumber);
 
-    new PurchaseForm($div, this.setLottoTransaction);
-    new LottoPurchaseHistory($div, countNumber, lottos);
-    new LottoWinningInfoForm($div);
+    new PurchaseForm($div, this.setLottoTransaction, this.setShow);
+    new LottoPurchaseHistory($div, countNumber, lottos, this.#show);
+    new LottoWinningInfoForm($div, this.#show);
   }
 }
