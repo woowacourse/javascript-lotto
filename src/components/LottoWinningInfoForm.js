@@ -1,9 +1,11 @@
 import Button from "../common/button.js";
 
 export default class LottoWinningInfoForm {
+  #setWinningLottoInfo;
   #show;
 
-  constructor($target, show) {
+  constructor($target, setWinningLottoInfo, show) {
+    this.#setWinningLottoInfo = setWinningLottoInfo;
     this.#show = show;
     this.render($target);
   }
@@ -31,7 +33,26 @@ export default class LottoWinningInfoForm {
     </div>
 `;
 
-    new Button($form, () => {}, "결과 확인하기");
+    new Button(
+      $form,
+      () => {
+        const $lottoNumbers = document.querySelectorAll(
+          ".lotto-numbers-wrap > .number-input"
+        );
+        const winningNumbers = [];
+        $lottoNumbers.forEach(($lottoNumber) => {
+          winningNumbers.push(Number($lottoNumber.value));
+        });
+
+        const $bonusNumber = document.querySelector(
+          ".bonus-input-wrap > .number-input"
+        );
+        const bonusNumber = Number($bonusNumber.value);
+
+        this.#setWinningLottoInfo({ winningNumbers, bonusNumber });
+      },
+      "결과 확인하기"
+    );
     $target.appendChild($form);
   }
 }
