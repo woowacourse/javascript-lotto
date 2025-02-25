@@ -5,6 +5,7 @@
 
 import { LOTTO_NUMBER_SPLITER } from "./constants/constant";
 import LottoMachine from "./domain/LottoMachine/LottoMachine";
+import generateAnswerLotto from "./domain/generateAnswerLotto";
 import parseAndValidateBonusNumber from "./domain/processors/parseAndValidateBonusNumber";
 import parseAndValidatePurchaseAmount from "./domain/processors/parseAndValidatePurchaseAmount";
 import parseAndValidateWinningNumbers from "./domain/processors/parseAndValidateWinningNumbers";
@@ -18,12 +19,17 @@ const purchase_count = lotto_game.querySelector(".purchase_count");
 const lotto_pack = lotto_game.querySelector(".lotto_pack");
 
 const answer_lotto_section = lotto_game.querySelector(".answer_lotto_section");
-const answer_lotto_title = answer_lotto_section.querySelector(".answer_lotto_title");
+const reuslt_button = lotto_game.querySelector(".reuslt_button_section #resultButton");
+
+const lotto_result_modal = document.querySelector(".lotto_result_modal");
+// const close_modal = lotto_result_modal.querySelector(".close");
+
+let lottoPack = null;
 
 purchase_button.addEventListener("click", () => {
   try {
     const purchaseAmount = parseAndValidatePurchaseAmount(purchase_amount_input.value);
-    const lottoPack = LottoMachine(purchaseAmount);
+    lottoPack = LottoMachine(purchaseAmount);
 
     purchase_count.textContent = `총 ${lottoPack.count}개를 구매했습니다.`;
 
@@ -40,13 +46,12 @@ purchase_button.addEventListener("click", () => {
 
     // 당첨번호+ 보너스 번호 호출
 
-    // answer_lotto_section.classList.remove("opacity-0");
+    answer_lotto_section.classList.remove("opacity-0");
+    reuslt_button.classList.remove("opacity-0");
   } catch (error) {
     alert(error);
   }
 });
-
-const reuslt_button = lotto_game.querySelector(".reuslt_button_section #resultButton");
 
 reuslt_button.addEventListener("click", () => {
   try {
@@ -59,15 +64,25 @@ reuslt_button.addEventListener("click", () => {
     });
     const bonusNumberInput = bonus_number.value;
 
-    const { winningNumbers, bonusNumber } = answerLotto(winningNumbersInput, bonusNumberInput);
+    const { winningNumbers, bonusNumber } = answerLottoInput(winningNumbersInput, bonusNumberInput);
+
+    const answerLotto = generateAnswerLotto(winningNumbers, bonusNumber);
+
+    const winningResult = lottoPack.compareAndReturnResult(answerLotto);
+
+    lotto_result_modal.showModal();
   } catch (error) {
     alert(error);
   }
 });
 
-const answerLotto = (winningNumbersInput, bonusNumberInput) => {
+const answerLottoInput = (winningNumbersInput, bonusNumberInput) => {
   const winningNumbers = parseAndValidateWinningNumbers(winningNumbersInput.join(LOTTO_NUMBER_SPLITER));
   const parseAndValidateBonusNumberFunc = parseAndValidateBonusNumber(winningNumbers);
   const bonusNumber = parseAndValidateBonusNumberFunc(bonusNumberInput);
   return { winningNumbers, bonusNumber };
 };
+
+lotto_result_modal.addEventListener("click", (e) => {
+  if (e.target === e.currentTarget) lotto_result_modal.close();
+});

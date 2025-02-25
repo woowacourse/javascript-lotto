@@ -27,74 +27,78 @@
             <span class="purchase_count"></span>
             <div class="lotto_pack"></div>
           </div>
-          <div class="answer_lotto_section">
+          <div class="answer_lotto_section opacity-0">
             <span class="answer_lotto_title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
             <div class="answer_lotto">
               <div class="answer_lotto_number">
                 <span>당첨 번호</span>
                 <div class="winning_input">
-                  <input type="text" class="number winning_number" maxlength="1" />
-                  <input type="text" class="number winning_number" maxlength="1" />
-                  <input type="text" class="number winning_number" maxlength="1" />
-                  <input type="text" class="number winning_number" maxlength="1" />
-                  <input type="text" class="number winning_number" maxlength="1" />
-                  <input type="text" class="number winning_number" maxlength="1" />
+                  <input type="text" class="number winning_number" maxlength="2" />
+                  <input type="text" class="number winning_number" maxlength="2" />
+                  <input type="text" class="number winning_number" maxlength="2" />
+                  <input type="text" class="number winning_number" maxlength="2" />
+                  <input type="text" class="number winning_number" maxlength="2" />
+                  <input type="text" class="number winning_number" maxlength="2" />
                 </div>
               </div>
               <div class="answer_lotto_number">
                 <span>보너스 번호</span>
                 <div class="bonus_input">
-                  <input type="text" class="number bonus_number" maxlength="1" />
+                  <input type="text" class="number bonus_number" maxlength="2" />
                 </div>
               </div>
             </div>
           </div>
           <div class="reuslt_button_section">
-            <button id="resultButton" class="caption">결과 확인하기</button>
+            <button id="resultButton" class="caption opacity-0">결과 확인하기</button>
           </div>
         </div>
       </main>
 
-      <main id="lottoResult">
-        <img class="close" src="close.png" alt="x" width="16px" height="16px" />
-        <div class="inner">
-          <span class="title">🏆 당첨 통계 🏆</span>
-          <div class="statistics">
-            <div class="name">
-              <span class="match_count">일치 갯수</span>
-              <span class="price">당첨금</span>
-              <span class="winning_count">당첨 갯수</span>
+      <dialog class="lotto_result_modal">
+        <main id="lottoResult">
+          <form method="dialog">
+            <button><img class="close" src="close.png" alt="x" width="16px" height="16px" /></button>
+          </form>
+          <div class="inner">
+            <span class="title">🏆 당첨 통계 🏆</span>
+            <div class="statistics">
+              <div class="name">
+                <span class="match_count">일치 갯수</span>
+                <span class="price">당첨금</span>
+                <span class="winning_count">당첨 갯수</span>
+              </div>
+              <div class="row">
+                <span class="match_count">3개</span>
+                <span class="price">5,000</span>
+                <span class="winning_count">n개</span>
+              </div>
+              <div class="row">
+                <span class="match_count">4개</span>
+                <span class="price">50,000</span>
+                <span class="winning_count">n개</span>
+              </div>
+              <div class="row">
+                <span class="match_count">5개</span>
+                <span class="price">1,500,000</span>
+                <span class="winning_count">n개</span>
+              </div>
+              <div class="row">
+                <span class="match_count">5개+보너스볼</span>
+                <span class="price">30,000,000</span>
+                <span class="winning_count">n개</span>
+              </div>
+              <div class="row">
+                <span class="match_count">6개</span>
+                <span class="price">2,000,000,000</span>
+                <span class="winning_count">n개</span>
+              </div>
             </div>
-            <div class="row">
-              <span class="match_count">3개</span>
-              <span class="price">5,000</span>
-              <span class="winning_count">n개</span>
-            </div>
-            <div class="row">
-              <span class="match_count">4개</span>
-              <span class="price">50,000</span>
-              <span class="winning_count">n개</span>
-            </div>
-            <div class="row">
-              <span class="match_count">5개</span>
-              <span class="price">1,500,000</span>
-              <span class="winning_count">n개</span>
-            </div>
-            <div class="row">
-              <span class="match_count">5개+보너스볼</span>
-              <span class="price">30,000,000</span>
-              <span class="winning_count">n개</span>
-            </div>
-            <div class="row">
-              <span class="match_count">6개</span>
-              <span class="price">2,000,000,000</span>
-              <span class="winning_count">n개</span>
-            </div>
+            <span class="profit_rate">당신의 총 수익률은 %입니다.</span>
+            <button id="restartButton" class="caption">다시 시작하기</button>
           </div>
-          <span class="profit_rate">당신의 총 수익률은 %입니다.</span>
-          <button id="restartButton" class="caption">다시 시작하기</button>
-        </div>
-      </main>
+        </main>
+      </dialog>
 
       <footer>
         <span class="caption">Copyright 2025. woowacourse</span>

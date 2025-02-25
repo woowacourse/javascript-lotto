@@ -9,7 +9,9 @@
   --lotto-greyscale-3: #b4b4b4;
   --lotto-greyscale-4: #8b8b8b;
   --lotto-greyscale-5: #000000;
-  --lotto-greyscale-5-12: rgba(0, 0, 0, 0.12);;
+  --lotto-greyscale-5-12: rgba(0, 0, 0, 0.12);
+  --lotto-greyscale-5-50: rgba(0, 0, 0, 0.5);;
+
   }
   
 
@@ -111,4 +113,8 @@ button{
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 1.25px;
+}
+
+.opacity-0{
+  opacity: 0;
 }
