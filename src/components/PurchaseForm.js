@@ -1,18 +1,20 @@
 import { PRICE } from "../constants/price.js";
 import LottoFactory from "../domain/LottoFactory.js";
 import { divideByUnit } from "../utils/count.js";
+import PriceValidator from "../validation/PriceValidator.js";
 
 export default class PurchaseForm {
   #setLottoTransaction;
   #setShow;
 
   constructor($target, setLottoTransaction, setShow) {
-    this.render($target);
+    this.$target = $target;
     this.#setLottoTransaction = setLottoTransaction;
     this.#setShow = setShow;
+    this.render($target);
   }
 
-  render($target) {
+  render() {
     const $form = document.createElement("form");
     const $input = document.createElement("input");
     const $span = document.createElement("span");
@@ -40,6 +42,13 @@ export default class PurchaseForm {
     $button.addEventListener("click", () => {
       const price = $input.value;
 
+      try {
+        new PriceValidator().validatePrice(Number(price));
+      } catch (e) {
+        alert(e.message);
+        return;
+      }
+
       const countNumber = divideByUnit(PRICE.UNIT, price);
       const lottos = LottoFactory.issueLottos(countNumber);
 
@@ -47,6 +56,6 @@ export default class PurchaseForm {
       this.#setShow(true);
     });
 
-    $target.appendChild($form);
+    this.$target.appendChild($form);
   }
 }
