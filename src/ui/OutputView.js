@@ -4,7 +4,7 @@ import { WINNING } from "../constant/lotto.js";
 
 const OutputView = {
   printLotto(lotto) {
-    // console.log(`[${lotto.join(STRING.PRINT_LOTTO_SPLITTER)}]`);
+    console.log(`[${lotto.join(STRING.PRINT_LOTTO_SPLITTER)}]`);
     document.getElementById("generated-lottos").innerHTML += `
     <p>
       <img src="/images/ticket.png"/> ${lotto.join(STRING.PRINT_LOTTO_SPLITTER)}

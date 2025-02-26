@@ -72,6 +72,7 @@ const generateLottos = (quantity) => {
 };
 
 const displayLottoNumbers = (lottos) => {
+  document.getElementById("generated-lottos").innerHTML = '';
   lottos.forEach((lotto) => {
     OutputView.printLotto(lotto.numbers);
   });
