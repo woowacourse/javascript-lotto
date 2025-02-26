@@ -28,6 +28,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 button {
+  height: auto;
   background-color: var(--lotto-primary);
   border: none;
   border-radius: 0.25rem;
@@ -42,28 +43,28 @@ button {
   }
 }
 
-.title {
+.font-title {
   font-family: "Roboto";
   font-weight: 800;
   font-size: 1.5rem;
   line-height: 2.25rem;
   letter-spacing: 0;
 }
-.subtitle {
+.font-subtitle {
   font-family: "Roboto";
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.5rem;
   letter-spacing: 0.009375rem;
 }
-.body {
+.font-body {
   font-family: "Roboto";
   font-weight: 400;
   font-size: 0.93rem;
   line-height: 1.5rem;
   letter-spacing: 0.031rem;
 }
-.placeholder {
+.font-placeholder {
   font-family: "Roboto";
   font-weight: 400;
   font-size: 0.93rem;
@@ -97,13 +98,17 @@ button {
 .large-button {
   width: 100%;
 }
+.small-button {
+  min-width: 3.5rem;
+  min-height: 2.25rem;
+}
 
 /*input*/
-.price-input {
+.large-input {
   width: 19.3rem;
   min-height: 2rem;
 }
-.lotto-number-input {
+.small-input {
   width: 1rem;
   height: 2.2rem;
 }
@@ -137,7 +142,7 @@ button {
   justify-content: center;
   gap: 0.25rem;
 }
-.input-container {
+.input-button-container {
   display: flex;
   gap: 1rem;
 }
