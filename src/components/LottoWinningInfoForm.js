@@ -1,6 +1,7 @@
 import Button from "./common/button.js";
 import validateBonusNumber from "../validation/validateBonusNumber.js";
 import Lotto from "../domain/Lotto.js";
+import { LOTTO_NUMBER } from "../constants/lotto.js";
 
 export default class LottoWinningInfoForm {
   #setWinningLottoInfo;
@@ -23,7 +24,7 @@ export default class LottoWinningInfoForm {
             <span>당첨 번호</span>
             <div class="lotto-numbers-wrap">
             ${Array.from(
-              { length: 6 },
+              { length: LOTTO_NUMBER.LENGTH },
               () => '<input class="number-input" />'
             ).join("")}
             </div>
