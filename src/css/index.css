@@ -81,6 +81,10 @@
   background: #2e3fa2;
 }
 
+#purchased-count {
+  margin-top: 30px;
+}
+
 #footer {
   height: 60px;
   position: fixed;

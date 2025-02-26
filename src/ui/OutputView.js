@@ -24,7 +24,8 @@ const OutputView = {
   },
 
   printQuantity(quantity) {
-    console.log(`${quantity}${OUTPUT_MESSAGE.QUANTITY}`);
+    // console.log(`${quantity}${OUTPUT_MESSAGE.QUANTITY}`);
+    if (quantity > 0) document.getElementById("purchased-count").innerText = `총 ${quantity}${OUTPUT_MESSAGE.QUANTITY}`;
   },
 };
 
