@@ -79,6 +79,7 @@
   - [x] html 뼈대 구성
   - [x] card title 제작 (css)
   - [x] card input 입력창 제작 (css)
+    - [x] 입력창을 통해 로또 생성 (feat)
   - [x] 로또 출력 화면 제작 (css)
   - [x] 당첨번호 및 보너스 번호 입력 창 제작 (css)
   - [x] 결과 확인 버튼 제작 (css)
