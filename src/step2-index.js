@@ -13,6 +13,30 @@ function setupPurchaseEvent() {
   purchaseButton.addEventListener("click", handlePurchase);
 }
 
+function displayLottos(lottos) {
+  lottoListContainer.innerHTML = "";
+  lottos.forEach((lotto) => {
+    const lottoArray = lotto.getLottoNumber();
+    console.log(lottoArray);
+    // 로또 요소 만들고
+    const lottoElement = document.createElement("div");
+    lottoElement.className = "random__lotto";
+
+    // 아이콘 넣고
+    const iconElement = document.createElement("div");
+    iconElement.className = "lotto__icon";
+    iconElement.textContent = "🎟️";
+
+    const numbersElement = document.createElement("div");
+    numbersElement.className = "lotto__numbers";
+    numbersElement.textContent = lottoArray.join(", ");
+
+    lottoElement.appendChild(iconElement);
+    lottoElement.appendChild(numbersElement);
+    lottoListContainer.appendChild(lottoElement);
+  });
+}
+
 function handlePurchase() {
   try {
     const rawPriceString = inputMoney.value;
@@ -24,7 +48,7 @@ function handlePurchase() {
     purchaseMessage.style.display = "block";
     purchaseMessage.textContent = `총 ${lottoNum}개를 구매하였습니다.`;
 
-    // displayLottos(lottoGame.lottos);
+    displayLottos(lottoGame.lottos);
   } catch (error) {
     alert(error.message);
   }
@@ -32,7 +56,7 @@ function handlePurchase() {
 
 function initApp() {
   purchaseMessage.style.display = "none";
-  lottoListContainer.innerHTML = "";
+
   setupPurchaseEvent();
 }
 
