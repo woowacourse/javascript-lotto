@@ -7,14 +7,10 @@ const InputView = {
     const $purchaseInput = getById('purchaseInput');
     const $purchaseForm = document.querySelector('section.purchase form');
     return new Promise((resolve) => {
-      $purchaseForm.addEventListener(
-        'submit',
-        (e) => {
-          e.preventDefault();
-          resolve($purchaseInput.value);
-        },
-        { once: true },
-      );
+      $purchaseForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        resolve($purchaseInput.value);
+      });
     });
   },
 
