@@ -1,4 +1,39 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import LottoGame from "./domain/LottoGame.js";
+import Validator from "./domain/Validator.js";
+import Constants from "./constant/Constants.js";
+
+const purchaseButton = document.querySelector(".lotto__input__btn");
+const inputMoney = document.querySelector(".input__money");
+const purchaseMessage = document.querySelector(".lotto__box p:nth-of-type(2)");
+const lottoListContainer = document.querySelector(".lotto__list");
+
+let lottoGame = null;
+
+function setupPurchaseEvent() {
+  purchaseButton.addEventListener("click", handlePurchase);
+}
+
+function handlePurchase() {
+  try {
+    const rawPriceString = inputMoney.value;
+    Validator.isPrice(rawPriceString);
+
+    const lottoNum = Number(rawPriceString) / Constants.LOTTO.UNIT;
+    lottoGame = new LottoGame(lottoNum);
+
+    purchaseMessage.style.display = "block";
+    purchaseMessage.textContent = `총 ${lottoNum}개를 구매하였습니다.`;
+
+    // displayLottos(lottoGame.lottos);
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+function initApp() {
+  purchaseMessage.style.display = "none";
+  lottoListContainer.innerHTML = "";
+  setupPurchaseEvent();
+}
+
+initApp();
