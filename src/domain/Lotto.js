@@ -1,4 +1,7 @@
-import LottoValidator from "../validation/LottoValidator.js";
+import Validator from "../validation/validator.js";
+import { throwError } from "../utils/throwError.js";
+import { ERROR } from "../constants/message.js";
+import { LOTTO_NUMBER } from "../constants/lotto.js";
 
 class Lotto {
   #numbers;
@@ -9,8 +12,18 @@ class Lotto {
   }
 
   validate(numbers) {
-    const validator = new LottoValidator();
-    validator.validateLotto(numbers);
+    numbers.forEach((number) => {
+      Validator.empty(number);
+      Validator.number(number);
+      Validator.range({ min: LOTTO_NUMBER.MIN, max: LOTTO_NUMBER.MAX }, number);
+    });
+
+    if (new Set(numbers).size !== numbers.length) {
+      throwError(ERROR.DUPLICATE);
+    }
+    if (numbers.length !== LOTTO_NUMBER.LENGTH) {
+      throwError(ERROR.LENGTH);
+    }
   }
 
   sortLottoNumber(numbers) {

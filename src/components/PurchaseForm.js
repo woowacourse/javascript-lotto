@@ -1,7 +1,7 @@
 import { PRICE } from "../constants/price.js";
 import LottoFactory from "../domain/LottoFactory.js";
 import { divideByUnit } from "../utils/count.js";
-import PriceValidator from "../validation/PriceValidator.js";
+import validatePrice from "../validation/validatePrice.js";
 
 export default class PurchaseForm {
   #setLottoTransaction;
@@ -43,7 +43,7 @@ export default class PurchaseForm {
       const price = $input.value;
 
       try {
-        new PriceValidator().validatePrice(Number(price));
+        validatePrice(price);
       } catch (e) {
         alert(e.message);
         return;
