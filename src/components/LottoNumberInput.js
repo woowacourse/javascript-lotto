@@ -1,6 +1,6 @@
 import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants.js";
 
-export const LottoNumberInput = (name) => {
+export const LottoNumberInput = ({ name }) => {
   const lottoNumberInput = document.createElement("input");
 
   lottoNumberInput.classList.add("lotto-number-input");

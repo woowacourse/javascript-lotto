@@ -1,14 +1,14 @@
-export const LottoNumbers = (lottoArray) => {
+export const LottoNumbers = ({ lottoArray }) => {
   const fragment = document.createDocumentFragment();
 
   lottoArray.forEach((lotto) => {
-    fragment.appendChild(LottoNumber(lotto));
+    fragment.appendChild(LottoNumber({ lotto: lotto }));
   });
 
   return fragment;
 };
 
-const LottoNumber = (lotto) => {
+const LottoNumber = ({ lotto }) => {
   const lottoNumbersItem = document.createElement("div");
   lottoNumbersItem.classList.add("lotto-numbers-item");
 

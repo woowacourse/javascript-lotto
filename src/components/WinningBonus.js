@@ -13,7 +13,7 @@ export const WinningInput = () => {
   winningInputWrap.appendChild(winningInputLabel);
 
   Array.from({ length: LOTTO_NUMBERS.LENGTH }, () => {
-    winningInputContainer.appendChild(LottoNumberInput("winning-number"));
+    winningInputContainer.appendChild(LottoNumberInput({ name: "winning-number" }));
   });
   winningInputWrap.appendChild(winningInputContainer);
 
@@ -28,6 +28,6 @@ export const BonusInput = () => {
   bonusInputLabel.textContent = "보너스 번호";
 
   bonusInputWrap.appendChild(bonusInputLabel);
-  bonusInputWrap.appendChild(LottoNumberInput("bonus-number"));
+  bonusInputWrap.appendChild(LottoNumberInput({ name: "bonus-number" }));
   return bonusInputWrap;
 };

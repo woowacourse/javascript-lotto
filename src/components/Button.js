@@ -1,6 +1,6 @@
-export const Button = (label, onClick) => {
+export const Button = ({ label, onClick, style = "large" }) => {
   const button = document.createElement("button");
-  button.classList.add("large-button");
+  button.classList.add(setButtonCss(style));
   button.textContent = label;
 
   if (onClick) {
@@ -8,4 +8,13 @@ export const Button = (label, onClick) => {
   }
 
   return button;
+};
+
+const setButtonCss = (style) => {
+  if (style === "large") {
+    return "large-button";
+  }
+  if (style === "small") {
+    return "small-button";
+  }
 };
