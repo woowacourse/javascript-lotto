@@ -85,6 +85,17 @@
   margin-top: 30px;
 }
 
+#generated-lottos p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#generated-lottos p img {
+  width: 34px;
+  height: 36px;
+}
+
 #footer {
   height: 60px;
   position: fixed;
