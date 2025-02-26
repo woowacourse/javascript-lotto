@@ -25,13 +25,13 @@ export const ERROR_MESSAGES = {
   winNumber: {
     unique: appendErrorPrefix("중복되지 않은 숫자로 입력해주세요."),
     range: appendErrorPrefix(
-      `${LOTTO_NUMBER_LENGTH}개의 ${MIN_LOTTO_NUMBER}~${MAX_LOTTO_NUMBER} 사이의 정수로 입력해주세요.`
+      `당첨 번호를 ${LOTTO_NUMBER_LENGTH}개의 ${MIN_LOTTO_NUMBER}~${MAX_LOTTO_NUMBER} 사이의 정수로 입력해주세요.`
     ),
   },
   bonusNumber: {
     unique: appendErrorPrefix("당첨 번호와 중복되지 않게 입력해주세요."),
     range: appendErrorPrefix(
-      `${BONUS_NUMBER_LENGTH}개의 ${MIN_LOTTO_NUMBER}~${MAX_LOTTO_NUMBER} 사이의 정수로 입력해주세요.`
+      `보너스 번호를 ${BONUS_NUMBER_LENGTH}개의 ${MIN_LOTTO_NUMBER}~${MAX_LOTTO_NUMBER} 사이의 정수로 입력해주세요.`
     ),
   },
   retry: {
