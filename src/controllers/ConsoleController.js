@@ -1,16 +1,16 @@
-import { RESTART } from './constants/CONFIGURATIONS.js';
+import { RESTART } from '../constants/CONFIGURATIONS.js';
 import {
   getBonusNumber,
   getPurchasePrice,
   getRestart,
   getWinningNumbers,
-} from './domains/InputProcessor.js';
-import LottoMachine from './domains/LottoMachine.js';
-import WinningResult from './domains/WinningResult.js';
-import retryUntilValid from './utils/retryUntilValid.js';
-import OutputView from './views/OutputView.js';
+} from '../domains/InputProcessor.js';
+import LottoMachine from '../domains/LottoMachine.js';
+import WinningResult from '../domains/WinningResult.js';
+import retryUntilValid from '../utils/retryUntilValid.js';
+import OutputView from '../views/console/OutputView.js';
 
-const App = {
+const ConsoleController = {
   async run() {
     await this.start();
     const restartInput = await retryUntilValid(getRestart);
@@ -47,4 +47,4 @@ const App = {
   },
 };
 
-export default App;
+export default ConsoleController;

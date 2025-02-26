@@ -3,7 +3,7 @@ import { BonusNumberValidator } from '../validators/BonusNumberValidator.js';
 import { PurchasePriceValidator } from '../validators/PurchasePriceValidator.js';
 import RestartValidator from '../validators/RestartValidator.js';
 import { WinningNumbersValidator } from '../validators/WinningNumbersValidator.js';
-import InputView from '../views/InputView.js';
+import InputView from '../views/console/InputView.js';
 
 export async function getPurchasePrice() {
   const lottoPurchasePrice = await InputView.enterPurchasePrice();

@@ -1,5 +1,5 @@
-import { SYSTEM_MESSAGE } from '../constants/MESSAGES.js';
-import readLineAsync from '../utils/readLineAsync.js';
+import { SYSTEM_MESSAGE } from '../../constants/MESSAGES.js';
+import readLineAsync from '../../utils/readLineAsync.js';
 
 const InputView = {
   async enterPurchasePrice() {

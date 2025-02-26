@@ -1,3 +1,3 @@
-import App from './App.js';
+import ConsoleController from './controllers/ConsoleController.js';
 
-App.start();
+ConsoleController.start();
