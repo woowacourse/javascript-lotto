@@ -1,10 +1,9 @@
 export default class Nav {
-  constructor() {
-    this.render();
+  constructor($target) {
+    this.render($target);
   }
 
-  render() {
-    const $body = document.querySelector("body");
+  render($target) {
     const $nav = document.createElement("nav");
     const $title = document.createElement("h1");
 
@@ -13,6 +12,6 @@ export default class Nav {
     $nav.className = "nav";
 
     $nav.appendChild($title);
-    $body.appendChild($nav);
+    $target.appendChild($nav);
   }
 }

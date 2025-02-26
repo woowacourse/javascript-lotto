@@ -14,9 +14,9 @@ class App {
 
   render() {
     const $body = document.querySelector("body");
-    new Nav();
     const $container = document.createElement("div");
     $container.classList = "container";
+    new Nav($body);
     $body.appendChild($container);
 
     new LottoGame($container);
