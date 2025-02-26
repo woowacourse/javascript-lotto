@@ -19,6 +19,11 @@
   margin-bottom: 10px;
 }
 
+.lotto-result__close_button:hover,
+.lotto-result__close_button:active {
+  background-color: transparent;
+}
+
 .lotto-result__close_button img {
   width: 14px;
   height: 14px;

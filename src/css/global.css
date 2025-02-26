@@ -6,6 +6,7 @@
 
 :root {
   --lotto-primary-color: #4e5ba6;
+  --lotto-active-color: #354188;
   --lotto-greyscale-1-color: #ffffff;
   --lotto-greyscale-2-color: #fcfcfd;
   --lotto-greyscale-3-color: #b4b4b4;
@@ -41,6 +42,11 @@ button {
   background-color: var(--lotto-primary-color);
   color: var(--lotto-greyscale-1-color);
   border-radius: var(--border-radius);
+}
+
+button:hover,
+button:active {
+  background-color: var(--lotto-active-color);
 }
 
 li {
