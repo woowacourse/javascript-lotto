@@ -72,9 +72,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const revenueRate = calculateRevenueRate(total, purchasePrice);
         resultButton.disabled = true;
 
+        const modalOverlay = document.createElement('div');
+        modalOverlay.classList.add('modal-overlay');
+        modalOverlay.style.display = 'block';
+
+        document.querySelector('.container').appendChild(modalOverlay);
+
         const modal = document.createElement('dialog');
         modal.classList.add('prize-result');
-        modal.innerHTML = `<div class="result-header">
+        modal.innerHTML = `
+     
+        <div class="result-header">
+              <div class="close-button-wrapper">
+                <button id="close-button">
+                  ✕
+                </button>
+              </div>
               <div class="result-title">🏆 당첨 통계 🏆</div>
           </div>
           <div class="result-body">
@@ -121,6 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>`;
 
         document.querySelector('.container').appendChild(modal);
+        const closeButton = document.getElementById('close-button');
+        closeButton.addEventListener('click', () => {
+          event.preventDefault();
+          document.querySelector('#purchase-price').value = '';
+          document.querySelector('.lotto-container').innerHTML = '';
+          lottoInput.innerHTML = '';
+          modal.innerHTML = '';
+          modal.style.display = 'none';
+          modalOverlay.style.display = 'none';
+        });
       });
     } catch (error) {
       //todo: 에러 발생시 에러 메시지 띄우기
