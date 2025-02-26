@@ -4,3 +4,53 @@ button {
   width: 319px;
   text-align: center;
 }
+
+.prize-contents {
+  position: relative;
+}
+
+.prize-contents > p:nth-child(4) {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: var(--lotto-greyscale-5);
+}
+
+.prize-contents > button {
+  height: 36px;
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}
+
+.close-button {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.result-table thead {
+  border-bottom: 1px solid #0000001f;
+  border-top: 1px solid #0000001f;
+  font-family: Roboto;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.result-table tr {
+  border-bottom: 1px solid #0000001f;
+}
+
+.result-table th,
+td {
+  padding: 8px 0px;
+}

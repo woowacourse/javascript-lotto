@@ -35,10 +35,11 @@ modal div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 32px;
   padding-top: 40px;
   padding-bottom: 32px;
   width: 350px;
-  height: 500px;
+  border-radius: 4px;
   background-color: white;
 }
 
