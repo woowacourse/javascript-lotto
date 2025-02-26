@@ -38,6 +38,74 @@
 
  .navbar__menu h1{
     margin-left: 130px;
-    font-size: var(--lotto-title);
+    font-size: var(--font-lotto-title);
 
  }
+
+.lotto__body{
+    background-color: var(--lotto-greyscale-2);
+    display: flex;
+    justify-content: center;
+    margin-top: 84px;
+    
+}
+.lotto__box{
+    background-color: var(--lotto-greyscale-1);
+    width: 414px;
+    height: 727px;
+    border-radius: 0%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #0000001F;
+    padding: 40px 16px 32px 16px;
+
+}
+
+.lotto__box__title{
+    text-align: center;
+}
+
+.lotto__box h1{
+    color: var(--lotto-greyscale-5);
+    font-size: var(--font-lotto-title);
+    font-weight: var(--weight-extrabold);
+    margin: 0%;
+}
+
+p {
+    font-size: var(--font-lotto-body);
+    font-weight: var(--weight-regular);
+    color: var(--lotto-greyscale-5);
+
+}
+
+.input__money{
+    padding: 0%;
+    margin: 0%;
+    width: 310px;
+    height: 36px;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--lotto-greyscale-3);
+}
+
+.lotto__input__btn{
+    width: 56px;
+    height: 36px;
+    background-color: var(--lotto-primary);
+    color: var(--lotto-greyscale-1);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color:var(--lotto-primary);
+}
+
+.random__lotto{
+display: flex;
+  flex-direction: row;
+}
+
+.container p {
+  margin-right: 10px; /* 각 p 요소 사이의 간격 조정 */
+}
