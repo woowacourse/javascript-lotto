@@ -28,6 +28,14 @@
 
 
  }
+
+
+ p {
+    font-size: var(--font-lotto-body);
+    font-weight: var(--weight-regular);
+    margin: 0px;
+ }
+
  .navbar__menu{
    display: flex;
    background-color: var(--lotto-primary);
@@ -50,6 +58,7 @@
     
 }
 .lotto__box{
+    box-sizing: border-box;
     background-color: var(--lotto-greyscale-1);
     width: 414px;
     height: 727px;
@@ -63,6 +72,7 @@
 
 .lotto__box__title{
     text-align: center;
+    margin-bottom: 28px;
 }
 
 .lotto__box h1{
@@ -72,16 +82,9 @@
     margin: 0%;
 }
 
-p {
-    font-size: var(--font-lotto-body);
-    font-weight: var(--weight-regular);
-    color: var(--lotto-greyscale-5);
-
-}
-
 .input__money{
     padding: 0%;
-    margin: 0%;
+    margin : 4px 0px 28px 0px;
     width: 310px;
     height: 36px;
     border-radius: 4px;
@@ -101,31 +104,52 @@ p {
     border-color:var(--lotto-primary);
 }
 
+.lotto__list{
+      margin: 8px 0px 24px 0px;
+}
 .random__lotto{
 display: flex;
   flex-direction: row;
+  gap: 8px;
 }
 
 .container p {
   margin-right: 10px; /* 각 p 요소 사이의 간격 조정 */
 }
 
-.target__lottos{
-    display: flex;
-  flex-direction: row;
-gap: 10px;
+.lotto__icon {
+    font-size: 34px;
 }
-
-.target__input{
-    width: 36px;
-    height: 34px;
-
+.lotto__numbers{
+    font-size: var(--font-lotto-placeholder);
+    text-align: center;
+    line-height:44px;
 }
 
 .target__bonus__box{
+    margin-top: 12px;
     display: flex;
   flex-direction: row;
   justify-content: space-between; 
+}
+
+
+.target__lottos{
+    display: flex;
+  flex-direction: row;
+gap: 8px;
+}
+
+.one__number__input{
+    margin-top: 8px;
+    width: 36px;
+    height: 34px;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color:var(--lotto-greyscale-3)
+
+
 }
 
 .bonus__number {
@@ -134,12 +158,21 @@ flex-direction: column; /* 세로 배치 유지 */
   align-items: flex-end; 
 }
 
+.result__btn__box{
+    display: flex;
+flex-direction: column; /* 세로 배치 유지 */
+  align-items: center; 
+}
+
+
 .result__btn{
     background-color: var(--lotto-primary);
     width: 382px;
     height: 36px;
     text-align: center;
     line-height: 36px; 
+    margin-top: 27px;
+    border-radius: 4px;
 }
 
 .result__btn p {
