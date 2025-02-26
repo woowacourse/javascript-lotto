@@ -83,8 +83,8 @@
   - [x] 당첨번호 및 보너스 번호 입력 창 제작 (css)
   - [x] 결과 확인 버튼 제작 (css)
   - # layout
-  - [ ] header 제작
-  - [ ] footer 제작
+  - [x] header 제작
+  - [x] footer 제작
 - 당첨 통계 모달 화면 제작
   - [ ] 통계 title 제작
   - [ ] 일치 결과 화면 제작

@@ -1,0 +1,31 @@
+header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0px 130px;
+  height: 64px;
+  border-bottom-width: 1px;
+  background-color: var(--lotto-primary);
+}
+
+header h1 {
+  color: var(--lotto-greyscale-1) !important;
+}
+
+content {
+  display: flex;
+  justify-content: center;
+  padding: 84px 0px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  border-top: 1px solid #4e5ba633;
+}
+
+footer p {
+  color: var(--lotto-primary) !important;
+}

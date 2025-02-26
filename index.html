@@ -9,70 +9,68 @@
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
+    <header id="app">
+      <h1 class="title">🎱 행운의 로또</h1>
+    </header>
     <script type="module" src="./src/step2-index.js"></script>
-    <card class="main-contents">
-      <p class="title">🎱 내 번호 당첨 확인 🎱</p>
-
-      <div class="input-contents body">
-        <p>구입할 금액을 입력해주세요.</p>
-        <div>
-          <input placeholder="금액" />
-          <button class="caption">구입</button>
-        </div>
-      </div>
-
-      <div class="lotto-contents">
-        <p class="body">총 7개를 구매하였습니다.</p>
-        <div>
-          <div class="lotto-container_lotto">
-            <img src="./src/assets/lotto.png" />
-            <p class="body">1, 2, 3, 4, 5, 6</p>
-          </div>
-          <div class="lotto-container_lotto">
-            <img src="./src/assets/lotto.png" />
-            <p class="body">1, 2, 3, 4, 5, 6</p>
-          </div>
-          <div class="lotto-container_lotto">
-            <img src="./src/assets/lotto.png" />
-            <p class="body">1, 2, 3, 4, 5, 6</p>
-          </div>
-          <div class="lotto-container_lotto">
-            <img src="./src/assets/lotto.png" />
-            <p class="body">1, 2, 3, 4, 5, 6</p>
-          </div>
-          <div class="lotto-container_lotto">
-            <img src="./src/assets/lotto.png" />
-            <p class="body">1, 2, 3, 4, 5, 6</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="winningLotto-contents body">
-        <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-        <div>
+    <content class="content">
+      <card class="main-contents">
+        <p class="title">🎱 내 번호 당첨 확인 🎱</p>
+        <div class="input-contents body">
+          <p>구입할 금액을 입력해주세요.</p>
           <div>
-            <p>당첨 번호</p>
+            <input placeholder="금액" />
+            <button class="caption">구입</button>
+          </div>
+        </div>
+        <div class="lotto-contents">
+          <p class="body">총 7개를 구매하였습니다.</p>
+          <div>
+            <div class="lotto-container_lotto">
+              <img src="./src/assets/lotto.png" />
+              <p class="body">1, 2, 3, 4, 5, 6</p>
+            </div>
+            <div class="lotto-container_lotto">
+              <img src="./src/assets/lotto.png" />
+              <p class="body">1, 2, 3, 4, 5, 6</p>
+            </div>
+            <div class="lotto-container_lotto">
+              <img src="./src/assets/lotto.png" />
+              <p class="body">1, 2, 3, 4, 5, 6</p>
+            </div>
+            <div class="lotto-container_lotto">
+              <img src="./src/assets/lotto.png" />
+              <p class="body">1, 2, 3, 4, 5, 6</p>
+            </div>
+            <div class="lotto-container_lotto">
+              <img src="./src/assets/lotto.png" />
+              <p class="body">1, 2, 3, 4, 5, 6</p>
+            </div>
+          </div>
+        </div>
+        <div class="winningLotto-contents body">
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div>
             <div>
-              <input />
-              <input />
-              <input />
-              <input />
-              <input />
+              <p>당첨 번호</p>
+              <div>
+                <input />
+                <input />
+                <input />
+                <input />
+                <input />
+                <input />
+              </div>
+            </div>
+            <div class="winningLotto-contents_bonusNumber">
+              <p>보너스 번호</p>
               <input />
             </div>
           </div>
-
-          <div class="winningLotto-contents_bonusNumber">
-            <p>보너스 번호</p>
-            <input />
-          </div>
         </div>
-      </div>
-
-      <button class="result-contents caption">결과 확인하기</button>
-    </card>
+        <button class="result-contents caption">결과 확인하기</button>
+      </card>
+    </content>
+    <footer><p class="caption">Copyright 2023. woowacourse</p></footer>
   </body>
 </html>
