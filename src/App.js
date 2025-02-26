@@ -2,6 +2,7 @@
 import AmountInput from "./components/AmountInput.js";
 import Component from "./components/Component.js";
 import LottoList from "./components/LottoList.js";
+import StatisticsModal from "./components/StatisticsModal.js";
 import UserInput from "./components/UserInput.js";
 import { qs } from "./utils/domHelper.js";
 
@@ -25,6 +26,7 @@ class App extends Component {
         <section class="lotto-detail-layout"></section>
         <div class="user-input-layout"></div>
       </main>
+      <div class='statistics-modal'></div>
       <footer class="footer lotto-caption">Copyright 2023. woowacourse</footer>
       `;
   }
@@ -43,6 +45,13 @@ class App extends Component {
       new UserInput(qs(".user-input-layout"), {
         lottoList,
         onResult: this.handleLottoResult.bind(this),
+        openModal: this.openModal.bind(this),
+      });
+
+      new StatisticsModal(qs(".statistics-modal"), {
+        lottoResults: this.state.lottoResults,
+        lottoList,
+        reset: this.reset.bind(this),
       });
     }
   }
@@ -58,6 +67,14 @@ class App extends Component {
         profit: totalProfit,
       },
     });
+  }
+
+  openModal() {
+    qs(".statistics-dialog").showModal();
+  }
+
+  reset() {
+    this.setState(this.initialState);
   }
 }
 
