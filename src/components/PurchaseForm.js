@@ -2,14 +2,13 @@ import { PRICE } from "../constants/price.js";
 import LottoFactory from "../domain/LottoFactory.js";
 import { divideByUnit } from "../utils/count.js";
 import validatePrice from "../validation/validatePrice.js";
+import lottoTransactionStore from "../store/lottoTransactionStore.js";
 
 export default class PurchaseForm {
-  #setLottoTransaction;
   #setShow;
 
-  constructor($target, setLottoTransaction, setShow) {
+  constructor($target, setShow) {
     this.$target = $target;
-    this.#setLottoTransaction = setLottoTransaction;
     this.#setShow = setShow;
     this.render($target);
   }
@@ -62,7 +61,9 @@ export default class PurchaseForm {
     const countNumber = divideByUnit(PRICE.UNIT, price);
     const lottos = LottoFactory.issueLottos(countNumber);
 
-    this.#setLottoTransaction({ price, lottos });
     this.#setShow(true);
+    lottoTransactionStore.setState((state) => ({
+      lottoTransaction: { ...state.lottoTransaction, price, lottos },
+    }));
   }
 }

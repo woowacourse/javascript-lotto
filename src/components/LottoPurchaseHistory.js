@@ -2,13 +2,12 @@ import { OUTPUT } from "../constants/message.js";
 import LottoHistoryItem from "./LottoHistoryItem.js";
 import { PRICE } from "../constants/price.js";
 import { divideByUnit } from "../utils/count.js";
+import lottoTransactionStore from "../store/lottoTransactionStore.js";
 
 export default class LottoPurchaseHistory {
-  #lottoTransaction;
   #show;
 
-  constructor($target, lottoTransaction, show) {
-    this.#lottoTransaction = lottoTransaction;
+  constructor($target, show) {
     this.#show = show;
     this.render($target);
   }
@@ -22,7 +21,8 @@ export default class LottoPurchaseHistory {
     }
     $ul.className = "lotto-history-list";
 
-    const { lottos, price } = this.#lottoTransaction;
+    const { lottos, price } = lottoTransactionStore.getState().lottoTransaction;
+
     const countNumber = divideByUnit(PRICE.UNIT, price);
 
     $text.innerText = `총 ${countNumber}${OUTPUT.BUY_COUNT}`;
