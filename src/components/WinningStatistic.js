@@ -60,17 +60,6 @@ export default class WinningStatistic {
 
     this.$div.appendChild($footer);
 
-    new Button(
-      $footer,
-      () => {
-        const $modalBg = document.querySelector(".modal-bg");
-        const $container = document.querySelector(".modal");
-
-        $modalBg.classList.remove("modal-bg-show");
-        $container.classList.remove("modal-show");
-        setInit();
-      },
-      "다시 시작하기"
-    );
+    new Button($footer, () => setInit(), "다시 시작하기");
   }
 }
