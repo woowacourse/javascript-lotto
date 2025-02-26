@@ -23,9 +23,9 @@ const getWinningLotto = async () => {
 
     submitResultButton.addEventListener("click", async () => {
       winningNumberInputs.forEach((winningNumber) => {
-        winningNumbers.push(winningNumber.value);
+        winningNumbers.push(Number(winningNumber.value));
       });
-      bonusNumber = bonusNumberInput.value;
+      bonusNumber = Number(bonusNumberInput.value);
       resolve({ winningNumbers, bonusNumber });
     });
   });

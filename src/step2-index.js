@@ -4,9 +4,13 @@
  */
 
 import LottoManager from "./domain/LottoManager";
+import LottoPrize from "./domain/LottoPrize";
 import { getPrice, getWinningLotto } from "./ui/input";
-import { printLottoCount, printLottos } from "./ui/output";
+import { printLottoCount, printLottoResult, printLottos } from "./ui/output";
 
+const confirmRestart = () => {
+  const closeButton = document.querySelector("modal ");
+};
 async function run() {
   const price = await getPrice();
   printLottoCount(price);
@@ -14,6 +18,12 @@ async function run() {
   printLottos(lottos);
 
   const { winningNumbers, bonusNumber } = await getWinningLotto();
-  console.log(winningNumbers, bonusNumber);
+
+  const lottoPrize = new LottoPrize(lottos);
+  const prizeResult = lottoPrize.calculateWinnings(winningNumbers, bonusNumber);
+
+  const ROI = lottoPrize.calculateROI(price, prizeResult);
+  printLottoResult(prizeResult, ROI);
+  confirmRestart();
 }
 run();

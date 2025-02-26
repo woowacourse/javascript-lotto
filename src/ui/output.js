@@ -36,4 +36,56 @@ const printLottos = (lottos) => {
   lottoContents.appendChild(lottosContainer);
 };
 
-export { printLottoCount, printLottos };
+const prizeSummary = [
+  { count: "3개", prize: LOTTO.PRIZES.fifth, label: 3 },
+  { count: "4개", prize: LOTTO.PRIZES.fourth, label: 4 },
+  { count: "5개", prize: LOTTO.PRIZES.third, label: 5 },
+  {
+    count: "5개+보너스 볼",
+    prize: LOTTO.PRIZES.second,
+    label: "5+bonus",
+  },
+  { count: "6개", prize: LOTTO.PRIZES.first, label: 6 },
+];
+
+const createPrizeRow = ({ count, prize, label }, prizeResult) => {
+  const tableRow = document.createElement("tr");
+
+  const coutCell = document.createElement("td");
+  const prizeCell = document.createElement("td");
+  const labelCell = document.createElement("td");
+
+  coutCell.innerText = count;
+  prizeCell.innerText = prize.toLocaleString();
+  labelCell.innerText = prizeResult[label];
+
+  tableRow.appendChild(coutCell);
+  tableRow.appendChild(prizeCell);
+  tableRow.appendChild(labelCell);
+
+  return tableRow;
+};
+
+const printPrizeResult = (prizeResult) => {
+  const tableBody = document.querySelector(".result-table .body");
+  prizeSummary.forEach((summary) =>
+    tableBody.appendChild(createPrizeRow(summary, prizeResult))
+  );
+};
+
+const printRateResult = (rate) => {
+  const prizeContents = document.querySelector(".prize-contents");
+  const restartButton = document.querySelector(".prize-contents button");
+  const rateResult = document.createElement("p");
+  rateResult.innerText = `당신의 총 수익률은 ${rate}%입니다.`;
+  prizeContents.insertBefore(rateResult, restartButton);
+};
+
+const printLottoResult = (prizeResult, rate) => {
+  const prizeModal = document.querySelector("modal");
+  prizeModal.style.display = "flex";
+  printPrizeResult(prizeResult);
+  printRateResult(rate);
+};
+
+export { printLottoCount, printLottos, printLottoResult };
