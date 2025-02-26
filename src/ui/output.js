@@ -82,8 +82,8 @@ const printRateResult = (rate) => {
 };
 
 const printLottoResult = (prizeResult, rate) => {
-  const prizeModal = document.querySelector("modal");
-  prizeModal.style.display = "flex";
+  // const prizeModal = document.querySelector("modal");
+  // prizeModal.style.display = "flex";
   printPrizeResult(prizeResult);
   printRateResult(rate);
 };
