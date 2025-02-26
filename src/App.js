@@ -22,6 +22,7 @@ import { validateEmptySpace } from './View/Validation/util.js';
 /** STEP2 ByWeb */
 import { getPurchaseAmountInputByWeb } from './View/inputViewByWeb.js';
 import { outputViewByWeb } from './View/outputViewByWeb.js';
+import { createWinningLottoForm } from './View/createDom.js';
 
 const validateAndFormatPurchaseAmountInput = (input) => {
   validateEmptySpace(input);
@@ -172,11 +173,24 @@ class App {
       if (purchaseAmountInput === null) {
         return;
       }
+
       const { lottoCounts, lottoNumbersList, lottoList } =
         this.buyLottos(purchaseAmountInput);
 
+      const $section = document.querySelector(
+        '#lottoListWinningLottoContainer',
+      );
+      const $article = document.createElement('article');
+      $article.setAttribute('id', 'lottoListDisplay');
+      $article.setAttribute('class', 'lotto-list-display');
+
+      const $form = createWinningLottoForm();
+      $section.appendChild($article);
+
       outputViewByWeb.displayLottoCount(lottoCounts);
       outputViewByWeb.displayLottoList(lottoNumbersList);
+
+      $section.appendChild($form);
       //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
     });
   }
