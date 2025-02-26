@@ -77,6 +77,10 @@
   font-size: 17px;
 }
 
+#button-purchase:hover {
+  background: #2e3fa2;
+}
+
 #footer {
   height: 60px;
   position: fixed;

@@ -12,10 +12,10 @@ import {
 } from "./util/validate.js";
 import retryAsync from "./util/retryAsync.js";
 
-const purchase = async () => {
+export const purchase = async () => {
   const { purchaseAmount, lottos } = await handlePurchase();
-  const winningRanks = await handleWinningNumbers(lottos);
-  handleResult(purchaseAmount, winningRanks);
+  // const winningRanks = await handleWinningNumbers(lottos);
+  // handleResult(purchaseAmount, winningRanks);
 };
 
 const handlePurchase = async () => {
@@ -46,7 +46,7 @@ const handleResult = (purchaseAmount, winningRanks) => {
   OutputView.printYieldRate(yieldRate);
 };
 
-const getPurchaseAmount = async () => {
+export const getPurchaseAmount = async () => {
   const amount = await InputView.readPurchaseAmount();
   validatePurchaseAmount(amount);
 
@@ -86,5 +86,3 @@ const readWinningNumbersAndBonusNumber = async () => {
     bonus: bonusNumber,
   };
 };
-
-export default purchase;
