@@ -25,7 +25,18 @@ const showLottos = (count) => {
     const lotto = lottos[i];
     console.log(lotto);
     const li = document.createElement("li");
-    li.textContent = lotto.getLottoNumbers().join(", ");
+    li.style.display = "flex";
+    li.style.gap = "10px";
+    const div = document.createElement("div");
+    const img = document.createElement("img");
+    img.src = "../../public/lotto.png";
+    img.alt = "lotto";
+    li.appendChild(img);
+    div.textContent = lotto.getLottoNumbers().join(", ");
+    div.style.display = "flex";
+    div.style.justifyContent = "center";
+    div.style.alignItems = "center";
+    li.appendChild(div);
     ul.appendChild(li);
   }
 
