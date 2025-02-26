@@ -39,23 +39,25 @@ export default class PurchaseForm {
 
     $form.appendChild($div);
 
-    $button.addEventListener("click", () => {
-      const price = $input.value;
-
-      try {
-        validatePrice(price);
-      } catch (e) {
-        alert(e.message);
-        return;
-      }
-
-      const countNumber = divideByUnit(PRICE.UNIT, price);
-      const lottos = LottoFactory.issueLottos(countNumber);
-
-      this.#setLottoTransaction({ price, lottos });
-      this.#setShow(true);
-    });
+    $button.addEventListener("click", () => this.handleSubmit($input));
 
     this.$target.appendChild($form);
+  }
+
+  handleSubmit($input) {
+    const price = $input.value;
+
+    try {
+      validatePrice(price);
+    } catch (e) {
+      alert(e.message);
+      return;
+    }
+
+    const countNumber = divideByUnit(PRICE.UNIT, price);
+    const lottos = LottoFactory.issueLottos(countNumber);
+
+    this.#setLottoTransaction({ price, lottos });
+    this.#setShow(true);
   }
 }
