@@ -133,3 +133,19 @@ gap: 10px;
 flex-direction: column; /* 세로 배치 유지 */
   align-items: flex-end; 
 }
+
+.result__btn{
+    background-color: var(--lotto-primary);
+    width: 382px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px; 
+}
+
+.result__btn p {
+    color: var(--lotto-greyscale-1);
+    font-size: var(--font-lotto-caption);
+    font-weight: var(--weight-bold);
+
+
+}
