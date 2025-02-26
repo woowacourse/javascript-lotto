@@ -76,24 +76,9 @@ export default class LottoGame {
     );
     new LottoWinningInfoForm($div, this.setWinningLottoInfo, this.#show);
 
-    // TODO: 분리 필요
-    const { winningNumbers, bonusNumber } = this.#winningLottoInfo;
+    const { lottoHistory, rate } = this.calculateWinningResult();
 
-    if (winningNumbers.length === 0 && bonusNumber === 0) return;
-
-    const lottoMachine = new LottoMachine(this.#lottoTransaction.lottos);
-    lottoMachine.updateAllLottoStatus(
-      this.#winningLottoInfo.winningNumbers,
-      this.#winningLottoInfo.bonusNumber
-    );
-
-    const lottoStatus = lottoMachine.getMatchedLottoStatus();
-    const lottoResult = new LottoResult(
-      lottoStatus,
-      this.#lottoTransaction.price
-    );
-    const lottoHistory = lottoResult.getWinningHistory();
-    const rate = lottoResult.calculateRate();
+    if (!lottoHistory && !rate) return;
 
     const winningStatistic = new WinningStatistic(
       lottoHistory,
@@ -102,5 +87,28 @@ export default class LottoGame {
     );
 
     new Modal(this.#target, ($target) => winningStatistic.render($target));
+  }
+
+  calculateWinningResult() {
+    const { winningNumbers, bonusNumber } = this.#winningLottoInfo;
+
+    if (winningNumbers.length === 0 && bonusNumber === 0)
+      return { lottoHistory: undefined, rate: undefined };
+
+    const lottoMachine = new LottoMachine(this.#lottoTransaction.lottos);
+    lottoMachine.updateAllLottoStatus(
+      this.#winningLottoInfo.winningNumbers,
+      this.#winningLottoInfo.bonusNumber
+    );
+    const lottoStatus = lottoMachine.getMatchedLottoStatus();
+
+    const lottoResult = new LottoResult(
+      lottoStatus,
+      this.#lottoTransaction.price
+    );
+    const lottoHistory = lottoResult.getWinningHistory();
+    const rate = lottoResult.calculateRate();
+
+    return { lottoHistory, rate };
   }
 }
