@@ -1,7 +1,7 @@
 import {
-  LOTTO_LENGTH,
-  MAX_LOTTO_NUMBER,
-  MIN_LOTTO_NUMBER,
+  LOTTO_NUMBER_MAX,
+  LOTTO_NUMBER_MIN,
+  LOTTO_SIZE,
 } from "../src/constants/validateConstants.js";
 import { WINNING_NUMBERS_ERROR_MESSAGES } from "../src/constants/errorConstants.js";
 import validateWinningNumbers from "../src/validations/validateWinningNumbers.js";
@@ -9,7 +9,7 @@ import validateWinningNumbers from "../src/validations/validateWinningNumbers.js
 describe("당첨 번호 유효성 테스트", () => {
   test.each([
     {
-      description: `당첨 번호의 숫자가 ${LOTTO_LENGTH}개가 아닌 경우`,
+      description: `당첨 번호의 숫자가 ${LOTTO_SIZE}개가 아닌 경우`,
       input: "1,2,3,4,5,6,7,8,9,10",
       expectedErrorMessage: WINNING_NUMBERS_ERROR_MESSAGES.INVALID_COUNT,
     },
@@ -42,13 +42,13 @@ describe("당첨 번호 유효성 테스트", () => {
 
   test.each([
     {
-      description: `당첨 번호에서 ${MIN_LOTTO_NUMBER} 미만인 숫자가 있는 경우`,
-      input: `1,2,3,4,5,${MIN_LOTTO_NUMBER - 1}`,
+      description: `당첨 번호에서 ${LOTTO_NUMBER_MIN} 미만인 숫자가 있는 경우`,
+      input: `1,2,3,4,5,${LOTTO_NUMBER_MIN - 1}`,
       expectedErrorMessage: WINNING_NUMBERS_ERROR_MESSAGES.OUT_OF_RANGE,
     },
     {
-      description: `당첨 번호에서 ${MAX_LOTTO_NUMBER} 초과인 숫자가 있는 경우`,
-      input: `1,2,3,4,5,${MAX_LOTTO_NUMBER + 1}`,
+      description: `당첨 번호에서 ${LOTTO_NUMBER_MAX} 초과인 숫자가 있는 경우`,
+      input: `1,2,3,4,5,${LOTTO_NUMBER_MAX + 1}`,
       expectedErrorMessage: WINNING_NUMBERS_ERROR_MESSAGES.OUT_OF_RANGE,
     },
   ])("$description 에러가 발생한다.", ({ input, expectedErrorMessage }) => {
@@ -75,16 +75,16 @@ describe("당첨 번호 유효성 테스트", () => {
 
   test.each([
     {
-      description: `당첨 번호의 숫자가 ${LOTTO_LENGTH}개인 경우`,
+      description: `당첨 번호의 숫자가 ${LOTTO_SIZE}개인 경우`,
       input: "1,2,3,4,5,6",
     },
     {
-      description: `당첨 번호 중 최솟값이 ${MIN_LOTTO_NUMBER} 이상인 경우`,
-      input: `${MIN_LOTTO_NUMBER},2,3,4,5,6`,
+      description: `당첨 번호 중 최솟값이 ${LOTTO_NUMBER_MIN} 이상인 경우`,
+      input: `${LOTTO_NUMBER_MIN},2,3,4,5,6`,
     },
     {
-      description: `당첨 번호 중 최댓값이 ${MAX_LOTTO_NUMBER} 이하인 경우`,
-      input: `40,41,42,43,44,${MAX_LOTTO_NUMBER}`,
+      description: `당첨 번호 중 최댓값이 ${LOTTO_NUMBER_MAX} 이하인 경우`,
+      input: `40,41,42,43,44,${LOTTO_NUMBER_MAX}`,
     },
   ])("$description 정상적으로 통과해야한다.", ({ input }) => {
     expect(() => {

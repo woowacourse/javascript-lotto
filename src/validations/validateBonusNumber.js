@@ -1,6 +1,6 @@
 import {
-  MIN_LOTTO_NUMBER,
-  MAX_LOTTO_NUMBER,
+  LOTTO_NUMBER_MAX,
+  LOTTO_NUMBER_MIN,
 } from "../constants/validateConstants.js";
 import { BONUS_NUMBER_ERROR_MESSAGES } from "../constants/errorConstants.js";
 import throwIfInvalid from "../utils/throwIfInvalid.js";
@@ -21,7 +21,7 @@ const checkIsInteger = (bonusNumber) => {
 
 const checkIsInRange = (bonusNumber) => {
   throwIfInvalid(
-    MIN_LOTTO_NUMBER > bonusNumber || MAX_LOTTO_NUMBER < bonusNumber,
+    LOTTO_NUMBER_MIN > bonusNumber || LOTTO_NUMBER_MAX < bonusNumber,
     BONUS_NUMBER_ERROR_MESSAGES.OUT_OF_RANGE
   );
 };

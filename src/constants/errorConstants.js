@@ -8,17 +8,17 @@ export const PURCHASE_AMOUNT_ERROR_MESSAGES = Object.freeze({
 });
 
 export const WINNING_NUMBERS_ERROR_MESSAGES = Object.freeze({
-  INVALID_COUNT: `당첨 번호는 ${constants.LOTTO_LENGTH}개여야 합니다.`,
+  INVALID_COUNT: `당첨 번호는 ${constants.LOTTO_SIZE}개여야 합니다.`,
   NOT_A_NUMBER: "당첨 번호는 숫자여야 합니다.",
   NOT_AN_INTEGER: "당첨 번호는 정수여야 합니다.",
-  OUT_OF_RANGE: `당첨 번호의 범위는 ${constants.MIN_LOTTO_NUMBER} 이상 ${constants.MAX_LOTTO_NUMBER} 이하여야 합니다.`,
+  OUT_OF_RANGE: `당첨 번호의 범위는 ${constants.LOTTO_NUMBER_MIN} 이상 ${constants.LOTTO_NUMBER_MAX} 이하여야 합니다.`,
   DUPLICATE_NUMBER: "당첨 번호는 중복될 수 없습니다.",
 });
 
 export const BONUS_NUMBER_ERROR_MESSAGES = Object.freeze({
   NOT_A_NUMBER: "보너스 번호는 숫자여야 합니다.",
   NOT_AN_INTEGER: "보너스 번호는 정수여야 합니다.",
-  OUT_OF_RANGE: `보너스 번호의 범위는 ${constants.MIN_LOTTO_NUMBER} 이상 ${constants.MAX_LOTTO_NUMBER} 이하여야 합니다.`,
+  OUT_OF_RANGE: `보너스 번호의 범위는 ${constants.LOTTO_NUMBER_MIN} 이상 ${constants.LOTTO_NUMBER_MAX} 이하여야 합니다.`,
   DUPLICATE_NUMBER: "보너스 번호는 당첨 번호와 중복될 수 없습니다.",
 });
 

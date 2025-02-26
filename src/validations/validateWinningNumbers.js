@@ -1,7 +1,7 @@
 import {
-  LOTTO_LENGTH,
-  MIN_LOTTO_NUMBER,
-  MAX_LOTTO_NUMBER,
+  LOTTO_NUMBER_MAX,
+  LOTTO_NUMBER_MIN,
+  LOTTO_SIZE,
 } from "../constants/validateConstants.js";
 import { WINNING_NUMBERS_ERROR_MESSAGES } from "../constants/errorConstants.js";
 import throwIfInvalid from "../utils/throwIfInvalid.js";
@@ -16,7 +16,7 @@ const parseWinningNumbers = (input) => {
 
 const checkLength = (winningNumbers) => {
   throwIfInvalid(
-    winningNumbers.length !== LOTTO_LENGTH,
+    winningNumbers.length !== LOTTO_SIZE,
     WINNING_NUMBERS_ERROR_MESSAGES.INVALID_COUNT
   );
 };
@@ -37,7 +37,7 @@ const chechIsInteger = (winningNumber) => {
 
 const checkIsInRange = (winningNumber) => {
   throwIfInvalid(
-    MIN_LOTTO_NUMBER > winningNumber || MAX_LOTTO_NUMBER < winningNumber,
+    LOTTO_NUMBER_MIN > winningNumber || LOTTO_NUMBER_MAX < winningNumber,
     WINNING_NUMBERS_ERROR_MESSAGES.OUT_OF_RANGE
   );
 };
