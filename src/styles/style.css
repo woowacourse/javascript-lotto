@@ -135,6 +135,8 @@ html {
   border-radius: 4px;
   border: none;
   background: var(--lotto-primary);
+
+  cursor: pointer;
 }
 
 .lotto-detail-layout {
@@ -174,7 +176,7 @@ html {
   margin-top: 3.2rem;
 }
 
-.user-input-layout {
+.user-input-section {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
