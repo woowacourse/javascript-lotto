@@ -113,9 +113,23 @@ display: flex;
 .target__lottos{
     display: flex;
   flex-direction: row;
+gap: 10px;
 }
 
 .target__input{
     width: 36px;
     height: 34px;
+
+}
+
+.target__bonus__box{
+    display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+}
+
+.bonus__number {
+  display: flex;
+flex-direction: column; /* 세로 배치 유지 */
+  align-items: flex-end; 
 }
