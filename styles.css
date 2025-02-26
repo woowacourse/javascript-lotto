@@ -48,6 +48,7 @@ header {
   align-items: center;
   justify-content: center;
   flex: 1;
+  background-color: var(--grey-200);
 }
 
 .card {
