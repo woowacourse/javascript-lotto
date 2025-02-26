@@ -109,3 +109,13 @@ display: flex;
 .container p {
   margin-right: 10px; /* 각 p 요소 사이의 간격 조정 */
 }
+
+.target__lottos{
+    display: flex;
+  flex-direction: row;
+}
+
+.target__input{
+    width: 36px;
+    height: 34px;
+}
