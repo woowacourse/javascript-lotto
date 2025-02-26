@@ -1,20 +1,8 @@
-window.addEventListener("DOMContentLoaded", function () {
+export function openModal() {
+  alert("123");
   const getHTML = (e) => document.getElementById(e);
 
-  getHTML("amountResultText").textContent = "총 7개를 구매하였습니다.";
-  getHTML("lottoResultsBox").innerHTML = `<ul>
-                <li><span>🎟️</span><p>12, 19, 22, 23, 28, 37</p></li>
-                <li><span>🎟️</span><p>1, 21, 31, 32, 34, 45</p></li>
-                <li><span>🎟️</span><p>12, 19, 22, 23, 28, 37</p></li>
-                <li><span>🎟️</span><p>12, 19, 22, 23, 28, 37</p></li>
-                <li><span>🎟️</span><p>12, 19, 22, 23, 28, 37</p></li>
-                <li><span>🎟️</span><p>12, 19, 22, 23, 28, 37</p></li>
-                <li><span>🎟️</span><p>12, 19, 22, 23, 28, 37</p></li>
-               </ul>`;
-
-  getHTML("openModalBtn").addEventListener("click", (event) => {
-    event.preventDefault();
-    getHTML("modalBackground").innerHTML = `
+  getHTML("modalBackground").innerHTML = `
     <div class="modal-box" id="modalBox">
         <div class="modal-content">
           <div class="close-modal-btn" id="closeModalBtn">
@@ -55,17 +43,16 @@ window.addEventListener("DOMContentLoaded", function () {
             <td>n개</td>
           </tr>
           </table>
-
+  
           <p>당신의 총 수익률은 %입니다.</p>
           <button>다시 시작하기</button>
         </div>
       </div>
       `;
 
-    getHTML("modalBackground").classList.add("show");
+  getHTML("modalBackground").classList.add("show");
 
-    getHTML("closeModalBtn").addEventListener("click", () => {
-      getHTML("modalBackground").classList.remove("show");
-    });
+  getHTML("closeModalBtn").addEventListener("click", () => {
+    getHTML("modalBackground").classList.remove("show");
   });
-});
+}

@@ -10,104 +10,71 @@
   </head>
   <body>
     <div id="app">
-      <div id="modal-background">
+      <div id="modalBackground">
 
       </div>
       <header class="header">
         <nav>
-          <h1><a href="#">🎱 행운의 로또</a></h1>
+          <h1><a id="headerLogo">🎱 행운의 로또</a></h1>
         </nav>
       </header>
 
       <div class="container">
         <div class="lotto-box">
           <h1>🎱 내 번호 당첨 확인 🎱</h1>
-            <form class="amount-form">
-              <label for="amount">구입할 금액을 입력해주세요.</label>
-              <div class="amount-field">
+            <form id="priceForm" class="price-form">
+              <label for="price">구입할 금액을 입력해주세요.</label>
+              <div class="price-field">
                 <input
                 type="text"
-                id="amount"
-                class="amount"
+                id="price"
+                class="price"
                 placeholder="금액"
+                name="price"
+                maxlength="8"
               />
-              <button type="submit" class="btn-buy">구입</button>
+              <button type="submit" id="btnBuy" class="btn-buy">구입</button>
               </div>
             </form>
-           <p>총 7개를 구매하였습니다.</p>
-           <div class="lotto-results-box">
-            <ul>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-             </ul>
-             <ul>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-             </ul>
-             <ul>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-             </ul>
-             <ul>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-             </ul>
-             <ul>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-              <li><span>🎟️</span>12, 19, 22, 23, 28, 37</li>
-             </ul>
-           </div>
-           <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <ul id="priceErrorInfo">
+              <li>숫자만 입력해주세요.</li>
+              <li>1000원 이상 입력해주세요.</li>
+              <li>10,000원 이하로 입력해주세요.</li>
+            </ul>
+            <div id="resultContainer" class="result-container">
 
-           <div class="result-form-container">
-            <form>
-              <div class="winning-bonus-box">
-              <div class="winning-box">
-                <label>당첨 번호</label>
-                <div>
-                  <input type="text" id="winning1" class="winning-number" maxlength='2'>
-                  <input type="text" id="winning2" class="winning-number" maxlength='2'>
-                  <input type="text" id="winning3" class="winning-number" maxlength='2'>
-                  <input type="text" id="winning4" class="winning-number" maxlength='2'>
-                  <input type="text" id="winning5" class="winning-number" maxlength='2'>
-                  <input type="text" id="winning6" class="winning-number" maxlength='2'>
-                </div>
-              </div>
-              <div class="bonus-box">
-                <label>보너스 번호</label>
-                <div>
-                  <input type="text" id="bonus" class="winning-number" maxlength='2'>
-                </div>
-              </div>
+              <p>총 7개를 구매하였습니다.</p>
+              <div class="lotto-results-box"></div>
+              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+   
+              <div class="result-form-container">
+               <form id="winningForm">
+                 <div class="winning-bonus-box">
+                 <div class="winning-box">
+                   <label>당첨 번호</label>
+                   <div>
+                     <input type="text" name="winning1" class="winning-number" maxlength='2'>
+                     <input type="text" name="winning2" class="winning-number" maxlength='2'>
+                     <input type="text" name="winning3" class="winning-number" maxlength='2'>
+                     <input type="text" name="winning4" class="winning-number" maxlength='2'>
+                     <input type="text" name="winning5" class="winning-number" maxlength='2'>
+                     <input type="text" name="winning6" class="winning-number" maxlength='2'>
+                   </div>
+                 </div>
+                 <div class="bonus-box">
+                   <label>보너스 번호</label>
+                   <div>
+                     <input type="text" name="bonus" class="winning-number" maxlength='2'>
+                   </div>
+                 </div>
+               </div>
+                <button type="submit" class="btn-lotto-result" id="openModalBtn">결과 확인하기</button>
+               </form>
+             </div>
+
+
             </div>
-             <button type="submit" class="btn-lotto-result" id="open-modal-btn">결과 확인하기</button>
-            </form>
-          </div>
+         
 
           </div>
         </div>
