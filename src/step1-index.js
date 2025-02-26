@@ -19,7 +19,7 @@ import LottoFactory from "./domain/LottoFactory.js";
 const priceInput = async () =>
   Input.retry(async () => {
     const input = await Input.readLineAsync(INPUT.PRICE);
-    new PriceValidator().validatePrice(Number(input));
+    validatePrice(Number(input));
     return Number(input);
   });
 
@@ -33,10 +33,7 @@ const getNeededLottoNumbers = async () => {
 
   const bonusLottoNumber = await Input.retry(async () => {
     const input = await Input.readLineAsync(INPUT.BONUS_NUMBER);
-    new BonusNumberValidator().validateBonusNumber(
-      winningLotto.getLottoNumbers(),
-      Number(input)
-    );
+    validateBonusNumber(winningLotto.getLottoNumbers(), Number(input));
     return Number(input);
   });
   return { winningLotto, bonusLottoNumber };
