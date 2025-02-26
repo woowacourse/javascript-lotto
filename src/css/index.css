@@ -1,21 +1,84 @@
 #container {
+  width: 100%;
+  height: 100vh;
   margin: 0;
   padding: 0;
-}
-
-#header {
-  height: 60px;
-  background: #4e5ba6;
-  color: white;
-  font: 800 24px sans-serif;
-  margin: 0;
-  padding: 0px 130px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
+#header {
+  width: 100%;
+  height: 60px;
+  background: #4e5ba6;
+  color: white;
+  font: 13px sans-serif;
+  margin: 0;
+  padding: 0px 130px; /* 왼쪽에서 130px 떨어진 위치에 고정 */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#content {
+  width: 414px;
+  height: 727px;
+  border-width: 1px;
+  border: 1px solid rgba(78, 91, 166, 0.2); 
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+#title {
+  font-size: 25px;
+  text-align: center;
+  margin: 30px 0;
+}
+
+#title-input-purchase-amount {
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+#input-purchase-amount-area {
+  display: flex;
+  gap: 15px;
+  height: 40px;
+}
+
+#input-purchase-amount {
+  width: 100%;
+  /* height: 30px; */
+  border-color: 1px #f4f4f4;
+  font-size: 17px;
+}
+
+#input-purchase-amount::placeholder {
+  font-size: 17px;
+  padding-left: 5px;
+}
+
+#button-purchase {
+  width: 80px;
+  background: #4E5BA6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 17px;
+  font-size: 17px;
+}
+
 #footer {
-  height: 80px;
+  height: 60px;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -29,6 +92,7 @@
   width: 100%;
   position: absolute;
   top: 0;
+  margin: 0;
   border: 1px solid rgba(78, 91, 166, 0.2);
 }
 
