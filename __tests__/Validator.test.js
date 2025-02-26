@@ -5,18 +5,16 @@ describe("입력 값 유효성 테스트를 진행한다.", () => {
     // given
     const input = "";
     // when
-    const validator = new Validator();
     // then
-    expect(() => validator.empty(input)).toThrow("[ERROR]");
+    expect(() => Validator.empty(input)).toThrow("[ERROR]");
   });
 
   test("숫자가 아닌 값을 입력하면 오류를 발생시킨다.", () => {
     // given
     const input = ".";
     // when
-    const validator = new Validator();
     // then
-    expect(() => validator.number(input)).toThrow("[ERROR]");
+    expect(() => Validator.number(input)).toThrow("[ERROR]");
   });
 
   test.each([0, 46])(
@@ -26,9 +24,8 @@ describe("입력 값 유효성 테스트를 진행한다.", () => {
       const min = 1;
       const max = 45;
       // when
-      const validator = new Validator();
       // then
-      expect(() => validator.range({ min, max }, input)).toThrow("[ERROR]");
+      expect(() => Validator.range({ min, max }, input)).toThrow("[ERROR]");
     }
   );
 });
