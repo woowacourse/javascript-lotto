@@ -1,6 +1,5 @@
 import Input from "../views/Input.js";
 import Output from "../views/Output.js";
-import LottoGame from "../domains/LottoGame.js";
 import { YES } from "../constants/validateConstants.js";
 
 class Controller {
