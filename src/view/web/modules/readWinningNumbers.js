@@ -6,6 +6,7 @@ import {
   validateWinningNumbers,
 } from "../../../validation/index.js";
 import createPrizeTable from "../layers/modal/createPrizeTable.js";
+import createRevenueRateMessage from "../layers/modal/createRevenueRateMessage.js";
 
 const readWinningNumbers = (lottoNumbers, lottoPrice) => {
   const numbersForm = document.getElementById("winningLotto-numbersInput-form");
@@ -36,6 +37,7 @@ const readWinningNumbers = (lottoNumbers, lottoPrice) => {
     const revenueRate = getRevenueRate(totalPrizeMoney, lottoPrice);
 
     createPrizeTable(result);
+    createRevenueRateMessage(revenueRate);
   });
 };
 
