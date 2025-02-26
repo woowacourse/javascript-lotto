@@ -1,0 +1,28 @@
+.purchase-form-input-wrap {
+  height: 36px;
+  width: 100%;
+  margin-top: 5px;
+  display: flex;
+  gap: 16px;
+}
+
+.purchase-form-input {
+  flex-grow: 1;
+  border-radius: 4px;
+  border: 1px solid var(--light-gray);
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.purchase-form-info-text {
+  font-size: 15px;
+}
+
+.purchase-form-button {
+  width: 56px;
+  border-radius: 4px;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  cursor: pointer;
+}

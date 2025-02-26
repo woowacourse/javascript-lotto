@@ -1,0 +1,12 @@
+.lotto-history-item {
+  list-style-type: none;
+  padding: 0px;
+}
+
+.lotto-history-item-icon {
+  font-size: 24px;
+}
+
+.lotto-history-item-text {
+  font-size: 20px;
+}

@@ -1,0 +1,12 @@
+.nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: var(--main-color);
+}
+
+.title {
+  color: white;
+  font-size: 24px;
+  margin: 0 0 0 20px;
+}

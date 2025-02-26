@@ -1,0 +1,45 @@
+.winning-static-container {
+  height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.winning-static-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.tabel-row {
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+}
+th,
+td {
+  height: 40px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.table-head {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.rate-text {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.winning-static-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
