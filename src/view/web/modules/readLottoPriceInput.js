@@ -5,6 +5,7 @@ import createWinningLottoBox from "../layers/winningLottoBox/createWinningLottoB
 import createNumbersInput from "../layers/winningLottoBox/createNumbersInput.js";
 import createResultButton from "../layers/resultButton/createResultButton.js";
 import showResultModal from "./showResultModalEvent.js";
+import readWinningNumbers from "./readWinningNumbers.js";
 
 const readLottoPriceInput = () => {
   const purchaseForm = document.getElementById("game-purchaseInput-form");
@@ -23,6 +24,7 @@ const readLottoPriceInput = () => {
     createWinningLottoBox();
     createNumbersInput();
     createResultButton();
+    readWinningNumbers(lottoNumbers);
 
     showResultModal();
   });
