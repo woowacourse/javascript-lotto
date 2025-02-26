@@ -39,6 +39,11 @@ export default class PurchaseForm {
 
     $form.appendChild($div);
 
+    $form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      this.handleSubmit($input);
+    });
     $button.addEventListener("click", () => this.handleSubmit($input));
 
     this.$target.appendChild($form);
