@@ -24,6 +24,7 @@ function createLottoInput() {
   for (let i = 0; i < 6; i++) {
     const input = document.createElement('input');
     input.classList.add('num-input');
+    input.maxLength = 2;
     inputWrapper.appendChild(input);
   }
 
@@ -38,6 +39,7 @@ function createLottoInput() {
 
   const bonusInput = document.createElement('input');
   bonusInput.id = 'bonusnum-input';
+  bonusInput.maxLength = 2;
 
   bonusNumContainer.appendChild(bonusLabel);
   bonusNumContainer.appendChild(bonusInput);
