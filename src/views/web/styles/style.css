@@ -1,0 +1,40 @@
+/* 구매폼 */
+.purchaseBox {
+  width: 100%;
+  height: 40px;
+  margin: 0.5rem 0;
+}
+
+.purchaseBox input[type='text'] {
+  flex: 9;
+  margin-right: 1rem;
+  padding: 0 0.5rem;
+}
+
+.purchaseBox input[type='submit'] {
+  flex: 1;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.purchaseCountDesc {
+  padding: 1rem 0;
+}
+
+.resultButton {
+  height: 2.5rem;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  background-color: var(--color-primary);
+}
+
+/* 모달 */
+dialog {
+  width: 100%;
+}
