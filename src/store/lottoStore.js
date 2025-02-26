@@ -2,8 +2,8 @@ const lottoStore = (() => {
   let lottos = [];
 
   return {
-    setLottos: (lottos) => {
-      lottos = lottos;
+    setLottos: (newlottos) => {
+      lottos = newlottos;
     },
     getLottos: () => lottos,
   };

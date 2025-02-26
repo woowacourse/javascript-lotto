@@ -1,5 +1,5 @@
 import Ticket from "../domain/Ticket.js";
-import lottoStore from "../domain/lottoStore.js";
+import lottoStore from "../store/lottoStore.js";
 const showLottos = (count) => {
   const whenBuyed = document.querySelector(".whenBuyed");
   const buyedLottos = document.querySelector(".buyedLottos");

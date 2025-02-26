@@ -12,6 +12,7 @@ export const getPrice = () => {
     return Number(input);
   });
 };
+
 export const getNeededLottoNumbers = () => {
   const winningLotto = Input.retry(() => {
     const inputs = document.querySelectorAll(".winningNumberInput");
