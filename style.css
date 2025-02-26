@@ -15,7 +15,7 @@ body {
 }
 input {
   border: 1px solid var(--lotto-greyscale-3);
-  padding: 0 0.5rem;
+  padding: 0 0.8rem;
   border-radius: 0.25rem;
   &:focus::placeholder {
     opacity: 0;
@@ -33,7 +33,6 @@ button {
   border: none;
   border-radius: 0.25rem;
   color: var(--lotto-greyscale-1);
-  padding: 0.38rem;
   text-align: center;
   padding: 0.4rem 0.5rem;
   cursor: pointer;
@@ -50,7 +49,8 @@ table {
 th,
 td {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0.8rem;
   text-align: center;
 }
 th {
@@ -88,6 +88,14 @@ th {
   font-size: 0.93rem;
   line-height: 1.5rem;
   letter-spacing: 0.031rem;
+}
+.font-weight-body {
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: center;
 }
 .caption {
   font-family: "Roboto";
@@ -255,4 +263,13 @@ th {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+}
+.exit-icon-container {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+.exit-icon {
+  width: 0.8rem;
+  cursor: pointer;
 }

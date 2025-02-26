@@ -24,7 +24,6 @@ export const showResult = async (lottoCount, lottoArray) => {
   const profitRate = calculateProfitRate(matchingCount, lottoCount);
 
   resultHandler(matchingCount, profitRate);
-  console.log(matchingCount, profitRate);
 };
 
 runLotto();
