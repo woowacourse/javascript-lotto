@@ -4,7 +4,7 @@ import { divideByUnit } from "../utils/count.js";
 import { PRICE } from "../constants/price.js";
 import LottoWinningInfoForm from "./LottoWinningInfoForm.js";
 import WinningStatistic from "./WinningStatistic.js";
-import Modal from "../common/Modal.js";
+import Modal from "./common/Modal.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 

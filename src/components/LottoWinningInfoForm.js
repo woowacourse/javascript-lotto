@@ -1,4 +1,4 @@
-import Button from "../common/button.js";
+import Button from "./common/button.js";
 import LottoValidator from "../validation/LottoValidator.js";
 import BonusNumberValidator from "../validation/BonusNumberValidator.js";
 

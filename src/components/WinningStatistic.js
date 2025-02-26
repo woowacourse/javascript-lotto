@@ -1,4 +1,4 @@
-import Button from "../common/button.js";
+import Button from "./common/button.js";
 import { LOTTO_STATUS } from "../constants/lotto.js";
 
 export default class WinningStatistic {
