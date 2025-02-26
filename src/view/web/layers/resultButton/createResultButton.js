@@ -3,7 +3,7 @@ import "./resultButton.css";
 
 const createResultButton = () => {
   document
-    .getElementById("game-container")
+    .getElementById("winningLotto-numbersInput-form")
     .insertAdjacentHTML("beforeend", resultButtonContents);
 };
 

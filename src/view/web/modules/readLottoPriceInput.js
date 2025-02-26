@@ -24,7 +24,7 @@ const readLottoPriceInput = () => {
     createWinningLottoBox();
     createNumbersInput();
     createResultButton();
-    readWinningNumbers(lottoNumbers);
+    readWinningNumbers(lottoNumbers, validPrice);
 
     showResultModal();
   });

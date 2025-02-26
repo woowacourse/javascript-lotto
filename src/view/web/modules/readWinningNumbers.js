@@ -7,7 +7,7 @@ import {
 } from "../../../validation/index.js";
 import createPrizeTable from "../layers/modal/createPrizeTable.js";
 
-const readWinningNumbers = (lottoNumbers) => {
+const readWinningNumbers = (lottoNumbers, lottoPrice) => {
   const numbersForm = document.getElementById("winningLotto-numbersInput-form");
 
   numbersForm.addEventListener("submit", (event) => {
