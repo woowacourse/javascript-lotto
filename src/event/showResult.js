@@ -22,6 +22,9 @@ const showResult = () => {
     const lottoResult = new LottoResult(matchedStatus, price);
     const winningHistory = lottoResult.getWinningHistory();
     const rate = lottoResult.getRate();
+
+    const dialog = document.querySelector("dialog");
+    dialog.showModal();
     console.log(winningHistory);
     console.log("당첨률:", rate);
   });
