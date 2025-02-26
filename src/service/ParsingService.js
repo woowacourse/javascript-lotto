@@ -15,11 +15,8 @@ async function getPurchasePrice(inputMethod) {
     return { purchasePrice, purchaseAmount };
   } catch (error) {
     printError(error.message);
-    if (typeof window === 'undefined') {
-      printError(error.message);
-      return await getPurchasePrice();
-    }
-    return;
+
+    return await getPurchasePrice();
   }
 }
 async function getWinningNumber(inputMethod) {
