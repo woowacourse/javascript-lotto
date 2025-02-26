@@ -75,17 +75,24 @@
 
 - [x] figma를 통해 css 기본 속성 정의
 - 로또 구매 화면 제작
+
   - # main contents
   - [x] html 뼈대 구성
   - [x] card title 제작 (css)
   - [x] card input 입력창 제작 (css)
+    - # card input 기능 구현
     - [x] 입력창을 통해 로또 생성 (feat)
+      - [ ] 올바르지 않은 입력의 경우 에러 표시 필요
   - [x] 로또 출력 화면 제작 (css)
+    - # 로또 출력 화면 기능 구현
+    - [x] 로또 개수 화면에 출력
+    - [ ] 생성된 로또를 화면에 출력
   - [x] 당첨번호 및 보너스 번호 입력 창 제작 (css)
   - [x] 결과 확인 버튼 제작 (css)
   - # layout
   - [x] header 제작
   - [x] footer 제작
+
 - 당첨 통계 모달 화면 제작
   - [ ] 통계 title 제작
   - [ ] 일치 결과 화면 제작
