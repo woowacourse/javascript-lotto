@@ -2,6 +2,7 @@
 import AmountInput from "./components/AmountInput.js";
 import Component from "./components/Component.js";
 import LottoList from "./components/LottoList.js";
+import UserInput from "./components/UserInput.js";
 import { qs } from "./utils/domHelper.js";
 
 class App extends Component {
@@ -39,11 +40,24 @@ class App extends Component {
     });
     if (lottoList.length !== 0) {
       new LottoList(qs(".lotto-detail-layout"), lottoList);
+      new UserInput(qs(".user-input-layout"), {
+        lottoList,
+        onResult: this.handleLottoResult.bind(this),
+      });
     }
   }
 
   setLottoList(lottoList) {
     this.setState({ lottoList });
+  }
+
+  handleLottoResult({ lottoRanks, totalProfit }) {
+    this.setState({
+      lottoResults: {
+        ranks: lottoRanks,
+        profit: totalProfit,
+      },
+    });
   }
 }
 
