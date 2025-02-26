@@ -1,5 +1,8 @@
 import lottoStore from "../store/lottoStore.js";
 import LottoStatus from "../domain/LottoStatus.js";
+import LottoResult from "../domain/LottoResult.js";
+import priceStore from "../store/priceStore.js";
+
 const showResult = () => {
   document.addEventListener("checkResult", (event) => {
     const { winningLotto, bonusLottoNumber } = event.detail;
@@ -14,7 +17,13 @@ const showResult = () => {
       .map((lotto) => lotto.getLottoNumbers());
 
     const matchedStatus = lottoStatus.getMatchedLottoStatus(lottosNumbers);
+    const price = priceStore.getPrice();
     console.log(matchedStatus); // 당첨 결과 확인
+    const lottoResult = new LottoResult(matchedStatus, price);
+    const winningHistory = lottoResult.getWinningHistory();
+    const rate = lottoResult.getRate();
+    console.log(winningHistory);
+    console.log("당첨률:", rate);
   });
 };
 
