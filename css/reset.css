@@ -82,7 +82,6 @@ section,
 summary,
 time,
 mark,
-input,
 audio,
 video {
   margin: 0;
@@ -91,12 +90,23 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
   box-sizing: border-box;
+  border: 1px solid black;
 }
 
 button {
   all: unset;
   box-sizing: border-box;
+  border: 1px solid black;
 }
 
 /* HTML5 display-role reset for older browsers */
