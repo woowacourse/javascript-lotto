@@ -22,6 +22,7 @@ const handlePurchase = async () => {
   const purchaseAmount = await retryAsync(getPurchaseAmount);
   const quantity = purchaseAmount / PRICE.UNIT;
 
+  document.getElementById("purchased-count").innerText = '';
   OutputView.printQuantity(quantity);
   const lottos = generateLottos(quantity);
   displayLottoNumbers(lottos);
