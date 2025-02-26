@@ -1,6 +1,49 @@
-class App {
+//@ts-check
+import AmountInput from "./components/AmountInput.js";
+import Component from "./components/Component.js";
+import LottoList from "./components/LottoList.js";
+import { qs } from "./utils/domHelper.js";
+
+class App extends Component {
   constructor() {
-    console.log("1");
+    super(qs("#app"));
+  }
+
+  setUp() {
+    this.initialState = { lottoList: [] };
+    this.state = this.initialState;
+  }
+
+  template() {
+    return `
+      <header id="header-layout">
+        <h1 class="header-layout-title title">🎱 행운의 로또</h1>
+      </header>
+      <main id="main-layout">
+        <div class="amount-input-layout"></div>
+        <section class="lotto-detail-layout"></section>
+        <div class="user-input-layout"></div>
+      </main>
+      <footer class="footer lotto-caption">Copyright 2023. woowacourse</footer>
+      `;
+  }
+
+  mounted() {
+    const {
+      state: { lottoList },
+      setLottoList,
+    } = this;
+
+    new AmountInput(qs(".amount-input-layout"), {
+      setLottoList: setLottoList.bind(this),
+    });
+    if (lottoList.length !== 0) {
+      new LottoList(qs(".lotto-detail-layout"), lottoList);
+    }
+  }
+
+  setLottoList(lottoList) {
+    this.setState({ lottoList });
   }
 }
 
