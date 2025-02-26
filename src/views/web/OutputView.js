@@ -10,8 +10,8 @@ const OutputView = {
     $target.disabled = true;
   },
 
-  createDiv(padding, margin) {
-    const $container = createTag('div');
+  createContainer(tag, { padding, margin }) {
+    const $container = createTag(tag);
 
     if (padding) $container.style.padding = padding;
     if (margin) $container.style.margin = margin;
@@ -23,7 +23,7 @@ const OutputView = {
     const $lottoList = querySelector('.lottoList');
 
     this.show($lottoList);
-    const $lottoCountDescDiv = this.createDiv('1rem 0');
+    const $lottoCountDescDiv = this.createContainer('div', { padding: '1rem 0' });
     $lottoCountDescDiv.textContent = `총 ${lottoCount}개를 구매하였습니다.`;
     $lottoList.appendChild($lottoCountDescDiv);
 
@@ -32,7 +32,7 @@ const OutputView = {
   },
 
   printLottos(lottos, $target) {
-    const $lottoListDiv = this.createDiv('0.5rem 0');
+    const $lottoListDiv = this.createContainer('ul', { padding: '0.5rem 0' });
     $lottoListDiv.classList.add('lottoContainer');
 
     lottos.forEach((lotto) => {
@@ -43,7 +43,7 @@ const OutputView = {
   },
 
   makeLotto($lottoListDiv, lotto) {
-    const $lottoDiv = this.createDiv();
+    const $lottoDiv = createTag('li');
     $lottoDiv.classList.add('lottoItem');
 
     const $imoji = createTag('span');
