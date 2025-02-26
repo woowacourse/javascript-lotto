@@ -2,15 +2,15 @@ import Button from "./common/button.js";
 import { LOTTO_STATUS } from "../constants/lotto.js";
 
 export default class WinningStatistic {
-  constructor(lottoHistory, rate, setInit) {
-    this.init(lottoHistory, rate, setInit);
+  constructor(winningResult, setInit) {
+    this.init(winningResult, setInit);
   }
 
   render($target) {
     $target.appendChild(this.$div);
   }
 
-  init(lottoHistory, rate, setInit) {
+  init(winningResult, setInit) {
     this.$div = document.createElement("div");
     const $title = document.createElement("p");
     this.$div.className = "winning-static-container";
@@ -18,6 +18,9 @@ export default class WinningStatistic {
     $title.className = "winning-static-title";
 
     const $table = document.createElement("table");
+
+    const { lottoHistory, rate } = winningResult;
+
     $table.innerHTML = `
         <tr class="table-head">
           <th scope="col">일치 갯수</td>
