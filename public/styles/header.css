@@ -1,0 +1,21 @@
+.header {
+  width: 100%;
+  text-align: start;
+  padding: 14px 0 14px 30px;
+  background-color: var(--primary-color);
+}
+
+.header-title {
+  line-height: 1.5;
+  width: 147px;
+  height: 36px;
+  font-family: var(--font-family);
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--secondary-color);
+}

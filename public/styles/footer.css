@@ -1,0 +1,24 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  border-top: solid 1px rgba(78, 91, 166, 0.2);
+}
+
+.footer-text {
+  margin: auto;
+  height: 16px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: 1.25px;
+  text-align: center;
+  color: var(--primary-color);
+}

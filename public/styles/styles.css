@@ -1,0 +1,19 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+:root {
+  --primary-color: #4e5ba6;
+  --secondary-color: #fff;
+  --text-color: #000;
+  --border-color: rgba(0, 0, 0, 0.12);
+  --modal-bg: rgba(0, 0, 0, 0.5);
+  --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  --font-family: Roboto, sans-serif;
+  --border-radius: 10px;
+  --padding-main: 40px 16px 32px;
+  --button-radius: 4px;
+}

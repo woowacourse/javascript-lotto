@@ -1,0 +1,85 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--modal-bg);
+  z-index: 1;
+  position: absolute;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--secondary-color);
+  width: 350px;
+  gap: 32px;
+  text-align: center;
+  position: absolute;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  z-index: 2;
+}
+
+.modal-content .text-subtitle {
+  padding: 32px 0px 0px;
+}
+
+.modal-content .modal-close-button {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  cursor: pointer;
+}
+
+.modal-content-lotto-list-result {
+  width: 90%;
+}
+
+.modal-content-lotto-result {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px;
+  border-bottom: 1px solid black;
+
+  &:first-of-type {
+    font-weight: bold;
+    border-top: 1px solid black;
+  }
+}
+
+.modal-content-profit {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.modal-restart-button {
+  width: 318px;
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 3px 32px 37px;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+}
