@@ -176,7 +176,7 @@ class App {
         this.buyLottos(purchaseAmountInput);
 
       outputViewByWeb.displayLottoCount(lottoCounts);
-
+      outputViewByWeb.displayLottoList(lottoNumbersList);
       //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
     });
   }
