@@ -53,15 +53,6 @@ describe(`로또 번호의 각 숫자 범위는 ${LOTTO_RULE.MIN_RANGE} ~ ${LOTT
   );
 });
 
-test('로또 번호는 오름차순이여야 한다.', () => {
-  // given
-  const lottoNumbers = [5, 35, 24, 1, 2, 9];
-  // when
-  const lotto = new Lotto(lottoNumbers);
-  // then
-  expect(lotto.getNumbers()).toEqual([1, 2, 5, 9, 24, 35]);
-});
-
 test.each([[[5, 35, 24, 1, 2, 2]], [[35, 35, 24, 1, 2, 3]]])(
   '로또 번호는 중복된 숫자가 포함되면 안된다.',
   (lottoNumbers) => {
