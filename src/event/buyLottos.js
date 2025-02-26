@@ -1,10 +1,12 @@
 import { getPrice } from "../controller/getInputWIthRetryWeb.js";
 import priceStore from "../store/priceStore.js";
+import reset from "./reset.js";
 
 const buyButton = document.querySelector(".buyButton");
 
 const buyLotto = () => {
   buyButton.addEventListener("click", () => {
+    reset();
     const price = getPrice();
     if (price === undefined) return;
 

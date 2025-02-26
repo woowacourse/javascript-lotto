@@ -3,11 +3,13 @@ import validatePrice from "../validation/validatePrice.js";
 import validateLotto from "../validation/validateLotto.js";
 import validateBonusNumber from "../validation/validateBonusNumber.js";
 import Lotto from "../domain/Lotto.js";
+import resetInput from "../event/resetInput.js";
 
 export const getPrice = () => {
   const inputElement = document.querySelector(".priceInput");
   const input = inputElement.value;
   return Input.retry(() => {
+    resetInput(inputElement);
     validatePrice(Number(input));
     return Number(input);
   });
@@ -15,18 +17,20 @@ export const getPrice = () => {
 
 export const getNeededLottoNumbers = () => {
   const winningLotto = Input.retry(() => {
-    const inputs = document.querySelectorAll(".winningNumberInput");
-    const winningNumbers = Array.from(inputs).map((input) =>
+    const inputElements = document.querySelectorAll(".winningNumberInput");
+    const winningNumbers = Array.from(inputElements).map((input) =>
       Number(input.value)
     );
+    resetInput(inputElements);
     validateLotto(winningNumbers);
     const winningLotto = new Lotto(winningNumbers);
     return winningLotto;
   });
 
   const bonusLottoNumber = Input.retry(() => {
-    const input = document.querySelector(".bonusNumberInput");
-    const bonusNumber = Number(input.value);
+    const inputElement = document.querySelector(".bonusNumberInput");
+    const bonusNumber = Number(inputElement.value);
+    resetInput(inputElement);
     validateBonusNumber({
       enterdLottoNumbers: winningLotto.getLottoNumbers(),
       bonusLottoNumber: bonusNumber,

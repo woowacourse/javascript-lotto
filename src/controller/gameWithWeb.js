@@ -4,6 +4,7 @@ import clickCheckResult from "../event/clickCheckResult.js";
 import showLottos from "../event/showLottos.js";
 import showResult from "../event/showResult.js";
 import { divideByUnit } from "../utils/count.js";
+import reset from "../event/reset.js";
 
 const game = () => {
   buyLotto();
@@ -15,6 +16,10 @@ const game = () => {
 
   clickCheckResult();
   showResult();
+  const resetButton = document.querySelector("#reset");
+  resetButton.addEventListener("click", () => {
+    reset();
+  });
 };
 
 export default game;
