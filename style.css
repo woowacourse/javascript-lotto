@@ -173,12 +173,9 @@ flex-direction: column; /* 세로 배치 유지 */
     line-height: 36px; 
     margin-top: 27px;
     border-radius: 4px;
-}
-
-.result__btn p {
     color: var(--lotto-greyscale-1);
     font-size: var(--font-lotto-caption);
     font-weight: var(--weight-bold);
-
-
 }
+
+

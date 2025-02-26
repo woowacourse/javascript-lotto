@@ -2,10 +2,19 @@ import LottoGame from "./domain/LottoGame.js";
 import Validator from "./domain/Validator.js";
 import Constants from "./constant/Constants.js";
 
+const middleSection = document.querySelector(".lotto__middle");
+
 const purchaseButton = document.querySelector(".lotto__input__btn");
 const inputMoney = document.querySelector(".input__money");
 const purchaseMessage = document.querySelector(".lotto__box p:nth-of-type(2)");
 const lottoListContainer = document.querySelector(".lotto__list");
+const winningNumberInputs = document.querySelectorAll(
+  ".target__lottos .one__numbers__input",
+);
+const bonusNumberInput = document.querySelector(
+  ".bonus__number .one__numbers__input",
+);
+const resultButton = document.querySelector(".result__btn");
 
 let lottoGame = null;
 
@@ -17,7 +26,6 @@ function displayLottos(lottos) {
   lottoListContainer.innerHTML = "";
   lottos.forEach((lotto) => {
     const lottoArray = lotto.getLottoNumber();
-    console.log(lottoArray);
     // 로또 요소 만들고
     const lottoElement = document.createElement("div");
     lottoElement.className = "random__lotto";
@@ -46,6 +54,7 @@ function handlePurchase() {
     lottoGame = new LottoGame(lottoNum);
 
     purchaseMessage.style.display = "block";
+    middleSection.style.display = "block";
     purchaseMessage.textContent = `총 ${lottoNum}개를 구매하였습니다.`;
 
     displayLottos(lottoGame.lottos);
@@ -54,10 +63,46 @@ function handlePurchase() {
   }
 }
 
+function setupResultButton() {
+  resultButton.addEventListener("click", handleResult);
+}
+
+function handleResult() {
+  try {
+    if (!lottoGame) {
+      throw new Error("로또를 먼저 구매해주세요.");
+    }
+
+    const winningNumbers = [];
+
+    winningNumberInputs.forEach((input) => {
+      if (!input.value) {
+        throw new Error("당첨 번호를 모두 입력해주세요.");
+      }
+      winningNumbers.push(Number(input.value));
+    });
+
+    Validator.isTargetNumber(winningNumbers.join(", "));
+
+    if (!bonusNumberInput.value) {
+      throw new Error("보너스 번호를 입력해주세요.");
+    }
+
+    const bonusNumber = Number(bonusNumberInput.value);
+    Validator.isBonusNumber(bonusNumber, winningNumbers);
+
+    lottoGame.calculate(winningNumbers, bonusNumber);
+    // displayResult();
+  } catch (error) {
+    alert(error.message);
+  }
+}
 function initApp() {
   purchaseMessage.style.display = "none";
+  middleSection.style.display = "none";
 
   setupPurchaseEvent();
+  setupResultButton();
 }
 
 initApp();
