@@ -4,10 +4,9 @@
   justify-content: center;
   align-items: center;
   gap: 28px;
+  padding-top: 40px;
+  padding-bottom: 32px;
   width: 414px;
-  height: 727px;
-  top: 148px;
-  left: 513px;
   border: 1px solid #0000001f;
   border-radius: 4px;
   background-color: var(--lotto-greyscale-1);
@@ -83,7 +82,7 @@
   justify-content: space-between;
 }
 
-.winningLotto-container_bonusNumber {
+.winningLotto-contents_bonusNumber {
   text-align: right;
 }
 
@@ -92,4 +91,14 @@
   height: 36px;
   border: 1px solid var(--lotto-greyscale-3);
   border-radius: 4px;
+}
+
+.result-contents {
+  padding: 6px 6px 6px 8px;
+  width: 382px;
+  height: 36px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
 }

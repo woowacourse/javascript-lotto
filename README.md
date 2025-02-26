@@ -81,7 +81,7 @@
   - [x] card input 입력창 제작 (css)
   - [x] 로또 출력 화면 제작 (css)
   - [x] 당첨번호 및 보너스 번호 입력 창 제작 (css)
-  - [ ] 결과 확인 버튼 제작 (css)
+  - [x] 결과 확인 버튼 제작 (css)
   - # layout
   - [ ] header 제작
   - [ ] footer 제작
