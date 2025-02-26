@@ -1,0 +1,34 @@
+:root {
+  /* title */
+  --title-size: 24px;
+  --title-line-height: 1.5;
+  --title-weight: 800;
+
+  /* subTitle */
+  --subTitle-size: 20px;
+  --subTitle-weight: 600;
+
+  /* body */
+  --body-size: 15px;
+  --body-weight: 500;
+
+  /* placeholder */
+  --placeholder-size: 15px;
+  --placeholder-weight: 500;
+
+  /* button/caption */
+  --button-size: 14px;
+  --button-weight: 600;
+
+  /* lotto-color */
+  --lotto-primary: #4e5ba6;
+  --lotto-grey-scale-5: #000000;
+  --lotto-grey-scale-4: #8b8b8b;
+  --lotto-grey-scale-3: #b4b4b4;
+  --lotto-grey-scale-2: #fcfcfd;
+  --lotto-grey-scale-1: #ffffff;
+
+  /* border-color */
+  --border-grey: #4e5ba633;
+  --border-radius-smallest: 4px;
+}

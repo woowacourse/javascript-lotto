@@ -1,0 +1,314 @@
+.title_style {
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line-height);
+  letter-spacing: normal;
+}
+
+header {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 14px 0 14px 130px;
+  background-color: var(--lotto-primary);
+}
+
+header h1 {
+  width: 147px;
+  text-align: left;
+  color: var(--lotto-grey-scale-1);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+main div.lotto_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 414px;
+  margin: 84px auto 69px;
+  padding: 40px 16px 32px;
+  border-radius: var(--border-radius-smallest);
+  border: solid 1px var(--border-grey);
+  background-color: var(--lotto-grey-scale-1);
+}
+
+div.lotto_container b.lotto_title {
+  margin: 0 0 28px;
+  text-align: center;
+  color: var(--lotto-grey-scale-5);
+}
+
+div.lotto_container p.lotto_subtitle {
+  width: 100%;
+}
+
+div.lotto_container form.lotto_form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+div.lotto_container form.lotto_form input {
+  display: flex;
+  height: 36px;
+  flex: 1;
+  padding: 0 0 0 5px;
+  border: 1px solid var(--lotto-grey-scale-3);
+  border-radius: var(--border-radius-smallest);
+}
+
+form.lotto_form input::placeholder {
+  font-size: var(--placeholder-size);
+  font-weight: var(--placeholder-weight);
+}
+
+form.lotto_form button {
+  width: 56px;
+  padding: 6px 6px 6px 8px;
+  border-radius: var(--border-radius-smallest);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-grey-scale-1);
+  border: none;
+}
+
+div.lotto_container div.lotto_result_list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  flex: 1;
+  margin-top: 28px;
+}
+
+div.lotto_result_list div.ticket_container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  height: 262px;
+  margin-top: 12px;
+  overflow-y: scroll;
+}
+
+div.ticket_container div.ticket {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+div.ticket_container div.ticket i {
+  width: 34px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 34px;
+}
+
+div.ticket_container div.ticket span {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+div.lotto_result_list div.lotto_input_list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 27px;
+}
+
+div.lotto_result_list div.lotto_input_list p {
+  margin-bottom: 12px;
+}
+
+div.lotto_input_list div.lotto_input_title {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.lotto_input_list div.lotto_input_box {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+div.lotto_input_box div.lotto_numbers {
+  display: flex;
+  gap: 10px;
+}
+
+div.lotto_input_box input {
+  width: 36px;
+  height: 34px;
+  border: 1px solid var(--border-grey);
+  border-radius: var(--border-radius-smallest);
+  text-align: center;
+}
+
+div.lotto_result_list button {
+  width: 100%;
+  border: none;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-grey-scale-1);
+  border-radius: var(--border-radius-smallest);
+  padding: 10px 0;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  border-top: 1px solid var(--border-grey);
+}
+
+footer > span {
+  color: var(--lotto-primary);
+  font-weight: 600;
+}
+
+div.rank_layer_list {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+div.rank_layer_list div.layer_bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+div.rank_layer_list div.rank_layer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  padding: 40px 15px 32px 16px;
+  border-radius: var(--border-radius-smallest);
+  background-color: #fff;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.rank_layer svg.close_button {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+div.rank_layer span.rank_layer_title {
+  width: 130px;
+  height: 24px;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 0.15px;
+  text-align: center;
+  color: #000;
+}
+
+div.rank_layer div.rank_result {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 33px;
+}
+
+div.rank_result div.rank_result_box {
+  padding: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-grey);
+}
+
+div.rank_result_box b {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  line-height: 24px;
+}
+div.rank_result_box span {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+div.rank_result_box:last-of-type {
+  border-bottom: 1px solid #ccc;
+}
+
+div.rank_layer div.profit_result {
+  margin-top: 32px;
+}
+
+div.rank_layer button {
+  width: 100%;
+  padding: 10px 0;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-grey-scale-1);
+  border-radius: var(--border-radius-smallest);
+  margin-top: 32px;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  main div.lotto_container {
+    margin: 40px auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main div.lotto_container {
+    width: 95%;
+  }
+  div.lotto_input_box input {
+    width: 25px;
+    height: 25px;
+  }
+  div.lotto_result_list div.ticket_container {
+    height: 205px;
+    margin: 12px 0;
+  }
+}
