@@ -74,7 +74,12 @@ export default class LottoGame {
       this.#lottoTransaction.lottos,
       this.#show
     );
-    new LottoWinningInfoForm($div, this.setWinningLottoInfo, this.#show);
+    new LottoWinningInfoForm(
+      $div,
+      this.#winningLottoInfo,
+      this.setWinningLottoInfo,
+      this.#show
+    );
 
     const { lottoHistory, rate } = this.calculateWinningResult();
 

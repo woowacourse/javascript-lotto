@@ -7,16 +7,17 @@ export default class LottoWinningInfoForm {
   #setWinningLottoInfo;
   #show;
 
-  constructor($target, setWinningLottoInfo, show) {
+  constructor($target, winningLottoInfo, setWinningLottoInfo, show) {
     this.#setWinningLottoInfo = setWinningLottoInfo;
     this.#show = show;
-    this.render($target);
+    this.render($target, winningLottoInfo);
   }
 
-  render($target) {
+  render($target, winningLottoInfo) {
     const $form = document.createElement("form");
     $form.className = `${!this.#show ? "hidden" : ""} lotto-winning-info-form`;
 
+    const { winningNumbers, bonusNumber } = winningLottoInfo;
     $form.innerHTML = `
     <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
     <div class="lotto-number-input-container">
@@ -25,13 +26,18 @@ export default class LottoWinningInfoForm {
             <div class="lotto-numbers-wrap">
             ${Array.from(
               { length: LOTTO_NUMBER.LENGTH },
-              () => '<input class="number-input" />'
+              (_, index) =>
+                `<input class="number-input" value="${
+                  winningNumbers[index] ?? ""
+                }" />`
             ).join("")}
             </div>
         </div>
         <div class="lotto-number-input-wrap bonus-input-wrap">
             <span>보너스 번호</span>
-            <input class="number-input" />
+            <input class="number-input" value="${
+              bonusNumber === 0 ? "" : bonusNumber
+            }"/>
         </div>
     </div>
 `;
