@@ -48,10 +48,38 @@
           <div class="checkResult">결과 확인하기</div>
         </div>
       </div>
-      <dialog >
+      <dialog>
         <h3>🏆당첨 통계🏆</h3>
-        <div>당첨표</div>
-        <div>수익률</div>
+        <div
+          class="winningHistory"
+          style="
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 10px;
+            width: 300px;
+          "
+        >
+          <div>일치 개수</div>
+          <div>당첨금</div>
+          <div>당첨개수</div>
+          <div>3개</div>
+          <div>5000</div>
+          <div id="rank5WinnigCount">0개</div>
+          <div>4개</div>
+          <div>50,000</div>
+          <div id="rank4WinningCount">0개</div>
+          <div>5개</div>
+          <div>2,000,000,000</div>
+          <div id="rank3WinningCount">0개</div>
+          <div>5개 + 보너스볼볼</div>
+          <div>30,000,000</div>
+          <div id="rank2WinningCount">0개</div>
+          <div>6개</div>
+          <div>1,000,000,000</div>
+          <div id="rank1WinningCount">0개</div>
+        </div>
+        <div id="rate">수익률</div>
         <button>다시 시작하기</button>
       </dialog>
     </div>

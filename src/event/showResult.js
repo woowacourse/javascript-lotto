@@ -27,6 +27,13 @@ const showResult = () => {
     dialog.showModal();
     console.log(winningHistory);
     console.log("당첨률:", rate);
+    Object.entries(winningHistory).forEach(([key, value]) => {
+      if (value === 0) return;
+      const countDiv = document.querySelector(`#rank${key}WinningCount`);
+      countDiv.textContent = `${value}개`;
+    });
+    const rateDiv = document.querySelector("#rate");
+    rateDiv.textContent = `당신의 총 수익률은 ${rate}%입니다.`;
   });
 };
 
