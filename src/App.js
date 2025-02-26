@@ -19,6 +19,17 @@ import { validateBonusNumber } from './View/Validation/bonusNumber.js';
 import { validateYorN } from './View/Validation/retry.js';
 import { validateEmptySpace } from './View/Validation/util.js';
 
+/** STEP2 ByWeb */
+import { getPurchaseAmountInputByWeb } from './View/inputViewByWeb.js';
+import { outputViewByWeb } from './View/outputViewByWeb.js';
+
+const validateAndFormatPurchaseAmountInput = (input) => {
+  validateEmptySpace(input);
+  const convertedInput = convertFormat.toNumber(input);
+  validatePurchaseAmount(convertedInput);
+  return convertedInput;
+};
+
 class App {
   async #initializePurchaseAmount() {
     const purchaseAmountInput = await readUserInputUntilSuccess({
@@ -109,6 +120,8 @@ class App {
   buyLottos(purchaseAmount) {
     const lottoMachine = new LottoMachine();
     const lottoCounts = lottoMachine.purchaseLotto(purchaseAmount);
+    console.log('lottoCounts', lottoCounts);
+    console.log('lottoMachine', lottoMachine);
     lottoMachine.makeLottoList(lottoCounts);
     const lottoNumbersList = lottoMachine.getLottoNumbersList();
     const lottoList = lottoMachine.getLottoList();
@@ -128,6 +141,38 @@ class App {
     if (retry === 'y') {
       await this.run();
     }
+  }
+
+  runWeb() {
+    this.#initializePurchaseAmountByWeb();
+  }
+
+  #initializeWebInput({ readUserInput, formatter, onError }) {
+    try {
+      const input = readUserInput();
+      return formatter(input);
+    } catch (error) {
+      onError(error);
+      return null;
+    }
+  }
+
+  #initializePurchaseAmountByWeb() {
+    const $purchaseButton = document.querySelector(
+      '.main-purchase-amount-button',
+    );
+
+    $purchaseButton.addEventListener('click', () => {
+      const purchaseAmountInput = this.#initializeWebInput({
+        readUserInput: getPurchaseAmountInputByWeb,
+        formatter: validateAndFormatPurchaseAmountInput,
+        onError: (error) => outputViewByWeb.displayErrorMessage(error),
+      });
+
+      if (purchaseAmountInput === null) {
+        return;
+      }
+    });
   }
 }
 export default App;
