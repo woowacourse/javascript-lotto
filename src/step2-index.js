@@ -7,9 +7,9 @@ const app = () => {
   document.addEventListener("DOMContentLoaded", () => {
     createHeader();
     createGameBox();
+    createPrizeResultModal();
 
     readLottoPriceInput();
-    createPrizeResultModal();
   });
 };
 
