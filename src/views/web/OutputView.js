@@ -1,12 +1,17 @@
-import { getById, querySelector } from '../../utils/DOM.js';
+import { createTag, getById, querySelector } from '../../utils/DOM.js';
 
 const OutputView = {
   show($target) {
     $target.classList.remove('hidden');
   },
 
+  disable(className) {
+    const $target = getById(className);
+    $target.disabled = true;
+  },
+
   createDiv(padding, margin) {
-    const $container = document.createElement('div');
+    const $container = createTag('div');
 
     if (padding) $container.style.padding = padding;
     if (margin) $container.style.margin = margin;
@@ -19,9 +24,7 @@ const OutputView = {
 
     this.show($lottoList);
     const $lottoCountDescDiv = this.createDiv('1rem 0');
-    const $lottoCountDescText = document.createTextNode(`총 ${lottoCount}개를 구매하였습니다.`);
-
-    $lottoCountDescDiv.appendChild($lottoCountDescText);
+    $lottoCountDescDiv.textContent = `총 ${lottoCount}개를 구매하였습니다.`;
     $lottoList.appendChild($lottoCountDescDiv);
 
     this.printLottos(lottos, $lottoList);
@@ -42,9 +45,11 @@ const OutputView = {
   makeLotto($lottoListDiv, lotto) {
     const $lottoDiv = this.createDiv();
     $lottoDiv.classList.add('lottoItem');
-    const $imoji = document.createElement('span');
+
+    const $imoji = createTag('span');
     $imoji.textContent = '🎟️';
     $imoji.classList.add('lottoImoji');
+
     const $lottoText = document.createTextNode(`${lotto.join(', ')}`);
 
     $lottoDiv.appendChild($imoji);
@@ -53,11 +58,8 @@ const OutputView = {
   },
 
   disablePurchase() {
-    const $purchaseInput = getById('purchaseInput');
-    const $purchaseButton = getById('purchaseButton');
-
-    $purchaseInput.disabled = true;
-    $purchaseButton.disabled = true;
+    this.disable('purchaseInput');
+    this.disable('purchaseButton');
   },
 };
 
