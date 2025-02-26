@@ -22,4 +22,4 @@ export const BONUS_NUMBER_ERROR_MESSAGES = Object.freeze({
   DUPLICATE_NUMBER: "보너스 번호는 당첨 번호와 중복될 수 없습니다.",
 });
 
-export const RESTART_ERROR_MESSAGE = `${constants.UPPER_YES}, ${constants.YES}, ${constants.UPPER_NO}, ${constants.NO} 중 하나를 입력해야 합니다.`;
+export const RESTART_ERROR_MESSAGE = `${constants.CONFIRMATION.UPPER_YES}, ${constants.CONFIRMATION.YES}, ${constants.CONFIRMATION.UPPER_NO}, ${constants.CONFIRMATION.NO} 중 하나를 입력해야 합니다.`;

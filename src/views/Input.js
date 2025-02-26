@@ -1,4 +1,4 @@
-import { YES, NO } from "../constants/validateConstants.js";
+import { CONFIRMATION } from "../constants/validateConstants.js";
 import readLineAsync from "../utils/readLineAsync.js";
 
 const Input = {
@@ -15,7 +15,9 @@ const Input = {
   },
 
   readRestartConfirm() {
-    return readLineAsync(`\n> 다시 시작하시겠습니까? (${YES}/${NO}) `);
+    return readLineAsync(
+      `\n> 다시 시작하시겠습니까? (${CONFIRMATION.YES}/${CONFIRMATION.NO}) `
+    );
   },
 };
 

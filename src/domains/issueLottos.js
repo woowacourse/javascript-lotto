@@ -1,9 +1,9 @@
 import getUniqueRandomNumbers from "../utils/getUniqueRandomNumbers.js";
 import {
   MIN_UNIT,
-  MIN_LOTTO_NUMBER,
-  MAX_LOTTO_NUMBER,
-  LOTTO_LENGTH,
+  LOTTO_NUMBER_MAX,
+  LOTTO_NUMBER_MIN,
+  LOTTO_SIZE,
 } from "../constants/validateConstants.js";
 
 const issueLottos = (purchaseAmount) => {
@@ -11,9 +11,9 @@ const issueLottos = (purchaseAmount) => {
 
   return Array.from({ length: lottoCount }, () => {
     return getUniqueRandomNumbers(
-      MIN_LOTTO_NUMBER,
-      MAX_LOTTO_NUMBER,
-      LOTTO_LENGTH
+      LOTTO_NUMBER_MIN,
+      LOTTO_NUMBER_MAX,
+      LOTTO_SIZE
     ).sort((a, b) => a - b);
   });
 };

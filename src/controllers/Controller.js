@@ -1,6 +1,6 @@
 import Input from "../views/Input.js";
 import Output from "../views/Output.js";
-import { YES } from "../constants/validateConstants.js";
+import { CONFIRMATION } from "../constants/validateConstants.js";
 
 class Controller {
   constructor(lottoGame) {
@@ -10,7 +10,7 @@ class Controller {
   async start() {
     await this.#runLottoGame();
     const restartConfirm = await Input.readRestartConfirm();
-    if (restartConfirm === YES) await this.start();
+    if (restartConfirm === CONFIRMATION.YES) await this.start();
   }
 
   async #runLottoGame() {

@@ -1,7 +1,9 @@
-export const YES = "y";
-export const NO = "n";
-export const UPPER_YES = YES.toUpperCase();
-export const UPPER_NO = NO.toUpperCase();
+export const CONFIRMATION = {
+  YES: "Yes",
+  NO: "No",
+  UPPER_YES: "YES",
+  UPPER_NO: "NO",
+};
 
 export const MIN_UNIT = 1_000;
 export const MAX_AMOUNT = 100_000;
