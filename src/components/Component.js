@@ -1,4 +1,4 @@
-import { qsAll } from "../utils/domHelper";
+import { qsAll } from "../utils/domHelper.js";
 
 export default class Component {
   constructor(element, props = {}) {
@@ -6,6 +6,9 @@ export default class Component {
     this.props = { ...props };
 
     if (!element) throw "no element";
+    this.setUp();
+    this.setEvent();
+    this.render();
   }
 
   setEvent() {}
@@ -24,12 +27,17 @@ export default class Component {
   mounted() {}
 
   addEvent(eventType, selector, callback, element = this.element) {
-    const children = [...qsAll(selector, callback)];
+    const children = [...qsAll(selector, element)];
     const isTarget = (element) =>
       children.includes(element) || element.closest(selector);
 
-    element.addEventListner(eventType, (event) => {
+    element.addEventListener(eventType, (event) => {
       if (isTarget(event.target)) callback(event);
     });
+  }
+
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+    this.render();
   }
 }
