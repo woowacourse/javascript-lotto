@@ -27,7 +27,7 @@ main {
   flex-direction: column;
   width: 414px;
   height: 727px;
-  border: solid 1px var(--border-color);
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   padding: 16px;
 }
@@ -37,7 +37,7 @@ footer {
   height: 80px;
   font-size: 14px;
   font-weight: 700;
-  border-top: solid 1px rgba(78, 91, 166, 0.2);
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
   color: var(--lotto-primary-color);
   display: flex;
   justify-content: center;

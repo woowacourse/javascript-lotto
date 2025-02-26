@@ -18,7 +18,7 @@
 .lotto-purchase__input {
   width: 310px;
   height: 36px;
-  border: solid 1px var(--lotto-greyscale-3-color);
+  border: 1px solid var(--lotto-greyscale-3-color);
   border-radius: var(--border-radius);
   padding: 10px;
 }
