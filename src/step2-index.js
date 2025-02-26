@@ -4,6 +4,7 @@
  */
 
 import { PRIZE_MONEY } from './constants/MagicNumber.js';
+import createLottoInput from './createLottoInput.js';
 import {
   calculatePrize,
   calculateRevenueRate,
@@ -23,13 +24,13 @@ import {
 
 document.addEventListener('DOMContentLoaded', () => {
   const purchaseButton = document.getElementById('purchase-button');
-  const resultButton = document.getElementById('check-result-btn');
-
   let lottos = [];
   purchaseButton.addEventListener('click', async (event) => {
     event.preventDefault();
     try {
-      const { purchaseAmount } = await getPurchasePrice(getUIPurchasePrice);
+      const { purchasePrice, purchaseAmount } = await getPurchasePrice(
+        getUIPurchasePrice,
+      );
       const purchaseResult = document.createElement('div');
       purchaseResult.classList.add('purchase-result');
       purchaseResult.textContent = `총 ${purchaseAmount}개를 구매하였습니다.`;
@@ -54,24 +55,77 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.lotto-content').appendChild(lottoWrapper);
         purchaseButton.disabled = true;
       });
+
+      const lottoInput = createLottoInput();
+
+      document.querySelector('.card-content').appendChild(lottoInput);
+      const resultButton = document.getElementById('check-result-btn');
+
+      resultButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const userLotto = await getWinningNumber(getUIWinningNumber);
+        const parsedLotto = await getBonusNumber(userLotto, getUIBonusNumber);
+
+        const winCount = calculateWins(lottos, parsedLotto);
+        const total = calculatePrize(winCount, PRIZE_MONEY);
+        const revenueRate = calculateRevenueRate(total, purchasePrice);
+        resultButton.disabled = true;
+
+        const modal = document.createElement('dialog');
+        modal.classList.add('prize-result');
+        modal.innerHTML = `<div class="result-header">
+              <div class="result-title">🏆 당첨 통계 🏆</div>
+          </div>
+          <div class="result-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">일치 갯수</th>
+                    <th scope="col">당첨금</th>
+                    <th scope="col">당첨 갯수</th>
+                  </tr>
+                </thead>
+                <tbody class="table-body">
+                  <tr class='win-result'>
+                    <th scope="col">3개</th>
+                    <th scope="col">${PRIZE_MONEY.THREE_MATCH.toLocaleString()}</th>
+                    <th scope="col">${winCount.THREE_MATCH}개</th>
+                  </tr>
+                  <tr class='win-result'>
+                    <th scope="col">4개</th>
+                    <th scope="col">${PRIZE_MONEY.FOUR_MATCH.toLocaleString()}</th>
+                    <th scope="col">${winCount.FOUR_MATCH}개</th>
+                  </tr>
+                  <tr class='win-result'>
+                    <th scope="col">5개</th>
+                    <th scope="col">${PRIZE_MONEY.FIVE_MATCH.toLocaleString()}</th>
+                    <th scope="col">${winCount.FIVE_MATCH}개</th>
+                  </tr>
+                  <tr class='win-result'>
+                    <th scope="col">5개+보너스볼</th>
+                    <th scope="col">${PRIZE_MONEY.FIVE_MATCH_WITH_BONUS.toLocaleString()}</th>
+                    <th scope="col">${winCount.FIVE_MATCH_WITH_BONUS}개</th>
+                  </tr>
+                  <tr class='win-result'>
+                    <th scope="col">6개</th>
+                    <th scope="col">${PRIZE_MONEY.SIX_MATCH.toLocaleString()}</th>
+                    <th scope="col">${winCount.SIX_MATCH}개</th>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="result-footer">
+            <div class="revenue-rate">당신의 총 수익률은 ${revenueRate}%입니다.</div>
+            <button class="retry-button">다시 시작하기</button>
+          </div>`;
+
+        document.querySelector('.container').appendChild(modal);
+      });
     } catch (error) {
       //todo: 에러 발생시 에러 메시지 띄우기
       console.log(error);
       console.error('Error:', error.message);
-    }
-  });
-  resultButton.addEventListener('click', async (event) => {
-    event.preventDefault();
-    try {
-      const userLotto = await getWinningNumber(getUIWinningNumber);
-      const parsedLotto = await getBonusNumber(userLotto, getUIBonusNumber);
-
-      const winCount = calculateWins(lottos, parsedLotto);
-      const total = calculatePrize(winCount, PRIZE_MONEY);
-
-      console.log(winCount, total);
-    } catch (error) {
-      console.log(error);
     }
   });
 });
