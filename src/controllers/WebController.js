@@ -1,9 +1,8 @@
 import { RESTART } from '../constants/CONFIGURATIONS.js';
 import {
-  getBonusNumber,
   getPurchasePrice,
   getRestart,
-  getWinningNumbers,
+  getWiningAndBonusNumbers,
 } from '../domains/InputProcessor.js';
 import LottoMachine from '../domains/LottoMachine.js';
 import WinningResult from '../domains/WinningResult.js';
@@ -24,10 +23,10 @@ const WebController = {
 
   async start() {
     const { lottoPurchasePrice, lottos } = await this.processLottoPurchase();
-    // const winningResult = await this.generateWinningResult();
-
-    // const winningCounts = winningResult.calculate(lottos);
-    // const profitRate = winningResult.calculateProfitRate(lottoPurchasePrice, winningCounts);
+    const winningResult = await this.generateWinningResult();
+    const winningCounts = winningResult.calculate(lottos);
+    const profitRate = winningResult.calculateProfitRate(lottoPurchasePrice, winningCounts);
+    console.log(winningCounts, profitRate);
     // OutputView.printResult(winningCounts, profitRate);
   },
 
@@ -40,11 +39,7 @@ const WebController = {
   },
 
   async generateWinningResult() {
-    const winningNumbers = await retryUntilValid(() => getWinningNumbers('web'));
-    const bonusNumber = await retryUntilValid(() => {
-      return getBonusNumber(winningNumbers, 'web');
-    });
-
+    const { winningNumbers, bonusNumber } = await retryUntilValid(() => getWiningAndBonusNumbers());
     return new WinningResult(winningNumbers, bonusNumber);
   },
 };

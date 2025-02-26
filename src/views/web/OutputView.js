@@ -1,4 +1,6 @@
-import { createTag, getById, querySelector } from '../../utils/DOM.js';
+import { createTag, getByClass, getById } from '../../utils/DOM.js';
+import WinningInput from './components/WinningInput.js';
+import BonusInput from './components/BonusInput.js';
 
 const OutputView = {
   show($target) {
@@ -20,26 +22,37 @@ const OutputView = {
   },
 
   printPurchaseLottos(lottoCount, lottos) {
-    const $lottoList = querySelector('.lottoList');
-
-    this.show($lottoList);
+    const $lottoList = getByClass('lottoList')[0];
     const $lottoCountDescDiv = this.createContainer('div', { padding: '1rem 0' });
     $lottoCountDescDiv.textContent = `총 ${lottoCount}개를 구매하였습니다.`;
     $lottoList.appendChild($lottoCountDescDiv);
 
     this.printLottos(lottos, $lottoList);
+
+    const $hiddenContainer = getByClass('hiddenContainer')[0];
+    this.show($hiddenContainer);
     this.disablePurchase();
+    this.generateWinningAndBonusInput();
   },
 
   printLottos(lottos, $target) {
-    const $lottoListDiv = this.createContainer('ul', { padding: '0.5rem 0' });
-    $lottoListDiv.classList.add('lottoContainer');
+    const $lottoListDiv = this.createContainer('div', {});
+    $lottoListDiv.classList.add('lottoListContainer');
+    const $lottoListUl = this.createContainer('ul', { padding: '0.5rem 0' });
+    $lottoListUl.classList.add('lottoContainer');
 
     lottos.forEach((lotto) => {
-      this.makeLotto($lottoListDiv, lotto.numbers);
+      this.makeLotto($lottoListUl, lotto.numbers);
     });
 
+    $lottoListDiv.appendChild($lottoListUl);
     $target.appendChild($lottoListDiv);
+  },
+
+  generateWinningAndBonusInput() {
+    const $winningNumbersInput = getByClass('winningNumbersInput')[0];
+    WinningInput($winningNumbersInput);
+    BonusInput($winningNumbersInput);
   },
 
   makeLotto($lottoListDiv, lotto) {

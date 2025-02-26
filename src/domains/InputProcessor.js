@@ -17,20 +17,25 @@ export async function getPurchasePrice(type = CONSOLE) {
   return { lottoPurchasePrice, lottoCount };
 }
 
-export async function getWinningNumbers(type = CONSOLE) {
-  const inputView = getView(type);
-  const winningNumbers = await inputView.enterWinningNumbers();
+export async function getWinningNumbers() {
+  const winningNumbers = await ConsoleInputView.default.enterWinningNumbers();
   const splittedWinningNumbers = winningNumbers.split(SEPARATOR).map(Number);
   WinningNumbersValidator.validate(splittedWinningNumbers);
   return splittedWinningNumbers;
 }
 
-export async function getBonusNumber(winningNumbers, type = CONSOLE) {
-  const inputView = getView(type);
-  const bonusNumber = await inputView.enterBonusNumber();
+export async function getBonusNumber(winningNumbers) {
+  const bonusNumber = await ConsoleInputView.default.enterBonusNumber();
   const transformedBonusNumber = Number(bonusNumber);
   BonusNumberValidator.validate(transformedBonusNumber, winningNumbers);
   return transformedBonusNumber;
+}
+
+export async function getWiningAndBonusNumbers() {
+  const { winningNumbers, bonusNumber } = await WebInputView.default.enterWinningAndBonusNumber();
+  WinningNumbersValidator.validate(winningNumbers);
+  BonusNumberValidator.validate(bonusNumber, winningNumbers);
+  return { winningNumbers, bonusNumber };
 }
 
 export async function getRestart(type = CONSOLE) {

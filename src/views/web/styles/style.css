@@ -11,6 +11,11 @@
   padding: 0 0.5rem;
 }
 
+#purchaseButton:hover {
+  background-color: #374494;
+  cursor: pointer;
+}
+
 #purchaseButton {
   flex: 1;
   background-color: var(--color-primary);
@@ -21,23 +26,29 @@
 }
 
 .purchaseCountDesc {
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
-.resultButton {
-  height: 2.5rem;
-  color: white;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  background-color: var(--color-primary);
+.hiddenContainer {
+  flex-direction: column;
+  height: 100%;
+}
+
+.lottoList {
+  flex: 1;
 }
 
 /* 로또 */
+.lottoListContainer {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
 .lottoContainer {
-  overflow-y: scroll;
-  max-height: 250px;
+  height: 100%;
+  overflow-y: auto;
+  max-height: 340px;
 }
 
 .lottoItem {
@@ -48,6 +59,58 @@
 .lottoImoji {
   font-size: 2rem;
   margin-right: 1rem;
+}
+
+/* 당첨번호, 보너스 번호 폼 */
+.winningNumbersText {
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.winningNumbers > div:nth-child(1) {
+  padding: 0.5rem 0;
+}
+
+.winningNumbers > div:nth-child(2) {
+  flex-direction: column;
+}
+
+.winningNumbersInput {
+  display: flex;
+}
+
+.winningNumbersContainer {
+  display: flex;
+  gap: 0.5rem;
+  flex: 8;
+}
+
+.winningNumbersInput input {
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  font-size: 1.5rem;
+  color: var(--color-greyscale-5);
+}
+
+.resultButton {
+  width: 100%;
+  height: 2.5rem;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  background-color: var(--color-primary);
+  margin-top: 1rem;
+}
+
+.resultButton:hover {
+  background-color: #374494;
+  cursor: pointer;
 }
 
 /* 모달 */
