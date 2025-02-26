@@ -172,6 +172,12 @@ class App {
       if (purchaseAmountInput === null) {
         return;
       }
+      const { lottoCounts, lottoNumbersList, lottoList } =
+        this.buyLottos(purchaseAmountInput);
+
+      outputViewByWeb.displayLottoCount(lottoCounts);
+
+      //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
     });
   }
 }
