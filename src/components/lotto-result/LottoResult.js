@@ -29,21 +29,23 @@ class LottoResult extends BaseWebComponent {
       .join("");
 
     return `
-      <dialog class="lotto-result">
-        <button class="lotto-result__close_button">
-          <img src="close-button.svg" alt="close-button" />
-        </button>
-        <h2 class="lotto-result__title">🏆 당첨 통계 🏆</h2>
-        <table class="lotto-result__statistics">
-          <tr>
-            <th>일치 갯수</th>
-            <th>당첨금</th>
-            <th>당첨 갯수</th>
-          </tr>
-          ${rows}
-        </table>
-        <p class="lotto-result__profit">당신의 총 수익률은 ${this.profitRatio}%입니다.</p>
-        <button class="lotto-result__restart-button">다시 시작하기</button>
+      <dialog>
+        <form class="lotto-result" method="dialog">
+          <button class="lotto-result__close-button">
+            <img src="close-button.svg" alt="close-button" />
+          </button>
+          <h2 class="lotto-result__title">🏆 당첨 통계 🏆</h2>
+          <table class="lotto-result__statistics">
+            <tr>
+              <th>일치 갯수</th>
+              <th>당첨금</th>
+              <th>당첨 갯수</th>
+            </tr>
+            ${rows}
+          </table>
+          <p class="lotto-result__profit">당신의 총 수익률은 ${this.profitRatio}%입니다.</p>
+          <button class="lotto-result__restart-button">다시 시작하기</button>
+        </form>
       </dialog>
       `;
   }
@@ -52,6 +54,26 @@ class LottoResult extends BaseWebComponent {
     this.statistics = statistics;
     this.profitRatio = profitRatio;
     this.render();
+    const dialog = this.querySelector("dialog");
+    dialog.showModal();
+  }
+
+  setEvent() {
+    const dialog = this.querySelector("dialog");
+    const closeButton = this.querySelector(".lotto-result__close-button");
+    const restartButton = this.querySelector(".lotto-result__restart-button");
+
+    if (closeButton) {
+      this.on({ target: closeButton, eventType: "click" }, () => {
+        dialog.close();
+      });
+    }
+
+    if (restartButton) {
+      this.on({ target: restartButton, eventType: "click" }, () => {
+        this.emit("restart");
+      });
+    }
   }
 }
 

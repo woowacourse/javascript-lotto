@@ -14,17 +14,17 @@
   flex-direction: column;
 }
 
-.lotto-result__close_button {
+.lotto-result__close-button {
   background-color: transparent;
   margin-bottom: 10px;
 }
 
-.lotto-result__close_button:hover,
-.lotto-result__close_button:active {
+.lotto-result__close-button:hover,
+.lotto-result__close-button:active {
   background-color: transparent;
 }
 
-.lotto-result__close_button img {
+.lotto-result__close-button img {
   width: 14px;
   height: 14px;
   float: right;
