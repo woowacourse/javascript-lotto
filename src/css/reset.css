@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: var(--body-text-size);
+  font-weight: var(--body-font-weight);
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: var(--button-text-size);
+  font-weight: var(--button-font-weight);
+  background-color: var(--lotto-primary-color);
+  color: var(--lotto-greyscale-1-color);
+  border-radius: var(--border-radius);
+}
+
+button:hover,
+button:active {
+  background-color: var(--lotto-active-color);
+}
+
+li {
+  list-style-type: none;
+}
