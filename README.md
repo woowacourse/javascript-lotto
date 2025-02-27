@@ -1,5 +1,8 @@
 # 🎟️ 로또
 
+## 배포 링크
+https://eunoia-jaxson.github.io/javascript-lotto/
+
 ## 기능 요구 사항
 
 왜인지 로또 게임이 심심풀이에 좋다고 옆 팀에도 소문이 나버렸다.
