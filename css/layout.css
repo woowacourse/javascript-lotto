@@ -1,0 +1,26 @@
+/* :root {
+  --font-family: "Roboto", sans-serif;
+
+  --font-size-title: 24px;
+  --font-size-subtitle: 20px;
+  --font-size-body: 15px;
+  --font-size-placeholder: 15px;
+  --font-size-button: 14px;
+
+  --font-weight-title: 800;
+  --font-weight-subtitle: 600;
+  --font-weight-body: 400;
+  --font-weight-placeholder: 400;
+  --font-weight-button: 700;
+
+  --color-primary: #4e5ba6;
+  --color-white: #ffffff;
+  --color-grey-lightest: #fcfcfd;
+  --color-grey-light: #b4b4b4;
+  --color-grey-dark: #8b8b8b;
+  --color-black: #000000;
+} */
+
+#check-result {
+  display: block;
+}

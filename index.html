@@ -4,14 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🎱 행운의 로또 🎱</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
   </head>
 
   <body>
     <div id="app">
       <header class="lotto-header">
-        <h1>🎱 행운의 로또</h1>
+        <h1 class="lotto-title">🎱 행운의 로또</h1>
       </header>
+
+      <main>
+        <section class="lotto-check">
+          <h2>🎱 내 당첨 번호 확인 🎱</h2>
+
+          <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
+          <input type="text" id="purchase-amount" placeholder="금액" />
+          <button id="purchase-btn">구입</button>
+
+          <p>총 7개를 구매하였습니다.</p>
+          <ul id="lotto-list">
+            <li>🎟️ 11, 12, 13, 14, 15, 16</li>
+            <li>🎟️ 11, 12, 13, 14, 15, 16</li>
+            <li>🎟️ 11, 12, 13, 14, 15, 16</li>
+            <li>🎟️ 11, 12, 13, 14, 15, 16</li>
+            <li>🎟️ 11, 12, 13, 14, 15, 16</li>
+            <li>🎟️ 11, 12, 13, 14, 15, 16</li>
+            <li>🎟️ 11, 12, 13, 14, 15, 16</li>
+          </ul>
+
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div>
+            <label>당첨 번호</label>
+            <input type="text" />
+            <input type="text" class="winning-number" maxlength="1" />
+            <input type="text" class="winning-number" maxlength="2" />
+            <input type="text" class="winning-number" maxlength="2" />
+            <input type="text" class="winning-number" maxlength="2" />
+            <input type="text" class="winning-number" maxlength="2" />
+
+            <label>보너스 번호</label>
+            <input type="text" id="bonus-number" maxlength="2" />
+          </div>
+          <button id="check-result">결과 확인하기</button>
+        </section>
+      </main>
+
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>

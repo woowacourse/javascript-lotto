@@ -1,0 +1,28 @@
+/*
+:root {
+  --color-primary: #4e5ba6;
+  --color-white: #ffffff;
+}
+
+.lotto-header {
+  background-color: var(--color-primary);
+  width: 1440px;
+  height: 64px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  position: relative;
+
+.lotto-title {
+  color: var(--color-white);
+  width: 147px;
+  height: 36px;
+
+  position: absolute;
+  top: 14px;
+  left: 130px;
+
+  font-family: var(--font-family);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-title);
+  line-height: 36px;
+}  */
