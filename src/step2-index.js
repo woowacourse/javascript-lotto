@@ -5,4 +5,4 @@
 
 import { WebApp } from "./WebApp";
 
-await WebApp();
+WebApp();
