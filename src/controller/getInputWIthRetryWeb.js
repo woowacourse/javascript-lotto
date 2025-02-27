@@ -3,7 +3,7 @@ import validatePrice from "../validation/validatePrice.js";
 import validateLotto from "../validation/validateLotto.js";
 import validateBonusNumber from "../validation/validateBonusNumber.js";
 import Lotto from "../domain/Lotto.js";
-import resetInput from "../event/resetInput.js";
+import resetInput from "../utils/resetInput.js";
 
 export const getPrice = () => {
   const inputElement = document.querySelector(".priceInput");
