@@ -1,11 +1,5 @@
 @import url("./reset.css");
 @import url("./layout.css");
-@import url("./components/header.css");
-@import url("./components/footer.css");
-@import url("./components/lotto-purchase.css");
-@import url("./components/issued-lotto.css");
-@import url("./components/winning-lotto.css");
-@import url("./components/lotto-result.css");
 
 :root {
   --lotto-primary-color: #4e5ba6;
