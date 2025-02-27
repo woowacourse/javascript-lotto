@@ -139,6 +139,11 @@ th {
   height: 2.2rem;
 }
 
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 /*lotto*/
 .content-container {
   width: 100vw;
