@@ -1,3 +1,9 @@
+import {
+  LOTTO_ITEM_TEMPLATE,
+  LOTTO_LIST_TITLE_TEMPLATE,
+  LOTTO_TICKETS_WRAPPER_TEMPLATE,
+} from '../../constants/LottoListConstants.js';
+
 class LottoList {
   constructor(container) {
     this.container = container;
@@ -8,18 +14,12 @@ class LottoList {
   }
 
   template(lottos) {
-    const titleHTML = `<span>총 ${lottos.length}개를 구매했습니다.</span>`;
+    const titleHTML = LOTTO_LIST_TITLE_TEMPLATE(lottos.length);
     const lottoItemsHTML = lottos
-      .map(
-        (lotto) =>
-          `<div class="lotto-ticket">🎟️ ${lotto.numbers.join(', ')}</div>`,
-      )
+      .map((lotto) => LOTTO_ITEM_TEMPLATE(lotto.numbers))
       .join('');
-
     return `${titleHTML}
-      <div class="lotto-tickets">
-        ${lottoItemsHTML}
-      </div>
+      ${LOTTO_TICKETS_WRAPPER_TEMPLATE(lottoItemsHTML)}
     `;
   }
 }
