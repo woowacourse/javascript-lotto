@@ -1,4 +1,4 @@
-#prize-result-modal[open] {
+dialog[open] {
   width: 350px;
   height: 500px;
   padding: 16px;
@@ -11,8 +11,7 @@
   flex-direction: column;
 }
 
-#prize-result-modal > h2 {
-  width: 100%;
+dialog > h2 {
   height: 24px;
   margin: 10px 0;
 
