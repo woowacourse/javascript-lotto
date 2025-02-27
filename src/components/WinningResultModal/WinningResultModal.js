@@ -6,32 +6,24 @@ import WinningResultModalView from './WinningResultModalView.js';
 
 class WinningResultModal {
   constructor() {
-    this.modalRoot = document.querySelector(SELECTORS.MODAL_ROOT);
-    this.view = new WinningResultModalView(this.modalRoot);
-    this.bindEvents();
+    this.$modalRoot = document.querySelector(SELECTORS.MODAL_ROOT);
+    this.$view = new WinningResultModalView(this.$modalRoot);
+    this.$view.setOnResultRequest(this.handleRestart);
   }
 
   renderModal(winningCounts, profitRate) {
-    this.view.renderModal(winningCounts, profitRate);
+    this.$view.renderModal(winningCounts, profitRate);
   }
 
-  bindEvents() {
-    const main = document.querySelector(SELECTORS.MAIN);
-    this.modalRoot.addEventListener(
-      'click',
-      this.handleRestartClick.bind(this, main),
-    );
-  }
-
-  handleRestartClick(main, event) {
-    if (!event.target.classList.contains(SELECTORS.BIG_BUTTON)) return;
-    this.view.close();
+  handleRestart() {
+    const $main = document.querySelector(SELECTORS.MAIN);
 
     try {
+      this.$view.close();
       const restartEvent = new CustomEvent(RESTART_EVENT_NAME, {
         bubbles: true,
       });
-      main.dispatchEvent(restartEvent);
+      $main.dispatchEvent(restartEvent);
     } catch (e) {
       alert(e.message);
     }

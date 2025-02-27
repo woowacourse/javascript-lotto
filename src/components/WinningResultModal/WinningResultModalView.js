@@ -5,11 +5,11 @@ import getModalMarkup from './template.js';
 
 class WinningResultModalView extends ViewComponent {
   render() {
-    this.container.innerHTML = '';
+    this.$container.innerHTML = '';
   }
 
   renderModal(winningCounts, profitRate) {
-    this.container.innerHTML = this.template(winningCounts, profitRate);
+    this.$container.innerHTML = this.template(winningCounts, profitRate);
     this.bindEvents();
   }
 
@@ -20,13 +20,14 @@ class WinningResultModalView extends ViewComponent {
   bindEvents() {
     this.attachBackdropListener();
     this.attachCloseButtonListener();
+    this.attachRestartButtonListener();
   }
 
   attachBackdropListener() {
-    const backdrop = this.container.querySelector(SELECTORS.MODAL_BACKDROP);
-    if (backdrop) {
-      backdrop.addEventListener('click', (event) => {
-        if (event.target === backdrop) {
+    const $backdrop = this.$container.querySelector(SELECTORS.MODAL_BACKDROP);
+    if ($backdrop) {
+      $backdrop.addEventListener('click', (event) => {
+        if (event.target === $backdrop) {
           this.close();
         }
       });
@@ -34,18 +35,35 @@ class WinningResultModalView extends ViewComponent {
   }
 
   attachCloseButtonListener() {
-    const closeButton = this.container.querySelector(
+    const $closeButton = this.$container.querySelector(
       SELECTORS.MODAL_CLOSE_BUTTON,
     );
-    if (closeButton) {
-      closeButton.addEventListener('click', () => {
+    if ($closeButton) {
+      $closeButton.addEventListener('click', () => {
         this.close();
       });
     }
   }
 
+  attachRestartButtonListener() {
+    const $restartButton = this.$container.querySelector(
+      SELECTORS.RESTART_BUTTON,
+    );
+    if ($restartButton) {
+      $restartButton.addEventListener('click', () => {
+        if (this.onResultRequest) {
+          this.onResultRequest();
+        }
+      });
+    }
+  }
+
   close() {
-    this.container.innerHTML = '';
+    this.$container.innerHTML = '';
+  }
+
+  setOnResultRequest(callback) {
+    this.onResultRequest = callback;
   }
 }
 

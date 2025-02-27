@@ -5,9 +5,9 @@ import { LottoNumbersValidator } from '../../validators/LottoNumbersValidator.js
 import { RESULT_EVENT_NAME } from '../../constants/WinningInputsFormConstants.js';
 
 class WinningInputsForm {
-  constructor(container) {
-    this.view = new WinningInputsFormView(container);
-    this.view.setOnResultRequest((data) => this.handleResultRequest(data));
+  constructor($container) {
+    this.$view = new WinningInputsFormView($container);
+    this.$view.setOnResultRequest((data) => this.handleResultRequest(data));
   }
 
   handleResultRequest({ winningNumbers, bonusNumber }) {
@@ -20,7 +20,7 @@ class WinningInputsForm {
         bubbles: true,
       });
 
-      this.view.container.dispatchEvent(event);
+      this.$view.$container.dispatchEvent(event);
     } catch (e) {
       alert(e.message);
     }

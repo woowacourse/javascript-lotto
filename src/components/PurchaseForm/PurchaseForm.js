@@ -3,9 +3,9 @@ import { PurchasePriceValidator } from '../../validators/PurchasePriceValidator.
 import { PURCHASE_EVENT_NAME } from '../../constants/PurchaseFormConstants.js';
 
 class PurchaseForm {
-  constructor(container) {
-    this.view = new PurchaseFormView(container);
-    this.view.setOnPurchaseClick((purchasePrice) =>
+  constructor($container) {
+    this.$view = new PurchaseFormView($container);
+    this.$view.setOnPurchaseClick((purchasePrice) =>
       this.handlePurchase(purchasePrice),
     );
   }
@@ -13,12 +13,14 @@ class PurchaseForm {
   handlePurchase(purchasePrice) {
     try {
       PurchasePriceValidator.validate(purchasePrice);
+
       const event = new CustomEvent(PURCHASE_EVENT_NAME, {
         detail: purchasePrice,
         bubbles: true,
       });
-      this.view.container.dispatchEvent(event);
-      this.view.disableInput();
+
+      this.$view.$container.dispatchEvent(event);
+      this.$view.disableInput();
     } catch (e) {
       alert(e.message);
     }

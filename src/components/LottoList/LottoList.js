@@ -1,10 +1,12 @@
+import { SEPARATOR } from '../../constants/Configurations.js';
+
 class LottoList {
-  constructor(container) {
-    this.container = container;
+  constructor($container) {
+    this.$container = $container;
   }
 
   render(lottos) {
-    this.container.innerHTML = this.template(lottos);
+    this.$container.innerHTML = this.template(lottos);
   }
 
   // eslint-disable-next-line max-lines-per-function
@@ -13,7 +15,7 @@ class LottoList {
     const lottoItemsHTML = lottos
       .map(
         (lotto) =>
-          `<div class="lotto-ticket">🎟️ ${lotto.numbers.join(', ')}</div>`,
+          `<div class="lotto-ticket">🎟️ ${lotto.numbers.join(`${SEPARATOR} `)}</div>`,
       )
       .join('');
 

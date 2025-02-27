@@ -13,7 +13,7 @@ import {
 
 class WinningInputsFormView extends ViewComponent {
   render() {
-    this.container.innerHTML = this.template();
+    this.$container.innerHTML = this.template();
     this.initElements();
     this.bindEvents();
   }
@@ -28,13 +28,13 @@ class WinningInputsFormView extends ViewComponent {
   }
 
   initElements() {
-    this.winningNumbers = this.container.querySelectorAll(
+    this.$winningNumbers = this.$container.querySelectorAll(
       SELECTORS.WINNING_NUMBER_INPUTS,
     );
-    this.bonusNumber = this.container.querySelector(
+    this.$bonusNumber = this.$container.querySelector(
       SELECTORS.BONUS_NUMBER_INPUT,
     );
-    this.button = this.container.querySelector(SELECTORS.BUTTON);
+    this.$button = this.$container.querySelector(SELECTORS.RESULT_BUTTON);
   }
 
   bindEvents() {
@@ -44,26 +44,26 @@ class WinningInputsFormView extends ViewComponent {
 
   attachInputListeners() {
     const updateButtonState = () => {
-      this.button.disabled =
-        this.bonusNumber.value.trim() === '' ||
-        Array.from(this.winningNumbers).some(
-          (input) => input.value.trim() === '',
+      this.$button.disabled =
+        this.$bonusNumber.value.trim() === '' ||
+        Array.from(this.$winningNumbers).some(
+          ($input) => $input.value.trim() === '',
         );
     };
 
-    this.winningNumbers.forEach((input) =>
-      input.addEventListener('input', updateButtonState),
+    this.$winningNumbers.forEach(($input) =>
+      $input.addEventListener('input', updateButtonState),
     );
-    this.bonusNumber.addEventListener('input', updateButtonState);
+    this.$bonusNumber.addEventListener('input', updateButtonState);
   }
 
   attachButtonClickListener() {
-    this.button.addEventListener('click', () => {
+    this.$button.addEventListener('click', () => {
       if (this.onResultRequest) {
-        const winningNumbers = Array.from(this.winningNumbers).map((input) =>
+        const winningNumbers = Array.from(this.$winningNumbers).map((input) =>
           parseInt(input.value, 10),
         );
-        const bonusNumber = parseInt(this.bonusNumber.value, 10);
+        const bonusNumber = parseInt(this.$bonusNumber.value, 10);
         this.onResultRequest({ winningNumbers, bonusNumber });
       }
     });
