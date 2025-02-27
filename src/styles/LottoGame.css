@@ -8,7 +8,6 @@
   padding: 16px;
   border-radius: 4px;
   border: 1px solid var(--light-gray);
-  overflow-y: auto;
 }
 
 .lotto-winning-result-title {

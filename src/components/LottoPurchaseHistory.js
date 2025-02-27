@@ -18,6 +18,11 @@ export default class LottoPurchaseHistory {
     const countNumber = divideByUnit(PRICE.UNIT, price);
 
     const $div = document.createElement("div");
+
+    const $lottosWrap = customCreateElement({
+      tagName: "div",
+      className: "lotto-list-wrap",
+    });
     const $text = customCreateElement({
       tagName: "p",
       text: `총 ${countNumber}${OUTPUT.BUY_COUNT}`,
@@ -34,7 +39,8 @@ export default class LottoPurchaseHistory {
     lottos.map((lotto) => new LottoHistoryItem($ul, lotto.getLottoNumbers()));
 
     $div.appendChild($text);
-    $div.appendChild($ul);
+    $lottosWrap.appendChild($ul);
+    $div.appendChild($lottosWrap);
     $target.appendChild($div);
   }
 }
