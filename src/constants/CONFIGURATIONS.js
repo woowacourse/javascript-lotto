@@ -26,4 +26,6 @@ const RESTART = Object.freeze({
 
 const PROFIT = Object.freeze([5000, 50000, 1500000, 30000000, 2000000000]);
 
-export { SEPARATOR, KEY, PURCHASE_PRICE, LOTTO, RESTART, PROFIT };
+const LOTTO_COUNT = Object.freeze(['3', '4', '5', '5', '6']);
+
+export { SEPARATOR, KEY, PURCHASE_PRICE, LOTTO, RESTART, PROFIT, LOTTO_COUNT };

@@ -1,9 +1,4 @@
-import { RESTART } from '../constants/CONFIGURATIONS.js';
-import {
-  getPurchasePrice,
-  getRestart,
-  getWiningAndBonusNumbers,
-} from '../domains/InputProcessor.js';
+import { getPurchasePrice, getWiningAndBonusNumbers } from '../domains/InputProcessor.js';
 import LottoMachine from '../domains/LottoMachine.js';
 import WinningResult from '../domains/WinningResult.js';
 import retryUntilValid from '../utils/retryUntilValid.js';
@@ -11,13 +6,6 @@ import OutputView from '../views/web/OutputView.js';
 
 const WebController = {
   async run() {
-    // await this.start();
-    // const restartInput = await retryUntilValid(() => getRestart('web'));
-
-    // if (restartInput.toLowerCase() === RESTART.YES) {
-    //   await this.run();
-    // }
-
     await this.start();
   },
 
@@ -26,8 +14,8 @@ const WebController = {
     const winningResult = await this.generateWinningResult();
     const winningCounts = winningResult.calculate(lottos);
     const profitRate = winningResult.calculateProfitRate(lottoPurchasePrice, winningCounts);
-    console.log(winningCounts, profitRate);
-    // OutputView.printResult(winningCounts, profitRate);
+
+    OutputView.showModal(winningCounts, profitRate);
   },
 
   async processLottoPurchase() {

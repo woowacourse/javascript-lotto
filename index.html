@@ -22,7 +22,6 @@
             </div>
           </form>
         </section>
-        <!-- @TODO - hidden 처리하기 -->
         <!-- 로또 리스트 -->
         <div class="hiddenContainer flex hidden">
           <section class="lottoList"></section>
@@ -41,9 +40,27 @@
         </div>
 
         <!-- 결과 모달 -->
-        <div></div>
+        <section class="modalContainer hidden">
+          <div class="modalBackground"></div>
+          <div class="modalContent">
+            <button class="closeButton">x</button>
+            <h2>🏆 당첨 통계 🏆</h2>
+            <table class="lottoResultTable">
+              <thead>
+                <tr>
+                  <th>일치 갯수</th>
+                  <th>당첨금</th>
+                  <th>당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div class="profitText"></div>
+            <button class="resetButton">다시 시작하기</button>
+          </div>
+        </section>
       </main>
-      <footer>Copyright 2023. woowacourse</footer>
+      <footer>Copyright 2025. woowacourse</footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>

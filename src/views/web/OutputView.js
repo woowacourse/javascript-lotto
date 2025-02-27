@@ -1,6 +1,7 @@
 import { createTag, getByClass, getById } from '../../utils/DOM.js';
 import WinningInput from './components/WinningInput.js';
 import BonusInput from './components/BonusInput.js';
+import LottoResultModal from './components/LottoResultModal.js';
 
 const OutputView = {
   show($target) {
@@ -51,8 +52,8 @@ const OutputView = {
 
   generateWinningAndBonusInput() {
     const $winningNumbersInput = getByClass('winningNumbersInput')[0];
-    WinningInput($winningNumbersInput);
-    BonusInput($winningNumbersInput);
+    WinningInput.appendWinningInput($winningNumbersInput);
+    BonusInput.appendBonusInput($winningNumbersInput);
   },
 
   makeLotto($lottoListDiv, lotto) {
@@ -73,6 +74,13 @@ const OutputView = {
   disablePurchase() {
     this.disable('purchaseInput');
     this.disable('purchaseButton');
+  },
+
+  showModal(winningCounts, profitRate) {
+    LottoResultModal.initializeEvent();
+    LottoResultModal.createTable(winningCounts);
+    LottoResultModal.createProfit(profitRate);
+    LottoResultModal.openModal();
   },
 };
 
