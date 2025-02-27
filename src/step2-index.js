@@ -1,12 +1,9 @@
 import LottoGame from "./domain/LottoGame.js";
 import Validator from "./domain/Validator.js";
 import Constants from "./constant/Constants.js";
+import LottoInput from "./view/web/components/LottoInput.js";
 
 const middleSection = document.querySelector(".lotto__middle");
-
-const purchaseButton = document.querySelector(".lotto__input__btn");
-const inputMoney = document.querySelector(".input__money");
-const purchaseMessage = document.querySelector(".lotto__box p:nth-of-type(2)");
 const lottoListContainer = document.querySelector(".lotto__list");
 const winningNumberInputs = document.querySelectorAll(
   ".target__lottos .one__numbers__input",
@@ -46,10 +43,6 @@ function displayResult() {
   resultModal.style.display = "flex";
 }
 
-function setupPurchaseEvent() {
-  purchaseButton.addEventListener("click", handlePurchase);
-}
-
 function displayLottos(lottos) {
   lottoListContainer.innerHTML = "";
   lottos.forEach((lotto) => {
@@ -73,22 +66,10 @@ function displayLottos(lottos) {
   });
 }
 
-function handlePurchase() {
-  try {
-    const rawPriceString = inputMoney.value;
-    Validator.isPrice(rawPriceString);
-
-    const lottoNum = Number(rawPriceString) / Constants.LOTTO.UNIT;
-    lottoGame = new LottoGame(lottoNum);
-
-    purchaseMessage.style.display = "block";
-    middleSection.style.display = "block";
-    purchaseMessage.textContent = `총 ${lottoNum}개를 구매하였습니다.`;
-
-    displayLottos(lottoGame.lottos);
-  } catch (error) {
-    alert(error.message);
-  }
+function handlePurchaseCallback(lottoNum) {
+  lottoGame = new LottoGame(lottoNum);
+  displayLottos(lottoGame.lottos);
+  middleSection.style.display = "block";
 }
 
 function setupResultButton() {
@@ -130,17 +111,13 @@ function setupRestartButton() {
   restartButton.addEventListener("click", () => {
     resultModal.style.display = "none";
 
-    inputMoney.value = "";
-    winningNumberInputs.forEach((input) => {
-      input.value = "";
-    });
     bonusNumberInput.value = "";
 
-    purchaseMessage.style.display = "none";
     middleSection.style.display = "none";
     lottoListContainer.innerHTML = "";
 
     lottoGame = null;
+    lottoInput.reset();
   });
 }
 
@@ -148,9 +125,9 @@ function initApp() {
   purchaseMessage.style.display = "none";
   middleSection.style.display = "none";
 
-  setupPurchaseEvent();
   setupResultButton();
   setupRestartButton();
 }
 
+const lottoInput = new LottoInput(handlePurchaseCallback);
 initApp();
