@@ -4,7 +4,7 @@ import {
 } from "../../../../constants/lotto.js";
 import {
   LOTTO_RESULT_TABLE_MAP,
-  WINNING_TABLE,
+  PRIZE_RESULT,
 } from "../../../../constants/web.js";
 import { setHeader, setRow } from "../../templates/table.js";
 
@@ -17,11 +17,11 @@ const createPrizeTable = (result) => {
     return [
       matchedTemplate,
       prize,
-      `${matchedLottos}${WINNING_TABLE.LOTTO_UNIT}`,
+      `${matchedLottos}${PRIZE_RESULT.LOTTO_UNIT}`,
     ];
   });
 
-  const headerTemplate = setHeader([...WINNING_TABLE.HEADERS]);
+  const headerTemplate = setHeader([...PRIZE_RESULT.HEADERS]);
   const rowTemplate = rows.map((row) => setRow(row)).join("");
 
   document

@@ -1,9 +1,10 @@
 import FrozenMap from "../FrozenMap.js";
 import { LOTTO_MATCHED_NUMBER_COUNT } from "./lotto.js";
 
-export const WINNING_TABLE = {
+export const PRIZE_RESULT = {
   HEADERS: ["일치갯수", "당첨금", "당첨갯수"],
   LOTTO_UNIT: "개",
+  REVENUE_RATE_DIGITS: 2,
 };
 
 export const LOTTO_RESULT_TABLE_MAP = Array.from(
