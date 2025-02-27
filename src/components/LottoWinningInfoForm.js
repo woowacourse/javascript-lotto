@@ -20,7 +20,7 @@ export default class LottoWinningInfoForm {
       className: `${!this.#show ? "hidden" : ""} lotto-winning-info-form`,
     });
     const $infoText = customCreateElement({
-      tagName: "form",
+      tagName: "p",
       className: `${!this.#show ? "hidden" : ""} lotto-winning-info-form`,
       text: "지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.",
     });
