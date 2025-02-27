@@ -1,7 +1,12 @@
+import { calculateRevenue } from './domain/calculateRevenue.js';
 import { getLottos } from './domain/getLottos.js';
+import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
+import WinningLotto from './domain/WinningLotto.js';
 
 let purchasePrice = 0;
 let lottos = [];
+let bonusNumber = 0;
+let winningNumbers = [];
 
 const getPurchasePrice = () => {
   const purchaseForm = document.getElementById('purchase-form');
