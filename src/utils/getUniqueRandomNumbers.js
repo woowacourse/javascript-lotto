@@ -1,9 +1,10 @@
 const getUniqueRandomNumbers = (min, max, count) => {
-  const randomNumbers = new Set();
-  while (randomNumbers.size < count) {
-    randomNumbers.add(Math.floor(Math.random() * (max - min + 1)) + min);
-  }
-  return Array.from(randomNumbers);
+  const range = Array.from(
+    { length: max - min + 1 },
+    (_, index) => min + index
+  );
+  const shuffled = range.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count).sort((a, b) => a - b);
 };
 
 export default getUniqueRandomNumbers;
