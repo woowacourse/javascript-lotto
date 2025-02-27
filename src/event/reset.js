@@ -11,8 +11,13 @@ const reset = () => {
   const buyedLottos = document.querySelector(".buyedLottos");
   const winningNumberInputs = document.querySelectorAll(".winningNumberInput");
   const bonusNumberInput = document.querySelector(".bonusNumberInput");
+  const winningCount = document.querySelectorAll(".winningCount");
+
   winningNumberInputs.forEach((input) => {
     input.value = "";
+  });
+  winningCount.forEach((count) => {
+    count.textContent = "0개";
   });
   bonusNumberInput.value = "";
   buyedLottos.textContent = "";
