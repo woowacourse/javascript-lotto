@@ -1,3 +1,4 @@
+import { LOTTO } from '../../domain/lottoConstants';
 import { createElement } from '../utils/dom';
 
 export default function WinningNumberInputs(winningNumberContainer) {
@@ -7,15 +8,15 @@ export default function WinningNumberInputs(winningNumberContainer) {
   const bonusNumber = { value: 0 };
   const winningInputs = createElement('div', { class: 'winning-inputs' });
 
-  CreateSixWinningInputs(winningAndBonusInputContainer, winningInputs, winningNumbersArray);
+  CreateSixWinningInputs({ winningAndBonusInputContainer, winningInputs, winningNumbersArray });
   CreateBonusInput(winningAndBonusInputContainer, bonusNumber);
 
   winningNumberContainer.appendChild(winningAndBonusInputContainer);
   return { winningNumbersArray, bonusNumber };
 }
 
-function CreateSixWinningInputs(winningAndBonusInputContainer, winningInputs, winningNumbersArray) {
-  Array.from({ length: 6 }, (_, idx) => {
+function CreateSixWinningInputs({ winningAndBonusInputContainer, winningInputs, winningNumbersArray }) {
+  Array.from({ length: LOTTO.MAX_LENGTH }, (_, idx) => {
     const winningNumberInput = createElement('input', { type: 'text', class: 'winning-input' });
     winningNumberInput.addEventListener('input', (e) => {
       winningNumbersArray[idx] = Number(e.target.value);
