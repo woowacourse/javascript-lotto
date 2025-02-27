@@ -1,8 +1,5 @@
 import ViewComponent from '../core/ViewComponent.js';
-import {
-  PURCHASE_FORM_TEMPLATE,
-  SELECTORS,
-} from '../../constants/PurchaseFormConstants.js';
+import { SELECTORS } from '../../constants/PurchaseFormConstants.js';
 
 class PurchaseFormView extends ViewComponent {
   render() {
@@ -12,7 +9,13 @@ class PurchaseFormView extends ViewComponent {
   }
 
   template() {
-    return PURCHASE_FORM_TEMPLATE;
+    return `
+      <label>구입할 금액을 입력해주세요.</label>
+      <div class="purchase-price-input">
+        <input type="text" placeholder="금액" />
+        <button class="purchase-button" disabled>구입</button>
+      </div>
+    `;
   }
 
   bindEvents() {
