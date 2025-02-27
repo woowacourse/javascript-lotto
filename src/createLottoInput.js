@@ -56,7 +56,7 @@ function createLottoInput() {
   lottoInputContainer.appendChild(numInputContainer);
   lottoInputContainer.appendChild(checkResultBtn);
 
-  return lottoInputContainer;
+  document.querySelector('.card-content').appendChild(lottoInputContainer);
 }
 
 export default createLottoInput;
