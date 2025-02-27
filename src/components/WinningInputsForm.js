@@ -9,7 +9,7 @@ class WinningInputsForm {
 
   render() {
     // 기존 HTML에 구매 폼 영역만 추가합니다.
-    this.container.innerHTML += `
+    this.container.innerHTML = `
       <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
       <div class="inputs-label">
         <label>당첨 번호</label>
@@ -26,13 +26,13 @@ class WinningInputsForm {
         </div>
         <input type="text" class="number-input bonus" maxlength="2" />
       </div>
-      <button class="open-result-button" disabled>결과 확인하기</button>
+      <button class="big-button" disabled>결과 확인하기</button>
     `;
     this.winningNumbers = this.container.querySelectorAll(
       '.number-input.winning',
     );
     this.bonusNumber = this.container.querySelector('.number-input.bonus');
-    this.button = this.container.querySelector('.open-result-button');
+    this.button = this.container.querySelector('.big-button');
   }
 
   bindEvents() {

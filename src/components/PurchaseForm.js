@@ -9,7 +9,7 @@ class PurchaseForm {
 
   render() {
     // 기존 HTML에 구매 폼 영역만 추가합니다.
-    this.container.innerHTML += `
+    this.container.innerHTML = `
       <label>구입할 금액을 입력해주세요.</label>
       <div class="purchase-price-input">
         <input type="text" placeholder="금액" />
@@ -38,10 +38,9 @@ class PurchaseForm {
         });
         this.container.dispatchEvent(event);
         this.input.disabled = true;
+        this.button.disabled = true;
       } catch (e) {
         alert(e.message);
-      } finally {
-        this.button.disabled = true;
       }
     });
   }
