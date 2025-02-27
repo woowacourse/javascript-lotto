@@ -21,6 +21,71 @@
   --color-black: #000000;
 } */
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 화면 전체 높이 */
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+main {
+  flex-grow: 1; /* body의 남은 공간을 차지 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#lotto-title {
+  text-align: center;
+}
+
+#lotto-list {
+  list-style: none;
+  padding: 0;
+}
+
+.label-container,
+.input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-number,
+.bonus-number {
+  width: 20px;
+  height: 20px;
+}
+
 #check-result {
   display: block;
+  margin: auto;
+}
+
+.winning-statistics {
+  text-align: center;
+}
+.lotto-table th {
+  border-top: 1px solid black;
+}
+
+.lotto-table th,
+.lotto-table td {
+  border-bottom: 1px solid black;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
 }
