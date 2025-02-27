@@ -218,7 +218,12 @@ export const createModal = (lottoResult = {}, lottoProfit = 0) => {
     textContent: `당신의 총 수익률은 ${Number(lottoProfit.toFixed(1)).toLocaleString()}%입니다.`,
   });
 
-  modalContent.append(titleContainer, lottoList, profitText);
+  const restartButton = createElementWithAttributes('button', {
+    className: 'modal-restart-button',
+    textContent: '다시 시작하기',
+  });
+
+  modalContent.append(titleContainer, lottoList, profitText, restartButton);
   modal.append(overlay, modalContent);
 
   return modal;
