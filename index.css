@@ -277,7 +277,10 @@ dialog .modal-result-content {
     padding: 8px 0;
     border-top: 1px solid #4E5BA633;
     text-align: center;
-    /*border-bottom: 1px solid #4E5BA633;*/
+}
+
+dialog .modal-result-content:last-child {
+    border-bottom: 1px solid #4E5BA633;
 }
 
 dialog .modal-content h4 {
@@ -296,6 +299,12 @@ dialog .modal-content p {
     line-height: 24px;
     letter-spacing: 0.5px;
     text-align: center;
+}
+
+dialog .modal-content h4,
+dialog .modal-result-content p {
+    text-align: center;
+    flex: 1;
 }
 
 dialog .winning-result {
