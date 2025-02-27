@@ -59,6 +59,8 @@ export const createWinningLottoForm = () => {
         id: `lottoNumber${i}`,
         name: 'winningNumber',
         required: true,
+        minLength: 1,
+        maxLength: 2,
       },
     });
     winningInputContainer.appendChild(input);
@@ -83,7 +85,13 @@ export const createWinningLottoForm = () => {
 
   const bonusInput = createElementWithAttributes('input', {
     className: 'bonus-number-input',
-    attributes: { id: 'bonusNumber', name: 'bonusNumber', required: true },
+    attributes: {
+      id: 'bonusNumber',
+      name: 'bonusNumber',
+      required: true,
+      minLength: 1,
+      maxLength: 2,
+    },
   });
 
   bonusInputContainer.appendChild(bonusInput);
