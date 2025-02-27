@@ -14,69 +14,8 @@
   </head>
   <body>
     <div id="app">
-      <!--
-      TODO: 동적으로 모달 컴포넌트가 추가되어야함.
-      -->
-      <div class="modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-          <span class="text-subtitle">
-            🏆 당첨 통계 🏆
-            <button
-              type="button"
-              class="modal-close-button"
-              onclick="console.log('닫기 클릭')"
-            >
-              <img src="/vector.svg" alt="close" />
-            </button>
-          </span>
-
-          <ul class="modal-content-lotto-list-result">
-            <li class="modal-content-lotto-result">
-              <span>일치 갯수</span>
-              <span>당첨금</span>
-              <span>당첨 갯수</span>
-            </li>
-            <li class="modal-content-lotto-result">
-              <span>3개</span>
-              <span>5,000원</span>
-              <span>n개</span>
-            </li>
-            <li class="modal-content-lotto-result">
-              <span>3개</span>
-              <span>5,000원</span>
-              <span>n개</span>
-            </li>
-            <li class="modal-content-lotto-result">
-              <span>3개</span>
-              <span>5,000원</span>
-              <span>n개</span>
-            </li>
-            <li class="modal-content-lotto-result">
-              <span>3개</span>
-              <span>5,000원</span>
-              <span>n개</span>
-            </li>
-            <li class="modal-content-lotto-result">
-              <span>3개</span>
-              <span>5,000원</span>
-              <span>n개</span>
-            </li>
-          </ul>
-
-          <span class="modal-content-profit">
-            당신의 총 수익률은 %입니다.
-          </span>
-          <button
-            class="modal-restart-button"
-            onclick="console.log('다시 시작하기 클릭')"
-          >
-            다시 시작하기
-          </button>
-        </div>
-      </div>
       <header class="header">
-        <span class="header-title"> 🎱 행운의 로또 </span>
+        <h1 class="header-title">🎱 행운의 로또</h1>
       </header>
       <main class="main">
         <h3 class="main-winning-check-title">🎱 내 번호 당첨 확인 🎱</h3>
@@ -95,97 +34,11 @@
               placeholder="금액"
             />
           </article>
-          <button class="main-purchase-amount-button">구입</button>
+          <button type="button" class="main-purchase-amount-button">
+            구입
+          </button>
         </section>
-        <!--
-        TODO: 동적으로 컴포넌트가 추가되어야함.
-        -->
-        <section id="lottoList-winningLotto-container">
-          <article id="lottoListDisplay" class="lotto-list-display">
-            <p class="lotto-count-display">총 7개를 구매하였습니다.</p>
-            <ul class="lotto-list">
-              <li class="lotto">
-                <span class="lotto-ticket">🎟️</span>
-                <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-              </li>
-              <li class="lotto">
-                <span class="lotto-ticket">🎟️</span>
-                <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-              </li>
-              <li class="lotto">
-                <span class="lotto-ticket">🎟️</span>
-                <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-              </li>
-              <li class="lotto">
-                <span class="lotto-ticket">🎟️</span>
-                <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-              </li>
-              <li class="lotto">
-                <span class="lotto-ticket">🎟️</span>
-                <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-              </li>
-              <li class="lotto">
-                <span class="lotto-ticket">🎟️</span>
-                <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-              </li>
-              <li class="lotto">
-                <span class="lotto-ticket">🎟️</span>
-                <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-              </li>
-            </ul>
-          </article>
-          <form class="winning-lotto-form">
-            <legend class="winning-lotto-form-legend">
-              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
-            </legend>
-            <div class="winning-lotto-container">
-              <div class="winning-numbers-container">
-                <label for="lottoNumber1">당첨 번호</label>
-                <div class="winning-numbers-input-container">
-                  <input
-                    id="lottoNumber1"
-                    class="winning-numbers-input"
-                    name="winningNumber"
-                  />
-                  <input
-                    id="lottoNumber2"
-                    class="winning-numbers-input"
-                    name="winningNumber"
-                  />
-                  <input
-                    id="lottoNumber3"
-                    class="winning-numbers-input"
-                    name="winningNumber"
-                  />
-                  <input
-                    id="lottoNumber4"
-                    class="winning-numbers-input"
-                    name="winningNumber"
-                  />
-                  <input
-                    id="lottoNumber5"
-                    class="winning-numbers-input"
-                    name="winningNumber"
-                  />
-                  <input
-                    id="lottoNumber6"
-                    class="winning-numbers-input"
-                    name="winningNumber"
-                  />
-                </div>
-              </div>
-              <div class="bonus-number-container">
-                <label class="bonus-number-label" for="bonusNumber"
-                  >보너스 번호</label
-                >
-                <div class="bonus-number-input-container">
-                  <input id="bonusNumber" class="bonus-number-input" />
-                </div>
-              </div>
-            </div>
-            <button class="lotto-result-check-button">결과 확인하기</button>
-          </form>
-        </section>
+        <section id="lottoListWinningLottoContainer"></section>
       </main>
       <footer class="footer">
         <p class="footer-text">Copyright 2023. woowacourse</p>
