@@ -1,5 +1,6 @@
 import PurchaseFormView from './PurchaseFormView.js';
 import { PurchasePriceValidator } from '../../validators/PurchasePriceValidator.js';
+import { PURCHASE_EVENT_NAME } from '../../constants/PurchaseFormConstants.js';
 
 class PurchaseForm {
   constructor(container) {
@@ -12,12 +13,10 @@ class PurchaseForm {
   handlePurchase(purchasePrice) {
     try {
       PurchasePriceValidator.validate(purchasePrice);
-
-      const event = new CustomEvent('purchaseLottos', {
+      const event = new CustomEvent(PURCHASE_EVENT_NAME, {
         detail: purchasePrice,
         bubbles: true,
       });
-
       this.view.container.dispatchEvent(event);
       this.view.disableInput();
     } catch (e) {
