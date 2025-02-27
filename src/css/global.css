@@ -1,0 +1,65 @@
+/* 모든 요소 초기화 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 기본적인 HTML 요소 스타일 조정 */
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #fff;
+}
+
+/* 제목 태그 초기화 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* 리스트 스타일 제거 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 링크 스타일 기본 설정 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 이미지 크기 조정 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 테이블 스타일 정리 */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* 버튼 커서 */
+button {
+  cursor: pointer;
+}
+
+/* input number type 기본 속성인 화살표 제거 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

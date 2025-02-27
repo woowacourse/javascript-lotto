@@ -4,12 +4,60 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/global.css" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <link rel="stylesheet" href="./src/css/modal.css" />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>🎱 행운의 로또</header>
+      <main>
+        <h1>🎱 내 번호 당첨 확인 🎱</h1>
+        <form id="purchase-form">
+          <span>구입할 금액을 입력해주세요.</span>
+          <div>
+            <input id="purchase-form__input" type="number" />
+            <button id="purchase-form__btn">구입</button>
+          </div>
+        </form>
+        <section id="after-purchase" class="hidden">
+          <section id="lotto-list">
+            <span>총 {}개를 구매하였습니다.</span>
+            <ul>
+              <li>1,2,3,4,5,6</li>
+              <li>1,2,3,4,5,6</li>
+              <li>1,2,3,4,5,6</li>
+            </ul>
+          </section>
+          <form id="lotto-form">
+            <span>지난 주 당첨번호 {}개와 보너스 번호 {}개를 입력해주세요.</span>
+            <section>
+              <div class="numbers">
+                <span>당첨번호</span>
+                <div>
+                  <input class="winning-numbers__input" />
+                  <input class="winning-numbers__input" />
+                  <input class="winning-numbers__input" />
+                  <input class="winning-numbers__input" />
+                  <input class="winning-numbers__input" />
+                  <input class="winning-numbers__input" />
+                </div>
+              </div>
+              <div id="bonus-number" class="numbers">
+                <span>보너스 번호</span>
+                <input id="bonus-number__input" type="number" />
+              </div>
+            </section>
+            <button id="lotto-form__btn">결과 확인하기</button>
+          </form>
+        </section>
+      </main>
+      <!-- <section id="modal">
+        <button>X</button>
+        <h1>🏆 당첨통계 🏆</h1>
+      </section> -->
+      <footer>Copyright 2023. woowacourse</footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>

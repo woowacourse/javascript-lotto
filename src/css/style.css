@@ -1,0 +1,103 @@
+header {
+  background-color: #4e5ba6;
+  padding: 15px 80px;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 500;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 414px;
+  margin: 60px auto;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+h1 {
+  margin: 0px auto;
+  padding: 20px;
+  font-size: 1.5rem;
+}
+
+#purchase-form__input {
+  padding: 6px;
+  width: 80%;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#purchase-form__btn {
+  padding: 7px;
+  width: 15%;
+  margin-left: 5px;
+  background-color: #4e5ba6;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+#lotto-list li {
+  margin-top: 5px;
+}
+
+#lotto-numbers-form section {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+#lotto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#lotto-form section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.numbers input {
+  padding: 10px;
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+.numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+#bonus-number {
+  display: flex;
+  align-items: end;
+}
+
+#lotto-form__btn {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4e5ba6;
+  color: white;
+}
+
+footer {
+  text-align: center;
+  align-content: center;
+  height: 80px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  color: #4e5ba6;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none;
+}
