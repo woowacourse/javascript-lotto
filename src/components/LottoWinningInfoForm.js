@@ -1,8 +1,10 @@
 import Button from "./common/button.js";
 import validateBonusNumber from "../validation/validateBonusNumber.js";
 import Lotto from "../domain/Lotto.js";
-import { LOTTO_NUMBER } from "../constants/lotto.js";
 import winningLottoInfoStore from "../store/winningLottoInfo.js";
+import WinningNumbersInput from "./WinningNumbersInput.js";
+import customCreateElement from "../utils/customElement.js";
+import BonusNumberInput from "./BonusNumberInput.js";
 
 export default class LottoWinningInfoForm {
   #show;
@@ -13,37 +15,30 @@ export default class LottoWinningInfoForm {
   }
 
   render($target) {
-    const $form = document.createElement("form");
-    $form.className = `${!this.#show ? "hidden" : ""} lotto-winning-info-form`;
+    const $form = customCreateElement({
+      tagName: "form",
+      className: `${!this.#show ? "hidden" : ""} lotto-winning-info-form`,
+    });
+    const $infoText = customCreateElement({
+      tagName: "form",
+      className: `${!this.#show ? "hidden" : ""} lotto-winning-info-form`,
+      text: "지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.",
+    });
+    const $inputsContainer = customCreateElement({
+      tagName: "form",
+      className: "lotto-number-input-container",
+    });
+
+    $form.appendChild($infoText);
+    $form.appendChild($inputsContainer);
 
     const { winningNumbers, bonusNumber } =
       winningLottoInfoStore.getState().winningLottoInfo;
 
-    $form.innerHTML = `
-    <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-    <div class="lotto-number-input-container">
-        <div class="lotto-number-input-wrap">
-            <span>당첨 번호</span>
-            <div class="lotto-numbers-wrap">
-            ${Array.from(
-              { length: LOTTO_NUMBER.LENGTH },
-              (_, index) =>
-                `<input class="number-input" value="${
-                  winningNumbers[index] ?? ""
-                }" />`
-            ).join("")}
-            </div>
-        </div>
-        <div class="lotto-number-input-wrap bonus-input-wrap">
-            <span>보너스 번호</span>
-            <input class="number-input" value="${
-              bonusNumber === 0 ? "" : bonusNumber
-            }"/>
-        </div>
-    </div>
-`;
-
+    new WinningNumbersInput($inputsContainer, winningNumbers);
+    new BonusNumberInput($inputsContainer, bonusNumber);
     new Button($form, this.handleResultButtonClick, "결과 확인하기");
+
     $target.appendChild($form);
   }
 
