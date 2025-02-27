@@ -10,6 +10,7 @@
 @import "./LottoHistoryItem.css";
 @import "./LottoWinningInfoForm.css";
 @import "./WinningStatistic.css";
+@import "./StatisticsTable.css";
 
 :root {
   --main-color: #4e5ba6;

@@ -1,0 +1,17 @@
+table {
+  border-collapse: collapse;
+}
+th,
+td {
+  height: 40px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.table-head {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.tabel-row {
+  text-align: center;
+}
