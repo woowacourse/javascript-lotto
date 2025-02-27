@@ -50,8 +50,9 @@
 }
 
 .modal-content-lotto-result {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
   padding: 8px;
   border-bottom: 1px solid black;
 
