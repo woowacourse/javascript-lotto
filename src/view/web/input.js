@@ -11,7 +11,13 @@ const getPrice = () => {
 
       winningLottoContainer.style.display = "flex";
       resultSubmitButton.style.display = "flex";
+
       resolve(userInputPrice.value);
+      // try {
+      //   validatePrice(userInputPrice.value);
+      // } catch (error) {
+      //   const
+      // }
     });
   });
 };

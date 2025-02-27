@@ -1,4 +1,4 @@
-import { LOTTO } from "../config/const";
+import { LOTTO } from "../../config/const";
 
 const printLottoCount = (price) => {
   const lottoContents = document.querySelector(".lotto-contents");
@@ -51,39 +51,31 @@ const prizeSummary = [
 const createPrizeRow = ({ count, prize, label }, prizeResult) => {
   const tableRow = document.createElement("tr");
 
-  const coutCell = document.createElement("td");
-  const prizeCell = document.createElement("td");
-  const labelCell = document.createElement("td");
+  const rowData = [count, prize.toLocaleString(), `${prizeResult[label]}개`];
 
-  coutCell.innerText = count;
-  prizeCell.innerText = prize.toLocaleString();
-  labelCell.innerText = `${prizeResult[label]}개`;
-
-  tableRow.appendChild(coutCell);
-  tableRow.appendChild(prizeCell);
-  tableRow.appendChild(labelCell);
+  rowData.forEach((data) => {
+    const cell = document.createElement("td");
+    cell.innerText = data;
+    tableRow.appendChild(cell);
+  });
 
   return tableRow;
 };
 
 const printPrizeHeader = () => {
   const resultTable = document.querySelector(".result-table");
+
+  const headers = ["일치 갯수", "당첨금", "당첨 갯수"];
   const tableHeader = document.createElement("thead");
-  const tableContent = document.createElement("tr");
+  const tableRow = document.createElement("tr");
 
-  const countHeaderCell = document.createElement("th");
-  const prizeHeaderCell = document.createElement("th");
-  const labelHeaderCell = document.createElement("th");
+  headers.forEach((headerText) => {
+    const headerCell = document.createElement("th");
+    headerCell.innerText = headerText;
+    tableRow.appendChild(headerCell);
+  });
 
-  countHeaderCell.innerText = "일치 갯수";
-  prizeHeaderCell.innerText = "당첨금";
-  labelHeaderCell.innerText = "당첨 갯수";
-
-  tableContent.appendChild(countHeaderCell);
-  tableContent.appendChild(prizeHeaderCell);
-  tableContent.appendChild(labelHeaderCell);
-
-  tableHeader.appendChild(tableContent);
+  tableHeader.appendChild(tableRow);
   resultTable.appendChild(tableHeader);
 };
 
@@ -103,8 +95,6 @@ const printRateResult = (rate) => {
 };
 
 const printLottoResult = (prizeResult, rate) => {
-  // const prizeModal = document.querySelector("modal");
-  // prizeModal.style.display = "flex";
   printPrizeHeader();
   printPrizeResult(prizeResult);
   printRateResult(rate);
