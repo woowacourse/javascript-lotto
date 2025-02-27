@@ -4,6 +4,10 @@ class LottoStatistics {
   #rankResult;
 
   constructor() {
+    this.init();
+  }
+
+  init() {
     this.#rankResult = {
       '3개 일치': { name: '3', count: 0, price: 5000 },
       '4개 일치': { name: '4', count: 0, price: 50000 },

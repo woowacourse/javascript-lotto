@@ -3,6 +3,7 @@
     height: 36px;
     text-align: center;
     background-color: #4E5BA6;
+    cursor: pointer;
 }
 
 .button-text {
@@ -10,4 +11,10 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 36px;
+}
+
+.button-right {
+    position: absolute;
+    margin-left: 80%;
+    font-size: 25px;
 }

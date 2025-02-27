@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="./styles/index.css" />
   </head>
   <body>
-    <header>
-      <h1>🎱 행운의 로또</h1>
+    <header class="header-box">
+      <h1 class="header-text">🎱 행운의 로또</h1>
     </header>
     <div class="root">
       <div class="app">
-        <h2 class="page-title">🎱 내 번호 당첨 확인 🎱</h2>
         <div class="lotto-box">
+          <h2 class="page-title">🎱 내 번호 당첨 확인 🎱</h2>
           <div class="lotto-top">
             <div class="input-container">
                 <span class="input-title">구입할 금액을 입력해주세요.</span>
@@ -36,7 +36,7 @@
             <div class="flex-base flex-space-between">
               <div class="input-container">
                 <span class="input-title input-title-number">당첨 번호</span>
-                <div class="input-box mt-10">
+                <div class="input-box mt-5">
                   <input class="input-basic input-winning-number" type="text" value="1"/>
                   <input class="input-basic input-winning-number" type="text" value="2"/>
                   <input class="input-basic input-winning-number" type="text" value="3"/>
@@ -47,7 +47,7 @@
               </div>
               <div class="input-container">
                 <span class="input-title input-title-number">보너스 번호</span>
-                <div class="input-box input-container-bonus-number mt-10">
+                <div class="input-box input-container-bonus-number mt-5">
                   <input class="input-basic" id="input-bonus-number" type="text" value="9"/>
                 </div>
               </div>  
@@ -57,27 +57,32 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-dimmed">    
-        <div class="modal">
-            <h2 class="page-title">🏆 당첨 통계 🏆</h2>
-            <table class="modal-table">
-              <thead>
-                <tr>
-                  <th>일치 갯수</th>
-                  <th>당첨금</th>
-                  <th>당첨 갯수</th>
-                </tr>
-              </thead>
-              <tbody class="modal-item-container">
-              </tbody>
-            </table>
-            <div class="button-box">
-              <span class="button-text" id="reset-button">다시 시작하기</span>
-            </div>
+      </div>   
+    </div>     
+    <div class="modal-dimmed modal-close"> 
+      <div class="modal modal-close">
+        <div class="flex-base flex-center">
+          <h2 class="page-title">🏆 당첨 통계 🏆</h2>
+          <span class="button-right" id="reset-close-button">x</span>
         </div>
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody class="modal-item-container">
+            </tbody>
+          </table>
+          <div class="bold-text">
+          </div>
+          <div class="button-box">
+            <span class="button-text" id="reset-button">다시 시작하기</span>
+          </div>
       </div>
-    </div>        
+    </div>   
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
