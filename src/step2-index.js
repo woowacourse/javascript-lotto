@@ -48,6 +48,64 @@ const printLottos = (quantity) => {
   });
 
   result.appendChild(container);
+
+  showSystemMessage();
+};
+
+const showSystemMessage = () => {
+  const systemMessage = document.getElementById('systemMessage');
+  systemMessage.innerHTML = '';
+  const messageContainer = document.createElement('div');
+  messageContainer.textContent = `지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.`;
+  systemMessage.appendChild(messageContainer);
+
+  showWinningLottos();
+};
+
+const showWinningLottos = () => {
+  const systemMessage = document.getElementById('systemMessage');
+  const divWinningContainer = document.createElement('div');
+
+  const divWinningNumber = document.createElement('span');
+  divWinningNumber.textContent = `당첨 번호`;
+  divWinningContainer.appendChild(divWinningNumber);
+
+  const divBonusContainer = document.createElement('div');
+
+  const divBonusNumber = document.createElement('span');
+  divBonusNumber.textContent = `보너스 번호`;
+  divBonusContainer.appendChild(divBonusNumber);
+
+  for (let i = 0; i < 6; i++) {
+    const input = document.createElement('input');
+    input.id = `winningNumber${i}`;
+    input.style.width = '30px';
+    input.type = `number`;
+    input.addEventListener('input', (event) => {
+      winningNumbers[i] = Number(event.target.value);
+    });
+    divWinningContainer.appendChild(input);
+  }
+
+  systemMessage.appendChild(divWinningContainer);
+
+  const bonusInput = document.createElement('input');
+  bonusInput.id = 'bonusNumber';
+  bonusInput.style.width = '30px';
+  bonusInput.type = `number`;
+
+  bonusInput.addEventListener('input', (e) => {
+    bonusNumber = Number(e.target.value);
+  });
+  divBonusContainer.appendChild(bonusInput);
+
+  systemMessage.appendChild(divBonusContainer);
+  const button = document.createElement('button');
+  button.id = `showResultButton`;
+  button.textContent = `결과 확인하기`;
+
+  systemMessage.appendChild(button);
+  handleResultButton();
 };
 
 const printLotto = (lotto) => {
