@@ -15,12 +15,14 @@
         <h2 class="page-title">🎱 내 번호 당첨 확인 🎱</h2>
         <div class="lotto-box">
           <div class="lotto-top">
-              <div class="input-container">
+            <div class="input-container">
                 <span class="input-title">구입할 금액을 입력해주세요.</span>
-                <input class="input-basic" type="text" />
-              </div>
-              <div class="button-box">
-                <span class="button-text">구입</span>
+                <div class="input-box">
+                  <input class="input-basic w-75" id="user-money" type="text" placeholder="금액" value="7000"/>
+                  <div class="button-box w-20">
+                    <span class="button-text" id="purchase-button">구입</span>
+                  </div>
+                </div>
               </div>
           </div>
           <div class="lotto-middle">
@@ -31,45 +33,49 @@
           </div>
           <div class="lotto-bottom">
             <span>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
-            <div class="input-container">
-              <div class="input-box">
-                <span class="input-title">당첨 번호</span>
-                <input class="input-basic" type="text" value="1"/>
-                <input class="input-basic" type="text" value="2"/>
-                <input class="input-basic" type="text" value="3"/>
-                <input class="input-basic" type="text" value="4"/>
-                <input class="input-basic" type="text" value="5"/>
-                <input class="input-basic" type="text" value="6"/>
+            <div class="flex-base flex-space-between">
+              <div class="input-container">
+                <span class="input-title input-title-number">당첨 번호</span>
+                <div class="input-box mt-10">
+                  <input class="input-basic input-winning-number" type="text" value="1"/>
+                  <input class="input-basic input-winning-number" type="text" value="2"/>
+                  <input class="input-basic input-winning-number" type="text" value="3"/>
+                  <input class="input-basic input-winning-number" type="text" value="4"/>
+                  <input class="input-basic input-winning-number" type="text" value="5"/>
+                  <input class="input-basic input-winning-number" type="text" value="6"/>
+                </div>
               </div>
-            </div>
-            <div class="input-container">
-              <div class="input-box">
-                <span class="input-title">보너스 번호</span>
-                <input class="input-basic" type="text" value="9"/>
-              </div>
+              <div class="input-container">
+                <span class="input-title input-title-number">보너스 번호</span>
+                <div class="input-box input-container-bonus-number mt-10">
+                  <input class="input-basic" id="input-bonus-number" type="text" value="9"/>
+                </div>
+              </div>  
             </div>
             <div class="button-box">
-              <span class="button-text">결과 확인하기</span>
+              <span class="button-text" id="result-button">결과 확인하기</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="modal">
-          <h2 class="page-title">🏆 당첨 통계 🏆</h2>
-          <table class="">
-            <thead>
-              <tr>
-                <th>일치 갯수</th>
-                <th>당첨금</th>
-                <th>당첨 갯수</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-          <div class="button-box">
-            <span class="다시 시작하기"></span>
-          </div>
+      <div class="modal-dimmed">    
+        <div class="modal">
+            <h2 class="page-title">🏆 당첨 통계 🏆</h2>
+            <table class="modal-table">
+              <thead>
+                <tr>
+                  <th>일치 갯수</th>
+                  <th>당첨금</th>
+                  <th>당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody class="modal-item-container">
+              </tbody>
+            </table>
+            <div class="button-box">
+              <span class="button-text" id="reset-button">다시 시작하기</span>
+            </div>
+        </div>
       </div>
     </div>        
     <script type="module" src="./src/step2-index.js"></script>

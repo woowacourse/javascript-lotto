@@ -5,11 +5,11 @@ class LottoStatistics {
 
   constructor() {
     this.#rankResult = {
-      '3개 일치': { count: 0, price: 5000 },
-      '4개 일치': { count: 0, price: 50000 },
-      '5개 일치': { count: 0, price: 1500000 },
-      '5개 일치, 보너스 볼 일치': { count: 0, price: 30000000 },
-      '6개 일치': { count: 0, price: 2000000000 },
+      '3개 일치': { name: '3', count: 0, price: 5000 },
+      '4개 일치': { name: '4', count: 0, price: 50000 },
+      '5개 일치': { name: '5', count: 0, price: 1500000 },
+      '5개 일치, 보너스 볼 일치': { name: '5+1', count: 0, price: 30000000 },
+      '6개 일치': { name: '6', count: 0, price: 2000000000 },
     };
   }
 

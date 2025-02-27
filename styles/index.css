@@ -1,3 +1,10 @@
+@import "./reset.css";
+@import "./button.css";
+@import "./input.css";
+@import "./modal.css";
+@import "./lotto.css";
+@import "./utils.css";
+
 body {
     display: flex;
     flex-direction: column;
@@ -8,13 +15,13 @@ body {
 }
 
 input {
-    font-size: 15px
+    font-size: 15px;
 }
 
 .root {
     background-color: #ffffff;
-    width: 375px; 
-    min-width: 375px;
+    width: 414px; 
+    min-width: 414px;
     height: 700px;
     position: relative;
     border-radius: 15px;
@@ -26,6 +33,8 @@ input {
 }
 
 .page-title {
+    display: flex;
+    justify-content: center;
     font-weight: 800;
     font-size: 24px;
     line-height: 36px;

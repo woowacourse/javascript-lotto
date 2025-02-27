@@ -1,0 +1,60 @@
+.flex-base {
+    display: flex;
+    align-items: center;
+}
+
+.flex-center {
+    justify-content: center;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.w-35 {
+    width: 35%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.w-75 {
+    width: 75%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-15 {
+    width: 15%;
+}
+
+.mt-10 {
+    margin-top: 2.5rem;
+}
+  
+.mt-20 {
+    margin-top: 5rem;
+}
+
+.mt-30 {
+    margin-top: 7.5rem;
+}
+
+.mt-40 {
+    margin-top: 9rem;
+}
+
+.mt-50 {
+    margin-top: 11.5rem;
+}

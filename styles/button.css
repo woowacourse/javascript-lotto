@@ -1,0 +1,13 @@
+.button-box {
+    width: 100%;
+    height: 36px;
+    text-align: center;
+    background-color: #4E5BA6;
+}
+
+.button-text {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 36px;
+}
