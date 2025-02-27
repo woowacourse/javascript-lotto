@@ -7,13 +7,13 @@ import { validateMoney } from './domain/validation.js';
 const $createLottoHeader = () => $lottoHeader();
 
 const handleLottoPurchase = (event) => {
-  event.preventDefault();
   try {
-    const lottoBuyForm = document.getElementById('lottoBuyForm');
-    validateMoney(lottoBuyForm.money.value);
+    event.preventDefault();
+    const money = document.getElementById('lottoBuyForm').money.value;
+    validateMoney(money);
 
     const lottoMachine = new LottoMachine();
-    lottoMachine.createLottos(lottoBuyForm.money.value);
+    lottoMachine.createLottos(money);
     const lottoContainer = document.getElementById('lottoContainer');
     lottoContainer.appendChild($createLottoContent(lottoMachine.getLottos()));
   } catch (error) {
