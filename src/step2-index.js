@@ -33,6 +33,10 @@ const init = async () => {
   document
     .querySelector(".winning-lotto .result")
     .addEventListener("click", handleResultClick);
+
+  document
+    .querySelector(".modal .retry")
+    .addEventListener("click", handleRetryClick);
 };
 
 const handlePurchaseClick = (e) => {
@@ -57,7 +61,6 @@ const handleInputChange = (inputs) => {
   const allFilled = Array.from(inputs).every(
     (input) => input.value.trim() !== ""
   );
-  console.log(allFilled);
   document.querySelector(".winning-lotto .result").disabled = !allFilled;
 };
 
@@ -79,6 +82,31 @@ const handleResultClick = () => {
 
   printResult(formatResults(rankCount).reverse());
   printProfitRate(calcProfitRate(getLottoPrice(), totalReward));
+};
+
+const handleRetryClick = () => {
+  // active 제거
+  document.querySelector(".overlay").classList.remove("active");
+  document.querySelector(".winning-lotto").classList.remove("active");
+
+  // 결과들 제거
+  document.querySelector(".purchase-history").replaceChildren();
+  [...document.querySelectorAll(".result__row")].map((resultRow) => {
+    resultRow.remove();
+  });
+  document.querySelector(".profit").remove();
+
+  // input value 초기화
+  document.querySelector(".purchase input").value = "";
+  [...document.querySelectorAll(".winning-number")].map(
+    (winningNumberInput) => {
+      winningNumberInput.value = "";
+    }
+  );
+  document.querySelector(".bonus-number").value = "";
+
+  // 구입 버튼 활성화
+  document.querySelector(".purchase button").disabled = false;
 };
 
 init();
