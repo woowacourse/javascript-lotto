@@ -238,6 +238,27 @@ class App {
         );
 
         outputViewByWeb.displayLottoResult(lottoResult, lottoProfit);
+
+        const $modalCloseButton = document.querySelector('.modal-close-button');
+        const $modalOverlay = document.querySelector('.modal-overlay');
+
+        if ($modalCloseButton === null || $modalOverlay === null) {
+          return;
+        }
+
+        $modalCloseButton.addEventListener('click', () => {
+          const $modal = document.querySelector('.modal');
+          if ($modal) {
+            $modal.remove();
+          }
+        });
+
+        $modalOverlay.addEventListener('click', () => {
+          const $modal = document.querySelector('.modal');
+          if ($modal) {
+            $modal.remove();
+          }
+        });
       });
       //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
     });
