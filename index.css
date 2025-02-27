@@ -25,6 +25,16 @@ body {
   font-family: var(--default-font-family);
 }
 
+main {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--bg-default-color);
+}
+
 h2 {
   margin: calc(40px - var(--default-padding)) 0 40px 0;
   text-align: center;
@@ -63,14 +73,6 @@ p {
 
 li {
   list-style-type: none;
-}
-
-#main-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--bg-default-color);
 }
 
 dialog {
