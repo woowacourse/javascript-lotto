@@ -1,12 +1,12 @@
 import './PlayLotto.css';
 import { LOTTO } from '../../domain/lottoConstants';
 import { getRandomLottos } from '../../domain/getRandomLottos';
-import { getArrayOfStrings } from '../utils/getArrayOfStrings';
 import randomLottos from '../randomLottos/RandomLottos';
 import WinningNumbers from '../winningNumbers/winningNumbers';
 import { createElement } from '../utils/dom';
 import PurchaseForm from '../view/PurchaseForm';
 import LottoResultModal from './LottoResultModal';
+import { getArrayOfStringsFromArrayOfArrays } from '../utils/getArrayOfStringsFromArrayOfArrays';
 
 export default function PlayLotto() {
   const playLotto = createElement('div', { class: 'play-lotto' });
@@ -17,7 +17,7 @@ export default function PlayLotto() {
       const lottoQuantity = priceInput.value / LOTTO.MIN_PURCHASE_PRICE;
 
       const randomlottos = getRandomLottos(lottoQuantity);
-      randomLottos(playLotto, getArrayOfStrings(randomlottos));
+      randomLottos(playLotto, getArrayOfStringsFromArrayOfArrays(randomlottos));
 
       const winningNumberInputHeader = createElement('span', {
         class: 'header',
