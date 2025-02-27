@@ -47,3 +47,12 @@
   line-height: 16px;
   letter-spacing: 1.25px;
 }
+
+.error-message {
+  color: red;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+}

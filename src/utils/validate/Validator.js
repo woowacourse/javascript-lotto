@@ -1,4 +1,3 @@
-import { transformWithEsbuild } from "vite";
 import Validate from "./Validate.js";
 
 const validate = new Validate();
