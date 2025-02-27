@@ -2,9 +2,9 @@ import LottoGame from "./domain/LottoGame.js";
 import Validator from "./domain/Validator.js";
 import Constants from "./constant/Constants.js";
 import LottoInput from "./view/web/components/LottoInput.js";
+import LottoList from "./view/web/components/LottoList.js";
 
 const middleSection = document.querySelector(".lotto__middle");
-const lottoListContainer = document.querySelector(".lotto__list");
 const winningNumberInputs = document.querySelectorAll(
   ".target__lottos .one__numbers__input",
 );
@@ -43,32 +43,9 @@ function displayResult() {
   resultModal.style.display = "flex";
 }
 
-function displayLottos(lottos) {
-  lottoListContainer.innerHTML = "";
-  lottos.forEach((lotto) => {
-    const lottoArray = lotto.getLottoNumber();
-    // 로또 요소 만들고
-    const lottoElement = document.createElement("div");
-    lottoElement.className = "random__lotto";
-
-    // 아이콘 넣고
-    const iconElement = document.createElement("div");
-    iconElement.className = "lotto__icon";
-    iconElement.textContent = "🎟️";
-
-    const numbersElement = document.createElement("div");
-    numbersElement.className = "lotto__numbers";
-    numbersElement.textContent = lottoArray.join(", ");
-
-    lottoElement.appendChild(iconElement);
-    lottoElement.appendChild(numbersElement);
-    lottoListContainer.appendChild(lottoElement);
-  });
-}
-
 function handlePurchaseCallback(lottoNum) {
   lottoGame = new LottoGame(lottoNum);
-  displayLottos(lottoGame.lottos);
+  lottoList.displayLottos(lottoGame.lottos);
   middleSection.style.display = "block";
 }
 
@@ -114,15 +91,14 @@ function setupRestartButton() {
     bonusNumberInput.value = "";
 
     middleSection.style.display = "none";
-    lottoListContainer.innerHTML = "";
 
     lottoGame = null;
     lottoInput.reset();
+    lottoList.clear();
   });
 }
 
 function initApp() {
-  purchaseMessage.style.display = "none";
   middleSection.style.display = "none";
 
   setupResultButton();
@@ -130,4 +106,6 @@ function initApp() {
 }
 
 const lottoInput = new LottoInput(handlePurchaseCallback);
+const lottoList = new LottoList();
+
 initApp();
