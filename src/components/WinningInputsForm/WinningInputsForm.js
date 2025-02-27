@@ -7,10 +7,10 @@ import { RESULT_EVENT_NAME } from '../../constants/WinningInputsFormConstants.js
 class WinningInputsForm {
   constructor($container) {
     this.$view = new WinningInputsFormView($container);
-    this.$view.setOnResultRequest((data) => this.handleResultRequest(data));
+    this.$view.setOnResultRequest((data) => this.#handleResultRequest(data));
   }
 
-  handleResultRequest({ winningNumbers, bonusNumber }) {
+  #handleResultRequest({ winningNumbers, bonusNumber }) {
     try {
       LottoNumbersValidator.validate(KEY.WINNING_NUMBERS, winningNumbers);
       BonusNumberValidator.validate(bonusNumber, winningNumbers);

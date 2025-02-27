@@ -4,8 +4,6 @@ class ViewComponent {
       throw new Error('container가 주입되지 않았습니다.');
     }
     this.$container = $container;
-    this.render();
-    this.bindEvents();
   }
 
   render() {}

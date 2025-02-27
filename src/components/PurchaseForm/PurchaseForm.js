@@ -6,11 +6,11 @@ class PurchaseForm {
   constructor($container) {
     this.$view = new PurchaseFormView($container);
     this.$view.setOnPurchaseClick((purchasePrice) =>
-      this.handlePurchase(purchasePrice),
+      this.#handlePurchase(purchasePrice),
     );
   }
 
-  handlePurchase(purchasePrice) {
+  #handlePurchase(purchasePrice) {
     try {
       PurchasePriceValidator.validate(purchasePrice);
 

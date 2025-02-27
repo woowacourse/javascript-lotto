@@ -6,11 +6,11 @@ class LottoList {
   }
 
   render(lottos) {
-    this.$container.innerHTML = this.template(lottos);
+    this.$container.innerHTML = this.#template(lottos);
   }
 
   // eslint-disable-next-line max-lines-per-function
-  template(lottos) {
+  #template(lottos) {
     const titleHTML = `<span>총 ${lottos.length}개를 구매했습니다.</span>`;
     const lottoItemsHTML = lottos
       .map(

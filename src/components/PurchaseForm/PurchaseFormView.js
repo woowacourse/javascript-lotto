@@ -2,13 +2,19 @@ import ViewComponent from '../core/ViewComponent.js';
 import { SELECTORS } from '../../constants/PurchaseFormConstants.js';
 
 class PurchaseFormView extends ViewComponent {
+  constructor($container) {
+    super($container);
+    this.render();
+    this.#bindEvents();
+  }
+
   render() {
-    this.$container.innerHTML = this.template();
+    this.$container.innerHTML = this.#template();
     this.$input = this.$container.querySelector(SELECTORS.INPUT);
     this.$button = this.$container.querySelector(SELECTORS.BUTTON);
   }
 
-  template() {
+  #template() {
     return `
       <label>구입할 금액을 입력해주세요.</label>
       <div class="purchase-price-input">
@@ -18,7 +24,7 @@ class PurchaseFormView extends ViewComponent {
     `;
   }
 
-  bindEvents() {
+  #bindEvents() {
     // 입력값이 있으면 버튼 활성화
     this.$input.addEventListener('input', () => {
       this.$button.disabled = this.$input.value.trim() === '';

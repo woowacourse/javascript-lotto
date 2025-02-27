@@ -12,16 +12,17 @@ class Main extends ViewComponent {
   constructor(selector) {
     const $container = document.querySelector(selector);
     super($container);
+    this.#bindEvents();
   }
 
   render() {
-    this.renderDashboardLayout();
-    this.renderPurchaseForm();
-    this.renderLottoList();
+    this.#renderDashboardLayout();
+    this.#renderPurchaseForm();
+    this.#renderLottoList();
     this.$winningResultModal = new WinningResultModal();
   }
 
-  template() {
+  #template() {
     return `
       <div class="dashboard">
         <h1>🎱 내 번호 당첨 확인 🎱</h1>
@@ -32,59 +33,61 @@ class Main extends ViewComponent {
     `;
   }
 
-  renderDashboardLayout() {
-    this.$container.innerHTML = this.template();
+  // 내부에서만 사용하는 렌더링 관련 메서드들을 프라이빗으로 전환합니다.
+  #renderDashboardLayout() {
+    this.$container.innerHTML = this.#template();
   }
 
-  renderPurchaseForm() {
+  #renderPurchaseForm() {
     const $purchasePriceArea = this.$container.querySelector(
       SELECTORS.PURCHASE_PRICE_AREA,
     );
     this.$purchaseForm = new PurchaseForm($purchasePriceArea);
   }
 
-  renderLottoList() {
+  #renderLottoList() {
     const $lottosArea = this.$container.querySelector(SELECTORS.LOTTOS_AREA);
     this.$lottoList = new LottoList($lottosArea);
   }
 
-  renderWinningInputsForm() {
+  #renderWinningInputsForm() {
     const $winningInputsArea = this.$container.querySelector(
       SELECTORS.WINNING_INPUTS_AREA,
     );
     this.$winningInputsForm = new WinningInputsForm($winningInputsArea);
   }
 
-  bindEvents() {
-    this.bindPurchaseLottosEvent();
-    this.bindCalculateResultEvent();
-    this.bindRestartEvent();
+  // 외부에서 이벤트 바인딩 호출 시 내부의 프라이빗 메서드들을 사용합니다.
+  #bindEvents() {
+    this.#bindPurchaseLottosEvent();
+    this.#bindCalculateResultEvent();
+    this.#bindRestartEvent();
   }
 
-  bindPurchaseLottosEvent() {
+  #bindPurchaseLottosEvent() {
     this.$container.addEventListener(EVENT_TYPES.PURCHASE_LOTTOS, (e) => {
       const purchasePrice = e.detail;
       this.#lottoMachine = new LottoMachine(purchasePrice);
       this.$lottoList.render(this.#lottoMachine.lottos);
-      this.renderWinningInputsForm();
+      this.#renderWinningInputsForm();
     });
   }
 
-  bindCalculateResultEvent() {
+  #bindCalculateResultEvent() {
     this.$container.addEventListener(EVENT_TYPES.CALCULATE_RESULT, (e) => {
       const { winningNumbers, bonusNumber } = e.detail;
       const [winningCounts, profitRate] = this.#lottoMachine.calculateResult(
         winningNumbers,
         bonusNumber,
       );
-      this.$winningResultModal.renderModal(winningCounts, profitRate);
+      this.$winningResultModal.render(winningCounts, profitRate);
     });
   }
 
-  bindRestartEvent() {
+  #bindRestartEvent() {
     this.$container.addEventListener(EVENT_TYPES.RESTART, () => {
       this.render();
-      this.bindEvents();
+      this.#bindEvents();
     });
   }
 }

@@ -8,18 +8,17 @@ class WinningResultModal {
   constructor() {
     this.$modalRoot = document.querySelector(SELECTORS.MODAL_ROOT);
     this.$view = new WinningResultModalView(this.$modalRoot);
-    this.$view.setOnResultRequest(() => this.handleRestart());
+    this.$view.setOnResultRequest(() => this.#handleRestart());
   }
 
-  renderModal(winningCounts, profitRate) {
-    this.$view.renderModal(winningCounts, profitRate);
+  render(winningCounts, profitRate) {
+    this.$view.render(winningCounts, profitRate);
   }
 
-  handleRestart() {
+  #handleRestart() {
     const $main = document.querySelector(SELECTORS.MAIN);
 
     try {
-      this.$view.close();
       const restartEvent = new CustomEvent(RESTART_EVENT_NAME, {
         bubbles: true,
       });

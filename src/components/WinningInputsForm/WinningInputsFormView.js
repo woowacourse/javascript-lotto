@@ -12,13 +12,19 @@ import {
 } from '../../constants/WinningInputsFormConstants.js';
 
 class WinningInputsFormView extends ViewComponent {
-  render() {
-    this.$container.innerHTML = this.template();
-    this.initElements();
-    this.bindEvents();
+  constructor($container) {
+    super($container);
+    this.render();
+    this.#bindEvents();
   }
 
-  template() {
+  render() {
+    this.$container.innerHTML = this.#template();
+    this.#initElements();
+    this.#bindEvents();
+  }
+
+  #template() {
     return `
       ${getInstructionMarkup()}
       ${getInputsLabelsMarkup()}
@@ -27,7 +33,7 @@ class WinningInputsFormView extends ViewComponent {
     `;
   }
 
-  initElements() {
+  #initElements() {
     this.$winningNumbers = this.$container.querySelectorAll(
       SELECTORS.WINNING_NUMBER_INPUTS,
     );
@@ -37,12 +43,12 @@ class WinningInputsFormView extends ViewComponent {
     this.$button = this.$container.querySelector(SELECTORS.RESULT_BUTTON);
   }
 
-  bindEvents() {
-    this.attachInputListeners();
-    this.attachButtonClickListener();
+  #bindEvents() {
+    this.#attachInputListeners();
+    this.#attachButtonClickListener();
   }
 
-  attachInputListeners() {
+  #attachInputListeners() {
     const updateButtonState = () => {
       this.$button.disabled =
         this.$bonusNumber.value.trim() === '' ||
@@ -57,7 +63,7 @@ class WinningInputsFormView extends ViewComponent {
     this.$bonusNumber.addEventListener('input', updateButtonState);
   }
 
-  attachButtonClickListener() {
+  #attachButtonClickListener() {
     this.$button.addEventListener('click', () => {
       if (this.onResultRequest) {
         const winningNumbers = Array.from(this.$winningNumbers).map((input) =>

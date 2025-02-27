@@ -50,7 +50,7 @@ function getModalMarkup(winningCounts, profitRate) {
         <button class="modal-close-button">✕</button>
         <h2>🏆 당첨 통계 🏆</h2>
         ${getTableMarkup(winningCounts)}
-        <strong>당신의 총 수익률은 ${profitRate}%입니다.</strong>
+        <strong>당신의 총 수익률은 ${profitRate.toFixed(1).toLocaleString()}%입니다.</strong>
         <button class="restart-button">다시 시작하기</button>
       </div>
     </div>
