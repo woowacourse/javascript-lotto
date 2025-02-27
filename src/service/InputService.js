@@ -30,3 +30,21 @@ export function getUIBonusNumber() {
 
   return bonusNumber.value;
 }
+
+export async function getConsoleUserRetry() {
+  return await readLineAsync(INPUT_MESSAGE.askUserRetry);
+}
+
+export async function getUIUserRetry() {
+  return new Promise((resolve, reject) => {
+    const retryButton = document.getElementById('retry-button');
+
+    const handleClick = (event) => {
+      event.preventDefault();
+      retryButton.removeEventListener('click', handleClick);
+      resolve('y');
+    };
+
+    retryButton.addEventListener('click', handleClick);
+  });
+}
