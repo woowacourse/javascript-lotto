@@ -26,12 +26,12 @@
   padding: 0 130px;
 }
 
-.main {
+#main {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 70px 0;
+  padding: 50px 0;
 }
 
 .dashboard {
@@ -45,15 +45,42 @@
   border: 1px solid var(--dashboard-border-color);
 }
 
-.purchase-price-area {
+.purchase-price-area,
+.winning-inputs-area {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 28px 0;
-  gap: 4px;
+  margin-top: 24px;
+  gap: 8px;
 }
 
-.purchase-price-input-row {
+.winning-inputs {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.inputs-label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.winning-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.number-input {
+  width: 34px;
+  padding: 8px;
+  border: 1px solid var(--greyscale-3);
+  border-radius: 4px;
+}
+
+.purchase-price-input {
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -66,12 +93,33 @@
     border-radius: 4px;
   }
 
-  button {
+  .purchase-button {
     width: 56px;
     background-color: var(--primary);
     color: white;
     border: none;
     border-radius: 4px;
+    cursor: pointer;
+  }
+
+  :disabled {
+    cursor: not-allowed;
+    background-color: var(--greyscale-3);
+  }
+}
+
+.open-result-button {
+  width: 100%;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 0;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--greyscale-3);
   }
 }
 
@@ -84,4 +132,20 @@
   font-weight: 700;
   color: var(--primary);
   border-top: 1px solid var(--footer-border-color);
+}
+
+.lottos-area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.lotto-tickets {
+  display: flex;
+  flex-direction: column;
+  height: 160px;
+  gap: 8px;
+  overflow: auto;
 }
