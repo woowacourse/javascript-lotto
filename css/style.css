@@ -1,0 +1,39 @@
+.lotto-header {
+  background-color: var(--color-primary);
+  width: 1440px;
+  height: 64px;
+  border-bottom: 1px;
+}
+
+.lotto-title {
+  color: var(--color-white);
+  width: 147px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-title);
+  line-height: 36px;
+  color: var(--color-white);
+}
+
+:root {
+  --font-family: system-ui, sans-serif;
+
+  --font-size-title: 24px;
+  --font-size-subtitle: 20px;
+  --font-size-body: 15px;
+  --font-size-placeholder: 15px;
+  --font-size-button: 14px;
+
+  --font-weight-title: 800; /* ExtraBold */
+  --font-weight-subtitle: 600; /* SemiBold */
+  --font-weight-body: 400; /* Regular */
+  --font-weight-placeholder: 400; /* Regular */
+  --font-weight-button: 700; /* Bold */
+
+  --color-primary: #4e5ba6;
+  --color-white: #ffffff;
+  --color-grey-lightest: #fcfcfd;
+  --color-grey-light: #b4b4b4;
+  --color-grey-dark: #8b8b8b;
+  --color-black: #000000;
+}
