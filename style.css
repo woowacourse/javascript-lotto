@@ -65,7 +65,7 @@
     box-sizing: border-box;
     background-color: var(--lotto-greyscale-1);
     width: 414px;
-    height: 727px;
+    min-height: 727px;
     border-radius: 0%;
     border-width: 1px;
     border-style: solid;
