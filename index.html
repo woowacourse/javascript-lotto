@@ -59,28 +59,40 @@
         <p class="winning-number-and-bonus-message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
         <div class="winning-number-and-bonus-input">
           <div class="winning-number">
-          <label>당첨 번호</label>
-          <div class="winning-number-input">
-            <input class="number-input" type="text" />
-            <input class="number-input" type="text" />
-            <input class="number-input" type="text" />
-            <input class="number-input" type="text" />
-            <input class="number-input" type="text" />
-            <input class="number-input" type="text" />
+            <label for="winning-number">당첨 번호</label>
+            <div class="winning-number-input">
+              <input class="number-input" type="text" id="winning-number" />
+              <input class="number-input" type="text" />
+              <input class="number-input" type="text" />
+              <input class="number-input" type="text" />
+              <input class="number-input" type="text" />
+              <input class="number-input" type="text" />
+            </div>
+          </div>
+          <div class="bonus">
+            <label for="bonus">보너스 번호</label>
+            <input class="number-input" type="text" id="bonus" />
           </div>
         </div>
-        <div class="bonus">
-          <label for="bonus">보너스 번호</label>
-          <input class="number-input" type="text" id="bonus" />
-        </div>
       </div>
+      <button class="submit" id="winning-result-button" type="button">결과 확인하기</button>
+      <dialog>
+        <div class="dialog-container">
+          <h3>🏆 당첨 통계 🏆</h3>
+          <button class="modal-close-button" id="modal-close-button">
+            <img src="./public/images/close.svg" alt="close" width="24"/>
+          </button>
+          <span>modal text</span>
+        <form method="dialog">
+          <button class="submit" id="restart-button">다시 시작하기</button>
+        </form>
+        </div>
+      </dialog>
     </div>
-    <button class="submit" type="button">결과 확인하기</button>
-</div>
-</main>
-<footer>
-  <p>Copyright 2023. woowacourse</p>
-</footer>
+  </main>
+  <footer>
+    <p>Copyright 2023. woowacourse</p>
+  </footer>
 </div>
 <script type="module" src="./src/step2-index.js"></script>
 </body>
