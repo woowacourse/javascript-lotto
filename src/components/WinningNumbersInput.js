@@ -7,11 +7,10 @@ export default class WinningNumbersInput {
   }
 
   render($target, winningNumbers) {
-    const $container = customCreateElement({
+    const $fieldset = customCreateElement({
       tagName: "div",
       className: "lotto-number-input-wrap",
     });
-    const $fieldset = document.createElement("fieldset");
 
     const $text = customCreateElement({ tagName: "legend", text: "당첨 번호" });
     const $inputWrap = customCreateElement({
@@ -24,9 +23,8 @@ export default class WinningNumbersInput {
     $inputs.forEach(($input) => $inputWrap.appendChild($input));
 
     $fieldset.appendChild($inputWrap);
-    $container.appendChild($fieldset);
 
-    $target.appendChild($container);
+    $target.appendChild($fieldset);
   }
 
   createInput(winningNumbers) {
