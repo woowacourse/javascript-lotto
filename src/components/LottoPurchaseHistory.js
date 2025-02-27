@@ -3,6 +3,7 @@ import LottoHistoryItem from "./LottoHistoryItem.js";
 import { PRICE } from "../constants/price.js";
 import { divideByUnit } from "../utils/count.js";
 import lottoTransactionStore from "../store/lottoTransactionStore.js";
+import customCreateElement from "../utils/customElement.js";
 
 export default class LottoPurchaseHistory {
   #show;
@@ -13,19 +14,22 @@ export default class LottoPurchaseHistory {
   }
 
   render($target) {
+    const { lottos, price } = lottoTransactionStore.getState().lottoTransaction;
+    const countNumber = divideByUnit(PRICE.UNIT, price);
+
     const $div = document.createElement("div");
-    const $text = document.createElement("p");
-    const $ul = document.createElement("ul");
+    const $text = customCreateElement({
+      tagName: "p",
+      text: `총 ${countNumber}${OUTPUT.BUY_COUNT}`,
+    });
+    const $ul = customCreateElement({
+      tagName: "ul",
+      className: "lotto-history-list",
+    });
+
     if (!this.#show) {
       $div.className = "hidden";
     }
-    $ul.className = "lotto-history-list";
-
-    const { lottos, price } = lottoTransactionStore.getState().lottoTransaction;
-
-    const countNumber = divideByUnit(PRICE.UNIT, price);
-
-    $text.innerText = `총 ${countNumber}${OUTPUT.BUY_COUNT}`;
 
     lottos.map((lotto) => new LottoHistoryItem($ul, lotto.getLottoNumbers()));
 

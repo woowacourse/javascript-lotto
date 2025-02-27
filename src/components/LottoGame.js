@@ -7,6 +7,7 @@ import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import lottoTransactionStore from "../store/lottoTransactionStore.js";
 import winningLottoInfoStore from "../store/winningLottoInfo.js";
+import customCreateElement from "../utils/customElement.js";
 
 export default class LottoGame {
   #target;
@@ -56,12 +57,15 @@ export default class LottoGame {
   render() {
     this.#target.innerHTML = "";
 
-    const $div = document.createElement("div");
-    const $title = document.createElement("p");
-
-    $title.innerText = "🎱 내 번호 당첨 확인 🎱";
-    $title.className = "lotto-winning-result-title";
-    $div.className = "lotto-winning-result-container";
+    const $div = customCreateElement({
+      tagName: "div",
+      className: "lotto-winning-result-container",
+    });
+    const $title = customCreateElement({
+      tagName: "div",
+      className: "lotto-winning-result-title",
+      text: "🎱 내 번호 당첨 확인 🎱",
+    });
 
     $div.appendChild($title);
     this.#target.appendChild($div);

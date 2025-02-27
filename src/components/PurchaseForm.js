@@ -3,6 +3,7 @@ import LottoFactory from "../domain/LottoFactory.js";
 import { divideByUnit } from "../utils/count.js";
 import validatePrice from "../validation/validatePrice.js";
 import lottoTransactionStore from "../store/lottoTransactionStore.js";
+import customCreateElement from "../utils/customElement.js";
 
 export default class PurchaseForm {
   #setShow;
@@ -15,21 +16,26 @@ export default class PurchaseForm {
 
   render() {
     const $form = document.createElement("form");
-    const $input = document.createElement("input");
-    const $span = document.createElement("span");
-    const $div = document.createElement("div");
-    const $button = document.createElement("button");
-
-    $div.className = "purchase-form-input-wrap";
-
-    $span.innerText = "구입할 금액을 입력해주세요.";
-    $span.className = "purchase-form-info-text";
-
+    const $span = customCreateElement({
+      tagName: "span",
+      className: "purchase-form-info-text",
+      text: "구입할 금액을 입력해주세요.",
+    });
+    const $div = customCreateElement({
+      tagName: "div",
+      className: "purchase-form-input-wrap",
+    });
+    const $input = customCreateElement({
+      tagName: "input",
+      className: "purchase-form-input",
+    });
     $input.placeholder = "금액";
-    $input.className = "purchase-form-input";
 
-    $button.innerText = "구입";
-    $button.className = "purchase-form-button";
+    const $button = customCreateElement({
+      tagName: "button",
+      className: "purchase-form-button",
+      text: "구입",
+    });
     $button.type = "button";
 
     $form.appendChild($span);
