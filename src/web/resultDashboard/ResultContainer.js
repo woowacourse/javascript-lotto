@@ -1,5 +1,5 @@
-import { LOTTO } from '../../../domain/lottoConstants';
-import { createElement } from '../../utils/dom';
+import { LOTTO } from '../../domain/lottoConstants';
+import { createElement } from '../utils/dom';
 import DividerLine from './DividerLine';
 import ResultCols from './ResultCols';
 import ResultRow from './ResultRow';

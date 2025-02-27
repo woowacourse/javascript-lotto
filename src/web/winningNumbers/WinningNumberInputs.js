@@ -1,4 +1,4 @@
-import { createElement } from '../../utils/dom';
+import { createElement } from '../utils/dom';
 
 export default function WinningNumberInputs(winningNumberContainer) {
   const winningAndBonusInputContainer = createElement('div', { class: 'winning-and-bonus-input-container' });

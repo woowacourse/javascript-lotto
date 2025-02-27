@@ -1,5 +1,5 @@
 import './winningNumbers.css';
-import { createElement } from '../../utils/dom';
+import { createElement } from '../utils/dom';
 import WinningNumberHeaders from './WinningNumberHeaders';
 import WinningNumberInputs from './WinningNumberInputs';
 

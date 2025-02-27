@@ -1,7 +1,7 @@
-import { createElement } from '../../utils/dom';
-import { validateWinningNumbers, validateBonusNumber } from '../../../validation/validateLottoNumbers';
-import { getWinningMatchCount } from '../../../domain/getWinningMatchCount';
-import { calculateRevenue } from '../../../domain/calculateRevenue';
+import { createElement } from '../utils/dom';
+import { validateWinningNumbers, validateBonusNumber } from '../../validation/validateLottoNumbers';
+import { getWinningMatchCount } from '../../domain/getWinningMatchCount';
+import { calculateRevenue } from '../../domain/calculateRevenue';
 import ResultDashboard from '../resultDashboard/ResultDashboard';
 
 export default function LottoResultModal({ priceInput, playLotto, randomlottos }, { winningNumbers, bonusNumber }) {

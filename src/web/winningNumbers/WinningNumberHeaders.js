@@ -1,4 +1,4 @@
-import { createElement } from '../../utils/dom';
+import { createElement } from '../utils/dom';
 
 export default function WinningNumberHeaders(winningNumberContainer) {
   const winningNumberHeaders = createElement('div', { class: 'winning-number-headers' });

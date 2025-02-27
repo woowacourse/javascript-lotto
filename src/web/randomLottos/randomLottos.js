@@ -1,4 +1,4 @@
-import { createElement } from '../../utils/dom';
+import { createElement } from '../utils/dom';
 import './randomLottos.css';
 
 export default function randomLottos(playLotto, randomLottosArray) {

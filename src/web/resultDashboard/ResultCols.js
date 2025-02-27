@@ -1,4 +1,4 @@
-import { createElement } from '../../utils/dom';
+import { createElement } from '../utils/dom';
 
 export default function ResultCols(resultDashboard) {
   const resultCols = createElement('div', { class: 'result-rows' });

@@ -1,4 +1,4 @@
-import { createElement } from '../../utils/dom';
+import { createElement } from '../utils/dom';
 import PlayLotto from '../playLotto/PlayLotto';
 import './lottoDashboard.css';
 

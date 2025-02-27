@@ -1,10 +1,10 @@
 import './PlayLotto.css';
-import { LOTTO } from '../../../domain/lottoConstants';
-import { getRandomLottos } from '../../../domain/getRandomLottos';
-import { getArrayOfStrings } from '../../utils/getArrayOfStrings';
+import { LOTTO } from '../../domain/lottoConstants';
+import { getRandomLottos } from '../../domain/getRandomLottos';
+import { getArrayOfStrings } from '../utils/getArrayOfStrings';
 import randomLottos from '../randomLottos/RandomLottos';
 import WinningNumbers from '../winningNumbers/winningNumbers';
-import { createElement } from '../../utils/dom';
+import { createElement } from '../utils/dom';
 import PurchaseForm from './PurchaseForm';
 import LottoResultModal from './LottoResultModal';
 

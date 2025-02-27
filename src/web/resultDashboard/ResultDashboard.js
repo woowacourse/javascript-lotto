@@ -1,7 +1,7 @@
 import './resultDashboard.css';
 import CloseButton from './CloseButton';
 import ResultDashboardHeader from './ResultDashboardHeader';
-import { createElement } from '../../utils/dom';
+import { createElement } from '../utils/dom';
 import ReplayLottoButton from './ReplayLottoButton';
 import LottoWinningRevenue from './LottoWinningRevenue';
 import ResultContainer from './ResultContainer';
