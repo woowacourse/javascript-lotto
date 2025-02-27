@@ -7,7 +7,7 @@ import checkLottoPurchase from '../Validation/checkLottoPurchase.js';
 import checkUserRetry from '../Validation/checkUserRetry.js';
 import { LOTTO_PRICE } from '../constants/MagicNumber.js';
 
-async function getPurchasePrice(inputMethod) {
+async function getPurchasePrice(inputMethod, retry) {
   try {
     const purchasePrice = await inputMethod();
     const purchaseAmount = checkLottoPurchase(purchasePrice) / LOTTO_PRICE;
@@ -15,8 +15,7 @@ async function getPurchasePrice(inputMethod) {
     return { purchasePrice, purchaseAmount };
   } catch (error) {
     printError(error.message);
-
-    return await getPurchasePrice();
+    return retry();
   }
 }
 async function getWinningNumber(inputMethod) {
@@ -28,7 +27,7 @@ async function getWinningNumber(inputMethod) {
     return userLotto;
   } catch (error) {
     printError(error.message);
-    return await getWinningNumber();
+    return getWinningNumber(inputMethod);
   }
 }
 async function getBonusNumber(userLotto, inputMethod) {
@@ -38,7 +37,7 @@ async function getBonusNumber(userLotto, inputMethod) {
     return parsedLotto;
   } catch (error) {
     printError(error.message);
-    return await getBonusNumber(userLotto);
+    return await getBonusNumber(userLotto, inputMethod);
   }
 }
 
