@@ -27,7 +27,7 @@ export default class StatisticsTable {
     $table.appendChild($tableHead);
 
     Object.entries(lottoHistory)
-      .reverse()
+      .toReversed()
       .forEach(([rank, count]) => {
         const { REWORD, COUNT: MATCH_COUNT } = LOTTO_STATUS.find(
           (status) => status.RANK === Number(rank)
