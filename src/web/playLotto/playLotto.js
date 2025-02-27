@@ -5,7 +5,7 @@ import { getArrayOfStrings } from '../utils/getArrayOfStrings';
 import randomLottos from '../randomLottos/RandomLottos';
 import WinningNumbers from '../winningNumbers/winningNumbers';
 import { createElement } from '../utils/dom';
-import PurchaseForm from './PurchaseForm';
+import PurchaseForm from '../view/PurchaseForm';
 import LottoResultModal from './LottoResultModal';
 
 export default function PlayLotto() {
