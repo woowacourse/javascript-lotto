@@ -34,18 +34,15 @@ function displayResult() {
   const gameResult = lottoGame.getGameResult();
   const lottoNum = lottoGame.lottos.length;
   const earningRate = lottoGame.getEarningRate(lottoNum);
-  console.log({ earningRate, lottoNum, gameResult });
-  // 각 등수별 당첨 횟수 업데이트
+
   match3Element.textContent = `${gameResult["5"]}개`;
   match4Element.textContent = `${gameResult["4"]}개`;
   match5Element.textContent = `${gameResult["3"]}개`;
   match5BonusElement.textContent = `${gameResult["2"]}개`;
   match6Element.textContent = `${gameResult["1"]}개`;
 
-  // 수익률 업데이트
   totalReturnRateElement.textContent = `당신의 총 수익률은 ${earningRate}%입니다.`;
 
-  // 모달 표시
   resultModal.style.display = "flex";
 }
 
@@ -129,12 +126,31 @@ function handleResult() {
   }
 }
 
+function setupRestartButton() {
+  restartButton.addEventListener("click", () => {
+    resultModal.style.display = "none";
+
+    inputMoney.value = "";
+    winningNumberInputs.forEach((input) => {
+      input.value = "";
+    });
+    bonusNumberInput.value = "";
+
+    purchaseMessage.style.display = "none";
+    middleSection.style.display = "none";
+    lottoListContainer.innerHTML = "";
+
+    lottoGame = null;
+  });
+}
+
 function initApp() {
   purchaseMessage.style.display = "none";
   middleSection.style.display = "none";
 
   setupPurchaseEvent();
   setupResultButton();
+  setupRestartButton();
 }
 
 initApp();
