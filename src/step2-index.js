@@ -9,6 +9,7 @@ const lottoStart = () => {
   const lottoStatistics = new LottoStatistics();
 
   const lottoContainer = document.getElementById('lottoContainer');
+  lottoContainer.innerHTML = '';
 
   lottoContainer.appendChild($createLottoHeader());
 };
