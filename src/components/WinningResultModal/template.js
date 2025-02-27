@@ -15,22 +15,26 @@ function getTableRow(row) {
       <td>${matchText}</td>
       <td>${prize}</td>
       <td>${count}</td>
-    </tr>`;
+    </tr>
+  `;
 }
 
+// eslint-disable-next-line max-lines-per-function
 function getTableWrapperMarkup(rowsMarkup) {
-  return `<table>
-    <thead>
-      <tr>
-        <th>일치 개수</th>
-        <th>당첨금</th>
-        <th>당첨 개수</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${rowsMarkup}
-    </tbody>
-  </table>`;
+  return `
+    <table>
+      <thead>
+        <tr>
+          <th>일치 개수</th>
+          <th>당첨금</th>
+          <th>당첨 개수</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rowsMarkup}
+      </tbody>
+    </table>
+  `;
 }
 
 function getTableMarkup(winningCounts) {

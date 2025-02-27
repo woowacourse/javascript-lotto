@@ -1,21 +1,22 @@
-// WinningResultModalController.js
+import {
+  RESTART_EVENT_NAME,
+  SELECTORS,
+} from '../../constants/WinningResultModalConstants.js';
 import WinningResultModalView from './WinningResultModalView.js';
 
 class WinningResultModal {
   constructor() {
-    this.modalRoot = document.querySelector('#modal-root');
-    // WinningResultModalView는 이제 ViewComponent를 상속받으므로,
-    // modalRoot를 주입하여 생성합니다.
+    this.modalRoot = document.querySelector(SELECTORS.MODAL_ROOT);
     this.view = new WinningResultModalView(this.modalRoot);
-    this.bindControllerEvents();
+    this.bindEvents();
   }
 
   renderModal(winningCounts, profitRate) {
     this.view.renderModal(winningCounts, profitRate);
   }
 
-  bindControllerEvents() {
-    const main = document.querySelector('#main');
+  bindEvents() {
+    const main = document.querySelector(SELECTORS.MAIN);
     this.modalRoot.addEventListener(
       'click',
       this.handleRestartClick.bind(this, main),
@@ -23,10 +24,13 @@ class WinningResultModal {
   }
 
   handleRestartClick(main, event) {
-    if (!event.target.classList.contains('big-button')) return;
+    if (!event.target.classList.contains(SELECTORS.BIG_BUTTON)) return;
     this.view.close();
+
     try {
-      const restartEvent = new CustomEvent('restart', { bubbles: true });
+      const restartEvent = new CustomEvent(RESTART_EVENT_NAME, {
+        bubbles: true,
+      });
       main.dispatchEvent(restartEvent);
     } catch (e) {
       alert(e.message);
