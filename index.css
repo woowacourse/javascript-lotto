@@ -237,8 +237,9 @@ dialog {
 }
 
 dialog h3 {
-    margin: 0;
+    width: 100%;
     padding: 0;
+    margin: 0 0 33px 0;
     font-weight: 600;
     font-size: 20px;
     line-height: 24px;
@@ -248,6 +249,69 @@ dialog h3 {
 
 dialog::backdrop {
     background: #00000080;
+}
+
+dialog .modal-contents {
+    width: 319px;
+    height: 247px;
+}
+
+dialog .modal-content {
+    width: 318px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-top: 1px solid #4E5BA633;
+}
+
+dialog .modal-result-content {
+    width: 318px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-top: 1px solid #4E5BA633;
+    text-align: center;
+    /*border-bottom: 1px solid #4E5BA633;*/
+}
+
+dialog .modal-content h4 {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+dialog .modal-content p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+dialog .winning-result {
+    width: 100%;
+    margin: 32px 0 32px 0;
+    padding: 0 16px 0 16px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+dialog .winning-result p{
+    margin: 0;
+    padding: 0;
 }
 
 .show-modal-button {
@@ -271,6 +335,7 @@ dialog .submit {
     height: 36px;
     border-radius: 4px;
     padding: 6px 6px 6px 6px;
+    margin: 0;
 }
 
 footer {
