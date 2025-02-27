@@ -3,6 +3,7 @@ import LottoMachine from '../domains/LottoMachine.js';
 import PurchaseForm from './PurchaseForm.js';
 import LottoList from './LottoList.js';
 import WinningInputsForm from './WinningInputsForm.js';
+import WinningResultModal from './WinningResultModal.js';
 
 class Main {
   constructor(selector) {
@@ -33,6 +34,7 @@ class Main {
       '.winning-inputs-area',
     );
     this.winningInputsForm = new WinningInputsForm(winningInputsArea);
+    this.winningResultModal = new WinningResultModal();
   }
 
   bindEvents() {
@@ -51,7 +53,14 @@ class Main {
         winningNumbers,
         bonusNumber,
       );
-      alert(winningCounts, profitRate);
+      // 당첨 내역 모달 렌더링
+      this.winningResultModal.render(winningCounts, profitRate);
+      this.winningResultModal.bindEvents();
+    });
+
+    this.container.addEventListener('restart', () => {
+      this.render();
+      this.bindEvents();
     });
   }
 }
