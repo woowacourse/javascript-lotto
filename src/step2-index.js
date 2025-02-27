@@ -20,11 +20,11 @@ const init = async () => {
 
   document
     .querySelector(".winning-lotto .result")
-    .addEventListener("click", lottoController.handleResultClick);
+    .addEventListener("click", () => lottoController.handleResultClick(inputs));
 
   document
     .querySelector(".modal .retry")
-    .addEventListener("click", lottoController.handleRetryClick);
+    .addEventListener("click", () => lottoController.handleRetryClick(inputs));
 
   document
     .querySelector(".modal .close")

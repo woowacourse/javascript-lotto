@@ -44,13 +44,19 @@ class lottoControllerUI {
     document.querySelector(".winning-lotto .result").disabled = !allFilled;
   };
 
-  handleResultClick = () => {
-    document.querySelector(".overlay").classList.add("active");
-
-    if (document.querySelector(".result__row")) return;
+  handleResultClick = (inputs) => {
+    if (document.querySelector(".result__row")) {
+      document.querySelector(".overlay").classList.add("active");
+      return;
+    }
 
     const winningNumbers = getWinningNumbers();
+    if (!winningNumbers) return;
+
     const bonusNumber = getBonusNumber(winningNumbers);
+    if (!bonusNumber) return;
+
+    document.querySelector(".overlay").classList.add("active");
 
     const gameResults = this.lottoGame.playLotto(this.lottos, {
       winningNumbers,
@@ -62,9 +68,13 @@ class lottoControllerUI {
 
     printResult(formatResults(rankCount).reverse());
     printProfitRate(calcProfitRate(getLottoPrice(), totalReward));
+
+    inputs.forEach((input) => {
+      input.disabled = true;
+    });
   };
 
-  handleRetryClick = () => {
+  handleRetryClick = (inputs) => {
     // active 제거
     document.querySelector(".overlay").classList.remove("active");
     document.querySelector(".winning-lotto").classList.remove("active");
@@ -87,6 +97,11 @@ class lottoControllerUI {
 
     // 구입 버튼 활성화
     document.querySelector(".purchase button").disabled = false;
+
+    // input 활성화
+    inputs.forEach((input) => {
+      input.disabled = false;
+    });
   };
 
   handleCloseClick = () => {
