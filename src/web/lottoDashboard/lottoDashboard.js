@@ -1,6 +1,6 @@
-import { createElement } from '../utils/dom';
-import PlayLotto from '../playLotto/PlayLotto';
 import './lottoDashboard.css';
+import { createElement } from '../utils/dom';
+import { PlayLotto } from '../playLotto';
 
 export default function LottoDashboard() {
   const lottoDashboard = createElement('div', { class: 'lotto-dashboard' });
