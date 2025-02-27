@@ -20,7 +20,6 @@
   gap: 8px;
 }
 
-/* 모든 숫자 입력란 */
 .number-input {
   width: 34px;
   padding: 8px;
@@ -29,8 +28,7 @@
   font-size: 14px;
 }
 
-/* 결과 확인 버튼 */
-.big-button {
+.result-button {
   width: 100%;
   background-color: var(--primary);
   color: white;
@@ -41,7 +39,7 @@
   font-size: 14px;
 }
 
-.big-button:disabled {
+.result-button:disabled {
   cursor: not-allowed;
   background-color: var(--greyscale-3);
 }

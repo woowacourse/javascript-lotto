@@ -59,9 +59,18 @@
   text-align: center;
 }
 
-.modal-content .restart-button {
-  margin-top: 1rem;
+.restart-button {
   width: 100%;
-  padding: 0.5rem 0.75rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.restart-button:disabled {
+  cursor: not-allowed;
+  background-color: var(--greyscale-3);
 }

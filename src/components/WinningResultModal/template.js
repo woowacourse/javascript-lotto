@@ -51,7 +51,7 @@ function getModalMarkup(winningCounts, profitRate) {
         <h2>🏆 당첨 통계 🏆</h2>
         ${getTableMarkup(winningCounts)}
         <strong>당신의 총 수익률은 ${profitRate}%입니다.</strong>
-        <button class="big-button">다시 시작하기</button>
+        <button class="restart-button">다시 시작하기</button>
       </div>
     </div>
   `;

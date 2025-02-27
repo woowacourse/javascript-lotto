@@ -25,7 +25,7 @@ const generateInputs = (count, maxlength) => `
 `;
 
 const getButtonMarkup = () =>
-  `<button class="big-button" disabled>결과 확인하기</button>`;
+  `<button class="result-button" disabled>결과 확인하기</button>`;
 
 export {
   getInstructionMarkup,
