@@ -162,8 +162,10 @@ class App {
     const $purchaseButton = document.querySelector(
       '.main-purchase-amount-button',
     );
+    const $newPurchaseButton = $purchaseButton.cloneNode(true);
+    $purchaseButton.replaceWith($newPurchaseButton);
 
-    $purchaseButton.addEventListener('click', () => {
+    $newPurchaseButton.addEventListener('click', () => {
       const purchaseAmountInput = this.#initializeWebInput({
         readUserInput: getPurchaseAmountInputByWeb,
         formatter: validateAndFormatPurchaseAmountInput,
@@ -258,6 +260,25 @@ class App {
           if ($modal) {
             $modal.remove();
           }
+        });
+
+        const $modalRestartButton = document.querySelector(
+          '.modal-restart-button',
+        );
+        if ($modalRestartButton === null) {
+          return;
+        }
+        $modalRestartButton.addEventListener('click', () => {
+          const $modal = document.querySelector('.modal');
+          if ($modal) {
+            $modal.remove();
+          }
+          const $input = document.querySelector('#purchaseAmount');
+          $section.removeChild($article);
+          $section.removeChild($form);
+          $input.value = null;
+
+          this.#initializePurchaseAmountByWeb();
         });
       });
       //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
