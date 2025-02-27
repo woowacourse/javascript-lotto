@@ -196,11 +196,51 @@ class App {
         event.preventDefault();
 
         const formData = new FormData(event.target);
-        const winningNumbers = formData.getAll('winningNumber'); // name="winningNumber"인 값들 배열로 가져오기
-        const bonusNumber = formData.get('bonusNumber'); // name="bonusNumber"인 값 가져오기
 
-        console.log('당첨 번호:', winningNumbers);
-        console.log('보너스 번호:', bonusNumber);
+        const winningNumbersInput = this.#initializeWebInput({
+          readUserInput: () => formData.getAll('winningNumber'),
+          formatter: (input) => {
+            validateEmptySpaceInWinningNumbers(input);
+            const numbers = input.map(Number);
+            validateWinningNumbers(numbers);
+            return numbers;
+          },
+          onError: (error) => outputViewByWeb.displayErrorMessage(error),
+        });
+
+        if (winningNumbersInput === null) {
+          return;
+        }
+
+        const bonusNumberInput = this.#initializeWebInput({
+          readUserInput: () => formData.get('bonusNumber'),
+          formatter: (input) => {
+            validateEmptySpace(input);
+            const convertedInput = convertFormat.toNumber(input);
+            validateBonusNumber(convertedInput, winningNumbersInput);
+            return convertedInput;
+          },
+          onError: (error) => outputViewByWeb.displayErrorMessage(error),
+        });
+
+        if (bonusNumberInput === null) {
+          return;
+        }
+
+        const winningLotto = new WinningLotto(
+          new Lotto(winningNumbersInput),
+          bonusNumberInput,
+        );
+
+        const { lottoResult, lottoProfit } = this.getLottoResult(
+          winningLotto,
+          lottoList,
+        );
+        console.log('lottoResult', lottoResult);
+        console.log('lottoProfit', lottoProfit);
+        // outputViewByWeb.displayLottoResultInstruction();
+        // outputViewByWeb.displayLottoResult(lottoResult);
+        // outputViewByWeb.displayProfit(lottoProfit);
       });
       //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
     });
