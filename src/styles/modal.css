@@ -1,0 +1,67 @@
+/* 모달을 어둡게 감싸는 배경(백드롭) */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 메인 UI보다 항상 위에 뜨도록 z-index 설정 */
+  z-index: 9998;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 모달 컨텐츠 */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 2rem;
+  width: 400px;
+  max-width: 80%;
+  position: relative;
+  z-index: 9999; /* backdrop보다 더 위 */
+}
+
+/* 우측 상단 닫기 버튼 */
+.modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.modal-content table thead th,
+.modal-content table tbody td {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.modal-content .restart-button {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
