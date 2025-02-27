@@ -40,8 +40,27 @@ h1 {
   color: white;
 }
 
+#purchase-form__btn:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#purchase-form__error {
+  color: rgb(208, 40, 40);
+  font-size: 0.85rem;
+}
+
+#lotto-list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 #lotto-list li {
-  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 #lotto-numbers-form section {
@@ -72,6 +91,7 @@ h1 {
 .numbers {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 #bonus-number {
