@@ -17,7 +17,7 @@ const createPrizeTable = (result) => {
 
   document
     .getElementById("prize-table")
-    .insertAdjacentHTML("beforeend", headerTemplate);
+    .insertAdjacentHTML("afterbegin", headerTemplate);
 
   document
     .getElementById("prize-table-body")
