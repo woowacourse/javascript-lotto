@@ -14,6 +14,13 @@ const game = () => {
     buyLotto();
   });
 
+  const priceInput = document.querySelector(".priceInput");
+  priceInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      buyLotto();
+    }
+  });
+
   document.addEventListener("priceUpdated", () => {
     showLottos(divideByUnit(PRICE.UNIT, priceStore.getPrice()));
   });
