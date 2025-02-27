@@ -16,8 +16,8 @@ describe("주어진 범위 안에서 중복되지 않는 숫자를 개수만큼 
     const uniqueRandomNumbers = Array.from(new Set(randomNumbers));
 
     // then
-    expect(randomNumbers).toHaveLength(LOTTO_SIZE);
-    expect(uniqueRandomNumbers).toHaveLength(LOTTO_SIZE);
+    expect(randomNumbers).toHaveLength(6);
+    expect(uniqueRandomNumbers).toHaveLength(6);
   });
 
   test("랜덤으로 반환된 숫자들이 주어진 범위 안에 존재하는지 확인한다.", () => {
@@ -30,8 +30,8 @@ describe("주어진 범위 안에서 중복되지 않는 숫자를 개수만큼 
 
     // then
     randomNumbers.forEach((number) => {
-      expect(number).toBeLessThanOrEqual(LOTTO_NUMBER_MAX);
-      expect(number).toBeGreaterThanOrEqual(LOTTO_NUMBER_MIN);
+      expect(number).toBeLessThanOrEqual(45);
+      expect(number).toBeGreaterThanOrEqual(1);
     });
   });
 });
