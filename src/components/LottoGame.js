@@ -55,7 +55,7 @@ export default class LottoGame {
   };
 
   render() {
-    this.#target.innerHTML = "";
+    this.#target.replaceChildren();
 
     const $div = customCreateElement({
       tagName: "div",
