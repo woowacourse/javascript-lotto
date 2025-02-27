@@ -60,6 +60,52 @@
         <p>Copyright 2023. woowacourse</p>
       </div>
     </div>
+<div class="modal-overlay" id="resultModal" >
+  <div class="modal-content">
+    <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
+    <div class="modal-divider"></div>
+    <table class="result-table">
+      <thead>
+        <tr>
+          <th>일치 갯수</th>
+          <th>당첨금</th>
+          <th>당첨 갯수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3개 일치</td>
+          <td>5,000원</td>
+          <td id="match-3">0개</td>
+        </tr>
+        <tr>
+          <td>4개 일치</td>
+          <td>50,000원</td>
+          <td id="match-4">0개</td>
+        </tr>
+        <tr>
+          <td>5개 일치</td>
+          <td>1,500,000원</td>
+          <td id="match-5">0개</td>
+        </tr>
+        <tr>
+          <td>5개+보너스 볼</td>
+          <td>30,000,000원</td>
+          <td id="match-5-bonus">0개</td>
+        </tr>
+        <tr>
+          <td>6개 일치</td>
+          <td>2,000,000,000원</td>
+          <td id="match-6">0개</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <p id="total-return-rate">당신의 총 수익률은 0%입니다.</p>
+    
+    <button id="restart-button" class="restart-btn">다시 시작하기</button>
+  </div>
+</div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
