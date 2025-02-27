@@ -31,7 +31,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px 0;
+  padding: 30px 0;
 }
 
 .dashboard {
@@ -108,7 +108,7 @@
   }
 }
 
-.open-result-button {
+.big-button {
   width: 100%;
   background-color: var(--primary);
   color: white;
@@ -145,7 +145,7 @@
 .lotto-tickets {
   display: flex;
   flex-direction: column;
-  height: 160px;
+  height: 200px;
   gap: 8px;
   overflow: auto;
 }
