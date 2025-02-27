@@ -45,8 +45,7 @@ class WinningLotto extends BaseWebComponent {
 
   initWinningLotto() {
     this.isInitialized = true;
-    this.render();
-    this.setEvent();
+    this.connectedCallback();
   }
 
   setEvent() {
