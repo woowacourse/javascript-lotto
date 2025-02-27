@@ -108,6 +108,24 @@ const showWinningLottos = () => {
   handleResultButton();
 };
 
+const handleResultButton = () => {
+  document.addEventListener('click', (event) => {
+    if (event.target && event.target.id === 'showResultButton') {
+      const modal = document.querySelector('.modal');
+      modal.style.display = 'flex';
+    }
+
+    if (event.target && event.target.classList.contains('modal-close')) {
+      const modal = document.querySelector('.modal');
+      modal.style.display = 'none';
+    }
+
+    const lottoNumbers = new WinningLotto(winningNumbers, bonusNumber);
+    const matchCounts = getWinningMatchCount(lottos, lottoNumbers);
+    const revenue = calculateRevenue(matchCounts, purchasePrice);
+  });
+};
+
 const printLotto = (lotto) => {
   const container = document.createElement('div');
   container.style.display = 'flex';
