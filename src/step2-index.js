@@ -37,6 +37,10 @@ const init = async () => {
   document
     .querySelector(".modal .retry")
     .addEventListener("click", handleRetryClick);
+
+  document
+    .querySelector(".modal .close")
+    .addEventListener("click", handleCloseClick);
 };
 
 const handlePurchaseClick = (e) => {
@@ -67,7 +71,7 @@ const handleInputChange = (inputs) => {
 const handleResultClick = () => {
   document.querySelector(".overlay").classList.add("active");
 
-  if (document.querySelector(".result-row")) return;
+  if (document.querySelector(".result__row")) return;
 
   const winningNumbers = getWinningNumbers();
   const bonusNumber = getBonusNumber(winningNumbers);
@@ -107,6 +111,10 @@ const handleRetryClick = () => {
 
   // 구입 버튼 활성화
   document.querySelector(".purchase button").disabled = false;
+};
+
+const handleCloseClick = () => {
+  document.querySelector(".overlay").classList.remove("active");
 };
 
 init();
