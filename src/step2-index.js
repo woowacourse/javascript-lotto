@@ -1,120 +1,34 @@
-import calcProfitRate from "./domain/calcProfitRate.js";
-import formatResults from "./domain/formatResults.js";
-import LottoGame from "./models/LottoGame.js";
-import {
-  getBonusNumber,
-  getLottoPrice,
-  getWinningNumbers,
-} from "./uiView/input.js";
-import {
-  printLottoCount,
-  printLottoNumbers,
-  printProfitRate,
-  printResult,
-} from "./uiView/output.js";
+import lottoControllerUI from "./controllers/lottoControllerUI.js";
 
 // /**
 //  * step 2의 시작점이 되는 파일입니다.
 //  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
 //  */
-const lottoGame = new LottoGame();
-let lottos;
-
 const init = async () => {
+  const lottoController = new lottoControllerUI();
+
   document
     .querySelector(".purchase button")
-    .addEventListener("click", handlePurchaseClick);
+    .addEventListener("click", lottoController.handlePurchaseClick);
 
   const inputs = document.querySelectorAll(".inputs__winning-number input");
   inputs.forEach((input) => {
-    input.addEventListener("input", () => handleInputChange(inputs));
+    input.addEventListener("input", () =>
+      lottoController.handleInputChange(inputs)
+    );
   });
 
   document
     .querySelector(".winning-lotto .result")
-    .addEventListener("click", handleResultClick);
+    .addEventListener("click", lottoController.handleResultClick);
 
   document
     .querySelector(".modal .retry")
-    .addEventListener("click", handleRetryClick);
+    .addEventListener("click", lottoController.handleRetryClick);
 
   document
     .querySelector(".modal .close")
-    .addEventListener("click", handleCloseClick);
-};
-
-const handlePurchaseClick = (e) => {
-  const price = getLottoPrice();
-  if (price) {
-    e.target.disabled = true;
-    lottos = lottoGame.generateLottos(price);
-
-    printLottoCount(lottos.length);
-
-    const lottoListEl = document.createElement("ul");
-    lottoListEl.classList.add("lotto-list");
-    document.querySelector(".purchase-history .count").after(lottoListEl);
-
-    lottos.forEach((lotto) => printLottoNumbers(lotto.numbers));
-
-    document.querySelector(".winning-lotto").classList.add("active");
-  }
-};
-
-const handleInputChange = (inputs) => {
-  const allFilled = Array.from(inputs).every(
-    (input) => input.value.trim() !== ""
-  );
-  document.querySelector(".winning-lotto .result").disabled = !allFilled;
-};
-
-const handleResultClick = () => {
-  document.querySelector(".overlay").classList.add("active");
-
-  if (document.querySelector(".result__row")) return;
-
-  const winningNumbers = getWinningNumbers();
-  const bonusNumber = getBonusNumber(winningNumbers);
-
-  const gameResults = lottoGame.playLotto(lottos, {
-    winningNumbers,
-    bonusNumber,
-  });
-
-  const totalReward = lottoGame.calcTotalReward(gameResults);
-  const rankCount = lottoGame.getRankCount(gameResults);
-
-  printResult(formatResults(rankCount).reverse());
-  printProfitRate(calcProfitRate(getLottoPrice(), totalReward));
-};
-
-const handleRetryClick = () => {
-  // active 제거
-  document.querySelector(".overlay").classList.remove("active");
-  document.querySelector(".winning-lotto").classList.remove("active");
-
-  // 결과들 제거
-  document.querySelector(".purchase-history").replaceChildren();
-  [...document.querySelectorAll(".result__row")].map((resultRow) => {
-    resultRow.remove();
-  });
-  document.querySelector(".profit").remove();
-
-  // input value 초기화
-  document.querySelector(".purchase input").value = "";
-  [...document.querySelectorAll(".winning-number")].map(
-    (winningNumberInput) => {
-      winningNumberInput.value = "";
-    }
-  );
-  document.querySelector(".bonus-number").value = "";
-
-  // 구입 버튼 활성화
-  document.querySelector(".purchase button").disabled = false;
-};
-
-const handleCloseClick = () => {
-  document.querySelector(".overlay").classList.remove("active");
+    .addEventListener("click", lottoController.handleCloseClick);
 };
 
 init();
