@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { PROFIT } from '../constants/Configurations.js';
-=======
-import { PROFIT } from '../constants/CONFIGURATIONS.js';
->>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
 
 class WinningResult {
   #winningNumbers;
@@ -34,11 +30,7 @@ class WinningResult {
     const totalReward = counts.reduce((acc, curr, i) => {
       return acc + curr * PROFIT[i];
     }, 0);
-<<<<<<< HEAD
     return (totalReward / lottoPurchasePrice) * 100;
-=======
-    return ((totalReward - lottoPurchasePrice) / lottoPurchasePrice) * 100;
->>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
   }
 
   #getMatchCount(lotto) {

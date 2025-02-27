@@ -1,5 +1,5 @@
-import { KEY, LOTTO } from '../../src/constants/CONFIGURATIONS';
-import { ERROR_MESSAGE } from '../../src/constants/MESSAGES';
+import { KEY, LOTTO } from '../../src/constants/Configurations';
+import { ERROR_MESSAGE } from '../../src/constants/Messages';
 import { validateCount } from '../../src/validators/validate';
 import {
   validateTypeAll,

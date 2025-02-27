@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 import { KEY, LOTTO } from '../../src/constants/Configurations';
 import { ERROR_MESSAGE } from '../../src/constants/Messages';
 import {
   BonusNumberValidator,
   validateDuplicateBonus,
-=======
-import { KEY, LOTTO } from '../../src/constants/CONFIGURATIONS';
-import { ERROR_MESSAGE } from '../../src/constants/MESSAGES';
-import {
-  BonusNumberValidator,
-  validateDuplicate,
->>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
 } from '../../src/validators/BonusNumberValidator';
 import { validateRange, validateType } from '../../src/validators/validate';
 
@@ -60,11 +52,7 @@ describe('보너스 번호 검증 테스트', () => {
       const bonusNumber = 1;
       const winningNumbers = [1, 2, 3, 4, 5, 6];
 
-<<<<<<< HEAD
       expect(() => validateDuplicateBonus(bonusNumber, winningNumbers)).toThrow(
-=======
-      expect(() => validateDuplicate(bonusNumber, winningNumbers)).toThrow(
->>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
         ERROR_MESSAGE.BONUS_NUMBER.DUPLICATE,
       );
     });

@@ -1,17 +1,10 @@
-<<<<<<< HEAD
 const SEPARATOR = ',';
-=======
-const SEPARATOR = Object.freeze(',');
->>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
 
 const KEY = Object.freeze({
   PURCHASE_PRICE: '구입 금액',
   WINNING_NUMBERS: '당첨 번호',
   BONUS_NUMBER: '보너스 번호',
-<<<<<<< HEAD
   LOTTO_NUMBERS: '로또 번호',
-=======
->>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
 });
 
 const PURCHASE_PRICE = Object.freeze({

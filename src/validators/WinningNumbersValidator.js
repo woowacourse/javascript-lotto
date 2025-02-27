@@ -1,4 +1,4 @@
-import { KEY, LOTTO } from '../constants/CONFIGURATIONS.js';
+import { KEY, LOTTO } from '../constants/Configurations.js';
 import { validateType, validateRange, validateCount } from './validate.js';
 
 const validateTypeAll = (winningNumbers) => {
