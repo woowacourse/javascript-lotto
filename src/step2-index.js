@@ -16,7 +16,38 @@ const bonusNumberInput = document.querySelector(
 );
 const resultButton = document.querySelector(".result__btn");
 
+const resultModal = document.querySelector("#resultModal");
+const match3Element = document.querySelector("#match-3");
+const match4Element = document.querySelector("#match-4");
+const match5Element = document.querySelector("#match-5");
+const match5BonusElement = document.querySelector("#match-5-bonus");
+const match6Element = document.querySelector("#match-6");
+const totalReturnRateElement = document.querySelector("#total-return-rate");
+const restartButton = document.querySelector("#restart-button");
+
 let lottoGame = null;
+function displayResult() {
+  if (!lottoGame) {
+    return;
+  }
+
+  const gameResult = lottoGame.getGameResult();
+  const lottoNum = lottoGame.lottos.length;
+  const earningRate = lottoGame.getEarningRate(lottoNum);
+  console.log({ earningRate, lottoNum, gameResult });
+  // 각 등수별 당첨 횟수 업데이트
+  match3Element.textContent = `${gameResult["5"]}개`;
+  match4Element.textContent = `${gameResult["4"]}개`;
+  match5Element.textContent = `${gameResult["3"]}개`;
+  match5BonusElement.textContent = `${gameResult["2"]}개`;
+  match6Element.textContent = `${gameResult["1"]}개`;
+
+  // 수익률 업데이트
+  totalReturnRateElement.textContent = `당신의 총 수익률은 ${earningRate}%입니다.`;
+
+  // 모달 표시
+  resultModal.style.display = "flex";
+}
 
 function setupPurchaseEvent() {
   purchaseButton.addEventListener("click", handlePurchase);
@@ -92,11 +123,12 @@ function handleResult() {
     Validator.isBonusNumber(bonusNumber, winningNumbers);
 
     lottoGame.calculate(winningNumbers, bonusNumber);
-    // displayResult();
+    displayResult();
   } catch (error) {
     alert(error.message);
   }
 }
+
 function initApp() {
   purchaseMessage.style.display = "none";
   middleSection.style.display = "none";
