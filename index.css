@@ -16,15 +16,42 @@
   --border-default-color: #e4e4e4;
 
   --default-padding: 16px;
+
+  --default-font-family: Roboto, sans-serif;
 }
 
 body {
   background-color: var(--bg-default-color);
-  font-family: Roboto, sans-serif;
+  font-family: var(--default-font-family);
 }
 
 h2 {
   margin: calc(40px - var(--default-padding)) 0 40px 0;
+  text-align: center;
+}
+
+input {
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+}
+
+input::placeholder {
+  color: var(--lotto-greyscale-3);
+}
+
+input:focus {
+  outline-color: var(--lotto-greyscale-4);
+}
+
+button {
+  background-color: var(--lotto-primary);
+  border: none;
+  border-radius: 4px;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--lotto-greyscale-1);
+  letter-spacing: 1.25px;
 }
 
 #main-container {

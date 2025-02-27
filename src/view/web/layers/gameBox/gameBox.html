@@ -1,23 +1,17 @@
-<div>
-  <div id="game-header">
-    <h2 id="game-title">🎱 내 번호 당첨 확인 🎱</h2>
-  </div>
-
-  <form id="game-purchaseInput-form">
-    <div id="game-purchaseInput-container">
-      <label for="game-price" id="game-label"
-        >구입할 금액을 입력해주세요.</label
-      >
-      <div id="game-purchaseInput">
-        <input
-          type="text"
-          id="game-price"
-          placeholder="금액"
-          onfocus="this.placeholder = ''"
-          onblur="this.placeholder = '금액'"
-        />
-        <button type="submit" id="game-purchaseButton">구입</button>
-      </div>
+<section class="game-container">
+  <h2>🎱 내 번호 당첨 확인 🎱</h2>
+  <form class="purchase-form">
+    <label for="price">구입할 금액을 입력해주세요.</label>
+    <div class="purchase-container">
+      <input
+        type="text"
+        id="price"
+        placeholder="금액"
+        onfocus="this.placeholder = ''"
+        onblur="this.placeholder = '금액'"
+      />
+      <button type="submit" class="purchase-button">구입</button>
     </div>
   </form>
-</div>
+  <div class="lotto-container" data-type="dynamic"></div>
+</section>

@@ -2,11 +2,9 @@ import gameBoxContents from "./gameBox.html?raw";
 import "./gameBox.css";
 
 const createGameBox = () => {
-  const section = document.createElement("section");
-  section.id = "game-container";
-  section.innerHTML = gameBoxContents;
+  const main = document.querySelector("main");
 
-  document.getElementById("main-container").prepend(section);
+  main.insertAdjacentHTML("beforeend", gameBoxContents);
 };
 
 export default createGameBox;
