@@ -1,6 +1,18 @@
 ## 2단계
 과제 링크 : https://bunju20.github.io/javascript-lotto/
 
+- [x] UI 구현
+- [x] CSS 구현
+- [x] 도메인과 UI 연동 (step2-index.js)
+  - [x] 가격을 입력받고 살 로또의 갯수를 반환하는 로직
+  - [x] 산 로또 리스트를 출력하는 로직
+  - [x] 당첨 번호와 보너스 번호를 입력하는 로직
+  - [x] 로또 결과를 반환하는 로직
+- [x] 리팩토링 (view/web/components 내부 파일 추가)
+  - [x] LottoInput 추가 및 분리
+  - [x] LottoList 추가 및 분리
+  - [x] WinningNumber 추가 및 분리
+  - [x] ResultModal 추가 및 분리
 
 ## 1단계
 ### 기능 요구사항
