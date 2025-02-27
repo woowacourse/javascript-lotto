@@ -49,3 +49,28 @@ main{
 .purchase button{
   width:56px;
 }
+
+.purchase-history{
+  height:300px;
+  overflow:scroll;
+}
+
+::-webkit-scrollbar{
+  width:0;
+}
+
+.purchase-history .count{
+  padding-bottom:15px;
+}
+
+.lotto-list li{
+  list-style: none;
+  display:flex;
+  align-items: center;
+  gap:8px;
+  padding-bottom:12px;
+}
+
+.lotto-list span{
+  font-size:34px;
+}
