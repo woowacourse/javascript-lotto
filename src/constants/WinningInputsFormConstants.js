@@ -5,9 +5,9 @@ const WINNING_NUMBER_MAX_LENGTH = 2;
 const RESULT_EVENT_NAME = 'calculateResult';
 
 const SELECTORS = Object.freeze({
-  winningNumberInputs: '.number-input.winning',
-  bonusNumberInput: '.number-input.bonus',
-  button: '.big-button',
+  WINNING_NUMBER_INPUTS: '.number-input.winning',
+  BONUS_NUMBER_INPUT: '.number-input.bonus',
+  BUTTON: '.big-button',
 });
 
 export {

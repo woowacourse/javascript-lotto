@@ -29,10 +29,12 @@ class WinningInputsFormView extends ViewComponent {
 
   initElements() {
     this.winningNumbers = this.container.querySelectorAll(
-      SELECTORS.winningNumberInputs,
+      SELECTORS.WINNING_NUMBER_INPUTS,
     );
-    this.bonusNumber = this.container.querySelector(SELECTORS.bonusNumberInput);
-    this.button = this.container.querySelector(SELECTORS.button);
+    this.bonusNumber = this.container.querySelector(
+      SELECTORS.BONUS_NUMBER_INPUT,
+    );
+    this.button = this.container.querySelector(SELECTORS.BUTTON);
   }
 
   bindEvents() {
