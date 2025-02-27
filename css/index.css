@@ -74,3 +74,40 @@ main{
 .lotto-list span{
   font-size:34px;
 }
+
+.winning-lotto{
+  padding-top:12px;
+  display:none;
+}
+
+.winning-lotto.active{
+  display: block;
+}
+
+.winning-lotto p{
+  font-size: 14px;
+}
+
+.winning-lotto .description{
+  padding:12px 0 8px 0;
+  display:flex;
+  justify-content: space-between;
+}
+
+.inputs__winning-number{
+  display:flex;
+  justify-content: space-between;
+  padding-bottom:27px;
+}
+
+.inputs__winning-number input{
+  width:34px;
+  height:36px;
+  text-align: center;
+}
+
+.winning-numbers{
+  display:flex;
+  gap:5px;
+}
+
