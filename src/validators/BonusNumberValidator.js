@@ -1,5 +1,5 @@
-import { KEY, LOTTO } from '../constants/CONFIGURATIONS.js';
-import { ERROR_MESSAGE } from '../constants/MESSAGES.js';
+import { KEY, LOTTO } from '../constants/Configurations.js';
+import { ERROR_MESSAGE } from '../constants/Messages.js';
 import { validateRange, validateType } from './validate.js';
 
 const validateDuplicateBonus = (bonusNumber, winningNumbers) => {

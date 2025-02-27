@@ -1,5 +1,5 @@
 import WinningInputsFormView from './WinningInputsFormView.js';
-import { KEY } from '../../constants/CONFIGURATIONS.js';
+import { KEY } from '../../constants/Configurations.js';
 import { BonusNumberValidator } from '../../validators/BonusNumberValidator.js';
 import { LottoNumbersValidator } from '../../validators/LottoNumbersValidator.js';
 

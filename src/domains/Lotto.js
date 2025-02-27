@@ -1,4 +1,4 @@
-import { KEY } from '../constants/CONFIGURATIONS.js';
+import { KEY } from '../constants/Configurations.js';
 import {
   LottoNumbersValidator,
   validateDuplicate,

@@ -1,4 +1,4 @@
-import { LOTTO, PURCHASE_PRICE } from '../constants/CONFIGURATIONS.js';
+import { LOTTO, PURCHASE_PRICE } from '../constants/Configurations.js';
 import generateRandomNumber from '../utils/generateRandomNumber.js';
 import Lotto from './Lotto.js';
 import WinningResult from './WinningResult.js';

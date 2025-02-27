@@ -1,5 +1,5 @@
-import { KEY, PURCHASE_PRICE } from '../constants/CONFIGURATIONS.js';
-import { ERROR_MESSAGE } from '../constants/MESSAGES.js';
+import { KEY, PURCHASE_PRICE } from '../constants/Configurations.js';
+import { ERROR_MESSAGE } from '../constants/Messages.js';
 import { validateRange, validateType } from './validate.js';
 
 const validateUnit = (purchasePrice) => {

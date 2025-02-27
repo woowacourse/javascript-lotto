@@ -1,5 +1,5 @@
-import { LOTTO } from '../constants/CONFIGURATIONS.js';
-import { ERROR_MESSAGE } from '../constants/MESSAGES.js';
+import { LOTTO } from '../constants/Configurations.js';
+import { ERROR_MESSAGE } from '../constants/Messages.js';
 import { validateType, validateRange, validateCount } from './validate.js';
 
 const validateTypeAll = (key, numbers) => {

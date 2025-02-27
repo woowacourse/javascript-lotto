@@ -1,5 +1,5 @@
-import { LOTTO } from '../constants/CONFIGURATIONS.js';
-import { ERROR_MESSAGE } from '../constants/MESSAGES.js';
+import { LOTTO } from '../constants/Configurations.js';
+import { ERROR_MESSAGE } from '../constants/Messages.js';
 
 const validateType = (key, value) => {
   if (typeof value !== 'number' || Number.isNaN(value)) {

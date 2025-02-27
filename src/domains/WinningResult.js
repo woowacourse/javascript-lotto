@@ -1,4 +1,4 @@
-import { PROFIT } from '../constants/CONFIGURATIONS.js';
+import { PROFIT } from '../constants/Configurations.js';
 
 class WinningResult {
   #winningNumbers;
