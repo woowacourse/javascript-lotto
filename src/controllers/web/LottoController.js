@@ -1,8 +1,11 @@
 import View from "../../views/web/View.js";
 import issueLottos from "../../domains/issueLottos.js";
+import WinningStatistics from "../../domains/WinningStatistics.js";
 
 class LottoController {
   constructor() {
+    this.lottos = [];
+    this.purchaseAmount = 0;
     this.view = new View();
     this.#setEvent();
   }
@@ -14,10 +17,11 @@ class LottoController {
 
   #handlePurchase(event) {
     const { purchaseAmount } = event.detail;
-    const lottos = issueLottos(purchaseAmount);
+    this.purchaseAmount = purchaseAmount;
+    this.lottos = issueLottos(this.purchaseAmount);
 
     const issuedLotto = this.view.app.querySelector("issued-lotto");
-    issuedLotto.updateLottos(lottos);
+    issuedLotto.updateLottos(this.lottos);
 
     const winningLotto = this.view.app.querySelector("winning-lotto");
     winningLotto.initWinningLotto();
@@ -25,6 +29,15 @@ class LottoController {
 
   #handleResult(event) {
     const { winningNumbers, bonusNumber } = event.detail;
+    const winningStatistics = new WinningStatistics(this.lottos);
+    winningStatistics.calculateWinningResults(winningNumbers, bonusNumber);
+
+    const profitRatio = winningStatistics.calculateProfitRatio(
+      this.purchaseAmount,
+    );
+    const lottoResult = this.view.app.querySelector("lotto-result");
+
+    lottoResult.showResult(winningStatistics.statistics, profitRatio);
   }
 }
 

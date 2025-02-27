@@ -1,8 +1,33 @@
+import { MATCH_KEY, MATCH_PRIZE } from "../../constants/constants.js";
+import createWinningStatisticsMap from "../../utils/createWinningStatisticsMap.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./lotto-result.css";
 
 class LottoResult extends BaseWebComponent {
+  constructor() {
+    super();
+    this.statistics = createWinningStatisticsMap();
+    this.profitRatio = 0;
+  }
+
   getTemplate() {
+    const rows = Object.values(MATCH_KEY)
+      .map((key) => {
+        const matchText =
+          key === MATCH_KEY.FIVE_AND_BONUS
+            ? `${MATCH_KEY.FIVE}개+보너스볼`
+            : `${key}개`;
+
+        return `
+      <tr class="lotto-result__row">
+        <td>${matchText}</td>
+        <td>${MATCH_PRIZE[key].toLocaleString()}</td>
+        <td>${this.statistics.get(key).count}개</td>
+      </tr>
+      `;
+      })
+      .join("");
+
     return `
       <dialog class="lotto-result">
         <button class="lotto-result__close_button">
@@ -15,36 +40,18 @@ class LottoResult extends BaseWebComponent {
             <th>당첨금</th>
             <th>당첨 갯수</th>
           </tr>
-          <tr class="lotto-result__row">
-            <td>3개</td>
-            <td>5,000</td>
-            <td>n개</td>
-          </tr>
-          <tr class="lotto-result__row">
-            <td>4개</td>
-            <td>50,000</td>
-            <td>n개</td>
-          </tr>
-          <tr class="lotto-result__row">
-            <td>5개</td>
-            <td>1,500,000</td>
-            <td>n개</td>
-          </tr>
-          <tr class="lotto-result__row">
-            <td>5개+보너스볼</td>
-            <td>30,000,000</td>
-            <td>n개</td>
-          </tr>
-          <tr class="lotto-result__row">
-            <td>6개</td>
-            <td>2,000,000,000</td>
-            <td>n개</td>
-          </tr>
+          ${rows}
         </table>
-        <p class="lotto-result__profit">당신의 총 수익률은 %입니다.</p>
+        <p class="lotto-result__profit">당신의 총 수익률은 ${this.profitRatio}%입니다.</p>
         <button class="lotto-result__restart-button">다시 시작하기</button>
       </dialog>
       `;
+  }
+
+  showResult(statistics, profitRatio) {
+    this.statistics = statistics;
+    this.profitRatio = profitRatio;
+    this.render();
   }
 }
 
