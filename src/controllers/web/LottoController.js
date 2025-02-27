@@ -4,21 +4,27 @@ import issueLottos from "../../domains/issueLottos.js";
 class LottoController {
   constructor() {
     this.view = new View();
-    this.setEvent();
+    this.#setEvent();
   }
 
-  setEvent() {
-    this.view.app.addEventListener("purchase", this.handlePurchase.bind(this));
+  #setEvent() {
+    this.view.app.addEventListener("purchase", this.#handlePurchase.bind(this));
+    this.view.app.addEventListener("result", this.#handleResult.bind(this));
   }
 
-  handlePurchase(event) {
+  #handlePurchase(event) {
     const { purchaseAmount } = event.detail;
     const lottos = issueLottos(purchaseAmount);
 
     const issuedLotto = this.view.app.querySelector("issued-lotto");
-    if (issuedLotto) {
-      issuedLotto.updateLottos(lottos);
-    }
+    issuedLotto.updateLottos(lottos);
+
+    const winningLotto = this.view.app.querySelector("winning-lotto");
+    winningLotto.initWinningLotto();
+  }
+
+  #handleResult(event) {
+    const { winningNumbers, bonusNumber } = event.detail;
   }
 }
 

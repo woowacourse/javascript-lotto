@@ -27,11 +27,13 @@ class LottoPurchase extends BaseWebComponent {
 
   #handleSubmit(event) {
     event.preventDefault();
-    const input = this.querySelector(".lotto-purchase__input");
+    const purchaseAmountInput = this.querySelector(
+      ".lotto-purchase__input",
+    ).value;
     const errorElement = this.querySelector(".lotto-purchase__error");
 
     try {
-      const purchaseAmount = validatePurchaseAmount(input.value);
+      const purchaseAmount = validatePurchaseAmount(purchaseAmountInput);
       errorElement.style.display = "none";
       this.emit("purchase", { purchaseAmount });
     } catch (error) {
