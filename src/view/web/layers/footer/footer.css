@@ -7,7 +7,9 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
+.copyright {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
