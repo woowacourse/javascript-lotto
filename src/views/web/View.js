@@ -19,7 +19,7 @@ class View {
         <lotto-purchase></lotto-purchase>
         <issued-lotto></issued-lotto>
         <winning-lotto></winning-lotto>
-        <lotto-result></lotto-result>
+        
       </main>
     </div>
     <lotto-footer></lotto-footer>
@@ -28,3 +28,5 @@ class View {
 }
 
 export default View;
+
+// <lotto-result></lotto-result>

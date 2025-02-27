@@ -32,3 +32,8 @@
   width: 56px;
   height: 36px;
 }
+
+.lotto-purchase__error {
+  color: rgb(255, 46, 46);
+  margin-top: 6px;
+}

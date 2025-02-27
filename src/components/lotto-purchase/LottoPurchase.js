@@ -1,4 +1,4 @@
-import { MAX_AMOUNT, MIN_UNIT } from "../../constants/constants.js";
+import validatePurchaseAmount from "../../validations/validatePurchaseAmount.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./lotto-purchase.css";
 
@@ -9,19 +9,35 @@ class LottoPurchase extends BaseWebComponent {
         <h2 class="lotto-purchase__title">🎱 내 번호 당첨 확인 🎱</h2>
         <p class="lotto-purchase__description">구입할 금액을 입력해주세요.</p>
         <form class="lotto-purchase__form">
-          <input
-            class="lotto-purchase__input"
-            type="number"
-            placeholder="금액"
-            min="${MIN_UNIT}"
-            max="${MAX_AMOUNT}"
-            step="${MIN_UNIT}"
-            required
-          />
+          <input class="lotto-purchase__input" placeholder="금액" />
           <button class="lotto-purchase__button">구입</button>
         </form>
+        <p class="lotto-purchase__error"></p>
       </section>
     `;
+  }
+
+  setEvent() {
+    const form = this.querySelector(".lotto-purchase__form");
+    this.on(
+      { target: form, eventType: "submit" },
+      this.#handleSubmit.bind(this),
+    );
+  }
+
+  #handleSubmit(event) {
+    event.preventDefault();
+    const input = this.querySelector(".lotto-purchase__input");
+    const errorElement = this.querySelector(".lotto-purchase__error");
+
+    try {
+      const purchaseAmount = validatePurchaseAmount(input.value);
+      errorElement.style.display = "none";
+      this.emit("purchase", { purchaseAmount });
+    } catch (error) {
+      errorElement.textContent = error.message;
+      errorElement.style.display = "block";
+    }
   }
 }
 

@@ -2,18 +2,38 @@ import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./issued-lotto.css";
 
 class IssuedLotto extends BaseWebComponent {
+  constructor() {
+    super();
+    this.lottos = [];
+  }
+
   getTemplate() {
+    if (this.lottos.length === 0) {
+      return "";
+    }
+
     return `
       <section class="issued-lotto">
-        <p class="issued-lotto__description">총 7개를 구매하였습니다.</p>
+        <p class="issued-lotto__description">총 ${this.lottos.length}개를 구매하였습니다.</p>
         <ul class="issued-lotto__list">
-          <li class="issued-lotto__item">
-            <span class="issued_lotto__icon">🎟️</span>
-            <span class="issued-lotto__numbers">12, 28, 22, 37, 19, 23</span>
-          </li>
+          ${this.lottos
+            .map(
+              (lotto) => `
+            <li class="issued-lotto__item">
+              <span class="issued_lotto__icon">🎟️</span>
+              <span class="issued-lotto__numbers">${lotto.join(", ")}</span>
+            </li>
+            `,
+            )
+            .join("")}
         </ul>
       </section>
     `;
+  }
+
+  updateLottos(lottos) {
+    this.lottos = lottos;
+    this.render();
   }
 }
 
