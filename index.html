@@ -4,62 +4,86 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./reset.css" />
     <title>Document</title>
   </head>
-
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
-      <div>
+
+      <header>
+        <h1>🎱 행운의 로또</h1>
+      </header>
+        
+      <main>
+        <div id="lotto">
         <h2>🎱 내 번호 당첨 확인 🎱</h2>
-        <div>
-          <label for="input">구입 금액을 입력해주세요.</label>
-          <input type="text" id="input" placeholder="금액" />
-          <button id="check">구입</button>
-      </div>
-      <div>
-        <p>총 7개를 구매하였습니다.</p>
-        <div>
-          <div>
-            <img src="" alt="lotto" />
-            <p>12, 28, 22, 37, 19, 23</p>  
-          </div>
-          <div>
-            <img src="" alt="lotto" />
-            <p>12, 28, 22, 37, 19, 23</p>  
-          </div>
-          <div>
-            <img src="" alt="lotto" />
-            <p>12, 28, 22, 37, 19, 23</p>  
-          </div>
-          <div>
-            <img src="" alt="lotto" />
-            <p>12, 28, 22, 37, 19, 23</p>  
-          </div>
-          <div>
-            <img src="" alt="lotto" />
-            <p>12, 28, 22, 37, 19, 23</p>  
+        <div id="user-lotto">
+          <div id ="price-input-bar">
+            <label for="input">구입할 금액을 입력해주세요.</label>
+              <div id="price-input">
+                <input type="text" id="money" placeholder="금액" value="5000" />
+                <button id="purchase-button" onclick="buyUserLottos()">구입</button>
+              </div>
+            </div>
+
+          <div id="user-lotto-container">
+            <div id="user-lotto-quantity">
+            </div>
+            <div id="user-lotto-list">
+            </div>
           </div>
         </div>
-        <div>
+
+        <div id="winning-lotto">
           <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
           <div>
-            <p>당첨 번호</p>
-            <input type="text" id="winning-number" />
-            <input type="text" id="winning-number" />
-            <input type="text" id="winning-number" />
-            <input type="text" id="winning-number" />
-            <input type="text" id="winning-number" />
-            <input type="text" id="winning-number" />
+            
+            <div id="winning-lotto-numbers">
+              <div>
+                <p>당첨 번호</p>
+                <div id="winning-number-inputs">
+                  <input type="text" class="winning-number-input" value="1"/>
+                  <input type="text" class="winning-number-input" value="2"/>
+                  <input type="text" class="winning-number-input" value="3"/>
+                  <input type="text" class="winning-number-input" value="4"/>
+                  <input type="text" class="winning-number-input" value="5"/>
+                  <input type="text" class="winning-number-input" value="6"/>
+                </div>
+              </div>
+            
+              <div id="bonus-number-input-container">
+                <p>보너스 번호</p>
+                <input type="text" id="bonus-number-input" value="9"/>
+              </div>
+            </div>
           </div>
-          <div>
-            <p>보너스 번호</p>
-            <input type="text" id="bonus-number" />
+        
+          <button id="statistics-result-button" onClick="getResult()">결과 확인하기</button>
+        </div>
+
+      <div class="modal"></div>
+      <div id="statistics-result" class="modal_body">
+        <h2>🏆당첨 통계🏆</h2>
+        <div id="statistics-result-container">  
+          <table id="statistics-result-table">
+              <thead id="statistics-result-head">
+                <tr id="statistics-result-row">
+                  <th>일치 갯수</th>
+                  <th>당첨금</th>
+                  <th>당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody id="result-table-body">
+              </tbody>
+          </table>
+          <div id="revenue-rate-container">
           </div>
-          <button id="result">결과 확인하기</button>
+          <button id="reset-button" onClick="restart()">다시 시작하기</button>
         </div>
       </div>
-    </div>
+       </div>
+      </main>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

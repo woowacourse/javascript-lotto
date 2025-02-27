@@ -16,7 +16,7 @@ class Controller {
     this.init();
     const money = await InputView.readMoney();
 
-    const userLottos = await this.buyUserLottos(money);
+    const userLottos = this.buyUserLottos(money);
     OutputView.printUserLottos(userLottos);
 
     const statisticsResult = await this.getStatisticsResult(userLottos);
@@ -28,7 +28,7 @@ class Controller {
     await this.restart();
   }
 
-  async buyUserLottos(money) {
+  buyUserLottos(money) {
     const userLottos = createLottos(money);
     return userLottos;
   }
