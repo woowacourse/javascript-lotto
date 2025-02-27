@@ -21,7 +21,6 @@ export const getNeededLottoNumbers = () => {
     const winningNumbers = Array.from(inputElements).map((input) =>
       Number(input.value)
     );
-    resetInput(inputElements);
     validateLotto(winningNumbers);
     const winningLotto = new Lotto(winningNumbers);
     return winningLotto;
@@ -30,7 +29,6 @@ export const getNeededLottoNumbers = () => {
   const bonusLottoNumber = Input.retry(() => {
     const inputElement = document.querySelector(".bonusNumberInput");
     const bonusNumber = Number(inputElement.value);
-    resetInput(inputElement);
     validateBonusNumber({
       enterdLottoNumbers: winningLotto.getLottoNumbers(),
       bonusLottoNumber: bonusNumber,
