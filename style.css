@@ -30,6 +30,10 @@
  }
 
 
+ #app{
+  background-color: var(--lotto-greyscale-2);
+
+ }
  p {
     font-size: var(--font-lotto-body);
     font-weight: var(--weight-regular);
@@ -247,4 +251,18 @@ flex-direction: column; /* 세로 배치 유지 */
   border-radius: 4px;
   width: 100%;
   font-size: var(--font-lotto-caption)
+}
+
+
+.lotto__bottom{
+  margin-top: 69px;
+  height: 80px;
+  color: var(--lotto-primary);
+  text-align: center;
+   display: flex;
+  flex-direction: column;
+border-top: 1px solid #4E5BA633;
+justify-content: center; 
+font-size: var(--font-lotto-caption);
+
 }
