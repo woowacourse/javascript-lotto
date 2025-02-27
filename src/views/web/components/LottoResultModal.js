@@ -14,7 +14,6 @@ const LottoResultModal = {
   $modalContainer: getByClass('modalContainer')[0],
 
   initializeEvent() {
-    this.addClickListener('resultButton', () => this.openModal());
     this.addClickListener('closeButton', () => this.closeModal());
     this.addClickListener('modalBackground', () => this.closeModal());
     this.addClickListener('resetButton', () => {
