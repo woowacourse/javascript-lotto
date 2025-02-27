@@ -16,11 +16,12 @@ export default class PurchaseForm {
 
   render() {
     const $form = document.createElement("form");
-    const $span = customCreateElement({
-      tagName: "span",
+    const $label = customCreateElement({
+      tagName: "label",
       className: "purchase-form-info-text",
       text: "구입할 금액을 입력해주세요.",
     });
+    $label.setAttribute("for", "price");
     const $div = customCreateElement({
       tagName: "div",
       className: "purchase-form-input-wrap",
@@ -30,6 +31,7 @@ export default class PurchaseForm {
       className: "purchase-form-input",
     });
     $input.placeholder = "금액";
+    $input.id = "price";
 
     const $button = customCreateElement({
       tagName: "button",
@@ -38,7 +40,7 @@ export default class PurchaseForm {
     });
     $button.type = "button";
 
-    $form.appendChild($span);
+    $form.appendChild($label);
     $div.appendChild($input);
     $div.appendChild($button);
 
