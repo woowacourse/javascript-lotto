@@ -13,6 +13,11 @@ const init = async () => {
   document
     .querySelector(".purchase button")
     .addEventListener("click", handlePurchaseClick);
+
+  const inputs = document.querySelectorAll(".inputs__winning-number input");
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => handleInputChange(inputs));
+  });
 };
 
 const handlePurchaseClick = (e) => {
@@ -31,6 +36,14 @@ const handlePurchaseClick = (e) => {
 
     document.querySelector(".winning-lotto").classList.add("active");
   }
+};
+
+const handleInputChange = (inputs) => {
+  const allFilled = Array.from(inputs).every(
+    (input) => input.value.trim() !== ""
+  );
+  console.log(allFilled);
+  document.querySelector(".winning-lotto .result").disabled = !allFilled;
 };
 
 init();
