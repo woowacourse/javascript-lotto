@@ -11,17 +11,21 @@ export default class WinningNumbersInput {
       tagName: "div",
       className: "lotto-number-input-wrap",
     });
-    const $text = customCreateElement({ tagName: "span", text: "당첨 번호" });
+    const $fieldset = document.createElement("fieldset");
+
+    const $text = customCreateElement({ tagName: "legend", text: "당첨 번호" });
     const $inputWrap = customCreateElement({
       tagName: "div",
       className: "lotto-numbers-wrap",
     });
     const $inputs = this.createInput(winningNumbers);
 
-    $container.appendChild($text);
+    $fieldset.appendChild($text);
     $inputs.forEach(($input) => $inputWrap.appendChild($input));
 
-    $container.appendChild($inputWrap);
+    $fieldset.appendChild($inputWrap);
+    $container.appendChild($fieldset);
+
     $target.appendChild($container);
   }
 
@@ -32,6 +36,8 @@ export default class WinningNumbersInput {
         className: "number-input",
       });
       input.value = winningNumbers[index] ?? "";
+      input.id = `lotto${index}`;
+      input.name = "lotto[]";
 
       return input;
     });
