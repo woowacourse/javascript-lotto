@@ -5,6 +5,10 @@ import Footer from './web/footer/Footer';
 
 const app = document.getElementById('app');
 
-app.appendChild(Header());
-app.appendChild(Main());
-app.appendChild(Footer());
+const appFragment = document.createDocumentFragment();
+
+fragment.appendChild(Header());
+fragment.appendChild(Main());
+fragment.appendChild(Footer());
+
+app.appendChild(appFragment);
