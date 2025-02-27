@@ -1,4 +1,5 @@
 import { LOTTO } from "../../config/const";
+import lottoImg from "../../assets/lotto.png";
 
 const printLottoCount = (price) => {
   const lottoContents = document.querySelector(".lotto-contents");
@@ -14,7 +15,7 @@ const createLottoObject = (lotto) => {
   const lottoContainer = document.createElement("div");
   lottoContainer.className = "lotto-container_lotto";
   const lottoImage = document.createElement("img");
-  lottoImage.src = "./src/assets/lotto.png";
+  lottoImage.src = lottoImg;
   const lottoNumbers = document.createElement("p");
   lottoNumbers.innerText = lotto.numbers.map((number) => number).join(", ");
 
