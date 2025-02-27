@@ -2,22 +2,23 @@ import Button from "./common/button.js";
 import validateBonusNumber from "../validation/validateBonusNumber.js";
 import Lotto from "../domain/Lotto.js";
 import { LOTTO_NUMBER } from "../constants/lotto.js";
+import winningLottoInfoStore from "../store/winningLottoInfo.js";
 
 export default class LottoWinningInfoForm {
-  #setWinningLottoInfo;
   #show;
 
-  constructor($target, winningLottoInfo, setWinningLottoInfo, show) {
-    this.#setWinningLottoInfo = setWinningLottoInfo;
+  constructor($target, show) {
     this.#show = show;
-    this.render($target, winningLottoInfo);
+    this.render($target);
   }
 
-  render($target, winningLottoInfo) {
+  render($target) {
     const $form = document.createElement("form");
     $form.className = `${!this.#show ? "hidden" : ""} lotto-winning-info-form`;
 
-    const { winningNumbers, bonusNumber } = winningLottoInfo;
+    const { winningNumbers, bonusNumber } =
+      winningLottoInfoStore.getState().winningLottoInfo;
+
     $form.innerHTML = `
     <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
     <div class="lotto-number-input-container">
@@ -74,6 +75,12 @@ export default class LottoWinningInfoForm {
       return;
     }
 
-    this.#setWinningLottoInfo({ winningNumbers, bonusNumber });
+    winningLottoInfoStore.setState((state) => ({
+      winningLottoInfo: {
+        ...state.winningLottoInfo,
+        winningNumbers,
+        bonusNumber,
+      },
+    }));
   };
 }

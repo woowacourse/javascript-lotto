@@ -6,28 +6,23 @@ import Modal from "./common/Modal.js";
 import LottoMachine from "../domain/LottoMachine.js";
 import LottoResult from "../domain/LottoResult.js";
 import lottoTransactionStore from "../store/lottoTransactionStore.js";
+import winningLottoInfoStore from "../store/winningLottoInfo.js";
 
 export default class LottoGame {
   #target;
-  #winningLottoInfo;
   #lottoResult;
   #show;
 
   constructor($target) {
     this.#target = $target;
-    this.#winningLottoInfo = { winningNumbers: [], bonusNumber: 0 };
     this.#lottoResult = { lottoHistory: [], rate: 0 };
     this.#show = false;
 
     lottoTransactionStore.subscribe(() => this.render());
+    winningLottoInfoStore.subscribe(() => this.render());
 
     this.render();
   }
-
-  setWinningLottoInfo = (newState) => {
-    this.#winningLottoInfo = { ...this.#winningLottoInfo, ...newState };
-    this.render();
-  };
 
   setLottoResult = (newState) => {
     this.#lottoResult = { ...this.#lottoResult, ...newState };
@@ -40,12 +35,19 @@ export default class LottoGame {
   };
 
   setInit = () => {
-    this.#winningLottoInfo = { winningNumbers: [], bonusNumber: 0 };
     this.#lottoResult = { lottoHistory: [], rate: 0 };
     this.#show = false;
 
     lottoTransactionStore.setState((state) => ({
       lottoTransaction: { ...state.lottoTransaction, price: 0, lottos: [] },
+    }));
+
+    winningLottoInfoStore.setState((state) => ({
+      winningLottoInfo: {
+        ...state.winningLottoInfo,
+        winningNumbers: [],
+        bonusNumber: 0,
+      },
     }));
 
     this.render();
@@ -66,12 +68,7 @@ export default class LottoGame {
 
     new PurchaseForm($div, this.setShow);
     new LottoPurchaseHistory($div, this.#show);
-    new LottoWinningInfoForm(
-      $div,
-      this.#winningLottoInfo,
-      this.setWinningLottoInfo,
-      this.#show
-    );
+    new LottoWinningInfoForm($div, this.#show);
 
     const winningResult = this.calculateWinningResult();
 
@@ -83,16 +80,14 @@ export default class LottoGame {
   }
 
   calculateWinningResult() {
-    const { winningNumbers, bonusNumber } = this.#winningLottoInfo;
-    const { lottos, price } = lottoTransactionStore.getState().lottoTransaction;
+    const { winningNumbers, bonusNumber } =
+      winningLottoInfoStore.getState().winningLottoInfo;
 
+    const { lottos, price } = lottoTransactionStore.getState().lottoTransaction;
     if (winningNumbers.length === 0 && bonusNumber === 0) return;
 
     const lottoMachine = new LottoMachine(lottos);
-    lottoMachine.updateAllLottoStatus(
-      this.#winningLottoInfo.winningNumbers,
-      this.#winningLottoInfo.bonusNumber
-    );
+    lottoMachine.updateAllLottoStatus(winningNumbers, bonusNumber);
     const lottoStatus = lottoMachine.getMatchedLottoStatus();
 
     const lottoResult = new LottoResult(lottoStatus, price);
