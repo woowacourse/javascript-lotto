@@ -18,9 +18,9 @@ const game = () => {
     showLottos(divideByUnit(PRICE.UNIT, event.detail));
   });
 
-  const checkResult = document.querySelector(".checkResult");
+  const checkResultButton = document.querySelector(".checkResultButton");
 
-  checkResult.addEventListener("click", () => {
+  checkResultButton.addEventListener("click", () => {
     clickCheckResult();
   });
 

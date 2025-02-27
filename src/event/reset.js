@@ -7,8 +7,8 @@ const reset = () => {
 
   const dialog = document.querySelector("dialog");
   dialog.close();
-  const whenBuyed = document.querySelector(".whenBuyed");
-  const buyedLottos = document.querySelector(".buyedLottos");
+  const purchaseDetail = document.querySelector(".purchaseDetail");
+  const purchasedLottos = document.querySelector(".purchasedLottos");
   const winningNumberInputs = document.querySelectorAll(".winningNumberInput");
   const bonusNumberInput = document.querySelector(".bonusNumberInput");
   const winningCount = document.querySelectorAll(".winningCount");
@@ -20,8 +20,8 @@ const reset = () => {
     count.textContent = "0개";
   });
   bonusNumberInput.value = "";
-  buyedLottos.textContent = "";
-  whenBuyed.style = "display: none";
+  purchasedLottos.textContent = "";
+  purchaseDetail.style = "display: none";
 };
 
 export default reset;

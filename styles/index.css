@@ -97,7 +97,7 @@ header h1 {
   cursor: pointer;
 }
 
-.buyedLottos {
+.purchasedLottos {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -109,7 +109,7 @@ header h1 {
   gap: 8px;
 }
 
-.whenBuyed {
+.purchaseDetail {
   width: 100%;
   height: 100%;
   flex-direction: column;
@@ -117,7 +117,7 @@ header h1 {
   justify-content: space-between;
 }
 
-.lottoInputWrapper {
+.enteredNumberSection {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -134,7 +134,7 @@ header h1 {
   gap: 12px;
 }
 
-.bonusNumber {
+.enteredBonusNumber {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -158,7 +158,7 @@ header h1 {
   justify-content: flex-end;
 }
 
-.checkResult {
+.checkResultButton {
   display: flex;
   justify-content: center;
   align-items: center;
