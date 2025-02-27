@@ -1,4 +1,4 @@
-dialog[open] {
+#prize-result-modal[open] {
   width: 350px;
   height: 500px;
   padding: 16px;
@@ -11,7 +11,7 @@ dialog[open] {
   flex-direction: column;
 }
 
-dialog > h2 {
+#prize-result-modal > h2 {
   height: 24px;
   margin: 10px 0;
 
@@ -26,4 +26,18 @@ dialog > h2 {
   color: var(--lotto-greyscale-5);
   letter-spacing: 0.15px;
   text-align: center;
+}
+
+#prize-result-modal > table {
+  border-collapse: collapse;
+}
+
+#prize-result-modal th,
+#prize-result-modal td {
+  padding: 8px;
+}
+
+#prize-result-modal tr {
+  border: solid #d9d9d9;
+  border-width: 1px 0;
 }

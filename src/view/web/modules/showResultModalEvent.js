@@ -1,6 +1,6 @@
 const showResultModal = () => {
-  const showResultButton = document.getElementById("result-button-open");
-  const resultModal = document.getElementById("prize-result-modal");
+  const showResultButton = document.querySelector("#result-button-open");
+  const resultModal = document.querySelector("#prize-result-modal");
 
   showResultButton.addEventListener("click", () => {
     resultModal.showModal();
