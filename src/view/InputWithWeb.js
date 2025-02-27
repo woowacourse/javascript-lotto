@@ -4,6 +4,7 @@ const InputWithWeb = {
       return callback();
     } catch (e) {
       console.log(e.message);
+      alert(e.message);
     }
   },
 };
