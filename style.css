@@ -221,6 +221,10 @@ body {
 }
 
 .header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
   background-color: var(--lotto-primary);
   color: var(--lotto-greyscale-1);
   height: 64px;
@@ -263,6 +267,9 @@ body {
   justify-content: center;
   height: calc(100vh - 144px);
   flex-direction: column;
+  max-width: 100%;
+  overflow-y: auto;
+  margin-top: 64px;
 }
 
 .main-contents {
@@ -273,7 +280,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border: 1px solid #0000001F
+  border: 1px solid #0000001F;
 }
 
 .game-title {
