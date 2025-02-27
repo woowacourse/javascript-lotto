@@ -1,5 +1,6 @@
 import lottoStore from "../store/lottoStore.js";
 import priceStore from "../store/priceStore.js";
+import setPurchaseDetailVisibility from "./setPurchaseDetailVisibility.js";
 
 const reset = () => {
   priceStore.setPrice(0);
@@ -21,7 +22,7 @@ const reset = () => {
   });
   bonusNumberInput.value = "";
   purchasedLottos.textContent = "";
-  purchaseDetail.style = "display: none";
+  setPurchaseDetailVisibility("off");
 };
 
 export default reset;

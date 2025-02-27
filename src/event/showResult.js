@@ -9,7 +9,7 @@ const showResult = ({ winningLotto, bonusLottoNumber }) => {
     bonusLottoNumber,
   });
   const lottos = lottoStore.getLottos();
-  const lottosNumbers = lottoStore
+  const lottosNumbers = lottos
     .getLottos()
     .map((lotto) => lotto.getLottoNumbers());
 
@@ -27,7 +27,7 @@ const showResult = ({ winningLotto, bonusLottoNumber }) => {
     const countDiv = document.querySelector(`#rank${key}WinningCount`);
     countDiv.textContent = `${value}개`;
   });
-  
+
   const rateDiv = document.querySelector("#rate");
   rateDiv.textContent = `당신의 총 수익률은 ${rate}%입니다.`;
 };
