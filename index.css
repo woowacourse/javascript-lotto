@@ -22,6 +22,10 @@ body {
   background-color: var(--bg-default-color);
 }
 
+h2 {
+  margin: calc(40px - var(--default-padding)) 0 40px 0;
+}
+
 #main-container {
   height: 100vh;
   display: flex;
