@@ -1,5 +1,4 @@
 import { LOTTO_COUNT, PROFIT } from '../../../constants/CONFIGURATIONS.js';
-import WebController from '../../../controllers/WebController.js';
 import {
   createTag,
   enableElement,
@@ -8,25 +7,10 @@ import {
   getByTag,
   hideElement,
   querySelector,
-} from '../../../utils/DOM.js';
+} from '../../../utils/dom.js';
 
 const LottoResultModal = {
   $modalContainer: getByClass('modalContainer')[0],
-
-  initializeEvent() {
-    this.addClickListener('closeButton', () => this.closeModal());
-    this.addClickListener('modalBackground', () => this.closeModal());
-    this.addClickListener('resetButton', () => {
-      this.closeModal();
-      this.resetLotto();
-      WebController.start();
-    });
-  },
-
-  addClickListener(className, callback) {
-    const $target = getByClass(className)[0];
-    $target.addEventListener('click', callback);
-  },
 
   createTable(winningCounts) {
     const $tableBody = querySelector('.lottoResultTable > tbody');
@@ -75,7 +59,6 @@ const LottoResultModal = {
     getByClass('lottoList')[0].replaceChildren();
     getByClass('winningNumbersInput')[0].replaceChildren();
     getByTag('tbody')[0].replaceChildren();
-
     enableElement('purchaseInput');
     enableElement('purchaseButton');
     hideElement(getByClass('hiddenContainer')[0]);

@@ -1,4 +1,4 @@
-import { createTag } from '../../../utils/DOM.js';
+import { createTag } from '../../../utils/dom.js';
 
 const WinningInput = {
   appendWinningInput: ($target) => {

@@ -4,7 +4,7 @@ import {
   disableElement,
   getByClass,
   showElement,
-} from '../../utils/DOM.js';
+} from '../../utils/dom.js';
 import WinningInput from './components/WinningInput.js';
 import BonusInput from './components/BonusInput.js';
 import LottoResultModal from './components/LottoResultModal.js';

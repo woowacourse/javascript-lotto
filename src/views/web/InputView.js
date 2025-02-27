@@ -1,4 +1,4 @@
-import { getById, getByClass } from '../../utils/DOM.js';
+import { getById, getByClass } from '../../utils/dom.js';
 
 const InputView = {
   enterPurchasePrice() {
@@ -23,6 +23,7 @@ const InputView = {
           Number(getById(`winningNumber_${idx}`).value),
         );
         const bonusNumber = Number(getById('bonusNumber').value);
+        
         resolve({ winningNumbers, bonusNumber });
       });
     });
