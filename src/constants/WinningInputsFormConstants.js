@@ -7,7 +7,7 @@ const RESULT_EVENT_NAME = 'calculateResult';
 const SELECTORS = Object.freeze({
   WINNING_NUMBER_INPUTS: '.number-input.winning',
   BONUS_NUMBER_INPUT: '.number-input.bonus',
-  BUTTON: '.big-button',
+  RESULT_BUTTON: '.result-button',
 });
 
 export {
