@@ -39,6 +39,10 @@ export default class LottoWinningInfoForm {
     new BonusNumberInput($inputsContainer, bonusNumber);
     new Button($form, this.handleResultButtonClick, "결과 확인하기");
 
+    $form.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") this.handleResultButtonClick();
+    });
+
     $target.appendChild($form);
   }
 
