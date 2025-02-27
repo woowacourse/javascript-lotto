@@ -12,7 +12,7 @@
   width: 382px;
   height: 36px;
   margin: 0 0 28px;
-  font-family: var();
+  font-family: var(--font-family);
   font-size: 24px;
   font-weight: 800;
   font-stretch: normal;
