@@ -1,0 +1,10 @@
+#app{
+  background-color: var(--greyscale-2);
+  min-height:100vh;
+}
+
+header{
+  background-color:var(--primary-color);
+  padding:14px 130px;
+}
+
