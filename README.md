@@ -1,3 +1,4 @@
+
 ## 2단계
 과제 링크 : https://bunju20.github.io/javascript-lotto/
 
