@@ -2,11 +2,9 @@ import headerContents from "./header.html?raw";
 import "./header.css";
 
 const createHeader = () => {
-  const header = document.createElement("header");
-  header.className = "header-container";
-  header.innerHTML = headerContents;
+  const app = document.querySelector("#app");
 
-  document.getElementById("app").prepend(header);
+  app.insertAdjacentHTML("afterbegin", headerContents);
 };
 
 export default createHeader;
