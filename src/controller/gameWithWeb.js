@@ -7,15 +7,27 @@ import { divideByUnit } from "../utils/count.js";
 import reset from "../event/reset.js";
 
 const game = () => {
-  buyLotto();
+  const buyButton = document.querySelector(".buyButton");
+
+  buyButton.addEventListener("click", () => {
+    buyLotto();
+  });
 
   document.addEventListener("priceUpdated", (event) => {
     console.log("다른 컴포넌트에서 금액 확인:", event.detail);
     showLottos(divideByUnit(PRICE.UNIT, event.detail));
   });
 
-  clickCheckResult();
-  showResult();
+  const checkResult = document.querySelector(".checkResult");
+
+  checkResult.addEventListener("click", () => {
+    clickCheckResult();
+  });
+
+  document.addEventListener("checkResult", (event) => {
+    showResult(event);
+  });
+
   const resetButton = document.querySelector("#reset");
   resetButton.addEventListener("click", () => {
     reset();
