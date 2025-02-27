@@ -1,7 +1,7 @@
 #game-container {
   width: 414px;
   height: 727px;
-  padding: 16px;
+  padding: var(--default-padding);
 
   display: flex;
   flex-direction: column;

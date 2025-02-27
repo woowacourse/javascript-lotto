@@ -1,7 +1,7 @@
 #prize-result-modal[open] {
   width: 350px;
   height: 500px;
-  padding: 0 16px;
+  padding: 0 var(--default-padding);
 
   background-color: var(--lotto-greyscale-1);
   border: none;
@@ -81,7 +81,7 @@
 
   width: 14px;
   height: 14px;
-  margin: 16px 0 10px 0;
+  margin: var(--default-padding) 0 10px 0;
 
   align-self: end;
 }
