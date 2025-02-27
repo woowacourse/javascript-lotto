@@ -8,7 +8,8 @@ import LottoPrize from "./domain/LottoPrize";
 import { getPrice, getWinningLotto } from "./ui/input";
 import { printLottoCount, printLottoResult, printLottos } from "./ui/output";
 
-const handleModal = (prizeResultModal) => {
+const handleModal = () => {
+  const prizeResultModal = document.querySelector("modal");
   const modalOpenStatus = window.getComputedStyle(prizeResultModal).display;
   console.log("status :", modalOpenStatus);
   if (modalOpenStatus === "none") {
@@ -25,13 +26,55 @@ const allowModalOpen = () => {
   const prizeResultButton = document.querySelector(".result-contents");
   const closeButton = document.querySelector("modal .close-button");
 
-  prizeResultButton.addEventListener("click", () =>
-    handleModal(prizeResultModal)
-  );
-  closeButton.addEventListener("click", () => handleModal(prizeResultModal));
+  prizeResultButton.addEventListener("click", handleModal);
+  closeButton.addEventListener("click", handleModal);
 };
 
-async function run() {
+const resetLotto = () => {
+  // 모달 off
+  const prizeResultModal = document.querySelector("modal");
+  prizeResultModal.style.display = "none";
+
+  // input 초기화
+  const inputFields = document.querySelectorAll("input");
+  inputFields.forEach((input) => {
+    input.value = "";
+  });
+
+  // 사용자의 lotto 결과 초기화
+  const lottoContents = document.querySelector(".lotto-contents");
+  lottoContents.innerHTML = "";
+
+  // "결과 확인하기" 버튼 클릭 비활성화
+  const restartButton = document.querySelector(".result-contents");
+  restartButton.removeEventListener("click", handleModal);
+
+  // result table 결과 초기화
+  const resultTable = document.querySelector(".result-table");
+  const tableBody = document.createElement("tbody");
+  tableBody.className = "body";
+  resultTable.innerHTML = "";
+  resultTable.appendChild(tableBody);
+
+  // result text 결과 초기화
+  const resultText = document.querySelectorAll(".prize-contents p");
+  console.log(resultText, resultText[1]);
+  if (resultText[1]) {
+    resultText[1].remove();
+  }
+};
+
+const initLotto = () => {
+  // resetButton 활성화
+  const restartButton = document.querySelector(".restart-button");
+  restartButton.addEventListener("click", () => {
+    resetLotto();
+    run();
+  });
+};
+
+initLotto();
+const run = async () => {
   const price = await getPrice();
   printLottoCount(price);
   const lottos = LottoManager.generateLottos(price);
@@ -45,6 +88,6 @@ async function run() {
 
   allowModalOpen();
   printLottoResult(prizeResult, ROI);
-  isReStart();
-}
+};
+
 run();

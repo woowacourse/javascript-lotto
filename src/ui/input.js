@@ -1,4 +1,4 @@
-const getPrice = async () => {
+const getPrice = () => {
   return new Promise((resolve) => {
     const userInputPrice = document.querySelector(".input-contents input");
     const purchaseButton = document.querySelector(".input-contents button");
