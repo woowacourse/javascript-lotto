@@ -5,12 +5,61 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
   </head>
 
   <body>
     <div id="app">
       <h1>🎱 행운의 로또</h1>
     </div>
+    <form id="purchase-form">
+      <input id="purchase-input" name="purchase-input" />
+      <button id="purchaseButton">구입</button>
+    </form>
+    <div id="result"></div>
+    <div id="systemMessage"></div>
+
+    <div class="modal">
+      <div class="modal-body">
+        <div class="modal-header">🏆 당첨 통계 🏆</div>
+        <table class="modal-table">
+          <tr>
+            <th scope="col">일치 갯수</th>
+            <th scope="col">당첨금</th>
+            <th scope="col">당첨 갯수</th>
+          </tr>
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td id="three-count"></td>
+          </tr>
+          <tr>
+            <td>4개</td>
+            <td>50,000</td>
+            <td id="four-count"></td>
+          </tr>
+          <tr>
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td id="five-count"></td>
+          </tr>
+          <tr>
+            <td>5개 + 보너스 볼</td>
+            <td>30,000,000</td>
+            <td id="five-count-with-bonus"></td>
+          </tr>
+          <tr>
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td id="six-count"></td>
+          </tr>
+        </table>
+
+        <div id="revenue-container"></div>
+        <button class="modal-close">모달창 닫기</button>
+      </div>
+    </div>
+
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
