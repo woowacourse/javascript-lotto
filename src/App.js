@@ -236,11 +236,8 @@ class App {
           winningLotto,
           lottoList,
         );
-        console.log('lottoResult', lottoResult);
-        console.log('lottoProfit', lottoProfit);
-        // outputViewByWeb.displayLottoResultInstruction();
-        // outputViewByWeb.displayLottoResult(lottoResult);
-        // outputViewByWeb.displayProfit(lottoProfit);
+
+        outputViewByWeb.displayLottoResult(lottoResult, lottoProfit);
       });
       //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
     });

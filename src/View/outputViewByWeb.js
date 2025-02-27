@@ -1,3 +1,5 @@
+import { createModal } from './createDom';
+
 export const outputViewByWeb = {
   displayLottoCount(lottoCounts) {
     const $p = document.createElement('p');
@@ -27,6 +29,11 @@ export const outputViewByWeb = {
 
     fragment.appendChild($ul);
     document.querySelector('.lotto-list-display').appendChild(fragment);
+  },
+  displayLottoResult(lottoResult, lottoProfit) {
+    const $modal = createModal(lottoResult, lottoProfit);
+
+    document.querySelector('#app').appendChild($modal);
   },
 
   displayErrorMessage(error) {

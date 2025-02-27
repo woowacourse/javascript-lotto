@@ -116,3 +116,39 @@ export const createWinningLottoForm = () => {
 
   return form;
 };
+
+export const createModal = (lottoResult = {}, lottoProfit = 0) => {
+  const modal = createElementWithAttributes('div', {
+    className: 'modal',
+  });
+
+  const overlay = createElementWithAttributes('div', {
+    className: 'modal-overlay',
+  });
+
+  const modalContent = createElementWithAttributes('div', {
+    className: 'modal-content',
+  });
+
+  const titleContainer = createElementWithAttributes('span', {
+    className: 'text-subtitle',
+    textContent: '🏆 당첨 통계 🏆',
+  });
+
+  const closeButton = createElementWithAttributes('button', {
+    type: 'button',
+    className: 'modal-close-button',
+  });
+
+  const closeIcon = createElementWithAttributes('img', {
+    attributes: { src: '/vector.svg', alt: 'close' },
+  });
+
+  closeButton.appendChild(closeIcon);
+  titleContainer.appendChild(closeButton);
+
+  modalContent.append(titleContainer);
+  modal.append(overlay, modalContent);
+
+  return modal;
+};
