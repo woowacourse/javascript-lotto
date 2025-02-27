@@ -1,0 +1,27 @@
+.purchase-price-input {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.purchase-price-input input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--greyscale-3);
+  border-radius: 4px;
+}
+
+.purchase-price-input button {
+  width: 56px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.purchase-price-input .purchase-button:disabled {
+  cursor: not-allowed;
+  background-color: var(--greyscale-3);
+}
