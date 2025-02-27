@@ -23,12 +23,12 @@ class LottoMachine {
     return Array.from({ length: lottoCount }, () => new Lotto(generateLotto()));
   }
 
-  calculateResult({ winningNumbers, bonusNumber }, lottoPurchasePrice) {
+  calculateResult(winningNumbers, bonusNumber) {
     const winningResult = new WinningResult(winningNumbers, bonusNumber);
 
     const winningCounts = winningResult.calculate(this.#lottos);
     const profitRate = winningResult.calculateProfitRate(
-      lottoPurchasePrice,
+      this.#lottos.length * PURCHASE_PRICE.UNIT,
       winningCounts,
     );
 

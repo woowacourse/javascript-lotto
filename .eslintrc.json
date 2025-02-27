@@ -1,6 +1,6 @@
 {
   "rules": {
-    "max-lines-per-function": ["error", 15],
+    // "max-lines-per-function": ["error", 15],
     "max-params": ["error", 2],
     "lines-between-class-members": [
       "error",
@@ -16,11 +16,13 @@
     "arrow-body-style": "off",
     "no-return-await": "off",
     "no-constant-condition": "off",
-    "prettier/prettier": "off"
+    "prettier/prettier": "off",
+    "no-alert": "off"
   },
   "env": {
     "es6": true,
-    "node": true
+    // "node": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": "latest"

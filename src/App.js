@@ -15,15 +15,11 @@ class App {
   }
 
   async #start() {
-    const [lottoPurchasePrice, lottoMachine] =
-      await this.#processLottoPurchase();
+    const lottoMachine = await this.#processLottoPurchase();
     const [winningNumbers, bonusNumber] = await this.#preProcess();
     const [winningCounts, profitRate] = lottoMachine.calculateResult(
-      {
-        winningNumbers,
-        bonusNumber,
-      },
-      lottoPurchasePrice,
+      winningNumbers,
+      bonusNumber,
     );
 
     OutputView.printResult(winningCounts, profitRate);
@@ -36,7 +32,7 @@ class App {
     const lottoMachine = new LottoMachine(lottoPurchasePrice);
     OutputView.printPurchaseLottos(lottoMachine.lottos);
 
-    return [lottoPurchasePrice, lottoMachine];
+    return lottoMachine;
   }
 
   async #preProcess() {
