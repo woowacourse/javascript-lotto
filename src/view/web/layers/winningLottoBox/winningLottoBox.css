@@ -1,51 +1,17 @@
-#winningLotto-container {
-  width: 382px;
-  height: 104px;
-  border-radius: 4px;
-
+.winning-lotto-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-#winningLotto-numbersInput-message {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-}
-
-#winningLotto-numbersInput-container {
+.numbers-container {
   display: flex;
-  gap: 62px;
+  justify-content: space-between;
 }
 
-.winningLotto-numbersInput-label {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-}
-
-#winningLotto-winningNumbers-container {
-  width: 244px;
-  height: 36px;
-
-  display: flex;
-  gap: 8px;
-}
-
-#winningLotto-bonusNumber-container {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-}
-
-.winningLotto-number {
+.numbers-container input {
   width: 34px;
   height: 36px;
-  border: 1px solid var(--lotto-greyscale-3);
-  border-radius: 4px;
 
   font-weight: 400;
   font-size: 24px;
@@ -53,10 +19,18 @@
   text-align: center;
 }
 
-.winningLotto-number:focus {
-  outline-color: var(--lotto-greyscale-4);
+.numbers-container input:not(:last-child) {
+  margin-right: 8px;
 }
 
-#winningLotto-bonusNumber {
-  color: var(--lotto-primary);
+.bonus-number-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.winning-lotto-form > button {
+  width: 100%;
+  height: 36px;
+  margin: 28px 0;
 }

@@ -1,13 +1,14 @@
 import winningLottoBoxContents from "./winningLottoBox.html?raw";
+import createNumbersInput from "./createNumbersInput.js";
 import "./winningLottoBox.css";
 
 const createWinningLottoBox = () => {
-  const div = document.createElement("div");
-  div.id = "winningLotto-container";
-  div.className = "purchased-rendered";
-  div.innerHTML = winningLottoBoxContents;
+  const gameBox = document.querySelector(".game-container");
+  gameBox.insertAdjacentHTML("beforeend", winningLottoBoxContents);
 
-  document.getElementById("game-container").appendChild(div);
+  const numbersInput = createNumbersInput();
+  const inputContainer = document.querySelector(".numbers-input-container");
+  inputContainer.insertAdjacentHTML("beforeend", numbersInput);
 };
 
 export default createWinningLottoBox;

@@ -1,28 +1,16 @@
-<h3 id="winningLotto-numbersInput-message">
-  지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
-</h3>
-<form id="winningLotto-numbersInput-form">
-  <div id="winningLotto-numbersInput-container">
-    <div id="winningLotto-winningNumbersInput-container">
-      <label
-        for="winningLotto-winningNumbers"
-        class="winningLotto-numbersInput-label"
-        id="winningLotto-winningNumbers-label"
-        >당첨 번호</label
-      >
+<div class="winning-lotto-container">
+  <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+  <form class="winning-lotto-form">
+    <div class="numbers-container">
+      <div class="winning-numbers-container">
+        <label for="winning-numbers">당첨 번호</label>
+        <div class="numbers-input-container" data-type="dynamic"></div>
+      </div>
+      <div class="bonus-number-container">
+        <label for="bonus-number">보너스 번호</label>
+        <input type="text" id="bonus-number" />
+      </div>
     </div>
-    <div id="winningLotto-bonusNumber-container">
-      <label
-        for="winningLotto-bonusNumber"
-        class="winningLotto-numbersInput-label"
-        id="winningLotto-bonusNumber-label"
-        >보너스 번호</label
-      >
-      <input
-        type="text"
-        class="winningLotto-number"
-        id="winningLotto-bonusNumber"
-      />
-    </div>
-  </div>
-</form>
+    <button type="submit">결과 확인하기</button>
+  </form>
+</div>

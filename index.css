@@ -40,6 +40,13 @@ h2 {
   text-align: center;
 }
 
+label {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
 input {
   border: 1px solid var(--lotto-greyscale-3);
   border-radius: 4px;
@@ -62,6 +69,12 @@ button {
   font-size: 14px;
   color: var(--lotto-greyscale-1);
   letter-spacing: 1.25px;
+  line-height: 16px;
+}
+
+button:hover {
+  filter: brightness(90%);
+  cursor: pointer;
 }
 
 p {
