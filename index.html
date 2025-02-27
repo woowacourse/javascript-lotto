@@ -2,25 +2,31 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
+    <link rel="icon" href="/lotto.png" />
+    <title>행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
     <link rel="stylesheet" href="/src/styles/style.css" />
-    <link rel="stylesheet" href="/src/styles/modal.css" />
+    <link rel="stylesheet" href="/src/components/Main/main.css" />
+    <link rel="stylesheet" href="/src/components/LottoList/lotto.css" />
+    <link rel="stylesheet" href="/src/components/PurchaseForm/purchase.css" />
+    <link
+      rel="stylesheet"
+      href="/src/components/WinningInputsForm/winningInputs.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/components/WinningResultModal/modal.css"
+    />
   </head>
 
   <body>
     <div id="app">
-      <!-- 헤더 영역 -->
       <div class="header"><h1>🎱 행운의 로또</h1></div>
 
-      <!-- 메인 영역 -->
       <main id="main"></main>
 
-      <!-- 푸터 영역 -->
       <footer class="footer">Copyright 2025. woowacourse</footer>
 
-      <!-- 모달 루트 컨테이너 -->
       <div id="modal-root"></div>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
