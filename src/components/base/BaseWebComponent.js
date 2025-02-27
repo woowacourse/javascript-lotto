@@ -1,7 +1,6 @@
 class BaseWebComponent extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
@@ -14,7 +13,7 @@ class BaseWebComponent extends HTMLElement {
   }
 
   render() {
-    this.shadowRoot.innerHTML = this.getTemplate();
+    this.innerHTML = this.getTemplate();
   }
 
   getTemplate() {
