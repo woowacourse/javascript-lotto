@@ -52,7 +52,7 @@ export default class LottoWinningInfoForm {
     );
     const winningNumbers = [];
     $lottoNumbers.forEach(($lottoNumber) => {
-      winningNumbers.push(Number($lottoNumber.value));
+      winningNumbers.push($lottoNumber.value);
     });
 
     try {
@@ -65,7 +65,7 @@ export default class LottoWinningInfoForm {
     const $bonusNumber = document.querySelector(
       ".bonus-input-wrap > .number-input"
     );
-    const bonusNumber = Number($bonusNumber.value);
+    const bonusNumber = $bonusNumber.value;
 
     try {
       validateBonusNumber(winningNumbers, bonusNumber);
@@ -77,8 +77,8 @@ export default class LottoWinningInfoForm {
     winningLottoInfoStore.setState((state) => ({
       winningLottoInfo: {
         ...state.winningLottoInfo,
-        winningNumbers,
-        bonusNumber,
+        winningNumbers: winningNumbers.map(Number),
+        bonusNumber: Number(bonusNumber),
       },
     }));
   };
