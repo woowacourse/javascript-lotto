@@ -144,6 +144,7 @@ th {
   flex-direction: column;
   gap: 2rem;
 }
+
 /*lotto*/
 .content-container {
   width: 100vw;
@@ -191,6 +192,8 @@ th {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  overflow: scroll;
+  max-height: 14rem;
 }
 .lotto-numbers-item {
   display: flex;
