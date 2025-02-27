@@ -20,6 +20,7 @@
 
 body {
   background-color: var(--bg-default-color);
+  font-family: Roboto, sans-serif;
 }
 
 h2 {
