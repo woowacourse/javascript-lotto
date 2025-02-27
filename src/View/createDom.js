@@ -83,7 +83,7 @@ export const createWinningLottoForm = () => {
 
   const bonusInput = createElementWithAttributes('input', {
     className: 'bonus-number-input',
-    attributes: { id: 'bonusNumber', required: true },
+    attributes: { id: 'bonusNumber', name: 'bonusNumber', required: true },
   });
 
   bonusInputContainer.appendChild(bonusInput);
@@ -93,6 +93,7 @@ export const createWinningLottoForm = () => {
   // 결과 확인 버튼
   const resultButton = createElementWithAttributes('button', {
     className: 'lotto-result-check-button',
+    attributes: { type: 'submit' },
     textContent: '결과 확인하기',
   });
 

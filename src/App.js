@@ -191,6 +191,17 @@ class App {
       outputViewByWeb.displayLottoList(lottoNumbersList);
 
       $section.appendChild($form);
+
+      $form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const winningNumbers = formData.getAll('winningNumber'); // name="winningNumber"인 값들 배열로 가져오기
+        const bonusNumber = formData.get('bonusNumber'); // name="bonusNumber"인 값 가져오기
+
+        console.log('당첨 번호:', winningNumbers);
+        console.log('보너스 번호:', bonusNumber);
+      });
       //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
     });
   }
