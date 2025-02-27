@@ -1,11 +1,39 @@
 #app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 144px);
+  justify-content: center;
+  align-items: center;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+header {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background-color: #4e5ba6;
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
+  padding: 0 80px;
+  flex-shrink: 0;
+}
+
+footer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #b4b4b4;
+  color: #4e5ba6;
+  font-size: 14px;
+  font-weight: bold;
+  flex-shrink: 0;
 }
