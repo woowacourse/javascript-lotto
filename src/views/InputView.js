@@ -1,5 +1,5 @@
-import { KEY, SEPARATOR } from '../constants/CONFIGURATIONS.js';
-import { SYSTEM_MESSAGE } from '../constants/MESSAGES.js';
+import { KEY, SEPARATOR } from '../constants/Configurations.js';
+import { SYSTEM_MESSAGE } from '../constants/Messages.js';
 import readLineAsync from '../utils/readLineAsync.js';
 import { BonusNumberValidator } from '../validators/BonusNumberValidator.js';
 import { PurchasePriceValidator } from '../validators/PurchasePriceValidator.js';

@@ -1,5 +1,5 @@
-import { RESTART } from '../../src/constants/CONFIGURATIONS';
-import { ERROR_MESSAGE } from '../../src/constants/MESSAGES';
+import { RESTART } from '../../src/constants/Configurations';
+import { ERROR_MESSAGE } from '../../src/constants/Messages';
 import RestartValidator from '../../src/validators/RestartValidator';
 
 describe('재시작 여부 입력 검증 테스트', () => {

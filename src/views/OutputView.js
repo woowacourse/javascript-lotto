@@ -1,5 +1,5 @@
-import { SEPARATOR } from '../constants/CONFIGURATIONS.js';
-import { RESULT_MESSAGE } from '../constants/MESSAGES.js';
+import { SEPARATOR } from '../constants/Configurations.js';
+import { RESULT_MESSAGE } from '../constants/Messages.js';
 
 const OutputView = {
   print(message) {

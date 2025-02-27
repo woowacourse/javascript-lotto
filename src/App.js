@@ -1,4 +1,4 @@
-import { RESTART } from './constants/CONFIGURATIONS.js';
+import { RESTART } from './constants/Configurations.js';
 import LottoMachine from './domains/LottoMachine.js';
 import retryUntilValid from './utils/retryUntilValid.js';
 import InputView from './views/InputView.js';

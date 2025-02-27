@@ -3,8 +3,8 @@ import {
   PurchasePriceValidator,
   validateUnit,
 } from '../../src/validators/PurchasePriceValidator';
-import { KEY, PURCHASE_PRICE } from '../../src/constants/CONFIGURATIONS';
-import { ERROR_MESSAGE } from '../../src/constants/MESSAGES';
+import { KEY, PURCHASE_PRICE } from '../../src/constants/Configurations';
+import { ERROR_MESSAGE } from '../../src/constants/Messages';
 
 describe('구입 금액 검증 테스트', () => {
   describe('정상 케이스', () => {

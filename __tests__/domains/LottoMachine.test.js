@@ -1,4 +1,4 @@
-import { PURCHASE_PRICE } from '../../src/constants/CONFIGURATIONS';
+import { PURCHASE_PRICE } from '../../src/constants/Configurations';
 import LottoMachine from '../../src/domains/LottoMachine';
 
 describe('로또 기계 클래스 테스트', () => {

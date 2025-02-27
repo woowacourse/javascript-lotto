@@ -1,4 +1,4 @@
-const SEPARATOR = Object.freeze(',');
+const SEPARATOR = ',';
 
 const KEY = Object.freeze({
   PURCHASE_PRICE: '구입 금액',

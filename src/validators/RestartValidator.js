@@ -1,5 +1,5 @@
-import { RESTART } from '../constants/CONFIGURATIONS.js';
-import { ERROR_MESSAGE } from '../constants/MESSAGES.js';
+import { RESTART } from '../constants/Configurations.js';
+import { ERROR_MESSAGE } from '../constants/Messages.js';
 
 const RestartValidator = {
   validate: (input) => {
