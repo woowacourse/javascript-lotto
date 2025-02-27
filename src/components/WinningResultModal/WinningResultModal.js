@@ -8,7 +8,7 @@ class WinningResultModal {
   constructor() {
     this.$modalRoot = document.querySelector(SELECTORS.MODAL_ROOT);
     this.$view = new WinningResultModalView(this.$modalRoot);
-    this.$view.setOnResultRequest(this.handleRestart);
+    this.$view.setOnResultRequest(() => this.handleRestart());
   }
 
   renderModal(winningCounts, profitRate) {
