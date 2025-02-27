@@ -7,7 +7,7 @@
   flex-direction: column;
 
   background-color: var(--lotto-greyscale-1);
-  border: 1px solid #e4e4e4;
+  border: 1px solid var(--border-default-color);
 }
 
 #game-header {
