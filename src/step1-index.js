@@ -25,6 +25,7 @@ import {
 async function playGame() {
   const { purchasePrice, purchaseAmount } = await getPurchasePrice(
     getConsolePurchasePrice,
+    getConsolePurchasePrice,
   );
 
   const lottos = makeLotto(purchaseAmount);
