@@ -1,6 +1,7 @@
-import lottoStore from "../store/lottoStore.js";
-import priceStore from "../store/priceStore.js";
-import setPurchaseDetailVisibility from "./setPurchaseDetailVisibility.js";
+import lottoStore from "../../store/lottoStore.js";
+import priceStore from "../../store/priceStore.js";
+import setPurchaseDetailVisibility from "../setPurchaseDetailVisibility.js";
+import resetWinningHistoryUI from "./resetWinningHistoryUI.js";
 
 const reset = () => {
   priceStore.setPrice(0);
@@ -11,14 +12,12 @@ const reset = () => {
   const purchasedLottos = document.querySelector(".purchasedLottos");
   const winningNumberInputs = document.querySelectorAll(".winningNumberInput");
   const bonusNumberInput = document.querySelector(".bonusNumberInput");
-  const winningCount = document.querySelectorAll(".winningCount");
 
   winningNumberInputs.forEach((input) => {
     input.value = "";
   });
-  winningCount.forEach((count) => {
-    count.textContent = "0개";
-  });
+
+  resetWinningHistoryUI();
   bonusNumberInput.value = "";
   purchasedLottos.textContent = "";
   setPurchaseDetailVisibility("off");

@@ -1,6 +1,6 @@
 import { getPrice } from "../controller/getInputWIthRetryWeb.js";
 import priceStore from "../store/priceStore.js";
-import reset from "./reset.js";
+import reset from "./reset/reset.js";
 
 const buyLotto = () => {
   reset();
