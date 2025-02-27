@@ -21,7 +21,6 @@ class WinningInputsFormView extends ViewComponent {
   render() {
     this.$container.innerHTML = this.#template();
     this.#initElements();
-    this.#bindEvents();
   }
 
   #template() {
