@@ -20,7 +20,7 @@
             <input id="purchase-form__input" type="number" />
             <button disabled id="purchase-form__btn">구입</button>
           </div>
-          <span id="purchase-form__error"></span>
+          <span id="purchase-form__error" class="error-message"></span>
         </form>
         <section id="after-purchase-wrap" class="hidden">
           <section id="lotto-list-wrap">
@@ -46,7 +46,8 @@
                 <input id="bonus-number__input" type="number" />
               </div>
             </section>
-            <button id="lotto-form__btn">결과 확인하기</button>
+            <span id="lotto-form__error" class="error-message"></span>
+            <button id="lotto-form__btn" class="error-message">결과 확인하기</button>
           </form>
         </section>
       </main>
