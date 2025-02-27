@@ -11,7 +11,6 @@ const clickCheckResult = () => {
     })
   );
 
-  console.log(winningLotto.getLottoNumbers(), bonusLottoNumber); // 입력된 로또 번호 확인
 };
 
 export default clickCheckResult;

@@ -7,8 +7,7 @@ const buyLotto = () => {
   const price = getPrice();
   if (price === undefined) return;
 
-  document.dispatchEvent(new CustomEvent("priceUpdated", { detail: price }));
   priceStore.setPrice(price);
-  console.log("입력한 금액:", price);
+  document.dispatchEvent(new CustomEvent("priceUpdated"));
 };
 export default buyLotto;
