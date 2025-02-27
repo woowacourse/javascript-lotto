@@ -4,11 +4,7 @@ import LottoList from '../LottoList/LottoList.js';
 import WinningInputsForm from '../WinningInputsForm/WinningInputsForm.js';
 import WinningResultModal from '../WinningResultModal/WinningResultModal.js';
 import ViewComponent from '../core/ViewComponent.js';
-import {
-  EVENT_TYPES,
-  SELECTORS,
-  TEMPLATES,
-} from '../../constants/MainConstants.js';
+import { EVENT_TYPES, SELECTORS } from '../../constants/MainConstants.js';
 
 class Main extends ViewComponent {
   constructor(selector) {
@@ -24,7 +20,14 @@ class Main extends ViewComponent {
   }
 
   template() {
-    return TEMPLATES.DASHBOARD;
+    return `
+      <div class="dashboard">
+        <h1>🎱 내 번호 당첨 확인 🎱</h1>
+        <div class="purchase-price-area"></div>
+        <div class="lottos-area"></div>
+        <div class="winning-inputs-area"></div>
+      </div>
+    `;
   }
 
   renderDashboardLayout() {
