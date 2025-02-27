@@ -8,20 +8,21 @@ const getInputsLabelsMarkup = () => `
   </div>
 `;
 
-const generateWinningNumbers = ({ count, className, maxlength }) =>
+const generateWinningNumbers = (count, maxlength) =>
   Array.from(
     { length: count },
     () =>
-      `<input type="text" class="number-input ${className}" maxlength="${maxlength}" />`,
+      `<input type="text" class="number-input winning" maxlength="${maxlength}" />`,
   ).join('');
 
-const generateInputs = (data) =>
-  `<div class="winning-inputs">
+const generateInputs = (count, maxlength) => `
+  <div class="winning-inputs">
     <div class="winning-numbers">
-      ${generateWinningNumbers(data)}
+      ${generateWinningNumbers(count, maxlength)}
     </div>
-    <input type="text" class="number-input bonus" maxlength="2" />
-  </div>`;
+    <input type="text" class="number-input bonus" maxlength="${maxlength}" />
+  </div>
+`;
 
 const getButtonMarkup = () =>
   `<button class="big-button" disabled>결과 확인하기</button>`;

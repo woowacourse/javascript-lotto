@@ -5,28 +5,34 @@ import {
   getButtonMarkup,
   generateInputs,
 } from './template.js';
+import {
+  WINNING_NUMBERS_COUNT,
+  WINNING_NUMBER_MAX_LENGTH,
+  SELECTORS,
+} from '../../constants/WinningInputsFormConstants.js';
 
 class WinningInputsFormView extends ViewComponent {
   render() {
     this.container.innerHTML = this.template();
     this.initElements();
+    this.bindEvents();
   }
 
   template() {
     return `
       ${getInstructionMarkup()}
       ${getInputsLabelsMarkup()}
-      ${generateInputs({ count: 6, className: 'winning', maxlength: 2 })}
+      ${generateInputs(WINNING_NUMBERS_COUNT, WINNING_NUMBER_MAX_LENGTH)}
       ${getButtonMarkup()}
     `;
   }
 
   initElements() {
     this.winningNumbers = this.container.querySelectorAll(
-      '.number-input.winning',
+      SELECTORS.winningNumberInputs,
     );
-    this.bonusNumber = this.container.querySelector('.number-input.bonus');
-    this.button = this.container.querySelector('.big-button');
+    this.bonusNumber = this.container.querySelector(SELECTORS.bonusNumberInput);
+    this.button = this.container.querySelector(SELECTORS.button);
   }
 
   bindEvents() {
