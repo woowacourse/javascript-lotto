@@ -1,6 +1,17 @@
+import calcProfitRate from "./domain/calcProfitRate.js";
+import formatResults from "./domain/formatResults.js";
 import LottoGame from "./models/LottoGame.js";
-import { getLottoPrice } from "./uiView/input.js";
-import { printLottoCount, printLottoNumbers } from "./uiView/output.js";
+import {
+  getBonusNumber,
+  getLottoPrice,
+  getWinningNumbers,
+} from "./uiView/input.js";
+import {
+  printLottoCount,
+  printLottoNumbers,
+  printProfitRate,
+  printResult,
+} from "./uiView/output.js";
 
 // /**
 //  * step 2의 시작점이 되는 파일입니다.
@@ -18,6 +29,10 @@ const init = async () => {
   inputs.forEach((input) => {
     input.addEventListener("input", () => handleInputChange(inputs));
   });
+
+  document
+    .querySelector(".winning-lotto .result")
+    .addEventListener("click", handleResultClick);
 };
 
 const handlePurchaseClick = (e) => {
@@ -44,6 +59,26 @@ const handleInputChange = (inputs) => {
   );
   console.log(allFilled);
   document.querySelector(".winning-lotto .result").disabled = !allFilled;
+};
+
+const handleResultClick = () => {
+  document.querySelector(".overlay").classList.add("active");
+
+  if (document.querySelector(".result-row")) return;
+
+  const winningNumbers = getWinningNumbers();
+  const bonusNumber = getBonusNumber(winningNumbers);
+
+  const gameResults = lottoGame.playLotto(lottos, {
+    winningNumbers,
+    bonusNumber,
+  });
+
+  const totalReward = lottoGame.calcTotalReward(gameResults);
+  const rankCount = lottoGame.getRankCount(gameResults);
+
+  printResult(formatResults(rankCount).reverse());
+  printProfitRate(calcProfitRate(getLottoPrice(), totalReward));
 };
 
 init();
