@@ -17,7 +17,7 @@
 
 #prize-result-modal > h2 {
   height: 24px;
-  margin: 40px 0;
+  margin-bottom: 40px;
 
   display: flex;
   justify-content: center;
@@ -57,7 +57,12 @@
   text-align: center;
 }
 
-#prize-result-modal > button {
+#prize-result-modal > button:hover {
+  filter: brightness(90%);
+  cursor: pointer;
+}
+
+.restart-button {
   height: 36px;
   padding: 6px 6px 6px 8px;
 
@@ -71,7 +76,17 @@
   text-align: center;
 }
 
-#prize-result-modal > button:hover {
-  filter: brightness(90%);
-  cursor: pointer;
+.close-button {
+  all: unset;
+
+  width: 14px;
+  height: 14px;
+  margin: 16px 0 10px 0;
+
+  align-self: end;
+}
+
+.close-button > img {
+  width: 100%;
+  height: 100%;
 }
