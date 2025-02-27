@@ -30,11 +30,18 @@ main div.lotto_container {
   flex-direction: column;
   align-items: center;
   width: 414px;
+  height: 700px;
   margin: 84px auto 69px;
   padding: 40px 16px 32px;
   border-radius: var(--border-radius-smallest);
   border: solid 1px var(--border-grey);
   background-color: var(--lotto-grey-scale-1);
+}
+
+div.lotto_container div.lotto_header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 div.lotto_container b.lotto_title {
@@ -137,18 +144,19 @@ div.lotto_input_list div.lotto_input_title {
   justify-content: space-between;
 }
 
-div.lotto_input_list div.lotto_input_box {
+div.lotto_input_list form.lotto_input_box {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 8px;
 }
 
-div.lotto_input_box div.lotto_numbers {
+form.lotto_input_box div.lotto_numbers {
   display: flex;
   gap: 10px;
 }
 
-div.lotto_input_box input {
+form.lotto_input_box input {
   width: 36px;
   height: 34px;
   border: 1px solid var(--border-grey);
@@ -163,6 +171,7 @@ div.lotto_result_list button {
   color: var(--lotto-grey-scale-1);
   border-radius: var(--border-radius-smallest);
   padding: 10px 0;
+  margin-top: 28px;
 }
 
 footer {
@@ -179,8 +188,7 @@ footer > span {
   font-weight: 600;
 }
 
-div.rank_layer_list {
-  display: none;
+div.rank_layer_modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -188,7 +196,7 @@ div.rank_layer_list {
   height: 100vh;
 }
 
-div.rank_layer_list div.layer_bg {
+div.rank_layer_modal div.layer_bg {
   position: absolute;
   left: 0;
   top: 0;
@@ -197,7 +205,7 @@ div.rank_layer_list div.layer_bg {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-div.rank_layer_list div.rank_layer {
+div.rank_layer_modal div.rank_layer {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -303,7 +311,7 @@ div.rank_layer button {
   main div.lotto_container {
     width: 95%;
   }
-  div.lotto_input_box input {
+  form.lotto_input_box input {
     width: 25px;
     height: 25px;
   }

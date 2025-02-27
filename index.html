@@ -23,118 +23,12 @@
       </header>
       <main>
         <div class="lotto_container">
-          <b class="lotto_title title_style">🎱 내 번호 당첨 확인 🎱</b>
-          <p class="lotto_subtitle">구입할 금액을 입력해주세요.</p>
-          <form class="lotto_form" id='lottoBuyForm' >
-            <input type="text" name="money" placeholder="금액" />
-            <button type='submit'>구입</button>
-          </form>
-          <div class="lotto_result_list" id='lottoResultList'>
-            <p>총 7개를 구매하였습니다.</p>
-            <div class="ticket_container">
-              <div class="ticket">
-                <i>🎟️</i>
-                <span>1, 2, 3, 4, 5, 6</span>
-              </div>
-              <div class="ticket">
-                <i>🎟️</i>
-                <span>1, 2, 3, 4, 5, 6</span>
-              </div>
-              <div class="ticket">
-                <i>🎟️</i>
-                <span>1, 2, 3, 4, 5, 6</span>
-              </div>
-              <div class="ticket">
-                <i>🎟️</i>
-                <span>1, 2, 3, 4, 5, 6</span>
-              </div>
-              <div class="ticket">
-                <i>🎟️</i>
-                <span>1, 2, 3, 4, 5, 6</span>
-              </div>
-              <div class="ticket">
-                <i>🎟️</i>
-                <span>1, 2, 3, 4, 5, 6</span>
-              </div>
-              <div class="ticket">
-                <i>🎟️</i>
-                <span>1, 2, 3, 4, 5, 6</span>
-              </div>
-              <div class="ticket">
-                <i>🎟️</i>
-                <span>1, 2, 3, 4, 5, 6</span>
-              </div>
-            </div>
-            <div class="lotto_input_list">
-              <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-              <div class="lotto_input_title">
-                <span>당첨 번호</span>
-                <span>보너스 번호</span>
-              </div>
-              <div class="lotto_input_box">
-                <div class="lotto_numbers">
-                  <input type="text" name="" />
-                  <input type="text" name="" />
-                  <input type="text" name="" />
-                  <input type="text" name="" />
-                  <input type="text" name="" />
-                  <input type="text" name="" />
-                </div>
-                <input type="text" name="" />
-              </div>
-            </div>
-            <button id='resultButton'>결과 확인하기</button>
-          </div>
-        </div>
+          <div class='lotto_header' id='lottoHeader'></div>
+          <div class="lotto_result_list" id='lottoResultList'></div>
       </main>
       <footer>
         <span>Copyright 2023. woowacourse</span>
       </footer>
-      <div class="rank_layer_list" id='modal'>
-        <div class="layer_bg" id='layer_bg'></div>
-        <div class="rank_layer">
-          <svg class='close_button' id='closeButton' viewBox="0 0 14 14" fill="none">
-            <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="black"/>
-          </svg>
-          <span class="rank_layer_title">🏆 당첨 통계 🏆</span>
-          <div class="rank_result">
-            <div class='rank_result_box'>
-              <b>일치 갯수</b>
-              <b>당첨금</b>
-              <b>당첨 갯수</b>
-            </div>
-            <div class='rank_result_box'>
-              <span>3개</span>
-              <span>5,000</span>
-              <span>n개</span>
-            </div>
-            <div class='rank_result_box'>
-              <span>4개</span>
-              <span>50,000</span>
-              <span>n개</span>
-            </div>
-            <div class='rank_result_box'>
-              <span>5개</span>
-              <span>1,500,000</span>
-              <span>n개</span>
-            </div>
-            <div class='rank_result_box'>
-              <span>5개 + 보너스볼</span>
-              <span>30,000,000</span>
-              <span>n개</span>
-            </div>
-            <div class='rank_result_box'>
-              <span>6개</span>
-              <span>2,000,000,000</span>
-              <span>n개</span>
-            </div>
-          </div>
-          <div class='profit_result'>
-            <b>당신의 총 수익률은 %입니다.</b>
-          </div>
-          <button>다시 시작하기</button>
-      </div>
-    </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
