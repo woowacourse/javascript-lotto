@@ -9,14 +9,14 @@ const showResult = ({ winningLotto, bonusLottoNumber }) => {
     bonusLottoNumber
   );
 
-  updateWinningHistoryDisplay(winningHistory);
+  updateWinningHistoryUI(winningHistory);
 
-  updateRateDisplay(rate);
+  updateRateUI(rate);
 
   showDialog();
 };
 
-const updateWinningHistoryDisplay = (winningHistory) => {
+const updateWinningHistoryUI = (winningHistory) => {
   Object.entries(winningHistory).forEach(([key, value]) => {
     if (value === 0) return;
     const countDiv = document.querySelector(`#rank${key}WinningCount`);
@@ -29,7 +29,7 @@ const showDialog = () => {
   dialog.showModal();
 };
 
-const updateRateDisplay = (rate) => {
+const updateRateUI = (rate) => {
   const rateDiv = document.querySelector("#rate");
   rateDiv.textContent = `당신의 총 수익률은 ${rate.toFixed(1)}%입니다.`;
 };

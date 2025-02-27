@@ -9,10 +9,14 @@ const showLottos = (count) => {
   const lottos = Ticket.createLottos(count);
   lottoStore.setLottos(lottos);
 
+  updatePurchasedLottosUI(count, lottos);
+};
+
+const updatePurchasedLottosUI = (count, lottos) => {
   const purchasedLottos = document.querySelector(".purchasedLottos");
   appendTextElement(purchasedLottos, `총 ${count}개를 구매하였습니다.`);
 
-  const lottosNumbers = createLottoListElement(lottoStore.getLottos());
+  const lottosNumbers = createLottoListElement(lottos);
   purchasedLottos.appendChild(lottosNumbers);
 };
 
