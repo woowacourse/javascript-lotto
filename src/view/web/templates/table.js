@@ -1,14 +1,3 @@
-export const setTable = (headers, rows) => {
-  return `
-    <table>
-      ${headers}
-      <tbody>
-        ${rows}
-      </tbody>
-    </table>
-  `;
-};
-
 export const setHeader = (headers) => {
   return `
     <thead>
