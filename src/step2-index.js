@@ -3,15 +3,12 @@ import Validator from "./domain/Validator.js";
 import Constants from "./constant/Constants.js";
 import LottoInput from "./view/web/components/LottoInput.js";
 import LottoList from "./view/web/components/LottoList.js";
+import WinningNumbers from "./view/web/components/WinningNumber.js";
 
-const middleSection = document.querySelector(".lotto__middle");
-const winningNumberInputs = document.querySelectorAll(
-  ".target__lottos .one__numbers__input",
-);
-const bonusNumberInput = document.querySelector(
-  ".bonus__number .one__numbers__input",
-);
-const resultButton = document.querySelector(".result__btn");
+let lottoGame = null;
+let lottoInput = null;
+let lottoList = null;
+let winningNumbers = null;
 
 const resultModal = document.querySelector("#resultModal");
 const match3Element = document.querySelector("#match-3");
@@ -22,7 +19,6 @@ const match6Element = document.querySelector("#match-6");
 const totalReturnRateElement = document.querySelector("#total-return-rate");
 const restartButton = document.querySelector("#restart-button");
 
-let lottoGame = null;
 function displayResult() {
   if (!lottoGame) {
     return;
@@ -46,66 +42,30 @@ function displayResult() {
 function handlePurchaseCallback(lottoNum) {
   lottoGame = new LottoGame(lottoNum);
   lottoList.displayLottos(lottoGame.lottos);
-  middleSection.style.display = "block";
+  winningNumbers.show();
 }
 
-function setupResultButton() {
-  resultButton.addEventListener("click", handleResult);
-}
-
-function handleResult() {
-  try {
-    if (!lottoGame) {
-      throw new Error("로또를 먼저 구매해주세요.");
-    }
-
-    const winningNumbers = [];
-
-    winningNumberInputs.forEach((input) => {
-      if (!input.value) {
-        throw new Error("당첨 번호를 모두 입력해주세요.");
-      }
-      winningNumbers.push(Number(input.value));
-    });
-
-    Validator.isTargetNumber(winningNumbers.join(", "));
-
-    if (!bonusNumberInput.value) {
-      throw new Error("보너스 번호를 입력해주세요.");
-    }
-
-    const bonusNumber = Number(bonusNumberInput.value);
-    Validator.isBonusNumber(bonusNumber, winningNumbers);
-
-    lottoGame.calculate(winningNumbers, bonusNumber);
-    displayResult();
-  } catch (error) {
-    alert(error.message);
-  }
+function handleResultCallback(winningNumbers, bonusNumber) {
+  lottoGame.calculate(winningNumbers, bonusNumber);
+  displayResult();
 }
 
 function setupRestartButton() {
   restartButton.addEventListener("click", () => {
     resultModal.style.display = "none";
-
-    bonusNumberInput.value = "";
-
-    middleSection.style.display = "none";
-
     lottoGame = null;
     lottoInput.reset();
     lottoList.clear();
+    winningNumbers.reset();
   });
 }
 
 function initApp() {
-  middleSection.style.display = "none";
-
-  setupResultButton();
   setupRestartButton();
 }
 
-const lottoInput = new LottoInput(handlePurchaseCallback);
-const lottoList = new LottoList();
+lottoInput = new LottoInput(handlePurchaseCallback);
+lottoList = new LottoList();
+winningNumbers = new WinningNumbers(handleResultCallback);
 
 initApp();
