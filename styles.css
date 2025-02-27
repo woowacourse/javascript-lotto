@@ -346,7 +346,7 @@ tbody {
   margin-bottom: 24px;
 }
 
-.retry-button {
+#retry-button {
   background-color: var(--primary-color);
   color: var(--grey-100);
   border: none;
