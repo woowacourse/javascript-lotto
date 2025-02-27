@@ -123,7 +123,26 @@ const handleResultButton = () => {
     const lottoNumbers = new WinningLotto(winningNumbers, bonusNumber);
     const matchCounts = getWinningMatchCount(lottos, lottoNumbers);
     const revenue = calculateRevenue(matchCounts, purchasePrice);
+
+    printModal(matchCounts, revenue);
   });
+};
+
+const printModal = (matchCounts, revenue) => {
+  const threeCount = document.getElementById('three-count');
+  const fourCount = document.getElementById('four-count');
+  const fiveCount = document.getElementById('five-count');
+  const fiveCountWithBonus = document.getElementById('five-count-with-bonus');
+  const sixCount = document.getElementById('six-count');
+
+  threeCount.innerText = `${matchCounts[3]}개`;
+  fourCount.innerText = `${matchCounts[4]}개`;
+  fiveCount.innerText = `${matchCounts[5]}개`;
+  fiveCountWithBonus.innerText = `${matchCounts[7]}개`;
+  sixCount.innerText = `${matchCounts[6]}개`;
+
+  const revenueContainer = document.getElementById('revenue-container');
+  revenueContainer.innerText = `당신의 총 수익률은 ${revenue}%입니다.`;
 };
 
 const printLotto = (lotto) => {
