@@ -8,7 +8,6 @@ const reset = () => {
 
   const dialog = document.querySelector("dialog");
   dialog.close();
-  const purchaseDetail = document.querySelector(".purchaseDetail");
   const purchasedLottos = document.querySelector(".purchasedLottos");
   const winningNumberInputs = document.querySelectorAll(".winningNumberInput");
   const bonusNumberInput = document.querySelector(".bonusNumberInput");
