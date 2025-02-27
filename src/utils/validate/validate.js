@@ -60,5 +60,11 @@ class Validate {
       throw new Error(ERROR_MESSAGE.winningNumbersLength);
     }
   }
+
+  emptyValue(input) {
+    if (input === "") {
+      throw new Error(ERROR_MESSAGE.emptyValue);
+    }
+  }
 }
 export default Validate;

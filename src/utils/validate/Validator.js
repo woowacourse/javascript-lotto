@@ -13,6 +13,7 @@ const validateBonusNumber = (winningNumber, bonusNumber) => {
 };
 
 const validatePrice = (price) => {
+  validate.emptyValue(price);
   validate.isNumeric(price);
   validate.minimumValue(price);
   validate.purchaseUnit(price);
@@ -21,6 +22,7 @@ const validatePrice = (price) => {
 
 const validateWinningNumbers = (winningNumbers) => {
   winningNumbers.forEach((number) => {
+    validate.emptyValue(number);
     validate.isNumeric(number);
     validate.lottoNumberRange(number);
   });

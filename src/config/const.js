@@ -30,4 +30,5 @@ export const ERROR_MESSAGE = {
   bonusNumberUnique: "보너스 번호는 당첨 번호와 중복되면 안됩니다.",
   restartInput: "입력은 y 또는 n만 가능합니다.",
   winningNumbersLength: "당첨 번호는 6개여야 합니다.",
+  emptyValue: "빈 값이 들어왔습니다. 값을 입력해주세요",
 };

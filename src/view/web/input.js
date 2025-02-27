@@ -64,14 +64,14 @@ const getWinningLotto = async () => {
   return new Promise((resolve) => {
     submitResultButton.addEventListener("click", async () => {
       const winningNumbers = [];
-      let bonusNumber = 0;
+      let bonusNumber = "";
+
       winningNumberInputs.forEach((winningNumber) => {
-        winningNumbers.push(Number(winningNumber.value));
+        winningNumbers.push(winningNumber.value);
       });
-      bonusNumber = Number(bonusNumberInput.value);
+      bonusNumber = bonusNumberInput.value;
 
       try {
-        console.log(winningNumbers, bonusNumber);
         validateWinningNumbers(winningNumbers);
         validateBonusNumber(winningNumbers, bonusNumber);
         removeErrorField(".winningLotto-contents");
