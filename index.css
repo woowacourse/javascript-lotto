@@ -13,6 +13,10 @@
   --lotto-greyscale-5: #000000;
 }
 
+body {
+  background-color: #fbfbfd;
+}
+
 #main-container {
   height: 100vh;
   display: flex;
