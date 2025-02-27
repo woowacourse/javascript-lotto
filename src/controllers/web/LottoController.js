@@ -13,6 +13,7 @@ class LottoController {
   #setEvent() {
     this.view.app.addEventListener("purchase", this.#handlePurchase.bind(this));
     this.view.app.addEventListener("result", this.#handleResult.bind(this));
+    this.view.app.addEventListener("restart", this.#handleRestart.bind(this));
   }
 
   #handlePurchase(event) {
@@ -38,6 +39,10 @@ class LottoController {
     const lottoResult = this.view.app.querySelector("lotto-result");
 
     lottoResult.showResult(winningStatistics.statistics, profitRatio);
+  }
+
+  #handleRestart() {
+    this.view.render();
   }
 }
 

@@ -56,6 +56,7 @@ class LottoResult extends BaseWebComponent {
     this.render();
     const dialog = this.querySelector("dialog");
     dialog.showModal();
+    this.setEvent();
   }
 
   setEvent() {
