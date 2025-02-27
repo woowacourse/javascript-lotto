@@ -28,8 +28,19 @@ export default class Modal {
     $button.appendChild($iconImage);
 
     $button.addEventListener("click", () => {
-      $modalBg.classList.add("modal-none");
-      $modal.classList.add("modal-none");
+      this.closeModal($modalBg, $modal);
+    });
+
+    $modalBg.addEventListener("click", (e) => {
+      if (!e.target.closest(".modal")) {
+        this.closeModal($modalBg, $modal);
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!$modalBg.classList.contains("modal-none") && e.key === "Escape") {
+        this.closeModal($modalBg, $modal);
+      }
     });
 
     $buttonWrap.appendChild($button);
@@ -37,5 +48,10 @@ export default class Modal {
     childRender($modal);
     $modalBg.appendChild($modal);
     $target.appendChild($modalBg);
+  }
+
+  closeModal($modalBg, $modal) {
+    $modalBg.classList.add("modal-none");
+    $modal.classList.add("modal-none");
   }
 }
