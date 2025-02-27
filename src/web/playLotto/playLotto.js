@@ -9,6 +9,11 @@ export default function PlayLotto() {
   const { priceInput, purchaseButton } = PurchaseForm(playLotto);
 
   purchaseButton.addEventListener('click', () => PlayLottoWithPurchasePrice(playLotto, priceInput));
+  priceInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      PlayLottoWithPurchasePrice(playLotto, priceInput);
+    }
+  });
 
   return playLotto;
 }
