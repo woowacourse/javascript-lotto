@@ -18,6 +18,8 @@ const showResult = ({ winningLotto, bonusLottoNumber }) => {
 
 const updateWinningHistoryUI = (winningHistory) => {
   Object.entries(winningHistory).forEach(([key, value]) => {
+    console.log("key", key);
+    console.log("value", value);
     if (value === 0) return;
     const countDiv = document.querySelector(`#rank${key}WinningCount`);
     countDiv.textContent = `${value}개`;

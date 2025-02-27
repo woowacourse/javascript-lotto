@@ -8,7 +8,6 @@ import reset from "../event/reset.js";
 import priceStore from "../store/priceStore.js";
 
 const game = () => {
-  
   const buyButton = document.querySelector(".buyButton");
   buyButton.addEventListener("click", () => {
     buyLotto();
@@ -30,6 +29,12 @@ const game = () => {
   const resetButton = document.querySelector("#reset");
   resetButton.addEventListener("click", () => {
     reset();
+  });
+
+  const closeButton = document.querySelector("#closeButton");
+  closeButton.addEventListener("click", () => {
+    const dialog = document.querySelector("dialog");
+    dialog.close();
   });
 };
 
