@@ -1,9 +1,3 @@
-import {
-  LOTTO_ITEM_TEMPLATE,
-  LOTTO_LIST_TITLE_TEMPLATE,
-  LOTTO_TICKETS_WRAPPER_TEMPLATE,
-} from '../../constants/LottoListConstants.js';
-
 class LottoList {
   constructor(container) {
     this.container = container;
@@ -13,13 +7,21 @@ class LottoList {
     this.container.innerHTML = this.template(lottos);
   }
 
+  // eslint-disable-next-line max-lines-per-function
   template(lottos) {
-    const titleHTML = LOTTO_LIST_TITLE_TEMPLATE(lottos.length);
+    const titleHTML = `<span>총 ${lottos.length}개를 구매했습니다.</span>`;
     const lottoItemsHTML = lottos
-      .map((lotto) => LOTTO_ITEM_TEMPLATE(lotto.numbers))
+      .map(
+        (lotto) =>
+          `<div class="lotto-ticket">🎟️ ${lotto.numbers.join(', ')}</div>`,
+      )
       .join('');
-    return `${titleHTML}
-      ${LOTTO_TICKETS_WRAPPER_TEMPLATE(lottoItemsHTML)}
+
+    return `
+      ${titleHTML}
+      <div class="lotto-tickets">
+        ${lottoItemsHTML}
+      </div>
     `;
   }
 }
