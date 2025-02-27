@@ -3,14 +3,13 @@ import createPurchaseMessage from "./createPurchaseMessage.js";
 import "./lottoBox.css";
 
 const createLottoBox = (lottoNumbers) => {
-  const lottoBox = document.createElement("div");
-  lottoBox.id = "lotto-container";
-  lottoBox.className = "purchased-rendered";
-
-  document.getElementById("game-container").appendChild(lottoBox);
-
-  createPurchaseMessage(lottoNumbers);
-  createLottoList(lottoNumbers);
+  const purchaseMessage = createPurchaseMessage(lottoNumbers);
+  const lottoList = createLottoList(lottoNumbers);
+  console.log(lottoList);
+  document.querySelector(".purchase-message").textContent = purchaseMessage;
+  document
+    .querySelector(".lotto-list")
+    .insertAdjacentHTML("beforeend", lottoList);
 };
 
 export default createLottoBox;

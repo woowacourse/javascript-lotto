@@ -1,7 +1,7 @@
-const createLotto = (numbers, lottoIndex) => {
+const createLotto = (numbers) => {
   const lottoLiteral = `
-        <li class="lotto-numbers" id="lotto-numbers-${lottoIndex}">
-          <span class="lotto-icon" id="lotto-icon-${lottoIndex}">🎟️</span>
+        <li class="lotto-numbers">
+          <span class="lotto-icon">🎟️</span>
           ${numbers.join(", ")}
         </li>
       `;
