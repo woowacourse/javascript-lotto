@@ -7,8 +7,8 @@ const app = document.getElementById('app');
 
 const appFragment = document.createDocumentFragment();
 
-fragment.appendChild(Header());
-fragment.appendChild(Main());
-fragment.appendChild(Footer());
+appFragment.appendChild(Header());
+appFragment.appendChild(Main());
+appFragment.appendChild(Footer());
 
 app.appendChild(appFragment);
