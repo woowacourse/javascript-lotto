@@ -1,3 +1,5 @@
+import commaizeNumber from "../utils/commaizeNumber.js";
+
 export const printLottoCount = (count) => {
   const purchaseHistoryEl = document.querySelector(".purchase-history");
   const countEl = document.createElement("p");
@@ -19,4 +21,29 @@ export const printLottoNumbers = (numbers) => {
   numbersEl.appendChild(ticketImg);
 
   numbersEl.append(`${numbers}`);
+};
+export const printResult = (results) => {
+  const resultTableEl = document.querySelector(".modal .description");
+  results.map(({ rank, winningCriteria, reward, count }) => {
+    const bonusText = rank === "SECOND" ? "+보너스볼" : "";
+    const tr = document.createElement("tr");
+    tr.classList.add("result__row");
+    tr.innerHTML = `
+      <td>${winningCriteria}개${bonusText}</td>
+      <td>${commaizeNumber(reward)}</td>
+      <td>${count}개</td>`;
+    resultTableEl.appendChild(tr);
+  });
+};
+
+export const printProfitRate = (profit) => {
+  const resultTableEl = document.querySelector(".modal .description");
+
+  const profitRateEl = document.createElement("p");
+  profitRateEl.classList.add("profit");
+  profitRateEl.innerText = `당신의 총 수익률은 ${commaizeNumber(
+    profit
+  )}%입니다.`;
+
+  resultTableEl.after(profitRateEl);
 };
