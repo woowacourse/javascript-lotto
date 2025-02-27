@@ -1,45 +1,33 @@
-import { createTag, getByClass, getById } from '../../utils/DOM.js';
+import {
+  createContainer,
+  createTag,
+  disableElement,
+  getByClass,
+  showElement,
+} from '../../utils/DOM.js';
 import WinningInput from './components/WinningInput.js';
 import BonusInput from './components/BonusInput.js';
 import LottoResultModal from './components/LottoResultModal.js';
 
 const OutputView = {
-  show($target) {
-    $target.classList.remove('hidden');
-  },
-
-  disable(className) {
-    const $target = getById(className);
-    $target.disabled = true;
-  },
-
-  createContainer(tag, { padding, margin }) {
-    const $container = createTag(tag);
-
-    if (padding) $container.style.padding = padding;
-    if (margin) $container.style.margin = margin;
-
-    return $container;
-  },
-
   printPurchaseLottos(lottoCount, lottos) {
     const $lottoList = getByClass('lottoList')[0];
-    const $lottoCountDescDiv = this.createContainer('div', { padding: '1rem 0' });
+    const $lottoCountDescDiv = createContainer('div', { padding: '1rem 0' });
     $lottoCountDescDiv.textContent = `총 ${lottoCount}개를 구매하였습니다.`;
     $lottoList.appendChild($lottoCountDescDiv);
 
     this.printLottos(lottos, $lottoList);
 
     const $hiddenContainer = getByClass('hiddenContainer')[0];
-    this.show($hiddenContainer);
+    showElement($hiddenContainer);
     this.disablePurchase();
     this.generateWinningAndBonusInput();
   },
 
   printLottos(lottos, $target) {
-    const $lottoListDiv = this.createContainer('div', {});
+    const $lottoListDiv = createContainer('div', {});
     $lottoListDiv.classList.add('lottoListContainer');
-    const $lottoListUl = this.createContainer('ul', { padding: '0.5rem 0' });
+    const $lottoListUl = createContainer('ul', { padding: '0.5rem 0' });
     $lottoListUl.classList.add('lottoContainer');
 
     lottos.forEach((lotto) => {
@@ -48,12 +36,6 @@ const OutputView = {
 
     $lottoListDiv.appendChild($lottoListUl);
     $target.appendChild($lottoListDiv);
-  },
-
-  generateWinningAndBonusInput() {
-    const $winningNumbersInput = getByClass('winningNumbersInput')[0];
-    WinningInput.appendWinningInput($winningNumbersInput);
-    BonusInput.appendBonusInput($winningNumbersInput);
   },
 
   makeLotto($lottoListDiv, lotto) {
@@ -72,12 +54,17 @@ const OutputView = {
   },
 
   disablePurchase() {
-    this.disable('purchaseInput');
-    this.disable('purchaseButton');
+    disableElement('purchaseInput');
+    disableElement('purchaseButton');
+  },
+
+  generateWinningAndBonusInput() {
+    const $winningNumbersInput = getByClass('winningNumbersInput')[0];
+    WinningInput.appendWinningInput($winningNumbersInput);
+    BonusInput.appendBonusInput($winningNumbersInput);
   },
 
   showModal(winningCounts, profitRate) {
-    LottoResultModal.initializeEvent();
     LottoResultModal.createTable(winningCounts);
     LottoResultModal.createProfit(profitRate);
     LottoResultModal.openModal();

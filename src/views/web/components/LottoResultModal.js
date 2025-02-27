@@ -1,16 +1,26 @@
 import { LOTTO_COUNT, PROFIT } from '../../../constants/CONFIGURATIONS.js';
-import { createTag, getByClass, querySelector } from '../../../utils/DOM.js';
+import WebController from '../../../controllers/WebController.js';
+import {
+  createTag,
+  enableElement,
+  getByClass,
+  getById,
+  getByTag,
+  hideElement,
+  querySelector,
+} from '../../../utils/DOM.js';
 
 const LottoResultModal = {
   $modalContainer: getByClass('modalContainer')[0],
 
-  // 이벤트 등록
   initializeEvent() {
     this.addClickListener('resultButton', () => this.openModal());
     this.addClickListener('closeButton', () => this.closeModal());
+    this.addClickListener('modalBackground', () => this.closeModal());
     this.addClickListener('resetButton', () => {
       this.closeModal();
       this.resetLotto();
+      WebController.start();
     });
   },
 
@@ -19,7 +29,6 @@ const LottoResultModal = {
     $target.addEventListener('click', callback);
   },
 
-  // 로또 내부 테이블 생성
   createTable(winningCounts) {
     const $tableBody = querySelector('.lottoResultTable > tbody');
 
@@ -62,9 +71,15 @@ const LottoResultModal = {
     this.$modalContainer.classList.add('hidden');
   },
 
-  // 게임 재시작 로직
   resetLotto() {
-    console.log('재시작');
+    getById('purchaseInput').value = '';
+    getByClass('lottoList')[0].replaceChildren();
+    getByClass('winningNumbersInput')[0].replaceChildren();
+    getByTag('tbody')[0].replaceChildren();
+
+    enableElement('purchaseInput');
+    enableElement('purchaseButton');
+    hideElement(getByClass('hiddenContainer')[0]);
   },
 };
 

@@ -5,10 +5,6 @@ import retryUntilValid from '../utils/retryUntilValid.js';
 import OutputView from '../views/web/OutputView.js';
 
 const WebController = {
-  async run() {
-    await this.start();
-  },
-
   async start() {
     const { lottoPurchasePrice, lottos } = await this.processLottoPurchase();
     const winningResult = await this.generateWinningResult();

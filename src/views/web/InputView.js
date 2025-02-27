@@ -1,5 +1,3 @@
-import { SYSTEM_MESSAGE } from '../../constants/MESSAGES.js';
-import readLineAsync from '../../utils/readLineAsync.js';
 import { getById, getByClass } from '../../utils/DOM.js';
 
 const InputView = {
@@ -28,10 +26,6 @@ const InputView = {
         resolve({ winningNumbers, bonusNumber });
       });
     });
-  },
-
-  async enterRestart() {
-    return await readLineAsync(SYSTEM_MESSAGE.ENTER_RESTART);
   },
 };
 

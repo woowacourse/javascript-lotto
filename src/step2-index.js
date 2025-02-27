@@ -4,5 +4,7 @@
  */
 
 import WebController from './controllers/WebController.js';
+import LottoResultModal from './views/web/components/LottoResultModal.js';
 
+LottoResultModal.initializeEvent();
 WebController.start();
