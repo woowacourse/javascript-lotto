@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { KEY, PURCHASE_PRICE } from '../constants/Configurations.js';
 import { ERROR_MESSAGE } from '../constants/Messages.js';
+=======
+import { KEY, PURCHASE_PRICE } from '../constants/CONFIGURATIONS.js';
+import { ERROR_MESSAGE } from '../constants/MESSAGES.js';
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
 import { validateRange, validateType } from './validate.js';
 
 const validateUnit = (purchasePrice) => {

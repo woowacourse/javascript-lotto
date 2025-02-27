@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { SEPARATOR } from '../constants/Configurations.js';
 import { RESULT_MESSAGE } from '../constants/Messages.js';
+=======
+import { SEPARATOR } from '../constants/CONFIGURATIONS.js';
+import { RESULT_MESSAGE } from '../constants/MESSAGES.js';
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
 
 const OutputView = {
   print(message) {

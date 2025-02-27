@@ -1,11 +1,18 @@
+<<<<<<< HEAD
 import { LOTTO, PURCHASE_PRICE } from '../constants/Configurations.js';
 import generateRandomNumber from '../utils/generateRandomNumber.js';
 import Lotto from './Lotto.js';
 import WinningResult from './WinningResult.js';
+=======
+import { LOTTO } from '../constants/CONFIGURATIONS.js';
+import generateRandomNumber from '../utils/generateRandomNumber.js';
+import Lotto from './Lotto.js';
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
 
 class LottoMachine {
   #lottos = [];
 
+<<<<<<< HEAD
   constructor(lottoPurchasePrice) {
     const lottoCount = lottoPurchasePrice / PURCHASE_PRICE.UNIT;
     this.#lottos = this.#generateLottos(lottoCount);
@@ -15,6 +22,12 @@ class LottoMachine {
     return this.#lottos;
   }
 
+=======
+  constructor(lottoCount) {
+    this.#lottos = this.#generateLottos(lottoCount);
+  }
+
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
   #generateLottos(lottoCount) {
     const generateLotto = () =>
       generateRandomNumber(LOTTO.MAX_NUMBER, LOTTO.LENGTH)().sort(
@@ -23,6 +36,7 @@ class LottoMachine {
     return Array.from({ length: lottoCount }, () => new Lotto(generateLotto()));
   }
 
+<<<<<<< HEAD
   calculateResult(winningNumbers, bonusNumber) {
     const winningResult = new WinningResult(winningNumbers, bonusNumber);
 
@@ -33,6 +47,10 @@ class LottoMachine {
     );
 
     return [winningCounts, profitRate];
+=======
+  get lottos() {
+    return this.#lottos;
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
   }
 }
 

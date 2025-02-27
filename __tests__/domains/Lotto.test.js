@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { KEY, LOTTO } from '../../src/constants/Configurations';
 import { ERROR_MESSAGE } from '../../src/constants/Messages';
+=======
+import { LOTTO } from '../../src/constants/CONFIGURATIONS';
+import { ERROR_MESSAGE } from '../../src/constants/MESSAGES';
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
 import Lotto from '../../src/domains/Lotto';
 
 describe('로또 클래스 테스트', () => {
@@ -25,25 +30,37 @@ describe('로또 클래스 테스트', () => {
     test('로또 번호가 숫자가 아니면 에러가 발생한다.', () => {
       const numbers = [null, 1, 2, 3, 4, 5];
       expect(() => new Lotto(numbers)).toThrow(
+<<<<<<< HEAD
         ERROR_MESSAGE.COMMON.INVALID_TYPE(KEY.LOTTO_NUMBERS),
+=======
+        ERROR_MESSAGE.LOTTO.INVALID_TYPE,
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
       );
     });
 
     test(`로또 번호가 ${LOTTO.LENGTH}개가 아니면 에러가 발생한다.`, () => {
       const numbers = [1, 2, 3, 4, 5];
       expect(() => new Lotto(numbers)).toThrow(
+<<<<<<< HEAD
         ERROR_MESSAGE.COMMON.INVALID_COUNT(KEY.LOTTO_NUMBERS),
+=======
+        ERROR_MESSAGE.LOTTO.INVALID_LENGTH,
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
       );
     });
 
     test(`로또 번호의 범위가 ${LOTTO.MIN_NUMBER}~${LOTTO.MAX_NUMBER} 사이가 아니면 에러가 발생한다.`, () => {
       const numbers = [0, 2, 3, 4, 5, 46];
       expect(() => new Lotto(numbers)).toThrow(
+<<<<<<< HEAD
         ERROR_MESSAGE.COMMON.INVALID_RANGE({
           key: KEY.LOTTO_NUMBERS,
           min: LOTTO.MIN_NUMBER,
           max: LOTTO.MAX_NUMBER,
         }),
+=======
+        ERROR_MESSAGE.LOTTO.INVALID_RANGE,
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
       );
     });
 

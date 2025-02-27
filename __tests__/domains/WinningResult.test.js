@@ -36,7 +36,11 @@ describe('당첨 결과 테스트', () => {
         expectedResult,
       );
 
+<<<<<<< HEAD
       expect(profitRate).toBe(20315550);
+=======
+      expect(profitRate).toBe(20315450);
+>>>>>>> 0f9ff21ed0cd6104c06a2b5d22feb4bc389fa693
     });
   });
 });
