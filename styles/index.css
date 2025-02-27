@@ -128,7 +128,7 @@ header h1 {
   justify-content: space-between;
 }
 
-.lottoNumbers {
+.enteredLottoNumbers {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -241,4 +241,15 @@ dialog h3 {
   font-size: var(--button-font-size);
   font-weight: var(--button-font-weight);
   cursor: pointer;
+}
+
+.lottosNumbers li {
+  display: flex;
+  gap: 10px;
+}
+
+.lottosNumbers .lottoNumbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
