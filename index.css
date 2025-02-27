@@ -20,3 +20,14 @@
   align-items: center;
   background-color: #fbfbfd;
 }
+
+dialog {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+dialog::backdrop {
+  background-color: var(--lotto-greyscale-5);
+  opacity: 0.5;
+}
