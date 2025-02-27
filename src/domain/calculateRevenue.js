@@ -2,7 +2,7 @@ import { LOTTO } from './lottoConstants.js';
 
 export const calculateRevenue = (matchCounts, purchasePrice) => {
   const sumOfLottoPrize = matchCounts.reduce(
-    (acc, cur, idx) => (idx >= 3 ? acc + cur * calculateRevenueByMatch(idx) : acc),
+    (acc, cur, idx) => (idx >= LOTTO.THREE_MATCH ? acc + cur * calculateRevenueByMatch(idx) : acc),
     0,
   );
 
