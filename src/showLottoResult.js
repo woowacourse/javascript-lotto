@@ -1,6 +1,6 @@
 import makeLotto from './service/LottoService';
 
-function showLottoResult(lottos, purchaseAmount, purchaseButton) {
+function showLottoResult(lottos, purchaseAmount) {
   lottos = makeLotto(purchaseAmount);
   lottos.forEach((lotto) => {
     const lottoWrapper = document.createElement('div');
@@ -18,7 +18,6 @@ function showLottoResult(lottos, purchaseAmount, purchaseButton) {
     lottoWrapper.appendChild(lottoNumbers);
 
     document.querySelector('.lotto-content').appendChild(lottoWrapper);
-    purchaseButton.disabled = true;
   });
 }
 
