@@ -1,0 +1,27 @@
+.screen {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 384px;
+  height: 80%;
+
+  gap: 32px;
+  border: #b4b4b4 2px solid;
+  border-radius: 4px;
+  font-size: var(--body-font-size);
+}
+
+.screenHeader {
+  font-weight: var(--title-font-weight);
+  font-size: var(--title-font-size);
+}
+
+.screen h1 {
+  height: 40px;
+  margin-top: 20px;
+  font-weight: var(--title-font-weight);
+  font-size: var(--title-font-size);
+}

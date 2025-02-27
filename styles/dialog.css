@@ -1,0 +1,62 @@
+dialog {
+  font-size: var(--body-font-size);
+  width: 350px;
+  height: 500px;
+  border: none;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog h3 {
+  margin-top: 20px;
+  font-size: var(--subTitle-font-size);
+  font-weight: var(--subTitle-font-weight);
+}
+.winningHistory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.gridItem {
+  border-bottom: 1px solid var(--gray-sclae-3);
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#rate {
+  font-size: var(--body-font-size);
+  font-weight: var(--subTitle-font-weight);
+}
+
+.tableHeader {
+  font-weight: var(--subTitle-font-weight);
+  border-top: 1px solid var(--gray-sclae-3);
+}
+
+#reset {
+  background-color: var(--main-color);
+  color: white;
+  border: 0px;
+  border-radius: 4px;
+  width: 100%;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  cursor: pointer;
+}
