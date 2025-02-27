@@ -24,6 +24,8 @@ export default class StatisticsTable {
       $tableHead.appendChild($row);
     });
 
+    $table.appendChild($tableHead);
+
     Object.entries(lottoHistory)
       .reverse()
       .forEach(([rank, count]) => {
@@ -49,7 +51,6 @@ export default class StatisticsTable {
         $table.appendChild($tableRow);
       });
 
-    $table.appendChild($tableHead);
     $target.appendChild($table);
   }
 
