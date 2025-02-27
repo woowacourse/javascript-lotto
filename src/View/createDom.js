@@ -1,3 +1,5 @@
+import { LOTTO_PRIZE_MONEY_DEFINITION } from '../Domain/Constant/definition';
+
 export const createElementWithAttributes = (
   tag,
   { id = '', className = '', attributes = {}, textContent = '' } = {},
@@ -147,7 +149,71 @@ export const createModal = (lottoResult = {}, lottoProfit = 0) => {
   closeButton.appendChild(closeIcon);
   titleContainer.appendChild(closeButton);
 
-  modalContent.append(titleContainer);
+  const lottoList = createElementWithAttributes('ul', {
+    className: 'modal-content-lotto-list-result',
+  });
+
+  // 필수 리스트 아이템
+  const headerItem = createElementWithAttributes('li', {
+    className: 'modal-content-lotto-result',
+  });
+  ['일치 갯수', '당첨금', '당첨 갯수'].forEach((text) => {
+    headerItem.appendChild(
+      createElementWithAttributes('span', { textContent: text }),
+    );
+  });
+  lottoList.appendChild(headerItem);
+
+  const message = {
+    FIRST_PRIZE: [
+      '6개',
+      LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE.toLocaleString(),
+      `${lottoResult.FIRST_PRIZE}개`,
+    ],
+    SECOND_PRIZE: [
+      '5개+보너스 볼',
+      LOTTO_PRIZE_MONEY_DEFINITION.SECOND_PRIZE.toLocaleString(),
+      `${lottoResult.SECOND_PRIZE}개`,
+    ],
+    THIRD_PRIZE: [
+      '5개',
+      LOTTO_PRIZE_MONEY_DEFINITION.THIRD_PRIZE.toLocaleString(),
+      `${lottoResult.THIRD_PRIZE}개`,
+    ],
+    FOURTH_PRIZE: [
+      '4개',
+      LOTTO_PRIZE_MONEY_DEFINITION.FOURTH_PRIZE.toLocaleString(),
+      `${lottoResult.FOURTH_PRIZE}개`,
+    ],
+    FIFTH_PRIZE: [
+      '3개',
+      LOTTO_PRIZE_MONEY_DEFINITION.FIFTH_PRIZE.toLocaleString(),
+      `${lottoResult.FIFTH_PRIZE}개`,
+    ],
+  };
+  const keys = [
+    'FIFTH_PRIZE',
+    'FOURTH_PRIZE',
+    'THIRD_PRIZE',
+    'SECOND_PRIZE',
+    'FIRST_PRIZE',
+  ];
+
+  // 동적으로 추가되는 로또 결과 리스트
+  keys.forEach((key) => {
+    const resultItem = createElementWithAttributes('li', {
+      className: 'modal-content-lotto-result',
+    });
+    const [match, prize, count] = message[key];
+    [match, prize, count].forEach((text) => {
+      resultItem.appendChild(
+        createElementWithAttributes('span', { textContent: text }),
+      );
+    });
+    lottoList.appendChild(resultItem);
+  });
+
+  modalContent.append(titleContainer, lottoList);
   modal.append(overlay, modalContent);
 
   return modal;
