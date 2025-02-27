@@ -71,5 +71,10 @@ export default class PurchaseForm {
     lottoTransactionStore.setState((state) => ({
       lottoTransaction: { ...state.lottoTransaction, price, lottos },
     }));
+
+    const inputs = document.querySelectorAll(
+      ".lotto-numbers-wrap > .number-input"
+    );
+    inputs[0].focus();
   }
 }
