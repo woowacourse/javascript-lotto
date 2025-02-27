@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./modal.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close" />
   </head>
 
   <body>
@@ -102,5 +104,62 @@
     <div class="footer">
       <p>Copyright 2023. woowacourse</p>
     </div>
+
+    <dialog class="dialog">
+      <button class="close-btn">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="dialog-container">
+        <div class="winning-rate-title lotto-subtitle">
+          <p>
+            🏆 당첨 통계 🏆
+          </p>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <th scope="col">일치 갯수</td>
+              <th scope="col">당첨금</td>
+              <th scope="col">당첨 갯수</td>
+            </tr>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td>n개</td>
+            </tr>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td>n개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td>n개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td>n개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td>n개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td>n개</td>
+            </tr>
+          </table>
+        </div>
+        <div class="winning-rate-result">
+          <p>당신의 총 수익률은 %입니다.</p>
+        </div>
+        <button class="restart-btn lotto-caption">다시 시작하기</button>
+      </div>
+    </dialog>
+    <script src="./src/step2-index.js"></script>
   </body>
 </html>
