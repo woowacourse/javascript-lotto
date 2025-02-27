@@ -10,13 +10,18 @@ export default class LottoHistoryItem {
   render($target) {
     const $li = document.createElement("li");
     $li.className = "lotto-history-item";
-    $li.innerHTML = `
-        <span class="lotto-history-item-icon">🎟️</span>
-        <span class="lotto-history-item-text">${this.#lottoNumbers.join(
-          ", "
-        )}</span>
-    `;
 
+    const $lottoIconText = document.createElement("span");
+    const $lottoNumbersText = document.createElement("span");
+
+    $lottoIconText.className = "lotto-history-item-icon";
+    $lottoIconText.textContent = "🎟️";
+
+    $lottoNumbersText.className = "lotto-history-item-text";
+    $lottoNumbersText.textContent = this.#lottoNumbers.join(", ");
+
+    $li.appendChild($lottoIconText);
+    $li.appendChild($lottoNumbersText);
     $target.appendChild($li);
   }
 }
