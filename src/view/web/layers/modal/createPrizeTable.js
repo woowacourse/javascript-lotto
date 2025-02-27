@@ -7,8 +7,8 @@ import { setTable, setHeader, setRow } from "../../templates/table.js";
 
 const createPrizeTable = (result) => {
   const rows = Array.from(result).map(([matchedCount, matchedLottos]) => {
-    const matchedKey = LOTTO_MATCHED_NUMBER_COUNT.get(matchedCount);
-    const prize = LOTTO_PRIZE_MONEY.get(matchedKey);
+    const prizeKey = LOTTO_MATCHED_NUMBER_COUNT.get(matchedCount);
+    const prize = LOTTO_PRIZE_MONEY.get(prizeKey);
     return [matchedCount, prize, matchedLottos];
   });
 
