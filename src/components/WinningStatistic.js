@@ -1,5 +1,6 @@
 import Button from "./common/button.js";
-import { LOTTO_STATUS } from "../constants/lotto.js";
+import customCreateElement from "../utils/customElement.js";
+import StatisticsTable from "./StatisticsTable.js";
 
 export default class WinningStatistic {
   constructor(winningResult, setInit) {
@@ -11,56 +12,31 @@ export default class WinningStatistic {
   }
 
   init(winningResult, setInit) {
-    this.$div = document.createElement("div");
-    const $title = document.createElement("p");
-    this.$div.className = "winning-static-container";
-    $title.innerText = "🏆 당첨 통계 🏆";
-    $title.className = "winning-static-title";
-
-    const $table = document.createElement("table");
-
-    const { lottoHistory, rate } = winningResult;
-
-    $table.innerHTML = `
-        <tr class="table-head">
-          <th scope="col">일치 갯수</td>
-          <th scope="col">당첨금</td>
-          <th scope="col">당첨 갯수</td>
-        </tr>
-        ${Object.entries(lottoHistory)
-          .reverse()
-          .map(([rank, count]) => {
-            const { REWORD, COUNT: MATCH_COUNT } = LOTTO_STATUS.find(
-              (status) => status.RANK === Number(rank)
-            );
-            if (Number(rank) === 2) {
-              return `
-            <tr class="tabel-row">
-              <td>5개+보너스볼</td>
-              <td>${REWORD.toLocaleString("ko-KR")}</td>
-              <td>${count}개</td>
-            </tr>`;
-            }
-            return `
-            <tr class="tabel-row">
-              <td>${MATCH_COUNT}개</td>
-              <td>${REWORD.toLocaleString("ko-KR")}</td>
-              <td>${count}개</td>
-            </tr>`;
-          })
-          .join("")}
-    `;
-
-    const $rateText = document.createElement("p");
-    $rateText.innerText = `당신의 총 수익률은 ${rate}입니다.`;
-    $rateText.className = "rate-text";
-    const $footer = document.createElement("div");
-    $footer.className = "winning-static-footer";
+    this.$div = customCreateElement({
+      tagName: "div",
+      className: "winning-static-container",
+    });
+    const $title = customCreateElement({
+      tagName: "p",
+      className: "winning-static-title",
+      text: "🏆 당첨 통계 🏆",
+    });
 
     this.$div.appendChild($title);
-    this.$div.appendChild($table);
-    $footer.appendChild($rateText);
 
+    new StatisticsTable(this.$div, winningResult.lottoHistory);
+
+    const $rateText = customCreateElement({
+      tagName: "p",
+      className: "rate-text",
+      text: `당신의 총 수익률은 ${winningResult.rate}입니다.`,
+    });
+    const $footer = customCreateElement({
+      tagName: "div",
+      className: "winning-static-footer",
+    });
+
+    $footer.appendChild($rateText);
     this.$div.appendChild($footer);
 
     new Button($footer, () => setInit(), "다시 시작하기");
