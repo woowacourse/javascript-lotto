@@ -213,7 +213,12 @@ export const createModal = (lottoResult = {}, lottoProfit = 0) => {
     lottoList.appendChild(resultItem);
   });
 
-  modalContent.append(titleContainer, lottoList);
+  const profitText = createElementWithAttributes('span', {
+    className: 'modal-content-profit',
+    textContent: `당신의 총 수익률은 ${Number(lottoProfit.toFixed(1)).toLocaleString()}%입니다.`,
+  });
+
+  modalContent.append(titleContainer, lottoList, profitText);
   modal.append(overlay, modalContent);
 
   return modal;
