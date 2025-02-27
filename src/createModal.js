@@ -53,7 +53,7 @@ function createModal(winCount, revenueRate) {
           </div>
           <div class="result-footer">
             <div class="revenue-rate">당신의 총 수익률은 ${revenueRate}%입니다.</div>
-            <button class="retry-button">다시 시작하기</button>
+            <button id="retry-button">다시 시작하기</button>
           </div>`;
 
   document.querySelector('.container').appendChild(modal);
