@@ -1,14 +1,6 @@
 import './web/index.css';
-import Header from './web/header/Header';
-import Main from './web/main/Main';
-import Footer from './web/footer/Footer';
+import LottoDashboard from './web/lottoDashboard/lottoDashboard';
 
 const app = document.getElementById('app');
 
-const appFragment = document.createDocumentFragment();
-
-appFragment.appendChild(Header());
-appFragment.appendChild(Main());
-appFragment.appendChild(Footer());
-
-app.appendChild(appFragment);
+app.appendChild(LottoDashboard());
