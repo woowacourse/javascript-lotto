@@ -1,6 +1,7 @@
 const countMatchingNumbers = (numberArr1, numberArr2) => {
   const arr1 = [...numberArr1];
   const arr2 = [...numberArr2];
+  console.log(arr1, arr2);
 
   //배열안의 내용이 숫자가 아닌경우 예외처리
   if (

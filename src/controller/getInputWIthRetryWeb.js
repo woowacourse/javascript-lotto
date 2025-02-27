@@ -10,7 +10,7 @@ export const getPrice = () => {
   const input = inputElement.value;
   return Input.retry(() => {
     resetInput(inputElement);
-    validatePrice(Number(input));
+    validatePrice(input);
     return Number(input);
   });
 };
@@ -18,22 +18,26 @@ export const getPrice = () => {
 export const getNeededLottoNumbers = () => {
   const winningLotto = Input.retry(() => {
     const inputElements = document.querySelectorAll(".winningNumberInput");
-    const winningNumbers = Array.from(inputElements).map((input) =>
-      Number(input.value)
+    const winningNumbers = Array.from(inputElements).map(
+      (input) => input.value
     );
     validateLotto(winningNumbers);
-    const winningLotto = new Lotto(winningNumbers);
+
+    const winningLotto = new Lotto(winningNumbers.map(Number));
     return winningLotto;
   });
 
+  if (winningLotto === undefined) return;
+
   const bonusLottoNumber = Input.retry(() => {
     const inputElement = document.querySelector(".bonusNumberInput");
-    const bonusNumber = Number(inputElement.value);
+    const bonusNumber = inputElement.value;
+
     validateBonusNumber({
       enterdLottoNumbers: winningLotto.getLottoNumbers(),
       bonusLottoNumber: bonusNumber,
     });
-    return bonusNumber;
+    return Number(bonusNumber);
   });
 
   return { winningLotto, bonusLottoNumber };
