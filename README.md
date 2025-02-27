@@ -101,3 +101,4 @@
   - [x] 일치 결과 테이블 제작 (css)
   - [x] 수익률 출력 화면 제작 (css)
   - [x] restart 버튼 제작 (css)
+    - [x] restart 기능 제작

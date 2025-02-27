@@ -11,7 +11,6 @@ import { printLottoCount, printLottoResult, printLottos } from "./ui/output";
 const handleModal = () => {
   const prizeResultModal = document.querySelector("modal");
   const modalOpenStatus = window.getComputedStyle(prizeResultModal).display;
-  console.log("status :", modalOpenStatus);
   if (modalOpenStatus === "none") {
     prizeResultModal.style.display = "flex";
   } else if (modalOpenStatus === "flex") {
@@ -58,10 +57,17 @@ const resetLotto = () => {
 
   // result text 결과 초기화
   const resultText = document.querySelectorAll(".prize-contents p");
-  console.log(resultText, resultText[1]);
   if (resultText[1]) {
     resultText[1].remove();
   }
+
+  // lotto 입력창 숨감
+  const winningLottoContents = document.querySelector(".winningLotto-contents");
+  winningLottoContents.style.display = "none";
+
+  // 제출 버튼 숨김
+  const resultContents = document.querySelector(".result-contents");
+  resultContents.style.display = "none";
 };
 
 const initLotto = () => {

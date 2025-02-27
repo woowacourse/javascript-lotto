@@ -1,12 +1,13 @@
 .main-contents {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 28px;
   padding-top: 40px;
   padding-bottom: 32px;
   width: 414px;
+  min-height: 414px;
   border: 1px solid #0000001f;
   border-radius: 4px;
   background-color: var(--lotto-greyscale-1);
@@ -67,7 +68,7 @@
 }
 
 .winningLotto-contents {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 12px;
 }
@@ -94,6 +95,9 @@
 }
 
 .result-contents {
+  display: none;
+  justify-content: center;
+  align-items: center;
   padding: 6px 6px 6px 8px;
   width: 382px;
   height: 36px;

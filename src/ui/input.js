@@ -4,6 +4,13 @@ const getPrice = () => {
     const purchaseButton = document.querySelector(".input-contents button");
 
     purchaseButton.addEventListener("click", async () => {
+      const winningLottoContainer = document.querySelector(
+        ".winningLotto-contents"
+      );
+      const resultSubmitButton = document.querySelector(".result-contents");
+
+      winningLottoContainer.style.display = "flex";
+      resultSubmitButton.style.display = "flex";
       resolve(userInputPrice.value);
     });
   });
