@@ -8,3 +8,44 @@ header{
   padding:14px 130px;
 }
 
+.logo{
+  color:var(--greyscale-1);
+}
+
+main{
+  height:calc(100vh - var(--header-height) - var(--footer-height));
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lotto-box{
+  display:flex;
+  flex-direction: column;
+  border:1px solid var(--greyscale-3);
+  border-radius:10px;
+  background: var(--greyscale-1);
+  padding:40px 16px;
+  width:414px;
+  height:727px;
+}
+
+.lotto-box .title{
+  text-align: center;
+  padding-bottom:28px;
+}
+
+.purchase{
+  display:flex;
+  gap:16px;
+  padding:4px 0 28px 0;
+}
+
+.purchase input{
+  padding:8px;
+  width:310px;
+}
+
+.purchase button{
+  width:56px;
+}
