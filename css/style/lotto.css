@@ -59,6 +59,11 @@
   gap: 8px;
 }
 
+.lotto-container_lotto img {
+  width: 34px;
+  height: 36px;
+}
+
 .lotto-container_lotto {
   display: flex;
   justify-content: start;
