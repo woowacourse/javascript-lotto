@@ -63,7 +63,7 @@
 
 .divider-line {
   width: 95%;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--secondary-color);
   opacity: 0.5;
   margin: 10px 0;
 }

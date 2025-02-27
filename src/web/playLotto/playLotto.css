@@ -16,11 +16,11 @@ input {
   flex: 1;
   padding: 10px 10px;
   border-radius: 5px;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--secondary-color);
 }
 
 button {
-  background-color: #4e5ba6;
+  background-color: var(--primary-color);
   padding: 10px 20px;
   color: white;
   border: none;
