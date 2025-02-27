@@ -1,10 +1,14 @@
-// Main.js
 import LottoMachine from '../../domains/LottoMachine.js';
 import PurchaseForm from '../PurchaseForm/PurchaseForm.js';
 import LottoList from '../LottoList/LottoList.js';
 import WinningInputsForm from '../WinningInputsForm/WinningInputsForm.js';
 import WinningResultModal from '../WinningResultModal/WinningResultModal.js';
 import ViewComponent from '../core/ViewComponent.js';
+import {
+  EVENT_TYPES,
+  SELECTORS,
+  TEMPLATES,
+} from '../../constants/MainConstants.js';
 
 class Main extends ViewComponent {
   constructor(selector) {
@@ -20,14 +24,7 @@ class Main extends ViewComponent {
   }
 
   template() {
-    return `
-      <div class="dashboard">
-        <h1>🎱 내 번호 당첨 확인 🎱</h1>
-        <div class="purchase-price-area"></div>
-        <div class="lottos-area"></div>
-        <div class="winning-inputs-area"></div>
-      </div>
-    `;
+    return TEMPLATES.DASHBOARD;
   }
 
   renderDashboardLayout() {
@@ -36,21 +33,21 @@ class Main extends ViewComponent {
 
   renderPurchaseForm() {
     const purchasePriceArea = this.container.querySelector(
-      '.purchase-price-area',
+      SELECTORS.PURCHASE_PRICE_AREA,
     );
     this.purchaseForm = new PurchaseForm(purchasePriceArea);
   }
 
   renderLottoList() {
-    const lottosArea = this.container.querySelector('.lottos-area');
+    const lottosArea = this.container.querySelector(SELECTORS.LOTTOS_AREA);
     this.lottoList = new LottoList(lottosArea);
   }
 
   renderWinningInputsForm() {
     const winningInputsArea = this.container.querySelector(
-      '.winning-inputs-area',
+      SELECTORS.WINNING_INPUTS_AREA,
     );
-    this.WinningInputsForm = new WinningInputsForm(winningInputsArea);
+    this.winningInputsForm = new WinningInputsForm(winningInputsArea);
   }
 
   bindEvents() {
@@ -60,7 +57,7 @@ class Main extends ViewComponent {
   }
 
   bindPurchaseLottosEvent() {
-    this.container.addEventListener('purchaseLottos', (e) => {
+    this.container.addEventListener(EVENT_TYPES.PURCHASE_LOTTOS, (e) => {
       this.purchasePrice = e.detail;
       this.lottoMachine = new LottoMachine(this.purchasePrice);
       this.lottoList.render(this.lottoMachine.lottos);
@@ -69,7 +66,7 @@ class Main extends ViewComponent {
   }
 
   bindCalculateResultEvent() {
-    this.container.addEventListener('calculateResult', (e) => {
+    this.container.addEventListener(EVENT_TYPES.CALCULATE_RESULT, (e) => {
       const { winningNumbers, bonusNumber } = e.detail;
       const [winningCounts, profitRate] = this.lottoMachine.calculateResult(
         winningNumbers,
@@ -80,7 +77,7 @@ class Main extends ViewComponent {
   }
 
   bindRestartEvent() {
-    this.container.addEventListener('restart', () => {
+    this.container.addEventListener(EVENT_TYPES.RESTART, () => {
       this.render();
       this.bindEvents();
     });
