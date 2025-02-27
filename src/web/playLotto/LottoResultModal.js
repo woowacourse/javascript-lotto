@@ -2,7 +2,7 @@ import { createElement } from '../utils/dom';
 import { validateWinningNumbers, validateBonusNumber } from '../../validation/validateLottoNumbers';
 import { getWinningMatchCount } from '../../domain/getWinningMatchCount';
 import { calculateRevenue } from '../../domain/calculateRevenue';
-import ResultDashboard from '../resultDashboard/ResultDashboard';
+import { ResultDashboard } from '../resultDashboard';
 
 export default function LottoResultModal({ priceInput, playLotto, randomlottos }, { winningNumbers, bonusNumber }) {
   const resultButton = createElement('button', { class: 'result-button', textContent: '결과 확인하기' });
