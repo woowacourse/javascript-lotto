@@ -5,43 +5,33 @@ import Button from "./@common/Button";
 import Component from "./Component";
 
 export default class UserInput extends Component {
-  setEvent() {
-    this.addEvent(
-      "submit",
-      ".user-input-bonus-form",
-      this.handleButtonClick.bind(this)
-    );
-  }
   template() {
     return `
     <h2 class="user-input-title body">
-    지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+      지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
     </h2>
-<section class="user-input-section">
-<article class="user-input-win-article body">
-  <span class="body">당첨 번호</span>
-  <form>
-  ${Array(6)
-    .fill("")
-    .map(
-      (_, i) => `
-                <input type="text" class="user-input win-number" data-index="${i}" pattern="[0-9]*" inputmode="numeric" maxlength="2" />
-              `
-    )
-    .join("")}
-  </form>
-</article>
-<form class="user-input-bonus-form">
-<article class="user-input-bonus-article body">
-  <span class="body">보너스 번호</span>
-  <div class="user-input-bonus-form">
-    <input type="number" class="user-input bonus-number" />
-  </div>
-</article>
-</section>
-<section class="results-button-layout"></section>
-</form>
-    `;
+    <form class="user-input-form">
+      <section class="user-input-section">
+        <article class="user-input-win-article body">
+          <span class="body">당첨 번호</span>
+          ${Array(6)
+            .fill("")
+            .map(
+              (_, i) => `
+              <input type="text" class="user-input win-number" data-index="${i}" maxlength="2" />
+            `
+            )
+            .join("")}
+        </article>
+        <article class="user-input-bonus-article body">
+          <span class="body">보너스 번호</span>
+          <input type="number" class="user-input bonus-number" />
+        </article>
+      </section>
+      <section class="results-button-layout">
+      </section>
+    </form>
+  `;
   }
 
   mounted() {
@@ -50,7 +40,13 @@ export default class UserInput extends Component {
       size: "large",
       className: "results-button",
       type: "submit",
+      onClick: this.handleButtonClick.bind(this),
     });
+
+    const firstWinNumberInput = qs(".win-number");
+    if (firstWinNumberInput) {
+      firstWinNumberInput.focus();
+    }
   }
 
   getWinNumberInputs() {
