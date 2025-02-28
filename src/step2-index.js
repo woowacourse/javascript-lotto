@@ -9,7 +9,6 @@ import calculateRevenueRate from './domain/model/calculateRevenueRate';
 import createLottos from './domain/model/createLottos';
 import LottoStatistics from './domain/model/LottoStatistics';
 import { validateBonus, validateLottoNumber, validateMoney } from './domain/validation';
-import OutputView from './view/OutputView';
 import normalizeErrorMessage from './view/utils/normalizeErrorMessage';
 
 let userMoney;
