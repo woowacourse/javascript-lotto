@@ -1,0 +1,51 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+tr {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+#modal-background {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+}
+
+#modal {
+  width: 400px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#modal__close-btn {
+  width: 100%;
+  border: none;
+  background-color: white;
+  text-align: right;
+}
+
+#modal__retry-btn {
+  padding: 10px;
+  width: 100%;
+  margin-left: 5px;
+  background-color: #4e5ba6;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+/* body {
+  background-color: rgba(0, 0, 0, 0.5);
+} */

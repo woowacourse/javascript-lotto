@@ -54,6 +54,7 @@ $purchaseForm.addEventListener('submit', (e) => {
 const $lottoForm = document.getElementById('lotto-form');
 const $winningNumbersInput = document.querySelectorAll('.winning-numbers__input');
 const $bonusNumber = document.getElementById('bonus-number__input');
+const $modal = document.getElementById('modal');
 
 $lottoForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -82,4 +83,5 @@ $lottoForm.addEventListener('submit', (e) => {
     LottoGame.calculateTotalPrize(lottoGame.rank),
   );
   console.log({ winningRate });
+  $modal.classList.remove('hidden');
 });

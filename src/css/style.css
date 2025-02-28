@@ -11,6 +11,7 @@ main {
   flex-direction: column;
   gap: 25px;
   width: 414px;
+  min-height: 100vh;
   margin: 60px auto;
   padding: 20px;
   border: 1px solid rgba(0, 0, 0, 0.2);
