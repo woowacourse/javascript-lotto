@@ -10,12 +10,11 @@ const handleWinningResult = (event, { money, lottos }) => {
   event.preventDefault();
   try {
     const winningForm = document.getElementById('winningNumberInputForm');
-    const winningNumbers = validateLottoNumber(
-      Array.from(winningForm.winningNumber).map((input) =>
-        parseInt(input.value, 10),
-      ),
+    const winningNumbers = Array.from(winningForm.winningNumber).map((input) =>
+      parseInt(input.value, 10),
     );
 
+    validateLottoNumber(winningNumbers);
     const lottoStatistics = new LottoStatistics();
     lottoStatistics.compareLottos(lottos, {
       bonus: parseInt(winningForm.bonusNumber.value, 10),
