@@ -2,7 +2,7 @@ import LottoMachine from '../domains/LottoMachine.js';
 import WinningResult from '../domains/WinningResult.js';
 import OutputView from '../views/web/OutputView.js';
 import InputView from '../views/web/InputView.js';
-import retryUntilValidWithAlert from '../utils/retryUntilValidWithAlert.js';
+import retryUntilValidInWeb from '../utils/retryUntilValidInWeb.js';
 
 const WebController = {
   async start() {
@@ -15,7 +15,7 @@ const WebController = {
   },
 
   async processLottoPurchase() {
-    const { purchasePrice, lottoCount } = await retryUntilValidWithAlert(
+    const { purchasePrice, lottoCount } = await retryUntilValidInWeb(
       async () => await InputView.enterPurchasePrice(),
     );
     const lottoMachine = new LottoMachine(lottoCount);
@@ -25,7 +25,7 @@ const WebController = {
   },
 
   async generateWinningResult() {
-    const { winningNumbers, bonusNumber } = await retryUntilValidWithAlert(
+    const { winningNumbers, bonusNumber } = await retryUntilValidInWeb(
       async () => await InputView.enterWinningAndBonusNumber(),
     );
     return new WinningResult(winningNumbers, bonusNumber);
