@@ -37,16 +37,17 @@ export default class LottoWinningInfoForm {
 
     new WinningNumbersInput($inputsContainer, winningNumbers);
     new BonusNumberInput($inputsContainer, bonusNumber);
-    new Button($form, this.handleResultButtonClick, "결과 확인하기");
+    new Button($inputsContainer, () => {}, "결과 확인하기", "submit");
 
-    $form.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") this.handleResultButtonClick();
+    $inputsContainer.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.handleSubmit();
     });
 
     $target.appendChild($form);
   }
 
-  handleResultButtonClick = () => {
+  handleSubmit = () => {
     const $lottoNumbers = document.querySelectorAll(
       ".lotto-numbers-wrap > .number-input"
     );
