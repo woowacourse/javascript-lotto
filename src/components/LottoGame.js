@@ -13,6 +13,7 @@ export default class LottoGame {
   #target;
   #lottoResult;
   #show;
+  $div;
 
   constructor($target) {
     this.#target = $target;
@@ -22,6 +23,7 @@ export default class LottoGame {
     lottoTransactionStore.subscribe(() => this.render());
     winningLottoInfoStore.subscribe(() => this.render());
 
+    this.renderStaticElement();
     this.render();
   }
 
@@ -54,9 +56,7 @@ export default class LottoGame {
     this.render();
   };
 
-  render() {
-    this.#target.replaceChildren();
-
+  renderStaticElement() {
     const $div = customCreateElement({
       tagName: "div",
       className: "lotto-winning-result-container",
@@ -71,8 +71,22 @@ export default class LottoGame {
     this.#target.appendChild($div);
 
     new PurchaseForm($div, this.setShow);
-    new LottoPurchaseHistory($div, this.#show);
-    new LottoWinningInfoForm($div, this.#show);
+
+    this.$div = customCreateElement({
+      tagName: "div",
+    });
+
+    $div.appendChild(this.$div);
+  }
+
+  render() {
+    this.$div.replaceChildren();
+
+    const $modal = document.querySelector(".modal-bg");
+    if ($modal) $modal.remove();
+
+    new LottoPurchaseHistory(this.$div, this.#show);
+    new LottoWinningInfoForm(this.$div, this.#show);
 
     const winningResult = this.calculateWinningResult();
 
