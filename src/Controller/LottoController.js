@@ -48,35 +48,38 @@ class LottoController {
   }
 
   async #readPrice() {
-    try {
-      const price = await InputView.readPrice();
-      Validate.validatePrice(price);
-      return price;
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      return this.#readPrice();
+    while (true) {
+      try {
+        const price = await InputView.readPrice();
+        Validate.validatePrice(price);
+        return price;
+      } catch (error) {
+        OutputView.printErrorMessage(error.message);
+      }
     }
   }
 
   async #readWinningNumbers() {
-    try {
-      const winningNumbers = await InputView.readWinningNumbers();
-      Validate.validateWinningNumbers(winningNumbers);
-      return winningNumbers.split(',').map(Number);
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      return this.#readWinningNumbers();
+    while (true) {
+      try {
+        const winningNumbers = await InputView.readWinningNumbers();
+        Validate.validateWinningNumbers(winningNumbers);
+        return winningNumbers.split(',').map(Number);
+      } catch (error) {
+        OutputView.printErrorMessage(error.message);
+      }
     }
   }
 
   async #readBonusNumber(winningNumbers) {
-    try {
-      const bonusNumber = await InputView.readBonusNumbers();
-      Validate.validateBonusNumber(bonusNumber, winningNumbers);
-      return Number(bonusNumber);
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      return this.#readBonusNumber(winningNumbers);
+    while (true) {
+      try {
+        const bonusNumber = await InputView.readBonusNumbers();
+        Validate.validateBonusNumber(bonusNumber, winningNumbers);
+        return Number(bonusNumber);
+      } catch (error) {
+        OutputView.printErrorMessage(error.message);
+      }
     }
   }
 
@@ -89,6 +92,10 @@ class LottoController {
       OutputView.printErrorMessage(error.message);
       return this.#readRestart();
     }
+  }
+
+  #isWebEnvironment() {
+    return typeof window !== "undefined";
   }
 }
 
