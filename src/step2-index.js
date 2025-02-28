@@ -1,8 +1,3 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
-
 import clearUIElements from './clearUIElements.js';
 import { PRIZE_MONEY } from './constants/MagicNumber.js';
 import createLottoInput from './createLottoInput.js';
@@ -19,7 +14,6 @@ import {
   getUIUserRetry,
   getUIWinningNumber,
 } from './service/InputService.js';
-import makeLotto from './service/LottoService.js';
 import {
   getBonusNumber,
   getPurchasePrice,
@@ -53,42 +47,49 @@ document.addEventListener('DOMContentLoaded', () => {
       return purchasePrice;
     } catch (error) {
       console.log(error);
+      clearUIElements();
     }
   }
 
   async function handleResult(event) {
     event.preventDefault();
+    try {
+      const userLotto = await getWinningNumber(getUIWinningNumber);
+      const parsedLotto = await getBonusNumber(userLotto, getUIBonusNumber);
 
-    const userLotto = await getWinningNumber(getUIWinningNumber);
-    const parsedLotto = await getBonusNumber(userLotto, getUIBonusNumber);
+      let winCount = 0;
 
-    let winCount = 0;
+      winCount = calculateWins(lottos, parsedLotto);
+      const total = calculatePrize(winCount, PRIZE_MONEY);
+      const revenueRate = calculateRevenueRate(total, purchasePrice);
 
-    winCount = calculateWins(lottos, parsedLotto);
-    const total = calculatePrize(winCount, PRIZE_MONEY);
-    const revenueRate = calculateRevenueRate(total, purchasePrice);
+      const modalOverlay = createModalOverlay();
+      const modal = createModal(winCount, revenueRate, modalOverlay);
+      const closeButton = document.getElementById('close-button');
 
-    const modalOverlay = createModalOverlay();
-    const modal = createModal(winCount, revenueRate, modalOverlay);
-    const closeButton = document.getElementById('close-button');
+      closeButton.addEventListener('click', (event) => {
+        lottos = [];
+        event.preventDefault();
+        modal.remove();
+        modalOverlay.remove();
+        clearUIElements();
+        purchaseButton.disabled = false;
+        document.querySelector('.lotto-content').innerHTML = '';
+      });
 
-    const userRetry = await getUserRetry(getUIUserRetry);
+      const userRetry = await getUserRetry(getUIUserRetry);
 
-    if (userRetry === 'y') {
-      lottos = [];
-      modal.remove();
-      modalOverlay.remove();
-      clearUIElements();
-      purchaseButton.disabled = false;
-      document.querySelector('.lotto-content').innerHTML = '';
+      if (userRetry === 'y') {
+        lottos = [];
+        modal.remove();
+        modalOverlay.remove();
+        clearUIElements();
+        purchaseButton.disabled = false;
+        document.querySelector('.lotto-content').innerHTML = '';
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    closeButton.addEventListener('click', (event) => {
-      event.preventDefault();
-      modal.remove();
-      modalOverlay.remove();
-      document.querySelector('.lotto-content').innerHTML = '';
-    });
   }
 
   purchaseButton.removeEventListener('click', handlePurchase);
