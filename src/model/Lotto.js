@@ -1,7 +1,7 @@
 import ERROR_MESSAGE from '../constants/ErrorMessage.js';
 import { LOTTO_SIZE } from '../constants/MagicNumber.js';
-import validateNumberInRange from '../Validation/checkNumberInRange.js';
-import validateNumber from '../Validation/checkNumber.js';
+import checkNumberInRange from '../Validation/checkNumberInRange.js';
+import checkNumber from '../Validation/checkNumber.js';
 
 class Lotto {
   #numbers;
@@ -11,12 +11,12 @@ class Lotto {
     this.#numbers = numbers.sort((a, b) => a - b);
   }
   #lottoValidation(numbers) {
-    numbers.forEach((number) => validateNumber(number));
+    numbers.forEach((number) => checkNumber(number));
     if (numbers.length !== LOTTO_SIZE)
       throw new Error(ERROR_MESSAGE.notSixNumbers);
     if (numbers.length !== new Set(numbers).size)
       throw new Error(ERROR_MESSAGE.duplicatedNumbers);
-    validateNumberInRange(numbers);
+    checkNumberInRange(numbers);
   }
   get numbers() {
     return this.#numbers;
