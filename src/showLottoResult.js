@@ -19,6 +19,8 @@ function showLottoResult(lottos, purchaseAmount) {
 
     document.querySelector('.lotto-content').appendChild(lottoWrapper);
   });
+
+  return lottos;
 }
 
 export default showLottoResult;

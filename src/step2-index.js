@@ -19,6 +19,7 @@ import {
   getUIUserRetry,
   getUIWinningNumber,
 } from './service/InputService.js';
+import makeLotto from './service/LottoService.js';
 import {
   getBonusNumber,
   getPurchasePrice,
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       showPurchaseResult(purchaseAmount);
       purchaseButton.disabled = true;
-      showLottoResult(lottos, purchaseAmount, purchaseButton);
+      lottos = showLottoResult(lottos, purchaseAmount, purchaseButton);
       createLottoInput();
 
       const resultButton = document.getElementById('check-result-btn');
@@ -61,15 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const userLotto = await getWinningNumber(getUIWinningNumber);
     const parsedLotto = await getBonusNumber(userLotto, getUIBonusNumber);
 
-    const winCount = calculateWins(lottos, parsedLotto);
-    console.log(winCount);
+    let winCount = 0;
+
+    winCount = calculateWins(lottos, parsedLotto);
     const total = calculatePrize(winCount, PRIZE_MONEY);
     const revenueRate = calculateRevenueRate(total, purchasePrice);
 
     const modalOverlay = createModalOverlay();
     const modal = createModal(winCount, revenueRate, modalOverlay);
     const closeButton = document.getElementById('close-button');
-    console.log(closeButton);
 
     const userRetry = await getUserRetry(getUIUserRetry);
 
