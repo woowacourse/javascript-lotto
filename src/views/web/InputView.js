@@ -14,7 +14,6 @@ const InputView = {
       this.$purchaseForm.addEventListener('submit', (e) => {
         e.preventDefault();
         try {
-          console.log(this);
           resolve(this.getPurchasePrice());
         } catch (error) {
           alert(error.message);
