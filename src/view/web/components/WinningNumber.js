@@ -29,6 +29,8 @@ export default class WinningNumbers {
     this.bonusNumberInput.addEventListener("keydown", (event) => {
       this.handleBonusInputKeydown(event);
     });
+
+    
   }
 
   handleInputKeydown(event, index) {

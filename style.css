@@ -210,6 +210,7 @@ flex-direction: column; /* 세로 배치 유지 */
 .modal-title {
   text-align: center;
   margin-bottom: 33px;
+  margin-left: 115px;
   font-size: var(--font-lotto-subtitle)
 }
 
@@ -266,3 +267,26 @@ justify-content: center;
 font-size: var(--font-lotto-caption);
 
 }
+
+.modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: start;
+          width: 100%;
+        }
+        
+  .modal-close-btn {
+          background: none;
+          border: none;
+          font-size: 24px;
+          cursor: pointer;
+          color: #333;
+          padding: 5px 10px;
+          border-radius: 50%;
+          line-height: 1;
+          transition: background-color 0.2s;
+        }
+        
+        .modal-close-btn:hover {
+          background-color: #f0f0f0;
+        }

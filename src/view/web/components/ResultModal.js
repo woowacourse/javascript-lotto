@@ -10,6 +10,7 @@ export default class ResultModal {
     this.match6Element = DomHelper.querySelector("#match-6");
     this.totalReturnRateElement = DomHelper.querySelector("#total-return-rate");
     this.restartButton = DomHelper.querySelector("#restart-button");
+    this.closeButton = DomHelper.querySelector("#closeModalBtn");
     this.onRestart = onRestart;
 
     this.init();
@@ -20,6 +21,13 @@ export default class ResultModal {
       this.hide();
       this.onRestart();
     });
+    if (this.closeButton) {
+      this.closeButton.addEventListener("click", () => {
+        this.hide();
+      });
+    } else {
+      this.addCloseButton();
+    }
   }
 
   displayResult(gameResult, earningRate) {
