@@ -25,13 +25,12 @@ class PurchaseFormView extends ViewComponent {
   }
 
   #bindEvents() {
-    // 입력값이 있으면 버튼 활성화
     this.$input.addEventListener('input', () => {
       this.$button.disabled = this.$input.value.trim() === '';
     });
 
-    // 버튼 클릭 시 도메인 로직(콜백) 호출
-    this.$button.addEventListener('click', () => {
+    this.$container.addEventListener('submit', (e) => {
+      e.preventDefault();
       if (this.onPurchaseClick) {
         const purchasePrice = parseInt(this.$input.value, 10);
         this.onPurchaseClick(purchasePrice);

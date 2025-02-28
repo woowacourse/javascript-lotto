@@ -29,14 +29,13 @@ class Main extends ViewComponent {
     return `
       <div class="dashboard">
         <h1>🎱 내 번호 당첨 확인 🎱</h1>
-        <div class="purchase-price-area"></div>
+        <form class="purchase-price-area"></form>
         <div class="lottos-area"></div>
-        <div class="winning-inputs-area"></div>
+        <form class="winning-inputs-area"></form>
       </div>
     `;
   }
 
-  // 내부에서만 사용하는 렌더링 관련 메서드들을 프라이빗으로 전환합니다.
   #renderDashboardLayout() {
     this.$container.innerHTML = this.#template();
   }
@@ -60,7 +59,6 @@ class Main extends ViewComponent {
     this.$winningInputsForm = new WinningInputsForm($winningInputsArea);
   }
 
-  // 외부에서 이벤트 바인딩 호출 시 내부의 프라이빗 메서드들을 사용합니다.
   #bindEvents() {
     this.#bindPurchaseLottosEvent();
     this.#bindCalculateResultEvent();

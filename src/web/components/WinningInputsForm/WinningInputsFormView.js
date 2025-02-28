@@ -63,7 +63,8 @@ class WinningInputsFormView extends ViewComponent {
   }
 
   #attachButtonClickListener() {
-    this.$button.addEventListener('click', () => {
+    this.$container.addEventListener('submit', (e) => {
+      e.preventDefault();
       if (this.onResultRequest) {
         const winningNumbers = Array.from(this.$winningNumbers).map((input) =>
           parseInt(input.value, 10),
