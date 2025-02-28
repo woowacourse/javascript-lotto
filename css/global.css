@@ -1,0 +1,36 @@
+:root {
+  --color-primary: rgba(78, 91, 166, 1);
+  --color-greyscale-1: rgba(255, 255, 255, 1);
+  --color-greyscale-2: rgba(252, 252, 253, 1);
+  --color-greyscale-3: rgba(180, 180, 180, 1);
+  --color-greyscale-4: rgba(139, 139, 139, 1);
+  --color-greyscale-5: rgba(0, 0, 0, 1);
+}
+
+.text-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 36px;
+}
+
+.text-subtitle {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 24px;
+}
+.text-body {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 24px;
+}
+.text-placeholder {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-greyscale-4);
+}
+.text-caption {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 16px;
+}
