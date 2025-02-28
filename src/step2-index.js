@@ -53,4 +53,25 @@ function checkResult() {
   bonusNumber = Number(bonusNumberInput.value);
   console.log(winningNumbers);
   console.log(bonusNumber);
+
+  const lottoComparer = new LottoComparer(winningNumbers, bonusNumber);
+  const compareResult = lottoComparer.lottoCompareResult(generatedLottos);
+  console.log(compareResult);
+  const lottoPrize = new LottoPrize();
+  lottoPrize.calculateTotalPrizeCount(compareResult);
+  prizeResult = lottoPrize.prizeResult;
+  ROI = lottoPrize.calculateROI(price);
+
+  for (const key in lottoPrize.prizeResult) {
+    const div = document.querySelector(`#${key}`);
+    const span = document.createElement("span");
+    span.textContent = lottoPrize.prizeResult[key] + "개";
+    div.appendChild(span);
+  }
+
+  console.log(lottoPrize.prizeResult);
+  console.log("ROI:" + ROI);
+
+  const ROISpan = document.querySelector("#ROI");
+  ROISpan.textContent = `당신의 총 수입률은 총 ${ROI}%입니다.`;
 }
