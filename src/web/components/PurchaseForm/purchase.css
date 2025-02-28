@@ -15,7 +15,7 @@
 .purchase-price-input button {
   width: 56px;
   background-color: var(--primary);
-  color: white;
+  color: var(--white-text-color);
   border: none;
   border-radius: 4px;
   cursor: pointer;
