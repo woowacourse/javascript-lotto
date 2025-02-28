@@ -1,4 +1,4 @@
-import { SEPARATOR } from '../../constants/Configurations.js';
+import { SEPARATOR } from '../../../common/constants/Configurations.js';
 
 class LottoList {
   constructor($container) {

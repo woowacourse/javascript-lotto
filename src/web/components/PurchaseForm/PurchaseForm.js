@@ -1,6 +1,6 @@
 import PurchaseFormView from './PurchaseFormView.js';
-import { PurchasePriceValidator } from '../../validators/PurchasePriceValidator.js';
-import { PURCHASE_EVENT_NAME } from '../../constants/PurchaseFormConstants.js';
+import { PurchasePriceValidator } from '../../../common/validators/PurchasePriceValidator.js';
+import { PURCHASE_EVENT_NAME } from '../../../common/constants/PurchaseFormConstants.js';
 
 class PurchaseForm {
   constructor($container) {

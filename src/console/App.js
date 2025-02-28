@@ -1,6 +1,6 @@
-import { RESTART } from './constants/Configurations.js';
-import LottoMachine from './domains/LottoMachine.js';
-import retryUntilValid from './utils/retryUntilValid.js';
+import { RESTART } from '../common/constants/Configurations.js';
+import LottoMachine from '../common/domains/LottoMachine.js';
+import retryUntilValid from '../common/utils/retryUntilValid.js';
 import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
 

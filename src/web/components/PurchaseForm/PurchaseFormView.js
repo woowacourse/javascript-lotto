@@ -1,5 +1,5 @@
 import ViewComponent from '../core/ViewComponent.js';
-import { SELECTORS } from '../../constants/PurchaseFormConstants.js';
+import { SELECTORS } from '../../../common/constants/PurchaseFormConstants.js';
 
 class PurchaseFormView extends ViewComponent {
   constructor($container) {

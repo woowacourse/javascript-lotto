@@ -1,10 +1,13 @@
-import { KEY, LOTTO } from '../../src/constants/Configurations';
-import { ERROR_MESSAGE } from '../../src/constants/Messages';
+import { KEY, LOTTO } from '../../src/common/constants/Configurations';
+import { ERROR_MESSAGE } from '../../src/common/constants/Messages';
 import {
   BonusNumberValidator,
   validateDuplicateBonus,
-} from '../../src/validators/BonusNumberValidator';
-import { validateRange, validateType } from '../../src/validators/validate';
+} from '../../src/common/validators/BonusNumberValidator';
+import {
+  validateRange,
+  validateType,
+} from '../../src/common/validators/validate';
 
 describe('보너스 번호 검증 테스트', () => {
   describe('정상 케이스', () => {

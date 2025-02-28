@@ -1,11 +1,11 @@
-import { KEY, LOTTO } from '../../src/constants/Configurations';
-import { ERROR_MESSAGE } from '../../src/constants/Messages';
-import { validateCount } from '../../src/validators/validate';
+import { KEY, LOTTO } from '../../src/common/constants/Configurations';
+import { ERROR_MESSAGE } from '../../src/common/constants/Messages';
+import { validateCount } from '../../src/common/validators/validate';
 import {
   validateTypeAll,
   validateRangeAll,
   LottoNumbersValidator,
-} from '../../src/validators/LottoNumbersValidator';
+} from '../../src/common/validators/LottoNumbersValidator';
 
 describe('당첨 번호 검증', () => {
   describe('정상 케이스', () => {

@@ -1,10 +1,10 @@
-import { KEY, SEPARATOR } from '../constants/Configurations.js';
-import { SYSTEM_MESSAGE } from '../constants/Messages.js';
-import readLineAsync from '../utils/readLineAsync.js';
-import { BonusNumberValidator } from '../validators/BonusNumberValidator.js';
-import { PurchasePriceValidator } from '../validators/PurchasePriceValidator.js';
-import RestartValidator from '../validators/RestartValidator.js';
-import { LottoNumbersValidator } from '../validators/LottoNumbersValidator.js';
+import { KEY, SEPARATOR } from '../../common/constants/Configurations.js';
+import { SYSTEM_MESSAGE } from '../../common/constants/Messages.js';
+import readLineAsync from '../../common/utils/readLineAsync.js';
+import { BonusNumberValidator } from '../../common/validators/BonusNumberValidator.js';
+import { PurchasePriceValidator } from '../../common/validators/PurchasePriceValidator.js';
+import RestartValidator from '../../common/validators/RestartValidator.js';
+import { LottoNumbersValidator } from '../../common/validators/LottoNumbersValidator.js';
 
 const InputView = {
   async enterPurchasePrice() {

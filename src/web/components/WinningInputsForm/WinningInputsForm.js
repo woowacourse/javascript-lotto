@@ -1,11 +1,11 @@
 import WinningInputsFormView from './WinningInputsFormView.js';
-import { KEY } from '../../constants/Configurations.js';
-import { BonusNumberValidator } from '../../validators/BonusNumberValidator.js';
+import { KEY } from '../../../common/constants/Configurations.js';
+import { BonusNumberValidator } from '../../../common/validators/BonusNumberValidator.js';
 import {
   LottoNumbersValidator,
   validateDuplicate,
-} from '../../validators/LottoNumbersValidator.js';
-import { RESULT_EVENT_NAME } from '../../constants/WinningInputsFormConstants.js';
+} from '../../../common/validators/LottoNumbersValidator.js';
+import { RESULT_EVENT_NAME } from '../../../common/constants/WinningInputsFormConstants.js';
 
 class WinningInputsForm {
   constructor($container) {

@@ -9,7 +9,7 @@ import {
   WINNING_NUMBERS_COUNT,
   WINNING_NUMBER_MAX_LENGTH,
   SELECTORS,
-} from '../../constants/WinningInputsFormConstants.js';
+} from '../../../common/constants/WinningInputsFormConstants.js';
 
 class WinningInputsFormView extends ViewComponent {
   constructor($container) {

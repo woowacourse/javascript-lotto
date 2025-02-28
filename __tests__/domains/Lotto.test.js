@@ -1,6 +1,6 @@
-import { KEY, LOTTO } from '../../src/constants/Configurations';
-import { ERROR_MESSAGE } from '../../src/constants/Messages';
-import Lotto from '../../src/domains/Lotto';
+import { KEY, LOTTO } from '../../src/common/constants/Configurations';
+import { ERROR_MESSAGE } from '../../src/common/constants/Messages';
+import Lotto from '../../src/common/domains/Lotto';
 
 describe('로또 클래스 테스트', () => {
   describe('정상 케이스', () => {

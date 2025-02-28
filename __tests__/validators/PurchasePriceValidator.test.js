@@ -1,10 +1,13 @@
-import { validateRange, validateType } from '../../src/validators/validate';
+import {
+  validateRange,
+  validateType,
+} from '../../src/common/validators/validate';
 import {
   PurchasePriceValidator,
   validateUnit,
-} from '../../src/validators/PurchasePriceValidator';
-import { KEY, PURCHASE_PRICE } from '../../src/constants/Configurations';
-import { ERROR_MESSAGE } from '../../src/constants/Messages';
+} from '../../src/common/validators/PurchasePriceValidator';
+import { KEY, PURCHASE_PRICE } from '../../src/common/constants/Configurations';
+import { ERROR_MESSAGE } from '../../src/common/constants/Messages';
 
 describe('구입 금액 검증 테스트', () => {
   describe('정상 케이스', () => {

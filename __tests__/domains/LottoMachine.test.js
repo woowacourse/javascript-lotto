@@ -1,5 +1,5 @@
-import { PURCHASE_PRICE } from '../../src/constants/Configurations';
-import LottoMachine from '../../src/domains/LottoMachine';
+import { PURCHASE_PRICE } from '../../src/common/constants/Configurations';
+import LottoMachine from '../../src/common/domains/LottoMachine';
 
 describe('로또 기계 클래스 테스트', () => {
   describe('정상 케이스', () => {

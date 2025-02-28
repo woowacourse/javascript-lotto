@@ -1,5 +1,5 @@
-import Lotto from '../../src/domains/Lotto';
-import WinningResult from '../../src/domains/WinningResult';
+import Lotto from '../../src/common/domains/Lotto';
+import WinningResult from '../../src/common/domains/WinningResult';
 
 describe('당첨 결과 테스트', () => {
   describe('정상 케이스', () => {

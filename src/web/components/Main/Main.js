@@ -1,10 +1,13 @@
-import LottoMachine from '../../domains/LottoMachine.js';
+import LottoMachine from '../../../common/domains/LottoMachine.js';
 import PurchaseForm from '../PurchaseForm/PurchaseForm.js';
 import LottoList from '../LottoList/LottoList.js';
 import WinningInputsForm from '../WinningInputsForm/WinningInputsForm.js';
 import WinningResultModal from '../WinningResultModal/WinningResultModal.js';
 import ViewComponent from '../core/ViewComponent.js';
-import { EVENT_TYPES, SELECTORS } from '../../constants/MainConstants.js';
+import {
+  EVENT_TYPES,
+  SELECTORS,
+} from '../../../common/constants/MainConstants.js';
 
 class Main extends ViewComponent {
   #lottoMachine;

@@ -1,5 +1,5 @@
 // WinningResultModalView.js
-import { SELECTORS } from '../../constants/WinningResultModalConstants.js';
+import { SELECTORS } from '../../../common/constants/WinningResultModalConstants.js';
 import ViewComponent from '../core/ViewComponent.js';
 import getModalMarkup from './template.js';
 

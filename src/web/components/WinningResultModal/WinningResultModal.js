@@ -1,7 +1,7 @@
 import {
   RESTART_EVENT_NAME,
   SELECTORS,
-} from '../../constants/WinningResultModalConstants.js';
+} from '../../../common/constants/WinningResultModalConstants.js';
 import WinningResultModalView from './WinningResultModalView.js';
 
 class WinningResultModal {
