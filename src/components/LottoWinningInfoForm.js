@@ -15,8 +15,8 @@ export default class LottoWinningInfoForm {
   }
 
   render($target) {
-    const $form = customCreateElement({
-      tagName: "form",
+    const $div = customCreateElement({
+      tagName: "div",
       className: `${!this.#show ? "hidden" : ""} lotto-winning-info-form`,
     });
     const $infoText = customCreateElement({
@@ -29,8 +29,8 @@ export default class LottoWinningInfoForm {
       className: "lotto-number-input-container",
     });
 
-    $form.appendChild($infoText);
-    $form.appendChild($inputsContainer);
+    $div.appendChild($infoText);
+    $div.appendChild($inputsContainer);
 
     const { winningNumbers, bonusNumber } =
       winningLottoInfoStore.getState().winningLottoInfo;
@@ -44,7 +44,7 @@ export default class LottoWinningInfoForm {
       this.handleSubmit();
     });
 
-    $target.appendChild($form);
+    $target.appendChild($div);
   }
 
   handleSubmit = () => {
