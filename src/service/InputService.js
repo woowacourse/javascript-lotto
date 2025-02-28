@@ -1,10 +1,10 @@
-import SYSTEM_MESSAGE from "../constants/systemMessage.js";
-import validatePrice from "../validation/validatePrice.js";
-import validateWinningNumber from "../validation/validateWinningNumber.js";
-import validateBonusNumber from "../validation/validateBonusNumber.js";
-import InputView from "../view/inputView.js";
-import { parseBonusNumber, parsePrice, parseWinningNumbers } from "../input/parseInput.js";
-import validateRetryInput from "../validation/validateRetryInput.js";
+import SYSTEM_MESSAGE from '../constants/systemMessage.js';
+import validatePrice from '../validation/validatePrice.js';
+import validateWinningNumber from '../validation/validateWinningNumber.js';
+import validateBonusNumber from '../validation/validateBonusNumber.js';
+import InputView from '../view/inputView.js';
+import { parseBonusNumber, parsePrice, parseWinningNumber } from '../input/parseInput.js';
+import validateRetryInput from '../validation/validateRetryInput.js';
 
 export const getPrice = async () => {
   const priceInput = await InputView.readUserInput(SYSTEM_MESSAGE.PRICE);
@@ -14,10 +14,10 @@ export const getPrice = async () => {
 
 export const getWinningNumber = async () => {
   const winningNumberInput = await InputView.readUserInput(SYSTEM_MESSAGE.WINNING_NUMBER);
-  const winningNumbers = winningNumberInput.split(",");
+  const winningNumbers = winningNumberInput.split(',');
 
   validateWinningNumber(winningNumbers);
-  return parseWinningNumbers(winningNumberInput);
+  return parseWinningNumber(winningNumbers);
 };
 
 export const getBonusNumber = async (winningNumbers) => {

@@ -22,7 +22,7 @@
             <input type="number" id="price" placeholder="금액" />
             <button class="typo-14-B">구입</button>
           </div>
-          <p class="error-message"></p>
+          <p class="error-message" id="price-error"></p>
         </form>
 
         <div class="purchase-result"></div>
@@ -34,21 +34,22 @@
             <div class="winning-number-group">
               <label class="typo-15-R">당첨 번호</label>
               <div class="winning-number-boxes">
-                <input type="text" id="winning-1" class="number-box" maxlength="2" />
-                <input type="text" id="winning-2" class="number-box" maxlength="2" />
-                <input type="text" id="winning-3" class="number-box" maxlength="2" />
-                <input type="text" id="winning-4" class="number-box" maxlength="2" />
-                <input type="text" id="winning-5" class="number-box" maxlength="2" />
-                <input type="text" id="winning-6" class="number-box" maxlength="2" />
+                <input type="text" id="winning-1" value="3" class="number-box" maxlength="2" />
+                <input type="text" id="winning-2" value="5" class="number-box" maxlength="2" />
+                <input type="text" id="winning-3" value="7" class="number-box" maxlength="2" />
+                <input type="text" id="winning-4" value="9" class="number-box" maxlength="2" />
+                <input type="text" id="winning-5" value="11" class="number-box" maxlength="2" />
+                <input type="text" id="winning-6" value="23" class="number-box" maxlength="2" />
               </div>
             </div>
 
             <div class="bonus-number-group">
               <label for="bonus" class="typo-15-R">보너스 번호</label>
-              <input type="text" id="bonus" class="number-box bonus-box" maxlength="2" />
+              <input type="text" id="bonus" class="number-box bonus-box" value="23" maxlength="2" />
             </div>
           </div>
-
+          <div class="spacing-4"></div>
+          <p class="error-message" id="winning-number-error"></p>
           <div class="spacing-28"></div>
           <button class="typo-14-B">결과 확인하기</button>
         </form>
