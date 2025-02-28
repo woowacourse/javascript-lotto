@@ -6,7 +6,7 @@ export default function CloseButton(resultDashboard, resultBackground) {
   const closeModal = () => {
     resultBackground.remove();
     resultDashboard.remove();
-    document.removeEventListener('keydown', handleEscapeKey); // 이벤트 제거
+    document.removeEventListener('keydown', handleEscapeKey);
   };
 
   const handleEscapeKey = (e) => {
