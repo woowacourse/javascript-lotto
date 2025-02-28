@@ -22,6 +22,7 @@ export const printLottoNumbers = (numbers) => {
 
   numbersEl.append(`${numbers}`);
 };
+
 export const printResult = (results) => {
   const resultTableEl = document.querySelector(".modal .description");
   results.map(({ rank, winningCriteria, reward, count }) => {
