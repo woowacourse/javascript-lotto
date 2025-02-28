@@ -7,13 +7,19 @@ export default function PurchaseForm(playLotto) {
   });
   playLotto.appendChild(purchasePriceHeader);
 
-  const inputContainer = createElement('div', { class: 'input-container' });
-  const priceInput = createElement('input', { type: 'text', placeholder: '금액' });
-  const purchaseButton = createElement('button', { textContent: '구매' });
+  const purchaseForm = createElement('form', { class: 'purchase-form' });
+  const priceInput = createElement('input', {
+    type: 'number',
+    placeholder: ' 금액',
+    required: true,
+    min: '1000',
+    step: '1000',
+  });
+  const purchaseButton = createElement('button', { type: 'submit', textContent: '구매' });
 
-  inputContainer.appendChild(priceInput);
-  inputContainer.appendChild(purchaseButton);
+  purchaseForm.appendChild(priceInput);
+  purchaseForm.appendChild(purchaseButton);
 
-  playLotto.appendChild(inputContainer);
-  return { priceInput, purchaseButton };
+  playLotto.appendChild(purchaseForm);
+  return { priceInput, purchaseForm };
 }

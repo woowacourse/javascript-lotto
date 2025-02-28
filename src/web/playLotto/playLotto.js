@@ -6,9 +6,10 @@ import PlayLottoWithPurchasePrice from './PlayLottoWithPurchasePrice';
 
 export default function PlayLotto() {
   const playLotto = createElement('div', { class: 'play-lotto' });
-  const { priceInput, purchaseButton } = PurchaseForm(playLotto);
+  const { priceInput, purchaseForm } = PurchaseForm(playLotto);
 
-  purchaseButton.addEventListener('click', () => {
+  purchaseForm.addEventListener('submit', (e) => {
+    e.preventDefault();
     PlayLottoWithPurchasePrice(playLotto, priceInput);
     priceInput.disabled = true;
   });
