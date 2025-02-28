@@ -1,16 +1,38 @@
+import { PURCHASE_PRICE } from '../../constants/CONFIGURATIONS.js';
 import { getById, getByClass } from '../../utils/dom.js';
+import { BonusNumberValidator } from '../../validators/BonusNumberValidator.js';
+import { PurchasePriceValidator } from '../../validators/PurchasePriceValidator.js';
+import { WinningNumbersValidator } from '../../validators/WinningNumbersValidator.js';
+import LottoResultModal from './components/LottoResultModal.js';
 
 const InputView = {
-  enterPurchasePrice() {
-    const $purchaseInput = getById('purchaseInput');
-    const $purchaseForm = document.querySelector('section.purchase form');
+  $purchaseInput: getById('purchaseInput'),
+  $purchaseForm: document.querySelector('section.purchase form'),
 
+  enterPurchasePrice() {
     return new Promise((resolve) => {
-      $purchaseForm.addEventListener('submit', (e) => {
+      this.$purchaseForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        resolve($purchaseInput.value);
+        try {
+          resolve(this.getPurchasePrice());
+        } catch (error) {
+          alert(error.message);
+          this.resetPurchaseInput();
+        }
       });
     });
+  },
+
+  getPurchasePrice() {
+    const purchasePrice = Number(this.$purchaseInput.value);
+    PurchasePriceValidator.validate(Number(this.$purchaseInput.value));
+    const lottoCount = purchasePrice / PURCHASE_PRICE.UNIT;
+    return { purchasePrice, lottoCount };
+  },
+
+  resetPurchaseInput() {
+    this.$purchaseInput.focus();
+    this.$purchaseInput.value = '';
   },
 
   async enterWinningAndBonusNumber() {
@@ -19,14 +41,26 @@ const InputView = {
     return new Promise((resolve) => {
       $resultButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const winningNumbers = Array.from({ length: 6 }, (_, idx) => idx + 1).map((idx) =>
-          Number(getById(`winningNumber_${idx}`).value),
-        );
-        const bonusNumber = Number(getById('bonusNumber').value);
-        
-        resolve({ winningNumbers, bonusNumber });
+
+        try {
+          resolve(this.getWinningAndBonusNumbers());
+        } catch (error) {
+          alert(error.message);
+        }
       });
     });
+  },
+
+  getWinningAndBonusNumbers() {
+    const winningNumbers = Array.from({ length: 6 }, (_, idx) => idx + 1).map((idx) =>
+      Number(getById(`winningNumber_${idx}`).value),
+    );
+    const bonusNumber = Number(getById('bonusNumber').value);
+    WinningNumbersValidator.validate(winningNumbers);
+    BonusNumberValidator.validate(bonusNumber, winningNumbers);
+    LottoResultModal.openModal();
+
+    return { winningNumbers, bonusNumber };
   },
 };
 
