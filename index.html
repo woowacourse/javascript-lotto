@@ -21,84 +21,55 @@
           <p class="lotto-title">🎱 내 번호 당첨 확인 🎱</p>
         </div>
 
-        <div class="input-container">
+        <form id="purchase-form" class="input-container">
           <div class="purchase-guide">
             <label class="lotto-body" for="purchase-input">구입할 금액을 입력하세요.</label>
-            <input type="number" min='1000' max='100000' id="purchase-input" class="lotto-input" placeholder="금액" />
+            <input type="number" min="1000" max="100000" id="purchase-input" class="lotto-input" placeholder="금액" />
           </div>
-          <button class="purchase-btn">구입</button>
-        </div>
-
-        <div class="purchase-count-message">
-          <p class="lotto-body">총 <span>7</span>개를 구매하였습니다.</p>
-        </div>
-
-        <div class="lottos-container">
-          <div class="lotto-numbers">
-            <div class="lotto-numbers-container">
-              <ul class="lotto-tickets">
-                <li>
-                  <span class="lotto-title">🎟️</span>
-                  <span class="lotto-body">12, 28, 22, 37, 19, 23</span>
-                </li>
-                <li>
-                  <span class="lotto-title">🎟️</span>
-                  <span class="lotto-body">12, 28, 22, 37, 19, 23</span>
-                </li>
-                <li>
-                  <span class="lotto-title">🎟️</span>
-                  <span class="lotto-body">12, 28, 22, 37, 19, 23</span>
-                </li>
-                <li>
-                  <span class="lotto-title">🎟️</span>
-                  <span class="lotto-body">12, 28, 22, 37, 19, 23</span>
-                </li>
-                <li>
-                  <span class="lotto-title">🎟️</span>
-                  <span class="lotto-body">12, 28, 22, 37, 19, 23</span>
-                </li>
-                <li>
-                  <span class="lotto-title">🎟️</span>
-                  <span class="lotto-body">12, 28, 22, 37, 19, 23</span>
-                </li>
-                <li>
-                  <span class="lotto-title">🎟️</span>
-                  <span class="lotto-body">12, 28, 22, 37, 19, 23</span>
-                </li>
-                <li>
-                  <span class="lotto-title">🎟️</span>
-                  <span class="lotto-body">12, 28, 22, 37, 19, 23</span>
-                </li>
-            </div>
+          <button type="submit" class="purchase-btn">구입</button>
+        </form>
+        
+        <div class="lotto-display-container">
+          <div class="purchase-count-message">
+            <p class="lotto-body">총 <span>7</span>개를 구매하였습니다.</p>
           </div>
-        </div>
 
-        <div class="winning-lotto-container">
-          <div class="winning-lotto-massage">
-            <p class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-          </div>
-          <div class="winning-lotto-input">
-            <div class="winning-numbers-input">
-              <label for="winning-input" class="winning-input-title lotto-body">당첨 번호</label>
-              <div>
-                <input type="number" id="winning-input" class="number-input">
-                <input type="number" class="number-input">
-                <input type="number" class="number-input">
-                <input type="number" class="number-input">
-                <input type="number" class="number-input">
-                <input type="number" class="number-input">
-              </div>
-            </div>
-            <div class="bonus-number-input">
-              <label for="bonus-input" class="winning-input-title lotto-body">보너스 번호</label>
-              <div>
-                <input type="number" id="bonus-input" class="number-input">
+          <div class="lottos-container">
+            <div class="lotto-numbers">
+              <div class="lotto-numbers-container">
+                <ul class="lotto-tickets">
+                </ul>
               </div>
             </div>
           </div>
-        </div>
 
-        <button class="lotto-caption show-result-btn">결과 확인하기</button>
+          <div class="winning-lotto-container">
+            <div class="winning-lotto-massage">
+              <p class="lotto-body">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            </div>
+            <div class="winning-lotto-input">
+              <div class="winning-numbers-input">
+                <label for="winning-input" class="winning-input-title lotto-body">당첨 번호</label>
+                <div>
+                  <input type="number" id="winning-input" class="number-input">
+                  <input type="number" class="number-input">
+                  <input type="number" class="number-input">
+                  <input type="number" class="number-input">
+                  <input type="number" class="number-input">
+                  <input type="number" class="number-input">
+                </div>
+              </div>
+              <div class="bonus-number-input">
+                <label for="bonus-input" class="winning-input-title lotto-body">보너스 번호</label>
+                <div>
+                  <input type="number" id="bonus-input" class="number-input">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="lotto-caption show-result-btn">결과 확인하기</button>
+        </div>
       </div>
     </div>
     <div class="footer">
@@ -160,6 +131,5 @@
         <button class="restart-btn lotto-caption">다시 시작하기</button>
       </div>
     </dialog>
-    <script src="./src/step2-index.js"></script>
   </body>
 </html>
