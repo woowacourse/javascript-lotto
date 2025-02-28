@@ -4,8 +4,24 @@
  */
 
 import { purchase } from "./LottoStore.js";
+import { validatePurchaseAmount } from "./util/validate.js";
 
 document.getElementById("button-purchase").addEventListener("click", async () => {
     await purchase();
 });
 
+document.getElementById("input-purchase-amount").addEventListener("input", (event) => {
+    const inputValue = event.target.value;
+    const button = document.getElementById("button-purchase");
+    const helperText = document.getElementById("purchase-amount-helper-text");
+
+    try {
+        validatePurchaseAmount(inputValue);
+        button.disabled = false;
+        helperText.style.display = "none";
+    } catch (error) {
+        button.disabled = true;
+        helperText.innerText = error.message.slice(8);
+        helperText.style.display = "block";
+    }
+});
