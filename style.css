@@ -1,34 +1,37 @@
-:root {
-  --primary-color: #4e5ba6;
-  --text-color: white;
-  --font-family: 'Roboto', sans-serif;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
+#app {
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FCFCFD;
+  margin: 64px 0 0 0;
 }
 
-#header {
-  position: fixed;
-  top:0;
+.text {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.small-text {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.header {
   width: 100%;
   height: 64px;
+  position: fixed;
+  top: 0;
   display: flex;
   align-items: center;
   padding-left: 130px;
-  font-size: 24px;
-  font-weight: 800;
-  font-family: var(--font-family);
   color: var(--text-color);
   background-color: var(--primary-color);
 }
 
-#footer {
-  position: fixed;
-  bottom:0;
+.footer {
   width: 100%;
   height: 80px;
   display: flex;
@@ -36,7 +39,149 @@
   justify-content: center;
   font-size: 14px;
   font-weight: 700;
-  font-family: var(--font-family);
   color: var(--primary-color);
   border-top: 1px solid rgba(78, 91, 166, 0.2);
+  background-color: #FCFCFD;
 }
+
+.lotto {
+  width: 414px;
+  height: 727px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.lotto-head {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 0 0;
+}
+
+.lotto-input {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lotto-result {
+  width: 382px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.lotto-ticket-list {
+  width: 238px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.lotto-ticket {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.winning {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-input {
+  width: 244px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.winning-input-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 8px;
+}
+
+.bonus-input {
+  width: 76px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.lotto-form {
+  width: 382px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lotto-form input {
+  width: 310px;
+  height: 36px;
+  border: 1px solid #B4B4B4;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: var(--border-radius);
+}
+
+.lotto-form button {
+  width: 56px;
+  height: 36px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: var(--border-radius);
+}
+
+.ticket-text {
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.winning-form {
+  width: 382px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 20px 0;
+}
+
+.winning-form input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #B4B4B4;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: var(--border-radius);
+}
+
+.winning-form button {
+  width: 382px;
+  height: 36px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
