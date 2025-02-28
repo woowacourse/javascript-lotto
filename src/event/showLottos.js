@@ -36,7 +36,7 @@ const createLottoItem = (lotto) => {
   const div = document.createElement("div");
   const img = document.createElement("img");
 
-  img.src = "../../public/lotto.png";
+  img.src = "/lotto.png";
   img.alt = "lotto";
 
   div.textContent = lotto.getLottoNumbers().join(", ");

@@ -3,7 +3,6 @@ const countMatchingNumbers = (numberArr1, numberArr2) => {
   const arr2 = [...numberArr2];
   console.log(arr1, arr2);
 
-  //배열안의 내용이 숫자가 아닌경우 예외처리
   if (
     !arr1.every((element) => typeof element === "number") ||
     !arr2.every((element) => typeof element === "number")
