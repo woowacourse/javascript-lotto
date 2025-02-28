@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="src/style/main.css" />
     <link rel="stylesheet" href="src/style/pages/index.css" />
     <link rel="stylesheet" href="src/style/pages/lotto-box.css" />
+    <link rel="stylesheet" href="src/style/pages/winning-number.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
@@ -25,23 +26,32 @@
         </form>
 
         <div class="purchase-result"></div>
-        <!-- <p class="lotto-check">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p> -->
-        <!-- <form class="winning-number-form">
-          <fieldset>
-            <legend>당첨 번호 입력</legend>
-            <div class="winning-number-input">
-              <input type="text" class="number-box" maxlength="2" />
-              <input type="text" class="number-box" maxlength="2" />
-              <input type="text" class="number-box" maxlength="2" />
-              <input type="text" class="number-box" maxlength="2" />
-              <input type="text" class="number-box" maxlength="2" />
-              <input type="text" class="number-box" maxlength="2" />
-              <span>보너스 번호</span>
-              <input type="text" class="number-box" maxlength="2" />
+
+        <form id="winning-number-form">
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div class="spacing-12"></div>
+          <div class="winning-number-container">
+            <div class="winning-number-group">
+              <label class="typo-15-R">당첨 번호</label>
+              <div class="winning-number-boxes">
+                <input type="text" id="winning-1" class="number-box" maxlength="2" />
+                <input type="text" id="winning-2" class="number-box" maxlength="2" />
+                <input type="text" id="winning-3" class="number-box" maxlength="2" />
+                <input type="text" id="winning-4" class="number-box" maxlength="2" />
+                <input type="text" id="winning-5" class="number-box" maxlength="2" />
+                <input type="text" id="winning-6" class="number-box" maxlength="2" />
+              </div>
             </div>
-            <button class="btn result-btn">결과 확인하기</button>
-          </fieldset>
-        </form> -->
+
+            <div class="bonus-number-group">
+              <label for="bonus" class="typo-15-R">보너스 번호</label>
+              <input type="text" id="bonus" class="number-box bonus-box" maxlength="2" />
+            </div>
+          </div>
+
+          <div class="spacing-28"></div>
+          <button class="typo-14-B">결과 확인하기</button>
+        </form>
       </section>
     </main>
     <footer><p class="typo-14-B flex-center">Copyright 2023. woowacourse</p></footer>

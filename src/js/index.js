@@ -3,6 +3,7 @@ import { purchaseLottos } from '../service/PurchaseService.js';
 import validatePrice from '../validation/validatePrice.js';
 import { $, $all } from '../util/selector.js';
 import SYSTEM_MESSAGE from '../constants/systemMessage.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#purchase-form').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -46,7 +47,7 @@ const updateLottoCountUI = (lottoCount) => {
   const purchaseResult = $('.purchase-result');
   const lottoCountUI = document.createElement('p');
   lottoCountUI.classList.add('typo-15-R');
-  lottoCountUI.textContent = `총 ${lottoCount}개를 구매했습니다.`;
+  lottoCountUI.textContent = SYSTEM_MESSAGE.COUNT(lottoCount);
 
   purchaseResult.appendChild(lottoCountUI);
 };
