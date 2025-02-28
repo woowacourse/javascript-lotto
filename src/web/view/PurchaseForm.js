@@ -1,5 +1,4 @@
 import { createElement } from '../utils/dom';
-
 export default function PurchaseForm(playLotto) {
   const purchasePriceHeader = createElement('span', {
     class: 'header',
