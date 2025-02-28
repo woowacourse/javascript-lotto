@@ -1,3 +1,6 @@
+import { Alert } from "../components/Alert.js";
+import { displayComponent } from "./displayComponents.js";
+
 const retryOnErrorForTerminal = async (asyncFn, onError) => {
   while (true) {
     try {
@@ -12,7 +15,13 @@ const retryOnErrorWeb = async (asyncFn) => {
   try {
     return await asyncFn();
   } catch (error) {
-    alert(error.message);
+    const alert = document.querySelector(".alert");
+    if (!alert) {
+      displayComponent(".alert-container", Alert({ message: error.message }));
+      setTimeout(() => {
+        document.querySelector(".alert").remove();
+      }, 1500);
+    }
     await asyncFn();
   }
 };

@@ -8,6 +8,8 @@
   --lotto-greyscale-3: #b4b4b4;
   --lotto-greyscale-4: #8b8b8b;
   --lotto-greyscale-5: #000000;
+
+  --alert: #e97674;
 }
 body {
   color: var(--lotto-greyscale-5);
@@ -60,7 +62,17 @@ th {
   line-height: 1.5rem;
   letter-spacing: 0.031rem;
 }
-
+footer {
+  height: 5rem;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+p {
+  color: var(--lotto-primary);
+  text-align: center;
+}
 .font-title {
   font-family: "Roboto";
   font-weight: 800;
@@ -106,7 +118,7 @@ th {
 }
 
 /*header*/
-.header-container {
+header {
   width: 100%;
   background-color: var(--lotto-primary);
   display: flex;
@@ -280,4 +292,29 @@ th {
 .exit-icon {
   width: 0.8rem;
   cursor: pointer;
+}
+
+/*alert*/
+.alert-container {
+  position: fixed;
+  top: 8rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+}
+.alert {
+  display: inline;
+  padding: 1rem;
+  background-color: var(--alert);
+  color: white;
+  border-radius: 10rem;
+  animation: fadeDown 0.3s ease;
+}
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
