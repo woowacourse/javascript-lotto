@@ -54,8 +54,8 @@
 
 ### 스타일 목록
 
-- [ ] header - 상단바
-- [ ] footer - copyright
+- [x] header - 상단바
+- [x] footer - copyright
 - [ ] 구입 금액 입력 칸 & 구입 버튼
 - [ ] 발행된 로또 목록 표시
 - [ ] 당첨 번호 & 보너스 번호 입력 & 결과 확인 버튼
