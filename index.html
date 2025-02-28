@@ -12,12 +12,16 @@
     <div id="app">
       <h1>🎱 행운의 로또</h1>
     </div>
-    <form id="purchase-form">
-      <input id="purchase-input" name="purchase-input" />
-      <button id="purchaseButton">구입</button>
-    </form>
-    <div id="result"></div>
-    <div id="systemMessage"></div>
+    <div class="container">
+      <h1 id="container-header">🎱 내 당첨 번호 확인 🎱</h1>
+      <div id="purchase-header">구입할 금액을 입력해주세요.</div>
+      <form class="purchase-form" id="purchase-form">
+        <input id="purchase-input" name="purchase-input" placeholder="금액" />
+        <button id="purchase-button">구입</button>
+      </form>
+      <div id="result"></div>
+      <div id="systemMessage"></div>
+    </div>
 
     <div class="modal">
       <div class="modal-body">

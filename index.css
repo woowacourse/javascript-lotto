@@ -1,3 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+#app {
+  padding: 14px;
+  background-color: #4e5ba6;
+  color: white;
+  width: 100%;
+}
+
+.container {
+  margin: 5% auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  /* align-items: center; */
+  justify-content: flex-start;
+  width: 414px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+}
+
+#container-header {
+  margin: 50px;
+}
+
+.purchase-form {
+  display: flex;
+  flex-direction: row;
+}
+
+#purchase-header {
+  flex-direction: row;
+  font-size: 15px;
+}
+
+.purchase-form {
+  margin: 10px 0 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+#purchase-input {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  height: 26px;
+  width: 300px;
+  margin: 0 10px 0 0;
+  font-size: 15px;
+  padding: 5px;
+}
+
+#purchase-button {
+  width: 56px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #4e5ba6;
+  color: white;
+  border: none;
+  font-size: 15px;
+}
 .modal {
   position: absolute;
   display: none;
