@@ -21,7 +21,7 @@ main {
   visibility: hidden;
 }
 
-.error {
+input#price.error {
   border: 2px solid red;
 }
 

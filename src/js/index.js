@@ -1,28 +1,26 @@
 import { parsePrice } from '../input/parseInput.js';
 import { purchaseLottos } from '../service/PurchaseService.js';
 import validatePrice from '../validation/validatePrice.js';
-import { $, $all } from '../util/selector.js';
+import { $ } from '../util/selector.js';
 import SYSTEM_MESSAGE from '../constants/systemMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('#purchase-form').addEventListener('submit', async (event) => {
+  $('#purchase-form').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const priceInput = document.getElementById('price');
-    const errorMessage = document.querySelector('.error-message');
+    const priceInput = $('#price');
+    const errorMessage = $('.error-message');
+    const winningNumberForm = $('#winning-number-form');
 
     const priceValue = priceInput.value.trim();
 
-    // 초기화 (기존 에러 메시지 제거)
-    errorMessage.textContent = '';
-    errorMessage.style.visibility = 'hidden';
-    priceInput.classList.remove('error');
-
+    resetError(priceInput, errorMessage);
     try {
       validatePrice(priceValue);
       const price = parsePrice(priceValue);
       const { lottoArray, lottoCount } = purchaseLottos(price);
       updateLottoUI(lottoArray, lottoCount);
+      winningNumberForm.style.display = 'block';
     } catch (error) {
       errorMessage.textContent = error.message;
       errorMessage.style.visibility = 'visible';
@@ -31,7 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ✅ 기존 UI 초기화 함수
+const resetError = (inputElement, errorElement) => {
+  errorElement.textContent = '';
+  errorElement.style.visibility = 'hidden';
+  inputElement.classList.remove('error');
+};
+
 const clearLottoUI = () => {
   $('.purchase-result').innerHTML = '';
 };

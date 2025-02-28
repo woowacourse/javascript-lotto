@@ -1,3 +1,8 @@
+#winning-number-form {
+  display: none;
+  flex-direction: column;
+}
+
 .winning-number-container {
   display: flex;
   justify-content: space-between;
@@ -28,10 +33,6 @@
   align-self: flex-end;
 }
 
-#winning-number-form {
-  display: flex;
-  flex-direction: column;
-}
 #winning-number-form > button {
   width: 100%;
   background-color: var(--primary);
