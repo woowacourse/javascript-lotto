@@ -3,14 +3,15 @@ import generateAnswerLotto from "../../domain/generateAnswerLotto";
 import parseAndValidateBonusNumber from "../../domain/processors/parseAndValidateBonusNumber";
 import parseAndValidateWinningNumbers from "../../domain/processors/parseAndValidateWinningNumbers";
 import profitCalculator from "../../domain/profitCalculator/profitCalculator";
+import DomSelector from "../../utils/domSelector";
 
 const handleWinningCheck = (purchaseAmount, lottoPack) => {
   try {
-    const winning_numbers = document.querySelectorAll(".winning_number");
-    const bonus_number = document.querySelector(".bonus_number");
-    const statistics_rows = document.querySelectorAll(".statistics .row");
-    const profit_rate = document.querySelector(".profit_rate");
-    const lotto_result_modal = document.querySelector(".lotto_result_modal");
+    const winning_numbers = DomSelector.winningNumbers;
+    const bonus_number = DomSelector.bonusNumber;
+    const statistics_rows = DomSelector.statisticsRows;
+    const profit_rate = DomSelector.profitRate;
+    const lotto_result_modal = DomSelector.lottoResultModal;
 
     const { winningNumbersInput, bonusNumberInput } = getAnswerLottoInput(winning_numbers, bonus_number);
     const { winningNumbers, bonusNumber } = parseAndValidatAnswerLotto(winningNumbersInput, bonusNumberInput);

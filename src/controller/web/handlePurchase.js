@@ -1,16 +1,17 @@
 import { LOTTO_NUMBER_SPLITER } from "../../constants/constant";
 import LottoMachine from "../../domain/LottoMachine/LottoMachine";
 import parseAndValidatePurchaseAmount from "../../domain/processors/parseAndValidatePurchaseAmount";
+import DomSelector from "../../utils/domSelector";
 
 const handlePurchase = () => {
   try {
-    const purchase_amount_input = document.querySelector("#purchaseAmount");
-    const purchase_count = document.querySelector(".purchase_count");
-    const lotto_pack = document.querySelector(".lotto_pack");
-    const answer_lotto_section = document.querySelector(".answer_lotto_section");
-    const reuslt_button = document.querySelector(".reuslt_button_section #resultButton");
+    const purchase_amount = DomSelector.purchaseAmount;
+    const purchase_count = DomSelector.purchaseCount;
+    const reuslt_button = DomSelector.reusltButton;
+    const lotto_pack = DomSelector.lottoPack;
+    const answer_lotto_section = DomSelector.answerLottoSection;
 
-    const purchaseAmount = parseAndValidatePurchaseAmount(purchase_amount_input.value);
+    const purchaseAmount = parseAndValidatePurchaseAmount(purchase_amount.value);
     const lottoPack = LottoMachine(purchaseAmount);
 
     purchase_count.textContent = `총 ${lottoPack.count}개를 구매했습니다.`;
@@ -19,7 +20,7 @@ const handlePurchase = () => {
 
     answer_lotto_section.classList.remove("opacity-0");
     reuslt_button.classList.remove("opacity-0");
-    purchase_amount_input.blur();
+    purchase_amount.blur();
 
     return { purchaseAmount, lottoPack };
   } catch (error) {
