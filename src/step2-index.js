@@ -4,17 +4,28 @@
  */
 
 import { PURCHASE } from "./config/const.js";
+import LottoComparer from "./domain/LottoComparer.js";
 import LottoGenerator from "./domain/LottoGenerator.js";
+import LottoPrize from "./domain/LottoPrize.js";
+
+let price;
+let generatedLottos;
+let winningNumbers = [];
+let bonusNumber;
+let prizeResult;
+let ROI;
 
 document.addEventListener("DOMContentLoaded", () => {
   const purchaseButton = document.querySelector("#purchase-button");
   purchaseButton.addEventListener("click", purchase);
+  const resultButton = document.querySelector("#result-button");
+  resultButton.addEventListener("click", checkResult);
 });
 
 function purchase() {
   const purchaseInput = document.querySelector("#purchase-input");
-  const price = Number(purchaseInput.value);
-  const generatedLottos = LottoGenerator.getGenerateLottos(price);
+  price = Number(purchaseInput.value);
+  generatedLottos = LottoGenerator.getGenerateLottos(price);
   console.log(generatedLottos);
 
   const lottoCountSpan = document.querySelector("#lotto-count-message");
@@ -30,4 +41,16 @@ function purchase() {
     li.textContent = `🎟️ ${lotto.join(", ")}`;
     ul.appendChild(li);
   });
+}
+
+function checkResult() {
+  for (let i = 1; i <= 6; i++) {
+    const winningNumberInput = document.querySelector(`#winning-number-${i}`);
+    const number = winningNumberInput.value;
+    winningNumbers.push(Number(number));
+  }
+  const bonusNumberInput = document.querySelector("#bonus-number");
+  bonusNumber = Number(bonusNumberInput.value);
+  console.log(winningNumbers);
+  console.log(bonusNumber);
 }
