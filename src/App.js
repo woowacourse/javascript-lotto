@@ -40,6 +40,7 @@ class App extends Component {
     new AmountInput(qs(".amount-input-layout"), {
       setLottoList: setLottoList.bind(this),
     });
+
     if (lottoList.length !== 0) {
       new LottoList(qs(".lotto-detail-layout"), lottoList);
       new UserInput(qs(".user-input-layout"), {
