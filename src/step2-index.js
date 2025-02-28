@@ -48,7 +48,6 @@ const calculateRevenue = (lottoStatistics, money) => {
 
 const handleWinningResult = (event, { money, lottos }) => {
   event.preventDefault();
-
   try {
     const winningForm = document.getElementById('winningNumberInputForm');
     const winningNumbers = Array.from(winningForm.winningNumber).map((input) =>
@@ -81,9 +80,9 @@ const handleLottoPurchase = (event, lottoMachine) => {
     validateMoney(money);
     const lottos = createLottos(lottoMachine, money);
     const lottoContainer = document.getElementById('lottoContainer');
-    const a = $createLottoContent(lottos);
-    lottoContainer.appendChild(a);
-    a.addEventListener('submit', (e) =>
+    const lottoContent = $createLottoContent(lottos);
+    lottoContainer.appendChild(lottoContent);
+    lottoContent.addEventListener('submit', (e) =>
       handleWinningResult(e, { money, lottos }),
     );
   } catch (error) {
