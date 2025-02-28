@@ -12,12 +12,14 @@
   --lotto-greyscale-5-alpha: #0000001f;
 }
 
-app {
-  width: 100%;
-  height: 100%;
+#app {
 }
 
-#modal-background {
+.header a {
+  cursor: pointer;
+}
+
+#modalBackground {
   position: fixed;
   top: 0;
   left: 0;
@@ -35,9 +37,21 @@ app {
   z-index: 10;
 }
 
-#modal-background.show {
+#modalBackground.show {
   opacity: 1;
   visibility: visible;
+}
+
+.result-container {
+  margin-top: 28px;
+}
+
+#resultContainer {
+  display: none;
+}
+
+#resultContainer.show {
+  display: block;
 }
 
 .modal-box {
@@ -50,9 +64,12 @@ app {
   z-index: 99;
 }
 
-.close-modal-btn {
+.close-modal-btn-box {
   display: flex;
   justify-content: flex-end;
+}
+
+.close-modal-btn {
   cursor: pointer;
 }
 
@@ -128,7 +145,7 @@ app {
 }
 
 .header nav {
-  width: 1440px;
+  width: 100%;
   height: 100%;
   display: flex;
   margin: 0 auto;
@@ -151,7 +168,7 @@ container
 
 .container {
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 144px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -162,7 +179,6 @@ container
 
 .lotto-box {
   width: 414px;
-  height: 727px;
   display: flex;
   flex-direction: column;
   padding: 40px 16px 32px;
@@ -181,13 +197,12 @@ container
   margin-bottom: 28px;
 }
 
-.amount-form .amount-field {
+.price-form .price-field {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 28px;
 }
 
-.amount-form .amount {
+.price-form .price {
   width: calc(100% - 72px);
   height: 36px;
   font-size: 15px;
@@ -196,7 +211,15 @@ container
   border: solid 1px var(--lotto-greyscale-3);
 }
 
-.amount-form .btn-buy {
+.price-form .price:focus {
+  border: solid 2px var(--lotto-primary);
+}
+.price-form .price:disabled {
+  background-color: rgb(230, 230, 230);
+  cursor: not-allowed;
+}
+
+.price-form .btn-buy {
   width: 56px;
   height: 36px;
   text-align: center;
@@ -207,14 +230,49 @@ container
   color: #ffffff;
 }
 
-.amount-form {
+.price-form .btn-buy:hover {
+  background-color: rgb(55, 66, 122);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.price-form .btn-buy:disabled {
+  background-color: var(--lotto-greyscale-3);
+  color: var(--lotto-greyscale-1);
+  cursor: not-allowed;
+}
+
+.price-form {
   display: flex;
   flex-direction: column;
 }
 
+#priceErrorInfo {
+  display: none;
+}
+
+#priceErrorInfo.show {
+  display: block;
+}
+
+.error-info-ul {
+  margin-top: 10px;
+}
+.error-info-ul li {
+  color: rgb(213, 77, 77);
+  display: flex;
+  align-items: center;
+}
+
+.error-info-ul li::before {
+  content: "•";
+  font-size: 16px;
+}
+
+#winningErrorInfo 
+
 /* 
 
-amount 시작
+price 시작
 
  */
 
@@ -245,7 +303,6 @@ amount 시작
 
 .lotto-results-box {
   width: 100%;
-  height: 276px;
   margin-top: 12px;
   margin-bottom: 24px;
   display: flex;
@@ -257,7 +314,6 @@ amount 시작
 
 .lotto-results-box ul {
   width: 200px;
-  height: 264px;
 }
 
 .lotto-results-box ul li {
@@ -265,8 +321,19 @@ amount 시작
   margin-bottom: 16px;
   display: flex;
   align-items: center;
+  background-color: #ffffff;
+  cursor: pointer;
 }
-
+.lotto-results-box ul li p {
+  text-align: center;
+  width: 130px;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+.lotto-results-box ul li p:hover {
+  background-color: rgb(226, 226, 226);
+  transition: background-color 0.3 ease-in-out;
+}
 .lotto-results-box ul li span {
   font-size: 34px;
   margin-right: 8px;
@@ -276,8 +343,8 @@ amount 시작
 
 winning 시작
 
- */
 
+*/
 .winning-bonus-box {
   width: 100%;
   display: flex;
@@ -298,6 +365,15 @@ winning 시작
   border: solid 1px #b4b4b4;
 }
 
+.winning-bonus-box input:focus {
+  width: 34px;
+  height: 36px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 4px;
+  border: solid 2px var(--lotto-primary);
+}
+
 .winning-box div {
   display: flex;
   gap: 8px;
@@ -313,7 +389,7 @@ winning 시작
   height: 36px;
   font-weight: bold;
   text-align: center;
-  margin: 27px 0 0;
+  margin: 26px 0 0;
   padding: 6px 6px 6px 8px;
   border-radius: 4px;
   background-color: var(--lotto-primary);
