@@ -11,20 +11,20 @@ const handlePurchase = () => {
     const lotto_pack = DomSelector.lottoPack;
     const answer_lotto_section = DomSelector.answerLottoSection;
 
+    // 도메인 로직
     const purchaseAmount = parseAndValidatePurchaseAmount(purchase_amount.value);
     const lottoPack = LottoMachine(purchaseAmount);
 
-    purchase_count.textContent = `총 ${lottoPack.count}개를 구매했습니다.`;
-
+    // ui 로직
     generateLottoPack(lotto_pack, lottoPack.lottos);
-
+    purchase_count.textContent = `총 ${lottoPack.count}개를 구매했습니다.`;
     answer_lotto_section.classList.remove("opacity-0");
     reuslt_button.classList.remove("opacity-0");
     purchase_amount.blur();
 
     return { purchaseAmount, lottoPack };
   } catch (error) {
-    purchase_amount_input.value = "";
+    purchase_amount.value = "";
     alert(error);
   }
 };

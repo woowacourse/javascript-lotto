@@ -13,15 +13,15 @@ const handleWinningCheck = (purchaseAmount, lottoPack) => {
     const profit_rate = DomSelector.profitRate;
     const lotto_result_modal = DomSelector.lottoResultModal;
 
+    // 도메인 로직
     const { winningNumbersInput, bonusNumberInput } = getAnswerLottoInput(winning_numbers, bonus_number);
     const { winningNumbers, bonusNumber } = parseAndValidatAnswerLotto(winningNumbersInput, bonusNumberInput);
     const answerLotto = generateAnswerLotto(winningNumbers, bonusNumber);
-
     const winningResult = lottoPack.compareAndReturnResult(answerLotto);
+
+    // ui 로직
     updateStatistics(statistics_rows, winningResult);
-
     updateProfitRate(profit_rate, { purchaseAmount, winningResult });
-
     lotto_result_modal.showModal();
   } catch (error) {
     alert(error);
