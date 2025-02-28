@@ -29,10 +29,11 @@ export default class LottoInput {
   }
 
   handleKeyDown(event) {
-    // 엔터 키가 눌렸을 때
     if (event.key === "Enter" || event.keyCode === 13) {
       event.preventDefault();
-      this.handlePurchase();
+      if (!this.buttonElement.disabled) {
+        this.handlePurchase();
+      }
     }
   }
 
@@ -45,6 +46,9 @@ export default class LottoInput {
 
       this.purchaseMessageElement.style.display = "block";
       this.purchaseMessageElement.textContent = `총 ${lottoNum}개를 구매하였습니다.`;
+
+      this.buttonElement.disabled = true;
+      this.buttonElement.style.backgroundColor = "#cccccc";
 
       this.onPurchase(lottoNum);
     } catch (error) {
