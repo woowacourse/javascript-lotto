@@ -1,14 +1,12 @@
 export const setHeader = (headers) => {
   return `
-    <thead>
-      <tr>
-      ${headers
-        .map((header) => {
-          return `<th>${header}</th>`;
-        })
-        .join("")}
-      </tr>
-    </thead>
+    <tr>
+    ${headers
+      .map((header) => {
+        return `<th>${header}</th>`;
+      })
+      .join("")}
+    </tr>
   `;
 };
 
