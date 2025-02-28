@@ -37,6 +37,16 @@ export default class LottoInput {
     }
   }
 
+  disableButton() {
+    this.buttonElement.disabled = true;
+    this.buttonElement.style.backgroundColor = "#cccccc";
+  }
+
+  enableButton() {
+    this.buttonElement.disabled = false;
+    this.buttonElement.style.backgroundColor = "";
+  }
+
   handlePurchase() {
     try {
       const rawPriceString = this.inputElement.value;
@@ -46,9 +56,7 @@ export default class LottoInput {
 
       this.purchaseMessageElement.style.display = "block";
       this.purchaseMessageElement.textContent = `총 ${lottoNum}개를 구매하였습니다.`;
-
-      this.buttonElement.disabled = true;
-      this.buttonElement.style.backgroundColor = "#cccccc";
+      this.disableButton();
 
       this.onPurchase(lottoNum);
     } catch (error) {
@@ -59,5 +67,6 @@ export default class LottoInput {
   reset() {
     this.inputElement.value = "";
     this.purchaseMessageElement.style.display = "none";
+    this.enableButton();
   }
 }

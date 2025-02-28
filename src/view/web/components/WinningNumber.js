@@ -19,10 +19,51 @@ export default class WinningNumbers {
   init() {
     this.middleSection.style.display = "none";
     this.resultButton.addEventListener("click", this.handleResult.bind(this));
+
+    this.winningNumberInputs.forEach((input, index) => {
+      input.addEventListener("keydown", (event) => {
+        this.handleInputKeydown(event, index);
+      });
+    });
+
+    this.bonusNumberInput.addEventListener("keydown", (event) => {
+      this.handleBonusInputKeydown(event);
+    });
+  }
+
+  handleInputKeydown(event, index) {
+    if (
+      event.key === "Enter" ||
+      event.key === "ArrowRight" ||
+      event.key === " "
+    ) {
+      event.preventDefault();
+      if (index < this.winningNumberInputs.length - 1) {
+        this.winningNumberInputs[index + 1].focus();
+      } else {
+        this.bonusNumberInput.focus();
+      }
+    }
+  }
+
+  handleBonusInputKeydown(event) {
+    if (
+      event.key === "Enter" ||
+      event.key === "ArrowRight" ||
+      event.key === " "
+    ) {
+      event.preventDefault();
+
+      this.resultButton.focus();
+    }
   }
 
   show() {
     this.middleSection.style.display = "block";
+
+    if (this.winningNumberInputs.length > 0) {
+      this.winningNumberInputs[0].focus();
+    }
   }
 
   hide() {
