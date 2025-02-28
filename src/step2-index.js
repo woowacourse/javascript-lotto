@@ -1,13 +1,54 @@
 import $createLottoContent from './components/lottoContent/lottoContent.js';
 import $lottoHeader from './components/lottoHeader/lottoHeader.js';
+import $modal from './components/modal/modal.js';
 import LottoMachine from './domain/model/LottoMachine.js';
 import LottoStatistics from './domain/model/LottoStatistics.js';
 import { validateLottoNumber, validateMoney } from './domain/validation.js';
 
-const $createLottoHeader = () => $lottoHeader();
+const lottoStart = () => {
+  const lottoMachine = new LottoMachine();
+  const lottoContainer = document.getElementById('lottoContainer');
+  lottoContainer.innerHTML = '';
+
+  lottoContainer.appendChild($lottoHeader());
+
+  const lottoBuyForm = document.getElementById('lottoBuyForm');
+  lottoBuyForm.addEventListener('submit', (event) =>
+    handleLottoPurchase(event, lottoMachine),
+  );
+};
+
+const handleModalClose = () => {
+  const modal1 = document.getElementById('modal');
+  modal1.remove();
+};
+
+const handleModal = (event, result, revenueRate) => {
+  event.preventDefault();
+  document.getElementById('app').appendChild($modal(result, revenueRate));
+
+  document.getElementById('restartButton').addEventListener('click', () => {
+    handleModalClose();
+    lottoStart();
+  });
+
+  document.getElementById('closeButton').addEventListener('click', () => {
+    handleModalClose();
+  });
+};
+
+const calculateRevenue = (lottoStatistics, money) => {
+  const revenueRate = lottoStatistics.calculateRevenueRate(
+    lottoStatistics.getProfit(),
+    money,
+  );
+
+  return revenueRate;
+};
 
 const handleWinningResult = (event, { money, lottos }) => {
   event.preventDefault();
+
   try {
     const winningForm = document.getElementById('winningNumberInputForm');
     const winningNumbers = Array.from(winningForm.winningNumber).map((input) =>
@@ -20,43 +61,34 @@ const handleWinningResult = (event, { money, lottos }) => {
       bonus: parseInt(winningForm.bonusNumber.value, 10),
       lotto: winningNumbers,
     });
+    const revenueRate = calculateRevenue(lottoStatistics, money);
+    const rankResult = lottoStatistics.getRankResult();
+    handleModal(event, rankResult, revenueRate);
   } catch (error) {
-    return alert(error.message);
+    alert(error.message);
   }
 };
 
-const createLottos = (money) => {
-  const lottoMachine = new LottoMachine();
+const createLottos = (lottoMachine, money) => {
   lottoMachine.createLottos(money);
   return lottoMachine.getLottos();
 };
 
-const handleLottoPurchase = (event) => {
+const handleLottoPurchase = (event, lottoMachine) => {
   event.preventDefault();
   try {
     const money = document.getElementById('lottoBuyForm').money.value;
     validateMoney(money);
-    const lottos = createLottos(money);
+    const lottos = createLottos(lottoMachine, money);
     const lottoContainer = document.getElementById('lottoContainer');
-    lottoContainer.appendChild($createLottoContent(lottos));
-    const winningForm = document.getElementById('winningNumberInputForm');
-    winningForm.addEventListener('submit', (event) =>
-      handleWinningResult(event, { money, lottos }),
+    const a = $createLottoContent(lottos);
+    lottoContainer.appendChild(a);
+    a.addEventListener('submit', (e) =>
+      handleWinningResult(e, { money, lottos }),
     );
   } catch (error) {
-    return console.log(error);
+    alert(error.message);
   }
 };
 
-const lottoStart = () => {
-  const lottoContainer = document.getElementById('lottoContainer');
-  lottoContainer.innerHTML = '';
-
-  lottoContainer.appendChild($createLottoHeader());
-};
-
 lottoStart();
-
-document
-  .getElementById('lottoBuyForm')
-  .addEventListener('submit', handleLottoPurchase);

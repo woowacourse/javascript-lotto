@@ -8,4 +8,12 @@ export const PRIZE_MESSAGES = {
   fifth: '3개 일치',
 };
 
+export const PRIZE_WEB_MESSAGES = {
+  first: '6개 일치',
+  second: '5개+보너스볼',
+  third: '5개 일치',
+  fourth: '4개 일치',
+  fifth: '3개 일치',
+};
+
 export const PRIZE_TITLE = ['당첨 번호', '보너스 번호'];
