@@ -34,6 +34,7 @@ class lottoControllerUI {
       this.lottos.forEach((lotto) => printLottoNumbers(lotto.numbers));
 
       document.querySelector(".winning-lotto").classList.add("active");
+      document.querySelector(".winning-number").focus();
     }
   };
 
@@ -66,6 +67,7 @@ class lottoControllerUI {
     const totalReward = this.lottoGame.calcTotalReward(gameResults);
     const rankCount = this.lottoGame.getRankCount(gameResults);
 
+    console.log(rankCount);
     printResult(formatResults(rankCount).reverse());
     printProfitRate(calcProfitRate(getLottoPrice(), totalReward));
 

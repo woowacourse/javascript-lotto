@@ -7,11 +7,8 @@ import lottoControllerUI from "./controllers/lottoControllerUI.js";
 const init = async () => {
   const lottoController = new lottoControllerUI();
 
-  document.querySelector(".purchase").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      document.querySelector(".purchase button").click();
-      document.querySelector(".winning-number").focus();
-    }
+  document.querySelector(".purchase").addEventListener("submit", (e) => {
+    e.preventDefault();
   });
 
   document
