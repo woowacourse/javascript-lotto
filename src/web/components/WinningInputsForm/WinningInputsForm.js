@@ -25,7 +25,7 @@ class WinningInputsForm {
       });
       this.$view.$container.dispatchEvent(event);
     } catch (e) {
-      alert(e.message);
+      alert('예상하지 못한 오류입니다. 다시 시도해주세요.');
     }
   }
 }

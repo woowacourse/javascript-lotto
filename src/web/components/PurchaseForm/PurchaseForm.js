@@ -22,7 +22,7 @@ class PurchaseForm {
       this.$view.$container.dispatchEvent(event);
       this.$view.disableInput();
     } catch (e) {
-      alert(e.message);
+      alert('예상하지 못한 오류입니다. 다시 시도해주세요.');
     }
   }
 }

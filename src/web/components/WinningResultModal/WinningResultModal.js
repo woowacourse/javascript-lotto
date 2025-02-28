@@ -24,7 +24,7 @@ class WinningResultModal {
       });
       $main.dispatchEvent(restartEvent);
     } catch (e) {
-      alert(e.message);
+      alert('예상하지 못한 오류입니다. 다시 시도해주세요.');
     }
   }
 }
