@@ -25,6 +25,14 @@ const DEFINITION = {
     [RANK.SECOND]: 5,
     [RANK.FIRST]: 6,
   },
+  MIN: {
+    LOTTO_PURCHASE_PRICE: 1000,
+    LOTTO_NUMBER: 1,
+  },
+  MAX: {
+    LOTTO_PURCHASE_PRICE: 10000000,
+    LOTTO_NUMBER: 45,
+  },
   SPLIT: ", ",
   EMPTY: "",
 };

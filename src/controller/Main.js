@@ -29,7 +29,7 @@ export default class Main {
       lottoMachine.drawWinning(purchasePrice);
 
     Object.entries(countStatistics).forEach(([rank, amount]) =>
-      Output.matchResult(rank, amount)
+      Output.matchResult(rank, amount),
     );
     Output.winningRate(winningRate);
     Output.newLine();

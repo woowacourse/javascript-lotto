@@ -81,6 +81,6 @@ export default class Winnings {
     const sum = Object.entries(statistics).reduce((acc, [key, count]) => {
       return acc + DEFINITION.LOTTO_PRISE[key] * count;
     }, 0);
-    return (sum / money) * 100;
+    return Math.floor((sum / money) * 100);
   }
 }
