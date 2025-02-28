@@ -57,8 +57,8 @@
 
 #input-purchase-amount {
   width: 100%;
-  /* height: 30px; */
-  border-color: 1px #f4f4f4;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
   font-size: 17px;
 }
 
@@ -96,6 +96,24 @@
   height: 36px;
 }
 
+#input-winning-numbers {
+  display: flex;
+  gap: 10px;
+}
+
+#input-winning-numbers input, #input-bonus-numbers input {
+  width: 25px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid #cacaca;
+  text-align: center;
+}
+
+#input-bonus-numbers input {
+  justify-content: flex-end;
+}
+
 #footer {
   height: 60px;
   position: fixed;
@@ -118,4 +136,28 @@
 #copyright {
   color: #4e5ba6;
   font: 700 14px sans-serif;
+}
+
+#input-winning-numbers-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#input-bonus-number-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#title-input-winnings-and-bonus {
+  margin-bottom: 20px;
+}
+
+#title-input-winnings, #title-input-bonus {
+  margin-bottom: 10px;
+}
+
+#input-winnings-and-bonus-section {
+  display: flex;
+  justify-content: space-between;  
 }

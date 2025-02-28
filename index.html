@@ -5,35 +5,58 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="src/css/index.css">
+    <link rel="stylesheet" href="src/css/index.css" />
   </head>
 
   <body id="container">
     <div id="header">
-      <h1> 🎱 행운의 로또 </h1>
+      <h1>🎱 행운의 로또</h1>
     </div>
     <div id="content">
       <h1 id="title">🎱 내 번호 당첨 확인 🎱</h1>
       <div>
         <div id="title-input-purchase-amount">구입할 금액을 입력해주세요.</div>
         <div id="input-purchase-amount-area">
-          <input id="input-purchase-amount" type="text" placeholder="금액">
+          <input id="input-purchase-amount" type="text" placeholder="금액" />
           <button id="button-purchase">구입</button>
         </div>
       </div>
       <div>
         <div id="purchased-count"></div>
-        <div id="generated-lottos">
+        <div id="generated-lottos"></div>
+      </div>
+      <div>
+        <div id="title-input-winnings-and-bonus">
+          지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+        </div>
+        <div id="input-winnings-and-bonus-section">
+          <div id="input-winning-numbers-section">
+            <div id="title-input-winnings">당첨 번호</div>
+            <div id="input-winning-numbers">
+              <input type="text" maxlength="1" />
+              <input type="text" maxlength="1" />
+              <input type="text" maxlength="1" />
+              <input type="text" maxlength="1" />
+              <input type="text" maxlength="1" />
+              <input type="text" maxlength="1" />
+            </div>
+          </div>
+          <div>
+            <div id="input-bonus-number-section">
+              <div id="title-input-bonus">보너스 번호</div>
+              <div id="input-bonus-numbers">
+                <input type="text" maxlength="1" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div id="footer">
       <hr id="line" />
-      <div id="copyright"> Copyright 2023. woowacourse </div>
+      <div id="copyright">Copyright 2023. woowacourse</div>
     </div>
 
-    <script type="module" src="./src/step2-index.js">
-      
-    </script>
+    <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
