@@ -6,6 +6,7 @@ import { LOTTO_NUMBERS } from "../lottoConstants/systemConstants.js";
 import { showResult } from "../step2-index.js";
 import { displayComponent } from "../util/displayComponents.js";
 import SYSTEM_MESSAGE from "../lottoConstants/systemMessage.js";
+import { addKeyListener } from "../util/addKeyListener.js";
 
 export const purchaseHandler = (lottoCount, lottoArray) => {
   displayComponent(".purchase-container", Prompt({ message: SYSTEM_MESSAGE.CANNOT_RETRY, style: "warning" }));
@@ -23,4 +24,12 @@ export const purchaseHandler = (lottoCount, lottoArray) => {
 
   const resultButtonProps = { label: "결과 확인하기", onClick: () => showResult(lottoCount, lottoArray), style: "large", name: "result" };
   displayComponent(".result-button-container", Button(resultButtonProps));
+
+  addKeyListener(
+    "[name=winning-number], [name=bonus-number]",
+    () => {
+      showResult(lottoCount, lottoArray);
+    },
+    "Enter"
+  );
 };

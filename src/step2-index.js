@@ -5,6 +5,7 @@ import { purchaseHandler } from "./handler/purchaseHandler.js";
 import { resultHandler } from "./handler/resultHandler.js";
 import { calculateProfitRate } from "./service/ProfitService.js";
 import { getOriginalApp, setOriginalApp } from "./state/state.js";
+import { addKeyListener } from "./util/addKeyListener.js";
 import { disabledButton } from "./util/buttonActions.js";
 
 export const purchaseLotto = async () => {
@@ -33,6 +34,9 @@ export const retry = () => {
 const runLotto = () => {
   const originalApp = document.querySelector("#app");
   setOriginalApp(originalApp);
+
+  addKeyListener("[name=price]", purchaseLotto, "Enter");
+
   document.querySelector("[name=purchase]").addEventListener("click", () => {
     purchaseLotto();
   });

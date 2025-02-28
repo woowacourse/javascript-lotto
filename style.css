@@ -303,7 +303,7 @@ header {
   justify-content: center;
 }
 .alert {
-  display: inline;
+  display: inline-block;
   padding: 0.8rem 1rem;
   background-color: var(--alert);
   color: white;

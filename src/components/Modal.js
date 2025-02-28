@@ -15,8 +15,9 @@ const ModalBackground = () => {
   modalBackground.classList.add("modal-background");
 
   modalBackground.addEventListener("click", () => {
-    removeModal();
+    removeModal(), "Escape";
   });
+  modalBackground.addKeyList;
 
   return modalBackground;
 };
