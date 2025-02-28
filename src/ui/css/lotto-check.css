@@ -1,0 +1,36 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lotto-check {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.lotto-check h2 {
+  text-align: center;
+}
+
+.amount-input {
+}
+
+#purchase-amount {
+  background-color: transparent;
+  border: 1px solid var(--color-greyscale-3);
+}
+
+.number-box input {
+  width: 20px;
+}
+
+.number-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bonus-number {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}

@@ -1,0 +1,11 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+main {
+  flex: 1;
+}
+
+/* rem, flexbox froggy  */

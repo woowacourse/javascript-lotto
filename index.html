@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/global.css" />
     <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/lotto-check.css" />
+    <link rel="stylesheet" href="./css/winning-statistics.css" />
   </head>
 
   <body>
@@ -17,8 +21,8 @@
 
       <main>
         <section class="lotto-check">
-          <h2 id="lotto-title">🎱 내 당첨 번호 확인 🎱</h2>
-          <div>
+          <h2 class="text-title">🎱 내 당첨 번호 확인 🎱</h2>
+          <div class="amount-input">
             <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
             <div class="input">
               <input type="text" id="purchase-amount" placeholder="금액" />
@@ -43,7 +47,7 @@
               <div class="number-input">
                 <div class="winning-number">
                   <label class="winning-number-label">당첨 번호</label>
-                  <div>
+                  <div class="number-box">
                     <input type="text" class="winning-number" maxlength="1" />
                     <input type="text" class="winning-number" maxlength="1" />
                     <input type="text" class="winning-number" maxlength="1" />
@@ -54,7 +58,7 @@
                 </div>
                 <div class="bonus-number">
                   <label class="bonus-number-label">보너스 번호</label>
-                  <div>
+                  <div class="number-box">
                     <input type="text" class="bonus-number" maxlength="1" />
                   </div>
                 </div>
@@ -110,7 +114,7 @@
       </main>
 
       <footer>
-        <p>Copyright 2023. woowacourse</p>
+        <p class="text-caption">Copyright 2023. woowacourse</p>
       </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
