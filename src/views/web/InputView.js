@@ -10,18 +10,18 @@ const InputView = {
   $purchaseForm: document.querySelector('section.purchase form'),
 
   enterPurchasePrice() {
+    const self = this;
     return new Promise((resolve) => {
       function handleSubmit(e) {
         e.preventDefault();
         try {
-          resolve(this.getPurchasePrice());
+          resolve(self.getPurchasePrice());
         } catch (error) {
           alert(error.message);
-          this.resetPurchaseInput();
+          self.resetPurchaseInput();
         }
       }
-
-      this.$purchaseForm.addEventListener('submit', handleSubmit.bind(this));
+      this.$purchaseForm.addEventListener('submit', handleSubmit);
     });
   },
 
@@ -38,14 +38,13 @@ const InputView = {
   },
 
   async enterWinningAndBonusNumber() {
+    const self = this;
     const $resultButton = getByClass('resultButton')[0];
-
     return new Promise((resolve) => {
       $resultButton.addEventListener('click', (e) => {
         e.preventDefault();
-
         try {
-          resolve(this.getWinningAndBonusNumbers());
+          resolve(self.getWinningAndBonusNumbers());
         } catch (error) {
           alert(error.message);
         }
