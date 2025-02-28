@@ -38,7 +38,7 @@ export default class PurchaseForm {
       className: "purchase-form-button",
       text: "구입",
     });
-    $button.type = "button";
+    $button.type = "submit";
 
     $form.appendChild($label);
     $div.appendChild($input);
@@ -51,7 +51,6 @@ export default class PurchaseForm {
 
       this.handleSubmit($input);
     });
-    $button.addEventListener("click", () => this.handleSubmit($input));
 
     this.$target.appendChild($form);
   }
