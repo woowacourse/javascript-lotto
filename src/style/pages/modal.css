@@ -13,13 +13,15 @@
 }
 
 .modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   position: relative;
-  background: white;
-  padding: 20px;
+  background: var(--gray-1);
+  padding: 40px 16px 32px 16px;
   border-radius: 8px;
   text-align: center;
-  width: 80%;
-  max-width: 400px;
+  width: 350px;
 }
 
 .close-button {
@@ -33,12 +35,29 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
 }
 
 th,
 td {
-  border: 1px solid #ddd;
   padding: 8px;
-  text-align: center;
+}
+
+tr {
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  border-top: 1px solid #ccc;
+  font-weight: 600;
+}
+
+#restart-button {
+  background: var(--primary);
+  color: var(--gray-1);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.bold-600 {
+  font-weight: 600;
 }

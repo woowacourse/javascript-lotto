@@ -5,7 +5,9 @@ header {
 
 body {
   background-color: var(--gray-2);
+  color: var(--gray-5);
 }
+
 header > h1 {
   color: var(--gray-1);
 }
