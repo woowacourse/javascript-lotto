@@ -19,7 +19,21 @@ export default class LottoInput {
       "click",
       this.handlePurchase.bind(this),
     );
+
+    this.inputElement.addEventListener(
+      "keydown",
+      this.handleKeyDown.bind(this),
+    );
+
     this.purchaseMessageElement.style.display = "none";
+  }
+
+  handleKeyDown(event) {
+    // 엔터 키가 눌렸을 때
+    if (event.key === "Enter" || event.keyCode === 13) {
+      event.preventDefault();
+      this.handlePurchase();
+    }
   }
 
   handlePurchase() {
