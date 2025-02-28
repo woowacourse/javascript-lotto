@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const priceValue = priceInput.value.trim();
 
-    resetError(priceInput, errorUI);
+    resetError(errorUI);
     try {
       validatePrice(priceValue);
       const price = parsePrice(priceValue);
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       errorUI.textContent = error.message;
       errorUI.style.visibility = 'visible';
-      priceInput.classList.add('error');
     }
   });
 });
@@ -38,13 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
 
     const errorUI = $('#winning-number-error');
+    resetError(errorUI);
     try {
       const { winningNumbers, bonusNumber } = getWinningNumbers();
-      console.log('당첨 번호:', winningNumbers, '보너스 번호:', bonusNumber);
     } catch (error) {
       errorUI.textContent = error.message;
       errorUI.style.visibility = 'visible';
-      priceInput.classList.add('error');
     }
   });
 });

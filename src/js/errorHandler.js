@@ -1,7 +1,6 @@
-const resetError = (inputElement, errorElement) => {
+const resetError = (errorElement) => {
   errorElement.textContent = '';
   errorElement.style.visibility = 'hidden';
-  inputElement.classList.remove('error');
 };
 
 export { resetError };
