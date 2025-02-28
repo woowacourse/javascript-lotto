@@ -80,10 +80,13 @@ export default class LottoGame {
   }
 
   render() {
-    this.$div.replaceChildren();
-
     const $modal = document.querySelector(".modal-bg");
     if ($modal) $modal.remove();
+
+    const $input = document.querySelector(".purchase-form-input");
+    $input.value = "";
+
+    this.$div.replaceChildren();
 
     new LottoPurchaseHistory(this.$div, this.#show);
     new LottoWinningInfoForm(this.$div, this.#show);
