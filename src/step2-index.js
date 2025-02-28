@@ -7,6 +7,13 @@ import lottoControllerUI from "./controllers/lottoControllerUI.js";
 const init = async () => {
   const lottoController = new lottoControllerUI();
 
+  document.querySelector(".purchase").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      document.querySelector(".purchase button").click();
+      document.querySelector(".winning-number").focus();
+    }
+  });
+
   document
     .querySelector(".purchase button")
     .addEventListener("click", lottoController.handlePurchaseClick);
@@ -28,6 +35,14 @@ const init = async () => {
 
   document
     .querySelector(".modal .close")
+    .addEventListener("click", lottoController.handleCloseClick);
+
+  document
+    .querySelector(".modal")
+    .addEventListener("click", lottoController.stopPropagation);
+
+  document
+    .querySelector(".overlay")
     .addEventListener("click", lottoController.handleCloseClick);
 };
 

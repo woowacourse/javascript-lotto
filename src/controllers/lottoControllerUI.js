@@ -104,7 +104,11 @@ class lottoControllerUI {
     });
   };
 
-  handleCloseClick = () => {
+  stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
+  handleCloseClick = (e) => {
     document.querySelector(".overlay").classList.remove("active");
   };
 }
