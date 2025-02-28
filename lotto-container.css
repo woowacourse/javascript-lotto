@@ -1,0 +1,29 @@
+.lotto-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 350px;
+  margin: 1rem 0;
+  flex: 1;
+}
+
+.lotto-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 100%;
+  justify-content: center;
+  overflow: auto;
+}
+
+.lotto-ticket {
+  font-size: 2rem;
+}
+
+.lotto-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0 10px;
+  align-items: center;
+  white-space: nowrap;
+}
