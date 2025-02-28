@@ -3,6 +3,16 @@ import DomHelper from "../../../utils/DomHelper.js";
 export default class LottoList {
   constructor() {
     this.container = DomHelper.querySelector(".lotto__list");
+    this.maxHeight = "300px"; // 최대 높이 기본값 300px
+
+    this.setupContainer();
+  }
+
+  setupContainer() {
+    this.container.style.maxHeight = this.maxHeight;
+    this.container.style.overflowY = "scroll";
+    this.container.style.borderRadius = "4px";
+    this.container.style.padding = "10px";
   }
 
   displayLottos(lottos) {
