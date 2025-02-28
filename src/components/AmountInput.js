@@ -19,6 +19,7 @@ export default class AmountInput extends Component {
               type="number"
               class="amount-input placeholder"
               placeholder="금액"
+              autofocus
             />
             <div class="amount-input-button-container"></div>
             </form>
