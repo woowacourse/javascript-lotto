@@ -1,9 +1,9 @@
-import parseAndValidateBonusNumber from "../domain/processors/parseAndValidateBonusNumber.js";
-import parseAndValidatePurchaseAmount from "../domain/processors/parseAndValidatePurchaseAmount.js";
-import parseAndValidateRestart from "../domain/processors/parseAndValidateRestart.js";
-import parseAndValidateWinningNumbers from "../domain/processors/parseAndValidateWinningNumbers.js";
-import retryCheckInput from "../utils/retryCheckInput.js";
-import InputView from "../view/InputView.js";
+import parseAndValidateBonusNumber from "../../domain/processors/parseAndValidateBonusNumber.js";
+import parseAndValidatePurchaseAmount from "../../domain/processors/parseAndValidatePurchaseAmount.js";
+import parseAndValidateRestart from "../../domain/processors/parseAndValidateRestart.js";
+import parseAndValidateWinningNumbers from "../../domain/processors/parseAndValidateWinningNumbers.js";
+import retryCheckInput from "../../utils/retryCheckInput.js";
+import InputView from "../../view/InputView.js";
 
 const InputHandler = {
   async purchaseAmount() {
