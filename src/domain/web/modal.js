@@ -19,4 +19,14 @@ const handleModal = () => {
   }
 };
 
-export { handleModal, allowModalOpen };
+const openModal = () => {
+  const winningLottoContainer = document.querySelector(
+    ".winningLotto-contents"
+  );
+  const resultSubmitButton = document.querySelector(".result-contents");
+
+  winningLottoContainer.style.display = "flex";
+  resultSubmitButton.style.display = "flex";
+};
+
+export { handleModal, allowModalOpen, openModal };

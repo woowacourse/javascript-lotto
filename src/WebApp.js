@@ -21,6 +21,7 @@ export async function WebApp() {
 
   const lottoPrize = new LottoPrize(lottos);
   const prizeResult = lottoPrize.calculateWinnings(winningNumbers, bonusNumber);
+
   const ROI = lottoPrize.calculateROI(price, prizeResult);
 
   allowModalOpen();

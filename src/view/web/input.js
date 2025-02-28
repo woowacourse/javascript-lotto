@@ -1,3 +1,4 @@
+import { openModal } from "../../domain/web/modal";
 import {
   validateBonusNumber,
   validatePrice,
@@ -19,6 +20,7 @@ const printErrorMessage = (errorField, error) => {
   errorFieldBlock.appendChild(errorMessage);
 };
 
+// error 메시지 지우는 함수
 const removeErrorField = (errorField) => {
   const prevErrorMessage = document.querySelector(
     `${errorField} .error-message`
@@ -28,58 +30,74 @@ const removeErrorField = (errorField) => {
   }
 };
 
+// price 입력받기
+const repeatGetPrice = (resolve) => {
+  const userInputPrice = document.querySelector(".input-contents input").value;
+
+  try {
+    validatePrice(userInputPrice);
+    removeErrorField(".input-contents");
+    openModal();
+    resolve(userInputPrice);
+  } catch (error) {
+    printErrorMessage(".input-contents", error);
+  }
+};
+
 const getPrice = () => {
   return new Promise((resolve) => {
-    const userInputPrice = document.querySelector(".input-contents input");
     const purchaseButton = document.querySelector(".input-contents button");
-    const winningLottoContainer = document.querySelector(
-      ".winningLotto-contents"
-    );
-    const resultSubmitButton = document.querySelector(".result-contents");
-
     purchaseButton.addEventListener("click", async () => {
-      try {
-        validatePrice(userInputPrice.value);
-        removeErrorField(".input-contents");
-        winningLottoContainer.style.display = "flex";
-        resultSubmitButton.style.display = "flex";
-
-        resolve(userInputPrice.value);
-      } catch (error) {
-        printErrorMessage(".input-contents", error);
-      }
+      repeatGetPrice(resolve);
     });
   });
 };
 
+// winningLotto 입력받기
+const getWinningNumber = () => {
+  const winningNumbers = [];
+  document
+    .querySelectorAll(".winningLotto-contents_winningLotto div input")
+    .forEach((winningNumber) => {
+      winningNumbers.push(winningNumber.value);
+    });
+
+  return winningNumbers;
+};
+
+const getBonusNumber = () => {
+  return document.querySelector(".winningLotto-contents_bonusNumber input")
+    .value;
+};
+
+const parseNumber = (winningNumbers, bonusNumber) => {
+  winningNumbers = winningNumbers.map((winningNumber) => Number(winningNumber));
+  bonusNumber = Number(bonusNumber);
+  return { winningNumbers, bonusNumber };
+};
+
+const repeatWinningLotto = (resolve) => {
+  const winningNumbers = getWinningNumber();
+  const bonusNumber = getBonusNumber();
+
+  try {
+    validateWinningNumbers(winningNumbers);
+    validateBonusNumber(winningNumbers, bonusNumber);
+    removeErrorField(".winningLotto-contents");
+    resolve(parseNumber(winningNumbers, bonusNumber));
+  } catch (error) {
+    printErrorMessage(".winningLotto-contents", error);
+  }
+};
+
 const getWinningLotto = async () => {
-  const winningNumberInputs = document.querySelectorAll(
-    ".winningLotto-contents_winningLotto div input"
-  );
-  const bonusNumberInput = document.querySelector(
-    ".winningLotto-contents_bonusNumber input"
-  );
   const submitResultButton = document.querySelector(".result-contents");
 
   return new Promise((resolve) => {
     submitResultButton.addEventListener("click", async () => {
-      const winningNumbers = [];
-      let bonusNumber = "";
-
-      winningNumberInputs.forEach((winningNumber) => {
-        winningNumbers.push(winningNumber.value);
-      });
-      bonusNumber = bonusNumberInput.value;
-
-      try {
-        validateWinningNumbers(winningNumbers);
-        validateBonusNumber(winningNumbers, bonusNumber);
-        removeErrorField(".winningLotto-contents");
-        resolve({ winningNumbers, bonusNumber });
-      } catch (error) {
-        printErrorMessage(".winningLotto-contents", error);
-      }
+      repeatWinningLotto(resolve);
     });
   });
 };
+
 export { getPrice, getWinningLotto };
