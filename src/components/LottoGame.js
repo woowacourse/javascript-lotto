@@ -11,13 +11,11 @@ import customCreateElement from "../utils/customElement.js";
 
 export default class LottoGame {
   #target;
-  #lottoResult;
   #show;
   $div;
 
   constructor($target) {
     this.#target = $target;
-    this.#lottoResult = { lottoHistory: [], rate: 0 };
     this.#show = false;
 
     lottoTransactionStore.subscribe(() => this.render());
@@ -27,18 +25,12 @@ export default class LottoGame {
     this.render();
   }
 
-  setLottoResult = (newState) => {
-    this.#lottoResult = { ...this.#lottoResult, ...newState };
-    this.render();
-  };
-
   setShow = (newState) => {
     this.#show = newState;
     this.render();
   };
 
   setInit = () => {
-    this.#lottoResult = { lottoHistory: [], rate: 0 };
     this.#show = false;
 
     lottoTransactionStore.setState((state) => ({
