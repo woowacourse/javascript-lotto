@@ -79,7 +79,19 @@ export default class LottoGame {
     $div.appendChild(this.$div);
   }
 
+  resetStaticElements() {
+    const $modal = document.querySelector(".modal-bg");
+    if ($modal) $modal.remove();
+
+    const $input = document.querySelector(".purchase-form-input");
+    $input.value = "";
+  }
+
   render() {
+    this.resetStaticElements();
+
+    this.$div.replaceChildren();
+
     const $modal = document.querySelector(".modal-bg");
     if ($modal) $modal.remove();
 
