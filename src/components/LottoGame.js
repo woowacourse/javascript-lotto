@@ -33,19 +33,8 @@ export default class LottoGame {
   setInit = () => {
     this.#show = false;
 
-    lottoTransactionStore.setState((state) => ({
-      lottoTransaction: { ...state.lottoTransaction, price: 0, lottos: [] },
-    }));
-
-    winningLottoInfoStore.setState((state) => ({
-      winningLottoInfo: {
-        ...state.winningLottoInfo,
-        winningNumbers: [],
-        bonusNumber: 0,
-      },
-    }));
-
-    this.render();
+    lottoTransactionStore.resetState();
+    winningLottoInfoStore.resetState();
   };
 
   renderStaticElement() {

@@ -42,7 +42,12 @@ export function create(createState) {
 
   const destroy = () => listeners.clear();
 
-  const api = { setState, getState, subscribe, destroy };
+  const resetState = () => {
+    state = createState(setState, getState, { setState, getState });
+    listeners.forEach((listener) => listener(state, state));
+  };
+
+  const api = { setState, getState, subscribe, destroy, resetState };
 
   state = createState(setState, getState, api);
   return api;
