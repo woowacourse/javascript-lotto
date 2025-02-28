@@ -222,6 +222,8 @@ html {
   border: none;
   color: var(--lotto-greyscale-1);
   background: var(--lotto-primary);
+
+  cursor: pointer;
 }
 
 .footer {
