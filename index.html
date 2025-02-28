@@ -24,7 +24,7 @@
         <div class="input-container">
           <div class="purchase-guide">
             <label class="lotto-body" for="purchase-input">구입할 금액을 입력하세요.</label>
-            <input id="purchase-input" class="lotto-input" placeholder="금액" />
+            <input type="number" min='1000' max='100000' id="purchase-input" class="lotto-input" placeholder="금액" />
           </div>
           <button class="purchase-btn">구입</button>
         </div>
@@ -81,18 +81,18 @@
             <div class="winning-numbers-input">
               <label for="winning-input" class="winning-input-title lotto-body">당첨 번호</label>
               <div>
-                <input id="winning-input" class="number-input">
-                <input class="number-input">
-                <input class="number-input">
-                <input class="number-input">
-                <input class="number-input">
-                <input class="number-input">
+                <input type="number" id="winning-input" class="number-input">
+                <input type="number" class="number-input">
+                <input type="number" class="number-input">
+                <input type="number" class="number-input">
+                <input type="number" class="number-input">
+                <input type="number" class="number-input">
               </div>
             </div>
             <div class="bonus-number-input">
               <label for="bonus-input" class="winning-input-title lotto-body">보너스 번호</label>
               <div>
-                <input id="bonus-input" class="number-input">
+                <input type="number" id="bonus-input" class="number-input">
               </div>
             </div>
           </div>
