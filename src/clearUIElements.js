@@ -12,7 +12,6 @@ function clearUIElements() {
   const lottoInputContainer = document.getElementsByClassName(
     'lotto-input-container',
   );
-  console.log(lottoInputContainer);
   if (lottoInputContainer) {
     Array.from(lottoInputContainer).forEach((element) => {
       element.remove();
