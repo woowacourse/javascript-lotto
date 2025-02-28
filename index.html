@@ -5,6 +5,7 @@
     <title>🎱 행운의 로또</title>
     <link rel="stylesheet" href="src/style/main.css" />
     <link rel="stylesheet" href="src/style/pages/index.css" />
+    <link rel="stylesheet" href="src/style/pages/lotto-box.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
@@ -14,24 +15,17 @@
     <main class="flex-center">
       <section class="lotto-box">
         <h2 class="typo-24-EB flex-center">🎱 내 번호 당첨 확인 🎱</h2>
-        <form class="amount-input-group">
-          <label for="amount" class="typo-15-R">구입할 금액을 입력해주세요.</label>
-          <div class="amount-input">
-            <input type="number" id="amount" placeholder="금액" min="1000" step="1000" />
+        <form id="purchase-form">
+          <label for="price" class="typo-15-R">구입할 금액을 입력해주세요.</label>
+          <div class="purchase-input">
+            <input type="number" id="price" placeholder="금액" />
             <button class="typo-14-B">구입</button>
           </div>
+          <p class="error-message"></p>
         </form>
-        <!-- <p class="purchase-info">총 <strong>7개</strong>를 구매하였습니다.</p>
-        <ul class="lotto-numbers">
-          <li class="lotto-ticket">🎯 12, 28, 22, 37, 19, 23</li>
-          <li class="lotto-ticket">🎯 12, 28, 22, 37, 19, 23</li>
-          <li class="lotto-ticket">🎯 12, 28, 22, 37, 19, 23</li>
-          <li class="lotto-ticket">🎯 12, 28, 22, 37, 19, 23</li>
-          <li class="lotto-ticket">🎯 12, 28, 22, 37, 19, 23</li>
-          <li class="lotto-ticket">🎯 12, 28, 22, 37, 19, 23</li>
-          <li class="lotto-ticket">🎯 12, 28, 22, 37, 19, 23</li>
-        </ul>
-        <p class="lotto-check">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p> -->
+
+        <div class="purchase-result"></div>
+        <!-- <p class="lotto-check">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p> -->
         <!-- <form class="winning-number-form">
           <fieldset>
             <legend>당첨 번호 입력</legend>
@@ -51,5 +45,6 @@
       </section>
     </main>
     <footer><p class="typo-14-B flex-center">Copyright 2023. woowacourse</p></footer>
+    <script src="/src/js/index.js" type="module"></script>
   </body>
 </html>
