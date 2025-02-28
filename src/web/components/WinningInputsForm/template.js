@@ -1,5 +1,7 @@
+import { LOTTO } from '../../../common/constants/Configurations.js';
+
 const getInstructionMarkup = () =>
-  `<label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>`;
+  `<label>지난 주 당첨번호 ${LOTTO.LENGTH}개와 보너스 번호 1개를 입력해주세요.</label>`;
 
 const getInputsLabelsMarkup = () => `
   <div class="inputs-label">
