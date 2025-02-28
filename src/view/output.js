@@ -1,5 +1,9 @@
 import commaizeNumber from "../utils/commaizeNumber.js";
 
+export const printError = (message) => {
+  console.log(message);
+};
+
 export const printLottoCount = (count) => {
   console.log(`${count}개를 구매했습니다.`);
 };
