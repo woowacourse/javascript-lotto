@@ -1,12 +1,12 @@
 import Lotto from '../model/Lotto.js';
-import INPUT_MESSAGE from '../constants/InputMessage.js';
-import readLineAsync from '../View/InputView.js';
+
 import { printPurchasedAmount, printError } from '../View/OutputView.js';
 import checkBonusNumber from '../Validation/checkBonusNumber.js';
 import checkLottoPurchase from '../Validation/checkLottoPurchase.js';
 import checkUserRetry from '../Validation/checkUserRetry.js';
 import { LOTTO_PRICE } from '../constants/MagicNumber.js';
 import clearUIElements from '../clearUIElements.js';
+import clearLottoInputs from '../clearLottoInputs.js';
 
 async function getPurchasePrice(inputMethod) {
   try {
@@ -30,6 +30,8 @@ async function getWinningNumber(inputMethod) {
     return userLotto;
   } catch (error) {
     printError(error.message);
+    alert(error.message);
+    clearLottoInputs();
     return inputMethod();
   }
 }
@@ -40,6 +42,9 @@ async function getBonusNumber(userLotto, inputMethod) {
     return parsedLotto;
   } catch (error) {
     printError(error.message);
+    alert(error.message);
+    clearLottoInputs();
+
     return inputMethod();
   }
 }
@@ -51,6 +56,8 @@ async function getUserRetry(inputMethod) {
     return userRetry;
   } catch (error) {
     printError(error.message);
+    alert(error.message);
+    clearUIElements();
     return inputMethod();
   }
 }
