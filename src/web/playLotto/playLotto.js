@@ -12,7 +12,7 @@ export default function PlayLotto() {
     PlayLottoWithPurchasePrice(playLotto, priceInput);
     priceInput.disabled = true;
   });
-  priceInput.addEventListener('keydown', (e) => {
+  priceInput.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') {
       PlayLottoWithPurchasePrice(playLotto, priceInput);
       priceInput.disabled = true;
