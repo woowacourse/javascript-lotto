@@ -46,7 +46,7 @@
   justify-content: center;
 }
 
-#lottoResult .statistics .name {
+#lottoResult .statistics .header-row {
   display: flex;
   justify-content: space-between;
   padding: 8px 0;
@@ -82,7 +82,7 @@
   letter-spacing: 0.5px;
 }
 
-#lottoResult .restart_button {
+#lottoResult #restartButton {
   padding: 10px 0;
   width: 100%;
 }

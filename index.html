@@ -13,21 +13,29 @@
       <header>
         <span class="title">🎱 행운의 로또</span>
       </header>
+
+      <!-- 로또 게임 -->
       <main id="lottoGame">
-        <div class="inner">
-          <span class="title">🎱 내 번호 당첨 확인 🎱</span>
-          <div class="purchase_amount_section">
+        <section class="inner">
+          <h2 class="title">🎱 내 번호 당첨 확인 🎱</h2>
+
+          <!-- 금액 입력 -->
+          <section class="purchase_amount_section">
             <span>구입할 금액을 입력해주세요.</span>
             <div class="purchase_amount">
               <input type="text" id="purchaseAmount" placeholder="금액" />
               <button id="purchaseButton" class="caption">구입</button>
             </div>
-          </div>
-          <div class="lotto_pack_section">
+          </section>
+
+          <!-- 구매한 로또 목록 -->
+          <section class="lotto_pack_section">
             <span class="purchase_count"></span>
             <div class="lotto_pack"></div>
-          </div>
-          <div class="answer_lotto_section opacity-0">
+          </section>
+
+          <!-- 당첨 번호 및 보너스 번호 입력 -->
+          <section class="answer_lotto_section opacity-0">
             <span class="answer_lotto_title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
             <div class="answer_lotto">
               <div class="answer_lotto_number">
@@ -48,22 +56,25 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="reuslt_button_section">
+          </section>
+
+          <!-- 결과 확인 버튼 -->
+          <section class="reuslt_button_section">
             <button id="resultButton" class="caption opacity-0">결과 확인하기</button>
-          </div>
-        </div>
+          </section>
+        </section>
       </main>
 
+      <!-- 당첨 결과 모달 -->
       <dialog class="lotto_result_modal">
-        <main id="lottoResult">
+        <section id="lottoResult">
           <form method="dialog">
             <button><img class="close" src="close.png" alt="x" width="16px" height="16px" /></button>
           </form>
           <div class="inner">
             <span class="title">🏆 당첨 통계 🏆</span>
             <div class="statistics">
-              <div class="name">
+              <div class="header-row">
                 <span class="match_count">일치 갯수</span>
                 <span class="price">당첨금</span>
                 <span class="winning_count">당첨 갯수</span>
@@ -95,9 +106,9 @@
               </div>
             </div>
             <span class="profit_rate"></span>
-            <button id="" class="caption restart_button">다시 시작하기</button>
+            <button id="restartButton" class="caption">다시 시작하기</button>
           </div>
-        </main>
+        </section>
       </dialog>
 
       <footer>
