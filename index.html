@@ -33,13 +33,10 @@
                 name="price"
                 maxlength="8"
               />
-              <button type="submit" id="btnBuy" class="btn-buy">구입</button>
+              <button type="submit" id="btnBuy" class="btn-buy" disabled>구입</button>
               </div>
             </form>
-            <ul id="priceErrorInfo">
-              <li>숫자만 입력해주세요.</li>
-              <li>1000원 이상 입력해주세요.</li>
-              <li>10,000원 이하로 입력해주세요.</li>
+            <ul id="priceErrorInfo" class="error-info-ul">
             </ul>
             <div id="resultContainer" class="result-container">
 
@@ -53,21 +50,27 @@
                  <div class="winning-box">
                    <label>당첨 번호</label>
                    <div>
-                     <input type="text" name="winning1" class="winning-number" maxlength='2'>
-                     <input type="text" name="winning2" class="winning-number" maxlength='2'>
-                     <input type="text" name="winning3" class="winning-number" maxlength='2'>
-                     <input type="text" name="winning4" class="winning-number" maxlength='2'>
-                     <input type="text" name="winning5" class="winning-number" maxlength='2'>
-                     <input type="text" name="winning6" class="winning-number" maxlength='2'>
+                     <input type="text" name="winning" class="winning-number"  >
+                     <input type="text" name="winning" class="winning-number"  >
+                     <input type="text" name="winning" class="winning-number" >
+                     <input type="text" name="winning" class="winning-number"  >
+                     <input type="text" name="winning" class="winning-number" >
+                     <input type="text" name="winning" class="winning-number">
                    </div>
                  </div>
                  <div class="bonus-box">
                    <label>보너스 번호</label>
                    <div>
-                     <input type="text" name="bonus" class="winning-number" maxlength='2'>
+                     <input type="text" name="bonus" class="bonus-number" maxlength='2' >
                    </div>
                  </div>
                </div>
+               <ul id="winningErrorInfo" class="error-info-ul">
+              </ul>
+              <ul id="bonusErrorInfo" class="error-info-ul">
+              </ul>
+              <ul id="winningAndBonusErrorInfo" class="error-info-ul">
+              </ul>
                 <button type="submit" class="btn-lotto-result" id="openModalBtn">결과 확인하기</button>
                </form>
              </div>
@@ -86,5 +89,13 @@
     </div>
     <script type="module" src="./src/step2-index.js"></script>
     <script src="./src/modal.js" ></script>
+    <script>
+    function maxLengthCheck(object) {
+  if (object.value.length > object.maxLength) {
+    object.value = object.value.slice(0, object.maxLength);
+  }
+}
+
+    </script>
   </body>
 </html>

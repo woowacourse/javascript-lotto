@@ -1,3 +1,5 @@
+import DEFINITION from "../constant/Definition.js";
+
 const ValidationUtils = {
   isEmpty: (string) => string.trim().length === 0,
   isValidArrayLength: (array, min, max) =>
@@ -5,7 +7,7 @@ const ValidationUtils = {
   isDuplicatedNumber: (array) => new Set(array).size !== array.length,
   isArrayNumberRangeOver: (numbers, min, max) =>
     numbers.some((number) =>
-      ValidationUtils.isNumberRangeOver(number, min, max)
+      ValidationUtils.isNumberRangeOver(number, min, max),
     ),
   isNotNaturalNumberInArray: (numbers) =>
     numbers.some((number) => ValidationUtils.isNotNaturalNumber(number)),
@@ -35,7 +37,22 @@ const Validator = {
       IS_ARRAY_NUMBER_RANGE_OVER: ValidationUtils.isArrayNumberRangeOver(
         numbers,
         1,
-        45
+        45,
+      ),
+    };
+
+    return errorResults;
+  },
+
+  webWinningNumbers: (numbers) => {
+    const errorResults = {
+      IS_NOT_NATURAL_NUMBER_IN_ARRAY:
+        ValidationUtils.isNotNaturalNumberInArray(numbers),
+      IS_DUPLICATED_NUMBER: ValidationUtils.isDuplicatedNumber(numbers),
+      IS_ARRAY_NUMBER_RANGE_OVER: ValidationUtils.isArrayNumberRangeOver(
+        numbers,
+        1,
+        45,
       ),
     };
 
@@ -60,8 +77,8 @@ const Validator = {
     const errorResults = {
       IS_NUMBER_RANGE_OVER: ValidationUtils.isNumberRangeOver(
         purchasePrice,
-        1000,
-        10000000000
+        DEFINITION.MIN.LOTTO_PURCHASE_PRICE,
+        DEFINITION.MAX.LOTTO_PURCHASE_PRICE,
       ),
       IS_NOT_MULTIPLE: ValidationUtils.isNotMultiple(purchasePrice, 1000),
     };
