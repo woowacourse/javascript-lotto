@@ -1,5 +1,5 @@
 import { LOTTO } from "../constants/lotto.js";
-import { PRIZE } from "../constants/prize.js";
+import { PRIZE, RANK_MAP } from "../constants/prize.js";
 import generateRandomNumbers from "../utils/generateRandomNumbers.js";
 import Lotto from "./Lotto.js";
 
@@ -34,18 +34,8 @@ class LottoGame {
   }
 
   checkRank(matchCount, isBonusMatched) {
-    switch (matchCount) {
-      case 6:
-        return PRIZE.FIRST;
-      case 5:
-        return isBonusMatched ? PRIZE.SECOND : PRIZE.THIRD;
-      case 4:
-        return PRIZE.FOURTH;
-      case 3:
-        return PRIZE.FIFTH;
-      default:
-        return;
-    }
+    const rank = RANK_MAP[matchCount];
+    return typeof rank === "function" ? rank(isBonusMatched) : rank;
   }
 
   calcTotalReward(gameResults) {

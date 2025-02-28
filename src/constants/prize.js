@@ -26,3 +26,10 @@ export const PRIZE = {
     REWARD: 5_000,
   },
 };
+
+export const RANK_MAP = {
+  6: PRIZE.FIRST,
+  5: (isBonusMatched) => (isBonusMatched ? PRIZE.SECOND : PRIZE.THIRD),
+  4: PRIZE.FOURTH,
+  3: PRIZE.FIFTH,
+};
