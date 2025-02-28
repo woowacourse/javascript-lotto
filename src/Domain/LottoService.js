@@ -10,7 +10,7 @@ import {
   validatePurchaseAmount,
   validateLottoNumbers,
   validateBonusNumber,
-} from '../Validation/validations.js';
+} from '../Validation/validateDomain.js';
 
 class LottoService {
   static initializeLotto(purchaseAmount) {

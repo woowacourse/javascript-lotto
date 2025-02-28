@@ -10,7 +10,7 @@ import {
   validateWinningNumbersInput,
   validateBonusNumberInput,
   validateRetryInput,
-} from '../Validation/validations.js';
+} from '../Validation/validateUI.js';
 
 class InputHandler {
   static async getPurchaseAmount() {

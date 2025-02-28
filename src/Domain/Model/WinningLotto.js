@@ -1,5 +1,5 @@
 import Lotto from './Lotto.js';
-import { validateBonusNumber } from '../../Validation/validations.js';
+import { validateBonusNumber } from '../../Validation/validateDomain.js';
 
 class WinningLotto extends Lotto {
   #bonusNumber;
