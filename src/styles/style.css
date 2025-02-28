@@ -104,9 +104,10 @@ html {
   margin-top: 2.8rem;
 }
 
-.amount-input-article {
+.amount-input-form {
   display: flex;
   gap: 1.6rem;
+  width: 100%;
 
   color: var(--lotto-greyscale-5);
 }
@@ -153,6 +154,9 @@ html {
 .lotto-detail-list {
   display: flex;
   flex-direction: column;
+
+  height: 200px;
+  overflow: scroll;
   gap: 1.6rem;
 }
 
@@ -275,6 +279,8 @@ html {
   background-color: transparent;
 
   font-size: 2rem;
+
+  cursor: pointer;
 }
 
 .lotto-store__statistics-title {
