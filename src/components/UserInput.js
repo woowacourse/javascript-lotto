@@ -1,19 +1,17 @@
-//@ts-check
-
 import LottoCompany from "../domain/LottoCompany";
 import { qs, qsAll } from "../utils/domHelper";
 import Validator from "../validator/Validator";
+import Button from "./@common/Button";
 import Component from "./Component";
 
 export default class UserInput extends Component {
   setEvent() {
     this.addEvent(
-      "click",
-      ".results-button",
+      "submit",
+      ".user-input-bonus-form",
       this.handleButtonClick.bind(this)
     );
   }
-
   template() {
     return `
     <h2 class="user-input-title body">
@@ -33,33 +31,49 @@ export default class UserInput extends Component {
     .join("")}
   </form>
 </article>
+<form class="user-input-bonus-form">
 <article class="user-input-bonus-article body">
   <span class="body">보너스 번호</span>
-  <form class="user-input-bonus-form">
+  <div class="user-input-bonus-form">
     <input type="number" class="user-input bonus-number" />
-  </form>
+  </div>
 </article>
 </section>
-<section class="results-button-layout">
-<button type="button" class="results-button lotto-caption">
-  결과 확인하기
-</button>
-</section>
+<section class="results-button-layout"></section>
+</form>
     `;
   }
 
-  handleButtonClick() {
+  mounted() {
+    new Button(qs(".results-button-layout"), {
+      text: "결과 확인하기",
+      size: "large",
+      className: "results-button",
+      type: "submit",
+    });
+  }
+
+  getWinNumberInputs() {
+    const winNumberInputs = qsAll(".win-number");
+    const winNumbers = Array.from(winNumberInputs).map((input) =>
+      Number(input.value)
+    );
+    Validator.validateWinNumbers(winNumbers);
+    return winNumbers;
+  }
+
+  getBonusNumberInput(winNumbers) {
+    const bonusNumberInput = qs(".bonus-number");
+    const bonusNumber = Number(bonusNumberInput.value);
+    Validator.validateBonusNumber(bonusNumber, winNumbers);
+    return bonusNumber;
+  }
+
+  handleButtonClick(event) {
     try {
-      const winNumberInputs = qsAll(".win-number");
-      const bonusNumberInput = qs(".bonus-number");
-
-      const winNumbers = Array.from(winNumberInputs).map((input) =>
-        Number(input.value)
-      );
-      const bonusNumber = Number(bonusNumberInput.value);
-
-      Validator.validateWinNumbers(winNumbers);
-      Validator.validateBonusNumber(bonusNumber, winNumbers);
+      event.preventDefault();
+      const winNumbers = this.getWinNumberInputs();
+      const bonusNumber = this.getBonusNumberInput(winNumbers);
 
       const lottoCompany = new LottoCompany(winNumbers, bonusNumber);
 
@@ -74,8 +88,12 @@ export default class UserInput extends Component {
 
       this.props.openModal();
     } catch (error) {
-      console.log("error", error);
+      console.error("error", error);
       alert(error.message);
+      winNumbers.forEach((input) => {
+        input.value = "";
+      });
+      bonusNumberInput.value = "";
     }
   }
 }

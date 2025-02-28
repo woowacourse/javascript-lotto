@@ -1,12 +1,9 @@
 import { LOTTO_RANK } from "../lib/constants";
+import { qs } from "../utils/domHelper";
+import Button from "./@common/Button";
 import Component from "./Component";
 
 export default class StatisticsModal extends Component {
-  setEvent() {
-    const { reset } = this.props || {};
-    this.addEvent("click", ".retry-btn", reset.bind(this));
-  }
-
   template() {
     return `
     <dialog class='statistics-dialog'>
@@ -27,12 +24,26 @@ export default class StatisticsModal extends Component {
           </div>
           <div class='earning-rate'>당신의 총 수익률은 ${this.earningRate()}%입니다.
           </div>
-          <form class='statistics-dialog-retry-form' method="dialog">
+          <form class='statistics-dialog-retry-form'>
             <button class='retry-btn'>다시 시작하기</button>
           </form>
         </div>
       </dialog>  
     `;
+  }
+
+  mounted() {
+    new Button(qs(".statistics-dialog-retry-form"), {
+      text: "다시 시작하기",
+      size: "small",
+      className: "retry-btn",
+      type: "submit",
+      onClick: this.handleButtonClick.bind(this),
+    });
+  }
+
+  handleButtonClick() {
+    this.props.reset();
   }
 
   earningRate() {
