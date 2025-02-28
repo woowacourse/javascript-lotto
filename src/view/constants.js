@@ -7,3 +7,5 @@ export const PRIZE_MESSAGES = {
   fourth: '4개 일치',
   fifth: '3개 일치',
 };
+
+export const PRIZE_TITLE = ['당첨 번호', '보너스 번호'];
