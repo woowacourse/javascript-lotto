@@ -1,5 +1,4 @@
 /* eslint-disable max-lines-per-function */
-
 // /**
 //  * step 2의 시작점이 되는 파일입니다.
 //  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
@@ -8,7 +7,9 @@
 import calculateRevenueRate from './domain/model/calculateRevenueRate';
 import createLottos from './domain/model/createLottos';
 import LottoStatistics from './domain/model/LottoStatistics';
+
 import { validateBonus, validateLottoNumber, validateMoney } from './domain/validation';
+
 import normalizeErrorMessage from './view/utils/normalizeErrorMessage';
 
 let userMoney;
@@ -57,7 +58,7 @@ document.getElementById('purchase-button').addEventListener('click', () => {
   }
 });
 
-// 2. 로또 결과 확인하기
+// 2-1. 로또 결과 확인하기 - 수익률
 function printRevenueRate(revenueRate) {
   const $boldText = document.querySelector('.bold-text');
   const element = createElement('p', `당신의 총 수익률은 ${revenueRate}% 입니다`);
@@ -65,6 +66,7 @@ function printRevenueRate(revenueRate) {
   element.classList.add('modal-items');
 }
 
+// 2-2. 로또 결과 확인하기 - 통계 결과
 function printStatisticsResult(rankResult) {
   toggleModal();
   Object.keys(rankResult).forEach((key) => {
@@ -102,7 +104,6 @@ document.getElementById('result-button').addEventListener('click', () => {
     const rankResult = lottoStatistics.compareLottos(userLottos, winningLotto);
     printStatisticsResult(rankResult);
   } catch (error) {
-    // eslint-disable-next-line no-alert
     alert(normalizeErrorMessage(error.message));
   }
 });
