@@ -1,8 +1,8 @@
 /* 구매폼 */
 .purchaseBox {
+  margin: 0.5rem 0;
   width: 100%;
   height: 40px;
-  margin: 0.5rem 0;
 }
 
 #purchaseInput {
@@ -18,11 +18,11 @@
 
 #purchaseButton {
   flex: 1;
-  background-color: var(--color-primary);
-  color: white;
   border: none;
-  border-radius: 4px;
+  background-color: var(--color-primary);
   font-weight: bold;
+  color: white;
+  border-radius: 4px;
 }
 
 .purchaseCountDesc {
@@ -41,13 +41,13 @@
 /* 로또 */
 .lottoListContainer {
   flex: 1 1 auto;
-  min-height: 0;
   overflow: hidden;
+  min-height: 0;
 }
 
 .lottoContainer {
-  height: 100%;
   overflow-y: auto;
+  height: 100%;
   max-height: 340px;
 }
 
@@ -57,15 +57,15 @@
 }
 
 .lottoImoji {
-  font-size: 2rem;
   margin-right: 1rem;
+  font-size: 2rem;
 }
 
 /* 당첨번호, 보너스 번호 폼 */
 .winningNumbersText {
-  width: 100%;
   justify-content: space-between;
   padding: 1rem 0;
+  width: 100%;
 }
 
 .winningNumbers > div:nth-child(1) {
@@ -87,25 +87,25 @@
 }
 
 .winningNumbersInput input {
+  border: 1px solid var(--color-greyscale-3);
   width: 2.5rem;
   height: 2.5rem;
-  text-align: center;
-  border: 1px solid var(--color-greyscale-3);
-  border-radius: 4px;
   font-size: 1.5rem;
   color: var(--color-greyscale-5);
+  text-align: center;
+  border-radius: 4px;
 }
 
 .resultButton {
+  margin-top: 1rem;
+  border: none;
+  outline: none;
   width: 100%;
   height: 2.5rem;
-  color: white;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
   background-color: var(--color-primary);
-  margin-top: 1rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
 }
 
 .resultButton:hover {
@@ -114,72 +114,72 @@
 }
 
 .modalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .modalBackground {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1;
 }
 
 .modalContent {
-  position: relative;
-  background-color: white;
-  width: 90%;
-  max-width: 400px;
-  border-radius: 8px;
+  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 2;
   overflow: hidden;
   position: relative;
-  padding: 20px;
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 8px;
 }
 
 .closeButton {
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
   position: absolute;
   top: 10px;
   right: 10px;
-  border: none;
-  outline: none;
   background-color: white;
-  font-weight: semibold;
   font-size: 1.5rem;
+  font-weight: semibold;
   line-height: 2rem;
   text-align: center;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
 }
 
 .modalContent h2 {
   padding: 2.5rem 0;
-  text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
+  text-align: center;
 }
 
 .resetButton {
+  border: none;
   width: 100%;
   height: 2.5rem;
   background-color: var(--color-primary);
-  border: none;
-  border-radius: 4px;
-  color: white;
   font-size: 1rem;
   font-weight: bold;
+  color: white;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .resetButton:hover {
@@ -192,24 +192,24 @@
 }
 
 thead > tr {
-  width: 100%;
-  line-height: 2.5rem;
-  font-weight: bold;
   border-top: 1px solid var(--color-greyscale-3);
   border-bottom: 1px solid var(--color-greyscale-3);
+  width: 100%;
+  font-weight: bold;
+  line-height: 2.5rem;
 }
 
 td {
-  text-align: center;
-  line-height: 1rem;
   padding: 1rem 0;
   border-top: 1px solid var(--color-greyscale-3);
   border-bottom: 1px solid var(--color-greyscale-3);
+  line-height: 1rem;
+  text-align: center;
 }
 
 .profitText {
-  width: 100%;
   padding: 2rem 0;
-  text-align: center;
+  width: 100%;
   font-size: 1.2rem;
+  text-align: center;
 }
