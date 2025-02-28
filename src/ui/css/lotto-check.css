@@ -12,9 +12,6 @@ main {
   text-align: center;
 }
 
-.amount-input {
-}
-
 #purchase-amount {
   background-color: transparent;
   border: 1px solid var(--color-greyscale-3);
