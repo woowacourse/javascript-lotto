@@ -24,22 +24,26 @@ export default class LottoWinningInfoForm {
       className: `${!this.#show ? "hidden" : ""} lotto-winning-info-form`,
       text: "지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.",
     });
-    const $inputsContainer = customCreateElement({
+    const $form = customCreateElement({
       tagName: "form",
+    });
+    const $inputsContainer = customCreateElement({
+      tagName: "div",
       className: "lotto-number-input-container",
     });
 
     $div.appendChild($infoText);
-    $div.appendChild($inputsContainer);
+    $form.appendChild($inputsContainer);
+    $div.appendChild($form);
 
     const { winningNumbers, bonusNumber } =
       winningLottoInfoStore.getState().winningLottoInfo;
 
     new WinningNumbersInput($inputsContainer, winningNumbers);
     new BonusNumberInput($inputsContainer, bonusNumber);
-    new Button($inputsContainer, () => {}, "결과 확인하기", "submit");
+    new Button($form, () => {}, "결과 확인하기", "submit");
 
-    $inputsContainer.addEventListener("submit", (e) => {
+    $form.addEventListener("submit", (e) => {
       e.preventDefault();
       this.handleSubmit();
     });
