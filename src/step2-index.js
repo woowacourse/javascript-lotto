@@ -5,12 +5,12 @@ import { purchaseHandler } from "./handler/purchaseHandler.js";
 import { resultHandler } from "./handler/resultHandler.js";
 import { calculateProfitRate } from "./service/ProfitService.js";
 import { getOriginalApp, setOriginalApp } from "./state/state.js";
-import { buttonDisabled } from "./util/buttonActions.js";
+import { disabledButton } from "./util/buttonActions.js";
 
 export const purchaseLotto = async () => {
   const { lottoArray, lottoCount } = await PurchaseController();
   purchaseHandler(lottoCount, lottoArray);
-  buttonDisabled("purchase");
+  disabledButton("purchase");
 };
 
 export const showResult = async (lottoCount, lottoArray) => {
@@ -33,7 +33,6 @@ export const retry = () => {
 const runLotto = () => {
   const originalApp = document.querySelector("#app");
   setOriginalApp(originalApp);
-
   document.querySelector("[name=purchase]").addEventListener("click", () => {
     purchaseLotto();
   });

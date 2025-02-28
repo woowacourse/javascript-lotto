@@ -304,7 +304,7 @@ header {
 }
 .alert {
   display: inline;
-  padding: 1rem;
+  padding: 0.8rem 1rem;
   background-color: var(--alert);
   color: white;
   border-radius: 10rem;
@@ -317,4 +317,8 @@ header {
   100% {
     opacity: 1;
   }
+}
+
+.warning {
+  color: var(--alert);
 }

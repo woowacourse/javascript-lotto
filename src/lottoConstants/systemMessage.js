@@ -18,6 +18,7 @@ const SYSTEM_MESSAGE = {
   MATCH_COUNT: (count, prize) => `${count}개 일치 (${formatNumber(prize)}원) - ${count}개`,
   MATCH_BONUS_COUNT: (count, prize) => `5개 일치, 보너스 볼 일치 (${formatNumber(prize)}원) - ${count}개`,
   PROFIT: (profit) => `총 수익률을 ${profit}% 입니다.`,
+  CANNOT_RETRY: "결과를 확인한 후 재구매할 수 있습니다.",
 };
 
 export default SYSTEM_MESSAGE;

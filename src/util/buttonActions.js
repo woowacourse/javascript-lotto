@@ -1,11 +1,9 @@
-export const buttonDisabled = (name) => {
+export const disabledButton = (name) => {
   const button = document.querySelector(`[name=${name}]`);
   button.disabled = true;
 };
 
-export const buttonAbled = (name) => {
+export const enableButton = (name) => {
   const button = document.querySelector(`[name=${name}]`);
   button.disabled = false;
 };
-
-//네이밍 변경
