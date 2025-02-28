@@ -39,6 +39,7 @@ class App extends Component {
 
     new AmountInput(qs(".amount-input-layout"), {
       setLottoList: setLottoList.bind(this),
+      state: this.state,
     });
 
     if (lottoList.length !== 0) {

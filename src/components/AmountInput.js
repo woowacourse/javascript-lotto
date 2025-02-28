@@ -1,4 +1,5 @@
 import LottoShop from "../domain/LottoShop.js";
+import { INPUT_MESSAGES } from "../lib/constants.js";
 import { qs } from "../utils/domHelper.js";
 import Validator from "../validator/Validator.js";
 import Button from "./@common/Button.js";
@@ -31,7 +32,7 @@ export default class AmountInput extends Component {
       size: "small",
       className: "amount-input-button",
       type: "submit",
-      onClick: this.handleButtonClick.bind(this),
+      onClick: this.handleFormSubmit.bind(this),
     });
   }
 
@@ -43,12 +44,26 @@ export default class AmountInput extends Component {
     return purchaseAmount;
   }
 
+  getLottoList(purchaseAmount) {
+    const lottoList = LottoShop.purchaseLotto(purchaseAmount);
+    this.props.setLottoList({ lottoList });
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+    this.handleButtonClick();
+  }
+
   handleButtonClick() {
     try {
       const purchaseAmount = this.getPurchaseAmount();
-      const lottoList = LottoShop.purchaseLotto(purchaseAmount);
+      const hasLottoList = this.props.state.lottoList.length === undefined;
 
-      this.props.setLottoList({ lottoList });
+      if (hasLottoList && !confirm(INPUT_MESSAGES.alreadyPurchased())) {
+        return;
+      }
+
+      this.getLottoList(purchaseAmount);
     } catch (error) {
       console.error(error);
       alert(error.message);

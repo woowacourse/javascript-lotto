@@ -46,6 +46,8 @@ export const INPUT_MESSAGES = {
   winNumber: () => "당첨 번호를 입력해 주세요.",
   bonusNumber: () => "보너스 번호를 입력해 주세요.",
   retry: () => "다시 시작하시겠습니까? (y/n)",
+  alreadyPurchased: () =>
+    "이미 구매한 로또가 있습니다. 그래도 구매하시겠습니까?",
 };
 
 export const OUTPUT_MESSAGES = {
