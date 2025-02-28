@@ -3,4 +3,9 @@ const resetError = (errorElement) => {
   errorElement.style.visibility = 'hidden';
 };
 
-export { resetError };
+const showError = (errorElement, message) => {
+  errorElement.textContent = message;
+  errorElement.style.visibility = 'visible';
+};
+
+export { resetError, showError };
