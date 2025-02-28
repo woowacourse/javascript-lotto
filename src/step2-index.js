@@ -1,7 +1,6 @@
 import { PurchaseController } from "./controller/PurchaseController.js";
 import { ResultController } from "./controller/ResultController.js";
 import { WinningController } from "./controller/WinningController.js";
-import { initialHandler } from "./handler/initialHandler.js";
 import { purchaseHandler } from "./handler/purchaseHandler.js";
 import { resultHandler } from "./handler/resultHandler.js";
 import { calculateProfitRate } from "./service/ProfitService.js";
@@ -34,6 +33,9 @@ export const retry = () => {
 const runLotto = () => {
   const originalApp = document.querySelector("#app");
   setOriginalApp(originalApp);
-  initialHandler();
+
+  document.querySelector("[name=purchase]").addEventListener("click", () => {
+    purchaseLotto();
+  });
 };
 runLotto();
