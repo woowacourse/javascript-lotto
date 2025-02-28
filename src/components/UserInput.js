@@ -13,7 +13,7 @@ export default class UserInput extends Component {
     <form class="user-input-form">
       <section class="user-input-section">
         <article class="user-input-win-article body">
-          <span class="body">당첨 번호</span>
+          <p class="body">당첨 번호</p>
           ${Array(6)
             .fill("")
             .map(
