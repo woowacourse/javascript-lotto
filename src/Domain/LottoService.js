@@ -6,9 +6,15 @@ import {
   calculateLottoProfit,
 } from '../Utils/calculateLotto.js';
 import { generateRandomLottoNumbers } from '../Utils/lottoNumberGenerator.js';
+import {
+  validatePurchaseAmount,
+  validateLottoNumbers,
+  validateBonusNumber,
+} from '../Validation/validations.js';
 
 class LottoService {
   static initializeLotto(purchaseAmount) {
+    validatePurchaseAmount(purchaseAmount);
     const lottoManager = new LottoManager();
     const lottoTickets = calculateLottoTickets(purchaseAmount);
     lottoManager.makeLottoList(lottoTickets, generateRandomLottoNumbers);
@@ -16,6 +22,8 @@ class LottoService {
   }
 
   static initializeWinningLotto(winningNumbers, bonusNumber) {
+    validateLottoNumbers(winningNumbers);
+    validateBonusNumber(bonusNumber, winningNumbers);
     return new WinningLotto(winningNumbers, bonusNumber);
   }
 

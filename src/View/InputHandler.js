@@ -5,33 +5,37 @@ import {
   getWinningNumbersInput,
   getRetryInput,
 } from './inputView.js';
-import Validator from './Validation/Validator.js';
+import {
+  validatePurchaseAmountInput,
+  validateWinningNumbersInput,
+  validateBonusNumberInput,
+  validateRetryInput,
+} from '../Validation/validations.js';
 
 class InputHandler {
   static async getPurchaseAmount() {
     return await readUserInputUntilSuccess({
       readUserInput: getPurchaseAmountInput,
-      formatter: Validator.validatePurchaseAmount,
+      formatter: validatePurchaseAmountInput,
     });
   }
   static async getWinningNumbers() {
     return await readUserInputUntilSuccess({
       readUserInput: getWinningNumbersInput,
-      formatter: Validator.validateWinningNumbers,
+      formatter: validateWinningNumbersInput,
     });
   }
   static async getBonusNumber(winningNumbers) {
     return await readUserInputUntilSuccess({
       readUserInput: getBonusNumberInput,
-      formatter: (input) =>
-        Validator.validateBonusNumber(input, winningNumbers),
+      formatter: (input) => validateBonusNumberInput(input, winningNumbers),
     });
   }
 
   static async getRetry() {
     return await readUserInputUntilSuccess({
       readUserInput: getRetryInput,
-      formatter: Validator.validateRetryInput,
+      formatter: validateRetryInput,
     });
   }
 }
