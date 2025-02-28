@@ -7,6 +7,10 @@ class Validator {
       throw new Error(Constants.ERROR.PRICE_TYPE);
     if (!NumberChecker.isUnitNumber(Number(priceString), Constants.LOTTO.UNIT))
       throw new Error(Constants.ERROR.PRICE_UNIT);
+    if (
+      NumberChecker.isMoreThan(Number(priceString), Constants.LOTTO.MAX_MONEY)
+    )
+      throw new Error(Constants.ERROR.MONEY_TO_BIG);
   }
 
   static isTargetNumber(targetNumberString) {
