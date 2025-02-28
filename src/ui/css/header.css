@@ -1,0 +1,10 @@
+header {
+  font-size: 1.6rem;
+  background-color: var(--color-primary);
+  padding: 10px;
+  padding-left: 70px;
+}
+
+header h1 {
+  color: var(--color-greyscale-1);
+}
