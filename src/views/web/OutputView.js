@@ -3,6 +3,7 @@ import {
   createTag,
   disableElement,
   getByClass,
+  getById,
   showElement,
 } from '../../utils/dom.js';
 import WinningInput from './components/WinningInput.js';
@@ -56,6 +57,7 @@ const OutputView = {
   disablePurchase() {
     disableElement('purchaseInput');
     disableElement('purchaseButton');
+    getById('purchaseButton').classList.add('disabled');
   },
 
   generateWinningAndBonusInput() {

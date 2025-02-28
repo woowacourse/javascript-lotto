@@ -7,7 +7,7 @@
 
 #purchaseInput {
   flex: 9;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   padding: 0 0.5rem;
 }
 
@@ -23,6 +23,11 @@
   font-weight: bold;
   color: white;
   border-radius: 4px;
+}
+
+#purchaseButton:disabled {
+  background-color: var(--color-greyscale-3);
+  cursor: not-allowed;
 }
 
 .purchaseCountDesc {
