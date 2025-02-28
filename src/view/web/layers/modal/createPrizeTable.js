@@ -24,13 +24,7 @@ const createPrizeTable = (result) => {
   const headerTemplate = setHeader([...PRIZE_RESULT.HEADERS]);
   const rowTemplate = rows.map((row) => setRow(row)).join("");
 
-  document
-    .getElementById("prize-table")
-    .insertAdjacentHTML("afterbegin", headerTemplate);
-
-  document
-    .getElementById("prize-table-body")
-    .insertAdjacentHTML("beforeend", rowTemplate);
+  return { headerTemplate, rowTemplate };
 };
 
 export default createPrizeTable;

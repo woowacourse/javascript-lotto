@@ -7,8 +7,7 @@ const createRevenueRateMessage = (revenueRate) => {
     PRIZE_RESULT.REVENUE_RATE_DIGITS,
   );
 
-  document.getElementById("revenue-rate-message").textContent =
-    `당신의 총 수익률은 ${formattedRevenueRate}% 입니다.`;
+  return `당신의 총 수익률은 ${formattedRevenueRate}% 입니다.`;
 };
 
 export default createRevenueRateMessage;

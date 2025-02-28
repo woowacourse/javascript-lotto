@@ -1,77 +1,33 @@
-#prize-result-modal[open] {
+.prize-result-modal[open] {
   width: 350px;
   height: 500px;
   padding: var(--default-padding);
-
-  background-color: var(--lotto-greyscale-1);
-  border: none;
-  border-radius: 4px;
-
-  display: flex;
-  flex-direction: column;
 
   font-size: 15px;
   line-height: 24px;
 }
 
-#prize-result-modal > h2 {
+.prize-result-modal > h2 {
   height: 24px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-weight: 600;
+  font-weight: 700;
   font-size: 20px;
-  color: var(--lotto-greyscale-5);
-  letter-spacing: 0.15px;
-  text-align: center;
 }
 
-#prize-result-modal > table {
-  border-collapse: collapse;
-
-  letter-spacing: 0.5px;
-  text-align: center;
-}
-
-#prize-result-modal th,
-#prize-result-modal td {
-  padding: 8px 8px 8px 0;
-}
-
-#prize-result-modal tr {
-  border: solid var(--border-default-color);
-  border-width: 1px 0;
-}
-
-#prize-result-modal > h3 {
+.prize-result-modal > h3 {
   height: 24px;
   margin: 32px 0;
 
+  font-weight: 600;
   font-size: 110%;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-align: center;
 }
 
-#prize-result-modal > button:hover {
-  filter: brightness(90%);
-  cursor: pointer;
+.prize-result-modal tr {
+  border-width: 1px 0;
 }
 
 .restart-button {
-  height: 36px;
-  padding: 6px 6px 6px 8px;
-
-  border: none;
-  border-radius: 4px;
-
-  background-color: var(--lotto-primary);
   font-weight: 700;
-  color: var(--lotto-greyscale-1);
-  letter-spacing: 0.5px;
-  text-align: center;
 }
 
 .close-button {
@@ -81,7 +37,6 @@
   height: 14px;
 
   position: fixed;
-
   align-self: end;
 }
 
