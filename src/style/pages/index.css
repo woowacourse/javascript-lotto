@@ -21,10 +21,6 @@ main {
   visibility: hidden;
 }
 
-input#price.error {
-  border: 2px solid red;
-}
-
 footer {
   border-top: 1px solid rgba(78, 91, 166, 0.2);
   padding: 24px;

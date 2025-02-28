@@ -13,7 +13,7 @@ export const updateLottoUI = (lottoArray, lottoCount) => {
 const updateLottoCountUI = (lottoCount) => {
   const purchaseResult = $('.purchase-result');
   const lottoCountUI = document.createElement('p');
-  lottoCountUI.classList.add('typo-15-R');
+  lottoCountUI.classList.add('typo-body');
   lottoCountUI.textContent = SYSTEM_MESSAGE.COUNT(lottoCount);
 
   purchaseResult.appendChild(lottoCountUI);
@@ -44,7 +44,7 @@ const createLottoListItem = (lotto) => {
 
   // 로또 번호
   const numbersSpan = document.createElement('span');
-  numbersSpan.classList.add('typo-15-R', 'lotto-numbers');
+  numbersSpan.classList.add('typo-body', 'lotto-numbers');
   numbersSpan.textContent = lotto.toString();
 
   listItem.appendChild(ticketIcon);

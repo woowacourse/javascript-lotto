@@ -7,22 +7,23 @@
     <link rel="stylesheet" href="src/style/pages/index.css" />
     <link rel="stylesheet" href="src/style/pages/lotto-box.css" />
     <link rel="stylesheet" href="src/style/pages/winning-number.css" />
+    <link rel="stylesheet" href="src/style/pages/modal.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body>
+  <body class="typo-body">
     <header>
-      <h1 class="typo-24-EB">🎱 행운의 로또</h1>
+      <h1 class="typo-title">🎱 행운의 로또</h1>
     </header>
     <main class="flex-center">
       <section class="lotto-box">
-        <h2 class="typo-24-EB flex-center">🎱 내 번호 당첨 확인 🎱</h2>
+        <h2 class="typo-title flex-center">🎱 내 번호 당첨 확인 🎱</h2>
         <form id="purchase-form">
-          <label for="price" class="typo-15-R">구입할 금액을 입력해주세요.</label>
+          <label for="price">구입할 금액을 입력해주세요.</label>
           <div class="purchase-input">
             <input type="number" id="price" placeholder="금액" />
-            <button class="typo-14-B">구입</button>
+            <button class="typo-caption">구입</button>
           </div>
-          <p class="error-message" id="price-error"></p>
+          <p class="error-message typo-caption" id="price-error"></p>
         </form>
 
         <div class="purchase-result"></div>
@@ -32,7 +33,7 @@
           <div class="spacing-12"></div>
           <div class="winning-number-container">
             <div class="winning-number-group">
-              <label class="typo-15-R">당첨 번호</label>
+              <label>당첨 번호</label>
               <div class="winning-number-boxes">
                 <input type="text" id="winning-1" value="3" class="number-box" maxlength="2" />
                 <input type="text" id="winning-2" value="5" class="number-box" maxlength="2" />
@@ -44,18 +45,64 @@
             </div>
 
             <div class="bonus-number-group">
-              <label for="bonus" class="typo-15-R">보너스 번호</label>
+              <label for="bonus">보너스 번호</label>
               <input type="text" id="bonus" class="number-box bonus-box" value="23" maxlength="2" />
             </div>
           </div>
           <div class="spacing-4"></div>
           <p class="error-message" id="winning-number-error"></p>
           <div class="spacing-28"></div>
-          <button class="typo-14-B">결과 확인하기</button>
+          <button class="typo-caption" id="result-button">결과 확인하기</button>
         </form>
       </section>
+
+      <!-- 당첨 통계 모달 -->
+      <div id="result-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <h2 class="typo-subtitle">🏆 당첨 통계 🏆</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>일치 개수</th>
+                <th>당첨금</th>
+                <th>당첨 개수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td id="match-3">n개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td id="match-4">n개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td id="match-5">n개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td id="match-bonus">n개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td id="match-6">n개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>당신의 총 수익률은 <span id="profit-rate">%</span>입니다.</p>
+          <button id="restart-button" class="typo-caption">다시 시작하기</button>
+        </div>
+      </div>
     </main>
-    <footer><p class="typo-14-B flex-center">Copyright 2023. woowacourse</p></footer>
+    <footer><p class="typo-caption flex-center">Copyright 2023. woowacourse</p></footer>
     <script src="/src/js/index.js" type="module"></script>
   </body>
 </html>

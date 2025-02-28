@@ -9,26 +9,30 @@
 }
 
 /* 타이포그래피 */
-.typo-24-EB {
+.typo-title {
   font-weight: 800; /* ExtraBold */
   font-size: 1.5rem; /* 24px → rem */
-  line-height: 120%;
-}
-
-.typo-16-SB {
-  font-weight: 600; /* SemiBold */
-  font-size: 1.25rem; /* 16px → rem */
-  line-height: 120%;
-}
-
-.typo-15-R {
-  font-weight: 400; /* Regular */
-  font-size: 0.9375rem; /* 15px → rem */
+  font-weight: 800;
   line-height: 150%;
 }
 
-.typo-14-B {
+.typo-subtitle {
+  font-weight: 600; /* SemiBold */
+  font-size: 1.25rem; /* 16px → rem */
+  line-height: 120%;
+  letter-spacing: 0.15px;
+}
+
+.typo-body {
+  font-weight: 400; /* Regular */
+  font-size: 0.9375rem; /* 15px → rem */
+  line-height: 160%;
+  letter-spacing: 0.5px;
+}
+
+.typo-caption {
   font-weight: 700; /* Bold */
   font-size: 0.875rem; /* 14px → rem */
-  line-height: 160%;
+  line-height: 114%;
+  letter-spacing: 1.25px;
 }

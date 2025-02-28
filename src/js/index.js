@@ -63,3 +63,58 @@ const getWinningNumbers = () => {
 
   return { winningNumbers, bonusNumber };
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  const resultButton = document.querySelector('#result-button');
+  const modal = document.querySelector('#result-modal');
+  const closeButton = document.querySelector('.close-button');
+  const restartButton = document.querySelector('#restart-button');
+  const body = document.body;
+
+  // 🔹 스크롤 방지 함수
+  const lockScroll = () => {
+    body.style.overflow = 'hidden';
+  };
+
+  // 🔹 스크롤 해제 함수
+  const unlockScroll = () => {
+    body.style.overflow = 'auto';
+  };
+
+  // 🔹 모달 열기
+  resultButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    modal.style.display = 'flex';
+    lockScroll(); // 스크롤 방지
+  });
+
+  // 🔹 모달 닫기 (X 버튼 클릭)
+  closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+    unlockScroll(); // 스크롤 해제
+  });
+
+  // 🔹 모달 닫기 (다시 시작하기 버튼 클릭)
+  restartButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+    unlockScroll(); // 스크롤 해제
+    location.reload(); // 페이지 새로고침
+  });
+
+  // 🔹 ESC 키 입력 시 모달 닫기
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      modal.style.display = 'none';
+      unlockScroll(); // 스크롤 해제
+    }
+  });
+
+  // 🔹 모달 바깥 클릭 시 닫기
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      unlockScroll(); // 스크롤 해제
+    }
+  });
+});
+ㄴ;
