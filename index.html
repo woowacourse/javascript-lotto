@@ -11,9 +11,52 @@
     <link rel="stylesheet" href="./src/style/purchase.css" />
     <link rel="stylesheet" href="./src/style/userLotto.css" />
     <link rel="stylesheet" href="./src/style/winningInput.css" />
+    <link rel="stylesheet" href="./src/style/winningResult.css" />
   </head>
 
   <body>
+    <div class="winning-result-dialog-background">
+      <dialog class="winning-result-dialog" open>
+        <button class="winning-result-close-button">
+          <img src="../public/Vector.png" alt="닫기" />
+        </button>
+        <h3 class="winning-result-title">🏆 당첨 통계 🏆</h3>
+        <div class="winning-result-table-container">
+          <div class="winning-result-table">
+            <p class="winning-result-table-title">일치 갯수</p>
+            <p class="winning-result-table-title">당첨금</p>
+            <p class="winning-result-table-title">당첨 갯수</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">3개</p>
+            <p class="winning-result-table-item">5,000</p>
+            <p class="winning-result-table-item">n개</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">4개</p>
+            <p class="winning-result-table-item">50,000</p>
+            <p class="winning-result-table-item">n개</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">5개</p>
+            <p class="winning-result-table-item">1,500,000</p>
+            <p class="winning-result-table-item">n개</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">5개 + 보너스볼</p>
+            <p class="winning-result-table-item">30,000,000</p>
+            <p class="winning-result-table-item">n개</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">6개</p>
+            <p class="winning-result-table-item">2,000,000,000</p>
+            <p class="winning-result-table-item">n개</p>
+          </div>
+        </div>
+        <p class="winning-result-total-rate">당신의 총 수익률은 100%입니다.</p>
+        <button class="winning-result-restart-button">다시 시작하기</button>
+      </dialog>
+    </div>
     <div id="app">
       <header class="header-container">
         <h1 class="header-title">🎱 행운의 로또</h1>
