@@ -17,9 +17,14 @@ export class WebLottoController {
         }
     }
 
+    handleWinningClic(event){
+        event.preventDefault();
+        const winningNumber = webInputHandler.winningNumbers();
+        const winningLotto = webInputHandler.bonusNumber(winningNumber);
 
-    handleWinningClick(event){
-        handleWinningClick(event, this.#lottoList)
+        if(winningNumber!==null && winningLotto !== null){
+            handleWinningClick(this.#lottoList, winningLotto)
+        }
     }
 
     handleRestartClick(event){

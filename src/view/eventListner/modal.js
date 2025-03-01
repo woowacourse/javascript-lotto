@@ -10,7 +10,6 @@ function closeModal() {
     DOM.modalBackdrop.style.visibility = "hidden";
 }
 
-DOM.winningButton.addEventListener("click", openModal);
 DOM.closeButton.addEventListener("click", closeModal);
 DOM.modalBackdrop.addEventListener("click", closeModal);
 document.addEventListener("keydown", (event) => {

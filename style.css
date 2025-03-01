@@ -282,7 +282,17 @@
   text-align: center;
 }
 
-.error-text {
+.purchase-error-text {
+  color:red;
+  font-size:14px;
+}
+
+.winning-error-text {
+  color:red;
+  font-size:14px;
+}
+
+.bonus-error-text {
   color:red;
   font-size:14px;
 }

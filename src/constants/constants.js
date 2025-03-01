@@ -71,8 +71,10 @@ export const DOM = {
   purchaseButton: document.querySelector(".lotto-form button"),
   inputPrice: document.querySelector(".lotto-form input"),
   winningButton: document.querySelector(".winning-form button"),
-  winningNumberInputs: [...document.querySelectorAll(".winning-input-list input")], // NodeList → 배열 변환
+  winningNumberInputs: [...document.querySelectorAll(".winning-input-list input")],
   closeButton: document.querySelector(".close-button"),
   winningRateText: document.querySelector(".winning-rate-text"),
-  errorText: document.querySelector(".error-text")
+  purchaseErrorText: document.querySelector(".purchase-error-text"),
+  winningErrorText: document.querySelector(".winning-error-text"),
+  bonusErrorText: document.querySelector(".bonus-error-text"),
 };
