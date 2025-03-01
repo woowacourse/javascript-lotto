@@ -87,11 +87,16 @@ inputs.forEach((input) => {
 });
 
 const winningStasModal = document.getElementById("winning-stats-modal");
+const buttonRestart = document.getElementById("button-restart");
 
 buttonCheckResult.addEventListener("click", () => {
     displayWinningDetails(winningRanks);
     handleResult(purchaseAmount, winningRanks);
-    
+
     winningStasModal.showModal();
     winningStasModal.style.visibility = "visible";
+});
+
+buttonRestart.addEventListener("click", () => {
+    location.reload();
 });

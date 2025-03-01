@@ -99,7 +99,20 @@
   bottom: 20px; */
 }
 
-#button-purchase:hover, #button-check-result:hover {
+#button-restart {
+  width: 100%;
+  background: #4E5BA6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 17px;
+  margin: 10px 0;
+  font-size: 17px;
+  /* position: absolute;
+  bottom: 20px; */
+}
+
+#button-purchase:hover, #button-check-result:hover, #button-restart:hover {
   background: #2e3fa2;
   cursor: pointer;
 }
