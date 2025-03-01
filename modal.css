@@ -1,0 +1,113 @@
+.prize-result {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 500px;
+  background-color: var(--grey-100);
+  z-index: 999;
+  border: none;
+  border-radius: 4px;
+}
+
+.result-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 80px;
+}
+.close-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#close-button {
+  border: none;
+  background-color: var(--grey-100);
+}
+
+.result-title {
+  align-items: flex-end;
+  font-size: var(--subtitle-font-size);
+  font-weight: var(--subtitle-font-weight);
+  line-height: var(--subtitle-line-height);
+  letter-spacing: var(--subtitle-letter-spacing);
+}
+
+.result-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+thead th {
+  font-size: var(--body-font-size);
+  font-weight: var(--subtitle-font-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter-spacing);
+}
+
+th {
+  width: 30%;
+  padding: 10px 0;
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter-spacing);
+  border-top: 1px solid var(--border-color-light);
+}
+
+tbody tr {
+  border-top: 1px solid var(--border-color-light);
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+tbody {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.result-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.win-result {
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter-spacing);
+}
+
+.revenue-rate {
+  font-size: var(--body-font-size);
+  font-weight: var(--subtitle-font-weight);
+  line-height: var(--subtitle-line-height);
+  letter-spacing: var(--subtitle-letter-spacing);
+  margin-bottom: 24px;
+}
+
+#retry-button {
+  background-color: var(--primary-color);
+  color: var(--grey-100);
+  border: none;
+  height: 36px;
+  border-radius: 4px;
+  width: 100%;
+  font-size: var(--caption-font-size);
+  font-weight: var(--caption-font-weight);
+  line-height: var(--caption-line-height);
+  letter-spacing: var(--caption-letter-spacing);
+}
