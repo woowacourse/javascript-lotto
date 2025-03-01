@@ -69,6 +69,15 @@ input:focus {
   outline-color: var(--lotto-greyscale-4);
 }
 
+input[type="number"] {
+  appearance: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+}
+
 button {
   width: 100%;
   height: 36px;
