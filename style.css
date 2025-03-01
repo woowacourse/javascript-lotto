@@ -1,0 +1,59 @@
+:root {
+  /* color */
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000000;
+  --lotto-primary: #4e5ba6;
+
+  /* Typography */
+  /* font style */
+  --font-title:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+
+  /* font size */
+  --text-title: 24px;
+  --text-subtitle: 20px;
+  --text-body: 15px;
+  --text-caption: 14px;
+
+  /* font weight */
+  --weight-extra-bold: 800;
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+}
+
+.text-title {
+  font-family: var(--font-title);
+  font-size: var(--text-title);
+  font-weight: var(--weight-extra-bold);
+}
+
+.text-subtitle {
+  font-family: var(--font-title);
+  font-size: var(--text-subtitle);
+  font-weight: var(--weight-semi-bold);
+}
+
+.text-body {
+  font-family: var(--font-title);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+}
+
+.text-caption {
+  font-family: var(--font-title);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-bold);
+}
+
+.text-placeholder {
+  font-family: var(--font-title);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  color: var(--lotto-greyscale-3);
+}
+
