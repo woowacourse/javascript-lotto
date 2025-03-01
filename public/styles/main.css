@@ -28,6 +28,11 @@
   flex-direction: row;
 }
 
+.main-purchase-amount-form {
+  display: flex;
+  flex-direction: row;
+}
+
 .main-purchase-amount-input-label-container {
   width: 310px;
   display: flex;

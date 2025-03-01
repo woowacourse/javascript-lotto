@@ -159,13 +159,17 @@ class App {
   }
 
   #initializePurchaseAmountByWeb() {
-    const $purchaseButton = document.querySelector(
-      '.main-purchase-amount-button',
-    );
-    const $newPurchaseButton = $purchaseButton.cloneNode(true);
-    $purchaseButton.replaceWith($newPurchaseButton);
+    const $purchaseForm = document.querySelector('#lottoPurchaseForm');
+    const $newPurchaseForm = $purchaseForm.cloneNode(true);
+    $purchaseForm.replaceWith($newPurchaseForm);
 
-    $newPurchaseButton.addEventListener('click', () => {
+    $newPurchaseForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (event.target.id !== 'lottoPurchaseForm') {
+        return;
+      }
+
       const purchaseAmountInput = this.#initializeWebInput({
         readUserInput: getPurchaseAmountInputByWeb,
         formatter: validateAndFormatPurchaseAmountInput,

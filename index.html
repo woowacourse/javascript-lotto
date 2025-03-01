@@ -20,23 +20,23 @@
       <main class="main">
         <h3 class="main-winning-check-title">🎱 내 번호 당첨 확인 🎱</h3>
         <section class="main-purchase-amount">
-          <article class="main-purchase-amount-input-label-container">
-            <label
-              class="main-purchase-amount-input-label"
-              for="purchaseAmount"
-            >
-              구입할 금액을 입력해주세요.
-            </label>
-            <input
-              id="purchaseAmount"
-              type="number"
-              class="main-purchase-amount-input"
-              placeholder="금액"
-            />
-          </article>
-          <button type="button" class="main-purchase-amount-button">
-            구입
-          </button>
+          <form id="lottoPurchaseForm" class="main-purchase-amount-form">
+            <article class="main-purchase-amount-input-label-container">
+              <label
+                class="main-purchase-amount-input-label"
+                for="purchaseAmount"
+              >
+                구입할 금액을 입력해주세요.
+              </label>
+              <input
+                id="purchaseAmount"
+                type="number"
+                class="main-purchase-amount-input"
+                placeholder="금액"
+              />
+            </article>
+            <button class="main-purchase-amount-button">구입</button>
+          </form>
         </section>
         <section id="lottoListWinningLottoContainer"></section>
       </main>
