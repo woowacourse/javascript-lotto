@@ -1,8 +1,8 @@
-import LottoMachine from "../../domain/LottoMachine/LottoMachine";
-import parseAndValidatePurchaseAmount from "../../domain/processors/parseAndValidatePurchaseAmount";
-import DomUpdator from "../../utils/DomUpdator";
-import DomSelector from "../../utils/domSelector";
-import WebView from "../../view/WebView";
+import LottoMachine from "../../domain/LottoMachine/LottoMachine.js";
+import parseAndValidatePurchaseAmount from "../../domain/processors/parseAndValidatePurchaseAmount.js";
+import DomUpdator from "../../utils/DomUpdator.js";
+import DomSelector from "../../utils/domSelector.js";
+import WebView from "../../view/WebView.js";
 
 const handlePurchase = () => {
   // DOM 선택

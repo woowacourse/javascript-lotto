@@ -1,8 +1,8 @@
-import DomUpdator from "../../utils/DomUpdator";
-import DomSelector from "../../utils/domSelector";
-import handlePurchase from "./handlePurchase";
-import handleRestart from "./handleRestart";
-import handleWinningCheck from "./handleWinningCheck";
+import DomUpdator from "../../utils/DomUpdator.js";
+import DomSelector from "../../utils/domSelector.js";
+import handlePurchase from "./handlePurchase.js";
+import handleRestart from "./handleRestart.js";
+import handleWinningCheck from "./handleWinningCheck.js";
 
 const startLottoGame = async () => {
   const purchase_button = DomSelector.purchaseButton;

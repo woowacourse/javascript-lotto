@@ -1,11 +1,11 @@
-import { LOTTO_NUMBER_SPLITER } from "../../constants/constant";
-import generateAnswerLotto from "../../domain/generateAnswerLotto";
-import parseAndValidateBonusNumber from "../../domain/processors/parseAndValidateBonusNumber";
-import parseAndValidateWinningNumbers from "../../domain/processors/parseAndValidateWinningNumbers";
-import profitCalculator from "../../domain/profitCalculator/profitCalculator";
-import DomUpdator from "../../utils/DomUpdator";
-import DomSelector from "../../utils/domSelector";
-import WebView from "../../view/WebView";
+import { LOTTO_NUMBER_SPLITER } from "../../constants/constant.js";
+import generateAnswerLotto from "../../domain/generateAnswerLotto.js";
+import parseAndValidateBonusNumber from "../../domain/processors/parseAndValidateBonusNumber.js";
+import parseAndValidateWinningNumbers from "../../domain/processors/parseAndValidateWinningNumbers.js";
+import profitCalculator from "../../domain/profitCalculator/profitCalculator.js";
+import DomUpdator from "../../utils/DomUpdator.js";
+import DomSelector from "../../utils/domSelector.js";
+import WebView from "../../view/WebView.js";
 
 const handleWinningCheck = (purchaseAmount, lottoPack) => {
   const winning_numbers = DomSelector.winningNumbers;

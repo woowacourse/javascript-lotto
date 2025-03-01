@@ -1,5 +1,5 @@
-import DomUpdator from "../../utils/DomUpdator";
-import DomSelector from "../../utils/domSelector";
+import DomUpdator from "../../utils/DomUpdator.js";
+import DomSelector from "../../utils/domSelector.js";
 
 const handleRestart = () => {
   const lotto_game = DomSelector.lottoGame;
