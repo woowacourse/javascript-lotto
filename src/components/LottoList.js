@@ -13,7 +13,7 @@ export default class LottoList extends Component {
                 .map((lotto) => {
                   return `
               <span class="lotto-detail-item-number"
-                ><img src="/src/assets/ic_admit_one.png" />${lotto.numbers.join(
+                ><img src="./src/assets/ic_admit_one.png" />${lotto.numbers.join(
                   ", "
                 )}</span
               >
