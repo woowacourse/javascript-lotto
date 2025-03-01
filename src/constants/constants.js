@@ -74,4 +74,5 @@ export const DOM = {
   winningNumberInputs: [...document.querySelectorAll(".winning-input-list input")], // NodeList → 배열 변환
   closeButton: document.querySelector(".close-button"),
   winningRateText: document.querySelector(".winning-rate-text"),
+  errorText: document.querySelector(".error-text")
 };

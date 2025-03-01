@@ -281,3 +281,8 @@
   border: none;
   text-align: center;
 }
+
+.error-text {
+  color:red;
+  font-size:14px;
+}
