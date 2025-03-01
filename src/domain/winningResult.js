@@ -27,11 +27,10 @@ const handleLottoNumberValidate = () => {
   validateLottoNumber(winningNumbers);
   validateBonus(bonusNumber, winningNumbers);
 
-  const winningNumberObj = {
+  return {
     bonus: bonusNumber,
     lotto: winningNumbers,
   };
-  return winningNumberObj;
 };
 
 const handleWinningResult = (e, lottos, money) => {
