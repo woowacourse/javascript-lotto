@@ -122,7 +122,7 @@ const $lottoFormBtn = document.getElementById('lotto-form__btn');
 const $modalWrap = document.getElementById('modal-wrap');
 const $app = document.getElementById('app');
 const $modalCloseBtn = document.getElementById('modal__close-btn');
-// const $retryBtn = document.getElementById('modal__retry-btn');
+const $retryBtn = document.getElementById('modal__retry-btn');
 
 $lottoFormBtn.addEventListener('click', () => {
   $modalWrap.classList.remove('hidden');
@@ -132,4 +132,16 @@ $lottoFormBtn.addEventListener('click', () => {
 $modalCloseBtn.addEventListener('click', () => {
   $modalWrap.classList.add('hidden');
   $app.style.backgroundColor = 'white';
+});
+
+$retryBtn.addEventListener('click', () => {
+  $afterPurchaseWrap.classList.add('hidden');
+  $modalWrap.classList.add('hidden');
+  $purchaseInput.disabled = false;
+  $app.style.backgroundColor = 'white';
+  $purchaseForm.reset();
+  $lottoForm.reset();
+  while ($lottoList.firstChild) {
+    $lottoList.removeChild($lottoList.firstChild);
+  }
 });
