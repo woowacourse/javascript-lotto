@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
   purchaseButton.addEventListener("click", purchase);
   const resultButton = document.querySelector("#result-button");
   resultButton.addEventListener("click", checkResult);
+  const modalCloseButton = document.querySelector("#close-button");
+  modalCloseButton.addEventListener("click", closeModal);
 });
 
 function purchase() {
@@ -80,4 +82,9 @@ function checkResult() {
 
   const modal = document.querySelector("#modal");
   modal.style.display = "block";
+}
+
+function closeModal() {
+  const modal = document.querySelector("#modal");
+  modal.style.display = "none";
 }
