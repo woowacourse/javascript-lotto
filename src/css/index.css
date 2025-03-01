@@ -229,4 +229,5 @@ th, td {
   align-items: center;
   border: none;
   border-radius: 5px;
+  visibility: hidden;
 }

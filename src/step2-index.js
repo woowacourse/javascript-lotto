@@ -91,4 +91,5 @@ const winningStasModal = document.getElementById("winning-stats-modal");
 buttonCheckResult.addEventListener("click", () => {
     displayWinningDetails(winningRanks);
     winningStasModal.showModal();
+    winningStasModal.style.visibility = "visible";
 });
