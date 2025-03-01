@@ -1,0 +1,9 @@
+footer {
+  text-align: center;
+  align-content: center;
+  height: 80px;
+  border-top: 1px solid var(--lightgray-color);
+  color: var(--main-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+}

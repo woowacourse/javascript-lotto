@@ -1,0 +1,96 @@
+#lotto-game {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 414px;
+  height: 700px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid var(--lightgray-color);
+  border-radius: 5px;
+}
+
+#purchase-form__input {
+  padding: 6px;
+  width: 80%;
+  border: 1px solid var(--lightgray-color);
+  border-radius: 4px;
+}
+
+#purchase-form__btn {
+  padding: 7px;
+  width: 15%;
+  margin-left: 5px;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 5px;
+  color: var(--white-color);
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#lotto-list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#lotto-list {
+  height: 216px;
+  overflow-y: scroll;
+}
+
+#lotto-list li {
+  margin-bottom: 10px;
+}
+
+#lotto-numbers-form section {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+#lotto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#lotto-form section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.numbers input {
+  padding: 10px;
+  width: 34px;
+  height: 36px;
+  border: 1px solid var(--lightgray-color);
+  border-radius: 4px;
+}
+
+.numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#bonus-number {
+  display: flex;
+  align-items: end;
+}
+
+#lotto-form__btn {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--main-color);
+  color: var(--white-color);
+}
