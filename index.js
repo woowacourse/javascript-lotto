@@ -19,19 +19,23 @@ import closeResultModal from "./src/view/web/modules/closeResultModalEvent.js";
 
 const startGame = () => {
   initLayer();
-  readLottoPriceInput(checkPrice, rendererUsingPrice);
-  readWinningNumbers(checkWinningLotto, rendererUsingWinningLotto);
+  handleUserInput();
 
   showResultModal();
   closeResultModal();
 };
 
 const initLayer = () => {
+  createHeader();
+  createFooter();
+  createGameBox();
+  createWinningLottoBox();
+};
+
+const handleUserInput = () => {
   document.addEventListener("DOMContentLoaded", () => {
-    createHeader();
-    createFooter();
-    createGameBox();
-    createWinningLottoBox();
+    readLottoPriceInput(checkPrice, rendererUsingPrice);
+    readWinningNumbers(checkWinningLotto, rendererUsingWinningLotto);
   });
 };
 
