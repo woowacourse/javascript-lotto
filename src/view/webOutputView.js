@@ -11,6 +11,7 @@ export const webOutputView = {
                 </div>
             `)
             .join("");
+        DOM.winningForm.style.visibility = "visible";
     },
 
     result(lottoResult){

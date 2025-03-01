@@ -1,7 +1,13 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
-import { webLottoController } from "./controller/webLottoController.js";
+import "./view/eventListner/modal.js";
+import { WebLottoController } from "./controller/webLottoController.js";
+import { DOM } from "./constants/constants.js";
 
-webLottoController.run();
+export const start = () => {    
+    const webLottoController = new WebLottoController()
+
+    DOM.purchaseButton.addEventListener("click", (event)=>webLottoController.handlePurchaseClick(event));
+    DOM.winningButton.addEventListener("click", (event)=>webLottoController.handleWinningClick(event));
+    DOM.restartButton.addEventListener("click", (event)=>webLottoController.handleRestartClick(event));
+}
+
+start();

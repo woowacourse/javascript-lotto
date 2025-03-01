@@ -17,7 +17,7 @@ export const webLottoService = {
       return new LottoResult(rankingList);
     },
 
-    calculateWinningRate(lottoList, lottoResult) {
+    calculateWinningRate(lottoResult, lottoList) {
         return calculateWinningRate(LOTTO_CONDITION.PRICE * lottoList.length, lottoResult.totalPrize);
       },
   };

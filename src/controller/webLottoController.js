@@ -1,45 +1,19 @@
-import { webInputView } from "../view/webInputView.js"
-import { webOutputView } from "../view/webOutputView.js";
-import { webLottoService } from "../service/webLottoService.js";
-import WinningLotto from "../domain/WinningLotto.js";
-import Lotto from "../domain/Lotto.js";
-import { webGameService } from "../service/webGameService.js";
-import { DOM } from "../constants/constants.js";
+import { handlePurchaseClick } from "../view/eventListner/handlePurchaseClick.js"
+import { handleWinningClick } from "../view/eventListner/handlewinningClick.js"
+import { handleRestartClick } from "../view/eventListner/handleRestartClick.js"
 
-export const webLottoController = {
-    async run() {
-        webInputView.statisticsModal();
-        const lottoList = await this.inputPurchaseMoney();
-        const winningLotto = await this.inputWinningLotto();
-        const lottoResult = webLottoService.calculateLottoResult(lottoList, winningLotto);
-        this.displayStatistics(lottoList, lottoResult);
-        webGameService.restart();
-    },
+export class WebLottoController {
+    #lottoList
 
-    inputPurchaseMoney() {
-        return new Promise((resolve) => {
-            webInputView.purchaseMoney((purchaseMoney) => {
-                const lottoList = webLottoService.purchaseLotto(purchaseMoney);
-                webOutputView.displayLottoNumber(lottoList);
-                DOM.winningForm.style.visibility = "visible";
-                resolve(lottoList);
-            });
-        });
-    },
+    handlePurchaseClick(event){
+        this.#lottoList = handlePurchaseClick(event)
+    }
 
-    inputWinningLotto(){
-        return new Promise((resolve) => {
-            webInputView.winning((winningNumbers, bonusNumber) => {
-                const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber)
-                resolve(winningLotto);
-            });
-        });
-    },
+    handleWinningClick(event){
+        handleWinningClick(event, this.#lottoList)
+    }
 
-    displayStatistics(lottoList, lottoResult){
-        webOutputView.result(lottoResult)
-        const winningRate = webLottoService.calculateWinningRate(lottoList, lottoResult)
-        webOutputView.winningRate(winningRate)
+    handleRestartClick(event){
+        handleRestartClick(event)
     }
 }
-
