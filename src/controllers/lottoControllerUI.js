@@ -20,7 +20,7 @@ class lottoControllerUI {
     this.lottoGame = new LottoGame();
   }
 
-  handlePurchaseClick = (e) => {
+  handlePurchaseClick(e) {
     const price = getLottoPrice();
     if (price) {
       e.target.disabled = true;
@@ -37,16 +37,16 @@ class lottoControllerUI {
       document.querySelector(".winning-lotto").classList.add("active");
       document.querySelector(".winning-number").focus();
     }
-  };
+  }
 
-  handleInputChange = (inputs) => {
+  handleInputChange(inputs) {
     const allFilled = Array.from(inputs).every(
       (input) => input.value.trim() !== ""
     );
     document.querySelector(".winning-lotto .result").disabled = !allFilled;
-  };
+  }
 
-  handleResultClick = (inputs) => {
+  handleResultClick(inputs) {
     if (document.querySelector(".result__row")) {
       document.querySelector(".overlay").classList.add("active");
       return;
@@ -75,9 +75,9 @@ class lottoControllerUI {
     inputs.forEach((input) => {
       input.disabled = true;
     });
-  };
+  }
 
-  handleRetryClick = (inputs) => {
+  handleRetryClick(inputs) {
     // active 제거
     document.querySelector(".overlay").classList.remove("active");
     document.querySelector(".winning-lotto").classList.remove("active");
@@ -105,19 +105,19 @@ class lottoControllerUI {
     inputs.forEach((input) => {
       input.disabled = false;
     });
-  };
+  }
 
-  handleCloseClick = () => {
+  handleCloseClick() {
     document.querySelector(".overlay").classList.remove("active");
-  };
+  }
 
-  preventDefault = (e) => {
+  preventDefault(e) {
     e.preventDefault();
-  };
+  }
 
-  stopPropagation = (e) => {
+  stopPropagation(e) {
     e.stopPropagation();
-  };
+  }
 }
 
 export default lottoControllerUI;
