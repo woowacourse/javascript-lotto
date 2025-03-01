@@ -8,6 +8,7 @@
 :root {
   --primary-color: #4e5ba6;
   --secondary-color: #fff;
+  --disabled-color: #9f9f9f61;
   --text-color: #000;
   --border-color: rgba(0, 0, 0, 0.12);
   --modal-bg: rgba(0, 0, 0, 0.5);

@@ -240,6 +240,11 @@ class App {
 
     this.#state = { lottoList };
 
+    const $input = document.querySelector('#purchaseAmountInput');
+    $input.setAttribute('disabled', true);
+    const $button = document.querySelector('#purchaseAmountButton');
+    $button.setAttribute('disabled', true);
+
     const $section = document.querySelector('#lottoListWinningLottoContainer');
     const $article = document.createElement('article');
     $article.setAttribute('id', 'lottoListDisplay');
@@ -300,8 +305,6 @@ class App {
     );
 
     outputViewByWeb.displayLottoResult(lottoResult, lottoProfit);
-
-    //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
   }
 
   #closeWinningStatisticsModal() {
@@ -314,8 +317,13 @@ class App {
   #restart() {
     this.#closeWinningStatisticsModal();
 
-    const $input = document.querySelector('#purchaseAmount');
+    const $input = document.querySelector('#purchaseAmountInput');
     $input.value = null;
+    $input.removeAttribute('disabled');
+
+    const $button = document.querySelector('#purchaseAmountButton');
+    $button.removeAttribute('disabled');
+
     const $section = document.querySelector('#lottoListWinningLottoContainer');
     $section.replaceChildren();
     this.#removeEventHandlers();

@@ -59,6 +59,11 @@
   padding: 8px;
   border-radius: 4px;
   border: solid 1px #b4b4b4;
+
+  &:disabled {
+    background-color: var(--disabled-color);
+    cursor: not-allowed;
+  }
 }
 
 .main-purchase-amount-button {
@@ -72,6 +77,12 @@
   color: var(--secondary-color);
   border: none;
   cursor: pointer;
+
+  &:disabled {
+    background-color: var(--disabled-color);
+    cursor: not-allowed;
+    color: var(--text-color);
+  }
 }
 
 .lotto-list-display {
