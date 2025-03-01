@@ -1,3 +1,5 @@
+import { $ } from '../../util/selector.js';
+
 const showWinningNumberForm = (isValid) => {
   const winningNumberForm = $('#winning-number-form');
   winningNumberForm.style.display = isValid ? 'block' : 'none';
