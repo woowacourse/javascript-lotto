@@ -1,20 +1,79 @@
-import restartGame from "./src/view/web/modules/restartGame.js";
-import createGameBox from "./src/view/web/layers/gameBox/createGameBox.js";
 import createHeader from "./src/view/web/layers/header/header.js";
-import createPrizeResultModal from "./src/view/web/layers/modal/createPrizeResultModal.js";
-import readLottoPriceInput from "./src/view/web/modules/readLottoPriceInput.js";
+import createGameBox from "./src/view/web/layers/gameBox/createGameBox.js";
+import createWinningLottoBox from "./src/view/web/layers/winningLottoBox/createWinningLottoBox.js";
 import createFooter from "./src/view/web/layers/footer/footer.js";
 
+import readLottoPriceInput from "./src/view/web/modules/readLottoPriceInput.js";
+import readWinningNumbers from "./src/view/web/modules/readWinningNumbers.js";
+
+import generateLottoNumberSets from "./src/lotto/generateLottoNumberSets.js";
+import validateWinningNumbers from "./src/validation/validateWinningNumbers.js";
+import validateBonusNumber from "./src/validation/validateBonusNumber.js";
+import calculatePrizeResult from "./src/lotto/calculatePrizeResult.js";
+import getTotalPrizeMoney from "./src/lotto/getTotalPrizeMoney.js";
+import { getRevenueRate } from "./src/utils/math.js";
+
+import createPrizeResultModal from "./src/view/web/layers/modal/createPrizeResultModal.js";
+import showResultModal from "./src/view/web/modules/showResultModal.js";
+import closeResultModal from "./src/view/web/modules/closeResultModalEvent.js";
+
 const startGame = () => {
+  initLayer();
+  readLottoPriceInput(checkPrice, rendererUsingPrice);
+  readWinningNumbers(checkWinningLotto, rendererUsingWinningLotto);
+
+  showResultModal();
+  closeResultModal();
+};
+
+const initLayer = () => {
   document.addEventListener("DOMContentLoaded", () => {
     createHeader();
     createFooter();
     createGameBox();
-    createPrizeResultModal();
-
-    readLottoPriceInput();
-    restartGame();
+    createWinningLottoBox();
   });
+};
+
+const checkPrice = (price) => {
+  try {
+    validateLottoPrice(price);
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
+const rendererUsingPrice = (price) => {
+  const lottoNumbers = generateLottoNumberSets(price);
+  createLottoBox(lottoNumbers);
+};
+
+const checkWinningLotto = (winningNumbers, bonusNumber) => {
+  try {
+    validateWinningNumbers(winningNumbers);
+    validateBonusNumber(bonusNumber, winningNumbers);
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
+const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
+  const lottoNumbers = document
+    .querySelectorAll(".lotto-numbers")
+    .map((input) => input.value);
+
+  const price = document.querySelector("#price").value;
+
+  const result = calculatePrizeResult(
+    lottoNumbers,
+    winningNumbers,
+    bonusNumber,
+  );
+
+  const totalPrizeMoney = getTotalPrizeMoney(result);
+  const revenueRate = getRevenueRate(totalPrizeMoney, price);
+
+  createPrizeResultModal(result, revenueRate);
 };
 
 export default startGame;
