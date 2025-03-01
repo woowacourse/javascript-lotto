@@ -1,5 +1,5 @@
-import WebController from '../controllers/WebController.js';
-import LottoResultModal from '../views/web/components/LottoResultModal.js';
+import WebController from '../../../controllers/WebController.js';
+import LottoResultModal from '../components/LottoResultModal.js';
 import { getByClass } from './dom.js';
 
 const addClickListener = (className, callback) => {

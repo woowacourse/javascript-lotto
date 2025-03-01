@@ -1,4 +1,4 @@
-import { createTag } from '../../../utils/dom.js';
+import { createTag } from '../utils/dom.js';
 
 const BonusInput = {
   appendBonusInput: ($target) => {

@@ -6,6 +6,7 @@ const createTag = (tagName) => document.createElement(tagName);
 
 const showElement = ($target) => $target.classList.remove('hidden');
 const hideElement = ($target) => $target.classList.add('hidden');
+
 const disableElement = (id) => {
   getById(id).disabled = true;
 };

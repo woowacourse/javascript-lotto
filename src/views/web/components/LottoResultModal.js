@@ -7,7 +7,7 @@ import {
   getByTag,
   hideElement,
   querySelector,
-} from '../../../utils/dom.js';
+} from '../utils/dom.js';
 
 const LottoResultModal = {
   $modalContainer: getByClass('modalContainer')[0],

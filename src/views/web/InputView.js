@@ -1,5 +1,5 @@
 import { PURCHASE_PRICE } from '../../constants/CONFIGURATIONS.js';
-import { getById, getByClass } from '../../utils/dom.js';
+import { getById, getByClass } from './utils/dom.js';
 import { BonusNumberValidator } from '../../validators/BonusNumberValidator.js';
 import { PurchasePriceValidator } from '../../validators/PurchasePriceValidator.js';
 import { WinningNumbersValidator } from '../../validators/WinningNumbersValidator.js';
@@ -9,7 +9,7 @@ const InputView = {
   $purchaseInput: getById('purchaseInput'),
   $purchaseForm: document.querySelector('section.purchase form'),
 
-  enterPurchasePrice() {
+  async enterPurchasePrice() {
     return new Promise((resolve) => {
       function handleSubmit(e) {
         e.preventDefault();
