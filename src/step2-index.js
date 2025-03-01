@@ -7,15 +7,13 @@ import lottoControllerUI from "./controllers/lottoControllerUI.js";
 const init = async () => {
   const lottoController = new lottoControllerUI();
 
-  document.querySelector(".purchase").addEventListener("submit", (e) => {
-    e.preventDefault();
-  });
+  document
+    .querySelector(".purchase")
+    .addEventListener("submit", lottoController.preventDefault);
 
   document
     .querySelector(".form__winning-numbers")
-    .addEventListener("submit", (e) => {
-      e.preventDefault();
-    });
+    .addEventListener("submit", lottoController.preventDefault);
 
   document
     .querySelector(".purchase button")
@@ -41,12 +39,12 @@ const init = async () => {
     .addEventListener("click", lottoController.handleCloseClick);
 
   document
-    .querySelector(".modal")
-    .addEventListener("click", lottoController.stopPropagation);
-
-  document
     .querySelector(".overlay")
     .addEventListener("click", lottoController.handleCloseClick);
+
+  document
+    .querySelector(".modal")
+    .addEventListener("click", lottoController.stopPropagation);
 };
 
 init();
