@@ -97,7 +97,7 @@ body {
 
 .lotto-game-view {
   width: 414px;
-  height: 727px;
+  height: auto;
   border: 1px solid var(--lotto-border);
   border-radius: 4px;
   padding: 40px 16px 32px;
@@ -158,6 +158,64 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.winning-numbers-section {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.winning-numbers-section h6 {
+  margin-bottom: 12px;
+}
+
+.number-input-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 27px;
+}
+
+.number-input-group p {
+  margin-bottom: 8px;
+}
+
+.winning-numbers-input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bonus-numbers-input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.winning-numbers-input-list {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.numbers-input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+  text-align: center;
+  padding: 0;
+}
+
+.check-reuslt-button {
+  width: 100%;
+  height: 36px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
 }
 
 footer {
