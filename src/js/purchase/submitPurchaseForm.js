@@ -7,13 +7,17 @@ import disablePurchaseButton from './disabledPurchaseButton.js';
 import { updateLottoUI } from './updateLottoUI.js';
 
 export const submitPurchaseForm = () => {
-  $('#purchase-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const { lottoArray, lottoCount } = handleLottoPurchase();
-    disablePurchaseButton();
-    updateLottoUI(lottoArray, lottoCount);
+  return new Promise((resolve) => {
+    $('#purchase-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const { lottoArray, lottoCount } = handleLottoPurchase();
 
-    showWinningNumberForm(true);
+      disablePurchaseButton();
+      updateLottoUI(lottoArray, lottoCount);
+
+      showWinningNumberForm(true);
+      return resolve(lottoArray);
+    });
   });
 };
 

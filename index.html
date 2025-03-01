@@ -20,7 +20,7 @@
         <form id="purchase-form">
           <label for="price">구입할 금액을 입력해주세요.</label>
           <div class="purchase-input">
-            <input type="number" id="price" placeholder="금액" />
+            <input value="10000" type="number" id="price" placeholder="금액" />
             <button class="typo-caption">구입</button>
           </div>
           <p class="error-message typo-caption" id="price-error"></p>
@@ -97,7 +97,7 @@
               </tr>
             </tbody>
           </table>
-          <p class="bold-600">당신의 총 수익률은 %입니다.</p>
+          <p class="bold-600" id="profit-rate">당신의 총 수익률은 %입니다.</p>
           <button id="restart-button" class="bold-600">다시 시작하기</button>
         </div>
       </div>

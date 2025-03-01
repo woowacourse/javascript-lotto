@@ -1,53 +1,68 @@
-import { parseBonusNumber, parseWinningNumber } from '../input/parseInput.js';
-import { $, $all } from '../util/selector.js';
-import { resetError, showError } from './errorHandler.js';
-import validateWinningNumber from '../validation/validateWinningNumber.js';
-import validateBonusNumber from '../validation/validateBonusNumber.js';
 import { lockScroll, unlockScroll } from './scroll.js';
-import WinningLotto from '../domain/WinningLotto.js';
+import { submitPurchaseForm } from './purchase/submitPurchaseForm.js';
+import { submitWinningNumberForm } from './submitWinningNumberForm.js';
+import { $ } from '../util/selector.js';
 import { calculateMatchingResult } from '../service/MatchingService.js';
 import { calculateProfitRate } from '../service/ProfitService.js';
-import { submitPurchaseForm } from './purchase/submitPurchaseForm.js';
-import Lotto from '../domain/Lotto.js';
-import { submitWinningNumberForm } from './submitWinningNumberForm.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  submitPurchaseForm();
+document.addEventListener('DOMContentLoaded', async () => {
+  const lottoArray = await submitPurchaseForm();
+  const winningLotto = await submitWinningNumberForm();
 
-  submitWinningNumberForm();
-  // setupModalControls();
+  const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
+  const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
+
+  updateModalContent(matchingResult, profitRate);
+  setupModalControls();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.querySelector('#result-modal');
-  const closeButton = document.querySelector('.close-button');
-  const restartButton = document.querySelector('#restart-button');
+// ✅ 모달 내용 업데이트 함수
+const updateModalContent = (matchingResult, profitRate) => {
+  $('#match-3').textContent = `${matchingResult[3]}개`;
+  $('#match-4').textContent = `${matchingResult[4]}개`;
+  $('#match-5').textContent = `${matchingResult[5]}개`;
+  $('#match-bonus').textContent = `${matchingResult['bonus']}개`;
+  $('#match-6').textContent = `${matchingResult[6]}개`;
 
-  // 🔹 모달 닫기 (X 버튼 클릭)
-  closeButton.addEventListener('click', () => {
-    modal.style.display = 'none';
-    unlockScroll(); // 스크롤 해제
-  });
+  const profitRateText = `당신의 총 수익률은 ${profitRate}%입니다.`;
+  $('#profit-rate').textContent = profitRateText;
 
-  // 🔹 모달 닫기 (다시 시작하기 버튼 클릭)
-  restartButton.addEventListener('click', () => {
-    modal.style.display = 'none';
-    unlockScroll(); // 스크롤 해제
-  });
+  showModal();
+};
 
-  // 🔹 ESC 키 입력 시 모달 닫기
+// ✅ 모달 표시 함수
+const showModal = () => {
+  const modal = $('#result-modal');
+  modal.style.display = 'flex';
+  lockScroll();
+};
+
+// ✅ 모달 관련 이벤트 설정
+const setupModalControls = () => {
+  const modal = $('#result-modal');
+  const closeButton = $('.close-button');
+  const restartButton = $('#restart-button');
+
+  closeButton.addEventListener('click', () => closeModal(modal));
+  restartButton.addEventListener('click', () => restartGame(modal));
+
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      modal.style.display = 'none';
-      unlockScroll(); // 스크롤 해제
-    }
+    if (event.key === 'Escape') closeModal(modal);
   });
 
-  // 🔹 모달 바깥 클릭 시 닫기
   modal.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      modal.style.display = 'none';
-      unlockScroll(); // 스크롤 해제
-    }
+    if (event.target === modal) closeModal(modal);
   });
-});
+};
+
+// ✅ 모달 닫기 함수
+const closeModal = (modal) => {
+  modal.style.display = 'none';
+  unlockScroll();
+};
+
+// ✅ 게임 재시작 (새로고침)
+const restartGame = (modal) => {
+  closeModal(modal);
+  location.reload();
+};

@@ -8,13 +8,16 @@ import { resetError, showError } from './errorHandler.js';
 import { lockScroll } from './scroll.js';
 
 // ✅ 2. 당첨 번호 입력 폼 이벤트 설정
-export const submitWinningNumberForm = () => {
-  $('#winning-number-form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    handleWinningNumber();
+export const submitWinningNumberForm = async () => {
+  return new Promise((resolve) => {
+    $('#winning-number-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const winningLotto = handleWinningNumber();
 
-    // const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
-    // const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
+      resolve(winningLotto);
+      // const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
+      // const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
+    });
   });
 };
 

@@ -22,24 +22,6 @@ const setupWinningNumberForm = () => {
   });
 };
 
-// ✅ 3. 모달 관련 이벤트 설정
-const setupModalControls = () => {
-  const modal = $('#result-modal');
-  const closeButton = $('.close-button');
-  const restartButton = $('#restart-button');
-
-  closeButton.addEventListener('click', () => closeModal(modal));
-  restartButton.addEventListener('click', () => restartGame(modal));
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeModal(modal);
-  });
-
-  modal.addEventListener('click', (event) => {
-    if (event.target === modal) closeModal(modal);
-  });
-};
-
 // 🔹 1. 로또 구매 처리
 const handleLottoPurchase = () => {
   const priceInput = $('#price');
@@ -76,16 +58,6 @@ const handleWinningNumberSubmission = () => {
   } catch (error) {
     showError(errorUI, error.message);
   }
-};
-
-const closeModal = (modal) => {
-  modal.style.display = 'none';
-  unlockScroll();
-};
-
-const restartGame = (modal) => {
-  closeModal(modal);
-  location.reload();
 };
 
 // 🔹 4. UI 관련 헬퍼 함수
