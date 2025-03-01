@@ -6,6 +6,7 @@ import createFooter from "./src/view/web/layers/footer/footer.js";
 import readLottoPriceInput from "./src/view/web/modules/readLottoPriceInput.js";
 import readWinningNumbers from "./src/view/web/modules/readWinningNumbers.js";
 
+import validateLottoPrice from "./src/validation/validateLottoPrice.js";
 import generateLottoNumberSets from "./src/lotto/generateLottoNumberSets.js";
 import validateWinningNumbers from "./src/validation/validateWinningNumbers.js";
 import validateBonusNumber from "./src/validation/validateBonusNumber.js";
