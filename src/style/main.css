@@ -5,6 +5,8 @@
 
 .lotto-container {
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
   width: 414px;
   height: 727px;
   border: 1px solid #0000001f;
