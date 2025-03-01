@@ -1,0 +1,49 @@
+.winning-input-container {
+  width: 382px;
+}
+
+.winning-input-title {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.winning-input-form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 27px;
+}
+
+.winning-input-label {
+  display: block;
+  margin: 12px 0;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.winning-input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  padding: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  margin-right: 8px;
+}
+
+.bonus-input {
+  display: block;
+  margin: 0 0 0 auto;
+}
+
+.winning-input-button {
+  color: #fff;
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #4e5ba6;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+}

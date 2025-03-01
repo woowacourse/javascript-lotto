@@ -1,0 +1,38 @@
+.user-lotto-container {
+  margin-bottom: 24px;
+}
+
+.user-lotto-quantity {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.user-lotto-list {
+  width: 238px;
+  height: 276px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.user-lotto-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  height: 36px;
+  width: 238px;
+  margin-bottom: 4px;
+}
+
+.user-lotto-icon {
+  margin-right: 8px;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.user-lotto-number {
+  font-size: 15px;
+  font-weight: 400;
+  padding-bottom: 4px;
+}

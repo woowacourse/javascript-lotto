@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./src/style/main.css" />
     <link rel="stylesheet" href="./src/style/footer.css" />
     <link rel="stylesheet" href="./src/style/purchase.css" />
+    <link rel="stylesheet" href="./src/style/userLotto.css" />
+    <link rel="stylesheet" href="./src/style/winningInput.css" />
   </head>
 
   <body>
@@ -29,6 +31,71 @@
               max="100000"
             />
             <button class="purchase-button" type="submit">구입</button>
+          </form>
+        </section>
+        <section class="user-lotto-container">
+          <p class="user-lotto-quantity">총 N개를 구매했습니다.</p>
+          <ul class="user-lotto-list">
+            <li class="user-lotto-item">
+              <span class="user-lotto-icon">🎟️</span>
+              <span class="user-lotto-number">1, 2, 3, 4, 5, 6</span>
+            </li>
+            <li class="user-lotto-item">
+              <span class="user-lotto-icon">🎟️</span>
+              <span class="user-lotto-number">1, 2, 3, 4, 5, 6</span>
+            </li>
+            <li class="user-lotto-item">
+              <span class="user-lotto-icon">🎟️</span>
+              <span class="user-lotto-number">1, 2, 3, 4, 5, 6</span>
+            </li>
+            <li class="user-lotto-item">
+              <span class="user-lotto-icon">🎟️</span>
+              <span class="user-lotto-number">1, 2, 3, 4, 5, 6</span>
+            </li>
+            <li class="user-lotto-item">
+              <span class="user-lotto-icon">🎟️</span>
+              <span class="user-lotto-number">1, 2, 3, 4, 5, 6</span>
+            </li>
+            <li class="user-lotto-item">
+              <span class="user-lotto-icon">🎟️</span>
+              <span class="user-lotto-number">1, 2, 3, 4, 5, 6</span>
+            </li>
+            <li class="user-lotto-item">
+              <span class="user-lotto-icon">🎟️</span>
+              <span class="user-lotto-number">1, 2, 3, 4, 5, 6</span>
+            </li>
+            <li class="user-lotto-item">
+              <span class="user-lotto-icon">🎟️</span>
+              <span class="user-lotto-number">1, 2, 3, 4, 5, 6</span>
+            </li>
+          </ul>
+        </section>
+        <section class="winning-input-container">
+          <p class="winning-input-title">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+          </p>
+          <form>
+            <div class="winning-input-form">
+              <div class="winning-input-item">
+                <label class="winning-input-label">당첨번호</label>
+                <input class="winning-input" type="number" min="1" max="45" />
+                <input class="winning-input" type="number" min="1" max="45" />
+                <input class="winning-input" type="number" min="1" max="45" />
+                <input class="winning-input" type="number" min="1" max="45" />
+                <input class="winning-input" type="number" min="1" max="45" />
+                <input class="winning-input" type="number" min="1" max="45" />
+              </div>
+              <div class="winning-input-item">
+                <label class="winning-input-label">보너스 번호</label>
+                <input
+                  class="winning-input bonus-input"
+                  type="number"
+                  min="1"
+                  max="45"
+                />
+              </div>
+            </div>
+            <button class="winning-input-button">결과 확인하기</button>
           </form>
         </section>
       </main>
