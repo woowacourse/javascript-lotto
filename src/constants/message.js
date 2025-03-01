@@ -5,6 +5,7 @@ const ERROR = Object.freeze({
   MONEY: {
     EMPTY_VALUE: '로또 구입 금액은 0원 이하일수 없다.',
     REST_VALUE: '로또 구입 금액은 1,000원으로 나눠떨어져야 한다.',
+    MAX_OVER_VALUE: '로또 구입 금액은 100,000원 이하여야 한다.',
   },
   LOTTO_NUMBER: {
     QUANTITY: '로또 번호는 6자리여야 한다.',

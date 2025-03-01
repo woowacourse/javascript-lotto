@@ -3,6 +3,7 @@ export const LOTTO_RULE = Object.freeze({
   MAX_RANGE: 45,
   LENGTH: 6,
   PRICE: 1000,
+  MAX_BUY_MONEY: 100000,
 });
 
 export const RANK_RULE = Object.freeze({

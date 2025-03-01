@@ -8,6 +8,9 @@ function validateMoney(money) {
   if (money % LOTTO_RULE.PRICE !== INITIAL_NUMBER) {
     throw new Error(ERROR.MONEY.REST_VALUE);
   }
+  if (money > LOTTO_RULE.MAX_BUY_MONEY) {
+    throw new Error(ERROR.MONEY.MAX_OVER_VALUE);
+  }
 }
 
 function lottoNumberCondition(number) {
