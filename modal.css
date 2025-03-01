@@ -24,13 +24,16 @@ dialog::backdrop {
   width: 100%;
 }
 
-.close-btn {
+.close-btn-container {
   width: 100%;
-  background-color: transparent;
-  border: none;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.close-btn {
+  background-color: transparent;
+  border: none;
 }
 
 .winning-rate-title {
