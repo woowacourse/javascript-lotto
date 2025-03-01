@@ -2,13 +2,18 @@ import { webInputView } from "../view/webInputView.js"
 import { webOutputView } from "../view/webOutputView.js";
 import { webLottoService } from "../service/webLottoService.js";
 import WinningLotto from "../domain/WinningLotto.js";
+import Lotto from "../domain/Lotto.js";
 
 const winningForm = document.querySelector(".winning-form")
 
 export const webLottoController = {
     async run() {
+        webInputView.statisticsModal();
         const lottoList = await this.inputPurchaseMoney();
         const winningLotto = await this.inputWinningLotto();
+        const lottoResult = webLottoService.calculateLottoResult(lottoList, winningLotto);
+        this.displayStatistics(lottoList, lottoResult);
+        
     },
 
     inputPurchaseMoney() {
@@ -29,6 +34,12 @@ export const webLottoController = {
                 resolve(winningLotto);
             });
         });
+    },
+
+    displayStatistics(lottoList, lottoResult){
+        webOutputView.result(lottoResult)
+        const winningRate = webLottoService.calculateWinningRate(lottoList, lottoResult)
+        webOutputView.winningRate(winningRate)
     }
 }
 

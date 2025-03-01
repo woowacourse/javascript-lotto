@@ -206,6 +206,7 @@
   background-color: white;
   border-radius: var(--border-radius);
   transform: translate(-50%, -50%);
+  visibility: hidden;
 }
 
 .modal-backdrop {
@@ -216,6 +217,7 @@
   left: 0;
   z-index: 50;
   background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
 }
 
 .modal-head {
