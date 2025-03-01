@@ -11,14 +11,12 @@ let lottos = [];
 
 document.querySelector("#purchase-form").addEventListener("submit", async (event) => {
   event.preventDefault();
-
   try {
     const priceInput = document.querySelector("#purchase-input").value;
     Validate.validatePrice(priceInput);
     price = priceInput
     lottos = lottoMachine.generateLotto(price);
 
-    console.log("구매한 로또:", lottos);
     updateLottoUI(lottos);
     document.querySelector(".lotto-display-container").style.display = "block";
     document.querySelector("#purchase-input").value = '';
@@ -136,7 +134,6 @@ function resetGame() {
   resetWinningBonusInput();
   updateWinningTable({ first: 0, second: 0, third: 0, fourth: 0, fifth: 0 });
   updatePrizeRate(0);
-
   purchaseBtn.disabled = false;
 
   resultModal.close();
