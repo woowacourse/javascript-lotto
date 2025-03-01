@@ -93,6 +93,7 @@ const printRateResult = (rate) => {
   const prizeContents = document.querySelector(".prize-contents");
   const restartButton = document.querySelector(".prize-contents button");
   const rateResult = document.createElement("p");
+  if (rate < 0) rate = 0;
   rateResult.innerText = `당신의 총 수익률은 ${rate}%입니다.`;
   prizeContents.insertBefore(rateResult, restartButton);
 };

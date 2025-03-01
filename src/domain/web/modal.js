@@ -7,6 +7,7 @@ const allowModalOpen = () => {
 
   prizeResultButton.addEventListener("click", handleModal);
   closeButton.addEventListener("click", handleModal);
+  document.body.style.overflow = "hidden";
 };
 
 const handleModal = () => {
@@ -30,7 +31,6 @@ const allowWinningLotto = () => {
 
   winningLottoContainer.style.display = "flex";
   resultSubmitButton.style.display = "flex";
-  document.body.style.overflow = "hidden";
 };
 
 export { handleModal, allowModalOpen, allowWinningLotto };
