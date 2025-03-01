@@ -2,25 +2,24 @@ import prizeResultContents from "./prizeResultModal.html?raw";
 import createPrizeTable from "./createPrizeTable";
 import createRevenueRateMessage from "./createRevenueRateMessage";
 import "./prizeResultModal.css";
+import {
+  insertTextContents,
+  appendContents,
+} from "../../utilsWeb/elementCreator";
 
 const createPrizeResultModal = (result, revenueRate) => {
   const { headerTemplate, rowTemplate } = createPrizeTable(result);
   const revenueRateMessage = createRevenueRateMessage(revenueRate);
 
-  document
-    .querySelector(".prize-result-modal")
-    .insertAdjacentHTML("beforeend", prizeResultContents);
+  appendContents(
+    ".prize-result-modal",
+    ".result-container",
+    prizeResultContents,
+  );
 
-  document
-    .querySelector(".prize-table-header")
-    .insertAdjacentHTML("beforeend", headerTemplate);
-
-  document
-    .querySelector(".prize-table-body")
-    .insertAdjacentHTML("beforeend", rowTemplate);
-
-  document.querySelector(".revenue-rate-message").textContent =
-    revenueRateMessage;
+  appendContents(".prize-table-header", "th", headerTemplate);
+  appendContents(".prize-table-body", "td", rowTemplate);
+  insertTextContents(".revenue-rate-message", revenueRateMessage);
 };
 
 export default createPrizeResultModal;

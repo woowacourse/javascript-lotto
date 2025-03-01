@@ -1,10 +1,9 @@
 import footerContents from "./footer.html?raw";
+import { appendContents } from "../../utilsWeb/elementCreator.js";
 import "./footer.css";
 
 const createFooter = () => {
-  const app = document.querySelector("#app");
-
-  app.insertAdjacentHTML("beforeend", footerContents);
+  appendContents("#app", "footer", footerContents);
 };
 
 export default createFooter;
