@@ -29,8 +29,7 @@ const handleLottoPurchase = (e, lottoMachine) => {
     const lottos = createLottos(lottoMachine, money);
     createLottoContent(lottos, money);
   } catch (error) {
-    console.log(error);
-    return alert(error.message);
+    alert(error.message);
   }
 };
 
