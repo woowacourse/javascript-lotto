@@ -13,6 +13,9 @@ const calculateRevenue = (lottoStatistics, money) => {
 
 const handleLottoStatistics = (lottoStatistics, lottos, winningNumberObj) => {
   lottoStatistics.compareLottos(lottos, winningNumberObj);
+
+  const lottoResultButton = document.getElementById('lottoResultButton');
+  lottoResultButton.textContent = '결과 다시 확인하기';
 };
 
 const handleLottoNumberValidate = () => {

@@ -4,6 +4,7 @@ const $inputFormButton = () => {
   const inputFormButton = createDomElement('button', {
     type: 'submit',
     className: 'lotto_form_button',
+    id: 'lottoResultButton',
     textContent: '결과 확인하기',
   });
 
