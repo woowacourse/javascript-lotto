@@ -32,6 +32,17 @@ const validateAndFormatPurchaseAmountInput = (input) => {
 };
 
 class App {
+  #state = {};
+
+  #eventHandler = {};
+
+  constructor() {
+    this.#eventHandler = {
+      submit: this.#submitEventHandler(),
+      click: this.#clickEventHandler(),
+    };
+  }
+
   async #initializePurchaseAmount() {
     const purchaseAmountInput = await readUserInputUntilSuccess({
       readUserInput: getPurchaseAmountInput,
@@ -144,8 +155,50 @@ class App {
     }
   }
 
+  #submitEventHandler() {
+    return (event) => {
+      event.preventDefault();
+
+      const $target = event.target;
+      if ($target.id === 'lottoPurchaseForm') {
+        this.#purchaseLottosByWeb($target);
+      }
+      if ($target.id === 'winningLottoForm') {
+        this.#purchaseWinningLottoByWeb($target);
+      }
+    };
+  }
+
+  #clickEventHandler() {
+    return (event) => {
+      const $target = event.target;
+      if (
+        $target.id === 'modalCloseButton' ||
+        $target.id === 'modalOverlay' ||
+        $target.closest('#modalCloseButton')?.id === 'modalCloseButton'
+      ) {
+        this.#closeWinningStatisticsModal($target);
+      }
+      if ($target.id === 'modalRestartButton') {
+        this.#restart($target);
+      }
+    };
+  }
+
+  #setEventHandlers() {
+    const $app = document.querySelector('#app');
+    $app.addEventListener('submit', this.#eventHandler.submit);
+    $app.addEventListener('click', this.#eventHandler.click);
+  }
+
+  #removeEventHandlers() {
+    const $app = document.querySelector('#app');
+    $app.removeEventListener('submit', this.#eventHandler.submit);
+    $app.removeEventListener('click', this.#eventHandler.click);
+  }
+
   runWeb() {
-    this.#purchaseAmountByWeb();
+    this.#setEventHandlers();
   }
 
   #initializeWebInput({ readUserInput, formatter, onError }) {
@@ -158,40 +211,24 @@ class App {
     }
   }
 
-  #purchaseAmountByWeb() {
-    const $purchaseForm = document.querySelector('#lottoPurchaseForm');
-    const $newPurchaseForm = $purchaseForm.cloneNode(true);
-    $purchaseForm.replaceWith($newPurchaseForm);
+  #purchaseLottosByWeb($target) {
+    const formData = new FormData($target);
 
-    $newPurchaseForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      if (event.target.id !== 'lottoPurchaseForm') {
-        return;
-      }
-
-      const purchaseAmountInput = this.#initializeWebInput({
-        readUserInput: getPurchaseAmountInputByWeb,
-        formatter: validateAndFormatPurchaseAmountInput,
-        onError: (error) => outputViewByWeb.displayErrorMessage(error),
-      });
-
-      if (purchaseAmountInput === null) {
-        return;
-      }
-
-      const { lottoCounts, lottoNumbersList, lottoList } =
-        this.buyLottos(purchaseAmountInput);
-
-      this.#purchaseWinningLottoByWeb({
-        lottoCounts,
-        lottoNumbersList,
-        lottoList,
-      });
+    const purchaseAmountInput = this.#initializeWebInput({
+      readUserInput: () => formData.get('purchaseAmount'),
+      formatter: validateAndFormatPurchaseAmountInput,
+      onError: (error) => outputViewByWeb.displayErrorMessage(error),
     });
-  }
 
-  #purchaseWinningLottoByWeb({ lottoCounts, lottoNumbersList, lottoList }) {
+    if (purchaseAmountInput === null) {
+      return;
+    }
+
+    const { lottoCounts, lottoNumbersList, lottoList } =
+      this.buyLottos(purchaseAmountInput);
+
+    this.#state = { lottoList };
+
     const $section = document.querySelector('#lottoListWinningLottoContainer');
     const $article = document.createElement('article');
     $article.setAttribute('id', 'lottoListDisplay');
@@ -204,99 +241,74 @@ class App {
     outputViewByWeb.displayLottoList(lottoNumbersList);
 
     $section.appendChild($form);
+  }
 
-    $form.addEventListener('submit', (event) => {
-      event.preventDefault();
+  #purchaseWinningLottoByWeb($target) {
+    const { lottoList } = this.#state;
 
-      const formData = new FormData(event.target);
+    const formData = new FormData($target);
 
-      const winningNumbersInput = this.#initializeWebInput({
-        readUserInput: () => formData.getAll('winningNumber'),
-        formatter: (input) => {
-          validateEmptySpaceInWinningNumbers(input);
-          const numbers = input.map(Number);
-          validateWinningNumbers(numbers);
-          return numbers;
-        },
-        onError: (error) => outputViewByWeb.displayErrorMessage(error),
-      });
-
-      if (winningNumbersInput === null) {
-        return;
-      }
-
-      const bonusNumberInput = this.#initializeWebInput({
-        readUserInput: () => formData.get('bonusNumber'),
-        formatter: (input) => {
-          validateEmptySpace(input);
-          const convertedInput = convertFormat.toNumber(input);
-          validateBonusNumber(convertedInput, winningNumbersInput);
-          return convertedInput;
-        },
-        onError: (error) => outputViewByWeb.displayErrorMessage(error),
-      });
-
-      if (bonusNumberInput === null) {
-        return;
-      }
-
-      const winningLotto = new WinningLotto(
-        new Lotto(winningNumbersInput),
-        bonusNumberInput,
-      );
-
-      const { lottoResult, lottoProfit } = this.getLottoResult(
-        winningLotto,
-        lottoList,
-      );
-
-      outputViewByWeb.displayLottoResult(lottoResult, lottoProfit);
-      this.#setupModalEventListeners();
+    const winningNumbersInput = this.#initializeWebInput({
+      readUserInput: () => formData.getAll('winningNumber'),
+      formatter: (input) => {
+        validateEmptySpaceInWinningNumbers(input);
+        const numbers = input.map(Number);
+        validateWinningNumbers(numbers);
+        return numbers;
+      },
+      onError: (error) => outputViewByWeb.displayErrorMessage(error),
     });
+
+    if (winningNumbersInput === null) {
+      return;
+    }
+
+    const bonusNumberInput = this.#initializeWebInput({
+      readUserInput: () => formData.get('bonusNumber'),
+      formatter: (input) => {
+        validateEmptySpace(input);
+        const convertedInput = convertFormat.toNumber(input);
+        validateBonusNumber(convertedInput, winningNumbersInput);
+        return convertedInput;
+      },
+      onError: (error) => outputViewByWeb.displayErrorMessage(error),
+    });
+
+    if (bonusNumberInput === null) {
+      return;
+    }
+
+    const winningLotto = new WinningLotto(
+      new Lotto(winningNumbersInput),
+      bonusNumberInput,
+    );
+
+    const { lottoResult, lottoProfit } = this.getLottoResult(
+      winningLotto,
+      lottoList,
+    );
+
+    outputViewByWeb.displayLottoResult(lottoResult, lottoProfit);
+
     //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
   }
 
-  #setupModalEventListeners() {
-    const $modalCloseButton = document.querySelector('.modal-close-button');
-    const $modalOverlay = document.querySelector('.modal-overlay');
-
-    if ($modalCloseButton === null || $modalOverlay === null) {
-      return;
+  #closeWinningStatisticsModal($target) {
+    const $modal = $target.closest('#modal');
+    if ($modal) {
+      $modal.remove();
     }
+  }
 
-    $modalCloseButton.addEventListener('click', () => {
-      const $modal = document.querySelector('.modal');
-      if ($modal) {
-        $modal.remove();
-      }
-    });
+  #restart($target) {
+    this.#closeWinningStatisticsModal($target);
 
-    $modalOverlay.addEventListener('click', () => {
-      const $modal = document.querySelector('.modal');
-      if ($modal) {
-        $modal.remove();
-      }
-    });
-
-    const $modalRestartButton = document.querySelector('.modal-restart-button');
-    if ($modalRestartButton === null) {
-      return;
-    }
-    $modalRestartButton.addEventListener('click', () => {
-      const $modal = document.querySelector('.modal');
-      if ($modal) {
-        $modal.remove();
-      }
-      const $section = document.querySelector(
-        '#lottoListWinningLottoContainer',
-      );
-      const $input = document.querySelector('#purchaseAmount');
-      const $newSection = $section.cloneNode();
-      $section.replaceWith($newSection);
-      $input.value = null;
-
-      this.runWeb();
-    });
+    const $input = document.querySelector('#purchaseAmount');
+    $input.value = null;
+    const $section = document.querySelector('#lottoListWinningLottoContainer');
+    $section.replaceChildren();
+    this.#removeEventHandlers();
+    this.runWeb();
   }
 }
 export default App;
