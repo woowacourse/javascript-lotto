@@ -6,6 +6,7 @@ export const handlePurchaseClick = (purchaseMoney) => {
     DOM.purchaseButton.disabled = true;
     DOM.inputPrice.disabled = true;
     DOM.winningForm.style.visibility = "visible";
+    DOM.winningNumberInputs[0].focus();
 
     return lottoList
 };
