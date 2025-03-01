@@ -1,0 +1,60 @@
+#app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FCFCFD;
+  margin: 64px 0 0 0;
+}
+
+.text {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.small-text {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.header {
+  width: 100%;
+  height: 64px;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 130px;
+  color: var(--text-color);
+  background-color: var(--primary-color);
+}
+
+.footer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-color);
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  background-color: #FCFCFD;
+}
+
+.purchase-error-text {
+  color:red;
+  font-size:14px;
+}
+
+.winning-error-text {
+  color:red;
+  font-size:14px;
+}
+
+.bonus-error-text {
+  color:red;
+  font-size:14px;
+}

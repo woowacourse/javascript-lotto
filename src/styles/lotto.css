@@ -1,0 +1,153 @@
+.lotto {
+    width: 414px;
+    height: 727px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  
+  .lotto-head {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 0 0;
+  }
+  
+  .lotto-input {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .lotto-input button:disabled {
+    background-color: #ddd;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  .lotto-result {
+    width: 382px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .lotto-ticket-list {
+    width: 100%;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: scroll; 
+  }
+  
+  .lotto-ticket {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .ticket-icon {
+    font-size: 34px;
+    font-weight: 600;
+  }
+  
+  .ticket-numbers {
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  .winning {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .winning-input {
+    width: 244px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .winning-input-list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 8px;
+  }
+  
+  .bonus-input {
+    width: 76px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .lotto-form {
+    width: 382px;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .lotto-form input {
+    width: 310px;
+    height: 36px;
+    border: 1px solid #B4B4B4;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: var(--border-radius);
+  }
+  
+  .lotto-form button {
+    width: 56px;
+    height: 36px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: var(--border-radius);
+  }
+  
+  .winning-form {
+    width: 382px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 20px 0;
+    visibility: hidden;
+  }
+  
+  .winning-form input {
+    width: 34px;
+    height: 36px;
+    border: 1px solid #B4B4B4;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: var(--border-radius);
+  }
+  
+  .winning-form button {
+    width: 382px;
+    height: 36px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: var(--border-radius);
+    text-align: center;
+  }
