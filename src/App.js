@@ -22,7 +22,7 @@ import { validateEmptySpace } from './View/Validation/util.js';
 /** STEP2 ByWeb */
 import { getPurchaseAmountInputByWeb } from './View/inputViewByWeb.js';
 import { outputViewByWeb } from './View/outputViewByWeb.js';
-import { createWinningLottoForm } from './View/createDom.js';
+import { createWinningLottoForm } from './View/Dom/createWinningLottoForm.js';
 
 const validateAndFormatPurchaseAmountInput = (input) => {
   validateEmptySpace(input);

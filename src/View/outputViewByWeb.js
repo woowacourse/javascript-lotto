@@ -1,4 +1,4 @@
-import { createModal } from './createDom';
+import { createWinningStatisticsModal } from './Dom/createWinningStatisticsModal.js';
 
 export const outputViewByWeb = {
   displayLottoCount(lottoCounts) {
@@ -7,6 +7,7 @@ export const outputViewByWeb = {
     $p.textContent = `총 ${lottoCounts}개를 구매했습니다.`;
     document.querySelector('.lotto-list-display').appendChild($p);
   },
+
   displayLottoList(lottoNumbersList) {
     const fragment = document.createDocumentFragment();
     const $ul = document.createElement('ul');
@@ -30,8 +31,9 @@ export const outputViewByWeb = {
     fragment.appendChild($ul);
     document.querySelector('.lotto-list-display').appendChild(fragment);
   },
+
   displayLottoResult(lottoResult, lottoProfit) {
-    const $modal = createModal(lottoResult, lottoProfit);
+    const $modal = createWinningStatisticsModal(lottoResult, lottoProfit);
 
     document.querySelector('#app').appendChild($modal);
   },
