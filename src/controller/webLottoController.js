@@ -3,6 +3,7 @@ import { webOutputView } from "../view/webOutputView.js";
 import { webLottoService } from "../service/webLottoService.js";
 import WinningLotto from "../domain/WinningLotto.js";
 import Lotto from "../domain/Lotto.js";
+import { webGameService } from "../service/webGameService.js";
 
 const winningForm = document.querySelector(".winning-form")
 
@@ -13,7 +14,7 @@ export const webLottoController = {
         const winningLotto = await this.inputWinningLotto();
         const lottoResult = webLottoService.calculateLottoResult(lottoList, winningLotto);
         this.displayStatistics(lottoList, lottoResult);
-        
+        webGameService.restart();
     },
 
     inputPurchaseMoney() {
