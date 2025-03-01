@@ -1,23 +1,6 @@
-#app{
-  background-color: var(--greyscale-2);
-  min-height:100vh;
-}
-
-header{
-  background-color:var(--primary-color);
-  padding:14px 130px;
-}
-
-.logo{
-  color:var(--greyscale-1);
-}
-
-main{
-  height:calc(100vh - var(--header-height) - var(--footer-height));
-  display:flex;
-  align-items: center;
-  justify-content: center;
-}
+@import "./global.css";
+@import "./layout.css";
+@import "./modal.css";
 
 .lotto-box{
   display:flex;
@@ -111,44 +94,6 @@ main{
   gap:5px;
 }
 
-.overlay{
-  background-color: rgba(0,0,0,0.5);
-  top:0;
-  left: 0;
-  width:100%;
-  height:100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 100;
-  visibility:hidden;
-}
-
-.overlay.active{
-  visibility:visible;
-}
-
-.modal{
-  background-color: var(--greyscale-1);
-  border-radius: 5px;
-  padding: 40px 16px;
-  width: 350px;
-  position:relative;
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  gap:30px;
-}
-
-.modal .close{
-  cursor: pointer;
-  font-size: 30px;
-  position:absolute;
-  right:15px;
-  top:10px;
-}
-
 table{
   border-collapse:collapse;
   text-align: center;
@@ -163,20 +108,4 @@ th, td{
 
 .modal .profit{
   font-weight:600;
-}
-
-footer{
-  width:100%;
-  height:80px;
-  position:fixed;
-  bottom:0;
-}
-
-footer p{
-  height:100%;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  color:var(--primary-color);
-  font-weight:700;
 }
