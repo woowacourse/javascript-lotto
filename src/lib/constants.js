@@ -2,6 +2,11 @@ export const MIN_LOTTO_NUMBER = 1;
 export const MAX_LOTTO_NUMBER = 45;
 export const LOTTO_LENGTH = 6;
 export const LOTTO_PRICE = 1_000;
+export const PERCENTAGE_MULTIPLIER = 100;
+export const EARNING_RATE_DECIMALS = 1;
+export const LOTTO_NUMBER_LENGTH = 6;
+export const BONUS_NUMBER_LENGTH = 1;
+
 export const SEPERATOR = ",";
 export const NO_WINNING = "당첨 없음";
 export const COMMAND = {
@@ -9,8 +14,6 @@ export const COMMAND = {
   no: "n",
 };
 export const ERROR_MESSAGES_DEFAULT = "[ERROR]";
-export const LOTTO_NUMBER_LENGTH = 6;
-export const BONUS_NUMBER_LENGTH = 1;
 
 export const appendErrorPrefix = (message) =>
   `${ERROR_MESSAGES_DEFAULT} ${message}`;
