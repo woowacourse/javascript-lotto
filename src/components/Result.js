@@ -1,5 +1,6 @@
 import { retryHandler } from "../handler/retryHandler.js";
 import { LOTTO_PRIZE } from "../lottoConstants/systemConstants.js";
+import { basePath } from "../util/basePath.js";
 import formatNumber from "../util/formatNumber.js";
 import { removeModal } from "../util/modalActions.js";
 import { Button } from "./Button.js";
@@ -32,7 +33,7 @@ const ExitIcon = () => {
   exitIconContainer.classList.add("exit-icon-container");
 
   const exitIcon = document.createElement("img");
-  exitIcon.src = "/close.png";
+  exitIcon.src = `/${basePath}/close.png`;
   exitIcon.classList.add("exit-icon");
 
   exitIconContainer.appendChild(exitIcon);
