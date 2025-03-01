@@ -1,4 +1,4 @@
-const retryUntilValid = (input, validateFunc) => {
+const alertUntilValid = (input, validateFunc) => {
   try {
     const validatedInput = validateFunc(input);
     return validatedInput;
@@ -7,4 +7,4 @@ const retryUntilValid = (input, validateFunc) => {
   }
 };
 
-export default retryUntilValid;
+export default alertUntilValid;
