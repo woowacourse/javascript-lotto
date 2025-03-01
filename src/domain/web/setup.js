@@ -50,6 +50,9 @@ const resetLotto = () => {
   priceButton.disabled = false;
   priceButton.style.backgroundColor = "#4e5ba6";
   priceButton.style.cursor = "pointer";
+
+  // body 스크롤 활성화
+  document.body.style.overflow = "auto";
 };
 
 const initLotto = () => {
