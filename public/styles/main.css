@@ -1,6 +1,6 @@
 .main {
   width: 414px;
-  height: 65vh;
+  min-height: 64vh;
   margin: 0 auto;
   padding: 40px 16px 32px;
   border-radius: 4px;
@@ -9,8 +9,6 @@
 }
 
 .main-winning-check-title {
-  width: 382px;
-  height: 36px;
   margin: 0 0 28px;
   font-family: var(--font-family);
   font-size: 24px;
@@ -87,7 +85,7 @@
 
 .lotto-list-display {
   margin: 24px 0px;
-  height: 240px;
+  height: 180px;
   overflow-y: scroll;
 }
 
