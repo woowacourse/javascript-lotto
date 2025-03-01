@@ -1,0 +1,41 @@
+.purchase-container {
+  margin: 30px 0;
+}
+
+.purchase-text {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.purchase-form {
+  display: flex;
+  align-items: center;
+}
+
+.purchase-input {
+  width: 310px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  padding: 6px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.purchase-input::placeholder {
+  color: #8b8b8b;
+}
+
+.purchase-button {
+  height: 36px;
+  width: 56px;
+  color: #fff;
+  background-color: #4e5ba6;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  margin-left: 16px;
+  font-size: 14px;
+  font-weight: 700;
+}

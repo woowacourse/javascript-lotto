@@ -1,0 +1,20 @@
+* {
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
+}
+
+.lotto-container {
+  background-color: #fff;
+  width: 414px;
+  height: 727px;
+  border: 1px solid #0000001f;
+  margin: 148px auto 69px auto;
+  padding: 40px 16px 32px 16px;
+  border-radius: 4px;
+}
+
+.lotto-title {
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+}
