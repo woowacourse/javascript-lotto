@@ -16,11 +16,32 @@
       <h1 id="container-header">🎱 내 당첨 번호 확인 🎱</h1>
       <div id="purchase-header">구입할 금액을 입력해주세요.</div>
       <form class="purchase-form" id="purchase-form">
-        <input id="purchase-input" name="purchase-input" placeholder="금액" />
+        <input id="purchase-input" name="purchase-input" placeholder="금액" type="number" />
         <button id="purchase-button">구입</button>
       </form>
       <div id="result"></div>
-      <div id="systemMessage"></div>
+      <div class="system-message" id="system-message">
+        <div id="message-container">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
+        <div class="number-text">
+          <div id="winning-number">당첨 번호</div>
+          <div id="bonus-number">보너스 번호</div>
+        </div>
+        <div class="number-input" id="number-input">
+          <div id="div-winning-number">
+            <input type="number" class="winning-number" id="winningNumber0" />
+            <input type="number" class="winning-number" id="winningNumber1" />
+            <input type="number" class="winning-number" id="winningNumber2" />
+            <input type="number" class="winning-number" id="winningNumber3" />
+            <input type="number" class="winning-number" id="winningNumber4" />
+            <input type="number" class="winning-number" id="winningNumber5" />
+          </div>
+          <div id="div-bonus-number">
+            <input type="number" id="bonusNumber" />
+          </div>
+        </div>
+
+        <button id="show-result-button">결과 확인하기</button>
+      </div>
     </div>
 
     <div class="modal">
