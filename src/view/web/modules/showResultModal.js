@@ -1,14 +1,9 @@
-const showResultModal = (resultModalCreator) => {
+const showResultModal = () => {
   const showResultButton = document.querySelector(".result-button");
+  const resultModal = document.querySelector(".prize-result-modal");
 
   showResultButton.addEventListener("click", () => {
-    const isModalRendered = document.querySelector(".prize-result-modal");
-
-    if (!isModalRendered) {
-      resultModalCreator();
-    }
-
-    document.querySelector(".prize-result-modal").showModal();
+    resultModal.showModal();
   });
 };
 

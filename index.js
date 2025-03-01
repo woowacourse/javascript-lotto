@@ -23,6 +23,7 @@ import closeResultModal from "./src/view/web/modules/closeResultModalEvent.js";
 const startGame = () => {
   initLayer();
   handleUserInput();
+  handleResultModal();
 };
 
 const initLayer = () => {
@@ -73,8 +74,11 @@ const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
   const price = Number(document.querySelector("#price").value);
   const totalPrizeMoney = getTotalPrizeMoney(result);
   const revenueRate = getRevenueRate(totalPrizeMoney, price);
+  createPrizeResultModal(result, revenueRate);
+};
 
-  showResultModal(() => createPrizeResultModal(result, revenueRate));
+const handleResultModal = () => {
+  showResultModal();
   closeResultModal();
 };
 

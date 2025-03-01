@@ -1,12 +1,10 @@
 const closeResultModal = () => {
-  const closeButtons = document.querySelectorAll(".close-button");
+  const resultModal = document.querySelector(".prize-result-modal");
 
-  closeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const parent = button.parentNode;
-
-      parent.close();
-    });
+  resultModal.addEventListener("click", (event) => {
+    if (event.target.closest(".close-button")) {
+      resultModal.close();
+    }
   });
 };
 
