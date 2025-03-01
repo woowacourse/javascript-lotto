@@ -1,13 +1,5 @@
 import { LOTTO_COUNT, PROFIT } from '../../../constants/CONFIGURATIONS.js';
-import {
-  createTag,
-  enableElement,
-  getByClass,
-  getById,
-  getByTag,
-  hideElement,
-  querySelector,
-} from '../utils/dom.js';
+import { createTag, getByClass, querySelector } from '../utils/dom.js';
 
 const LottoResultModal = {
   $modalContainer: getByClass('modalContainer')[0],
@@ -52,16 +44,7 @@ const LottoResultModal = {
 
   closeModal() {
     this.$modalContainer.classList.add('hidden');
-  },
-
-  resetLotto() {
-    getById('purchaseInput').value = '';
-    getByClass('lottoList')[0].replaceChildren();
-    getByClass('winningNumbersInput')[0].replaceChildren();
-    getByTag('tbody')[0].replaceChildren();
-    enableElement('purchaseInput');
-    enableElement('purchaseButton');
-    hideElement(getByClass('hiddenContainer')[0]);
+    querySelector('.lottoResultTable > tbody').replaceChildren();
   },
 };
 

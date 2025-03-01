@@ -2,8 +2,11 @@ import {
   createContainer,
   createTag,
   disableElement,
+  enableElement,
   getByClass,
   getById,
+  getByTag,
+  hideElement,
   showElement,
 } from './utils/dom.js';
 import WinningInput from './components/WinningInput.js';
@@ -11,18 +14,16 @@ import BonusInput from './components/BonusInput.js';
 import LottoResultModal from './components/LottoResultModal.js';
 
 const OutputView = {
+  $hiddenContainer: getByClass('hiddenContainer')[0],
+  $lottoList: getByClass('lottoList')[0],
+
   printPurchaseLottos(lottoCount, lottos) {
-    const $lottoList = getByClass('lottoList')[0];
     const $lottoCountDescDiv = createContainer('div', { padding: '1rem 0' });
     $lottoCountDescDiv.textContent = `총 ${lottoCount}개를 구매하였습니다.`;
-    $lottoList.appendChild($lottoCountDescDiv);
+    this.$lottoList.appendChild($lottoCountDescDiv);
 
-    this.printLottos(lottos, $lottoList);
-
-    const $hiddenContainer = getByClass('hiddenContainer')[0];
-    showElement($hiddenContainer);
-    this.disablePurchase();
-    this.generateWinningAndBonusInput();
+    this.printLottos(lottos, this.$lottoList);
+    this.processAfterPurchase();
   },
 
   printLottos(lottos, $target) {
@@ -54,6 +55,12 @@ const OutputView = {
     $lottoListDiv.appendChild($lottoDiv);
   },
 
+  processAfterPurchase() {
+    showElement(this.$hiddenContainer);
+    this.disablePurchase();
+    this.generateWinningAndBonusInput();
+  },
+
   disablePurchase() {
     disableElement('purchaseInput');
     disableElement('purchaseButton');
@@ -70,6 +77,21 @@ const OutputView = {
     LottoResultModal.createTable(winningCounts);
     LottoResultModal.createProfit(profitRate);
     LottoResultModal.openModal();
+  },
+
+  resetLottoUI() {
+    LottoResultModal.closeModal();
+    hideElement(this.$hiddenContainer);
+    this.enablePurchase();
+    this.$lottoList.replaceChildren();
+    getByClass('winningNumbersInput')[0].replaceChildren();
+    getByTag('tbody')[0].replaceChildren();
+  },
+
+  enablePurchase() {
+    enableElement('purchaseInput');
+    enableElement('purchaseButton');
+    getById('purchaseButton').classList.remove('disabled');
   },
 };
 
