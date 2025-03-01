@@ -1,14 +1,17 @@
 import LottoMachine from './Model/LottoMachine.js'
 import Validate from './Model/Validate.js';
+import Winning from './Model/Winning';
 
 const lottoMachine = new LottoMachine();
+let price = 0;
 let lottos = [];
 document.querySelector("#purchase-form").addEventListener("submit", async (event) => {
   event.preventDefault();
 
   try {
-    const price = document.querySelector("#purchase-input").value;
-    Validate.validatePrice(price);
+    const priceInput = document.querySelector("#purchase-input").value;
+    Validate.validatePrice(priceInput);
+    price = priceInput
     lottos = lottoMachine.generateLotto(price);
 
     console.log("구매한 로또:", lottos);
@@ -45,14 +48,52 @@ function updateLottoUI(lottos) {
   });
 }
 
+document.querySelector(".show-result-btn").addEventListener("click", (event) => {
+  event.preventDefault();
 
-const showBtn = document.querySelector('.show-result-btn');
+  try {
+    const winningNumbersInput = getWinningNumbers();
+    checkIsEmpty(winningNumbersInput);
+    Validate.validateWinningNumbers(winningNumbersInput);
+    const winningNumbers = winningNumbersInput.map(Number);
+
+    const bonusNumber = getBonusNumber();
+    Validate.validateBonusNumber(bonusNumber, winningNumbers);
+    console.log("당첨 번호:", winningNumbers);
+    console.log("보너스 번호:", bonusNumber);
+
+    const winning = new Winning(winningNumbers, bonusNumber);
+    winning.calculateRank(lottos);
+    const prizeRate = winning.getCalculatedPrizeRate(price);
+    console.log(winning.rankHistory);
+    console.log(prizeRate);
+
+    resultModal.showModal();
+  } catch (error) {
+    console.log(error)
+    alert(error.message);
+  }
+});
+
+function getWinningNumbers() {
+  const numberInputs = document.querySelectorAll(".winning-numbers-input .number-input");
+  return Array.from(numberInputs)
+    .map(input => input.value.trim())
+    .filter(value => value !== "");
+}
+
+function getBonusNumber() {
+  return Number(document.querySelector("#bonus-input").value.trim());
+}
+
+function checkIsEmpty(value) {
+  if (value.length < 1) {
+    throw new Error('[ERROR] 당첨번호를 입력해 주세요.');
+  }
+}
+
 const resultModal = document.querySelector('.dialog');
 const closeBtn = document.querySelector('.close-btn');
-
-showBtn.addEventListener('click', () => {
-  resultModal.showModal();
-})
 
 closeBtn.addEventListener('click', () => {
   resultModal.close();
