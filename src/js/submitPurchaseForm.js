@@ -1,8 +1,8 @@
 import { parsePrice } from '../input/parseInput.js';
 import { purchaseLottos } from '../service/PurchaseService.js';
 import validatePrice from '../validation/validatePrice.js';
-import { resetError, showError } from './errorHandler.js';
-import disableButton from './disabledButton.js';
+import { resetError, showError } from './util/errorHandler.js';
+import disableButton from './util/disabledButton.js';
 import { $ } from '../util/selector.js';
 import { showLottoCount } from './view/showLottoCount.js';
 import { showLottoTickets } from './view/showLottoTickets.js';

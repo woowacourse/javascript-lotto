@@ -1,5 +1,5 @@
 #winning-number-form {
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 
@@ -38,7 +38,7 @@
   background-color: var(--primary);
   color: var(--gray-1);
   border-radius: 4px;
-  padding: 6px;
+  padding: 12px;
 }
 
 .spacing-4 {

@@ -1,4 +1,3 @@
-import { $ } from '../util/selector.js';
 import { lockScroll, unlockScroll } from './scroll.js';
 
 const showModal = (modal) => {
