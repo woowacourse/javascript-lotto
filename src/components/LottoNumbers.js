@@ -18,7 +18,7 @@ const LottoNumber = ({ lotto }) => {
 
   const lottoImage = document.createElement("img");
   lottoImage.classList.add("lotto-image");
-  lottoImage.src = "public/lotto.png";
+  lottoImage.src = "/lotto.png";
   lottoImage.alt = "로또 이미지";
 
   lottoNumbersItem.appendChild(lottoImage);
