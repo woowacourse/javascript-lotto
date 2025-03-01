@@ -1,4 +1,5 @@
 import lottoStart from '../step2-index';
+import eventListenersController from '../utils/eventListenersController.js';
 import $modal from '../components/modal/modal.js';
 
 const handleModalClose = () => {
@@ -6,45 +7,34 @@ const handleModalClose = () => {
   modal1.remove();
 };
 
-const closeEvents = [
+const events = [
+  { target: 'closeButton', type: 'click', handler: handleModalClose },
   {
-    element: document.getElementById('closeButton'),
-    type: 'click',
-    handler: handleModalClose,
-  },
-  {
-    element: document.getElementById('layerBg'),
-    type: 'click',
-    handler: handleModalClose,
-  },
-  {
-    element: document.getElementById('closeButton'),
+    target: 'closeButton',
     type: 'keypress',
     handler: (e) => e.keyCode === 13 && handleModalClose(),
   },
+  { target: 'layerBg', type: 'click', handler: handleModalClose },
   {
-    element: document,
+    target: document,
     type: 'keydown',
     handler: (e) => e.key === 'Escape' && handleModalClose(),
   },
+  {
+    target: 'restartButton',
+    type: 'click',
+    handler: () => {
+      handleModalClose();
+      lottoStart();
+    },
+  },
 ];
-
-const addModalEventListeners = () => {
-  closeEvents.forEach(({ element, type, handler }) => {
-    if (element) element.addEventListener(type, handler);
-  });
-
-  document.getElementById('restartButton').addEventListener('click', () => {
-    handleModalClose();
-    lottoStart();
-  });
-};
 
 const handleModal = (e, result, revenueRate) => {
   e.preventDefault();
   document.getElementById('app').appendChild($modal(result, revenueRate));
 
-  addModalEventListeners();
+  eventListenersController(events);
 };
 
 export default handleModal;
