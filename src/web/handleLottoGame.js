@@ -3,6 +3,7 @@ import LottoGame from '../domain/LottoGame.js';
 import LottoMatch from '../domain/LottoMatch.js';
 import validateBonusNumber from '../validations/validate/BonusNumberValidate.js';
 import { renderRankTable, renderWinningRate } from '../view/renderLottoResult.js';
+import { openModal } from './handleModal.js';
 
 const $winningNumbersInput = document.querySelectorAll('.winning-numbers__input');
 const $bonusNumber = document.getElementById('bonus-number__input');
@@ -10,6 +11,7 @@ const $bonusNumber = document.getElementById('bonus-number__input');
 export function handleLottoGame(e, state) {
   e.preventDefault();
 
+  openModal();
   calculateRank(state);
   renderRankTable(state);
   renderWinningRate(state);

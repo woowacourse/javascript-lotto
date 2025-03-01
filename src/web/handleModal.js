@@ -25,7 +25,7 @@ export function handleCloseModal() {
   $lottoResultTable.innerHTML = '';
 }
 
-export function handleOpenModal() {
+export function openModal() {
   $modalWrap.classList.remove('hidden');
   $app.style.backgroundColor = 'rgba(0,0,0,0.5)';
 }

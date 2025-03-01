@@ -17,7 +17,7 @@
         <form id="purchase-form">
           <span>구입할 금액을 입력해주세요.</span>
           <div>
-            <input id="purchase-form__input" type="number" />
+            <input id="purchase-form__input" type="number" required />
             <button disabled id="purchase-form__btn">구입</button>
           </div>
           <span id="purchase-form__error" class="error-message"></span>
@@ -33,17 +33,17 @@
               <div class="numbers">
                 <span>당첨번호</span>
                 <div>
-                  <input class="winning-numbers__input" />
-                  <input class="winning-numbers__input" />
-                  <input class="winning-numbers__input" />
-                  <input class="winning-numbers__input" />
-                  <input class="winning-numbers__input" />
-                  <input class="winning-numbers__input" />
+                  <input class="winning-numbers__input" type="number" min="1" max="45" required />
+                  <input class="winning-numbers__input" type="number" min="1" max="45" required />
+                  <input class="winning-numbers__input" type="number" min="1" max="45" required />
+                  <input class="winning-numbers__input" type="number" min="1" max="45" required />
+                  <input class="winning-numbers__input" type="number" min="1" max="45" required />
+                  <input class="winning-numbers__input" type="number" min="1" max="45" required />
                 </div>
               </div>
               <div id="bonus-number" class="numbers">
                 <span>보너스 번호</span>
-                <input id="bonus-number__input" type="number" />
+                <input id="bonus-number__input" type="number" min="1" max="45" required />
               </div>
             </section>
             <span id="lotto-form__error" class="error-message"></span>
