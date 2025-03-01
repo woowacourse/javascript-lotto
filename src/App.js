@@ -145,7 +145,7 @@ class App {
   }
 
   runWeb() {
-    this.#initializePurchaseAmountByWeb();
+    this.#purchaseAmountByWeb();
   }
 
   #initializeWebInput({ readUserInput, formatter, onError }) {
@@ -158,7 +158,7 @@ class App {
     }
   }
 
-  #initializePurchaseAmountByWeb() {
+  #purchaseAmountByWeb() {
     const $purchaseForm = document.querySelector('#lottoPurchaseForm');
     const $newPurchaseForm = $purchaseForm.cloneNode(true);
     $purchaseForm.replaceWith($newPurchaseForm);
@@ -183,109 +183,119 @@ class App {
       const { lottoCounts, lottoNumbersList, lottoList } =
         this.buyLottos(purchaseAmountInput);
 
+      this.#purchaseWinningLottoByWeb({
+        lottoCounts,
+        lottoNumbersList,
+        lottoList,
+      });
+    });
+  }
+
+  #purchaseWinningLottoByWeb({ lottoCounts, lottoNumbersList, lottoList }) {
+    const $section = document.querySelector('#lottoListWinningLottoContainer');
+    const $article = document.createElement('article');
+    $article.setAttribute('id', 'lottoListDisplay');
+    $article.setAttribute('class', 'lotto-list-display');
+
+    const $form = createWinningLottoForm();
+    $section.appendChild($article);
+
+    outputViewByWeb.displayLottoCount(lottoCounts);
+    outputViewByWeb.displayLottoList(lottoNumbersList);
+
+    $section.appendChild($form);
+
+    $form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+
+      const winningNumbersInput = this.#initializeWebInput({
+        readUserInput: () => formData.getAll('winningNumber'),
+        formatter: (input) => {
+          validateEmptySpaceInWinningNumbers(input);
+          const numbers = input.map(Number);
+          validateWinningNumbers(numbers);
+          return numbers;
+        },
+        onError: (error) => outputViewByWeb.displayErrorMessage(error),
+      });
+
+      if (winningNumbersInput === null) {
+        return;
+      }
+
+      const bonusNumberInput = this.#initializeWebInput({
+        readUserInput: () => formData.get('bonusNumber'),
+        formatter: (input) => {
+          validateEmptySpace(input);
+          const convertedInput = convertFormat.toNumber(input);
+          validateBonusNumber(convertedInput, winningNumbersInput);
+          return convertedInput;
+        },
+        onError: (error) => outputViewByWeb.displayErrorMessage(error),
+      });
+
+      if (bonusNumberInput === null) {
+        return;
+      }
+
+      const winningLotto = new WinningLotto(
+        new Lotto(winningNumbersInput),
+        bonusNumberInput,
+      );
+
+      const { lottoResult, lottoProfit } = this.getLottoResult(
+        winningLotto,
+        lottoList,
+      );
+
+      outputViewByWeb.displayLottoResult(lottoResult, lottoProfit);
+      this.#setupModalEventListeners();
+    });
+    //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
+  }
+
+  #setupModalEventListeners() {
+    const $modalCloseButton = document.querySelector('.modal-close-button');
+    const $modalOverlay = document.querySelector('.modal-overlay');
+
+    if ($modalCloseButton === null || $modalOverlay === null) {
+      return;
+    }
+
+    $modalCloseButton.addEventListener('click', () => {
+      const $modal = document.querySelector('.modal');
+      if ($modal) {
+        $modal.remove();
+      }
+    });
+
+    $modalOverlay.addEventListener('click', () => {
+      const $modal = document.querySelector('.modal');
+      if ($modal) {
+        $modal.remove();
+      }
+    });
+
+    const $modalRestartButton = document.querySelector('.modal-restart-button');
+    if ($modalRestartButton === null) {
+      return;
+    }
+    $modalRestartButton.addEventListener('click', () => {
+      const $modal = document.querySelector('.modal');
+      if ($modal) {
+        $modal.remove();
+      }
       const $section = document.querySelector(
         '#lottoListWinningLottoContainer',
       );
-      const $article = document.createElement('article');
-      $article.setAttribute('id', 'lottoListDisplay');
-      $article.setAttribute('class', 'lotto-list-display');
+      const $input = document.querySelector('#purchaseAmount');
+      const $newSection = $section.cloneNode();
+      $section.replaceWith($newSection);
+      $input.value = null;
 
-      const $form = createWinningLottoForm();
-      $section.appendChild($article);
-
-      outputViewByWeb.displayLottoCount(lottoCounts);
-      outputViewByWeb.displayLottoList(lottoNumbersList);
-
-      $section.appendChild($form);
-
-      $form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.target);
-
-        const winningNumbersInput = this.#initializeWebInput({
-          readUserInput: () => formData.getAll('winningNumber'),
-          formatter: (input) => {
-            validateEmptySpaceInWinningNumbers(input);
-            const numbers = input.map(Number);
-            validateWinningNumbers(numbers);
-            return numbers;
-          },
-          onError: (error) => outputViewByWeb.displayErrorMessage(error),
-        });
-
-        if (winningNumbersInput === null) {
-          return;
-        }
-
-        const bonusNumberInput = this.#initializeWebInput({
-          readUserInput: () => formData.get('bonusNumber'),
-          formatter: (input) => {
-            validateEmptySpace(input);
-            const convertedInput = convertFormat.toNumber(input);
-            validateBonusNumber(convertedInput, winningNumbersInput);
-            return convertedInput;
-          },
-          onError: (error) => outputViewByWeb.displayErrorMessage(error),
-        });
-
-        if (bonusNumberInput === null) {
-          return;
-        }
-
-        const winningLotto = new WinningLotto(
-          new Lotto(winningNumbersInput),
-          bonusNumberInput,
-        );
-
-        const { lottoResult, lottoProfit } = this.getLottoResult(
-          winningLotto,
-          lottoList,
-        );
-
-        outputViewByWeb.displayLottoResult(lottoResult, lottoProfit);
-
-        const $modalCloseButton = document.querySelector('.modal-close-button');
-        const $modalOverlay = document.querySelector('.modal-overlay');
-
-        if ($modalCloseButton === null || $modalOverlay === null) {
-          return;
-        }
-
-        $modalCloseButton.addEventListener('click', () => {
-          const $modal = document.querySelector('.modal');
-          if ($modal) {
-            $modal.remove();
-          }
-        });
-
-        $modalOverlay.addEventListener('click', () => {
-          const $modal = document.querySelector('.modal');
-          if ($modal) {
-            $modal.remove();
-          }
-        });
-
-        const $modalRestartButton = document.querySelector(
-          '.modal-restart-button',
-        );
-        if ($modalRestartButton === null) {
-          return;
-        }
-        $modalRestartButton.addEventListener('click', () => {
-          const $modal = document.querySelector('.modal');
-          if ($modal) {
-            $modal.remove();
-          }
-          const $input = document.querySelector('#purchaseAmount');
-          $section.removeChild($article);
-          $section.removeChild($form);
-          $input.value = null;
-
-          this.#initializePurchaseAmountByWeb();
-        });
-      });
-      //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
+      this.runWeb();
     });
   }
 }
