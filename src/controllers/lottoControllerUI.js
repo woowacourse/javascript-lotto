@@ -29,6 +29,7 @@ class lottoControllerUI {
     const price = getLottoPrice();
     if (price) {
       disabledTarget(e.target, true);
+      disabledTarget($(".purchase input"), true);
       this.lottos = this.lottoGame.generateLottos(price);
 
       printLottoCount(this.lottos.length);

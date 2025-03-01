@@ -1,10 +1,9 @@
-const retryUntilValid = async (getInputFunc, onError) => {
+const retryUntilValid = async (func, onError) => {
   while (true) {
     try {
-      const input = await getInputFunc();
-      return input;
-    } catch (err) {
-      await onError(err);
+      return await func();
+    } catch (e) {
+      onError(e);
     }
   }
 };

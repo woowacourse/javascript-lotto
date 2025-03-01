@@ -66,3 +66,9 @@ button:disabled {
   background-color: var(--greyscale-3);
   cursor: default;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
