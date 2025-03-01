@@ -9,7 +9,7 @@ const purchaseMoneyValidator = {
   },
 
   isValidRange(input) {
-    return LOTTO_CONDITION.PRICE <= input;
+    return LOTTO_CONDITION.PRICE <= input && LOTTO_CONDITION.MAX_PRICE >= input;
   },
 };
 
@@ -27,11 +27,13 @@ const validateUnit = (input) => {
 
 const validateRange = (input) => {
   if (!purchaseMoneyValidator.isValidRange(input)) {
-    throw new Error(PURCHASE_NUMBER_ERROR_MESSAGES.MIN);
+    throw new Error(PURCHASE_NUMBER_ERROR_MESSAGES.RANGE);
   }
 };
 
 const validatePurchaseMoney = (input) =>
   runValidators([validatePurchaseMoneyInteger, validateRange, validateUnit], input);
+
+
 
 export default validatePurchaseMoney;

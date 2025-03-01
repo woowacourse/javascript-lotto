@@ -3,6 +3,7 @@ export const LOTTO_CONDITION = {
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
   PRICE: 1000,
+  MAX_PRICE:100000
 };
 
 export const MESSAGE = {
@@ -21,7 +22,7 @@ export const LOTTO_NUMBER_ERROR_MESSAGES = {
 export const PURCHASE_NUMBER_ERROR_MESSAGES = {
   INTIGER: '정수를 입력해주세요.',
   UNIT: `${LOTTO_CONDITION.PRICE}원 단위로 입력해주세요.`,
-  MIN: `${LOTTO_CONDITION.PRICE}원 이상 입력해주세요.`,
+  RANGE: `${LOTTO_CONDITION.PRICE}원 이상 ${LOTTO_CONDITION.MAX_PRICE}미만의 금액을 입력해주세요.`,
 };
 
 export const RANKING_ERROR_MESSAGES = 'ranking 값이 유효하지 않습니다.';
