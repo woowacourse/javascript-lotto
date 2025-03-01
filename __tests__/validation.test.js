@@ -1,4 +1,5 @@
 import { ERROR } from '../src/constants/message';
+import { LOTTO_RULE } from '../src/domain/constants';
 import {
   validateMoney,
   validateLottoNumber,
@@ -8,27 +9,31 @@ import {
 
 describe('로또 구입 금액', () => {
   test('로또 구입 금액은 1,000원으로 나누어떨어져야 한다.', () => {
-    const money = 1000;
     expect(() => {
-      validateMoney(money);
+      validateMoney(LOTTO_RULE.PRICE);
     }).not.toThrow();
   });
 
   test('로또 구입 금액은 1,000원으로 나누어 떨어지지 않으면 에러를 발생한다.', () => {
-    const money = 1001;
     expect(() => {
-      validateMoney(money);
+      validateMoney(LOTTO_RULE.PRICE + 1);
     }).toThrow(ERROR.MONEY.REST_VALUE);
   });
 
   test.each([[0], [-1000]])(
-    '로또 구입 금액은 0원 이하일 경우 에러를 발생한다..',
+    '로또 구입 금액은 0원 이하일 경우 에러를 발생한다.',
     (money) => {
       expect(() => {
         validateMoney(money);
       }).toThrow(ERROR.MONEY.EMPTY_VALUE);
     },
   );
+
+  test('로또 구입 금액은 100,000원을 초과할 경우 에러를 발생한다.', () => {
+    expect(() => {
+      validateMoney(LOTTO_RULE.MAX_BUY_MONEY + LOTTO_RULE.PRICE);
+    }).toThrow(ERROR.MONEY.MAX_OVER_VALUE);
+  });
 });
 
 describe('로또 숫자', () => {
