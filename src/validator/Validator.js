@@ -6,7 +6,7 @@ import {
   LOTTO_PRICE,
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
-} from "../lib/constants";
+} from "../step2/lib/constants";
 import { checkUniqueArray } from "../utils/lotto";
 
 class Validator {

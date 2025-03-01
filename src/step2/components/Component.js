@@ -1,4 +1,4 @@
-import { qsAll } from "../utils/domHelper.js";
+import { qsAll } from "../../utils/domHelper.js";
 
 export default class Component {
   constructor(element, props = {}) {

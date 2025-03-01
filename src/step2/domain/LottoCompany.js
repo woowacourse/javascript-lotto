@@ -7,7 +7,7 @@ import {
   NO_WINNING,
   PERCENTAGE_MULTIPLIER,
 } from "../lib/constants";
-import { getIntersectCount } from "../utils/lotto";
+import { getIntersectCount } from "../../utils/lotto";
 
 class LottoCompany {
   #winNumbers;

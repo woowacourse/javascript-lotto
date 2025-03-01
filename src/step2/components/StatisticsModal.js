@@ -1,5 +1,5 @@
 import { LOTTO_RANK } from "../lib/constants";
-import { qs } from "../utils/domHelper";
+import { qs } from "../../utils/domHelper";
 import Button from "./@common/Button";
 import Component from "./Component";
 

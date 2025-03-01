@@ -6,8 +6,8 @@ import {
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
 } from "../lib/constants.js";
-import { generateUniqueNumbers } from "../utils/lotto.js";
-import Validator from "../validator/Validator.js";
+import { generateUniqueNumbers } from "../../utils/lotto.js";
+import Validator from "../../validator/Validator.js";
 import Lotto from "./Lotto.js";
 
 class LottoShop {

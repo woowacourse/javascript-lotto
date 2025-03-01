@@ -1,7 +1,7 @@
 import LottoCompany from "../domain/LottoCompany";
 import LottoResult from "../service/LottoResult";
-import { qs, qsAll } from "../utils/domHelper";
-import Validator from "../validator/Validator";
+import { qs, qsAll } from "../../utils/domHelper";
+import Validator from "../../validator/Validator";
 import Button from "./@common/Button";
 import Component from "./Component";
 
