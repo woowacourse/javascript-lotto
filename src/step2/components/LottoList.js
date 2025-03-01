@@ -1,4 +1,5 @@
 import Component from "./Component.js";
+import IcAdmitOne from "../assets/ic_admit_one.png";
 
 export default class LottoList extends Component {
   template() {
@@ -13,9 +14,9 @@ export default class LottoList extends Component {
                 .map((lotto) => {
                   return `
               <span class="lotto-detail-item-number"
-                ><img src="../assets/ic_admit_one.png" alt='로또 번호 이미지'/>${lotto.numbers.join(
-                  ", "
-                )}</span
+                ><img src="${IcAdmitOne}" alt='로또 번호 이미지'/>${lotto.numbers.join(
+                    ", "
+                  )}</span
               >
               `;
                 })
