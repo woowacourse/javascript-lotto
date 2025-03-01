@@ -4,7 +4,7 @@ import parseAndValidateBonusNumber from "../../domain/processors/parseAndValidat
 import parseAndValidateWinningNumbers from "../../domain/processors/parseAndValidateWinningNumbers.js";
 import profitCalculator from "../../domain/profitCalculator/profitCalculator.js";
 import DomUpdator from "../../utils/DomUpdator.js";
-import DomSelector from "../../utils/domSelector.js";
+import DomSelector from "../../utils/DomSelectors.js";
 import WebView from "../../view/WebView.js";
 
 const handleWinningCheck = (purchaseAmount, lottoPack) => {

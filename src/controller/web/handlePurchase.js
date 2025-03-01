@@ -1,7 +1,7 @@
 import LottoMachine from "../../domain/LottoMachine/LottoMachine.js";
 import parseAndValidatePurchaseAmount from "../../domain/processors/parseAndValidatePurchaseAmount.js";
 import DomUpdator from "../../utils/DomUpdator.js";
-import DomSelector from "../../utils/domSelector.js";
+import DomSelector from "../../utils/DomSelectors.js";
 import WebView from "../../view/WebView.js";
 
 const handlePurchase = () => {

@@ -1,5 +1,5 @@
+import DomSelector from "../../utils/DomSelectors.js";
 import DomUpdator from "../../utils/DomUpdator.js";
-import DomSelector from "../../utils/domSelector.js";
 import handlePurchase from "./handlePurchase.js";
 import handleRestart from "./handleRestart.js";
 import handleWinningCheck from "./handleWinningCheck.js";
