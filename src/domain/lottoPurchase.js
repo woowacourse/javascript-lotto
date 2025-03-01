@@ -13,6 +13,8 @@ const createLottoContent = (lottos, money) => {
 
 const createLottos = (lottoMachine, money) => {
   lottoMachine.createLottos(money);
+  document.getElementById('buyButton').disabled = true;
+  document.getElementById('buyButton').classList.add('disabled_button');
   return lottoMachine.getLottos();
 };
 

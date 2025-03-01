@@ -1,3 +1,9 @@
+div#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .title_style {
   font-size: var(--title-size);
   font-weight: var(--title-weight);
@@ -30,7 +36,6 @@ main div.lotto_container {
   flex-direction: column;
   align-items: center;
   width: 414px;
-  height: 700px;
   margin: 84px auto 69px;
   padding: 40px 16px 32px;
   border-radius: var(--border-radius-smallest);
@@ -85,6 +90,12 @@ form.lotto_form button {
   background-color: var(--lotto-primary);
   color: var(--lotto-grey-scale-1);
   border: none;
+}
+
+form.lotto_form button.disabled_button {
+  background-color: #ccc;
+  color: #fff;
+  cursor: not-allowed;
 }
 
 div.lotto_container div.lotto_result_list {
