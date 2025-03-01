@@ -34,6 +34,7 @@
   display: flex;
   flex-direction: column;
   padding: 0 16px;
+  position: relative;
   /* justify-content: center; */
   /* align-items: center; */
 }
@@ -68,6 +69,12 @@
   padding-left: 5px;
 }
 
+#content-bottom {
+  position: absolute;
+  bottom: 20px;
+  width: 414px;
+}
+
 #button-purchase {
   width: 80px;
   background: #4E5BA6;
@@ -78,12 +85,25 @@
   font-size: 17px;
 }
 
-#button-purchase:hover {
+#button-check-result {
+  width: 100%;
+  background: #4E5BA6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 17px;
+  margin: 20px 0;
+  font-size: 17px;
+  /* position: absolute;
+  bottom: 20px; */
+}
+
+#button-purchase:hover, #button-check-result:hover {
   background: #2e3fa2;
   cursor: pointer;
 }
 
-#button-purchase:disabled {
+#button-purchase:disabled #button-check-result:disabled {
   background: gray;
   cursor: not-allowed;
 }
