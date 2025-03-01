@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
     <link rel="stylesheet" href="./src/style/main.css" />
     <script type="module" defer src="./src/step2-index.js"></script>
   </head>
@@ -12,7 +11,7 @@
   <body>
     <div id="app">
       <header>
-        <span class="title">🎱 행운의 로또</span>
+        <h1 class="title">🎱 행운의 로또</h1>
       </header>
 
       <!-- 로또 게임 -->
@@ -22,7 +21,7 @@
 
           <!-- 금액 입력 -->
           <section class="purchase_amount_section">
-            <span>구입할 금액을 입력해주세요.</span>
+            <h2>구입할 금액을 입력해주세요.</h2>
             <div class="purchase_amount">
               <input type="text" id="purchaseAmount" placeholder="금액" />
               <button id="purchaseButton" class="caption">구입</button>
@@ -31,14 +30,14 @@
 
           <!-- 구매한 로또 목록 -->
           <section class="lotto_pack_section">
-            <span class="purchase_count"></span>
+            <h2 class="purchase_count"></h2>
             <div class="lotto_pack"></div>
           </section>
 
           <!-- 당첨 번호 및 보너스 번호 입력 -->
           <section class="answer_lotto_section">
-            <span class="answer_lotto_title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span>
-            <div class="answer_lotto">
+            <h2 class="answer_lotto_title">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h2>
+            <form class="answer_lotto">
               <div class="answer_lotto_number">
                 <span>당첨 번호</span>
                 <div class="winning_input">
@@ -56,7 +55,7 @@
                   <input type="text" class="number bonus_number" maxlength="2" />
                 </div>
               </div>
-            </div>
+            </form>
           </section>
 
           <!-- 결과 확인 버튼 -->
@@ -73,7 +72,7 @@
             <button><img class="close" src="close.png" alt="x" width="16px" height="16px" /></button>
           </form>
           <div class="inner">
-            <span class="title">🏆 당첨 통계 🏆</span>
+            <h2 class="title">🏆 당첨 통계 🏆</h2>
             <div class="statistics">
               <div class="header-row">
                 <span class="match_count">일치 갯수</span>
@@ -112,10 +111,11 @@
         </section>
       </dialog>
 
-      <!-- <dialog class="error_modal">에러</dialog> -->
+      <!-- 에러 모달 -->
+      <dialog class="error_modal"></dialog>
 
       <footer>
-        <span class="caption">Copyright 2025. woowacourse</span>
+        <p class="caption">Copyright 2025. woowacourse</p>
       </footer>
     </div>
   </body>
