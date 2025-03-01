@@ -14,6 +14,7 @@ import {
   getUIUserRetry,
   getUIWinningNumber,
 } from './service/InputService.js';
+import makeLotto from './service/LottoService.js';
 import {
   getBonusNumber,
   getPurchasePrice,
@@ -37,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       showPurchaseResult(purchaseAmount);
       purchaseButton.disabled = true;
-      lottos = showLottoResult(lottos, purchaseAmount, purchaseButton);
+      lottos = makeLotto(purchaseAmount);
+      showLottoResult(lottos);
       createLottoInput();
 
       const resultButton = document.getElementById('check-result-btn');

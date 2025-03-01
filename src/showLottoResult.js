@@ -1,7 +1,4 @@
-import makeLotto from './service/LottoService';
-
-function showLottoResult(lottos, purchaseAmount) {
-  lottos = makeLotto(purchaseAmount);
+function showLottoResult(lottos) {
   lottos.forEach((lotto) => {
     const lottoWrapper = document.createElement('div');
     lottoWrapper.classList.add('lotto-wrapper');
@@ -19,8 +16,6 @@ function showLottoResult(lottos, purchaseAmount) {
 
     document.querySelector('.lotto-content').appendChild(lottoWrapper);
   });
-
-  return lottos;
 }
 
 export default showLottoResult;
