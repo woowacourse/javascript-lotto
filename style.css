@@ -49,24 +49,24 @@ div.lotto_container div.lotto_header {
   width: 100%;
 }
 
-div.lotto_container b.lotto_title {
+div.lotto_header b.lotto_title {
   margin: 0 0 28px;
   text-align: center;
   color: var(--lotto-grey-scale-5);
 }
 
-div.lotto_container p.lotto_subtitle {
+div.lotto_header p.lotto_subtitle {
   width: 100%;
 }
 
-div.lotto_container form.lotto_form {
+div.lotto_header form.lotto_form {
   display: flex;
   gap: 10px;
   width: 100%;
   margin-top: 8px;
 }
 
-div.lotto_container form.lotto_form input {
+div.lotto_header form.lotto_form input {
   display: flex;
   height: 36px;
   flex: 1;
@@ -96,6 +96,17 @@ form.lotto_form button.disabled_button {
   background-color: #ccc;
   color: #fff;
   cursor: not-allowed;
+}
+
+div.lotto_header span.lotto_buy_error {
+  display: none;
+  font-size: 13px;
+  margin: 3px 0;
+  color: #f00;
+}
+
+div.lotto_header span.lotto_buy_error.show {
+  display: block;
 }
 
 div.lotto_container div.lotto_result_list {
