@@ -7,6 +7,8 @@
   --lotto-greyscale-5: #000000;
   --lotto-primary: #4e5ba6;
 
+  --lotto-border: #e0e0e0;
+  --lotto-border-footer: #d9dcec;
   /* Typography */
   /* font style */
   --font-title:
@@ -57,3 +59,45 @@
   color: var(--lotto-greyscale-3);
 }
 
+body {
+  background-color: var(--lotto-greyscale-2);
+}
+
+.lotto-header {
+  padding: 14px 130px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+}
+
+.lotto-app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lotto-game-view {
+  width: 414px;
+  height: 727px;
+  border: 1px solid var(--lotto-border);
+  border-radius: 4px;
+  padding: 40px 16px 32px;
+  margin: 84px 0 69px;
+}
+
+.lotto-game-view h1 {
+  text-align: center;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid var(--lotto-border-footer);
+}
+
+footer p {
+  color: var(--lotto-primary);
+  margin: 28px auto 36px;
+}
