@@ -6,9 +6,9 @@ const readWinningNumbers = (validator, renderer) => {
 
     const winningNumbers = Array.from(
       document.querySelectorAll(".winning-numbers"),
-    ).map((number) => number.value);
+    ).map((number) => Number(number.value));
 
-    const bonusNumber = document.querySelector("#bonus-number").value;
+    const bonusNumber = Number(document.querySelector("#bonus-number").value);
 
     validator(winningNumbers, bonusNumber);
 

@@ -4,7 +4,7 @@ const readLottoPriceInput = (validator, renderer) => {
   purchaseForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const price = document.querySelector("#price").value;
+    const price = Number(document.querySelector("#price").value);
     validator(price);
 
     renderer(price);
