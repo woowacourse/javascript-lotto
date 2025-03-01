@@ -9,4 +9,10 @@ export const handleRestartClick = () => {
     DOM.winningForm.style.visibility = "hidden";
     DOM.purchaseResult.textContent = "";
     DOM.lottoTicketListContainer.innerHTML = "";
+    DOM.purchaseButton.disabled = false;
+    DOM.inputPrice.disabled = false;
+    DOM.winningNumberInputs.forEach(input => {
+        input.disabled = false;
+    });
+    DOM.bonusInput.disabled = false;
 };
