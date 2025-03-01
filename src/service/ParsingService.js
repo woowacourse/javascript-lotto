@@ -5,8 +5,8 @@ import checkBonusNumber from '../Validation/checkBonusNumber.js';
 import checkLottoPurchase from '../Validation/checkLottoPurchase.js';
 import checkUserRetry from '../Validation/checkUserRetry.js';
 import { LOTTO_PRICE } from '../constants/MagicNumber.js';
-import clearUIElements from '../clearUIElements.js';
-import clearLottoInputs from '../clearLottoInputs.js';
+import clearUIElements from '../View/clear/clearUIElements.js';
+import clearLottoInputs from '../View/clear/clearLottoInputs.js';
 
 async function getPurchasePrice(inputMethod) {
   try {

@@ -1,8 +1,8 @@
-import clearUIElements from './clearUIElements.js';
+import clearUIElements from './View/clear/clearUIElements.js';
 import { PRIZE_MONEY } from './constants/MagicNumber.js';
-import createLottoInput from './createLottoInput.js';
-import createModal from './createModal.js';
-import createModalOverlay from './createModalOverlay.js';
+import createLottoInput from './View/create/createLottoInput.js';
+import createModal from './View/create/createModal.js';
+import createModalOverlay from './View/create/createModalOverlay.js';
 import {
   calculatePrize,
   calculateRevenueRate,
@@ -21,8 +21,8 @@ import {
   getUserRetry,
   getWinningNumber,
 } from './service/ParsingService.js';
-import showLottoResult from './showLottoResult.js';
-import showPurchaseResult from './showPurchaseResult.js';
+import showLottoResult from './View/show/showLottoResult.js';
+import showPurchaseResult from './View/show/showPurchaseResult.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const purchaseButton = document.getElementById('purchase-button');
@@ -35,13 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
         getUIPurchasePrice,
       );
       purchasePrice = price;
-
       showPurchaseResult(purchaseAmount);
       purchaseButton.disabled = true;
+
       lottos = makeLotto(purchaseAmount);
       showLottoResult(lottos);
       createLottoInput();
-
       const resultButton = document.getElementById('check-result-btn');
 
       resultButton.removeEventListener('click', handleResult);

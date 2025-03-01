@@ -1,4 +1,4 @@
-import { PRIZE_MONEY } from './constants/MagicNumber';
+import { PRIZE_MONEY } from '../../constants/MagicNumber';
 
 function createModal(winCount, revenueRate) {
   const modal = document.createElement('dialog');
