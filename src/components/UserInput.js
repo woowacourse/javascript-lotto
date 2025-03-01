@@ -1,10 +1,19 @@
 import LottoCompany from "../domain/LottoCompany";
+import LottoResult from "../service/LottoResult";
 import { qs, qsAll } from "../utils/domHelper";
 import Validator from "../validator/Validator";
 import Button from "./@common/Button";
 import Component from "./Component";
 
 export default class UserInput extends Component {
+  constructor(element, props) {
+    super(element, props);
+    this.lottoResult = new LottoResult(
+      this.props.onResult,
+      this.props.openModal
+    );
+  }
+
   template() {
     return `
     <h2 class="user-input-title body">
@@ -65,31 +74,32 @@ export default class UserInput extends Component {
     return bonusNumber;
   }
 
+  clearInputs() {
+    const winNumberInputs = qsAll(".win-number");
+    const bonusNumberInput = qs(".bonus-number");
+    winNumberInputs.forEach((input) => {
+      input.value = "";
+    });
+    bonusNumberInput.value = "";
+  }
+
   handleButtonClick(event) {
     try {
       event.preventDefault();
       const winNumbers = this.getWinNumberInputs();
       const bonusNumber = this.getBonusNumberInput(winNumbers);
 
-      const lottoCompany = new LottoCompany(winNumbers, bonusNumber);
-
-      const lottoRanks = lottoCompany.calculateLottoRanks(
+      this.lottoResult.calculateResult(
+        winNumbers,
+        bonusNumber,
         this.props.lottoList.lottoList
       );
-      const totalProfit = lottoCompany.calculateTotalProfit(lottoRanks);
-
-      if (this.props.onResult) {
-        this.props.onResult({ lottoRanks, totalProfit });
-      }
 
       this.props.openModal();
     } catch (error) {
       console.error("error", error);
       alert(error.message);
-      winNumbers.forEach((input) => {
-        input.value = "";
-      });
-      bonusNumberInput.value = "";
+      this.clearInputs();
     }
   }
 }
