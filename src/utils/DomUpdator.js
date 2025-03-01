@@ -15,12 +15,20 @@ const DomUpdator = {
     element.blur();
   },
 
-  initialValue: (element) => {
+  initialInputValue: (element) => {
     element.value = "";
   },
 
-  showModal: (element) => {
-    element.showModal();
+  replaceChildren: (element) => {
+    element.replaceChildren();
+  },
+
+  showModal: (element, flag) => {
+    if (flag) {
+      element.showModal();
+      return;
+    }
+    element.close();
   },
 };
 

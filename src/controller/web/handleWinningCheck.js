@@ -25,7 +25,7 @@ const handleWinningCheck = (purchaseAmount, lottoPack) => {
     // ui 로직
     WebView.updateStatistics(statistics_rows, winningResult);
     WebView.updateProfitRate(profit_rate, profitRate);
-    DomUpdator.showModal(lotto_result_modal);
+    DomUpdator.showModal(lotto_result_modal, true);
   } catch (error) {
     alert(error);
   }
