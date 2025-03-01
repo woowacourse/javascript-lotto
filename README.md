@@ -72,7 +72,7 @@
   - [x] ui 도메인 코드 분리
   - [ ] webView 분리 (webView에 직접적으로 관여하는 로직들)
     - [x] handlePurchase 분리
-    - [ ] handleWinningCheck 분리
+    - [x] handleWinningCheck 분리
     - [ ] handleRestart 분리
   - [ ] 공통 로직 -> DomUpdator(utils)로 분리 (초기화 하는 코드, blur같은 기능 함수로 분리)
 - [ ] 인스턴스 변수 줄이기 - (`LottoPack` 클래스 현재 3개)

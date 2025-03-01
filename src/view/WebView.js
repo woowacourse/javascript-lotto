@@ -17,6 +17,20 @@ const WebView = {
                   `;
     });
   },
+
+  updateStatistics(element, winningResult) {
+    element.forEach((row) => {
+      const price = row.querySelector(".price").textContent;
+      const matchedKey = Object.keys(winningResult).find((key) => key.includes(price));
+      if (matchedKey) {
+        DomUpdator.content(row.querySelector(".user_count"), `${winningResult[matchedKey]}개`);
+      }
+    });
+  },
+
+  updateProfitRate(element, profitRate) {
+    DomUpdator.content(element, `당신의 총 수익률은 ${profitRate}%입니다.`);
+  },
 };
 
 export default WebView;

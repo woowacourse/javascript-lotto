@@ -18,6 +18,10 @@ const DomUpdator = {
   initialValue: (element) => {
     element.value = "";
   },
+
+  showModal: (element) => {
+    element.showModal();
+  },
 };
 
 export default DomUpdator;
