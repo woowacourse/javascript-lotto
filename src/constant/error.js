@@ -10,6 +10,7 @@ const ERROR_MESSAGE = {
   LOTTO_LENGTH: `[ERROR] 당첨 번호는 ${LOTTO.LENGTH}개여야 합니다.`,
   DUPLICATE_WINNING_NUMBER:
     "[ERROR] 당첨 번호는 중복된 번호를 입력할 수 없습니다.",
+  EMPTY_BONUS_NUMBER: "[ERROR] 보너스 번호를 입력해주세요.",
   DUPLICATE_BONUS_NUMBER:
     "[ERROR] 입력하신 보너스 번호가 당첨 번호와 중복됩니다.",
   NUMBER_OUT_OF_RANGE: `[ERROR] ${LOTTO.MIN_RANDOM_VALUE}과 ${LOTTO.MAX_RANDOM_VALUE} 사이의 숫자를 입력해주세요.`,

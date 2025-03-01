@@ -46,6 +46,7 @@ export const validateBonusNumber = (bonus, winning) => {
     .map(Number);
   const bonusNumber = Number(bonus);
 
+  if (bonus.trim() === "") throw new Error(ERROR_MESSAGE.EMPTY_BONUS_NUMBER);
   if (isNaN(bonusNumber)) throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
   if (
     bonusNumber < LOTTO.MIN_RANDOM_VALUE ||

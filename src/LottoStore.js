@@ -14,11 +14,11 @@ import retryAsync from "./util/retryAsync.js";
 
 export const purchase = async () => {
   const { purchaseAmount, lottos } = await handlePurchase();
-  // const winningRanks = await handleWinningNumbers(lottos);
+  const winningRanks = await handleWinningNumbers(lottos);
   // handleResult(purchaseAmount, winningRanks);
 };
 
-const handlePurchase = async () => {
+export const handlePurchase = async () => {
   const purchaseAmount = await retryAsync(getPurchaseAmount);
   const quantity = purchaseAmount / PRICE.UNIT;
 
@@ -30,7 +30,7 @@ const handlePurchase = async () => {
   return { purchaseAmount, lottos };
 };
 
-const handleWinningNumbers = async (lottos) => {
+export const handleWinningNumbers = async (lottos) => {
   const winningAndBonus = await readWinningNumbersAndBonusNumber();
   const winningRanks = Ranking.countWinningRanks(lottos, winningAndBonus);
 
@@ -49,6 +49,7 @@ const handleResult = (purchaseAmount, winningRanks) => {
 
 export const getPurchaseAmount = async () => {
   const amount = await InputView.readPurchaseAmount();
+  console.log(amount);
   validatePurchaseAmount(amount);
 
   return amount;
@@ -56,6 +57,7 @@ export const getPurchaseAmount = async () => {
 
 const getWinningNumbers = async () => {
   const winningNumbers = await InputView.readWinningNumbers();
+  console.log(winningNumbers);
   validateWinningNumbers(winningNumbers);
 
   return winningNumbers;

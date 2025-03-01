@@ -92,7 +92,7 @@
   border: none;
   border-radius: 5px;
   padding: 10px 17px;
-  margin: 20px 0;
+  margin: 10px 0;
   font-size: 17px;
   /* position: absolute;
   bottom: 20px; */
@@ -178,7 +178,8 @@
 }
 
 #title-input-winnings-and-bonus {
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #title-input-winnings, #title-input-bonus {
@@ -187,10 +188,17 @@
 
 #input-winnings-and-bonus-section {
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
+  margin-top: 10px; 
 }
 
 #purchase-amount-helper-text {
+  color: rgb(255, 100, 100);
+  visibility: hidden;
+  font-size: 13px;
+}
+
+#winnings-and-bonus-helper-text {
   color: rgb(255, 100, 100);
   visibility: hidden;
   font-size: 13px;

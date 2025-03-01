@@ -22,7 +22,7 @@ const retryAsync = async (func, onError) => {
     if (onError) {
       onError(error);
     } else {
-      alert(error.message);
+      // alert(error.message);
     }
     return null;
   }
