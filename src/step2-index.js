@@ -5,4 +5,4 @@
 
 import startLottoGame from "./controller/web/startLottoGame.js";
 
-await startLottoGame();
+startLottoGame();

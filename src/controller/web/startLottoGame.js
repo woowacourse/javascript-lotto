@@ -4,7 +4,7 @@ import handlePurchase from "./handlePurchase.js";
 import handleRestart from "./handleRestart.js";
 import handleWinningCheck from "./handleWinningCheck.js";
 
-const startLottoGame = async () => {
+const startLottoGame = () => {
   const purchase_button = DomSelector.purchaseButton;
   const purchase_amount = DomSelector.purchaseAmount;
   const reuslt_button = DomSelector.reusltButton;
