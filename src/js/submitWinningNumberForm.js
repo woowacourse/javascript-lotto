@@ -5,6 +5,7 @@ import { $, $all } from '../util/selector.js';
 import validateBonusNumber from '../validation/validateBonusNumber.js';
 import validateWinningNumber from '../validation/validateWinningNumber.js';
 import { resetError, showError } from './errorHandler.js';
+import { showModal } from './modal.js';
 
 export const submitWinningNumberForm = async () => {
   return new Promise((resolve) => {
@@ -27,6 +28,7 @@ const handleWinningNumber = () => {
 
     const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
 
+    showModal(modal);
     return winningLotto;
   } catch (error) {
     showError(errorUI, error.message);

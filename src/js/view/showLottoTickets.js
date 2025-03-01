@@ -1,20 +1,6 @@
-import SYSTEM_MESSAGE from '../constants/systemMessage.js';
-import { $ } from '../util/selector.js';
+import { $ } from '../../util/selector.js';
 
-export const updateLottoUI = (lottoArray, lottoCount) => {
-  updateLottoCountUI(lottoCount);
-  updateLottoListUI(lottoArray);
-};
-
-const updateLottoCountUI = (lottoCount) => {
-  const purchaseResult = $('.purchase-result');
-  const lottoCountUI = document.createElement('p');
-  lottoCountUI.textContent = SYSTEM_MESSAGE.COUNT(lottoCount);
-
-  purchaseResult.appendChild(lottoCountUI);
-};
-
-const updateLottoListUI = (lottoArray) => {
+export const showLottoTickets = (lottoArray) => {
   const purchaseResult = $('.purchase-result');
 
   const lottoList = document.createElement('ul');
@@ -26,7 +12,6 @@ const updateLottoListUI = (lottoArray) => {
     fragment.appendChild(createLottoListItem(lotto));
   });
 
-  // 모든 요소를 한 번에 추가
   lottoList.appendChild(fragment);
   purchaseResult.appendChild(lottoList);
 };
@@ -35,13 +20,11 @@ const updateLottoListUI = (lottoArray) => {
 const createLottoListItem = (lotto) => {
   const listItem = document.createElement('li');
 
-  // 🎟️ 로또 티켓 이미지
   const ticketIcon = document.createElement('img');
   ticketIcon.src = 'public/ticket.png';
   ticketIcon.alt = '로또 티켓';
   ticketIcon.classList.add('lotto-icon');
 
-  // 로또 번호
   const numbersSpan = document.createElement('span');
   numbersSpan.classList.add('lotto-numbers');
   numbersSpan.textContent = lotto.toString();

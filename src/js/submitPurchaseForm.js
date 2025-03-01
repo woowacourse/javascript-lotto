@@ -3,8 +3,9 @@ import { purchaseLottos } from '../service/PurchaseService.js';
 import validatePrice from '../validation/validatePrice.js';
 import { resetError, showError } from './errorHandler.js';
 import disableButton from './disabledButton.js';
-import { updateLottoUI } from './updateLottoUI.js';
 import { $ } from '../util/selector.js';
+import { showLottoCount } from './view/showLottoCount.js';
+import { showLottoTickets } from './view/showLottoTickets.js';
 
 export const submitPurchaseForm = () => {
   return new Promise((resolve) => {
@@ -13,7 +14,10 @@ export const submitPurchaseForm = () => {
       const { lottoArray, lottoCount } = handleLottoPurchase();
 
       disableButton($('#purchase-form button'));
-      updateLottoUI(lottoArray, lottoCount);
+
+      showLottoCount(lottoCount);
+      showLottoTickets(lottoArray);
+
       showWinningNumberForm(true);
       return resolve(lottoArray);
     });

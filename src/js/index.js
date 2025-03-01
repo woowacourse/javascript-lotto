@@ -11,10 +11,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
   const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
-  updateMatchingResult(matchingResult, profitRate);
 
-  const modal = $('#result-modal');
-  showModal(modal);
+  updateMatchingResult(matchingResult, profitRate);
+  console.log(matchingResult, profitRate);
+  // const modal = $('#result-modal');
+  // showModal(modal);
   setupModalControl();
 });
 
