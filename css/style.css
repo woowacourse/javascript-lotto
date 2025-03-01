@@ -211,7 +211,7 @@ body {
   padding: 0;
 }
 
-.check-reuslt-button {
+.bottom-button {
   width: 100%;
   height: 36px;
   border: none;
@@ -230,4 +230,76 @@ footer {
 footer p {
   color: var(--lotto-primary);
   margin: 28px auto 36px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  background-color: var(--lotto-greyscale-1);
+  padding: 16px 16px 32px 16px;
+  border-radius: 8px;
+  width: 350px;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.modal-cancle-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.modal-cancle-container img {
+  width: 14px;
+  height: 14px;
+}
+
+.modal h2 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 33px;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+
+.result-table thead {
+  border-top: 1px solid var(--lotto-border);
+}
+
+.result-table th,
+.result-table td {
+  padding: 8px 0;
+  text-align: center;
+  border-bottom: 1px solid var(--lotto-border);
+}
+
+.result-table th {
+  font-weight: var(--weight-semi-bold);
+}
+
+.profit-text {
+  text-align: center;
+  font-size: var(--text-body);
+  margin-bottom: 32px;
+}
+
+.hidden {
+  display: none;
 }

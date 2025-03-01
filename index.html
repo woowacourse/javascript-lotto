@@ -80,7 +80,7 @@
                 <input type="number" class="numbers-input text-body"/>
               </div>
             </div>
-            <button class="check-reuslt-button text-caption">결과 확인하기</button>
+            <button class="bottom-button text-caption">결과 확인하기</button>
           </section>
         </section>
       </main>
@@ -88,6 +88,53 @@
       <footer class="lotto-footer">
         <p class="text-caption">Copyright 2023. woowacourse</p>
       </footer>
+
+      <div class="modal-overlay hidden">
+        <div class="modal">
+          <div class="modal-cancle-container">
+            <img src="./icon/icon_cancle.svg" alt="cancle">
+          </div>
+          <h2 class="text-subtitle">🏆 당첨 통계 🏆</h2>
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th class="text-body">일치 갯수</th>
+                <th class="text-body">당첨금</th>
+                <th class="text-body">당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-body">3개</td>
+                <td class="text-body">5,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+              <tr>
+                <td class="text-body">4개</td>
+                <td class="text-body">50,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+              <tr>
+                <td class="text-body">5개</td>
+                <td class="text-body">1,500,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+              <tr>
+                <td class="text-body">5개+보너스볼</td>
+                <td class="text-body">30,000,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+              <tr>
+                <td class="text-body">6개</td>
+                <td class="text-body">2,000,000,000원</td>
+                <td class="text-body">n개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="profit-text text-caption">당신의 총 수익률은 %입니다.</p>
+          <button class="bottom-button text-caption">다시 시작하기</button>
+        </div>
+      </div>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
