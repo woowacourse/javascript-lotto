@@ -31,6 +31,10 @@ const webInputHandler = {
   },
 
   bonusNumber(winningNumbersLotto){
+    if(winningNumbersLotto===null){
+      return null
+    }
+    
     try {
         DOM.bonusErrorText.textContent = ""
         const bonusNumber =  Number(DOM.bonusInput.value);
