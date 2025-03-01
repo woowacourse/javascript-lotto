@@ -32,6 +32,7 @@ function validateMoney(money) {
 }
 
 function lottoNumberCondition(number) {
+  console.log(number, 'D');
   return number >= CONFIG.LOTTO.NUMBER.MIN && number <= CONFIG.LOTTO.NUMBER.MAX;
 }
 
@@ -50,6 +51,7 @@ function validateLottoNumber(numbers) {
 }
 
 function validateBonus(bonus, winningLotto) {
+  console.log(winningLotto);
   if (!lottoNumberCondition(bonus)) {
     throw new Error(ERROR_MESSAGES.LOTTO.BONUS.RANGE);
   }

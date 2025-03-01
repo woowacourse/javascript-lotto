@@ -28,8 +28,11 @@ function getRevenueRate() {
 // 2. 로또 결과 확인하기
 document.getElementById('result-button').addEventListener('click', () => {
   const winningNumbers = InputView.readWinningNumbers();
+  if (!userLottos || !winningNumbers) {
+    return;
+  }
   const bonusNumber = InputView.readBonusNumber(winningNumbers);
-  if (!userLottos || !winningNumbers || !bonusNumber) {
+  if (!bonusNumber) {
     return;
   }
   const winningLotto = { bonusNumber, lottoNumber: winningNumbers };
