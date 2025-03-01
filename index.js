@@ -18,7 +18,7 @@ import { getRevenueRate } from "./src/utils/math.js";
 
 import createPrizeResultModal from "./src/view/web/layers/modal/createPrizeResultModal.js";
 import showResultModal from "./src/view/web/modules/showResultModal.js";
-import closeResultModal from "./src/view/web/modules/closeResultModalEvent.js";
+import closeResultModal from "./src/view/web/modules/closeResultModal.js";
 
 const startGame = () => {
   initLayer();
