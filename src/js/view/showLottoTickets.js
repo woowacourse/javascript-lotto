@@ -21,7 +21,7 @@ const createLottoListItem = (lotto) => {
   const listItem = document.createElement('li');
 
   const ticketIcon = document.createElement('img');
-  ticketIcon.src = 'public/ticket.png';
+  ticketIcon.src = 'ticket.png';
   ticketIcon.alt = '로또 티켓';
   ticketIcon.classList.add('lotto-icon');
 
