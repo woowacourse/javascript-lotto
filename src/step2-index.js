@@ -3,6 +3,6 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import startLottoGame from "./controller/cli/startLottoGame.js";
+import startLottoGame from "./controller/web/startLottoGame.js";
 
 await startLottoGame();

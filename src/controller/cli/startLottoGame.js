@@ -1,31 +1,25 @@
-import DomSelector from "../../utils/domSelector";
-import handlePurchase from "../web/handlePurchase";
-import handleRestart from "../web/handleRestart";
-import handleWinningCheck from "../web/handleWinningCheck";
+import LottoMachine from "../../domain/LottoMachine/LottoMachine.js";
+import OutputView from "../../view/OutputView.js";
+import profitCalculator from "../../domain/profitCalculator/profitCalculator.js";
+import generateAnswerLotto from "../../domain/generateAnswerLotto.js";
+import InputHandler from "./InputHandler.js";
 
 const startLottoGame = async () => {
-  const purchase_button = DomSelector.purchaseButton;
-  const purchase_amount = DomSelector.purchaseAmount;
-  const reuslt_button = DomSelector.reusltButton;
-  const lotto_result_modal = DomSelector.lottoResultModal;
-  const restart_button = DomSelector.restartButton;
+  const purchaseAmount = await InputHandler.purchaseAmount();
+  const lottoPack = LottoMachine(purchaseAmount);
+  OutputView.purchaseCount(lottoPack.count);
+  OutputView.lottoPack(lottoPack.lottos);
 
-  purchase_button.addEventListener("click", () => {
-    const { purchaseAmount, lottoPack } = handlePurchase();
-    reuslt_button.addEventListener("click", () => handleWinningCheck(purchaseAmount, lottoPack));
-  });
+  const { winningNumbers, bonusNumber } = await InputHandler.answerLotto();
+  const answerLotto = generateAnswerLotto(winningNumbers, bonusNumber);
 
-  purchase_amount.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      purchase_button.click();
-    }
-  });
+  const winningResult = lottoPack.compareAndReturnResult(answerLotto);
+  OutputView.winningStatistics(winningResult);
 
-  lotto_result_modal.addEventListener("click", (event) => {
-    if (event.target === event.currentTarget) lotto_result_modal.close();
-  });
+  const profitRate = profitCalculator(purchaseAmount, winningResult);
+  OutputView.profitRate(profitRate);
 
-  restart_button.addEventListener("click", () => handleRestart());
+  await InputHandler.reStart(startLottoGame);
 };
 
 export default startLottoGame;
