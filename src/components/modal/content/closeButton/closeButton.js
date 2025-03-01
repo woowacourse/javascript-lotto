@@ -13,6 +13,8 @@ const $closeButton = () => {
   const closeButton = createDomElement('svg', {
     class: 'close_button',
     id: 'closeButton',
+    tabindex: 0,
+    role: 'button',
     xmlns: 'http://www.w3.org/2000/svg',
   });
 
