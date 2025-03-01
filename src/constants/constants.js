@@ -58,24 +58,3 @@ export const LOTTO_NUMBER_DELIMITER = ',';
 
 export const YES = 'y';
 export const NO = 'n';
-
-export const DOM = {
-  winningForm: document.querySelector(".winning-form"),
-  restartButton: document.querySelector(".restart-button"),
-  statisticsModal: document.querySelector(".statistics-modal"),
-  modalBackdrop: document.querySelector(".modal-backdrop"),
-  lottoInput: document.querySelector(".lotto-input input"),
-  winningInputList: document.querySelector(".winning-input-list"),
-  bonusInput: document.querySelector(".bonus-input input"),
-  purchaseResult: document.querySelector(".lotto-result .small-text"),
-  lottoTicketListContainer: document.querySelector(".lotto-ticket-list"),
-  purchaseButton: document.querySelector(".lotto-form button"),
-  inputPrice: document.querySelector(".lotto-form input"),
-  winningButton: document.querySelector(".winning-form button"),
-  winningNumberInputs: [...document.querySelectorAll(".winning-input-list input")],
-  closeButton: document.querySelector(".close-button"),
-  winningRateText: document.querySelector(".winning-rate-text"),
-  purchaseErrorText: document.querySelector(".purchase-error-text"),
-  winningErrorText: document.querySelector(".winning-error-text"),
-  bonusErrorText: document.querySelector(".bonus-error-text"),
-};

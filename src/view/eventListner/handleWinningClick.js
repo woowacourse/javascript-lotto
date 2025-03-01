@@ -1,6 +1,6 @@
 import { webLottoService } from "../../service/webLottoService.js";
 import { openModal } from "./modal.js";
-import { DOM } from "../../constants/constants.js";
+import { DOM } from "../../utils/DomSelector.js";
 
 export const handleWinningClick = (lottoList, winningLotto) => {
     openModal();

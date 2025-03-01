@@ -1,4 +1,4 @@
-import { DOM } from "../../constants/constants.js";
+import { DOM } from "../../utils/DomSelector.js";
 
 export const handleRestartClick = () => {
     DOM.lottoInput.value = "";

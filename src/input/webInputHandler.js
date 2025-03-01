@@ -1,8 +1,7 @@
 import validatePurchaseMoney from '../validations/validate/validatePurchaseMoney.js';
-import { DOM } from '../constants/constants.js';
 import Lotto from '../domain/Lotto.js';
 import WinningLotto from '../domain/WinningLotto.js';
-
+import { DOM } from '../utils/DomSelector.js';
 
 const webInputHandler = {
   purchaseMoney() {

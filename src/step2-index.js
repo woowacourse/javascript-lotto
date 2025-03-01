@@ -1,6 +1,6 @@
 import "./view/eventListner/modal.js";
 import { WebLottoController } from "./controller/webLottoController.js";
-import { DOM } from "./constants/constants.js";
+import { DOM } from "./utils/DomSelector.js";
 
 export const start = () => {    
     const webLottoController = new WebLottoController()

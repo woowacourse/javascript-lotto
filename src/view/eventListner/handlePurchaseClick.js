@@ -1,4 +1,4 @@
-import { DOM } from "../../constants/constants.js";
+import { DOM } from "../../utils/DomSelector.js";
 import { webLottoService } from "../../service/webLottoService.js";
 
 export const handlePurchaseClick = (purchaseMoney) => {
