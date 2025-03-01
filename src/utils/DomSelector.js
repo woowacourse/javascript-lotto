@@ -1,8 +1,8 @@
 const DomSelector = {
+  lottoGame: document.querySelector("#lottoGame"),
   purchaseAmount: document.querySelector("#purchaseAmount"),
   purchaseButton: document.querySelector("#purchaseButton"),
 
-  lottoPackSection: document.querySelector(".lotto_pack_section"),
   purchaseCount: document.querySelector(".purchase_count"),
   lottoPack: document.querySelector(".lotto_pack"),
 

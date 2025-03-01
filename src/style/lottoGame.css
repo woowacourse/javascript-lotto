@@ -72,6 +72,10 @@
   gap: 12px;
 }
 
+#lottoGame.opacity-0 .answer_lotto_section {
+  opacity: 0;
+}
+
 #lottoGame .answer_lotto_section .answer_lotto {
   display: flex;
   justify-content: space-between;
@@ -96,6 +100,11 @@
 #lottoGame .reuslt_button_section {
   padding-top: 27px;
 }
+
+#lottoGame.opacity-0 .reuslt_button_section {
+  opacity: 0;
+}
+
 #lottoGame .reuslt_button_section #resultButton {
   padding: 10px 0;
   width: 100%;
