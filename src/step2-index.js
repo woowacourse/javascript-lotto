@@ -8,18 +8,15 @@ let lottos = [];
 let bonusNumber = 0;
 let winningNumbers = [];
 
-const getPurchasePrice = () => {
-  const purchaseForm = document.getElementById('purchase-form');
-  purchaseForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+const purchaseFrom = document.getElementById('purchase-form');
+purchaseFrom.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const formData = new FormData(purchaseFrom);
+  const inputPurchasePrice = Number(formData.get('purchase-input'));
+  purchasePrice = inputPurchasePrice;
 
-    const formData = new FormData(purchaseForm);
-    const inputPurchasePrice = Number(formData.get('purchase-input'));
-    purchasePrice = inputPurchasePrice;
-
-    printQuantity(inputPurchasePrice);
-  });
-};
+  printQuantity(purchasePrice);
+});
 
 const printQuantity = (purchasePrice) => {
   const quantity = Math.floor(purchasePrice / 1000);
@@ -27,6 +24,7 @@ const printQuantity = (purchasePrice) => {
   const result = document.getElementById('result');
   result.innerHTML = ''; // 기존 내용 초기화
   const div = document.createElement('div');
+  div.id = 'quantity';
   div.textContent = `총 ${quantity}개를 구매하였습니다.`;
   result.appendChild(div);
 
@@ -34,17 +32,13 @@ const printQuantity = (purchasePrice) => {
 };
 
 const printLottos = (quantity) => {
-  // 기존 로또 출력 초기화
   const existingContainer = document.getElementById('lottoContainer');
   if (existingContainer) {
     existingContainer.remove();
   }
 
   const container = document.createElement('div');
-  container.id = 'lottoContainer';
-  container.style.display = 'flex';
-  container.style.flexDirection = 'column';
-  container.style.gap = '10px';
+  container.id = 'lotto-container';
 
   lottos = getLottos(quantity);
 
@@ -58,64 +52,34 @@ const printLottos = (quantity) => {
 };
 
 const showSystemMessage = () => {
-  const systemMessage = document.getElementById('systemMessage');
-  systemMessage.innerHTML = '';
-  const messageContainer = document.createElement('div');
-  messageContainer.textContent = `지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.`;
-  systemMessage.appendChild(messageContainer);
+  const systemMessage = document.getElementById('system-message');
+  systemMessage.style.display = 'flex';
 
   showWinningLottos();
 };
 
 const showWinningLottos = () => {
-  const systemMessage = document.getElementById('systemMessage');
-  const divWinningContainer = document.createElement('div');
+  const divInputNumber = document.getElementById('number-input');
+  divInputNumber.style.display = 'flex';
 
-  const divWinningNumber = document.createElement('span');
-  divWinningNumber.textContent = `당첨 번호`;
-  divWinningContainer.appendChild(divWinningNumber);
-
-  const divBonusContainer = document.createElement('div');
-
-  const divBonusNumber = document.createElement('span');
-  divBonusNumber.textContent = `보너스 번호`;
-  divBonusContainer.appendChild(divBonusNumber);
-
-  for (let i = 0; i < 6; i++) {
-    const input = document.createElement('input');
-    input.id = `winningNumber${i}`;
-    input.style.width = '30px';
-    input.type = `number`;
+  const winningInputs = document.querySelectorAll('.winning-number');
+  winningInputs.forEach((input, index) => {
     input.addEventListener('input', (event) => {
-      winningNumbers[i] = Number(event.target.value);
+      winningNumbers[index] = Number(event.target.value);
     });
-    divWinningContainer.appendChild(input);
-  }
-
-  systemMessage.appendChild(divWinningContainer);
-
-  const bonusInput = document.createElement('input');
-  bonusInput.id = 'bonusNumber';
-  bonusInput.style.width = '30px';
-  bonusInput.type = `number`;
-
-  bonusInput.addEventListener('input', (e) => {
-    bonusNumber = Number(e.target.value);
   });
-  divBonusContainer.appendChild(bonusInput);
 
-  systemMessage.appendChild(divBonusContainer);
-  const button = document.createElement('button');
-  button.id = `showResultButton`;
-  button.textContent = `결과 확인하기`;
+  const bonusInput = document.getElementById('bonusNumber');
+  bonusInput.addEventListener('input', (event) => {
+    bonusNumber = Number(event.target.value);
+  });
 
-  systemMessage.appendChild(button);
   handleResultButton();
 };
 
 const handleResultButton = () => {
   document.addEventListener('click', (event) => {
-    if (event.target && event.target.id === 'showResultButton') {
+    if (event.target && event.target.id === 'show-result-button') {
       const modal = document.querySelector('.modal');
       modal.style.display = 'flex';
     }
@@ -169,5 +133,3 @@ const printLotto = (lotto) => {
 
   return container;
 };
-
-getPurchasePrice();
