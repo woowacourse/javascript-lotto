@@ -1,3 +1,5 @@
+import { unlockScroll } from './scroll.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   setupPurchaseForm();
   setupWinningNumberForm();
@@ -74,12 +76,6 @@ const handleWinningNumberSubmission = () => {
   } catch (error) {
     showError(errorUI, error.message);
   }
-};
-
-// 🔹 3. 모달 관련 함수
-const showModal = (modal) => {
-  modal.style.display = 'flex';
-  lockScroll();
 };
 
 const closeModal = (modal) => {

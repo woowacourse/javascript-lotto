@@ -8,42 +8,14 @@ import WinningLotto from '../domain/WinningLotto.js';
 import { calculateMatchingResult } from '../service/MatchingService.js';
 import { calculateProfitRate } from '../service/ProfitService.js';
 import { submitPurchaseForm } from './purchase/submitPurchaseForm.js';
+import Lotto from '../domain/Lotto.js';
+import { submitWinningNumberForm } from './submitWinningNumberForm.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   submitPurchaseForm();
 
   submitWinningNumberForm();
   // setupModalControls();
-});
-
-// ✅ 2. 당첨 번호 입력 폼 이벤트 설정
-const submitWinningNumberForm = () => {
-  $('#winning-number-form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    handleWinningNumber();
-  });
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  $('#winning-number-form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    const modal = $('#result-modal');
-    const errorUI = $('#winning-number-error');
-    const resultButton = $('.result-button');
-    resetError(errorUI);
-    try {
-      const { winningNumbers, bonusNumber } = getWinningNumbers();
-      modal.style.display = 'flex';
-      lockScroll();
-      const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
-      // const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
-      // const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
-    } catch (error) {
-      errorUI.textContent = error.message;
-      errorUI.style.visibility = 'visible';
-      resultButton.disabled = true;
-    }
-  });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -79,40 +51,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-const getWinningNumbers = () => {
-  const winningNumberInput = Array.from($all('.winning-number-boxes input'))
-    .map((input) => input.value.trim())
-    .filter((value) => value !== '');
-
-  const bonusNumberInput = $('#bonus').value.trim();
-
-  validateWinningNumber(winningNumberInput);
-  const winningNumbers = parseWinningNumber(winningNumberInput);
-
-  validateBonusNumber(winningNumbers, bonusNumberInput);
-  const bonusNumber = parseBonusNumber(bonusNumberInput);
-
-  return { winningNumbers, bonusNumber };
-};
-
-// 🔹 2. 당첨 번호 입력 처리
-const handleWinningNumber = () => {
-  const modal = $('#result-modal');
-  const errorUI = $('#winning-number-error');
-  resetError(errorUI);
-
-  try {
-    const { winningNumbers, bonusNumber } = getWinningNumbers();
-    const lottoArray = LottoManager.getLottoArray();
-
-    const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
-    const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
-    const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
-
-    updateResultUI(matchingResult, profitRate);
-    showModal(modal);
-  } catch (error) {
-    showError(errorUI, error.message);
-  }
-};

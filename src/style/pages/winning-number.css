@@ -1,5 +1,5 @@
 #winning-number-form {
-  display: none;
+  display: flex;
   flex-direction: column;
 }
 
