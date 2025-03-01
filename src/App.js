@@ -242,6 +242,7 @@ class App {
 
     const $input = document.querySelector('#purchaseAmountInput');
     $input.setAttribute('disabled', true);
+
     const $button = document.querySelector('#purchaseAmountButton');
     $button.setAttribute('disabled', true);
 
@@ -257,6 +258,9 @@ class App {
     outputViewByWeb.displayLottoList(lottoNumbersList);
 
     $section.appendChild($form);
+
+    const $winningNumberInput = document.querySelector('#lottoNumber1');
+    $winningNumberInput.focus();
   }
 
   #purchaseWinningLottoByWeb($target) {
