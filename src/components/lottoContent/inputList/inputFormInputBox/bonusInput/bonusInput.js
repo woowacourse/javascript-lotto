@@ -5,7 +5,8 @@ const $bonusInput = () => {
     className: 'bonus_number',
     name: 'bonusNumber',
     type: 'number',
-    max_length: 2,
+    min: 1,
+    max: 45,
     required: true,
   });
 
