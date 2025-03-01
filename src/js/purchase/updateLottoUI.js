@@ -1,11 +1,7 @@
-import SYSTEM_MESSAGE from '../constants/systemMessage.js';
-import { $ } from '../util/selector.js';
-const clearLottoUI = () => {
-  $('.purchase-result').innerHTML = '';
-};
+import SYSTEM_MESSAGE from '../../constants/systemMessage.js';
+import { $ } from '../../util/selector.js';
 
 export const updateLottoUI = (lottoArray, lottoCount) => {
-  clearLottoUI();
   updateLottoCountUI(lottoCount);
   updateLottoListUI(lottoArray);
 };
@@ -13,7 +9,6 @@ export const updateLottoUI = (lottoArray, lottoCount) => {
 const updateLottoCountUI = (lottoCount) => {
   const purchaseResult = $('.purchase-result');
   const lottoCountUI = document.createElement('p');
-  lottoCountUI.classList.add('typo-body');
   lottoCountUI.textContent = SYSTEM_MESSAGE.COUNT(lottoCount);
 
   purchaseResult.appendChild(lottoCountUI);
