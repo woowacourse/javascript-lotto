@@ -1,9 +1,9 @@
 import { INPUT_MESSAGES } from "../lib/constants.js";
 import LottoPurchase from "../service/LottoPurchase.js";
 import { qs } from "../../utils/domHelper.js";
-import Validator from "../../validator/Validator.js";
 import Button from "./@common/Button.js";
 import Component from "./Component.js";
+import Validator from "../validator/Validator.js";
 
 export default class AmountInput extends Component {
   constructor(element, props) {

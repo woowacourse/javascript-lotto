@@ -1,10 +1,10 @@
 //@ts-check
-import AmountInput from "./step2/components/AmountInput.js";
-import Component from "./step2/components/Component.js";
-import LottoList from "./step2/components/LottoList.js";
-import StatisticsModal from "./step2/components/StatisticsModal.js";
-import UserInput from "./step2/components/UserInput.js";
-import { qs } from "./utils/domHelper.js";
+import AmountInput from "./components/AmountInput.js";
+import Component from "./components/Component.js";
+import LottoList from "./components/LottoList.js";
+import StatisticsModal from "./components/StatisticsModal.js";
+import UserInput from "./components/UserInput.js";
+import { qs } from "../utils/domHelper.js";
 
 class App extends Component {
   constructor() {
