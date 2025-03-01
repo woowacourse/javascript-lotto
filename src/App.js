@@ -62,11 +62,12 @@ class App extends Component {
     this.setState({ lottoList });
   }
 
-  handleLottoResult({ lottoRanks, totalProfit }) {
+  handleLottoResult({ lottoRanks, totalProfit, earningRate }) {
     this.setState({
       lottoResults: {
         ranks: lottoRanks,
         profit: totalProfit,
+        earningRate,
       },
     });
   }

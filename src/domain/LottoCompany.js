@@ -1,6 +1,12 @@
 //@ts-check
 
-import { LOTTO_RANK, NO_WINNING } from "../lib/constants";
+import {
+  EARNING_RATE_DECIMALS,
+  LOTTO_PRICE,
+  LOTTO_RANK,
+  NO_WINNING,
+  PERCENTAGE_MULTIPLIER,
+} from "../lib/constants";
 import { getIntersectCount } from "../utils/lotto";
 
 class LottoCompany {
@@ -50,6 +56,14 @@ class LottoCompany {
       (prev, cur) => (cur === NO_WINNING ? prev : prev + LOTTO_RANK[cur].prize),
       0
     );
+  }
+
+  calculateEarningRate(lottoCount, totalProfit) {
+    const totalPurchaseAmount = lottoCount * LOTTO_PRICE;
+    return (
+      (totalProfit / totalPurchaseAmount) *
+      PERCENTAGE_MULTIPLIER
+    ).toFixed(EARNING_RATE_DECIMALS);
   }
 }
 

@@ -22,7 +22,9 @@ export default class StatisticsModal extends Component {
             ${this.getStatisticsTemplate()}
             </ul>
           </div>
-          <div class='earning-rate'>당신의 총 수익률은 ${this.earningRate()}%입니다.
+          <div class='earning-rate'>당신의 총 수익률은 ${
+            this.props.lottoResults?.earningRate
+          }%입니다.
           </div>
           <form class='statistics-dialog-retry-form'>
             <button class='retry-btn'>다시 시작하기</button>
@@ -44,16 +46,6 @@ export default class StatisticsModal extends Component {
 
   handleButtonClick() {
     this.props.reset();
-  }
-
-  earningRate() {
-    const { lottoResults, lottoList } = this.props;
-    if (!lottoResults) return 0;
-
-    const { profit } = lottoResults;
-    const totalPurchaseAmount = lottoList.lottoList.length * 1000;
-
-    return ((profit / totalPurchaseAmount) * 100).toFixed(1);
   }
 
   getStatisticsTemplate() {

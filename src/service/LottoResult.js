@@ -10,10 +10,14 @@ export default class LottoResult {
     const lottoCompany = new LottoCompany(winNumbers, bonusNumber);
     const lottoRanks = lottoCompany.calculateLottoRanks(lottoList);
     const totalProfit = lottoCompany.calculateTotalProfit(lottoRanks);
+    const earningRate = lottoCompany.calculateEarningRate(
+      lottoList.length,
+      totalProfit
+    );
 
-    this.onResult({ lottoRanks, totalProfit });
+    this.onResult({ lottoRanks, totalProfit, earningRate });
     this.openModal();
 
-    return { lottoRanks, totalProfit };
+    return { lottoRanks, totalProfit, earningRate };
   }
 }
