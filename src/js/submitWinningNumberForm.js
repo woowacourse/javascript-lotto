@@ -25,7 +25,6 @@ export const submitWinningNumberForm = (lottoArray) => {
   });
 };
 
-// 🔹 당첨 번호 입력 및 결과 계산 처리
 const handleWinningNumber = () => {
   const errorUI = $('#winning-number-error');
   resetError(errorUI);
@@ -41,7 +40,6 @@ const handleWinningNumber = () => {
   }
 };
 
-// 🔹 입력된 당첨 번호 가져오기
 const getWinningNumbers = () => {
   const winningNumberInput = Array.from($all('.winning-number-boxes input'))
     .map((input) => input.value.trim())

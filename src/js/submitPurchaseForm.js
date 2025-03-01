@@ -6,6 +6,7 @@ import disableButton from './util/disabledButton.js';
 import { $ } from '../util/selector.js';
 import { showLottoCount } from './view/showLottoCount.js';
 import { showLottoTickets } from './view/showLottoTickets.js';
+import showWinningNumberForm from './view/showWinningNumberForm.js';
 
 export const submitPurchaseForm = () => {
   return new Promise((resolve) => {
@@ -38,9 +39,4 @@ const handleLottoPurchase = () => {
     showError(errorUI, error.message);
     showWinningNumberForm(false);
   }
-};
-
-const showWinningNumberForm = (isValid) => {
-  const winningNumberForm = $('#winning-number-form');
-  winningNumberForm.style.display = isValid ? 'block' : 'none';
 };
