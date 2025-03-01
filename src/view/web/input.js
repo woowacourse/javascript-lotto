@@ -1,4 +1,4 @@
-import { openModal } from "../../domain/web/modal";
+import { allowWinningLotto } from "../../domain/web/modal";
 import {
   validateBonusNumber,
   validatePrice,
@@ -37,7 +37,7 @@ const repeatGetPrice = (resolve) => {
   try {
     validatePrice(userInputPrice);
     removeErrorField(".input-contents");
-    openModal();
+    allowWinningLotto();
     resolve(userInputPrice);
   } catch (error) {
     printErrorMessage(".input-contents", error);

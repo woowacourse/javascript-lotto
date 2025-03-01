@@ -12,14 +12,17 @@ const allowModalOpen = () => {
 const handleModal = () => {
   const prizeResultModal = document.querySelector("modal");
   const modalOpenStatus = window.getComputedStyle(prizeResultModal).display;
+
   if (modalOpenStatus === "none") {
     prizeResultModal.style.display = "flex";
+    document.body.style.overflow = "hidden";
   } else if (modalOpenStatus === "flex") {
     prizeResultModal.style.display = "none";
+    document.body.style.overflow = "auto";
   }
 };
 
-const openModal = () => {
+const allowWinningLotto = () => {
   const winningLottoContainer = document.querySelector(
     ".winningLotto-contents"
   );
@@ -27,6 +30,7 @@ const openModal = () => {
 
   winningLottoContainer.style.display = "flex";
   resultSubmitButton.style.display = "flex";
+  document.body.style.overflow = "hidden";
 };
 
-export { handleModal, allowModalOpen, openModal };
+export { handleModal, allowModalOpen, allowWinningLotto };

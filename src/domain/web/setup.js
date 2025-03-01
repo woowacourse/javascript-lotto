@@ -40,6 +40,16 @@ const resetLotto = () => {
   // 제출 버튼 숨김
   const resultContents = document.querySelector(".result-contents");
   resultContents.style.display = "none";
+
+  // input창 disabled 처리 풀기
+  const priceInput = document.querySelector(".input-contents input");
+  priceInput.disabled = false;
+  priceInput.style.backgroundColor = "white";
+  priceInput.style.color = "black";
+  const priceButton = document.querySelector(".input-contents button");
+  priceButton.disabled = false;
+  priceButton.style.backgroundColor = "#4e5ba6";
+  priceButton.style.cursor = "pointer";
 };
 
 const initLotto = () => {
@@ -51,4 +61,15 @@ const initLotto = () => {
   });
 };
 
-export { initLotto };
+const disableInputPrice = () => {
+  const priceInput = document.querySelector(".input-contents input");
+  priceInput.disabled = true;
+  priceInput.style.backgroundColor = "lightgray";
+  priceInput.style.color = "gray";
+  const priceButton = document.querySelector(".input-contents button");
+  priceButton.disabled = true;
+  priceButton.style.backgroundColor = "gray";
+  priceButton.style.cursor = "default";
+};
+
+export { initLotto, disableInputPrice };

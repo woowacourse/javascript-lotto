@@ -1,5 +1,6 @@
 import { LOTTO } from "../../config/const";
 import lottoImg from "../../assets/lotto.png";
+import { disableInputPrice } from "../../domain/web/setup";
 
 const printLottoCount = (price) => {
   const lottoContents = document.querySelector(".lotto-contents");
@@ -9,6 +10,7 @@ const printLottoCount = (price) => {
     price / LOTTO.PURCHASE.unit
   }개를 구매하였습니다.`;
   lottoContents.appendChild(lottoCountText);
+  disableInputPrice();
 };
 
 const createLottoObject = (lotto) => {
