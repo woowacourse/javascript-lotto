@@ -253,4 +253,90 @@ footer span {
 
 .modal {
   display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal .modal_popup {
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: var(--medium-padding);
+  background: var(--greyscale-1-color);
+  border-radius: var(--border-radius);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.modal_popup .close-button {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background-color: var(--greyscale-1-color);
+  border: none;
+  outline: none;
+  align-self: flex-end;
+
+  cursor: pointer;
+}
+
+.close-button span {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.modal_popup h2 {
+  width: 100%;
+  font-size: var(--subtitle-font-size);
+  font-weight: var(--semi-bold-font-weight);
+
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+th,
+td {
+  padding: 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+thead tr th {
+  font-weight: var(--semi-bold-font-weight);
+}
+
+.restart-button {
+  background-color: var(--primary-color);
+  border: none;
+  outline: none;
+  padding: 8px 0;
+}
+
+.ROI {
+  width: 100%;
+  text-align: center;
+  padding: 30px 0;
+  font-weight: var(--bold-font-weight);
+}
+
+.restart-button span {
+  font-size: var(--caption-font-size);
+  font-weight: var(--bold-font-weight);
+
+  color: var(--greyscale-1-color);
 }

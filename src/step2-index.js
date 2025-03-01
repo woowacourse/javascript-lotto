@@ -67,7 +67,7 @@ function checkResult() {
 
   for (const key in lottoPrize.prizeResult) {
     const div = document.querySelector(`#${key}`);
-    const span = document.createElement("span");
+    const span = document.createElement("td");
     span.textContent = lottoPrize.prizeResult[key] + "개";
     div.appendChild(span);
   }
@@ -79,4 +79,5 @@ function checkResult() {
   ROISpan.textContent = `당신의 총 수입률은 총 ${ROI}%입니다.`;
 
   const modal = document.querySelector("#modal");
+  modal.style.display = "block";
 }
