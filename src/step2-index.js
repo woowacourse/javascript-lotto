@@ -3,8 +3,11 @@ import Validate from './Model/Validate.js';
 import Winning from './Model/Winning';
 
 const lottoMachine = new LottoMachine();
+const resultModal = document.querySelector('.dialog');
+const closeBtn = document.querySelector('.close-btn');
 let price = 0;
 let lottos = [];
+
 document.querySelector("#purchase-form").addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -59,18 +62,17 @@ document.querySelector(".show-result-btn").addEventListener("click", (event) => 
 
     const bonusNumber = getBonusNumber();
     Validate.validateBonusNumber(bonusNumber, winningNumbers);
-    console.log("당첨 번호:", winningNumbers);
-    console.log("보너스 번호:", bonusNumber);
 
     const winning = new Winning(winningNumbers, bonusNumber);
     winning.calculateRank(lottos);
     const prizeRate = winning.getCalculatedPrizeRate(price);
-    console.log(winning.rankHistory);
-    console.log(prizeRate);
+
+    updateWinningTable(winning.rankHistory);
+    updatePrizeRate(prizeRate);
 
     resultModal.showModal();
+    resetWinningBonusInput();
   } catch (error) {
-    console.log(error)
     alert(error.message);
   }
 });
@@ -86,14 +88,34 @@ function getBonusNumber() {
   return Number(document.querySelector("#bonus-input").value.trim());
 }
 
+function resetWinningBonusInput() {
+  const numberInputs = document.querySelectorAll(".winning-numbers-input .number-input");
+  numberInputs.forEach(input => {
+    input.value = '';
+  });
+  document.querySelector("#bonus-input").value = '';
+}
+
 function checkIsEmpty(value) {
   if (value.length < 1) {
     throw new Error('[ERROR] 당첨번호를 입력해 주세요.');
   }
 }
 
-const resultModal = document.querySelector('.dialog');
-const closeBtn = document.querySelector('.close-btn');
+function updateWinningTable(rankHistory) {
+  document.querySelectorAll(".dialog-container table tr").forEach((row, index) => {
+    if (index > 0) {
+      const rank = ["fifth", "fourth", "third", "second", "first"][index - 1];
+      row.lastElementChild.textContent = `${rankHistory[rank]}개`;
+    }
+  });
+}
+
+function updatePrizeRate(prizeRate) {
+  document.querySelector(".winning-rate-result p").textContent =
+    `당신의 총 수익률은 ${prizeRate.toFixed(1).toLocaleString()}%입니다.`;
+}
+
 
 closeBtn.addEventListener('click', () => {
   resultModal.close();
