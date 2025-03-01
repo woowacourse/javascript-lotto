@@ -24,7 +24,7 @@ const handlePurchase = () => {
 
     return { purchaseAmount, lottoPack };
   } catch (error) {
-    DomUpdator.initialValue(purchase_amount);
+    DomUpdator.initialInputValue(purchase_amount);
     alert(error);
   }
 };
