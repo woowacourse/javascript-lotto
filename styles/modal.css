@@ -44,7 +44,7 @@
     display: none;
 }
 
-th, .modal-items {
+th, tr {
     border-top: 1px solid #B4B4B4;
 }
 

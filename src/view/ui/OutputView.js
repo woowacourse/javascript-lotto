@@ -53,6 +53,7 @@ const OutputView = {
     const $boldText = document.querySelector('.bold-text');
     const $element = createElement('p', `당신의 총 수익률은 ${revenueRate}% 입니다`);
     $boldText.appendChild($element);
+    $element.classList.add('modal-items');
   },
 };
 
