@@ -1,11 +1,16 @@
 import LottoShop from "../domain/LottoShop.js";
 import { INPUT_MESSAGES } from "../lib/constants.js";
+import LottoPurchase from "../service/LottoPurchase.js";
 import { qs } from "../utils/domHelper.js";
 import Validator from "../validator/Validator.js";
 import Button from "./@common/Button.js";
 import Component from "./Component.js";
 
 export default class AmountInput extends Component {
+  constructor(element, props) {
+    super(element, props);
+    this.lottoPurchase = new LottoPurchase(this.props.setLottoList);
+  }
   template() {
     return `
         <header class="main-header title">🎱 내 번호 당첨 확인 🎱</header> 
@@ -45,11 +50,6 @@ export default class AmountInput extends Component {
     return purchaseAmount;
   }
 
-  getLottoList(purchaseAmount) {
-    const lottoList = LottoShop.purchaseLotto(purchaseAmount);
-    this.props.setLottoList({ lottoList });
-  }
-
   handleFormSubmit(event) {
     event.preventDefault();
     this.handleButtonClick();
@@ -64,7 +64,7 @@ export default class AmountInput extends Component {
         return;
       }
 
-      this.getLottoList(purchaseAmount);
+      this.lottoPurchase.purchaseLotto(purchaseAmount);
     } catch (error) {
       console.error(error);
       alert(error.message);
