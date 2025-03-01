@@ -70,10 +70,9 @@
   - [x] html 파일 수정
 - [x] js 역할에 따라 파일 분리 (재분리)
   - [x] ui 도메인 코드 분리
-  - [ ] webView 분리 (webView에 직접적으로 관여하는 로직들)
+  - [x] webView 분리 (webView에 직접적으로 관여하는 로직들)
     - [x] handlePurchase 분리
     - [x] handleWinningCheck 분리
     - [x] handleRestart 분리
   - [x] 공통 로직 -> DomUpdator(utils)로 분리 (초기화 하는 코드, blur같은 기능 함수로 분리)
-- [ ] 인스턴스 변수 줄이기 - (`LottoPack` 클래스 현재 3개)
 - [ ] lotto 인스턴스의 필드값이 계속 저장되어 있음. 그러므로, 모달창 꺼지고 난 후, 아에 초기화 해줘야함.
