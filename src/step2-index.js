@@ -9,7 +9,7 @@ import LottoGenerator from "./domain/LottoGenerator.js";
 import LottoPrize from "./domain/LottoPrize.js";
 
 let price;
-let generatedLottos;
+let generatedLottos = [];
 let winningNumbers = [];
 let bonusNumber;
 let prizeResult;
@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
   resultButton.addEventListener("click", checkResult);
   const modalCloseButton = document.querySelector("#close-button");
   modalCloseButton.addEventListener("click", closeModal);
+  const restartButton = document.querySelector("#restart-button");
+  restartButton.addEventListener("click", restartLotto);
 });
 
 function purchase() {
@@ -36,6 +38,9 @@ function purchase() {
   )}개를 구매하였습니다.`;
 
   purchaseInput.value = "";
+
+  const generateSection = document.querySelector("#generate-section");
+  generateSection.style.display = "block";
 
   const ul = document.querySelector("#generated-lottos");
   generatedLottos.forEach((lotto) => {
@@ -87,4 +92,33 @@ function checkResult() {
 function closeModal() {
   const modal = document.querySelector("#modal");
   modal.style.display = "none";
+}
+
+function restartLotto() {
+  const modal = document.querySelector("#modal");
+  modal.style.display = "none";
+  const generateSection = document.querySelector("#generate-section");
+  generateSection.style.display = "none";
+  const resultSection = document.querySelector("#result-section");
+  resultSection.style.display = "none";
+
+  const winningInputs = document.querySelectorAll('[id^="winning-number-"]');
+  winningInputs.forEach((input) => {
+    input.value = "";
+  });
+  const bonusInput = document.querySelector("#bonus-number");
+  bonusInput.value = "";
+
+  const generatedLottos = document.querySelector("#generated-lottos");
+  while (generatedLottos.firstChild) {
+    generatedLottos.removeChild(generatedLottos.firstChild);
+  }
+
+  const trs = document.querySelectorAll('[id$="Prize"]');
+  console.log(trs);
+  trs.forEach((tr) => {
+    tr.lastChild.remove();
+  });
+
+  winningNumbers = [];
 }

@@ -156,6 +156,7 @@ main {
 }
 
 .generate-section {
+  display: none;
   padding-bottom: var(--medium-padding);
 }
 
@@ -332,6 +333,10 @@ thead tr th {
   text-align: center;
   padding: 30px 0;
   font-weight: var(--bold-font-weight);
+}
+
+.restart-button {
+  cursor: pointer;
 }
 
 .restart-button span {
