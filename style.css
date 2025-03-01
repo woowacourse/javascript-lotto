@@ -331,6 +331,13 @@ body {
   border: none;
   border-radius: 4px;
   padding: 6px 6px 6px 8px;
+  cursor: pointer;
+}
+
+.purchase-btn:disabled {
+  background-color: var(--lotto-greyscale-3);
+  color: var(--lotto-greyscale-5);
+  cursor: not-allowed;
 }
 
 .lotto-display-container {

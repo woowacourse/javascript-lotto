@@ -5,6 +5,7 @@ import Winning from './Model/Winning';
 const lottoMachine = new LottoMachine();
 const resultModal = document.querySelector('.dialog');
 const closeBtn = document.querySelector('.close-btn');
+const purchaseBtn = document.querySelector(".purchase-btn");
 let price = 0;
 let lottos = [];
 
@@ -21,6 +22,8 @@ document.querySelector("#purchase-form").addEventListener("submit", async (event
     updateLottoUI(lottos);
     document.querySelector(".lotto-display-container").style.display = "block";
     document.querySelector("#purchase-input").value = '';
+
+    purchaseBtn.disabled = true;
   } catch (error) {
     document.querySelector(".lotto-display-container").style.display = "none";
     document.querySelector("#purchase-input").value = '';
@@ -133,6 +136,8 @@ function resetGame() {
   resetWinningBonusInput();
   updateWinningTable({ first: 0, second: 0, third: 0, fourth: 0, fifth: 0 });
   updatePrizeRate(0);
+
+  purchaseBtn.disabled = false;
 
   resultModal.close();
 }
