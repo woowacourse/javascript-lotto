@@ -1,9 +1,9 @@
-import { lockScroll, unlockScroll } from './scroll.js';
-import { submitPurchaseForm } from './purchase/submitPurchaseForm.js';
+import { submitPurchaseForm } from './submitPurchaseForm.js';
 import { submitWinningNumberForm } from './submitWinningNumberForm.js';
 import { $ } from '../util/selector.js';
 import { calculateMatchingResult } from '../service/MatchingService.js';
 import { calculateProfitRate } from '../service/ProfitService.js';
+import { closeModal, restartGame, showModal } from './modal.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const lottoArray = await submitPurchaseForm();
@@ -11,13 +11,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
   const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
+  updateMatchingResult(matchingResult, profitRate);
 
-  updateModalContent(matchingResult, profitRate);
-  setupModalControls();
+  const modal = $('#result-modal');
+  showModal(modal);
+  setupModalControl();
 });
 
-// ✅ 모달 내용 업데이트 함수
-const updateModalContent = (matchingResult, profitRate) => {
+const updateMatchingResult = (matchingResult, profitRate) => {
   $('#match-3').textContent = `${matchingResult[3]}개`;
   $('#match-4').textContent = `${matchingResult[4]}개`;
   $('#match-5').textContent = `${matchingResult[5]}개`;
@@ -26,19 +27,9 @@ const updateModalContent = (matchingResult, profitRate) => {
 
   const profitRateText = `당신의 총 수익률은 ${profitRate}%입니다.`;
   $('#profit-rate').textContent = profitRateText;
-
-  showModal();
 };
 
-// ✅ 모달 표시 함수
-const showModal = () => {
-  const modal = $('#result-modal');
-  modal.style.display = 'flex';
-  lockScroll();
-};
-
-// ✅ 모달 관련 이벤트 설정
-const setupModalControls = () => {
+const setupModalControl = () => {
   const modal = $('#result-modal');
   const closeButton = $('.close-button');
   const restartButton = $('#restart-button');
@@ -53,16 +44,4 @@ const setupModalControls = () => {
   modal.addEventListener('click', (event) => {
     if (event.target === modal) closeModal(modal);
   });
-};
-
-// ✅ 모달 닫기 함수
-const closeModal = (modal) => {
-  modal.style.display = 'none';
-  unlockScroll();
-};
-
-// ✅ 게임 재시작 (새로고침)
-const restartGame = (modal) => {
-  closeModal(modal);
-  location.reload();
 };

@@ -1,5 +1,5 @@
-import SYSTEM_MESSAGE from '../../constants/systemMessage.js';
-import { $ } from '../../util/selector.js';
+import SYSTEM_MESSAGE from '../constants/systemMessage.js';
+import { $ } from '../util/selector.js';
 
 export const updateLottoUI = (lottoArray, lottoCount) => {
   updateLottoCountUI(lottoCount);
@@ -19,12 +19,16 @@ const updateLottoListUI = (lottoArray) => {
 
   const lottoList = document.createElement('ul');
   lottoList.classList.add('lotto-list');
-  purchaseResult.appendChild(lottoList);
+
+  const fragment = document.createDocumentFragment();
 
   lottoArray.forEach((lotto) => {
-    const listItem = createLottoListItem(lotto);
-    lottoList.appendChild(listItem);
+    fragment.appendChild(createLottoListItem(lotto));
   });
+
+  // 모든 요소를 한 번에 추가
+  lottoList.appendChild(fragment);
+  purchaseResult.appendChild(lottoList);
 };
 
 // 개별 로또 아이템 생성
@@ -39,7 +43,7 @@ const createLottoListItem = (lotto) => {
 
   // 로또 번호
   const numbersSpan = document.createElement('span');
-  numbersSpan.classList.add('typo-body', 'lotto-numbers');
+  numbersSpan.classList.add('lotto-numbers');
   numbersSpan.textContent = lotto.toString();
 
   listItem.appendChild(ticketIcon);

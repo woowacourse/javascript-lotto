@@ -1,10 +1,10 @@
-import { parsePrice } from '../../input/parseInput.js';
-import { purchaseLottos } from '../../service/PurchaseService.js';
-import { $ } from '../../util/selector.js';
-import validatePrice from '../../validation/validatePrice.js';
-import { resetError, showError } from '../errorHandler.js';
-import disablePurchaseButton from './disabledPurchaseButton.js';
+import { parsePrice } from '../input/parseInput.js';
+import { purchaseLottos } from '../service/PurchaseService.js';
+import validatePrice from '../validation/validatePrice.js';
+import { resetError, showError } from './errorHandler.js';
+import disableButton from './disabledButton.js';
 import { updateLottoUI } from './updateLottoUI.js';
+import { $ } from '../util/selector.js';
 
 export const submitPurchaseForm = () => {
   return new Promise((resolve) => {
@@ -12,9 +12,8 @@ export const submitPurchaseForm = () => {
       event.preventDefault();
       const { lottoArray, lottoCount } = handleLottoPurchase();
 
-      disablePurchaseButton();
+      disableButton($('#purchase-form button'));
       updateLottoUI(lottoArray, lottoCount);
-
       showWinningNumberForm(true);
       return resolve(lottoArray);
     });
