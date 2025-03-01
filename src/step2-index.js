@@ -6,7 +6,7 @@ export const start = () => {
     const webLottoController = new WebLottoController()
 
     DOM.purchaseButton.addEventListener("click", (event)=>webLottoController.handlePurchaseClick(event));
-    DOM.winningButton.addEventListener("click", (event)=>webLottoController.handleWinningClic(event));
+    DOM.winningButton.addEventListener("click", (event)=>webLottoController.handleWinningClick(event));
     DOM.restartButton.addEventListener("click", (event)=>webLottoController.handleRestartClick(event));
 }
 

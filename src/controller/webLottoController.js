@@ -17,13 +17,15 @@ export class WebLottoController {
         }
     }
 
-    handleWinningClic(event){
+    handleWinningClick(event){
         event.preventDefault();
         const winningNumber = webInputHandler.winningNumbers();
         const winningLotto = webInputHandler.bonusNumber(winningNumber);
 
         if(winningNumber!==null && winningLotto !== null){
-            handleWinningClick(this.#lottoList, winningLotto)
+            const result = handleWinningClick(this.#lottoList, winningLotto)
+            webOutputView.result(result.lottoResult);
+            webOutputView.winningRate(result.winningRate);
         }
     }
 
