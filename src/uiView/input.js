@@ -1,4 +1,4 @@
-import alertUntilValid from "../utils/alertUntilValid.js";
+import retryUntilValid from "../utils/retryUntilValidUI.js";
 import validatePrice from "../validations/validatePrice.js";
 import {
   validateBonusNumber,
@@ -6,7 +6,7 @@ import {
 } from "../validations/validateWinningNumbers.js";
 
 export const getLottoPrice = () => {
-  return alertUntilValid(
+  return retryUntilValid(
     document.querySelector(".purchase input").value,
     validatePrice
   );
@@ -17,12 +17,12 @@ export const getWinningNumbers = () => {
   const winningNumbers = [...winningNumbersEl].map((winningNumber) => {
     return winningNumber.value;
   });
-  return alertUntilValid(winningNumbers.join(","), validateWinningNumbers);
+  return retryUntilValid(winningNumbers.join(","), validateWinningNumbers);
 };
 
 export const getBonusNumber = (winningNumbers) => {
   const bonusNumber = document.querySelector(".bonus-number").value;
-  return alertUntilValid(bonusNumber, (bonusNumber) =>
+  return retryUntilValid(bonusNumber, (bonusNumber) =>
     validateBonusNumber(bonusNumber, winningNumbers)
   );
 };
