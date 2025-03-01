@@ -7,14 +7,19 @@
   line-height: 24px;
 }
 
-.prize-result-modal > h2 {
+.result-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-container > h2 {
   height: 24px;
 
   font-weight: 700;
   font-size: 20px;
 }
 
-.prize-result-modal > h3 {
+.result-container > h3 {
   height: 24px;
   margin: 32px 0;
 
@@ -22,7 +27,7 @@
   font-size: 110%;
 }
 
-.prize-result-modal tr {
+.result-container tr {
   border-width: 1px 0;
 }
 
