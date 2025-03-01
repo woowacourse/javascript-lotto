@@ -309,6 +309,13 @@ class App {
     );
 
     outputViewByWeb.displayLottoResult(lottoResult, lottoProfit);
+
+    const $form = $target.closest('#winningLottoForm');
+    const inputs = $form.querySelectorAll('input');
+
+    inputs.forEach((input) => {
+      input.setAttribute('readonly', true);
+    });
   }
 
   #closeWinningStatisticsModal() {
