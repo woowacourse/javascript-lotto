@@ -12,6 +12,8 @@ import {
 
 let purchaseAmount = 0;
 let lottos = [];
+const buttonPurchase = document.getElementById("button-purchase");
+const contentBottom = document.getElementById("content-bottom");
 
 document
   .getElementById("button-purchase")
@@ -19,21 +21,23 @@ document
     const result = await handlePurchase();
     purchaseAmount = result.purchaseAmount;
     lottos = result.lottos;
+
+    contentBottom.style.visibility = "visible";
   });
 
 document
   .getElementById("input-purchase-amount")
   .addEventListener("input", (event) => {
     const inputValue = event.target.value;
-    const button = document.getElementById("button-purchase");
+    
     const helperText = document.getElementById("purchase-amount-helper-text");
 
     try {
       validatePurchaseAmount(inputValue);
-      button.disabled = false;
+      buttonPurchase.disabled = false;
       helperText.style.visibility = "hidden";
-    } catch (error) {
-      button.disabled = true;
+    } catch (error) { 
+      buttonPurchase.disabled = true;
       helperText.innerText = error.message.slice(8);
       helperText.style.visibility = "visible";
     }
