@@ -15,8 +15,8 @@ main {
   flex-direction: column;
   gap: 25px;
   width: 414px;
-  min-height: 600px;
-  margin: 100px auto;
+  height: 700px;
+  margin: 50px auto;
   padding: 20px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -57,6 +57,11 @@ button:disabled {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+}
+
+#lotto-list {
+  height: 216px;
+  overflow-y: scroll;
 }
 
 #lotto-list li {
