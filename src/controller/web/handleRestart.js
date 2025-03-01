@@ -14,7 +14,7 @@ const handleRestart = () => {
   // ui 로직
   DomUpdator.showModal(lotto_result_modal, false);
   DomUpdator.replaceChildren(lotto_pack);
-  DomUpdator.initialValue(purchase_amount);
+  DomUpdator.initialInputValue(purchase_amount);
   DomUpdator.content(purchase_count, "");
   DomUpdator.addClass(lotto_game, "opacity-0");
 
