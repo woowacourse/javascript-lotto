@@ -9,6 +9,12 @@
   margin: 64px 0 0 0;
 }
 
+.header-text {
+  font-size: 24px;
+  font-weight: 800;
+  color:white;
+}
+
 .text {
   font-size: 24px;
   font-weight: 800;
@@ -44,17 +50,9 @@
   background-color: #FCFCFD;
 }
 
-.purchase-error-text {
-  color:red;
-  font-size:14px;
-}
-
-.winning-error-text {
-  color:red;
-  font-size:14px;
-}
-
+.purchase-error-text,
+.winning-error-text,
 .bonus-error-text {
-  color:red;
-  font-size:14px;
+  color: red;
+  font-size: 14px;
 }
