@@ -7,6 +7,9 @@ import { PURCHASE } from "./config/const.js";
 import LottoComparer from "./domain/LottoComparer.js";
 import LottoGenerator from "./domain/LottoGenerator.js";
 import LottoPrize from "./domain/LottoPrize.js";
+import { validatePrice } from "./utils/validate/validatePrice.js";
+import { validateWinningNumbers } from "./utils/validate/validateWinningNumbers.js";
+import { validateBonusNumberUnique } from "./utils/validate/validate.js";
 
 let price;
 let generatedLottos = [];
@@ -29,6 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
 function purchase() {
   const purchaseInput = document.querySelector("#purchase-input");
   price = Number(purchaseInput.value);
+
+  try {
+    validatePrice(price);
+  } catch (error) {
+    alert(error.message);
+    purchaseInput.value = "";
+    return;
+  }
+
   generatedLottos = LottoGenerator.getGenerateLottos(price);
   console.log(generatedLottos);
 
@@ -63,6 +75,30 @@ function checkResult() {
   bonusNumber = Number(bonusNumberInput.value);
   console.log(winningNumbers);
   console.log(bonusNumber);
+
+  try {
+    validateWinningNumbers(winningNumbers);
+  } catch (error) {
+    alert(error.message);
+    const winningInputs = document.querySelectorAll('[id^="winning-number-"]');
+    winningInputs.forEach((input) => {
+      input.value = "";
+    });
+
+    winningNumbers = [];
+    return;
+  }
+
+  try {
+    validateBonusNumberUnique(winningNumbers, bonusNumber);
+  } catch (error) {
+    alert(error.message);
+    const bonusInput = document.querySelector("#bonus-number");
+    bonusInput.value = "";
+
+    winningNumbers = [];
+    return;
+  }
 
   const lottoComparer = new LottoComparer(winningNumbers, bonusNumber);
   const compareResult = lottoComparer.lottoCompareResult(generatedLottos);
