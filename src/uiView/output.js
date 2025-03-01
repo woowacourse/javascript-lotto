@@ -69,8 +69,5 @@ export const clearResultList = () => {
 
 export const clearInput = () => {
   $(".purchase input").value = "";
-  [...$$(".winning-number")].map((winningNumberInput) => {
-    winningNumberInput.value = "";
-  });
-  $(".bonus-number").value = "";
+  $(".form__winning-numbers").reset();
 };
