@@ -15,6 +15,7 @@ import {
 
 class lottoControllerUI {
   lottos;
+
   constructor() {
     this.lottoGame = new LottoGame();
   }

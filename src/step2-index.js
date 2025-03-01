@@ -12,6 +12,12 @@ const init = async () => {
   });
 
   document
+    .querySelector(".form__winning-numbers")
+    .addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+  document
     .querySelector(".purchase button")
     .addEventListener("click", lottoController.handlePurchaseClick);
 
