@@ -77,20 +77,8 @@ document.querySelector(".show-result-btn").addEventListener("click", (event) => 
   event.preventDefault();
 
   try {
-    const winningNumbersInput = getWinningNumbers();
-    checkIsEmpty(winningNumbersInput);
-    Validate.validateWinningNumbers(winningNumbersInput);
-    const winningNumbers = winningNumbersInput.map(Number);
-
-    const bonusNumber = getBonusNumber();
-    Validate.validateBonusNumber(bonusNumber, winningNumbers);
-
-    const winning = new Winning(winningNumbers, bonusNumber);
-    winning.calculateRank(lottos);
-    const prizeRate = winning.getCalculatedPrizeRate(price);
-
-    updateWinningTable(winning.rankHistory);
-    updatePrizeRate(prizeRate);
+    const { winningNumbers, bonusNumber } = getAndValidateWinningNumbers();
+    processWinningResult(winningNumbers, bonusNumber);
 
     resultModal.showModal();
     resetWinningBonusInput();
@@ -136,6 +124,27 @@ function updateWinningTable(rankHistory) {
 function updatePrizeRate(prizeRate) {
   document.querySelector(".winning-rate-result p").textContent =
     `당신의 총 수익률은 ${prizeRate.toFixed(1).toLocaleString()}%입니다.`;
+}
+
+function getAndValidateWinningNumbers() {
+  const winningNumbersInput = getWinningNumbers();
+  checkIsEmpty(winningNumbersInput);
+  Validate.validateWinningNumbers(winningNumbersInput);
+  const winningNumbers = winningNumbersInput.map(Number);
+
+  const bonusNumber = getBonusNumber();
+  Validate.validateBonusNumber(bonusNumber, winningNumbers);
+
+  return { winningNumbers, bonusNumber };
+}
+
+function processWinningResult(winningNumbers, bonusNumber) {
+  const winning = new Winning(winningNumbers, bonusNumber);
+  winning.calculateRank(lottos);
+  const prizeRate = winning.getCalculatedPrizeRate(price);
+
+  updateWinningTable(winning.rankHistory);
+  updatePrizeRate(prizeRate);
 }
 
 closeBtn.addEventListener('click', () => {
