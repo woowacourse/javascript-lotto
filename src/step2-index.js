@@ -18,13 +18,10 @@ document.querySelector("#purchase-form").addEventListener("submit", async (event
     lottos = lottoMachine.generateLotto(price);
 
     updateLottoUI(lottos);
-    document.querySelector(".lotto-display-container").style.display = "block";
-    document.querySelector("#purchase-input").value = '';
-
+    updatePurchaseUI(true);
     purchaseBtn.disabled = true;
   } catch (error) {
-    document.querySelector(".lotto-display-container").style.display = "none";
-    document.querySelector("#purchase-input").value = '';
+    updatePurchaseUI(false);
     alert(error.message);
   }
 });
@@ -61,6 +58,19 @@ function createLottoItem(lotto) {
   lottoItem.appendChild(ticketIcon);
   lottoItem.appendChild(lottoNumbers);
   return lottoItem;
+}
+
+function updatePurchaseUI(isPurchased) {
+  const lottoDisplayContainer = document.querySelector(".lotto-display-container");
+  const purchaseInput = document.querySelector("#purchase-input");
+
+  if (isPurchased) {
+    lottoDisplayContainer.style.display = "block";
+    purchaseInput.value = "";
+    return;
+  }
+  lottoDisplayContainer.style.display = "none";
+  purchaseInput.value = "";
 }
 
 document.querySelector(".show-result-btn").addEventListener("click", (event) => {
