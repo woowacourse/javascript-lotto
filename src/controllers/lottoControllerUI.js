@@ -7,10 +7,14 @@ import {
   getWinningNumbers,
 } from "../uiView/input.js";
 import {
+  clearInput,
+  clearResultList,
+  disabledTarget,
   printLottoCount,
   printLottoNumbers,
   printProfitRate,
   printResult,
+  removeActiveClass,
 } from "../uiView/output.js";
 
 class lottoControllerUI {
@@ -23,7 +27,7 @@ class lottoControllerUI {
   handlePurchaseClick = (e) => {
     const price = getLottoPrice();
     if (price) {
-      e.target.disabled = true;
+      disabledTarget(e.target, true);
       this.lottos = this.lottoGame.generateLottos(price);
 
       printLottoCount(this.lottos.length);
@@ -43,7 +47,10 @@ class lottoControllerUI {
     const allFilled = Array.from(inputs).every(
       (input) => input.value.trim() !== ""
     );
-    document.querySelector(".winning-lotto .result").disabled = !allFilled;
+    disabledTarget(
+      document.querySelector(".winning-lotto .result"),
+      !allFilled
+    );
   };
 
   handleResultClick = (inputs) => {
@@ -68,42 +75,21 @@ class lottoControllerUI {
     const totalReward = this.lottoGame.calcTotalReward(gameResults);
     const rankCount = this.lottoGame.getRankCount(gameResults);
 
-    console.log(rankCount);
     printResult(formatResults(rankCount).reverse());
     printProfitRate(calcProfitRate(getLottoPrice(), totalReward));
 
     inputs.forEach((input) => {
-      input.disabled = true;
+      disabledTarget(input, true);
     });
   };
 
   handleRetryClick = (inputs) => {
-    // active 제거
-    document.querySelector(".overlay").classList.remove("active");
-    document.querySelector(".winning-lotto").classList.remove("active");
-
-    // 결과들 제거
-    document.querySelector(".purchase-history").replaceChildren();
-    [...document.querySelectorAll(".result__row")].map((resultRow) => {
-      resultRow.remove();
-    });
-    document.querySelector(".profit").remove();
-
-    // input value 초기화
-    document.querySelector(".purchase input").value = "";
-    [...document.querySelectorAll(".winning-number")].map(
-      (winningNumberInput) => {
-        winningNumberInput.value = "";
-      }
-    );
-    document.querySelector(".bonus-number").value = "";
-
-    // 구입 버튼 활성화
-    document.querySelector(".purchase button").disabled = false;
-
-    // input 활성화
+    removeActiveClass();
+    clearResultList();
+    clearInput();
+    disabledTarget(document.querySelector(".purchase button"), false);
     inputs.forEach((input) => {
-      input.disabled = false;
+      disabledTarget(input, false);
     });
   };
 

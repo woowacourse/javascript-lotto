@@ -48,3 +48,30 @@ export const printProfitRate = (profit) => {
 
   resultTableEl.after(profitRateEl);
 };
+
+export const disabledTarget = (target, whether) => {
+  target.disabled = whether;
+};
+
+export const removeActiveClass = () => {
+  document.querySelector(".overlay").classList.remove("active");
+  document.querySelector(".winning-lotto").classList.remove("active");
+};
+
+export const clearResultList = () => {
+  document.querySelector(".purchase-history").replaceChildren();
+  [...document.querySelectorAll(".result__row")].map((resultRow) => {
+    resultRow.remove();
+  });
+  document.querySelector(".profit").remove();
+};
+
+export const clearInput = () => {
+  document.querySelector(".purchase input").value = "";
+  [...document.querySelectorAll(".winning-number")].map(
+    (winningNumberInput) => {
+      winningNumberInput.value = "";
+    }
+  );
+  document.querySelector(".bonus-number").value = "";
+};
