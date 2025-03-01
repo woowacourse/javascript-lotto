@@ -41,6 +41,9 @@ function purchase() {
     li.textContent = `🎟️ ${lotto.join(", ")}`;
     ul.appendChild(li);
   });
+
+  const resultSection = document.querySelector("#result-section");
+  resultSection.style.display = "block";
 }
 
 function checkResult() {
@@ -74,4 +77,6 @@ function checkResult() {
 
   const ROISpan = document.querySelector("#ROI");
   ROISpan.textContent = `당신의 총 수입률은 총 ${ROI}%입니다.`;
+
+  const modal = document.querySelector("#modal");
 }
