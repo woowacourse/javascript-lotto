@@ -1,29 +1,25 @@
 import { PURCHASE_NUMBER_ERROR_MESSAGES } from '../../constants/constants.js';
+import { setErrorMessage } from '../../utils/domErrorMsg.js';
 import runValidators from '../../utils/runValidators.js';
 import { PurchaseMoneyValidator } from '../validator/PurchaseMoneyValidator.js';
 
-const $purchaseFormError = document.getElementById('purchase-form__error');
-
 const validatePurchaseMoneyInteger = (input) => {
   if (!PurchaseMoneyValidator.isInteger(input)) {
-    $purchaseFormError.textContent = PURCHASE_NUMBER_ERROR_MESSAGES.INTIGER;
-
+    setErrorMessage(PURCHASE_NUMBER_ERROR_MESSAGES.INTIGER, 'purchase-form__error');
     throw new Error(PURCHASE_NUMBER_ERROR_MESSAGES.INTIGER);
   }
 };
 
 const validateUnit = (input) => {
   if (!PurchaseMoneyValidator.isValidUnit(input)) {
-    $purchaseFormError.textContent = PURCHASE_NUMBER_ERROR_MESSAGES.UNIT;
-
+    setErrorMessage(PURCHASE_NUMBER_ERROR_MESSAGES.UNIT, 'purchase-form__error');
     throw new Error(PURCHASE_NUMBER_ERROR_MESSAGES.UNIT);
   }
 };
 
 const validateRange = (input) => {
   if (!PurchaseMoneyValidator.isValidRange(input)) {
-    $purchaseFormError.textContent = PURCHASE_NUMBER_ERROR_MESSAGES.MIN;
-
+    setErrorMessage(PURCHASE_NUMBER_ERROR_MESSAGES.MIN, 'purchase-form__error');
     throw new Error(PURCHASE_NUMBER_ERROR_MESSAGES.MIN);
   }
 };

@@ -1,26 +1,25 @@
 import { BonusNumberValidator } from '../validator/BonusNumberValidator.js';
 import { BONUS_NUMBER_ERROR_MESSAGES } from '../../constants/constants.js';
 import runValidators from '../../utils/runValidators.js';
-
-const $lottoFormError = document.getElementById('lotto-form__error');
+import { setErrorMessage } from '../../utils/domErrorMsg.js';
 
 const validateInteger = (winningNumbers, bonusNumber) => {
   if (!BonusNumberValidator.isInteger(bonusNumber)) {
-    $lottoFormError.textContent = BONUS_NUMBER_ERROR_MESSAGES.INTIGER;
+    setErrorMessage(BONUS_NUMBER_ERROR_MESSAGES.INTIGER, 'lotto-form__error');
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.INTIGER);
   }
 };
 
 const validateRange = (winningNumbers, bonusNumber) => {
   if (!BonusNumberValidator.isValidRange(bonusNumber)) {
-    $lottoFormError.textContent = BONUS_NUMBER_ERROR_MESSAGES.RANGE;
+    setErrorMessage(BONUS_NUMBER_ERROR_MESSAGES.RANGE, 'lotto-form__error');
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.RANGE);
   }
 };
 
 const validateDuplicate = (winningNumbers, bonusNumber) => {
   if (BonusNumberValidator.isDuplicated(winningNumbers, bonusNumber)) {
-    $lottoFormError.textContent = BONUS_NUMBER_ERROR_MESSAGES.DUPLICATE;
+    setErrorMessage(BONUS_NUMBER_ERROR_MESSAGES.DUPLICATE, 'lotto-form__error');
     throw new Error(BONUS_NUMBER_ERROR_MESSAGES.DUPLICATE);
   }
 };
