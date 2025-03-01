@@ -3,7 +3,7 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import { purchase, handlePurchase, handleWinningNumbers } from "./LottoStore.js";
+import { purchase, handlePurchase, handleWinningNumbers, displayWinningDetails } from "./LottoStore.js";
 import {
   validatePurchaseAmount,
   validateWinningNumbers,
@@ -12,8 +12,10 @@ import {
 
 let purchaseAmount = 0;
 let lottos = [];
+let winningRanks = {};
 const buttonPurchase = document.getElementById("button-purchase");
 const contentBottom = document.getElementById("content-bottom");
+
 
 document
   .getElementById("button-purchase")
@@ -64,22 +66,29 @@ const winningsAndBonusHelperText = document.getElementById(
 );
 
 inputs.forEach((input) => {
-  input.addEventListener("input", () => {
+  input.addEventListener("input", async () => {
     
     const winningNumbers = winningInputs.map((input) => input.value).filter(value => value.trim() !== ""); // ✅ 현재 입력된 당첨 번호 가져오기
     const bonusNumber = bonusInput.value;
-
-    handleWinningNumbers(lottos);
 
     try {
       validateWinningNumbers(winningNumbers.join(","));
       validateBonusNumber(bonusNumber, winningNumbers.join(","));
       buttonCheckResult.disabled = false;
       winningsAndBonusHelperText.style.visibility = "hidden";
+
+      winningRanks = await handleWinningNumbers(lottos);
     } catch (error) {
       buttonCheckResult.disabled = true;
       winningsAndBonusHelperText.style.visibility = "visible";
       winningsAndBonusHelperText.textContent = error.message.slice(8);
     }
   });
+});
+
+const winningStasModal = document.getElementById("winning-stats-modal");
+
+buttonCheckResult.addEventListener("click", () => {
+    displayWinningDetails(winningRanks);
+    winningStasModal.showModal();
 });

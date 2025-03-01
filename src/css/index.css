@@ -204,3 +204,29 @@
   visibility: hidden;
   font-size: 13px;
 }
+
+table {
+  border-spacing: 20px;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+thead tr {
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+#winning-stats-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+}

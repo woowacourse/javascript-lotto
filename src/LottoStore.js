@@ -34,11 +34,15 @@ export const handleWinningNumbers = async (lottos) => {
   const winningAndBonus = await readWinningNumbersAndBonusNumber();
   const winningRanks = Ranking.countWinningRanks(lottos, winningAndBonus);
 
+  // displayWinningDetails(winningRanks);
+
+  return winningRanks;
+};
+
+export const displayWinningDetails = (winningRanks) => {
   OutputView.printWinningDetailTitle();
   const rankKeys = Object.keys(winningRanks).reverse();
   OutputView.printWinningDetail(winningRanks, rankKeys);
-
-  return winningRanks;
 };
 
 const handleResult = (purchaseAmount, winningRanks) => {
