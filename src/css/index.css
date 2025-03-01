@@ -103,13 +103,14 @@
   cursor: pointer;
 }
 
-#button-purchase:disabled #button-check-result:disabled {
+#button-purchase:disabled, #button-check-result:disabled {
   background: gray;
   cursor: not-allowed;
 }
 
-#purchased-count {
-  margin-top: 30px;
+#generated-lottos {
+  max-height: 280px;
+  overflow-y: auto;
 }
 
 #generated-lottos p {
@@ -191,5 +192,6 @@
 
 #purchase-amount-helper-text {
   color: rgb(255, 100, 100);
-  display: none;
+  visibility: hidden;
+  font-size: 13px;
 }

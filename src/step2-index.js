@@ -18,10 +18,10 @@ document.getElementById("input-purchase-amount").addEventListener("input", (even
     try {
         validatePurchaseAmount(inputValue);
         button.disabled = false;
-        helperText.style.display = "none";
+        helperText.style.visibility = "hidden";
     } catch (error) {
         button.disabled = true;
         helperText.innerText = error.message.slice(8);
-        helperText.style.display = "block";
+        helperText.style.visibility = "visible";
     }
 });
