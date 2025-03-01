@@ -1,7 +1,8 @@
 import commaizeNumber from "../utils/commaizeNumber.js";
+import { $, $$ } from "../utils/dom.js";
 
 export const printLottoCount = (count) => {
-  const purchaseHistoryEl = document.querySelector(".purchase-history");
+  const purchaseHistoryEl = $(".purchase-history");
   const countEl = document.createElement("p");
   countEl.textContent = `총 ${count}개를 구매했습니다.`;
   countEl.classList.add("count");
@@ -9,7 +10,7 @@ export const printLottoCount = (count) => {
 };
 
 export const printLottoNumbers = (numbers) => {
-  const lottoListEl = document.querySelector(".lotto-list");
+  const lottoListEl = $(".lotto-list");
 
   const numbersEl = document.createElement("li");
   numbersEl.classList.add("lotto-numbers");
@@ -24,7 +25,7 @@ export const printLottoNumbers = (numbers) => {
 };
 
 export const printResult = (results) => {
-  const resultTableEl = document.querySelector(".modal .description");
+  const resultTableEl = $(".modal .description");
   results.map(({ rank, winningCriteria, reward, count }) => {
     const bonusText = rank === "SECOND" ? "+보너스볼" : "";
     const tr = document.createElement("tr");
@@ -38,7 +39,7 @@ export const printResult = (results) => {
 };
 
 export const printProfitRate = (profit) => {
-  const resultTableEl = document.querySelector(".modal .description");
+  const resultTableEl = $(".modal .description");
 
   const profitRateEl = document.createElement("p");
   profitRateEl.classList.add("profit");
@@ -54,24 +55,22 @@ export const disabledTarget = (target, whether) => {
 };
 
 export const removeActiveClass = () => {
-  document.querySelector(".overlay").classList.remove("active");
-  document.querySelector(".winning-lotto").classList.remove("active");
+  $(".overlay").classList.remove("active");
+  $(".winning-lotto").classList.remove("active");
 };
 
 export const clearResultList = () => {
-  document.querySelector(".purchase-history").replaceChildren();
-  [...document.querySelectorAll(".result__row")].map((resultRow) => {
+  $(".purchase-history").replaceChildren();
+  [...$$(".result__row")].map((resultRow) => {
     resultRow.remove();
   });
-  document.querySelector(".profit").remove();
+  $(".profit").remove();
 };
 
 export const clearInput = () => {
-  document.querySelector(".purchase input").value = "";
-  [...document.querySelectorAll(".winning-number")].map(
-    (winningNumberInput) => {
-      winningNumberInput.value = "";
-    }
-  );
-  document.querySelector(".bonus-number").value = "";
+  $(".purchase input").value = "";
+  [...$$(".winning-number")].map((winningNumberInput) => {
+    winningNumberInput.value = "";
+  });
+  $(".bonus-number").value = "";
 };

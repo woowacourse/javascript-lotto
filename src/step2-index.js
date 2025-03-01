@@ -1,4 +1,5 @@
 import lottoControllerUI from "./controllers/lottoControllerUI.js";
+import { $, $$ } from "../src/utils/dom.js";
 
 // /**
 //  * step 2의 시작점이 되는 파일입니다.
@@ -7,44 +8,41 @@ import lottoControllerUI from "./controllers/lottoControllerUI.js";
 const init = async () => {
   const lottoController = new lottoControllerUI();
 
-  document
-    .querySelector(".purchase")
-    .addEventListener("submit", lottoController.preventDefault);
+  $(".purchase").addEventListener("submit", lottoController.preventDefault);
 
-  document
-    .querySelector(".form__winning-numbers")
-    .addEventListener("submit", lottoController.preventDefault);
+  $(".form__winning-numbers").addEventListener(
+    "submit",
+    lottoController.preventDefault
+  );
 
-  document
-    .querySelector(".purchase button")
-    .addEventListener("click", lottoController.handlePurchaseClick);
+  $(".purchase button").addEventListener(
+    "click",
+    lottoController.handlePurchaseClick
+  );
 
-  const inputs = document.querySelectorAll(".inputs__winning-number input");
+  const inputs = $$(".inputs__winning-number input");
   inputs.forEach((input) => {
     input.addEventListener("input", () =>
       lottoController.handleInputChange(inputs)
     );
   });
 
-  document
-    .querySelector(".winning-lotto .result")
-    .addEventListener("click", () => lottoController.handleResultClick(inputs));
+  $(".winning-lotto .result").addEventListener("click", () =>
+    lottoController.handleResultClick(inputs)
+  );
 
-  document
-    .querySelector(".modal .retry")
-    .addEventListener("click", () => lottoController.handleRetryClick(inputs));
+  $(".modal .retry").addEventListener("click", () =>
+    lottoController.handleRetryClick(inputs)
+  );
 
-  document
-    .querySelector(".modal .close")
-    .addEventListener("click", lottoController.handleCloseClick);
+  $(".modal .close").addEventListener(
+    "click",
+    lottoController.handleCloseClick
+  );
 
-  document
-    .querySelector(".overlay")
-    .addEventListener("click", lottoController.handleCloseClick);
+  $(".overlay").addEventListener("click", lottoController.handleCloseClick);
 
-  document
-    .querySelector(".modal")
-    .addEventListener("click", lottoController.stopPropagation);
+  $(".modal").addEventListener("click", lottoController.stopPropagation);
 };
 
 init();

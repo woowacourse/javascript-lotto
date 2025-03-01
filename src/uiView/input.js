@@ -1,4 +1,5 @@
 import alertUntilValid from "../utils/alertUntilValid.js";
+import { $, $$ } from "../utils/dom.js";
 import validatePrice from "../validations/validatePrice.js";
 import {
   validateBonusNumber,
@@ -6,14 +7,11 @@ import {
 } from "../validations/validateWinningNumbers.js";
 
 export const getLottoPrice = () => {
-  return alertUntilValid(
-    document.querySelector(".purchase input").value,
-    validatePrice
-  );
+  return alertUntilValid($(".purchase input").value, validatePrice);
 };
 
 export const getWinningNumbers = () => {
-  const winningNumbersEl = document.querySelectorAll(".winning-number");
+  const winningNumbersEl = $$(".winning-number");
   const winningNumbers = [...winningNumbersEl].map((winningNumber) => {
     return winningNumber.value;
   });
@@ -21,7 +19,7 @@ export const getWinningNumbers = () => {
 };
 
 export const getBonusNumber = (winningNumbers) => {
-  const bonusNumber = document.querySelector(".bonus-number").value;
+  const bonusNumber = $(".bonus-number").value;
   return alertUntilValid(bonusNumber, (bonusNumber) =>
     validateBonusNumber(bonusNumber, winningNumbers)
   );

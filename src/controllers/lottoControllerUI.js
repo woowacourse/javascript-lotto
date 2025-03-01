@@ -16,6 +16,7 @@ import {
   printResult,
   removeActiveClass,
 } from "../uiView/output.js";
+import { $ } from "../utils/dom.js";
 
 class lottoControllerUI {
   lottos;
@@ -34,12 +35,12 @@ class lottoControllerUI {
 
       const lottoListEl = document.createElement("ul");
       lottoListEl.classList.add("lotto-list");
-      document.querySelector(".purchase-history .count").after(lottoListEl);
+      $(".purchase-history .count").after(lottoListEl);
 
       this.lottos.forEach((lotto) => printLottoNumbers(lotto.numbers));
 
-      document.querySelector(".winning-lotto").classList.add("active");
-      document.querySelector(".winning-number").focus();
+      $(".winning-lotto").classList.add("active");
+      $(".winning-number").focus();
     }
   };
 
@@ -47,15 +48,12 @@ class lottoControllerUI {
     const allFilled = Array.from(inputs).every(
       (input) => input.value.trim() !== ""
     );
-    disabledTarget(
-      document.querySelector(".winning-lotto .result"),
-      !allFilled
-    );
+    disabledTarget($(".winning-lotto .result"), !allFilled);
   };
 
   handleResultClick = (inputs) => {
-    if (document.querySelector(".result__row")) {
-      document.querySelector(".overlay").classList.add("active");
+    if ($(".result__row")) {
+      $(".overlay").classList.add("active");
       return;
     }
 
@@ -65,7 +63,7 @@ class lottoControllerUI {
     const bonusNumber = getBonusNumber(winningNumbers);
     if (!bonusNumber) return;
 
-    document.querySelector(".overlay").classList.add("active");
+    $(".overlay").classList.add("active");
 
     const gameResults = this.lottoGame.playLotto(this.lottos, {
       winningNumbers,
@@ -87,14 +85,14 @@ class lottoControllerUI {
     removeActiveClass();
     clearResultList();
     clearInput();
-    disabledTarget(document.querySelector(".purchase button"), false);
+    disabledTarget($(".purchase button"), false);
     inputs.forEach((input) => {
       disabledTarget(input, false);
     });
   };
 
   handleCloseClick = () => {
-    document.querySelector(".overlay").classList.remove("active");
+    $(".overlay").classList.remove("active");
   };
 
   preventDefault = (e) => {
