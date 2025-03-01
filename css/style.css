@@ -17,6 +17,7 @@
     Arial, sans-serif;
 
   /* font size */
+  --text-ticket-icon: 34px;
   --text-title: 24px;
   --text-subtitle: 20px;
   --text-body: 15px;
@@ -33,24 +34,38 @@
   font-family: var(--font-title);
   font-size: var(--text-title);
   font-weight: var(--weight-extra-bold);
+  line-height: 36px;
+}
+
+.text-ticket-icon {
+  font-family: var(--font-title);
+  font-size: var(--text-ticket-icon);
+  font-weight: var(--weight-semi-bold);
+  line-height: 36px;
 }
 
 .text-subtitle {
   font-family: var(--font-title);
   font-size: var(--text-subtitle);
   font-weight: var(--weight-semi-bold);
+  line-height: 24px;
+  letter-spacing: 0.15px;
 }
 
 .text-body {
   font-family: var(--font-title);
   font-size: var(--text-body);
   font-weight: var(--weight-regular);
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 .text-caption {
   font-family: var(--font-title);
   font-size: var(--text-caption);
   font-weight: var(--weight-bold);
+  line-height: 16px;
+  letter-spacing: 1.25px;
 }
 
 .text-placeholder {
@@ -58,6 +73,8 @@
   font-size: var(--text-body);
   font-weight: var(--weight-regular);
   color: var(--lotto-greyscale-3);
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 body {
@@ -118,6 +135,29 @@ body {
   border-radius: 4px;
   background-color: var(--lotto-primary);
   color: var(--lotto-greyscale-1);
+}
+
+.lotto-list-section {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.lotto-list-section h6 {
+  margin-bottom: 8px;
+}
+
+.lotto-numbers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.lotto-number-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 footer {
