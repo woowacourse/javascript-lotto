@@ -11,10 +11,12 @@ tr {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 }
-#modal-background {
+#modal-wrap {
   position: absolute;
-  top: 20%;
-  left: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
 }
 
 #modal {

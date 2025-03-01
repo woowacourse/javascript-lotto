@@ -47,58 +47,28 @@
               </div>
             </section>
             <span id="lotto-form__error" class="error-message"></span>
-            <button id="lotto-form__btn" class="error-message">결과 확인하기</button>
+            <button id="lotto-form__btn">결과 확인하기</button>
           </form>
         </section>
       </main>
-      <section id="modal-background" class="hidden">
-        <div id="modal">
-          <button id="modal__close-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-              <path
-                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
-              />
-            </svg>
-          </button>
-          <h1>🏆 당첨통계 🏆</h1>
-          <table>
-            <tr>
-              <th scope="col">일치 갯수</th>
-              <th scope="col">당첨금</th>
-              <th scope="col">당첨 갯수</th>
-            </tr>
-            <tr>
-              <td>개</td>
-              <td>5,000</td>
-              <td>개</td>
-            </tr>
-            <tr>
-              <td>개</td>
-              <td>50,000</td>
-              <td>개</td>
-            </tr>
-            <tr>
-              <td>개</td>
-              <td>1,500,000</td>
-              <td>개</td>
-            </tr>
-            <tr>
-              <td>개</td>
-              <td>30,000,000</td>
-              <td>개</td>
-            </tr>
-            <tr>
-              <td>개</td>
-              <td>2,000,000,000</td>
-              <td>개</td>
-            </tr>
-          </table>
-          <span>당신의 총 수익률은 %입니다.</span>
-          <button id="modal__retry-btn">다시 시작하기</button>
-        </div>
-      </section>
+
       <footer>Copyright 2023. woowacourse</footer>
     </div>
+    <section id="modal-wrap" class="hidden">
+      <div id="modal">
+        <button id="modal__close-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+            <path
+              d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
+            />
+          </svg>
+        </button>
+        <h1>🏆 당첨통계 🏆</h1>
+        <table id="lotto-result-table"></table>
+        <span>당신의 총 수익률은 <span id="winningRate"></span>% 입니다.</span>
+        <button id="modal__retry-btn">다시 시작하기</button>
+      </div>
+    </section>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

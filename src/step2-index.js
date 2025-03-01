@@ -3,11 +3,12 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import { LOTTO_CONDITION } from './constants/constants.js';
+import { LOTTO_CONDITION, RANKING } from './constants/constants.js';
 import Lotto from './domain/Lotto.js';
 import LottoGame from './domain/LottoGame.js';
 import LottoMaker from './domain/LottoMaker.js';
 import LottoMatch from './domain/LottoMatch.js';
+import { printLottoRank } from './utils/printLottoRank.js';
 import validateBonusNumber from './validations/validate/BonusNumberValidate.js';
 import validatePurchaseMoney from './validations/validate/PurchaseMoneyValidate.js';
 
@@ -30,6 +31,7 @@ $purchaseInput.addEventListener('input', () => {
 
 let lottoList;
 let lottoMaker;
+let lottoGame;
 
 $purchaseForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -54,7 +56,8 @@ $purchaseForm.addEventListener('submit', (e) => {
 const $lottoForm = document.getElementById('lotto-form');
 const $winningNumbersInput = document.querySelectorAll('.winning-numbers__input');
 const $bonusNumber = document.getElementById('bonus-number__input');
-const $modal = document.getElementById('modal');
+const $lottoResultTable = document.getElementById('lotto-result-table');
+const $winningRate = document.getElementById('winningRate');
 
 $lottoForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -70,7 +73,7 @@ $lottoForm.addEventListener('submit', (e) => {
   validateBonusNumber(winningNumbers.numbers, bonusNumber);
 
   const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
-  const lottoGame = new LottoGame();
+  lottoGame = new LottoGame();
 
   lottoMaker.lottoList.forEach((lotto) => {
     lottoGame.addRankingCount(
@@ -78,10 +81,55 @@ $lottoForm.addEventListener('submit', (e) => {
     );
   });
 
+  const rankList = printLottoRank(lottoGame.rank);
+  let tableHTML = `
+      <tr>
+        <th scope="col">일치 갯수</th>
+        <th scope="col">당첨금</th>
+        <th scope="col">당첨 갯수</th>
+      </tr>`;
+
+  rankList.forEach((row, index) => {
+    if (index === 3) {
+      tableHTML += `
+      <tr>
+        <td>${row[0]}개+보너스볼</td>
+        <td>${row[1]}</td>
+        <td>${row[2]}개</td>
+      </tr>`;
+    }
+    if (index !== 3) {
+      tableHTML += `
+      <tr>
+        <td>${row[0]}개</td>
+        <td>${row[1]}</td>
+        <td>${row[2]}개</td>
+      </tr>`;
+    }
+  });
+  $lottoResultTable.innerHTML = tableHTML;
+
   const winningRate = LottoGame.calculateWinningRate(
     LOTTO_CONDITION.PRICE * lottoMaker.lottoList.length,
     LottoGame.calculateTotalPrize(lottoGame.rank),
   );
-  console.log({ winningRate });
-  $modal.classList.remove('hidden');
+
+  $winningRate.innerText = winningRate;
+});
+
+// 모달창 부분
+const $lottoFormBtn = document.getElementById('lotto-form__btn');
+const $modalWrap = document.getElementById('modal-wrap');
+const $app = document.getElementById('app');
+const $modalCloseBtn = document.getElementById('modal__close-btn');
+// const $retryBtn = document.getElementById('modal__retry-btn');
+
+$lottoFormBtn.addEventListener('click', () => {
+  $modalWrap.classList.remove('hidden');
+  $app.style.backgroundColor = 'rgba(0,0,0,0.5)';
+});
+
+$modalCloseBtn.addEventListener('click', () => {
+  $modalWrap.classList.add('hidden');
+  $app.style.backgroundColor = 'white';
 });
