@@ -8,6 +8,8 @@ import readWinningNumbers from "./src/view/web/modules/readWinningNumbers.js";
 
 import validateLottoPrice from "./src/validation/validateLottoPrice.js";
 import generateLottoNumberSets from "./src/lotto/generateLottoNumberSets.js";
+import createLottoBox from "./src/view/web/layers/lottoBox/createLottoBox.js";
+
 import validateWinningNumbers from "./src/validation/validateWinningNumbers.js";
 import validateBonusNumber from "./src/validation/validateBonusNumber.js";
 import calculatePrizeResult from "./src/lotto/calculatePrizeResult.js";
