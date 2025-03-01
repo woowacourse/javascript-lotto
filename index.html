@@ -46,7 +46,8 @@
 
     <div class="modal">
       <div class="modal-body">
-        <div class="modal-header">🏆 당첨 통계 🏆</div>
+        <button class="modal-close">x</button>
+        <div class="modal-header" id="modal-header">🏆 당첨 통계 🏆</div>
         <table class="modal-table">
           <tr>
             <th scope="col">일치 갯수</th>
@@ -69,7 +70,7 @@
             <td id="five-count"></td>
           </tr>
           <tr>
-            <td>5개 + 보너스 볼</td>
+            <td>5개+보너스 볼</td>
             <td>30,000,000</td>
             <td id="five-count-with-bonus"></td>
           </tr>
@@ -81,7 +82,7 @@
         </table>
 
         <div id="revenue-container"></div>
-        <button class="modal-close">모달창 닫기</button>
+        <button id="restart-button">다시 시작하기</button>
       </div>
     </div>
 
