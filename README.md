@@ -60,8 +60,8 @@
   - [x] 수익률 확인
   - [x] 게임 재시작
 
-- [ ] 배포
-  - [ ] package.json > "homepage" 값에 본인의 GitHub username을 채우기
+- [x] 배포
+  - [x] package.json > "homepage" 값에 본인의 GitHub username을 채우기
 
 ### 리팩토링 사항
 
@@ -79,3 +79,5 @@
 - [x] 에러 모달창 등록
 - [x] 티켓이미지 pre로드 적용
 - [ ] lotto 인스턴스의 필드값이 계속 저장되어 있음. 그러므로, 모달창 꺼지고 난 후, 아에 초기화 해줘야함.
+
+- [x] validate 함수 -> 검증과 파싱 함수분리
