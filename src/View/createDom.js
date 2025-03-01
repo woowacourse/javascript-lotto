@@ -122,14 +122,23 @@ export const createWinningLottoForm = () => {
 export const createModal = (lottoResult = {}, lottoProfit = 0) => {
   const modal = createElementWithAttributes('div', {
     className: 'modal',
+    attributes: {
+      id: 'modal',
+    },
   });
 
   const overlay = createElementWithAttributes('div', {
     className: 'modal-overlay',
+    attributes: {
+      id: 'modalOverlay',
+    },
   });
 
   const modalContent = createElementWithAttributes('div', {
     className: 'modal-content',
+    attributes: {
+      id: 'modalContent',
+    },
   });
 
   const titleContainer = createElementWithAttributes('span', {
@@ -140,6 +149,9 @@ export const createModal = (lottoResult = {}, lottoProfit = 0) => {
   const closeButton = createElementWithAttributes('button', {
     type: 'button',
     className: 'modal-close-button',
+    attributes: {
+      id: 'modalCloseButton',
+    },
   });
 
   const closeIcon = createElementWithAttributes('img', {
@@ -220,6 +232,9 @@ export const createModal = (lottoResult = {}, lottoProfit = 0) => {
 
   const restartButton = createElementWithAttributes('button', {
     className: 'modal-restart-button',
+    attributes: {
+      id: 'modalRestartButton',
+    },
     textContent: '다시 시작하기',
   });
 
