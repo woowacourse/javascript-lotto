@@ -23,9 +23,6 @@ import closeResultModal from "./src/view/web/modules/closeResultModalEvent.js";
 const startGame = () => {
   initLayer();
   handleUserInput();
-
-  showResultModal();
-  closeResultModal();
 };
 
 const initLayer = () => {
@@ -36,10 +33,8 @@ const initLayer = () => {
 };
 
 const handleUserInput = () => {
-  document.addEventListener("DOMContentLoaded", () => {
-    readLottoPriceInput(checkPrice, rendererUsingPrice);
-    readWinningNumbers(checkWinningLotto, rendererUsingWinningLotto);
-  });
+  readLottoPriceInput(checkPrice, rendererUsingPrice);
+  readWinningNumbers(checkWinningLotto, rendererUsingWinningLotto);
 };
 
 const checkPrice = (price) => {
@@ -65,11 +60,9 @@ const checkWinningLotto = (winningNumbers, bonusNumber) => {
 };
 
 const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
-  const lottoNumbers = document
-    .querySelectorAll(".lotto-numbers")
-    .map((input) => input.value);
-
-  const price = document.querySelector("#price").value;
+  const lottoNumbers = Array.from(
+    document.querySelectorAll(".lotto-numbers"),
+  ).map((li) => li.textContent.split(",").map(Number));
 
   const result = calculatePrizeResult(
     lottoNumbers,
@@ -77,10 +70,12 @@ const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
     bonusNumber,
   );
 
+  const price = Number(document.querySelector("#price").value);
   const totalPrizeMoney = getTotalPrizeMoney(result);
   const revenueRate = getRevenueRate(totalPrizeMoney, price);
 
-  createPrizeResultModal(result, revenueRate);
+  showResultModal(() => createPrizeResultModal(result, revenueRate));
+  closeResultModal();
 };
 
 export default startGame;
