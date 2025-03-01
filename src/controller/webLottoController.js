@@ -4,8 +4,7 @@ import { webLottoService } from "../service/webLottoService.js";
 import WinningLotto from "../domain/WinningLotto.js";
 import Lotto from "../domain/Lotto.js";
 import { webGameService } from "../service/webGameService.js";
-
-const winningForm = document.querySelector(".winning-form")
+import { DOM } from "../constants/constants.js";
 
 export const webLottoController = {
     async run() {
@@ -22,7 +21,7 @@ export const webLottoController = {
             webInputView.purchaseMoney((purchaseMoney) => {
                 const lottoList = webLottoService.purchaseLotto(purchaseMoney);
                 webOutputView.displayLottoNumber(lottoList);
-                winningForm.style.visibility = "visible";
+                DOM.winningForm.style.visibility = "visible";
                 resolve(lottoList);
             });
         });

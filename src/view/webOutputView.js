@@ -1,11 +1,9 @@
-const purchaseResult = document.querySelector(".lotto-result .small-text");
-const lottoTicketListContainer = document.querySelector(".lotto-ticket-list");
-const winningRateText = document.querySelector(".winning-rate-text")
+import { DOM } from "../constants/constants.js";
 
 export const webOutputView = {
     displayLottoNumber(lottoList){
-        purchaseResult.textContent = `총 ${lottoList.length}개 구매했습니다.`;
-        lottoTicketListContainer.innerHTML = lottoList
+        DOM.purchaseResult.textContent = `총 ${lottoList.length}개 구매했습니다.`;
+        DOM.lottoTicketListContainer.innerHTML = lottoList
              .map((lotto) => `
                     <div class="lotto-ticket">
                     <p class="ticket-icon">🎟️</p>
@@ -28,6 +26,6 @@ export const webOutputView = {
     },
 
     winningRate(winningRate){
-        winningRateText.textContent = `당신의 총 수익률은 ${winningRate}%입니다.`
+        DOM.winningRateText.textContent = `당신의 총 수익률은 ${winningRate}%입니다.`
     }
 }
