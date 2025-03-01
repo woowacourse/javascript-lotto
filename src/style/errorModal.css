@@ -1,0 +1,11 @@
+.error_modal {
+  color: red;
+  border-radius: 10px;
+  padding: 20px;
+  background: var(--lotto-greyscale-1);
+  text-align: center;
+}
+
+dialog::backdrop {
+  background: var(--lotto-greyscale-5-50);
+}

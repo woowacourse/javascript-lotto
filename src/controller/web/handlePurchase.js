@@ -10,6 +10,7 @@ const handlePurchase = () => {
   const purchase_amount = DomSelector.purchaseAmount;
   const purchase_count = DomSelector.purchaseCount;
   const lotto_pack = DomSelector.lottoPack;
+  const error_modal = DomSelector.errorModal;
 
   try {
     // 도메인 로직
@@ -25,7 +26,8 @@ const handlePurchase = () => {
     return { purchaseAmount, lottoPack };
   } catch (error) {
     DomUpdator.initialInputValue(purchase_amount);
-    alert(error);
+    DomUpdator.content(error_modal, error);
+    DomUpdator.showModal(error_modal, true);
   }
 };
 

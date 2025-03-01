@@ -12,6 +12,7 @@ const DomSelector = {
   bonusNumber: document.querySelector(".bonus_number"),
 
   lottoResultModal: document.querySelector(".lotto_result_modal"),
+  errorModal: document.querySelector(".error_modal"),
 
   lottoResult: document.getElementById("lottoResult"),
   statistics: document.querySelector(".statistics"),

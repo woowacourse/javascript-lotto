@@ -13,6 +13,7 @@ const handleWinningCheck = (purchaseAmount, lottoPack) => {
   const statistics_rows = DomSelector.statisticsRows;
   const profit_rate = DomSelector.profitRate;
   const lotto_result_modal = DomSelector.lottoResultModal;
+  const error_modal = DomSelector.errorModal;
 
   try {
     // 도메인 로직
@@ -27,7 +28,8 @@ const handleWinningCheck = (purchaseAmount, lottoPack) => {
     WebView.updateProfitRate(profit_rate, profitRate);
     DomUpdator.showModal(lotto_result_modal, true);
   } catch (error) {
-    alert(error);
+    DomUpdator.content(error_modal, error);
+    DomUpdator.showModal(error_modal, true);
   }
 };
 
