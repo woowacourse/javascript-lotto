@@ -1,43 +1,32 @@
-import { LOTTO_NUMBER_SPLITER } from "../../constants/constant";
 import LottoMachine from "../../domain/LottoMachine/LottoMachine";
 import parseAndValidatePurchaseAmount from "../../domain/processors/parseAndValidatePurchaseAmount";
+import DomUpdator from "../../utils/DomUpdator";
 import DomSelector from "../../utils/domSelector";
+import WebView from "../../view/WebView";
 
 const handlePurchase = () => {
-  try {
-    const purchase_amount = DomSelector.purchaseAmount;
-    const purchase_count = DomSelector.purchaseCount;
-    const reuslt_button = DomSelector.reusltButton;
-    const lotto_pack = DomSelector.lottoPack;
-    const answer_lotto_section = DomSelector.answerLottoSection;
+  // DOM 선택
+  const lotto_game = DomSelector.lottoGame;
+  const purchase_amount = DomSelector.purchaseAmount;
+  const purchase_count = DomSelector.purchaseCount;
+  const lotto_pack = DomSelector.lottoPack;
 
+  try {
     // 도메인 로직
     const purchaseAmount = parseAndValidatePurchaseAmount(purchase_amount.value);
     const lottoPack = LottoMachine(purchaseAmount);
 
     // ui 로직
-    generateLottoPack(lotto_pack, lottoPack.lottos);
-    purchase_count.textContent = `총 ${lottoPack.count}개를 구매했습니다.`;
-    answer_lotto_section.classList.remove("opacity-0");
-    reuslt_button.classList.remove("opacity-0");
-    purchase_amount.blur();
+    WebView.updatePurchaseCount(purchase_count, lottoPack.count);
+    WebView.updateLottoPack(lotto_pack, lottoPack.lottos);
+    DomUpdator.removeClass(lotto_game, "opacity-0");
+    DomUpdator.blur(purchase_amount);
 
     return { purchaseAmount, lottoPack };
   } catch (error) {
-    purchase_amount.value = "";
+    DomUpdator.initialValue(purchase_amount);
     alert(error);
   }
-};
-
-const generateLottoPack = (lotto_pack, lottos) => {
-  lottos.forEach((lotto) => {
-    lotto_pack.innerHTML += `
-            <div class="lotto">
-                <img src="ticket.png" alt="로또" width="34px" height="36px" />
-                <span>${lotto.lottoNumbers.join(`${LOTTO_NUMBER_SPLITER} `)}</span>
-            </div>
-              `;
-  });
 };
 
 export default handlePurchase;
