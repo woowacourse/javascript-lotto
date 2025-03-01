@@ -8,7 +8,7 @@ const createPrizeResultModal = (result, revenueRate) => {
   const revenueRateMessage = createRevenueRateMessage(revenueRate);
 
   document
-    .querySelector("#app")
+    .querySelector(".prize-result-modal")
     .insertAdjacentHTML("beforeend", prizeResultContents);
 
   document
