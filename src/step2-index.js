@@ -30,26 +30,37 @@ document.querySelector("#purchase-form").addEventListener("submit", async (event
 });
 
 function updateLottoUI(lottos) {
-  document.querySelector(".purchase-count-message span").textContent = lottos.length;
+  updateLottoCount(lottos.length);
+  renderLottoTickets(lottos);
+}
 
+function updateLottoCount(count) {
+  document.querySelector(".purchase-count-message span").textContent = count;
+}
+
+function renderLottoTickets(lottos) {
   const lottoList = document.querySelector(".lotto-tickets");
-  lottoList.innerHTML = "";
+  lottoList.innerHTML = ""; // 기존 리스트 초기화
 
   lottos.forEach((lotto) => {
-    const lottoItem = document.createElement("li");
-
-    const ticketIcon = document.createElement("span");
-    ticketIcon.classList.add("lotto-title");
-    ticketIcon.textContent = "🎟️";
-
-    const lottoNumbers = document.createElement("span");
-    lottoNumbers.classList.add("lotto-body");
-    lottoNumbers.textContent = lotto.numbers.join(", ");
-
-    lottoItem.appendChild(ticketIcon);
-    lottoItem.appendChild(lottoNumbers);
-    lottoList.appendChild(lottoItem);
+    lottoList.appendChild(createLottoItem(lotto));
   });
+}
+
+function createLottoItem(lotto) {
+  const lottoItem = document.createElement("li");
+
+  const ticketIcon = document.createElement("span");
+  ticketIcon.classList.add("lotto-title");
+  ticketIcon.textContent = "🎟️";
+
+  const lottoNumbers = document.createElement("span");
+  lottoNumbers.classList.add("lotto-body");
+  lottoNumbers.textContent = lotto.numbers.join(", ");
+
+  lottoItem.appendChild(ticketIcon);
+  lottoItem.appendChild(lottoNumbers);
+  return lottoItem;
 }
 
 document.querySelector(".show-result-btn").addEventListener("click", (event) => {
