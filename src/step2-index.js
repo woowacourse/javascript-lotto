@@ -116,7 +116,23 @@ function updatePrizeRate(prizeRate) {
     `당신의 총 수익률은 ${prizeRate.toFixed(1).toLocaleString()}%입니다.`;
 }
 
-
 closeBtn.addEventListener('click', () => {
   resultModal.close();
 });
+
+document.querySelector(".restart-btn").addEventListener("click", () => {
+  resetGame();
+});
+
+function resetGame() {
+  price = 0;
+  lottos = [];
+
+  document.querySelector(".lotto-display-container").style.display = "none";
+  document.querySelector("#purchase-input").value = "";
+  resetWinningBonusInput();
+  updateWinningTable({ first: 0, second: 0, third: 0, fourth: 0, fifth: 0 });
+  updatePrizeRate(0);
+
+  resultModal.close();
+}
