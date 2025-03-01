@@ -1,3 +1,4 @@
+import { addKeyListener } from "../util/addKeyListener.js";
 import { removeModal } from "../util/modalActions.js";
 
 export const Modal = ({ content }) => {
@@ -15,7 +16,7 @@ const ModalBackground = () => {
   modalBackground.classList.add("modal-background");
 
   modalBackground.addEventListener("click", () => {
-    removeModal(), "Escape";
+    removeModal();
   });
   modalBackground.addKeyList;
 

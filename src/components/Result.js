@@ -1,5 +1,5 @@
+import { retryHandler } from "../handler/retryHandler.js";
 import { LOTTO_PRIZE } from "../lottoConstants/systemConstants.js";
-import { retry } from "../step2-index.js";
 import formatNumber from "../util/formatNumber.js";
 import { removeModal } from "../util/modalActions.js";
 import { Button } from "./Button.js";
@@ -22,7 +22,7 @@ export const Result = ({ matchingCount, profitRate }) => {
   resultContainer.appendChild(title);
   resultContainer.appendChild(ResultTable({ matchingCount: matchingCount }));
   resultContainer.appendChild(resultProfit);
-  resultContainer.appendChild(Button({ label: "다시 시작하기", style: "large", name: "retry", onClick: retry }));
+  resultContainer.appendChild(Button({ label: "다시 시작하기", style: "large", name: "retry", onClick: retryHandler }));
 
   return resultContainer;
 };
