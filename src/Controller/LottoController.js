@@ -63,8 +63,10 @@ class LottoController {
     while (true) {
       try {
         const winningNumbers = await InputView.readWinningNumbers();
-        Validate.validateWinningNumbers(winningNumbers);
-        return winningNumbers.split(',').map(Number);
+        Validate.checkIsEmpty(winningNumbers);
+        const winningNumbersArray = winningNumbers.split(',');
+        Validate.validateWinningNumbers(winningNumbersArray);
+        return winningNumbersArray.map(Number);
       } catch (error) {
         OutputView.printErrorMessage(error.message);
       }
@@ -75,6 +77,7 @@ class LottoController {
     while (true) {
       try {
         const bonusNumber = await InputView.readBonusNumbers();
+        Validate.checkIsEmpty(bonusNumber);
         Validate.validateBonusNumber(bonusNumber, winningNumbers);
         return Number(bonusNumber);
       } catch (error) {
@@ -92,10 +95,6 @@ class LottoController {
       OutputView.printErrorMessage(error.message);
       return this.#readRestart();
     }
-  }
-
-  #isWebEnvironment() {
-    return typeof window !== "undefined";
   }
 }
 

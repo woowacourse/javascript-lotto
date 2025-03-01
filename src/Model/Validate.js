@@ -62,9 +62,7 @@ function validatePrice(price) {
   checkPriceRange(price);
 }
 
-function validateWinningNumbers(numbers) {
-  checkIsEmpty(numbers);
-  const winningNumbers = numbers.split(',');
+function validateWinningNumbers(winningNumbers) {
   winningNumbers.forEach((winningNumber) => {
     checkIsEmpty(winningNumber);
     checkIsNumber(winningNumber);
@@ -75,13 +73,13 @@ function validateWinningNumbers(numbers) {
 }
 
 function validateBonusNumber(bonusNumber, winningNumbers) {
-  checkIsEmpty(bonusNumber);
   checkIsNumber(bonusNumber);
   checkLottoNumberRange(bonusNumber);
-  checkBonusNumberDuplicate(winningNumbers, bonusNumber);
+  checkBonusNumberDuplicate(winningNumbers, Number(bonusNumber));
 }
 
 const Validate = {
+  checkIsEmpty,
   checkRestartChar,
   validatePrice,
   validateWinningNumbers,
