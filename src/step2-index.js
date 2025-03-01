@@ -25,3 +25,16 @@ document.getElementById("input-purchase-amount").addEventListener("input", (even
         helperText.style.visibility = "visible";
     }
 });
+
+document.querySelectorAll(".lotto-input").forEach((input, index, inputs) => {
+    input.addEventListener("input", (event) => {
+      const nextInput = inputs[index + 1];
+  
+      if (event.target.value.length === event.target.maxLength) {
+        if (nextInput) {
+          nextInput.focus();
+        }
+      }
+    });
+  });
+  
