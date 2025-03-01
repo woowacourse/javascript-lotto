@@ -15,7 +15,7 @@ import retryAsync from "./util/retryAsync.js";
 export const purchase = async () => {
   const { purchaseAmount, lottos } = await handlePurchase();
   const winningRanks = await handleWinningNumbers(lottos);
-  // handleResult(purchaseAmount, winningRanks);
+  handleResult(purchaseAmount, winningRanks);
 };
 
 export const handlePurchase = async () => {
@@ -45,7 +45,7 @@ export const displayWinningDetails = (winningRanks) => {
   OutputView.printWinningDetail(winningRanks, rankKeys);
 };
 
-const handleResult = (purchaseAmount, winningRanks) => {
+export const handleResult = (purchaseAmount, winningRanks) => {
   const totalPrize = Calculator.getTotalPrize(winningRanks);
   const yieldRate = Calculator.getYieldRate(purchaseAmount, totalPrize);
   OutputView.printYieldRate(yieldRate);

@@ -41,7 +41,8 @@ const OutputView = {
   },
 
   printYieldRate(yieldRate) {
-    console.log(`총 수익률은 ${yieldRate}%입니다.\n`);
+    // console.log(`총 수익률은 ${yieldRate}%입니다.\n`);
+    document.getElementById("yield-rate").innerText = `당신의 총 수익률은 ${yieldRate}%입니다.`;
   },
 
   printQuantity(quantity) {
