@@ -1,4 +1,5 @@
 import { getOriginalApp } from "../state/state.js";
+import { initialHandler } from "./intialHandler.js";
 
 export const retryHandler = () => {
   const originalApp = getOriginalApp();
@@ -6,5 +7,5 @@ export const retryHandler = () => {
   if (originalApp) {
     currentApp.replaceChildren(...originalApp.children);
   }
-  runLotto();
+  initialHandler();
 };

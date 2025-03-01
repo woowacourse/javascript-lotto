@@ -1,4 +1,4 @@
-import { basePath } from "../util/basePath";
+import { basePath } from "../util/basePath.js";
 
 export const LottoNumbers = ({ lottoArray }) => {
   const fragment = document.createDocumentFragment();
