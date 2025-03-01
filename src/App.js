@@ -40,6 +40,7 @@ class App {
     this.#eventHandler = {
       submit: this.#submitEventHandler(),
       click: this.#clickEventHandler(),
+      keydown: this.#keyEventHandler(),
     };
   }
 
@@ -177,10 +178,18 @@ class App {
         $target.id === 'modalOverlay' ||
         $target.closest('#modalCloseButton')?.id === 'modalCloseButton'
       ) {
-        this.#closeWinningStatisticsModal($target);
+        this.#closeWinningStatisticsModal();
       }
       if ($target.id === 'modalRestartButton') {
         this.#restart($target);
+      }
+    };
+  }
+
+  #keyEventHandler() {
+    return (event) => {
+      if (event.key === 'Escape') {
+        this.#closeWinningStatisticsModal();
       }
     };
   }
@@ -189,12 +198,14 @@ class App {
     const $app = document.querySelector('#app');
     $app.addEventListener('submit', this.#eventHandler.submit);
     $app.addEventListener('click', this.#eventHandler.click);
+    $app.addEventListener('keydown', this.#eventHandler.keydown);
   }
 
   #removeEventHandlers() {
     const $app = document.querySelector('#app');
     $app.removeEventListener('submit', this.#eventHandler.submit);
     $app.removeEventListener('click', this.#eventHandler.click);
+    $app.removeEventListener('keydown', this.#eventHandler.keydown);
   }
 
   runWeb() {
@@ -293,15 +304,15 @@ class App {
     //TODO: 로또 구입 후 button disabled: $purchaseButton.setAttribute('disabled', true);
   }
 
-  #closeWinningStatisticsModal($target) {
-    const $modal = $target.closest('#modal');
+  #closeWinningStatisticsModal() {
+    const $modal = document.querySelector('#modal');
     if ($modal) {
       $modal.remove();
     }
   }
 
-  #restart($target) {
-    this.#closeWinningStatisticsModal($target);
+  #restart() {
+    this.#closeWinningStatisticsModal();
 
     const $input = document.querySelector('#purchaseAmount');
     $input.value = null;
