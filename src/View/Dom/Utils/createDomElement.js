@@ -25,9 +25,11 @@ export const createElementWithAttributes = ({
   }
 
   if (Array.isArray(children) && children.length) {
+    const fragment = new DocumentFragment();
     children.forEach((child) =>
-      element.append(createElementWithAttributes(child)),
+      fragment.append(createElementWithAttributes(child)),
     );
+    element.append(fragment);
   }
 
   return element;
