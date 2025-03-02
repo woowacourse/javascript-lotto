@@ -1,7 +1,7 @@
-import ERROR from "../constant/Error";
-import WebMain from "../controller/WebMain";
-import Validator from "../domain/Validator";
-import { inputFormHandler } from "./inputFormHandler";
+import ERROR from "../constant/Error.js";
+import WebMain from "../controller/WebMain.js";
+import Validator from "../domain/Validator.js";
+import { inputFormHandler } from "./inputFormHandler.js";
 import Parser from "./Parser";
 
 const getHTML = (e) => document.getElementById(e);
