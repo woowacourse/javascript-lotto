@@ -1,9 +1,9 @@
-export const disableButton = (name) => {
-  const button = document.querySelector(`[name=${name}]`);
-  button.disabled = true;
+export const disableElement = (name) => {
+  const element = document.querySelector(`[name=${name}]`);
+  element.disabled = true;
 };
 
-export const enableButton = (name) => {
-  const button = document.querySelector(`[name=${name}]`);
-  button.disabled = false;
+export const enableElement = (name) => {
+  const element = document.querySelector(`[name=${name}]`);
+  element.disabled = false;
 };
