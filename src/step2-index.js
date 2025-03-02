@@ -24,8 +24,8 @@ import {
 import showLottoResult from './View/show/showLottoResult.js';
 import showPurchaseResult from './View/show/showPurchaseResult.js';
 import {
-  lottoInputErrorHandler,
-  priceErrorHandler,
+  handleLottoInputError,
+  handlePriceError,
 } from './util/errorHandler.js';
 import SELECTORS from './constants/Selectors.js';
 
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const { purchasePrice: price, purchaseAmount } = await getPurchasePrice(
         getUIPurchasePrice,
-        priceErrorHandler,
+        handlePriceError,
       );
       purchasePrice = price;
       showPurchaseResult(purchaseAmount);
@@ -62,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const userLotto = await getWinningNumber(
         getUIWinningNumber,
-        lottoInputErrorHandler,
+        handleLottoInputError,
       );
       const parsedLotto = await getBonusNumber(
         userLotto,
         getUIBonusNumber,
-        lottoInputErrorHandler,
+        handleLottoInputError,
       );
 
       let winCount = 0;

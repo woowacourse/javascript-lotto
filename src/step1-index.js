@@ -22,24 +22,24 @@ import {
   getConsoleUserRetry,
   getConsoleWinningNumber,
 } from './service/InputService.js';
-import { defaultErrorHandler } from './util/errorHandler.js';
+import { displayError } from './util/errorHandler.js';
 
 async function playGame() {
   const { purchasePrice, purchaseAmount } = await getPurchasePrice(
     getConsolePurchasePrice,
-    defaultErrorHandler,
+    displayError,
   );
 
   const lottos = makeLotto(purchaseAmount);
 
   const userLotto = await getWinningNumber(
     getConsoleWinningNumber,
-    defaultErrorHandler,
+    displayError,
   );
   const parsedLotto = await getBonusNumber(
     userLotto,
     getConsoleBonusNumber,
-    defaultErrorHandler,
+    displayError,
   );
 
   const winCount = calculateWins(lottos, parsedLotto);
@@ -57,7 +57,7 @@ const main = async () => {
     let userRetry;
 
     while (true) {
-      userRetry = await getUserRetry(getConsoleUserRetry, defaultErrorHandler);
+      userRetry = await getUserRetry(getConsoleUserRetry, displayError);
       if (userRetry === 'y' || userRetry === 'n') break;
     }
     if (userRetry === 'n') break;

@@ -4,12 +4,9 @@ import checkBonusNumber from '../Validation/checkBonusNumber.js';
 import checkLottoPurchase from '../Validation/checkLottoPurchase.js';
 import checkUserRetry from '../Validation/checkUserRetry.js';
 import { LOTTO_PRICE } from '../constants/MagicNumber.js';
-import { defaultErrorHandler } from '../util/errorHandler.js';
+import { displayError } from '../util/errorHandler.js';
 
-async function getPurchasePrice(
-  inputMethod,
-  handleError = defaultErrorHandler,
-) {
+async function getPurchasePrice(inputMethod, handleError = displayError) {
   try {
     const purchasePrice = await inputMethod();
     const purchaseAmount = checkLottoPurchase(purchasePrice) / LOTTO_PRICE;
@@ -20,10 +17,7 @@ async function getPurchasePrice(
     return getPurchasePrice(inputMethod, handleError);
   }
 }
-async function getWinningNumber(
-  inputMethod,
-  handleError = defaultErrorHandler,
-) {
+async function getWinningNumber(inputMethod, handleError = displayError) {
   try {
     const winningNumber = await inputMethod();
     const userLotto = new Lotto(
@@ -38,7 +32,7 @@ async function getWinningNumber(
 async function getBonusNumber(
   userLotto,
   inputMethod,
-  handleError = defaultErrorHandler,
+  handleError = displayError,
 ) {
   try {
     const bonusNumber = await inputMethod();
@@ -50,7 +44,7 @@ async function getBonusNumber(
   }
 }
 
-async function getUserRetry(inputMethod, handleError = defaultErrorHandler) {
+async function getUserRetry(inputMethod, handleError = displayError) {
   try {
     const userRetry = await inputMethod();
     checkUserRetry(userRetry);
