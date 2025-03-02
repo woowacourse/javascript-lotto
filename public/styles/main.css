@@ -1,15 +1,22 @@
 .main {
   width: 414px;
   min-height: 64vh;
+
   margin: 0 auto;
   padding: 40px 16px 32px;
-  border-radius: 4px;
+
   border: solid 1px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+
   background-color: var(--secondary-color);
 }
 
 .main-winning-check-title {
   margin: 0 0 28px;
+
+  text-align: center;
+  color: var(--text-color);
+
   font-family: var(--font-family);
   font-size: 24px;
   font-weight: 800;
@@ -17,8 +24,6 @@
   font-style: normal;
   line-height: 1.5;
   letter-spacing: normal;
-  text-align: center;
-  color: var(--text-color);
 }
 
 .main-purchase-amount-form {
@@ -26,23 +31,26 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
   width: 100%;
 }
 
 .main-purchase-amount-input-label-container {
-  width: 310px;
   display: flex;
   flex-direction: column;
+
+  width: 310px;
   gap: 4px;
 }
 
 .main-purchase-amount-input-label {
+  text-align: left;
+  color: var(--text-color);
+
   font-family: var(--font-family);
   font-size: 16px;
   line-height: 1.6;
   letter-spacing: 0.5px;
-  text-align: left;
-  color: var(--text-color);
 }
 
 .main-purchase-amount-input {
@@ -50,11 +58,13 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+
   height: 18px;
   gap: 10px;
   padding: 8px;
-  border-radius: 4px;
+
   border: solid 1px #b4b4b4;
+  border-radius: 4px;
 
   &:disabled {
     background-color: var(--disabled-color);
@@ -63,13 +73,17 @@
 }
 
 .main-purchase-amount-button {
+  align-self: flex-end;
+
   width: 56px;
   height: 36px;
-  align-self: flex-end;
+
+  border: none;
   border-radius: 4px;
+
   background-color: var(--primary-color);
   color: var(--secondary-color);
-  border: none;
+
   cursor: pointer;
 
   &:disabled {
@@ -80,8 +94,9 @@
 }
 
 .lotto-list-display {
-  margin: 24px 0px;
   height: 180px;
+  margin: 24px 0px;
+
   overflow-y: scroll;
 }
 
@@ -92,6 +107,7 @@
 .lotto-list {
   display: flex;
   flex-direction: column;
+
   gap: 8px;
 }
 
@@ -99,6 +115,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+
   gap: 8px;
 }
 
@@ -107,18 +124,20 @@
 }
 
 .lotto-numbers {
+  text-align: left;
+
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   letter-spacing: 0.5px;
-  text-align: left;
 }
 
 .winning-lotto-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   gap: 16px;
 }
 
@@ -130,6 +149,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   width: 100%;
   gap: 32px;
 }
@@ -142,16 +162,17 @@
 .winning-numbers-input-container {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+
   margin: 16px 0;
+  gap: 8px;
 }
 
 .winning-numbers-input {
   width: 34px;
   height: 36px;
 
-  border-radius: 4px;
   border: solid 1px #b4b4b4;
+  border-radius: 4px;
 
   &:read-only {
     background-color: var(--disabled-color);
@@ -171,16 +192,19 @@
 .bonus-number-input-container {
   display: flex;
   flex-direction: row;
-  margin: 16px 0px;
   justify-content: flex-end;
+
+  margin: 16px 0px;
 }
 
 .bonus-number-input {
+  align-self: flex-end;
+
   width: 34px;
   height: 36px;
-  border-radius: 4px;
+
   border: solid 1px #b4b4b4;
-  align-self: flex-end;
+  border-radius: 4px;
 
   &:read-only {
     background-color: var(--disabled-color);
@@ -189,18 +213,24 @@
 }
 
 .lotto-result-check-button {
-  width: 100%;
-  height: 36px;
   display: flex;
-  font-weight: bold;
-  font-size: 16px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  height: 36px;
   padding: 6px 6px 6px 8px;
+
+  border: none;
   border-radius: 4px;
+
   background-color: var(--primary-color);
   color: var(--secondary-color);
+
+  font-size: 16px;
+  font-weight: bold;
+
   cursor: pointer;
 
   &:disabled {
