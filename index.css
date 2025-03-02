@@ -115,13 +115,23 @@ main button {
     cursor: pointer;
 }
 
-main .lotto-count {
+main .lotto-count-container {
     margin: 28px 0 8px 0;
-    padding: 0 0 0 16px;
+    padding: 0 16px 0 16px;
+}
+
+main .lotto-count {
+    margin: 0;
+    padding: 0;
     font-weight: 400;
     font-size: 15px;
     line-height: 24px;
     letter-spacing: 0.5px;
+}
+
+main .lotto-purchase-message {
+    margin: 28px 0 8px;
+    padding: 0 16px 0 16px;
 }
 
 main .lotto-container {
@@ -158,6 +168,7 @@ main .lotto-numbers {
 }
 
 main .winning-number-and-bonus {
+    display: none;
     width: 100%;
     height: 104px;
     margin: 24px 0 0 0;

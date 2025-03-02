@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <title>🎱 행운의 로또</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>행운의 로또</title>
-  <link rel="stylesheet" href="./index.css">
-  <script src="src/step2-index.js"></script>
+  <link rel="stylesheet" href="./index.css" />
+  <script type="module" src="./src/step2-index.js" defer></script>
 </head>
 <body>
 <div id="app">
@@ -16,6 +15,7 @@
   <main>
     <div class="container">
       <p class="lotto-title">🎱 내 번호 당첨 확인 🎱</p>
+
       <div class="purchase-amount">
         <div class="purchase-amount-input">
           <label for="input">구입할 금액을 입력해주세요.</label>
@@ -23,51 +23,25 @@
         </div>
         <button id="check">구입</button>
       </div>
-      <div>
+      <div class="lotto-purchase-message">
         <p class="lotto-count" id="lotto-count"></p>
-        <div class="lotto-container">
-          <div class="lotto">
-            <span class="lotto-img">🎟️</span>
-            <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-          </div>
-          <div class="lotto">
-            <span class="lotto-img">🎟️</span>
-            <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-          </div>
-          <div class="lotto">
-            <span class="lotto-img">🎟️</span>
-            <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-          </div>
-          <div class="lotto">
-            <span class="lotto-img">🎟️</span>
-            <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-          </div>
-          <div class="lotto">
-            <span class="lotto-img">🎟️</span>
-            <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-          </div>
-          <div class="lotto">
-            <span class="lotto-img">🎟️</span>
-            <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-          </div>
-          <div class="lotto">
-            <span class="lotto-img">🎟️</span>
-            <span class="lotto-numbers">12, 28, 22, 37, 19, 23</span>
-          </div>
-        </div>
       </div>
-      <div class="winning-number-and-bonus">
-        <p class="winning-number-and-bonus-message">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+        <div class="lotto-container"></div>
+
+      <div class="winning-number-and-bonus" id="winning-number-and-bonus">
+        <p class="winning-number-and-bonus-message">
+          지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+        </p>
         <div class="winning-number-and-bonus-input">
           <div class="winning-number">
             <label for="winning-number">당첨 번호</label>
             <div class="winning-number-input">
-              <input class="number-input" type="text" id="winning-number" />
-              <input class="number-input" type="text" />
-              <input class="number-input" type="text" />
-              <input class="number-input" type="text" />
-              <input class="number-input" type="text" />
-              <input class="number-input" type="text" />
+              <input class="number-input" type="text" id="winning-number-1" />
+              <input class="number-input" type="text" id="winning-number-2" />
+              <input class="number-input" type="text" id="winning-number-3" />
+              <input class="number-input" type="text" id="winning-number-4" />
+              <input class="number-input" type="text" id="winning-number-5" />
+              <input class="number-input" type="text" id="winning-number-6" />
             </div>
           </div>
           <div class="bonus">
@@ -75,8 +49,11 @@
             <input class="number-input" type="text" id="bonus" />
           </div>
         </div>
+        <button class="submit" id="winning-result-button" type="button">
+          결과 확인하기
+        </button>
       </div>
-      <button class="submit" id="winning-result-button" type="button">결과 확인하기</button>
+
       <dialog>
         <div class="dialog-container">
           <h3>🏆 당첨 통계 🏆</h3>
@@ -123,12 +100,12 @@
           </form>
         </div>
       </dialog>
+
     </div>
   </main>
   <footer>
     <p>Copyright 2023. woowacourse</p>
   </footer>
 </div>
-<script type="module" src="./src/step2-index.js"></script>
 </body>
 </html>
