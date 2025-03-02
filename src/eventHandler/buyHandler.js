@@ -19,6 +19,9 @@ domRefs.$priceForm.addEventListener("submit", (e) => {
     lottoState.lottoMachine = new LottoMachine(price);
 
     displayLottoInfo(lottoState.lottoMachine);
+
+    setTagsDisabled([domRefs.$inputPrice, domRefs.$buyButton], true);
+    focusFirstNode(domRefs.$paper_winning_number_inputs);
   } catch (error) {
     alert(error.message);
     domRefs.$inputPrice.value = "";
@@ -28,10 +31,6 @@ domRefs.$priceForm.addEventListener("submit", (e) => {
 function displayLottoInfo(lottoMachine) {
   const lottosNumber = lottoMachine.getLottosNumber();
   domRefs.$lottoCount.textContent = `총 ${lottosNumber.length}개 구매했습니다.`;
-
-  setTagsDisabled([domRefs.$inputPrice, domRefs.$buyButton], true);
-  focusFirstNode(domRefs.$paper_winning_number_inputs);
-
   createLottos(lottosNumber);
 }
 
