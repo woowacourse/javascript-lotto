@@ -1,5 +1,66 @@
 import { createElementWithAttributes } from './Utils/createDomElement.js';
 
+const createWinningNumbersInputs = () => {
+  return {
+    tag: 'div',
+    className: 'winning-numbers-container',
+    children: [
+      {
+        tag: 'label',
+        attributes: { for: 'lottoNumber1' },
+        textContent: '당첨 번호',
+      },
+      {
+        tag: 'div',
+        className: 'winning-numbers-input-container',
+        children: Array.from({ length: 6 }, (_, i) => ({
+          tag: 'input',
+          className: 'winning-numbers-input',
+          attributes: {
+            id: `lottoNumber${i + 1}`,
+            name: 'winningNumber',
+            required: true,
+            minLength: 1,
+            maxLength: 2,
+          },
+        })),
+      },
+    ],
+  };
+};
+
+const createBonusNumberInput = () => {
+  return {
+    tag: 'div',
+    className: 'bonus-number-container',
+    children: [
+      {
+        tag: 'label',
+        className: 'bonus-number-label',
+        attributes: { for: 'bonusNumber' },
+        textContent: '보너스 번호',
+      },
+      {
+        tag: 'div',
+        className: 'bonus-number-input-container',
+        children: [
+          {
+            tag: 'input',
+            className: 'bonus-number-input',
+            attributes: {
+              id: 'bonusNumber',
+              name: 'bonusNumber',
+              required: true,
+              minLength: 1,
+              maxLength: 2,
+            },
+          },
+        ],
+      },
+    ],
+  };
+};
+
 export const createWinningLottoForm = () => {
   return createElementWithAttributes({
     tag: 'form',
@@ -14,64 +75,9 @@ export const createWinningLottoForm = () => {
       {
         tag: 'div',
         className: 'winning-lotto-container',
-        children: [
-          {
-            tag: 'div',
-            className: 'winning-numbers-container',
-            children: [
-              {
-                tag: 'label',
-                attributes: { for: 'lottoNumber1' },
-                textContent: '당첨 번호',
-              },
-              {
-                tag: 'div',
-                className: 'winning-numbers-input-container',
-                children: Array.from({ length: 6 }, (_, i) => ({
-                  tag: 'input',
-                  className: 'winning-numbers-input',
-                  attributes: {
-                    id: `lottoNumber${i + 1}`,
-                    name: 'winningNumber',
-                    required: true,
-                    minLength: 1,
-                    maxLength: 2,
-                  },
-                })),
-              },
-            ],
-          },
-          {
-            tag: 'div',
-            className: 'bonus-number-container',
-            children: [
-              {
-                tag: 'label',
-                className: 'bonus-number-label',
-                attributes: { for: 'bonusNumber' },
-                textContent: '보너스 번호',
-              },
-              {
-                tag: 'div',
-                className: 'bonus-number-input-container',
-                children: [
-                  {
-                    tag: 'input',
-                    className: 'bonus-number-input',
-                    attributes: {
-                      id: 'bonusNumber',
-                      name: 'bonusNumber',
-                      required: true,
-                      minLength: 1,
-                      maxLength: 2,
-                    },
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+        children: [createWinningNumbersInputs(), createBonusNumberInput()],
       },
+
       {
         tag: 'button',
         className: 'lotto-result-check-button',
