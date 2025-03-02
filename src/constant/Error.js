@@ -1,4 +1,4 @@
-import DEFINITION, { PRICE } from "./Definition.js";
+import DEFINITION, {PRICE} from "./Definition.js";
 
 const ERROR = {
   USER_INPUT: {
