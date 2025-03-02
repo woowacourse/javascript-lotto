@@ -20,12 +20,22 @@ export function handleRetry() {
 }
 
 export function handleCloseModal() {
-  $modalWrap.classList.add('hidden');
-  $app.style.backgroundColor = 'white';
-  $lottoResultTable.innerHTML = '';
+  closeModalStyle();
+}
+
+export function handleCloseModalBackGround(e) {
+  if (e.target !== $modalWrap) {
+    closeModalStyle();
+  }
 }
 
 export function openModal() {
   $modalWrap.classList.remove('hidden');
   $app.style.backgroundColor = 'rgba(0,0,0,0.5)';
+}
+
+function closeModalStyle() {
+  $modalWrap.classList.add('hidden');
+  $app.style.backgroundColor = 'white';
+  $lottoResultTable.innerHTML = '';
 }

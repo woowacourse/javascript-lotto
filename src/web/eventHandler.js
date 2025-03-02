@@ -1,5 +1,5 @@
 import { handleLottoGame } from './handleLottoGame.js';
-import { handleCloseModal, handleRetry } from './handleModal.js';
+import { handleCloseModal, handleCloseModalBackGround, handleRetry } from './handleModal.js';
 import { handleCanPurchaseBtnActive, handleMakeLotto } from './handlePurchaseLotto.js';
 
 const $purchaseForm = document.getElementById('purchase-form');
@@ -19,4 +19,5 @@ export function eventHandler(state) {
   // 모달 관련 리스너
   $modalCloseBtn.addEventListener('click', handleCloseModal);
   $retryBtn.addEventListener('click', handleRetry);
+  window.addEventListener('click', (e) => handleCloseModalBackGround(e));
 }
