@@ -6,6 +6,7 @@ import { errorHandler } from '../../utils/errorHandler.js';
 import { validateBonusNumber, validateWinningNumbers } from '../../validation/validateLottoNumbers.js';
 import { LottoGame } from './LottoGame.js';
 import { showResultsModal } from './outputHandler.js';
+import { disableWinningInputs } from './uiHandler.js';
 
 export const handleResultButtonClick = () => {
   try {

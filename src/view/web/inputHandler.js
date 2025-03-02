@@ -5,6 +5,7 @@ import { LottoGame } from './LottoGame.js';
 import { showLottos, showPurchaseResult } from './outputHandler.js';
 import { generateLottos } from '../../domain/generateLottos.js';
 import { LOTTO_SYSTEM } from '../../constants/LottoSystem.js';
+import { disablePurchaseInputs } from './uiHandler.js';
 
 export const handlePurchaseSubmit = (event) => {
   event.preventDefault();

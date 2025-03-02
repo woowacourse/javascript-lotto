@@ -1,6 +1,7 @@
 import { DOM } from './DOM/dom.js';
 import { handleBonusNumberInput, handlePurchaseSubmit, handleWinningNumberInput } from './view/web/inputHandler.js';
-import { handleRestartButtonClick, handleModalCloseClick, handleResultButtonClick } from './view/web/buttonHandler.js';
+import { handleRestartButtonClick, handleResultButtonClick } from './view/web/buttonHandler.js';
+import { handleModalCloseClick } from './view/web/uiHandler.js';
 
 DOM.purchaseForm.addEventListener('submit', handlePurchaseSubmit);
 
