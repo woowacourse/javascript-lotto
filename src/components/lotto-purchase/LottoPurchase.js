@@ -7,9 +7,9 @@ class LottoPurchase extends BaseWebComponent {
     return `
       <section class="lotto-purchase">
         <h2 class="lotto-purchase__title">🎱 내 번호 당첨 확인 🎱</h2>
-        <p class="lotto-purchase__description">구입할 금액을 입력해주세요.</p>
+        <label for="purchase-amount" class="lotto-purchase__description">구입할 금액을 입력해주세요.</label>
         <form class="lotto-purchase__form">
-          <input class="lotto-purchase__input" placeholder="금액" />
+          <input id="purchase-amount" class="lotto-purchase__input" placeholder="금액" />
           <button class="lotto-purchase__button">구입</button>
         </form>
         <p class="lotto-purchase__error"></p>
