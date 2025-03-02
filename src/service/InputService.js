@@ -40,12 +40,12 @@ export async function getUIUserRetry() {
   return new Promise((resolve, reject) => {
     const retryButton = document.getElementById(SELECTORS.BUTTON.RETRY);
 
-    const handleClick = (event) => {
+    const handleRetryClick = (event) => {
       event.preventDefault();
-      retryButton.removeEventListener('click', handleClick);
+      retryButton.removeEventListener('click', handleRetryClick);
       resolve('y');
     };
 
-    retryButton.addEventListener('click', handleClick);
+    retryButton.addEventListener('click', handleRetryClick);
   });
 }
