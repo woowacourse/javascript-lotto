@@ -28,7 +28,7 @@
   gap: 4px;
 }
 
-.input-contents div {
+.input-contents form {
   display: flex;
   justify-content: space-between;
 }
@@ -86,7 +86,7 @@
   width: fit-content;
 }
 
-.winningLotto-contents > div {
+.winningLotto-contents form {
   display: flex;
   width: 382px;
   justify-content: space-between;

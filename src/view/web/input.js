@@ -46,10 +46,12 @@ const repeatGetPrice = (resolve) => {
 
 const getPrice = () => {
   return new Promise((resolve) => {
-    const purchaseButton = document.querySelector(".input-contents button");
-    purchaseButton.addEventListener("click", async () => {
-      repeatGetPrice(resolve);
-    });
+    document
+      .querySelector(".input-contents form")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault();
+        repeatGetPrice(resolve);
+      });
   });
 };
 
@@ -91,12 +93,13 @@ const repeatWinningLotto = (resolve) => {
 };
 
 const getWinningLotto = async () => {
-  const submitResultButton = document.querySelector(".result-contents");
-
   return new Promise((resolve) => {
-    submitResultButton.addEventListener("click", async () => {
-      repeatWinningLotto(resolve);
-    });
+    document
+      .querySelector("#lottoForm")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault();
+        repeatWinningLotto(resolve);
+      });
   });
 };
 

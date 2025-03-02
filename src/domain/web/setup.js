@@ -6,10 +6,10 @@ const resetLotto = () => {
   const prizeResultModal = document.querySelector("modal");
   prizeResultModal.style.display = "none";
 
-  // input 초기화
-  const inputFields = document.querySelectorAll("input");
-  inputFields.forEach((input) => {
-    input.value = "";
+  // form 태그 안의 input 초기화
+  const forms = document.querySelectorAll("form");
+  forms.forEach((form) => {
+    form.reset();
   });
 
   // 사용자의 lotto 결과 초기화

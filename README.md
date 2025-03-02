@@ -120,5 +120,7 @@
 - [x] title Document 삭제
 
 - **feat**
+- [x] form 태그 사용하기 - submit으로 변경
+- [x] form 태그 reset 옵션 적용
 
 - [ ] commit 링크 연동
