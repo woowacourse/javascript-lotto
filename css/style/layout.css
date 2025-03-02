@@ -70,3 +70,13 @@ footer p {
   opacity: 0;
   visibility: hidden;
 }
+
+.disable-button {
+  background-color: gray !important;
+  cursor: default;
+}
+
+.disable-input {
+  background-color: lightgray;
+  color: gray;
+}

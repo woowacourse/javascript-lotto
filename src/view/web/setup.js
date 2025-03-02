@@ -48,16 +48,9 @@ const resetLotto = () => {
   const $resultContents = $(".result-contents");
   resetLayout($resultContents);
 
-  // input창 disabled 처리 풀기
-  const $priceInput = $(".input-contents input");
-  $priceInput
-    .prop("disabled", false)
-    .css({ "background-color": "white", color: "black" });
-
-  const $priceButton = $(".input-contents button");
-  $priceButton
-    .prop("disabled", false)
-    .css({ "background-color": "#4e5ba6", cursor: "pointer" });
+  // input,button filed disabled 처리 풀기
+  $("input").prop("disabled", false).removeClass("disable-input");
+  $("button").prop("disabled", false).removeClass("disable-button");
 
   // body 스크롤 활성화
   $("body").css("overflow", "auto");
@@ -80,15 +73,8 @@ const initLotto = () => {
 };
 
 const disableInputPrice = () => {
-  const $priceInput = $(".input-contents input");
-  $priceInput
-    .prop("disabled", true)
-    .css({ "background-color": "lightgray", color: "gray" });
-
-  const $priceButton = $(".input-contents button");
-  $priceButton
-    .prop("disabled", true)
-    .css({ "background-color": "gray", cursor: "default" });
+  $(".input-contents input").prop("disabled", true).addClass("disable-input ");
+  $(".input-contents button").prop("disabled", true).addClass("disable-button");
 };
 
 export { initLotto, disableInputPrice, focusInput, hideLayout, showLayout };

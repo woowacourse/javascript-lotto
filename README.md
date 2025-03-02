@@ -125,5 +125,6 @@
 - [x] 화면 렌더링 시 필요한 input에 자동 focus 처리
 - [x] querySelector에서 jQuery사용으로 변경
 - [x] domain과 ui 역할 분리 - setup.js / modal.js
+- [x] 결과 확인 후 winnerLotto disable 처리해주기
 
 - [ ] commit 링크 연동

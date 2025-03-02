@@ -95,4 +95,6 @@ const getWinningLotto = async () => {
   });
 };
 
+const disableInputfield = () => {};
+
 export { getPrice, getWinningLotto };

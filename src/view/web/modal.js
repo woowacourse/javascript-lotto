@@ -4,11 +4,11 @@ const allowModalOpen = () => {
   const $prizeResultModal = $("modal");
   showLayout($prizeResultModal);
 
-  const $prizeResultButton = $(".result-contents");
-  const $closeButton = $("modal .close-button");
+  $("#lottoForm input").prop("disabled", true).addClass("disable-input");
 
-  $prizeResultButton.on("click", handleModal);
-  $closeButton.on("click", handleModal);
+  $(".result-contents").on("click", handleModal);
+  $("modal .close-button").on("click", handleModal);
+
   $("body").css("overflow", "hidden");
 };
 
