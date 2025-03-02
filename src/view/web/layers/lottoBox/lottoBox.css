@@ -11,6 +11,8 @@
 }
 
 .lotto-numbers {
+  height: 36px;
+
   display: flex;
   align-items: center;
   gap: 8px;
