@@ -35,8 +35,7 @@ modal div {
   justify-content: center;
   align-items: center;
   gap: 32px;
-  padding-top: 40px;
-  padding-bottom: 32px;
+  padding: 40px 0 32px 0;
   width: 350px;
   border-radius: 4px;
   background-color: white;

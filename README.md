@@ -111,9 +111,11 @@
 **2차 PR반영**
 
 - [ ] modain/web 디렉터리에 대해서는 코멘트 확인
+- **layout 수정**
 - [x] className 명시적으로 변경하기
 - [x] restart-button 클래스명으로 변경
 - [x] !important 속성 삭제 & 선택자 특이도 높이기
 - [x] position - inset 속성으로 변경
+- [x] padding으로 통일
 
 - [ ] commit 링크 연동
