@@ -1,4 +1,4 @@
-import { createElementWithAttributes } from './Utils/createDomElement.js';
+import { createElementWithAttributes } from './Utils/createElementWithAttributes.js';
 
 const createDisplayLottoCount = (lottoCounts) => {
   return {

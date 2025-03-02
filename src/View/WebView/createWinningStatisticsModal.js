@@ -1,5 +1,5 @@
 import { LOTTO_PRIZE_MONEY_DEFINITION } from '../../Domain/Constant/definition.js';
-import { createElementWithAttributes } from './Utils/createDomElement.js';
+import { createElementWithAttributes } from './Utils/createElementWithAttributes.js';
 
 const createLottoResultList = (lottoResult) => {
   const message = {
