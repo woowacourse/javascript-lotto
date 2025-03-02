@@ -268,14 +268,8 @@ container
 }
 
 .error-info-ul li span {
-  //font-size: 12px;
   margin-right: 4px;
 }
-
-/* .error-info-ul li::before {
-  content: "";
-  font-size: 16px;
-} */
 
 #winningErrorInfo 
 
@@ -288,14 +282,12 @@ price 시작
 .lotto-results-box::-webkit-scrollbar {
   width: 6px;
   height: 6px;
-  //background-color: var(--lotto-primary-alpha);
 }
 
-/* 스크롤바 막대 꾸미기 */
 .lotto-results-box::-webkit-scrollbar-thumb {
   width: 16px;
   height: 16px;
-  background: var(--lotto-primary-alpha); /* 스크롤바 막대 색상 */
+  background: var(--lotto-primary-alpha); 
   border-radius: 50px 50px 50px 50px;
 }
 
@@ -303,11 +295,9 @@ price 시작
   background: var(--lotto-primary);
 }
 
-/* 스크롤바 트랙 꾸미기 */
 .lotto-results-box::-webkit-scrollbar-track {
   width: 2px;
   height: 2px;
-  //background-color: var(--lotto-primary-alpha);
 }
 
 .lotto-results-box {
@@ -404,7 +394,8 @@ winning 시작
   background-color: var(--lotto-primary);
   color: var(--lotto-greyscale-1);
 }
-|
+
+
 /* 
 
 

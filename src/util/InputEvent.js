@@ -10,10 +10,11 @@ function getHTML(e) {
 }
 class InputEvent {
   constructor(elem) {
+    this.winningNumbers = new Set();
     elem.addEventListener("input", this.onInput.bind(this));
   }
 
-  handlePriceInput(element) {
+  validateIsNumber(element) {
     const isNotNumber = !ValidationUtils.isNumberConvertible(element.value);
     WebOutput.printErrorResults(
       { IS_NOT_NUMBER: isNotNumber },
@@ -24,7 +25,15 @@ class InputEvent {
       throwError({ IS_NOT_NUMBER: isNotNumber });
       return;
     }
+  }
 
+  handlePriceInput(element) {
+    this.validateIsNumber(element);
+
+    this.validatePriceInput(element);
+  }
+
+  validatePriceInput(element) {
     try {
       inputFormHandler({
         inputValue: element.value,
@@ -40,19 +49,15 @@ class InputEvent {
 
   handleWinningInput(element) {
     const winningInputs = document.querySelectorAll("#winningForm input");
-    const isBonusFocus = document.activeElement.matches(".bonus-number");
 
     const currentWinningNumbers = Array.from(
-      document.querySelectorAll(".winning-number"),
+      document.querySelectorAll(".winning-bonus-box input"),
     )
       .map((input) => input.value)
       .filter(Boolean);
+    console.log("currentWinningNumbers => ", currentWinningNumbers);
 
-    if (isBonusFocus) {
-      this.handleBonusInput(element, currentWinningNumbers);
-    } else {
-      this.handleWinningNumbers(element, winningInputs, currentWinningNumbers);
-    }
+    this.handleWinningNumbers(element, winningInputs, currentWinningNumbers);
   }
 
   handleWinningNumbers(element, winningInputs, currentWinningNumbers) {
@@ -102,31 +107,6 @@ class InputEvent {
     }
   }
 
-  handleBonusInput(element, currentWinningNumbers) {
-    if (currentWinningNumbers.length !== 0) {
-      const errorResults = Validator.winningsAndBonus(
-        currentWinningNumbers,
-        element.value,
-      );
-      WebOutput.printErrorResults(errorResults, ERROR.WEB_WINNINGS_AND_BONUS);
-    }
-
-    this.validateBonusInput(element);
-  }
-
-  validateBonusInput(element) {
-    try {
-      inputFormHandler({
-        inputValue: element.value,
-        parser: Parser.toNumber,
-        validatorMethod: Validator.bonusNumber,
-        errorName: ERROR.BONUS_NUMBER,
-      });
-    } catch {
-      return;
-    }
-  }
-
   onInput(event) {
     let target = event.target.closest("[data-input]");
     if (!target) return;
@@ -137,7 +117,5 @@ class InputEvent {
     }
   }
 }
-
-new InputEvent(document);
 
 new InputEvent(document);

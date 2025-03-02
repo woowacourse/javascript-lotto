@@ -52,8 +52,21 @@ const Validator = {
 
   webWinningNumbers: (numbers) => {
     const errorResults = {
-      IS_NOT_NATURAL_NUMBER_IN_ARRAY:
-        ValidationUtils.isNotNaturalNumberInArray(numbers),
+      IS_VALID_ARRAY_LENGTH:
+        ValidationUtils.isValidArrayLength(numbers, 7, 7),
+      IS_DUPLICATED_NUMBER: ValidationUtils.isDuplicatedNumber(numbers),
+      IS_ARRAY_NUMBER_RANGE_OVER: ValidationUtils.isArrayNumberRangeOver(
+        numbers,
+        1,
+        45,
+      ),
+    };
+
+    return errorResults;
+  },
+
+  submitWinningNumbers: (numbers) => {
+    const errorResults = {
       IS_DUPLICATED_NUMBER: ValidationUtils.isDuplicatedNumber(numbers),
       IS_ARRAY_NUMBER_RANGE_OVER: ValidationUtils.isArrayNumberRangeOver(
         numbers,

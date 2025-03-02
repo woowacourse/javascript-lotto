@@ -12,18 +12,15 @@ class ClickEvent {
     document.getElementById("modalBackground")?.classList.add("show");
   }
 
-  removeModal(element, event) {
-    if (
-      event.target.id === "modalBackground" ||
-      event.target.closest("#closeModalBtn")
-    ) {
+  removeModal(element) {
+    if (element.id === "modalBackground" || element.id === "closeModalBtn") {
       document.getElementById("modalBackground")?.classList.remove("show");
       return;
     }
   }
 
   copyContent(element) {
-    const textCopy = element.textContent;
+    const textCopy = element.querySelector("p").textContent;
     if (!textCopy) {
       alert("복사할 내용이 없습니다.");
       return;
@@ -44,7 +41,7 @@ class ClickEvent {
       target.dataset.action &&
       typeof this[target.dataset.action] === "function"
     )
-      this[target.dataset.action](target, event);
+      this[target.dataset.action](target);
   }
 }
 

@@ -30,22 +30,14 @@ const WebMain = {
 
   defineWinningRules(winningData) {
     const winningNumbers = [...winningData.getAll("winning")];
-
+    winningNumbers.push(winningData.get("bonus"));
     const parsedWinningNumbers = inputFormHandler({
       inputValue: winningNumbers,
       parser: Parser.toNumberArray,
       validatorMethod: Validator.webWinningNumbers,
       errorName: ERROR.WEB_WINNING_NUMBERS,
     });
-    const bonusNumber = winningData.get("bonus");
-    const parsedBonusNumber = inputFormHandler({
-      inputValue: bonusNumber,
-      parser: Parser.toNumber,
-      validatorMethod: Validator.bonusNumber,
-      errorName: ERROR.BONUS_NUMBER,
-    });
-
-    const winnings = new Winnings(parsedWinningNumbers, parsedBonusNumber);
+    const winnings = new Winnings(parsedWinningNumbers.slice(0, -1), parsedWinningNumbers.at(-1));
     this.lottoMachine.defineRule(winnings);
   },
 

@@ -49,6 +49,7 @@ class SubmitEvent {
 
   handleWinningSubmit(event, form) {
     event.preventDefault();
+    try {
     const winningData = new FormData(form);
     WebMain.defineWinningRules(winningData);
 
@@ -61,6 +62,9 @@ class SubmitEvent {
     });
 
     WebMain.printLottoResult(this.#purchasePrice);
+    } catch {
+        alert("유효하지 않은 값이 있습니다. 안내 문구를 다시 확인해주세요.");
+    }
   }
 
   onSubmit(event) {
