@@ -1,4 +1,4 @@
-export function disabled($tags, bool) {
+export function setTagsDisabled($tags, bool) {
   $tags.forEach((tag) => {
     tag.disabled = bool;
   });

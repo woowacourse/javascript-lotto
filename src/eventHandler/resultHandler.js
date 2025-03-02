@@ -1,7 +1,7 @@
 import { lottoState } from "../webView/lottoState.js";
 import NumbersValidator from "../domain/\bvalidator/NumbersValidator.js";
 import BonusNumberValidator from "../domain/\bvalidator/BonusNumberValidator.js";
-import { disabled } from "../util/webUtil.js";
+import { setTagsDisabled } from "../util/webUtil.js";
 import domRefs from "../webView/dom.js";
 
 domRefs.$winningForm.addEventListener("submit", (e) => {
@@ -10,8 +10,8 @@ domRefs.$winningForm.addEventListener("submit", (e) => {
     const { winningNumbers, bonusNumber } = getWinningAndBonus();
 
     winningAndBonusValidate(winningNumbers, bonusNumber);
-    disabled(Array.from(domRefs.$paper_winning_number_inputs), true);
-    disabled([domRefs.$paper_bonus_number_input], true);
+    setTagsDisabled(Array.from(domRefs.$paper_winning_number_inputs), true);
+    setTagsDisabled([domRefs.$paper_bonus_number_input], true);
 
     const statistics = lottoState.lottoMachine.getStatistics(
       winningNumbers,

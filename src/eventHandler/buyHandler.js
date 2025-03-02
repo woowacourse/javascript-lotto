@@ -3,7 +3,11 @@ import { lottoState } from "../webView/lottoState.js";
 import PurchasePriceValidator from "../domain/\bvalidator/PurchasePriceValidator.js";
 import domRefs from "../webView/dom.js";
 import parser from "../util/parser.js";
-import { disabled, focusFirstNode, createElement } from "../util/webUtil.js";
+import {
+  setTagsDisabled,
+  focusFirstNode,
+  createElement,
+} from "../util/webUtil.js";
 
 domRefs.$priceForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -25,7 +29,7 @@ function displayLottoInfo(lottoMachine) {
   const lottosNumber = lottoMachine.getLottosNumber();
   domRefs.$lottoCount.textContent = `총 ${lottosNumber.length}개 구매했습니다.`;
 
-  disabled([domRefs.$inputPrice, domRefs.$buyButton], true);
+  setTagsDisabled([domRefs.$inputPrice, domRefs.$buyButton], true);
   focusFirstNode(domRefs.$paper_winning_number_inputs);
 
   createLottos(lottosNumber);
