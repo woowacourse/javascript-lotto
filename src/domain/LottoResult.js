@@ -15,6 +15,8 @@ class LottoResult {
       this.#validate(ranking);
       this.#addRankingCount(ranking);
     });
+
+    Object.freeze(this.#result);
   }
 
   #validate(ranking) {
@@ -38,7 +40,7 @@ class LottoResult {
   }
 
   get result() {
-    return Object.freeze({ ...this.#result });
+    return this.#result;
   }
 
   get totalPrize() {
