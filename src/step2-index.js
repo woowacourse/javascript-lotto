@@ -36,6 +36,12 @@ purchaseButton.addEventListener("click", () => {
   document.getElementById("winning-number-and-bonus").style.display = "block";
 });
 
+purchaseInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    purchaseButton.click();
+  }
+});
+
 const printLottoTickets = (lottoTickets) => {
   lottoContainer.innerHTML = "";
 
@@ -49,11 +55,31 @@ const printLottoTickets = (lottoTickets) => {
 
     lottoContainer.appendChild(lottoElement);
   });
-}
+};
+
+// winningNumberButton.addEventListener("click",  () => {
+//   LottoController.generateTickets();
+// });
+
+//
+// bonusButton.addEventListener("click", async () => {
+//   await LottoController.getBonusNumber();
+// });
+//
+// winningResultButton.addEventListener("click", async () => {
+//   await LottoController.calculateAndDisplayResults();
+// });
+
 
 document.addEventListener("click", (event) => {
   if (event.target && event.target.id === "winning-result-button") {
     modal.showModal();
+  }
+});
+
+modal.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    modal.close();
   }
 });
 
