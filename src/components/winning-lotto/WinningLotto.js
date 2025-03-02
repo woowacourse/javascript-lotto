@@ -2,7 +2,13 @@ import validateWinningNumbers from "../../validations/validateWinningNumbers.js"
 import validateBonusNumber from "../../validations/validateBonusNumber.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./winning-lotto.css";
-import { hideElement, renderElement, $, $$ } from "../../utils/domUtils.js";
+import {
+  hideElement,
+  renderElement,
+  $,
+  $$,
+  eventOn,
+} from "../../utils/domUtils.js";
 
 class WinningLotto extends BaseWebComponent {
   constructor() {
@@ -57,7 +63,7 @@ class WinningLotto extends BaseWebComponent {
   #setFormEventListeners() {
     const form = $(".winning-lotto__form", this);
     if (form) {
-      this.on(
+      eventOn(
         { target: form, eventType: "submit" },
         this.#handleSubmit.bind(this),
       );
@@ -67,7 +73,7 @@ class WinningLotto extends BaseWebComponent {
   #setInputEventListeners() {
     const inputs = $$(".winning-lotto__input", this);
     inputs.forEach((input, index) => {
-      this.on({ target: input, eventType: "input" }, () => {
+      eventOn({ target: input, eventType: "input" }, () => {
         const maxLength = input.getAttribute("maxlength");
         if (
           input.value.length === parseInt(maxLength, 10) &&

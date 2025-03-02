@@ -1,4 +1,9 @@
-import { $, hideElement, renderElement } from "../../utils/domUtils.js";
+import {
+  $,
+  eventOn,
+  hideElement,
+  renderElement,
+} from "../../utils/domUtils.js";
 import validatePurchaseAmount from "../../validations/validatePurchaseAmount.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./lotto-purchase.css";
@@ -20,7 +25,7 @@ class LottoPurchase extends BaseWebComponent {
 
   setEvent() {
     const form = $(".lotto-purchase__form", this);
-    this.on(
+    eventOn(
       { target: form, eventType: "submit" },
       this.#handleSubmit.bind(this),
     );

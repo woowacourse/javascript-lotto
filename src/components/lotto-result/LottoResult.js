@@ -1,6 +1,6 @@
 import { MATCH_KEY, MATCH_PRIZE } from "../../constants/constants.js";
 import createWinningStatisticsMap from "../../utils/createWinningStatisticsMap.js";
-import { $ } from "../../utils/domUtils.js";
+import { $, eventOff, eventOn } from "../../utils/domUtils.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./lotto-result.css";
 
@@ -63,11 +63,11 @@ class LottoResult extends BaseWebComponent {
   }
 
   setEvent() {
-    this.#manageEventListeners(this.on.bind(this));
+    this.#manageEventListeners(eventOn);
   }
 
   removeEvent() {
-    this.#manageEventListeners(this.off.bind(this));
+    this.#manageEventListeners(eventOff);
   }
 
   #manageEventListeners(eventMethod) {

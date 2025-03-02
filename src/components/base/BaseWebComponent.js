@@ -20,9 +20,6 @@ class BaseWebComponent extends HTMLElement {
     return "";
   }
 
-  setEvent() {}
-  removeEvent() {}
-
   emit(eventType, detail) {
     const customEvent = new CustomEvent(eventType, {
       bubbles: true,
@@ -32,13 +29,8 @@ class BaseWebComponent extends HTMLElement {
     this.dispatchEvent(customEvent);
   }
 
-  on({ target, eventType }, eventListener) {
-    target.addEventListener(eventType, eventListener);
-  }
-
-  off({ target, eventType }, eventListener) {
-    target.removeEventListener(eventType, eventListener);
-  }
+  setEvent() {}
+  removeEvent() {}
 }
 
 export default BaseWebComponent;

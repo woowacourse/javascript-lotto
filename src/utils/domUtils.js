@@ -13,3 +13,11 @@ export const $ = (selector, target = document) => {
 export const $$ = (selector, target = document) => {
   return target.querySelectorAll(selector);
 };
+
+export const eventOn = ({ target, eventType }, eventListener) => {
+  target.addEventListener(eventType, eventListener);
+};
+
+export const eventOff = ({ target, eventType }, eventListener) => {
+  target.removeEventListener(eventType, eventListener);
+};
