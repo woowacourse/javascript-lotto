@@ -1,14 +1,23 @@
 import Lotto from './Lotto.js';
 
-export default class WinningLotto extends Lotto {
+export default class WinningLotto {
+  #winningNumbers;
   #bonusNumber;
 
   constructor(winningNumbers, bonusNumber) {
-    super(winningNumbers); // Lotto를 상속받았으므로 #numbers에는 winningNumbers가 담기게 됨
+    this.#winningNumbers = new Lotto(winningNumbers);
     this.#bonusNumber = bonusNumber;
   }
 
   getBonusNumber() {
     return this.#bonusNumber;
+  }
+
+  getWinningNumbers() {
+    return this.#winningNumbers.getNumbers();
+  }
+
+  getMatchingCount(lotto) {
+    return this.#winningNumbers.getMatchingCount(lotto.getNumbers());
   }
 }

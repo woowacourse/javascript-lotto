@@ -23,9 +23,9 @@ async function run() {
 
   const stirngOfbonusNumber = await handleUserInput(INPUT.BONUS_NUMBER, validateBonusNumber(winningNumbers));
   const bonusNumber = Number(stirngOfbonusNumber);
-  const lottoNumbers = new WinningLotto(winningNumbers, bonusNumber);
+  const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-  const matchCounts = getWinningMatchCount(lottos, lottoNumbers);
+  const matchCounts = getWinningMatchCount(lottos, winningLotto);
   const revenue = calculateRevenue(matchCounts, purchasePrice);
 
   printStatistics(matchCounts, revenue);

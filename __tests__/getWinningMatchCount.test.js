@@ -11,24 +11,24 @@ describe('로또 당첨 개수 테스트', () => {
   });
   test('로또 당첨 개수가 5개여야 한다.', () => {
     const testLottos = [new Lotto([8, 12, 14, 23, 41, 1])];
-    const lottoNumbers = new WinningLotto(winningNumbers, bonusNumber);
-    const matchedCount = getWinningMatchCount(testLottos, lottoNumbers);
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    const matchedCount = getWinningMatchCount(testLottos, winningLotto);
 
     expect(matchedCount).toEqual([0, 0, 0, 0, 0, 1, 0, 0]);
   });
 
   test('로또 당첨 개수가 5개이고 보너스 넘버가 있어야 한다.', () => {
     const testLottos = [new Lotto([8, 12, 14, 23, 41, 45])];
-    const lottoNumbers = new WinningLotto(winningNumbers, bonusNumber);
-    const matchedCount = getWinningMatchCount(testLottos, lottoNumbers);
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    const matchedCount = getWinningMatchCount(testLottos, winningLotto);
 
     expect(matchedCount).toEqual([0, 0, 0, 0, 0, 0, 0, 1]);
   });
 
   test('로또 당첨 개수가 6개여야 한다.', () => {
     const testLottos = [new Lotto([8, 12, 14, 23, 41, 38])];
-    const lottoNumbers = new WinningLotto(winningNumbers, bonusNumber);
-    const matchedCount = getWinningMatchCount(testLottos, lottoNumbers);
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    const matchedCount = getWinningMatchCount(testLottos, winningLotto);
 
     expect(matchedCount).toEqual([0, 0, 0, 0, 0, 0, 1, 0]);
   });
