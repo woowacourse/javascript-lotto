@@ -1,3 +1,4 @@
+import formatNumber from "../util/formatNumber.js";
 import { LOTTO_NUMBERS, LOTTO_PRICE, RETRY_ANSWER } from "./systemConstants.js";
 
 export const LOTTO_NUMBERS_ERROR_MESSAGE = {
@@ -19,8 +20,9 @@ export const BONUS_NUMBER_ERROR_MESSAGE = {
 export const PRICE_ERROR_MESSAGE = {
   EMPTY: "구입 금액을 입력해주세요.",
   NUMBER: "숫자를 입력해주세요.",
-  UNDER_PRICE: `${LOTTO_PRICE}원보다 큰 수를 입력해주세요`,
-  INDIVISIBLE: `구입 금액은 ${LOTTO_PRICE}원 단위여야 합니다.`,
+  UNDER_PRICE: `${formatNumber(LOTTO_PRICE.MIN)}원보다 큰 수를 입력해주세요`,
+  INDIVISIBLE: `구입 금액은 ${formatNumber(LOTTO_PRICE.UNIT)}원 단위여야 합니다.`,
+  OVER_PRICE: `${formatNumber(LOTTO_PRICE.MAX)}원까지 입력 가능합니다.`,
 };
 
 export const RETRY_ERROR_MESSAGE = {

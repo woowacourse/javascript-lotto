@@ -2,6 +2,9 @@ const validationCondition = {
   isNumber(input) {
     return !isNaN(input);
   },
+  isTooLarge(input, threshold) {
+    return Number(input) > threshold;
+  },
   isEmpty(input) {
     return input === "" || input.length === 0;
   },

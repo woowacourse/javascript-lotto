@@ -6,7 +6,7 @@ const calculateWinningAmount = (matchingCount) => {
 
 export const calculateProfitRate = (matchingCount, lottoCount) => {
   const winningAmount = calculateWinningAmount(matchingCount);
-  const profitRatio = winningAmount / (lottoCount * LOTTO_PRICE);
+  const profitRatio = winningAmount / (lottoCount * LOTTO_PRICE.UNIT);
 
   return (profitRatio * 100).toFixed(1);
 };

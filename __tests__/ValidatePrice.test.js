@@ -11,11 +11,11 @@ describe("구입금액에 대한 유효성 검사를 진행한다", () => {
     expect(() => validatePrice(priceInput)).toThrow(PRICE_ERROR_MESSAGE.NUMBER);
   });
 
-  test.each([300, 900, 980])(`${LOTTO_PRICE}보다 작을 때 에러 발생`, (priceInput) => {
+  test.each([300, 900, 980])(`${LOTTO_PRICE.MIN}보다 작을 때 에러 발생`, (priceInput) => {
     expect(() => validatePrice(priceInput)).toThrow(PRICE_ERROR_MESSAGE.UNDER_PRICE);
   });
 
-  test.each([1300, 1900, 9580])(`${LOTTO_PRICE}로 나누어 떨어지지 않을 때 에러 발생`, (priceInput) => {
+  test.each([1300, 1900, 9580])(`${LOTTO_PRICE.UNIT}로 나누어 떨어지지 않을 때 에러 발생`, (priceInput) => {
     expect(() => validatePrice(priceInput)).toThrow(PRICE_ERROR_MESSAGE.INDIVISIBLE);
   });
 });

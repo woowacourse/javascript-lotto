@@ -8,7 +8,11 @@ const checkEmptyInput = (priceInput) => {
     throw new Error(PRICE_ERROR_MESSAGE.EMPTY);
   }
 };
-
+const checkIsTooLarge = (priceInput) => {
+  if (validationCondition.isTooLarge(priceInput, LOTTO_PRICE.MAX)) {
+    throw new Error(PRICE_ERROR_MESSAGE.OVER_PRICE);
+  }
+};
 const checkIsNumber = (priceInput) => {
   if (!validationCondition.isNumber(priceInput)) {
     throw new Error(PRICE_ERROR_MESSAGE.NUMBER);
@@ -16,16 +20,16 @@ const checkIsNumber = (priceInput) => {
 };
 
 const checkUnderPrice = (priceInput) => {
-  if (validationCondition.isUnder(priceInput, LOTTO_PRICE)) {
+  if (validationCondition.isUnder(priceInput, LOTTO_PRICE.MIN)) {
     throw new Error(PRICE_ERROR_MESSAGE.UNDER_PRICE);
   }
 };
 
 const checkDivisiblePrice = (priceInput) => {
-  if (!validationCondition.isDivisible(priceInput, LOTTO_PRICE)) {
+  if (!validationCondition.isDivisible(priceInput, LOTTO_PRICE.UNIT)) {
     throw new Error(PRICE_ERROR_MESSAGE.INDIVISIBLE);
   }
 };
-const validatePrice = (priceInput) => runValidators([checkEmptyInput, checkIsNumber, checkUnderPrice, checkDivisiblePrice], priceInput);
+const validatePrice = (priceInput) => runValidators([checkEmptyInput, checkIsNumber, checkIsTooLarge, checkUnderPrice, checkDivisiblePrice], priceInput);
 
 export default validatePrice;
