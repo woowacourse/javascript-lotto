@@ -8,9 +8,10 @@
     "test": "jest --no-cache",
     "start-step1": "node src/step1-index.js",
     "start-step2": "vite",
-    "deploy": "vite build --base=/javascript-lotto/ --minify=false && npx gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://eunsoa.github.io/javascript-lotto",
+  "homepage": "https://eunsoa.github.io/javascript-lotto/",
   "devDependencies": {
     "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.7",
