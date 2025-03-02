@@ -5,6 +5,7 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/main.css" />
+    <script type="module" src="/src/step2-index.js"></script>
   </head>
 
   <body>
@@ -67,20 +68,20 @@
               <div class="winning-numbers-input-group">
                 <p class="text-body">당첨 번호</p>
                 <div class="winning-numbers-input-list">
-                  <input type="number" class="numbers-input text-body"/>
-                  <input type="number" class="numbers-input text-body"/>
-                  <input type="number" class="numbers-input text-body"/>
-                  <input type="number" class="numbers-input text-body"/>
-                  <input type="number" class="numbers-input text-body"/>
-                  <input type="number" class="numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
+                  <input type="number" class="winning-input numbers-input text-body"/>
                 </div>
               </div>
               <div class="bonus-numbers-input-group">
                 <p class="text-body">보너스 번호</p>
-                <input type="number" class="numbers-input text-body"/>
+                <input type="number" class="bonus-input numbers-input text-body"/>
               </div>
             </div>
-            <button class="bottom-button text-caption">결과 확인하기</button>
+            <button class="result-button text-caption">결과 확인하기</button>
           </section>
         </section>
       </main>
@@ -89,7 +90,7 @@
         <p class="text-caption">Copyright 2023. woowacourse</p>
       </footer>
 
-      <div class="modal-overlay hidden">
+      <div class="modal-overlay">
         <div class="modal">
           <div class="modal-cancle-container">
             <img src="./icon/icon_cancle.svg" alt="cancle">
@@ -132,10 +133,9 @@
             </tbody>
           </table>
           <p class="profit-text text-caption">당신의 총 수익률은 %입니다.</p>
-          <button class="bottom-button text-caption">다시 시작하기</button>
+          <button class="retry-button text-caption">다시 시작하기</button>
         </div>
       </div>
     </div>
-    <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
