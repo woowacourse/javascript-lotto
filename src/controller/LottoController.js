@@ -45,9 +45,8 @@ class LottoController {
       this.#lottoTickets,
       this.#winningNumber
     );
-
     const results = calculator.getResults();
-    printMatchResults(results);
+    return results;
   }
 }
 
