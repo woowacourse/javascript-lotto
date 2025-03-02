@@ -14,7 +14,6 @@
 
 // export default retryAsync;
 
-
 const retryAsync = async (func, onError) => {
   try {
     return await func();

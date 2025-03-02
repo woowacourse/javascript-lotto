@@ -14,7 +14,8 @@ const OutputView = {
 
   printWinningDetailTitle() {
     // console.log(OUTPUT_MESSAGE.WINNING_DETAILS_TITLE);
-    document.getElementById("winning-stats-modal-title").innerText = OUTPUT_MESSAGE.WINNING_DETAILS_TITLE;
+    document.getElementById("winning-stats-modal-title").innerText =
+      OUTPUT_MESSAGE.WINNING_DETAILS_TITLE;
   },
 
   printWinningDetail(winningCount, rankKeys) {
@@ -24,11 +25,11 @@ const OutputView = {
     //   );
     // });
     rankKeys.forEach((key) => {
-      let label = '';
+      let label = "";
       if (key === KEYS.SECOND) {
-        label = `${WINNING[key].LABEL.slice(0,2)}+${WINNING[key].LABEL.slice(7,12)}`
+        label = `${WINNING[key].LABEL.slice(0, 2)}+${WINNING[key].LABEL.slice(7, 12)}`;
       } else {
-        label = WINNING[key].LABEL.slice(0,2);
+        label = WINNING[key].LABEL.slice(0, 2);
       }
       document.getElementById("winning-stats-table-content").innerHTML += `
       <tr>
@@ -42,12 +43,15 @@ const OutputView = {
 
   printYieldRate(yieldRate) {
     // console.log(`총 수익률은 ${yieldRate}%입니다.\n`);
-    document.getElementById("yield-rate").innerText = `당신의 총 수익률은 ${yieldRate}%입니다.`;
+    document.getElementById("yield-rate").innerText =
+      `당신의 총 수익률은 ${yieldRate}%입니다.`;
   },
 
   printQuantity(quantity) {
     // console.log(`${quantity}${OUTPUT_MESSAGE.QUANTITY}`);
-    if (quantity > 0) document.getElementById("purchased-count").innerText = `총 ${quantity}${OUTPUT_MESSAGE.QUANTITY}`;
+    if (quantity > 0)
+      document.getElementById("purchased-count").innerText =
+        `총 ${quantity}${OUTPUT_MESSAGE.QUANTITY}`;
   },
 };
 

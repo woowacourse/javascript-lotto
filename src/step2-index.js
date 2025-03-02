@@ -4,7 +4,6 @@
  */
 
 import {
-  purchase,
   handlePurchase,
   handleWinningNumbers,
   displayWinningDetails,
@@ -19,41 +18,61 @@ import {
 let purchaseAmount = 0;
 let lottos = [];
 let winningRanks = {};
+
+const inputPurchaseAmount = document.getElementById("input-purchase-amount");
 const buttonPurchase = document.getElementById("button-purchase");
 const contentBottom = document.getElementById("content-bottom");
+const buttonCheckResult = document.getElementById("button-check-result");
+const winningsAndBonusHelperText = document.getElementById(
+  "winnings-and-bonus-helper-text",
+);
+const winningStasModal = document.getElementById("winning-stats-modal");
+const buttonRestart = document.getElementById("button-restart");
+const buttonCloseModal = document.getElementById("close-modal");
+const winningStatsTableContent = document.getElementById(
+  "winning-stats-table-content",
+);
 
-document
-  .getElementById("button-purchase")
-  .addEventListener("click", async () => {
-    const result = await handlePurchase();
-    purchaseAmount = result.purchaseAmount;
-    lottos = result.lottos;
+buttonPurchase.addEventListener("click", async () => {
+  const result = await handlePurchase();
+  purchaseAmount = result.purchaseAmount;
+  lottos = result.lottos;
 
-    contentBottom.style.visibility = "visible";
-  });
+  contentBottom.style.visibility = "visible";
+});
 
-document
-  .getElementById("input-purchase-amount")
-  .addEventListener("input", (event) => {
-    const inputValue = event.target.value;
+inputPurchaseAmount.addEventListener("input", (event) => {
+  const inputValue = event.target.value;
+  const helperText = document.getElementById("purchase-amount-helper-text");
 
-    const helperText = document.getElementById("purchase-amount-helper-text");
+  try {
+    validatePurchaseAmount(inputValue);
+    buttonPurchase.disabled = false;
+    helperText.style.visibility = "hidden";
+  } catch (error) {
+    buttonPurchase.disabled = true;
+    helperText.innerText = error.message.slice(8);
+    helperText.style.visibility = "visible";
+  }
+});
 
-    try {
-      validatePurchaseAmount(inputValue);
-      buttonPurchase.disabled = false;
-      helperText.style.visibility = "hidden";
-    } catch (error) {
-      buttonPurchase.disabled = true;
-      helperText.innerText = error.message.slice(8);
-      helperText.style.visibility = "visible";
+inputPurchaseAmount.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    if (!buttonPurchase.disabled) {
+      buttonPurchase.click();
+      inputPurchaseAmount.blur();
     }
-  });
+  }
+});
+
+const inputs = Array.from(document.querySelectorAll(".lotto-input"));
+const winningInputs = inputs.slice(0, -1);
+const bonusInput = inputs.at(-1);
 
 document.querySelectorAll(".lotto-input").forEach((input, index, inputs) => {
   input.addEventListener("input", (event) => {
     const nextInput = inputs[index + 1];
-
     if (event.target.value.length === event.target.maxLength) {
       if (nextInput) {
         nextInput.focus();
@@ -62,19 +81,11 @@ document.querySelectorAll(".lotto-input").forEach((input, index, inputs) => {
   });
 });
 
-const inputs = Array.from(document.querySelectorAll(".lotto-input"));
-const winningInputs = inputs.slice(0, -1);
-const bonusInput = inputs.at(-1);
-const buttonCheckResult = document.getElementById("button-check-result");
-const winningsAndBonusHelperText = document.getElementById(
-  "winnings-and-bonus-helper-text"
-);
-
 inputs.forEach((input) => {
   input.addEventListener("input", async () => {
     const winningNumbers = winningInputs
       .map((input) => input.value)
-      .filter((value) => value.trim() !== ""); // ✅ 현재 입력된 당첨 번호 가져오기
+      .filter((value) => value.trim() !== "");
     const bonusNumber = bonusInput.value;
 
     try {
@@ -82,7 +93,6 @@ inputs.forEach((input) => {
       validateBonusNumber(bonusNumber, winningNumbers.join(","));
       buttonCheckResult.disabled = false;
       winningsAndBonusHelperText.style.visibility = "hidden";
-
       winningRanks = await handleWinningNumbers(lottos);
     } catch (error) {
       buttonCheckResult.disabled = true;
@@ -92,17 +102,9 @@ inputs.forEach((input) => {
   });
 });
 
-const winningStasModal = document.getElementById("winning-stats-modal");
-const buttonRestart = document.getElementById("button-restart");
-const buttonCloseModal = document.getElementById("close-modal");
-const winningStatsTableContent = document.getElementById(
-  "winning-stats-table-content"
-);
-
 buttonCheckResult.addEventListener("click", () => {
   displayWinningDetails(winningRanks);
   handleResult(purchaseAmount, winningRanks);
-
   winningStasModal.showModal();
   winningStasModal.style.visibility = "visible";
 });
@@ -114,13 +116,32 @@ buttonRestart.addEventListener("click", () => {
 const closeWinningStatsModal = () => {
   winningStasModal.close();
   winningStasModal.style.visibility = "hidden";
-  winningStatsTableContent.innerText = ""; // 기존 데이터 삭제
+  winningStatsTableContent.innerText = "";
 };
 
 buttonCloseModal.addEventListener("click", closeWinningStatsModal);
 
+// Keyboard shortcuts
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && winningStasModal.style.visibility === "visible") {
+  if (
+    event.key === "Escape" &&
+    winningStasModal.style.visibility === "visible"
+  ) {
     closeWinningStatsModal();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "Enter" &&
+    winningStasModal.style.visibility === "visible"
+  ) {
+    buttonRestart.click();
+  } else if (
+    event.key === "Enter" &&
+    !buttonPurchase.disabled &&
+    !buttonCheckResult.disabled
+  ) {
+    buttonCheckResult.click();
   }
 });

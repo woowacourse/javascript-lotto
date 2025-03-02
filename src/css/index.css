@@ -1,3 +1,4 @@
+/* Layout and Positioning */
 #container {
   width: 100%;
   height: 100vh;
@@ -16,7 +17,7 @@
   color: white;
   font: 13px sans-serif;
   margin: 0;
-  padding: 0px 130px; /* 왼쪽에서 130px 떨어진 위치에 고정 */
+  padding: 0px 130px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -25,20 +26,45 @@
   left: 0;
 }
 
+#footer {
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #content {
   width: 414px;
   height: 727px;
   border-width: 1px;
-  border: 1px solid rgba(78, 91, 166, 0.2); 
+  border: 1px solid rgba(78, 91, 166, 0.2);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   padding: 0 16px;
   position: relative;
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 
+#content-bottom {
+  position: absolute;
+  bottom: 20px;
+  width: 414px;
+  visibility: hidden;
+}
+
+#line {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  margin: 0;
+  border: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+/* Titles and Text */
 #title {
   font-size: 25px;
   text-align: center;
@@ -50,6 +76,22 @@
   margin-bottom: 5px;
 }
 
+#title-input-winnings-and-bonus {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#title-input-winnings,
+#title-input-bonus {
+  margin-bottom: 10px;
+}
+
+#copyright {
+  color: #4e5ba6;
+  font: 700 14px sans-serif;
+}
+
+/* Input Fields */
 #input-purchase-amount-area {
   display: flex;
   gap: 15px;
@@ -69,16 +111,58 @@
   padding-left: 5px;
 }
 
-#content-bottom {
-  position: absolute;
-  bottom: 20px;
-  width: 414px;
-  visibility: hidden;
+#input-winning-numbers {
+  display: flex;
+  gap: 10px;
 }
 
+#input-winning-numbers input,
+#input-bonus-numbers input {
+  width: 25px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid #cacaca;
+  text-align: center;
+}
+
+#input-bonus-numbers input {
+  justify-content: flex-end;
+}
+
+#input-winning-numbers-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#input-bonus-number-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#input-winnings-and-bonus-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#purchase-amount-helper-text {
+  color: rgb(255, 100, 100);
+  visibility: hidden;
+  font-size: 13px;
+}
+
+#winnings-and-bonus-helper-text {
+  color: rgb(255, 100, 100);
+  visibility: hidden;
+  font-size: 13px;
+}
+
+/* Buttons */
 #button-purchase {
   width: 80px;
-  background: #4E5BA6;
+  background: #4e5ba6;
   color: white;
   border: none;
   border-radius: 5px;
@@ -88,40 +172,40 @@
 
 #button-check-result {
   width: 100%;
-  background: #4E5BA6;
+  background: #4e5ba6;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 17px;
   margin: 10px 0;
   font-size: 17px;
-  /* position: absolute;
-  bottom: 20px; */
 }
 
 #button-restart {
   width: 100%;
-  background: #4E5BA6;
+  background: #4e5ba6;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 17px;
   margin: 10px 0;
   font-size: 17px;
-  /* position: absolute;
-  bottom: 20px; */
 }
 
-#button-purchase:hover, #button-check-result:hover, #button-restart:hover {
+#button-purchase:hover,
+#button-check-result:hover,
+#button-restart:hover {
   background: #2e3fa2;
   cursor: pointer;
 }
 
-#button-purchase:disabled, #button-check-result:disabled {
+#button-purchase:disabled,
+#button-check-result:disabled {
   background: gray;
   cursor: not-allowed;
 }
 
+/* Lotto Generation */
 #generated-lottos {
   max-height: 280px;
   overflow-y: auto;
@@ -138,104 +222,7 @@
   height: 36px;
 }
 
-#input-winning-numbers {
-  display: flex;
-  gap: 10px;
-}
-
-#input-winning-numbers input, #input-bonus-numbers input {
-  width: 25px;
-  height: 30px;
-  font-size: 20px;
-  border-radius: 5px;
-  border: 1px solid #cacaca;
-  text-align: center;
-}
-
-#input-bonus-numbers input {
-  justify-content: flex-end;
-}
-
-#footer {
-  height: 60px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#line {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  margin: 0;
-  border: 1px solid rgba(78, 91, 166, 0.2);
-}
-
-#copyright {
-  color: #4e5ba6;
-  font: 700 14px sans-serif;
-}
-
-#input-winning-numbers-section {
-  display: flex;
-  flex-direction: column;
-}
-
-#input-bonus-number-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-#title-input-winnings-and-bonus {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-#title-input-winnings, #title-input-bonus {
-  margin-bottom: 10px;
-}
-
-#input-winnings-and-bonus-section {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px; 
-}
-
-#purchase-amount-helper-text {
-  color: rgb(255, 100, 100);
-  visibility: hidden;
-  font-size: 13px;
-}
-
-#winnings-and-bonus-helper-text {
-  color: rgb(255, 100, 100);
-  visibility: hidden;
-  font-size: 13px;
-}
-
-table {
-  border-spacing: 20px;
-  border-collapse: collapse;
-}
-
-tr {
-  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
-}
-
-thead tr {
-  border-top: 1px solid rgba(78, 91, 166, 0.2);
-}
-
-th, td {
-  padding: 10px;
-  text-align: center;
-}
-
+/* Winning Stats Modal */
 #winning-stats-modal {
   display: flex;
   flex-direction: column;
@@ -256,6 +243,26 @@ th, td {
   height: 14px;
 }
 
-#close-modal img:hover{
+#close-modal img:hover {
   cursor: pointer;
+}
+
+/* Tables */
+table {
+  border-spacing: 20px;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+thead tr {
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
 }

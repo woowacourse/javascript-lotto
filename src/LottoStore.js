@@ -22,7 +22,7 @@ export const handlePurchase = async () => {
   const purchaseAmount = await retryAsync(getPurchaseAmount);
   const quantity = purchaseAmount / PRICE.UNIT;
 
-  document.getElementById("purchased-count").innerText = '';
+  document.getElementById("purchased-count").innerText = "";
   OutputView.printQuantity(quantity);
   const lottos = generateLottos(quantity);
   displayLottoNumbers(lottos);
@@ -77,7 +77,7 @@ const generateLottos = (quantity) => {
 };
 
 const displayLottoNumbers = (lottos) => {
-  document.getElementById("generated-lottos").innerHTML = '';
+  document.getElementById("generated-lottos").innerHTML = "";
   lottos.forEach((lotto) => {
     OutputView.printLotto(lotto.numbers);
   });
