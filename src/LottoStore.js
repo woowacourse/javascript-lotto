@@ -1,6 +1,4 @@
-import OutputView from "./ui/OutputView.js";
 import Calculator from "./Calculator.js";
-import InputHandler from "./util/InputHandler.js";
 import LottoCenter from "./LottoCenter.js";
 import generateLotto from "./LottoMachine.js";
 
@@ -27,12 +25,12 @@ const readWinningInfo = async () => {
   };
 };
 
-const getLottos = (purchaseAmount) => {
+export const getLottos = (purchaseAmount) => {
   const quantity = Calculator.getQuantity(purchaseAmount);
   return Array.from({ length: quantity }, () => generateLotto());
 };
 
-const getYieldRate = (winningCounts, purchaseAmount) => {
+export const getYieldRate = (winningCounts, purchaseAmount) => {
   const totalPrize = Calculator.getTotalPrize(winningCounts);
 
   return Calculator.getYieldRate(purchaseAmount, totalPrize);
