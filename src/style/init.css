@@ -36,11 +36,6 @@ p {
   font-weight: 400;
 }
 
-button .caption {
-  font-size: 14px;
-  font-weight: 700;
-}
-
 button {
   background-color: var(--primary);
   padding: 4px 6px;
