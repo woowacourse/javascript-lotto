@@ -121,7 +121,7 @@ input::-webkit-outer-spin-button,
 }
 
 .number-input {
-  display: none;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 0 0 27px 0;
