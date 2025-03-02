@@ -35,18 +35,14 @@
   cursor: pointer;
 }
 
-.modal-content h2 {
-  margin-top: 0;
-}
-
-.modal-content table {
+.modal-table {
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
 }
 
-.modal-content table thead th,
-.modal-content table tbody td {
+.modal-table-header,
+.modal-table-data {
   border-top: 1px solid var(--table-border-color);
   border-bottom: 1px solid var(--table-border-color);
   padding: 0.5rem;

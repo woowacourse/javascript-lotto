@@ -21,7 +21,7 @@ class PurchaseFormView extends ViewComponent {
     return `
       <label>구입할 금액을 입력해주세요.</label>
       <div class="purchase-price-input">
-        <input type="number" placeholder="금액 (1,000원 단위로 최대 1,000,000원)" min="${PURCHASE_PRICE.MIN}" step="${PURCHASE_PRICE.UNIT}" max="${PURCHASE_PRICE.MAX}" />
+        <input class="purchase-input" type="number" placeholder="금액 (1,000원 단위로 최대 1,000,000원)" min="${PURCHASE_PRICE.MIN}" step="${PURCHASE_PRICE.UNIT}" max="${PURCHASE_PRICE.MAX}" />
         <button class="purchase-button" disabled>구입</button>
       </div>
     `;

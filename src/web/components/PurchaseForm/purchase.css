@@ -5,14 +5,14 @@
   gap: 16px;
 }
 
-.purchase-price-input input {
+.purchase-input {
   width: 100%;
   padding: 8px;
   border: 1px solid var(--greyscale-3);
   border-radius: 4px;
 }
 
-.purchase-price-input button {
+.purchase-button {
   width: 56px;
   background-color: var(--primary);
   color: var(--white-text-color);
@@ -21,7 +21,8 @@
   cursor: pointer;
 }
 
-.purchase-price-input .purchase-button:disabled {
+.purchase-input:disabled,
+.purchase-button:disabled {
   cursor: not-allowed;
   background-color: var(--greyscale-3);
 }

@@ -12,9 +12,9 @@ function getTableRow(row) {
   const [matchText, prize, count] = row;
   return `
     <tr>
-      <td>${matchText}</td>
-      <td>${prize}</td>
-      <td>${count}</td>
+      <td class="modal-table-data">${matchText}</td>
+      <td class="modal-table-data">${prize}</td>
+      <td class="modal-table-data">${count}</td>
     </tr>
   `;
 }
@@ -22,12 +22,12 @@ function getTableRow(row) {
 // eslint-disable-next-line max-lines-per-function
 function getTableWrapperMarkup(rowsMarkup) {
   return `
-    <table>
+    <table class="modal-table">
       <thead>
         <tr>
-          <th>일치 개수</th>
-          <th>당첨금</th>
-          <th>당첨 개수</th>
+          <th class="modal-table-header">일치 개수</th>
+          <th class="modal-table-header">당첨금</th>
+          <th class="modal-table-header">당첨 개수</th>
         </tr>
       </thead>
       <tbody>
