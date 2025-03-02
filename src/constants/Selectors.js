@@ -19,6 +19,9 @@ const SELECTORS = {
   RESULT: {
     PURCHASE: 'purchase-result',
   },
+  FORM: {
+    PURCHASE: 'purchase-form',
+  },
 };
 
 export default SELECTORS;
