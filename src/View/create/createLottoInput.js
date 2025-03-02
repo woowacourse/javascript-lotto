@@ -1,6 +1,8 @@
+import SELECTORS from '../../constants/Selectors.js';
+
 function createLottoInput() {
   const lottoInputContainer = document.createElement('div');
-  lottoInputContainer.classList.add('lotto-input-container');
+  lottoInputContainer.classList.add(SELECTORS.CONTAINER.LOTTO_INPUT);
 
   const description = document.createElement('div');
   description.textContent =
@@ -13,7 +15,7 @@ function createLottoInput() {
   form.classList.add('input-form');
 
   const winningNumContainer = document.createElement('div');
-  winningNumContainer.classList.add('winningnum-container');
+  winningNumContainer.classList.add(SELECTORS.CONTAINER.WINNING_NUMBER);
 
   const winningLabel = document.createElement('label');
   winningLabel.textContent = '당첨 번호';
@@ -23,7 +25,7 @@ function createLottoInput() {
 
   for (let i = 0; i < 6; i++) {
     const input = document.createElement('input');
-    input.classList.add('num-input');
+    input.classList.add(SELECTORS.INPUT.WINNING_NUMBER);
     input.maxLength = 2;
     inputWrapper.appendChild(input);
   }
@@ -32,13 +34,13 @@ function createLottoInput() {
   winningNumContainer.appendChild(inputWrapper);
 
   const bonusNumContainer = document.createElement('div');
-  bonusNumContainer.classList.add('bonusnum-container');
+  bonusNumContainer.classList.add(SELECTORS.CONTAINER.BONUS_NUMBER);
 
   const bonusLabel = document.createElement('label');
   bonusLabel.textContent = '보너스 번호';
 
   const bonusInput = document.createElement('input');
-  bonusInput.id = 'bonusnum-input';
+  bonusInput.id = SELECTORS.INPUT.BONUS_NUMBER;
   bonusInput.maxLength = 2;
 
   bonusNumContainer.appendChild(bonusLabel);
@@ -48,7 +50,7 @@ function createLottoInput() {
   form.appendChild(bonusNumContainer);
 
   const checkResultBtn = document.createElement('button');
-  checkResultBtn.id = 'check-result-btn';
+  checkResultBtn.id = SELECTORS.BUTTON.RESULT;
   checkResultBtn.textContent = '결과 확인하기';
 
   numInputContainer.appendChild(form);

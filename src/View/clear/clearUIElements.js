@@ -1,16 +1,20 @@
+import SELECTORS from '../../constants/Selectors.js';
+
 function clearUIElements() {
-  const purchasePriceInput = document.getElementById('purchase-price');
+  const purchasePriceInput = document.getElementById(
+    SELECTORS.INPUT.PURCHASE_PRICE,
+  );
   if (purchasePriceInput.value) {
     purchasePriceInput.value = '';
   }
 
-  const purchaseResult = document.querySelector('.purchase-result');
+  const purchaseResult = document.getElementById(SELECTORS.RESULT.PURCHASE);
   if (purchaseResult) {
     purchaseResult.remove();
   }
 
   const lottoInputContainer = document.getElementsByClassName(
-    'lotto-input-container',
+    SELECTORS.CONTAINER.LOTTO_INPUT,
   );
   if (lottoInputContainer) {
     Array.from(lottoInputContainer).forEach((element) => {
@@ -18,7 +22,7 @@ function clearUIElements() {
     });
   }
 
-  const resultButton = document.getElementById('check-result-btn');
+  const resultButton = document.getElementById(SELECTORS.BUTTON.RESULT);
   if (resultButton) {
     resultButton.disabled = false;
   }

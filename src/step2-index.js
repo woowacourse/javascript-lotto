@@ -27,9 +27,10 @@ import {
   lottoInputErrorHandler,
   priceErrorHandler,
 } from './util/errorHandler.js';
+import SELECTORS from './constants/Selectors.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const purchaseButton = document.getElementById('purchase-button');
+  const purchaseButton = document.getElementById(SELECTORS.BUTTON.PURCHASE);
   let lottos = [];
   let purchasePrice = 0;
   async function handlePurchase(event) {
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       showLottoResult(lottos);
       createLottoInput();
 
-      const resultButton = document.getElementById('check-result-btn');
+      const resultButton = document.getElementById(SELECTORS.BUTTON.RESULT);
       resultButton.removeEventListener('click', handleResult);
       resultButton.addEventListener('click', handleResult);
       return purchasePrice;
@@ -74,29 +75,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const total = calculatePrize(winCount, PRIZE_MONEY);
       const revenueRate = calculateRevenueRate(total, purchasePrice);
 
-      const modalOverlay = createModalOverlay();
-      const modal = createModal(winCount, revenueRate, modalOverlay);
-      const closeButton = document.getElementById('close-button');
+      createModalOverlay();
+      createModal(winCount, revenueRate);
+      const closeButton = document.getElementById(SELECTORS.BUTTON.CLOSE);
 
       closeButton.addEventListener('click', (event) => {
         event.preventDefault();
-        lottos = [];
-        modal.remove();
-        modalOverlay.remove();
-        clearUIElements();
-        purchaseButton.disabled = false;
-        document.querySelector('.lotto-content').innerHTML = '';
+        reset();
       });
 
       const userRetry = await getUserRetry(getUIUserRetry);
 
       if (userRetry === 'y') {
-        lottos = [];
-        modal.remove();
-        modalOverlay.remove();
-        clearUIElements();
-        purchaseButton.disabled = false;
-        document.querySelector('.lotto-content').innerHTML = '';
+        reset();
       }
     } catch (error) {
       console.log(error);
@@ -105,4 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   purchaseButton.removeEventListener('click', handlePurchase);
   purchaseButton.addEventListener('click', handlePurchase);
+
+  function reset() {
+    lottos = [];
+    document.querySelector('.prize-result').remove();
+    document.querySelector('.modal-overlay').remove();
+    clearUIElements();
+    purchaseButton.disabled = false;
+    document.querySelector('.lotto-content').innerHTML = '';
+  }
 });

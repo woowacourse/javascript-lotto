@@ -1,7 +1,7 @@
-.purchase-message {
+#message-container {
   width: 100%;
 }
-.purchase-result {
+#purchase-result {
   width: 100%;
   height: 24px;
   color: var(--grey-500);

@@ -12,7 +12,6 @@ async function getPurchasePrice(
 ) {
   try {
     const purchasePrice = await inputMethod();
-    console.log(purchasePrice);
     const purchaseAmount = checkLottoPurchase(purchasePrice) / LOTTO_PRICE;
     printPurchasedAmount(purchaseAmount);
     return { purchasePrice, purchaseAmount };

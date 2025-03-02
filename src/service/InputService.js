@@ -1,12 +1,13 @@
 import readLineAsync from '../View/InputView.js';
 import INPUT_MESSAGE from '../constants/InputMessage.js';
+import SELECTORS from '../constants/Selectors.js';
 
 export async function getConsolePurchasePrice() {
   return await readLineAsync(INPUT_MESSAGE.getPurchasePrice);
 }
 
 export function getUIPurchasePrice() {
-  const inputElement = document.getElementById('purchase-price');
+  const inputElement = document.getElementById(SELECTORS.INPUT.PURCHASE_PRICE);
   return inputElement ? inputElement.value : null;
 }
 
@@ -16,7 +17,7 @@ export async function getConsoleWinningNumber() {
 
 export function getUIWinningNumber() {
   const winningNumbers = Array.from(
-    document.getElementsByClassName('num-input'),
+    document.querySelector(`.${SELECTORS.INPUT.WINNING_NUMBER}`),
   );
   return winningNumbers.map((input) => input.value.trim()).join(',');
 }
@@ -26,7 +27,7 @@ export async function getConsoleBonusNumber() {
 }
 
 export function getUIBonusNumber() {
-  const bonusNumber = document.getElementById('bonusnum-input');
+  const bonusNumber = document.getElementById(SELECTORS.INPUT.BONUS_NUMBER);
 
   return bonusNumber.value;
 }
@@ -37,7 +38,7 @@ export async function getConsoleUserRetry() {
 
 export async function getUIUserRetry() {
   return new Promise((resolve, reject) => {
-    const retryButton = document.getElementById('retry-button');
+    const retryButton = document.getElementById(SELECTORS.BUTTON.RETRY);
 
     const handleClick = (event) => {
       event.preventDefault();
