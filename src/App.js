@@ -187,6 +187,11 @@ class App {
 
   #keyEventHandler() {
     return (event) => {
+      const isModalOpen = document.querySelector('#modal');
+      if (isModalOpen && event.key === 'Enter') {
+        event.preventDefault();
+        event.stopPropagation();
+      }
       if (event.key === 'Escape') {
         this.#closeWinningStatisticsModal();
       }
