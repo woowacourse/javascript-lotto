@@ -25,7 +25,6 @@ import revealElement from "./src/view/web/modules/revealElement.js";
 const startGame = () => {
   initLayer();
   handleUserInput();
-  handleResultModal();
 };
 
 const initLayer = () => {
@@ -78,6 +77,7 @@ const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
   const totalPrizeMoney = getTotalPrizeMoney(result);
   const revenueRate = getRevenueRate(totalPrizeMoney, price);
   createPrizeResultModal(result, revenueRate);
+  handleResultModal();
 };
 
 const handleResultModal = () => {
