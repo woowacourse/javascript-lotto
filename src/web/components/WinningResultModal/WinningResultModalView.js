@@ -22,38 +22,38 @@ class WinningResultModalView extends ViewComponent {
     const $backdrop = this.$container.querySelector(
       WINNING_RESULT_MODAL_SELECTORS.MODAL_BACKDROP,
     );
-    if ($backdrop) {
-      $backdrop.addEventListener('click', (event) => {
-        if (event.target === $backdrop) {
-          this.#close();
-        }
-      });
-    }
+    if (!$backdrop) return;
+
+    $backdrop.addEventListener('click', (event) => {
+      if (event.target === $backdrop) {
+        this.#close();
+      }
+    });
   }
 
   #attachCloseButtonListener() {
     const $closeButton = this.$container.querySelector(
       WINNING_RESULT_MODAL_SELECTORS.MODAL_CLOSE_BUTTON,
     );
-    if ($closeButton) {
-      $closeButton.addEventListener('click', () => {
-        this.#close();
-      });
-    }
+    if (!$closeButton) return;
+
+    $closeButton.addEventListener('click', () => {
+      this.#close();
+    });
   }
 
   #attachRestartButtonListener() {
     const $restartButton = this.$container.querySelector(
       WINNING_RESULT_MODAL_SELECTORS.RESTART_BUTTON,
     );
-    if ($restartButton) {
-      $restartButton.addEventListener('click', () => {
-        if (this.onResultRequest) {
-          this.#close();
-          this.onResultRequest();
-        }
-      });
-    }
+    if (!$restartButton) return;
+
+    $restartButton.addEventListener('click', () => {
+      if (this.onResultRequest) {
+        this.#close();
+        this.onResultRequest();
+      }
+    });
   }
 
   #close() {

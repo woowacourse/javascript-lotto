@@ -67,13 +67,13 @@ class WinningInputsFormView extends ViewComponent {
   #attachButtonClickListener() {
     this.$container.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (this.onResultRequest) {
-        const winningNumbers = Array.from(this.$winningNumbers).map((input) =>
-          parseInt(input.value, 10),
-        );
-        const bonusNumber = parseInt(this.$bonusNumber.value, 10);
-        this.onResultRequest({ winningNumbers, bonusNumber });
-      }
+      if (!this.onResultRequest) return;
+
+      const winningNumbers = Array.from(this.$winningNumbers).map((input) =>
+        parseInt(input.value, 10),
+      );
+      const bonusNumber = parseInt(this.$bonusNumber.value, 10);
+      this.onResultRequest({ winningNumbers, bonusNumber });
     });
   }
 

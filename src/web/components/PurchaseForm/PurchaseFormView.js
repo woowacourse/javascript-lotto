@@ -34,10 +34,10 @@ class PurchaseFormView extends ViewComponent {
 
     this.$container.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (this.onPurchaseClick) {
-        const purchasePrice = parseInt(this.$input.value, 10);
-        this.onPurchaseClick(purchasePrice);
-      }
+      if (!this.onPurchaseClick) return;
+
+      const purchasePrice = parseInt(this.$input.value, 10);
+      this.onPurchaseClick(purchasePrice);
     });
   }
 
