@@ -8,14 +8,10 @@ const validateWinningNumbers = (winningNumbers) => {
     throw new CustomError(ERROR_MESSAGE.INVALID_LOTTO_LENGTH, ERROR_PREFIX.lengthError);
   }
 
-  if (isDuplicate(winningNumbers)) {
-    throw new CustomError(ERROR_MESSAGE.INVALID_DUPLICATE_NUMBER, ERROR_PREFIX.duplicateError);
-  }
-
   if (hasNotInteger(winningNumbers)) {
     throw new CustomError(ERROR_MESSAGE.INVALID_INTEGER, ERROR_PREFIX.typeError);
   }
-
+  
   const isInvalidLottoNumberRange = winningNumbers.some(
     (number) =>
       !isInRange(
@@ -23,10 +19,14 @@ const validateWinningNumbers = (winningNumbers) => {
         LOTTO_RULE.MIN_LOTTO_NUMBER,
         LOTTO_RULE.MAX_LOTTO_NUMBER
       )
-  );
-  if (isInvalidLottoNumberRange) {
-    throw new CustomError(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE, ERROR_PREFIX.rangeError);
-  }
-};
+    );
+    if (isInvalidLottoNumberRange) {
+      throw new CustomError(ERROR_MESSAGE.INVALID_LOTTO_NUMBER_RANGE, ERROR_PREFIX.rangeError);
+    }
+
+    if (isDuplicate(winningNumbers)) {
+      throw new CustomError(ERROR_MESSAGE.INVALID_DUPLICATE_NUMBER, ERROR_PREFIX.duplicateError);
+    }
+  };
 
 export default validateWinningNumbers;
