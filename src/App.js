@@ -20,9 +20,9 @@ import { validateYorN } from './View/Validation/retry.js';
 import { validateEmptySpace } from './View/Validation/util.js';
 
 /** STEP2 ByWeb */
-import { getPurchaseAmountInputByWeb } from './View/inputViewByWeb.js';
 import { outputViewByWeb } from './View/outputViewByWeb.js';
 import { createWinningLottoForm } from './View/Dom/createWinningLottoForm.js';
+import { createLottoListDisplay } from './View/Dom/createLottoListDisplay.js';
 
 const validateAndFormatPurchaseAmountInput = (input) => {
   validateEmptySpace(input);
@@ -133,8 +133,6 @@ class App {
   buyLottos(purchaseAmount) {
     const lottoMachine = new LottoMachine();
     const lottoCounts = lottoMachine.purchaseLotto(purchaseAmount);
-    console.log('lottoCounts', lottoCounts);
-    console.log('lottoMachine', lottoMachine);
     lottoMachine.makeLottoList(lottoCounts);
     const lottoNumbersList = lottoMachine.getLottoNumbersList();
     const lottoList = lottoMachine.getLottoList();
@@ -247,16 +245,11 @@ class App {
     $button.setAttribute('disabled', true);
 
     const $section = document.querySelector('#lottoListWinningLottoContainer');
-    const $article = document.createElement('article');
-    $article.setAttribute('id', 'lottoListDisplay');
-    $article.setAttribute('class', 'lotto-list-display');
 
-    const $form = createWinningLottoForm();
+    const $article = createLottoListDisplay(lottoCounts, lottoNumbersList);
     $section.appendChild($article);
 
-    outputViewByWeb.displayLottoCount(lottoCounts);
-    outputViewByWeb.displayLottoList(lottoNumbersList);
-
+    const $form = createWinningLottoForm();
     $section.appendChild($form);
 
     const $winningNumberInput = document.querySelector('#lottoNumber1');
