@@ -25,15 +25,15 @@ class WinningLotto extends BaseWebComponent {
         <form class="winning-lotto__form">
           <div class="winning-lotto__inputs">
             <div class="winning-lotto__winning-numbers">
-              <input class="winning-lotto__input" />
-              <input class="winning-lotto__input" />
-              <input class="winning-lotto__input" />
-              <input class="winning-lotto__input" />
-              <input class="winning-lotto__input" />
-              <input class="winning-lotto__input" />
+              <input class="winning-lotto__input" maxlength="2" />
+              <input class="winning-lotto__input" maxlength="2" />
+              <input class="winning-lotto__input" maxlength="2" />
+              <input class="winning-lotto__input" maxlength="2" />
+              <input class="winning-lotto__input" maxlength="2" />
+              <input class="winning-lotto__input" maxlength="2" />
             </div>
             <div class="winning-lotto__bonus-number">
-              <input class="winning-lotto__input" />
+              <input class="winning-lotto__input" maxlength="2" />
             </div>
           </div>
           <p class="winning-lotto__error"></p>
@@ -56,6 +56,19 @@ class WinningLotto extends BaseWebComponent {
         this.#handleSubmit.bind(this),
       );
     }
+
+    const inputs = this.querySelectorAll(".winning-lotto__input");
+    inputs.forEach((input, index) => {
+      this.on({ target: input, eventType: "input" }, () => {
+        const maxLength = input.getAttribute("maxlength");
+        if (
+          input.value.length === parseInt(maxLength, 10) &&
+          index < inputs.length - 1
+        ) {
+          inputs[index + 1].focus();
+        }
+      });
+    });
   }
 
   #handleSubmit(event) {
