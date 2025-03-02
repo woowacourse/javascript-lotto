@@ -8,7 +8,7 @@ class LottoService {
     return new LottoMaker(purchaseMoney);
   }
 
-  static calculateLottoRank(lottoMaker, winningNumbers, bonusNumber) {
+  static calculateLottoRank(lottoMaker, { winningNumbers, bonusNumber }) {
     const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
     const lottoGame = new LottoGame();
 

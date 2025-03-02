@@ -7,7 +7,7 @@ class LottoController {
   async run() {
     const lottoMaker = await this.purchaseLotto();
     const { winningNumbers, bonusNumber } = await this.getWinningInfo();
-    const lottoRank = LottoService.calculateLottoRank(lottoMaker, winningNumbers, bonusNumber);
+    const lottoRank = LottoService.calculateLottoRank(lottoMaker, { winningNumbers, bonusNumber });
     const winningRate = LottoService.calclateWinningRate(lottoMaker, lottoRank);
     this.displayResult(lottoRank, winningRate);
     await InputService.reStart(() => this.run());
