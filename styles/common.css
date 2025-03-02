@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  background-color: #4e5ba6;
+  color: white;
+  border: none;
+  font-size: 14px;
+}
+
+input {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+input::-webkit-outer-spin-button,
+::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+footer hr {
+  border: 1px solid #d9dcec;
+}

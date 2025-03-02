@@ -1,0 +1,31 @@
+header {
+  padding: 14px;
+  background-color: #4e5ba6;
+  color: white;
+}
+
+.lotto-app {
+  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 414px;
+  height: 727px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: white;
+  padding: 20px;
+}
+
+#lotto-app-header {
+  margin: 40px;
+  align-self: center;
+}
+
+#footer-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #4e5ba6;
+  text-align: center;
+  margin: 28px 0 28px 0;
+}
