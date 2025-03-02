@@ -3,7 +3,7 @@ import createGameBox from "./src/view/web/layers/gameBox/createGameBox.js";
 import createWinningLottoBox from "./src/view/web/layers/winningLottoBox/createWinningLottoBox.js";
 import createFooter from "./src/view/web/layers/footer/footer.js";
 
-import readLottoPriceInput from "./src/view/web/modules/readLottoPriceInput.js";
+import readLottoPrice from "./src/view/web/modules/readLottoPrice.js";
 import readWinningNumbers from "./src/view/web/modules/readWinningNumbers.js";
 
 import { validateInput } from "./src/view/web/utilsWeb/validation.js";
@@ -41,7 +41,7 @@ const initLayer = () => {
 };
 
 const handleUserInput = () => {
-  readLottoPriceInput(checkPrice, rendererUsingPrice);
+  readLottoPrice(checkPrice, rendererUsingPrice);
   readWinningNumbers(checkWinningLotto, rendererUsingWinningLotto);
 };
 

@@ -1,6 +1,6 @@
 import { getPrice } from "../globalElements/getElements";
 
-const readLottoPriceInput = (validator, renderer) => {
+const readLottoPrice = (validator, renderer) => {
   const purchaseForm = document.querySelector(".purchase-form");
 
   purchaseForm.addEventListener("submit", (event) => {
@@ -15,4 +15,4 @@ const readLottoPriceInput = (validator, renderer) => {
   });
 };
 
-export default readLottoPriceInput;
+export default readLottoPrice;
