@@ -18,14 +18,15 @@ import getTotalPrizeMoney from "./src/lotto/getTotalPrizeMoney.js";
 import { getRevenueRate } from "./src/utils/math.js";
 
 import createPrizeResultModal from "./src/view/web/layers/modal/createPrizeResultModal.js";
-import showResultModal from "./src/view/web/modules/showResultModal.js";
-import closeResultModal from "./src/view/web/modules/closeResultModal.js";
+import showResultModal from "./src/view/web/modules/showModal.js";
+import closeResultModal from "./src/view/web/modules/closeModal.js";
 import revealElement from "./src/view/web/modules/revealElement.js";
 import restartGame from "./src/view/web/modules/restartGame.js";
 import {
   getLottoNumbers,
   getPrice,
 } from "./src/view/web/globalElements/getElements.js";
+import createErrorAlertModal from "./src/view/web/layers/modal/errorAlert/createErrorAlertModal.js";
 
 const startGame = () => {
   initLayer();
@@ -47,7 +48,10 @@ const handleUserInput = () => {
 const checkPrice = (price) => {
   return validateInput({
     validatorList: [() => validateLottoPrice(price)],
-    errorHandler: (error) => alert(error.message),
+    errorHandler: (error) => {
+      createErrorAlertModal(error.message);
+      handleResultModal(".error-alert-modal");
+    },
   });
 };
 
@@ -63,7 +67,10 @@ const checkWinningLotto = (winningNumbers, bonusNumber) => {
       () => validateWinningNumbers(winningNumbers),
       () => validateBonusNumber(bonusNumber, winningNumbers),
     ],
-    errorHandler: (error) => alert(error.message),
+    errorHandler: (error) => {
+      createErrorAlertModal(error.message);
+      handleResultModal(".error-alert-modal");
+    },
   });
 };
 
@@ -81,12 +88,12 @@ const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
   const revenueRate = getRevenueRate(totalPrizeMoney, price);
 
   createPrizeResultModal(result, revenueRate);
-  handleResultModal();
+  handleResultModal(".prize-result-modal");
 };
 
-const handleResultModal = () => {
-  showResultModal();
-  closeResultModal();
+const handleResultModal = (targetSelector) => {
+  showResultModal(targetSelector);
+  closeResultModal(targetSelector);
   restartGame();
 };
 

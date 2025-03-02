@@ -1,5 +1,5 @@
-const closeResultModal = () => {
-  const resultModal = document.querySelector(".prize-result-modal");
+const closeResultModal = (targetSelector) => {
+  const resultModal = document.querySelector(targetSelector);
 
   resultModal.addEventListener("click", (event) => {
     if (
