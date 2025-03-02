@@ -5,7 +5,7 @@ import "./prizeResultModal.css";
 import {
   insertTextContents,
   appendContents,
-} from "../../utilsWeb/elementCreator";
+} from "../../../utilsWeb/elementCreator";
 
 const createPrizeResultModal = (result, revenueRate) => {
   const { headerTemplate, rowTemplate } = createPrizeTable(result);

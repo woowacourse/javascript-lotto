@@ -2,6 +2,7 @@ import createHeader from "./src/view/web/layers/header/header.js";
 import createGameBox from "./src/view/web/layers/gameBox/createGameBox.js";
 import createWinningLottoBox from "./src/view/web/layers/winningLottoBox/createWinningLottoBox.js";
 import createFooter from "./src/view/web/layers/footer/footer.js";
+import createLottoBox from "./src/view/web/layers/lottoBox/createLottoBox.js";
 
 import {
   readLottoPrice,
@@ -12,10 +13,14 @@ import {
   restartGame,
 } from "./src/view/web/modules/index.js";
 
+import {
+  createErrorAlertModal,
+  createPrizeResultModal,
+} from "./src/view/web/layers/modal/index.js";
+
 import { validateInput } from "./src/view/web/utilsWeb/validation.js";
 import validateLottoPrice from "./src/validation/validateLottoPrice.js";
 import generateLottoNumberSets from "./src/lotto/generateLottoNumberSets.js";
-import createLottoBox from "./src/view/web/layers/lottoBox/createLottoBox.js";
 
 import validateWinningNumbers from "./src/validation/validateWinningNumbers.js";
 import validateBonusNumber from "./src/validation/validateBonusNumber.js";
@@ -23,12 +28,10 @@ import calculatePrizeResult from "./src/lotto/calculatePrizeResult.js";
 import getTotalPrizeMoney from "./src/lotto/getTotalPrizeMoney.js";
 import { getRevenueRate } from "./src/utils/math.js";
 
-import createPrizeResultModal from "./src/view/web/layers/modal/createPrizeResultModal.js";
 import {
   getLottoNumbers,
   getPrice,
 } from "./src/view/web/globalElements/getElements.js";
-import createErrorAlertModal from "./src/view/web/layers/modal/errorAlert/createErrorAlertModal.js";
 
 const startGame = () => {
   initLayer();

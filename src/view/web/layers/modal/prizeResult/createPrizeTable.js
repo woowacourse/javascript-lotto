@@ -1,12 +1,12 @@
 import {
   LOTTO_MATCHED_NUMBER_COUNT,
   LOTTO_PRIZE_MONEY,
-} from "../../../../constants/lotto.js";
+} from "../../../../../constants/lotto.js";
 import {
   LOTTO_RESULT_TABLE_MAP,
   PRIZE_RESULT,
-} from "../../../../constants/web.js";
-import { setHeader, setRow } from "../../utilsWeb/table.js";
+} from "../../../../../constants/web.js";
+import { setHeader, setRow } from "../../../utilsWeb/table.js";
 
 const createPrizeTable = (result) => {
   const rows = Array.from(result).map(([matchedCount, matchedLottos]) => {
