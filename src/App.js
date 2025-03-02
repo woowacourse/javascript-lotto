@@ -23,6 +23,7 @@ import { validateEmptySpace } from './View/Validation/util.js';
 import { outputViewByWeb } from './View/outputViewByWeb.js';
 import { createWinningLottoForm } from './View/Dom/createWinningLottoForm.js';
 import { createLottoListDisplay } from './View/Dom/createLottoListDisplay.js';
+import { createWinningStatisticsModal } from './View/Dom/createWinningStatisticsModal.js';
 
 const validateAndFormatPurchaseAmountInput = (input) => {
   validateEmptySpace(input);
@@ -301,7 +302,11 @@ class App {
       lottoList,
     );
 
-    outputViewByWeb.displayLottoResult(lottoResult, lottoProfit);
+    const $winningStatisticsModal = createWinningStatisticsModal(
+      lottoResult,
+      lottoProfit,
+    );
+    document.querySelector('#app').appendChild($winningStatisticsModal);
 
     const $form = $target.closest('#winningLottoForm');
     const inputs = $form.querySelectorAll('input');
