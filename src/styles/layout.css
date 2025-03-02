@@ -15,3 +15,7 @@ main {
   border-radius: var(--border-radius);
   padding: 16px;
 }
+
+.hidden {
+  display: none;
+}

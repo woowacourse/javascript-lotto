@@ -1,3 +1,4 @@
+import { hideElement, renderElement } from "../../utils/domUtils.js";
 import validatePurchaseAmount from "../../validations/validatePurchaseAmount.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./lotto-purchase.css";
@@ -12,7 +13,7 @@ class LottoPurchase extends BaseWebComponent {
           <input id="purchase-amount" class="lotto-purchase__input" placeholder="금액" />
           <button class="lotto-purchase__button">구입</button>
         </form>
-        <p class="lotto-purchase__error"></p>
+        <p class="lotto-purchase__error hidden"></p>
       </section>
     `;
   }
@@ -34,11 +35,11 @@ class LottoPurchase extends BaseWebComponent {
 
     try {
       const purchaseAmount = validatePurchaseAmount(purchaseAmountInput);
-      errorElement.style.display = "none";
+      hideElement(errorElement);
       this.emit("purchase", { purchaseAmount });
     } catch (error) {
       errorElement.textContent = error.message;
-      errorElement.style.display = "block";
+      renderElement(errorElement);
     }
   }
 }

@@ -2,6 +2,7 @@ import validateWinningNumbers from "../../validations/validateWinningNumbers.js"
 import validateBonusNumber from "../../validations/validateBonusNumber.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./winning-lotto.css";
+import { hideElement, renderElement } from "../../utils/domUtils.js";
 
 class WinningLotto extends BaseWebComponent {
   constructor() {
@@ -36,7 +37,7 @@ class WinningLotto extends BaseWebComponent {
               <input class="winning-lotto__input" maxlength="2" />
             </div>
           </div>
-          <p class="winning-lotto__error"></p>
+          <p class="winning-lotto__error hidden"></p>
           <button class="winning-lotto__result-button">결과 확인하기</button>
         </form>
       </section>
@@ -88,11 +89,11 @@ class WinningLotto extends BaseWebComponent {
     try {
       const winningNumbers = validateWinningNumbers(winningNumbersInput);
       const bonusNumber = validateBonusNumber(bonusNumberInput, winningNumbers);
-      errorElement.style.display = "none";
+      hideElement(errorElement);
       this.emit("result", { winningNumbers, bonusNumber });
     } catch (error) {
       errorElement.textContent = error.message;
-      errorElement.style.display = "block";
+      renderElement(errorElement);
     }
   }
 }
