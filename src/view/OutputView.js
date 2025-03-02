@@ -2,7 +2,7 @@ import { RANKING, MESSAGE, LINE_BREAK } from '../constants/constants.js';
 
 const OutputView = {
   print(message) {
-    return console.log(message);
+    console.log(message);
   },
 
   printLottoResult(result) {
@@ -22,7 +22,7 @@ const OutputView = {
       );
     }
 
-    return this.print(`${ranking.MATCH_COUNT}개 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}개`);
+    this.print(`${ranking.MATCH_COUNT}개 일치 (${ranking.PRIZE.toLocaleString()}원) - ${resultCount}개`);
   },
 
   printStatstics(lottoResult) {
