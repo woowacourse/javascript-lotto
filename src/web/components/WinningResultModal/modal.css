@@ -4,10 +4,8 @@
   left: 0;
   width: 100dvw;
   height: 100dvh;
-
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9998;
-
+  background-color: var(--backdrop-color);
+  z-index: var(--backdrop-z-index);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +22,7 @@
   width: 400px;
   max-width: 80%;
   position: relative;
-  z-index: 9999;
+  z-index: var(--modal-z-index);
 }
 
 .modal-close-button {
