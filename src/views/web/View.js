@@ -4,10 +4,11 @@ import "../../components/lotto-purchase/LottoPurchase.js";
 import "../../components/issued-lotto/IssuedLotto.js";
 import "../../components/winning-lotto/WinningLotto.js";
 import "../../components/lotto-result/LottoResult.js";
+import { $ } from "../../utils/domUtils.js";
 
 class View {
   constructor() {
-    this.app = document.querySelector("#app");
+    this.app = $("#app");
     this.render();
   }
 

@@ -2,7 +2,7 @@ import validateWinningNumbers from "../../validations/validateWinningNumbers.js"
 import validateBonusNumber from "../../validations/validateBonusNumber.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./winning-lotto.css";
-import { hideElement, renderElement } from "../../utils/domUtils.js";
+import { hideElement, renderElement, $, $$ } from "../../utils/domUtils.js";
 
 class WinningLotto extends BaseWebComponent {
   constructor() {
@@ -55,7 +55,7 @@ class WinningLotto extends BaseWebComponent {
   }
 
   #setFormEventListeners() {
-    const form = this.querySelector(".winning-lotto__form");
+    const form = $(".winning-lotto__form", this);
     if (form) {
       this.on(
         { target: form, eventType: "submit" },
@@ -65,7 +65,7 @@ class WinningLotto extends BaseWebComponent {
   }
 
   #setInputEventListeners() {
-    const inputs = this.querySelectorAll(".winning-lotto__input");
+    const inputs = $$(".winning-lotto__input", this);
     inputs.forEach((input, index) => {
       this.on({ target: input, eventType: "input" }, () => {
         const maxLength = input.getAttribute("maxlength");
@@ -81,17 +81,19 @@ class WinningLotto extends BaseWebComponent {
 
   #handleSubmit(event) {
     event.preventDefault();
-    const inputs = this.querySelectorAll(
+    const inputs = $$(
       ".winning-lotto__winning-numbers .winning-lotto__input",
+      this,
     );
     const winningNumbersInput = Array.from(inputs)
       .map((input) => input.value)
       .join(",");
 
-    const bonusNumberInput = this.querySelector(
+    const bonusNumberInput = $(
       ".winning-lotto__bonus-number .winning-lotto__input",
+      this,
     ).value;
-    const errorElement = this.querySelector(".winning-lotto__error");
+    const errorElement = $(".winning-lotto__error", this);
 
     this.#handleValidation(winningNumbersInput, bonusNumberInput, errorElement);
   }
