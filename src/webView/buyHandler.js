@@ -34,7 +34,7 @@ function displayLottoInfo(lottoMachine) {
 function createLottos(lottosNumber) {
   const fragment = document.createDocumentFragment();
 
-  const lottoDivs = lottosNumber.map((numbers) => {
+  lottosNumber.forEach((numbers) => {
     const lottoDiv = createElement({ tag: "div", className: "lotto" });
     const ticketIcon = createElement({
       tag: "div",
@@ -49,9 +49,9 @@ function createLottos(lottosNumber) {
 
     lottoDiv.appendChild(ticketIcon);
     lottoDiv.appendChild(lottoNumbersDiv);
+    fragment.appendChild(lottoDiv);
     return lottoDiv;
   });
 
-  lottoDivs.forEach((lottoDiv) => fragment.appendChild(lottoDiv));
   domRefs.$lottoInfo.appendChild(fragment);
 }
