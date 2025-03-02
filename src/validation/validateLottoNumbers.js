@@ -21,7 +21,7 @@ export const checkRangeOfLottoNumber = (input) => {
 };
 
 export const validateWinningNumbers = (input) => {
-  const winningNumbers = input.split(',');
+  const winningNumbers = typeof input === 'string' ? input.split(',') : input;
   const winningNumberSet = new Set(winningNumbers);
 
   if (winningNumbers.length !== LOTTO_SYSTEM.MAX_LENGTH) {
