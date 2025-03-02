@@ -4,7 +4,7 @@ import OutputView from "../../views/console/OutputView.js";
 import WinningStatistics from "../../domains/WinningStatistics.js";
 import { YES } from "../../constants/constants.js";
 
-class Controller {
+class LottoController {
   async start() {
     await this.#runLottoGame();
     const restartConfirm = await InputController.getValidRestartConfirm();
@@ -30,4 +30,4 @@ class Controller {
   }
 }
 
-export default Controller;
+export default LottoController;
