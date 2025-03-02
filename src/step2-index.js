@@ -3,7 +3,13 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import { purchase, handlePurchase, handleWinningNumbers, displayWinningDetails, handleResult } from "./LottoStore.js";
+import {
+  purchase,
+  handlePurchase,
+  handleWinningNumbers,
+  displayWinningDetails,
+  handleResult,
+} from "./LottoStore.js";
 import {
   validatePurchaseAmount,
   validateWinningNumbers,
@@ -15,7 +21,6 @@ let lottos = [];
 let winningRanks = {};
 const buttonPurchase = document.getElementById("button-purchase");
 const contentBottom = document.getElementById("content-bottom");
-
 
 document
   .getElementById("button-purchase")
@@ -31,14 +36,14 @@ document
   .getElementById("input-purchase-amount")
   .addEventListener("input", (event) => {
     const inputValue = event.target.value;
-    
+
     const helperText = document.getElementById("purchase-amount-helper-text");
 
     try {
       validatePurchaseAmount(inputValue);
       buttonPurchase.disabled = false;
       helperText.style.visibility = "hidden";
-    } catch (error) { 
+    } catch (error) {
       buttonPurchase.disabled = true;
       helperText.innerText = error.message.slice(8);
       helperText.style.visibility = "visible";
@@ -67,8 +72,9 @@ const winningsAndBonusHelperText = document.getElementById(
 
 inputs.forEach((input) => {
   input.addEventListener("input", async () => {
-    
-    const winningNumbers = winningInputs.map((input) => input.value).filter(value => value.trim() !== ""); // ✅ 현재 입력된 당첨 번호 가져오기
+    const winningNumbers = winningInputs
+      .map((input) => input.value)
+      .filter((value) => value.trim() !== ""); // ✅ 현재 입력된 당첨 번호 가져오기
     const bonusNumber = bonusInput.value;
 
     try {
@@ -89,24 +95,32 @@ inputs.forEach((input) => {
 const winningStasModal = document.getElementById("winning-stats-modal");
 const buttonRestart = document.getElementById("button-restart");
 const buttonCloseModal = document.getElementById("close-modal");
-const winningStatsTableContent = document.getElementById("winning-stats-table-content");
+const winningStatsTableContent = document.getElementById(
+  "winning-stats-table-content"
+);
 
 buttonCheckResult.addEventListener("click", () => {
-    displayWinningDetails(winningRanks);
-    handleResult(purchaseAmount, winningRanks);
+  displayWinningDetails(winningRanks);
+  handleResult(purchaseAmount, winningRanks);
 
-    winningStasModal.showModal();
-    winningStasModal.style.visibility = "visible";
+  winningStasModal.showModal();
+  winningStasModal.style.visibility = "visible";
 });
 
 buttonRestart.addEventListener("click", () => {
-    location.reload();
+  location.reload();
 });
 
-buttonCloseModal.addEventListener("click", () => {
-    winningStasModal.close();
-    winningStasModal.style.visibility = "hidden";
+const closeWinningStatsModal = () => {
+  winningStasModal.close();
+  winningStasModal.style.visibility = "hidden";
+  winningStatsTableContent.innerText = ""; // 기존 데이터 삭제
+};
 
-    // 모달의 기존 데이터 삭제
-    winningStatsTableContent.innerText = "";
+buttonCloseModal.addEventListener("click", closeWinningStatsModal);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && winningStasModal.style.visibility === "visible") {
+    closeWinningStatsModal();
+  }
 });

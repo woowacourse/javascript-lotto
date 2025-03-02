@@ -17,6 +17,10 @@ const InputView = {
 
   async readBonusNumber() {
     // return await readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
+    const inputs = Array.from(document.querySelectorAll(".lotto-input"));
+    const bonusNumber = inputs.at(-1).value;
+
+    return bonusNumber;
   },
 
   async readRestart() {

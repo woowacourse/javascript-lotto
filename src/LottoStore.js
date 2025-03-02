@@ -1,9 +1,9 @@
-import OutputView from "./ui/OutputView.js";
+import OutputView from "./view/OutputView.js";
 import Calculator from "./Calculator.js";
 import Ranking from "./Ranking.js";
 import generateLotto from "./LottoMachine.js";
 import PRICE from "./constant/price.js";
-import InputView from "./ui/InputView.js";
+import InputView from "./view/InputView.js";
 
 import {
   validateBonusNumber,
@@ -53,7 +53,6 @@ export const handleResult = (purchaseAmount, winningRanks) => {
 
 export const getPurchaseAmount = async () => {
   const amount = await InputView.readPurchaseAmount();
-  console.log(amount);
   validatePurchaseAmount(amount);
 
   return amount;
@@ -61,7 +60,6 @@ export const getPurchaseAmount = async () => {
 
 const getWinningNumbers = async () => {
   const winningNumbers = await InputView.readWinningNumbers();
-  console.log(winningNumbers);
   validateWinningNumbers(winningNumbers);
 
   return winningNumbers;

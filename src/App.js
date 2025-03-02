@@ -1,6 +1,6 @@
-import purchase from "./LottoStore.js";
+import { purchase } from "./LottoStore.js";
 import RESTART_ANSWER from "./constant/answer.js";
-import InputView from "./ui/InputView.js";
+import InputView from "./view/InputView.js";
 import retryAsync from "./util/retryAsync.js";
 import { validateRestart } from "./util/validate.js";
 
