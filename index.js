@@ -19,6 +19,7 @@ import { getRevenueRate } from "./src/utils/math.js";
 import createPrizeResultModal from "./src/view/web/layers/modal/createPrizeResultModal.js";
 import showResultModal from "./src/view/web/modules/showResultModal.js";
 import closeResultModal from "./src/view/web/modules/closeResultModal.js";
+import revealElement from "./src/view/web/modules/revealElement.js";
 
 const startGame = () => {
   initLayer();
@@ -49,6 +50,7 @@ const checkPrice = (price) => {
 const rendererUsingPrice = (price) => {
   const lottoNumbers = generateLottoNumberSets(price);
   createLottoBox(lottoNumbers);
+  revealElement(".winning-lotto-container");
 };
 
 const checkWinningLotto = (winningNumbers, bonusNumber) => {

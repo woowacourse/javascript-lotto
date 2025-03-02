@@ -154,3 +154,11 @@ td {
 tr {
   border: solid var(--border-default-color);
 }
+
+.invisible {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
