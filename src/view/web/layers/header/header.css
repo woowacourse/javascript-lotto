@@ -4,13 +4,8 @@ header {
   background-color: var(--lotto-primary);
 }
 
-header > h1 {
+header > a {
   top: 14px;
   left: 130px;
   position: relative;
-
-  font-weight: 800;
-  font-size: 24px;
-  line-height: 36px;
-  color: var(--lotto-greyscale-1);
 }

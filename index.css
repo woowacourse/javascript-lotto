@@ -49,6 +49,13 @@ main {
   background-color: var(--bg-default-color);
 }
 
+h1 {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  color: var(--lotto-greyscale-1);
+}
+
 h2 {
   margin: calc(40px - var(--default-padding)) 0 40px 0;
 
@@ -109,6 +116,14 @@ button {
 
 button:hover {
   filter: brightness(90%);
+  cursor: pointer;
+}
+
+a {
+  all: unset;
+}
+
+a:hover {
   cursor: pointer;
 }
 
