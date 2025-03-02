@@ -1,5 +1,5 @@
 import { makeNotDuplicatedRandomNumbers } from './math.js';
-import { LOTTO_DEFINITION } from '../Domain/Constant/Definition.js';
+import { LOTTO_DEFINITION } from '../Domain/Constant/definition.js';
 
 export const generateRandomLottoNumbers = () => {
   return makeNotDuplicatedRandomNumbers(LOTTO_DEFINITION.NUMBER_COUNTS, {

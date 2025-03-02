@@ -1,4 +1,4 @@
-import { LOTTO_PRIZE_DEFINITION } from '../../Domain/Constant/Definition.js';
+import { LOTTO_PRIZE_DEFINITION } from '../../Domain/Constant/definition.js';
 
 class LottoGameView {
   #state;
