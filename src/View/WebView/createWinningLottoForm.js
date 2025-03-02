@@ -16,8 +16,8 @@ const createWinningNumbersInputs = () => {
         children: Array.from({ length: 6 }, (_, i) => ({
           tag: 'input',
           className: 'winning-numbers-input',
+          id: `lottoNumber${i + 1}`,
           attributes: {
-            id: `lottoNumber${i + 1}`,
             name: 'winningNumber',
             required: true,
             minLength: 1,

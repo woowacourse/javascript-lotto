@@ -180,15 +180,15 @@ class App {
         this.#closeWinningStatisticsModal();
       }
       if ($target.id === 'modalRestartButton') {
-        this.#restart($target);
+        this.#retryRunWeb();
       }
     };
   }
 
   #keyEventHandler() {
     return (event) => {
-      const isModalOpen = document.querySelector('#modal');
-      if (isModalOpen && event.key === 'Enter') {
+      const $modal = document.querySelector('#modal');
+      if ($modal && event.key === 'Enter') {
         event.preventDefault();
         event.stopPropagation();
       }
@@ -306,6 +306,7 @@ class App {
       winningLotto,
       lottoList,
     );
+    this.#state = { ...this.#state, lottoResult, lottoProfit };
 
     const $winningStatisticsModal = createWinningStatisticsModal(
       lottoResult,
@@ -314,9 +315,9 @@ class App {
     document.querySelector('#app').prepend($winningStatisticsModal);
 
     const $form = $target.closest('#winningLottoForm');
-    const inputs = $form.querySelectorAll('input');
+    const $inputs = $form.querySelectorAll('input');
 
-    inputs.forEach((input) => {
+    $inputs.forEach((input) => {
       input.setAttribute('readonly', true);
     });
   }
@@ -328,7 +329,7 @@ class App {
     }
   }
 
-  #restart() {
+  #retryRunWeb() {
     this.#closeWinningStatisticsModal();
 
     const $input = document.querySelector('#purchaseAmountInput');
