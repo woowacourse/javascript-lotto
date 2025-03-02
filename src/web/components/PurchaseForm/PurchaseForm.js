@@ -4,10 +4,14 @@ import { PURCHASE_EVENT_NAME } from '../../../common/constants/PurchaseFormConst
 
 class PurchaseForm {
   constructor($container) {
-    this.$view = new PurchaseFormView($container);
-    this.$view.setOnPurchaseClick((purchasePrice) =>
-      this.#handlePurchase(purchasePrice),
-    );
+    try {
+      this.$view = new PurchaseFormView($container);
+      this.$view.setOnPurchaseClick((purchasePrice) =>
+        this.#handlePurchase(purchasePrice),
+      );
+    } catch (e) {
+      alert(e.message);
+    }
   }
 
   #handlePurchase(purchasePrice) {

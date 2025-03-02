@@ -9,8 +9,12 @@ import { RESULT_EVENT_NAME } from '../../../common/constants/WinningInputsFormCo
 
 class WinningInputsForm {
   constructor($container) {
-    this.$view = new WinningInputsFormView($container);
-    this.$view.setOnResultRequest((data) => this.#handleResultRequest(data));
+    try {
+      this.$view = new WinningInputsFormView($container);
+      this.$view.setOnResultRequest((data) => this.#handleResultRequest(data));
+    } catch (e) {
+      alert(e.message);
+    }
   }
 
   #handleResultRequest({ winningNumbers, bonusNumber }) {
