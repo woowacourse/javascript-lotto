@@ -2,10 +2,9 @@ import { calculateRank } from "./LottoMatcher.js";
 import { SETTINGS } from "../constants/index.js";
 
 class ProfitCalculator {
-  constructor(lottoTickets, winningNumbers, bonusNumber) {
+  constructor(lottoTickets, winningNumber) {
     this.lottoTickets = lottoTickets;
-    this.winningNumbers = winningNumbers;
-    this.bonusNumber = bonusNumber;
+    this.winningNumber = winningNumber;
     this.rankCounts = this.initializeRankCounts();
   }
 
@@ -22,7 +21,7 @@ class ProfitCalculator {
 
   calculateResults() {
     this.lottoTickets.forEach((ticket) => {
-      const rank = calculateRank(ticket, this.winningNumbers, this.bonusNumber);
+      const rank = calculateRank(ticket, this.winningNumber);
       this.rankCounts[rank]++;
     });
   }
