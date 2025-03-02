@@ -1,9 +1,9 @@
 import { printError } from '../View/OutputView.js';
 import clearLottoInputs from '../View/clear/clearLottoInputs.js';
-import clearUIElements from '../View/clear/clearUIElements.js';
+import clearPriceInputs from '../View/clear/clearPriceInputs.js';
 
 export const handlePriceError = (error) => {
-  clearUIElements();
+  clearPriceInputs();
   printError(error.message);
   alert(error.message);
   throw error;

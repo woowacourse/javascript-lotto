@@ -1,4 +1,4 @@
-import clearUIElements from './View/clear/clearUIElements.js';
+import clearPriceInputs from './View/clear/clearPriceInputs.js';
 import { PRIZE_MONEY } from './constants/MagicNumber.js';
 import createLottoInput from './View/create/createLottoInput.js';
 import createModal from './View/create/createModal.js';
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lottos = [];
     document.querySelector('.prize-result').remove();
     document.querySelector('.modal-overlay').remove();
-    clearUIElements();
+    clearPriceInputs();
     purchaseButton.disabled = false;
     document.querySelector('.lotto-content').innerHTML = '';
   }
