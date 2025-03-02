@@ -47,7 +47,7 @@ function createLottos(lottosNumber) {
     const lottoNumbersDiv = createElement({
       tag: "div",
       className: "lotto_number",
-      text: numbers.sort((a, b) => a - b).join(", "),
+      text: sortNumbersToString(numbers),
     });
 
     lottoDiv.appendChild(ticketIcon);
@@ -57,4 +57,8 @@ function createLottos(lottosNumber) {
   });
 
   domRefs.$lottoInfo.appendChild(fragment);
+}
+
+function sortNumbersToString(numbers) {
+  return numbers.sort((a, b) => a - b).join(", ");
 }
