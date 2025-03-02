@@ -177,3 +177,7 @@ tr {
 .visible {
   visibility: visible;
 }
+
+*:disabled {
+  cursor: not-allowed;
+}
