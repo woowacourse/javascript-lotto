@@ -95,13 +95,13 @@
 
 .lotto-list-display {
   height: 180px;
-  margin: 24px 0px;
+  margin: 24px 0;
 
   overflow-y: scroll;
 }
 
 .lotto-count-display {
-  margin: 16px 0px;
+  margin: 16px 0;
 }
 
 .lotto-list {
@@ -194,7 +194,7 @@
   flex-direction: row;
   justify-content: flex-end;
 
-  margin: 16px 0px;
+  margin: 16px 0;
 }
 
 .bonus-number-input {
