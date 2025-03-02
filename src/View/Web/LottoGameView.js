@@ -6,6 +6,24 @@ class LottoGameView {
   constructor(state) {
     this.#state = state;
     this.#state.subscribe(this);
+    this.#initializeModalEvents();
+  }
+
+  #initializeModalEvents() {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalCancelButton = document.querySelector('.modal-cancle-container');
+
+    if (modalOverlay && modalCancelButton) {
+      modalOverlay.addEventListener('click', (event) => {
+        if (event.target === modalOverlay) {
+          modalOverlay.style.visibility = 'hidden';
+        }
+      });
+
+      modalCancelButton.addEventListener('click', () => {
+        modalOverlay.style.visibility = 'hidden';
+      });
+    }
   }
 
   update(updateType) {
