@@ -20,7 +20,7 @@ import { validateYorN } from './View/Validation/retry.js';
 import { validateEmptySpace } from './View/Validation/util.js';
 
 /** STEP2 By Web */
-import { outputViewByWeb } from './View/outputViewByWeb.js';
+import { outputViewByWeb } from './View/WebView/outputViewByWeb.js';
 import { createWinningLottoForm } from './View/WebView/createWinningLottoForm.js';
 import { createLottoListDisplay } from './View/WebView/createLottoListDisplay.js';
 import { createWinningStatisticsModal } from './View/WebView/createWinningStatisticsModal.js';
