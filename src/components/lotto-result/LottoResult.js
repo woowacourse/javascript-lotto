@@ -62,37 +62,26 @@ class LottoResult extends BaseWebComponent {
   }
 
   setEvent() {
-    const closeButton = this.querySelector(".lotto-result__close-button");
-    const restartButton = this.querySelector(".lotto-result__restart-button");
-
-    if (closeButton) {
-      this.on(
-        { target: closeButton, eventType: "click" },
-        this.closeButtonHandler,
-      );
-    }
-
-    if (restartButton) {
-      this.on(
-        { target: restartButton, eventType: "click" },
-        this.restartButtonHandler,
-      );
-    }
+    this.#manageEventListeners(this.on.bind(this));
   }
 
   removeEvent() {
+    this.#manageEventListeners(this.off.bind(this));
+  }
+
+  #manageEventListeners(eventMethod) {
     const closeButton = this.querySelector(".lotto-result__close-button");
     const restartButton = this.querySelector(".lotto-result__restart-button");
 
     if (closeButton) {
-      this.off(
+      eventMethod(
         { target: closeButton, eventType: "click" },
         this.closeButtonHandler,
       );
     }
 
     if (restartButton) {
-      this.off(
+      eventMethod(
         { target: restartButton, eventType: "click" },
         this.restartButtonHandler,
       );
