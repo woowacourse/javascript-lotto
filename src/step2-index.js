@@ -3,158 +3,93 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import { PURCHASE } from "./config/const.js";
 import LottoComparer from "./domain/LottoComparer.js";
 import LottoGenerator from "./domain/LottoGenerator.js";
 import LottoPrize from "./domain/LottoPrize.js";
-import { validatePrice } from "./utils/validate/validatePrice.js";
-import { validateWinningNumbers } from "./utils/validate/validateWinningNumbers.js";
-import { validateBonusNumberUnique } from "./utils/validate/validate.js";
+import { elements } from "./ui/querySelector.js";
+import {
+  updateUI,
+  showUI,
+  validUI,
+  removeInputValue,
+  displayBlock,
+  displayNone,
+} from "./ui/utilsUI.js";
 
-let price;
-let generatedLottos = [];
-let winningNumbers = [];
-let bonusNumber;
-let prizeResult;
-let ROI;
+const state = {
+  price: 0,
+  generatedLottos: [],
+  winningNumbers: [],
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-  const purchaseButton = document.querySelector("#purchase-button");
-  purchaseButton.addEventListener("click", purchase);
-  const resultButton = document.querySelector("#result-button");
-  resultButton.addEventListener("click", checkResult);
-  const modalCloseButton = document.querySelector("#close-button");
-  modalCloseButton.addEventListener("click", closeModal);
-  const restartButton = document.querySelector("#restart-button");
-  restartButton.addEventListener("click", restartLotto);
+  elements.purchaseButton.addEventListener("click", purchase);
+  elements.resultButton.addEventListener("click", checkResult);
+  elements.modalCloseButton.addEventListener("click", closeModal);
+  elements.restartButton.addEventListener("click", restartLotto);
 });
 
 function purchase() {
-  const purchaseInput = document.querySelector("#purchase-input");
-  price = Number(purchaseInput.value);
+  state.price = Number(elements.purchaseInput.value);
+  if (!validUI.isValidPrice(state.price)) return;
+  state.generatedLottos = LottoGenerator.getGenerateLottos(state.price);
 
-  try {
-    validatePrice(price);
-  } catch (error) {
-    alert(error.message);
-    purchaseInput.value = "";
-    return;
-  }
+  updateUI.updatePurchaseMessage(state.price);
+  showUI.showGeneratedLottos(state.generatedLottos);
 
-  generatedLottos = LottoGenerator.getGenerateLottos(price);
-  console.log(generatedLottos);
-
-  const lottoCountSpan = document.querySelector("#lotto-count-message");
-  lottoCountSpan.textContent = `총 ${Number(
-    price / PURCHASE.UNIT
-  )}개를 구매하였습니다.`;
-
-  purchaseInput.value = "";
-
-  const generateSection = document.querySelector("#generate-section");
-  generateSection.style.display = "block";
-
-  const ul = document.querySelector("#generated-lottos");
-  generatedLottos.forEach((lotto) => {
-    const li = document.createElement("li");
-    li.textContent = `🎟️ ${lotto.join(", ")}`;
-    ul.appendChild(li);
-  });
-
-  const resultSection = document.querySelector("#result-section");
-  resultSection.style.display = "block";
+  removeInputValue(elements.purchaseInput);
+  displayBlock(elements.generateSection);
+  displayBlock(elements.resultSection);
 }
 
 function checkResult() {
-  for (let i = 1; i <= 6; i++) {
-    const winningNumberInput = document.querySelector(`#winning-number-${i}`);
-    const number = winningNumberInput.value;
-    winningNumbers.push(Number(number));
-  }
-  const bonusNumberInput = document.querySelector("#bonus-number");
-  bonusNumber = Number(bonusNumberInput.value);
-  console.log(winningNumbers);
-  console.log(bonusNumber);
+  state.winningNumbers = Array.from(elements.winningNumberInputs, (input) =>
+    Number(input.value)
+  );
+  const bonusNumber = Number(elements.bonusNumberInput.value);
 
-  try {
-    validateWinningNumbers(winningNumbers);
-  } catch (error) {
-    alert(error.message);
-    const winningInputs = document.querySelectorAll('[id^="winning-number-"]');
-    winningInputs.forEach((input) => {
-      input.value = "";
-    });
-
-    winningNumbers = [];
+  if (
+    !validUI.isValidWinningNumbers(state.winningNumbers) ||
+    !validUI.isValidBonusNumber(state.winningNumbers, bonusNumber)
+  )
     return;
-  }
 
-  try {
-    validateBonusNumberUnique(winningNumbers, bonusNumber);
-  } catch (error) {
-    alert(error.message);
-    const bonusInput = document.querySelector("#bonus-number");
-    bonusInput.value = "";
+  const lottoComparer = new LottoComparer(state.winningNumbers, bonusNumber);
+  const compareResult = lottoComparer.lottoCompareResult(state.generatedLottos);
 
-    winningNumbers = [];
-    return;
-  }
-
-  const lottoComparer = new LottoComparer(winningNumbers, bonusNumber);
-  const compareResult = lottoComparer.lottoCompareResult(generatedLottos);
-  console.log(compareResult);
   const lottoPrize = new LottoPrize();
   lottoPrize.calculateTotalPrizeCount(compareResult);
-  prizeResult = lottoPrize.prizeResult;
-  ROI = lottoPrize.calculateROI(price);
+  const ROI = lottoPrize.calculateROI(state.price);
 
-  for (const key in lottoPrize.prizeResult) {
-    const div = document.querySelector(`#${key}`);
-    const span = document.createElement("td");
-    span.textContent = lottoPrize.prizeResult[key] + "개";
-    div.appendChild(span);
-  }
+  updateUI.updatePrizeResult(lottoPrize);
+  updateUI.updateROI(ROI);
 
-  console.log(lottoPrize.prizeResult);
-  console.log("ROI:" + ROI);
-
-  const ROISpan = document.querySelector("#ROI");
-  ROISpan.textContent = `당신의 총 수입률은 총 ${ROI}%입니다.`;
-
-  const modal = document.querySelector("#modal");
-  modal.style.display = "block";
+  displayBlock(elements.modal);
 }
 
 function closeModal() {
-  const modal = document.querySelector("#modal");
-  modal.style.display = "none";
+  displayNone(elements.modal);
 }
 
 function restartLotto() {
-  const modal = document.querySelector("#modal");
-  modal.style.display = "none";
-  const generateSection = document.querySelector("#generate-section");
-  generateSection.style.display = "none";
-  const resultSection = document.querySelector("#result-section");
-  resultSection.style.display = "none";
+  displayNone(elements.modal);
+  displayNone(elements.generateSection);
+  displayNone(elements.resultSection);
 
-  const winningInputs = document.querySelectorAll('[id^="winning-number-"]');
-  winningInputs.forEach((input) => {
-    input.value = "";
+  elements.winningNumberInputs.forEach((input) => {
+    removeInputValue(input);
   });
-  const bonusInput = document.querySelector("#bonus-number");
-  bonusInput.value = "";
+  removeInputValue(elements.bonusNumberInput);
 
-  const generatedLottos = document.querySelector("#generated-lottos");
-  while (generatedLottos.firstChild) {
-    generatedLottos.removeChild(generatedLottos.firstChild);
+  while (elements.generatedLottosLists.firstChild) {
+    elements.generatedLottosLists.removeChild(
+      elements.generatedLottosLists.firstChild
+    );
   }
 
-  const trs = document.querySelectorAll('[id$="Prize"]');
-  console.log(trs);
-  trs.forEach((tr) => {
+  elements.trs.forEach((tr) => {
     tr.lastChild.remove();
   });
 
-  winningNumbers = [];
+  state.winningNumbers = [];
 }

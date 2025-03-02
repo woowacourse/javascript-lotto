@@ -1,0 +1,16 @@
+export const elements = {
+  purchaseInput: document.querySelector("#purchase-input"),
+  purchaseButton: document.querySelector("#purchase-button"),
+  lottoCountSpan: document.querySelector("#lotto-count-message"),
+  generateSection: document.querySelector("#generate-section"),
+  generatedLottosLists: document.querySelector("#generated-lottos-lists"),
+  resultSection: document.querySelector("#result-section"),
+  winningNumberInputs: document.querySelectorAll('[id^="winning-number-"]'),
+  bonusNumberInput: document.querySelector("#bonus-number"),
+  resultButton: document.querySelector("#result-button"),
+  ROISpan: document.querySelector("#ROI"),
+  modalCloseButton: document.querySelector("#close-button"),
+  restartButton: document.querySelector("#restart-button"),
+  modal: document.querySelector("#modal"),
+  trs: document.querySelectorAll('[id$="Prize"]'),
+};
