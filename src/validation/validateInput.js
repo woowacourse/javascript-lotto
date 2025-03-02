@@ -1,18 +1,10 @@
 import { ERROR } from './errorMessages.js';
 
-export const hasEmptyString = (input) => {
-  if (input === '') {
-    throw new Error(ERROR.EMPTY_VALUE);
-  }
-};
+export const hasEmptyString = (input) => input === '';
 
-export const isValueInteger = (input) => {
-  if (!Number.isInteger(input)) {
-    throw new Error(ERROR.NOT_POSITIVE_INTEGER);
-  }
-};
+export const isValueInteger = (input) => Number.isInteger(input);
 
-export const isYesOrNo = (input) => {
+export const validateRestart = (input) => {
   if (input !== 'y' && input !== 'n') {
     throw new Error(ERROR.CHECK_REPLAY_GAME);
   }

@@ -1,7 +1,7 @@
 import { ERROR } from '../src/validation/errorMessages.js';
-import { hasEmptyString, isValueInteger, isYesOrNo } from '../src/validation/validateInput.js';
+import { hasEmptyString, isValueInteger, validateRestart } from '../src/validation/validateInput.js';
 import {
-  checkRangeOfLottoNumber,
+  isInRangeOfLottoNumber,
   validateBonusNumber,
   validateWinningNumbers,
 } from '../src/validation/validateLottoNumbers.js';
@@ -10,11 +10,11 @@ import { validatePurchasePrice } from '../src/validation/validatePurchasePrice.j
 describe('구입 금액 유효성 검사 테스트', () => {
   describe('구입 금액 예외 케이스', () => {
     test('구입 금액은 빈 값일 수 없다.', () => {
-      expect(() => hasEmptyString('')).toThrow(ERROR.EMPTY_VALUE);
+      expect(hasEmptyString('')).toBe(true);
     });
 
     test.each(['a', 2.1])('구입 금액은 문자와 실수가 아니여야 한다.', (value) => {
-      expect(() => isValueInteger(value)).toThrow(ERROR.NOT_POSITIVE_INTEGER);
+      expect(isValueInteger(value)).toBe(false);
     });
 
     test.each([1, 4, 3])('구입 금액은 양의 정수여야 한다.', (value) => {
@@ -33,11 +33,11 @@ describe('구입 금액 유효성 검사 테스트', () => {
 
 describe('로또 번호 유효성 검사 테스트', () => {
   test('로또 번호는 빈 값일 수 없다.', () => {
-    expect(() => hasEmptyString('')).toThrow(ERROR.IS_VALUE_EMPTY);
+    expect(hasEmptyString('')).toBe(true);
   });
 
   test.each(['a', 2.1])('로또 번호는 문자와 실수가 아니여야 한다.', (value) => {
-    expect(() => isValueInteger(value)).toThrow(ERROR.IS_NOT_POSITIVE_INTEGER);
+    expect(isValueInteger(value)).toBe(false);
   });
 
   test.each([1, 4, 3])('로또 번호는 양의 정수여야 한다.', (value) => {
@@ -46,7 +46,7 @@ describe('로또 번호 유효성 검사 테스트', () => {
 
   describe('로또 번호 범위 테스트', () => {
     test.each([1, 45])('%p는 로또 범위 조건을 만족한다.', (value) => {
-      expect(() => checkRangeOfLottoNumber(value)).not.toThrow();
+      expect(isInRangeOfLottoNumber(value)).toBe(true);
     });
 
     test.each([0, 46])('%p는 로또 범위 조건을 만족하지 않는다.', (value) => {
@@ -92,10 +92,10 @@ describe('보너스 번호 유효성 검사 테스트', () => {
 
 describe('재시작 입력 테스트', () => {
   test.each([1, 100, 'Y', 'N'])('%p를 입력하면 에러를 반환해야한다.', (value) => {
-    expect(() => isYesOrNo(value)).toThrow();
+    expect(() => validateRestart(value)).toThrow();
   });
 
   test.each(['y', 'n'])('%p는 정상적인 재시작 입력이다.', (value) => {
-    expect(() => isYesOrNo(value)).not.toThrow();
+    expect(() => validateRestart(value)).not.toThrow();
   });
 });

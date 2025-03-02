@@ -1,11 +1,11 @@
 import { LOTTO_SYSTEM } from './constants/LottoSystem.js';
 import { calculateRevenue } from './domain/calculateRevenue.js';
-import { generateLottos } from './domain/getLottos.js';
+import { generateLottos } from './domain/generateLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
 import WinningLotto from './domain/WinningLotto.js';
 import { checkReplay } from './utils/checkReplay.js';
 import { parseWinningNumbers } from './utils/parseString.js';
-import { isYesOrNo } from './validation/validateInput.js';
+import { validateRestart } from './validation/validateInput.js';
 import { validateBonusNumber, validateWinningNumbers } from './validation/validateLottoNumbers.js';
 import { validatePurchasePrice } from './validation/validatePurchasePrice.js';
 import handleUserInput from './view/console/handleUserInput.js';
@@ -30,7 +30,7 @@ async function run() {
 
   printStatistics(matchCounts, revenue);
 
-  const yesOrNo = await handleUserInput(INPUT.REPLAY_GAME, isYesOrNo);
+  const yesOrNo = await handleUserInput(INPUT.REPLAY_GAME, validateRestart);
   await checkReplay(yesOrNo, run);
 }
 
