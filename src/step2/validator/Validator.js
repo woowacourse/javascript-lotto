@@ -3,6 +3,7 @@
 import {
   COMMAND,
   ERROR_MESSAGES,
+  LOTTO_LENGTH,
   LOTTO_PRICE,
   MAX_LOTTO_NUMBER,
   MIN_LOTTO_NUMBER,
@@ -22,7 +23,7 @@ class Validator {
 
   static validateWinNumbers(winNumbers) {
     if (
-      winNumbers.length !== 6 ||
+      winNumbers.length !== LOTTO_LENGTH ||
       winNumbers.some(
         (number) =>
           !this.#checkIsInLottoNumberRange(number) ||
