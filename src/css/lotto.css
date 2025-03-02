@@ -43,7 +43,7 @@ button:disabled {
 
 #lotto-list {
   height: 216px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #lotto-list li {
