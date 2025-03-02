@@ -6,7 +6,7 @@ import WinningResultModal from '../WinningResultModal/WinningResultModal.js';
 import ViewComponent from '../core/ViewComponent.js';
 import {
   EVENT_TYPES,
-  SELECTORS,
+  MAIN_SELECTORS,
 } from '../../../common/constants/MainConstants.js';
 
 class Main extends ViewComponent {
@@ -42,19 +42,21 @@ class Main extends ViewComponent {
 
   #renderPurchaseForm() {
     const $purchasePriceArea = this.$container.querySelector(
-      SELECTORS.PURCHASE_PRICE_AREA,
+      MAIN_SELECTORS.PURCHASE_PRICE_AREA,
     );
     this.$purchaseForm = new PurchaseForm($purchasePriceArea);
   }
 
   #renderLottoList() {
-    const $lottosArea = this.$container.querySelector(SELECTORS.LOTTOS_AREA);
+    const $lottosArea = this.$container.querySelector(
+      MAIN_SELECTORS.LOTTOS_AREA,
+    );
     this.$lottoList = new LottoList($lottosArea);
   }
 
   #renderWinningInputsForm() {
     const $winningInputsArea = this.$container.querySelector(
-      SELECTORS.WINNING_INPUTS_AREA,
+      MAIN_SELECTORS.WINNING_INPUTS_AREA,
     );
     this.$winningInputsForm = new WinningInputsForm($winningInputsArea);
   }

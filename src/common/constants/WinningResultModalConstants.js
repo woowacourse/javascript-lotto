@@ -1,4 +1,4 @@
-const SELECTORS = Object.freeze({
+const WINNING_RESULT_MODAL_SELECTORS = Object.freeze({
   MODAL_ROOT: '#modal-root',
   MAIN: '#main',
   RESTART_BUTTON: '.restart-button',
@@ -8,4 +8,4 @@ const SELECTORS = Object.freeze({
 
 const RESTART_EVENT_NAME = 'restart';
 
-export { SELECTORS, RESTART_EVENT_NAME };
+export { WINNING_RESULT_MODAL_SELECTORS, RESTART_EVENT_NAME };

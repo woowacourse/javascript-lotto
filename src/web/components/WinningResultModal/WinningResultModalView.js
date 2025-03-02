@@ -1,5 +1,4 @@
-// WinningResultModalView.js
-import { SELECTORS } from '../../../common/constants/WinningResultModalConstants.js';
+import { WINNING_RESULT_MODAL_SELECTORS } from '../../../common/constants/WinningResultModalConstants.js';
 import ViewComponent from '../core/ViewComponent.js';
 import getModalMarkup from './template.js';
 
@@ -20,7 +19,9 @@ class WinningResultModalView extends ViewComponent {
   }
 
   #attachBackdropListener() {
-    const $backdrop = this.$container.querySelector(SELECTORS.MODAL_BACKDROP);
+    const $backdrop = this.$container.querySelector(
+      WINNING_RESULT_MODAL_SELECTORS.MODAL_BACKDROP,
+    );
     if ($backdrop) {
       $backdrop.addEventListener('click', (event) => {
         if (event.target === $backdrop) {
@@ -32,7 +33,7 @@ class WinningResultModalView extends ViewComponent {
 
   #attachCloseButtonListener() {
     const $closeButton = this.$container.querySelector(
-      SELECTORS.MODAL_CLOSE_BUTTON,
+      WINNING_RESULT_MODAL_SELECTORS.MODAL_CLOSE_BUTTON,
     );
     if ($closeButton) {
       $closeButton.addEventListener('click', () => {
@@ -43,7 +44,7 @@ class WinningResultModalView extends ViewComponent {
 
   #attachRestartButtonListener() {
     const $restartButton = this.$container.querySelector(
-      SELECTORS.RESTART_BUTTON,
+      WINNING_RESULT_MODAL_SELECTORS.RESTART_BUTTON,
     );
     if ($restartButton) {
       $restartButton.addEventListener('click', () => {

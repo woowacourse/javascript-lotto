@@ -8,7 +8,7 @@ import {
 import {
   WINNING_NUMBERS_COUNT,
   WINNING_NUMBER_MAX_LENGTH,
-  SELECTORS,
+  WINNING_INPUTS_FORM_SELECTORS,
 } from '../../../common/constants/WinningInputsFormConstants.js';
 
 class WinningInputsFormView extends ViewComponent {
@@ -34,12 +34,14 @@ class WinningInputsFormView extends ViewComponent {
 
   #initElements() {
     this.$winningNumbers = this.$container.querySelectorAll(
-      SELECTORS.WINNING_NUMBER_INPUTS,
+      WINNING_INPUTS_FORM_SELECTORS.WINNING_NUMBER_INPUTS,
     );
     this.$bonusNumber = this.$container.querySelector(
-      SELECTORS.BONUS_NUMBER_INPUT,
+      WINNING_INPUTS_FORM_SELECTORS.BONUS_NUMBER_INPUT,
     );
-    this.$button = this.$container.querySelector(SELECTORS.RESULT_BUTTON);
+    this.$button = this.$container.querySelector(
+      WINNING_INPUTS_FORM_SELECTORS.RESULT_BUTTON,
+    );
   }
 
   #bindEvents() {

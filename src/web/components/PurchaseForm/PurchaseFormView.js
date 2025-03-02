@@ -1,5 +1,5 @@
 import ViewComponent from '../core/ViewComponent.js';
-import { SELECTORS } from '../../../common/constants/PurchaseFormConstants.js';
+import { PURCHASE_FORM_SELECTORS } from '../../../common/constants/PurchaseFormConstants.js';
 import { PURCHASE_PRICE } from '../../../common/constants/Configurations.js';
 
 class PurchaseFormView extends ViewComponent {
@@ -11,8 +11,10 @@ class PurchaseFormView extends ViewComponent {
 
   render() {
     this.$container.innerHTML = this.#template();
-    this.$input = this.$container.querySelector(SELECTORS.INPUT);
-    this.$button = this.$container.querySelector(SELECTORS.BUTTON);
+    this.$input = this.$container.querySelector(PURCHASE_FORM_SELECTORS.INPUT);
+    this.$button = this.$container.querySelector(
+      PURCHASE_FORM_SELECTORS.BUTTON,
+    );
   }
 
   #template() {
