@@ -87,7 +87,7 @@ input::placeholder {
 }
 
 input:focus {
-  outline-color: var(--lotto-greyscale-4);
+  outline-color: var(--lotto-primary);
 }
 
 input[type="number"] {
