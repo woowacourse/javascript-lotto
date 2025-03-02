@@ -44,6 +44,11 @@ class LottoGameView {
     const lottoListSection = document.querySelector('.lotto-list-section');
     const lottoCountText = lottoListSection.querySelector('.text-body');
     const lottoList = lottoListSection.querySelector('.lotto-numbers-list');
+    const purchaseInput = document.querySelector('.purchase-input');
+    const purchaseButton = document.querySelector('.purchase-button');
+
+    purchaseInput.disabled = true;
+    purchaseButton.disabled = true;
 
     lottoCountText.textContent = `총 ${this.#state.getLottoTickets()}개를 구매하였습니다.`;
 
@@ -111,12 +116,17 @@ class LottoGameView {
     const winningNumbersSection = document.querySelector(
       '.winning-numbers-section'
     );
+    const purchaseInput = document.querySelector('.purchase-input');
+    const purchaseButton = document.querySelector('.purchase-button');
+
+    purchaseInput.disabled = false;
+    purchaseButton.disabled = false;
 
     modalOverlay.style.visibility = 'hidden';
     lottoListSection.style.visibility = 'hidden';
     winningNumbersSection.style.visibility = 'hidden';
 
-    document.querySelector('.purchase-input').value = '';
+    purchaseInput.value = '';
     document
       .querySelectorAll('.numbers-input')
       .forEach((input) => (input.value = ''));
