@@ -62,7 +62,6 @@ const WebOutput = {
       "2등": "secondRank",
       "1등": "firstRank",
     };
-    console.log("rank => ", typeof rank);
     this.getHTML(idList[rank]).textContent = amount;
   },
 

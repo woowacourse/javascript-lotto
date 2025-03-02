@@ -7,56 +7,8 @@ import Parser from "./Parser";
 const getHTML = (e) => document.getElementById(e);
 
 function openModal() {
-  getHTML("modalBackground").innerHTML = `
-    <div class="modal-box" id="modalBox">
-        <div class="modal-content">
-        <div class="close-modal-btn-box">
-          <div class="close-modal-btn" id="closeModalBtn" data-action="removeModal">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="black"/>
-            </svg>
-          </div>
-        </div class="close-modal-btn-box">
-          <h2>🏆 당첨 통계 🏆</h2>
-          <table>
-          <tr>
-            <th class="modal-table-1th">일치 갯수</th>
-            <th class="modal-table-2th">당첨금</th>
-            <th class="modal-table-3th">당첨 갯수</th>
-          </tr>
-          <tr>
-            <td>3개</td>
-            <td>5,000</td>
-            <td><span id="fifthRank"></span>개</td>
-          </tr>
-          <tr>
-            <td>4개</td>
-            <td>50,000</td>
-            <td><span id="fourthRank"></span>개</td>
-          </tr>
-          <tr>
-            <td>5개</td>
-            <td>1,500,000</td>
-            <td><span id="thirdRank"></span>개</td>
-          </tr>
-          <tr>
-            <td>5개+보너스볼</td>
-            <td>30,000,000</td>
-            <td><span id="secondRank"></span>개</td>
-          </tr>
-          <tr>
-            <td>6개</td>
-            <td>2,000,000,000</td>
-            <td><span id="firstRank"></span>개</td>
-          </tr>
-          </table>
-  
-          <p>당신의 <span id="winningRate"></span></p>
-          <button id="restartBtn" data-action="reload">다시 시작하기</button>
-        </div>
-      </div>
-      `;
-
+  const modalClone = getHTML("modalTemplate").content.cloneNode(true);
+  getHTML("modalBackground").appendChild(modalClone);
   getHTML("modalBackground").classList.add("show");
 }
 
@@ -69,7 +21,6 @@ class SubmitEvent {
   handlePriceSubmit(event, form) {
     event.preventDefault();
     getHTML("priceErrorInfo").innerHTML = "";
-    //let purchasePrice;
 
     try {
       const priceData = new FormData(form);
@@ -114,7 +65,7 @@ class SubmitEvent {
     event.preventDefault();
     let form = event.target.closest("form");
 
-    if (!form) return; // ✅ form 태그가 아닐 경우 무시
+    if (!form) return;
 
     if (form.id === "priceForm") {
       this.handlePriceSubmit(event, form);
@@ -124,5 +75,4 @@ class SubmitEvent {
   }
 }
 
-// ✅ 특정 컨테이너에서 이벤트 감지
 new SubmitEvent(document);
