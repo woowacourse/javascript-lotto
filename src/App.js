@@ -19,11 +19,11 @@ import { validateBonusNumber } from './View/Validation/bonusNumber.js';
 import { validateYorN } from './View/Validation/retry.js';
 import { validateEmptySpace } from './View/Validation/util.js';
 
-/** STEP2 ByWeb */
+/** STEP2 By Web */
 import { outputViewByWeb } from './View/outputViewByWeb.js';
-import { createWinningLottoForm } from './View/Dom/createWinningLottoForm.js';
-import { createLottoListDisplay } from './View/Dom/createLottoListDisplay.js';
-import { createWinningStatisticsModal } from './View/Dom/createWinningStatisticsModal.js';
+import { createWinningLottoForm } from './View/WebView/createWinningLottoForm.js';
+import { createLottoListDisplay } from './View/WebView/createLottoListDisplay.js';
+import { createWinningStatisticsModal } from './View/WebView/createWinningStatisticsModal.js';
 
 const validateAndFormatPurchaseAmountInput = (input) => {
   validateEmptySpace(input);
