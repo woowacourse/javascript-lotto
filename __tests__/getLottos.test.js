@@ -1,4 +1,4 @@
-import { generateLottos } from '../src/domain/getLottos.js';
+import { generateLottos } from '../src/domain/generateLottos.js';
 
 describe('로또 발행 테스트', () => {
   test.each([

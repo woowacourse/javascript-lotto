@@ -1,19 +1,13 @@
 import { LOTTO_SYSTEM } from '../constants/LottoSystem.js';
 import Lotto from './Lotto.js';
 
-export const generateLottos = (quantity) => {
-  const lottos = [];
-  Array.from({ length: quantity }, () => {
-    const numbers = generateLotto();
-    lottos.push(new Lotto(numbers));
-  });
+const NUMBERS = Array.from({ length: LOTTO_SYSTEM.SIZE.MAX_LOTTO_NUMBER }, (_, index) => index + 1);
 
-  return lottos;
+export const generateLottos = (quantity) => {
+  return Array.from({ length: quantity }, () => new Lotto(generateLotto()));
 };
 
 export const generateLotto = () => {
-  const numbers = Array.from({ length: LOTTO_SYSTEM.SIZE.MAX_LOTTO_NUMBER }, (_, index) => index + 1);
-
   const shuffle = (arr) => {
     const array = [...arr];
     for (let i = array.length - 1; i > 0; i--) {
@@ -23,7 +17,7 @@ export const generateLotto = () => {
     return array;
   };
 
-  return shuffle(numbers)
+  return shuffle(NUMBERS)
     .slice(0, 6)
     .sort((a, b) => a - b);
 };

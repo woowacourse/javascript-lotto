@@ -1,5 +1,5 @@
 import { calculateRevenue } from './domain/calculateRevenue.js';
-import { generateLottos } from './domain/getLottos.js';
+import { generateLottos } from './domain/generateLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
 import WinningLotto from './domain/WinningLotto.js';
 import { validateBonusNumber, validateWinningNumbers } from './validation/validateLottoNumbers.js';
