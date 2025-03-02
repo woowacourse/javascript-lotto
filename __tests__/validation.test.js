@@ -9,12 +9,14 @@ import {
 
 describe('로또 구입 금액', () => {
   test('로또 구입 금액은 1,000원으로 나누어떨어져야 한다.', () => {
+
     expect(() => {
       validateMoney(LOTTO_RULE.PRICE);
     }).not.toThrow();
   });
 
   test('로또 구입 금액은 1,000원으로 나누어 떨어지지 않으면 에러를 발생한다.', () => {
+
     expect(() => {
       validateMoney(LOTTO_RULE.PRICE + 1);
     }).toThrow(ERROR.MONEY.REST_VALUE);
