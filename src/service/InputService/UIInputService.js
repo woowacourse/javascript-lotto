@@ -1,8 +1,13 @@
-import SELECTORS from '../constants/Selectors.js';
+import SELECTORS from '../../constants/Selectors.js';
+
+export function getUIPurchasePrice() {
+  const inputElement = document.getElementById(SELECTORS.INPUT.PURCHASE_PRICE);
+  return inputElement ? inputElement.value : null;
+}
 
 export function getUIWinningNumber() {
   const winningNumbers = Array.from(
-    document.querySelector(`.${SELECTORS.INPUT.WINNING_NUMBER}`),
+    document.querySelectorAll(`.${SELECTORS.INPUT.WINNING_NUMBER}`),
   );
   return winningNumbers.map((input) => input.value.trim()).join(',');
 }

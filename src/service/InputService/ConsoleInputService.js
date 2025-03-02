@@ -1,6 +1,5 @@
-import readLineAsync from '../View/InputView.js';
-import INPUT_MESSAGE from '../constants/InputMessage.js';
-import SELECTORS from '../constants/Selectors.js';
+import readLineAsync from '../../View/InputView.js';
+import INPUT_MESSAGE from '../../constants/InputMessage.js';
 
 export async function getConsolePurchasePrice() {
   return await readLineAsync(INPUT_MESSAGE.getPurchasePrice);
@@ -16,9 +15,4 @@ export async function getConsoleBonusNumber() {
 
 export async function getConsoleUserRetry() {
   return await readLineAsync(INPUT_MESSAGE.askUserRetry);
-}
-
-export function getUIPurchasePrice() {
-  const inputElement = document.getElementById(SELECTORS.INPUT.PURCHASE_PRICE);
-  return inputElement ? inputElement.value : null;
 }

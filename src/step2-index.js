@@ -13,7 +13,7 @@ import {
   getUIPurchasePrice,
   getUIUserRetry,
   getUIWinningNumber,
-} from './service/InputService.js';
+} from './service/InputService/UIInputService.js';
 import makeLotto from './service/LottoService.js';
 import {
   getBonusNumber,
