@@ -22,6 +22,9 @@ input {
   &:focus::placeholder {
     opacity: 0;
   }
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -186,21 +189,19 @@ header {
   justify-content: center;
   gap: 0.25rem;
 }
+.count-prompt {
+  width: 100%;
+}
 .input-button-container {
   display: flex;
   gap: 1rem;
 }
 
-.lotto-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
 .lotto-image {
   width: 34px;
 }
 .lotto-numbers-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;

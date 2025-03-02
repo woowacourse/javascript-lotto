@@ -25,7 +25,7 @@ export const WebOutputView = {
 
     appendToParent(".winning-bonus-container", WinningInput(), BonusInput());
 
-    const resultButtonProps = { label: "결과 확인하기", onClick: () => showResult(lottoCount, lottoArray), style: "large", name: "result" };
+    const resultButtonProps = { label: "결과 확인하기", onClick: () => resultHandler(lottoCount, lottoArray), style: "large", name: "result" };
     appendToParent(".result-button-container", Button(resultButtonProps));
 
     addKeyListener(
