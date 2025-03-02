@@ -2,7 +2,7 @@ import View from "../../views/web/View.js";
 import issueLottos from "../../domains/issueLottos.js";
 import WinningStatistics from "../../domains/WinningStatistics.js";
 import { $ } from "../../utils/domUtils.js";
-import { EVENT_TYPES } from "../../constants/constants.js";
+import { CUSTOM_ELEMENTS, EVENT_TYPES } from "../../constants/constants.js";
 
 class LottoController {
   constructor() {
@@ -40,12 +40,12 @@ class LottoController {
   }
 
   #updateIssuedLotto() {
-    const issuedLotto = $("issued-lotto", this.view.app);
+    const issuedLotto = $(CUSTOM_ELEMENTS.issuedLotto, this.view.app);
     issuedLotto.updateLottos(this.lottos);
   }
 
   #initWinningLotto() {
-    const winningLotto = $("winning-lotto", this.view.app);
+    const winningLotto = $(CUSTOM_ELEMENTS.winningLotto, this.view.app);
     winningLotto.initWinningLotto();
   }
 
@@ -67,7 +67,7 @@ class LottoController {
   }
 
   #showResult(winningStatistics, profitRatio) {
-    const lottoResult = $("lotto-result", this.view.app);
+    const lottoResult = $(CUSTOM_ELEMENTS.lottoResult, this.view.app);
     lottoResult.showResult(winningStatistics.statistics, profitRatio);
   }
 

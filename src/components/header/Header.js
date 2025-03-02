@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS } from "../../constants/constants.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./header.css";
 
@@ -11,4 +12,4 @@ class Header extends BaseWebComponent {
   }
 }
 
-customElements.define("lotto-header", Header);
+customElements.define(CUSTOM_ELEMENTS.lottoHeader, Header);

@@ -1,4 +1,8 @@
-import { EVENT_TYPES, STYLE_SELECTORS } from "../../constants/constants.js";
+import {
+  CUSTOM_ELEMENTS,
+  EVENT_TYPES,
+  STYLE_SELECTORS,
+} from "../../constants/constants.js";
 import {
   $,
   eventOn,
@@ -52,4 +56,4 @@ class LottoPurchase extends BaseWebComponent {
   }
 }
 
-customElements.define("lotto-purchase", LottoPurchase);
+customElements.define(CUSTOM_ELEMENTS.lottoPurchase, LottoPurchase);

@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS } from "../../constants/constants.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./issued-lotto.css";
 
@@ -37,4 +38,4 @@ class IssuedLotto extends BaseWebComponent {
   }
 }
 
-customElements.define("issued-lotto", IssuedLotto);
+customElements.define(CUSTOM_ELEMENTS.issuedLotto, IssuedLotto);

@@ -9,7 +9,11 @@ import {
   $$,
   eventOn,
 } from "../../utils/domUtils.js";
-import { EVENT_TYPES, STYLE_SELECTORS } from "../../constants/constants.js";
+import {
+  CUSTOM_ELEMENTS,
+  EVENT_TYPES,
+  STYLE_SELECTORS,
+} from "../../constants/constants.js";
 
 class WinningLotto extends BaseWebComponent {
   constructor() {
@@ -123,4 +127,4 @@ class WinningLotto extends BaseWebComponent {
   }
 }
 
-customElements.define("winning-lotto", WinningLotto);
+customElements.define(CUSTOM_ELEMENTS.winningLotto, WinningLotto);

@@ -1,4 +1,5 @@
 import {
+  CUSTOM_ELEMENTS,
   EVENT_TYPES,
   MATCH_KEY,
   MATCH_PRIZE,
@@ -105,4 +106,4 @@ class LottoResult extends BaseWebComponent {
   }
 }
 
-customElements.define("lotto-result", LottoResult);
+customElements.define(CUSTOM_ELEMENTS.lottoResult, LottoResult);
