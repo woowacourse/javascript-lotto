@@ -10,16 +10,16 @@ const readWinningNumbers = (validator, renderer) => {
   winningLottoForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    numbersContainer.querySelectorAll("input").forEach((element) => {
-      element.disabled = true;
-    });
-
     const winningNumbers = getWinningNumbers();
     const bonusNumber = getBonusNumber();
 
     const isValidNumbers = validator(winningNumbers, bonusNumber);
 
     if (isValidNumbers) {
+      numbersContainer.querySelectorAll("input").forEach((element) => {
+        element.disabled = true;
+      });
+
       renderer(winningNumbers, bonusNumber);
     }
   });

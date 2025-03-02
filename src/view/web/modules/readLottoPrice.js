@@ -7,14 +7,14 @@ const readLottoPrice = (validator, renderer) => {
   purchaseForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    purchaseContainer.querySelectorAll("input, button").forEach((element) => {
-      element.disabled = true;
-    });
-
     const price = getPrice();
     const isValidPrice = validator(price);
 
     if (isValidPrice) {
+      purchaseContainer.querySelectorAll("input, button").forEach((element) => {
+        element.disabled = true;
+      });
+
       renderer(price);
     }
   });
