@@ -23,6 +23,7 @@ import {
 } from './service/ParsingService.js';
 import showLottoResult from './View/show/showLottoResult.js';
 import showPurchaseResult from './View/show/showPurchaseResult.js';
+import { uiErrorHandler } from './util/errorHandler.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const purchaseButton = document.getElementById('purchase-button');
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const { purchasePrice: price, purchaseAmount } = await getPurchasePrice(
         getUIPurchasePrice,
+        uiErrorHandler,
       );
       purchasePrice = price;
       showPurchaseResult(purchaseAmount);
@@ -41,13 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
       lottos = makeLotto(purchaseAmount);
       showLottoResult(lottos);
       createLottoInput();
-      const resultButton = document.getElementById('check-result-btn');
 
+      const resultButton = document.getElementById('check-result-btn');
       resultButton.removeEventListener('click', handleResult);
       resultButton.addEventListener('click', handleResult);
       return purchasePrice;
     } catch (error) {
       console.log(error);
+      console.log('error');
       clearUIElements();
     }
   }
@@ -55,11 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
   async function handleResult(event) {
     event.preventDefault();
     try {
-      const userLotto = await getWinningNumber(getUIWinningNumber);
-      const parsedLotto = await getBonusNumber(userLotto, getUIBonusNumber);
+      const userLotto = await getWinningNumber(
+        getUIWinningNumber,
+        uiErrorHandler,
+      );
+      const parsedLotto = await getBonusNumber(
+        userLotto,
+        getUIBonusNumber,
+        uiErrorHandler,
+      );
 
       let winCount = 0;
-
       winCount = calculateWins(lottos, parsedLotto);
       const total = calculatePrize(winCount, PRIZE_MONEY);
       const revenueRate = calculateRevenueRate(total, purchasePrice);

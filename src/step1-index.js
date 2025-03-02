@@ -21,17 +21,25 @@ import {
   getConsolePurchasePrice,
   getConsoleWinningNumber,
 } from './service/InputService.js';
+import { defaultErrorHandler } from './util/errorHandler.js';
 
 async function playGame() {
   const { purchasePrice, purchaseAmount } = await getPurchasePrice(
     getConsolePurchasePrice,
-    getConsolePurchasePrice,
+    defaultErrorHandler,
   );
 
   const lottos = makeLotto(purchaseAmount);
 
-  const userLotto = await getWinningNumber(getConsoleWinningNumber);
-  const parsedLotto = await getBonusNumber(userLotto, getConsoleBonusNumber);
+  const userLotto = await getWinningNumber(
+    getConsoleWinningNumber,
+    defaultErrorHandler,
+  );
+  const parsedLotto = await getBonusNumber(
+    userLotto,
+    getConsoleBonusNumber,
+    defaultErrorHandler,
+  );
 
   const winCount = calculateWins(lottos, parsedLotto);
   const total = calculatePrize(winCount, PRIZE_MONEY);
