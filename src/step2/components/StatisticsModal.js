@@ -4,6 +4,13 @@ import Button from "./@common/Button";
 import Component from "../core/Component";
 
 export default class StatisticsModal extends Component {
+  setEvent() {
+    this.addEvent("submit", ".statistics-dialog-close-form", (event) => {
+      event.preventDefault();
+      this.props.closeModal();
+    });
+  }
+
   template() {
     return `
     <dialog class='statistics-dialog'>

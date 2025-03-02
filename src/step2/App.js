@@ -54,6 +54,7 @@ class App extends Component {
         lottoResults: this.state.lottoResults,
         lottoList,
         reset: this.reset.bind(this),
+        closeModal: this.closeModal.bind(this),
       });
     }
   }
@@ -74,6 +75,10 @@ class App extends Component {
 
   openModal() {
     qs(".statistics-dialog").showModal();
+  }
+
+  closeModal() {
+    qs(".statistics-dialog").close();
   }
 
   reset() {
