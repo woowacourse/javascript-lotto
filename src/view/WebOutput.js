@@ -38,6 +38,8 @@ const WebOutput = {
       }
 
       const li = document.createElement("li");
+      li.classList.add("lotto-li");
+      li.dataset.action = "copyContent";
       li.innerHTML = `<span>🎟️</span><p>${lotto.sort((a, b) => a - b).join(", ")}</p>`;
       ul.appendChild(li);
     });

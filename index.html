@@ -10,12 +10,12 @@
   </head>
   <body>
     <div id="app">
-      <div id="modalBackground">
+      <div id="modalBackground" data-action="removeModal">
 
       </div>
       <header class="header">
         <nav>
-          <h1><a id="headerLogo">🎱 행운의 로또</a></h1>
+          <h1><a id="headerLogo" data-action="reload">🎱 행운의 로또</a></h1>
         </nav>
       </header>
 
@@ -32,11 +32,13 @@
                 placeholder="금액"
                 name="price"
                 maxlength="8"
+                data-input="handlePriceInput"
               />
-              <button type="submit" id="btnBuy" class="btn-buy" disabled>구입</button>
+              <button type="submit" id="btnBuy" class="btn-buy"  disabled>구입</button>
               </div>
             </form>
             <ul id="priceErrorInfo" class="error-info-ul">
+              
             </ul>
             <div id="resultContainer" class="result-container">
 
@@ -50,18 +52,18 @@
                  <div class="winning-box">
                    <label>당첨 번호</label>
                    <div>
-                     <input type="text" name="winning" class="winning-number"  >
-                     <input type="text" name="winning" class="winning-number"  >
-                     <input type="text" name="winning" class="winning-number" >
-                     <input type="text" name="winning" class="winning-number"  >
-                     <input type="text" name="winning" class="winning-number" >
-                     <input type="text" name="winning" class="winning-number">
+                     <input type="text" name="winning" class="winning-number" data-input="handleWinningInput" >
+                     <input type="text" name="winning" class="winning-number" data-input="handleWinningInput" >
+                     <input type="text" name="winning" class="winning-number" data-input="handleWinningInput">
+                     <input type="text" name="winning" class="winning-number" data-input="handleWinningInput">
+                     <input type="text" name="winning" class="winning-number" data-input="handleWinningInput">
+                     <input type="text" name="winning" class="winning-number" data-input="handleWinningInput">
                    </div>
                  </div>
                  <div class="bonus-box">
                    <label>보너스 번호</label>
                    <div>
-                     <input type="text" name="bonus" class="bonus-number" maxlength='2' >
+                     <input type="text" name="bonus" class="bonus-number" maxlength='2' data-input="handleWinningInput">
                    </div>
                  </div>
                </div>
@@ -88,7 +90,10 @@
       </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
-    <script src="./src/modal.js" ></script>
+    <script src="./src/util/ClickEvent.js" ></script>
+    <script type="module" src="./src/util/InputEvent.js" ></script>
+    <script type="module" src="./src/util/SubmitEvent.js"></script>
+
     <script>
     function maxLengthCheck(object) {
   if (object.value.length > object.maxLength) {

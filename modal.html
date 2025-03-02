@@ -162,7 +162,7 @@
           <p style="margin-top: 10px">당신의 총 수익률은 %입니다.</p>
         </div>
         <div class="modal-footer">
-          <button class="btn" id="restartBtn">다시 시작하기</button>
+          <button class="btn" id="restartBtn" data-action="reload">다시 시작하기</button>
         </div>
       </div>
     </div>
@@ -191,9 +191,9 @@
       });
 
       // 다시 시작 버튼 클릭 시 (여기선 그냥 모달 닫기만)
-      restartBtn.addEventListener("click", () => {
-        modalOverlay.classList.remove("show");
-      });
+      // restartBtn.addEventListener("click", () => {
+      //   modalOverlay.classList.remove("show");
+      // });
     </script>
   </body>
 </html>
