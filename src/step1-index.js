@@ -19,6 +19,7 @@ import { PRIZE_MONEY } from './constants/MagicNumber.js';
 import {
   getConsoleBonusNumber,
   getConsolePurchasePrice,
+  getConsoleUserRetry,
   getConsoleWinningNumber,
 } from './service/InputService.js';
 import { defaultErrorHandler } from './util/errorHandler.js';
@@ -48,12 +49,18 @@ async function playGame() {
   printPrizeHeader();
   printPrize(winCount);
   printRevenueRate(revenueRate);
-
-  const userRetry = await getUserRetry();
-
-  return userRetry;
 }
 
-const userRetry = await playGame();
+const main = async () => {
+  while (true) {
+    await playGame();
+    let userRetry;
 
-if (userRetry === 'y') await playGame();
+    while (true) {
+      userRetry = await getUserRetry(getConsoleUserRetry, defaultErrorHandler);
+      if (userRetry === 'y' || userRetry === 'n') break;
+    }
+    if (userRetry === 'n') break;
+  }
+};
+main();
