@@ -91,7 +91,7 @@ export const createWinningStatisticsModal = (
                 children: [
                   {
                     tag: 'img',
-                    attributes: { src: '/vector.svg', alt: 'close' },
+                    attributes: { src: './vector.svg', alt: 'close' },
                   },
                 ],
               },
