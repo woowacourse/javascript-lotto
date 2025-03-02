@@ -7,8 +7,8 @@ export const createWinningLottoForm = () => {
     className: 'winning-lotto-form',
     children: [
       {
-        tag: 'legend',
-        className: 'winning-lotto-form-legend',
+        tag: 'h3',
+        className: 'winning-lotto-form-instruction',
         textContent: '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.',
       },
       {

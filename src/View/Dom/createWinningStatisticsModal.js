@@ -80,7 +80,7 @@ export const createWinningStatisticsModal = (
         className: 'modal-content',
         children: [
           {
-            tag: 'span',
+            tag: 'h3',
             className: 'text-subtitle',
             textContent: '🏆 당첨 통계 🏆',
             children: [
