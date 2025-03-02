@@ -65,8 +65,14 @@ export default class AmountInput extends Component {
 
       this.lottoPurchase.purchaseLotto(purchaseAmount);
     } catch (error) {
+      this.clearInput();
       console.error(error);
       alert(error.message);
     }
+  }
+
+  clearInput() {
+    const input = qs(".amount-input");
+    input.value = "";
   }
 }
