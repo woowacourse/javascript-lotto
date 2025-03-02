@@ -21,6 +21,7 @@ import createPrizeResultModal from "./src/view/web/layers/modal/createPrizeResul
 import showResultModal from "./src/view/web/modules/showResultModal.js";
 import closeResultModal from "./src/view/web/modules/closeResultModal.js";
 import revealElement from "./src/view/web/modules/revealElement.js";
+import restartGame from "./src/view/web/modules/restartGame.js";
 
 const startGame = () => {
   initLayer();
@@ -83,6 +84,7 @@ const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
 const handleResultModal = () => {
   showResultModal();
   closeResultModal();
+  restartGame();
 };
 
 export default startGame;
