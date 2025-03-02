@@ -33,7 +33,7 @@ const ExitIcon = () => {
   exitIconContainer.classList.add("exit-icon-container");
 
   const exitIcon = document.createElement("img");
-  exitIcon.src = `/${basePath}/close.png`;
+  exitIcon.src = `./close.png`;
   exitIcon.classList.add("exit-icon");
 
   exitIconContainer.appendChild(exitIcon);
