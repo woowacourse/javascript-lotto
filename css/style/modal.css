@@ -19,7 +19,7 @@ button {
   color: var(--lotto-greyscale-5);
 }
 
-.prize-contents > button {
+.restart-button {
   height: 36px;
   border-radius: 4px;
   background-color: var(--lotto-primary);

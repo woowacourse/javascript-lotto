@@ -112,3 +112,6 @@
 
 - [ ] modain/web 디렉터리에 대해서는 코멘트 확인
 - [x] className 명시적으로 변경하기
+- [x] restart-button 클래스명으로 변경
+
+- [ ] commit 링크 연동
