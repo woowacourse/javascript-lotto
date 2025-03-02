@@ -1,0 +1,30 @@
+.error-alert-modal[open] {
+  width: 500px;
+  height: 200px;
+  padding: var(--default-padding);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.alert-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.alert-container > p {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.alert-container > button {
+  width: 70px;
+  height: 30px;
+}

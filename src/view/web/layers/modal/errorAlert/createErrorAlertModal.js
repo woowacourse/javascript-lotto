@@ -3,6 +3,7 @@ import {
   insertTextContents,
 } from "../../../utilsWeb/elementCreator";
 import errorAlertContents from "./errorAlertModal.html?raw";
+import "./errorAlertModal.css";
 
 const createErrorAlertModal = (message) => {
   appendContents(".error-alert-modal", ".alert-container", errorAlertContents);
