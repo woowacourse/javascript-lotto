@@ -1,0 +1,18 @@
+export const DOM = {
+  purchaseForm: document.getElementById('purchase-form'),
+  purchaseButton: document.getElementById('purchase-button'),
+  purchaseInput: document.getElementById('purchase-input'),
+  result: document.getElementById('result'),
+  systemMessage: document.getElementById('system-message'),
+  winningInputs: document.querySelectorAll('.winning-number'),
+  bonusInput: document.getElementById('bonusNumber'),
+  divInputNumber: document.getElementById('number-input'),
+  resultButton: document.getElementById('result-button'),
+  modal: document.querySelector('.modal'),
+  threeCount: document.getElementById('three-count'),
+  fourCount: document.getElementById('four-count'),
+  fiveCount: document.getElementById('five-count'),
+  fiveCountWithBonus: document.getElementById('five-count-with-bonus'),
+  sixCount: document.getElementById('six-count'),
+  revenueContainer: document.getElementById('revenue-container'),
+};
