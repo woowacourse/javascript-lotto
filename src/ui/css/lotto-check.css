@@ -5,6 +5,11 @@ main {
 }
 
 .lotto-check {
+  width: 400px;
+  height: 630px;
+  top: 148px;
+  left: 513px;
+  padding: 20px;
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
@@ -12,9 +17,31 @@ main {
   text-align: center;
 }
 
+.amount-input {
+  margin-top: 30px;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
 #purchase-amount {
   background-color: transparent;
+  flex-grow: 1; /* 남은 공간을 채우도록 설정 */
+  border-radius: 5px;
+  padding: 6px;
   border: 1px solid var(--color-greyscale-3);
+}
+
+#purchase-btn {
+  background-color: var(--color-primary);
+  color: var(--color-greyscale-1);
+  border-radius: 5px;
+  padding: 10px;
+  white-space: nowrap;
 }
 
 .number-box input {
@@ -30,4 +57,50 @@ main {
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+}
+
+.lotto-list-container {
+  margin-top: 20px;
+  text-align: left;
+}
+
+#lotto-list li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.get-numbers {
+  margin-top: 20px;
+}
+
+.number-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.number-box {
+  display: flex;
+  gap: 8px;
+}
+
+.number-box input {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+#check-result-btn {
+  background-color: var(--color-primary);
+  color: var(--color-greyscale-1);
+  border-radius: 5px;
+  padding: 10px;
+  display: block;
+  margin: 20px auto 0;
+  width: 100%;
 }

@@ -23,16 +23,23 @@
         <section class="lotto-check">
           <h2 class="text-title">🎱 내 당첨 번호 확인 🎱</h2>
           <div class="amount-input">
-            <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
+            <label for="purchase-amount" class="text-body"
+              >구입할 금액을 입력해주세요.</label
+            >
             <div class="input">
-              <input type="text" id="purchase-amount" placeholder="금액" />
-              <button id="purchase-btn">구입</button>
+              <input
+                type="text"
+                id="purchase-amount"
+                class="text-placeholder"
+                placeholder="금액"
+              />
+              <button id="purchase-btn" class="text-caption">구입</button>
             </div>
           </div>
-          <div>
+          <div class="text-body">
             <div class="lotto-list-container">
               <p>총 7개를 구매하였습니다.</p>
-              <ul id="lotto-list">
+              <ul id="lotto-list" class="text-body">
                 <li>🎟️ 11, 12, 13, 14, 15, 16</li>
                 <li>🎟️ 11, 12, 13, 14, 15, 16</li>
                 <li>🎟️ 11, 12, 13, 14, 15, 16</li>
@@ -42,7 +49,7 @@
                 <li>🎟️ 11, 12, 13, 14, 15, 16</li>
               </ul>
             </div>
-            <div>
+            <div class="get-numbers">
               <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
               <div class="number-input">
                 <div class="winning-number">
@@ -65,7 +72,9 @@
               </div>
             </div>
 
-            <button id="check-result">결과 확인하기</button>
+            <button id="check-result-btn" class="text-caption">
+              결과 확인하기
+            </button>
           </div>
         </section>
 
