@@ -12,12 +12,13 @@ async function getPurchasePrice(
 ) {
   try {
     const purchasePrice = await inputMethod();
+    console.log(purchasePrice);
     const purchaseAmount = checkLottoPurchase(purchasePrice) / LOTTO_PRICE;
     printPurchasedAmount(purchaseAmount);
     return { purchasePrice, purchaseAmount };
   } catch (error) {
     handleError(error);
-    return inputMethod();
+    return getPurchasePrice(inputMethod, handleError);
   }
 }
 async function getWinningNumber(
@@ -32,7 +33,7 @@ async function getWinningNumber(
     return userLotto;
   } catch (error) {
     handleError(error);
-    return inputMethod();
+    return getWinningNumber(inputMethod, handleError);
   }
 }
 async function getBonusNumber(
@@ -46,7 +47,7 @@ async function getBonusNumber(
     return parsedLotto;
   } catch (error) {
     handleError(error);
-    return inputMethod();
+    return getBonusNumber(inputMethod, handleError);
   }
 }
 
@@ -57,7 +58,7 @@ async function getUserRetry(inputMethod, handleError = defaultErrorHandler) {
     return userRetry;
   } catch (error) {
     handleError(error);
-    return inputMethod();
+    return getUserRetry(inputMethod, handleError);
   }
 }
 
