@@ -1,6 +1,7 @@
 .game-container {
   width: 414px;
   height: 727px;
+  max-height: 100%;
   padding: var(--default-padding);
 
   display: flex;

@@ -26,12 +26,25 @@ body {
   overflow-x: hidden;
 }
 
-main {
+#app {
   height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+header,
+footer {
+  flex-shrink: 0;
+}
+
+main {
+  margin: 84px 0;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
 
   background-color: var(--bg-default-color);
 }
