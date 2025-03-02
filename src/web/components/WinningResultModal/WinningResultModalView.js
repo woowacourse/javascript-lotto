@@ -5,6 +5,7 @@ import getModalMarkup from './template.js';
 class WinningResultModalView extends ViewComponent {
   render(winningCounts, profitRate) {
     this.$container.innerHTML = this.#template(winningCounts, profitRate);
+    this.#initElements();
     this.#bindEvents();
   }
 
@@ -12,52 +13,80 @@ class WinningResultModalView extends ViewComponent {
     return getModalMarkup(winningCounts, profitRate);
   }
 
-  #bindEvents() {
-    this.#attachBackdropListener();
-    this.#attachCloseButtonListener();
-    this.#attachRestartButtonListener();
-  }
-
-  #attachBackdropListener() {
-    const $backdrop = this.$container.querySelector(
+  #initElements() {
+    this.$backdrop = this.$container.querySelector(
       WINNING_RESULT_MODAL_SELECTORS.MODAL_BACKDROP,
     );
-    if (!$backdrop) return;
-
-    $backdrop.addEventListener('click', (event) => {
-      if (event.target === $backdrop) {
-        this.#close();
-      }
-    });
-  }
-
-  #attachCloseButtonListener() {
-    const $closeButton = this.$container.querySelector(
+    this.$closeButton = this.$container.querySelector(
       WINNING_RESULT_MODAL_SELECTORS.MODAL_CLOSE_BUTTON,
     );
-    if (!$closeButton) return;
 
-    $closeButton.addEventListener('click', () => {
-      this.#close();
-    });
-  }
-
-  #attachRestartButtonListener() {
-    const $restartButton = this.$container.querySelector(
+    this.$restartButton = this.$container.querySelector(
       WINNING_RESULT_MODAL_SELECTORS.RESTART_BUTTON,
     );
-    if (!$restartButton) return;
-
-    $restartButton.addEventListener('click', () => {
-      if (this.onResultRequest) {
-        this.#close();
-        this.onResultRequest();
-      }
-    });
   }
+
+  #bindEvents() {
+    this.#removeBackdropEvents();
+    this.#removeCloseButtonEvents();
+    this.#removeRestartButtonEvents();
+    this.$backdrop.addEventListener('click', (e) =>
+      this.#handleBackdropClick(e),
+    );
+    this.$closeButton.addEventListener('click', (e) =>
+      this.#handleCloseButtonClick(e),
+    );
+    this.$restartButton.addEventListener('click', (e) =>
+      this.#handleRestartButtonClick(e),
+    );
+  }
+
+  #removeBackdropEvents() {
+    if (this.$backdrop) {
+      this.$backdrop.removeEventListener('click', this.#handleBackdropClick);
+    }
+  }
+
+  #removeCloseButtonEvents() {
+    if (this.$closeButton) {
+      this.$closeButton.removeEventListener(
+        'click',
+        this.#handleCloseButtonClick,
+      );
+    }
+  }
+
+  #removeRestartButtonEvents() {
+    if (this.$restartButton) {
+      this.$restartButton.removeEventListener(
+        'click',
+        this.#handleRestartButtonClick,
+      );
+    }
+  }
+
+  #handleBackdropClick = (event) => {
+    if (event.target !== this.$backdrop) return;
+
+    this.#close();
+  };
+
+  #handleCloseButtonClick = () => {
+    this.#close();
+  };
+
+  #handleRestartButtonClick = () => {
+    if (!this.onResultRequest) return;
+
+    this.#close();
+    this.onResultRequest();
+  };
 
   #close() {
     this.$container.innerHTML = '';
+    this.#removeBackdropEvents();
+    this.#removeCloseButtonEvents();
+    this.#removeRestartButtonEvents();
   }
 
   setOnResultRequest(callback) {

@@ -45,37 +45,48 @@ class WinningInputsFormView extends ViewComponent {
   }
 
   #bindEvents() {
-    this.#attachInputListeners();
-    this.#attachButtonClickListener();
-  }
-
-  #attachInputListeners() {
-    const updateButtonState = () => {
-      this.$button.disabled =
-        this.$bonusNumber.value.trim() === '' ||
-        Array.from(this.$winningNumbers).some(
-          ($input) => $input.value.trim() === '',
-        );
-    };
-
+    this.#removeEvents();
     this.$winningNumbers.forEach(($input) =>
-      $input.addEventListener('input', updateButtonState),
+      $input.addEventListener('input', this.#handleInputChange),
     );
-    this.$bonusNumber.addEventListener('input', updateButtonState);
+    this.$bonusNumber.addEventListener('input', this.#handleInputChange);
+    this.$container.addEventListener('submit', this.#handleFormSubmit);
   }
 
-  #attachButtonClickListener() {
-    this.$container.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!this.onResultRequest) return;
-
-      const winningNumbers = Array.from(this.$winningNumbers).map((input) =>
-        parseInt(input.value, 10),
+  #removeEvents() {
+    if (this.$winningNumbers) {
+      this.$winningNumbers.forEach(($input) =>
+        $input.removeEventListener('input', this.#handleInputChange),
       );
-      const bonusNumber = parseInt(this.$bonusNumber.value, 10);
-      this.onResultRequest({ winningNumbers, bonusNumber });
-    });
+    }
+
+    if (this.$bonusNumber) {
+      this.$bonusNumber.removeEventListener('input', this.#handleInputChange);
+    }
+
+    if (this.$container) {
+      this.$container.removeEventListener('submit', this.#handleFormSubmit);
+    }
   }
+
+  #handleInputChange = () => {
+    this.$button.disabled =
+      this.$bonusNumber.value.trim() === '' ||
+      Array.from(this.$winningNumbers).some(
+        ($input) => $input.value.trim() === '',
+      );
+  };
+
+  #handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (!this.onResultRequest) return;
+
+    const winningNumbers = Array.from(this.$winningNumbers).map((input) =>
+      parseInt(input.value, 10),
+    );
+    const bonusNumber = parseInt(this.$bonusNumber.value, 10);
+    this.onResultRequest({ winningNumbers, bonusNumber });
+  };
 
   setOnResultRequest(callback) {
     this.onResultRequest = callback;

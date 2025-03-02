@@ -28,18 +28,32 @@ class PurchaseFormView extends ViewComponent {
   }
 
   #bindEvents() {
-    this.$input.addEventListener('input', () => {
-      this.$button.disabled = this.$input.value.trim() === '';
-    });
-
-    this.$container.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!this.onPurchaseClick) return;
-
-      const purchasePrice = parseInt(this.$input.value, 10);
-      this.onPurchaseClick(purchasePrice);
-    });
+    this.#removeEvents();
+    this.$input.addEventListener('input', this.#handleInputChange);
+    this.$container.addEventListener('submit', this.#handleFormSubmit);
   }
+
+  #removeEvents() {
+    if (this.$input) {
+      this.$input.removeEventListener('input', this.#handleInputChange);
+    }
+
+    if (this.$container) {
+      this.$container.removeEventListener('submit', this.#handleFormSubmit);
+    }
+  }
+
+  #handleInputChange = () => {
+    this.$button.disabled = this.$input.value.trim() === '';
+  };
+
+  #handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (!this.onPurchaseClick) return;
+
+    const purchasePrice = parseInt(this.$input.value, 10);
+    this.onPurchaseClick(purchasePrice);
+  };
 
   setOnPurchaseClick(callback) {
     this.onPurchaseClick = callback;
