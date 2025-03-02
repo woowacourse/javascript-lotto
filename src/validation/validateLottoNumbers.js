@@ -15,7 +15,7 @@ export const validateLottoNumbers = (lottoNumbers) => {
 };
 
 export const checkRangeOfLottoNumber = (input) => {
-  if (input < LOTTO_SYSTEM.MIN_LOTTO_NUMBER || input > LOTTO_SYSTEM.MAX_LOTTO_NUMBER) {
+  if (input < LOTTO_SYSTEM.SIZE.MIN_LOTTO_NUMBER || input > LOTTO_SYSTEM.SIZE.MAX_LOTTO_NUMBER) {
     throw new Error(ERROR.NOT_RANGE_OF_WINNING_NUMBER);
   }
 };

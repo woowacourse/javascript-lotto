@@ -12,7 +12,7 @@ export const getLottos = (quantity) => {
 };
 
 export const generateLotto = () => {
-  const numbers = Array.from({ length: LOTTO_SYSTEM.MAX_LOTTO_NUMBER }, (_, index) => index + 1);
+  const numbers = Array.from({ length: LOTTO_SYSTEM.SIZE.MAX_LOTTO_NUMBER }, (_, index) => index + 1);
 
   const shuffle = (arr) => {
     const array = [...arr];
