@@ -8,8 +8,8 @@ import { parseWinningNumbers } from './utils/parseString.js';
 import { isYesOrNo } from './validation/validateInput.js';
 import { validateBonusNumber, validateWinningNumbers } from './validation/validateLottoNumbers.js';
 import { validatePurchasePrice } from './validation/validatePurchasePrice.js';
-import handleUserInput from './view/handleUserInput.js';
-import { printPurchasedQuantity, printLottos, printStatistics } from './view/output.js';
+import handleUserInput from './view/console/handleUserInput.js';
+import { printPurchasedQuantity, printLottos, printStatistics } from './view/console/output.js';
 
 async function run() {
   const purchasePrice = Number(await handleUserInput(INPUT.PURCHASE_PRICE, validatePurchasePrice));

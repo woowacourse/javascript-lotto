@@ -1,4 +1,4 @@
-import { LOTTO_SYSTEM } from '../constants/LottoSystem.js';
+import { LOTTO_SYSTEM } from '../../constants/LottoSystem.js';
 
 const OUTPUT = Object.freeze({
   PURCHASED_QUANTITY: (quantity) => `${quantity}개를 구매했습니다.`,

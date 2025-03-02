@@ -1,4 +1,4 @@
-import { retryInput } from '../utils/retryInput.js';
+import { retryInput } from '../../utils/retryInput.js';
 import { readLineAsync } from './input.js';
 
 export default async function handleUserInput(message, validateFn) {

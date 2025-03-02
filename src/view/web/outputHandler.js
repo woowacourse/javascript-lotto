@@ -1,4 +1,4 @@
-import { DOM } from '../DOM/dom.js';
+import { DOM } from '../../DOM/dom.js';
 
 const WEB_OUTPUT = Object.freeze({
   PURCHASED_QUANTITY: (quantity) => `총 ${quantity}개를 구매하였습니다.`,

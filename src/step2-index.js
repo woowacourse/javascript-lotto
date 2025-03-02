@@ -4,8 +4,8 @@ import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
 import WinningLotto from './domain/WinningLotto.js';
 import { validateBonusNumber, validateWinningNumbers } from './validation/validateLottoNumbers.js';
 import { DOM } from './DOM/dom.js';
-import { showLottos, showPurchaseResult, showResultsModal } from './view/outputHandler.js';
-import { handlePurchase } from './view/inputHandler.js';
+import { showLottos, showPurchaseResult, showResultsModal } from './view/web/outputHandler.js';
+import { handlePurchase } from './view/web/inputHandler.js';
 import { errorHandler } from './utils/errorHandler.js';
 
 let purchasePrice = 0;
