@@ -1,6 +1,6 @@
 import DEFINITION from "../constant/Definition.js";
 
-const ValidationUtils = {
+export const ValidationUtils = {
   isEmpty: (string) => string.trim().length === 0,
   isValidArrayLength: (array, min, max) =>
     array.length < min || array.length > max,
@@ -15,9 +15,15 @@ const ValidationUtils = {
   isNotNaturalNumber: (number) => number % 1 !== 0 || number < 1,
   isDuplicated: (array, element) =>
     new Set([...array, element]).size !== array.length + 1,
-  isNotMultiple: (number, unit) => number % unit !== 0,
+  isNotMultiple: (number, unit) => number % unit !== 0 || number === 0,
   isYN: (string) =>
     string.toLowerCase() !== "y" && string.toLowerCase() !== "n",
+  isNumberConvertible: (string) => {
+    if (typeof string !== "string") return false;
+    const trimmed = string.trim();
+    if (trimmed === "") return false;
+    return !isNaN(Number(trimmed));
+  },
 };
 
 const Validator = {
@@ -81,6 +87,7 @@ const Validator = {
         DEFINITION.MAX.LOTTO_PURCHASE_PRICE,
       ),
       IS_NOT_MULTIPLE: ValidationUtils.isNotMultiple(purchasePrice, 1000),
+      IS_NOT_NUMBER: ValidationUtils.isNumberConvertible(purchasePrice),
     };
 
     return errorResults;

@@ -7,6 +7,11 @@ import Parser from "./Parser";
 const getHTML = (e) => document.getElementById(e);
 
 function openModal() {
+  const modalBackground = getHTML("modalBackground");
+  if (modalBackground.querySelector(".modal-box")) {
+    modalBackground.classList.add("show");
+    return;
+  }
   const modalClone = getHTML("modalTemplate").content.cloneNode(true);
   getHTML("modalBackground").appendChild(modalClone);
   getHTML("modalBackground").classList.add("show");
@@ -44,12 +49,9 @@ class SubmitEvent {
 
   handleWinningSubmit(event, form) {
     event.preventDefault();
-
-    getHTML(ERROR.WEB_WINNINGS_AND_BONUS.ELEMENT_ID).innerHTML = "";
-    getHTML(ERROR.WEB_WINNING_NUMBERS.ELEMENT_ID).innerHTML = "";
-    getHTML(ERROR.BONUS_NUMBER.ELEMENT_ID).innerHTML = "";
     const winningData = new FormData(form);
     WebMain.defineWinningRules(winningData);
+
     openModal();
 
     window.addEventListener("keydown", (event) => {

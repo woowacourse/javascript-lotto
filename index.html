@@ -88,7 +88,9 @@
               </div>
             </form>
             <ul id="priceErrorInfo" class="error-info-ul">
-              
+              <li data-error="IS_NOT_NUMBER"><span>✖️</span>숫자만 입력해주세요.</li>
+              <li data-error="IS_NOT_MULTIPLE"><span>✖️</span>로또 한 장의 가격은 1,000원입니다.<br>1,000으로 나누어떨어지는 숫자를 입력해주세요.</li>
+              <li data-error="IS_NUMBER_RANGE_OVER"><span>✖️</span>최소 구입 금액: 1,000 최대 구입 금액: 10,000,000원</li>
             </ul>
             <div id="resultContainer" class="result-container">
 
@@ -118,8 +120,12 @@
                  </div>
                </div>
                <ul id="winningErrorInfo" class="error-info-ul">
+                <li data-error="IS_NOT_NUMBER"><span>✖️</span>숫자만 입력해주세요.</li>
+                <li data-error="IS_NUMBER_RANGE_OVER"><span>✖️</span>1~45 사이의 숫자를 입력해주세요.</li>
+                <li data-error="IS_NUMBER_RANGE_OVER"><span>✖️</span>중복된 숫자는 입력하실 수 없습니다.</li>
               </ul>
               <ul id="bonusErrorInfo" class="error-info-ul">
+                
               </ul>
               <ul id="winningAndBonusErrorInfo" class="error-info-ul">
               </ul>

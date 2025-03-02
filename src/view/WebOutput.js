@@ -8,21 +8,12 @@ const WebOutput = {
   getHTML: (e) => document.getElementById(e),
   printLottos(lottos) {
     this.lottoAmount(lottos.length);
-    // lottos.forEach((lotto) => {
-    //   this.lottoNumbers(lotto);
-    // });
     this.renderLottoNumbers(lottos);
   },
 
   lottoAmount(lottoAmount) {
     document.querySelector(".result-container p").textContent =
       OUTPUT_MESSAGE.LOTTO_AMOUNT(lottoAmount);
-  },
-
-  lottoNumbers(lottoNumbers) {
-    const copyLottoNumbers = [...lottoNumbers];
-    copyLottoNumbers.sort((a, b) => a - b);
-    this.print(`${copyLottoNumbers.join(DEFINITION.SPLIT)}`);
   },
 
   renderLottoNumbers(lottos) {
@@ -70,15 +61,17 @@ const WebOutput = {
   },
 
   printErrorResults(errorResults, errorName) {
-    Object.entries(errorResults).forEach(([key, value]) => {
-      if (value) {
-        this.getHTML(`${errorName["ELEMENT_ID"]}`).appendChild(
-          document.createElement("li"),
-        ).textContent = `${errorName["MESSAGE"][key]}`;
-        this.getHTML(`${errorName["ELEMENT_ID"]}`).classList.add("show");
+    Object.entries(errorResults).forEach(([key, isError]) => {
+      const errorList = document.getElementById(errorName["ELEMENT_ID"]);
+
+      if (!errorList) return;
+      const errorElement = errorList.querySelector(
+        `[data-error="${key}"] span`,
+      );
+
+      if (errorElement) {
+        errorElement.textContent = isError ? "✖️" : "✔️";
       }
-      if (!value)
-        this.getHTML(`${errorName["ELEMENT_ID"]}`).classList.remove("show");
     });
   },
 };

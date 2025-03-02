@@ -247,26 +247,35 @@ container
 }
 
 #priceErrorInfo {
-  display: none;
+  display: block;
 }
 
 #priceErrorInfo.show {
   display: block;
 }
 
+#priceErrorInfo.hidden {
+  visibility: hidden;
+}
+
 .error-info-ul {
   margin-top: 10px;
 }
 .error-info-ul li {
-  color: rgb(213, 77, 77);
+  color: rgb(97, 97, 97);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
-.error-info-ul li::before {
-  content: "•";
-  font-size: 16px;
+.error-info-ul li span {
+  //font-size: 12px;
+  margin-right: 4px;
 }
+
+/* .error-info-ul li::before {
+  content: "";
+  font-size: 16px;
+} */
 
 #winningErrorInfo 
 

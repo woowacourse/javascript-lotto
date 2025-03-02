@@ -12,9 +12,14 @@ class ClickEvent {
     document.getElementById("modalBackground")?.classList.add("show");
   }
 
-  removeModal(element) {
-    if (!element) return;
-    document.getElementById("modalBackground")?.classList.remove("show");
+  removeModal(element, event) {
+    if (
+      event.target.id === "modalBackground" ||
+      event.target.closest("#closeModalBtn")
+    ) {
+      document.getElementById("modalBackground")?.classList.remove("show");
+      return;
+    }
   }
 
   copyContent(element) {
@@ -39,7 +44,7 @@ class ClickEvent {
       target.dataset.action &&
       typeof this[target.dataset.action] === "function"
     )
-      this[target.dataset.action](target);
+      this[target.dataset.action](target, event);
   }
 }
 

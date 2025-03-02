@@ -1,4 +1,3 @@
-import ERROR from "../constant/Error.js";
 import Validator from "../domain/Validator.js";
 import WebOutput from "../view/WebOutput.js";
 import { throwError } from "./util.js";
@@ -24,7 +23,6 @@ export function inputFormHandler({
 function userInputEmptyHandler(inputValue) {
   try {
     const userInputError = Validator.userInput(inputValue);
-    //WebOutput.printErrorResults(userInputError, ERROR.USER_INPUT);
     throwError(userInputError);
   } catch (error) {
     throw new Error(error);
