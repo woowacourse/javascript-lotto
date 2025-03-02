@@ -52,7 +52,9 @@ function createModal(winCount, revenueRate) {
               </table>
           </div>
           <div class="result-footer">
-            <div class="revenue-rate">당신의 총 수익률은 ${revenueRate}%입니다.</div>
+            <div class="revenue-rate">당신의 총 수익률은 ${revenueRate.toFixed(
+              1,
+            )}%입니다.</div>
             <button id="retry-button">다시 시작하기</button>
           </div>`;
 
