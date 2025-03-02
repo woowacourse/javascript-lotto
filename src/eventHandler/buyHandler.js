@@ -8,8 +8,17 @@ import {
   focusFirstNode,
   createElement,
 } from "../util/webUtil.js";
+import { addResultEventHandler } from "./resultHandler.js";
 
-domRefs.$priceForm.addEventListener("submit", (e) => {
+export function addBuyEventHandler() {
+  domRefs.$priceForm.addEventListener("submit", buyHandler);
+}
+
+export function removeBuyEventHandler() {
+  domRefs.$priceForm.removeEventListener("submit", buyHandler);
+}
+
+function buyHandler(e) {
   e.preventDefault();
   try {
     const price = parser.toNumber(domRefs.$inputPrice.value);
@@ -22,11 +31,14 @@ domRefs.$priceForm.addEventListener("submit", (e) => {
 
     setTagsDisabled([domRefs.$inputPrice, domRefs.$buyButton], true);
     focusFirstNode(domRefs.$paper_winning_number_inputs);
+
+    addResultEventHandler();
+    removeBuyEventHandler();
   } catch (error) {
     alert(error.message);
     domRefs.$inputPrice.value = "";
   }
-});
+}
 
 function displayLottoInfo(lottoMachine) {
   const lottosNumber = lottoMachine.getLottosNumber();

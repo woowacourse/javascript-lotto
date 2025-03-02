@@ -1,7 +1,17 @@
 import domRefs from "../webView/dom.js";
 import { setTagsDisabled, initNode, initNodes } from "../util/webUtil.js";
+import { addBuyEventHandler } from "./buyHandler.js";
+import { removeModalCloseEventHandler } from "./modalHandler.js";
 
-domRefs.$modalRestartButton.addEventListener("click", () => {
+export function addModalRestartEventHandler() {
+  domRefs.$modalRestartButton.addEventListener("click", restartHandler);
+}
+
+export function removeRestartEventHandler() {
+  domRefs.$modalRestartButton.removeEventListener("click", restartHandler);
+}
+
+function restartHandler() {
   domRefs.$modal.close();
   domRefs.$lottoInfoWrap.style.display = "none";
   domRefs.$inputPrice.value = "";
@@ -12,4 +22,8 @@ domRefs.$modalRestartButton.addEventListener("click", () => {
   domRefs.$lottoInfo.innerHTML = "";
 
   domRefs.$inputPrice.focus();
-});
+
+  removeRestartEventHandler();
+  removeModalCloseEventHandler();
+  addBuyEventHandler();
+}

@@ -3,8 +3,18 @@ import NumbersValidator from "../domain/\bvalidator/NumbersValidator.js";
 import BonusNumberValidator from "../domain/\bvalidator/BonusNumberValidator.js";
 import { setTagsDisabled } from "../util/webUtil.js";
 import domRefs from "../webView/dom.js";
+import { addModalRestartEventHandler } from "./restartHandler.js";
+import { addModalCloseEventHandler } from "./modalHandler.js";
 
-domRefs.$winningForm.addEventListener("submit", (e) => {
+export function addResultEventHandler() {
+  domRefs.$winningForm.addEventListener("submit", resultHandler);
+}
+
+export function removeResultEventHandler() {
+  domRefs.$winningForm.removeEventListener("submit", resultHandler);
+}
+
+function resultHandler(e) {
   e.preventDefault();
   try {
     const { winningNumbers, bonusNumber } = getWinningAndBonus();
@@ -21,11 +31,14 @@ domRefs.$winningForm.addEventListener("submit", (e) => {
     displayResult(statistics);
 
     domRefs.$modal.showModal();
+
+    addModalRestartEventHandler();
+    addModalCloseEventHandler();
+    removeResultEventHandler();
   } catch (error) {
     alert(error.message);
-    console.error(error);
   }
-});
+}
 
 function getWinningAndBonus() {
   const winningNumbers = Array.from(domRefs.$paper_winning_number_inputs).map(
