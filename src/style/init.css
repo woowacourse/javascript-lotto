@@ -70,3 +70,9 @@ input::placeholder {
 input:disabled {
   cursor: not-allowed;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
