@@ -2,6 +2,7 @@ import winningLottoBoxContents from "./winningLottoBox.html?raw";
 import createNumbersInput from "./createNumbersInput.js";
 import "./winningLottoBox.css";
 import { appendContents } from "../../utilsWeb/elementCreator.js";
+import createBonusNumberInput from "./createBonusNumberInput.js";
 
 const createWinningLottoBox = () => {
   appendContents(
@@ -11,7 +12,9 @@ const createWinningLottoBox = () => {
   );
 
   const numbersInput = createNumbersInput();
+  const bonusNumberInput = createBonusNumberInput();
   appendContents(".numbers-input-container", ".winning-numbers", numbersInput);
+  appendContents(".bonus-number-container", ".bonus-number", bonusNumberInput);
 };
 
 export default createWinningLottoBox;

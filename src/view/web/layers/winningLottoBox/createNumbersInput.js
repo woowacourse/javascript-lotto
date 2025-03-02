@@ -1,15 +1,14 @@
 import { LOTTO_RULE } from "../../../../constants/lotto.js";
+import { setNumberInput } from "../../utilsWeb/input.js";
 
 const createNumbersInput = () => {
   return Array.from({ length: LOTTO_RULE.LOTTO_LENGTH })
     .map(() => {
-      return `<input
-        type="number"
-        class="winning-numbers"
-        min="${LOTTO_RULE.MIN_LOTTO_NUMBER}"
-        max="${LOTTO_RULE.MAX_LOTTO_NUMBER}"
-        autocomplete="off"
-      />`;
+      return setNumberInput(
+        "winning-numbers",
+        LOTTO_RULE.MIN_LOTTO_NUMBER,
+        LOTTO_RULE.MAX_LOTTO_NUMBER,
+      );
     })
     .join("");
 };
