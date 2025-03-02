@@ -5,12 +5,12 @@ import {
 
 const readWinningNumbers = (validator, renderer) => {
   const winningLottoForm = document.querySelector(".winning-lotto-form");
-  const purchaseContainer = document.querySelector(".purchase-container");
+  const numbersContainer = document.querySelector(".numbers-container");
 
   winningLottoForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    purchaseContainer.querySelectorAll("input, button").forEach((element) => {
+    numbersContainer.querySelectorAll("input").forEach((element) => {
       element.disabled = true;
     });
 
