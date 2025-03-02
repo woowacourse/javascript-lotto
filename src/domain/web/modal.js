@@ -1,38 +1,36 @@
 import { hideLayout, showLayout } from "./setup";
 
 const allowModalOpen = () => {
-  const prizeResultModal = document.querySelector("modal");
-  showLayout(prizeResultModal);
+  const $prizeResultModal = $("modal");
+  showLayout($prizeResultModal);
 
-  const prizeResultButton = document.querySelector(".result-contents");
-  const closeButton = document.querySelector("modal .close-button");
+  const $prizeResultButton = $(".result-contents");
+  const $closeButton = $("modal .close-button");
 
-  prizeResultButton.addEventListener("click", handleModal);
-  closeButton.addEventListener("click", handleModal);
-  document.body.style.overflow = "hidden";
+  $prizeResultButton.on("click", handleModal);
+  $closeButton.on("click", handleModal);
+  $("body").css("overflow", "hidden");
 };
 
 const handleModal = () => {
-  const prizeResultModal = document.querySelector("modal");
-  const modalOpenStatus = window.getComputedStyle(prizeResultModal).visibility;
+  const $prizeResultModal = $("modal"); // jQuery 선택자 사용
+  const modalOpenStatus = $prizeResultModal.css("visibility");
 
   if (modalOpenStatus === "hidden") {
-    showLayout(prizeResultModal);
-    document.body.style.overflow = "hidden";
+    showLayout($prizeResultModal);
+    $("body").css("overflow", "hidden");
   } else if (modalOpenStatus === "visible") {
-    hideLayout(prizeResultModal);
-    document.body.style.overflow = "auto";
+    hideLayout($prizeResultModal);
+    $("body").css("overflow", "auto");
   }
 };
 
 const allowWinningLotto = () => {
-  const winningLottoContainer = document.querySelector(
-    ".winningLotto-contents"
-  );
-  const resultSubmitButton = document.querySelector(".result-contents");
+  const $winningLottoContainer = $(".winningLotto-contents");
+  const $resultSubmitButton = $(".result-contents");
 
-  showLayout(winningLottoContainer);
-  showLayout(resultSubmitButton);
+  showLayout($winningLottoContainer);
+  showLayout($resultSubmitButton);
 };
 
 export { handleModal, allowModalOpen, allowWinningLotto };

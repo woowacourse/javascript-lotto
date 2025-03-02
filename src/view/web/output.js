@@ -3,40 +3,37 @@ import lottoImg from "../../assets/lotto.png";
 import { disableInputPrice } from "../../domain/web/setup";
 
 const printLottoCount = (price) => {
-  const lottoContents = document.querySelector(".lotto-contents");
-  const lottoCountText = document.createElement("p");
-  lottoCountText.className = "body";
-  lottoCountText.innerText = `총 ${
-    price / LOTTO.PURCHASE.unit
-  }개를 구매하였습니다.`;
-  lottoContents.appendChild(lottoCountText);
+  const $lottoContents = $(".lotto-contents");
+  const $lottoCountText = $("<p>")
+    .addClass("body")
+    .text(`총 ${price / LOTTO.PURCHASE.unit}개를 구매하였습니다.`);
+
+  $lottoContents.append($lottoCountText);
   disableInputPrice();
 };
 
 const createLottoObject = (lotto) => {
-  const lottoContainer = document.createElement("div");
-  lottoContainer.className = "lotto-container_lotto";
-  const lottoImage = document.createElement("img");
-  lottoImage.src = lottoImg;
-  const lottoNumbers = document.createElement("p");
-  lottoNumbers.innerText = lotto.numbers.map((number) => number).join(", ");
+  const $lottoContainer = $("<div>").addClass("lotto-container_lotto");
+  const $lottoImage = $("<img>").attr("src", lottoImg);
+  const $lottoNumbers = $("<p>").text(
+    lotto.numbers.map((number) => number).join(", ")
+  );
 
-  lottoContainer.appendChild(lottoImage);
-  lottoContainer.appendChild(lottoNumbers);
+  $lottoContainer.append($lottoImage, $lottoNumbers);
 
-  return lottoContainer;
+  return $lottoContainer[0];
 };
 
 const printLottos = (lottos) => {
-  const lottoContents = document.querySelector(".lotto-contents");
-  const lottosContainer = document.createElement("div");
+  const $lottoContents = $(".lotto-contents");
+  const $lottosContainer = $("<div>");
 
   const lottoObjects = lottos.map((lotto) => createLottoObject(lotto));
   lottoObjects.forEach((lottoObject) => {
-    lottosContainer.appendChild(lottoObject);
+    $lottosContainer.append(lottoObject);
   });
 
-  lottoContents.appendChild(lottosContainer);
+  $lottoContents.append($lottosContainer);
 };
 
 const prizeSummary = [
@@ -52,51 +49,50 @@ const prizeSummary = [
 ];
 
 const createPrizeRow = ({ count, prize, label }, prizeResult) => {
-  const tableRow = document.createElement("tr");
+  const $tableRow = $("<tr>");
 
   const rowData = [count, prize.toLocaleString(), `${prizeResult[label]}개`];
 
   rowData.forEach((data) => {
-    const cell = document.createElement("td");
-    cell.innerText = data;
-    tableRow.appendChild(cell);
+    const $cell = $("<td>").text(data);
+    $tableRow.append($cell);
   });
 
-  return tableRow;
+  return $tableRow[0]; // jQuery 객체를 DOM 요소로 반환
 };
 
 const printPrizeHeader = () => {
-  const resultTable = document.querySelector(".result-table");
+  const $resultTable = $(".result-table");
 
   const headers = ["일치 갯수", "당첨금", "당첨 갯수"];
-  const tableHeader = document.createElement("thead");
-  const tableRow = document.createElement("tr");
+  const $tableHeader = $("<thead>");
+  const $tableRow = $("<tr>");
 
   headers.forEach((headerText) => {
-    const headerCell = document.createElement("th");
-    headerCell.innerText = headerText;
-    tableRow.appendChild(headerCell);
+    const $headerCell = $("<th>").text(headerText);
+    $tableRow.append($headerCell);
   });
 
-  tableHeader.appendChild(tableRow);
-  resultTable.appendChild(tableHeader);
+  $tableHeader.append($tableRow);
+  $resultTable.append($tableHeader);
 };
 
 const printPrizeResult = (prizeResult) => {
-  const tableBody = document.querySelector(".result-table .body");
+  const $tableBody = $(".result-table .body");
   prizeSummary.forEach((summary) =>
-    tableBody.appendChild(createPrizeRow(summary, prizeResult))
+    $tableBody.append(createPrizeRow(summary, prizeResult))
   );
 };
 
 const printRateResult = (rate) => {
-  const prizeContents = document.querySelector(".prize-contents");
-  const restartButton = document.querySelector(".prize-contents button");
-  const rateResult = document.createElement("p");
+  const $prizeContents = $(".prize-contents");
+  const $restartButton = $(".prize-contents button");
+  const $rateResult = $("<p></p>").addClass("prize-contents_rate-result");
+
   if (rate < 0) rate = 0;
-  rateResult.innerText = `당신의 총 수익률은 ${rate}%입니다.`;
-  rateResult.className = "prize-contents_rate-result";
-  prizeContents.insertBefore(rateResult, restartButton);
+
+  $rateResult.text(`당신의 총 수익률은 ${rate}%입니다.`);
+  $rateResult.insertBefore($restartButton);
 };
 
 const printLottoResult = (prizeResult, rate) => {

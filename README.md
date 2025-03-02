@@ -123,5 +123,6 @@
 - **feat**
 - [x] form 태그 사용하기 + reset 옵션 적용
 - [x] 화면 렌더링 시 필요한 input에 자동 focus 처리
+- [x] querySelector에서 jQuery사용으로 변경
 
 - [ ] commit 링크 연동

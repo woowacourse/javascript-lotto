@@ -7,33 +7,29 @@ import {
 } from "../../utils/validate/Validator";
 
 const printErrorMessage = (errorField, error) => {
-  const prevErrorMessage = document.querySelector(
-    `${errorField} .error-message`
-  );
-  if (prevErrorMessage) {
-    prevErrorMessage.innerText = error.message;
+  const prevErrorMessage = $(`${errorField} .error-message`);
+  console.log(prevErrorMessage);
+  if (prevErrorMessage.length) {
+    prevErrorMessage.text(error.message);
     return;
   }
-  const errorFieldBlock = document.querySelector(errorField);
-  const errorMessage = document.createElement("p");
-  errorMessage.className = "error-message";
-  errorMessage.innerText = error.message;
-  errorFieldBlock.appendChild(errorMessage);
+
+  const $errorFieldBlock = $(errorField);
+  const $errorMessage = $("<p>").addClass("error-message").text(error.message);
+  $errorFieldBlock.append($errorMessage);
 };
 
 // error 메시지 지우는 함수
 const removeErrorField = (errorField) => {
-  const prevErrorMessage = document.querySelector(
-    `${errorField} .error-message`
-  );
-  if (prevErrorMessage) {
-    prevErrorMessage.remove();
+  const $prevErrorMessage = $(errorField).find(".error-message");
+  if ($prevErrorMessage.length) {
+    $prevErrorMessage.remove();
   }
 };
 
 // price 입력받기
 const repeatGetPrice = (resolve) => {
-  const userInputPrice = document.querySelector(".input-contents input").value;
+  const userInputPrice = $(".input-contents input").val();
 
   try {
     validatePrice(userInputPrice);
@@ -47,31 +43,27 @@ const repeatGetPrice = (resolve) => {
 };
 
 const getPrice = () => {
+  console.log(" 1");
   return new Promise((resolve) => {
-    document
-      .querySelector(".input-contents form")
-      .addEventListener("submit", async (event) => {
-        event.preventDefault();
-        repeatGetPrice(resolve);
-      });
+    $(".input-contents form").on("submit", async (event) => {
+      event.preventDefault();
+      repeatGetPrice(resolve);
+    });
   });
 };
 
 // winningLotto 입력받기
 const getWinningNumber = () => {
   const winningNumbers = [];
-  document
-    .querySelectorAll(".winningLotto-contents_winningLotto div input")
-    .forEach((winningNumber) => {
-      winningNumbers.push(winningNumber.value);
-    });
+  $(".winningLotto-contents_winningLotto div input").each(function () {
+    winningNumbers.push($(this).val());
+  });
 
   return winningNumbers;
 };
 
 const getBonusNumber = () => {
-  return document.querySelector(".winningLotto-contents_bonusNumber input")
-    .value;
+  return $(".winningLotto-contents_bonusNumber input").val();
 };
 
 const parseNumber = (winningNumbers, bonusNumber) => {
@@ -96,12 +88,10 @@ const repeatWinningLotto = (resolve) => {
 
 const getWinningLotto = async () => {
   return new Promise((resolve) => {
-    document
-      .querySelector("#lottoForm")
-      .addEventListener("submit", async (event) => {
-        event.preventDefault();
-        repeatWinningLotto(resolve);
-      });
+    $("#lottoForm").on("submit", async (event) => {
+      event.preventDefault();
+      repeatWinningLotto(resolve);
+    });
   });
 };
 
