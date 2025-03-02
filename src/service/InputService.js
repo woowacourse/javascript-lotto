@@ -1,5 +1,6 @@
 import InputHandler from '../input/InputHandler.js';
 import { YES } from '../constants/constants.js';
+import OutputView from '../view/OutputView.js';
 
 class InputService {
   static async getPurchaseMoney() {
@@ -7,6 +8,7 @@ class InputService {
       const money = await InputHandler.purchaseMoney();
       return money;
     } catch (e) {
+      OutputView.print(e.message);
       return await this.getPurchaseMoney();
     }
   }
@@ -16,6 +18,7 @@ class InputService {
       const winningNumbers = await InputHandler.winningNumbers();
       return winningNumbers;
     } catch (e) {
+      OutputView.print(e.message);
       return await this.getWinningNumbers();
     }
   }
@@ -25,6 +28,7 @@ class InputService {
       const bonusNumber = await InputHandler.bonusNumber(winningNumbers);
       return bonusNumber;
     } catch (e) {
+      OutputView.print(e.message);
       return await this.getBonusNumber(winningNumbers);
     }
   }
@@ -37,6 +41,7 @@ class InputService {
       }
       return input;
     } catch (e) {
+      OutputView.print(e.message);
       return await this.reStart(runCallback);
     }
   }
