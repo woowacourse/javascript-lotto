@@ -5,9 +5,11 @@ const readLottoPriceInput = (validator, renderer) => {
     event.preventDefault();
 
     const price = Number(document.querySelector("#price").value);
-    validator(price);
+    const isValidPrice = validator(price);
 
-    renderer(price);
+    if (isValidPrice) {
+      renderer(price);
+    }
   });
 };
 

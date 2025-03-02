@@ -10,9 +10,11 @@ const readWinningNumbers = (validator, renderer) => {
 
     const bonusNumber = Number(document.querySelector(".bonus-number").value);
 
-    validator(winningNumbers, bonusNumber);
+    const isValidNumbers = validator(winningNumbers, bonusNumber);
 
-    renderer(winningNumbers, bonusNumber);
+    if (isValidNumbers) {
+      renderer(winningNumbers, bonusNumber);
+    }
   });
 };
 

@@ -6,6 +6,7 @@ import createFooter from "./src/view/web/layers/footer/footer.js";
 import readLottoPriceInput from "./src/view/web/modules/readLottoPriceInput.js";
 import readWinningNumbers from "./src/view/web/modules/readWinningNumbers.js";
 
+import { validateInput } from "./src/view/web/utilsWeb/validation.js";
 import validateLottoPrice from "./src/validation/validateLottoPrice.js";
 import generateLottoNumberSets from "./src/lotto/generateLottoNumberSets.js";
 import createLottoBox from "./src/view/web/layers/lottoBox/createLottoBox.js";
@@ -40,11 +41,10 @@ const handleUserInput = () => {
 };
 
 const checkPrice = (price) => {
-  try {
-    validateLottoPrice(price);
-  } catch (error) {
-    alert(error.message);
-  }
+  return validateInput({
+    validatorList: [() => validateLottoPrice(price)],
+    errorHandler: (error) => alert(error.message),
+  });
 };
 
 const rendererUsingPrice = (price) => {
@@ -54,12 +54,13 @@ const rendererUsingPrice = (price) => {
 };
 
 const checkWinningLotto = (winningNumbers, bonusNumber) => {
-  try {
-    validateWinningNumbers(winningNumbers);
-    validateBonusNumber(bonusNumber, winningNumbers);
-  } catch (error) {
-    alert(error.message);
-  }
+  return validateInput({
+    validatorList: [
+      () => validateWinningNumbers(winningNumbers),
+      () => validateBonusNumber(bonusNumber, winningNumbers),
+    ],
+    errorHandler: (error) => alert(error.message),
+  });
 };
 
 const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
