@@ -2,10 +2,10 @@ import { qsAll } from "../../utils/domHelper.js";
 
 export default class Component {
   constructor(element, props = {}) {
+    if (!element) throw "no element";
     this.element = element;
     this.props = { ...props };
 
-    if (!element) throw "no element";
     this.setUp();
     this.setEvent();
     this.render();
