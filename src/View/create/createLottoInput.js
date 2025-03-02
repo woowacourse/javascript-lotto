@@ -13,6 +13,7 @@ function createLottoInput() {
 
   const form = document.createElement('form');
   form.classList.add('input-form');
+  form.id = 'lotto-form';
 
   const winningNumContainer = document.createElement('div');
   winningNumContainer.classList.add(SELECTORS.CONTAINER.WINNING_NUMBER);

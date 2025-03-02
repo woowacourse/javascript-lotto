@@ -1,17 +1,8 @@
 import SELECTORS from '../../constants/Selectors.js';
 
 function clearLottoInputs() {
-  const numInputs = document.querySelectorAll(
-    `.${SELECTORS.INPUT.WINNING_NUMBER}`,
-  );
-  numInputs.forEach((input) => {
-    input.value = '';
-  });
-
-  const bonusInput = document.getElementById(SELECTORS.INPUT.BONUS_NUMBER);
-  if (bonusInput) {
-    bonusInput.value = '';
-  }
+  const form = document.getElementById(SELECTORS.FORM.LOTTO);
+  form.reset();
 }
 
 export default clearLottoInputs;

@@ -21,6 +21,7 @@ const SELECTORS = {
   },
   FORM: {
     PURCHASE: 'purchase-form',
+    LOTTO: 'lotto-form',
   },
 };
 
