@@ -25,13 +25,6 @@ import { createWinningLottoForm } from './View/WebView/createWinningLottoForm.js
 import { createLottoListDisplay } from './View/WebView/createLottoListDisplay.js';
 import { createWinningStatisticsModal } from './View/WebView/createWinningStatisticsModal.js';
 
-const validateAndFormatPurchaseAmountInput = (input) => {
-  validateEmptySpace(input);
-  const convertedInput = convertFormat.toNumber(input);
-  validatePurchaseAmount(convertedInput);
-  return convertedInput;
-};
-
 class App {
   #state = {};
 
@@ -231,7 +224,12 @@ class App {
 
     const purchaseAmountInput = this.#initializeWebInput({
       readUserInput: () => formData.get('purchaseAmount'),
-      formatter: validateAndFormatPurchaseAmountInput,
+      formatter: (input) => {
+        validateEmptySpace(input);
+        const convertedInput = convertFormat.toNumber(input);
+        validatePurchaseAmount(convertedInput);
+        return convertedInput;
+      },
       onError: (error) => outputViewByWeb.displayErrorMessage(error),
     });
 
