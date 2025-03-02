@@ -9,7 +9,7 @@ button {
   position: relative;
 }
 
-.prize-contents > p:nth-child(4) {
+.prize-contents_rate-result {
   font-family: Roboto;
   font-weight: 700;
   font-size: 15px;

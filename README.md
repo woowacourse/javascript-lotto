@@ -61,6 +61,9 @@
 
 ## step2
 
+<details>
+  <summary>step2 1차 요약</summary>
+
 **요구사항**
 
 - [x] package.json > "homepage" 값에 본인의 GitHub username 입력
@@ -102,3 +105,10 @@
   - [x] 수익률 출력 화면 제작 (css)
   - [x] restart 버튼 제작 (css)
     - [x] restart 기능 제작
+
+<details>
+
+**2차 PR반영**
+
+- [ ] modain/web 디렉터리에 대해서는 코멘트 확인
+- [x] className 명시적으로 변경하기
