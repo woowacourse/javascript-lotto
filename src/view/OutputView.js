@@ -7,7 +7,7 @@ const OutputView = {
     // console.log(`[${lotto.join(STRING.PRINT_LOTTO_SPLITTER)}]`);
     document.getElementById("generated-lottos").innerHTML += `
     <p>
-      <img src="/images/ticket.png"/> ${lotto.join(STRING.PRINT_LOTTO_SPLITTER)}
+      <img src="../../public/images/ticket.png"/> ${lotto.join(STRING.PRINT_LOTTO_SPLITTER)}
     </p>
   `;
   },
