@@ -33,6 +33,10 @@ class LottoPurchase extends BaseWebComponent {
     ).value;
     const errorElement = this.querySelector(".lotto-purchase__error");
 
+    this.#handleValidation(purchaseAmountInput, errorElement);
+  }
+
+  #handleValidation(purchaseAmountInput, errorElement) {
     try {
       const purchaseAmount = validatePurchaseAmount(purchaseAmountInput);
       hideElement(errorElement);

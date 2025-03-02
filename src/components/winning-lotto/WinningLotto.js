@@ -93,6 +93,10 @@ class WinningLotto extends BaseWebComponent {
     ).value;
     const errorElement = this.querySelector(".winning-lotto__error");
 
+    this.#handleValidation(winningNumbersInput, bonusNumberInput, errorElement);
+  }
+
+  #handleValidation(winningNumbersInput, bonusNumberInput, errorElement) {
     try {
       const winningNumbers = validateWinningNumbers(winningNumbersInput);
       const bonusNumber = validateBonusNumber(bonusNumberInput, winningNumbers);
