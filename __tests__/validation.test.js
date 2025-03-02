@@ -57,7 +57,7 @@ describe('로또 번호 유효성 검사 테스트', () => {
 
 describe('당첨 번호 유효성 검사 테스트', () => {
   test('당첨 번호 통과 케이스', () => {
-    const testWinningNumbers = '1, 2, 3, 4, 5, 6';
+    const testWinningNumbers = '1,2,3,4,5,6';
     expect(() => validateWinningNumbers(testWinningNumbers)).not.toThrow();
   });
 

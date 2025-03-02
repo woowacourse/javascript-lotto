@@ -1,7 +1,7 @@
 import { LOTTO_SYSTEM } from '../constants/LottoSystem.js';
 import Lotto from './Lotto.js';
 
-export const getLottos = (quantity) => {
+export const generateLottos = (quantity) => {
   const lottos = [];
   Array.from({ length: quantity }, () => {
     const numbers = generateLotto();

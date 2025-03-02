@@ -1,5 +1,5 @@
 import { calculateRevenue } from './domain/calculateRevenue.js';
-import { getLottos } from './domain/getLottos.js';
+import { generateLottos } from './domain/getLottos.js';
 import { getWinningMatchCount } from './domain/getWinningMatchCount.js';
 import WinningLotto from './domain/WinningLotto.js';
 import { validateBonusNumber, validateWinningNumbers } from './validation/validateLottoNumbers.js';
@@ -18,7 +18,7 @@ DOM.purchaseForm.addEventListener('submit', (event) => {
     purchasePrice = price;
     const quantity = Math.floor(purchasePrice / 1000);
     showPurchaseResult(quantity);
-    lottos = getLottos(quantity);
+    lottos = generateLottos(quantity);
     showLottos(lottos);
     DOM.systemMessage.style.display = 'flex';
   });

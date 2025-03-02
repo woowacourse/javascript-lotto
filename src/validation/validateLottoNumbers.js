@@ -24,11 +24,11 @@ export const validateWinningNumbers = (input) => {
   const winningNumbers = typeof input === 'string' ? input.split(',') : input;
   const winningNumberSet = new Set(winningNumbers);
 
-  if (winningNumbers.length !== LOTTO_SYSTEM.MAX_LENGTH) {
+  if (winningNumbers.length !== LOTTO_SYSTEM.SIZE.MAX_LENGTH) {
     throw new Error(ERROR.NOT_SAME_LENGTH_OF_WINNING_NUMBER);
   }
 
-  if (winningNumberSet.size !== LOTTO_SYSTEM.MAX_LENGTH) {
+  if (winningNumberSet.size !== LOTTO_SYSTEM.SIZE.MAX_LENGTH) {
     throw new Error(ERROR.DUPLICATED_WINNING_NUMBER);
   }
 
