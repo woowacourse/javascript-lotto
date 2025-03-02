@@ -29,16 +29,20 @@ const modalCloseButton = document.getElementById("modal-close-button");
 const modalRestartButton = document.getElementById("restart-button");
 
 purchaseButton.addEventListener("click", () => {
-  const purchaseAmount = Number(purchaseInput.value.trim());
+  try {
+    const purchaseAmount = Number(purchaseInput.value.trim());
 
-  purchaseAmountValidator(purchaseAmount);
+    purchaseAmountValidator(purchaseAmount);
 
-  const numberOfTickets = Math.floor(purchaseAmount / SETTINGS.priceUnit);
-  lottoCountMessage.textContent = `총 ${numberOfTickets}개를 구매하였습니다.`;
+    const numberOfTickets = Math.floor(purchaseAmount / SETTINGS.priceUnit);
+    lottoCountMessage.textContent = `총 ${numberOfTickets}개를 구매하였습니다.`;
 
-  lottoController.generateTickets(purchaseAmount);
-  printLottoTickets(lottoController.lottoTickets);
-  document.getElementById("winning-number-and-bonus").style.visibility = "visible";
+    lottoController.generateTickets(purchaseAmount);
+    printLottoTickets(lottoController.lottoTickets);
+    document.getElementById("winning-number-and-bonus").style.visibility = "visible";
+  } catch (e) {
+    alert(e.message);
+  }
 });
 
 purchaseInput.addEventListener("keydown", (event) => {
