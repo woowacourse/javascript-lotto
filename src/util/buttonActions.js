@@ -1,4 +1,4 @@
-export const disabledButton = (name) => {
+export const disableButton = (name) => {
   const button = document.querySelector(`[name=${name}]`);
   button.disabled = true;
 };
