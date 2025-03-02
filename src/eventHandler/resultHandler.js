@@ -6,12 +6,16 @@ import domRefs from "../webView/dom.js";
 import { addModalRestartEventHandler } from "./restartHandler.js";
 import { addModalCloseEventHandler } from "./modalHandler.js";
 
+const $winningForm = document.querySelector(".paper_winning_form");
+const $matchCounts = document.querySelectorAll(".modal_match_count");
+const $winningRate = document.querySelector(".modal_winning_rate");
+
 export function addResultEventHandler() {
-  domRefs.$winningForm.addEventListener("submit", resultHandler);
+  $winningForm.addEventListener("submit", resultHandler);
 }
 
 export function removeResultEventHandler() {
-  domRefs.$winningForm.removeEventListener("submit", resultHandler);
+  $winningForm.removeEventListener("submit", resultHandler);
 }
 
 function resultHandler(e) {
@@ -56,12 +60,10 @@ function winningAndBonusValidate(winningNumbers, bonusNumber) {
 function displayResult(statistics) {
   const counts = Object.values(statistics);
 
-  Array.from(domRefs.$matchCounts).forEach(($matchCount, index) => {
+  Array.from($matchCounts).forEach(($matchCount, index) => {
     $matchCount.textContent = counts[index] + "개";
   });
 
   const rate = lottoState.lottoMachine.getWinningRate(statistics);
-  domRefs.$winningRate.innerHTML = `당신의 총 수익률은 ${rate.toFixed(
-    2
-  )}%입니다.`;
+  $winningRate.innerHTML = `당신의 총 수익률은 ${rate.toFixed(2)}%입니다.`;
 }

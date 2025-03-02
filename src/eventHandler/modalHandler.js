@@ -1,6 +1,8 @@
 import domRefs from "../webView/dom.js";
 import { addResultEventHandler } from "./resultHandler.js";
 
+const $modalCloseButton = document.querySelector(".modal_close_button");
+
 export function addModalCloseEventHandler() {
   domRefs.$modal.addEventListener("click", modalCloseHandler);
 }
@@ -12,7 +14,7 @@ export function removeModalCloseEventHandler() {
 function modalCloseHandler(e) {
   addResultEventHandler();
 
-  if (e.target === domRefs.$modalCloseButton) {
+  if (e.target === $modalCloseButton) {
     domRefs.$modal.close();
     return;
   }

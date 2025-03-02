@@ -3,12 +3,14 @@ import { setTagsDisabled, initNode, initNodes } from "../util/webUtil.js";
 import { addBuyEventHandler } from "./buyHandler.js";
 import { removeModalCloseEventHandler } from "./modalHandler.js";
 
+const $modalRestartButton = document.querySelector(".modal_restart_button");
+
 export function addModalRestartEventHandler() {
-  domRefs.$modalRestartButton.addEventListener("click", restartHandler);
+  $modalRestartButton.addEventListener("click", restartHandler);
 }
 
 export function removeRestartEventHandler() {
-  domRefs.$modalRestartButton.removeEventListener("click", restartHandler);
+  $modalRestartButton.removeEventListener("click", restartHandler);
 }
 
 function restartHandler() {

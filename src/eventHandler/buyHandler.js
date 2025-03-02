@@ -10,12 +10,15 @@ import {
 } from "../util/webUtil.js";
 import { addResultEventHandler } from "./resultHandler.js";
 
+const $priceForm = document.querySelector(".paper_price_form");
+const $lottoCount = document.querySelector(".paper_lotto_count");
+
 export function addBuyEventHandler() {
-  domRefs.$priceForm.addEventListener("submit", buyHandler);
+  $priceForm.addEventListener("submit", buyHandler);
 }
 
 export function removeBuyEventHandler() {
-  domRefs.$priceForm.removeEventListener("submit", buyHandler);
+  $priceForm.removeEventListener("submit", buyHandler);
 }
 
 function buyHandler(e) {
@@ -42,7 +45,7 @@ function buyHandler(e) {
 
 function displayLottoInfo(lottoMachine) {
   const lottosNumber = lottoMachine.getLottosNumber();
-  domRefs.$lottoCount.textContent = `총 ${lottosNumber.length}개 구매했습니다.`;
+  $lottoCount.textContent = `총 ${lottosNumber.length}개 구매했습니다.`;
   createLottos(lottosNumber);
 }
 
