@@ -3,8 +3,8 @@ export const getPrice = () => {
 };
 
 export const getLottoNumbers = () => {
-  return [...document.querySelectorAll(".lotto-numbers")].map((li) =>
-    li.textContent.split(",").map(Number),
+  return [...document.querySelectorAll(".lotto-number")].map((p) =>
+    p.textContent.split(",").map(Number),
   );
 };
 
