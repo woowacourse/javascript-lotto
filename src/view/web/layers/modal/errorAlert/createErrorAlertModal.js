@@ -5,7 +5,7 @@ import {
 import errorAlertContents from "./errorAlertModal.html?raw";
 
 const createErrorAlertModal = (message) => {
-  appendContents("#app", ".error-alert-modal", errorAlertContents);
+  appendContents(".error-alert-modal", ".alert-container", errorAlertContents);
   insertTextContents(".error-message", message);
 };
 
