@@ -117,5 +117,8 @@
 - [x] !important 속성 삭제 & 선택자 특이도 높이기
 - [x] position - inset 속성으로 변경
 - [x] padding으로 통일
+- [x] title Document 삭제
+
+- **feat**
 
 - [ ] commit 링크 연동
