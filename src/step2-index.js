@@ -10,10 +10,10 @@ import { elements } from "./ui/querySelector.js";
 import {
   updateUI,
   showUI,
+  removeUI,
   validUI,
-  removeInputValue,
-  displayBlock,
-  displayNone,
+  displayUI,
+  initWinningNumbers,
 } from "./ui/utilsUI.js";
 
 const state = {
@@ -37,9 +37,9 @@ function purchase() {
   updateUI.updatePurchaseMessage(state.price);
   showUI.showGeneratedLottos(state.generatedLottos);
 
-  removeInputValue(elements.purchaseInput);
-  displayBlock(elements.generateSection);
-  displayBlock(elements.resultSection);
+  removeUI.removeInputValue(elements.purchaseInput);
+  displayUI.displayBlock(elements.generateSection);
+  displayUI.displayBlock(elements.resultSection);
 }
 
 function checkResult() {
@@ -64,32 +64,26 @@ function checkResult() {
   updateUI.updatePrizeResult(lottoPrize);
   updateUI.updateROI(ROI);
 
-  displayBlock(elements.modal);
+  displayUI.displayBlock(elements.modal);
 }
 
 function closeModal() {
-  displayNone(elements.modal);
+  displayUI.displayNone(elements.modal);
+  removeUI.removePrizeResultCountElements();
+  initWinningNumbers(state.winningNumbers);
 }
 
 function restartLotto() {
-  displayNone(elements.modal);
-  displayNone(elements.generateSection);
-  displayNone(elements.resultSection);
+  displayUI.displayNone(elements.modal);
+  displayUI.displayNone(elements.generateSection);
+  displayUI.displayNone(elements.resultSection);
 
   elements.winningNumberInputs.forEach((input) => {
-    removeInputValue(input);
+    removeUI.removeInputValue(input);
   });
-  removeInputValue(elements.bonusNumberInput);
+  removeUI.removeInputValue(elements.bonusNumberInput);
+  removeUI.removeGeneratedLottosLists();
+  removeUI.removePrizeResultCountElements();
 
-  while (elements.generatedLottosLists.firstChild) {
-    elements.generatedLottosLists.removeChild(
-      elements.generatedLottosLists.firstChild
-    );
-  }
-
-  elements.trs.forEach((tr) => {
-    tr.lastChild.remove();
-  });
-
-  state.winningNumbers = [];
+  initWinningNumbers(state.winningNumbers);
 }

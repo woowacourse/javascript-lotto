@@ -35,6 +35,26 @@ export const showUI = {
   },
 };
 
+export const removeUI = {
+  removeInputValue(input) {
+    input.value = "";
+  },
+
+  removeGeneratedLottosLists() {
+    while (elements.generatedLottosLists.firstChild) {
+      elements.generatedLottosLists.removeChild(
+        elements.generatedLottosLists.firstChild
+      );
+    }
+  },
+
+  removePrizeResultCountElements() {
+    elements.trs.forEach((tr) => {
+      tr.lastChild.remove();
+    });
+  },
+};
+
 export const validUI = {
   isValidPrice(price) {
     try {
@@ -42,7 +62,7 @@ export const validUI = {
       return true;
     } catch (error) {
       alert(error.message);
-      removeInputValue(elements.purchaseInput);
+      removeUI.removeInputValue(elements.purchaseInput);
       return false;
     }
   },
@@ -54,9 +74,9 @@ export const validUI = {
     } catch (error) {
       alert(error.message);
       elements.winningNumberInputs.forEach((input) => {
-        removeInputValue(input);
+        removeUI.removeInputValue(input);
       });
-      winningNumbers = [];
+      initWinningNumbers(winningNumbers);
       return false;
     }
   },
@@ -67,21 +87,23 @@ export const validUI = {
       return true;
     } catch (error) {
       alert(error.message);
-      removeInputValue(elements.bonusNumberInput);
-      winningNumbers = [];
+      removeUI.removeInputValue(elements.bonusNumberInput);
+      initWinningNumbers(winningNumbers);
       return false;
     }
   },
 };
 
-export function removeInputValue(input) {
-  input.value = "";
-}
+export const displayUI = {
+  displayBlock(element) {
+    element.style.display = "block";
+  },
 
-export function displayBlock(element) {
-  element.style.display = "block";
-}
+  displayNone(element) {
+    element.style.display = "none";
+  },
+};
 
-export function displayNone(element) {
-  element.style.display = "none";
+export function initWinningNumbers(winningNumbers) {
+  winningNumbers = [];
 }
