@@ -81,21 +81,19 @@ const checkWinningLotto = (winningNumbers, bonusNumber) => {
 
 const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
   const price = getPrice();
-  if (checkPrice(price)) {
-    const lottoNumbers = getLottoNumbers();
+  const lottoNumbers = getLottoNumbers();
 
-    const result = calculatePrizeResult(
-      lottoNumbers,
-      winningNumbers,
-      bonusNumber,
-    );
+  const result = calculatePrizeResult(
+    lottoNumbers,
+    winningNumbers,
+    bonusNumber,
+  );
 
-    const totalPrizeMoney = getTotalPrizeMoney(result);
-    const revenueRate = getRevenueRate(totalPrizeMoney, price);
+  const totalPrizeMoney = getTotalPrizeMoney(result);
+  const revenueRate = getRevenueRate(totalPrizeMoney, price);
 
-    createPrizeResultModal(result, revenueRate);
-    handleResultModal(".prize-result-modal");
-  }
+  createPrizeResultModal(result, revenueRate);
+  handleResultModal(".prize-result-modal");
 };
 
 const handleResultModal = (targetSelector) => {
