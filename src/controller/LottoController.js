@@ -1,6 +1,5 @@
 import { generateLotto } from "../domain/LottoGenerator.js";
 import ProfitCalculator from "../domain/ProfitCalculator.js";
-import { printMatchResults } from "../view/Output.js";
 import { bonusNumberValidator, lottoNumberValidator } from "../validators/index.js";
 
 class LottoController {
