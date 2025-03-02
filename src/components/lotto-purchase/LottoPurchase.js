@@ -1,3 +1,4 @@
+import { EVENT_TYPES, STYLE_SELECTORS } from "../../constants/constants.js";
 import {
   $,
   eventOn,
@@ -18,7 +19,7 @@ class LottoPurchase extends BaseWebComponent {
           <input id="purchase-amount" class="lotto-purchase__input" placeholder="금액" />
           <button class="lotto-purchase__button">구입</button>
         </form>
-        <p class="lotto-purchase__error hidden"></p>
+        <p class="lotto-purchase__error ${STYLE_SELECTORS.hidden}"></p>
       </section>
     `;
   }
@@ -26,7 +27,7 @@ class LottoPurchase extends BaseWebComponent {
   setEvent() {
     const form = $(".lotto-purchase__form", this);
     eventOn(
-      { target: form, eventType: "submit" },
+      { target: form, eventType: EVENT_TYPES.submit },
       this.#handleSubmit.bind(this),
     );
   }
@@ -43,7 +44,7 @@ class LottoPurchase extends BaseWebComponent {
     try {
       const purchaseAmount = validatePurchaseAmount(purchaseAmountInput);
       hideElement(errorElement);
-      this.emit("purchase", { purchaseAmount });
+      this.emit(EVENT_TYPES.purchase, { purchaseAmount });
     } catch (error) {
       errorElement.textContent = error.message;
       renderElement(errorElement);

@@ -1,4 +1,8 @@
-import { MATCH_KEY, MATCH_PRIZE } from "../../constants/constants.js";
+import {
+  EVENT_TYPES,
+  MATCH_KEY,
+  MATCH_PRIZE,
+} from "../../constants/constants.js";
 import createWinningStatisticsMap from "../../utils/createWinningStatisticsMap.js";
 import { $, eventOff, eventOn } from "../../utils/domUtils.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
@@ -76,14 +80,14 @@ class LottoResult extends BaseWebComponent {
 
     if (closeButton) {
       eventMethod(
-        { target: closeButton, eventType: "click" },
+        { target: closeButton, eventType: EVENT_TYPES.click },
         this.closeButtonHandler,
       );
     }
 
     if (restartButton) {
       eventMethod(
-        { target: restartButton, eventType: "click" },
+        { target: restartButton, eventType: EVENT_TYPES.click },
         this.restartButtonHandler,
       );
     }
@@ -96,7 +100,7 @@ class LottoResult extends BaseWebComponent {
   }
 
   #restartGame() {
-    this.emit("restart");
+    this.emit(EVENT_TYPES.restart);
     this.removeEvent();
   }
 }

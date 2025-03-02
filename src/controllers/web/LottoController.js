@@ -2,6 +2,7 @@ import View from "../../views/web/View.js";
 import issueLottos from "../../domains/issueLottos.js";
 import WinningStatistics from "../../domains/WinningStatistics.js";
 import { $ } from "../../utils/domUtils.js";
+import { EVENT_TYPES } from "../../constants/constants.js";
 
 class LottoController {
   constructor() {
@@ -12,9 +13,18 @@ class LottoController {
   }
 
   #setEvent() {
-    this.view.app.addEventListener("purchase", this.#handlePurchase.bind(this));
-    this.view.app.addEventListener("result", this.#handleResult.bind(this));
-    this.view.app.addEventListener("restart", this.#handleRestart.bind(this));
+    this.view.app.addEventListener(
+      EVENT_TYPES.purchase,
+      this.#handlePurchase.bind(this),
+    );
+    this.view.app.addEventListener(
+      EVENT_TYPES.result,
+      this.#handleResult.bind(this),
+    );
+    this.view.app.addEventListener(
+      EVENT_TYPES.restart,
+      this.#handleRestart.bind(this),
+    );
   }
 
   #handlePurchase(event) {

@@ -9,6 +9,7 @@ import {
   $$,
   eventOn,
 } from "../../utils/domUtils.js";
+import { EVENT_TYPES, STYLE_SELECTORS } from "../../constants/constants.js";
 
 class WinningLotto extends BaseWebComponent {
   constructor() {
@@ -43,7 +44,7 @@ class WinningLotto extends BaseWebComponent {
               <input class="winning-lotto__input" maxlength="2" />
             </div>
           </div>
-          <p class="winning-lotto__error hidden"></p>
+          <p class="winning-lotto__error ${STYLE_SELECTORS.hidden}"></p>
           <button class="winning-lotto__result-button">결과 확인하기</button>
         </form>
       </section>
@@ -64,7 +65,7 @@ class WinningLotto extends BaseWebComponent {
     const form = $(".winning-lotto__form", this);
     if (form) {
       eventOn(
-        { target: form, eventType: "submit" },
+        { target: form, eventType: EVENT_TYPES.submit },
         this.#handleSubmit.bind(this),
       );
     }
@@ -73,7 +74,7 @@ class WinningLotto extends BaseWebComponent {
   #setInputEventListeners() {
     const inputs = $$(".winning-lotto__input", this);
     inputs.forEach((input, index) => {
-      eventOn({ target: input, eventType: "input" }, () => {
+      eventOn({ target: input, eventType: EVENT_TYPES.input }, () => {
         const maxLength = input.getAttribute("maxlength");
         if (
           input.value.length === parseInt(maxLength, 10) &&
@@ -99,7 +100,7 @@ class WinningLotto extends BaseWebComponent {
       const winningNumbers = validateWinningNumbers(winningNumbersInput);
       const bonusNumber = validateBonusNumber(bonusNumberInput, winningNumbers);
       hideElement(errorElement);
-      this.emit("result", { winningNumbers, bonusNumber });
+      this.emit(EVENT_TYPES.result, { winningNumbers, bonusNumber });
     } catch (error) {
       errorElement.textContent = error.message;
       renderElement(errorElement);
