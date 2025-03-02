@@ -9,13 +9,33 @@ import { LOTTO_CONDITION } from '../constants/constants.js';
 
 class LottoController {
   async run() {
-    const purchaseMoney = await this.getPurchaseMoney();
-    const lottoMaker = new LottoMaker(purchaseMoney);
+    const lottoMaker = await this.purchaseLotto();
     LottoOutputView.printLottoNumber(lottoMaker);
 
+    const { winningNumbers, bonusNumber } = await this.getWinningInfo();
+    const lottoRank = this.calculateLottoRank(lottoMaker, winningNumbers, bonusNumber);
+    LottoOutputView.printStatistics(lottoRank);
+
+    const winningRate = this.calclateWinningRate(lottoMaker, lottoRank);
+    LottoOutputView.printWinningRate(winningRate);
+
+    await this.reStart();
+  }
+
+  async purchaseLotto() {
+    const purchaseMoney = await this.getPurchaseMoney();
+    const lottoMaker = new LottoMaker(purchaseMoney);
+
+    return lottoMaker;
+  }
+
+  async getWinningInfo() {
     const winningNumbers = await this.getWinningNumbers();
     const bonusNumber = await this.getBonusNumber(winningNumbers.numbers);
+    return { winningNumbers, bonusNumber };
+  }
 
+  calculateLottoRank(lottoMaker, winningNumbers, bonusNumber) {
     const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
     const lottoGame = new LottoGame();
 
@@ -25,16 +45,16 @@ class LottoController {
       );
     });
 
-    LottoOutputView.printStatistics(lottoGame.rank);
+    return lottoGame.rank;
+  }
 
+  calclateWinningRate(lottoMaker, lottoRank) {
     const winningRate = LottoGame.calculateWinningRate(
       LOTTO_CONDITION.PRICE * lottoMaker.lottoList.length,
-      LottoGame.calculateTotalPrize(lottoGame.rank),
+      LottoGame.calculateTotalPrize(lottoRank),
     );
 
-    LottoOutputView.printWinningRate(winningRate);
-
-    await this.reStart();
+    return winningRate;
   }
 
   async getPurchaseMoney() {
