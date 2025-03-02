@@ -8,8 +8,8 @@ header {
   background-color: var(--lotto-primary);
 }
 
-header h1 {
-  color: var(--lotto-greyscale-1) !important;
+header .title {
+  color: var(--lotto-greyscale-1);
 }
 
 content {
