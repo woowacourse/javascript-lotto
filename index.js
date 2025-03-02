@@ -55,7 +55,7 @@ const checkPrice = (price) => {
     validatorList: [() => validateLottoPrice(price)],
     errorHandler: (error) => {
       createErrorAlertModal(error.message);
-      handleResultModal(".error-alert-modal");
+      handleErrorAlert(".error-alert-modal");
     },
   });
 };
@@ -74,7 +74,7 @@ const checkWinningLotto = (winningNumbers, bonusNumber) => {
     ],
     errorHandler: (error) => {
       createErrorAlertModal(error.message);
-      handleResultModal(".error-alert-modal");
+      handleErrorAlert(".error-alert-modal");
     },
   });
 };
@@ -100,6 +100,11 @@ const handleResultModal = (targetSelector) => {
   showModal(targetSelector);
   closeModal(targetSelector);
   restartGame();
+};
+
+const handleErrorAlert = (targetSelector) => {
+  showModal(targetSelector);
+  closeModal(targetSelector);
 };
 
 export default startGame;
