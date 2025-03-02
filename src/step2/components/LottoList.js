@@ -1,5 +1,5 @@
-import Component from "./Component.js";
 import IcAdmitOne from "../assets/ic_admit_one.png";
+import Component from "../core/Component";
 
 export default class LottoList extends Component {
   template() {
