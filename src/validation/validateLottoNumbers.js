@@ -6,11 +6,12 @@ export const validateLottoNumbers = (lottoNumbers) => {
   if (!Array.isArray(lottoNumbers)) {
     lottoNumbers = [lottoNumbers];
   }
+
   lottoNumbers.forEach((value) => {
     const lottoNumber = Number(value);
     if (hasEmptyString(value)) throw new Error(ERROR.EMPTY_VALUE);
     if (!isValueInteger(lottoNumber)) throw new Error(ERROR.NOT_POSITIVE_INTEGER);
-    isInRangeOfLottoNumber(lottoNumber);
+    if (!isInRangeOfLottoNumber(lottoNumber)) throw new Error(ERROR.NOT_RANGE_OF_WINNING_NUMBER);
   });
 };
 
