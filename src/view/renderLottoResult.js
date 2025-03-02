@@ -16,7 +16,10 @@ export function renderRankTable(state) {
     `;
 
   const rankList = printLottoRank(state.lottoGame.rank);
+  appendTable(rankList);
+}
 
+function appendTable(rankList) {
   rankList.forEach((row, index) => {
     const tr = document.createElement('tr');
     tr.appendChild(createDOMElement('td', index === 3 ? `${row[0]}개+보너스볼` : `${row[0]}개`));
