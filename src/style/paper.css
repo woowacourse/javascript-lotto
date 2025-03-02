@@ -2,9 +2,9 @@
   width: 414px;
   height: 727px;
   background-color: var(--grayscale1);
-  border: 1px solid rgba(0, 0, 0, 0.12);
   margin: 0 auto;
-  padding: 40px 16px 32px 16px;
+  padding: 40px 16px 32px;
+  border: 1px solid rgb(0 0 0 / 12%);
 }
 
 .paper_title {
@@ -23,7 +23,7 @@
   input {
     width: 310px;
     height: 36px;
-    padding: 8px 8px;
+    padding: 8px;
     border: 1px solid var(--grayscale3);
   }
 
