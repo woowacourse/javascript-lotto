@@ -114,5 +114,6 @@
 - [x] className 명시적으로 변경하기
 - [x] restart-button 클래스명으로 변경
 - [x] !important 속성 삭제 & 선택자 특이도 높이기
+- [x] position - inset 속성으로 변경
 
 - [ ] commit 링크 연동

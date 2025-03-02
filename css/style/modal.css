@@ -28,8 +28,7 @@ button {
 
 .close-button {
   position: absolute;
-  right: 16px;
-  top: 16px;
+  inset: 16px 16px auto auto;
   width: 16px;
   height: 16px;
   cursor: pointer;
