@@ -88,6 +88,8 @@ inputs.forEach((input) => {
 
 const winningStasModal = document.getElementById("winning-stats-modal");
 const buttonRestart = document.getElementById("button-restart");
+const buttonCloseModal = document.getElementById("close-modal");
+const winningStatsTableContent = document.getElementById("winning-stats-table-content");
 
 buttonCheckResult.addEventListener("click", () => {
     displayWinningDetails(winningRanks);
@@ -99,4 +101,12 @@ buttonCheckResult.addEventListener("click", () => {
 
 buttonRestart.addEventListener("click", () => {
     location.reload();
+});
+
+buttonCloseModal.addEventListener("click", () => {
+    winningStasModal.close();
+    winningStasModal.style.visibility = "hidden";
+
+    // 모달의 기존 데이터 삭제
+    winningStatsTableContent.innerText = "";
 });
