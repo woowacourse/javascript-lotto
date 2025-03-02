@@ -5,7 +5,7 @@ import webInputHandler from "../input/webInputHandler.js"
 import { webOutputView } from "../view/webOutputView.js"
 
 export class WebLottoController {
-    #lottoList
+    #lottoList = [];
 
     handlePurchaseClick(event){
         event.preventDefault();
