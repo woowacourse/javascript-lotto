@@ -94,8 +94,8 @@ const rendererUsingWinningLotto = (winningNumbers, bonusNumber) => {
 };
 
 const handleResultModal = (targetSelector) => {
-  showResultModal(targetSelector);
-  closeResultModal(targetSelector);
+  showModal(targetSelector);
+  closeModal(targetSelector);
   restartGame();
 };
 

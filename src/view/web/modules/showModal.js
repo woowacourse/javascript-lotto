@@ -1,7 +1,7 @@
-const showResultModal = (modalSelector) => {
-  const resultModal = document.querySelector(modalSelector);
+const showModal = (modalSelector) => {
+  const targetModal = document.querySelector(modalSelector);
 
-  resultModal.showModal();
+  targetModal.showModal();
 };
 
-export default showResultModal;
+export default showModal;

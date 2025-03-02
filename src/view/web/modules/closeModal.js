@@ -1,14 +1,14 @@
-const closeResultModal = (targetSelector) => {
-  const resultModal = document.querySelector(targetSelector);
+const closeModal = (targetSelector) => {
+  const targetModal = document.querySelector(targetSelector);
 
-  resultModal.addEventListener("click", (event) => {
+  targetModal.addEventListener("click", (event) => {
     if (
       event.target.closest(".close-button") ||
       event.target.nodeName === "DIALOG"
     ) {
-      resultModal.close();
+      targetModal.close();
     }
   });
 };
 
-export default closeResultModal;
+export default closeModal;
