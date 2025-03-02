@@ -1,5 +1,3 @@
-//@ts-check
-
 import {
   LOTTO_LENGTH,
   LOTTO_PRICE,
