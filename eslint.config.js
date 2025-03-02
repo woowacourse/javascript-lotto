@@ -3,7 +3,7 @@ import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
   {
-    ignores: ['node_modules', 'dist', 'build'], // 무시할 폴더
+    ignores: ['node_modules', 'dist', 'build', 'src/utils/readUserInput.js'], // 무시할 폴더
   },
   {
     files: ['**/*.js', '**/*.ts', '**/*.tsx'],
@@ -22,6 +22,9 @@ export default [
       prettier: prettierPlugin,
     },
     rules: {
+      // 함수나 클래스의 매개변수를 2개까지만 허용
+      'max-params': ['error', 2],
+
       // package import를 제외한 모든 import 구문에 대해 확장자를 사용하도록 강제
       'import/extensions': ['error', 'ignorePackages'],
       // 기타 사소한 오류 해결
@@ -40,13 +43,12 @@ export default [
     linterOptions: {
       reportUnusedDisableDirectives: true,
     },
-    overrides: [
-      {
-        files: ['*.test.js'], // .test.js 파일 ESLint 적용 제외
-        rules: {
-          'max-lines-per-function': ['error', { max: 15 }],
-        },
-      },
-    ],
+  },
+  // ✅ Flat Config에서는 별도로 테스트 파일을 분리해야 함
+  {
+    files: ['*.test.js'], // .test.js 파일에 대한 설정
+    rules: {
+      'max-lines-per-function': ['error', { max: 15 }],
+    },
   },
 ];
