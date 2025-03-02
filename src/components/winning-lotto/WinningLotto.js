@@ -50,6 +50,11 @@ class WinningLotto extends BaseWebComponent {
   }
 
   setEvent() {
+    this.#setFormEventListeners();
+    this.#setInputEventListeners();
+  }
+
+  #setFormEventListeners() {
     const form = this.querySelector(".winning-lotto__form");
     if (form) {
       this.on(
@@ -57,7 +62,9 @@ class WinningLotto extends BaseWebComponent {
         this.#handleSubmit.bind(this),
       );
     }
+  }
 
+  #setInputEventListeners() {
     const inputs = this.querySelectorAll(".winning-lotto__input");
     inputs.forEach((input, index) => {
       this.on({ target: input, eventType: "input" }, () => {
