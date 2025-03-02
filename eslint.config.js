@@ -50,5 +50,13 @@ export default [
     rules: {
       'max-lines-per-function': ['error', { max: 15 }],
     },
+    overrides: [
+      {
+        files: ['*.test.js'], // .test.js 파일 ESLint 적용 제외
+        rules: {
+          'max-lines-per-function': ['error', { max: 15 }],
+        },
+      },
+    ],
   },
 ];
