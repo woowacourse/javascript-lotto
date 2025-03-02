@@ -21,7 +21,7 @@ import {
   getConsolePurchasePrice,
   getConsoleUserRetry,
   getConsoleWinningNumber,
-} from './service/InputService.js';
+} from './service/InputService/ConsoleInputService.js';
 import { displayError } from './util/errorHandler.js';
 
 async function playGame() {
