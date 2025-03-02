@@ -1,9 +1,7 @@
-// import readLineAsync from "../util/readLine.js";
 import INPUT_MESSAGE from "../constant/input.js";
 
 const InputView = {
   async readPurchaseAmount() {
-    // return await readLineAsync(INPUT_MESSAGE.AMOUNT);
     return document.getElementById("input-purchase-amount").value;
   },
 
@@ -16,7 +14,6 @@ const InputView = {
   },
 
   async readBonusNumber() {
-    // return await readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
     const inputs = Array.from(document.querySelectorAll(".lotto-input"));
     const bonusNumber = inputs.at(-1).value;
 
@@ -24,7 +21,6 @@ const InputView = {
   },
 
   async readRestart() {
-    // return await readLineAsync(INPUT_MESSAGE.RESTART);
   },
 };
 
