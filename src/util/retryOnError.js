@@ -1,5 +1,5 @@
 import { Alert } from "../components/Alert.js";
-import { displayComponent } from "./displayComponents.js";
+import { appendToParent } from "./appendToParent.js";
 
 const retryOnErrorForTerminal = async (asyncFn, onError) => {
   while (true) {
@@ -17,7 +17,7 @@ const retryOnErrorWeb = async (asyncFn) => {
   } catch (error) {
     const alert = document.querySelector(".alert");
     if (!alert) {
-      displayComponent(".alert-container", Alert({ message: error.message }));
+      appendToParent(".alert-container", Alert({ message: error.message }));
       setTimeout(() => {
         document.querySelector(".alert").remove();
       }, 1500);
