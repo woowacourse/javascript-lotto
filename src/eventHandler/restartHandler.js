@@ -1,4 +1,4 @@
-import domRefs from "./dom.js";
+import domRefs from "../webView/dom.js";
 import { disabled, initNode, initNodes } from "../util/webUtil.js";
 
 domRefs.$modalRestartButton.addEventListener("click", () => {

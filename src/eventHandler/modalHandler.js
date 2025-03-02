@@ -1,4 +1,4 @@
-import domRefs from "./dom.js";
+import domRefs from "../webView/dom.js";
 
 domRefs.$modalCloseButton.addEventListener("click", () => {
   domRefs.$modal.close();

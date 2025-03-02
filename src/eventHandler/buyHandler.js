@@ -1,7 +1,7 @@
 import LottoMachine from "../domain/LottoMachine.js";
-import { lottoState } from "./lottoState.js";
+import { lottoState } from "../webView/lottoState.js";
 import PurchasePriceValidator from "../domain/\bvalidator/PurchasePriceValidator.js";
-import domRefs from "./dom.js";
+import domRefs from "../webView/dom.js";
 import parser from "../util/parser.js";
 import { disabled, focusFirstNode, createElement } from "../util/webUtil.js";
 

@@ -1,8 +1,8 @@
-import { lottoState } from "./lottoState.js";
+import { lottoState } from "../webView/lottoState.js";
 import NumbersValidator from "../domain/\bvalidator/NumbersValidator.js";
 import BonusNumberValidator from "../domain/\bvalidator/BonusNumberValidator.js";
 import { disabled } from "../util/webUtil.js";
-import domRefs from "./dom.js";
+import domRefs from "../webView/dom.js";
 
 domRefs.$winningForm.addEventListener("submit", (e) => {
   e.preventDefault();
