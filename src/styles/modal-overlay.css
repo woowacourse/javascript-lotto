@@ -4,7 +4,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--grey-500);
+  opacity: 0.5;
   display: none;
   z-index: 998;
 }
