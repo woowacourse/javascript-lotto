@@ -1,0 +1,40 @@
+export const RANK = {
+  FIRST: "1등",
+  SECOND: "2등",
+  THIRD: "3등",
+  FOURTH: "4등",
+  FIFTH: "5등",
+};
+
+export const PRICE = {
+  LOTTO: 1000,
+};
+
+const DEFINITION = {
+  LOTTO_PRISE: {
+    [RANK.FIFTH]: 5000,
+    [RANK.FOURTH]: 50000,
+    [RANK.THIRD]: 1500000,
+    [RANK.SECOND]: 30000000,
+    [RANK.FIRST]: 2000000000,
+  },
+  LOTTO_RULE: {
+    [RANK.FIFTH]: 3,
+    [RANK.FOURTH]: 4,
+    [RANK.THIRD]: 5,
+    [RANK.SECOND]: 5,
+    [RANK.FIRST]: 6,
+  },
+  MIN: {
+    LOTTO_PURCHASE_PRICE: 1000,
+    LOTTO_NUMBER: 1,
+  },
+  MAX: {
+    LOTTO_PURCHASE_PRICE: 10000000,
+    LOTTO_NUMBER: 45,
+  },
+  SPLIT: ", ",
+  EMPTY: "",
+};
+
+export default DEFINITION;
