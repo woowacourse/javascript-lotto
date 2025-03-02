@@ -1,3 +1,3 @@
-import startGame from "..";
+import startGame from "../index.js";
 
 startGame();
