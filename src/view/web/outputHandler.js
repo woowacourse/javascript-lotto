@@ -35,7 +35,7 @@ const showLotto = (lotto) => {
 
   const img = new Image();
   img.id = 'lotto-image';
-  img.src = '/lottoImage.png';
+  img.src = 'https://h0ngju.github.io/javascript-lotto/lottoImage.png';
   img.alt = 'lotto-image';
 
   const numbersDiv = document.createElement('div');
