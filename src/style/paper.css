@@ -1,6 +1,6 @@
 .paper {
   width: 414px;
-  height: 727px;
+  height: 728px;
   background-color: var(--grayscale1);
   margin: 0 auto;
   padding: 40px 16px 32px;
@@ -70,7 +70,7 @@
 }
 
 .paper_winning_wrap {
-  margin-bottom: 27px;
+  margin-bottom: 28px;
 }
 
 .paper_winning_text {
