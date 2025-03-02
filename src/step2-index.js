@@ -23,7 +23,9 @@ const state = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  elements.purchaseButton.addEventListener("click", purchase);
+  const purchaseButton = document.querySelector("#purchase-button");
+  purchaseButton.addEventListener("click", purchase);
+  // elements.purchaseButton.addEventListener("click", purchase);
   elements.resultButton.addEventListener("click", checkResult);
   elements.modalCloseButton.addEventListener("click", closeModal);
   elements.restartButton.addEventListener("click", restartLotto);
