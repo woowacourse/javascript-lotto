@@ -163,3 +163,131 @@ const createWinningInputButton = () => {
 
   return winningInputButton;
 };
+
+winningInputContainer.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  try {
+    const winningNumbers = [];
+    const bonusNumber = document.getElementById("bonus-number").value;
+
+    for (let i = 0; i < 6; i++) {
+      const winningNumberInput = document.getElementById(
+        `winning-number-${i + 1}`
+      );
+      winningNumbers.push(winningNumberInput.value);
+    }
+
+    validateWinningNumbers(winningNumbers);
+    validateBonusNumber(bonusNumber, winningNumbers);
+
+    document.querySelectorAll(".winning-input").forEach((input) => {
+      input.setAttribute("disabled", "true");
+    });
+
+    const winningCount = LottoCenter.getWinningCounts(buyInfo.lottos, {
+      winning: winningNumbers.map(Number),
+      bonus: Number(bonusNumber),
+    });
+
+    const yieldRate = getYieldRate(winningCount, buyInfo.amount);
+    const winningModalContent = createWinningResultContent(
+      winningCount,
+      yieldRate
+    );
+    winningModalContainer.classList.add("winning-result-dialog-background");
+    winningModalContainer.innerHTML = winningModalContent;
+    document.body.style.overflow = "hidden";
+
+    const restartButton = document.querySelector(
+      ".winning-result-restart-button"
+    );
+    const closeButton = document.querySelector(".winning-result-close-button");
+
+    winningModalContainer.addEventListener("click", (e) => {
+      if (e.target === winningModalContainer) {
+        closeModal();
+      }
+    });
+
+    closeButton.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    restartButton.addEventListener("click", () => {
+      resetGame();
+    });
+  } catch (error) {
+    alert(error.message);
+    const firstWinningInput = document.getElementById("winning-number-1");
+    firstWinningInput.focus();
+  }
+});
+
+const closeModal = () => {
+  winningModalContainer.innerHTML = "";
+  winningModalContainer.classList.remove("winning-result-dialog-background");
+  document.body.style.overflow = "auto";
+};
+
+const resetGame = () => {
+  buyInfo.amount = 0;
+  buyInfo.lottos = [];
+
+  purchaseInput.value = "";
+  purchaseButton.classList.remove("purchased");
+  purchaseInput.removeAttribute("disabled");
+
+  userLottoContainer.innerHTML = "";
+  winningInputContainer.innerHTML = "";
+  closeModal();
+};
+
+const createWinningResultContent = (winningCount, yieldRate) => {
+  return `<dialog class="winning-result-dialog" open>
+        <button class="winning-result-close-button">
+          <img src="../public/Vector.png" alt="닫기" />
+        </button>
+        <h3 class="winning-result-title">🏆 당첨 통계 🏆</h3>
+        <div class="winning-result-table-container">
+          <div class="winning-result-table">
+            <p class="winning-result-table-title">일치 갯수</p>
+            <p class="winning-result-table-title">당첨금</p>
+            <p class="winning-result-table-title">당첨 갯수</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">3개</p>
+            <p class="winning-result-table-item">5,000</p>
+            <p class="winning-result-table-item">${winningCount["5등"]}개</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">4개</p>
+            <p class="winning-result-table-item">50,000</p>
+            <p class="winning-result-table-item">${winningCount["4등"]}개</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">5개</p>
+            <p class="winning-result-table-item">1,500,000</p>
+            <p class="winning-result-table-item">${winningCount["3등"]}개</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">5개 + 보너스볼</p>
+            <p class="winning-result-table-item">30,000,000</p>
+            <p class="winning-result-table-item">${winningCount["2등"]}개</p>
+          </div>
+          <div class="winning-result-table">
+            <p class="winning-result-table-item">6개</p>
+            <p class="winning-result-table-item">2,000,000,000</p>
+            <p class="winning-result-table-item">${winningCount["1등"]}개</p>
+          </div>
+        </div>
+        <p class="winning-result-total-rate">당신의 총 수익률은 ${yieldRate.toFixed(
+          1
+        )}%입니다.</p>
+        <button class="winning-result-restart-button">다시 시작하기</button>
+      </dialog>`;
+};
