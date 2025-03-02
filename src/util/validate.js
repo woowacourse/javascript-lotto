@@ -19,8 +19,7 @@ export const validatePurchaseAmount = (price) => {
   if (price % PRICE.UNIT !== 0) throw new Error(ERROR_MESSAGE.NOT_DIVIDED_1000);
 };
 
-export const validateWinningNumbers = (numbers, splitter) => {
-  const numbersArray = numbers.split(splitter).map(Number);
+export const validateWinningNumbers = (numbersArray) => {
   if (numbersArray.length < LOTTO.LENGTH)
     throw new Error(ERROR_MESSAGE.LOTTO_LENGTH);
   if (numbersArray.some((num) => isNaN(num)))
@@ -35,8 +34,7 @@ export const validateWinningNumbers = (numbers, splitter) => {
     throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
 };
 
-export const validateBonusNumber = (numberInput, numbers) => {
-  const number = Number(numberInput);
+export const validateBonusNumber = (number, numbers) => {
   if (isNaN(number)) throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
   if (number < LOTTO.MIN_RANDOM_VALUE || number > LOTTO.MAX_RANDOM_VALUE)
     throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);
