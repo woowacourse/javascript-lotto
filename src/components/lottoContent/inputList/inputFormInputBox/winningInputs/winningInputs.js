@@ -1,4 +1,5 @@
 import createDomElement from '../../../../../utils/createDomElement.js';
+import { validateAllInputs } from '../inputFormInputBox.js';
 
 const winningNumberOption = {
   className: 'winning_number',
@@ -14,8 +15,11 @@ const $winningInputs = (winningNumbersCount) => {
     className: 'lotto_numbers',
   });
 
-  Array.from({ length: winningNumbersCount }, () => {
+  const inputs = Array.from({ length: winningNumbersCount }, () => {
     const winningInput = createDomElement('input', winningNumberOption);
+    winningInput.addEventListener('input', () => {
+      validateAllInputs();
+    });
     return winningNumberInputs.appendChild(winningInput);
   });
 

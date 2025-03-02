@@ -92,9 +92,9 @@ form.lotto_form button {
   border: none;
 }
 
-form.lotto_form button.disabled_button {
-  background-color: #ccc;
-  color: #fff;
+button.disabled_button {
+  background-color: #ccc !important;
+  color: #fff !important;
   cursor: not-allowed;
 }
 
@@ -196,6 +196,16 @@ div.lotto_result_list button {
   margin-top: 28px;
 }
 
+div.lotto_result_list span.lotto_winning_numbers_error {
+  display: none;
+  font-size: 13px;
+  margin: 3px 0;
+  color: #f00;
+}
+
+div.lotto_result_list span.lotto_winning_numbers_error.show {
+  display: block;
+}
 footer {
   display: flex;
   justify-content: center;
