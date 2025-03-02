@@ -18,27 +18,46 @@ class LottoController {
   }
 
   #handlePurchase(event) {
+    this.#setPurchaseAmount(event);
+    this.lottos = issueLottos(this.purchaseAmount);
+    this.#updateIssuedLotto();
+    this.#initWinningLotto();
+  }
+
+  #setPurchaseAmount(event) {
     const { purchaseAmount } = event.detail;
     this.purchaseAmount = purchaseAmount;
-    this.lottos = issueLottos(this.purchaseAmount);
+  }
 
+  #updateIssuedLotto() {
     const issuedLotto = $("issued-lotto", this.view.app);
     issuedLotto.updateLottos(this.lottos);
+  }
 
+  #initWinningLotto() {
     const winningLotto = $("winning-lotto", this.view.app);
     winningLotto.initWinningLotto();
   }
 
   #handleResult(event) {
+    const winningStatistics = this.#calculateWinningStatistics(event);
+    const profitRatio = this.#calculateProfitRatio(winningStatistics);
+    this.#showResult(winningStatistics, profitRatio);
+  }
+
+  #calculateWinningStatistics(event) {
     const { winningNumbers, bonusNumber } = event.detail;
     const winningStatistics = new WinningStatistics(this.lottos);
     winningStatistics.calculateWinningResults(winningNumbers, bonusNumber);
+    return winningStatistics;
+  }
 
-    const profitRatio = winningStatistics.calculateProfitRatio(
-      this.purchaseAmount,
-    );
+  #calculateProfitRatio(winningStatistics) {
+    return winningStatistics.calculateProfitRatio(this.purchaseAmount);
+  }
+
+  #showResult(winningStatistics, profitRatio) {
     const lottoResult = $("lotto-result", this.view.app);
-
     lottoResult.showResult(winningStatistics.statistics, profitRatio);
   }
 
