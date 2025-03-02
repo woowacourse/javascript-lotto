@@ -311,7 +311,7 @@ class App {
       lottoResult,
       lottoProfit,
     );
-    document.querySelector('#app').appendChild($winningStatisticsModal);
+    document.querySelector('#app').prepend($winningStatisticsModal);
 
     const $form = $target.closest('#winningLottoForm');
     const inputs = $form.querySelectorAll('input');
