@@ -8,6 +8,8 @@ class LottoResult extends BaseWebComponent {
     super();
     this.statistics = createWinningStatisticsMap();
     this.profitRatio = 0;
+    this.closeButtonHandler = this.#closeDialog.bind(this);
+    this.restartButtonHandler = this.#restartGame.bind(this);
   }
 
   getTemplate() {
@@ -60,21 +62,52 @@ class LottoResult extends BaseWebComponent {
   }
 
   setEvent() {
-    const dialog = this.querySelector("dialog");
     const closeButton = this.querySelector(".lotto-result__close-button");
     const restartButton = this.querySelector(".lotto-result__restart-button");
 
     if (closeButton) {
-      this.on({ target: closeButton, eventType: "click" }, () => {
-        dialog.close();
-      });
+      this.on(
+        { target: closeButton, eventType: "click" },
+        this.closeButtonHandler,
+      );
     }
 
     if (restartButton) {
-      this.on({ target: restartButton, eventType: "click" }, () => {
-        this.emit("restart");
-      });
+      this.on(
+        { target: restartButton, eventType: "click" },
+        this.restartButtonHandler,
+      );
     }
+  }
+
+  removeEvent() {
+    const closeButton = this.querySelector(".lotto-result__close-button");
+    const restartButton = this.querySelector(".lotto-result__restart-button");
+
+    if (closeButton) {
+      this.off(
+        { target: closeButton, eventType: "click" },
+        this.closeButtonHandler,
+      );
+    }
+
+    if (restartButton) {
+      this.off(
+        { target: restartButton, eventType: "click" },
+        this.restartButtonHandler,
+      );
+    }
+  }
+
+  #closeDialog() {
+    const dialog = this.querySelector("dialog");
+    dialog.close();
+    this.removeEvent();
+  }
+
+  #restartGame() {
+    this.emit("restart");
+    this.removeEvent();
   }
 }
 
