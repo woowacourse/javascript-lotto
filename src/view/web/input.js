@@ -1,4 +1,5 @@
 import { allowWinningLotto } from "../../domain/web/modal";
+import { focusInput } from "../../domain/web/setup";
 import {
   validateBonusNumber,
   validatePrice,
@@ -38,6 +39,7 @@ const repeatGetPrice = (resolve) => {
     validatePrice(userInputPrice);
     removeErrorField(".input-contents");
     allowWinningLotto();
+    focusInput(".winningLotto-contents_winningLotto input");
     resolve(userInputPrice);
   } catch (error) {
     printErrorMessage(".input-contents", error);

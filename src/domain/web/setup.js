@@ -55,11 +55,16 @@ const resetLotto = () => {
   document.body.style.overflow = "auto";
 };
 
+const focusInput = (className) => {
+  document.querySelector(className).focus();
+};
+
 const initLotto = () => {
   // resetButton 활성화
   const restartButton = document.querySelector(".restart-button");
   restartButton.addEventListener("click", () => {
     resetLotto();
+    focusInput(".input-contents input");
     WebApp();
   });
 };
@@ -75,4 +80,4 @@ const disableInputPrice = () => {
   priceButton.style.cursor = "default";
 };
 
-export { initLotto, disableInputPrice };
+export { initLotto, disableInputPrice, focusInput };
