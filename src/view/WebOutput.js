@@ -1,4 +1,4 @@
-import DEFINITION, { RANK } from "../constant/Definition.js";
+import DEFINITION from "../constant/Definition.js";
 import { OUTPUT_MESSAGE } from "../constant/Message.js";
 
 const WebOutput = {
