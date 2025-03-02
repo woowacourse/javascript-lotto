@@ -1,7 +1,7 @@
 import {
   getBonusNumber,
   getWinningNumbers,
-} from "../globalElements/getElements";
+} from "../globalElements/getElements.js";
 
 const readWinningNumbers = (validator, renderer) => {
   const winningLottoForm = document.querySelector(".winning-lotto-form");

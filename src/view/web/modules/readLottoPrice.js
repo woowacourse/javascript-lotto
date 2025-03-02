@@ -1,4 +1,4 @@
-import { getPrice } from "../globalElements/getElements";
+import { getPrice } from "../globalElements/getElements.js";
 
 const readLottoPrice = (validator, renderer) => {
   const purchaseForm = document.querySelector(".purchase-form");

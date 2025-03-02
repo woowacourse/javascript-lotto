@@ -1,4 +1,4 @@
-import { LOTTO_RULE } from "../../../../constants/lotto";
+import { LOTTO_RULE } from "../../../../constants/lotto.js";
 
 const createPriceInput = () => {
   return `<input

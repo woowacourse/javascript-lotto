@@ -1,7 +1,10 @@
 import gameBoxContents from "./gameBox.html?raw";
-import createPriceInput from "./createPriceInput";
+import createPriceInput from "./createPriceInput.js";
 import "./gameBox.css";
-import { appendContents, prependContents } from "../../utilsWeb/elementCreator";
+import {
+  appendContents,
+  prependContents,
+} from "../../utilsWeb/elementCreator.js";
 
 const createGameBox = () => {
   appendContents("main", ".game-container", gameBoxContents);

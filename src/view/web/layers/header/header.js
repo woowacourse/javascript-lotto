@@ -1,6 +1,6 @@
 import headerContents from "./header.html?raw";
+import { prependContents } from "../../utilsWeb/elementCreator.js";
 import "./header.css";
-import { prependContents } from "../../utilsWeb/elementCreator";
 
 const createHeader = () => {
   prependContents("#app", "header", headerContents);

@@ -1,11 +1,11 @@
 import prizeResultContents from "./prizeResultModal.html?raw";
-import createPrizeTable from "./createPrizeTable";
-import createRevenueRateMessage from "./createRevenueRateMessage";
+import createPrizeTable from "./createPrizeTable.js";
+import createRevenueRateMessage from "./createRevenueRateMessage.js";
 import "./prizeResultModal.css";
 import {
   insertTextContents,
   appendContents,
-} from "../../../utilsWeb/elementCreator";
+} from "../../../utilsWeb/elementCreator.js";
 
 const createPrizeResultModal = (result, revenueRate) => {
   const { headerTemplate, rowTemplate } = createPrizeTable(result);
