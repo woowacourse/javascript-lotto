@@ -81,18 +81,8 @@ class WinningLotto extends BaseWebComponent {
 
   #handleSubmit(event) {
     event.preventDefault();
-    const inputs = $$(
-      ".winning-lotto__winning-numbers .winning-lotto__input",
-      this,
-    );
-    const winningNumbersInput = Array.from(inputs)
-      .map((input) => input.value)
-      .join(",");
-
-    const bonusNumberInput = $(
-      ".winning-lotto__bonus-number .winning-lotto__input",
-      this,
-    ).value;
+    const { winningNumbersInput, bonusNumberInput } =
+      this.#getWinningAndBonusNumbers();
     const errorElement = $(".winning-lotto__error", this);
 
     this.#handleValidation(winningNumbersInput, bonusNumberInput, errorElement);
@@ -108,6 +98,21 @@ class WinningLotto extends BaseWebComponent {
       errorElement.textContent = error.message;
       renderElement(errorElement);
     }
+  }
+
+  #getWinningAndBonusNumbers() {
+    const inputs = $$(
+      ".winning-lotto__winning-numbers .winning-lotto__input",
+      this,
+    );
+    const winningNumbersInput = Array.from(inputs)
+      .map((input) => input.value)
+      .join(",");
+    const bonusNumberInput = $(
+      ".winning-lotto__bonus-number .winning-lotto__input",
+      this,
+    ).value;
+    return { winningNumbersInput, bonusNumberInput };
   }
 }
 
