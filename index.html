@@ -20,7 +20,7 @@
         <form id="purchase-form">
           <span>구입할 금액을 입력해주세요.</span>
           <div>
-            <input id="purchase-form__input" type="number" required />
+            <input id="purchase-form__input" type="number" min="1000" max="1000000" required />
             <button disabled id="purchase-form__btn">구입</button>
           </div>
           <span id="purchase-form__error" class="error-message"></span>
