@@ -23,7 +23,10 @@ import {
 } from './service/ParsingService.js';
 import showLottoResult from './View/show/showLottoResult.js';
 import showPurchaseResult from './View/show/showPurchaseResult.js';
-import { uiErrorHandler } from './util/errorHandler.js';
+import {
+  lottoInputErrorHandler,
+  priceErrorHandler,
+} from './util/errorHandler.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const purchaseButton = document.getElementById('purchase-button');
@@ -34,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const { purchasePrice: price, purchaseAmount } = await getPurchasePrice(
         getUIPurchasePrice,
-        uiErrorHandler,
+        priceErrorHandler,
       );
       purchasePrice = price;
       showPurchaseResult(purchaseAmount);
@@ -50,8 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return purchasePrice;
     } catch (error) {
       console.log(error);
-      console.log('error');
-      clearUIElements();
     }
   }
 
@@ -60,12 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const userLotto = await getWinningNumber(
         getUIWinningNumber,
-        uiErrorHandler,
+        lottoInputErrorHandler,
       );
       const parsedLotto = await getBonusNumber(
         userLotto,
         getUIBonusNumber,
-        uiErrorHandler,
+        lottoInputErrorHandler,
       );
 
       let winCount = 0;
@@ -78,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const closeButton = document.getElementById('close-button');
 
       closeButton.addEventListener('click', (event) => {
-        lottos = [];
         event.preventDefault();
+        lottos = [];
         modal.remove();
         modalOverlay.remove();
         clearUIElements();
