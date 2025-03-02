@@ -1,76 +1,49 @@
-import { getInput, retryUntilValid } from "../view/Input.js";
-import { printLottoTickets, printMatchResults } from "../view/Output.js";
 import { generateLotto } from "../domain/LottoGenerator.js";
 import ProfitCalculator from "../domain/ProfitCalculator.js";
-import { MESSAGES } from "../constants/index.js";
-import {
-  purchaseAmountValidator,
-  lottoNumberValidator,
-  bonusNumberValidator,
-  restartValidator
-} from "../validators/index.js";
+import { printMatchResults } from "../view/Output.js";
+import { bonusNumberValidator, lottoNumberValidator } from "../validators/index.js";
 
 class LottoController {
+  #lottoTickets;
+  #purchaseAmount;
+  #winningNumber;
+
   constructor() {
-    this.lottoTickets = [];
-    this.lottoNumber = [];
+    this.#lottoTickets = [];
+    this.#purchaseAmount = 0;
+    this.#winningNumber = {
+      winning: [],
+      bonus: 0
+    };
   }
 
-  async play() {
-    do {
-      const purchaseAmount = await this.getPurchaseAmount();
-      this.lottoTickets = generateLotto(purchaseAmount);
-
-      printLottoTickets(this.lottoTickets);
-
-      this.lottoNumber = await this.getLottoNumber();
-      const bonusNumber = await this.getBonusNumber();
-
-      this.calculateAndDisplayResults(bonusNumber);
-    } while (await this.getRestartChoice());
+  get lottoTickets() {
+    return this.#lottoTickets;
   }
 
-  async getRestartChoice() {
-    const restartInput = await retryUntilValid(
-      () => getInput("\n" + MESSAGES.input.askRestart),
-      (input) => input.trim().toLowerCase(),
-      restartValidator
-    );
-    return restartInput === "y";
+  get winningNumber() {
+    return this.#winningNumber;
   }
 
-  async getPurchaseAmount() {
-    const purchaseAmount = await retryUntilValid(
-      () => getInput(MESSAGES.input.purchaseAmount),
-      (input) => Number(input),
-      purchaseAmountValidator
-    );
-    return purchaseAmount;
+  generateTickets(purchaseAmount) {
+    this.#lottoTickets = generateLotto(purchaseAmount);
+    this.#purchaseAmount = purchaseAmount;
   }
 
-  async getLottoNumber() {
-    const lottoNumber = await retryUntilValid(
-      () => getInput("\n" + MESSAGES.input.lottoNumber),
-      (input) => input.split(",").map(Number),
-      lottoNumberValidator
-    );
-    return lottoNumber;
+  matchLottoNumbers(winningNumbers, bonusNumber) {
+    lottoNumberValidator(winningNumbers);
+    bonusNumberValidator(bonusNumber, winningNumbers);
+
+    this.#winningNumber = {
+      winning: winningNumbers,
+      bonus: bonusNumber
+    };
   }
 
-  async getBonusNumber() {
-    const bonusNumber = await retryUntilValid(
-      () => getInput("\n" + MESSAGES.input.bonusNumber),
-      (input) => Number(input),
-      (bonusNumber) => bonusNumberValidator(bonusNumber, this.lottoNumber)
-    );
-    return bonusNumber;
-  }
-
-  calculateAndDisplayResults(bonusNumber) {
+  calculateAndDisplayResults() {
     const calculator = new ProfitCalculator(
-      this.lottoTickets,
-      this.lottoNumber,
-      bonusNumber
+      this.#lottoTickets,
+      this.#winningNumber
     );
 
     const results = calculator.getResults();

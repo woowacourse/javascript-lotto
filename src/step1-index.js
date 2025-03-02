@@ -4,6 +4,8 @@
  */
 
 import LottoController from "./controller/LottoController.js";
+import LottoMachine from "./domain/LottoMachine.js";
 
 const lottoController = new LottoController();
-lottoController.play();
+const lottoMachine = new LottoMachine(lottoController);
+lottoMachine.play();
