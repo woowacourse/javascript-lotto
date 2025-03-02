@@ -39,3 +39,8 @@
   font-size: 14px;
   font-weight: 700;
 }
+
+.purchased {
+  background-color: #b4b4b4;
+  cursor: not-allowed;
+}
