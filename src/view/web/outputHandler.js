@@ -1,3 +1,4 @@
+import { LOTTO_SYSTEM } from '../../constants/LottoSystem.js';
 import { DOM } from '../../DOM/dom.js';
 
 const WEB_OUTPUT = Object.freeze({
@@ -7,7 +8,7 @@ const WEB_OUTPUT = Object.freeze({
 });
 
 export const showPurchaseResult = (quantity) => {
-  DOM.result.innerHTML = ''; // 기존 내용 초기화
+  DOM.result.innerHTML = '';
   const div = document.createElement('div');
   div.id = 'quantity';
   div.textContent = WEB_OUTPUT.PURCHASED_QUANTITY(quantity);
@@ -46,11 +47,11 @@ const showLotto = (lotto) => {
 };
 
 export const showResultsModal = (matchCounts, revenue) => {
-  DOM.threeCount.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[3]);
-  DOM.fourCount.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[4]);
-  DOM.fiveCount.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[5]);
-  DOM.fiveCountWithBonus.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[7]);
-  DOM.sixCount.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[6]);
+  DOM.threeCount.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[LOTTO_SYSTEM.THREE_MATCH]);
+  DOM.fourCount.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[LOTTO_SYSTEM.FOUR_MATCH]);
+  DOM.fiveCount.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[LOTTO_SYSTEM.FIVE_MATCH]);
+  DOM.fiveCountWithBonus.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[LOTTO_SYSTEM.FIVE_WITH_BONUS_MATCH_IDX]);
+  DOM.sixCount.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[LOTTO_SYSTEM.SIX_MATCH]);
   DOM.revenueContainer.innerText = WEB_OUTPUT.TOTAL_REVENUE(revenue);
   DOM.modal.style.display = 'flex';
 };
