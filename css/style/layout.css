@@ -20,7 +20,7 @@ content {
 
 modal {
   position: fixed;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   inset: 0px 0px 0px 0px;
@@ -51,4 +51,22 @@ footer {
 
 footer p {
   color: var(--lotto-primary) !important;
+}
+
+.hide-layout {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.show-layout {
+  opacity: 1;
+  visibility: visible;
+  display: flex;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.reset-layout {
+  opacity: 0;
+  visibility: hidden;
 }

@@ -1,6 +1,8 @@
+import { hideLayout, showLayout } from "./setup";
+
 const allowModalOpen = () => {
   const prizeResultModal = document.querySelector("modal");
-  prizeResultModal.style.display = "flex";
+  showLayout(prizeResultModal);
 
   const prizeResultButton = document.querySelector(".result-contents");
   const closeButton = document.querySelector("modal .close-button");
@@ -12,13 +14,13 @@ const allowModalOpen = () => {
 
 const handleModal = () => {
   const prizeResultModal = document.querySelector("modal");
-  const modalOpenStatus = window.getComputedStyle(prizeResultModal).display;
+  const modalOpenStatus = window.getComputedStyle(prizeResultModal).visibility;
 
-  if (modalOpenStatus === "none") {
-    prizeResultModal.style.display = "flex";
+  if (modalOpenStatus === "hidden") {
+    showLayout(prizeResultModal);
     document.body.style.overflow = "hidden";
-  } else if (modalOpenStatus === "flex") {
-    prizeResultModal.style.display = "none";
+  } else if (modalOpenStatus === "visible") {
+    hideLayout(prizeResultModal);
     document.body.style.overflow = "auto";
   }
 };
@@ -29,8 +31,8 @@ const allowWinningLotto = () => {
   );
   const resultSubmitButton = document.querySelector(".result-contents");
 
-  winningLottoContainer.style.display = "flex";
-  resultSubmitButton.style.display = "flex";
+  showLayout(winningLottoContainer);
+  showLayout(resultSubmitButton);
 };
 
 export { handleModal, allowModalOpen, allowWinningLotto };

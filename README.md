@@ -118,6 +118,7 @@
 - [x] position - inset 속성으로 변경
 - [x] padding으로 통일
 - [x] title Document 삭제
+- [x] reset()에서 사용할 숨김 class 만들기
 
 - **feat**
 - [x] form 태그 사용하기 + reset 옵션 적용
