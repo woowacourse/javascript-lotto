@@ -19,18 +19,18 @@
   display: flex;
   justify-content: space-between;
   margin-top: 4px;
+}
 
-  input {
-    width: 310px;
-    height: 36px;
-    padding: 8px;
-    border: 1px solid var(--grayscale3);
-  }
+.paper_price_input {
+  width: 310px;
+  height: 36px;
+  padding: 8px;
+  border: 1px solid var(--grayscale3);
+}
 
-  button {
-    width: 56px;
-    height: 36px;
-  }
+.paper_buy_button {
+  width: 56px;
+  height: 36px;
 }
 
 .paper_lotto_information_wrap {
