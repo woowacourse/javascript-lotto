@@ -3,8 +3,14 @@ import createGameBox from "./src/view/web/layers/gameBox/createGameBox.js";
 import createWinningLottoBox from "./src/view/web/layers/winningLottoBox/createWinningLottoBox.js";
 import createFooter from "./src/view/web/layers/footer/footer.js";
 
-import readLottoPrice from "./src/view/web/modules/readLottoPrice.js";
-import readWinningNumbers from "./src/view/web/modules/readWinningNumbers.js";
+import {
+  readLottoPrice,
+  readWinningNumbers,
+  revealElement,
+  showModal,
+  closeModal,
+  restartGame,
+} from "./src/view/web/modules/index.js";
 
 import { validateInput } from "./src/view/web/utilsWeb/validation.js";
 import validateLottoPrice from "./src/validation/validateLottoPrice.js";
@@ -18,10 +24,6 @@ import getTotalPrizeMoney from "./src/lotto/getTotalPrizeMoney.js";
 import { getRevenueRate } from "./src/utils/math.js";
 
 import createPrizeResultModal from "./src/view/web/layers/modal/createPrizeResultModal.js";
-import showResultModal from "./src/view/web/modules/showModal.js";
-import closeResultModal from "./src/view/web/modules/closeModal.js";
-import revealElement from "./src/view/web/modules/revealElement.js";
-import restartGame from "./src/view/web/modules/restartGame.js";
 import {
   getLottoNumbers,
   getPrice,
