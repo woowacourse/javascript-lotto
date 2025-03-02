@@ -1,6 +1,6 @@
 import { LOTTO } from "../../config/const";
 import lottoImg from "../../assets/lotto.png";
-import { disableInputPrice } from "../../domain/web/setup";
+import { disableInputPrice } from "./setup";
 
 const printLottoCount = (price) => {
   const $lottoContents = $(".lotto-contents");

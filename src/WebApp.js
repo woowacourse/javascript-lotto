@@ -1,7 +1,7 @@
 import LottoManager from "./domain/LottoManager";
 import LottoPrize from "./domain/LottoPrize";
-import { allowModalOpen } from "./domain/web/modal";
-import { initLotto } from "./domain/web/setup";
+import { allowModalOpen } from "./view/web/modal";
+import { initLotto } from "./view/web/setup";
 import { getPrice, getWinningLotto } from "./view/web/input";
 import {
   printLottoCount,

@@ -1,5 +1,5 @@
-import { allowWinningLotto } from "../../domain/web/modal";
-import { focusInput } from "../../domain/web/setup";
+import { allowWinningLotto } from "./modal";
+import { focusInput } from "./setup";
 import {
   validateBonusNumber,
   validatePrice,
