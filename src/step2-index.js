@@ -8,13 +8,11 @@ import purchaseAmountValidator from "./validators/purchaseAmountValidator.js";
 
 const lottoController = new LottoController();
 
-// 구매
 const purchaseInput = document.getElementById("input");
 const purchaseButton = document.getElementById("check");
 const lottoCountMessage = document.getElementById("lotto-count");
 const lottoContainer = document.querySelector(".lotto-container");
 
-// 로또
 const winningNumberInputs = [
   document.getElementById("winning-number-input-1"),
   document.getElementById("winning-number-input-2"),
@@ -26,7 +24,6 @@ const winningNumberInputs = [
 const bonusInput = document.getElementById("bonus-input");
 const winningResultButton = document.getElementById("winning-result-button");
 
-// 모달
 const modal = document.querySelector("dialog");
 const modalCloseButton = document.getElementById("modal-close-button");
 const modalRestartButton = document.getElementById("restart-button");
