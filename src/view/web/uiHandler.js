@@ -20,3 +20,8 @@ export const handleModalCloseClick = () => {
   DOM.modal.style.display = 'none';
   document.body.style.overflow = '';
 };
+
+export const showModal = () => {
+  DOM.modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+};

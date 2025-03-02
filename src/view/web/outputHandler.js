@@ -1,5 +1,6 @@
 import { LOTTO_SYSTEM } from '../../constants/LottoSystem.js';
 import { DOM } from '../../DOM/dom.js';
+import { showModal } from './uiHandler.js';
 
 const WEB_OUTPUT = Object.freeze({
   PURCHASED_QUANTITY: (quantity) => `총 ${quantity}개를 구매하였습니다.`,
@@ -53,5 +54,5 @@ export const showResultsModal = (matchCounts, revenue) => {
   DOM.fiveCountWithBonus.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[LOTTO_SYSTEM.FIVE_WITH_BONUS_MATCH_IDX]);
   DOM.sixCount.innerText = WEB_OUTPUT.MATCH_COUNT(matchCounts[LOTTO_SYSTEM.SIX_MATCH]);
   DOM.revenueContainer.innerText = WEB_OUTPUT.TOTAL_REVENUE(revenue);
-  DOM.modal.style.display = 'flex';
+  showModal();
 };
