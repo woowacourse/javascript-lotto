@@ -8,25 +8,43 @@ const resultButton = document.querySelector(".result_check_button");
 const restartButton = document.querySelector(".restart");
 const closeButton = document.querySelector(".close_button");
 const modal = document.querySelector(".modal_overlay");
+const purchaseInput = document.querySelector(".purchase_input");
 const purchaseButton = document.querySelector(".purchase_button");
 const resultSection = document.querySelector(".result_section");
 const winningSection = document.querySelector(".winning_number_section");
 
 document.addEventListener("DOMContentLoaded", () => {
-  purchaseButton.addEventListener("click", () => {
-    const { purchaseAmount, lottoPack } = prepareCompare();
-
-    if (purchaseAmount && lottoPack) {
-      resultButton.addEventListener("click", () => {
-        winningResult(purchaseAmount, lottoPack);
-      });
-      restartButton.addEventListener("click", restart);
-      closeButton.addEventListener("click", () => {
-        modal.style.display = "none";
-      });
-    }
-  });
+  purchaseButton.addEventListener("click", handlePurchase);
+  purchaseInput.addEventListener("keyup", handleEnterKey);
 });
+
+const handlePurchase = () => {
+  const { purchaseAmount, lottoPack } = prepareCompare();
+
+  if (purchaseAmount && lottoPack) {
+    resultButton.removeEventListener("click", handleWinningResult);
+    restartButton.removeEventListener("click", restart);
+    closeButton.removeEventListener("click", closeModal);
+
+    resultButton.addEventListener("click", () => handleWinningResult(purchaseAmount, lottoPack));
+    restartButton.addEventListener("click", restart);
+    closeButton.addEventListener("click", closeModal);
+  }
+};
+
+const handleEnterKey = (event) => {
+  if (event.key === "Enter") {
+    handlePurchase();
+  }
+};
+
+const handleWinningResult = (purchaseAmount, lottoPack) => {
+  winningResult(purchaseAmount, lottoPack);
+};
+
+const closeModal = () => {
+  modal.style.display = "none";
+};
 
 const restart = () => {
   document.querySelector(".purchase_input").value = "";
