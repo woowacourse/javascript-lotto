@@ -3,7 +3,7 @@ import { handleResultCheck } from './modal.js';
 // 모달창 닫는 버튼 UI 생성
 export function createCloseButton() {
   const closeButton = document.createElement('img');
-  closeButton.src = '../../public/img/close.svg';
+  closeButton.src = 'https://aydenote.github.io/javascript-lotto/img/close.svg';
   closeButton.alt = 'close button';
   closeButton.classList.add('button_close');
   return closeButton;
