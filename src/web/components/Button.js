@@ -1,3 +1,12 @@
+const setButtonCss = (style) => {
+  if (style === "large") {
+    return "large-button";
+  }
+  if (style === "small") {
+    return "small-button";
+  }
+};
+
 export const Button = ({ label, onClick, style = "large", name }) => {
   const button = document.createElement("button");
   button.classList.add("font-weight-body");
@@ -10,13 +19,4 @@ export const Button = ({ label, onClick, style = "large", name }) => {
   }
 
   return button;
-};
-
-const setButtonCss = (style) => {
-  if (style === "large") {
-    return "large-button";
-  }
-  if (style === "small") {
-    return "small-button";
-  }
 };

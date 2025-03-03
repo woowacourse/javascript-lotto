@@ -1,8 +1,17 @@
 import { LOTTO_NUMBERS } from "../../common/lottoConstants/systemConstants.js";
 
+const setInputCss = (style) => {
+  if (style === "large") {
+    return "large-input";
+  }
+  if (style === "small") {
+    return "small-input";
+  }
+};
+
 export const LottoNumberInput = ({ name, style = "small", placeholder = "" }) => {
   const lottoNumberInput = document.createElement("input");
-
+  console.log(`작동 : ${setInputCss(style)}`);
   lottoNumberInput.classList.add(setInputCss(style));
   lottoNumberInput.min = LOTTO_NUMBERS.MIN;
   lottoNumberInput.max = LOTTO_NUMBERS.MAX;
@@ -13,13 +22,4 @@ export const LottoNumberInput = ({ name, style = "small", placeholder = "" }) =>
   lottoNumberInput.placeholder = placeholder;
 
   return lottoNumberInput;
-};
-
-const setInputCss = (style) => {
-  if (style === "large") {
-    return "large-input";
-  }
-  if (style === "small") {
-    return "small-input";
-  }
 };
