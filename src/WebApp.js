@@ -29,16 +29,10 @@ export class WebApp {
   #setPurchaseButton() {
     $(".input-contents button").on("click", (event) => {
       event.preventDefault();
-      this.#purchaseLotto();
+      if ($(".lotto-container_lotto").length !== 0) {
+        this.#restartLotto(event);
+      } else this.#purchaseLotto();
     });
-  }
-
-  async #purchaseLotto() {
-    this.price = repeatGetPrice();
-    if (this.price === "") return;
-    printLottoCount(this.price);
-    this.lottos = LottoManager.generateLottos(this.price);
-    printLottos(this.lottos);
   }
 
   #setWinningLottoButton() {
@@ -51,7 +45,27 @@ export class WebApp {
     });
   }
 
-  async #compareLotto() {
+  #restartLotto(event) {
+    const userConfirmed = confirm(
+      "로또를 재구매 하시겠습니까? \n 구매한 로또 목록은 삭제됩니다."
+    );
+    if (!userConfirmed) {
+      event.preventDefault();
+      return;
+    } else {
+      resetLotto();
+    }
+  }
+
+  #purchaseLotto() {
+    this.price = repeatGetPrice();
+    if (this.price === "") return;
+    printLottoCount(this.price);
+    this.lottos = LottoManager.generateLottos(this.price);
+    printLottos(this.lottos);
+  }
+
+  #compareLotto() {
     const { winningNumbers, bonusNumber } = repeatWinningLotto();
     if (winningNumbers === undefined || bonusNumber === undefined) return;
 

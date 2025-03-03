@@ -9,7 +9,7 @@ const printLottoCount = (price) => {
     .text(`총 ${price / LOTTO.PURCHASE.unit}개를 구매하였습니다.`);
 
   $lottoContents.append($lottoCountText);
-  disableInputPrice();
+  // disableInputPrice();
 };
 
 const createLottoObject = (lotto) => {
