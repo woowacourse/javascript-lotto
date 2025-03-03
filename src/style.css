@@ -1,4 +1,4 @@
-* {
+:root {
   /* colors */
   --color-lotto-primary:#4E5BA6;
   --color-lotto-greyscale-1:#FFFFFF;
@@ -8,3 +8,230 @@
   --color-lotto-greyscale-5:#000000;
 }
 
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 1440px;
+  height: 1024px;
+  font-family: 'Roboto';    
+
+}
+
+#header_container{
+  width: 100%;
+  padding: 14px 0px;
+  background-color: var(--color-lotto-primary);
+}
+
+#header_container .page_title{ 
+  margin-left: 130px;
+  font-size: 24px;
+  color: var(--color-lotto-greyscale-1);
+}
+
+#main_container{
+  box-sizing: border-box;
+  width: 414px;
+  height: 727px;
+  padding: 40px 16px 32px;
+  outline: 1px solid var(--color-lotto-greyscale-3);
+  border-radius: 4px;
+  background-color: var(--color-lotto-greyscale-1);
+}
+
+#main_container .sub_title{
+  margin-top: 6px;
+  font-size: 24px;  
+  text-align: center;
+  color: var(--color-lotto-greyscale-5);
+}
+
+#price_container{
+  margin-top: 34px;
+}
+
+#price_container input,#price_container input:focus{
+  margin: 0px;
+  padding: 9px 0px 9px 8px;
+  border: 1px solid var(--color-lotto-greyscale-3);
+  outline: none;
+  border-radius: 4px;
+}
+
+.input_container{
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.input_price{
+  flex-grow: 1;
+}
+
+.input_button{
+  min-width: 56px;
+  padding: 6px 6px 6px 8px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  background-color: var(--color-lotto-primary);
+  color: var(--color-lotto-greyscale-1);
+}
+
+.buy_count{
+  margin: 28px 0px 12px 0px;
+  font-size: 15px;
+  font-family: 'Roboto';    
+  color: var(--color-lotto-greyscale-5);
+}
+
+.lotto_container{
+  height: 276px;
+  overflow-y: scroll;
+}
+
+.lotto_box{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.winning_container{
+  margin-top: 28px;
+}
+
+.winning_wrap{
+  display: flex;
+  gap: 8px;
+}
+
+.number_text{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.input_number{
+  width: 34px;
+  height: 36px;
+  border: 1px solid var(--color-lotto-greyscale-3);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.input_number:focus{
+  outline: none;
+}
+
+.input_price::-webkit-inner-spin-button,
+.input_number::-webkit-inner-spin-button{
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.number_container{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.result_button{
+  width: 100%;
+  margin-top: 27px;
+  padding: 10px 0px;
+  border: none;
+  border-radius: 4px;
+  color: var(--color-lotto-greyscale-1);
+  background-color: var(--color-lotto-primary);
+}
+
+#footer_container{
+  width: 100%;
+  padding: 28px 0px 36px 0px;
+  border-top: 1px solid var(--color-lotto-primary);
+}
+
+#footer_container .text{
+  text-align: center;
+  color: var(--color-lotto-primary);
+}
+
+.modal {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 1440px;
+  height: 1024px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal .modal_popup {
+  position: absolute;
+  min-width: 350px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px 15px 32px;
+  background: var(--color-lotto-greyscale-1);
+  border-radius: 4px;
+}
+
+h3{
+  font-weight: bold;
+  font-size: 20px;
+  color: var(--color-lotto-greyscale-5);
+}
+
+table {
+  width: 100%;
+  margin-bottom: 32px;
+  border-collapse: collapse;
+}
+
+h3{
+  text-align: center;
+  margin-bottom: 33px;
+}
+
+th{
+  font-weight: bold;
+}
+
+th, td {
+  padding: 8px 0px;
+  text-align: center;
+}
+
+tr {
+  border-top: 1px solid #ddd; 
+}
+
+tr:last-child {
+  border-bottom: 1px solid #ddd; 
+}
+
+.rate_text{
+  margin-bottom: 32px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.button_restart{
+  width: 100%;
+  padding: 10px 0px;
+  border: none;
+  border-radius: 4px;
+  color: var(--color-lotto-greyscale-1);
+  background-color: var(--color-lotto-primary);
+}
+
+.button_close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
