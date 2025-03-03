@@ -8,7 +8,7 @@ const InputView = {
     if (isWebEnvironMent && !isMultiple) {
       return this.readWebInput(inputType);
     }
-    const { readLineAsync } = await import("../util/readLineAsync.js");
+    const { readLineAsync } = await import("../../util/readLineAsync.js");
     return await readLineAsync(message);
   },
   readWebInput(name) {

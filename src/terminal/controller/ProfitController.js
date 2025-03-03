@@ -1,6 +1,6 @@
-import SYSTEM_MESSAGE from "../lottoConstants/systemMessage.js";
+import SYSTEM_MESSAGE from "../../lottoConstants/systemMessage.js";
 import { calculateProfitRate } from "../service/ProfitService.js";
-import OutputView from "../view/OutputView.js";
+import OutputView from "../view/outputView.js";
 
 export const ProfitController = (matchingCount, lottoCount) => {
   const profitRate = calculateProfitRate(matchingCount, lottoCount);

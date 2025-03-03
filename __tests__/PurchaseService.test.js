@@ -1,4 +1,4 @@
-import { getLottoCount } from "../src/service/PurchaseService.js";
+import { getLottoCount } from "../src/terminal/service/PurchaseService.js";
 
 test("로또를 구매할 금액을 입력하면, 로또 금액에 따른 구매 개수를 반환한다", () => {
   // given

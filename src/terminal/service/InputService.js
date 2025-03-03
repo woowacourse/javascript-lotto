@@ -1,10 +1,10 @@
-import SYSTEM_MESSAGE from "../lottoConstants/systemMessage.js";
-import validatePrice from "../validation/validatePrice.js";
-import validateWinningNumber from "../validation/validateWinningNumber.js";
-import validateBonusNumber from "../validation/validateBonusNumber.js";
-import { parseBonusNumber, parsePrice, parseWinningNumbers } from "./ParsingService.js";
-import validateRetryInput from "../validation/validateRetryInput.js";
+import SYSTEM_MESSAGE from "../../lottoConstants/systemMessage.js";
+import validateBonusNumber from "../../validation/validateBonusNumber.js";
+import validatePrice from "../../validation/validatePrice.js";
+import validateRetryInput from "../../validation/validateRetryInput.js";
+import validateWinningNumber from "../../validation/validateWinningNumber.js";
 import InputView from "../view/InputView.js";
+import { parseBonusNumber, parsePrice, parseWinningNumbers } from "./ParsingService.js";
 
 export const getPrice = async () => {
   const priceInput = await InputView.readUserInput(SYSTEM_MESSAGE.PRICE, "price");

@@ -1,4 +1,4 @@
-import { Alert } from "../components/Alert.js";
+import { Alert } from "../web/components/Alert.js";
 import { appendToParent } from "./appendToParent.js";
 
 const retryOnErrorForTerminal = async (asyncFn, onError) => {

@@ -1,7 +1,7 @@
+import { LOTTO_PRIZE } from "../../lottoConstants/systemConstants.js";
+import formatNumber from "../../util/formatNumber.js";
+import { removeModal } from "../../util/modalActions.js";
 import { retryHandler } from "../handler/retryHandler.js";
-import { LOTTO_PRIZE } from "../lottoConstants/systemConstants.js";
-import formatNumber from "../util/formatNumber.js";
-import { removeModal } from "../util/modalActions.js";
 import { Button } from "./Button.js";
 
 export const Result = ({ matchingCount, profitRate }) => {
