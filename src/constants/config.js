@@ -1,6 +1,9 @@
 const CONFIG = Object.freeze({
   LOTTO: Object.freeze({
-    PRICE: 1000,
+    PRICE: Object.freeze({
+      MIN: 1000,
+      MAX: 100000,
+    }),
     LENGTH: 6,
     NUMBER: Object.freeze({
       MIN: 1,

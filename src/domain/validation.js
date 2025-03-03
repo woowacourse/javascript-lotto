@@ -4,6 +4,7 @@ const ERROR_MESSAGES = Object.freeze({
   MONEY: Object.freeze({
     EMPTY_VALUE: '로또 구입 금액은 0원 이하일 수 없다.',
     REST_VALUE: '로또 구입 금액은 1,000원으로 나눠떨어져야 한다.',
+    MAX_VALUE: '로또 구입 금액은 100,000원 이하만 가능하다.',
   }),
   LOTTO: Object.freeze({
     NUMBER: Object.freeze({
@@ -22,12 +23,14 @@ const ERROR_MESSAGES = Object.freeze({
 });
 
 function validateMoney(money) {
-  const ZERO = 0;
   if (money <= CONFIG.INITIAL_MONEY) {
     throw new Error(ERROR_MESSAGES.MONEY.EMPTY_VALUE);
   }
-  if (money % CONFIG.LOTTO.PRICE !== ZERO) {
+  if (money % CONFIG.LOTTO.PRICE.MIN !== 0) {
     throw new Error(ERROR_MESSAGES.MONEY.REST_VALUE);
+  }
+  if (money > CONFIG.LOTTO.PRICE.MAX) {
+    throw new Error(ERROR_MESSAGES.MONEY.MAX_VALUE);
   }
 }
 
