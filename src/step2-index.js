@@ -2,6 +2,19 @@ import Validate from './Model/Validate.js';
 
 const input_price = document.querySelector('.input_price');
 
+// 입력 안내 UI 생성
+function createInputNotice() {
+  const main_container = document.getElementById('main_container');
+  const winning_container = document.createElement('section');
+  const text_notice = document.createElement('p');
+
+  winning_container.classList.add('winning_container');
+  text_notice.innerText = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
+
+  winning_container.appendChild(text_notice);
+  main_container.appendChild(winning_container);
+}
+
 // 로또 번호 UI 생성
 function createLottoBox(lotto) {
   const lotto_box = document.createElement('div');
@@ -65,6 +78,7 @@ function handleLottoPurchase() {
     const lottos = createLotto();
     paintLottoCount(lottos);
     paintLottos(lottos);
+    createInputNotice();
   } catch (error) {
     alert(error.message);
   }
