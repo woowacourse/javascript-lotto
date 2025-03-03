@@ -5,54 +5,54 @@ import LottoStatistics from './domain/model/LottoStatistics.js';
 import InputView from './view/ui/InputView.js';
 import OutputView from './view/ui/OutputView.js';
 
-let userLottos;
-let userMoney;
-const lottoStatistics = new LottoStatistics();
-
-// 1. 로또 구매하기
-document.getElementById('purchase-button').addEventListener('click', () => {
-  userMoney = InputView.readMoney();
-  if (!userMoney) {
-    return;
+class LottoGame {
+  constructor() {
+    this.userLottos = null;
+    this.userMoney = null;
+    this.lottoStatistics = new LottoStatistics();
   }
-  userLottos = createLottos(userMoney);
-  OutputView.renderUserLottos(userLottos);
-  OutputView.renderWinningLotto();
-});
 
-function getRevenueRate() {
-  const profit = lottoStatistics.calculateProfit();
-  const revenueRate = calculateRevenueRate(profit, userMoney);
-  return revenueRate;
+  purchaseLottos() {
+    this.userMoney = InputView.readMoney();
+    if (!this.userMoney) {
+      return;
+    }
+    this.userLottos = createLottos(this.userMoney);
+    OutputView.renderUserLottos(this.userLottos);
+    OutputView.renderWinningLotto();
+  }
+
+  getRevenueRate() {
+    const profit = this.lottoStatistics.calculateProfit();
+    const revenueRate = calculateRevenueRate(profit, this.userMoney);
+    return revenueRate;
+  }
+
+  checkResults() {
+    const winningNumbers = InputView.readWinningNumbers();
+    if (!this.userLottos || !winningNumbers) { return; }
+    const bonusNumber = InputView.readBonusNumber(winningNumbers);
+    if (!bonusNumber) { return; }
+    const winningLotto = { bonusNumber, lottoNumber: winningNumbers };
+    console.log(this.lottoStatistics);
+    const rankResult = this.lottoStatistics.compareLottos(this.userLottos, winningLotto);
+    OutputView.toggleModal();
+    OutputView.renderStatisticsResult(rankResult);
+    OutputView.renderRevenueRate(this.getRevenueRate());
+  }
+
+  closeModal() {
+    document.querySelectorAll('.modal-items').forEach((element) => {
+      element.remove();
+    });
+    this.lottoStatistics.init();
+    OutputView.toggleModal();
+  }
 }
 
-// 2. 로또 결과 확인하기
-document.getElementById('result-button').addEventListener('click', () => {
-  const winningNumbers = InputView.readWinningNumbers();
-  if (!userLottos || !winningNumbers) {
-    return;
-  }
-  const bonusNumber = InputView.readBonusNumber(winningNumbers);
-  if (!bonusNumber) {
-    return;
-  }
-  const winningLotto = { bonusNumber, lottoNumber: winningNumbers };
-  const rankResult = lottoStatistics.compareLottos(userLottos, winningLotto);
-  OutputView.toggleModal();
-  OutputView.renderStatisticsResult(rankResult);
-  OutputView.renderRevenueRate(getRevenueRate());
-});
+const lottoGame = new LottoGame();
 
-// 3. 로또 초기화하기
-document.getElementById('reset-button').addEventListener('click', () => {
-  location.reload(true);
-});
-
-// 4. 결과 닫기
-document.getElementById('reset-close-button').addEventListener('click', () => {
-  document.querySelectorAll('.modal-items').forEach((element) => {
-    element.remove();
-  });
-  lottoStatistics.init();
-  OutputView.toggleModal();
-});
+document.getElementById('purchase-button').addEventListener('click', () => lottoGame.purchaseLottos());
+document.getElementById('result-button').addEventListener('click', () => lottoGame.checkResults());
+document.getElementById('reset-button').addEventListener('click', () => location.reload(true));
+document.getElementById('reset-close-button').addEventListener('click', () => lottoGame.closeModal());
