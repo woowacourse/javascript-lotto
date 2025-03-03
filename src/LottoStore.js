@@ -1,4 +1,5 @@
 import Calculator from "./Calculator.js";
+
 import LottoCenter from "./LottoCenter.js";
 import generateLotto from "./LottoMachine.js";
 
@@ -26,11 +27,13 @@ const readWinningInfo = async () => {
 };
 
 export const getLottos = (purchaseAmount) => {
+
   const quantity = Calculator.getQuantity(purchaseAmount);
   return Array.from({ length: quantity }, () => generateLotto());
 };
 
 export const getYieldRate = (winningCounts, purchaseAmount) => {
+
   const totalPrize = Calculator.getTotalPrize(winningCounts);
 
   return Calculator.getYieldRate(purchaseAmount, totalPrize);

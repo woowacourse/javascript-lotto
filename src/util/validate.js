@@ -35,6 +35,7 @@ export const validateWinningNumbers = (numbersArray) => {
 };
 
 export const validateBonusNumber = (number, numbers) => {
+
   if (isNaN(number)) throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
   if (number < LOTTO.MIN_RANDOM_VALUE || number > LOTTO.MAX_RANDOM_VALUE)
     throw new Error(ERROR_MESSAGE.NUMBER_OUT_OF_RANGE);

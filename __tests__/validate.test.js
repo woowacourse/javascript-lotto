@@ -57,6 +57,7 @@ describe("validate", () => {
       test(`당첨 번호의 길이는 ${LOTTO.LENGTH}이다`, () => {
         const shortNumbers = [1, 2, 3, 4, 5];
 
+
         expect(() => validateWinningNumbers(shortNumbers)).toThrow(
           ERROR_MESSAGE.LOTTO_LENGTH
         );
@@ -85,6 +86,7 @@ describe("validate", () => {
         expect(() => validateWinningNumbers(numbersWithNonNumber)).toThrow(
           ERROR_MESSAGE.NOT_A_NUMBER
         );
+
       });
     });
   });
