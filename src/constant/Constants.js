@@ -19,6 +19,13 @@ const Constants = Object.freeze({
       SECOND: 30_000_000,
       FIRST: 2_000_000_000,
     },
+    RESULT_INDEX: {
+      MATCH6: "1", // 6개 일치
+      MATCH5_BONUS: "2", // 5개+보너스 일치
+      MATCH5: "3", // 5개 일치
+      MATCH4: "4", // 4개 일치
+      MATCH3: "5", // 3개 일치
+    },
   },
   OPERATOR: {
     SEPARATOR: ",",

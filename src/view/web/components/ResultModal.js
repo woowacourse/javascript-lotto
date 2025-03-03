@@ -1,4 +1,5 @@
 import DomHelper from "../../../utils/DomHelper.js";
+import Constants from "../../../constant/Constants.js";
 
 export default class ResultModal {
   constructor(onRestart) {
@@ -12,6 +13,14 @@ export default class ResultModal {
     this.restartButton = DomHelper.querySelector("#restart-button");
     this.closeButton = DomHelper.querySelector("#closeModalBtn");
     this.onRestart = onRestart;
+
+    this.matchElements = {
+      MATCH3: this.match3Element,
+      MATCH4: this.match4Element,
+      MATCH5: this.match5Element,
+      MATCH5_BONUS: this.match5BonusElement,
+      MATCH6: this.match6Element,
+    };
 
     this.init();
   }
@@ -40,11 +49,13 @@ export default class ResultModal {
   }
 
   displayResult(gameResult, earningRate) {
-    this.match3Element.textContent = `${gameResult["5"]}개`;
-    this.match4Element.textContent = `${gameResult["4"]}개`;
-    this.match5Element.textContent = `${gameResult["3"]}개`;
-    this.match5BonusElement.textContent = `${gameResult["2"]}개`;
-    this.match6Element.textContent = `${gameResult["1"]}개`;
+    const { RESULT_INDEX } = Constants.LOTTO;
+
+    Object.entries(this.matchElements).forEach(([matchType, element]) => {
+      const index = RESULT_INDEX[matchType];
+      const count = gameResult[index] || 0;
+      element.textContent = `${count}개`;
+    });
     this.totalReturnRateElement.textContent = `당신의 총 수익률은 ${earningRate}%입니다.`;
     this.resultModal.style.display = "flex";
   }
