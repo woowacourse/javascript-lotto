@@ -1,4 +1,5 @@
 import { PRIZE_MONEY } from '../../constants/MagicNumber.js';
+import SELECTORS from '../../constants/Selectors.js';
 
 function createModal(winCount, revenueRate) {
   const modal = document.createElement('dialog');
@@ -11,7 +12,7 @@ function createModal(winCount, revenueRate) {
   closeButtonWrapper.classList.add('close-button-wrapper');
 
   const closeButton = document.createElement('button');
-  closeButton.id = 'close-button';
+  closeButton.id = SELECTORS.BUTTON.CLOSE;
   closeButton.textContent = '✕';
 
   closeButtonWrapper.appendChild(closeButton);
