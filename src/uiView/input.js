@@ -1,4 +1,4 @@
-import alertUntilValid from "../utils/alertUntilValid.js";
+import validateWithAlert from "../utils/validateWithAlert.js";
 import { $, $$ } from "../utils/dom.js";
 import validatePrice from "../validations/validatePrice.js";
 import {
@@ -7,7 +7,7 @@ import {
 } from "../validations/validateWinningNumbers.js";
 
 export const getLottoPrice = () => {
-  return alertUntilValid($(".purchase input").value, validatePrice);
+  return validateWithAlert($(".purchase input").value, validatePrice);
 };
 
 export const getWinningNumbers = () => {
@@ -15,12 +15,12 @@ export const getWinningNumbers = () => {
   const winningNumbers = [...winningNumbersEl].map((winningNumber) => {
     return winningNumber.value;
   });
-  return alertUntilValid(winningNumbers.join(","), validateWinningNumbers);
+  return validateWithAlert(winningNumbers.join(","), validateWinningNumbers);
 };
 
 export const getBonusNumber = (winningNumbers) => {
   const bonusNumber = $(".bonus-number").value;
-  return alertUntilValid(bonusNumber, (bonusNumber) =>
+  return validateWithAlert(bonusNumber, (bonusNumber) =>
     validateBonusNumber(bonusNumber, winningNumbers)
   );
 };

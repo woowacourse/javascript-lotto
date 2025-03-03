@@ -1,4 +1,4 @@
-const alertUntilValid = (input, validateFunc) => {
+const validateWithAlert = (input, validateFunc) => {
   try {
     const validatedInput = validateFunc(input);
     return validatedInput;
@@ -7,4 +7,4 @@ const alertUntilValid = (input, validateFunc) => {
   }
 };
 
-export default alertUntilValid;
+export default validateWithAlert;
