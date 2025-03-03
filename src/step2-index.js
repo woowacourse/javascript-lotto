@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (purchaseButton) {
     purchaseButton.addEventListener("click", () => {
       app.run();
+      document.querySelector(".lotto-list-container").style.display = "flex";
+      document.querySelector(".number-input-form").style.display = "flex";
+      document.querySelector(".result-button-container").style.display = "flex";
     });
   }
 

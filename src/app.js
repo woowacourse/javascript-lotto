@@ -1,4 +1,3 @@
-import { RANK_INFO_TABLE } from "./constant/rank.js";
 import LottoCalculator from "./domain/lottoCalculator.js";
 import LottoMachine from "./domain/lottoMachine.js";
 import inputView from "./view/InputView.js";
@@ -42,18 +41,7 @@ class App {
   }
 
   printResult() {
-    console.log("당첨 통계");
-    console.log("--------------------");
-    this.prize.forEach((rankLottos, index) => {
-      const rank = index + 1;
-      const info = RANK_INFO_TABLE[rank];
-      console.log(
-        `${info.message} (${info.price.toLocaleString()}원) - ${
-          rankLottos.lottos.length
-        }개`
-      );
-    });
-    console.log(`총 수익률은 ${this.profit}%입니다.`);
+    outputView.printResult(this.prize, this.profit);
   }
 
   async restart() {

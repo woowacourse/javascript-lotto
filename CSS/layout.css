@@ -96,6 +96,7 @@ div.lotto-list-container {
   flex: 1;
   min-height: 0;
   align-items: flex-start;
+  display: none;
 }
 
 div.lotto-list {
@@ -125,6 +126,7 @@ div.number-input-form {
   width: 100%;
   display: flex;
   flex-direction: column;
+  display: none;
 }
 
 div.number-input-container {
@@ -155,6 +157,7 @@ div.number-input-box {
 div.result-button-container {
   padding-top: 28px;
   width: 100%;
+  display: none;
 }
 
 button.result-button {
