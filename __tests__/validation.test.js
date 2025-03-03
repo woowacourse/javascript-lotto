@@ -22,6 +22,13 @@ describe('로또 구입 금액',() => {
         validateMoney(money);
     }).toThrow();
   });
+
+  test('로또 구입 금액은 100,000원 이하만 가능하다.',() => {
+    const money = 1000000;
+    expect(() => {
+        validateMoney(money);
+    }).toThrow();
+  });
 })
 
 describe('로또 숫자',() => {
