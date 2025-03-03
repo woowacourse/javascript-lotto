@@ -2,43 +2,43 @@ import validatePurchaseMoney from '../validations/validate/validatePurchaseMoney
 import Lotto from '../domain/Lotto.js';
 import WinningLotto from '../domain/WinningLotto.js';
 import { DOM } from '../utils/DomSelector.js';
+import { cleanInput } from '../view/utils/cleanInput.js';
+import { cleanTextContent } from '../view/utils/cleanTextContent.js';
+import { displayError } from '../view/utils/displayError.js';
 
 const webInputHandler = {
   purchaseMoney() {
     try {
-      DOM.purchaseErrorText.textContent = ""
+      cleanTextContent(DOM.purchaseErrorText)
       const purchaseMoney =  DOM.inputPrice.value;
       validatePurchaseMoney(Number(purchaseMoney));
       return purchaseMoney;
     } catch (e) {
-      DOM.inputPrice.value = "";
-      DOM.purchaseErrorText.textContent=e.message;
-      return null
+      cleanInput(DOM.inputPrice);
+      return displayError(DOM.purchaseErrorText, e.message)
     }
   },
 
   winningNumbers(){
     try {
-        DOM.winningErrorText.textContent="";
+        cleanTextContent(DOM.winningErrorText)
         const winningNumbers = Array.from(DOM.winningNumberInputs).map(input => Number(input.value));
         return new Lotto(winningNumbers.map((num) => Number(num)));
       } catch (e) {
-        (DOM.winningNumberInputs).forEach(input => input.value = "");
-        DOM.winningErrorText.textContent=e.message;
-        return null
+        (DOM.winningNumberInputs).forEach(input => cleanInput(input));
+        return displayError(DOM.winningErrorText, e.message)
       }
   },
 
   bonusNumber(winningNumbersLotto){
     if(winningNumbersLotto===null) return null
     try {
-        DOM.bonusErrorText.textContent = ""
+        cleanTextContent(DOM.bonusErrorText)
         const bonusNumber =  Number(DOM.bonusInput.value);
         return new WinningLotto(winningNumbersLotto, bonusNumber);
       } catch (e) {
-        DOM.bonusInput.value = "";
-        DOM.bonusErrorText.textContent=e.message;
-        return null
+        cleanInput(DOM.bonusInput);
+        return displayError(DOM.bonusErrorText, e.message)
       }
   }
 
