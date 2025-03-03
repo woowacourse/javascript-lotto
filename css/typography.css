@@ -1,0 +1,44 @@
+.lotto-title {
+  font-family: var(--font-family);
+  font-size: var(--title-size);
+  line-height: var(--title-line-height);
+  font-weight: var(--title-weight);
+  color: var(--title-color);
+  letter-spacing: var(--title-spacing);
+}
+
+.lotto-subtitle {
+  font-family: var(--font-family);
+  font-size: var(--subtitle-size);
+  line-height: var(--subtitle-line-height);
+  font-weight: var(--subtitle-weight);
+  color: var(--subtitle-color);
+  letter-spacing: var(--subtitle-spacing);
+}
+
+.lotto-body {
+  font-family: var(--font-family);
+  font-size: var(--body-size);
+  line-height: var(--body-line-height);
+  font-weight: var(--body-weight);
+  color: var(--body-color);
+  letter-spacing: var(--body-spacing);
+}
+
+.lotto-placeholder {
+  font-family: var(--font-family);
+  font-size: var(--placeholder-size);
+  line-height: var(--placeholder-line-height);
+  font-weight: var(--placeholder-weight);
+  color: var(--placeholder-color);
+  letter-spacing: var(--placeholder-spacing);
+}
+
+.lotto-caption {
+  font-family: var(--font-family);
+  font-size: var(--caption-size);
+  line-height: var(--caption-line-height);
+  font-weight: var(--caption-weight);
+  color: var(--caption-color);
+  letter-spacing: var(--caption-spacing);
+}

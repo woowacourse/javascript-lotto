@@ -1,0 +1,41 @@
+:root {
+  --lotto-primary: #4E5BA6;
+
+  --lotto-greyscale-1: #FFFFFF;
+  --lotto-greyscale-2: #FCFCFD;
+  --lotto-greyscale-3: #B4B4B4;
+  --lotto-greyscale-4: #8B8B8B;
+  --lotto-greyscale-5: #000000;
+
+  --font-family: 'Roboto', sans-serif;
+
+  --title-size: 24px;
+  --title-line-height: 36px;
+  --title-weight: 800;
+  --title-color: rgba(0, 0, 0, 0.87);
+  --title-spacing: 0;
+
+  --subtitle-size: 20px;
+  --subtitle-line-height: 24px;
+  --subtitle-weight: 600;
+  --subtitle-color: rgba(0, 0, 0, 0.87);
+  --subtitle-spacing: 0.15px;
+
+  --body-size: 15px;
+  --body-line-height: 24px;
+  --body-weight: 400;
+  --body-color: rgba(0, 0, 0, 0.87);
+  --body-spacing: 0.5px;
+
+  --placeholder-size: 15px;
+  --placeholder-line-height: 24px;
+  --placeholder-weight: 400;
+  --placeholder-color: var(--lotto-greyscale-4);
+  --placeholder-spacing: 0.5px;
+
+  --caption-size: 14px;
+  --caption-line-height: 16px;
+  --caption-weight: 700;
+  --caption-color: rgba(0, 0, 0, 0.87);
+  --caption-spacing: 1.25px;
+}
