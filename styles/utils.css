@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 .flex-base {
     display: flex;
     align-items: center;

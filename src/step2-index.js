@@ -17,6 +17,7 @@ document.getElementById('purchase-button').addEventListener('click', () => {
   }
   userLottos = createLottos(userMoney);
   OutputView.printUserLottos(userLottos);
+  OutputView.showInputWinningLotto();
 });
 
 function getRevenueRate() {

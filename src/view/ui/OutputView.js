@@ -6,8 +6,12 @@ const OutputView = {
   toggleModal() {
     const $modal = document.querySelector('.modal');
     const $modalDimmed = document.querySelector('.modal-dimmed');
-    toggleClassName($modal, 'modal-close');
-    toggleClassName($modalDimmed, 'modal-close');
+    toggleClassName($modal, 'hidden');
+    toggleClassName($modalDimmed, 'hidden');
+  },
+  showInputWinningLotto() {
+    const $lottoBottom = document.querySelector('.lotto-bottom');
+    toggleClassName($lottoBottom, 'hidden');
   },
   printUserLottos(userLottos) {
     userLottos.forEach((userLotto) => {

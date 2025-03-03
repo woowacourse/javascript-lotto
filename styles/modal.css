@@ -39,11 +39,6 @@
     align-items: center;
 }
 
-
-.modal-close {
-    display: none;
-}
-
 th, tr {
     border-top: 1px solid #B4B4B4;
 }
