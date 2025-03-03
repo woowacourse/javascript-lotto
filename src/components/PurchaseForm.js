@@ -32,6 +32,7 @@ export default class PurchaseForm {
     });
     $input.placeholder = "금액";
     $input.id = "price";
+    $input.type = "number";
 
     const $button = customCreateElement({
       tagName: "button",

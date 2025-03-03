@@ -29,15 +29,16 @@ export default class WinningNumbersInput {
 
   createInput(winningNumbers) {
     return Array.from({ length: LOTTO_NUMBER.LENGTH }, (_, index) => {
-      const input = customCreateElement({
+      const $input = customCreateElement({
         tagName: "input",
         className: "number-input",
       });
-      input.value = winningNumbers[index] ?? "";
-      input.id = `lotto${index}`;
-      input.name = "lotto[]";
+      $input.value = winningNumbers[index] ?? "";
+      $input.id = `lotto${index}`;
+      $input.name = "lotto[]";
+      $input.type = "number";
 
-      return input;
+      return $input;
     });
   }
 }

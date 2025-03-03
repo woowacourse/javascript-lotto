@@ -16,6 +16,7 @@ export default class BonusNumberInput {
       tagName: "input",
       className: "number-input",
     });
+    $input.type = "number";
     $input.value = bonusNumber === 0 ? "" : bonusNumber;
 
     $div.appendChild($text);
