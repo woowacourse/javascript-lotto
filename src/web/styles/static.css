@@ -6,7 +6,7 @@ body {
   flex-direction: column;
 }
 
-#app {
+.app {
   flex: 1;
   display: flex;
   justify-content: center;
