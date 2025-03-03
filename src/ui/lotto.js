@@ -1,3 +1,4 @@
+import test from '../../public/img/lotto.png';
 // 로또 구매 수량 요소 생성
 export function createLottoCountElement(count) {
   const buy_count = document.createElement('p');
@@ -27,7 +28,7 @@ function createLottoBox(lotto) {
   lotto_box.classList.add('lotto_box');
 
   const lotto_img = document.createElement('img');
-  lotto_img.src = '/public/img/lotto.png';
+  lotto_img.src = '../../public/img/lotto.png';
   lotto_img.alt = 'lotto image';
 
   const lotto_number = document.createElement('p');
