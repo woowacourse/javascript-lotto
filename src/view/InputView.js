@@ -7,7 +7,7 @@ const inputView = {
       const purchaseInput = document.querySelector(".purchase-input");
 
       const handleClick = () => {
-        let value = purchaseInput.value.replace(/,/g, "").trim(); // 쉼표 제거 + 공백 제거
+        let value = purchaseInput.value.replace(/,/g, "").trim();
         value = Number(value);
 
         console.log("입력된 값:", purchaseInput.value, "변환된 값:", value);
@@ -33,16 +33,17 @@ const inputView = {
   getWinningNumbers() {
     return new Promise((resolve, reject) => {
       const winningInputs = document.querySelectorAll(
-        ".number-input-box .number"
+        ".number-input-box .winning-number"
       );
       const resultButton = document.querySelector(".result-button");
 
       const handleClick = () => {
-        const numbers = Array.from(winningInputs).map((input) =>
-          Number(input.value)
-        );
+        const numbers = Array.from(winningInputs).map((input) => {
+          const value = Number(input.value);
+          return value >= 1 && value <= 45 && !isNaN(value) ? value : NaN;
+        });
 
-        if (!Validator.validateWinningNumbers(numbers)) {
+        if (numbers.includes(NaN) || numbers.length !== 6) {
           alert("올바른 당첨 번호를 입력하세요! (1~45 사이의 6개 숫자)");
           return;
         }
@@ -58,14 +59,19 @@ const inputView = {
   getBonusNumber(winningNumbers) {
     return new Promise((resolve, reject) => {
       const bonusInput = document.querySelector(
-        ".number-input-box .number:last-child"
+        ".number-input-box .bonus-number"
       );
       const resultButton = document.querySelector(".result-button");
 
       const handleClick = () => {
         const bonusNumber = Number(bonusInput.value);
 
-        if (!Validator.validateBonusNumber(winningNumbers, bonusNumber)) {
+        if (
+          bonusNumber < 1 ||
+          bonusNumber > 45 ||
+          isNaN(bonusNumber) ||
+          winningNumbers.includes(bonusNumber)
+        ) {
           alert("올바른 보너스 번호를 입력하세요! (1~45, 당첨 번호와 중복 X)");
           return;
         }

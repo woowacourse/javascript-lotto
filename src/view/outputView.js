@@ -1,3 +1,5 @@
+import { RANK_INFO_TABLE } from "../constant/rank.js";
+
 const outputView = {
   printLottoCount(lottoCount) {
     const lottoCountContainer = document.querySelector(
@@ -30,26 +32,42 @@ const outputView = {
   },
 
   printResult(prize, profit) {
-    const resultContainer = document.querySelector(".result-container");
-    resultContainer.innerHTML = "";
+    const resultContainer = document.querySelector(".modal-container");
+    const modalTable = resultContainer.querySelector(".modal-table");
 
-    prize.forEach((rankLottos, index) => {
-      const rank = index + 1;
-      const info = RANK_INFO_TABLE[rank];
-      const resultItem = document.createElement("div");
-      resultItem.classList.add("result-item");
+    modalTable.innerHTML = "";
 
-      const rankMessage = document.createElement("p");
-      rankMessage.innerText = `${
-        info.message
-      } (${info.price.toLocaleString()}원) - ${rankLottos.lottos.length}개`;
-      resultItem.appendChild(rankMessage);
+    const tableHeaderRow = document.createElement("div");
+    tableHeaderRow.classList.add("modal-table-row");
+    tableHeaderRow.innerHTML = `
+      <p class="modal-table-cell">일치 갯수</p>
+      <p class="modal-table-cell">당첨금</p>
+      <p class="modal-table-cell">당첨 갯수</p>
+    `;
+    modalTable.appendChild(tableHeaderRow);
 
-      resultContainer.appendChild(resultItem);
-    });
+    for (let rank = 1; rank <= 5; rank++) {
+      const rankInfo = RANK_INFO_TABLE[rank];
+
+      if (rankInfo) {
+        const rankLottos = prize[rank - 1] || { lottos: [] };
+        const rankRow = document.createElement("div");
+        rankRow.classList.add("modal-table-row");
+        rankRow.innerHTML = `
+          <p class="modal-table-cell">${rankInfo.message}</p>
+          <p class="modal-table-cell">${rankInfo.price.toLocaleString()}</p>
+          <p class="modal-table-cell">${rankLottos.lottos.length}개</p>
+        `;
+        modalTable.appendChild(rankRow);
+        modalTable
+          .appendChild(document.createElement("div"))
+          .classList.add("modal-table-divider");
+      }
+    }
 
     const profitMessage = document.createElement("p");
-    profitMessage.innerText = `총 수익률은 ${profit}%입니다.`;
+    profitMessage.classList.add("profit-text");
+    profitMessage.innerText = `당신의 총 수익률은 ${profit}%입니다.`;
     resultContainer.appendChild(profitMessage);
   },
 };
