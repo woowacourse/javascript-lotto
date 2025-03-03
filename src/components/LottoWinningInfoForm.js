@@ -79,12 +79,9 @@ export default class LottoWinningInfoForm {
       return;
     }
 
-    winningLottoInfoStore.setState((state) => ({
-      winningLottoInfo: {
-        ...state.winningLottoInfo,
-        winningNumbers: winningNumbers.map(Number),
-        bonusNumber: Number(bonusNumber),
-      },
-    }));
+    winningLottoInfoStore.getState().setWinningLottoInfo({
+      winningNumbers: winningNumbers.map(Number),
+      bonusNumber: Number(bonusNumber),
+    });
   };
 }

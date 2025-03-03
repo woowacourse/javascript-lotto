@@ -69,9 +69,7 @@ export default class PurchaseForm {
     const lottos = LottoFactory.issueLottos(countNumber);
 
     this.#setShow(true);
-    lottoTransactionStore.setState((state) => ({
-      lottoTransaction: { ...state.lottoTransaction, price, lottos },
-    }));
+    lottoTransactionStore.getState().setLottoTransaction({ price, lottos });
 
     const inputs = document.querySelectorAll(
       ".lotto-numbers-wrap > .number-input"
