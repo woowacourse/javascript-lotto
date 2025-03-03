@@ -2,6 +2,29 @@ import Validate from './Model/Validate.js';
 
 const input_price = document.querySelector('.input_price');
 
+// 로또 번호 UI 생성
+function createLottoBox(lotto) {
+  const lotto_box = document.createElement('div');
+  lotto_box.classList.add('lotto_box');
+
+  const lotto_img = document.createElement('img');
+  lotto_img.src = '/public/img/lotto.png';
+  lotto_img.alt = 'lotto image';
+
+  const lotto_number = document.createElement('p');
+  lotto_number.textContent = lotto.numbers.join(', ');
+
+  lotto_box.appendChild(lotto_img);
+  lotto_box.appendChild(lotto_number);
+  return lotto_box;
+}
+
+// 로또 수량만큼 UI에 표시
+export function paintLottos(lottos) {
+  const lotto_container = document.querySelector('.lotto_container');
+  lottos.forEach((lotto) => lotto_container.appendChild(createLottoBox(lotto)));
+}
+
 // 로또 구매 수량 요소 생성
 export function createLottoCountElement(count) {
   const buy_count = document.createElement('p');
@@ -41,6 +64,7 @@ function handleLottoPurchase() {
 
     const lottos = createLotto();
     paintLottoCount(lottos);
+    paintLottos(lottos);
   } catch (error) {
     alert(error.message);
   }
