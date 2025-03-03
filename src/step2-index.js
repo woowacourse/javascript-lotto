@@ -38,6 +38,7 @@ document.getElementById('result-button').addEventListener('click', () => {
   }
   const winningLotto = { bonusNumber, lottoNumber: winningNumbers };
   const rankResult = lottoStatistics.compareLottos(userLottos, winningLotto);
+  OutputView.toggleModal();
   OutputView.renderStatisticsResult(rankResult);
   OutputView.renderRevenueRate(getRevenueRate());
 });

@@ -21,27 +21,25 @@ const OutputView = {
     });
   },
   renderStatisticsResult(rankResult) {
-    this.toggleModal();
-
+    const parent = document.querySelector('.modal-item-container');
     Object.keys(rankResult).forEach((key) => {
-      const { name, price, count } = rankResult[key];
-
-      const parent = document.querySelector('.modal-item-container');
-      const child = createElement('tr', '');
-      child.classList.add('modal-items');
-      parent.appendChild(child);
-      let elementName = createElement('td', `${name}개`);
-
-      if (name === '5+1') {
-        elementName = createElement('td', '5개+보너스볼');
-      }
-
-      child.appendChild(elementName);
-      const elementPrice = createElement('td', `${price.toLocaleString()}원`);
-      child.appendChild(elementPrice);
-      const elementCount = createElement('td', `${count}개`);
-      child.appendChild(elementCount);
+      const row = this.createStatisticsRow(rankResult[key]);
+      parent.appendChild(row);
     });
+  },
+  createStatisticsRow({ name, price, count }) {
+    const row = createElement('tr', '');
+    row.classList.add('modal-items');
+
+    const elementName = createElement('td', name === '5+1' ? '5개+보너스불' : `${name}개`);
+    const elementPrice = createElement('td', `${price.toLocaleString()}`);
+    const elementCount = createElement('td', `${count}개`);
+
+    row.appendChild(elementName);
+    row.appendChild(elementPrice);
+    row.appendChild(elementCount);
+
+    return row;
   },
   renderRevenueRate(revenueRate) {
     const $boldText = document.querySelector('.bold-text');
