@@ -4,8 +4,19 @@ let state = {
   matchingCount: null,
   profitRate: null,
 };
+let prevState = {
+  ...state,
+};
+
+export const initialState = {
+  lottoCount: null,
+  lottoArray: [],
+  matchingCount: null,
+  profitRate: null,
+};
 
 export const resetState = () => {
+  prevState = { ...state };
   state = {
     lottoCount: null,
     lottoArray: null,
@@ -15,7 +26,10 @@ export const resetState = () => {
 };
 
 export const setState = (newState) => {
+  prevState = { ...state };
   state = { ...state, ...newState };
 };
 
 export const getState = () => state;
+
+export const getPrevState = () => prevState;

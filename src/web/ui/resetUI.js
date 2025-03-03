@@ -1,12 +1,9 @@
-import { enableElement } from "../../util/buttonActions.js";
+import { clearElement, removeElement } from "../../common/util/elementManager.js";
 
 export const resetUI = () => {
-  document.querySelector(".count-prompt").innerHTML = "";
-  document.querySelector(".lotto-numbers-container").innerHTML = "";
-  document.querySelector(".winning-prompt").innerHTML = "";
-  document.querySelector(".winning-bonus-container").innerHTML = "";
-  document.querySelector(".result-button-container").innerHTML = "";
-  document.querySelector(".modal-container").innerHTML = "";
-  enableElement("purchase");
-  enableElement("price");
+  const elementsToClear = [".count-prompt", ".lotto-numbers-container", ".winning-prompt", ".winning-bonus-container", ".result-button-container"];
+  elementsToClear.forEach(clearElement);
+
+  const elementsToRemove = [".modal-container", ".warning"];
+  elementsToRemove.forEach(removeElement);
 };
