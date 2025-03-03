@@ -1,0 +1,24 @@
+/* Winning Stats Modal */
+#winning-stats-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  visibility: hidden;
+}
+
+#close-modal {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#close-modal img {
+  width: 14px;
+  height: 14px;
+}
+
+#close-modal img:hover {
+  cursor: pointer;
+}

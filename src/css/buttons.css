@@ -1,0 +1,45 @@
+/* Buttons */
+#button-purchase {
+    width: 80px;
+    background: #4e5ba6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 17px;
+    font-size: 17px;
+  }
+  
+  #button-check-result {
+    width: 100%;
+    background: #4e5ba6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 17px;
+    margin: 10px 0;
+    font-size: 17px;
+  }
+  
+  #button-restart {
+    width: 100%;
+    background: #4e5ba6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 17px;
+    margin: 10px 0;
+    font-size: 17px;
+  }
+  
+  #button-purchase:hover,
+  #button-check-result:hover,
+  #button-restart:hover {
+    background: #2e3fa2;
+    cursor: pointer;
+  }
+  
+  #button-purchase:disabled,
+  #button-check-result:disabled {
+    background: gray;
+    cursor: not-allowed;
+  }

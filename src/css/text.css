@@ -1,0 +1,26 @@
+/* Titles and Text */
+#title {
+    font-size: 25px;
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+  #title-input-purchase-amount {
+    font-size: 17px;
+    margin-bottom: 5px;
+  }
+  
+  #title-input-winnings-and-bonus {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  #title-input-winnings,
+  #title-input-bonus {
+    margin-bottom: 10px;
+  }
+  
+  #copyright {
+    color: #4e5ba6;
+    font: 700 14px sans-serif;
+  }
