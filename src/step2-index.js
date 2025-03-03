@@ -1,4 +1,15 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+const input_price = document.querySelector('.input_price');
+
+// 로또 구매 후 UI 업데이트
+function handleLottoPurchase() {}
+
+// 이벤트 설정
+function setupEventListeners() {
+  input_price.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') handleLottoPurchase();
+  });
+  button_price.addEventListener('click', handleLottoPurchase);
+}
+
+// 초기화 실행
+setupEventListeners();
