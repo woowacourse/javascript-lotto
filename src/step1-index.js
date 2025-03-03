@@ -1,11 +1,11 @@
-import { RETRY_ANSWER } from "./lottoConstants/systemConstants.js";
+import { RETRY_ANSWER } from "./common/lottoConstants/systemConstants.js";
+import retryOnError from "./common/util/retryOnError.js";
 import { ProfitController } from "./terminal/controller/ProfitController.js";
 import { PurchaseController } from "./terminal/controller/PurchaseController.js";
 import { ResultController } from "./terminal/controller/ResultController.js";
 import { WinningController } from "./terminal/controller/WinningController.js";
 import { getRetryInput } from "./terminal/service/InputService.js";
 import OutputView from "./terminal/view/outputView.js";
-import retryOnError from "./util/retryOnError.js";
 
 const runLotto = async () => {
   while (true) {

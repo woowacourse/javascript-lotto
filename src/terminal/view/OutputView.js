@@ -1,4 +1,4 @@
-import SYSTEM_MESSAGE from "../../lottoConstants/systemMessage.js";
+import SYSTEM_MESSAGE from "../../common/lottoConstants/systemMessage.js";
 
 const OutputView = {
   print(message) {

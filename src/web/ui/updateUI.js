@@ -8,9 +8,9 @@ import { getPrevState, getState } from "../state/state.js";
 import { resultHandler } from "../handler/resultHandler.js";
 import SYSTEM_MESSAGE from "../../common/lottoConstants/systemMessage.js";
 import { LOTTO_NUMBERS } from "../../common/lottoConstants/systemConstants.js";
-import { addKeyListener } from "../../common/util/addKeyListener.js";
-import { appendElement } from "../../common/util/elementManager.js";
-import { disableElement } from "../../common/util/buttonActions.js";
+import { addKeyListener } from "../util/addKeyListener.js";
+import { appendElement } from "../util/elementManager.js";
+import { disableElement } from "../util/buttonActions.js";
 
 export const updateUI = () => {
   const state = getState();

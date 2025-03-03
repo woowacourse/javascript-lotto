@@ -1,8 +1,8 @@
-import SYSTEM_MESSAGE from "../../lottoConstants/systemMessage.js";
-import validateBonusNumber from "../../validation/validateBonusNumber.js";
-import validatePrice from "../../validation/validatePrice.js";
-import validateRetryInput from "../../validation/validateRetryInput.js";
-import validateWinningNumber from "../../validation/validateWinningNumber.js";
+import SYSTEM_MESSAGE from "../../common/lottoConstants/systemMessage.js";
+import validateBonusNumber from "../../common/validation/validateBonusNumber.js";
+import validatePrice from "../../common/validation/validatePrice.js";
+import validateRetryInput from "../../common/validation/validateRetryInput.js";
+import validateWinningNumber from "../../common/validation/validateWinningNumber.js";
 import InputView from "../view/InputView.js";
 import { parseBonusNumber, parsePrice, parseWinningNumbers } from "./ParsingService.js";
 

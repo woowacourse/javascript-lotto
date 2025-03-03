@@ -1,6 +1,6 @@
-import { LOTTO_PRIZE } from "../../lottoConstants/systemConstants.js";
-import formatNumber from "../../util/formatNumber.js";
-import { removeModal } from "../../util/modalActions.js";
+import { LOTTO_PRIZE } from "../../common/lottoConstants/systemConstants.js";
+import formatNumber from "../../common/util/formatNumber.js";
+import { removeModal } from "../util/modalActions.js";
 import { retryHandler } from "../handler/retryHandler.js";
 import { Button } from "./Button.js";
 

@@ -1,4 +1,4 @@
-import { addKeyListener } from "./util/addKeyListener.js";
+import { addKeyListener } from "./web/util/addKeyListener.js";
 import { purchaseLotto } from "./web/handler/purchaseHandler.js";
 
 const runLotto = async () => {

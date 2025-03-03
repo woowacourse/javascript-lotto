@@ -1,4 +1,4 @@
-import { removeModal } from "../../util/modalActions.js";
+import { removeModal } from "../util/modalActions.js";
 
 export const Modal = ({ content }) => {
   const modalContainer = document.createElement("div");
@@ -17,7 +17,6 @@ const ModalBackground = () => {
   modalBackground.addEventListener("click", () => {
     removeModal();
   });
-  modalBackground.addKeyList;
 
   return modalBackground;
 };

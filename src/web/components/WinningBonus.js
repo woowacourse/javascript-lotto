@@ -1,4 +1,4 @@
-import { LOTTO_NUMBERS } from "../../lottoConstants/systemConstants.js";
+import { LOTTO_NUMBERS } from "../../common/lottoConstants/systemConstants.js";
 import { LottoNumberInput } from "./LottoNumberInput.js";
 
 export const WinningInput = () => {
