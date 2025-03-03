@@ -102,6 +102,10 @@ inputs.forEach((input) => {
   });
 });
 
+document.getElementById("winning-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+});
+
 buttonCheckResult.addEventListener("click", () => {
   displayWinningDetails(winningRanks);
   handleResult(purchaseAmount, winningRanks);

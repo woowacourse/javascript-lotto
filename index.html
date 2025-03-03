@@ -1,11 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/css/index.css" />
-    <link rel="icon" href="./favicon.ico">
+    <link rel="icon" href="./favicon.ico" />
   </head>
 
   <body id="container">
@@ -27,37 +27,83 @@
         <div id="generated-lottos"></div>
       </div>
       <div id="content-bottom">
-        <div id="title-input-winnings-and-bonus">
-          지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
-        </div>
-        <div id="input-winnings-and-bonus-section">
-          <div id="input-winning-numbers-section">
-            <div id="title-input-winnings">당첨 번호</div>
-            <div id="input-winning-numbers">
-              <input type="text" class="lotto-input" maxlength="2" />
-              <input type="text" class="lotto-input" maxlength="2" />
-              <input type="text" class="lotto-input" maxlength="2" />
-              <input type="text" class="lotto-input" maxlength="2" />
-              <input type="text" class="lotto-input" maxlength="2" />
-              <input type="text" class="lotto-input" maxlength="2" />
-            </div>
+        <form id="winning-form">
+          <div id="title-input-winnings-and-bonus">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
           </div>
-          <div>
-            <div id="input-bonus-number-section">
-              <div id="title-input-bonus">보너스 번호</div>
-              <div id="input-bonus-numbers">
-                <input type="text" class="lotto-input" maxlength="2" />
+          <div id="input-winnings-and-bonus-section">
+            <div id="input-winning-numbers-section">
+              <div id="title-input-winnings">당첨 번호</div>
+              <div id="input-winning-numbers">
+                <input
+                  type="text"
+                  class="lotto-input"
+                  name="winning-number"
+                  maxlength="2"
+                  required
+                />
+                <input
+                  type="text"
+                  class="lotto-input"
+                  name="winning-number"
+                  maxlength="2"
+                  required
+                />
+                <input
+                  type="text"
+                  class="lotto-input"
+                  name="winning-number"
+                  maxlength="2"
+                  required
+                />
+                <input
+                  type="text"
+                  class="lotto-input"
+                  name="winning-number"
+                  maxlength="2"
+                  required
+                />
+                <input
+                  type="text"
+                  class="lotto-input"
+                  name="winning-number"
+                  maxlength="2"
+                  required
+                />
+                <input
+                  type="text"
+                  class="lotto-input"
+                  name="winning-number"
+                  maxlength="2"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <div id="input-bonus-number-section">
+                <div id="title-input-bonus">보너스 번호</div>
+                <div id="input-bonus-numbers">
+                  <input
+                    type="text"
+                    class="lotto-input"
+                    name="bonus-number"
+                    maxlength="2"
+                    required
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <p id="winnings-and-bonus-helper-text">
-          당첨 번호 및 보너스 번호 헬퍼텍스트
-        </p>
+          <p id="winnings-and-bonus-helper-text">
+            당첨 번호 및 보너스 번호 헬퍼텍스트
+          </p>
 
-        <div>
-          <button id="button-check-result" disabled>결과 확인하기</button>
-        </div>
+          <div>
+            <button id="button-check-result" disabled>
+              결과 확인하기
+            </button>
+          </div>
+        </form>
       </div>
 
       <dialog id="winning-stats-modal">
