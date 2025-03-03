@@ -1,25 +1,7 @@
-/* eslint-disable max-lines-per-function */
-import toggleClassName from './utils/toggleClassName';
-import createElement from './utils/createElement';
+import createElement from './utils/createElement.js';
 
-const OutputView = {
-  toggleModal() {
-    const $modal = document.querySelector('.modal');
-    const $modalDimmed = document.querySelector('.modal-dimmed');
-    toggleClassName($modal, 'hidden');
-    toggleClassName($modalDimmed, 'hidden');
-  },
-  renderWinningLotto() {
-    const $lottoBottom = document.querySelector('.lotto-bottom');
-    toggleClassName($lottoBottom, 'hidden');
-  },
-  renderUserLottos(userLottos) {
-    userLottos.forEach((userLotto) => {
-      const $parent = document.querySelector('.lotto-item-container');
-      const $element = createElement('p', `🎟️ ${userLotto.getNumbers().join(', ')}`);
-      $parent.appendChild($element);
-    });
-  },
+const LottoResultView = {
+
   renderStatisticsResult(rankResult) {
     const parent = document.querySelector('.modal-item-container');
     Object.keys(rankResult).forEach((key) => {
@@ -49,4 +31,4 @@ const OutputView = {
   },
 };
 
-export default OutputView;
+export default LottoResultView;
