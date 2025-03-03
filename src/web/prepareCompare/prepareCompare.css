@@ -26,10 +26,10 @@
 
 .winning_input_text {
   margin-bottom: 12px;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-medium);
   line-height: 24px;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-small);
 }
 .number_text {
   display: flex;
@@ -51,7 +51,7 @@
   height: 36px;
   border-radius: 4px;
   text-align: center;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--secondary-color);
 }
 
 .bonus_number_input {
@@ -59,7 +59,7 @@
   height: 36px;
   border-radius: 4px;
   text-align: center;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--secondary-color);
 }
 
 .result_check_button {
@@ -67,8 +67,8 @@
   height: 36px;
   margin-top: 27px;
   border-radius: 4px;
-  background: #4e5ba6;
-  border: 1px solid#4e5ba6;
-  color: #ffffff;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--background-color);
   cursor: pointer;
 }

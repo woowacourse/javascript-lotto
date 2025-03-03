@@ -1,0 +1,20 @@
+:root {
+  /* 색상 변수 */
+  --primary-color: #4e5ba6;
+  --secondary-color: #b4b4b4;
+  --text-color: #000000;
+  --background-color: #ffffff;
+  --border-color-row: #0000001f;
+  --border-color: rgba(78, 91, 166, 0.2);
+  --modal-overlay-color: rgba(0, 0, 0, 0.5);
+
+  /* 폰트 변수 */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 24px;
+  --letter-spacing-small: 0.5px;
+  --letter-spacing-medium: 1.25px;
+}
