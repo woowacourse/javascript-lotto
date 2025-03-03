@@ -38,7 +38,7 @@ describe('로또 숫자',() => {
   ])('로또의 번호의 숫자 범위는 1 미만 혹은 45 초과하면 에러가 발생한다.', (lottoNumbers) => {
     // then
     expect(() => validateLottoNumber(lottoNumbers))
-      .toThrow('로또 번호의 숫자 범위 1 ~ 45이다.');
+      .toThrow('로또 번호의 숫자 범위는 1 ~ 45이다.');
   });
 
   test.each([
@@ -58,7 +58,7 @@ describe('보너스 숫자', () => {
   ])('보너스 번호의 숫자 범위는 1 미만 혹은 45 초과하면 에러가 발생한다.', (bonus) => {
     // then
     expect(() => validateBonus(bonus, winningLotto))
-      .toThrow('보너스 번호의 숫자 범위 1 ~ 45이다.');
+      .toThrow('보너스 번호의 숫자 범위는 1 ~ 45이다.');
   });
 
   test('보너스 번호는 당첨 로또에 있는 숫자와 중복되면 안된다.', () => {
