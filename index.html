@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>🎱 행운의 로또</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./src/reset.css" />
+  <link rel="stylesheet" href="./src/style.css" />
+  <script type="module" defer src="./src/step2-index.js"></script>
+</head>
 
-  <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
-    </div>
-    <script type="module" src="./src/step2-index.js"></script>
-  </body>
+<body>
+  <div id="app">
+    <!-- header -->
+    <header id="header_container">
+      <h1 class="page_title">🎱 행운의 로또</h1>
+    </header>
+    <!-- main -->
+    <main id="main_container">
+      <h2 class="sub_title">🎱 내 번호 당첨 확인 🎱</h2>
+      <div id="price_container" action="/">
+        <label for="price">구입할 금액을 입력해주세요.</label>
+        <div class="input_container">
+          <input id="price" type="number" class="input_price" placeholder="금액" min="1000" max="100000">
+          <button type="button" class="input_button">구입</button>
+        </div>
+      </div>
+    </main>
+    <!-- footer -->
+    <footer id="footer_container">
+      <p class="text">Copyright 2023. woowacourse</p>
+    </footer>
+  </div>
+</body>
+
 </html>
