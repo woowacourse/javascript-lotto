@@ -41,7 +41,7 @@ footer {
   width: 414px;
   height: 727px;
   border-width: 1px;
-  border: 1px solid rgba(78, 91, 166, 0.2);
+  border: 1px solid #4e5ba633;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@ footer {
   position: absolute;
   top: 0;
   margin: 0;
-  border: 1px solid rgba(78, 91, 166, 0.2);
+  border: 1px solid #4e5ba633;
 }
 
 .hidden {

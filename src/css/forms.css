@@ -55,13 +55,13 @@
 }
 
 #purchase-amount-helper-text {
-  color: rgb(255, 100, 100);
+  color: #FF6464;
   visibility: visible;
   font-size: 13px;
 }
 
 #winnings-and-bonus-helper-text {
-  color: rgb(255, 100, 100);
+  color: #FF6464;
   visibility: visible;
   font-size: 13px;
 }

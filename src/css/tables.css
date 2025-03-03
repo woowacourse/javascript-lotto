@@ -5,11 +5,11 @@ table {
 }
 
 tr {
-  border-bottom: 1px solid rgba(78, 91, 166, 0.2);
+  border-bottom: 1px solid #4e5ba633;
 }
 
 thead tr {
-  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  border-top: 1px solid #4e5ba633;
 }
 
 th,
