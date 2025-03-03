@@ -11,7 +11,6 @@ const setInputCss = (style) => {
 
 export const LottoNumberInput = ({ name, style = "small", placeholder = "" }) => {
   const lottoNumberInput = document.createElement("input");
-  console.log(`작동 : ${setInputCss(style)}`);
   lottoNumberInput.classList.add(setInputCss(style));
   lottoNumberInput.min = LOTTO_NUMBERS.MIN;
   lottoNumberInput.max = LOTTO_NUMBERS.MAX;
