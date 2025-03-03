@@ -2,6 +2,42 @@ import Validate from './Model/Validate.js';
 
 const input_price = document.querySelector('.input_price');
 
+// 수익률 정보 업데이트
+function updateModalResults(modal, winning) {
+  const input_price = document.querySelector('.input_price');
+
+  for (const rank in winning.rankHistory) {
+    modal.querySelector(`.${rank}`).innerText = winning.rankHistory[rank];
+  }
+  modal.querySelector('.rate_text').innerText = `당신의 총 수익률은 ${winning.getCalculatedPrizeRate(
+    input_price.value,
+  )}%입니다.`;
+}
+
+// 입력된 당첨 번호와 보너스 번호의 유효성을 검사
+function validateWinningNumbers(winningNumbers, bonusNumber) {
+  winningNumbers.forEach((number) => Validate.checkLottoNumberRange(number));
+  Validate.checkWinningNumberCount(winningNumbers);
+  Validate.checkWinningNumberDuplicate(winningNumbers);
+  Validate.checkBonusNumberDuplicate(winningNumbers, bonusNumber);
+}
+
+// 결과 확인 및 모달 표시
+export function handleResultCheck(lottos) {
+  try {
+    const { winningNumbers, bonusNumber } = getWinningNumbers();
+    validateWinningNumbers(winningNumbers, bonusNumber);
+
+    const winning = new Winning(winningNumbers, bonusNumber);
+    winning.calculateRank(lottos);
+
+    const modal = createModal();
+    updateModalResults(modal, winning);
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
 // 결과 확인 버튼 UI 생성
 export function createResultButton(lottos) {
   const result_button = document.createElement('button');
