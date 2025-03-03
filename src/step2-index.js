@@ -21,6 +21,10 @@ const winningInputContainer = document.querySelector(
   ".winning-input-container"
 );
 const winningModalContainer = document.querySelector(".modal-container");
+const winningTableContainer = document.querySelector(
+  ".winning-result-table-container"
+);
+const winningDialog = document.querySelector(".winning-result-dialog");
 
 purchaseForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -196,7 +200,8 @@ winningInputContainer.addEventListener("submit", (e) => {
       yieldRate
     );
     winningModalContainer.classList.add("winning-result-dialog-background");
-    winningModalContainer.innerHTML = winningModalContent;
+    winningTableContainer.innerHTML = winningModalContent;
+    winningDialog.open = true;
     document.body.style.overflow = "hidden";
 
     const restartButton = document.querySelector(
@@ -219,7 +224,7 @@ winningInputContainer.addEventListener("submit", (e) => {
     });
 
     restartButton.addEventListener("click", () => {
-      resetGame();
+      restartGame();
     });
   } catch (error) {
     alert(error.message);
@@ -229,12 +234,13 @@ winningInputContainer.addEventListener("submit", (e) => {
 });
 
 const closeModal = () => {
-  winningModalContainer.innerHTML = "";
+  winningTableContainer.innerHTML = "";
+  winningDialog.close();
   winningModalContainer.classList.remove("winning-result-dialog-background");
   document.body.style.overflow = "auto";
 };
 
-const resetGame = () => {
+const restartGame = () => {
   buyInfo.amount = 0;
   buyInfo.lottos = [];
 
@@ -248,12 +254,8 @@ const resetGame = () => {
 };
 
 const createWinningResultContent = (winningCount, yieldRate) => {
-  return `<dialog class="winning-result-dialog" open>
-        <button class="winning-result-close-button" aria-label="닫기">
-        </button>
-        <h3 class="winning-result-title">🏆 당첨 통계 🏆</h3>
-        <div class="winning-result-table-container">
-          <div class="winning-result-table">
+  return `
+  <div class="winning-result-table">
             <p class="winning-result-table-title">일치 갯수</p>
             <p class="winning-result-table-title">당첨금</p>
             <p class="winning-result-table-title">당첨 갯수</p>
@@ -287,6 +289,5 @@ const createWinningResultContent = (winningCount, yieldRate) => {
         <p class="winning-result-total-rate">당신의 총 수익률은 ${yieldRate.toFixed(
           1
         )}%입니다.</p>
-        <button class="winning-result-restart-button">다시 시작하기</button>
-      </dialog>`;
+        `;
 };
