@@ -1,4 +1,3 @@
-import test from '../../public/img/lotto.png';
 // 로또 구매 수량 요소 생성
 export function createLottoCountElement(count) {
   const buy_count = document.createElement('p');
