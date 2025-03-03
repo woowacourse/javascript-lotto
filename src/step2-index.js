@@ -12,7 +12,7 @@ class LottoGame {
     this.lottoStatistics = new LottoStatistics();
   }
 
-  purchaseLottos() {
+  handlePurchaseLottos() {
     this.userMoney = InputView.readMoney();
     if (!this.userMoney) {
       return;
@@ -28,7 +28,7 @@ class LottoGame {
     return revenueRate;
   }
 
-  checkResults() {
+  handleCheckResults() {
     const winningNumbers = InputView.readWinningNumbers();
     if (!this.userLottos || !winningNumbers) { return; }
     const bonusNumber = InputView.readBonusNumber(winningNumbers);
@@ -41,7 +41,7 @@ class LottoGame {
     OutputView.renderRevenueRate(this.getRevenueRate());
   }
 
-  closeModal() {
+  handleCloseModal() {
     document.querySelectorAll('.modal-items').forEach((element) => {
       element.remove();
     });
@@ -52,7 +52,7 @@ class LottoGame {
 
 const lottoGame = new LottoGame();
 
-document.getElementById('purchase-button').addEventListener('click', () => lottoGame.purchaseLottos());
-document.getElementById('result-button').addEventListener('click', () => lottoGame.checkResults());
+document.getElementById('purchase-button').addEventListener('click', () => lottoGame.handlePurchaseLottos());
+document.getElementById('result-button').addEventListener('click', () => lottoGame.handleCheckResults());
 document.getElementById('reset-button').addEventListener('click', () => location.reload(true));
-document.getElementById('reset-close-button').addEventListener('click', () => lottoGame.closeModal());
+document.getElementById('reset-close-button').addEventListener('click', () => lottoGame.handleCloseModal());
