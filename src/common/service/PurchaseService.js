@@ -1,6 +1,6 @@
-import Lotto from "../../common/domain/Lotto.js";
-import { LOTTO_NUMBERS, LOTTO_PRICE } from "../../common/lottoConstants/systemConstants.js";
-import pickUniqueNumbersInRange from "../../common/util/pickUniqueNumbersInRange.js.js";
+import Lotto from "../domain/Lotto.js";
+import { LOTTO_NUMBERS, LOTTO_PRICE } from "../lottoConstants/systemConstants.js";
+import pickUniqueNumbersInRange from "../util/pickUniqueNumbersInRange.js.js";
 
 export const getLottoCount = (price) => {
   return price / LOTTO_PRICE.UNIT;

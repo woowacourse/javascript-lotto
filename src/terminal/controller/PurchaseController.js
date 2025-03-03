@@ -1,5 +1,5 @@
 import { getPrice } from "../service/InputService.js";
-import { getLottoArray, getLottoCount } from "../service/PurchaseService.js";
+import { getLottoArray, getLottoCount } from "../../common/service/PurchaseService.js";
 import OutputView from "../view/outputView.js";
 import retryOnError from "../../common/util/retryOnError.js";
 import SYSTEM_MESSAGE from "../../common/lottoConstants/systemMessage.js";

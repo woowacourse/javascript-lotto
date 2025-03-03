@@ -1,25 +1,8 @@
-const isWebEnvironMent = typeof window !== "undefined";
+import { readLineAsync } from "../../common/util/readLineAsync.js";
 
 const InputView = {
-  async readUserInput(message, inputType, isMultiple = false) {
-    if (isWebEnvironMent && isMultiple) {
-      return this.readWebInputs(inputType);
-    }
-    if (isWebEnvironMent && !isMultiple) {
-      return this.readWebInput(inputType);
-    }
-    const { readLineAsync } = await import("../../common/util/readLineAsync.js");
+  async readUserInput(message) {
     return await readLineAsync(message);
-  },
-  readWebInput(name) {
-    const inputElement = document.querySelector(`[name=${name}]`);
-    return inputElement.value;
-  },
-  readWebInputs(name) {
-    const inputs = document.querySelectorAll(`[name=${name}]`);
-    return Array.from(inputs)
-      .map((input) => input.value)
-      .join(", ");
   },
 };
 export default InputView;

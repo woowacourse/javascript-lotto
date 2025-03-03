@@ -1,6 +1,7 @@
 let state = {
   lottoCount: null,
   lottoArray: [],
+  winningLotto: null,
   matchingCount: null,
   profitRate: null,
 };
@@ -11,6 +12,7 @@ let prevState = {
 export const initialState = {
   lottoCount: null,
   lottoArray: [],
+  winningLotto: null,
   matchingCount: null,
   profitRate: null,
 };
