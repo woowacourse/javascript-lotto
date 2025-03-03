@@ -15,7 +15,7 @@ export function removeRestartEventHandler() {
 
 function restartHandler() {
   domRefs.$modal.close();
-  domRefs.$lottoInfoWrap.style.display = "none";
+  domRefs.$lottoInfoWrap.classList.remove("show");
   domRefs.$inputPrice.value = "";
 
   setTagsDisabled([domRefs.$inputPrice, domRefs.$buyButton]);

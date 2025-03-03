@@ -27,7 +27,7 @@ function buyHandler(e) {
     const price = parser.toNumber(domRefs.$inputPrice.value);
     PurchasePriceValidator.validatePurchasePrice(price);
 
-    domRefs.$lottoInfoWrap.style.display = "block";
+    domRefs.$lottoInfoWrap.classList.add("show");
     lottoState.lottoMachine = new LottoMachine(price);
 
     displayLottoInfo(lottoState.lottoMachine);
