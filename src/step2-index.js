@@ -8,11 +8,10 @@ import { $, $$ } from "../src/utils/dom.js";
 const init = async () => {
   const lottoController = new lottoControllerUI();
 
-  $(".purchase").addEventListener("submit", lottoController.preventDefault);
+  $(".purchase").addEventListener("submit", (e) => e.preventDefault());
 
-  $(".form__winning-numbers").addEventListener(
-    "submit",
-    lottoController.preventDefault
+  $(".form__winning-numbers").addEventListener("submit", (e) =>
+    e.preventDefault()
   );
 
   $(".purchase button").addEventListener(
@@ -42,7 +41,7 @@ const init = async () => {
 
   $(".overlay").addEventListener("click", lottoController.handleCloseClick);
 
-  $(".modal").addEventListener("click", lottoController.stopPropagation);
+  $(".modal").addEventListener("click", (e) => e.stopPropagation());
 };
 
 init();

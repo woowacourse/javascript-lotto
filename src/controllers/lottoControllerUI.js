@@ -95,14 +95,6 @@ class lottoControllerUI {
   handleCloseClick = () => {
     $(".overlay").classList.remove("active");
   };
-
-  preventDefault = (e) => {
-    e.preventDefault();
-  };
-
-  stopPropagation = (e) => {
-    e.stopPropagation();
-  };
 }
 
 export default lottoControllerUI;
