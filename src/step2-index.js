@@ -2,8 +2,8 @@ import calculateRevenueRate from './domain/model/calculateRevenueRate.js';
 import createLottos from './domain/model/createLottos.js';
 import LottoStatistics from './domain/model/LottoStatistics.js';
 
-import InputView from './view/ui/InputView.js';
-import OutputView from './view/ui/OutputView.js';
+import LottoFormView from './view/ui/LottoFormView.js';
+import LottoResultView from './view/ui/LottoResultView.js';
 
 class LottoGame {
   constructor() {
@@ -13,13 +13,13 @@ class LottoGame {
   }
 
   handlePurchaseLottos() {
-    this.userMoney = InputView.readMoney();
+    this.userMoney = LottoFormView.readMoney();
     if (!this.userMoney) {
       return;
     }
     this.userLottos = createLottos(this.userMoney);
-    OutputView.renderUserLottos(this.userLottos);
-    OutputView.renderWinningLotto();
+    LottoFormView.renderUserLottos(this.userLottos);
+    LottoFormView.renderWinningLotto();
   }
 
   getRevenueRate() {
@@ -29,16 +29,16 @@ class LottoGame {
   }
 
   handleCheckResults() {
-    const winningNumbers = InputView.readWinningNumbers();
+    const winningNumbers = LottoFormView.readWinningNumbers();
     if (!this.userLottos || !winningNumbers) { return; }
-    const bonusNumber = InputView.readBonusNumber(winningNumbers);
+    const bonusNumber = LottoFormView.readBonusNumber(winningNumbers);
     if (!bonusNumber) { return; }
     const winningLotto = { bonusNumber, lottoNumber: winningNumbers };
     console.log(this.lottoStatistics);
     const rankResult = this.lottoStatistics.compareLottos(this.userLottos, winningLotto);
-    OutputView.toggleModal();
-    OutputView.renderStatisticsResult(rankResult);
-    OutputView.renderRevenueRate(this.getRevenueRate());
+    LottoResultView.toggleModal();
+    LottoResultView.renderStatisticsResult(rankResult);
+    LottoResultView.renderRevenueRate(this.getRevenueRate());
   }
 
   handleCloseModal() {
@@ -46,7 +46,7 @@ class LottoGame {
       element.remove();
     });
     this.lottoStatistics.init();
-    OutputView.toggleModal();
+    LottoResultView.toggleModal();
   }
 }
 

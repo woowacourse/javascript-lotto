@@ -26,13 +26,6 @@ const LottoFormView = {
     }
     return false;
   },
-
-  toggleModal() {
-    const $modal = document.querySelector('.modal');
-    const $modalDimmed = document.querySelector('.modal-dimmed');
-    toggleClassName($modal, 'hidden');
-    toggleClassName($modalDimmed, 'hidden');
-  },
   renderWinningLotto() {
     const $lottoBottom = document.querySelector('.lotto-bottom');
     toggleClassName($lottoBottom, 'hidden');

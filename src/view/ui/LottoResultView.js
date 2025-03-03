@@ -1,7 +1,13 @@
 import createElement from './utils/createElement.js';
+import toggleClassName from './utils/toggleClassName.js';
 
 const LottoResultView = {
-
+  toggleModal() {
+    const $modal = document.querySelector('.modal');
+    const $modalDimmed = document.querySelector('.modal-dimmed');
+    toggleClassName($modal, 'hidden');
+    toggleClassName($modalDimmed, 'hidden');
+  },
   renderStatisticsResult(rankResult) {
     const parent = document.querySelector('.modal-item-container');
     Object.keys(rankResult).forEach((key) => {
