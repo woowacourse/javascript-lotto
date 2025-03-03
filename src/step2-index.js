@@ -2,6 +2,15 @@ import Validate from './Model/Validate.js';
 
 const input_price = document.querySelector('.input_price');
 
+// 모달창 닫는 버튼 UI 생성
+export function createCloseButton() {
+  const closeButton = document.createElement('img');
+  closeButton.src = '/public/img/close.svg';
+  closeButton.alt = 'close button';
+  closeButton.classList.add('button_close');
+  return closeButton;
+}
+
 // 수익률 정보 업데이트
 function updateModalResults(modal, winning) {
   const input_price = document.querySelector('.input_price');
