@@ -11,6 +11,15 @@ export function createCloseButton() {
   return closeButton;
 }
 
+// 다시 시작 버튼 UI 생성
+export function createRestartButton() {
+  const restartButton = document.createElement('button');
+  restartButton.type = 'button';
+  restartButton.classList.add('button_restart');
+  restartButton.innerText = '다시 시작하기';
+  return restartButton;
+}
+
 // 수익률 정보 업데이트
 function updateModalResults(modal, winning) {
   const input_price = document.querySelector('.input_price');
