@@ -2,6 +2,12 @@ import Validate from './Model/Validate.js';
 
 const input_price = document.querySelector('.input_price');
 
+// 로또 생성
+function createLotto() {
+  const lottoMachine = new LottoMachine();
+  return lottoMachine.generateLotto(input_price.value);
+}
+
 // 로또 구매 후 UI 업데이트
 function handleLottoPurchase() {
   try {
@@ -9,6 +15,8 @@ function handleLottoPurchase() {
     Validate.checkIsNumber(input_price.value);
     Validate.checkThousandUnit(input_price.value);
     Validate.checkPriceRange(input_price.value);
+
+    const lottos = createLotto();
   } catch (error) {
     alert(error.message);
   }
