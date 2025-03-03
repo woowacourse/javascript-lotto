@@ -31,3 +31,6 @@
 11. [x] 다시 시작 여부를 입력한다 - ui
 12. [x] 다시 시작한다. - domain -> Controller
   - [x] 재시작 또는 종료 - domain
+
+# 배포 링크
+https://aydenote.github.io/javascript-lotto
