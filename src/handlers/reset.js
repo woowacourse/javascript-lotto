@@ -1,5 +1,5 @@
-import clearUIElements from './View/clear/clearUIElements.js';
-import state from './state.js';
+import clearUIElements from '../View/clear/clearUIElements.js';
+import state from '../state.js';
 
 function reset() {
   state.lottos = [];

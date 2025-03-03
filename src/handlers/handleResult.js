@@ -1,25 +1,25 @@
-import createModal from './View/create/createModal.js';
-import createModalOverlay from './View/create/createModalOverlay.js';
-import { PRIZE_MONEY } from './constants/MagicNumber.js';
-import SELECTORS from './constants/Selectors.js';
+import createModal from '../View/create/createModal.js';
+import createModalOverlay from '../View/create/createModalOverlay.js';
+import { PRIZE_MONEY } from '../constants/MagicNumber.js';
+import SELECTORS from '../constants/Selectors.js';
 import reset from './reset.js';
 import {
   calculatePrize,
   calculateRevenueRate,
   calculateWins,
-} from './service/CalculatorService.js';
+} from '../service/CalculatorService.js';
 import {
   getUIBonusNumber,
   getUIUserRetry,
   getUIWinningNumber,
-} from './service/InputService/UIInputService.js';
+} from '../service/InputService/UIInputService.js';
 import {
   getBonusNumber,
   getUserRetry,
   getWinningNumber,
-} from './service/ParsingService.js';
-import state from './state.js';
-import { handleLottoInputError } from './util/errorHandler.js';
+} from '../service/ParsingService.js';
+import state from '../state.js';
+import { handleLottoInputError } from '../util/errorHandler.js';
 
 async function handleResult(event) {
   event.preventDefault();

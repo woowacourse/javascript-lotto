@@ -1,6 +1,6 @@
 import SELECTORS from './constants/Selectors.js';
-import handlePurchase from './handlePurchase.js';
-import handleResult from './handleResult.js';
+import handlePurchase from './handlers/handlePurchase.js';
+import handleResult from './handlers/handleResult.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const purchaseButton = document.getElementById(SELECTORS.BUTTON.PURCHASE);
