@@ -17,17 +17,26 @@ export default class ResultModal {
   }
 
   init() {
-    this.restartButton.addEventListener("click", () => {
+    this.restartButton.addEventListener("click", this.handleRestart.bind(this));
+    this.closeButton?.addEventListener("click", this.handleClose.bind(this));
+
+    if (!this.closeButton) this.addCloseButton();
+    document.addEventListener("keydown", this.handleKeyPress.bind(this));
+  }
+
+  handleKeyPress(event) {
+    if (event.key === "Escape" && this.resultModal.style.display === "flex") {
       this.hide();
-      this.onRestart();
-    });
-    if (this.closeButton) {
-      this.closeButton.addEventListener("click", () => {
-        this.hide();
-      });
-    } else {
-      this.addCloseButton();
     }
+  }
+
+  handleRestart() {
+    this.hide();
+    this.onRestart();
+  }
+
+  handleClose() {
+    this.hide();
   }
 
   displayResult(gameResult, earningRate) {
