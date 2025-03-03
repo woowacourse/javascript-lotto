@@ -5,12 +5,10 @@ export const alertError = (asyncFn) => {
   try {
     return asyncFn();
   } catch (error) {
-    const alert = document.querySelector(".alert");
-
-    if (!alert) {
+    if (!document.querySelector(".alert")) {
       appendElement(".alert-container", Alert({ message: error.message }));
       setTimeout(() => {
-        alert.remove();
+        document.querySelector(".alert").remove();
       }, 1500);
     }
     asyncFn();
