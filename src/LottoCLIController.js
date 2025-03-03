@@ -1,3 +1,4 @@
+import LottoBaseController from "./LottoBaseController.js";
 import InputView from "./view/InputView.js";
 import LottoMachine from "./domain/LottoMachine.js";
 import OutputView from "./view/OutputView.js";
@@ -8,7 +9,7 @@ import validatePurchaseAmount from "./domain/validation/validatePurchaseAmount.j
 import validateWinningNumbers from "./domain/validation/validateWinningNumbers.js";
 import validateBonusNumber from "./domain/validation/validateBonusNumber.js";
 import validateRestart from "./domain/validation/validateRestart.js";
-class LottoController {
+class LottoController extends LottoBaseController {
   async start() {
     const purchaseAmount = await this.#purchaseAmountInput();
     const { count, lottoPack } = LottoMachine(purchaseAmount);
@@ -17,7 +18,7 @@ class LottoController {
     OutputView.lottoPack(lottoPack.lottos);
 
     await this.#playLotto(purchaseAmount, lottoPack);
-    await this.#restart();
+    await this.restart();
   }
 
   async #playLotto(purchaseAmount, lottoPack) {
@@ -44,7 +45,7 @@ class LottoController {
     return { winningNumbers, bonusNumber };
   }
 
-  async #restart() {
+  async restart() {
     if (await this.#isRestart()) this.start();
   }
 
