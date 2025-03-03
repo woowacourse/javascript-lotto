@@ -4,6 +4,7 @@ import LottoStatistics from './domain/model/LottoStatistics.js';
 
 import LottoFormView from './view/ui/LottoFormView.js';
 import LottoResultView from './view/ui/LottoResultView.js';
+import changeButtonStatus from './view/ui/utils/changeButtonStatus.js';
 
 class LottoGame {
   constructor() {
@@ -17,6 +18,7 @@ class LottoGame {
     if (!this.userMoney) {
       return;
     }
+    changeButtonStatus('#purchase-button');
     this.userLottos = createLottos(this.userMoney);
     LottoFormView.renderUserLottos(this.userLottos);
     LottoFormView.renderWinningLotto();
@@ -34,8 +36,8 @@ class LottoGame {
     const bonusNumber = LottoFormView.readBonusNumber(winningNumbers);
     if (!bonusNumber) { return; }
     const winningLotto = { bonusNumber, lottoNumber: winningNumbers };
-    console.log(this.lottoStatistics);
     const rankResult = this.lottoStatistics.compareLottos(this.userLottos, winningLotto);
+    changeButtonStatus('#result-button');
     LottoResultView.toggleModal();
     LottoResultView.renderStatisticsResult(rankResult);
     LottoResultView.renderRevenueRate(this.getRevenueRate());
