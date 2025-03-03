@@ -1,6 +1,6 @@
-import { webLottoService } from "../../service/webLottoService.js";
 import { openModal } from "./modal.js";
 import { DOM } from "../../utils/DomSelector.js";
+import { lottoService } from "../../service/lottoService.js";
 
 export const handleWinningClick = (lottoList, winningLotto) => {
     openModal();
@@ -8,8 +8,8 @@ export const handleWinningClick = (lottoList, winningLotto) => {
         input.disabled = true;
     });
     DOM.bonusInput.disabled = true;
-    const lottoResult = webLottoService.calculateLottoResult(lottoList, winningLotto);
-    const winningRate = webLottoService.calculateWinningRate(lottoResult, lottoList);
+    const lottoResult = lottoService.calculateLottoResult(lottoList, winningLotto);
+    const winningRate = lottoService.calculateWinningRate(lottoList, lottoResult);
 
     return {lottoResult:lottoResult, winningRate:winningRate}
 };

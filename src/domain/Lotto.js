@@ -8,6 +8,11 @@ class Lotto {
     validateLottoNumber(this.#numbers);
   }
 
+  matchWinning(winningNumbers){
+    return winningNumbers.filter((number) => this.hasNumber(number)).length;
+
+  }
+
   hasNumber(winningNumber) {
     return this.numbers.includes(winningNumber);
   }

@@ -1,8 +1,8 @@
 import { DOM } from "../../utils/DomSelector.js";
-import { webLottoService } from "../../service/webLottoService.js";
+import { lottoService } from "../../service/lottoService.js";
 
 export const handlePurchaseClick = (purchaseMoney) => {
-    const lottoList = webLottoService.purchaseLotto(purchaseMoney);
+    const lottoList = lottoService.purchaseLotto(purchaseMoney);
     DOM.purchaseButton.disabled = true;
     DOM.inputPrice.disabled = true;
     DOM.winningForm.style.visibility = "visible";

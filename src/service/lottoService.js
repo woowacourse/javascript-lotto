@@ -1,6 +1,5 @@
 import { calculateRank } from '../domain/calculateRank.js';
 import LottoResult from '../domain/LottoResult.js';
-import { matchLotto } from '../domain/matchLotto.js';
 import { calculateWinningRate } from '../domain/calculateWinningRate.js';
 import { LOTTO_CONDITION } from '../constants/constants.js';
 import { purchaseLotto } from '../domain/purchaseLotto.js';
@@ -14,7 +13,7 @@ export const lottoService = {
 
   calculateLottoResult(lottoList, winningLotto) {
     const rankingList = lottoList.map((lotto) => {
-      return calculateRank(matchLotto.winningNumbers(winningLotto, lotto), matchLotto.bonusNumber(winningLotto, lotto));
+      return calculateRank(lotto.matchWinning(winningLotto.winningNumbers), lotto.hasNumber(winningLotto.bonusNumber));
     });
     return new LottoResult(rankingList);
   },

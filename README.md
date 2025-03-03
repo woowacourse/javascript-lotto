@@ -10,18 +10,14 @@
   - [x] 숫자를 중복해서 입력하면 안된다.
 - [x] 로또 번호에 당첨 번호 포함 여부 확인
 
-## LottoMaker
+## purchaseLotto
 
 - [x] 구입 금액에 해당하는 만큼 로또 개수 구하기
 - [x] 생성할 로또 개수 만큼 랜덤 숫자 6개 추출해서 발행
 
-## LottoRank
+## calculateRank
 
 - [x] 등수 판별
-
-## LottoMatch
-
-- [x] 당첨 번호 비교
 
 ## calculateWinningRate
 

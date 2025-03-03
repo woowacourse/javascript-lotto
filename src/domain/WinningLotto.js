@@ -10,12 +10,12 @@ class WinningLotto {
     validateBonusNumber(this.#winningLotto, this.#bonusNumber);
   }
 
-  matchedWinningCount(lotto) {
-    return this.#winningLotto.numbers.filter((number) => lotto.hasNumber(number)).length;
+  get winningNumbers(){
+    return this.#winningLotto.numbers;
   }
 
-  isBonusMatched(lotto) {
-    return lotto.hasNumber(this.#bonusNumber);
+  get bonusNumber(){
+    return this.#bonusNumber;
   }
 }
 
