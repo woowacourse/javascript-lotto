@@ -149,13 +149,13 @@ footer {
 
 #purchase-amount-helper-text {
   color: rgb(255, 100, 100);
-  visibility: hidden;
+  visibility: visible;
   font-size: 13px;
 }
 
 #winnings-and-bonus-helper-text {
   color: rgb(255, 100, 100);
-  visibility: hidden;
+  visibility: visible;
   font-size: 13px;
 }
 
@@ -265,4 +265,10 @@ th,
 td {
   padding: 10px;
   text-align: center;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }

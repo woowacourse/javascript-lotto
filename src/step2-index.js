@@ -24,13 +24,13 @@ const buttonPurchase = document.getElementById("button-purchase");
 const contentBottom = document.getElementById("content-bottom");
 const buttonCheckResult = document.getElementById("button-check-result");
 const winningsAndBonusHelperText = document.getElementById(
-  "winnings-and-bonus-helper-text",
+  "winnings-and-bonus-helper-text"
 );
 const winningStasModal = document.getElementById("winning-stats-modal");
 const buttonRestart = document.getElementById("button-restart");
 const buttonCloseModal = document.getElementById("close-modal");
 const winningStatsTableContent = document.getElementById(
-  "winning-stats-table-content",
+  "winning-stats-table-content"
 );
 
 buttonPurchase.addEventListener("click", async () => {
@@ -38,6 +38,7 @@ buttonPurchase.addEventListener("click", async () => {
   purchaseAmount = result.purchaseAmount;
   lottos = result.lottos;
 
+  //   contentBottom.classList.remove("hidden");
   contentBottom.style.visibility = "visible";
 });
 
@@ -48,11 +49,11 @@ inputPurchaseAmount.addEventListener("input", (event) => {
   try {
     validatePurchaseAmount(inputValue);
     buttonPurchase.disabled = false;
-    helperText.style.visibility = "hidden";
+    helperText.classList.add("hidden");
   } catch (error) {
     buttonPurchase.disabled = true;
     helperText.innerText = error.message.slice(8);
-    helperText.style.visibility = "visible";
+    helperText.classList.remove("hidden");
   }
 });
 
@@ -92,18 +93,18 @@ inputs.forEach((input) => {
       validateWinningNumbers(winningNumbers.join(","));
       validateBonusNumber(bonusNumber, winningNumbers.join(","));
       buttonCheckResult.disabled = false;
-      winningsAndBonusHelperText.style.visibility = "hidden";
+      winningsAndBonusHelperText.classList.add("hidden");
       winningRanks = await handleWinningNumbers(lottos);
     } catch (error) {
       buttonCheckResult.disabled = true;
-      winningsAndBonusHelperText.style.visibility = "visible";
+      winningsAndBonusHelperText.classList.remove("hidden");
       winningsAndBonusHelperText.textContent = error.message.slice(8);
     }
   });
 });
 
 document.getElementById("winning-form").addEventListener("submit", (event) => {
-    event.preventDefault();
+  event.preventDefault();
 });
 
 buttonCheckResult.addEventListener("click", () => {
@@ -111,6 +112,7 @@ buttonCheckResult.addEventListener("click", () => {
   handleResult(purchaseAmount, winningRanks);
   winningStasModal.showModal();
   winningStasModal.style.visibility = "visible";
+  //   winningStasModal.classList.remove("hidden");
 });
 
 buttonRestart.addEventListener("click", () => {
@@ -120,6 +122,7 @@ buttonRestart.addEventListener("click", () => {
 const closeWinningStatsModal = () => {
   winningStasModal.close();
   winningStasModal.style.visibility = "hidden";
+  winningStasModal.classList.add("hidden");
   winningStatsTableContent.innerText = "";
 };
 

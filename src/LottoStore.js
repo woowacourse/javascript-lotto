@@ -34,8 +34,6 @@ export const handleWinningNumbers = async (lottos) => {
   const winningAndBonus = await readWinningNumbersAndBonusNumber();
   const winningRanks = Ranking.countWinningRanks(lottos, winningAndBonus);
 
-  // displayWinningDetails(winningRanks);
-
   return winningRanks;
 };
 
