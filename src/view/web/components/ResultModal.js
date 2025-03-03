@@ -47,4 +47,22 @@ export default class ResultModal {
   hide() {
     this.resultModal.style.display = "none";
   }
+
+  addCloseButton() {
+    const closeBtn = document.createElement("button");
+    closeBtn.id = "closeModalBtn";
+    closeBtn.textContent = "닫기";
+    closeBtn.classList.add("close-button");
+
+    closeBtn.addEventListener("click", () => {
+      this.hide();
+    });
+
+    const modalHeader =
+      this.resultModal.querySelector(".modal-header") || this.resultModal;
+
+    modalHeader.appendChild(closeBtn);
+
+    this.closeButton = closeBtn;
+  }
 }

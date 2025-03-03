@@ -98,10 +98,9 @@ export default class WinningNumbers {
   }
 
   reset() {
-    this.winningNumberInputs.forEach((input) => {
-      input.value = "";
-    });
-    this.bonusNumberInput.value = "";
+    [...this.winningNumberInputs, this.bonusNumberInput].forEach(
+      (input) => (input.value = ""),
+    );
     this.hide();
   }
 
