@@ -84,6 +84,14 @@ const outputView = {
     restartButton.classList.add("restart-button");
     restartButton.innerText = "다시 시작하기";
     resultContainer.appendChild(restartButton);
+
+    restartButton.addEventListener("click", () => {
+      document.querySelector(".modal").style.display = "none";
+      document.querySelector(".lotto-list-container").style.display = "none";
+      document.querySelector(".number-input-form").style.display = "none";
+      document.querySelector(".result-button-container").style.display = "none";
+      location.reload();
+    });
   },
 };
 
