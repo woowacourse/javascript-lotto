@@ -7,9 +7,7 @@ class LottoGameController {
   constructor(state, view) {
     this.#state = state;
     this.#view = view;
-    requestAnimationFrame(() => {
-      this.#initializeEventListeners();
-    });
+    this.#initializeEventListeners();
   }
 
   #initializeEventListeners() {
