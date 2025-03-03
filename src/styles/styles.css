@@ -134,6 +134,10 @@ header {
   border: none;
 }
 
+.purchase-button:disabled {
+  background-color: var(--grey-300);
+}
+
 footer {
   display: flex;
   min-height: 80px;
