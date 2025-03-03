@@ -15,27 +15,13 @@ class LottoUI {
 
   renderLottoTickets(lottos) {
     const lottoList = document.querySelector(".lotto-tickets");
-    lottoList.innerHTML = "";
 
-    lottos.forEach((lotto) => {
-      lottoList.appendChild(this.createLottoItem(lotto));
-    });
-  }
-
-  createLottoItem(lotto) {
-    const lottoItem = document.createElement("li");
-
-    const ticketIcon = document.createElement("span");
-    ticketIcon.classList.add("lotto-title");
-    ticketIcon.textContent = "🎟️";
-
-    const lottoNumbers = document.createElement("span");
-    lottoNumbers.classList.add("lotto-body");
-    lottoNumbers.textContent = lotto.numbers.join(", ");
-
-    lottoItem.appendChild(ticketIcon);
-    lottoItem.appendChild(lottoNumbers);
-    return lottoItem;
+    lottoList.innerHTML = lottos.map((lotto) =>
+      `<li>
+        <span class="lotto-title">🎟️</span>
+        <span class="lotto-body">${lotto.numbers.join(", ")}</span>
+      </li>`
+    ).join("");
   }
 
   updatePurchaseUI(isPurchased) {
