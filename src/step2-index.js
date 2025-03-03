@@ -2,6 +2,39 @@ import Validate from './Model/Validate.js';
 
 const input_price = document.querySelector('.input_price');
 
+function createModalPopup() {
+  const modalPopup = document.createElement('div');
+  modalPopup.classList.add('modal_popup');
+
+  const closeButton = createCloseButton();
+  const title = createModalTitle();
+  const table = createResultTable();
+  const rateText = createRateText();
+  const restartButton = createRestartButton();
+
+  modalPopup.appendChild(closeButton);
+  modalPopup.appendChild(title);
+  modalPopup.appendChild(table);
+  modalPopup.appendChild(rateText);
+  modalPopup.appendChild(restartButton);
+
+  return modalPopup;
+}
+
+// 모달 생성
+export function createModal() {
+  const modal = document.createElement('div');
+  modal.classList.add('modal');
+
+  const modalPopup = createModalPopup();
+  modal.appendChild(modalPopup);
+  document.body.appendChild(modal);
+
+  setupModalEvents(modal, modalPopup);
+
+  return modal;
+}
+
 // 모달창 닫는 버튼 UI 생성
 export function createCloseButton() {
   const closeButton = document.createElement('img');
