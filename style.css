@@ -1,118 +1,105 @@
- :root{
-      /* Color */
-    --lotto-primary: #4E5BA6;
-    --lotto-greyscale-1 : #FFFFFF;
-    --lotto-greyscale-2:#FCFCFD;
-    --lotto-greyscale-3:#B4B4B4;
-    --lotto-greyscale-4: #8B8B8B;
-    --lotto-greyscale-5:#000000;
+:root {
+  /* Color */
+  --lotto-primary: #4e5ba6;
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000000;
 
-
-
-      /* Font size */
-    --font-lotto-title :24px;
-  --font-lotto-subtitle:20px;
-  --font-lotto-body:15px;
-  --font-lotto-placeholder:15px;
-  --font-lotto-caption:14px;
-
-
+  /* Font size */
+  --font-lotto-title: 24px;
+  --font-lotto-subtitle: 20px;
+  --font-lotto-body: 15px;
+  --font-lotto-placeholder: 15px;
+  --font-lotto-caption: 14px;
 
   /* font weight */
   --weight-extrabold: 800;
   --weight-bold: 700;
   --weight-semi-bold: 600;
   --weight-regular: 400;
+}
 
-
-
-
- }
-
-
- #app{
+#app {
   background-color: var(--lotto-greyscale-2);
-
- }
- p {
-    font-size: var(--font-lotto-body);
-    font-weight: var(--weight-regular);
-    margin: 0px;
- }
-
- .navbar__menu{
-   display: flex;
-   background-color: var(--lotto-primary);
-   color: var(--lotto-greyscale-1);
-   height: 64px;
-   align-items: center;
- }
-
- .navbar__menu h1{
-    margin-left: 130px;
-    font-size: var(--font-lotto-title);
-
- }
-
-.lotto__body{
-    background-color: var(--lotto-greyscale-2);
-    display: flex;
-    justify-content: center;
-    margin-top: 84px;
-    
 }
-.lotto__box{
-    box-sizing: border-box;
-    background-color: var(--lotto-greyscale-1);
-    width: 414px;
-    min-height: 727px;
-    border-radius: 0%;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #0000001F;
-    padding: 40px 16px 32px 16px;
-
+p {
+  font-size: var(--font-lotto-body);
+  font-weight: var(--weight-regular);
+  margin: 0px;
 }
 
-.lotto__box__title{
-    text-align: center;
-    margin-bottom: 28px;
+.navbar__menu {
+  display: flex;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  height: 64px;
+  align-items: center;
 }
 
-.lotto__box h1{
-    color: var(--lotto-greyscale-5);
-    font-size: var(--font-lotto-title);
-    font-weight: var(--weight-extrabold);
-    margin: 0%;
+.navbar__menu h1 {
+  margin-left: 130px;
+  font-size: var(--font-lotto-title);
 }
 
-.input__money{
-    padding: 0%;
-    margin : 4px 0px 28px 0px;
-    width: 310px;
-    height: 36px;
-    border-radius: 4px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--lotto-greyscale-3);
+.lotto__body {
+  background-color: var(--lotto-greyscale-2);
+  display: flex;
+  justify-content: center;
+  margin-top: 84px;
+}
+.lotto__box {
+  box-sizing: border-box;
+  background-color: var(--lotto-greyscale-1);
+  width: 414px;
+  min-height: 727px;
+  border-radius: 0%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0000001f;
+  padding: 40px 16px 32px 16px;
 }
 
-.lotto__input__btn{
-    width: 56px;
-    height: 36px;
-    background-color: var(--lotto-primary);
-    color: var(--lotto-greyscale-1);
-    border-radius: 4px;
-    border-width: 1px;
-    border-style: solid;
-    border-color:var(--lotto-primary);
+.lotto__box__title {
+  text-align: center;
+  margin-bottom: 28px;
 }
 
-.lotto__list{
-      margin: 8px 0px 24px 0px;
+.lotto__box h1 {
+  color: var(--lotto-greyscale-5);
+  font-size: var(--font-lotto-title);
+  font-weight: var(--weight-extrabold);
+  margin: 0%;
 }
-.random__lotto{
-display: flex;
+
+.input__money {
+  padding: 0%;
+  margin: 4px 0px 28px 0px;
+  width: 310px;
+  height: 36px;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--lotto-greyscale-3);
+}
+
+.lotto__input__btn {
+  width: 56px;
+  height: 36px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--lotto-primary);
+}
+
+.lotto__list {
+  margin: 8px 0px 24px 0px;
+}
+.random__lotto {
+  display: flex;
   flex-direction: row;
   gap: 8px;
 }
@@ -122,66 +109,61 @@ display: flex;
 }
 
 .lotto__icon {
-    font-size: 34px;
+  font-size: 34px;
 }
-.lotto__numbers{
-    font-size: var(--font-lotto-placeholder);
-    text-align: center;
-    line-height:44px;
+.lotto__numbers {
+  font-size: var(--font-lotto-placeholder);
+  text-align: center;
+  line-height: 44px;
 }
 
-.target__bonus__box{
-    margin-top: 12px;
-    display: flex;
+.target__bonus__box {
+  margin-top: 12px;
+  display: flex;
   flex-direction: row;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
-
-.target__lottos{
-    display: flex;
+.target__lottos {
+  display: flex;
   flex-direction: row;
-gap: 8px;
+  gap: 8px;
 }
 
-.one__numbers__input{
-    margin-top: 8px;
-    width: 36px;
-    height: 34px;
-    border-radius: 4px;
-    border-width: 1px;
-    border-style: solid;
-    border-color:var(--lotto-greyscale-3)
-
-
+.one__numbers__input {
+  margin-top: 8px;
+  width: 36px;
+  height: 34px;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--lotto-greyscale-3);
 }
 
 .bonus__number {
   display: flex;
-flex-direction: column; /* 세로 배치 유지 */
-  align-items: flex-end; 
+  flex-direction: column; /* 세로 배치 유지 */
+  align-items: flex-end;
 }
 
-.result__btn__box{
-    display: flex;
-flex-direction: column; /* 세로 배치 유지 */
-  align-items: center; 
+.result__btn__box {
+  display: flex;
+  flex-direction: column; /* 세로 배치 유지 */
+  align-items: center;
 }
 
-
-.result__btn{
-    background-color: var(--lotto-primary);
-    width: 382px;
-    height: 36px;
-    text-align: center;
-    line-height: 36px; 
-    margin-top: 27px;
-    border-radius: 4px;
-    color: var(--lotto-greyscale-1);
-    font-size: var(--font-lotto-caption);
-    font-weight: var(--weight-bold);
+.result__btn {
+  background-color: var(--lotto-primary);
+  width: 382px;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  margin-top: 27px;
+  border-radius: 4px;
+  color: var(--lotto-greyscale-1);
+  font-size: var(--font-lotto-caption);
+  font-weight: var(--weight-bold);
 }
-
 
 .modal-overlay {
   position: fixed;
@@ -211,7 +193,7 @@ flex-direction: column; /* 세로 배치 유지 */
   text-align: center;
   margin-bottom: 33px;
   margin-left: 115px;
-  font-size: var(--font-lotto-subtitle)
+  font-size: var(--font-lotto-subtitle);
 }
 
 .modal-divider {
@@ -226,7 +208,8 @@ flex-direction: column; /* 세로 배치 유지 */
   font-size: var(--font-lotto-body);
 }
 
-.result-table th, .result-table td {
+.result-table th,
+.result-table td {
   padding: 8px;
   text-align: center;
   border-bottom: 1px solid #ddd;
@@ -243,7 +226,7 @@ flex-direction: column; /* 세로 배치 유지 */
 }
 
 .restart-btn {
-  background-color:var(--lotto-primary);
+  background-color: var(--lotto-primary);
   color: white;
   border: none;
   padding: 10px 15px;
@@ -251,42 +234,40 @@ flex-direction: column; /* 세로 배치 유지 */
   cursor: pointer;
   border-radius: 4px;
   width: 100%;
-  font-size: var(--font-lotto-caption)
+  font-size: var(--font-lotto-caption);
 }
 
-
-.lotto__bottom{
+.lotto__bottom {
   margin-top: 69px;
   height: 80px;
   color: var(--lotto-primary);
   text-align: center;
-   display: flex;
+  display: flex;
   flex-direction: column;
-border-top: 1px solid #4E5BA633;
-justify-content: center; 
-font-size: var(--font-lotto-caption);
-
+  border-top: 1px solid #4e5ba633;
+  justify-content: center;
+  font-size: var(--font-lotto-caption);
 }
 
 .modal-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: start;
-          width: 100%;
-        }
-        
-  .modal-close-btn {
-          background: none;
-          border: none;
-          font-size: 24px;
-          cursor: pointer;
-          color: #333;
-          padding: 5px 10px;
-          border-radius: 50%;
-          line-height: 1;
-          transition: background-color 0.2s;
-        }
-        
-        .modal-close-btn:hover {
-          background-color: #f0f0f0;
-        }
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 50%;
+  line-height: 1;
+  transition: background-color 0.2s;
+}
+
+.modal-close-btn:hover {
+  background-color: #f0f0f0;
+}
