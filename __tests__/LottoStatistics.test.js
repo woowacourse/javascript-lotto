@@ -10,7 +10,6 @@ test('사용자가 구매한 로또 번호와 당첨된 번호가 5개 일치하
   const userLottos = [new Lotto([1, 2, 3, 4, 5, 6])];
   const winningLotto = {lottoNumber: [1, 2, 3, 4, 5, 45], bonusNumber: 6};
   const rankResult = lottoStatistics.compareLottos(userLottos, winningLotto);
-  console.log(rankResult)
 
   expect(rankResult[`5개 일치, 보너스 볼 일치`].count).toBe(1);
 });
