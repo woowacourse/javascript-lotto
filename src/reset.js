@@ -3,6 +3,8 @@ import state from './state.js';
 
 function reset() {
   state.lottos = [];
+  state.winCount = 0;
+  state.purchasePrice = 0;
   clearUIElements();
 }
 

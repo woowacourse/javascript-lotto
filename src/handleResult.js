@@ -34,13 +34,12 @@ async function handleResult(event) {
       handleLottoInputError,
     );
 
-    let winCount = 0;
-    winCount = calculateWins(state.lottos, parsedLotto);
-    const total = calculatePrize(winCount, PRIZE_MONEY);
+    state.winCount = calculateWins(state.lottos, parsedLotto);
+    const total = calculatePrize(state.winCount, PRIZE_MONEY);
     const revenueRate = calculateRevenueRate(total, state.purchasePrice);
 
     createModalOverlay();
-    createModal(winCount, revenueRate);
+    createModal(state.winCount, revenueRate);
     const closeButton = document.getElementById(SELECTORS.BUTTON.CLOSE);
 
     closeButton.addEventListener('click', (event) => {
