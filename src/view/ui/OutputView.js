@@ -9,18 +9,18 @@ const OutputView = {
     toggleClassName($modal, 'hidden');
     toggleClassName($modalDimmed, 'hidden');
   },
-  showInputWinningLotto() {
+  renderWinningLotto() {
     const $lottoBottom = document.querySelector('.lotto-bottom');
     toggleClassName($lottoBottom, 'hidden');
   },
-  printUserLottos(userLottos) {
+  renderUserLottos(userLottos) {
     userLottos.forEach((userLotto) => {
       const $parent = document.querySelector('.lotto-item-container');
       const $element = createElement('p', `🎟️ ${userLotto.getNumbers().join(', ')}`);
       $parent.appendChild($element);
     });
   },
-  printStatisticsResult(rankResult) {
+  renderStatisticsResult(rankResult) {
     this.toggleModal();
 
     Object.keys(rankResult).forEach((key) => {
@@ -43,7 +43,7 @@ const OutputView = {
       child.appendChild(elementCount);
     });
   },
-  printRevenueRate(revenueRate) {
+  renderRevenueRate(revenueRate) {
     const $boldText = document.querySelector('.bold-text');
     const $element = createElement('p', `당신의 총 수익률은 ${revenueRate}% 입니다`);
     $boldText.appendChild($element);

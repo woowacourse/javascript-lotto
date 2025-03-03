@@ -16,8 +16,8 @@ document.getElementById('purchase-button').addEventListener('click', () => {
     return;
   }
   userLottos = createLottos(userMoney);
-  OutputView.printUserLottos(userLottos);
-  OutputView.showInputWinningLotto();
+  OutputView.renderUserLottos(userLottos);
+  OutputView.renderWinningLotto();
 });
 
 function getRevenueRate() {
@@ -38,8 +38,8 @@ document.getElementById('result-button').addEventListener('click', () => {
   }
   const winningLotto = { bonusNumber, lottoNumber: winningNumbers };
   const rankResult = lottoStatistics.compareLottos(userLottos, winningLotto);
-  OutputView.printStatisticsResult(rankResult);
-  OutputView.printRevenueRate(getRevenueRate());
+  OutputView.renderStatisticsResult(rankResult);
+  OutputView.renderRevenueRate(getRevenueRate());
 });
 
 // 3. 로또 초기화하기

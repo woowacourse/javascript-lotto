@@ -17,13 +17,13 @@ class Controller {
     const money = await InputView.readMoney();
 
     const userLottos = this.buyUserLottos(money);
-    OutputView.printUserLottos(userLottos);
+    OutputView.renderUserLottos(userLottos);
 
     const statisticsResult = await this.getStatisticsResult(userLottos);
-    OutputView.printStatisticsResult(statisticsResult);
+    OutputView.renderStatisticsResult(statisticsResult);
 
     const revenueRate = this.getRevenueRate(money);
-    OutputView.printRevenueRate(revenueRate);
+    OutputView.renderRevenueRate(revenueRate);
 
     await this.restart();
   }
