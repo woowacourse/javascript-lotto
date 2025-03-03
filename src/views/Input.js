@@ -1,23 +1,36 @@
 import { CONFIRMATION } from "../constants/validateConstants.js";
-import readLineAsync from "../utils/readLineAsync.js";
 
 const Input = {
   readPurchaseAmount() {
-    return readLineAsync("> 구입금액을 입력해 주세요. ");
+    return new Promise((resolve) => {
+      const purchaseAmount = document
+        .querySelector("#purchase-amount")
+        .value.trim();
+      resolve(purchaseAmount);
+    });
   },
 
   readWinningNumbers() {
-    return readLineAsync("\n> 당첨 번호를 입력해 주세요. ");
+    return new Promise((resolve) => {
+      const input = prompt("\n> 당첨 번호를 입력해 주세요.").trim();
+      resolve(input);
+    });
   },
 
   readBonusNumber() {
-    return readLineAsync("\n> 보너스 번호를 입력해 주세요. ");
+    return new Promise((resolve) => {
+      const input = prompt("\n> 보너스 번호를 입력해 주세요.").trim();
+      resolve(input);
+    });
   },
 
   readRestartConfirm() {
-    return readLineAsync(
-      `\n> 다시 시작하시겠습니까? (${CONFIRMATION.YES}/${CONFIRMATION.NO}) `
-    );
+    return new Promise((resolve) => {
+      const input = prompt(
+        `\n> 다시 시작하시겠습니까? (${CONFIRMATION.YES}/${CONFIRMATION.NO}) `
+      ).trim();
+      resolve(input);
+    });
   },
 };
 
