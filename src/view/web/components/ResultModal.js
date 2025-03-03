@@ -57,15 +57,16 @@ export default class ResultModal {
       element.textContent = `${count}개`;
     });
     this.totalReturnRateElement.textContent = `당신의 총 수익률은 ${earningRate}%입니다.`;
-    this.resultModal.style.display = "flex";
+
+    this.show();
   }
 
   show() {
-    this.resultModal.style.display = "flex";
+    this.resultModal.classList.add("modal-visible");
   }
 
   hide() {
-    this.resultModal.style.display = "none";
+    this.resultModal.classList.remove("modal-visible");
   }
 
   addCloseButton() {

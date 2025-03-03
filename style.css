@@ -271,3 +271,11 @@ p {
 .modal-close-btn:hover {
   background-color: #f0f0f0;
 }
+
+#resultModal:not(.modal-visible) {
+  display: none !important;
+}
+
+#resultModal.modal-visible {
+  display: flex !important;
+}
