@@ -89,3 +89,7 @@
 - [x] 유틸함수 모듈 분리
 - [x] 로또 정보 저장 데이터 구조 개선
 - [x] view 계층 의미없는 클래스 사용하지 않기
+
+### 홈페이지 배포
+
+https://ha-kuku.github.io/javascript-lotto/
