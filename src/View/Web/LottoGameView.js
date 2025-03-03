@@ -11,7 +11,7 @@ class LottoGameView {
 
   #initializeModalEvents() {
     const modalOverlay = document.querySelector('.modal-overlay');
-    const modalCancelButton = document.querySelector('.modal-cancle-container');
+    const modalCancelButton = document.querySelector('.modal-cancel-container');
 
     if (modalOverlay && modalCancelButton) {
       modalOverlay.addEventListener('click', (event) => {

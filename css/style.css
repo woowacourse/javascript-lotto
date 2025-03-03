@@ -267,16 +267,15 @@ footer p {
   box-sizing: border-box;
 }
 
-.modal-cancle-container {
+.modal-cancel-container {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10px;
 }
 
-.modal-cancle-container img {
-  width: 14px;
-  height: 14px;
+.modal-cancel-container h6 {
+  font-size: var(--text-subtitle);
 }
 
 .modal h2 {
