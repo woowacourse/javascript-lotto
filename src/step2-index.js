@@ -2,6 +2,53 @@ import Validate from './Model/Validate.js';
 
 const input_price = document.querySelector('.input_price');
 
+// 결과 확인 버튼 UI 생성
+export function createResultButton(lottos) {
+  const result_button = document.createElement('button');
+  result_button.classList.add('result_button');
+  result_button.type = 'button';
+  result_button.innerText = '결과 확인하기';
+  result_button.addEventListener('click', () => handleResultCheck(lottos));
+  main_container.appendChild(result_button);
+}
+
+// 숫자 입력 UI 생성
+function createNumberInput(className) {
+  const input_number = document.createElement('input');
+  input_number.classList.add('input_number', className);
+  input_number.type = 'number';
+  validateLottoNumber(input_number);
+  return input_number;
+}
+
+// 당첨 번호 입력 UI 요소 생성
+function createWinningInputUI() {
+  const winning_box = document.createElement('div');
+  winning_box.classList.add('winning_wrap');
+  for (let i = 0; i < LOTTO_NUMBER_LENGTH; i++) {
+    winning_box.appendChild(createNumberInput('winning_number'));
+  }
+  return winning_box;
+}
+
+// 보너스 번호 입력 UI 요소 생성
+function createBonusInputUI() {
+  const bonus_box = document.createElement('div');
+  bonus_box.appendChild(createNumberInput('bonus_number'));
+
+  return bonus_box;
+}
+
+// 당첨 번호 및 보너스 번호 입력 UI를 화면에 추가
+function paintNumberInputs() {
+  const main_container = document.getElementById('main_container');
+  const number_container = document.createElement('section');
+  number_container.classList.add('number_container');
+  number_container.appendChild(createWinningInputUI());
+  number_container.appendChild(createBonusInputUI());
+  main_container.appendChild(number_container);
+}
+
 // 입력 안내 UI 생성
 function createInputNotice() {
   const main_container = document.getElementById('main_container');
@@ -79,6 +126,8 @@ function handleLottoPurchase() {
     paintLottoCount(lottos);
     paintLottos(lottos);
     createInputNotice();
+    paintNumberInputs();
+    createResultButton(lottos);
   } catch (error) {
     alert(error.message);
   }
