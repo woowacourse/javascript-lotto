@@ -11,6 +11,7 @@ import { appendElement } from "../util/elementManager.js";
 import { disableElement } from "../util/buttonActions.js";
 import { ResultController } from "../controller/ResultController.js";
 import { WinningController } from "../controller/WinningController.js";
+import { addKeyListener } from "../util/addKeyListener.js";
 
 export const updateUI = () => {
   const state = getState();
@@ -57,6 +58,7 @@ const updateResultButtonUI = () => {
     ResultController();
   };
   const resultButtonProps = { label: "결과 확인하기", onClick: resultClickHandler, style: "large", name: "result" };
+  addKeyListener("[name=winning-number],[name=bonus-number]", resultClickHandler, "Enter");
   appendElement(".result-button-container", Button(resultButtonProps));
 };
 
