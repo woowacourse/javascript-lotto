@@ -1,16 +1,6 @@
 /* eslint-disable max-lines-per-function */
-function createElement(type, text) {
-  const element = document.createElement(type);
-  element.innerText = text;
-  return element;
-}
-
-function toggleClassName(element, className) {
-  if (element.classList.contains(className)) {
-    return element.classList.remove(className);
-  }
-  return element.classList.add(className);
-}
+import toggleClassName from './utils/toggleClassName';
+import createElement from './utils/createElement';
 
 const OutputView = {
   toggleModal() {
