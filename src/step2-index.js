@@ -5,4 +5,4 @@
 
 import { WebApp } from "./WebApp";
 
-WebApp();
+const webApp = new WebApp();

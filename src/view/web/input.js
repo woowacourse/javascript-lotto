@@ -8,7 +8,6 @@ import {
 
 const printErrorMessage = (errorField, error) => {
   const prevErrorMessage = $(`${errorField} .error-message`);
-  console.log(prevErrorMessage);
   if (prevErrorMessage.length) {
     prevErrorMessage.text(error.message);
     return;
@@ -28,7 +27,7 @@ const removeErrorField = (errorField) => {
 };
 
 // price 입력받기
-const repeatGetPrice = (resolve) => {
+const repeatGetPrice = () => {
   const userInputPrice = $(".input-contents input").val();
 
   try {
@@ -36,20 +35,11 @@ const repeatGetPrice = (resolve) => {
     removeErrorField(".input-contents");
     allowWinningLotto();
     focusInput(".winningLotto-contents_winningLotto input");
-    resolve(userInputPrice);
+    return userInputPrice;
   } catch (error) {
     printErrorMessage(".input-contents", error);
+    return "";
   }
-};
-
-const getPrice = () => {
-  console.log(" 1");
-  return new Promise((resolve) => {
-    $(".input-contents form").on("submit", async (event) => {
-      event.preventDefault();
-      repeatGetPrice(resolve);
-    });
-  });
 };
 
 // winningLotto 입력받기
@@ -72,7 +62,7 @@ const parseNumber = (winningNumbers, bonusNumber) => {
   return { winningNumbers, bonusNumber };
 };
 
-const repeatWinningLotto = (resolve) => {
+const repeatWinningLotto = () => {
   const winningNumbers = getWinningNumber();
   const bonusNumber = getBonusNumber();
 
@@ -80,21 +70,11 @@ const repeatWinningLotto = (resolve) => {
     validateWinningNumbers(winningNumbers);
     validateBonusNumber(winningNumbers, bonusNumber);
     removeErrorField(".winningLotto-contents");
-    resolve(parseNumber(winningNumbers, bonusNumber));
+    return parseNumber(winningNumbers, bonusNumber);
   } catch (error) {
     printErrorMessage(".winningLotto-contents", error);
+    return "";
   }
 };
 
-const getWinningLotto = async () => {
-  return new Promise((resolve) => {
-    $("#lottoForm").on("submit", async (event) => {
-      event.preventDefault();
-      repeatWinningLotto(resolve);
-    });
-  });
-};
-
-const disableInputfield = () => {};
-
-export { getPrice, getWinningLotto };
+export { repeatGetPrice, repeatWinningLotto };

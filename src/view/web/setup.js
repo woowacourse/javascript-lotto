@@ -62,19 +62,9 @@ const focusInput = (className) => {
   }, 300);
 };
 
-const initLotto = () => {
-  resetLotto();
-  // resetButton 활성화
-  $(".restart-button").on("click", () => {
-    resetLotto();
-    focusInput(".input-contents input");
-    WebApp();
-  });
-};
-
 const disableInputPrice = () => {
   $(".input-contents input").prop("disabled", true).addClass("disable-input ");
   $(".input-contents button").prop("disabled", true).addClass("disable-button");
 };
 
-export { initLotto, disableInputPrice, focusInput, hideLayout, showLayout };
+export { resetLotto, disableInputPrice, focusInput, hideLayout, showLayout };
