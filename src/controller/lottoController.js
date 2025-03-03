@@ -2,8 +2,6 @@ import InputHandler from '../input/InputHandler.js';
 import OutputView from '../view/OutputView.js';
 import { lottoService } from '../service/lottoService.js';
 import { gameService } from '../service/gameService.js';
-import InputView from '../view/InputView.js';
-import { INPUT_MESSAGE } from '../constants/constants.js';
 
 export const lottoController = {
   async run() {
@@ -11,7 +9,7 @@ export const lottoController = {
     OutputView.printLottoNumber(lottoList);
 
     const winningNumbers = await InputHandler.winningNumbers();
-    const winningLotto = await lottoService.createWinningLotto(winningNumbers);
+    const winningLotto = await InputHandler.bonusNumber(winningNumbers);
 
     const lottoResult = lottoService.calculateLottoResult(lottoList, winningLotto);
     OutputView.printStatstics(lottoResult);
@@ -20,13 +18,5 @@ export const lottoController = {
     OutputView.print(`총 수익률은 ${winningRate}%입니다.`);
 
     gameService.reStart(await InputHandler.reStart());
-  },
-
-  async inputBonusNumber() {
-    return await InputView.readUserInput(INPUT_MESSAGE.BONUS_NUMBER);
-  },
-
-  printErrorMessage(message) {
-    OutputView.print(message);
   },
 };

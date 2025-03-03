@@ -3,8 +3,6 @@ import LottoResult from '../domain/LottoResult.js';
 import { calculateWinningRate } from '../domain/calculateWinningRate.js';
 import { LOTTO_CONDITION } from '../constants/constants.js';
 import { purchaseLotto } from '../domain/purchaseLotto.js';
-import WinningLotto from '../domain/WinningLotto.js';
-import { lottoController } from '../controller/lottoController.js';
 
 export const lottoService = {
   purchaseLotto(purchaseMoney) {
@@ -20,16 +18,5 @@ export const lottoService = {
 
   calculateWinningRate(lottoList, lottoResult) {
     return calculateWinningRate(LOTTO_CONDITION.PRICE * lottoList.length, lottoResult.totalPrize);
-  },
-
-  async createWinningLotto(winningNumbers) {
-    try {
-      const bonusNumber = Number(await lottoController.inputBonusNumber());
-      const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-      return winningLotto;
-    } catch (e) {
-      lottoController.printErrorMessage(e.message);
-      return await this.createWinningLotto(winningNumbers);
-    }
   },
 };
