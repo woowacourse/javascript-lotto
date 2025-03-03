@@ -5,7 +5,7 @@ const winningLottoInfoStore = create((set) => ({
     winningNumbers: [],
     bonusNumber: 0,
   },
-  setLottoTransaction: (newWinningLottoInfo) =>
+  setWinningLottoInfo: (newWinningLottoInfo) =>
     set((state) => ({
       winningLottoInfo: { ...state.winningLottoInfo, ...newWinningLottoInfo },
     })),
