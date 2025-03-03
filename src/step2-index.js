@@ -25,6 +25,8 @@ const winningTableContainer = document.querySelector(
   ".winning-result-table-container"
 );
 const winningDialog = document.querySelector(".winning-result-dialog");
+const closeButton = document.querySelector(".winning-result-close-button");
+const restartButton = document.querySelector(".winning-result-restart-button");
 
 purchaseForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -101,7 +103,7 @@ const createWinningInputTitle = () => {
 const createWinningInputForm = () => {
   const winningInputForm = document.createElement("form");
   const inputContainer = document.createElement("div");
-  inputContainer.classList.add("winning-input-form");
+  inputContainer.classList.add("winning-input-box");
 
   inputContainer.appendChild(createWinningNumberInput());
   inputContainer.appendChild(createBonusNumberInput());
@@ -172,42 +174,27 @@ winningInputContainer.addEventListener("submit", (e) => {
   e.preventDefault();
 
   try {
-    const winningNumbers = [];
-    const bonusNumber = document.getElementById("bonus-number").value;
+    const winningInfo = {
+      winning: getWinningNumbers(),
+      bonus: getBonusNumber(),
+    };
 
-    for (let i = 0; i < 6; i++) {
-      const winningNumberInput = document.getElementById(
-        `winning-number-${i + 1}`
-      );
-      winningNumbers.push(winningNumberInput.value);
-    }
+    validateWinningInputs(winningInfo);
+    disableWinningInputs();
 
-    validateWinningNumbers(winningNumbers);
-    validateBonusNumber(bonusNumber, winningNumbers);
-
-    document.querySelectorAll(".winning-input").forEach((input) => {
-      input.setAttribute("disabled", "true");
-    });
-
-    const winningCount = LottoCenter.getWinningCounts(buyInfo.lottos, {
-      winning: winningNumbers.map(Number),
-      bonus: Number(bonusNumber),
-    });
+    const winningCount = LottoCenter.getWinningCounts(
+      buyInfo.lottos,
+      winningInfo
+    );
 
     const yieldRate = getYieldRate(winningCount, buyInfo.amount);
-    const winningModalContent = createWinningResultContent(
-      winningCount,
-      yieldRate
-    );
+    const winningModalContent = createModalContent(winningCount, yieldRate);
     winningModalContainer.classList.add("winning-result-dialog-background");
     winningTableContainer.innerHTML = winningModalContent;
     winningDialog.open = true;
     document.body.style.overflow = "hidden";
 
-    const restartButton = document.querySelector(
-      ".winning-result-restart-button"
-    );
-    const closeButton = document.querySelector(".winning-result-close-button");
+    closeButton.addEventListener("click", closeModal);
 
     winningModalContainer.addEventListener("click", (e) => {
       if (e.target === winningModalContainer) {
@@ -215,23 +202,48 @@ winningInputContainer.addEventListener("submit", (e) => {
       }
     });
 
-    closeButton.addEventListener("click", closeModal);
-
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeModal();
       }
     });
 
-    restartButton.addEventListener("click", () => {
-      restartGame();
-    });
+    restartButton.addEventListener("click", restartGame);
   } catch (error) {
     alert(error.message);
     const firstWinningInput = document.getElementById("winning-number-1");
     firstWinningInput.focus();
   }
 });
+
+const disableWinningInputs = () => {
+  document.querySelectorAll(".winning-input").forEach((input) => {
+    input.setAttribute("disabled", "true");
+  });
+};
+
+const getWinningNumbers = () => {
+  const winningNumbers = [];
+
+  for (let i = 0; i < 6; i++) {
+    const winningNumberInput = document.getElementById(
+      `winning-number-${i + 1}`
+    );
+    winningNumbers.push(winningNumberInput.value);
+  }
+
+  return winningNumbers.map(Number);
+};
+
+const getBonusNumber = () => {
+  const bonusNumberInput = document.getElementById("bonus-number");
+  return Number(bonusNumberInput.value);
+};
+
+const validateWinningInputs = (winningInfo) => {
+  validateWinningNumbers(winningInfo.winning);
+  validateBonusNumber(winningInfo.bonus, winningInfo.winning);
+};
 
 const closeModal = () => {
   winningTableContainer.innerHTML = "";
@@ -253,7 +265,7 @@ const restartGame = () => {
   closeModal();
 };
 
-const createWinningResultContent = (winningCount, yieldRate) => {
+const createModalContent = (winningCount, yieldRate) => {
   return `
   <div class="winning-result-table">
             <p class="winning-result-table-title">일치 갯수</p>
