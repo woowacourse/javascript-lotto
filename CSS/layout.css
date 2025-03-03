@@ -85,6 +85,7 @@ button.purchase-button {
   border: none;
   background-color: #4e5ba6;
   color: white;
+  cursor: pointer;
 }
 
 div.lotto-list-container {
@@ -164,15 +165,20 @@ button.result-button {
   background-color: #4e5ba6;
   border: none;
   color: white;
+  cursor: pointer;
 }
 
 div.modal {
-  width: 100%;
-  height: 600px;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  display: none;
 }
 
 div.modal-header {
@@ -193,6 +199,7 @@ div.modal-header {
 .modal-close-button {
   border: none;
   background-color: white;
+  cursor: pointer;
 }
 
 .modal-container {
@@ -229,6 +236,23 @@ div.modal-header {
 .modal-table-cell {
   flex: 1;
   text-align: center;
+}
+
+.profit-text {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+.restart-button {
+  width: 100%;
+  height: 36px;
+  padding: 6px;
+  border-radius: 4px;
+  border: none;
+  background-color: #4e5ba6;
+  color: white;
 }
 
 footer {

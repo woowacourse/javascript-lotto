@@ -1,12 +1,16 @@
 const outputView = {
   printLottoCount(lottoCount) {
-    console.log(`${lottoCount}개를 구매했습니다.`);
+    const resultContainer = document.querySelector(".lotto-result");
+    resultContainer.innerHTML = `<p>${lottoCount}개를 구매했습니다.</p>`;
   },
 
   printLotto(lottos) {
-    lottos.forEach((lotto) => {
-      console.log(`[${lotto.numbers.join(", ")}]`);
-    });
+    const resultContainer = document.querySelector(".lotto-result");
+    const lottoList = lottos
+      .map((lotto) => `<li>[${lotto.numbers.join(", ")}]</li>`)
+      .join("");
+
+    resultContainer.innerHTML += `<ul>${lottoList}</ul>`;
   },
 };
 

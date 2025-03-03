@@ -1,36 +1,94 @@
-import InputHandler from "./InputHandler.js";
 import Validator from "../Validator/validator.js";
 
 const inputView = {
-  async getPurchaseMoney() {
-    return InputHandler({
-      inputMessage: "> 구입금액을 입력해 주세요. ",
-      parser: Number,
-      validator: Validator.validatePurchaseMoney,
+  getPurchaseMoney() {
+    return new Promise((resolve, reject) => {
+      const purchaseButton = document.querySelector(".purchase-button");
+      const purchaseInput = document.querySelector(".purchase-input");
+
+      const handleClick = () => {
+        let value = purchaseInput.value.replace(/,/g, "").trim(); // 쉼표 제거 + 공백 제거
+        value = Number(value);
+
+        console.log("입력된 값:", purchaseInput.value, "변환된 값:", value);
+
+        if (
+          Number.isNaN(value) ||
+          !Number.isInteger(value) ||
+          value <= 0 ||
+          value % 1000 !== 0
+        ) {
+          alert("올바른 금액을 입력하세요. (1000원 단위)");
+          return;
+        }
+
+        purchaseButton.removeEventListener("click", handleClick);
+        resolve(value);
+      };
+
+      purchaseButton.addEventListener("click", handleClick);
     });
   },
 
-  async getWinningNumbers() {
-    return InputHandler({
-      inputMessage: "> 당첨 번호를 입력해 주세요. ",
-      parser: (input) => input.split(",").map((string) => Number(string)),
-      validator: Validator.validateWinningNumbers,
+  getWinningNumbers() {
+    return new Promise((resolve, reject) => {
+      const winningInputs = document.querySelectorAll(
+        ".number-input-box .number"
+      );
+      const resultButton = document.querySelector(".result-button");
+
+      const handleClick = () => {
+        const numbers = Array.from(winningInputs).map((input) =>
+          Number(input.value)
+        );
+
+        if (!Validator.validateWinningNumbers(numbers)) {
+          alert("올바른 당첨 번호를 입력하세요! (1~45 사이의 6개 숫자)");
+          return;
+        }
+
+        resultButton.removeEventListener("click", handleClick);
+        resolve(numbers);
+      };
+
+      resultButton.addEventListener("click", handleClick);
     });
   },
 
-  async getBonusNumber(winningNumbers) {
-    return InputHandler({
-      inputMessage: "> 보너스 번호를 입력해 주세요. ",
-      parser: Number,
-      validator: (bonusNumber) =>
-        Validator.validateBonusNumber(winningNumbers, bonusNumber),
+  getBonusNumber(winningNumbers) {
+    return new Promise((resolve, reject) => {
+      const bonusInput = document.querySelector(
+        ".number-input-box .number:last-child"
+      );
+      const resultButton = document.querySelector(".result-button");
+
+      const handleClick = () => {
+        const bonusNumber = Number(bonusInput.value);
+
+        if (!Validator.validateBonusNumber(winningNumbers, bonusNumber)) {
+          alert("올바른 보너스 번호를 입력하세요! (1~45, 당첨 번호와 중복 X)");
+          return;
+        }
+
+        resultButton.removeEventListener("click", handleClick);
+        resolve(bonusNumber);
+      };
+
+      resultButton.addEventListener("click", handleClick);
     });
   },
 
-  async getRestartRequest() {
-    return InputHandler({
-      inputMessage: "> 다시 시작하시겠습니까? (y/n)",
-      validator: Validator.validateRestartRequest,
+  getRestartRequest() {
+    return new Promise((resolve) => {
+      const restartButton = document.querySelector(".restart-button");
+
+      restartButton.addEventListener(
+        "click",
+        () => {
+          resolve("y");
+        },
+        { once: true }
+      );
     });
   },
 };
