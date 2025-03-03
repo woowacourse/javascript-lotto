@@ -5,12 +5,12 @@ import { Prompt } from "../components/Prompt.js";
 import { Modal } from "../components/Modal.js";
 import { Result } from "../components/Result.js";
 import { getPrevState, getState } from "../state/state.js";
-import { resultHandler } from "../handler/resultHandler.js";
 import SYSTEM_MESSAGE from "../../common/lottoConstants/systemMessage.js";
 import { LOTTO_NUMBERS } from "../../common/lottoConstants/systemConstants.js";
-import { addKeyListener } from "../util/addKeyListener.js";
 import { appendElement } from "../util/elementManager.js";
 import { disableElement } from "../util/buttonActions.js";
+import { ResultController } from "../controller/ResultController.js";
+import { WinningController } from "../controller/WinningController.js";
 
 export const updateUI = () => {
   const state = getState();
@@ -52,15 +52,12 @@ const updateWinningBonusUI = () => {
 };
 
 const updateResultButtonUI = () => {
-  const resultButtonProps = { label: "결과 확인하기", onClick: () => resultHandler(), style: "large", name: "result" };
+  const resultClickHandler = () => {
+    WinningController();
+    ResultController();
+  };
+  const resultButtonProps = { label: "결과 확인하기", onClick: resultClickHandler, style: "large", name: "result" };
   appendElement(".result-button-container", Button(resultButtonProps));
-  addKeyListener(
-    "[name=winning-number], [name=bonus-number]",
-    () => {
-      resultHandler();
-    },
-    "Enter"
-  );
 };
 
 const updateResultUI = () => {
