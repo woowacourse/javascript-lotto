@@ -1,108 +1,14 @@
-import clearPriceInputs from './View/clear/clearPriceInputs.js';
-import { PRIZE_MONEY } from './constants/MagicNumber.js';
-import createLottoInput from './View/create/createLottoInput.js';
-import createModal from './View/create/createModal.js';
-import createModalOverlay from './View/create/createModalOverlay.js';
-import {
-  calculatePrize,
-  calculateRevenueRate,
-  calculateWins,
-} from './service/CalculatorService.js';
-import {
-  getUIBonusNumber,
-  getUIPurchasePrice,
-  getUIUserRetry,
-  getUIWinningNumber,
-} from './service/InputService/UIInputService.js';
-import makeLotto from './service/LottoService.js';
-import {
-  getBonusNumber,
-  getPurchasePrice,
-  getUserRetry,
-  getWinningNumber,
-} from './service/ParsingService.js';
-import showLottoResult from './View/show/showLottoResult.js';
-import showPurchaseResult from './View/show/showPurchaseResult.js';
-import {
-  handleLottoInputError,
-  handlePriceError,
-} from './util/errorHandler.js';
 import SELECTORS from './constants/Selectors.js';
+import handlePurchase from './handlePurchase.js';
+import handleResult from './handleResult.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const purchaseButton = document.getElementById(SELECTORS.BUTTON.PURCHASE);
-  let lottos = [];
-  let purchasePrice = 0;
-  async function handlePurchase(event) {
+
+  purchaseButton.addEventListener('click', async (event) => {
     event.preventDefault();
-    try {
-      const { purchasePrice: price, purchaseAmount } = await getPurchasePrice(
-        getUIPurchasePrice,
-        handlePriceError,
-      );
-      purchasePrice = price;
-      showPurchaseResult(purchaseAmount);
-      purchaseButton.disabled = true;
-
-      lottos = makeLotto(purchaseAmount);
-      showLottoResult(lottos);
-      createLottoInput();
-
-      const resultButton = document.getElementById(SELECTORS.BUTTON.RESULT);
-      resultButton.removeEventListener('click', handleResult);
-      resultButton.addEventListener('click', handleResult);
-      return purchasePrice;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function handleResult(event) {
-    event.preventDefault();
-    try {
-      const userLotto = await getWinningNumber(
-        getUIWinningNumber,
-        handleLottoInputError,
-      );
-      const parsedLotto = await getBonusNumber(
-        userLotto,
-        getUIBonusNumber,
-        handleLottoInputError,
-      );
-
-      let winCount = 0;
-      winCount = calculateWins(lottos, parsedLotto);
-      const total = calculatePrize(winCount, PRIZE_MONEY);
-      const revenueRate = calculateRevenueRate(total, purchasePrice);
-
-      createModalOverlay();
-      createModal(winCount, revenueRate);
-      const closeButton = document.getElementById(SELECTORS.BUTTON.CLOSE);
-
-      closeButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        reset();
-      });
-
-      const userRetry = await getUserRetry(getUIUserRetry);
-
-      if (userRetry === 'y') {
-        reset();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  purchaseButton.removeEventListener('click', handlePurchase);
-  purchaseButton.addEventListener('click', handlePurchase);
-
-  function reset() {
-    lottos = [];
-    document.querySelector('.prize-result').remove();
-    document.querySelector('.modal-overlay').remove();
-    clearPriceInputs();
-    purchaseButton.disabled = false;
-    document.querySelector('.lotto-content').innerHTML = '';
-  }
+    await handlePurchase();
+    const resultButton = document.getElementById(SELECTORS.BUTTON.RESULT);
+    resultButton.addEventListener('click', handleResult);
+  });
 });
