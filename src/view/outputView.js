@@ -37,6 +37,10 @@ const outputView = {
 
     modalTable.innerHTML = "";
 
+    modalTable
+      .appendChild(document.createElement("div"))
+      .classList.add("modal-table-divider");
+
     const tableHeaderRow = document.createElement("div");
     tableHeaderRow.classList.add("modal-table-row");
     tableHeaderRow.innerHTML = `
@@ -46,11 +50,16 @@ const outputView = {
     `;
     modalTable.appendChild(tableHeaderRow);
 
+    modalTable
+      .appendChild(document.createElement("div"))
+      .classList.add("modal-table-divider");
+
     for (let rank = 1; rank <= 5; rank++) {
       const rankInfo = RANK_INFO_TABLE[rank];
 
       if (rankInfo) {
         const rankLottos = prize[rank - 1] || { lottos: [] };
+
         const rankRow = document.createElement("div");
         rankRow.classList.add("modal-table-row");
         rankRow.innerHTML = `
@@ -59,6 +68,7 @@ const outputView = {
           <p class="modal-table-cell">${rankLottos.lottos.length}개</p>
         `;
         modalTable.appendChild(rankRow);
+
         modalTable
           .appendChild(document.createElement("div"))
           .classList.add("modal-table-divider");
@@ -69,6 +79,11 @@ const outputView = {
     profitMessage.classList.add("profit-text");
     profitMessage.innerText = `당신의 총 수익률은 ${profit}%입니다.`;
     resultContainer.appendChild(profitMessage);
+
+    const restartButton = document.createElement("button");
+    restartButton.classList.add("restart-button");
+    restartButton.innerText = "다시 시작하기";
+    resultContainer.appendChild(restartButton);
   },
 };
 
