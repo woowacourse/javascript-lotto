@@ -1,7 +1,18 @@
+import Validate from './Model/Validate.js';
+
 const input_price = document.querySelector('.input_price');
 
 // 로또 구매 후 UI 업데이트
-function handleLottoPurchase() {}
+function handleLottoPurchase() {
+  try {
+    Validate.checkIsEmpty(input_price.value);
+    Validate.checkIsNumber(input_price.value);
+    Validate.checkThousandUnit(input_price.value);
+    Validate.checkPriceRange(input_price.value);
+  } catch (error) {
+    alert(error.message);
+  }
+}
 
 // 이벤트 설정
 function setupEventListeners() {
