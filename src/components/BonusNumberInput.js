@@ -1,4 +1,5 @@
 import customCreateElement from "../utils/customElement.js";
+import { LOTTO_NUMBER } from "../constants/lotto.js";
 
 export default class BonusNumberInput {
   constructor($target, bonusNumber) {
@@ -17,6 +18,8 @@ export default class BonusNumberInput {
       className: "number-input",
     });
     $input.type = "number";
+    $input.min = LOTTO_NUMBER.MIN;
+    $input.max = LOTTO_NUMBER.MAX;
     $input.value = bonusNumber === 0 ? "" : bonusNumber;
 
     $div.appendChild($text);

@@ -37,6 +37,8 @@ export default class WinningNumbersInput {
       $input.id = `lotto${index}`;
       $input.name = "lotto[]";
       $input.type = "number";
+      $input.min = LOTTO_NUMBER.MIN;
+      $input.max = LOTTO_NUMBER.MAX;
 
       return $input;
     });
