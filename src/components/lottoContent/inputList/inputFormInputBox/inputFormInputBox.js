@@ -11,13 +11,19 @@ import {
   validateLottoNumber,
 } from '../../../../domain/validation.js';
 
+const getWinningValues = () => {
+  const winningNumberForm = document.getElementById('winningNumberInputForm');
+  const allWinningValues = Array.from(winningNumberForm.winningNumber)
+    .map((input) => input.valueAsNumber)
+    .filter((value) => !isNaN(value));
+  const bonusInputValue = winningNumberForm.bonusNumber.valueAsNumber;
+
+  return [allWinningValues, bonusInputValue];
+};
+
 export const validateAllInputs = () => {
   try {
-    const winningNumberForm = document.getElementById('winningNumberInputForm');
-    const allWinningValues = Array.from(winningNumberForm.winningNumber)
-      .map((input) => input.valueAsNumber)
-      .filter((value) => !isNaN(value));
-    const bonusInputValue = winningNumberForm.bonusNumber.valueAsNumber;
+    const [allWinningValues, bonusInputValue] = getWinningValues();
 
     validateLottoNumber(allWinningValues);
     validateBonus(bonusInputValue, allWinningValues);
