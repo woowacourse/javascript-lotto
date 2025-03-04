@@ -6,7 +6,7 @@ import {
   LOTTO_RESULT_TABLE_MAP,
   PRIZE_RESULT,
 } from "../../../../../constants/web.js";
-import { setHeader, setRow } from "../../../../../utils/table.js";
+import { setHeader, setRow } from "../../../../../utils/view/table.js";
 
 const createPrizeTable = (result) => {
   const rows = Array.from(result).map(([matchedCount, matchedLottos]) => {

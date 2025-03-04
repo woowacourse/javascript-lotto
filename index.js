@@ -18,7 +18,7 @@ import {
   createPrizeResultModal,
 } from "./src/view/web/layers/modal/index.js";
 
-import { validateInput } from "./src/view/web/../../utils/validation.js";
+import { validateInput } from "./src/utils/view/validation.js";
 import validateLottoPrice from "./src/validation/validateLottoPrice.js";
 import generateLottoNumberSets from "./src/lotto/generateLottoNumberSets.js";
 
@@ -26,7 +26,7 @@ import validateWinningNumbers from "./src/validation/validateWinningNumbers.js";
 import validateBonusNumber from "./src/validation/validateBonusNumber.js";
 import calculatePrizeResult from "./src/lotto/calculatePrizeResult.js";
 import getTotalPrizeMoney from "./src/lotto/getTotalPrizeMoney.js";
-import { getRevenueRate } from "./src/utils/math.js";
+import { getRevenueRate } from "./src/utils/domain/math.js";
 
 import {
   getLottoNumbers,

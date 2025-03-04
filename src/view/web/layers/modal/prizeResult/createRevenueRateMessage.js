@@ -1,5 +1,5 @@
 import { PRIZE_RESULT } from "../../../../../constants/web.js";
-import { roundNumber } from "../../../../../utils/math.js";
+import { roundNumber } from "../../../../../utils/domain/math.js";
 
 const createRevenueRateMessage = (revenueRate) => {
   const formattedRevenueRate = roundNumber(

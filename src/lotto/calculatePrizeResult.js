@@ -1,5 +1,5 @@
 import { LOTTO_MATCHED_NUMBER_COUNT, LOTTO_PRIZE_MONEY } from "../constants/lotto.js";
-import { getIntersection } from "../utils/array.js";
+import { getIntersection } from "../utils/domain/array.js";
 
 const calculatePrizeResult = (lottoNumbers, winningNumbers, bonusNumber) => {
   const initResult = Array.from(LOTTO_MATCHED_NUMBER_COUNT).map(([key]) => [key, 0]);

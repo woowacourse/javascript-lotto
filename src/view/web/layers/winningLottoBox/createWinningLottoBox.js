@@ -1,7 +1,7 @@
 import winningLottoBoxContents from "./winningLottoBox.html?raw";
 import createNumbersInput from "./createNumbersInput.js";
 import "./winningLottoBox.css";
-import { appendContents } from "../../../../utils/elementCreator.js";
+import { appendContents } from "../../../../utils/view/elementCreator.js";
 import createBonusNumberInput from "./createBonusNumberInput.js";
 
 const createWinningLottoBox = () => {
