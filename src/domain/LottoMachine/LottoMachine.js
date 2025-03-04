@@ -5,7 +5,7 @@ import purchaseLottoCount from "./purchaseLottoCount.js";
 const LottoMachine = (purchaseAmount) => {
   const count = purchaseLottoCount(purchaseAmount);
   const lottoNumbersSet = generateLottoNumbersSet(count);
-  const lottoPack = new LottoPack(lottoNumbersSet, count);
+  const lottoPack = new LottoPack(lottoNumbersSet);
 
   return lottoPack;
 };

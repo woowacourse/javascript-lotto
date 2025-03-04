@@ -3,11 +3,9 @@ import { MATCH_COUNT } from "../constants/constant.js";
 
 class LottoPack {
   #lottos;
-  #count;
 
-  constructor(lottos, count) {
+  constructor(lottos) {
     this.#lottos = this.#generateLottos(lottos);
-    this.#count = count;
   }
 
   compareAndReturnResult(answerLotto) {
@@ -59,7 +57,7 @@ class LottoPack {
     return [...this.#lottos];
   }
   get count() {
-    return this.#count;
+    return this.#lottos.length;
   }
 }
 
