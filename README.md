@@ -90,6 +90,7 @@
 - [x] 모달창의 닫기 img 태그 alt 변경하기
 - [x] spell check로 오타난 사항 변경하기 (reslut -> result)
 - [x] webView의 `updateLottoPack` dom 접근 최소화 로직으로 변경하기
-- [ ] `handleRestart` 함수 -> 초기화 로직 form 태그 이용한 로직으로 변경하기
+- [x] `handleRestart` 함수 -> 초기화 로직 form 태그 이용한 로직으로 변경하기
+  - [x] form.reset() 사용
 - [ ] `handleWinningCheck` forEach문 map으로 변경하기
 - [ ] lottoPack 인스턴스 필드값 #count 제거 -> #lottos의 길이로 대체
