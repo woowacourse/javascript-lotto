@@ -35,14 +35,14 @@ const OutputView = {
     $lottoListUl.classList.add('lottoContainer');
 
     lottos.forEach((lotto) => {
-      this.makeLotto($lottoListUl, lotto.numbers);
+      $lottoListDiv.appendChild(this.makeLotto($lottoListUl, lotto.numbers));
     });
 
     $lottoListDiv.appendChild($lottoListUl);
     $target.appendChild($lottoListDiv);
   },
 
-  makeLotto($lottoListDiv, lotto) {
+  makeLotto(lotto) {
     const $lottoDiv = createTag('li');
     $lottoDiv.classList.add('lottoItem');
 
@@ -54,7 +54,7 @@ const OutputView = {
 
     $lottoDiv.appendChild($imoji);
     $lottoDiv.appendChild($lottoText);
-    $lottoListDiv.appendChild($lottoDiv);
+    return $lottoDiv;
   },
 
   processAfterPurchase() {
