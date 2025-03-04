@@ -20,10 +20,10 @@ const handleLottoStatistics = (lottoStatistics, lottos, winningNumberObj) => {
 
 const handleLottoNumberValidate = () => {
   const winningForm = document.getElementById('winningNumberInputForm');
-  const winningNumbers = Array.from(winningForm.winningNumber).map((input) =>
-    parseInt(input.value, 10),
+  const winningNumbers = Array.from(winningForm.winningNumber).map(
+    (input) => input.valueAsNumber,
   );
-  const bonusNumber = parseInt(winningForm.bonusNumber.value, 10);
+  const bonusNumber = winningForm.bonusNumber.valueAsNumber;
   validateLottoNumber(winningNumbers);
   validateBonus(bonusNumber, winningNumbers);
 

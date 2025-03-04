@@ -15,9 +15,9 @@ export const validateAllInputs = () => {
   try {
     const winningNumberForm = document.getElementById('winningNumberInputForm');
     const allWinningValues = Array.from(winningNumberForm.winningNumber)
-      .map((input) => parseInt(input.value, 10))
+      .map((input) => input.valueAsNumber)
       .filter((value) => !isNaN(value));
-    const bonusInputValue = parseInt(winningNumberForm.bonusNumber.value, 10);
+    const bonusInputValue = winningNumberForm.bonusNumber.valueAsNumber;
 
     validateLottoNumber(allWinningValues);
     validateBonus(bonusInputValue, allWinningValues);
