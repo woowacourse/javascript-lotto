@@ -1,20 +1,15 @@
-import lottoStore from "../store/lottoStore.js";
 import appendTextElement from "../utils/appendTextElement.js";
 import setPurchaseDetailVisibility from "./setPurchaseDetailVisibility.js";
-import Ticket from "../domain/Ticket.js";
 
-const showLottos = (count) => {
+const showLottos = (lottos) => {
   setPurchaseDetailVisibility("on");
 
-  const lottos = Ticket.createLottos(count);
-  lottoStore.setLottos(lottos);
-
-  updatePurchasedLottosUI(count, lottos);
+  updatePurchasedLottosUI(lottos);
 };
 
-const updatePurchasedLottosUI = (count, lottos) => {
+const updatePurchasedLottosUI = (lottos) => {
   const purchasedLottos = document.querySelector(".purchasedLottos");
-  appendTextElement(purchasedLottos, `총 ${count}개를 구매하였습니다.`);
+  appendTextElement(purchasedLottos, `총 ${lottos.length}개를 구매하였습니다.`);
 
   const lottosNumbers = createLottoListElement(lottos);
   purchasedLottos.appendChild(lottosNumbers);

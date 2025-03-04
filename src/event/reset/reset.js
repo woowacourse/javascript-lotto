@@ -1,13 +1,8 @@
-import lottoStore from "../../store/lottoStore.js";
-import priceStore from "../../store/priceStore.js";
 import setPurchaseDetailVisibility from "../setPurchaseDetailVisibility.js";
 import resetWinningHistoryUI from "./resetWinningHistoryUI.js";
 import resetInput from "../../utils/resetInput.js";
 
 const reset = () => {
-  priceStore.setPrice(0);
-  lottoStore.setLottos([]);
-
   const dialog = document.querySelector("dialog");
   dialog.close();
   const purchasedLottos = document.querySelector(".purchasedLottos");

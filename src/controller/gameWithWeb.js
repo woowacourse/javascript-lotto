@@ -1,50 +1,113 @@
 import { PRICE } from "../constants/price.js";
-import buyLotto from "../event/buyLottos.js";
-import clickCheckResult from "../event/clickCheckResult.js";
 import showLottos from "../event/showLottos.js";
 import showResult from "../event/showResult.js";
 import { divideByUnit } from "../utils/count.js";
 import reset from "../event/reset/reset.js";
-import priceStore from "../store/priceStore.js";
 import resetWinningHistoryUI from "../event/reset/resetWinningHistoryUI.js";
+import { getNeededLottoNumbers, getPrice } from "./getInputWIthRetryWeb.js";
+import Ticket from "../domain/Ticket.js";
+import LottoStatus from "../domain/LottoStatus.js";
+import LottoResult from "../domain/LottoResult.js";
+class Game {
+  #lottos;
+  #price;
 
-const game = () => {
-  const buyButton = document.querySelector(".buyButton");
-  buyButton.addEventListener("click", () => {
-    buyLotto();
-  });
+  init() {
+    this.addBuyButtonEventListener();
+    this.addPriceInputEventListener();
+    this.addCheckResultButtonEventListener();
+    this.addResetButtonEventListener();
+    this.addCloseButtonEventListener();
+  }
 
-  const priceInput = document.querySelector(".priceInput");
-  priceInput.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      buyLotto();
-    }
-  });
-
-  document.addEventListener("priceUpdated", () => {
-    showLottos(divideByUnit(PRICE.UNIT, priceStore.getPrice()));
-  });
-
-  const checkResultButton = document.querySelector(".checkResultButton");
-  checkResultButton.addEventListener("click", () => {
-    clickCheckResult();
-  });
-
-  document.addEventListener("checkResult", (event) => {
-    showResult(event.detail);
-  });
-
-  const resetButton = document.querySelector("#reset");
-  resetButton.addEventListener("click", () => {
+  buyLotto() {
     reset();
-  });
+    const price = getPrice();
 
-  const closeButton = document.querySelector("#closeButton");
-  closeButton.addEventListener("click", () => {
-    const dialog = document.querySelector("dialog");
-    dialog.close();
-    resetWinningHistoryUI();
-  });
-};
+    if (price === undefined) return;
 
-export default game;
+    this.#price = price;
+
+    const lottos = Ticket.createLottos(divideByUnit(PRICE.UNIT, this.#price));
+
+    if (lottos === undefined) return;
+
+    this.#lottos = lottos;
+  }
+
+  addBuyButtonEventListener() {
+    const buyButton = document.querySelector(".buyButton");
+    buyButton.addEventListener("click", () => {
+      this.buyLotto();
+      if (this.#lottos === undefined) return;
+
+      showLottos(this.#lottos);
+    });
+  }
+
+  addPriceInputEventListener() {
+    const priceInput = document.querySelector(".priceInput");
+    priceInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        this.buyLotto();
+        if (this.#lottos === undefined) return;
+        showLottos(this.#lottos);
+      }
+    });
+  }
+
+  clickCheckResult() {
+    console.log("clickCheckResult");
+
+    const { winningLotto, bonusLottoNumber } = getNeededLottoNumbers();
+    const { winningHistory, rate } = this.getLottoResults(
+      winningLotto,
+      bonusLottoNumber
+    );
+    showResult({ winningHistory, rate });
+  }
+
+  getLottoResults = (winningLotto, bonusLottoNumber) => {
+    const lottoStatus = new LottoStatus({
+      enteredLottoNumbers: winningLotto.getLottoNumbers(),
+      bonusLottoNumber,
+    });
+
+    const lottosNumbers = this.#lottos.map((lotto) => lotto.getLottoNumbers());
+
+    const matchedStatus = lottoStatus.getMatchedLottoStatus(lottosNumbers);
+
+    const lottoResult = new LottoResult(matchedStatus, this.#price);
+    console.log(lottoResult.getWinningHistory());
+    console.log(lottoResult.getRate());
+    return {
+      winningHistory: lottoResult.getWinningHistory(),
+      rate: lottoResult.getRate(),
+    };
+  };
+
+  addCheckResultButtonEventListener() {
+    const checkResultButton = document.querySelector(".checkResultButton");
+    checkResultButton.addEventListener("click", () => {
+      this.clickCheckResult();
+    });
+  }
+
+  addResetButtonEventListener() {
+    const resetButton = document.querySelector("#reset");
+    resetButton.addEventListener("click", () => {
+      reset();
+    });
+  }
+
+  addCloseButtonEventListener() {
+    const closeButton = document.querySelector("#closeButton");
+    closeButton.addEventListener("click", () => {
+      const dialog = document.querySelector("dialog");
+      dialog.close();
+      resetWinningHistoryUI();
+    });
+  }
+}
+
+export default Game;
