@@ -78,8 +78,6 @@
   - [x] 공통 로직 -> DomUpdator(utils)로 분리 (초기화 하는 코드, blur같은 기능 함수로 분리)
 - [x] 에러 모달창 등록
 - [x] 티켓이미지 pre로드 적용
-- [ ] lotto 인스턴스의 필드값이 계속 저장되어 있음. 그러므로, 모달창 꺼지고 난 후, 아에 초기화 해줘야함.
-
 - [x] validate 함수 -> 검증과 파싱 함수분리
 
 ### 피드백 바탕 -> 리팩토링 사항
@@ -90,7 +88,7 @@
 - [x] form 태그에 맞는 이벤트로 변경하기
 - [x] 당첨 번호, 보너스 번호, 결과확인하기 form 태그로 묶기 -> form 태그에 맞는 이벤트로 전환
 - [x] 모달창의 닫기 img 태그 alt 변경하기
-- [ ] spell check로 오타난 사항 변경하기 (reslut -> result)
+- [x] spell check로 오타난 사항 변경하기 (reslut -> result)
 - [ ] webView의 `updateLottoPack` dom 접근 최소화 로직으로 변경하기
 - [ ] `handleRestart` 함수 -> 초기화 로직 form 태그 이용한 로직으로 변경하기
 - [ ] `handleWinningCheck` forEach문 map으로 변경하기
