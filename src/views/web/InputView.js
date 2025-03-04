@@ -1,5 +1,5 @@
 import { PURCHASE_PRICE } from '../../constants/CONFIGURATIONS.js';
-import { getById, getByClass, querySelector } from './utils/dom.js';
+import { getById, querySelector } from './utils/dom.js';
 import { BonusNumberValidator } from '../../validators/BonusNumberValidator.js';
 import { PurchasePriceValidator } from '../../validators/PurchasePriceValidator.js';
 import { WinningNumbersValidator } from '../../validators/WinningNumbersValidator.js';
@@ -7,7 +7,7 @@ import { WinningNumbersValidator } from '../../validators/WinningNumbersValidato
 const InputView = {
   $purchaseInput: getById('purchaseInput'),
   $purchaseForm: querySelector('section.purchase form'),
-  $resultButton: getByClass('resultButton')[0],
+  $resultButton: querySelector('.resultButton'),
 
   enterPurchasePrice() {
     const purchasePrice = Number(this.$purchaseInput.value);

@@ -3,10 +3,10 @@ import {
   createTag,
   disableElement,
   enableElement,
-  getByClass,
   getById,
   getByTag,
   hideElement,
+  querySelector,
   showElement,
 } from './utils/dom.js';
 import WinningInput from './components/WinningInput.js';
@@ -14,8 +14,9 @@ import BonusInput from './components/BonusInput.js';
 import LottoResultModal from './components/LottoResultModal.js';
 
 const OutputView = {
-  $hiddenContainer: getByClass('hiddenContainer')[0],
-  $lottoList: getByClass('lottoList')[0],
+  $hiddenContainer: querySelector('.hiddenContainer'),
+  $lottoList: querySelector('.lottoList'),
+  $winningNumbersInput: querySelector('.winningNumbersInput'),
 
   printPurchaseLottos(lottoCount, lottos) {
     const $lottoCountDescDiv = createContainer('div', { padding: '1rem 0' });
@@ -29,6 +30,7 @@ const OutputView = {
   printLottos(lottos, $target) {
     const $lottoListDiv = createContainer('div', {});
     $lottoListDiv.classList.add('lottoListContainer');
+
     const $lottoListUl = createContainer('ul', { padding: '0.5rem 0' });
     $lottoListUl.classList.add('lottoContainer');
 
@@ -68,9 +70,8 @@ const OutputView = {
   },
 
   generateWinningAndBonusInput() {
-    const $winningNumbersInput = getByClass('winningNumbersInput')[0];
-    WinningInput.appendWinningInput($winningNumbersInput);
-    BonusInput.appendBonusInput($winningNumbersInput);
+    WinningInput.appendWinningInput(this.$winningNumbersInput);
+    BonusInput.appendBonusInput(this.$winningNumbersInput);
   },
 
   showModal(winningCounts, profitRate) {
@@ -84,7 +85,7 @@ const OutputView = {
     hideElement(this.$hiddenContainer);
     this.enablePurchase();
     this.$lottoList.replaceChildren();
-    getByClass('winningNumbersInput')[0].replaceChildren();
+    this.$winningNumbersInput.replaceChildren();
     getByTag('tbody')[0].replaceChildren();
   },
 
