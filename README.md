@@ -94,3 +94,4 @@
   - [x] form.reset() 사용
 - [x] `handleWinningCheck` forEach문 map으로 변경하기 (nodeList는 일반 배열과 달라 내장메서드 사용 불가 -> 스프레드 연산자를 이용해 일반 배열로 바꾸고 적용해야함.)
 - [x] lottoPack 인스턴스 필드값 #count 제거 -> #lottos의 길이로 대체
+- [x] /public 폴더 접근 변경 -> /
