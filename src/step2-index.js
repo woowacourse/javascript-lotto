@@ -17,7 +17,6 @@ import {
 } from "./ui/utilsUI.js";
 
 const state = {
-  price: 0,
   generatedLottos: [],
   winningNumbers: [],
 };
@@ -30,14 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function purchase() {
-  state.price = Number(elements.purchaseInput.value);
-  if (!validUI.isValidPrice(state.price)) return;
-  state.generatedLottos = LottoGenerator.getGenerateLottos(state.price);
+  const price = Number(elements.purchaseInput.value);
+  console.log("price", price, "price type", typeof price);
+  if (!validUI.isValidPrice(price)) return;
+  state.generatedLottos = LottoGenerator.getGenerateLottos(price);
 
-  updateUI.updatePurchaseMessage(state.price);
+  updateUI.updatePurchaseMessage(price);
   showUI.showGeneratedLottos(state.generatedLottos);
 
-  removeUI.removeInputValue(elements.purchaseInput);
   displayUI.displayBlock(elements.generateSection);
   displayUI.displayBlock(elements.resultSection);
 }
@@ -59,7 +58,8 @@ function checkResult() {
 
   const lottoPrize = new LottoPrize();
   lottoPrize.calculateTotalPrizeCount(compareResult);
-  const ROI = lottoPrize.calculateROI(state.price);
+  console.log("price", Number(elements.purchaseInput.value));
+  const ROI = lottoPrize.calculateROI(Number(elements.purchaseInput.value));
 
   updateUI.updatePrizeResult(lottoPrize);
   updateUI.updateROI(ROI);
@@ -81,6 +81,7 @@ function restartLotto() {
   elements.winningNumberInputs.forEach((input) => {
     removeUI.removeInputValue(input);
   });
+  removeUI.removeInputValue(elements.purchaseInput);
   removeUI.removeInputValue(elements.bonusNumberInput);
   removeUI.removeGeneratedLottosLists();
   removeUI.removePrizeResultCountElements();
