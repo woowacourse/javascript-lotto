@@ -78,6 +78,12 @@
 
 #lottoGame .answer_lotto_section .answer_lotto {
   display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+#lottoGame .answer_lotto_section .answer_lotto .answer_lotto_input {
+  display: flex;
   justify-content: space-between;
 }
 
@@ -97,15 +103,7 @@
   text-align: center;
 }
 
-#lottoGame .reuslt_button_section {
-  padding-top: 27px;
-}
-
-#lottoGame.opacity-0 .reuslt_button_section {
-  opacity: 0;
-}
-
-#lottoGame .reuslt_button_section #resultButton {
+#lottoGame .answer_lotto_section #resultButton {
   padding: 10px 0;
   width: 100%;
 }

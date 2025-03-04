@@ -5,9 +5,8 @@ import handleRestart from "./handleRestart.js";
 import handleWinningCheck from "./handleWinningCheck.js";
 
 const startLottoGame = () => {
-  const purchase_button = DomSelector.purchaseButton;
   const purchase_amount = DomSelector.purchaseAmount;
-  const reuslt_button = DomSelector.reusltButton;
+  const answer_lotto = DomSelector.answerLotto;
   const lotto_result_modal = DomSelector.lottoResultModal;
   const restart_button = DomSelector.restartButton;
   const error_modal = DomSelector.errorModal;
@@ -15,7 +14,11 @@ const startLottoGame = () => {
   purchase_amount.addEventListener("submit", (e) => {
     e.preventDefault();
     const { purchaseAmount, lottoPack } = handlePurchase();
-    reuslt_button.addEventListener("click", () => handleWinningCheck(purchaseAmount, lottoPack));
+
+    answer_lotto.addEventListener("submit", (e) => {
+      e.preventDefault();
+      handleWinningCheck(purchaseAmount, lottoPack);
+    });
   });
 
   lotto_result_modal.addEventListener("click", (event) => {

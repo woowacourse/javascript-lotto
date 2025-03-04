@@ -8,7 +8,8 @@ const DomSelector = {
   lottoPack: document.querySelector(".lotto_pack"),
 
   answerLottoSection: document.querySelector(".answer_lotto_section"),
-  reusltButton: document.querySelector(".reuslt_button_section #resultButton"),
+  answerLotto: document.querySelector(".answer_lotto"),
+
   winningNumbers: document.querySelectorAll(".winning_number"),
   bonusNumber: document.querySelector(".bonus_number"),
 
