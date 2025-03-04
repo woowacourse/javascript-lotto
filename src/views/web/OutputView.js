@@ -36,7 +36,7 @@ const OutputView = {
 
     const fragment = new DocumentFragment();
     lottos.forEach((lotto) => {
-      fragment.appendChild(this.makeLotto($lottoListUl, lotto.numbers));
+      fragment.appendChild(this.makeLotto(lotto.numbers));
     });
     $lottoListUl.appendChild(fragment);
     $lottoListDiv.appendChild($lottoListUl);
