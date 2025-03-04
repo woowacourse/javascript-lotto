@@ -59,14 +59,8 @@ const OutputView = {
 
   processAfterPurchase() {
     showElement(this.$hiddenContainer);
-    this.disablePurchase();
+    this.togglePurchase(false);
     this.generateWinningAndBonusInput();
-  },
-
-  disablePurchase() {
-    disableElement('purchaseInput');
-    disableElement('purchaseButton');
-    getById('purchaseButton').classList.add('disabled');
   },
 
   generateWinningAndBonusInput() {
@@ -83,16 +77,22 @@ const OutputView = {
   resetLottoUI() {
     LottoResultModal.closeModal();
     hideElement(this.$hiddenContainer);
-    this.enablePurchase();
+    this.togglePurchase(true);
     this.$lottoList.replaceChildren();
     this.$winningNumbersInput.replaceChildren();
     getByTag('tbody')[0].replaceChildren();
   },
 
-  enablePurchase() {
-    enableElement('purchaseInput');
-    enableElement('purchaseButton');
-    getById('purchaseButton').classList.remove('disabled');
+  togglePurchase(isEnabled) {
+    const action = isEnabled ? enableElement : disableElement;
+    action('purchaseInput');
+    action('purchaseButton');
+
+    if (isEnabled) {
+      getById('purchaseButton').classList.remove('disabled');
+    } else {
+      getById('purchaseButton').classList.add('disabled');
+    }
   },
 };
 
