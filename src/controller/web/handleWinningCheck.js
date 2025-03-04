@@ -18,7 +18,7 @@ const handleWinningCheck = (purchaseAmount, lottoPack) => {
   try {
     // 도메인 로직
     const { winningNumbersInput, bonusNumberInput } = getAnswerLottoInput(winning_numbers, bonus_number);
-    const { winningNumbers, bonusNumber } = parseAndValidatAnswerLotto(winningNumbersInput, bonusNumberInput);
+    const { winningNumbers, bonusNumber } = parseAndValidateAnswerLotto(winningNumbersInput, bonusNumberInput);
     const answerLotto = generateAnswerLotto(winningNumbers, bonusNumber);
     const winningResult = lottoPack.compareAndReturnResult(answerLotto);
     const profitRate = profitCalculator(purchaseAmount, winningResult);
@@ -42,7 +42,7 @@ const getAnswerLottoInput = (winning_numbers, bonus_number) => {
   return { winningNumbersInput, bonusNumberInput };
 };
 
-const parseAndValidatAnswerLotto = (winningNumbersInput, bonusNumberInput) => {
+const parseAndValidateAnswerLotto = (winningNumbersInput, bonusNumberInput) => {
   const winningNumbers = parseAndValidateWinningNumbers(winningNumbersInput.join(LOTTO_NUMBER_SPLITER));
   const parseAndValidateBonusNumberFunc = parseAndValidateBonusNumber(winningNumbers);
   const bonusNumber = parseAndValidateBonusNumberFunc(bonusNumberInput);
