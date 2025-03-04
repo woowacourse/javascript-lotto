@@ -1,14 +1,8 @@
 div#app {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-.title_style {
-  font-size: var(--title-size);
-  font-weight: var(--title-weight);
-  line-height: var(--title-line-height);
-  letter-spacing: normal;
 }
 
 header {
@@ -24,6 +18,10 @@ header h1 {
   width: 147px;
   text-align: left;
   color: var(--lotto-grey-scale-1);
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line-height);
+  letter-spacing: normal;
 }
 
 main {
@@ -53,6 +51,10 @@ div.lotto_header b.lotto_title {
   margin: 0 0 28px;
   text-align: center;
   color: var(--lotto-grey-scale-5);
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line-height);
+  letter-spacing: normal;
 }
 
 div.lotto_header p.lotto_subtitle {
