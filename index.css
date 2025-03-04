@@ -16,13 +16,11 @@
   --border-default-color: #e4e4e4;
 
   --default-padding: 16px;
-
-  --default-font-family: Roboto, sans-serif;
 }
 
 body {
   background-color: var(--bg-default-color);
-  font-family: var(--default-font-family);
+  font-family: Roboto, sans-serif;
   overflow-x: hidden;
 }
 
