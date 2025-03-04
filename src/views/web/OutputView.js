@@ -34,10 +34,11 @@ const OutputView = {
     const $lottoListUl = createContainer('ul', { padding: '0.5rem 0' });
     $lottoListUl.classList.add('lottoContainer');
 
+    const fragment = new DocumentFragment();
     lottos.forEach((lotto) => {
-      $lottoListDiv.appendChild(this.makeLotto($lottoListUl, lotto.numbers));
+      fragment.appendChild(this.makeLotto($lottoListUl, lotto.numbers));
     });
-
+    $lottoListUl.appendChild(fragment);
     $lottoListDiv.appendChild($lottoListUl);
     $target.appendChild($lottoListDiv);
   },
