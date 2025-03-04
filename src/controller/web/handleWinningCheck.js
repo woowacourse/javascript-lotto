@@ -34,10 +34,7 @@ const handleWinningCheck = (purchaseAmount, lottoPack) => {
 };
 
 const getAnswerLottoInput = (winning_numbers, bonus_number) => {
-  const winningNumbersInput = [];
-  winning_numbers.forEach((element) => {
-    winningNumbersInput.push(element.value);
-  });
+  const winningNumbersInput = [...winning_numbers].map((element) => element.value);
   const bonusNumberInput = bonus_number.value;
   return { winningNumbersInput, bonusNumberInput };
 };

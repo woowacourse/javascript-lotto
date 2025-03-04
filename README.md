@@ -92,5 +92,5 @@
 - [x] webView의 `updateLottoPack` dom 접근 최소화 로직으로 변경하기
 - [x] `handleRestart` 함수 -> 초기화 로직 form 태그 이용한 로직으로 변경하기
   - [x] form.reset() 사용
-- [ ] `handleWinningCheck` forEach문 map으로 변경하기
+- [x] `handleWinningCheck` forEach문 map으로 변경하기 (nodeList는 일반 배열과 달라 내장메서드 사용 불가 -> 스프레드 연산자를 이용해 일반 배열로 바꾸고 적용해야함.)
 - [ ] lottoPack 인스턴스 필드값 #count 제거 -> #lottos의 길이로 대체
