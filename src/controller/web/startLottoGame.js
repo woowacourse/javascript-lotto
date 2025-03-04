@@ -12,13 +12,8 @@ const startLottoGame = () => {
   const restart_button = DomSelector.restartButton;
   const error_modal = DomSelector.errorModal;
 
-  purchase_amount.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      purchase_button.click();
-    }
-  });
-
-  purchase_button.addEventListener("click", () => {
+  purchase_amount.addEventListener("submit", (e) => {
+    e.preventDefault();
     const { purchaseAmount, lottoPack } = handlePurchase();
     reuslt_button.addEventListener("click", () => handleWinningCheck(purchaseAmount, lottoPack));
   });

@@ -4,7 +4,7 @@ import DomSelector from "../../utils/DomSelectors.js";
 const handleRestart = () => {
   const lotto_game = DomSelector.lottoGame;
   const lotto_result_modal = DomSelector.lottoResultModal;
-  const purchase_amount = DomSelector.purchaseAmount;
+  const purchase_amount_input = DomSelector.purchaseAmountInput;
   const purchase_count = DomSelector.purchaseCount;
   const lotto_pack = DomSelector.lottoPack;
 
@@ -14,7 +14,7 @@ const handleRestart = () => {
   // ui 로직
   DomUpdator.showModal(lotto_result_modal, false);
   DomUpdator.replaceChildren(lotto_pack);
-  DomUpdator.initialInputValue(purchase_amount);
+  DomUpdator.initialInputValue(purchase_amount_input);
   DomUpdator.content(purchase_count, "");
   DomUpdator.addClass(lotto_game, "opacity-0");
 

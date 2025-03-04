@@ -86,8 +86,9 @@
 
 - [x] lotto 인스턴스의 `compareWinningNumbers` 순수함수로 변경하기
 - [x] lottoPack 인스턴스의 `compareAndReturnResult` 순수함수로 변경하기
-- [ ] input 및 button 태그 form 태그로 감싸기
-- [ ] form 태그에 맞는 이벤트로 변경하기
+- [x] purcahse_amount -> input 및 button 태그 form 태그로 감싸기
+- [x] form 태그에 맞는 이벤트로 변경하기
+- [ ] 당첨 번호, 보너스 번호, 결과확인하기 form 태그로 묶기 -> form 태그에 맞는 이벤트로 전환
 - [ ] 모달창의 닫기 img 태그 alt 변경하기
 - [ ] spell check로 오타난 사항 변경하기 (reslut -> result)
 - [ ] webView의 `updateLottoPack` dom 접근 최소화 로직으로 변경하기
