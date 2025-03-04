@@ -13,25 +13,34 @@
     <title>Lotto</title>
   </head>
   <body>
-    <header><h1>🎱 행운의 로또</h1></header>
+    <header><h1 class="app-title">🎱 행운의 로또</h1></header>
     <main>
       <div class="lotto-container">
         <section class="title-section">
-          <h2>🎱 내 번호 당첨 확인 🎱</h2>
+          <h2 class="title-section-title">🎱 내 번호 당첨 확인 🎱</h2>
         </section>
         <section class="purchase-section">
-          <span>구입할 금액을 입력해주세요.</span>
+          <span class="purchase-section-message"
+            >구입할 금액을 입력해주세요.</span
+          >
           <div class="purchase-form">
-            <input type="text" name="" id="purchase-input" placeholder="금액" />
-            <button id="purchase-button"><span>구입</span></button>
+            <input
+              type="text"
+              id="purchase-input"
+              class="purchase-input"
+              placeholder="금액"
+            />
+            <button id="purchase-button" class="purchase-button">
+              <span class="purchase-button-text">구입</span>
+            </button>
           </div>
         </section>
         <section id="generate-section" class="generate-section">
-          <span id="lotto-count-message"></span>
+          <span id="lotto-count-message" class="lotto-count-message"></span>
           <ul id="generated-lottos-lists" class="generated-lottos"></ul>
         </section>
         <section id="result-section" class="result-section">
-          <span class="message"
+          <span class="result-section-message"
             >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</span
           >
           <div class="number-input-box">
@@ -41,60 +50,101 @@
             </div>
             <div class="number-inputs">
               <div class="winning-numebrs">
-                <input type="text" name="" id="winning-number-1" />
-                <input type="text" name="" id="winning-number-2" />
-                <input type="text" name="" id="winning-number-3" />
-                <input type="text" name="" id="winning-number-4" />
-                <input type="text" name="" id="winning-number-5" />
-                <input type="text" name="" id="winning-number-6" />
+                <input
+                  type="text"
+                  name=""
+                  id="winning-number-1"
+                  class="number-input"
+                />
+                <input
+                  type="text"
+                  name=""
+                  id="winning-number-2"
+                  class="number-input"
+                />
+                <input
+                  type="text"
+                  name=""
+                  id="winning-number-3"
+                  class="number-input"
+                />
+                <input
+                  type="text"
+                  name=""
+                  id="winning-number-4"
+                  class="number-input"
+                />
+                <input
+                  type="text"
+                  name=""
+                  id="winning-number-5"
+                  class="number-input"
+                />
+                <input
+                  type="text"
+                  name=""
+                  id="winning-number-6"
+                  class="number-input"
+                />
               </div>
-              <input type="text" name="" id="bonus-number" />
+              <input
+                type="text"
+                name=""
+                id="bonus-number"
+                class="number-input"
+              />
             </div>
           </div>
-          <button id="result-button"><span>결과 확인하기</span></button>
+          <button id="result-button" class="result-button">
+            <span class="result-button-text">결과 확인하기</span>
+          </button>
         </section>
       </div>
     </main>
-    <footer><span>Copyright 2023. woowacourse</span></footer>
+    <footer>
+      <span class="footer-text">Copyright 2023. woowacourse</span>
+    </footer>
 
     <div id="modal" class="modal">
       <div class="modal_popup">
-        <button id="close-button" class="close-button"><span>X</span></button>
-        <h2>🏆 당첨 통계 🏆</h2>
-        <table>
+        <button id="close-button" class="close-button">
+          <span class="modal-close-button-icon">X</span>
+        </button>
+        <h2 class="modal-popup-title">🏆 당첨 통계 🏆</h2>
+        <table class="prize-result-table">
           <thead>
             <tr>
-              <th>일치 갯수</th>
-              <th>당첨금</th>
-              <th>당첨 갯수</th>
+              <th class="prize-result-th">일치 갯수</th>
+              <th class="prize-result-th">당첨금</th>
+              <th class="prize-result-th">당첨 갯수</th>
             </tr>
           </thead>
           <tbody>
             <tr id="fifthPrize">
-              <td>3개</td>
-              <td>5,000</td>
+              <td class="prize-result-td">3개</td>
+              <td class="prize-result-td">5,000</td>
             </tr>
             <tr id="fourthPrize">
-              <td>4개</td>
-              <td>50,000</td>
+              <td class="prize-result-td">4개</td>
+              <td class="prize-result-td">50,000</td>
             </tr>
             <tr id="thirdPrize">
-              <td>5개</td>
-              <td>1,500,000</td>
+              <td class="prize-result-td">5개</td>
+              <td class="prize-result-td">1,500,000</td>
             </tr>
             <tr id="secondPrize">
-              <td>5개+보너스볼</td>
-              <td>30,000,000</td>
+              <td class="prize-result-td">5개+보너스볼</td>
+              <td class="prize-result-td">30,000,000</td>
             </tr>
             <tr id="firstPrize">
-              <td>6개</td>
-              <td>2,000,000,000</td>
+              <td class="prize-result-td">6개</td>
+              <td class="prize-result-td">2,000,000,000</td>
             </tr>
           </tbody>
         </table>
         <div class="ROI-box"><span id="ROI" class="ROI"></span></div>
         <button type="button" id="restart-button" class="restart-button">
-          <span>다시 시작하기</span>
+          <span class="restart-button-text">다시 시작하기</span>
         </button>
       </div>
     </div>

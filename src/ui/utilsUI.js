@@ -13,10 +13,11 @@ export const updateUI = {
 
   updatePrizeResult(lottoPrize) {
     for (const key in lottoPrize.prizeResult) {
-      const div = document.querySelector(`#${key}`);
-      const span = document.createElement("td");
-      span.textContent = lottoPrize.prizeResult[key] + "개";
-      div.appendChild(span);
+      const tr = document.querySelector(`#${key}`);
+      const td = document.createElement("td");
+      td.classList.add("prize-result-td");
+      td.textContent = lottoPrize.prizeResult[key] + "개";
+      tr.appendChild(td);
     }
   },
 
@@ -29,6 +30,7 @@ export const showUI = {
   showGeneratedLottos(generatedLottos) {
     generatedLottos.forEach((lotto) => {
       const li = document.createElement("li");
+      li.classList.add("generated-lotto");
       li.textContent = `🎟️ ${lotto.join(", ")}`;
       elements.generatedLottosLists.appendChild(li);
     });

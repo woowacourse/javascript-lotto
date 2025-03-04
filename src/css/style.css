@@ -67,7 +67,7 @@ header {
   align-items: center;
 }
 
-header h1 {
+.app-title {
   font-size: var(--title-font-size);
   font-weight: var(--extra-bold-font-weight);
   color: var(--greyscale-1-color);
@@ -103,7 +103,7 @@ main {
   flex-direction: column;
 }
 
-.title-section h2 {
+.title-section-title {
   width: 100%;
   text-align: center;
   font-size: var(--title-font-size);
@@ -114,7 +114,7 @@ main {
   padding-bottom: var(--medium-padding);
 }
 
-.purchase-section span {
+.purchase-section-message {
   padding-bottom: 8px;
 }
 
@@ -124,7 +124,7 @@ main {
   align-items: center;
 }
 
-.purchase-form input {
+.purchase-input {
   width: 310px;
   height: 30px;
   padding: 8px;
@@ -134,11 +134,11 @@ main {
   align-self: stretch;
 }
 
-.purchase-form input::placeholder {
+.purchase-input::placeholder {
   color: var(--greyscale-4-color);
 }
 
-.purchase-form button {
+.purchase-button {
   height: 30px;
   background-color: var(--primary-color);
   border: none;
@@ -148,7 +148,7 @@ main {
   cursor: pointer;
 }
 
-.purchase-form button span {
+.purchase-button-text {
   color: var(--greyscale-1-color);
   padding: 0;
   font-size: var(--caption-font-size);
@@ -177,11 +177,11 @@ main {
   border-radius: 5px;
 }
 
-.generate-section span {
+.lotto-count-message {
   padding-bottom: var(--tiny-padding);
 }
 
-.generate-section ul li {
+.generated-lotto {
   padding-bottom: var(--tiny-padding);
 }
 
@@ -191,26 +191,26 @@ main {
   margin-bottom: 20px;
 }
 
-.result-section .number-input-box {
-  padding-bottom: var(--medium-padding);
-}
-
-.result-section .message {
+.result-section-message {
   padding-bottom: var(--tiny-padding);
 }
 
-.result-section .winning-bonus-text {
+.number-input-box {
+  padding-bottom: var(--medium-padding);
+}
+
+.winning-bonus-text {
   padding-bottom: 8px;
   display: flex;
   justify-content: space-between;
 }
 
-.result-section .number-inputs {
+.number-inputs {
   display: flex;
   justify-content: space-between;
 }
 
-.result-section .number-inputs input {
+.number-input {
   width: 34px;
   height: 36px;
 
@@ -220,7 +220,7 @@ main {
   padding-left: 8px;
 }
 
-.result-section button {
+.result-button {
   width: 100%;
   background-color: var(--primary-color);
   padding: 8px;
@@ -229,7 +229,7 @@ main {
   cursor: pointer;
 }
 
-.result-section button span {
+.result-button-text {
   color: var(--greyscale-1-color);
 }
 
@@ -246,7 +246,7 @@ footer {
   align-items: center;
 }
 
-footer span {
+.footer-text {
   font-size: var(--caption-font-size);
   font-weight: var(--bold-font-weight);
   color: var(--primary-color);
@@ -262,7 +262,7 @@ footer span {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.modal .modal_popup {
+.modal_popup {
   width: 300px;
   position: absolute;
   top: 50%;
@@ -276,7 +276,7 @@ footer span {
   flex-direction: column;
 }
 
-.modal_popup .close-button {
+.close-button {
   width: 20px;
   height: 20px;
   padding: 0;
@@ -288,13 +288,13 @@ footer span {
   cursor: pointer;
 }
 
-.close-button span {
+.modal-close-button-icon {
   width: 100%;
   height: 100%;
   text-align: center;
 }
 
-.modal_popup h2 {
+.modal-popup-title {
   width: 100%;
   font-size: var(--subtitle-font-size);
   font-weight: var(--semi-bold-font-weight);
@@ -303,21 +303,21 @@ footer span {
   text-align: center;
 }
 
-table {
+.prize-result-table {
   border-collapse: collapse;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-th,
-td {
+.prize-result-th,
+.prize-result-td {
   padding: 10px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   text-align: center;
 }
 
-thead tr th {
+.prize-result-th {
   font-weight: var(--semi-bold-font-weight);
 }
 
@@ -339,7 +339,7 @@ thead tr th {
   cursor: pointer;
 }
 
-.restart-button span {
+.restart-button-text {
   font-size: var(--caption-font-size);
   font-weight: var(--bold-font-weight);
 
