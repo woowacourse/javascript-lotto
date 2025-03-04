@@ -4,13 +4,6 @@ import { MATCH_COUNT } from "../constants/constant.js";
 class LottoPack {
   #lottos;
   #count;
-  #checkCountResult = {
-    [MATCH_COUNT.SIX]: 0,
-    [MATCH_COUNT.FIVE_BONUS]: 0,
-    [MATCH_COUNT.FIVE]: 0,
-    [MATCH_COUNT.FOUR]: 0,
-    [MATCH_COUNT.THREE]: 0,
-  };
 
   constructor(lottos, count) {
     this.#lottos = this.#generateLottos(lottos);
@@ -18,11 +11,20 @@ class LottoPack {
   }
 
   compareAndReturnResult(answerLotto) {
+    const checkCountResult = {
+      [MATCH_COUNT.SIX]: 0,
+      [MATCH_COUNT.FIVE_BONUS]: 0,
+      [MATCH_COUNT.FIVE]: 0,
+      [MATCH_COUNT.FOUR]: 0,
+      [MATCH_COUNT.THREE]: 0,
+    };
+
     this.#lottos.forEach((lotto) => {
       const { winningCount, bonusCount } = lotto.compareWinningNumbers(answerLotto);
-      this.#saveCheckCount(winningCount, bonusCount);
+      this.#saveCheckCount({ winningCount, bonusCount }, checkCountResult);
     });
-    return this.#checkCountResult;
+
+    return checkCountResult;
   }
 
   #generateLottos(lottos) {
@@ -31,10 +33,10 @@ class LottoPack {
     });
   }
 
-  #saveCheckCount(winningCount, bonusCount) {
+  #saveCheckCount({ winningCount, bonusCount }, checkCountResult) {
     if (winningCount >= 3) {
       const matchKey = this.#mappingWinningCount(winningCount, bonusCount);
-      this.#checkCountResult[matchKey]++;
+      checkCountResult[matchKey]++;
     }
   }
 

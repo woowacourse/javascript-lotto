@@ -2,25 +2,25 @@ import { BONUS, WINNING } from "../constants/constant.js";
 
 class Lotto {
   #lottoNumbers;
-  #count = {
-    winningCount: 0,
-    bonusCount: 0,
-  };
 
   constructor(lottoNumbers) {
     this.#lottoNumbers = this.#ascendingSort(lottoNumbers);
   }
 
   compareWinningNumbers(answerLotto) {
+    const count = {
+      winningCount: 0,
+      bonusCount: 0,
+    };
     this.#lottoNumbers.forEach((number) => {
       if (answerLotto[number] === WINNING) {
-        this.#count.winningCount += 1;
+        count.winningCount += 1;
       }
       if (answerLotto[number] === BONUS) {
-        this.#count.bonusCount += 1;
+        count.bonusCount += 1;
       }
     });
-    return this.#count;
+    return count;
   }
 
   #ascendingSort(lottoNumbers) {

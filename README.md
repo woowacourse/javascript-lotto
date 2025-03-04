@@ -84,7 +84,8 @@
 
 ### 피드백 바탕 -> 리팩토링 사항
 
-- [ ] lotto 인스턴스의 `compareWinningNumbers` 순수함수로 변경하기
+- [x] lotto 인스턴스의 `compareWinningNumbers` 순수함수로 변경하기
+- [x] lottoPack 인스턴스의 `compareAndReturnResult` 순수함수로 변경하기
 - [ ] input 및 button 태그 form 태그로 감싸기
 - [ ] form 태그에 맞는 이벤트로 변경하기
 - [ ] 모달창의 닫기 img 태그 alt 변경하기
@@ -92,3 +93,4 @@
 - [ ] webView의 `updateLottoPack` dom 접근 최소화 로직으로 변경하기
 - [ ] `handleRestart` 함수 -> 초기화 로직 form 태그 이용한 로직으로 변경하기
 - [ ] `handleWinningCheck` forEach문 map으로 변경하기
+- [ ] lottoPack 인스턴스 필드값 #count 제거 -> #lottos의 길이로 대체
