@@ -1,7 +1,7 @@
 import {
   appendContents,
   insertTextContents,
-} from "../../../utilsWeb/elementCreator.js";
+} from "../../../../../utils/elementCreator.js";
 import errorAlertContents from "./errorAlertModal.html?raw";
 import "./errorAlertModal.css";
 

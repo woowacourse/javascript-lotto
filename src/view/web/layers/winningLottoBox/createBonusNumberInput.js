@@ -1,5 +1,5 @@
 import { LOTTO_RULE } from "../../../../constants/lotto.js";
-import { setNumberInput } from "../../utilsWeb/input.js";
+import { setNumberInput } from "../../../../utils/templates.js";
 
 const createBonusNumberInput = () => {
   return setNumberInput(

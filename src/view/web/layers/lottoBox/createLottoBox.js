@@ -1,7 +1,7 @@
 import {
   appendContents,
   insertTextContents,
-} from "../../utilsWeb/elementCreator.js";
+} from "../../../../utils/elementCreator.js";
 import createLottoList from "./createLottoList.js";
 import createPurchaseMessage from "./createPurchaseMessage.js";
 import "./lottoBox.css";

@@ -18,7 +18,7 @@ import {
   createPrizeResultModal,
 } from "./src/view/web/layers/modal/index.js";
 
-import { validateInput } from "./src/view/web/utilsWeb/validation.js";
+import { validateInput } from "./src/view/web/../../utils/validation.js";
 import validateLottoPrice from "./src/validation/validateLottoPrice.js";
 import generateLottoNumberSets from "./src/lotto/generateLottoNumberSets.js";
 

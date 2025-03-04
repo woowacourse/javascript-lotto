@@ -4,7 +4,7 @@ import "./gameBox.css";
 import {
   appendContents,
   prependContents,
-} from "../../utilsWeb/elementCreator.js";
+} from "../../../../utils/elementCreator.js";
 
 const createGameBox = () => {
   appendContents("main", ".game-container", gameBoxContents);

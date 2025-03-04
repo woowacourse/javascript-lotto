@@ -1,5 +1,5 @@
 import headerContents from "./header.html?raw";
-import { prependContents } from "../../utilsWeb/elementCreator.js";
+import { prependContents } from "../../../../utils/elementCreator.js";
 import "./header.css";
 
 const createHeader = () => {
