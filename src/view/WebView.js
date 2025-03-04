@@ -8,14 +8,18 @@ const WebView = {
   },
 
   updateLottoPack(element, lottos) {
-    lottos.forEach((lotto) => {
-      element.innerHTML += `
-                <div class="lotto">
-                    <img src="./public/ticket.png" alt="로또" width="34px" height="36px" />
-                    <span>${lotto.lottoNumbers.join(`${LOTTO_NUMBER_SPLITER} `)}</span>
-                </div>
-                  `;
-    });
+    const innerHtml = lottos
+      .map(
+        (lotto) =>
+          `
+      <div class="lotto">
+        <img src="./public/ticket.png" alt="로또" width="34px" height="36px" />
+        <span>${lotto.lottoNumbers.join(`${LOTTO_NUMBER_SPLITER} `)}</span>
+      </div>
+      `,
+      )
+      .join("");
+    element.innerHTML = innerHtml;
   },
 
   updateStatistics(element, winningResult) {
