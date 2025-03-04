@@ -2,15 +2,16 @@ import LottoMachine from '../domains/LottoMachine.js';
 import OutputView from '../views/web/OutputView.js';
 import { getById } from '../views/web/utils/dom.js';
 import LottoResultModal from '../views/web/components/LottoResultModal.js';
-import { PURCHASE_PRICE } from '../constants/CONFIGURATIONS.js';
-import WinningResult from '../domains/WinningResult.js';
 import InputView from '../views/web/InputView.js';
+import WinningService from '../services/WinningService.js';
 
 class WebController {
   #lottos;
+  #winningService;
 
   constructor() {
     this.#lottos = [];
+    this.#winningService = new WinningService();
   }
 
   start() {
@@ -67,23 +68,16 @@ class WebController {
   #handleLottoResult() {
     try {
       const { winningNumbers, bonusNumber } = InputView.enterWinningAndBonusNumber();
-      const { winningCounts, profitRate } = this.#getWinningResult(winningNumbers, bonusNumber);
+      const { winningCounts, profitRate } = this.#winningService.getWinningResult({
+        lottos: this.#lottos,
+        winningNumbers,
+        bonusNumber,
+      });
 
       OutputView.showModal(winningCounts, profitRate);
     } catch (error) {
       alert(error.message);
     }
-  }
-
-  #getWinningResult(winningNumbers, bonusNumber) {
-    const winningResult = new WinningResult(winningNumbers, bonusNumber);
-    const winningCounts = winningResult.calculate(this.#lottos);
-    const profitRate = winningResult.calculateProfitRate(
-      this.#lottos.length * PURCHASE_PRICE.UNIT,
-      winningCounts,
-    );
-
-    return { winningCounts, profitRate };
   }
 
   #handleReset() {
