@@ -7,16 +7,17 @@ const LottoResultModal = {
   createTable(winningCounts) {
     const $tableBody = querySelector('.lottoResultTable > tbody');
 
+    const $fragment = new DocumentFragment();
     winningCounts.forEach((count, idx) => {
       const $tr = createTag('tr');
       const { $matchCount, $winningMoney, $winningCount } = this.createRow(count, idx);
-
       $tr.appendChild($matchCount);
       $tr.appendChild($winningMoney);
       $tr.appendChild($winningCount);
-
-      $tableBody.appendChild($tr);
+      $fragment.appendChild($tr);
     });
+
+    $tableBody.appendChild($fragment);
   },
 
   createRow(count, idx) {
