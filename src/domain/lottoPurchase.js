@@ -6,9 +6,10 @@ const createLottoContent = (lottos, money) => {
   const lottoContainer = document.getElementById('lottoContainer');
   const lottoContent = $createLottoContent(lottos);
   lottoContainer.appendChild(lottoContent);
-  lottoContent.addEventListener('submit', (e) =>
-    handleWinningResult(e, lottos, money),
-  );
+  const handleWinningResultSubmit = (e) => {
+    handleWinningResult(e, lottos, money);
+  };
+  lottoContent.addEventListener('submit', handleWinningResultSubmit);
 };
 
 const createLottos = (lottoMachine, money) => {

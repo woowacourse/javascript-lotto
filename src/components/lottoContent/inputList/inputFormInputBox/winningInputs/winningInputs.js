@@ -15,11 +15,9 @@ const $winningInputs = (winningNumbersCount) => {
     className: 'lotto_numbers',
   });
 
-  const inputs = Array.from({ length: winningNumbersCount }, () => {
+  Array.from({ length: winningNumbersCount }, () => {
     const winningInput = createDomElement('input', winningNumberOption);
-    winningInput.addEventListener('input', () => {
-      validateAllInputs();
-    });
+    winningInput.addEventListener('input', validateAllInputs);
     return winningNumberInputs.appendChild(winningInput);
   });
 

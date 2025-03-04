@@ -13,15 +13,15 @@ const moneyInputOption = {
 
 const $purchaseFormInput = () => {
   const purchaseFormInput = createDomElement('input', moneyInputOption);
-
-  purchaseFormInput.addEventListener('input', () => {
+  const purchaseFormInputChange = () => {
     try {
       validateMoney(purchaseFormInput.value);
       showSuccessState('lottoBuyError', 'buyButton');
     } catch (error) {
       showErrorState('lottoBuyError', 'buyButton', error);
     }
-  });
+  };
+  purchaseFormInput.addEventListener('input', purchaseFormInputChange);
   return purchaseFormInput;
 };
 

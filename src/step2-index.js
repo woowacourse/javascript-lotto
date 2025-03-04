@@ -10,9 +10,10 @@ const lottoStart = () => {
   lottoContainer.appendChild($lottoHeader());
 
   const lottoBuyForm = document.getElementById('lottoBuyForm');
-  lottoBuyForm.addEventListener('submit', (e) =>
-    handleLottoPurchase(e, lottoMachine),
-  );
+  const handleLottoPurchaseSubmit = (e) => {
+    handleLottoPurchase(e, lottoMachine);
+  };
+  lottoBuyForm.addEventListener('submit', handleLottoPurchaseSubmit);
 };
 
 lottoStart();
