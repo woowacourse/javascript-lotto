@@ -18,7 +18,7 @@ export function handleLottoGame(e, state) {
 }
 
 function calculateRank(state) {
-  const [winningNumbers, bonusNumber] = getLottoNumbers();
+  const { winningNumbers, bonusNumber } = getLottoNumbers();
   const lottoMatch = new LottoMatch(winningNumbers, bonusNumber);
   state.lottoGame = new LottoGame();
   state.lottoMaker.lottoList.forEach((lotto) => {
@@ -34,5 +34,5 @@ function getLottoNumbers() {
   const bonusNumber = $bonusNumber.valueAsNumber;
   validateBonusNumber(winningNumbers.numbers, bonusNumber);
 
-  return [winningNumbers, bonusNumber];
+  return { winningNumbers, bonusNumber };
 }
