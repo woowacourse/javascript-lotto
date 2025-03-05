@@ -39,6 +39,7 @@ export default class WinningStatistic {
     $footer.appendChild($rateText);
     this.$div.appendChild($footer);
 
-    new Button($footer, () => setInit(), "다시 시작하기");
+    const $button = new Button(() => setInit(), "다시 시작하기").render();
+    $footer.appendChild($button);
   }
 }

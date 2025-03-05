@@ -39,9 +39,10 @@ export default class LottoWinningInfoForm {
     const { winningNumbers, bonusNumber } =
       winningLottoInfoStore.getState().winningLottoInfo;
 
-    new WinningNumbersInput($inputsContainer, winningNumbers);
+    new WinningNumbersInput($inputsContainer, winningNumbers, this.setDisabled);
     new BonusNumberInput($inputsContainer, bonusNumber);
-    new Button($form, () => {}, "결과 확인하기", "submit");
+
+    const $button = new Button(() => {}, "결과 확인하기", "submit").render();
 
     $form.addEventListener("submit", (e) => {
       e.preventDefault();

@@ -1,19 +1,17 @@
 import customCreateElement from "../../utils/customElement.js";
 
 export default class Button {
-  constructor($target, onClick, text, type = "button") {
-    this.render($target, onClick, text, type);
-  }
-
-  render($target, onClick, text, type) {
-    const $button = customCreateElement({
+  constructor(onClick, text, type = "button") {
+    this.$button = customCreateElement({
       tagName: "button",
       className: "full-button",
       text,
     });
-    $button.type = type;
+    this.$button.type = type;
+    this.$button.addEventListener("click", onClick);
+  }
 
-    $button.addEventListener("click", onClick);
-    $target.appendChild($button);
+  render() {
+    return this.$button;
   }
 }
