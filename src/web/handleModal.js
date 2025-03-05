@@ -14,9 +14,7 @@ export function handleRetry() {
   $app.style.backgroundColor = 'white';
   $purchaseForm.reset();
   $lottoForm.reset();
-  while ($lottoList.firstChild) {
-    $lottoList.removeChild($lottoList.firstChild);
-  }
+  $lottoList.removeChildren();
 }
 
 export function handleCloseModal() {
