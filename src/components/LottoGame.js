@@ -58,6 +58,16 @@ export default class LottoGame {
     });
 
     $div.appendChild(this.$div);
+
+    document.addEventListener("keydown", (e) => {
+      const $modalBg = document.querySelector(".modal-bg");
+      const $modal = document.querySelector(".modal");
+
+      if (!$modalBg.classList.contains("modal-none") && e.key === "Escape") {
+        $modalBg.classList.add("modal-none");
+        $modal.classList.add("modal-none");
+      }
+    });
   }
 
   resetStaticElements() {

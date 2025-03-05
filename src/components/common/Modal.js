@@ -37,12 +37,6 @@ export default class Modal {
       }
     });
 
-    document.addEventListener("keydown", (e) => {
-      if (!$modalBg.classList.contains("modal-none") && e.key === "Escape") {
-        this.closeModal($modalBg, $modal);
-      }
-    });
-
     $buttonWrap.appendChild($button);
     $modal.appendChild($buttonWrap);
     childRender($modal);
