@@ -29,11 +29,7 @@ function calculateRank(state) {
 }
 
 function getLottoNumbers() {
-  const numbers = [];
-  $winningNumbersInput.forEach((input) => {
-    numbers.push(Number(input.value));
-  });
-
+  const numbers = Array.from($winningNumbersInput, (input) => Number(input.value));
   const winningNumbers = new Lotto(numbers);
   const bonusNumber = $bonusNumber.valueAsNumber;
   validateBonusNumber(winningNumbers.numbers, bonusNumber);
