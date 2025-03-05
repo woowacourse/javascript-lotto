@@ -14,23 +14,23 @@ export function handleCanPurchaseBtnActive() {
 
 export function handleMakeLotto(e, state) {
   e.preventDefault();
-  const purchaseMoney = inputMoney();
+  const purchaseMoney = getPurchaseMoney();
 
-  unActivePurchaseForm();
+  disablePurchaseForm();
   $afterPurchaseWrap.classList.remove('hidden');
 
   state.lottoMaker = new LottoMaker(purchaseMoney);
   renderLottoList(state.lottoMaker);
 }
 
-function inputMoney() {
+function getPurchaseMoney() {
   const purchaseMoney = $purchaseInput.valueAsNumber;
   validatePurchaseMoney(purchaseMoney);
 
   return purchaseMoney;
 }
 
-function unActivePurchaseForm() {
+function disablePurchaseForm() {
   $purchaseFormError.textContent = '';
   $purchaseBtn.disabled = true;
   $purchaseInput.disabled = true;
