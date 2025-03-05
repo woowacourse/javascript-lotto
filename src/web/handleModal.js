@@ -37,5 +37,5 @@ export function openModal() {
 function closeModalStyle() {
   $modalWrap.classList.add('hidden');
   $app.style.backgroundColor = 'white';
-  $lottoResultTable.innerHTML = '';
+  $lottoResultTable.replaceChildren();
 }
