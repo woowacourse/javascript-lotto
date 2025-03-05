@@ -9,11 +9,7 @@ const $purchaseFormError = document.getElementById('purchase-form__error');
 const $afterPurchaseWrap = document.getElementById('after-purchase-wrap');
 
 export function handleCanPurchaseBtnActive() {
-  if ($purchaseInput.value) {
-    $purchaseBtn.disabled = false;
-    return;
-  }
-  $purchaseBtn.disabled = true;
+  $purchaseBtn.disabled = !$purchaseInput.value;
 }
 
 export function handleMakeLotto(e, state) {
