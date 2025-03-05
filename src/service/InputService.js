@@ -1,48 +1,35 @@
 import InputHandler from '../input/InputHandler.js';
-import { YES } from '../constants/constants.js';
-import OutputView from '../view/OutputView.js';
 
 class InputService {
   static async getPurchaseMoney() {
     try {
-      const money = await InputHandler.purchaseMoney();
-      return money;
+      return await InputHandler.purchaseMoney();
     } catch (e) {
-      OutputView.print(e.message);
-      return await this.getPurchaseMoney();
+      throw new Error(e.message);
     }
   }
 
   static async getWinningNumbers() {
     try {
-      const winningNumbers = await InputHandler.winningNumbers();
-      return winningNumbers;
+      return await InputHandler.winningNumbers();
     } catch (e) {
-      OutputView.print(e.message);
-      return await this.getWinningNumbers();
+      throw new Error(e.message);
     }
   }
 
   static async getBonusNumber(winningNumbers) {
     try {
-      const bonusNumber = await InputHandler.bonusNumber(winningNumbers);
-      return bonusNumber;
+      return await InputHandler.bonusNumber(winningNumbers);
     } catch (e) {
-      OutputView.print(e.message);
-      return await this.getBonusNumber(winningNumbers);
+      throw new Error(e.message);
     }
   }
 
-  static async reStart(runCallback) {
+  static async reStart() {
     try {
-      const input = await InputHandler.reStart();
-      if (input === YES) {
-        return runCallback();
-      }
-      return input;
+      return await InputHandler.reStart();
     } catch (e) {
-      OutputView.print(e.message);
-      return await this.reStart(runCallback);
+      throw new Error(e.message);
     }
   }
 }
