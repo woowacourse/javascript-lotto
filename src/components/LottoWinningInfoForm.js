@@ -44,6 +44,19 @@ export default class LottoWinningInfoForm {
 
     const $button = new Button(() => {}, "결과 확인하기", "submit").render();
 
+    if (
+      winningNumbers.length !== 0 &&
+      winningNumbers.length === new Set(winningNumbers).size
+    ) {
+      $button.removeAttribute("disabled");
+      $button.classList.remove("disabled-btn");
+    } else {
+      $button.setAttribute("disabled", true);
+      $button.classList.add("disabled-btn");
+    }
+
+    $form.appendChild($button);
+
     $form.addEventListener("submit", (e) => {
       e.preventDefault();
       this.handleSubmit();

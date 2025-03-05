@@ -40,6 +40,25 @@ export default class WinningNumbersInput {
       $input.min = LOTTO_NUMBER.MIN;
       $input.max = LOTTO_NUMBER.MAX;
 
+      $input.addEventListener("change", (e) => {
+        const $lottoNumbers = document.querySelectorAll(
+          ".lotto-numbers-wrap > .number-input"
+        );
+        const winningNumbers = [];
+        $lottoNumbers.forEach(($lottoNumber) => {
+          winningNumbers.push($lottoNumber.value);
+        });
+
+        const $button = document.querySelector('.full-button[type="submit"]');
+        if (winningNumbers.length === new Set(winningNumbers).size) {
+          $button.removeAttribute("disabled");
+          $button.classList.remove("disabled-btn");
+        } else {
+          $button.setAttribute("disabled", true);
+          $button.classList.add("disabled-btn");
+        }
+      });
+
       return $input;
     });
   }
