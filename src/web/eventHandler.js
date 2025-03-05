@@ -8,15 +8,16 @@ const $lottoForm = document.getElementById('lotto-form');
 const $modalCloseBtn = document.getElementById('modal__close-btn');
 const $retryBtn = document.getElementById('modal__retry-btn');
 
-export function eventHandler(state) {
-  // 구매 관련 리스너
+export function purchaseEventHandler(state) {
   $purchaseInput.addEventListener('input', handleCanPurchaseBtnActive);
   $purchaseForm.addEventListener('submit', (e) => handleMakeLotto(e, state.lottoMaker));
+}
 
-  // 로또 게임 리스너
+export function lottoGameEventHandler(state) {
   $lottoForm.addEventListener('submit', (e) => handleLottoGame(e, state.lottoMaker, state.lottoGame));
+}
 
-  // 모달 관련 리스너
+export function modalEventHandler() {
   $modalCloseBtn.addEventListener('click', handleCloseModal);
   $retryBtn.addEventListener('click', handleRetry);
   window.addEventListener('click', (e) => handleCloseModalBackGround(e));

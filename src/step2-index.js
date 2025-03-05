@@ -1,6 +1,8 @@
-import { eventHandler } from './web/eventHandler.js';
+import { lottoGameEventHandler, modalEventHandler, purchaseEventHandler } from './web/eventHandler.js';
 import { state } from './state/lottoGameState.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  eventHandler(state);
+  purchaseEventHandler(state);
+  lottoGameEventHandler(state);
+  modalEventHandler();
 });
