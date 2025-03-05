@@ -22,6 +22,25 @@ export default class BonusNumberInput {
     $input.max = LOTTO_NUMBER.MAX;
     $input.value = bonusNumber === 0 ? "" : bonusNumber;
 
+    $input.addEventListener("change", () => {
+      const $lottoNumbers = document.querySelectorAll(
+        ".lotto-numbers-wrap > .number-input"
+      );
+      const winningNumbers = [];
+      $lottoNumbers.forEach(($lottoNumber) => {
+        winningNumbers.push($lottoNumber.value);
+      });
+
+      const $button = document.querySelector('.full-button[type="submit"]');
+      if (winningNumbers.includes($input.value)) {
+        $button.setAttribute("disabled", true);
+        $button.classList.add("disabled-btn");
+      } else {
+        $button.removeAttribute("disabled");
+        $button.classList.remove("disabled-btn");
+      }
+    });
+
     $div.appendChild($text);
     $div.appendChild($input);
     $target.appendChild($div);

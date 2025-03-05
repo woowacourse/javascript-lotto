@@ -49,13 +49,20 @@ export default class WinningNumbersInput {
           winningNumbers.push($lottoNumber.value);
         });
 
+        const $bonusNumberInput = document.querySelector(
+          ".bonus-input-wrap > .number-input"
+        );
         const $button = document.querySelector('.full-button[type="submit"]');
-        if (winningNumbers.length === new Set(winningNumbers).size) {
-          $button.removeAttribute("disabled");
-          $button.classList.remove("disabled-btn");
-        } else {
+
+        if (
+          winningNumbers.includes($bonusNumberInput.value) ||
+          winningNumbers.length !== new Set(winningNumbers).size
+        ) {
           $button.setAttribute("disabled", true);
           $button.classList.add("disabled-btn");
+        } else {
+          $button.removeAttribute("disabled");
+          $button.classList.remove("disabled-btn");
         }
       });
 
