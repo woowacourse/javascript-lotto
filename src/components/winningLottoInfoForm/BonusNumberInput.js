@@ -1,5 +1,5 @@
-import customCreateElement from "../utils/customElement.js";
-import { LOTTO_NUMBER } from "../constants/lotto.js";
+import customCreateElement from "../../utils/customElement.js";
+import { LOTTO_NUMBER } from "../../constants/lotto.js";
 
 export default class BonusNumberInput {
   constructor($target, bonusNumber) {

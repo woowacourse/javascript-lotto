@@ -1,5 +1,5 @@
-import customCreateElement from "../utils/customElement.js";
-import { LOTTO_STATUS } from "../constants/lotto.js";
+import customCreateElement from "../../utils/customElement.js";
+import { LOTTO_STATUS } from "../../constants/lotto.js";
 
 export default class StatisticsTable {
   constructor($target, lottoHistory) {

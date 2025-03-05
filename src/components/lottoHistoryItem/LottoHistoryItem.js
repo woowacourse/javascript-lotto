@@ -1,4 +1,4 @@
-import customCreateElement from "../utils/customElement.js";
+import customCreateElement from "../../utils/customElement.js";
 
 export default class LottoHistoryItem {
   #lottoNumbers;

@@ -1,9 +1,9 @@
-import Button from "./common/button.js";
-import validateBonusNumber from "../validation/validateBonusNumber.js";
-import Lotto from "../domain/Lotto.js";
-import winningLottoInfoStore from "../store/winningLottoInfo.js";
+import Button from "../common/button.js";
+import validateBonusNumber from "../../validation/validateBonusNumber.js";
+import Lotto from "../../domain/Lotto.js";
+import winningLottoInfoStore from "../../store/winningLottoInfo.js";
 import WinningNumbersInput from "./WinningNumbersInput.js";
-import customCreateElement from "../utils/customElement.js";
+import customCreateElement from "../../utils/customElement.js";
 import BonusNumberInput from "./BonusNumberInput.js";
 
 export default class LottoWinningInfoForm {

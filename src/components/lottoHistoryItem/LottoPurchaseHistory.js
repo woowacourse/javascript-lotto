@@ -1,9 +1,9 @@
-import { OUTPUT } from "../constants/message.js";
+import { OUTPUT } from "../../constants/message.js";
 import LottoHistoryItem from "./LottoHistoryItem.js";
-import { PRICE } from "../constants/price.js";
-import { divideByUnit } from "../utils/count.js";
-import lottoTransactionStore from "../store/lottoTransactionStore.js";
-import customCreateElement from "../utils/customElement.js";
+import { PRICE } from "../../constants/price.js";
+import { divideByUnit } from "../../utils/count.js";
+import lottoTransactionStore from "../../store/lottoTransactionStore.js";
+import customCreateElement from "../../utils/customElement.js";
 
 export default class LottoPurchaseHistory {
   #show;

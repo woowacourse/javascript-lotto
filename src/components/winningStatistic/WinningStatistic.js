@@ -1,5 +1,5 @@
-import Button from "./common/button.js";
-import customCreateElement from "../utils/customElement.js";
+import Button from "../common/button.js";
+import customCreateElement from "../../utils/customElement.js";
 import StatisticsTable from "./StatisticsTable.js";
 
 export default class WinningStatistic {
