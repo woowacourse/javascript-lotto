@@ -4,7 +4,7 @@
  */
 
 import LottoController from "./controller/LottoController.js";
-import LottoMachine from "./domain/LottoMachine.js";
+import LottoMachine from "./controller/LottoMachine.js";
 
 const lottoController = new LottoController();
 const lottoMachine = new LottoMachine(lottoController);

@@ -4,12 +4,10 @@ import { bonusNumberValidator, lottoNumberValidator } from "../validators/index.
 
 class LottoController {
   #lottoTickets;
-  #purchaseAmount;
   #winningNumber;
 
   constructor() {
     this.#lottoTickets = [];
-    this.#purchaseAmount = 0;
     this.#winningNumber = {
       winning: [],
       bonus: 0
@@ -26,7 +24,6 @@ class LottoController {
 
   generateTickets(purchaseAmount) {
     this.#lottoTickets = generateLotto(purchaseAmount);
-    this.#purchaseAmount = purchaseAmount;
   }
 
   matchLottoNumbers(winningNumbers, bonusNumber) {
