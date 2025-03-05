@@ -7,13 +7,15 @@ const $lottoResultTable = document.getElementById('lotto-result-table');
 const $winningRate = document.getElementById('winningRate');
 
 export function renderRankTable(state) {
-  $lottoResultTable.innerHTML = `
+  $lottoResultTable.insertAdjacentHTML(
+    'afterbegin',
+    `
         <tr>
           <th scope="col">일치 갯수</th>
           <th scope="col">당첨금</th>
           <th scope="col">당첨 갯수</th>
-        </tr>
-    `;
+        </tr>`,
+  );
 
   const rankList = printLottoRank(state.lottoGame.rank);
   appendTable(rankList);
