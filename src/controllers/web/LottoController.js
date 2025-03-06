@@ -1,14 +1,9 @@
-import View from "../../views/web/View.js";
-import issueLottos from "../../domains/issueLottos.js";
-import WinningStatistics from "../../domains/WinningStatistics.js";
-import { $ } from "../../utils/domUtils.js";
-import { CUSTOM_ELEMENTS, EVENT_TYPES } from "../../constants/constants.js";
+import { EVENT_TYPES } from "../../constants/constants.js";
 
 class LottoController {
-  constructor() {
-    this.lottos = [];
-    this.purchaseAmount = 0;
-    this.view = new View();
+  constructor(domain, view) {
+    this.domain = domain;
+    this.view = view;
     this.#setEvent();
   }
 
@@ -28,47 +23,22 @@ class LottoController {
   }
 
   #handlePurchase(event) {
-    this.#setPurchaseAmount(event);
-    this.lottos = issueLottos(this.purchaseAmount);
-    this.#updateIssuedLotto();
-    this.#initWinningLotto();
-  }
-
-  #setPurchaseAmount(event) {
     const { purchaseAmount } = event.detail;
-    this.purchaseAmount = purchaseAmount;
-  }
+    this.domain.setPurchaseAmount(purchaseAmount);
+    this.domain.issueLottos();
 
-  #updateIssuedLotto() {
-    const issuedLotto = $(CUSTOM_ELEMENTS.issuedLotto, this.view.app);
-    issuedLotto.updateLottos(this.lottos);
-  }
-
-  #initWinningLotto() {
-    const winningLotto = $(CUSTOM_ELEMENTS.winningLotto, this.view.app);
-    winningLotto.initWinningLotto();
+    this.view.updateIssuedLotto(this.domain.lottos);
+    this.view.initWinningLotto();
   }
 
   #handleResult(event) {
-    const winningStatistics = this.#calculateWinningStatistics(event);
-    const profitRatio = this.#calculateProfitRatio(winningStatistics);
-    this.#showResult(winningStatistics, profitRatio);
-  }
-
-  #calculateWinningStatistics(event) {
     const { winningNumbers, bonusNumber } = event.detail;
-    const winningStatistics = new WinningStatistics(this.lottos);
-    winningStatistics.calculateWinningResults(winningNumbers, bonusNumber);
-    return winningStatistics;
-  }
+    const { statistics, profitRatio } = this.domain.calculateWinningStatistics(
+      winningNumbers,
+      bonusNumber,
+    );
 
-  #calculateProfitRatio(winningStatistics) {
-    return winningStatistics.calculateProfitRatio(this.purchaseAmount);
-  }
-
-  #showResult(winningStatistics, profitRatio) {
-    const lottoResult = $(CUSTOM_ELEMENTS.lottoResult, this.view.app);
-    lottoResult.showResult(winningStatistics.statistics, profitRatio);
+    this.view.showResult(statistics, profitRatio);
   }
 
   #handleRestart() {

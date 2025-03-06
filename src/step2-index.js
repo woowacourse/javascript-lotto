@@ -4,6 +4,10 @@
  */
 
 import "./styles/global.css";
+import LottoDomain from "./domains/web/LottoDomain.js";
+import View from "./views/web/View.js";
 import LottoController from "./controllers/web/LottoController.js";
 
-new LottoController();
+const domain = new LottoDomain();
+const view = new View();
+new LottoController(domain, view);
