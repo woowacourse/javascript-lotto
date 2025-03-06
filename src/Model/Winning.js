@@ -1,4 +1,5 @@
 import { LOTTO_NUMBER_LENGTH, PRIZE } from '../constants/common.js';
+import Validate from './Validate.js';
 
 class Winning {
   #rankHistory = {
@@ -9,9 +10,30 @@ class Winning {
     fifth: 0,
   };
 
-  constructor(winningNumbers, bonusNumber) {
-    this.winningNumbers = winningNumbers.sort((a, b) => a - b);
-    this.bonusNumber = bonusNumber;
+  constructor(winningNumbers) {
+    this.#validateWinningNumbers(winningNumbers);
+
+    this.winningNumbers = winningNumbers.map(Number).sort((a, b) => a - b);
+    this.bonusNumber = null;
+  }
+
+  #validateWinningNumbers(winningNumbers) {
+    winningNumbers.forEach((winningNumber) => {
+      Validate.checkIsNumber(winningNumber);
+      Validate.checkWinningNumberCount(winningNumbers);
+      Validate.checkLottoNumberRange(winningNumber);
+    });
+    Validate.checkWinningNumberDuplicate(winningNumbers);
+  }
+
+  validateBonusNumber(bonusNumber) {
+    Validate.checkIsNumber(bonusNumber);
+    Validate.checkLottoNumberRange(bonusNumber);
+    Validate.checkBonusNumberDuplicate(this.winningNumbers, Number(bonusNumber));
+  }
+
+  setBonusNumber(bonusNumber) {
+    this.bonusNumber = Number(bonusNumber);
   }
 
   calculateRank(boughtLottos) {

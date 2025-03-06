@@ -62,28 +62,16 @@ function validatePrice(price) {
   checkPriceRange(price);
 }
 
-function validateWinningNumbers(winningNumbers) {
-  winningNumbers.forEach((winningNumber) => {
-    checkIsEmpty(winningNumber);
-    checkIsNumber(winningNumber);
-    checkWinningNumberCount(winningNumbers);
-    checkLottoNumberRange(winningNumber);
-  });
-  checkWinningNumberDuplicate(winningNumbers);
-}
-
-function validateBonusNumber(bonusNumber, winningNumbers) {
-  checkIsNumber(bonusNumber);
-  checkLottoNumberRange(bonusNumber);
-  checkBonusNumberDuplicate(winningNumbers, Number(bonusNumber));
-}
-
 const Validate = {
   checkIsEmpty,
+  checkIsNumber,
+  checkLottoNumberRange,
+  checkBonusNumberDuplicate,
+  checkWinningNumberCount,
+  checkLottoNumberRange,
+  checkWinningNumberDuplicate,
   checkRestartChar,
   validatePrice,
-  validateWinningNumbers,
-  validateBonusNumber,
 };
 
 export default Validate;
