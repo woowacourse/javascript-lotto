@@ -72,7 +72,7 @@ class LottoUI {
   }
 
   getBonusNumber() {
-    return Number(document.querySelector("#bonus-input").value.trim());
+    return document.querySelector("#bonus-input").value.trim();
   }
 
 
