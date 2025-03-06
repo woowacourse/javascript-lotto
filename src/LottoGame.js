@@ -1,22 +1,17 @@
-import Validate from "./Model/Validate.js";
-import LottoMachine from "./Model/LottoMachine.js";
+import LottoGameManager from "./Model/LottoGameManager.js";
 import Winning from './Model/Winning';
 
 class LottoGame {
   constructor(ui) {
     this.ui = ui;
-    this.lottoMachine = new LottoMachine();
-    this.price = 0;
-    this.lottos = [];
+    this.lottoGameManager = new LottoGameManager();
   }
 
   purchaseLotto(priceInput) {
     try {
-      Validate.validatePrice(priceInput);
-      this.price = priceInput;
-      this.lottos = this.lottoMachine.generateLotto(this.price);
+      this.lottoGameManager.purchaseLotto(priceInput); // ✅ 검증이 LottoGameManager에서 수행됨
 
-      this.ui.updateLottoUI(this.lottos);
+      this.ui.updateLottoUI(this.lottoGameManager.getLottos());
       this.ui.updatePurchaseUI(true);
       this.ui.disablePurchaseButton();
     } catch (error) {
@@ -32,8 +27,8 @@ class LottoGame {
       winning.validateBonusNumber(bonusNumber);
       winning.setBonusNumber(bonusNumber);
 
-      winning.calculateRank(this.lottos);
-      const prizeRate = winning.getCalculatedPrizeRate(this.price);
+      winning.calculateRank(this.lottoGameManager.getLottos());
+      const prizeRate = winning.getCalculatedPrizeRate(this.lottoGameManager.getPrice());
 
       this.ui.updateWinningUI(winning.rankHistory, prizeRate);
       this.ui.showResultModal();
@@ -53,7 +48,6 @@ class LottoGame {
     return { winningNumbers, bonusNumber };
   }
 
-
   checkWinningNumbersIsEmpty(value) {
     if (value.length < 1) {
       throw new Error('[ERROR] 당첨번호를 입력해 주세요.');
@@ -67,8 +61,7 @@ class LottoGame {
   }
 
   resetGame() {
-    this.price = 0;
-    this.lottos = [];
+    this.lottoGameManager.resetGame();
     this.ui.resetGameUI();
     this.ui.enablePurchaseButton();
     this.ui.closeResultModal();
