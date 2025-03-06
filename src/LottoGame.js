@@ -28,7 +28,10 @@ class LottoGame {
   showWinningResult() {
     try {
       const { winningNumbers, bonusNumber } = this.getAndValidateWinningNumbers();
-      const winning = new Winning(winningNumbers, bonusNumber);
+      const winning = new Winning(winningNumbers);
+      winning.validateBonusNumber(bonusNumber);
+      winning.setBonusNumber(bonusNumber);
+
       winning.calculateRank(this.lottos);
       const prizeRate = winning.getCalculatedPrizeRate(this.price);
 
@@ -42,19 +45,24 @@ class LottoGame {
 
   getAndValidateWinningNumbers() {
     const winningNumbersInput = this.ui.getWinningNumbers();
-    this.checkIsEmpty(winningNumbersInput);
-    Validate.validateWinningNumbers(winningNumbersInput);
+    this.checkWinningNumbersIsEmpty(winningNumbersInput);
     const winningNumbers = winningNumbersInput.map(Number);
-    const bonusNumber = this.ui.getBonusNumber();
-    Validate.validateBonusNumber(bonusNumber, winningNumbers);
-
+    const bonusInput = this.ui.getBonusNumber();
+    this.checkBonusNumberIsEmpty(bonusInput);
+    const bonusNumber = Number(bonusInput);
     return { winningNumbers, bonusNumber };
   }
 
 
-  checkIsEmpty(value) {
+  checkWinningNumbersIsEmpty(value) {
     if (value.length < 1) {
       throw new Error('[ERROR] 당첨번호를 입력해 주세요.');
+    }
+  }
+
+  checkBonusNumberIsEmpty(value) {
+    if (value === '') {
+      throw new Error('[ERROR] 보너스 번호를 입력해 주세요.');
     }
   }
 
