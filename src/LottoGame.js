@@ -1,5 +1,5 @@
-import LottoGameManager from "./Model/LottoGameManager.js";
-import Winning from './Model/Winning';
+import LottoGameManager from "./LottoGameManager.js";
+import Winning from './Model/Winning.js';
 
 class LottoGame {
   constructor(ui) {
