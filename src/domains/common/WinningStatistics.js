@@ -1,6 +1,6 @@
-import countMatchingNumbers from "../utils/countMatchingNumbers.js";
-import { MATCH_KEY } from "../constants/constants.js";
-import createWinningStatisticsMap from "../utils/createWinningStatisticsMap.js";
+import countMatchingNumbers from "../../utils/countMatchingNumbers.js";
+import { MATCH_KEY } from "../../constants/constants.js";
+import createWinningStatisticsMap from "../../utils/createWinningStatisticsMap.js";
 
 class WinningStatistics {
   #lottos = [];

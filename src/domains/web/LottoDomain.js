@@ -1,5 +1,5 @@
-import issueLottos from "../issueLottos.js";
-import WinningStatistics from "../WinningStatistics.js";
+import issueLottos from "../common/issueLottos.js";
+import WinningStatistics from "../common/WinningStatistics.js";
 
 class LottoDomain {
   #purchaseAmount;

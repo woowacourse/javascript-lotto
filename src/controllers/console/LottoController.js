@@ -1,7 +1,7 @@
 import InputController from "./InputController.js";
-import issueLottos from "../../domains/issueLottos.js";
+import issueLottos from "../../domains/common/issueLottos.js";
 import OutputView from "../../views/console/OutputView.js";
-import WinningStatistics from "../../domains/WinningStatistics.js";
+import WinningStatistics from "../../domains/common/WinningStatistics.js";
 import { YES } from "../../constants/constants.js";
 
 class LottoController {

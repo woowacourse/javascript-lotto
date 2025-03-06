@@ -1,5 +1,5 @@
 import { MATCH_KEY, MIN_UNIT } from "../src/constants/constants.js";
-import WinningStatistics from "../src/domains/WinningStatistics.js";
+import WinningStatistics from "../src/domains/common/WinningStatistics.js";
 import createWinningStatisticsMap from "../src/utils/createWinningStatisticsMap.js";
 
 describe("WinningStatistics 클래스 테스트: 당첨 내역 통계 및 수익률 계산", () => {
