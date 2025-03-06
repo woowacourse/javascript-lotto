@@ -5,7 +5,7 @@ import {
   MATCH_PRIZE,
 } from "../../constants/constants.js";
 import createWinningStatisticsMap from "../../utils/createWinningStatisticsMap.js";
-import { $, eventOff, eventOn } from "../../utils/domUtils.js";
+import { eventOff, eventOn } from "../../utils/domUtils.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./lotto-result.css";
 
@@ -62,7 +62,7 @@ class LottoResult extends BaseWebComponent {
     this.statistics = statistics;
     this.profitRatio = profitRatio;
     this.render();
-    const dialog = $("dialog", this);
+    const dialog = this.querySelector("dialog");
     dialog.showModal();
     this.setEvent();
   }
@@ -76,8 +76,8 @@ class LottoResult extends BaseWebComponent {
   }
 
   #manageEventListeners(eventMethod) {
-    const closeButton = $(".lotto-result__close-button", this);
-    const restartButton = $(".lotto-result__restart-button", this);
+    const closeButton = this.querySelector(".lotto-result__close-button");
+    const restartButton = this.querySelector(".lotto-result__restart-button");
 
     if (closeButton) {
       eventMethod(
@@ -95,7 +95,7 @@ class LottoResult extends BaseWebComponent {
   }
 
   #closeDialog() {
-    const dialog = $("dialog", this);
+    const dialog = this.querySelector("dialog");
     dialog.close();
     this.removeEvent();
   }

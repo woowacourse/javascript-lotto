@@ -8,14 +8,6 @@ export const renderElement = (el) => {
   el.classList.remove(STYLE_SELECTORS.hidden);
 };
 
-export const $ = (selector, target = document) => {
-  return target.querySelector(selector);
-};
-
-export const $$ = (selector, target = document) => {
-  return target.querySelectorAll(selector);
-};
-
 export const eventOn = ({ target, eventType }, eventListener) => {
   target.addEventListener(eventType, eventListener);
 };

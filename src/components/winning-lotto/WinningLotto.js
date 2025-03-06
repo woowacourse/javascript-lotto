@@ -2,13 +2,7 @@ import validateWinningNumbers from "../../validations/validateWinningNumbers.js"
 import validateBonusNumber from "../../validations/validateBonusNumber.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./winning-lotto.css";
-import {
-  hideElement,
-  renderElement,
-  $,
-  $$,
-  eventOn,
-} from "../../utils/domUtils.js";
+import { hideElement, renderElement, eventOn } from "../../utils/domUtils.js";
 import {
   CUSTOM_ELEMENTS,
   EVENT_TYPES,
@@ -66,7 +60,7 @@ class WinningLotto extends BaseWebComponent {
   }
 
   #setFormEventListeners() {
-    const form = $(".winning-lotto__form", this);
+    const form = this.querySelector(".winning-lotto__form");
     if (form) {
       eventOn(
         { target: form, eventType: EVENT_TYPES.submit },
@@ -76,7 +70,7 @@ class WinningLotto extends BaseWebComponent {
   }
 
   #setInputEventListeners() {
-    const inputs = $$(".winning-lotto__input", this);
+    const inputs = this.querySelectorAll(".winning-lotto__input");
     inputs.forEach((input, index) => {
       eventOn({ target: input, eventType: EVENT_TYPES.input }, () => {
         const maxLength = input.getAttribute("maxlength");
@@ -94,7 +88,7 @@ class WinningLotto extends BaseWebComponent {
     event.preventDefault();
     const { winningNumbersInput, bonusNumberInput } =
       this.#getWinningAndBonusNumbers();
-    const errorElement = $(".winning-lotto__error", this);
+    const errorElement = this.querySelector(".winning-lotto__error");
 
     this.#handleValidation(winningNumbersInput, bonusNumberInput, errorElement);
   }
@@ -112,16 +106,14 @@ class WinningLotto extends BaseWebComponent {
   }
 
   #getWinningAndBonusNumbers() {
-    const inputs = $$(
+    const inputs = this.querySelectorAll(
       ".winning-lotto__winning-numbers .winning-lotto__input",
-      this,
     );
     const winningNumbersInput = Array.from(inputs)
       .map((input) => input.value)
       .join(",");
-    const bonusNumberInput = $(
+    const bonusNumberInput = this.querySelector(
       ".winning-lotto__bonus-number .winning-lotto__input",
-      this,
     ).value;
     return { winningNumbersInput, bonusNumberInput };
   }

@@ -4,12 +4,11 @@ import "../../components/lotto-purchase/LottoPurchase.js";
 import "../../components/issued-lotto/IssuedLotto.js";
 import "../../components/winning-lotto/WinningLotto.js";
 import "../../components/lotto-result/LottoResult.js";
-import { $ } from "../../utils/domUtils.js";
 import { CUSTOM_ELEMENTS } from "../../constants/customElements.js";
 
 class View {
   constructor() {
-    this.app = $("#app");
+    this.app = document.querySelector("#app");
     this.render();
   }
 
@@ -29,17 +28,17 @@ class View {
   }
 
   updateIssuedLotto(lottos) {
-    const issuedLotto = $(CUSTOM_ELEMENTS.issuedLotto, this.app);
+    const issuedLotto = this.app.querySelector(CUSTOM_ELEMENTS.issuedLotto);
     issuedLotto.updateLottos(lottos);
   }
 
   initWinningLotto() {
-    const winningLotto = $(CUSTOM_ELEMENTS.winningLotto, this.app);
+    const winningLotto = this.app.querySelector(CUSTOM_ELEMENTS.winningLotto);
     winningLotto.initWinningLotto();
   }
 
   showResult(statistics, profitRatio) {
-    const lottoResult = $(CUSTOM_ELEMENTS.lottoResult, this.app);
+    const lottoResult = this.app.querySelector(CUSTOM_ELEMENTS.lottoResult);
     lottoResult.showResult(statistics, profitRatio);
   }
 }

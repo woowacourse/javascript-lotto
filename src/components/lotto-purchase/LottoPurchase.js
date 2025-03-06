@@ -3,12 +3,7 @@ import {
   EVENT_TYPES,
   STYLE_SELECTORS,
 } from "../../constants/constants.js";
-import {
-  $,
-  eventOn,
-  hideElement,
-  renderElement,
-} from "../../utils/domUtils.js";
+import { eventOn, hideElement, renderElement } from "../../utils/domUtils.js";
 import validatePurchaseAmount from "../../validations/validatePurchaseAmount.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./lotto-purchase.css";
@@ -29,7 +24,7 @@ class LottoPurchase extends BaseWebComponent {
   }
 
   setEvent() {
-    const form = $(".lotto-purchase__form", this);
+    const form = this.querySelector(".lotto-purchase__form");
     eventOn(
       { target: form, eventType: EVENT_TYPES.submit },
       this.#handleSubmit.bind(this),
@@ -38,8 +33,10 @@ class LottoPurchase extends BaseWebComponent {
 
   #handleSubmit(event) {
     event.preventDefault();
-    const purchaseAmountInput = $(".lotto-purchase__input", this).value;
-    const errorElement = $(".lotto-purchase__error", this);
+    const purchaseAmountInput = this.querySelector(
+      ".lotto-purchase__input",
+    ).value;
+    const errorElement = this.querySelector(".lotto-purchase__error");
 
     this.#handleValidation(purchaseAmountInput, errorElement);
   }
