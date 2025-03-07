@@ -4,27 +4,21 @@ import "../../components/lotto-purchase/LottoPurchase.js";
 import "../../components/issued-lotto/IssuedLotto.js";
 import "../../components/winning-lotto/WinningLotto.js";
 import "../../components/lotto-result/LottoResult.js";
+import "../../components/main-container/MainContainer.js";
 import { CUSTOM_ELEMENTS } from "../../constants/customElements.js";
-import { renderElement, hideElement } from "../../utils/domUtils.js";
+import { renderElement } from "../../utils/domUtils.js";
 
 class View {
   constructor() {
     this.app = document.querySelector("#app");
     this.render();
-    this.#initComponent();
+    this.#initMainContainer();
   }
 
   render() {
     this.app.innerHTML = `
     <lotto-header></lotto-header>
-    <div class="container">
-      <main>
-        <lotto-purchase></lotto-purchase>
-        <issued-lotto></issued-lotto>
-        <winning-lotto></winning-lotto>
-        <lotto-result></lotto-result>
-      </main>
-    </div>
+    <main-container class="container"></main-container>
     <lotto-footer></lotto-footer>
     `;
   }
@@ -47,16 +41,13 @@ class View {
   }
 
   restartLotto() {
-    this.render();
-    this.#initComponent();
+    const mainContainer = this.app.querySelector(CUSTOM_ELEMENTS.mainContainer);
+    mainContainer.reset();
   }
 
-  #initComponent() {
-    const issuedLotto = this.app.querySelector(CUSTOM_ELEMENTS.issuedLotto);
-    const winningLotto = this.app.querySelector(CUSTOM_ELEMENTS.winningLotto);
-
-    hideElement(issuedLotto);
-    hideElement(winningLotto);
+  #initMainContainer() {
+    const mainContainer = this.app.querySelector(CUSTOM_ELEMENTS.mainContainer);
+    mainContainer.initComponents();
   }
 }
 

@@ -1,5 +1,4 @@
 @import url("./reset.css");
-@import url("./layout.css");
 
 :root {
   --lotto-primary-color: #4e5ba6;
@@ -18,4 +17,16 @@
 
   --button-text-size: 14px;
   --button-font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
 }
