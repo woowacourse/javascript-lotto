@@ -12,16 +12,11 @@ import {
 class WinningLotto extends BaseWebComponent {
   constructor() {
     super();
-    this.isInitialized = false;
   }
 
   getTemplate() {
-    if (!this.isInitialized) {
-      return "";
-    }
-
     return `
-      <section class="winning-lotto">
+      <section class="winning-lotto ${STYLE_SELECTORS.hidden}">
         <p class="winning-lotto__description">
           지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
         </p>
@@ -50,7 +45,6 @@ class WinningLotto extends BaseWebComponent {
   }
 
   initWinningLotto() {
-    this.isInitialized = true;
     this.connectedCallback();
   }
 

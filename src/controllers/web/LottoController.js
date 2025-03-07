@@ -42,7 +42,7 @@ class LottoController {
   }
 
   #handleRestart() {
-    this.view.render();
+    this.view.restartLotto();
   }
 }
 

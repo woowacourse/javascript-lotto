@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS } from "../../constants/constants.js";
+import { CUSTOM_ELEMENTS, STYLE_SELECTORS } from "../../constants/constants.js";
 import BaseWebComponent from "../base/BaseWebComponent.js";
 import "./issued-lotto.css";
 
@@ -9,12 +9,8 @@ class IssuedLotto extends BaseWebComponent {
   }
 
   getTemplate() {
-    if (this.lottos.length === 0) {
-      return "";
-    }
-
     return `
-      <section class="issued-lotto">
+      <section class="issued-lotto ${STYLE_SELECTORS.hidden}">
         <p class="issued-lotto__description">총 ${this.lottos.length}개를 구매하였습니다.</p>
         <ul class="issued-lotto__list">
           ${this.lottos
