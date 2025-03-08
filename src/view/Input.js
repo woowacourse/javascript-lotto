@@ -1,5 +1,4 @@
 import readline from "readline";
-
 const Input = {
   retry: async (callback) => {
     try {

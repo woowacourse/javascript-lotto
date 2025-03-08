@@ -1,7 +1,6 @@
 const countMatchingNumbers = (numberArr1, numberArr2) => {
   const arr1 = [...numberArr1];
   const arr2 = [...numberArr2];
-  console.log(arr1, arr2);
 
   if (
     !arr1.every((element) => typeof element === "number") ||
