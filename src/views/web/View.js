@@ -12,7 +12,15 @@ class View {
   constructor() {
     this.app = document.querySelector("#app");
     this.render();
+    this.#cacheElements();
     this.#initMainContainer();
+  }
+
+  #cacheElements() {
+    this.mainContainer = this.app.querySelector(CUSTOM_ELEMENTS.mainContainer);
+    this.issuedLotto = this.app.querySelector(CUSTOM_ELEMENTS.issuedLotto);
+    this.winningLotto = this.app.querySelector(CUSTOM_ELEMENTS.winningLotto);
+    this.lottoResult = this.app.querySelector(CUSTOM_ELEMENTS.lottoResult);
   }
 
   render() {
@@ -24,30 +32,26 @@ class View {
   }
 
   updateIssuedLotto(lottos) {
-    const issuedLotto = this.app.querySelector(CUSTOM_ELEMENTS.issuedLotto);
-    issuedLotto.updateLottos(lottos);
-    renderElement(issuedLotto);
+    this.issuedLotto.updateLottos(lottos);
+    renderElement(this.issuedLotto);
   }
 
   initWinningLotto() {
-    const winningLotto = this.app.querySelector(CUSTOM_ELEMENTS.winningLotto);
-    winningLotto.initWinningLotto();
-    renderElement(winningLotto);
+    this.winningLotto.initWinningLotto();
+    renderElement(this.winningLotto);
   }
 
   showResult(statistics, profitRatio) {
-    const lottoResult = this.app.querySelector(CUSTOM_ELEMENTS.lottoResult);
-    lottoResult.showResult(statistics, profitRatio);
+    this.lottoResult.showResult(statistics, profitRatio);
   }
 
   restartLotto() {
-    const mainContainer = this.app.querySelector(CUSTOM_ELEMENTS.mainContainer);
-    mainContainer.reset();
+    this.mainContainer.reset();
+    this.#cacheElements();
   }
 
   #initMainContainer() {
-    const mainContainer = this.app.querySelector(CUSTOM_ELEMENTS.mainContainer);
-    mainContainer.initComponents();
+    this.mainContainer.initComponents();
   }
 }
 
