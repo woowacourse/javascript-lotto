@@ -3,7 +3,7 @@ body {
   padding: 0;
 }
 
-div.header {
+.header {
   width: 100%;
   background-color: #4e5ba6;
   height: 64px;
@@ -11,7 +11,7 @@ div.header {
   box-sizing: border-box;
 }
 
-h1.lotto-title {
+.lotto-title {
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
@@ -23,7 +23,7 @@ h1.lotto-title {
   margin-left: 130px;
 }
 
-div.body {
+.body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +31,7 @@ div.body {
   box-sizing: border-box;
 }
 
-div.body-container {
+.body-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,26 +43,26 @@ div.body-container {
   background-color: white;
 }
 
-p.body-title {
+.body-title {
   font-weight: 800;
   font-size: 24px;
   margin-bottom: 24px;
   line-height: 1.5;
 }
 
-div.purchase-container {
+.purchase-container {
   width: 100%;
   padding-top: 28px;
 }
 
-div.purchase-input-container {
+.purchase-input-container {
   display: flex;
   align-items: center;
   padding-top: 4px;
   gap: 16px;
 }
 
-p.body-text {
+.body-text {
   font-size: 15px;
   font-weight: normal;
   text-align: left;
@@ -78,7 +78,7 @@ p.body-text {
   box-sizing: border-box;
 }
 
-button.purchase-button {
+.purchase-button {
   width: 56px;
   height: 36px;
   border-radius: 4px;
@@ -88,7 +88,7 @@ button.purchase-button {
   cursor: pointer;
 }
 
-div.lotto-list-container {
+.lotto-list-container {
   width: 100%;
   padding-top: 28px;
   display: flex;
@@ -99,7 +99,7 @@ div.lotto-list-container {
   display: none;
 }
 
-div.lotto-list {
+.lotto-list {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -108,20 +108,20 @@ div.lotto-list {
   padding-top: 8px;
 }
 
-div.lotto {
+.lotto {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-div.lotto-icon {
+.lotto-icon {
   font-size: 34px;
   text-align: center;
   padding-top: 4px;
 }
 
-div.number-input-form {
+.number-input-form {
   padding-top: 24px;
   width: 100%;
   display: flex;
@@ -129,19 +129,19 @@ div.number-input-form {
   display: none;
 }
 
-div.number-input-container {
+.number-input-container {
   display: flex;
   justify-content: space-between;
   padding-top: 12px;
 }
 
-div.number-input {
+.number-input {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-div.number-input-box {
+.number-input-box {
   display: flex;
   gap: 8px;
 }
@@ -162,13 +162,13 @@ div.number-input-box {
   box-sizing: border-box;
 }
 
-div.result-button-container {
+.result-button-container {
   padding-top: 28px;
   width: 100%;
   display: none;
 }
 
-button.result-button {
+.result-button {
   width: 100%;
   height: 36px;
   padding: 6px;
@@ -179,7 +179,7 @@ button.result-button {
   cursor: pointer;
 }
 
-div.modal {
+.modal {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -192,7 +192,7 @@ div.modal {
   display: none;
 }
 
-div.modal-header {
+.modal-header {
   width: 350px;
   height: max-content;
   padding: 16px;
