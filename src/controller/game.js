@@ -1,7 +1,7 @@
 import LottoResult from "../domain/LottoResult.js";
 import LottoStatus from "../domain/LottoStatus.js";
 import Ticket from "../domain/Ticket.js";
-import Output from "../view/Output.js";
+import Output from "../view/output.js";
 import { OUTPUT } from "../constants/message.js";
 import { PRICE } from "../constants/price.js";
 import { divideByUnit } from "../utils/count.js";
@@ -28,7 +28,7 @@ const game = async () => {
   const matchedlottoStatus =
     lottoStatus.getMatchedLottoStatus(issuedLottoNumbers);
 
-  const lottoResult = new LottoResult(matchedlottoStatus, price);
+  const lottoResult = new LottoResult({ matchedlottoStatus, price });
   const lottoHistory = lottoResult.getWinningHistory();
 
   Output.printWinningHistory(lottoHistory);
