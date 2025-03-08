@@ -40,14 +40,6 @@ const initEvent = {
       callback,
     });
   },
-
-  initAll(callbacks) {
-    this.addBuyButtonEventListener(callbacks.buyLotto);
-    this.addPriceInputEventListener(callbacks.handlePriceInput);
-    this.addCheckResultButtonEventListener(callbacks.clickCheckResult);
-    this.addResetButtonEventListener(callbacks.resetGame);
-    this.addCloseButtonEventListener(callbacks.closeDialog);
-  },
 };
 
 export default initEvent;
