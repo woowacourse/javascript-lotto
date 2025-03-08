@@ -1,7 +1,7 @@
 import { LottoNumberValidator } from '../validator/LottoNumberValidator.js';
 import { LOTTO_NUMBER_ERROR_MESSAGES } from '../../constants/constants.js';
 import runValidators from '../../utils/runValidators.js';
-import { setErrorMessage } from '../../utils/domErrorMsg.js';
+import { setErrorMessage } from '../../../web/utils/domErrorMsg.js';
 
 const validateLottoCount = (numbers) => {
   if (LottoNumberValidator.isValidCount(numbers)) {

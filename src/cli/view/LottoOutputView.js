@@ -1,6 +1,6 @@
 import OutputView from './OutputView.js';
-import { LINE_BREAK, OUTPUT_MESSAGE } from '../constants/constants.js';
-import { printLottoRank } from '../utils/printLottoRank.js';
+import { LINE_BREAK, OUTPUT_MESSAGE } from '../../common/constants/constants.js';
+import { printLottoRank } from '../../common/utils/printLottoRank.js';
 
 const LottoOutputView = {
   printStatistics(rank) {

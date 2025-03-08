@@ -1,7 +1,7 @@
-import { printLottoRank } from '../utils/printLottoRank.js';
-import { LOTTO_CONDITION } from '../constants/constants.js';
+import { printLottoRank } from '../../common/utils/printLottoRank.js';
+import { LOTTO_CONDITION } from '../../common/constants/constants.js';
 import { createDOMElement } from '../utils/domUtils.js';
-import LottoGame from '../domain/LottoGame.js';
+import LottoGame from '../../common/domain/LottoGame.js';
 
 const $lottoResultTable = document.getElementById('lotto-result-table');
 const $winningRate = document.getElementById('winningRate');

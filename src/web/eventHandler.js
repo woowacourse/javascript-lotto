@@ -1,6 +1,6 @@
-import { handleLottoGame } from './handleLottoGame.js';
-import { handleCloseModal, handleCloseModalBackGround, handleRetry } from './handleModal.js';
-import { handleCanPurchaseBtnActive, handleMakeLotto } from './handlePurchaseLotto.js';
+import { handleLottoGame } from './handler/handleLottoGame.js';
+import { handleCloseModal, handleCloseModalBackGround, handleRetry } from './handler/handleModal.js';
+import { handleCanPurchaseBtnActive, handleMakeLotto } from './handler/handlePurchaseLotto.js';
 
 const $purchaseForm = document.getElementById('purchase-form');
 const $purchaseInput = document.getElementById('purchase-form__input');

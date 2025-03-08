@@ -1,7 +1,7 @@
 import { BonusNumberValidator } from '../validator/BonusNumberValidator.js';
 import { BONUS_NUMBER_ERROR_MESSAGES } from '../../constants/constants.js';
 import runValidators from '../../utils/runValidators.js';
-import { setErrorMessage } from '../../utils/domErrorMsg.js';
+import { setErrorMessage } from '../../../web/utils/domErrorMsg.js';
 
 const validateInteger = (winningNumbers, bonusNumber) => {
   if (!BonusNumberValidator.isInteger(bonusNumber)) {

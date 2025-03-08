@@ -1,5 +1,5 @@
 import { PURCHASE_NUMBER_ERROR_MESSAGES } from '../../constants/constants.js';
-import { setErrorMessage } from '../../utils/domErrorMsg.js';
+import { setErrorMessage } from '../../../web/utils/domErrorMsg.js';
 import runValidators from '../../utils/runValidators.js';
 import { PurchaseMoneyValidator } from '../validator/PurchaseMoneyValidator.js';
 

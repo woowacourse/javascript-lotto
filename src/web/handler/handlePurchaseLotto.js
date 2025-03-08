@@ -1,5 +1,5 @@
-import LottoMaker from '../domain/LottoMaker.js';
-import validatePurchaseMoney from '../validations/validate/PurchaseMoneyValidate.js';
+import LottoMaker from '../../common/domain/LottoMaker.js';
+import validatePurchaseMoney from '../../common/validations/validate/PurchaseMoneyValidate.js';
 import { renderLottoList } from '../view/renderLottoList.js';
 
 const $purchaseInput = document.getElementById('purchase-form__input');

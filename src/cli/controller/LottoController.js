@@ -2,7 +2,7 @@ import LottoOutputView from '../view/LottoOutputView.js';
 import InputService from '../service/InputService.js';
 import LottoService from '../service/LottoService.js';
 import OutputView from '../view/OutputView.js';
-import { YES } from '../constants/constants.js';
+import { YES } from '../../common/constants/constants.js';
 
 class LottoController {
   async run() {

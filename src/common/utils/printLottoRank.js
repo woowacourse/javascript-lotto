@@ -1,5 +1,5 @@
 import { RANKING } from '../constants/constants.js';
-import OutputView from '../view/OutputView.js';
+import OutputView from '../../cli/view/OutputView.js';
 
 export const printLottoRank = (rank) => {
   const lottoRankList = [];

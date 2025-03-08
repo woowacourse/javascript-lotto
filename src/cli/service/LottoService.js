@@ -1,7 +1,7 @@
-import LottoGame from '../domain/LottoGame.js';
-import LottoMaker from '../domain/LottoMaker.js';
-import LottoMatch from '../domain/LottoMatch.js';
-import { LOTTO_CONDITION } from '../constants/constants.js';
+import LottoGame from '../../common/domain/LottoGame.js';
+import LottoMaker from '../../common/domain/LottoMaker.js';
+import LottoMatch from '../../common/domain/LottoMatch.js';
+import { LOTTO_CONDITION } from '../../common/constants/constants.js';
 
 class LottoService {
   static createLotto(purchaseMoney) {

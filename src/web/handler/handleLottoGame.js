@@ -1,7 +1,7 @@
-import Lotto from '../domain/Lotto.js';
-import LottoGame from '../domain/LottoGame.js';
-import LottoMatch from '../domain/LottoMatch.js';
-import validateBonusNumber from '../validations/validate/BonusNumberValidate.js';
+import Lotto from '../../common/domain/Lotto.js';
+import LottoGame from '../../common/domain/LottoGame.js';
+import LottoMatch from '../../common/domain/LottoMatch.js';
+import validateBonusNumber from '../../common/validations/validate/BonusNumberValidate.js';
 import { renderRankTable, renderWinningRate } from '../view/renderLottoResult.js';
 import { openModal } from './handleModal.js';
 

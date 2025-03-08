@@ -3,7 +3,7 @@ import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
   {
-    ignores: ['node_modules', 'dist', 'build', 'src/utils/readUserInput.js'], // 무시할 폴더
+    ignores: ['node_modules', 'dist', 'build', 'src/cli/utils/readUserInput.js'], // 무시할 폴더
   },
   {
     files: ['**/*.js', '**/*.ts', '**/*.tsx'],
