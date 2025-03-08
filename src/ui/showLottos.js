@@ -1,5 +1,5 @@
 import appendTextElement from "../utils/appendTextElement.js";
-import setPurchaseDetailVisibility from "./setPurchaseDetailVisibility.js";
+import setPurchaseDetailVisibility from "../event/setPurchaseDetailVisibility.js";
 
 const showLottos = (lottos) => {
   setPurchaseDetailVisibility("on");
@@ -33,7 +33,6 @@ const createLottoItem = (lotto) => {
 
   img.src = "./lotto.png";
   img.alt = "lotto";
-  console.log(img);
 
   div.textContent = lotto.getLottoNumbers().join(", ");
   div.classList.add("lottoNumbers");
