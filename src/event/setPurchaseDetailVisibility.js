@@ -1,5 +1,5 @@
 const setPurchaseDetailVisibility = (state) => {
-  const purchaseDetail = document.querySelector(".purchaseDetail");
+  const purchaseDetail = document.querySelector(".purchase-detail");
   purchaseDetail.style.display = state === "on" ? "flex" : "none";
 };
 

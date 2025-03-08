@@ -14,7 +14,7 @@
   font-size: var(--body-font-size);
 }
 
-.screenHeader {
+.screen-header {
   font-weight: var(--title-font-weight);
   font-size: var(--title-font-size);
 }

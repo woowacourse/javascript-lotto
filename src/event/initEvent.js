@@ -3,7 +3,7 @@ import addEvent from "../utils/addEvent.js";
 const initEvent = {
   addBuyButtonEventListener(callback) {
     addEvent({
-      name: ".buyButton",
+      name: ".price-input__button",
       eventType: "click",
       callback,
     });
@@ -11,7 +11,7 @@ const initEvent = {
 
   addPriceInputEventListener(callback) {
     addEvent({
-      name: ".priceInput",
+      name: ".price-input__field",
       eventType: "keydown",
       callback,
     });
@@ -19,7 +19,7 @@ const initEvent = {
 
   addCheckResultButtonEventListener(callback) {
     addEvent({
-      name: ".checkResultButton",
+      name: ".purchase-detail__check",
       eventType: "click",
       callback,
     });
@@ -27,7 +27,7 @@ const initEvent = {
 
   addResetButtonEventListener(callback) {
     addEvent({
-      name: "#reset",
+      name: "#purchase-detail__retry",
       eventType: "click",
       callback,
     });
@@ -35,7 +35,7 @@ const initEvent = {
 
   addCloseButtonEventListener(callback) {
     addEvent({
-      name: "#closeButton",
+      name: "#modal__close-button",
       eventType: "click",
       callback,
     });

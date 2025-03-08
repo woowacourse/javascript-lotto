@@ -8,7 +8,7 @@ const showLottos = (lottos) => {
 };
 
 const updatePurchasedLottosUI = (lottos) => {
-  const purchasedLottos = document.querySelector(".purchasedLottos");
+  const purchasedLottos = document.querySelector(".purchase-detail__lottos");
   appendTextElement(purchasedLottos, `총 ${lottos.length}개를 구매하였습니다.`);
 
   const lottosNumbers = createLottoListElement(lottos);

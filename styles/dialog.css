@@ -15,7 +15,7 @@ dialog h3 {
   font-weight: var(--subTitle-font-weight);
 }
 
-#closeButton {
+#modal__close-button {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -25,18 +25,17 @@ dialog h3 {
   font-size: var(--title-font-size);
 }
 
-.winningHistory {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+.modal__winning-history {
+  border-spacing: 20px;
 }
 
-.gridItem {
-  border-bottom: 1px solid var(--gray-sclae-3);
-  height: 42px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+th,
+td {
+  height: 44px;
+  width: 120px;
+  text-align: center;
+  vertical-align: middle;
+  border-top: 1px solid var(--gray-sclae-3);
 }
 
 .modal {
@@ -47,17 +46,16 @@ dialog h3 {
   align-items: center;
 }
 
-#rate {
+#modal__rate {
   font-size: var(--body-font-size);
   font-weight: var(--subTitle-font-weight);
 }
 
 .tableHeader {
   font-weight: var(--subTitle-font-weight);
-  border-top: 1px solid var(--gray-sclae-3);
 }
 
-#reset {
+#purchase-detail__retry {
   background-color: var(--main-color);
   color: white;
   border: 0px;

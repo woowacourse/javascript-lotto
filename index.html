@@ -12,49 +12,85 @@
     <div id="app">
       <header class="header"><h1>🎱 행운의 로또</h1></header>
       <div class="screen">
-        <h2 class="screenHeader">🎱내 번호 당첨 확인🎱</h2>
-        <div class="priceInputContainer">
-          <div class="text">구입할 금액을 입력해주세요</div>
-          <div class="inputAndButton">
-            <input class="priceInput" placeholder="금액" />
-            <button class="buyButton" type="button">구입</button>
+        <h2 class="screen-header">🎱내 번호 당첨 확인🎱</h2>
+        <div class="price-input">
+          <div class="price-input__text">구입할 금액을 입력해주세요</div>
+          <div class="price-input__controls">
+            <input class="price-input__field" placeholder="금액" />
+            <button class="price-input__button" type="button">구입</button>
           </div>
         </div>
-        <div class="purchaseDetail" style="display: none">
-          <div class="purchasedLottos"></div>
-          <div class="enteredNumberSection">
-            <div class="text">
+        <div class="purchase-detail" style="display: none">
+          <div class="purchase-detail__lottos"></div>
+          <div class="purchase-detail__numbers">
+            <div class="purchase-detail__text">
               지난주 당첨범호 6개와 보너스 번호 1개를 입력해주세요
             </div>
-            <div class="enteredNumbers">
-              <div class="enteredLottoNumbers">
+            <div class="purchase-detail__inputs">
+              <div class="purchase-detail__winning">
                 <div>당첨번호</div>
-                <div class="winningNumberInputs">
-                  <input class="winningNumberInput" />
-                  <input class="winningNumberInput" />
-                  <input class="winningNumberInput" />
-                  <input class="winningNumberInput" />
-                  <input class="winningNumberInput" />
-                  <input class="winningNumberInput" />
+                <div class="purchase-detail__winning-inputs">
+                  <input class="purchase-detail__winning-input" />
+                  <input class="purchase-detail__winning-input" />
+                  <input class="purchase-detail__winning-input" />
+                  <input class="purchase-detail__winning-input" />
+                  <input class="purchase-detail__winning-input" />
+                  <input class="purchase-detail__winning-input" />
                 </div>
               </div>
-              <div class="enteredBonusNumber">
+              <div class="purchase-detail__bonus">
                 <div>보너스 번호</div>
-                <div class="bonusNumberInputContainer">
-                  <input class="bonusNumberInput" />
+                <div class="purchase-detail__bonus-container">
+                  <input class="purchase-detail__bonus-input" />
                 </div>
               </div>
             </div>
-            <div class="checkResultButton">결과 확인하기</div>
+            <div class="purchase-detail__check">결과 확인하기</div>
           </div>
         </div>
       </div>
       <footer class="footer">Copyright 2023. woowacourse</footer>
       <dialog>
         <div class="modal">
-          <div id="closeButton">x</div>
+          <div id="modal__close-button">x</div>
           <h3>🏆당첨 통계🏆</h3>
-          <div class="winningHistory">
+          <table class="modal__winning-history">
+            <thead>
+              <tr>
+                <th class="tableHeader">일치 개수</th>
+                <th class="tableHeader">당첨금</th>
+                <th class="tableHeader">당첨 개수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td class="winningCount" id="rank5WinningCount">0개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td class="winningCount" id="rank4WinningCount">0개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td class="winningCount" id="rank3WinningCount">0개</td>
+              </tr>
+              <tr>
+                <td>5개 + 보너스볼</td>
+                <td>30,000,000</td>
+                <td class="winningCount" id="rank2WinningCount">0개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td class="winningCount" id="rank1WinningCount">0개</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <div class="modal__winning-history">
             <div class="gridItem tableHeader">일치 개수</div>
             <div class="gridItem tableHeader">당첨금</div>
             <div class="gridItem tableHeader">당첨 개수</div>
@@ -73,9 +109,11 @@
             <div class="gridItem">6개</div>
             <div class="gridItem">2,000,000,000</div>
             <div class="gridItem winningCount" id="rank1WinningCount">0개</div>
-          </div>
-          <div id="rate">당신의 총 수익률은 0%입니다.</div>
-          <div id="reset">다시 시작하기</div>
+          </div> -->
+          <div id="modal__rate">당신의 총 수익률은 0%입니다.</div>
+          <button id="purchase-detail__retry" type="button">
+            다시 시작하기
+          </button>
         </div>
       </dialog>
     </div>

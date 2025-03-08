@@ -20,7 +20,7 @@ const showDialog = () => {
 };
 
 const updateRateUI = (rate) => {
-  const rateDiv = document.querySelector("#rate");
+  const rateDiv = document.querySelector("#modal__rate");
   rateDiv.textContent = `당신의 총 수익률은 ${rate.toFixed(1)}%입니다.`;
 };
 
