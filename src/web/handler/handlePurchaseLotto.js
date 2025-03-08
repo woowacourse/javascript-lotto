@@ -12,21 +12,26 @@ export function handleCanPurchaseBtnActive() {
   $purchaseBtn.disabled = !$purchaseInput.value;
 }
 
-export function handleMakeLotto(e, state) {
+export async function handleMakeLotto(e, state) {
   e.preventDefault();
-  const purchaseMoney = getPurchaseMoney();
+  const purchaseMoney = await getPurchaseMoney();
+  if (purchaseMoney) {
+    disablePurchaseForm();
+    $afterPurchaseWrap.classList.remove('hidden');
 
-  disablePurchaseForm();
-  $afterPurchaseWrap.classList.remove('hidden');
-
-  state.lottoMaker = new LottoMaker(purchaseMoney);
-  renderLottoList(state.lottoMaker);
+    state.lottoMaker = new LottoMaker(purchaseMoney);
+    renderLottoList(state.lottoMaker);
+  }
 }
 
-function getPurchaseMoney() {
+async function getPurchaseMoney() {
   const purchaseMoney = $purchaseInput.valueAsNumber;
-  validatePurchaseMoney(purchaseMoney);
-
+  try {
+    validatePurchaseMoney(purchaseMoney);
+  } catch (error) {
+    alert(error.message);
+    return false;
+  }
   return purchaseMoney;
 }
 
