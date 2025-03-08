@@ -73,10 +73,20 @@ const checkAllValid = () => {
       winningResultButton.disabled = true;
       return;
     }
+
+    if ((Number(input.value) < SETTINGS.numberRange.min || Number(input.value) > SETTINGS.numberRange.max)) {
+      winningResultButton.disabled = true;
+      return;
+    }
   }
 
   const bonusValue = bonusInput.value.trim();
   if (bonusValue === "" || isNaN(Number(bonusValue))) {
+    winningResultButton.disabled = true;
+    return;
+  }
+
+  if ((Number(bonusValue) < SETTINGS.numberRange.min || Number(bonusValue) > SETTINGS.numberRange.max)) {
     winningResultButton.disabled = true;
     return;
   }
