@@ -2,7 +2,7 @@ import appendTextElement from "../utils/appendTextElement.js";
 import setPurchaseDetailVisibility from "../event/setPurchaseDetailVisibility.js";
 
 const showLottos = (lottos) => {
-  setPurchaseDetailVisibility("on");
+  setPurchaseDetailVisibility(true);
 
   updatePurchasedLottosUI(lottos);
 };

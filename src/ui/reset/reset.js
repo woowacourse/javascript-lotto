@@ -20,7 +20,7 @@ const reset = () => {
 
   resetWinningHistoryUI();
   purchasedLottos.textContent = "";
-  setPurchaseDetailVisibility("off");
+  setPurchaseDetailVisibility(false);
 };
 
 export default reset;
