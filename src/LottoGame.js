@@ -1,5 +1,4 @@
 import LottoGameManager from "./LottoGameManager.js";
-import Winning from './Model/Winning.js';
 
 class LottoGame {
   constructor(ui) {
@@ -9,7 +8,7 @@ class LottoGame {
 
   purchaseLotto(priceInput) {
     try {
-      this.lottoGameManager.purchaseLotto(priceInput); // ✅ 검증이 LottoGameManager에서 수행됨
+      this.lottoGameManager.purchaseLotto(priceInput);
 
       this.ui.updateLottoUI(this.lottoGameManager.getLottos());
       this.ui.updatePurchaseUI(true);
@@ -23,14 +22,12 @@ class LottoGame {
   showWinningResult() {
     try {
       const { winningNumbers, bonusNumber } = this.getAndValidateWinningNumbers();
-      const winning = new Winning(winningNumbers);
-      winning.validateBonusNumber(bonusNumber);
-      winning.setBonusNumber(bonusNumber);
 
-      winning.calculateRank(this.lottoGameManager.getLottos());
-      const prizeRate = winning.getCalculatedPrizeRate(this.lottoGameManager.getPrice());
+      this.lottoGameManager.setWinningNumbers(winningNumbers, bonusNumber);
 
-      this.ui.updateWinningUI(winning.rankHistory, prizeRate);
+      const { rankHistory, prizeRate } = this.lottoGameManager.getWinningResult();
+
+      this.ui.updateWinningUI(rankHistory, prizeRate);
       this.ui.showResultModal();
       this.ui.resetWinningBonusInput();
     } catch (error) {
