@@ -1,4 +1,4 @@
-import setPurchaseDetailVisibility from "../setPurchaseDetailVisibility.js";
+import setPurchaseDetailVisibility from "../../event/setPurchaseDetailVisibility.js";
 import resetWinningHistoryUI from "./resetWinningHistoryUI.js";
 import resetInput from "../../utils/resetInput.js";
 
