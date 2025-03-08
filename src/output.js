@@ -1,4 +1,4 @@
-import { RANK_INFO_TABLE } from "../constant/rank.js";
+import { RANK_INFO_TABLE } from "./constant/rank.js";
 
 const outputView = {
   printLottoCount(lottoCount) {

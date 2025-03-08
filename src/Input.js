@@ -1,4 +1,4 @@
-import Validator from "../Validator/validator.js";
+import Validator from "./Validator/validator.js";
 
 const inputView = {
   getPurchaseMoney() {

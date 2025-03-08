@@ -1,7 +1,7 @@
 import LottoCalculator from "./domain/lottoCalculator.js";
 import LottoMachine from "./domain/lottoMachine.js";
-import inputView from "./view/InputView.js";
-import outputView from "./view/outputView.js";
+import inputView from "./Input.js";
+import outputView from "./output.js";
 
 class App {
   #lottoCalculator;
