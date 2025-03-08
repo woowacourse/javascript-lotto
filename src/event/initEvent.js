@@ -1,18 +1,10 @@
 import addEvent from "../utils/addEvent.js";
 
 const initEvent = {
-  addBuyButtonEventListener(callback) {
+  addBuyLottosEventListener(callback) {
     addEvent({
-      name: ".price-input__button",
-      eventType: "click",
-      callback,
-    });
-  },
-
-  addPriceInputEventListener(callback) {
-    addEvent({
-      name: ".price-input__field",
-      eventType: "keydown",
+      name: ".price-input__controls",
+      eventType: "submit",
       callback,
     });
   },

@@ -14,9 +14,7 @@ class Game {
   #price;
 
   init() {
-    initEvent.addBuyButtonEventListener(this.handleLottoPurchase);
-
-    initEvent.addPriceInputEventListener(this.handlePriceInput);
+    initEvent.addBuyLottosEventListener(this.handleLottoPurchase);
 
     initEvent.addCheckResultButtonEventListener(this.handleClickCheckResult);
 
@@ -25,18 +23,14 @@ class Game {
     initEvent.addCloseButtonEventListener(this.handleClickCloseButton);
   }
 
-  handleLottoPurchase = () => {
+  handleLottoPurchase = (e) => {
+    e.preventDefault();
+
     this.buyLotto();
 
     if (this.#lottos === undefined) return;
 
     showLottos(this.#lottos);
-  };
-
-  handlePriceInput = (event) => {
-    if (event.key === "Enter") {
-      this.handleLottoPurchase();
-    }
   };
 
   handleClickCheckResult = () => {
