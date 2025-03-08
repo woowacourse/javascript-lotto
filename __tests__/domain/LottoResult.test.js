@@ -8,7 +8,10 @@ describe("LottoResult 클래스 테스트", () => {
       { RANK: 4, COUNT: 4, REWARD: 50_000, IS_BONUS: false },
     ];
     const price = 1000;
-    const lottoResult = new LottoResult(lottoStatus, price);
+    const lottoResult = new LottoResult({
+      matchedLottoStatus: lottoStatus,
+      price,
+    });
 
     //when
     const result = lottoResult.getWinningHistory();
@@ -25,7 +28,10 @@ describe("LottoResult 클래스 테스트", () => {
         { RANK: 4, COUNT: 4, REWARD: 50_000, IS_BONUS: false },
       ];
       const price = 1000;
-      const lottoResult = new LottoResult(lottoStatus, price);
+      const lottoResult = new LottoResult({
+        matchedLottoStatus: lottoStatus,
+        price,
+      });
 
       //when
       const profit = lottoResult.getTotalProfit();
@@ -38,7 +44,10 @@ describe("LottoResult 클래스 테스트", () => {
       //given
       const lottoStatus = [];
       const price = 1000;
-      const lottoResult = new LottoResult(lottoStatus, price);
+      const lottoResult = new LottoResult({
+        matchedLottoStatus: lottoStatus,
+        price,
+      });
 
       //when
       const profit = lottoResult.getTotalProfit();
@@ -52,7 +61,10 @@ describe("LottoResult 클래스 테스트", () => {
     //given
     const lottoStatus = [{ RANK: 5, COUNT: 3, REWARD: 5000, IS_BONUS: false }];
     const price = 8000;
-    const lottoResult = new LottoResult(lottoStatus, price);
+    const lottoResult = new LottoResult({
+      matchedLottoStatus: lottoStatus,
+      price,
+    });
 
     //when
     const rate = lottoResult.getRate();

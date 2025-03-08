@@ -4,7 +4,7 @@ class LottoResult {
   #matchedLottoStatus;
   #price;
   #winningHistory;
-  constructor(matchedLottoStatus, price) {
+  constructor({ matchedLottoStatus, price }) {
     this.#matchedLottoStatus = matchedLottoStatus;
     this.#price = price;
     this.#winningHistory = { ...WINNING_HISTORY };
