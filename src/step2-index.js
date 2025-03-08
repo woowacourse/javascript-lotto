@@ -4,16 +4,15 @@
  */
 import App from "./app.js";
 
-const app = new App();
-
 document.addEventListener("DOMContentLoaded", () => {
   const app = new App();
+  app.run();
+
   const purchaseButton = document.querySelector(".purchase-button");
   const resultButton = document.querySelector(".result-button");
 
   if (purchaseButton) {
     purchaseButton.addEventListener("click", () => {
-      app.run();
       document.querySelector(".lotto-list-container").style.display = "flex";
       document.querySelector(".number-input-form").style.display = "flex";
       document.querySelector(".result-button-container").style.display = "flex";
@@ -22,6 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (resultButton) {
     resultButton.addEventListener("click", () => {
+      app.calculateResult(app.lottos, app.purchaseMoney);
+      app.printResult();
+
       document.querySelector(".modal").style.display = "flex";
     });
   }

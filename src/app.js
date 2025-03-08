@@ -7,24 +7,19 @@ class App {
   #lottoCalculator;
 
   async run() {
-    const purchaseMoney = await inputView.getPurchaseMoney();
+    this.purchaseMoney = await inputView.getPurchaseMoney();
 
     const lottoMachine = new LottoMachine();
+    const lottoCount = lottoMachine.getLottoCount(this.purchaseMoney);
+    this.lottos = lottoMachine.drawLotto(lottoCount);
 
-    const lottoCount = lottoMachine.getLottoCount(purchaseMoney);
-    const lottos = lottoMachine.drawLotto(lottoCount);
     outputView.printLottoCount(lottoCount);
-    outputView.printLotto(lottos);
+    outputView.printLotto(this.lottos);
 
     const winningNumbers = await inputView.getWinningNumbers();
     const bonusNumber = await inputView.getBonusNumber(winningNumbers);
 
     this.#lottoCalculator = new LottoCalculator(winningNumbers, bonusNumber);
-
-    this.calculateResult(lottos, purchaseMoney);
-    this.printResult();
-
-    await this.restart();
   }
 
   calculateResult(lottos, purchaseMoney) {
