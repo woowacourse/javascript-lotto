@@ -16,7 +16,6 @@ export const showLottoTickets = (lottoArray) => {
   purchaseResult.appendChild(lottoList);
 };
 
-// 개별 로또 아이템 생성
 const createLottoListItem = (lotto) => {
   const listItem = document.createElement('li');
   listItem.classList.add('purchase-form__item');
