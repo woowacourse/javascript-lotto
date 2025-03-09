@@ -25,25 +25,25 @@ initPurchaseUI(lottoController);
 
 const checkAllValid = () => {
   for (const input of winningNumberInputs) {
-    const value = input.value.trim();
-    if (value === "" || isNaN(Number(value))) {
+    const value = input.value;
+    if (value === "") {
       winningResultButton.disabled = true;
       return;
     }
 
-    if ((Number(input.value) < SETTINGS.numberRange.min || Number(input.value) > SETTINGS.numberRange.max)) {
+    if (input.value < SETTINGS.numberRange.min || input.value > SETTINGS.numberRange.max) {
       winningResultButton.disabled = true;
       return;
     }
   }
 
-  const bonusValue = bonusInput.value.trim();
-  if (bonusValue === "" || isNaN(Number(bonusValue))) {
+  const bonusValue = bonusInput.value;
+  if (bonusValue === "") {
     winningResultButton.disabled = true;
     return;
   }
 
-  if ((Number(bonusValue) < SETTINGS.numberRange.min || Number(bonusValue) > SETTINGS.numberRange.max)) {
+  if (bonusValue < SETTINGS.numberRange.min || bonusValue > SETTINGS.numberRange.max) {
     winningResultButton.disabled = true;
     return;
   }

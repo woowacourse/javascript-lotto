@@ -83,6 +83,12 @@ main .purchase-amount-input {
     gap: 4px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 main label {
     font-weight: 400;
     font-size: 15px;
