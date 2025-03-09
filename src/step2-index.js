@@ -10,6 +10,8 @@ import { SETTINGS } from "./constants/index.js";
 
 const lottoController = new LottoController();
 
+initPurchaseUI(lottoController);
+
 const winningNumberInputs = [
   document.getElementById("winning-number-input-1"),
   document.getElementById("winning-number-input-2"),
@@ -21,7 +23,28 @@ const winningNumberInputs = [
 const bonusInput = document.getElementById("bonus-input");
 const winningResultButton = document.getElementById("winning-result-button");
 
-initPurchaseUI(lottoController);
+winningNumberInputs.forEach(input =>
+  input.setAttribute("maxlength", "2"));
+
+bonusInput.setAttribute("maxlength", "2");
+
+winningNumberInputs.forEach((input, index) => {
+  input.addEventListener("input", (event) => {
+    if (input.value.length === Number(input.getAttribute("maxlength"))) {
+      if (index < winningNumberInputs.length - 1) {
+        winningNumberInputs[index + 1].focus();
+      }
+    }
+  });
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Backspace" && input.value === "") {
+      if (index > 0) {
+        winningNumberInputs[index - 1].focus();
+      }
+    }
+  });
+});
 
 const checkAllValid = () => {
   for (const input of winningNumberInputs) {
