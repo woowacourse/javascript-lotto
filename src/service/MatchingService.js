@@ -1,4 +1,4 @@
-import { LOTTO_MATCH_CRITERIA } from "../constants/systemConstants.js";
+import { LOTTO_MATCH_CRITERIA } from '../constants/systemConstants.js';
 
 export const calculateMatchingResult = (winningLotto, lottoArray) => {
   return lottoArray.reduce(
@@ -13,6 +13,6 @@ export const calculateMatchingResult = (winningLotto, lottoArray) => {
 
       return { ...acc, [matchingCount]: acc[matchingCount] + 1 };
     },
-    { 3: 0, 4: 0, 5: 0, 6: 0, bonus: 0 }
+    { 3: 0, 4: 0, 5: 0, 6: 0, bonus: 0 },
   );
 };

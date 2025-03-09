@@ -9,7 +9,7 @@
     "sourceType": "module"
   },
   "extends": ["eslint:recommended"],
-  "plugins": ["import", "prettier"],
+  "plugins": ["import"],
   "rules": {
     "prefer-const": "error", // 변경되지 않는 변수는 const 사용
     "no-console": "warn", // console.log 사용 시 경고

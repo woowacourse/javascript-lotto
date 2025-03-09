@@ -1,4 +1,4 @@
-import SYSTEM_MESSAGE from "../constants/systemMessage.js";
+import SYSTEM_MESSAGE from '../constants/systemMessage.js';
 
 const OutputView = {
   print(message) {

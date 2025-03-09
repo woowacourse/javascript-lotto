@@ -12,27 +12,25 @@ import setupModalControl from './setupModalControl.js';
 import updateMatchingResult from './view/updateMatchingResult.js';
 
 export const submitWinningNumberForm = (lottoArray) => {
-  $('#winning-number-form').addEventListener('submit', (event) => {
+  $('.winning-form').addEventListener('submit', (event) => {
     event.preventDefault();
-    const winningLotto = handleWinningNumber(lottoArray);
+    const winningLotto = handleWinningNumber();
 
     const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
     const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
 
     updateMatchingResult(matchingResult, profitRate);
-    showModal($('#result-modal'));
+    showModal($('.modal'));
     setupModalControl();
   });
 };
 
 const handleWinningNumber = () => {
-  const errorUI = $('#winning-number-error');
+  const errorUI = $('.winning-form__error-message');
   resetError(errorUI);
 
   try {
     const { winningNumbers, bonusNumber } = getWinningNumbers();
-
-    // 당첨 번호 객체 생성
     const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
     return winningLotto;
   } catch (error) {
@@ -41,14 +39,22 @@ const handleWinningNumber = () => {
 };
 
 const getWinningNumbers = () => {
-  const winningNumberInput = Array.from($all('.winning-number-boxes input'))
+  const winningNumberInput = Array.from($all('.winning-form__numbers input'))
     .map((input) => input.value.trim())
-    .filter((value) => value !== '');
+    .filter((value) => value !== ''); // 값이 없는 경우 필터링됨
 
-  const bonusNumberInput = $('#bonus').value.trim();
+  const bonusNumberInput = $('.winning-form__bonus-number').value.trim();
+
+  if (winningNumberInput.length !== 6) {
+    throw new Error('🚨 6개의 당첨 번호를 입력해야 합니다.');
+  }
 
   validateWinningNumber(winningNumberInput);
   const winningNumbers = parseWinningNumber(winningNumberInput);
+
+  if (!bonusNumberInput) {
+    throw new Error('🚨 보너스 번호를 입력해야 합니다.');
+  }
 
   validateBonusNumber(winningNumbers, bonusNumberInput);
   const bonusNumber = parseBonusNumber(bonusNumberInput);

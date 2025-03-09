@@ -1,26 +1,34 @@
-#winning-number-form {
-  display: none;
+.winning-form > button {
+  width: 100%;
+  background-color: var(--primary);
+  color: var(--gray-1);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.winning-form {
+  display: flex;
   flex-direction: column;
 }
 
-.winning-number-container {
+.winning-form__container {
   display: flex;
   justify-content: space-between;
 }
 
-.winning-number-group,
-.bonus-number-group {
+.winning-form__group,
+.winning-form__bonus-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.winning-number-boxes {
+.winning-form__numbers {
   display: flex;
   gap: 8px;
 }
 
-.number-box {
+.winning-form__number-box {
   width: 40px;
   height: 40px;
   font-size: 18px;
@@ -29,16 +37,8 @@
   border-radius: 4px;
 }
 
-.bonus-box {
+.winning-form__bonus-number {
   align-self: flex-end;
-}
-
-#winning-number-form > button {
-  width: 100%;
-  background-color: var(--primary);
-  color: var(--gray-1);
-  border-radius: 4px;
-  padding: 12px;
 }
 
 .spacing-4 {

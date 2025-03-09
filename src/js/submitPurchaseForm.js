@@ -10,11 +10,11 @@ import showWinningNumberForm from './view/showWinningNumberForm.js';
 
 export const submitPurchaseForm = () => {
   return new Promise((resolve) => {
-    $('#purchase-form').addEventListener('submit', async (event) => {
+    $('.purchase-form').addEventListener('submit', async (event) => {
       event.preventDefault();
       const { lottoArray, lottoCount } = handleLottoPurchase();
 
-      disableButton($('#purchase-form button'));
+      disableButton($('.purchase-form__button'));
 
       showLottoCount(lottoCount);
       showLottoTickets(lottoArray);
@@ -27,7 +27,7 @@ export const submitPurchaseForm = () => {
 
 const handleLottoPurchase = () => {
   const priceInput = $('#price');
-  const errorUI = $('#price-error');
+  const errorUI = $('.purchase-form__error-message');
   resetError(errorUI);
 
   try {
