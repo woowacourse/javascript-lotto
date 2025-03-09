@@ -5,6 +5,7 @@
 import { SETTINGS } from "./constants/index.js";
 import LottoController from "./controller/LottoController.js";
 import purchaseAmountValidator from "./validators/purchaseAmountValidator.js";
+import { showModal, updateModalContent, restartModal } from "./view/modalView.js";
 
 const lottoController = new LottoController();
 
@@ -23,10 +24,6 @@ const winningNumberInputs = [
 ];
 const bonusInput = document.getElementById("bonus-input");
 const winningResultButton = document.getElementById("winning-result-button");
-
-const modal = document.querySelector("dialog");
-const modalCloseButton = document.getElementById("modal-close-button");
-const modalRestartButton = document.getElementById("restart-button");
 
 purchaseButton.addEventListener("click", () => {
   try {
@@ -106,43 +103,20 @@ winningResultButton.addEventListener("click", () => {
     lottoController.matchLottoNumbers(winningNumbers, bonusNumber);
     const results = lottoController.calculateAndDisplayResults();
     updateModalContent(results);
-    modal.showModal();
-    modal.showModal();
+    showModal();
   } catch (error) {
     alert(error.message);
     winningResultButton.disabled = true;
   }
 });
 
-const updateModalContent = (results) => {
-  const resultRows = document.querySelectorAll(".modal-result-content");
-
-  resultRows[0].children[2].textContent = `${results.rankCounts.fifth}개`;
-  resultRows[1].children[2].textContent = `${results.rankCounts.fourth}개`;
-  resultRows[2].children[2].textContent = `${results.rankCounts.third}개`;
-  resultRows[3].children[2].textContent = `${results.rankCounts.second}개`;
-  resultRows[4].children[2].textContent = `${results.rankCounts.first}개`;
-
-  const winningResultP = document.querySelector(".winning-result p");
-  winningResultP.textContent = `당신의 총 수익률은 ${results.profitRate}%입니다.`;
-};
-
-modal.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    modal.close();
-  }
-});
-
-modalCloseButton.addEventListener("click", () => {
-  modal.close();
-});
-
-modalRestartButton.addEventListener("click", () => {
-  modal.close();
+const resetModalUI = () => {
   document.getElementById("winning-number-and-bonus").style.visibility = "hidden";
   purchaseInput.value = "";
   lottoCountMessage.textContent = "";
   lottoContainer.innerHTML = "";
   winningNumberInputs.forEach((input) => input.value = "");
   bonusInput.value = "";
-});
+};
+
+restartModal(resetModalUI);
