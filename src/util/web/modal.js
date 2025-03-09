@@ -1,4 +1,6 @@
+import { enableButton } from './buttonState.js';
 import { lockScroll, unlockScroll } from './scroll.js';
+import { $, $all } from './selector.js';
 
 const showModal = (modal) => {
   modal.style.display = 'flex';
@@ -12,7 +14,16 @@ const closeModal = (modal) => {
 
 const restartGame = (modal) => {
   closeModal(modal);
-  location.reload();
+  resetGameState();
+};
+
+const resetGameState = () => {
+  $all('form').forEach((form) => form.reset());
+
+  $('.purchase-form__result').innerHTML = '';
+
+  const purchaseButton = $('.purchase-form__button');
+  enableButton(purchaseButton);
 };
 
 export { showModal, closeModal, restartGame };

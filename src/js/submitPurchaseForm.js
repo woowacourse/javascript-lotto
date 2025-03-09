@@ -2,7 +2,7 @@ import { parsePrice } from '../input/parseInput.js';
 import { purchaseLottos } from '../service/PurchaseService.js';
 import validatePrice from '../validation/validatePrice.js';
 import { resetError, showError } from '../util/web/errorHandler.js';
-import disableButton from '../util/web/disabledButton.js';
+import { disableButton } from '../util/web/buttonState.js';
 import { $ } from '../util/web/selector.js';
 import { showLottoCount } from './view/showLottoCount.js';
 import { showLottoTickets } from './view/showLottoTickets.js';
