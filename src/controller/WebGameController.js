@@ -8,11 +8,11 @@ import { disableButton } from '../util/web/buttonState.js';
 import { showModal } from '../util/web/modal.js';
 import { $ } from '../util/web/selector.js';
 import validatePrice from '../validation/validatePrice.js';
-import { resetError, showError } from '../view/web/errorHandler.js';
+import { resetError, showError } from '../view/web/errorUI.js';
 import { getPriceInput, getWinningNumbers } from '../view/web/InputView.js';
-import { showWinningNumberForm, updatePurchaseView } from '../view/web/OutputView.js';
+import { showWinningNumberForm, updatePurchaseView, updateMatchingResult } from '../view/web/OutputView.js';
 import { resetUI } from '../view/web/resetUI.js';
-import updateMatchingResult from '../view/web/updateMatchingResult.js';
+
 class WebGameController {
   constructor() {
     this.lottoArray = [];
@@ -29,9 +29,9 @@ class WebGameController {
       this.lottoArray = lottoArray;
 
       updatePurchaseView(lottoCount, lottoArray);
-      disableButton('.purchase-form__button');
+      disableButton($('.purchase - form__button'));
     } catch (error) {
-      showError('.purchase-form__error-message', error.message);
+      showError($('.purchase-form__error-message'), error.message);
       showWinningNumberForm(false);
     }
   }

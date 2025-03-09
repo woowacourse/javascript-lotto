@@ -7,6 +7,6 @@ export const resetUI = () => {
 
   $('.purchase-form__result').innerHTML = '';
 
-  enableButton('.purchase-form__button');
+  enableButton($('.purchase-form__button'));
   closeModal($('.modal'));
 };

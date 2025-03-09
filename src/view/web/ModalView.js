@@ -1,5 +1,14 @@
-import { $ } from './util/web/selector.js';
-import { closeModal } from './util/web/modal.js';
+import { lockScroll, unlockScroll } from './scroll.js';
+
+const showModal = (modal) => {
+  modal.style.display = 'flex';
+  lockScroll();
+};
+
+const closeModal = (modal) => {
+  modal.style.display = 'none';
+  unlockScroll();
+};
 
 const setupModalControl = () => {
   const modal = $('.modal');
@@ -16,4 +25,4 @@ const setupModalControl = () => {
   });
 };
 
-export default setupModalControl;
+export { showModal, closeModal, setupModalControl };
