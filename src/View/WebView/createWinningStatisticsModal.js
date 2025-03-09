@@ -30,13 +30,7 @@ const createLottoResultList = (lottoResult) => {
     ],
   };
 
-  const keys = [
-    'FIFTH_PRIZE',
-    'FOURTH_PRIZE',
-    'THIRD_PRIZE',
-    'SECOND_PRIZE',
-    'FIRST_PRIZE',
-  ];
+  const keys = Object.keys(message);
 
   const lottoResultListHeader = {
     tag: 'li',

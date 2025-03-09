@@ -24,13 +24,8 @@ export const outputView = {
       FOURTH_PRIZE: `4개 일치 (${LOTTO_PRIZE_MONEY_DEFINITION.FOURTH_PRIZE.toLocaleString()}원) - ${lottoResult.FOURTH_PRIZE}개`,
       FIFTH_PRIZE: `3개 일치 (${LOTTO_PRIZE_MONEY_DEFINITION.FIFTH_PRIZE.toLocaleString()}원) - ${lottoResult.FIFTH_PRIZE}개`,
     };
-    const keys = [
-      'FIFTH_PRIZE',
-      'FOURTH_PRIZE',
-      'THIRD_PRIZE',
-      'SECOND_PRIZE',
-      'FIRST_PRIZE',
-    ];
+
+    const keys = Object.keys(message);
 
     keys.forEach((key) => {
       console.log(message[key]);
