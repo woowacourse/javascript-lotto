@@ -1,12 +1,12 @@
-import { getRetryInput, getBonusNumber, getPrice, getWinningNumber } from "../service/InputService.js";
-import { calculateProfitRate } from "../service/ProfitService.js";
-import { purchaseLottos } from "../service/PurchaseService.js";
-import { calculateMatchingResult } from "../service/MatchingService.js";
-import WinningLotto from "../domain/WinningLotto.js";
-import retryOnError from "../util/retryOnError.js";
-import OutputView from "../view/OutputView.js";
-import SYSTEM_MESSAGE from "../constants/systemMessage.js";
-import Lotto from "../domain/Lotto.js";
+import { getRetryInput, getBonusNumber, getPrice, getWinningNumber } from '../service/InputService.js';
+import { calculateProfitRate } from '../service/ProfitService.js';
+import { purchaseLottos } from '../service/PurchaseService.js';
+import { calculateMatchingResult } from '../service/MatchingService.js';
+import WinningLotto from '../domain/WinningLotto.js';
+import retryOnError from '../util/retryOnError.js';
+import OutputView from '../view/OutputView.js';
+import SYSTEM_MESSAGE from '../constants/systemMessage.js';
+import Lotto from '../domain/Lotto.js';
 
 export const runLottoGame = async () => {
   while (true) {
@@ -44,5 +44,5 @@ const processLottoResults = (winningLotto, lottoArray) => {
 
 const askUserToRetry = async () => {
   const yesOrNo = await retryOnError(getRetryInput, OutputView.printError);
-  return yesOrNo === "y";
+  return yesOrNo === 'y';
 };

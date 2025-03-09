@@ -12,6 +12,6 @@ const OutputView = {
   },
   printMatchingResult(matchingResult) {
     OutputView.print(SYSTEM_MESSAGE.WINNING_STATISTICS(matchingResult));
-  },
+  }
 };
 export default OutputView;

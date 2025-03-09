@@ -1,3 +1,3 @@
-import { runLottoGame } from "./controller/GameController.js";
+import { runLottoGame } from './controller/GameController.js';
 
 await runLottoGame();

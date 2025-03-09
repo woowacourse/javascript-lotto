@@ -1,5 +1,5 @@
-import { BONUS_NUMBER_ERROR_MESSAGE } from "../constants/errorMessage.js";
-import validationCondition from "../validation/validateCondition.js";
+import { BONUS_NUMBER_ERROR_MESSAGE } from '../constants/errorMessage.js';
+import validationCondition from '../validation/validateCondition.js';
 
 class WinningLotto {
   #lotto;

@@ -27,7 +27,7 @@ const checkDuplicatedWinningNumber = (winningNumbers) => (bonusNumberInput) =>
 const validateBonusNumber = (winningNumbers, bonusNumberInput) => {
   runValidators(
     [checkEmpty, checkIsInteger, checkRange, checkDuplicatedWinningNumber(winningNumbers)],
-    bonusNumberInput,
+    bonusNumberInput
   );
 };
 

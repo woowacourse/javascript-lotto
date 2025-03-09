@@ -13,6 +13,6 @@ export const calculateMatchingResult = (winningLotto, lottoArray) => {
 
       return { ...acc, [matchingCount]: acc[matchingCount] + 1 };
     },
-    { 3: 0, 4: 0, 5: 0, 6: 0, bonus: 0 },
+    { 3: 0, 4: 0, 5: 0, 6: 0, bonus: 0 }
   );
 };

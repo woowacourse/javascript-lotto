@@ -1,7 +1,10 @@
-import { submitPurchaseForm } from './js/submitPurchaseForm.js';
-import { submitWinningNumberForm } from './js/submitWinningNumberForm.js';
-document.addEventListener('DOMContentLoaded', async () => {
-  const lottoArray = await submitPurchaseForm();
-  console.log(lottoArray);
-  submitWinningNumberForm(lottoArray);
+import WebGameController from './controller/WebGameController.js';
+import { $ } from './util/web/selector.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const WebGameController = new WebGameController();
+
+  // $('#purchase-form').addEventListener('submit', (event) => WebGameController.handlePurchase(event));
+  // $('#winning-number-form').addEventListener('submit', (event) => WebGameController.handleWinningSubmit(event));
+  // $('#restart-button').addEventListener('click', () => WebGameController.handleRestartGame());
 });

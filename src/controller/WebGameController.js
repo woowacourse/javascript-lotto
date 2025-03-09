@@ -1,13 +1,9 @@
-import { getPriceInput, getWinningNumbers, resetForm } from '../view/WebInputView.js';
-import { showLottoCount, showLottoTickets } from '../view/WebOutputView.js';
-import { showModal, closeModal } from '../view/WebModalView.js';
-import { purchaseLottos } from '../service/PurchaseService.js';
 import { calculateMatchingResult } from '../service/MatchingService.js';
 import { calculateProfitRate } from '../service/ProfitService.js';
+import { purchaseLottos } from '../service/PurchaseService.js';
 import validatePrice from '../validation/validatePrice.js';
-import { enableAllButtons, disableButton } from '../util/buttonState.js';
 
-class GameController {
+class WebGameController {
   constructor() {
     this.lottoArray = [];
   }
@@ -56,4 +52,4 @@ class GameController {
   }
 }
 
-export default GameController;
+export default WebGameController;

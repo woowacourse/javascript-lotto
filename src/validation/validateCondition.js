@@ -1,11 +1,11 @@
-import { LOTTO_PRICE } from "../constants/systemConstants.js";
-import { LOTTO_NUMBERS } from "../constants/systemConstants.js";
+import { LOTTO_PRICE } from '../constants/systemConstants.js';
+import { LOTTO_NUMBERS } from '../constants/systemConstants.js';
 const validationCondition = {
   isInteger(input) {
     return Number.isInteger(Number(input));
   },
   isEmpty(input) {
-    return input === "" || input.length === 0;
+    return input === '' || input.length === 0;
   },
   isUnder(input) {
     return Number(input) < LOTTO_PRICE;
@@ -28,7 +28,7 @@ const validationCondition = {
   },
   isBonusRangeValid(bonusNumber) {
     return Number(bonusNumber) <= LOTTO_NUMBERS.MAX && Number(bonusNumber) >= LOTTO_NUMBERS.MIN;
-  },
+  }
 };
 
 export default validationCondition;

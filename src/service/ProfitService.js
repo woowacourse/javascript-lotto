@@ -1,4 +1,4 @@
-import { LOTTO_PRIZE, LOTTO_PRICE } from "../constants/systemConstants.js";
+import { LOTTO_PRIZE, LOTTO_PRICE } from '../constants/systemConstants.js';
 
 const calculatePrizeMoney = (matchingCount) => {
   return Object.keys(matchingCount).reduce((sum, count) => sum + matchingCount[count] * (LOTTO_PRIZE[count] || 0), 0);

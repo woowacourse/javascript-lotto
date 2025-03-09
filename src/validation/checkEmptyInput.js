@@ -1,4 +1,4 @@
-import validationCondition from "./validateCondition.js";
+import validationCondition from './validateCondition.js';
 
 const checkEmptyInput = (input, errorMessage) => {
   if (validationCondition.isEmpty(input)) {

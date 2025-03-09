@@ -1,6 +1,6 @@
-import { LOTTO_NUMBERS_ERROR_MESSAGE } from "../constants/errorMessage.js";
-import { LOTTO_NUMBERS } from "../constants/systemConstants.js";
-import validationCondition from "../validation/validateCondition.js";
+import { LOTTO_NUMBERS_ERROR_MESSAGE } from '../constants/errorMessage.js';
+import { LOTTO_NUMBERS } from '../constants/systemConstants.js';
+import validationCondition from '../validation/validateCondition.js';
 
 class Lotto {
   #numbers;

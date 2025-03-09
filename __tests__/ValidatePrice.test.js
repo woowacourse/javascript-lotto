@@ -1,13 +1,13 @@
-import { PRICE_ERROR_MESSAGE } from "../src/constants/errorMessage.js";
-import validatePrice from "../src/validation/validatePrice.js";
-import { LOTTO_PRICE } from "../src/constants/systemConstants.js";
+import { PRICE_ERROR_MESSAGE } from '../src/constants/errorMessage.js';
+import validatePrice from '../src/validation/validatePrice.js';
+import { LOTTO_PRICE } from '../src/constants/systemConstants.js';
 
-describe("구입금액에 대한 유효성 검사를 진행한다", () => {
-  test("빈 값을 입력할 경우 에러 발생", () => {
-    expect(() => validatePrice("")).toThrow(PRICE_ERROR_MESSAGE.EMPTY);
+describe('구입금액에 대한 유효성 검사를 진행한다', () => {
+  test('빈 값을 입력할 경우 에러 발생', () => {
+    expect(() => validatePrice('')).toThrow(PRICE_ERROR_MESSAGE.EMPTY);
   });
 
-  test.each(["a", "메타", "블루"])("숫자가 아닐 때 에러 발생", (priceInput) => {
+  test.each(['a', '메타', '블루'])('숫자가 아닐 때 에러 발생', (priceInput) => {
     expect(() => validatePrice(priceInput)).toThrow(PRICE_ERROR_MESSAGE.NUMBER);
   });
 
