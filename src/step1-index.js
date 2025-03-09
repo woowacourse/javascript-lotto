@@ -1,4 +1,4 @@
-import App from './App.js';
+import ConsoleApp from './ConsoleApp.js';
 
-const app = new App();
-await app.run();
+const consoleApp = new ConsoleApp();
+await consoleApp.run();
