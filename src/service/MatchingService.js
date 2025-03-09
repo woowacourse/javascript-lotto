@@ -1,6 +1,7 @@
 import { LOTTO_MATCH_CRITERIA } from '../constants/systemConstants.js';
 
 export const calculateMatchingResult = (winningLotto, lottoArray) => {
+  console.log(winningLotto, lottoArray);
   return lottoArray.reduce(
     (acc, lotto) => {
       const matchingCount = lotto.match(winningLotto).length;

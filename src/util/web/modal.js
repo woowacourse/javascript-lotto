@@ -17,13 +17,4 @@ const restartGame = (modal) => {
   resetGameState();
 };
 
-const resetGameState = () => {
-  $all('form').forEach((form) => form.reset());
-
-  $('.purchase-form__result').innerHTML = '';
-
-  const purchaseButton = $('.purchase-form__button');
-  enableButton(purchaseButton);
-};
-
-export { showModal, closeModal, restartGame };
+export { showModal, closeModal };

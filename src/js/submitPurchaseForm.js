@@ -1,7 +1,7 @@
 import { parsePrice } from '../input/parseInput.js';
 import { purchaseLottos } from '../service/PurchaseService.js';
 import validatePrice from '../validation/validatePrice.js';
-import { resetError, showError } from '../util/web/errorHandler.js';
+import { resetError, showError } from '../view/web/errorHandler.js';
 import { disableButton } from '../util/web/buttonState.js';
 import { $ } from '../util/web/selector.js';
 import { showLottoCount } from './view/showLottoCount.js';
@@ -14,7 +14,7 @@ export const submitPurchaseForm = () => {
       event.preventDefault();
       const { lottoArray, lottoCount } = handleLottoPurchase();
 
-      disableButton($('.purchase-form__button'));
+      disableButton('.purchase-form__button');
 
       showLottoCount(lottoCount);
       showLottoTickets(lottoArray);

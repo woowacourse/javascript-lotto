@@ -1,6 +1,15 @@
+import SYSTEM_MESSAGE from '../../constants/systemMessage.js';
 import { $ } from '../../util/web/selector.js';
 
-export const showLottoTickets = (lottoArray) => {
+const showLottoCount = (lottoCount) => {
+  const purchaseResult = $('.purchase-form__result');
+  const lottoCountUI = document.createElement('p');
+  lottoCountUI.textContent = SYSTEM_MESSAGE.COUNT(lottoCount);
+
+  purchaseResult.appendChild(lottoCountUI);
+};
+
+const showLottoTickets = (lottoArray) => {
   const purchaseResult = $('.purchase-form__result');
 
   const lottoList = document.createElement('ul');
@@ -32,4 +41,14 @@ const createLottoListItem = (lotto) => {
   listItem.appendChild(ticketIcon);
   listItem.appendChild(numbersSpan);
   return listItem;
+};
+
+export const updatePurchaseView = (lottoCount, lottoArray) => {
+  showLottoCount(lottoCount);
+  showLottoTickets(lottoArray);
+};
+
+export const showWinningNumberForm = (isValid) => {
+  const winningNumberForm = $('.winning-form');
+  winningNumberForm.style.display = isValid ? 'block' : 'none';
 };

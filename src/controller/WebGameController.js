@@ -1,8 +1,18 @@
+import Lotto from '../domain/Lotto.js';
+import WinningLotto from '../domain/WinningLotto.js';
+import setupModalControl from '../js/setupModalControl.js';
 import { calculateMatchingResult } from '../service/MatchingService.js';
 import { calculateProfitRate } from '../service/ProfitService.js';
 import { purchaseLottos } from '../service/PurchaseService.js';
+import { disableButton } from '../util/web/buttonState.js';
+import { showModal } from '../util/web/modal.js';
+import { $ } from '../util/web/selector.js';
 import validatePrice from '../validation/validatePrice.js';
-
+import { showError } from '../view/web/errorHandler.js';
+import { getPriceInput, getWinningNumbers } from '../view/web/InputView.js';
+import { showWinningNumberForm, updatePurchaseView } from '../view/web/OutputView.js';
+import { resetUI } from '../view/web/resetUI.js';
+import updateMatchingResult from '../view/web/updateMatchingResult.js';
 class WebGameController {
   constructor() {
     this.lottoArray = [];
@@ -18,37 +28,32 @@ class WebGameController {
       const { lottoArray, lottoCount } = purchaseLottos(priceValue);
       this.lottoArray = lottoArray;
 
-      this.updatePurchaseView(lottoCount, lottoArray);
-      disableButton(document.querySelector('.purchase-form__button'));
+      updatePurchaseView(lottoCount, lottoArray);
+      disableButton('.purchase-form__button');
     } catch (error) {
-      console.error(`❌ 오류 발생: ${error.message}`);
+      showError('.purchase-form__error-message', error.message);
+      showWinningNumberForm(false);
     }
   }
 
   handleWinningSubmit(event) {
     event.preventDefault();
 
-    try {
-      const { winningNumbers, bonusNumber } = getWinningNumbers();
-      const matchingResult = calculateMatchingResult(winningNumbers, bonusNumber, this.lottoArray);
-      const profitRate = calculateProfitRate(matchingResult, this.lottoArray.length);
+    const { winningNumbers, bonusNumber } = getWinningNumbers();
 
-      showModal(matchingResult, profitRate);
-    } catch (error) {
-      console.error(`❌ 오류 발생: ${error.message}`);
-    }
+    const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+
+    const matchingResult = calculateMatchingResult(winningLotto, this.lottoArray);
+    const profitRate = calculateProfitRate(matchingResult, this.lottoArray.length);
+
+    updateMatchingResult(matchingResult, profitRate);
+    showModal($('.modal'));
+    setupModalControl();
   }
 
   handleRestartGame() {
-    resetForm();
+    resetUI();
     this.lottoArray = [];
-    enableAllButtons();
-    closeModal();
-  }
-
-  updatePurchaseView(lottoCount, lottoArray) {
-    showLottoCount(lottoCount);
-    showLottoTickets(lottoArray);
   }
 }
 

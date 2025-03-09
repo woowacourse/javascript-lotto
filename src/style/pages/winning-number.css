@@ -38,6 +38,12 @@
 }
 
 .winning-form__bonus-number {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   align-self: flex-end;
 }
 
