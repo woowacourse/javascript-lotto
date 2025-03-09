@@ -1,6 +1,6 @@
 import Lotto from '../domain/Lotto.js';
 import WinningLotto from '../domain/WinningLotto.js';
-import setupModalControl from '../js/setupModalControl.js';
+import setupModalControl from '../setupModalControl.js';
 import { calculateMatchingResult } from '../service/MatchingService.js';
 import { calculateProfitRate } from '../service/ProfitService.js';
 import { purchaseLottos } from '../service/PurchaseService.js';
@@ -8,7 +8,7 @@ import { disableButton } from '../util/web/buttonState.js';
 import { showModal } from '../util/web/modal.js';
 import { $ } from '../util/web/selector.js';
 import validatePrice from '../validation/validatePrice.js';
-import { showError } from '../view/web/errorHandler.js';
+import { resetError, showError } from '../view/web/errorHandler.js';
 import { getPriceInput, getWinningNumbers } from '../view/web/InputView.js';
 import { showWinningNumberForm, updatePurchaseView } from '../view/web/OutputView.js';
 import { resetUI } from '../view/web/resetUI.js';
@@ -39,16 +39,20 @@ class WebGameController {
   handleWinningSubmit(event) {
     event.preventDefault();
 
-    const { winningNumbers, bonusNumber } = getWinningNumbers();
+    try {
+      resetError('.winning-form__error-message');
+      const { winningNumbers, bonusNumber } = getWinningNumbers();
 
-    const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+      const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+      const matchingResult = calculateMatchingResult(winningLotto, this.lottoArray);
+      const profitRate = calculateProfitRate(matchingResult, this.lottoArray.length);
 
-    const matchingResult = calculateMatchingResult(winningLotto, this.lottoArray);
-    const profitRate = calculateProfitRate(matchingResult, this.lottoArray.length);
-
-    updateMatchingResult(matchingResult, profitRate);
-    showModal($('.modal'));
-    setupModalControl();
+      updateMatchingResult(matchingResult, profitRate);
+      showModal($('.modal'));
+      setupModalControl();
+    } catch (error) {
+      showError('.winning-form__error-message', error.message);
+    }
   }
 
   handleRestartGame() {

@@ -1,5 +1,5 @@
-import { $ } from '../util/web/selector.js';
-import { closeModal } from '../util/web/modal.js';
+import { $ } from './util/web/selector.js';
+import { closeModal } from './util/web/modal.js';
 
 const setupModalControl = () => {
   const modal = $('.modal');
