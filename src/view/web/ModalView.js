@@ -1,3 +1,4 @@
+import { $ } from '../../util/web/selector.js';
 import { lockScroll, unlockScroll } from './scroll.js';
 
 const showModal = (modal) => {

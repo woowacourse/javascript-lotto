@@ -3,11 +3,11 @@ import { $, $all } from '../../util/web/selector.js';
 export const getPriceInput = () => $('#price').value.trim();
 
 export const getWinningNumbers = () => {
-  const winningNumbers = $all('.winning-form__number-box').map((input) => input.value.trim());
+  const winningNumberInput = $all('.winning-form__number-box').map((input) => input.value.trim());
 
-  const bonusNumber = $('#bonus').value.trim();
+  const bonusNumberInput = $('#bonus').value.trim();
 
-  return { winningNumbers, bonusNumber };
+  return { winningNumberInput, bonusNumberInput };
 };
 
 export const resetForm = () => {

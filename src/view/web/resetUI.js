@@ -1,6 +1,6 @@
-import { enableButton } from '../../util/web/buttonState.js';
-import { closeModal } from '../../util/web/modal.js';
-import { $, $all } from '../../util/web/selector.js';
+import { $all, $ } from '../../util/web/selector.js';
+import { enableButton } from './buttonState.js';
+import { closeModal } from './ModalView.js';
 
 export const resetUI = () => {
   $all('form').forEach((form) => form.reset());
