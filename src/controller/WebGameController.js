@@ -22,28 +22,47 @@ class WebGameController {
 
   handlePurchase(event) {
     event.preventDefault();
+    resetError($('.purchase-form__error-message'));
 
+    const price = this.getValidatedPrice();
+    if (!price) return;
+
+    showWinningNumberForm(true);
+    this.updateLottoState(price);
+  }
+
+  getValidatedPrice() {
     try {
       const priceValue = getPriceInput();
       validatePrice(priceValue);
-      const price = parsePrice(priceValue);
-
-      const { lottoArray, lottoCount } = purchaseLottos(price);
-      this.lottoArray = lottoArray;
-
-      updatePurchaseView(lottoCount, lottoArray);
-      disableButton($('.purchase-form__button'));
+      return parsePrice(priceValue);
     } catch (error) {
       showError($('.purchase-form__error-message'), error.message);
       showWinningNumberForm(false);
+      return null;
     }
+  }
+
+  updateLottoState(price) {
+    const { lottoArray, lottoCount } = purchaseLottos(price);
+    this.lottoArray = lottoArray;
+
+    updatePurchaseView(lottoCount, lottoArray);
+    disableButton($('.purchase-form__button'));
   }
 
   handleWinningSubmit(event) {
     event.preventDefault();
+    resetError($('.winning-form__error-message'));
 
+    const { winningNumbers, bonusNumber } = this.getValidatedWinningNumber();
+    if (!winningNumbers || !bonusNumber) return;
+
+    this.updateWinningState(winningNumbers, bonusNumber);
+  }
+
+  getValidatedWinningNumber() {
     try {
-      resetError($('.winning-form__error-message'));
       const { winningNumberInput, bonusNumberInput } = getWinningNumbers();
 
       validateWinningNumber(winningNumberInput);
@@ -51,16 +70,22 @@ class WebGameController {
 
       validateBonusNumber(winningNumbers, bonusNumberInput);
       const bonusNumber = parseBonusNumber(bonusNumberInput);
-      const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
-      const matchingResult = calculateMatchingResult(winningLotto, this.lottoArray);
-      const profitRate = calculateProfitRate(matchingResult, this.lottoArray.length);
 
-      updateMatchingResult(matchingResult, profitRate);
-      showModal($('.modal'));
-      setupModalControl();
+      return { winningNumbers, bonusNumber };
     } catch (error) {
       showError($('.winning-form__error-message'), error.message);
+      return null;
     }
+  }
+
+  updateWinningState(winningNumbers, bonusNumber) {
+    const winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+    const matchingResult = calculateMatchingResult(winningLotto, this.lottoArray);
+    const profitRate = calculateProfitRate(matchingResult, this.lottoArray.length);
+
+    updateMatchingResult(matchingResult, profitRate);
+    showModal($('.modal'));
+    setupModalControl();
   }
 
   handleRestartGame() {
