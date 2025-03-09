@@ -1,8 +1,6 @@
 import { convertFormat } from './View/utils.js';
 import Lotto from './Domain/Model/Lotto.js';
-import LottoMachine from './Domain/Model/LottoMachine.js';
 import WinningLotto from './Domain/Model/WinningLotto.js';
-import LottoManager from './Domain/Model/LottoManager.js';
 
 import { validatePurchaseAmount } from './View/Validation/purchaseAmount.js';
 import {
@@ -10,7 +8,6 @@ import {
   validateWinningNumbers,
 } from './View/Validation/winningNumbers.js';
 import { validateBonusNumber } from './View/Validation/bonusNumber.js';
-
 import { validateEmptySpace } from './View/Validation/util.js';
 
 /** STEP2 By Web */
@@ -19,24 +16,10 @@ import { createWinningLottoForm } from './View/WebView/createWinningLottoForm.js
 import { createLottoListDisplay } from './View/WebView/createLottoListDisplay.js';
 import { createWinningStatisticsModal } from './View/WebView/createWinningStatisticsModal.js';
 
-export const buyLottos = (purchaseAmount) => {
-  const lottoMachine = new LottoMachine();
-  const lottoCounts = lottoMachine.purchaseLotto(purchaseAmount);
-  lottoMachine.makeLottoList(lottoCounts);
-  const lottoNumbersList = lottoMachine.getLottoNumbersList();
-  const lottoList = lottoMachine.getLottoList();
-  return { lottoCounts, lottoNumbersList, lottoList };
-};
+import { buyLottos } from './Domain/buyLottos.js';
+import { getLottoResult } from './Domain/getLottoResult.js';
 
-export const getLottoResult = (winningLotto, lottoList) => {
-  const lottoManager = new LottoManager(winningLotto, lottoList);
-  const lottoResult = lottoManager.compareWinningLotto();
-  const totalLottoPrize = lottoManager.calculatePrize(lottoResult);
-  const lottoProfit = lottoManager.calculateProfit(totalLottoPrize);
-  return { lottoResult, lottoProfit };
-};
-
-class App {
+class WebApp {
   #state = {};
 
   #eventHandler = {};
@@ -139,7 +122,7 @@ class App {
     }
 
     const { lottoCounts, lottoNumbersList, lottoList } =
-      this.buyLottos(purchaseAmountInput);
+      buyLottos(purchaseAmountInput);
 
     this.#state = { lottoList };
 
@@ -201,7 +184,7 @@ class App {
       bonusNumberInput,
     );
 
-    const { lottoResult, lottoProfit } = this.getLottoResult(
+    const { lottoResult, lottoProfit } = getLottoResult(
       winningLotto,
       lottoList,
     );
@@ -244,4 +227,4 @@ class App {
     this.runWeb();
   }
 }
-export default App;
+export default WebApp;

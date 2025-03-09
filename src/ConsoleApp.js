@@ -17,7 +17,8 @@ import { validateBonusNumber } from './View/Validation/bonusNumber.js';
 import { validateYorN } from './View/Validation/retry.js';
 import { validateEmptySpace } from './View/Validation/util.js';
 
-import { buyLottos, getLottoResult } from './App.js';
+import { buyLottos } from './Domain/buyLottos.js';
+import { getLottoResult } from './Domain/getLottoResult.js';
 
 class ConsoleApp {
   async #initializePurchaseAmount() {

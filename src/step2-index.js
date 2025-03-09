@@ -1,4 +1,4 @@
-import App from './App.js';
+import WebApp from './WebApp.js';
 
-const app = new App();
-app.runWeb();
+const webApp = new WebApp();
+webApp.runWeb();
