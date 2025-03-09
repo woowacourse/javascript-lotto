@@ -1,4 +1,4 @@
-import { $ } from '../../util/selector.js';
+import { $ } from '../../util/web/selector.js';
 
 const showWinningNumberForm = (isValid) => {
   const winningNumberForm = $('.winning-form');

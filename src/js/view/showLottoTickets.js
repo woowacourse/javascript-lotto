@@ -1,4 +1,4 @@
-import { $ } from '../../util/selector.js';
+import { $ } from '../../util/web/selector.js';
 
 export const showLottoTickets = (lottoArray) => {
   const purchaseResult = $('.purchase-form__result');

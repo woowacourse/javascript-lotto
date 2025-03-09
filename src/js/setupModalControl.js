@@ -1,5 +1,5 @@
-import { $ } from '../util/selector.js';
-import { closeModal, restartGame } from './util/modal.js';
+import { $ } from '../util/web/selector.js';
+import { closeModal, restartGame } from '../util/web/modal.js';
 
 const setupModalControl = () => {
   const modal = $('.modal');

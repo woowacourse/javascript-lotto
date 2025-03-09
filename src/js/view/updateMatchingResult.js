@@ -1,4 +1,4 @@
-import { $ } from '../../util/selector.js';
+import { $ } from '../../util/web/selector.js';
 
 const updateMatchingResult = (matchingResult, profitRate) => {
   $('#match-3').textContent = `${matchingResult[3]}개`;

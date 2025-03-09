@@ -3,7 +3,7 @@ function $(selector) {
 }
 
 function $all(selector) {
-  return document.querySelectorAll(selector);
+  return Array.from(document.querySelectorAll(selector));
 }
 
 export { $, $all };

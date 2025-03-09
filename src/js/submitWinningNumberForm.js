@@ -1,11 +1,11 @@
-import { $, $all } from '../util/selector.js';
+import { $, $all } from '../util/web/selector.js';
 import WinningLotto from '../domain/WinningLotto.js';
 import Lotto from '../domain/Lotto.js';
 import { parseWinningNumber, parseBonusNumber } from '../input/parseInput.js';
 import { calculateMatchingResult } from '../service/MatchingService.js';
 import { calculateProfitRate } from '../service/ProfitService.js';
-import { showModal } from './util/modal.js';
-import { resetError, showError } from './util/errorHandler.js';
+import { showModal } from '../util/web/modal.js';
+import { resetError, showError } from '../util/web/errorHandler.js';
 import validateBonusNumber from '../validation/validateBonusNumber.js';
 import validateWinningNumber from '../validation/validateWinningNumber.js';
 import setupModalControl from './setupModalControl.js';

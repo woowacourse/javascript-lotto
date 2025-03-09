@@ -1,5 +1,5 @@
 import SYSTEM_MESSAGE from '../../constants/systemMessage.js';
-import { $ } from '../../util/selector.js';
+import { $ } from '../../util/web/selector.js';
 
 export const showLottoCount = (lottoCount) => {
   const purchaseResult = $('.purchase-form__result');
