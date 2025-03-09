@@ -4,15 +4,10 @@
  */
 import { SETTINGS } from "./constants/index.js";
 import LottoController from "./controller/LottoController.js";
-import purchaseAmountValidator from "./validators/purchaseAmountValidator.js";
+import { initPurchaseUI, resetPurchaseUI } from "./view/purchaseView.js";
 import { showModal, updateModalContent, restartModal } from "./view/modalView.js";
 
 const lottoController = new LottoController();
-
-const purchaseInput = document.getElementById("input");
-const purchaseButton = document.getElementById("check");
-const lottoCountMessage = document.getElementById("lotto-count");
-const lottoContainer = document.querySelector(".lotto-container");
 
 const winningNumberInputs = [
   document.getElementById("winning-number-input-1"),
@@ -25,43 +20,7 @@ const winningNumberInputs = [
 const bonusInput = document.getElementById("bonus-input");
 const winningResultButton = document.getElementById("winning-result-button");
 
-purchaseButton.addEventListener("click", () => {
-  try {
-    const purchaseAmount = Number(purchaseInput.value.trim());
-
-    purchaseAmountValidator(purchaseAmount);
-
-    const numberOfTickets = Math.floor(purchaseAmount / SETTINGS.priceUnit);
-    lottoCountMessage.textContent = `총 ${numberOfTickets}개를 구매하였습니다.`;
-
-    lottoController.generateTickets(purchaseAmount);
-    printLottoTickets(lottoController.lottoTickets);
-    document.getElementById("winning-number-and-bonus").style.visibility = "visible";
-  } catch (e) {
-    alert(e.message);
-  }
-});
-
-purchaseInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    purchaseButton.click();
-  }
-});
-
-const printLottoTickets = (lottoTickets) => {
-  lottoContainer.innerHTML = "";
-
-  lottoTickets.forEach((ticket) => {
-    const lottoElement = document.createElement("div");
-    lottoElement.classList.add("lotto");
-    lottoElement.innerHTML = `
-      <span class="lotto-img">🎟️</span>
-      <span class="lotto-numbers">${ticket.join(", ")}</span>
-    `;
-
-    lottoContainer.appendChild(lottoElement);
-  });
-};
+initPurchaseUI(lottoController);
 
 const checkAllValid = () => {
   for (const input of winningNumberInputs) {
@@ -111,10 +70,7 @@ winningResultButton.addEventListener("click", () => {
 });
 
 const resetModalUI = () => {
-  document.getElementById("winning-number-and-bonus").style.visibility = "hidden";
-  purchaseInput.value = "";
-  lottoCountMessage.textContent = "";
-  lottoContainer.innerHTML = "";
+  resetPurchaseUI();
   winningNumberInputs.forEach((input) => input.value = "");
   bonusInput.value = "";
 };
