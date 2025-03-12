@@ -29,7 +29,6 @@ export default [
       'operator-linebreak': ['error', 'before'],
       'no-unused-expressions': ['error', { allowTernary: false }],
       'import/prefer-default-export': 'off',
-      'import/extensions': 'off',
 
       // Prettier 관련 설정 추가
       'prettier/prettier': 'error',
