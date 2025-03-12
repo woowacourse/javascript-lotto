@@ -2,21 +2,26 @@ import LottoService from '../../src/Domain/LottoService.js';
 import { LOTTO_PRIZE_MONEY_DEFINITION } from '../../src/Domain/Constant/definition.js';
 
 describe('LottoService 유효성 검사', () => {
+  let lottoService;
+
+  beforeEach(() => {
+    lottoService = new LottoService();
+  });
+
   describe('로또 초기화', () => {
     test('구매 금액으로 로또를 초기화한다.', () => {
       const purchaseAmount = 5000;
-      const { lottoManager, lottoTickets } =
-        LottoService.initializeLotto(purchaseAmount);
+      const lottoTickets = lottoService.initializeLotto(purchaseAmount);
 
       expect(lottoTickets).toBe(5);
-      expect(lottoManager.getLottoList().length).toBe(5);
+      expect(lottoService.getLottoManager().getLottoList().length).toBe(5);
     });
 
     test('잘못된 구매 금액으로 로또를 초기화하면 에러가 발생한다.', () => {
       const invalidPurchaseAmount = 1500;
 
       expect(() => {
-        LottoService.initializeLotto(invalidPurchaseAmount);
+        lottoService.initializeLotto(invalidPurchaseAmount);
       }).toThrow();
     });
   });
@@ -26,7 +31,7 @@ describe('LottoService 유효성 검사', () => {
       const winningNumbers = [1, 2, 3, 4, 5, 6];
       const bonusNumber = 7;
 
-      const winningLotto = LottoService.initializeWinningLotto(
+      const winningLotto = lottoService.createWinningLotto(
         winningNumbers,
         bonusNumber
       );
@@ -40,7 +45,7 @@ describe('LottoService 유효성 검사', () => {
       const bonusNumber = 7;
 
       expect(() => {
-        LottoService.initializeWinningLotto(invalidWinningNumbers, bonusNumber);
+        lottoService.createWinningLotto(invalidWinningNumbers, bonusNumber);
       }).toThrow();
     });
 
@@ -49,13 +54,14 @@ describe('LottoService 유효성 검사', () => {
       const invalidBonusNumber = 1;
 
       expect(() => {
-        LottoService.initializeWinningLotto(winningNumbers, invalidBonusNumber);
+        lottoService.createWinningLotto(winningNumbers, invalidBonusNumber);
       }).toThrow();
     });
   });
 
   describe('당첨 결과 처리', () => {
-    test('당첨 결과와 구매 금액으로 수익률을 계산한다.', () => {
+    test('당첨 결과로 수익률을 계산한다.', () => {
+      const purchaseAmount = 5000;
       const lottoResult = {
         FIRST_PRIZE: 1,
         SECOND_PRIZE: 0,
@@ -64,12 +70,9 @@ describe('LottoService 유효성 검사', () => {
         FIFTH_PRIZE: 0,
         NONE: 0,
       };
-      const purchaseAmount = 5000;
 
-      const profit = LottoService.processWinningLotto(
-        lottoResult,
-        purchaseAmount
-      );
+      lottoService.initializeLotto(purchaseAmount);
+      const profit = lottoService.calculateProfit(lottoResult);
 
       const expectedProfit = LOTTO_PRIZE_MONEY_DEFINITION.FIRST_PRIZE / 50;
       expect(profit).toBe(expectedProfit);
