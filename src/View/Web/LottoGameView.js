@@ -2,26 +2,50 @@ import { LOTTO_PRIZE_DEFINITION } from '../../Domain/Constant/definition.js';
 
 class LottoGameView {
   #state;
+  #modalOverlay;
+  #lottoListSection;
+  #winningNumbersSection;
+  #purchaseInput;
+  #purchaseButton;
+  #lottoCountText;
+  #lottoList;
+  #tbody;
+  #profitText;
 
   constructor(state) {
     this.#state = state;
     this.#state.subscribe(this);
+
+    // DOM 요소 초기화
+    this.#modalOverlay = document.querySelector('.modal-overlay');
+    this.#lottoListSection = document.querySelector('.lotto-list-section');
+    this.#winningNumbersSection = document.querySelector(
+      '.winning-numbers-section'
+    );
+    this.#purchaseInput = document.querySelector('.purchase-input');
+    this.#purchaseButton = document.querySelector('.purchase-button');
+    this.#lottoCountText = this.#lottoListSection.querySelector('.text-body');
+    this.#lottoList = this.#lottoListSection.querySelector(
+      '.lotto-numbers-list'
+    );
+    this.#tbody = document.querySelector('.result-table tbody');
+    this.#profitText = document.querySelector('.profit-text');
+
     this.#initializeModalEvents();
   }
 
   #initializeModalEvents() {
-    const modalOverlay = document.querySelector('.modal-overlay');
     const modalCancelButton = document.querySelector('.modal-cancel-container');
 
-    if (modalOverlay && modalCancelButton) {
-      modalOverlay.addEventListener('click', (event) => {
-        if (event.target === modalOverlay) {
-          this.#hideElement(modalOverlay);
+    if (this.#modalOverlay && modalCancelButton) {
+      this.#modalOverlay.addEventListener('click', (event) => {
+        if (event.target === this.#modalOverlay) {
+          this.#hideElement(this.#modalOverlay);
         }
       });
 
       modalCancelButton.addEventListener('click', () => {
-        this.#hideElement(modalOverlay);
+        this.#hideElement(this.#modalOverlay);
       });
     }
   }
@@ -45,25 +69,18 @@ class LottoGameView {
   }
 
   renderLottoList() {
-    const lottoListSection = document.querySelector('.lotto-list-section');
-    const lottoCountText = lottoListSection.querySelector('.text-body');
-    const lottoList = lottoListSection.querySelector('.lotto-numbers-list');
-    const purchaseInput = document.querySelector('.purchase-input');
-    const purchaseButton = document.querySelector('.purchase-button');
+    this.#purchaseInput.disabled = true;
+    this.#purchaseButton.disabled = true;
 
-    purchaseInput.disabled = true;
-    purchaseButton.disabled = true;
+    this.#lottoCountText.textContent = `총 ${this.#state.getLottoTickets()}개를 구매하였습니다.`;
 
-    lottoCountText.textContent = `총 ${this.#state.getLottoTickets()}개를 구매하였습니다.`;
-
-    lottoList.innerHTML = this.#state
+    this.#lottoList.innerHTML = this.#state
       .getLottoNumbers()
       .map(this.#createLottoNumberTemplate)
       .join('');
 
-    lottoListSection.style.visibility = 'visible';
-    document.querySelector('.winning-numbers-section').style.visibility =
-      'visible';
+    this.#lottoListSection.style.visibility = 'visible';
+    this.#winningNumbersSection.style.visibility = 'visible';
   }
 
   #createLottoNumberTemplate = (lotto) => {
@@ -75,11 +92,7 @@ class LottoGameView {
   };
 
   renderWinningResult() {
-    const modalOverlay = document.querySelector('.modal-overlay');
-    const tbody = document.querySelector('.result-table tbody');
-    const profitText = document.querySelector('.profit-text');
-
-    if (!modalOverlay || !tbody || !profitText) {
+    if (!this.#modalOverlay || !this.#tbody || !this.#profitText) {
       console.error('Modal elements not found');
       return;
     }
@@ -90,7 +103,7 @@ class LottoGameView {
       return;
     }
 
-    const rows = tbody.querySelectorAll('tr');
+    const rows = this.#tbody.querySelectorAll('tr');
 
     const prizeOrder = [
       LOTTO_PRIZE_DEFINITION.FIFTH_PRIZE, // 3개 일치
@@ -110,28 +123,20 @@ class LottoGameView {
     });
 
     const profitRate = this.#state.getProfitRate();
-    profitText.textContent = `당신의 총 수익률은 ${profitRate === 0 ? '0' : profitRate.toFixed(1)}%입니다.`;
+    this.#profitText.textContent = `당신의 총 수익률은 ${profitRate === 0 ? '0' : profitRate.toFixed(1)}%입니다.`;
 
-    modalOverlay.style.visibility = 'visible';
+    this.#modalOverlay.style.visibility = 'visible';
   }
 
   resetView() {
-    const modalOverlay = document.querySelector('.modal-overlay');
-    const lottoListSection = document.querySelector('.lotto-list-section');
-    const winningNumbersSection = document.querySelector(
-      '.winning-numbers-section'
-    );
-    const purchaseInput = document.querySelector('.purchase-input');
-    const purchaseButton = document.querySelector('.purchase-button');
+    this.#purchaseInput.disabled = false;
+    this.#purchaseButton.disabled = false;
 
-    purchaseInput.disabled = false;
-    purchaseButton.disabled = false;
+    this.#hideElement(this.#modalOverlay);
+    this.#hideElement(this.#lottoListSection);
+    this.#hideElement(this.#winningNumbersSection);
 
-    this.#hideElement(modalOverlay);
-    this.#hideElement(lottoListSection);
-    this.#hideElement(winningNumbersSection);
-
-    purchaseInput.value = '';
+    this.#purchaseInput.value = '';
     document
       .querySelectorAll('.numbers-input')
       .forEach((input) => (input.value = ''));
