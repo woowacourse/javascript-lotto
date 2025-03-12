@@ -13,29 +13,38 @@ import {
 } from '../Validation/validateDomain.js';
 
 class LottoService {
-  static initializeLotto(purchaseAmount) {
-    validatePurchaseAmount(purchaseAmount);
-    const lottoManager = new LottoManager();
-    const lottoTickets = calculateLottoTickets(purchaseAmount);
-    lottoManager.makeLottoList(lottoTickets, generateRandomLottoNumbers);
-    return { lottoManager, lottoTickets };
+  #lottoManager;
+  #purchaseAmount;
+
+  constructor() {
+    this.#lottoManager = new LottoManager();
   }
 
-  static initializeWinningLotto(winningNumbers, bonusNumber) {
+  initializeLotto(purchaseAmount) {
+    validatePurchaseAmount(purchaseAmount);
+    this.#purchaseAmount = purchaseAmount;
+    const lottoTickets = calculateLottoTickets(purchaseAmount);
+    this.#lottoManager.makeLottoList(lottoTickets, generateRandomLottoNumbers);
+    return lottoTickets;
+  }
+
+  createWinningLotto(winningNumbers, bonusNumber) {
     validateLottoNumbers(winningNumbers);
     validateBonusNumber(bonusNumber, winningNumbers);
     return new WinningLotto(winningNumbers, bonusNumber);
   }
 
-  static compareWinningLotto(lottoManager, winningLotto) {
-    const lottoResult = lottoManager.compareWinningLotto(winningLotto);
-    return lottoResult;
+  compareWithWinningLotto(winningLotto) {
+    return this.#lottoManager.compareWinningLotto(winningLotto);
   }
 
-  static processWinningLotto(lottoResult, purchaseAmount) {
+  calculateProfit(lottoResult) {
     const totalLottoPrize = calculateLottoPrize(lottoResult);
-    const lottoProfit = calculateLottoProfit(totalLottoPrize, purchaseAmount);
-    return lottoProfit;
+    return calculateLottoProfit(totalLottoPrize, this.#purchaseAmount);
+  }
+
+  getLottoManager() {
+    return this.#lottoManager;
   }
 }
 

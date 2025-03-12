@@ -2,9 +2,11 @@ import LottoService from '../../Domain/LottoService.js';
 
 class LottoGameController {
   #state;
+  #lottoService;
 
   constructor(state) {
     this.#state = state;
+    this.#lottoService = new LottoService();
     this.#initializeEventListeners();
   }
 
@@ -23,10 +25,9 @@ class LottoGameController {
       const purchaseAmount = Number(
         document.querySelector('.purchase-input').value
       );
-      const { lottoManager, lottoTickets } =
-        LottoService.initializeLotto(purchaseAmount);
+      const lottoTickets = this.#lottoService.initializeLotto(purchaseAmount);
       this.#state.updatePurchaseInfo(
-        lottoManager,
+        this.#lottoService.getLottoManager(),
         lottoTickets,
         purchaseAmount
       );
@@ -42,20 +43,15 @@ class LottoGameController {
       );
       const winningNumbers = winningInputs.map((input) => Number(input.value));
       const bonusNumber = Number(document.querySelector('.bonus-input').value);
-      const winningLotto = LottoService.initializeWinningLotto(
+      const winningLotto = this.#lottoService.createWinningLotto(
         winningNumbers,
         bonusNumber
       );
       this.#state.updateWinningInfo(winningNumbers, bonusNumber);
 
-      const lottoResult = LottoService.compareWinningLotto(
-        this.#state.getLottoManager(),
-        winningLotto
-      );
-      const profitRate = LottoService.processWinningLotto(
-        lottoResult,
-        this.#state.getPurchaseAmount()
-      );
+      const lottoResult =
+        this.#lottoService.compareWithWinningLotto(winningLotto);
+      const profitRate = this.#lottoService.calculateProfit(lottoResult);
       this.#state.updateLottoResult(lottoResult, profitRate);
     } catch (error) {
       alert(error.message);
@@ -63,6 +59,7 @@ class LottoGameController {
   }
 
   handleRetry() {
+    this.#lottoService = new LottoService();
     this.#state.resetState();
   }
 }
