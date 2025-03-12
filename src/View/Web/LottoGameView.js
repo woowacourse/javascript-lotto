@@ -54,20 +54,21 @@ class LottoGameView {
 
     lottoList.innerHTML = this.#state
       .getLottoNumbers()
-      .map(
-        (lotto) => `
-        <li class="lotto-number-item">
-          <p class="text-ticket-icon">🎟️</p>
-          <p class="text-body">${lotto.getNumbers().join(', ')}</p>
-        </li>
-      `
-      )
+      .map(this.#createLottoNumberTemplate)
       .join('');
 
     lottoListSection.style.visibility = 'visible';
     document.querySelector('.winning-numbers-section').style.visibility =
       'visible';
   }
+
+  #createLottoNumberTemplate = (lotto) => {
+    return `
+      <li class="lotto-number-item">
+        <p class="text-ticket-icon">🎟️</p>
+        <p class="text-body">${lotto.getNumbers().join(', ')}</p>
+      </li>`;
+  };
 
   renderWinningResult() {
     const modalOverlay = document.querySelector('.modal-overlay');
