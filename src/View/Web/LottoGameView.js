@@ -16,14 +16,18 @@ class LottoGameView {
     if (modalOverlay && modalCancelButton) {
       modalOverlay.addEventListener('click', (event) => {
         if (event.target === modalOverlay) {
-          modalOverlay.style.visibility = 'hidden';
+          this.#hideElement(modalOverlay);
         }
       });
 
       modalCancelButton.addEventListener('click', () => {
-        modalOverlay.style.visibility = 'hidden';
+        this.#hideElement(modalOverlay);
       });
     }
+  }
+
+  #hideElement(element) {
+    element.style.visibility = 'hidden';
   }
 
   update(updateType) {
@@ -123,9 +127,9 @@ class LottoGameView {
     purchaseInput.disabled = false;
     purchaseButton.disabled = false;
 
-    modalOverlay.style.visibility = 'hidden';
-    lottoListSection.style.visibility = 'hidden';
-    winningNumbersSection.style.visibility = 'hidden';
+    this.#hideElement(modalOverlay);
+    this.#hideElement(lottoListSection);
+    this.#hideElement(winningNumbersSection);
 
     purchaseInput.value = '';
     document
