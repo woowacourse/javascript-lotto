@@ -2,11 +2,9 @@ import LottoService from '../../Domain/LottoService.js';
 
 class LottoGameController {
   #state;
-  #view;
 
-  constructor(state, view) {
+  constructor(state) {
     this.#state = state;
-    this.#view = view;
     this.#initializeEventListeners();
   }
 

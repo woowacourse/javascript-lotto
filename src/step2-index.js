@@ -4,6 +4,6 @@ import LottoGameController from './View/Web/LottoGameController.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const state = new LottoGameState();
-  const view = new LottoGameView(state);
-  new LottoGameController(state, view);
+  new LottoGameView(state);
+  new LottoGameController(state);
 });
