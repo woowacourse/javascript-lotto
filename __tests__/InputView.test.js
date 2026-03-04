@@ -42,4 +42,24 @@ describe("InputView 클래스 유닛 테스트", () => {
       ).toThrow();
     });
   });
+
+  describe("validateBonusNumber 메서드 유닛 테스트", () => {
+    test("입력값은 숫자여야 한다.", () => {
+      // given
+      const inputView = new InputView();
+      const input = "1";
+
+      // when & then
+      expect(() => inputView.validateBonusNumber(input)).not.toThrow();
+    });
+
+    test("입력값이 숫자가 아니면 예외를 반환한다.", () => {
+      // given
+      const inputView = new InputView();
+      const input = "a";
+
+      // when & then
+      expect(() => inputView.validateBonusNumber(input)).toThrow();
+    });
+  });
 });
