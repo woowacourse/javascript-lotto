@@ -80,7 +80,7 @@ describe("당첨 내역 반환 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 6]), // 1등
     ];
 
-    expect(getPrizeList(purchasedLottos, winningLotto)).toEqual([
+    expect(winningLotto.getPrizeList(purchasedLottos)).toEqual([
       0, 2, 1, 1, 1, 1,
     ]);
   });
@@ -92,7 +92,7 @@ describe("당첨 내역 반환 테스트", () => {
       new Lotto([7, 8, 9, 10, 11, 14]),
     ];
 
-    expect(getPrizeList(purchasedLottos, winningLotto)).toEqual([
+    expect(winningLotto.getPrizeList(purchasedLottos)).toEqual([
       0, 0, 0, 0, 0, 0,
     ]);
   });

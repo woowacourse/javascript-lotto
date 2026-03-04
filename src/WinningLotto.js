@@ -24,6 +24,15 @@ class WinningLotto extends Lotto {
     if (matchingCount === 3) return 5;
     return null;
   }
+
+  getPrizeList = (purchasedLottos) => {
+    const prizeList = [0, 0, 0, 0, 0, 0];
+    purchasedLottos.forEach((lotto) => {
+      const rank = this.getRank(lotto);
+      if (rank !== null) prizeList[rank]++;
+    });
+    return prizeList;
+  };
 }
 
 export default WinningLotto;
