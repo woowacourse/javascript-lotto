@@ -14,7 +14,9 @@ class InputView {
 
   async askAmount() {
     const MESSAGE = "> 구입금액을 입력해 주세요. ";
-    return await this.getUserInput(MESSAGE);
+    const input = await this.getUserInput(MESSAGE);
+    this.validateAmount(input);
+    return Number(input);
   }
 
   async askWinningNumbers() {
@@ -30,6 +32,13 @@ class InputView {
   async askRetry() {
     const MESSAGE = "> 다시 시작하시겠습니까? (y/n)";
     return await this.getUserInput(MESSAGE);
+  }
+
+  validateAmount(amount) {
+    const amountNumber = Number(amount);
+    if (Number.isNaN(amountNumber) || amountNumber <= 0) {
+      throw new Error();
+    }
   }
 }
 
