@@ -3,8 +3,16 @@ import { generateRandomNumber } from "./utils.js";
 
 class LottoStore {
   static purchaseLottos(amount) {
-    const lottoNumbersArray = [];
-    return lottoNumbersArray.map((lottoNumbers) => new Lotto(lottoNumbers));
+    if (amount % Lotto.UNIT !== 0) {
+      throw new Error();
+    }
+
+    const lottoCount = amount / Lotto.UNIT;
+    const result = Array.from({ length: lottoCount }).map(() =>
+      LottoStore.createRandomLotto(),
+    );
+
+    return result;
   }
 
   static createRandomLotto() {
