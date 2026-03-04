@@ -1,6 +1,6 @@
 import { PRIZE } from "../constants/lotto";
-import { makeLottos } from "../LottoMachine";
-import { calProfitRate } from "../WinningRate";
+import { makeLottos } from "../domain/LottoMachine";
+import { calProfitRate } from "../domain/WinningRate";
 
 class LottoController {
   #amount;
