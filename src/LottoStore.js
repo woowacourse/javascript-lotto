@@ -16,7 +16,9 @@ class LottoStore {
   }
 
   static createRandomLotto() {
-    const numbers = Array.from({ length: 6 }).map(() => generateRandomNumber());
+    const numbers = Array.from({ length: Lotto.LENGTH }).map(() =>
+      generateRandomNumber(Lotto.MAX),
+    );
     return new Lotto(numbers);
   }
 }

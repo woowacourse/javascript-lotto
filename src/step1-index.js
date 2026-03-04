@@ -1,7 +1,10 @@
 import InputView from "./InputView.js";
+import LottoStore from "./LottoStore.js";
 
-function main() {
-  InputView.askAmount();
+async function main() {
+  const amount = await InputView.askAmount();
+  const lottos = LottoStore.purchaseLottos(amount);
+  lottos.forEach((lotto) => console.log(lotto.getNumbers()));
 }
 
 main();
