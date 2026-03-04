@@ -28,7 +28,9 @@ class InputView {
 
   async askBonusNumber() {
     const MESSAGE = "> 보너스 번호를 입력해 주세요. ";
-    return await this.getUserInput(MESSAGE);
+    const input = await this.getUserInput(MESSAGE);
+    this.validateBonusNumber(input);
+    return Number(input);
   }
 
   async askRetry() {
@@ -46,6 +48,13 @@ class InputView {
   validateWinningNumbers(userInput) {
     const winningNumbers = userInput.split(",").map(Number);
     if (winningNumbers.some((number) => Number.isNaN(number))) {
+      throw new Error();
+    }
+  }
+
+  validateBonusNumber(userInput) {
+    const bonusNumber = Number(userInput);
+    if (Number.isNaN(bonusNumber)) {
       throw new Error();
     }
   }
