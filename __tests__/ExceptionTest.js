@@ -37,8 +37,8 @@ describe('구입 금액 입력예외 테스트', () => {
 });
 
 describe('당첨 번호 입력 예외 테스트', () =>{
-    test('1 ~ 45가 아닌 입력 예외 테스트', async () =>{
-        const expectedAnswer = ['1000' , '1,2,3,5,6,46','0,1,2,3,5,6', '1,2,3,4,5,6'];
+    test('1 ~ 45가 아닌 입력 예외 테스트', async () => {
+        const expectedAnswer = ['1000', '1,2,3,5,6,46', '1,2,3,4,5,6'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -48,11 +48,11 @@ describe('당첨 번호 입력 예외 테스트', () =>{
         const app = new App();
         await app.run();
 
-        expect(logSpy).toHaveBeenCalledWith('[ERROR] 같은 숫자는 입력이 불가능 합니다.');
+        expect(logSpy).toHaveBeenCalledWith('[ERROR] 1 ~ 45 이내 숫자만 입력 가능합니다.');
     });
 
-        test('겹치는 당첨 번호 입력 예외 테스트', async () =>{
-        const expectedAnswer = ['1000' , '1,1,2,3,4,5', '1,2,3,4,5,6'];
+    test('겹치는 당첨 번호 입력 예외 테스트', async () => {
+        const expectedAnswer = ['1000', '1,1,2,3,4,5', '1,2,3,4,5,6'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -62,11 +62,11 @@ describe('당첨 번호 입력 예외 테스트', () =>{
         const app = new App();
         await app.run();
 
-        expect(logSpy).toHaveBeenCalledWith('[ERROR] 같은 숫자는 입력이 불가능 합니다.');
+        expect(logSpy).toHaveBeenCalledWith('[ERROR] 중복 당첨 번호 입력은 불가 합니다.');
     });
 
-        test('정수가 아닌 입력 예외 테스트', async () =>{
-        const expectedAnswer = ['1000' , '1,1,2,3,4,ㅁ', '1,2,3,4,5,6'];
+    test('정수가 아닌 당첨 번호 입력 예외 테스트', async () => {
+        const expectedAnswer = ['1000', 'a,1,2,3,4,5', '1,2,3,4,5,6'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -76,6 +76,6 @@ describe('당첨 번호 입력 예외 테스트', () =>{
         const app = new App();
         await app.run();
 
-        expect(logSpy).toHaveBeenCalledWith('[ERROR] 같은 숫자는 입력이 불가능 합니다.');
+        expect(logSpy).toHaveBeenCalledWith('[ERROR] 당첨 번호는 숫자만 입력 가능합니다.');
     });
 });
