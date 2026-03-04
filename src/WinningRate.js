@@ -6,3 +6,7 @@ export function calPrize(count, hasBonus) {
   else if (count === 3) return 5;
   return 0;
 }
+
+export function calWinningRate(price, totalPrize) {
+  return (totalPrize / price) * 100;
+}
