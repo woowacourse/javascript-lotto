@@ -1,5 +1,6 @@
 import Lotto from "../src/Lotto.js";
 import WinningLotto from "../src/WinningLotto.js";
+import { getReturnRate } from "../src/getReturnRate.js";
 
 describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () => {
   test.each([
@@ -95,5 +96,15 @@ describe("당첨 내역 반환 테스트", () => {
     expect(winningLotto.getPrizeList(purchasedLottos)).toEqual([
       0, 0, 0, 0, 0, 0,
     ]);
+  });
+});
+
+describe("수익률 계산 테스트", () => {
+  test("각 등수가 포함된 경우", () => {
+    expect(getReturnRate([0, 0, 0, 0, 0, 1], 8000)).toBe(62.5);
+  });
+
+  test("전부 낙첨인 경우", () => {
+    expect(getReturnRate([0, 0, 0, 0, 0, 0], 5000)).toBe(0);
   });
 });
