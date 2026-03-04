@@ -21,7 +21,9 @@ class InputView {
 
   async askWinningNumbers() {
     const MESSAGE = "> 당첨 번호를 입력해 주세요. ";
-    return await this.getUserInput(MESSAGE);
+    const input = await this.getUserInput(MESSAGE);
+    this.validateWinningNumbers(input);
+    return input.split(",").map(Number);
   }
 
   async askBonusNumber() {
@@ -34,9 +36,16 @@ class InputView {
     return await this.getUserInput(MESSAGE);
   }
 
-  validateAmount(amount) {
-    const amountNumber = Number(amount);
+  validateAmount(userInput) {
+    const amountNumber = Number(userInput);
     if (Number.isNaN(amountNumber) || amountNumber <= 0) {
+      throw new Error();
+    }
+  }
+
+  validateWinningNumbers(userInput) {
+    const winningNumbers = userInput.split(",").map(Number);
+    if (winningNumbers.some((number) => Number.isNaN(number))) {
       throw new Error();
     }
   }
