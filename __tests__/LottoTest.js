@@ -1,4 +1,5 @@
-import getRank from "../src/getRank";
+import Lotto from "../src/Lotto.js";
+import WinningLotto from "../src/WinningLotto.js";
 
 describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () => {
   test.each([
@@ -59,6 +60,8 @@ describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () 
       desc: "0개 일치 → 낙첨",
     },
   ])("$desc", ({ lottoNumbers, winningNumbers, bonus, expected }) => {
-    expect(getRank(lottoNumbers, winningNumbers, bonus)).toBe(expected);
+    const lotto = new Lotto(lottoNumbers);
+    const winningLotto = new WinningLotto(winningNumbers, bonus);
+    expect(winningLotto.getRank(lotto)).toBe(expected);
   });
 });
