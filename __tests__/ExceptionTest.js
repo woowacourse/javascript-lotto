@@ -92,7 +92,7 @@ describe('보너스 번호 입력 예외 테스트', () => {
         const app = new App();
         await app.run();
 
-        expect(logSpy).toHaveBeenCalledWith('[ERROR] 보너스 번호는 1 ~ 45이내 숫자여야 합니다.');
+        expect(logSpy).toHaveBeenCalledWith('[ERROR] 보너스 번호는 1 ~ 45 이내 숫자여야 합니다.');
     });
 
     test('당첨 번호와 동일한 입력 예외 테스트', async () => {
