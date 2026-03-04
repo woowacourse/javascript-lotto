@@ -1,4 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
+import Validator from "../Utils/Validator.js";
 
 const InputConsole = {
   async readPurchasePrice() {
@@ -8,9 +9,22 @@ const InputConsole = {
           await MissionUtils.Console.readLineAsync(
             "> 구입금액을 입력해 주세요.",
           );
-        return purchasePrice;
+        return Validator.validatePurchasePrice(purchasePrice);
       } catch (e) {
-        Console.print(e.message);
+        MissionUtils.Console.print(e.message);
+      }
+    }
+  },
+
+  async readWinningNumbers() {
+    while (true) {
+      try {
+        const winningNumbers = await MissionUtils.Console.readLineAsync(
+          "\n> 당첨 번호를 입력해 주세요. ",
+        );
+        return winningNumbers;
+      } catch (e) {
+        MissionUtils.Console.print(e.message);
       }
     }
   },
