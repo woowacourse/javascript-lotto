@@ -13,8 +13,14 @@ describe('로또 머신 테스트', () => {
     });
 
     test('로또 생성 개수 테스트', () =>{
-        const lottoMachine = new LottoMachine(1000);
+        let lottoMachine = new LottoMachine(1000);
         
-        expect(lottoMachine.saveLotto().size).toBe(1);
+        expect(lottoMachine.purchaseCount).toBe(1);
+
+        lottoMachine = new LottoMachine(5000)
+        expect(lottoMachine.purchaseCount).toBe(5);
+
+        lottoMachine = new LottoMachine(7000)
+        expect(lottoMachine.purchaseCount).toBe(7);
     });
 });
