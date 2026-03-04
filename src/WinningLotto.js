@@ -25,14 +25,14 @@ class WinningLotto extends Lotto {
     return null;
   }
 
-  getPrizeList = (purchasedLottos) => {
+  getPrizeList(purchasedLottos) {
     const prizeList = [0, 0, 0, 0, 0, 0];
     purchasedLottos.forEach((lotto) => {
       const rank = this.getRank(lotto);
       if (rank !== null) prizeList[rank]++;
     });
     return prizeList;
-  };
+  }
 }
 
 export default WinningLotto;
