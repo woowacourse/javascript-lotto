@@ -7,6 +7,6 @@ export function calPrize(count, hasBonus) {
   return 0;
 }
 
-export function calWinningRate(price, totalPrize) {
+export function calProfitRate(price, totalPrize) {
   return (totalPrize / price) * 100;
 }
