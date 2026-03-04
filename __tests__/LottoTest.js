@@ -65,3 +65,35 @@ describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () 
     expect(winningLotto.getRank(lotto)).toBe(expected);
   });
 });
+
+describe("당첨 내역 반환 테스트", () => {
+  const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+
+  test("각 등수가 포함된 경우", () => {
+    const purchasedLottos = [
+      new Lotto([1, 2, 3, 4, 5, 6]), // 1등
+      new Lotto([1, 2, 3, 4, 5, 7]), // 2등
+      new Lotto([1, 2, 3, 4, 5, 8]), // 3등
+      new Lotto([1, 2, 3, 4, 7, 9]), // 4등
+      new Lotto([1, 2, 3, 8, 9, 10]), // 5등
+      new Lotto([1, 7, 8, 9, 10, 11]), // 낙첨
+      new Lotto([1, 2, 3, 4, 5, 6]), // 1등
+    ];
+
+    expect(getPrizeList(purchasedLottos, winningLotto)).toEqual([
+      0, 2, 1, 1, 1, 1,
+    ]);
+  });
+
+  test("전부 낙첨인 경우", () => {
+    const purchasedLottos = [
+      new Lotto([7, 8, 9, 10, 11, 12]),
+      new Lotto([7, 8, 9, 10, 11, 13]),
+      new Lotto([7, 8, 9, 10, 11, 14]),
+    ];
+
+    expect(getPrizeList(purchasedLottos, winningLotto)).toEqual([
+      0, 0, 0, 0, 0, 0,
+    ]);
+  });
+});
