@@ -1,4 +1,4 @@
-import { matchWinningCount } from "../src/MatchLottos";
+import { matchBonus, matchWinningCount } from "../src/MatchLottos";
 
 describe("로또 개수 매치 테스트", () => {
   test("6개 일치하는 경우", () => {
@@ -23,5 +23,17 @@ describe("로또 개수 매치 테스트", () => {
 
     const count = matchWinningCount(lotto, winningLotto);
     expect(count).toBe(0);
+  });
+
+  test("5개 번호 + 보너스 번호가 일치하는 경우", () => {
+    const lotto = [1, 2, 3, 4, 5, 7];
+    const bonusNum = 7;
+    const winningLotto = [1, 2, 3, 4, 5, 6];
+
+    const count = matchWinningCount(lotto, winningLotto);
+    const hasBonus = matchBonus(lotto, bonusNum);
+
+    expect(count).toBe(5);
+    expect(hasBonus).toBe(true);
   });
 });
