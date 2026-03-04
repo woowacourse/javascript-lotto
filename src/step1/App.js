@@ -6,6 +6,7 @@ class App {
         const amount = await this.amount();
         const lottoMachine = new LottoMachine(amount)
         const winngNumber = await this.winningNumber()
+        const bonusNumber = await this.bonusNumber(winngNumber);
         read.close();
     }
 
@@ -43,6 +44,26 @@ class App {
                     }
                 });
                 return numbers;
+            } catch(err){
+                console.log(`[ERROR] ${err.message}`);
+            }
+        }
+    }
+
+    async bonusNumber(winningNumber) {
+        while (true) {
+            try{
+                const number = await readLine('보너스 번호를 입력해 주세요.');
+                if (!Number.isInteger(Number(number))) {
+                    throw new Error('보너스 번호는 숫자여야 합니다.');
+                }
+                if (Number(number) > 45 || Number(number) < 0) {
+                    throw new Error('보너스 번호는 1 ~ 45 이내 숫자여야 합니다.');
+                }
+                if (new Set([...winningNumber, number]).size !== 7) {
+                    throw new Error('보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+                }
+                return number;
             } catch(err){
                 console.log(`[ERROR] ${err.message}`);
             }
