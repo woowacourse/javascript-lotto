@@ -11,4 +11,10 @@ describe('로또 머신 테스트', () => {
 
         expect(lottoMachine.createLotto()).toEqual([1, 4, 5, 6, 8, 9]);
     });
+
+    test('로또 생성 개수 테스트', () =>{
+        const lottoMachine = new LottoMachine(1000);
+        
+        expect(lottoMachine.saveLotto().size).toBe(1);
+    });
 });
