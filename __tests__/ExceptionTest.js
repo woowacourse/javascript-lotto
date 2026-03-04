@@ -79,3 +79,47 @@ describe('당첨 번호 입력 예외 테스트', () =>{
         expect(logSpy).toHaveBeenCalledWith('[ERROR] 당첨 번호는 숫자만 입력 가능합니다.');
     });
 });
+
+describe('보너스 번호 입력 예외 테스트', () => {
+    test('1 ~ 45가 아닌 보너스 번호 입력 예외 테스트', async () => {
+        const expectedAnswer = ['1000', '1,2,3,4,5,6', '46', '10'];
+        expectedAnswer.forEach((answer) => {
+            readLine.mockImplementationOnce(() => {
+                return answer;
+            });
+        });
+
+        const app = new App();
+        await app.run();
+
+        expect(logSpy).toHaveBeenCalledWith('[ERROR] 보너스 번호는 1 ~ 45이내 숫자여야 합니다.');
+    });
+
+    test('당첨 번호와 동일한 입력 예외 테스트', async () => {
+        const expectedAnswer = ['1000', '1,2,3,4,5,6', '3', '41'];
+        expectedAnswer.forEach((answer) => {
+            readLine.mockImplementationOnce(() => {
+                return answer;
+            });
+        });
+
+        const app = new App();
+        await app.run();
+
+        expect(logSpy).toHaveBeenCalledWith('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+    });
+
+    test('정수가 아닌 보너스 번호 입력 예외 테스트', async () => {
+        const expectedAnswer = ['1000', 'a,1,2,3,4,5', '1,2,3,4,5,6', 'z', '21'];
+        expectedAnswer.forEach((answer) => {
+            readLine.mockImplementationOnce(() => {
+                return answer;
+            });
+        });
+
+        const app = new App();
+        await app.run();
+
+        expect(logSpy).toHaveBeenCalledWith('[ERROR] 보너스 번호는 숫자여야 합니다.');
+    });
+});
