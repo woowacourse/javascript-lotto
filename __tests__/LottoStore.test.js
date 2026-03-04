@@ -1,0 +1,19 @@
+import LottoStore from "../src/LottoStore.js";
+import Lotto from "../src/Lotto.js";
+
+describe("LottoStore 클래스 유닛 테스트", () => {
+  describe("purchaseLotto", () => {
+    test("구입 금액을 받아서 로또 인스턴스를 반환한다.", () => {
+      // given
+      const amount = 1000;
+
+      // when
+      const lottos = LottoStore.purchaseLottos(amount);
+
+      // then
+      lottos.forEach((lotto) => {
+        expect(lotto).toBeInstanceOf(Lotto);
+      });
+    });
+  });
+});
