@@ -35,3 +35,20 @@ describe('구입 금액 입력예외 테스트', () => {
         expect(logSpy).toHaveBeenCalledWith('[ERROR] 숫자만 입력해 주세요.');
     });
 });
+
+describe('당첨 번호 입력 예외 테스트', () =>{
+    test('1 ~ 45가 아닌 입력 예외 테스트', async () =>{
+        const expectedAnswer = ['1000' , '1,1,2,3,4,5', '1,2,3,4,5,6'];
+        expectedAnswer.forEach((answer) => {
+            readLine.mockImplementationOnce(() => {
+                return answer;
+            });
+        });
+
+        const app = new App();
+        await app.run();
+
+        expect(logSpy).toHaveBeenCalledWith('[ERROR] 같은 숫자는 입력이 불가능 합니다.');
+    });
+})
+
