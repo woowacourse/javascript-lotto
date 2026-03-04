@@ -1,3 +1,5 @@
+import getRank from "../src/getRank";
+
 describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () => {
   test.each([
     {
