@@ -11,13 +11,13 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUM_RANGE);
     }
   },
-  validateDuplicateWinningNum(winningNum) {
-    if (winningNum.length !== new Set(winningNum).length) {
+  validateDuplicateWinningNum(winningNums) {
+    if (winningNums.length !== new Set(winningNums).size) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
     }
   },
-  validateDuplicateBonusNum(winningNum, bonusNum) {
-    if (winningNum.includes(bonusNum)) {
+  validateDuplicateBonusNum(winningNums, bonusNum) {
+    if (winningNums.includes(bonusNum)) {
       throw new Error(ERROR_MESSAGE.BONUS_IN_WINNING_NUMBERS);
     }
   },

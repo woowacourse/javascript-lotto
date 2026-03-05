@@ -1,5 +1,6 @@
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
+import Validator from "../utils/Validator.js";
 
 const rl = readline.createInterface({
   input: input,
@@ -8,18 +9,30 @@ const rl = readline.createInterface({
 
 const InputView = {
   async inputPrice() {
-    const price = await rl.question("구입금액을 입력해 주세요.\n");
+    const priceStr = await rl.question("구입금액을 입력해 주세요.\n");
+    const price = Number(priceStr);
+    Validator.validatePrice(price);
 
     return price;
   },
+
   async inputWinningNums() {
-    const winningNums = await rl.question("\n당첨 번호를 입력해 주세요.\n");
+    const winningNumsStr = await rl.question("\n당첨 번호를 입력해 주세요.\n");
+    const winningNums = winningNumsStr.split(",").map(Number);
+
+    Validator.validateLottoCount(winningNums);
+    Validator.validateLottoNumRange(winningNums);
+    Validator.validateDuplicateWinningNum(winningNums);
 
     return winningNums;
   },
 
-  async inputBonusNum() {
-    const bonusNum = await rl.question("\n보너스 번호를 입력해 주세요.\n");
+  async inputBonusNum(winningNums) {
+    const bonusNumStr = await rl.question("\n보너스 번호를 입력해 주세요.\n");
+    const bonusNum = Number(bonusNumStr);
+
+    Validator.validateLottoNumRange([bonusNum]);
+    Validator.validateDuplicateBonusNum(winningNums, bonusNum);
 
     rl.close();
     return bonusNum;
