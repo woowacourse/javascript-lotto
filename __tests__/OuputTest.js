@@ -16,13 +16,12 @@ describe('출력 테스트', () =>{
         .mockReturnValueOnce([44, 43, 33, 32, 45, 30])
         .mockReturnValueOnce([20, 25, 30, 10, 15, 40]);
 
-        Output.printLottos(lottos);
+        Output.printLottos(lottoMachine.getLotto());
         
-        expect(logSpy)
-        .toHaveBeenCalledWith('[1, 2, 3, 4, 5, 6]')
-        .toHaveBeenCalledWith('[10, 11, 12, 13, 14, 15]')
-        .toHaveBeenCalledWith('[1, 2, 3, 4, 5, 6]')
-        .toHaveBeenCalledWith('[30, 32, 33, 43, 44, 45]')
-        .toHaveBeenCalledWith('[10, 15, 20, 25, 30, 40]')
+        expect(logSpy).toHaveBeenCalledWith('[1, 2, 3, 4, 5, 6]')
+        expect(logSpy).toHaveBeenCalledWith('[10, 11, 12, 13, 14, 15]')
+        expect(logSpy).toHaveBeenCalledWith('[1, 2, 3, 4, 5, 6]')
+        expect(logSpy).toHaveBeenCalledWith('[30, 32, 33, 43, 44, 45]')
+        expect(logSpy).toHaveBeenCalledWith('[10, 15, 20, 25, 30, 40]')
     });
 });

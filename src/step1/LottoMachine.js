@@ -12,8 +12,8 @@ export class LottoMachine {
 
     getLotto(){
         let lottos = []
-        for(i = 0 ; i < this.purchaseCount; i ++){
-            const lotto = this.createLotto()
+        for(let i = 0 ; i < this.purchaseCount; i ++){
+            const lotto = this.createLotto().sort((a, b) => a - b);
             lottos.push(lotto)
         }
         return lottos

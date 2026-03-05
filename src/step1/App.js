@@ -1,10 +1,13 @@
 import { readLine, read } from './Utils.js';
 import { LottoMachine } from './LottoMachine.js';
+import { Output } from './Output.js';
 
 class App {
     async run() {
         const amount = await this.amount();
         const lottoMachine = new LottoMachine(amount)
+        const lottos = lottoMachine.getLotto();
+        Output.printLottos(lottos);
         const winngNumber = await this.winningNumber()
         const bonusNumber = await this.bonusNumber(winngNumber);
         read.close();
