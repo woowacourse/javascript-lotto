@@ -4,6 +4,14 @@ import { Output } from '../src/step1/Output'
 const logSpy = jest.spyOn(console, 'log');
 
 describe('출력 테스트', () =>{
+    test('구입한 로또 개수 출력 테스트', ()=>{
+        const lottoMachine = new LottoMachine(8000);
+
+        Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
+
+        expect(logSpy).toHaveBeenCalledWith('8개를 구매했습니다.');
+    });
+
     test('로또 번호 출력 테스트',() =>{
 
         const lottoMachine = new LottoMachine(5000);
