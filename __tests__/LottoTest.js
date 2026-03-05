@@ -1,5 +1,6 @@
 import Lotto from "../src/Lotto.js";
 import WinningLotto from "../src/WinningLotto.js";
+import { generateLottos } from "../src/generateRandomNumber.js";
 import { getReturnRate } from "../src/getReturnRate.js";
 
 describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () => {
@@ -122,7 +123,6 @@ describe("로또 발행 테스트", () => {
   test("0개 발행 -> 빈 배열 반환", () => {
     const lottos = generateLottos([]);
     expect(lottos).toEqual([]);
-    expect(lottos[0]).toBeInstanceOf(Lotto);
   });
   test("1개 발행 -> Lotto 인스턴스 1개 반환", () => {
     const lottos = generateLottos([[1, 2, 8, 9, 10, 11]]);
