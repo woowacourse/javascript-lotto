@@ -40,7 +40,7 @@ export class LottoMachine {
 
     calculateMatchResult(winningNumber, bonusNumber) {
         this.#lottos.forEach((lotto) => {
-            const matchCount = new Set([...lotto]).intersection(new Set([...winningNumber].map((number) => Number(number)))).size;
+            const matchCount = new Set([...lotto]).intersection(new Set([...winningNumber])).size;
             const isMatchBonus = lotto.includes(Number(bonusNumber));
             const rank = this.getMatchRank(matchCount, isMatchBonus);
             this.updateMatchResult(rank);
