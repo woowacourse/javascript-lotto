@@ -88,3 +88,8 @@
 
 - [x] 간이 도메인 로직 통합 테스트
   - generateLottos -> getPrizeList(getRank) => getReturnRate 흐름 검증
+
+- [ ] 사용자 입력 파싱 테스트
+  - 유저 입력 -> 숫자 파싱
+  - 당첨 번호 문자열 -> 숫자 배열
+  - 재시작/종료 문자열 -> 소문자로 파싱
