@@ -1,4 +1,4 @@
-import { PRIZE_MONEY } from "../constants/lottoConstants";
+import { PRIZE_MONEY } from "../constants/lottoConstants.js";
 
 class Rate {
   constructor(statistics, price) {
