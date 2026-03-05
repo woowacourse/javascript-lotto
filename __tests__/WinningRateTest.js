@@ -1,4 +1,4 @@
-import { calPrize, calWinningRate } from "../src/WinningRate";
+import { calPrize, calProfitRate } from "../src/domain/WinningRate";
 
 describe("당첨 등수 계산 테스트", () => {
   test("당첨 번호 개수가 6개이면 1등", () => {
@@ -38,7 +38,7 @@ describe("수익률 계산 테스트", () => {
   test("구매 금액 대비 수익률", () => {
     const price = 10000;
     const totalPrize = 2000000000;
-    const winningRate = calWinningRate(price, totalPrize);
+    const winningRate = calProfitRate(price, totalPrize);
     expect(winningRate).toEqual(20000000);
   });
 });

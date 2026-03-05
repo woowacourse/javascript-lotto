@@ -1,4 +1,4 @@
-import { matchBonus, matchWinningCount } from "../src/MatchLottos";
+import { matchBonus, matchWinningCount } from "../src/domain/MatchLottos";
 
 describe("로또 개수 매치 테스트", () => {
   test("6개 일치하는 경우", () => {

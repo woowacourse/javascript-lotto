@@ -1,4 +1,7 @@
-import { makeLottos, pickUniqueNumbersInRange } from "../src/LottoMachine";
+import {
+  makeLottos,
+  pickUniqueNumbersInRange,
+} from "../src/domain/LottoMachine";
 
 const mockRandoms = (numbers) => {
   pickUniqueNumbersInRange = jest.fn();
