@@ -1,11 +1,12 @@
-import { PRIZE } from "../constants/lotto";
-import { makeLottos } from "../domain/LottoMachine";
-import { calProfitRate } from "../domain/WinningRate";
+import { PRIZE } from "../constants/lottoInfo.js";
+import { makeLottos } from "../domain/LottoMachine.js";
+import { calProfitRate, calPrize } from "../domain/WinningRate.js";
+import { matchWinningCount, matchBonus } from "../domain/MatchLottos.js";
 
 class LottoController {
   #amount;
   #lottos;
-  #rankCount = Array.from(6);
+  #rankCount = Array(6).fill(0);
   #totalPrize = 0;
 
   constructor(amount) {
