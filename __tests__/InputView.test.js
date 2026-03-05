@@ -62,4 +62,15 @@ describe("InputView 클래스 유닛 테스트", () => {
       expect(() => inputView.validateBonusNumber(input)).toThrow();
     });
   });
+
+  describe("validateRetry", () => {
+    test("입력값이 'y' 또는 'n'이 아니면 예외를 반환한다.", () => {
+      // given
+      const inputView = new InputView();
+      const input = "x";
+
+      // when & then
+      expect(() => inputView.validateRetry(input)).toThrow();
+    });
+  });
 });
