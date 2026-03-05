@@ -13,6 +13,10 @@ class Lotto {
   getNumbers() {
     return [...this.#numbers];
   }
+
+  includes(number) {
+    return this.#numbers.includes(number);
+  }
 }
 
 export default Lotto;
