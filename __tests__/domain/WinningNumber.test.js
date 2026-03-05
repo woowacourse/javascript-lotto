@@ -13,6 +13,11 @@ describe("WinningNumbers 테스트", () => {
     test("정상적인 값으로 생성된다", () => {
       expect(() => new WinningNumber(winningLotto, 7)).not.toThrow();
     });
+
+    test("보너스 번호는 로또 숫자 범위 안이여야 한다.", () => {
+      expect(() => new WinningNumber(winningLotto, 0)).toThrow("[ERROR]");
+      expect(() => new WinningNumber(winningLotto, 46)).toThrow("[ERROR]");
+    });
   });
 
   describe("구매한 로또와 비교해서 일치하는 개수랑 보너스 일치 여부를 반환한다.", () => {
