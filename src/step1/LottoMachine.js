@@ -19,6 +19,10 @@ export class LottoMachine {
         return lottos
     }
 
+    calculateMatchResult(winningNumber, bonusNumber) {
+
+    }
+
     createLotto() {
         return pickNumberInRange(1, 45, 6);
     }
