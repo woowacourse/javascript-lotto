@@ -33,7 +33,7 @@ describe('출력 테스트', () =>{
         expect(logSpy).toHaveBeenCalledWith('[10, 15, 20, 25, 30, 40]')
     });
 
-    test('당첨 통계 출력 테스트', ()=>{
+    test('최종 결과 출력 테스트', ()=>{
 
         const lottoMachine = new LottoMachine(5000);
 
@@ -52,5 +52,6 @@ describe('출력 테스트', () =>{
         expect(logSpy).toHaveBeenCalledWith('5개 일치 (1,500,000원) - 3개');
         expect(logSpy).toHaveBeenCalledWith('5개 일치, 보너스 볼 일치 (30,000,000원) - 10개');
         expect(logSpy).toHaveBeenCalledWith('6개 일치 (2,000,000,000원) - 6개');
+        expect(logSpy).toHaveBeenCalledWith('총 수익률은 62.5%입니다.')
     });
 });
