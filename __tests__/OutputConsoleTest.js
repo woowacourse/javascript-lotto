@@ -26,4 +26,22 @@ describe("OutputConsole 테스트", () => {
     expect(logSpy).toHaveBeenCalledWith("[1, 2, 3, 4, 5, 6]");
     expect(logSpy).toHaveBeenCalledWith("[40, 41, 42, 43, 44, 45]");
   });
+
+  test("당첨 내역 출력 테스트", () => {
+    const logSpy = getLogSpy();
+
+    const result = { FIRST: 0, SECOND: 0, THIRD: 0, FOURTH: 0, FIFTH: 1 };
+
+    OutputConsole.printMatchResult(result);
+
+    expect(logSpy).toHaveBeenCalledWith("당첨 통계");
+    expect(logSpy).toHaveBeenCalledWith("--------------------");
+    expect(logSpy).toHaveBeenCalledWith("3개 일치 (5,000원) - 1개");
+    expect(logSpy).toHaveBeenCalledWith("4개 일치 (50,000원) - 0개");
+    expect(logSpy).toHaveBeenCalledWith("5개 일치 (1,500,000원) - 0개");
+    expect(logSpy).toHaveBeenCalledWith("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개");
+    expect(logSpy).toHaveBeenCalledWith("6개 일치 (2,000,000,000원) - 0개");
+
+    
+  })
 });
