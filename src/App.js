@@ -5,10 +5,11 @@ import { getLottos } from "./service/getRandomLotto.js";
 import WinningLotto from "./domain/WinningLotto.js";
 import { getCompareResult } from "./service/getCompareResult.js";
 import { getProfit } from "./service/getProfit.js";
+import { getPurchaseAmount } from "./service/getPurchaseAmount.js";
 
 class App {
   async run() {
-    const money = await InputView.inputPurchaseAmount();
+    const money = await getPurchaseAmount();
     const count = calculateLottoCount(money);
     const randomLotto = getLottos(count);
     OutputView.outputLottoNumber(randomLotto);

@@ -3,7 +3,7 @@ import { readLine } from "../utils/readLine.js";
 export const InputView = {
   async inputPurchaseAmount() {
     const answer = await readLine("구입금액을 입력해 주세요.");
-    return answer;
+    return Number(answer);
   },
 
   async inputWinningNumber() {
