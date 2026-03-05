@@ -45,10 +45,12 @@ describe('출력 테스트', () =>{
             [5, 5],
         ]);
 
-        expect(logSpy).toHaveBeenCalled('3개 일치 (5,000원) - 5개');
-        expect(logSpy).toHaveBeenCalled('4개 일치 (50,000원) - 4개');
-        expect(logSpy).toHaveBeenCalled('5개 일치 (1,500,000원) - 3개');
-        expect(logSpy).toHaveBeenCalled('5개 일치, 보너스 볼 일치 (30,000,000원) - 10개');
-        expect(logSpy).toHaveBeenCalled('6개 일치 (2,000,000,000원) - 6개');
+        Output.printResult(lottoMachine.matchResult)
+
+        expect(logSpy).toHaveBeenCalledWith('3개 일치 (5,000원) - 5개');
+        expect(logSpy).toHaveBeenCalledWith('4개 일치 (50,000원) - 4개');
+        expect(logSpy).toHaveBeenCalledWith('5개 일치 (1,500,000원) - 3개');
+        expect(logSpy).toHaveBeenCalledWith('5개 일치, 보너스 볼 일치 (30,000,000원) - 10개');
+        expect(logSpy).toHaveBeenCalledWith('6개 일치 (2,000,000,000원) - 6개');
     });
 });
