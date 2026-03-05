@@ -63,7 +63,8 @@ export class LottoMachine {
     }
 
     getRateOfReturn(){
-        
+        const profitRate = (this.getTotalPrise() / this.#amount) * 100;
+        return profitRate.toFixed(1);
     }
 
     createLotto() {

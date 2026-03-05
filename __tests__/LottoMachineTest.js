@@ -64,6 +64,8 @@ describe('로또 머신 테스트', () => {
     });
 
     test('수익률 계산 로직 테스트', () =>{
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+
         const lottoMachine = new LottoMachine(8000);
         
         lottoMachine.matchResult = new Map([
@@ -74,6 +76,6 @@ describe('로또 머신 테스트', () => {
             [5, 1],
         ]);
 
-        expect(lottoMachine.getRateOfReturn()).toBe(62.5)
+        expect(lottoMachine.getRateOfReturn()).toBe('62.5')
     });
 });
