@@ -1,5 +1,7 @@
 import { pickNumberInRange } from './Utils.js';
 
+const PRIZE_LIST = [0, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
+
 export class LottoMachine {
 
     #amount;
@@ -48,14 +50,9 @@ export class LottoMachine {
     }
 
     getTotalPrise(){
-        let sum = 0;
-        if(this.matchResult.get(1)) sum += 2000000000 * this.matchResult.get(1)
-        if(this.matchResult.get(2)) sum += 30000000 * this.matchResult.get(2)
-        if(this.matchResult.get(3)) sum += 1500000 * this.matchResult.get(3)
-        if(this.matchResult.get(4)) sum += 50000 * this.matchResult.get(4)
-        if(this.matchResult.get(5)) sum += 5000 * this.matchResult.get(5)
-
-        return sum
+        return this.matchResult.keys().reduce(
+            (acc, rank) => acc + PRIZE_LIST[rank] * this.matchResult.get(rank), 0
+        );
     }
 
     getRateOfReturn(){
