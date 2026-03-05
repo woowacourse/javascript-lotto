@@ -1,9 +1,9 @@
-export const stringToNumber = (userInput) => {
+export const parseStringToNumber = (userInput) => {
   return Number(userInput);
 };
-export const stringToNumberArray = (userInput) => {
+export const parseStringToNumberArray = (userInput) => {
   return userInput.split(",").map((input) => Number(input));
 };
-export const capitalToSmall = (userInput) => {
+export const parseCapitalToSmall = (userInput) => {
   return userInput.toLowerCase().trim();
 };
