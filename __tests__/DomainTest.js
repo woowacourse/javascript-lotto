@@ -91,7 +91,10 @@ describe("LottoResult 동작 테스트", () => {
 
     const result = new LottoResult();
 
-    const winningResult = result.calculateWinningResult(lottos, winningNumbersObj);
+    const winningResult = result.calculateWinningResult(
+      lottos,
+      winningNumbersObj,
+    );
     expect(winningResult).toEqual({
       FIFTH: 1,
       FIRST: 1,
@@ -101,6 +104,23 @@ describe("LottoResult 동작 테스트", () => {
     });
   });
 
+  // 2. 수익률 테스트
+  test("수익률 테스트", () => {
+
+     const lottoResult = new LottoResult();
+     const winningResult = {
+       FIRST: 1,
+       SECOND: 1,
+       THIRD: 1,
+       FOURTH: 1,
+       FIFTH: 1,
+     };
+
+     const purchasePrice = 6000;
+     const profitRate = lottoResult.calculateProfitRate(winningResult,purchasePrice);
+
+     expect(profitRate).toBe(33859250.0);
+  });
 });
 
 
