@@ -1,32 +1,47 @@
-// jest.mock("../src/input.js");
+import * as Console from "../src/input";
+import {
+  inputBonusNumber,
+  inputPurchaseAmount,
+  inputWinningNumbers,
+  inputYesNo,
+} from "../src/InputView";
+
+jest.mock("../src/input.js", () => ({
+  input: jest.fn(),
+  close: jest.fn(),
+}));
 
 describe("입력 처리 테스트", () => {
-  test("구입 금액 입력 테스트", () => {
+  test("구입 금액 입력 테스트", async () => {
     Console.input.mockResolvedValue("");
-    expect(inputPurchaseAmount().toThrow("[ERROR]"));
+    await expect(inputPurchaseAmount()).rejects.toThrow("[ERROR]");
   });
-  test("구입 금액 입력 테스트", () => {
+  test("구입 금액 입력 테스트", async () => {
     Console.input.mockResolvedValue("8000");
-    expect(inputPurchaseAmount()).toBe("8000");
+    expect(await inputPurchaseAmount()).toBe("8000");
   });
-  test("당첨 번호 입력 테스트", () => {
+  test("당첨 번호 입력 테스트", async () => {
     Console.input.mockResolvedValue("1,2,3,4,5,6");
-    expect(inputWinningNumbers()).toBe("1,2,3,4,5,6");
+    expect(await inputWinningNumbers()).toBe("1,2,3,4,5,6");
   });
-  test("당첨 번호 입력 테스트", () => {
+  test("당첨 번호 입력 테스트", async () => {
     Console.input.mockResolvedValue("");
-    expect(inputWinningNumbers().toThrow("[ERROR]"));
+    await expect(inputWinningNumbers()).rejects.toThrow("[ERROR]");
   });
-  test("보너스 번호 입력 테스트", () => {
+  test("보너스 번호 입력 테스트", async () => {
     Console.input.mockResolvedValue("7");
-    expect(inputBonusNumber()).toBe("7");
+    expect(await inputBonusNumber()).toBe("7");
   });
-  test("보너스 번호 입력 테스트", () => {
+  test("보너스 번호 입력 테스트", async () => {
     Console.input.mockResolvedValue("");
-    expect(inputBonusNumber().toThrow("[ERROR]"));
+    await expect(inputBonusNumber()).rejects.toThrow("[ERROR]");
   });
-  test("재시작/종료 입력 테스트", () => {
+  test("재시작/종료 입력 테스트", async () => {
     Console.input.mockResolvedValue("y");
-    expect(inputYesNo()).toBe("y");
+    expect(await inputYesNo()).toBe("y");
   });
+});
+
+afterAll(() => {
+  Console.close();
 });
