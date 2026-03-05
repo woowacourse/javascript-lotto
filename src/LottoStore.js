@@ -1,10 +1,11 @@
+import ERROR_MESSAGE from "./constants/errorMessage.js";
 import Lotto from "./Lotto.js";
 import { generateRandomNumber } from "./utils.js";
 
 class LottoStore {
   static purchaseLottos(amount) {
     if (amount % Lotto.UNIT !== 0) {
-      throw new Error();
+      throw new Error(ERROR_MESSAGE.AMOUNT.UNIT);
     }
 
     const lottoCount = amount / Lotto.UNIT;

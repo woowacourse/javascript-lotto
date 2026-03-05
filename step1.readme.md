@@ -74,7 +74,6 @@
 
 ## 추가
 
-1. 에러 메시지 설정 + console.error -> console.log
 2. generateRandomNumber/winningNumbers/lotto 중복 검사
 3. 로또 상수 static 필드 상수로 추출
 4. 함수 매개변수 2개 이하
@@ -88,3 +87,4 @@
 - winningNumbersAndBonusNumberBuilder에서 순서를 강제할 수 있는 방법 고민
 - calculateRank 메서드 코드 정리?
 - 금액 상수 따로 뺴기
+- 테스트 에러 메시지 추가하기

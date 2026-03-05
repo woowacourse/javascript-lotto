@@ -54,7 +54,7 @@ async function inputHandler(inputFn) {
     try {
       return await inputFn();
     } catch (e) {
-      console.error(e);
+      console.log(e.message);
     }
   }
 }

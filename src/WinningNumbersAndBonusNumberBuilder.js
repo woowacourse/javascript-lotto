@@ -26,25 +26,34 @@ class WinningNumbersAndBonusNumberBuilder {
       Number.isInteger(number),
     );
 
+    if (!isInteger) {
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBERS.INTEGER);
+    }
+
     const isOutOfRange = winningNumbers.some(
       (number) => number < 1 || number > 45,
     );
 
-    if (!isInteger || isOutOfRange) {
-      throw new Error();
+    if (isOutOfRange) {
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBERS.RANGE);
     }
   }
 
   validateBonusNumber(bonusNumber) {
     const isInteger = Number.isInteger(bonusNumber);
+
+    if (!isInteger) {
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER.INTEGER);
+    }
+
     const isOutOfRange = bonusNumber < 1 || bonusNumber > 45;
 
-    if (!isInteger || isOutOfRange) {
-      throw new Error();
+    if (isOutOfRange) {
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER.RANGE);
     }
 
     if (this.#winningNumbers.includes(bonusNumber)) {
-      throw new Error();
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER.DUPLICATE);
     }
   }
 }
