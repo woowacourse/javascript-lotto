@@ -52,7 +52,14 @@ export class LottoMachine {
     }
 
     getTotalPrise(){
+        let sum = 0;
+        if(this.matchResult.get(1)) sum += 2000000000 * this.matchResult.get(1)
+        if(this.matchResult.get(2)) sum += 30000000 * this.matchResult.get(2)
+        if(this.matchResult.get(3)) sum += 1500000 * this.matchResult.get(3)
+        if(this.matchResult.get(4)) sum += 50000 * this.matchResult.get(4)
+        if(this.matchResult.get(5)) sum += 5000 * this.matchResult.get(5)
 
+        return sum
     }
 
     createLotto() {
