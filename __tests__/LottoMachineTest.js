@@ -45,12 +45,12 @@ describe('로또 머신 테스트', () => {
         .mockReturnValueOnce([1, 2, 3, 4, 5, 6])
         .mockReturnValueOnce([4, 5, 6, 7, 8, 9])
         .mockReturnValueOnce([2, 3, 4, 5, 6, 10])
-        .mockReturnValueOnce([2, 3, 4, 5, 6, 11])
+        .mockReturnValueOnce([2, 3, 4, 5, 6, 11]);
 
-        const lottoMachine = new LottoMachine(5000);
+        const lottoMachine = new LottoMachine(4000);
         lottoMachine.calculateMatchResult([1, 2, 3, 4, 5, 6], 10);
         expect(lottoMachine.matchResult).toEqual(
-            new Map([1, 1], [2, 1], [3, 1], [4, 0], [5, 1])
+            new Map([[1, 1], [2, 1], [3, 1], [4, 0], [5, 1]])
         );
     });
 });

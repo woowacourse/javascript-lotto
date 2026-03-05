@@ -11,6 +11,7 @@ class App {
         Output.printLottos(lottos);
         const winngNumber = await this.winningNumber()
         const bonusNumber = await this.bonusNumber(winngNumber);
+        lottoMachine.calculateMatchResult(winngNumber, bonusNumber);
         read.close();
     }
 

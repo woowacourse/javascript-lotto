@@ -8,19 +8,47 @@ export class LottoMachine {
     constructor(amount) {
         this.#amount = amount;
         this.purchaseCount = amount / 1000;
-    }
-
-    getLotto(){
-        let lottos = []
+        this.#lottos = [];
         for(let i = 0 ; i < this.purchaseCount; i ++){
             const lotto = this.createLotto().sort((a, b) => a - b);
-            lottos.push(lotto)
+            this.#lottos.push(lotto);
         }
-        return lottos
+        this.matchResult = new Map([
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+            [5, 0],
+        ]);
+    }
+
+    getLotto() {
+        return [...this.#lottos];
+    }
+
+    updateMatchResult(rank) {
+        if (rank !== null) {
+            const current = this.matchResult.get(rank);
+            this.matchResult.set(rank, current + 1);
+        }
+    }
+
+    getMatchRank(matchCount, isMatchBonus) {
+        if (matchCount === 6) return 1;
+        if (matchCount === 5 && isMatchBonus) return 2;
+        if (matchCount === 5) return 3;
+        if (matchCount === 4) return 4;
+        if (matchCount === 3) return 5;
+        return null;
     }
 
     calculateMatchResult(winningNumber, bonusNumber) {
-
+        this.#lottos.forEach((lotto) => {
+            const matchCount = new Set([...lotto]).intersection(new Set([...winningNumber])).size;
+            const isMatchBonus = lotto.includes(Number(bonusNumber));
+            const rank = this.getMatchRank(matchCount, isMatchBonus);
+            this.updateMatchResult(rank);
+        });
     }
 
     createLotto() {
