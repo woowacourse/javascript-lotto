@@ -5,20 +5,16 @@ class WinningNumbersAndBonusNumberBuilder {
   setWinningNumbers(winningNumbers) {
     this.validateWinningNumbers(winningNumbers);
     this.#winningNumbers = winningNumbers;
-    return {
-      setBonusNumber: this.#setBonusNumber.bind(this),
-    };
+    return this;
   }
 
-  #setBonusNumber(bonusNumber) {
+  setBonusNumber(bonusNumber) {
     this.validateBonusNumber(bonusNumber);
     this.#bonusNumber = bonusNumber;
-    return {
-      build: this.#build.bind(this),
-    };
+    return this;
   }
 
-  #build() {
+  build() {
     return {
       winningNumbers: this.#winningNumbers,
       bonusNumber: this.#bonusNumber,
