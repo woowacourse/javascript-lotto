@@ -83,3 +83,6 @@
 - 중복 검사 로직의 중복
   - 로또 -> 중복 검사 (지금은 random number -> 로또, random number에서 중복 검사 -> 로또에서는 중복 문제 x)
   - 위닝 넘버 -> 중복 검사
+
+- winningNumbersAndBonusNumberBuilder에서 순서를 강제할 수 있는 방법 고민
+- winningNumbers 중복 검사

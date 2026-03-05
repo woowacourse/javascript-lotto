@@ -5,14 +5,32 @@ import WinningNumbersAndBonusNumberBuilder from "./WinningNumbersAndBonusNumberB
 async function main() {
   const inputView = new InputView();
 
-  const amount = await inputView.askAmount();
+  const amount = await inputHandler(() => inputView.askAmount());
   const lottos = LottoStore.purchaseLottos(amount);
 
-  const winningNumbers = await inputView.askWinningNumbers();
-  const bonusNumber = await inputView.askBonusNumber();
-
   const builder = new WinningNumbersAndBonusNumberBuilder();
-  builder.setWinningNumbers(winningNumbers).setBonusNumber(bonusNumber).build();
+
+  const winningNumbers = await inputHandler(() => {
+    inputView.askWinningNumbers();
+    builder.setWinningNumbers(winningNumbers);
+  });
+
+  const bonusNumber = await inputHandler(() => {
+    inputView.askBonusNumber();
+    builder.setBonusNumber(bonusNumber);
+  });
+
+  builder.build();
+}
+
+async function inputHandler(inputFn) {
+  while (1) {
+    try {
+      return await inputFn();
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
 
 main();
