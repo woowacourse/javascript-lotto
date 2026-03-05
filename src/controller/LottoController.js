@@ -1,7 +1,6 @@
 import { PRIZE } from "../constants/lottoInfo.js";
 import { makeLottos } from "../domain/LottoMachine.js";
-import { calProfitRate, calPrize } from "../domain/WinningRate.js";
-import { matchWinningCount, matchBonus } from "../domain/MatchLottos.js";
+import { calProfitRate } from "../domain/WinningRate.js";
 
 class LottoController {
   #amount;
@@ -16,15 +15,13 @@ class LottoController {
   //로또 발행
   issueLottos() {
     this.#lottos = makeLottos(this.#amount);
-    return [...this.#lottos];
+    return this.#lottos.map((lotto) => lotto.toString());
   }
 
   // 등수 업데이트
   updateWinningResult(winningLotto, bonusNum) {
     this.#lottos.forEach((lotto) => {
-      const matchCount = matchWinningCount(lotto, winningLotto);
-      const hasBonus = matchBonus(lotto, bonusNum);
-      const rank = calPrize(matchCount, hasBonus);
+      const rank = lotto.getRank(winningLotto, bonusNum);
       this.#rankCount[rank] += 1;
       this.#totalPrize += PRIZE[rank];
     });

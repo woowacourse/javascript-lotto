@@ -1,3 +1,5 @@
+import Lotto from "../model/Lotto.js";
+
 export function pickUniqueNumbersInRange(min, max, size) {
   const uniqueNumbers = new Set();
   while (uniqueNumbers.size < size) {
@@ -10,6 +12,6 @@ export function pickUniqueNumbersInRange(min, max, size) {
 export function makeLottos(amount) {
   return Array.from({ length: amount }, () => {
     const numbers = pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
-    return numbers;
+    return new Lotto(numbers);
   });
 }
