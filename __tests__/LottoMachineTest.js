@@ -62,4 +62,18 @@ describe('로또 머신 테스트', () => {
 
         expect(lottoMachine.getTotalPrise()).toBe(55000)
     });
+
+    test('수익률 계산 로직 테스트', () =>{
+        const lottoMachine = new LottoMachine(8000);
+        
+        lottoMachine.matchResult = new Map([
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+            [5, 1],
+        ]);
+
+        expect(lottoMachine.getRateOfReturn()).toBe(62.5)
+    });
 });

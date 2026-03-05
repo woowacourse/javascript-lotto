@@ -62,6 +62,10 @@ export class LottoMachine {
         return sum
     }
 
+    getRateOfReturn(){
+        
+    }
+
     createLotto() {
         return pickNumberInRange(1, 45, 6);
     }
