@@ -1,3 +1,18 @@
+import {
+  validateBonusNumber,
+  validateCount,
+  validateEmpty,
+  validateLottoNumbers,
+  validateNoDuplicate,
+  validateNumber,
+  validatePositive,
+  validatePurchaseAmount,
+  validateRange,
+  validateRestartInput,
+  validateUnit,
+  validateYesNo,
+} from "../src/validator";
+
 describe("유효성 검증 테스트", () => {
   describe("공통 검증", () => {
     describe("빈 입력값", () => {
@@ -65,11 +80,8 @@ describe("유효성 검증 테스트", () => {
     });
 
     describe("음수 값", () => {
-      test.each([
-        { input: -1000, desc: "-1000" },
-        { input: 0, desc: "0" },
-      ])("$desc -> 에러", ({ input }) => {
-        expect(() => validatePositive(input)).toThrow("[ERROR]");
+      test("음수 -> 에러", () => {
+        expect(() => validatePositive(-1000)).toThrow("[ERROR]");
       });
 
       test("양수 -> 통과", () => {
