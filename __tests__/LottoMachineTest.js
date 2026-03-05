@@ -8,8 +8,9 @@ describe('로또 머신 테스트', () => {
         pickNumberInRange.mockReturnValueOnce([1, 4, 5, 6, 8, 9]);
 
         const lottoMachine = new LottoMachine();
+        const lotto = lottoMachine.createLotto();
 
-        expect(lottoMachine.createLotto()).toEqual([1, 4, 5, 6, 8, 9]);
+        expect(lotto.getLottoNumber()).toEqual([1, 4, 5, 6, 8, 9]);
     });
 
     test('로또 생성 개수 테스트', () =>{
@@ -31,13 +32,10 @@ describe('로또 머신 테스트', () => {
         .mockReturnValueOnce([35, 37, 39, 41, 42, 45]);
         const lottoMachine = new LottoMachine(3000);
         
-        expect(lottoMachine.getLotto()).toEqual(
-            [
-                [1, 4, 5, 6, 8, 9],
-                [3, 17, 19, 21, 23, 31],
-                [35, 37, 39, 41, 42, 45],
-            ]
-        );
+        expect(lottoMachine.lottos.length).toBe(3);
+        expect(lottoMachine.lottos[0].getLottoNumber()).toEqual([1, 4, 5, 6, 8, 9]);
+        expect(lottoMachine.lottos[1].getLottoNumber()).toEqual([3, 17, 19, 21, 23, 31]);
+        expect(lottoMachine.lottos[2].getLottoNumber()).toEqual([35, 37, 39, 41, 42, 45]);
     });
 
     test('당첨 결과 매칭 테스트', () => {

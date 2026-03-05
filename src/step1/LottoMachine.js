@@ -1,16 +1,16 @@
 import { pickNumberInRange } from './Utils.js';
+import { Lotto } from './Lotto.js';
 
 const PRIZE_LIST = [0, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
 
 export class LottoMachine {
 
     #amount;
-    #lottos;
 
     constructor(amount) {
         this.#amount = amount;
         this.purchaseCount = amount / 1000;
-        this.#lottos = Array.from({ length: this.purchaseCount }, () => this.createLotto());
+        this.lottos = Array.from({ length: this.purchaseCount }, () => this.createLotto());
         this.matchResult = new Map([
             [1, 0],
             [2, 0],
@@ -18,10 +18,6 @@ export class LottoMachine {
             [4, 0],
             [5, 0],
         ]);
-    }
-
-    getLotto() {
-        return [...this.#lottos];
     }
 
     updateMatchResult(rank) {
@@ -41,9 +37,10 @@ export class LottoMachine {
     }
 
     calculateMatchResult(winningNumber, bonusNumber) {
-        this.#lottos.forEach((lotto) => {
-            const matchCount = new Set([...lotto]).intersection(new Set([...winningNumber])).size;
-            const isMatchBonus = lotto.includes(Number(bonusNumber));
+        this.lottos.forEach((lotto) => {
+            const lottoNumbers = lotto.getLottoNumber()
+            const matchCount = new Set([...lottoNumbers]).intersection(new Set([...winningNumber])).size;
+            const isMatchBonus = lottoNumbers.includes(Number(bonusNumber));
             const rank = this.getMatchRank(matchCount, isMatchBonus);
             this.updateMatchResult(rank);
         });
@@ -61,6 +58,6 @@ export class LottoMachine {
     }
 
     createLotto() {
-        return pickNumberInRange(1, 45, 6);
+        return new Lotto(pickNumberInRange(1, 45, 6));
     }
 }
