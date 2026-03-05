@@ -1,4 +1,5 @@
 export const PRIZE_MONEY = Object.freeze({
+  0: 0,
   5: 5_000,
   4: 50_000,
   3: 1_500_000,
