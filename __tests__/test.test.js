@@ -1,4 +1,5 @@
 import Lotto from "../src/Lotto";
+import LottoGenerator from "../src/LottoGenerator";
 
 describe("로또 발행 테스트", () => {
   test("로또를 생성한다.", () => {
@@ -53,5 +54,16 @@ describe("로또 발행 테스트", () => {
 
     // then
     expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+
+  test("구입 수량만큼 로또를 발행해야 한다", () => {
+    // given
+    const buyLottoCount = 10;
+
+    // when
+    const lottos = LottoGenerator.makeLottos(buyLottoCount);
+
+    // then
+    expect(lottos.length).toEqual(buyLottoCount);
   });
 });
