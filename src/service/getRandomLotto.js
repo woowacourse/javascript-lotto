@@ -13,7 +13,7 @@ export function getRandomLotto() {
 }
 
 export function getLottos(count) {
-  let lottos = [];
+  const lottos = [];
   for (let i = 0; i < count; i++) {
     const lotto = getRandomLotto();
     lottos.push(new Lotto(lotto));
