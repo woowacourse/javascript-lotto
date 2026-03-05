@@ -28,6 +28,19 @@ const InputConsole = {
       }
     }
   },
+
+  async readBonusNumber() {
+    while (true) {
+      try {
+        const bonusNumber = await MissionUtils.Console.readLineAsync(
+          "\n> 보너스 번호를 입력해 주세요. ",
+        );
+        return bonusNumber;
+      } catch (e) {
+        MissionUtils.Console.print(e.message);
+      }
+    }
+  },
 };
 
 export default InputConsole;
