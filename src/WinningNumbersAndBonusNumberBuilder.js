@@ -9,24 +9,24 @@ class WinningNumbersAndBonusNumberBuilder {
   }
 
   validateWinningNumbers(winningNumbers) {
-    const isNotInteger = winningNumbers.some(
-      (number) => !Number.isInteger(number),
+    const isInteger = winningNumbers.every((number) =>
+      Number.isInteger(number),
     );
 
     const isOutOfRange = winningNumbers.some(
       (number) => number < 1 || number > 45,
     );
 
-    if (isNotInteger || isOutOfRange) {
+    if (!isInteger || isOutOfRange) {
       throw new Error();
     }
   }
 
   validateBonusNumber(bonusNumber) {
-    const isNotInteger = !Number.isInteger(bonusNumber);
+    const isInteger = Number.isInteger(bonusNumber);
     const isOutOfRange = bonusNumber < 1 || bonusNumber > 45;
 
-    if (isNotInteger || isOutOfRange) {
+    if (!isInteger || isOutOfRange) {
       throw new Error();
     }
 
