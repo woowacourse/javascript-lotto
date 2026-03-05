@@ -12,7 +12,8 @@ const logSpy = jest.spyOn(console, 'log');
 
 describe('구입 금액 입력예외 테스트', () => {
     test('1000원 단위가 아닌 입력예외 테스트', async () => {
-        const expectedAnswer = ['600', '1000'];
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+        const expectedAnswer = ['600', '1000', '1,2,3,4,5,6', '10', 'n'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -26,7 +27,8 @@ describe('구입 금액 입력예외 테스트', () => {
     });
 
     test('정수가 아닌 입력 예외 테스트', async () => {
-        const expectedAnswer = ['ㅁ', '1000'];
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+        const expectedAnswer = ['ㅁ', '1000', '1,2,3,4,5,6', '10', 'n'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -41,7 +43,8 @@ describe('구입 금액 입력예외 테스트', () => {
 
 describe('당첨 번호 입력 예외 테스트', () =>{
     test('1 ~ 45가 아닌 입력 예외 테스트', async () => {
-        const expectedAnswer = ['1000', '1,2,3,5,6,46', '1,2,3,4,5,6'];
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+        const expectedAnswer = ['1000', '1,2,3,5,6,46', '1,2,3,4,5,6', '10', 'n'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -55,7 +58,8 @@ describe('당첨 번호 입력 예외 테스트', () =>{
     });
 
     test('겹치는 당첨 번호 입력 예외 테스트', async () => {
-        const expectedAnswer = ['1000', '1,1,2,3,4,5', '1,2,3,4,5,6'];
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+        const expectedAnswer = ['1000', '1,1,2,3,4,5', '1,2,3,4,5,6', '10', 'n'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -69,7 +73,8 @@ describe('당첨 번호 입력 예외 테스트', () =>{
     });
 
     test('정수가 아닌 당첨 번호 입력 예외 테스트', async () => {
-        const expectedAnswer = ['1000', 'a,1,2,3,4,5', '1,2,3,4,5,6'];
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+        const expectedAnswer = ['1000', 'a,1,2,3,4,5', '1,2,3,4,5,6', '10', 'n'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -85,7 +90,8 @@ describe('당첨 번호 입력 예외 테스트', () =>{
 
 describe('보너스 번호 입력 예외 테스트', () => {
     test('1 ~ 45가 아닌 보너스 번호 입력 예외 테스트', async () => {
-        const expectedAnswer = ['1000', '1,2,3,4,5,6', '46', '10'];
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+        const expectedAnswer = ['1000', '1,2,3,4,5,6', '46', '10', 'n'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -99,7 +105,8 @@ describe('보너스 번호 입력 예외 테스트', () => {
     });
 
     test('당첨 번호와 동일한 입력 예외 테스트', async () => {
-        const expectedAnswer = ['1000', '1,2,3,4,5,6', '3', '41'];
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+        const expectedAnswer = ['1000', '1,2,3,4,5,6', '3', '41', 'n'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
@@ -113,7 +120,8 @@ describe('보너스 번호 입력 예외 테스트', () => {
     });
 
     test('정수가 아닌 보너스 번호 입력 예외 테스트', async () => {
-        const expectedAnswer = ['1000', 'a,1,2,3,4,5', '1,2,3,4,5,6', 'z', '21'];
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+        const expectedAnswer = ['1000', 'a,1,2,3,4,5', '1,2,3,4,5,6', 'z', '21', 'n'];
         expectedAnswer.forEach((answer) => {
             readLine.mockImplementationOnce(() => {
                 return answer;
