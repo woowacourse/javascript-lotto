@@ -37,4 +37,22 @@ describe("Validator 테스트", () => {
       /^\[ERROR\]/,
     );
   });
-});
+
+  test.each([
+    { input: '1', winningNumbers: [2, 3, 4, 5, 6, 7], expected: 1 },
+    { input: '45', winningNumbers: [1, 2, 3, 4, 5, 6], expected: 45 },
+  ])("보너스 번호 정상 테스트: $input", ({ input, winningNumbers, expected }) => {
+    return expect(Validator.validateBonusNumber(input, winningNumbers)).toEqual(expected);
+  });
+
+  test.each([
+    { input: 'a', winningNumbers: [1, 2, 3, 4, 5, 6], message: '보너스 번호 숫자 아님' },
+    { input: '0', winningNumbers: [1, 2, 3, 4, 5, 6], message: '보너스 번호 하한 이탈' },
+    { input: '46', winningNumbers: [1, 2, 3, 4, 5, 6], message: '보너스 번호 상한 이탈' },
+    { input: '1', winningNumbers: [1, 2, 3, 4, 5, 6], message: '당첨 번호와 중복' },
+  ])('보너스 번호 예외 테스트: "$input", $message', ({ input, winningNumbers }) => {
+    return expect(() => Validator.validateBonusNumber(input, winningNumbers)).toThrow(
+      /^\[ERROR\]/,
+    );
+  });
+}); 
