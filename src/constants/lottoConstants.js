@@ -6,3 +6,5 @@ export const PRIZE_MONEY = Object.freeze({
   2: 30_000_000,
   1: 2_000_000_000,
 });
+
+export const AMOUNT_PRICE = 1000;
