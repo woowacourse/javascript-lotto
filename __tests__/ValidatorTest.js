@@ -11,14 +11,14 @@ describe("구매 금액 테스트", () => {
   test("당첨 번호 범위(1~45) 테스트", () => {
     const winningNum = [1, 2, 3, 4, 5, 50];
     expect(function () {
-      Validator.validateLottoNumRange(winningNum);
+      winningNum.forEach((num) => Validator.validateLottoNumRange(num));
     }).toThrow("[ERROR]");
   });
 
   test("보너스번호 범위(1~45) 태스트", () => {
     const bonusNum = 50;
     expect(function () {
-      Validator.validateLottoNumRange([bonusNum]);
+      Validator.validateLottoNumRange(bonusNum);
     }).toThrow("[ERROR]");
   });
 

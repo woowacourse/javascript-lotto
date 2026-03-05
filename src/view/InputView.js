@@ -11,6 +11,7 @@ const InputView = {
   async inputPrice() {
     const priceStr = await rl.question("> 구입금액을 입력해 주세요.\n");
     const price = Number(priceStr);
+    Validator.validateNumber(price);
     Validator.validatePrice(price);
 
     return price;
@@ -22,8 +23,9 @@ const InputView = {
     );
     const winningNums = winningNumsStr.split(",").map(Number);
 
+    winningNums.forEach((num) => Validator.validateLottoNumRange(num));
+    winningNums.forEach((num) => Validator.validateNumber(num));
     Validator.validateLottoCount(winningNums);
-    Validator.validateLottoNumRange(winningNums);
     Validator.validateDuplicateWinningNum(winningNums);
 
     return winningNums;
@@ -33,7 +35,8 @@ const InputView = {
     const bonusNumStr = await rl.question("\n> 보너스 번호를 입력해 주세요.\n");
     const bonusNum = Number(bonusNumStr);
 
-    Validator.validateLottoNumRange([bonusNum]);
+    Validator.validateNumber(bonusNum);
+    Validator.validateLottoNumRange(bonusNum);
     Validator.validateDuplicateBonusNum(winningNums, bonusNum);
 
     return bonusNum;
