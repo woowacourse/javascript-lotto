@@ -1,5 +1,6 @@
 import Lotto from "../src/Lotto";
 import LottoGenerator from "../src/LottoGenerator";
+import Utils from "../src/Utils";
 
 describe("로또 발행 테스트", () => {
   test("구매한 로또의 개수를 올바르게 계산해야 한다.", () => {
@@ -73,5 +74,15 @@ describe("로또 발행 테스트", () => {
 
     // then
     expect(lottos.length).toEqual(buyLottoCount);
+  });
+});
+
+describe("유틸 함수 테스트", () => {
+  test("1~45 사이의 무작위 숫자 하나를 반환해야 한다", () => {
+    // given & when
+    const randomNumber = Utils.getRandomNumber(1, 45);
+
+    // then 나중에 모킹 해놓기
+    expect(randomNumber >= 1 && randomNumber <= 45).toEqual(true);
   });
 });
