@@ -2,6 +2,14 @@ import Lotto from "../src/Lotto";
 import LottoGenerator from "../src/LottoGenerator";
 
 describe("로또 발행 테스트", () => {
+  test("구매한 로또의 개수를 올바르게 계산해야 한다.", () => {
+    // given
+    const money = 10_000;
+
+    // when & then
+    expect(LottoGenerator.calculateBuyLottoCount(money)).toEqual(10);
+  });
+
   test("로또를 생성한다.", () => {
     // given
     const lotto = new Lotto([6, 5, 4, 3, 2, 1]);
