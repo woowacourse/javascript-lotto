@@ -70,7 +70,10 @@ class App {
     this.#outputView.printStatistics(statistics);
     this.#outputView.printRate(rate.getRate());
 
-    // const isRetry = await inputView.readIsRetry();
+    const isRetry = await this.#inputView.readIsRetry();
+    if (isRetry === "y") {
+      this.run();
+    }
   }
 }
 
