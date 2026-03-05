@@ -7,17 +7,17 @@ export const InputView = {
   },
 
   async inputWinningNumber() {
-    const answer = await readLine("당첨 번호를 입력해 주세요.");
+    const answer = await readLine("\n당첨 번호를 입력해 주세요.");
     return answer;
   },
 
   async inputBonusNumber() {
-    const answer = await readLine("보너스 번호를 입력해 주세요.");
+    const answer = await readLine("\n보너스 번호를 입력해 주세요.");
     return answer;
   },
 
   async inputRetry() {
-    const answer = await readLine("다시 시작하시겠습니까? (y/n)");
+    const answer = await readLine("\n다시 시작하시겠습니까? (y/n)");
     return answer;
   },
 };

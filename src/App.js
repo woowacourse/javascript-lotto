@@ -22,6 +22,9 @@ class App {
 
     const profit = getProfit(money, result);
 
+    OutputView.outputWinningStatics(result);
+    OutputView.outputWinningProfit(profit);
+
     const retry = await InputView.inputRetry();
   }
 }

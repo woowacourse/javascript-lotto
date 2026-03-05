@@ -1,21 +1,14 @@
-const prize = {
-  FIRST: 2000000000,
-  SECOND: 30000000,
-  THIRD: 1500000,
-  FOURTH: 50000,
-  FIFTH: 5000,
-};
+import { PRIZE } from "../constants/constant.js";
 
 export function getProfit(money, result) {
   const totalPrize =
-    result.FIRST * prize.FIRST +
-    result.SECOND * prize.SECOND +
-    result.THIRD * prize.THIRD +
-    result.FOURTH * prize.FOURTH +
-    result.FIFTH * prize.FIFTH;
+    result.FIRST * PRIZE.FIRST +
+    result.SECOND * PRIZE.SECOND +
+    result.THIRD * PRIZE.THIRD +
+    result.FOURTH * PRIZE.FOURTH +
+    result.FIFTH * PRIZE.FIFTH;
 
   const profit = ((totalPrize / money) * 100).toFixed(1);
-  console.log(profit);
 
   return profit;
 }
