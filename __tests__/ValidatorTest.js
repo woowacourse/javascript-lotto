@@ -19,4 +19,22 @@ describe("Validator 테스트", () => {
       /^\[ERROR\]/,
     );
   });
+
+  test.each([
+    { input: "1,2,3,4,5,6", expected: [1, 2, 3, 4, 5, 6] },
+    { input: "40,41,42,43,44,45", expected: [40, 41, 42, 43, 44, 45] },
+  ])("당첨 번호 정상 테스트: $input", ({ input, expected }) => {
+    return expect(Validator.validateWinningNumbers(input)).toEqual(expected);
+  });
+
+  test.each([
+    { input: "1,2,3,4,5", message: "당첨 번호 개수 부족" },
+    { input: "0,1,2,3,4,5", message: "당첨 번호 하한 범위 이탈" },
+    { input: "1,2,3,4,5,46", message: "당첨 번호 상한 범위 이탈" },
+    { input: "a,b,c,d,e,f", message: "당첨 번호 숫자 아님" },
+  ])('당첨 번호 예외 테스트: "$input", $message', ({ input }) => {
+    return expect(() => Validator.validateWinningNumbers(input)).toThrow(
+      /^\[ERROR\]/,
+    );
+  });
 });
