@@ -1,3 +1,10 @@
+import {
+  printProfitRate,
+  printPurchaseCount,
+  printPurchasedLottoNumbers,
+  printWinStatistics,
+} from "../src/output";
+
 const getLogSpy = () => {
   const logSpy = jest.spyOn(console, "log");
   logSpy.mockClear();
@@ -64,6 +71,7 @@ describe("출력 처리 테스트", () => {
   });
 
   afterEach(() => {
-    jest.mockRestore();
+    const logSpy = getLogSpy();
+    logSpy.mockRestore();
   });
 });
