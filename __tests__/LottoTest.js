@@ -130,3 +130,19 @@ describe("로또 발행 테스트", () => {
     expect(lottos[0]).toBeInstanceOf(Lotto);
   });
 });
+
+describe("랜덤 숫자 배열 반환 테스트", () => {
+  test("반환된 결과물의 요소는 6개", () => {
+    expect(generateRandomNumbers()).toHaveLength(6);
+  });
+  test("반환된 결과물의 요소는 중복되지 않음", () => {
+    expect(new Set(generateRandomNumbers()).size).toBe(6);
+  });
+  test("1~45 사이의 숫자만 반환한다", () => {
+    const numbers = generateRandomNumbers();
+    numbers.forEach((n) => {
+      expect(n).toBeGreaterThanOrEqual(1);
+      expect(n).toBeLessThanOrEqual(45);
+    });
+  });
+});
