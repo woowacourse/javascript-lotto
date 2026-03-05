@@ -22,7 +22,7 @@ const InputConsole = {
         const winningNumbers = await MissionUtils.Console.readLineAsync(
           "\n> 당첨 번호를 입력해 주세요. ",
         );
-        return winningNumbers;
+        return Validator.validateWinningNumbers(winningNumbers);
       } catch (e) {
         MissionUtils.Console.print(e.message);
       }
