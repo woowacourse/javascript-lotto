@@ -111,15 +111,22 @@ describe("수익률 계산 테스트", () => {
 
 describe("로또 발행 테스트", () => {
   test("3개 발행 -> Lotto 인스턴스 3개 반환", () => {
-    const lottos = generateRandomNumber(3);
+    const lottos = generateLottos([
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 4, 5, 6, 7],
+      [1, 2, 8, 9, 10, 11],
+    ]);
     expect(lottos).toHaveLength(3);
+    expect(lottos[0]).toBeInstanceOf(Lotto);
   });
   test("0개 발행 -> 빈 배열 반환", () => {
-    const lottos = generateRandomNumber(0);
+    const lottos = generateLottos([]);
     expect(lottos).toEqual([]);
+    expect(lottos[0]).toBeInstanceOf(Lotto);
   });
   test("1개 발행 -> Lotto 인스턴스 1개 반환", () => {
-    const lottos = generateRandomNumber(1);
+    const lottos = generateLottos([[1, 2, 8, 9, 10, 11]]);
     expect(lottos).toHaveLength(1);
+    expect(lottos[0]).toBeInstanceOf(Lotto);
   });
 });
