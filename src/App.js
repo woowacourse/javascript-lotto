@@ -1,6 +1,7 @@
 import LottoGame from "./Model/LottoGame.js";
 import LottoList from "./Model/LottoList.js";
 import Rate from "./Model/Rate.js";
+import { parsingNumbers } from "./utils/parsing.js";
 import InputView from "./View/InputView.js";
 import OutputView from "./View/OutputView.js";
 
@@ -17,9 +18,11 @@ class App {
     const lottoList = new LottoList(price / 1000);
     outputView.printLottos(lottoList.getLottoList());
 
-    // 파싱
+    const winningNumbers = parsingNumbers(lottoNumbers);
 
-    const lottoGame = new LottoGame(lottoNumbers, bonusNumber);
+    
+
+    const lottoGame = new LottoGame(winningNumbers, bonusNumber);
 
     const statistics = lottoGame.getStatistics(lottoList);
 
