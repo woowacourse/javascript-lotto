@@ -6,6 +6,7 @@ class App {
     async run() {
         const amount = await this.amount();
         const lottoMachine = new LottoMachine(amount)
+        Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
         const lottos = lottoMachine.getLotto();
         Output.printLottos(lottos);
         const winngNumber = await this.winningNumber()
