@@ -1,4 +1,3 @@
-import { InputView } from "./view/input.js";
 import { OutputView } from "./view/output.js";
 import { calculateLottoCount } from "./service/calculateLottoCount.js";
 import { getLottos } from "./service/getRandomLotto.js";
@@ -8,6 +7,7 @@ import { getProfit } from "./service/getProfit.js";
 import { getPurchaseAmount } from "./service/getPurchaseAmount.js";
 import { getWinningLotto } from "./service/getWinningLotto.js";
 import { getBonusNumber } from "./service/getBonusNumber.js";
+import { getRetry } from "./service/getRetry.js";
 
 class App {
   async run() {
@@ -28,7 +28,7 @@ class App {
     OutputView.outputWinningStatics(result);
     OutputView.outputWinningProfit(profit);
 
-    const retry = await InputView.inputRetry();
+    const retry = await getRetry();
     if (retry === "y" || retry === "Y") return this.run();
   }
 }

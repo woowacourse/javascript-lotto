@@ -49,4 +49,10 @@ export const Validator = {
       throw new Error("[ERROR] 당첨 번호랑 중복입니다.");
     }
   },
+
+  validateRetry(retry) {
+    if (retry !== "y" && retry !== "Y" && retry !== "n" && retry !== "N") {
+      throw new Error("[ERROR] 다시 입력해주세요.");
+    }
+  },
 };
