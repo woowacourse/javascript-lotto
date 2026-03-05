@@ -42,4 +42,61 @@ describe("WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트", () =>
       ).toThrow();
     });
   });
+
+  describe("validateBonusNumber", () => {
+    test("보너스 번호는 당첨 번호에 포함되지 않은 1부터 45까지의 정수여야한다.", () => {
+      // given
+      const builder = new WinningNumbersAndBonusNumberBuilder();
+
+      // when
+      builder.setWinningNumbers([1, 2, 3, 4, 5, 6]);
+
+      // then
+      expect(() => builder.validateBonusNumber(7)).not.toThrow();
+    });
+
+    test("보너스 번호가 정수가 아니면 에러를 반환한다.", () => {
+      // given
+      const builder = new WinningNumbersAndBonusNumberBuilder();
+
+      // when
+      builder.setWinningNumbers([1, 2, 3, 4, 5, 6]);
+
+      // then
+      expect(() => builder.validateBonusNumber(7.1)).toThrow();
+    });
+
+    test("보너스 번호가 1보다 작으면 에러를 반환한다.", () => {
+      // given
+      const builder = new WinningNumbersAndBonusNumberBuilder();
+
+      // when
+      builder.setWinningNumbers([1, 2, 3, 4, 5, 6]);
+
+      // then
+      expect(() => builder.validateBonusNumber(-1)).toThrow();
+    });
+
+    test("보너스 번호가 45보다 크면 에러를 반환한다.", () => {
+      // given
+      const builder = new WinningNumbersAndBonusNumberBuilder();
+
+      // when
+      builder.setWinningNumbers([1, 2, 3, 4, 5, 6]);
+
+      // then
+      expect(() => builder.validateBonusNumber(46)).toThrow();
+    });
+
+    test("당첨 번호에 이미 포함된 번호면 에러를 반환한다.", () => {
+      // given
+      const builder = new WinningNumbersAndBonusNumberBuilder();
+
+      // when
+      builder.setWinningNumbers([1, 2, 3, 4, 5, 6]);
+
+      // then
+      expect(() => builder.validateBonusNumber(6)).toThrow();
+    });
+  });
 });
