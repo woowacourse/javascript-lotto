@@ -15,6 +15,19 @@ describe("수익률 계산 검사 테스트", () => {
       2000,
       100000000.0,
     ],
+    [
+      "등수와 금액을 받아서 수익률을 계산한다(소수점)",
+      {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 1,
+        0: 7,
+      },
+      8000,
+      62.5,
+    ],
   ])("%s", (description, statistics, price, result) => {
     const rate = new Rate(statistics, price);
 
