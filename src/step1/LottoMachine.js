@@ -49,14 +49,14 @@ export class LottoMachine {
         });
     }
 
-    getTotalPrise(){
+    getTotalPrize(){
         return this.matchResult.keys().reduce(
             (acc, rank) => acc + PRIZE_LIST[rank] * this.matchResult.get(rank), 0
         );
     }
 
     getRateOfReturn(){
-        const profitRate = (this.getTotalPrise() / this.#amount) * 100;
+        const profitRate = (this.getTotalPrize() / this.#amount) * 100;
         return profitRate.toFixed(1);
     }
 

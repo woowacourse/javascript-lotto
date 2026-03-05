@@ -60,7 +60,7 @@ describe('로또 머신 테스트', () => {
             [[1,0],[2,0],[3,0],[4,1],[5,1]]
         );
 
-        expect(lottoMachine.getTotalPrise()).toBe(55000)
+        expect(lottoMachine.getTotalPrize()).toBe(55000)
     });
 
     test('수익률 계산 로직 테스트', () =>{
