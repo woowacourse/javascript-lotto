@@ -8,11 +8,7 @@ export class LottoMachine {
     constructor(amount) {
         this.#amount = amount;
         this.purchaseCount = amount / 1000;
-        this.#lottos = [];
-        for(let i = 0 ; i < this.purchaseCount; i ++){
-            const lotto = this.createLotto().sort((a, b) => a - b);
-            this.#lottos.push(lotto);
-        }
+        this.#lottos = Array.from({ length: this.purchaseCount }, () => this.createLotto());
         this.matchResult = new Map([
             [1, 0],
             [2, 0],
