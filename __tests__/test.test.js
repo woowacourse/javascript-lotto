@@ -43,4 +43,15 @@ describe("로또 발행 테스트", () => {
     // when & then
     expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
   });
+
+  test("로또 생성 시 번호를 오름차순으로 올바르게 정렬해야 한다", () => {
+    // given
+    const unSortedNunmbers = [6, 5, 4, 3, 2, 1];
+
+    // when
+    const lotto = new Lotto(unSortedNunmbers);
+
+    // then
+    expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
