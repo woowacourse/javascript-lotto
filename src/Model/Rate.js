@@ -12,7 +12,10 @@ class Rate {
     }, 0);
   }
   getRate() {
-    return;
+    const total = this.#getTotal();
+    const rate = (total / this.price) * 100;
+
+    return Math.round(rate * 10) / 10;
   }
 }
 
