@@ -53,4 +53,13 @@ describe('로또 머신 테스트', () => {
             new Map([[1, 1], [2, 1], [3, 1], [4, 0], [5, 1]])
         );
     });
+
+    test('총금액 계산 로직 테스트', () =>{
+        const lottoMachine = new LottoMachine();
+        lottoMachine.matchResult = new Map(
+            [[1,0],[2,0],[3,0],[4,1],[5,1]]
+        );
+
+        expect(lottoMachine.getTotalPrise()).toBe(55000)
+    });
 });

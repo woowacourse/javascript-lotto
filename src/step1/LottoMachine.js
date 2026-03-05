@@ -51,6 +51,10 @@ export class LottoMachine {
         });
     }
 
+    getTotalPrise(){
+
+    }
+
     createLotto() {
         return pickNumberInRange(1, 45, 6);
     }
