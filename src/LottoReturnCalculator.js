@@ -4,6 +4,7 @@ const RETURN_AMOUNT_BY_RANK = {
   3: 1500000,
   4: 50000,
   5: 5000,
+  6: 0,
 };
 
 class LottoReturnCalculator {
