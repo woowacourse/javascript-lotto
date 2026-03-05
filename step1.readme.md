@@ -74,17 +74,17 @@
 
 ## 추가
 
+1. 에러 메시지 설정 + console.error -> console.log
+2. generateRandomNumber/winningNumbers/lotto 중복 검사
+3. 로또 상수 static 필드 상수로 추출
+4. 함수 매개변수 2개 이하
+5. 로또 번호에 대한 중복 테스트 및 검증 로직 제거
+
 - generateRandomNumber 유틸 함수에 유효성 검사
   - 정수 외 값을 반환해야하는 경우
   - 음수 값을 반환하는 경우
   - 1보다 작은 값이 들어오는 경우
 
-- 로또 상수 static 필드 -> 상수로 추출
-- 중복 검사 로직의 중복
-  - 로또 -> 중복 검사 (지금은 random number -> 로또, random number에서 중복 검사 -> 로또에서는 중복 문제 x)
-  - 위닝 넘버 -> 중복 검사
-
 - winningNumbersAndBonusNumberBuilder에서 순서를 강제할 수 있는 방법 고민
-- winningNumbers 중복 검사
 - calculateRank 메서드 코드 정리?
 - 금액 상수 따로 뺴기
