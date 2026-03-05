@@ -1,27 +1,34 @@
+import LottoGame from "./Model/LottoGame.js";
 import LottoList from "./Model/LottoList.js";
+import Rate from "./Model/Rate.js";
 import InputView from "./View/InputView.js";
 import OutputView from "./View/OutputView.js";
 
 class App {
   async run() {
     const inputView = new InputView();
-    // const price = await inputView.readPrice();
-    // const lottoNumbers = await inputView.readLottoNumbers();
-    // const bonusNumber = await inputView.readBonusNumber();
+    const price = await inputView.readPrice();
+    const lottoNumbers = await inputView.readLottoNumbers();
+    const bonusNumber = await inputView.readBonusNumber();
 
     const outputView = new OutputView();
-    // outputView.printAmount(1);
+    outputView.printAmount(price);
 
-    const lottoList = new LottoList(6);
+    const lottoList = new LottoList(price / 1000);
     outputView.printLottos(lottoList.getLottoList());
 
-    // const _statistics = { 5: 50, 4: 40, 3: 30, 2: 20, 1: 10 };
-    // outputView.printStatistics(_statistics);
-    // outputView.printRate(62.5);
+    // 파싱
+
+    const lottoGame = new LottoGame(lottoNumbers, bonusNumber);
+
+    const statistics = lottoGame.getStatistics(lottoList);
+
+    const rate = new Rate(statistics, price);
+
+    outputView.printStatistics(statistics);
+    outputView.printRate(rate.getRate());
 
     // const isRetry = await inputView.readIsRetry();
-
-    
   }
 }
 
