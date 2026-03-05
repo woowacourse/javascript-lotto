@@ -45,3 +45,21 @@ describe("당첨 번호", () => {
     );
   });
 });
+
+describe("보너스 번호", () => {
+  test("당첨 번호 숫자가 1 ~ 45 사이가 아닐 시 에러가 발생한다.", () => {
+    expect(() => Validator.validateBonusNumber("1,2,3,4,5,6", 46)).toThrow(
+      "[ERROR] 보너스 번호는 1 ~ 45 사이어야 합니다.",
+    );
+  });
+  test("숫자가 아닐 시 에러가 발생한다.", () => {
+    expect(() => Validator.validateBonusNumber("1,2,3,4,5,6", "a")).toThrow(
+      "[ERROR] 숫자를 입력해야 합니다.",
+    );
+  });
+  test("당첨 번호랑 중복일 시 에러가 발생한다.", () => {
+    expect(() => Validator.validateBonusNumber("1,2,3,4,5,6", 6)).toThrow(
+      "[ERROR] 당첨 번호랑 중복입니다.",
+    );
+  });
+});
