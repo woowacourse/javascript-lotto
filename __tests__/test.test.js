@@ -22,4 +22,25 @@ describe("로또 발행 테스트", () => {
     // when & then
     expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
   });
+
+  test("1~45 사이가 아닌 경우 에러를 발생시킨다", () => {
+    // given
+    const wrongNumbers = [1, 2, 3, 4, 5, 100];
+    // when & then
+    expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
+  });
+
+  test("번호가 중복되는 경우 에러를 발생시킨다", () => {
+    // given
+    const wrongNumbers = [1, 1, 2, 3, 4, 5];
+    // when & then
+    expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
+  });
+
+  test("로또 번호가 6개가 아닌 경우 에러를 발생시킨다", () => {
+    // given
+    const wrongNumbers = [1, 2, 3, 4, 5];
+    // when & then
+    expect(() => new Lotto(wrongNumbers)).toThrow("[ERROR]");
+  });
 });
