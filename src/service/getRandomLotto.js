@@ -1,15 +1,16 @@
 import Lotto from "../domain/Lotto.js";
 
 export function getRandomLotto() {
-  const lottoList = [];
+  const lottoSet = new Set();
 
-  for (let j = 0; j < 6; j++) {
-    lottoList[j] = Math.floor(Math.random() * 45 + 1);
+  while (lottoSet.size < 6) {
+    lottoSet.add(Math.floor(Math.random() * 45 + 1));
   }
 
-  lottoList.sort((a, b) => a - b);
+  const lottoArray = Array.from(lottoSet);
+  lottoArray.sort((a, b) => a - b);
 
-  return lottoList;
+  return lottoArray;
 }
 
 export function getLottos(count) {
