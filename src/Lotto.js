@@ -14,7 +14,11 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR]");
     }
-    this.#numbers = numbers;
+    this.#numbers = numbers.sort((a, b) => a - b);
+  }
+
+  getNumbers() {
+    return this.#numbers;
   }
 }
 
