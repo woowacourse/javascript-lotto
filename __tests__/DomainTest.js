@@ -1,5 +1,7 @@
 import Lotto from "../src/Domain/Lotto.js";
 import LottoMachine from "../src/Domain/LottoMachine.js";
+import LottoResult from "../src/Domain/LottoResult.js";
+import WinningNumbers from "../src/Domain/WinningNumbers.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 describe("로또 클래스 테스트", () => {
@@ -64,4 +66,41 @@ describe("LottoMachine 동작 테스트", () => {
     expect(lottos[0]).toBeInstanceOf(Lotto);
     expect(lottos[1]).toBeInstanceOf(Lotto);
   });
+}
+);
+
+describe("LottoResult 동작 테스트", () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  // 1. 등수 집계 테스트
+  test("등수 집계 테스트: 각 등수 카운팅", () => {
+    const winningNumbersObj = new WinningNumbers();
+    winningNumbersObj.setWinningNumbers([1, 2, 3, 4, 5, 6]);
+    winningNumbersObj.setBonusNumber(7);
+
+    const lottos = [
+      new Lotto([1, 2, 3, 4, 5, 6]), // 1등
+      new Lotto([1, 2, 3, 4, 5, 7]), // 2등
+      new Lotto([1, 2, 3, 4, 5, 8]), // 3등
+      new Lotto([1, 2, 3, 4, 9, 10]), // 4등
+      new Lotto([1, 2, 3, 11, 12, 13]), // 5등
+      new Lotto([14, 15, 16, 17, 18, 19]), // 일치 없음
+    ];
+
+    const result = new LottoResult();
+
+    const winningResult = result.calculateWinningResult(lottos, winningNumbersObj);
+    expect(winningResult).toEqual({
+      FIFTH: 1,
+      FIRST: 1,
+      FOURTH: 1,
+      SECOND: 1,
+      THIRD: 1,
+    });
+  });
+
 });
+
+
