@@ -12,6 +12,8 @@ async function main() {
   const purchaseAmount = await inputHandler(() => inputView.askAmount());
   const lottos = LottoStore.purchaseLottos(purchaseAmount);
 
+  outputView.printLottos(lottos);
+
   const builder = new WinningNumbersAndBonusNumberBuilder();
 
   await inputHandler(async () => {
