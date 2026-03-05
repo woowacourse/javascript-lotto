@@ -32,4 +32,23 @@ describe('출력 테스트', () =>{
         expect(logSpy).toHaveBeenCalledWith('[30, 32, 33, 43, 44, 45]')
         expect(logSpy).toHaveBeenCalledWith('[10, 15, 20, 25, 30, 40]')
     });
+
+    test('당첨 통계 출력 테스트', ()=>{
+
+        const lottoMachine = new LottoMachine(5000);
+
+        lottoMachine.matchResult = new Map([
+            [1, 6],
+            [2, 10],
+            [3, 3],
+            [4, 4],
+            [5, 5],
+        ]);
+
+        expect(logSpy).toHaveBeenCalled('3개 일치 (5,000원) - 5개');
+        expect(logSpy).toHaveBeenCalled('4개 일치 (50,000원) - 4개');
+        expect(logSpy).toHaveBeenCalled('5개 일치 (1,500,000원) - 3개');
+        expect(logSpy).toHaveBeenCalled('5개 일치, 보너스 볼 일치 (30,000,000원) - 10개');
+        expect(logSpy).toHaveBeenCalled('6개 일치 (2,000,000,000원) - 6개');
+    });
 });
