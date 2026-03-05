@@ -108,3 +108,18 @@ describe("수익률 계산 테스트", () => {
     expect(getReturnRate([0, 0, 0, 0, 0, 0], 5000)).toBe(0);
   });
 });
+
+describe("로또 발행 테스트", () => {
+  test("3개 발행 -> Lotto 인스턴스 3개 반환", () => {
+    const lottos = generateRandomNumber(3);
+    expect(lottos).toHaveLength(3);
+  });
+  test("0개 발행 -> 빈 배열 반환", () => {
+    const lottos = generateRandomNumber(0);
+    expect(lottos).toEqual([]);
+  });
+  test("1개 발행 -> Lotto 인스턴스 1개 반환", () => {
+    const lottos = generateRandomNumber(1);
+    expect(lottos).toHaveLength(1);
+  });
+});
