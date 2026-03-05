@@ -40,6 +40,13 @@ async function main() {
   );
 
   outputView.printLottoResult(rank, returnRate);
+
+  await inputHandler(async () => {
+    const userInput = await inputView.askRetry();
+    if (userInput === "y") {
+      main();
+    }
+  });
 }
 
 async function inputHandler(inputFn) {

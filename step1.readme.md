@@ -86,3 +86,5 @@
 
 - winningNumbersAndBonusNumberBuilder에서 순서를 강제할 수 있는 방법 고민
 - winningNumbers 중복 검사
+- calculateRank 메서드 코드 정리?
+- 금액 상수 따로 뺴기
