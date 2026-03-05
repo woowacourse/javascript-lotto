@@ -1,5 +1,5 @@
-import { Validator } from "./validator/Validator.js";
-import { InputView } from "./view/input.js";
+import { Validator } from "../validator/Validator.js";
+import { InputView } from "../view/input.js";
 
 export async function getWinningLotto() {
   try {

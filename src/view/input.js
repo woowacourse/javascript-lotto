@@ -13,7 +13,7 @@ export const InputView = {
 
   async inputBonusNumber() {
     const answer = await readLine("\n보너스 번호를 입력해 주세요.");
-    return answer;
+    return Number(answer);
   },
 
   async inputRetry() {

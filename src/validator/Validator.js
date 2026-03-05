@@ -35,4 +35,18 @@ export const Validator = {
       throw new Error("[ERROR] 당첨 번호가 중복입니다.");
     }
   },
+
+  validateBonusNumber(winningNumber, bonusNumber) {
+    const winningNumberArray = winningNumber.split(",").map(Number);
+
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      throw new Error("[ERROR] 보너스 번호는 1 ~ 45 사이어야 합니다.");
+    }
+    if (isNaN(bonusNumber)) {
+      throw new Error("[ERROR] 숫자를 입력해야 합니다.");
+    }
+    if (winningNumberArray.includes(bonusNumber)) {
+      throw new Error("[ERROR] 당첨 번호랑 중복입니다.");
+    }
+  },
 };

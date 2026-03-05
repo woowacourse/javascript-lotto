@@ -7,6 +7,7 @@ import { getCompareResult } from "./service/getCompareResult.js";
 import { getProfit } from "./service/getProfit.js";
 import { getPurchaseAmount } from "./service/getPurchaseAmount.js";
 import { getWinningLotto } from "./service/getWinningLotto.js";
+import { getBonusNumber } from "./service/getBonusNumber.js";
 
 class App {
   async run() {
@@ -16,8 +17,7 @@ class App {
     OutputView.outputLottoNumber(randomLotto);
 
     const winningNumber = await getWinningLotto();
-
-    const bonusNumber = await InputView.inputBonusNumber();
+    const bonusNumber = await getBonusNumber(winningNumber);
 
     const winningLotto = new WinningLotto(winningNumber, bonusNumber);
 
