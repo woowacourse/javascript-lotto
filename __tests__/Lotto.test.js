@@ -13,4 +13,30 @@ describe("Lotto 클래스 유닛 테스트", () => {
       expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
     });
   });
+
+  describe("includes", () => {
+    test("전달받은 값이 로또 번호 안에 포함되면 true를 반환한다.", () => {
+      // given
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      const bonusNumber = 1;
+
+      // when
+      const result = lotto.includes(bonusNumber);
+
+      // then
+      expect(result).toBe(true);
+    });
+
+    test("전달받은 값이 로또 번호 안에 포함되면 false를 반환한다.", () => {
+      // given
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      const bonusNumber = 7;
+
+      // when
+      const result = lotto.includes(bonusNumber);
+
+      // then
+      expect(result).toBe(false);
+    });
+  });
 });
