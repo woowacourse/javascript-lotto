@@ -3,11 +3,6 @@ import ERROR_MESSAGE from "./constants/errorMessage";
 class Lotto {
   #numbers;
 
-  static UNIT = 1000;
-  static MAX = 45;
-  static MIN = 1;
-  static LENGTH = 6;
-
   constructor(numbers) {
     this.validateLotto(numbers);
     this.#numbers = [...numbers].sort((a, b) => a - b);
