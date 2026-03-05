@@ -1,15 +1,12 @@
 class Lotto {
-    #numbers;
+  #numbers;
 
-    constructor(numbers){
-        
-        
-        if(numbers[0] === 0 || numbers[0] === -1) {
-        
-            throw new Error('[ERROR]');
-        }
-        this.#numbers = numbers; 
+  constructor(numbers) {
+    if (numbers.indexOf(0) !== -1 || numbers.indexOf(-1) !== -1) {
+      throw new Error("[ERROR]");
     }
+    this.#numbers = numbers;
+  }
 }
 
 export default Lotto;
