@@ -63,3 +63,16 @@ describe("보너스 번호", () => {
     );
   });
 });
+
+describe("재시작", () => {
+  test("y, Y, n, N 이외를 입력 시 에러가 발생한다.", () => {
+    expect(() => Validator.validateRetry("a")).toThrow(
+      "[ERROR] 다시 입력해주세요.",
+    );
+  });
+  test("y, Y, n, N 이외를 입력 시 에러가 발생한다.", () => {
+    expect(() => Validator.validateRetry("2")).toThrow(
+      "[ERROR] 다시 입력해주세요.",
+    );
+  });
+});
