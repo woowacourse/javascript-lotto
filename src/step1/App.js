@@ -4,16 +4,22 @@ import { Output } from './Output.js';
 
 class App {
     async run() {
-        const amount = await this.amount();
-        const lottoMachine = new LottoMachine(amount)
-        Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
-        const lottos = lottoMachine.getLotto();
-        Output.printLottos(lottos);
-        const winngNumber = await this.winningNumber()
-        const bonusNumber = await this.bonusNumber(winngNumber);
-        lottoMachine.calculateMatchResult(winngNumber, bonusNumber);
-        Output.printResult(lottoMachine.matchResult);
-        read.close();
+        while(true) {
+            const amount = await this.amount();
+            const lottoMachine = new LottoMachine(amount)
+            Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
+            const lottos = lottoMachine.getLotto();
+            Output.printLottos(lottos);
+            const winngNumber = await this.winningNumber()
+            const bonusNumber = await this.bonusNumber(winngNumber);
+            lottoMachine.calculateMatchResult(winngNumber, bonusNumber);
+            Output.printResult(lottoMachine);
+            const restart = await this.restart();
+            if (restart === 'n') {
+                read.close();
+                break;
+            }
+        }
     }
 
     async amount(){
@@ -71,6 +77,20 @@ class App {
                 }
                 return number;
             } catch(err){
+                console.log(`[ERROR] ${err.message}`);
+            }
+        }
+    }
+
+    async restart() {
+        while (true) {
+            try {
+                const answer = await readLine('다시 시작하시겠습니까? (y/n)');
+                if (!['y', 'n'].includes(answer)) {
+                    throw new Error('다시시작 입력은 y 또는 n 만 입력 가능합니다.');
+                }
+                return answer;
+            } catch (err) {
                 console.log(`[ERROR] ${err.message}`);
             }
         }

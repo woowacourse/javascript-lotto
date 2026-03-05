@@ -1,10 +1,13 @@
 import { readLine } from '../src/step1/Utils.js';
+import { pickNumberInRange } from '../src/step1/Utils.js';
 import App from '../src/step1/App.js';
 
 jest.mock('../src/step1/Utils.js', () => ({
     readLine: jest.fn(),
     read: { close: jest.fn() },
+    pickNumberInRange: jest.fn(),
 }));
+
 const logSpy = jest.spyOn(console, 'log');
 
 describe('구입 금액 입력예외 테스트', () => {
@@ -121,5 +124,22 @@ describe('보너스 번호 입력 예외 테스트', () => {
         await app.run();
 
         expect(logSpy).toHaveBeenCalledWith('[ERROR] 보너스 번호는 숫자여야 합니다.');
+    });
+});
+
+describe('재시작 입력 예외 테스트', () => {
+    test('y 또는 n외 입력 테스트', async () => {
+        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+        const expectedAnswer = ['1000', '1,2,3,4,5,6', '7', 'zzz', 'n'];
+        expectedAnswer.forEach((answer) => {
+            readLine.mockImplementationOnce(() => {
+                return answer;
+            });
+        });
+
+        const app = new App();
+        await app.run();
+
+        expect(logSpy).toHaveBeenCalledWith('[ERROR] 다시시작 입력은 y 또는 n 만 입력 가능합니다.');
     });
 });
