@@ -1,5 +1,10 @@
 {
-  "rules": {},
+  "rules": {
+    "max-depth": ["error", 1],
+    "max-params": ["error", 2],
+    "no-var": "error",
+    "prefer-const": "error"
+  },
   "env": {
     "es6": true,
     "node": true
