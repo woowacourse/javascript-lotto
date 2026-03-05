@@ -17,6 +17,11 @@ class Lotto {
   includes(number) {
     return this.#numbers.includes(number);
   }
+
+  matchCount(winningNumbers) {
+    const numbersSet = new Set([...winningNumbers, ...this.#numbers]);
+    return this.#numbers.length + winningNumbers.length - numbersSet.size;
+  }
 }
 
 export default Lotto;
