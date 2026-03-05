@@ -3,13 +3,6 @@ import {
   pickUniqueNumbersInRange,
 } from "../src/domain/LottoMachine";
 
-const mockRandoms = (numbers) => {
-  pickUniqueNumbersInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, pickUniqueNumbersInRange);
-};
-
 describe("로또 발행 테스트", () => {
   test("생성된 로또 번호는 1-45 사이 중복되지 않는 6개 숫자여야 한다", () => {
     const lotto = pickUniqueNumbersInRange(1, 45, 6);

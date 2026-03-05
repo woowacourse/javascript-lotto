@@ -36,10 +36,18 @@ describe("구매 금액 테스트", () => {
       Validator.validateDuplicateBonusNum(winningNum, bonusNum);
     }).toThrow("[ERROR]");
   });
+
   test("로또 번호의 개수가 6개가 아니면 에러를 발생한다.", () => {
     const winningNum = [1, 2, 3, 4, 5, 6, 7];
     expect(function () {
       Validator.validateLottoCount(winningNum);
+    }).toThrow("[ERROR]");
+  });
+
+  test("재시도 입력값이 y나 n이 아니면 에러가 발생한다.", () => {
+    const restartAnswer = "예";
+    expect(function () {
+      Validator.validateRestartAnswer(restartAnswer);
     }).toThrow("[ERROR]");
   });
 });

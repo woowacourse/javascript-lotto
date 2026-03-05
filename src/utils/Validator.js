@@ -26,6 +26,12 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_COUNT);
     }
   },
+
+  validateRestartAnswer(restartAnswer) {
+    if (!(restartAnswer === "y" || restartAnswer === "n")) {
+      throw new Error(ERROR_MESSAGE.INVALID_RESTART_ANSWER);
+    }
+  },
 };
 
 export default Validator;

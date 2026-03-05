@@ -5,4 +5,5 @@ export const ERROR_MESSAGE = Object.freeze({
   BONUS_IN_WINNING_NUMBERS:
     "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.",
   INVALID_LOTTO_COUNT: "[ERROR] 로또 번호는 6개여야 합니다.",
+  INVALID_RESTART_ANSWER: "[ERROR] 대답은 y/n로 답해야 합니다.",
 });
