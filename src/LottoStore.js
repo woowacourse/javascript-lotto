@@ -1,6 +1,6 @@
 import ERROR_MESSAGE from "./constants/errorMessage.js";
 import Lotto from "./Lotto.js";
-import { generateRandomNumber } from "./utils.js";
+import { generateUniqueRandomNumbers } from "./utils.js";
 
 class LottoStore {
   static purchaseLottos(amount) {
@@ -17,9 +17,7 @@ class LottoStore {
   }
 
   static createRandomLotto() {
-    const numbers = Array.from({ length: Lotto.LENGTH }).map(() =>
-      generateRandomNumber(Lotto.MAX),
-    );
+    const numbers = generateUniqueRandomNumbers(Lotto.MAX, Lotto.LENGTH);
     return new Lotto(numbers);
   }
 }
