@@ -24,9 +24,7 @@ describe("Lotto 테스트", () => {
 
     // 정상 생성 테스트
     test("에러없이 로또가 정상적으로 생성된다.", () => {
-      expect(
-        () => new Lotto([1, 2, 3, 4, 5, 6]),
-      ).not.toThrow();
+      expect(() => new Lotto([1, 2, 3, 4, 5, 6])).not.toThrow();
     });
 
     test("번호를 오름차순으로 반환한다", () => {
@@ -44,6 +42,6 @@ describe("Lotto 테스트", () => {
 
     test("포함되지 않은 번호는 false를 반환한다", () => {
       expect(lotto.hasNumber(45)).toBe(false);
-    })
+    });
   });
 });
