@@ -150,3 +150,28 @@ describe("랜덤 숫자 배열 반환 테스트", () => {
     });
   });
 });
+
+describe("간이 도메인 로직 통합 테스트", () => {
+  test("1개 구매, 5등 당첨", () => {
+    const lottos = generateLottos([[1, 2, 3, 7, 8, 9]]);
+    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+    const prizeResult = winningLotto.getPrizeList(lottos);
+    const returnRate = getReturnRate(prizeResult, 1000);
+
+    expect(prizeResult).toEqual([0, 0, 0, 0, 0, 1]);
+    expect(returnRate).toBe(500);
+  });
+
+  test("2개 구매, 전부 낙첨", () => {
+    const lottos = generateLottos([
+      [7, 8, 9, 10, 11, 12],
+      [13, 14, 15, 16, 17, 18],
+    ]);
+    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+    const prizeResult = winningLotto.getPrizeList(lottos);
+    const returnRate = getReturnRate(prizeResult, 2000);
+
+    expect(prizeResult).toEqual([0, 0, 0, 0, 0, 0]);
+    expect(returnRate).toBe(0);
+  });
+});
