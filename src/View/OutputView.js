@@ -1,7 +1,9 @@
 import Console from "../utils/Console.js";
+import { AMOUNT_PRICE } from "../constants/lottoConstants.js";
 
 export class OutputView {
-  printAmount(amount) {
+  printAmount(price) {
+    const amount = price / AMOUNT_PRICE;
     return Console.print(`${amount}개를 구매했습니다.`);
   }
   printLottos(lottos) {
