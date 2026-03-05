@@ -3,6 +3,7 @@ import { OutputView } from "./view/output.js";
 import { calculateLottoCount } from "./service/calculateLottoCount.js";
 import { getLottos } from "./service/getRandomLotto.js";
 import WinningLotto from "./domain/WinningLotto.js";
+import { getCompareResult } from "./service/getCompareResult.js";
 
 class App {
   async run() {
@@ -15,6 +16,8 @@ class App {
     const bonusNumber = await InputView.inputBonusNumber();
 
     const winningLotto = new WinningLotto(winningNumber, bonusNumber);
+
+    const result = getCompareResult(randomLotto, winningLotto);
 
     const retry = await InputView.inputRetry();
   }
