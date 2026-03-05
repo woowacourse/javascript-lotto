@@ -21,6 +21,19 @@ class WinningNumbersAndBonusNumberBuilder {
       throw new Error();
     }
   }
+
+  validateBonusNumber(bonusNumber) {
+    const isNotInteger = !Number.isInteger(bonusNumber);
+    const isOutOfRange = bonusNumber < 1 || bonusNumber > 45;
+
+    if (isNotInteger || isOutOfRange) {
+      throw new Error();
+    }
+
+    if (this.#winningNumbers.includes(bonusNumber)) {
+      throw new Error();
+    }
+  }
 }
 
 export default WinningNumbersAndBonusNumberBuilder;
