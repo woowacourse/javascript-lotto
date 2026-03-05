@@ -14,6 +14,10 @@ class LottoReturnCalculator {
       return sum + rank[r];
     }, 0);
   }
+
+  static calculateReturnRate(returnAmount, purchaseAmount) {
+    return (returnAmount / purchaseAmount) * 100;
+  }
 }
 
 export default LottoReturnCalculator;
