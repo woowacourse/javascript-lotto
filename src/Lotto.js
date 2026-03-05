@@ -1,3 +1,5 @@
+import ERROR_MESSAGE from "./constants/errorMessage";
+
 class Lotto {
   #numbers;
 
@@ -7,7 +9,28 @@ class Lotto {
   static LENGTH = 6;
 
   constructor(numbers) {
+    this.validateLotto(numbers);
     this.#numbers = [...numbers].sort((a, b) => a - b);
+  }
+
+  validateLotto(numbers) {
+    const isInteger = numbers.every((number) => Number.isInteger(number));
+
+    if (!isInteger) {
+      throw new Error(ERROR_MESSAGE.LOTTO.INTEGER);
+    }
+
+    const isOutOfRange = numbers.some((number) => number < 1 || number > 45);
+
+    if (isOutOfRange) {
+      throw new Error(ERROR_MESSAGE.LOTTO.RANGE);
+    }
+
+    const uniqueNumbers = new Set(numbers);
+
+    if (uniqueNumbers.size !== numbers.length) {
+      throw new Error(ERROR_MESSAGE.LOTTO.DUPLICATE);
+    }
   }
 
   getNumbers() {

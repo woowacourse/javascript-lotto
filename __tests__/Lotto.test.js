@@ -14,6 +14,48 @@ describe("Lotto 클래스 유닛 테스트", () => {
     });
   });
 
+  describe("validateLotto", () => {
+    test("당첨 번호는 1부터 45까지의 정수여야한다.", () => {
+      // given
+      const numbers = [1, 2, 3, 4, 5, 6];
+
+      // when & then
+      expect(() => new Lotto(numbers)).not.toThrow();
+    });
+
+    test("로또 번호가 정수가 아니면 에러를 반환한다.", () => {
+      // given
+      const numbers = [1, 2, 3, 4, 5, 6.1];
+
+      // when & then
+      expect(() => new Lotto(numbers)).toThrow();
+    });
+
+    test("당첨 번호가 1보다 작으면 에러를 반환한다.", () => {
+      // given
+      const numbers = [-1, 2, 3, 4, 5, 6];
+
+      // when & then
+      expect(() => new Lotto(numbers)).toThrow();
+    });
+
+    test("당첨 번호가 45보다 크면 에러를 반환한다.", () => {
+      // given
+      const numbers = [1, 2, 3, 4, 5, 46];
+
+      // when & then
+      expect(() => new Lotto(numbers)).toThrow();
+    });
+
+    test("당첨 번호가 중복되면 에러를 반환한다.", () => {
+      // given
+      const numbers = [1, 2, 3, 4, 5, 5];
+
+      // when & then
+      expect(() => new Lotto(numbers)).toThrow();
+    });
+  });
+
   describe("includes", () => {
     test("전달받은 값이 로또 번호 안에 포함되면 true를 반환한다.", () => {
       // given

@@ -4,6 +4,12 @@ const ERROR_MESSAGE = {
     UNIT: "구입 금액은 1,000원 단위여야 합니다.",
   },
 
+  LOTTO: {
+    INTEGER: "로또 번호는 정수여야 합니다.",
+    RANGE: "로또 번호는 1부터 45 사이여야 합니다.",
+    DUPLICATE: "로또 번호는 중복될 수 없습니다.",
+  },
+
   WINNING_NUMBERS: {
     NUMBER: "당첨 번호는 숫자여야 합니다.",
     INTEGER: "당첨 번호는 정수여야 합니다.",
