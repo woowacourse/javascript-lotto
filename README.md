@@ -23,7 +23,7 @@
 ### 입력 기능 (InputConsole)
 
 - [x] 로또 구입 금액 입력 ( readPurchasePrice )
-- [ ] 당첨 번호 입력
+- [x] 당첨 번호 입력 ( readWinningNumbers )
 - [ ] 보너스 번호 입력
 - [ ] 재시작 입력
 
