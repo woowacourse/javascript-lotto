@@ -1,3 +1,5 @@
+import ERROR_MESSAGE from "./constants/errorMessage.js";
+
 class WinningNumbersAndBonusNumberBuilder {
   #winningNumbers;
   #bonusNumber;
@@ -36,6 +38,12 @@ class WinningNumbersAndBonusNumberBuilder {
 
     if (isOutOfRange) {
       throw new Error(ERROR_MESSAGE.WINNING_NUMBERS.RANGE);
+    }
+
+    const uniqueNumbers = new Set(winningNumbers);
+
+    if (uniqueNumbers.size !== winningNumbers.length) {
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBERS.DUPLICATE);
     }
   }
 

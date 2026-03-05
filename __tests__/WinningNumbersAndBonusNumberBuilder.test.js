@@ -41,6 +41,16 @@ describe("WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트", () =>
         builder.validateWinningNumbers([1, 2, 3, 4, 5, 46]),
       ).toThrow();
     });
+
+    test("당첨 번호가 중복되면 에러를 반환한다.", () => {
+      // given
+      const builder = new WinningNumbersAndBonusNumberBuilder();
+
+      // when & then
+      expect(() =>
+        builder.validateWinningNumbers([1, 2, 3, 4, 5, 5]),
+      ).toThrow();
+    });
   });
 
   describe("validateBonusNumber", () => {
