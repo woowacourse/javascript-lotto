@@ -26,6 +26,7 @@ class App {
     OutputView.outputWinningProfit(profit);
 
     const retry = await InputView.inputRetry();
+    if (retry === "y" || retry === "Y") return this.run();
   }
 }
 
