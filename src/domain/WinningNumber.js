@@ -11,8 +11,11 @@ class WinningNumber {
   }
 
   #validate(lotto, bonusNumber) {
+    if (bonusNumber < Lotto.MIN_RANGE || bonusNumber > Lotto.MAX_RANGE) {
+      throw new Error("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+    }
     if (lotto.hasNumber(bonusNumber)) {
-      throw new Error("[ERROR]");
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
   }
 
