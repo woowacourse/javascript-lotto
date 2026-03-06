@@ -4,7 +4,7 @@ export const Output ={
     },
     printLottos(lottos){
         lottos.forEach(lotto => {
-            console.log('[' + lotto.join(', ') + ']');
+            console.log('[' + lotto.getLottoNumber().join(', ') + ']');
         });
     },
     printResult(lottoMachine){

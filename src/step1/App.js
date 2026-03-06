@@ -1,4 +1,5 @@
 import { readLine, read } from './Utils.js';
+import { Lotto } from './Lotto.js';
 import { LottoMachine } from './LottoMachine.js';
 import { Output } from './Output.js';
 
@@ -8,12 +9,12 @@ class App {
             const amount = await this.amount();
             const lottoMachine = new LottoMachine(amount)
             Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
-            const lottos = lottoMachine.getLotto();
-            Output.printLottos(lottos);
-            const winngNumber = await this.winningNumber()
-            const bonusNumber = await this.bonusNumber(winngNumber);
+            Output.printLottos(lottoMachine.lottos);
+            const winningLotto = await this.winningLotto();
+            const winningLottoNumber = winningLotto.getLottoNumber()
+            const bonusNumber = await this.bonusNumber(winningLottoNumber);
             lottoMachine.calculateMatchResult(
-                winngNumber.map((lottoNumber) => Number(lottoNumber)), bonusNumber
+                winningLottoNumber.map((lottoNumber) => Number(lottoNumber)), bonusNumber
             );
             Output.printResult(lottoMachine);
             const restart = await this.restart();
@@ -41,23 +42,12 @@ class App {
         }
     }
 
-    async winningNumber() {
+    async winningLotto() {
         while (true) {
             try{
                 const answer = await readLine('당첨 번호를 입력해 주세요.');
-                const numbers = answer.split(',');
-                if (new Set(numbers).size !== 6){
-                    throw new Error('중복 당첨 번호 입력은 불가 합니다.');
-                }
-                numbers.forEach(number => {
-                    if (!Number.isInteger(Number(number))) {
-                        throw new Error('당첨 번호는 숫자만 입력 가능합니다.');
-                    }
-                    if (Number(number) > 45 || Number(number) < 0) {
-                        throw new Error('1 ~ 45 이내 숫자만 입력 가능합니다.');
-                    }
-                });
-                return numbers;
+                const lotto = new Lotto(answer.split(','));
+                return lotto;
             } catch(err){
                 console.log(`[ERROR] ${err.message}`);
             }
