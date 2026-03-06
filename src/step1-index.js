@@ -28,11 +28,11 @@ async function main() {
 
   const { winningNumbers, bonusNumber } = builder.build();
 
-  const rank = LottoRankCalculator.calculateLottoRanks(
+  const rank = LottoRankCalculator.calculateLottoRanks({
     lottos,
     winningNumbers,
     bonusNumber,
-  );
+  });
   const returnAmount = LottoReturnCalculator.calculateReturnAmount(rank);
   const returnRate = LottoReturnCalculator.calculateReturnRate(
     returnAmount,

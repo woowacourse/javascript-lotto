@@ -1,13 +1,13 @@
 class LottoRankCalculator {
-  static calculateLottoRanks(lottos, winningNumbers, bonusNumber) {
+  static calculateLottoRanks({ lottos, winningNumbers, bonusNumber }) {
     const ranks = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
 
     lottos.forEach((lotto) => {
-      const rank = LottoRankCalculator.calculateLottoRank(
+      const rank = LottoRankCalculator.calculateLottoRank({
         lotto,
         winningNumbers,
         bonusNumber,
-      );
+      });
 
       ranks[rank] += 1;
     });
@@ -15,7 +15,7 @@ class LottoRankCalculator {
     return ranks;
   }
 
-  static calculateLottoRank(lotto, winningNumbers, bonusNumber) {
+  static calculateLottoRank({ lotto, winningNumbers, bonusNumber }) {
     const matchCount = lotto.matchCount(winningNumbers);
     if (matchCount === 6) {
       return 1;
