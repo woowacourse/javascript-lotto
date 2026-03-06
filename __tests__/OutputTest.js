@@ -3,11 +3,18 @@ import { Output } from '../src/step1/Output'
 import { pickNumberInRange } from '../src/step1/Utils.js';
 
 const logSpy = jest.spyOn(console, 'log');
-jest.mock('../src/step1/Utils');
+jest.mock('../src/step1/Utils.js', () => ({
+    readLine: jest.fn(),
+    read: { close: jest.fn() },
+    pickNumberInRange: jest.fn(),
+}));
 
 describe('출력 테스트', () =>{
-    test('구입한 로또 개수 출력 테스트', ()=>{
+    beforeEach(() => {
         pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+    });
+
+    test('구입한 로또 개수 출력 테스트', ()=>{
         const lottoMachine = new LottoMachine(8000);
 
         Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
@@ -35,8 +42,6 @@ describe('출력 테스트', () =>{
     });
 
     test('최종 결과 출력 테스트', ()=>{
-        pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
-
         const lottoMachine = new LottoMachine(5000);
         lottoMachine.matchResult = new Map([
             [1, 6],
