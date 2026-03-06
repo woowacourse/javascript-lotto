@@ -1,18 +1,21 @@
 class WinningLotto {
+  #winningNumber;
+  #bonusNumber;
+
   constructor(winningNumber, bonusNumber) {
-    this.winningNumber = this.splitWinnigNumber(winningNumber);
-    this.bonusNumber = bonusNumber;
+    this.#winningNumber = this.#splitWinnigNumber(winningNumber);
+    this.#bonusNumber = bonusNumber;
   }
 
   getWinningNumber() {
-    return this.winningNumber;
+    return this.#winningNumber;
   }
 
   getBonusNumber() {
-    return this.bonusNumber;
+    return this.#bonusNumber;
   }
 
-  splitWinnigNumber(winningNumber) {
+  #splitWinnigNumber(winningNumber) {
     return winningNumber.split(",").map(Number);
   }
 }

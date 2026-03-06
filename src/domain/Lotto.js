@@ -1,9 +1,11 @@
 class Lotto {
+  #number;
+
   constructor(number) {
-    this.number = number;
+    this.#number = number;
   }
   getNumber() {
-    return this.number;
+    return this.#number;
   }
 }
 
