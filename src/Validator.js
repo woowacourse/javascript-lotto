@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "./constants/errorMessage";
+import { ERROR_MESSAGE } from "./constants/errorMessage.js";
 
 class Validator {
   validatePrice(price) {
@@ -12,9 +12,9 @@ class Validator {
   validateLottoNumber(number) {
     if (number < 1 || number > 45)
       throw new Error(ERROR_MESSAGE.INVALID_NUMBER_RANGE);
+    if (isNaN(number)) throw new Error(ERROR_MESSAGE.NOT_NUMBER);
     if (!Number.isInteger(number))
       throw new Error(ERROR_MESSAGE.MUST_BE_INTEGER);
-    if (isNaN(number)) throw new Error(ERROR_MESSAGE.NOT_NUMBER);
   }
   validateLottoNumbers(numbers) {
     if (numbers.length !== 6) {
