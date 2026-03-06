@@ -1,12 +1,18 @@
 import { matchWinningCount, matchBonus } from "../domain/MatchLottos.js";
 import { calPrize } from "../domain/WinningRate.js";
+import Validator from "../utils/Validator.js";
 
 class Lotto {
   #numbers;
 
-  constructor(number) {
-    //검증
-    this.#numbers = number;
+  constructor(numbers) {
+    this.#validate(numbers);
+    this.#numbers = numbers;
+  }
+  #validate(numbers) {
+    Validator.validateLottoCount(numbers);
+    Validator.validateDuplicateLottoNums(numbers);
+    numbers.forEach((number) => Validator.validateLottoNumRange(number));
   }
 
   getRank(winningLotto, bonusNum) {

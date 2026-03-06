@@ -15,9 +15,9 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUM_RANGE);
     }
   },
-  validateDuplicateWinningNum(winningNums) {
-    if (winningNums.length !== new Set(winningNums).size) {
-      throw new Error(ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS);
+  validateDuplicateLottoNums(lottoNums) {
+    if (lottoNums.length !== new Set(lottoNums).size) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBERS);
     }
   },
   validateDuplicateBonusNum(winningNums, bonusNum) {

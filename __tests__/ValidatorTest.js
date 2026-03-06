@@ -25,7 +25,7 @@ describe("구매 금액 테스트", () => {
   test("당첨번호가 중복되지 않는 수로 구성됐는지 테스트", () => {
     const winningNum = [1, 2, 3, 4, 5, 5];
     expect(function () {
-      Validator.validateDuplicateWinningNum(winningNum);
+      Validator.validateDuplicateLottoNums(winningNum);
     }).toThrow("[ERROR]");
   });
 
