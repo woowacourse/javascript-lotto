@@ -1,4 +1,4 @@
-import App from "./App.js";
+import LottoController from "./controller/LottoController.js";
 
-const app = new App();
-await app.run();
+const lottoGame = new LottoController();
+await lottoGame.play();
