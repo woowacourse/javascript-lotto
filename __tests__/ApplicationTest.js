@@ -71,4 +71,30 @@ describe("로또 통합 테스트", () => {
       expect.stringContaining("총 수익률은 0%입니다.")
     );
   });
+
+  test("재시작 후 종료", async () => {
+    randomModule.generateRandomNumbers
+      .mockReturnValueOnce([7, 8, 9, 10, 11, 12])
+      .mockReturnValueOnce([1, 2, 3, 7, 8, 9]);
+
+    Console.input
+      .mockResolvedValueOnce("1000")
+      .mockResolvedValueOnce("1,2,3,4,5,6")
+      .mockResolvedValueOnce("7")
+      .mockResolvedValueOnce("y")
+      .mockResolvedValueOnce("1000")
+      .mockResolvedValueOnce("1,2,3,4,5,6")
+      .mockResolvedValueOnce("7")
+      .mockResolvedValueOnce("n");
+
+    await gameManager();
+
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining("총 수익률은 0%입니다.")
+    );
+
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining("총 수익률은 500%입니다.")
+    );
+  });
 });
