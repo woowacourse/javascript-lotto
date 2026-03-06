@@ -2,19 +2,19 @@ import {
   parseCapitalToSmall,
   parseStringToNumber,
   parseStringToNumberArray,
-} from "../utils/parser";
+} from "../utils/parser.js";
 import {
   validateBonusNumber,
   validateLottoNumbers,
   validatePurchaseAmount,
   validateRestartInput,
-} from "../utils/validator";
+} from "../utils/validator.js";
 import {
   inputPurchaseAmount,
   inputWinningNumbers,
   inputBonusNumber,
   inputYesNo,
-} from "./inputView";
+} from "./inputView.js";
 
 const inputLoop = async (inputFn, parser, validator) => {
   while (true) {

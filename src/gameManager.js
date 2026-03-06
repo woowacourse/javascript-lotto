@@ -1,20 +1,21 @@
-import { generateLottos } from "./generateLottos";
-import { generateRandomNumbers } from "./generateRandomNumbers";
-import { getReturnRate } from "./utils/getReturnRate";
+import { generateLottos } from "./generateLottos.js";
+import { generateRandomNumbers } from "./generateRandomNumbers.js";
+import { getReturnRate } from "./utils/getReturnRate.js";
 import {
   printProfitRate,
   printPurchaseCount,
   printPurchasedLottoNumbers,
   printWinStatistics,
-} from "./view/outputView";
-import WinningLotto from "./WinningLotto";
+} from "./view/outputView.js";
+import WinningLotto from "./WinningLotto.js";
 import {
   bonusNumberInputHandler,
   purchaseAmountInputHandler,
   restartInputHandler,
   winningNumberInputHandler,
-} from "./view/inputHandler";
-import { getPrizeList } from "./getPrizeList";
+} from "./view/inputHandler.js";
+import { getPrizeList } from "./getPrizeList.js";
+import { close } from "./view/input.js";
 
 export const gameManager = async () => {
   const validatedAmount = await purchaseAmountInputHandler();
@@ -45,5 +46,9 @@ export const gameManager = async () => {
   printProfitRate(profitRate);
 
   const validatedYn = await restartInputHandler();
-  if (validatedYn === "y") await gameManager();
+  if (validatedYn === "y") {
+    await gameManager();
+  } else {
+    close();
+  }
 };
