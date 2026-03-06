@@ -1,3 +1,5 @@
+import ERROR_MESSAGE from "./constants/errorMessage";
+
 class LottoNumber {
   #number;
 
@@ -16,11 +18,11 @@ class LottoNumber {
 
   validateNumber(number) {
     if (!Number.isInteger(number)) {
-      throw new Error();
+      throw new Error(ERROR_MESSAGE.LOTTO.INTEGER);
     }
 
     if (number < 1 || number > 45) {
-      throw new Error();
+      throw new Error(ERROR_MESSAGE.LOTTO.RANGE);
     }
   }
 }
