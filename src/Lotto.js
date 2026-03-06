@@ -1,11 +1,13 @@
-import ERROR_MESSAGE from "./constants/errorMessage";
+import ERROR_MESSAGE from "./constants/errorMessage.js";
+import LottoNumber from "./LottoNumber.js";
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validateLotto(numbers);
-    this.#numbers = [...numbers].sort((a, b) => a - b);
+    const lottoNumbers = numbers.map((number) => new LottoNumber(number));
+    this.#numbers = lottoNumbers;
   }
 
   validateLotto(numbers) {
@@ -32,12 +34,19 @@ class Lotto {
     return [...this.#numbers];
   }
 
+  parseNumbers() {
+    return [...this.#numbers.map(Number)];
+  }
+
   includes(number) {
-    return this.#numbers.includes(number);
+    return this.#numbers.some((lottoNumber) => lottoNumber.equals(number));
   }
 
   matchCount(winningNumbers) {
-    const numbersSet = new Set([...winningNumbers, ...this.#numbers]);
+    const numbersSet = new Set([
+      ...winningNumbers,
+      ...this.#numbers.map(Number),
+    ]);
     return this.#numbers.length + winningNumbers.length - numbersSet.size;
   }
 }

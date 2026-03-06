@@ -1,4 +1,5 @@
 import ERROR_MESSAGE from "./constants/errorMessage.js";
+import LottoNumber from "./LottoNumber.js";
 
 class WinningNumbersAndBonusNumberBuilder {
   #winningNumbers;
@@ -6,13 +7,15 @@ class WinningNumbersAndBonusNumberBuilder {
 
   setWinningNumbers(winningNumbers) {
     this.validateWinningNumbers(winningNumbers);
-    this.#winningNumbers = winningNumbers;
+    this.#winningNumbers = winningNumbers.map(
+      (number) => new LottoNumber(number),
+    );
     return this;
   }
 
   setBonusNumber(bonusNumber) {
     this.validateBonusNumber(bonusNumber);
-    this.#bonusNumber = bonusNumber;
+    this.#bonusNumber = new LottoNumber(bonusNumber);
     return this;
   }
 
@@ -60,7 +63,11 @@ class WinningNumbersAndBonusNumberBuilder {
       throw new Error(ERROR_MESSAGE.BONUS_NUMBER.RANGE);
     }
 
-    if (this.#winningNumbers.includes(bonusNumber)) {
+    if (
+      this.#winningNumbers.some((winningNumber) =>
+        winningNumber.equals(bonusNumber),
+      )
+    ) {
       throw new Error(ERROR_MESSAGE.BONUS_NUMBER.DUPLICATE);
     }
   }

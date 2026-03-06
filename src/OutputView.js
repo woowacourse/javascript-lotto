@@ -13,7 +13,7 @@ class OutputView {
   }
   printLottos(lottos) {
     const output = `${lottos.length}개를 구매했습니다.
-${lottos.map((lotto) => `[${lotto.getNumbers().join(", ")}]`).join("\n")}
+${lottos.map((lotto) => `[${lotto.parseNumbers().join(", ")}]`).join("\n")}
 `;
     console.log(output);
   }

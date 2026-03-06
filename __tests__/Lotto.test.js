@@ -1,4 +1,5 @@
 import Lotto from "../src/Lotto";
+import LottoNumber from "../src/LottoNumber";
 
 describe("Lotto 클래스 유닛 테스트", () => {
   describe("getNumbers", () => {
@@ -10,7 +11,14 @@ describe("Lotto 클래스 유닛 테스트", () => {
       const lotto = new Lotto(numbers);
 
       // then
-      expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+      expect(lotto.getNumbers()).toEqual([
+        new LottoNumber(1),
+        new LottoNumber(2),
+        new LottoNumber(3),
+        new LottoNumber(4),
+        new LottoNumber(5),
+        new LottoNumber(6),
+      ]);
     });
   });
 

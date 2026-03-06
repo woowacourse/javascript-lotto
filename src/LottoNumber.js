@@ -6,6 +6,14 @@ class LottoNumber {
     this.#number = number;
   }
 
+  equals(other) {
+    return this.#number === other.valueOf();
+  }
+
+  valueOf() {
+    return this.#number;
+  }
+
   validateNumber(number) {
     if (!Number.isInteger(number)) {
       throw new Error();
