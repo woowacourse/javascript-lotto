@@ -41,6 +41,19 @@ const InputConsole = {
       }
     }
   },
+
+  async readRestart(){
+    while (true) {
+      try {
+        const restartCommand = await MissionUtils.Console.readLineAsync(
+          "> 다시 시작하시겠습니까? (y/n) ",
+        );
+        return restartCommand;
+      } catch (e) {
+        MissionUtils.Console.print(e.message);
+      }
+    }
+  }
 };
 
 export default InputConsole;
