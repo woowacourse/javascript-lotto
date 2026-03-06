@@ -44,4 +44,14 @@ describe("OutputConsole 테스트", () => {
 
     
   })
+
+  test("총 수익률 출력 테스트", () => {
+    const logSpy = getLogSpy();
+
+    const totalProfitRate = 0.0;
+
+    OutputConsole.printProfitRate(totalProfitRate);
+
+    expect(logSpy).toHaveBeenCalledWith(`총 수익률은 ${totalProfitRate}%입니다.` )
+  })
 });
