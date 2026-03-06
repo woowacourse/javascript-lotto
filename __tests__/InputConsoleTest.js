@@ -39,4 +39,12 @@ describe("InputConsole 검증 테스트", () => {
     mockQuestions([input]);
     await expect(InputConsole.readBonusNumber(winningNumbers)).resolves.toEqual(expected);
   });
+  
+  test.each([
+    { input: "y", expected: "y" },
+    { input: "n", expected: "n" },
+  ])("재시작 입력 테스트: $input", async ({ input, expected }) => {
+    mockQuestions([input]);
+    await expect(InputConsole.readRestart()).resolves.toEqual(expected);
+  });
 });
