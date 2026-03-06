@@ -7,7 +7,7 @@ jest.mock("../src/view/input.js", () => ({
   close: jest.fn(),
 }));
 
-jest.mock("../src/utils/generateRandomNumbers.js", () => ({
+jest.mock("../src/generateRandomNumbers.js", () => ({
   generateRandomNumbers: jest.fn(),
 }));
 
