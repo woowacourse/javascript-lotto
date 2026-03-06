@@ -1,5 +1,6 @@
 import * as Console from "../src/input";
 import * as randomModule from "../src/generateRandomNumbers";
+import { gameManager } from "../src/gameManager";
 
 jest.mock("../src/input.js", () => ({
   input: jest.fn(),
@@ -23,14 +24,22 @@ describe("로또 통합 테스트", () => {
   });
 
   test("8개 구매 3개 일치", async () => {
-    randomModule.generateRandomNumbers.mockReturnValue([1, 2, 3, 4, 5, 6]);
+    randomModule.generateRandomNumbers
+      .mockReturnValueOnce([8, 21, 23, 41, 42, 43])
+      .mockReturnValueOnce([3, 5, 11, 16, 32, 38])
+      .mockReturnValueOnce([7, 11, 16, 35, 36, 44])
+      .mockReturnValueOnce([1, 8, 11, 31, 41, 42])
+      .mockReturnValueOnce([13, 14, 16, 38, 42, 45])
+      .mockReturnValueOnce([7, 11, 30, 40, 42, 43])
+      .mockReturnValueOnce([2, 13, 22, 32, 38, 45])
+      .mockReturnValueOnce([1, 3, 5, 14, 22, 45]);
     Console.input
       .mockResolvedValueOnce("8000")
       .mockResolvedValueOnce("1,2,3,4,5,6")
       .mockResolvedValueOnce("7")
       .mockResolvedValueOnce("n");
 
-    await gameManger();
+    await gameManager();
 
     const logs = [
       "8개를 구매했습니다.",
