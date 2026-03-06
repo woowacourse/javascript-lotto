@@ -16,7 +16,7 @@ class App {
                 winningLotto.getLottoNumber(), winningLotto.getBonusNumber()
             );
             Output.printResult(lottoMachine);
-            const restart = await this.reRead(Input.readRetry);
+            const restart = await Input.reRead(Input.readRetry);
             if (restart === 'n') {
                 read.close();
                 break;
