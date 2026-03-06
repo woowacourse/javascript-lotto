@@ -4,11 +4,11 @@ export const printPurchaseCount = (purchaseCount) => {
 export const printPurchasedLottoNumbers = (purchaseLottoLists) => {
   if (
     !Array.isArray(purchaseLottoLists) ||
-    !Array.isArray(purchaseLottoLists[0])
+    !Array.isArray(purchaseLottoLists[0].getNumbers())
   )
     throw new Error("[ERROR]");
   purchaseLottoLists.forEach((lottoNumbers) =>
-    console.log(`[${lottoNumbers.join(", ")}]`)
+    console.log(`[${lottoNumbers.getNumbers().join(", ")}]`)
   );
 };
 export const printWinStatistics = (prizeList) => {
