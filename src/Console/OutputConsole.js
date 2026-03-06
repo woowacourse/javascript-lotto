@@ -9,7 +9,7 @@ const OutputConsole = {
   },
 
   printMatchResult(result) {
-    Console.print('당첨 통계');
+    Console.print('\n당첨 통계');
     Console.print('--------------------');
 
     // 등수별 결과 출력

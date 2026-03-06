@@ -34,7 +34,7 @@ describe("OutputConsole 테스트", () => {
 
     OutputConsole.printMatchResult(result);
 
-    expect(logSpy).toHaveBeenCalledWith("당첨 통계");
+    expect(logSpy).toHaveBeenCalledWith("\n당첨 통계");
     expect(logSpy).toHaveBeenCalledWith("--------------------");
     expect(logSpy).toHaveBeenCalledWith("3개 일치 (5,000원) - 1개");
     expect(logSpy).toHaveBeenCalledWith("4개 일치 (50,000원) - 0개");

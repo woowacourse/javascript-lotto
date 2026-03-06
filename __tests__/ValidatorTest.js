@@ -1,5 +1,4 @@
 import Validator from "../src/Utils/Validator.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
 
 describe("Validator 테스트", () => {
   test.each([

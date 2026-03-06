@@ -20,7 +20,7 @@ const InputConsole = {
     while (true) {
       try {
         const winningNumbers = await MissionUtils.Console.readLineAsync(
-          "\n> 당첨 번호를 입력해 주세요. ",
+          "> 당첨 번호를 입력해 주세요. ",
         );
         return Validator.validateWinningNumbers(winningNumbers);
       } catch (e) {
@@ -46,7 +46,7 @@ const InputConsole = {
     while (true) {
       try {
         const restartCommand = await MissionUtils.Console.readLineAsync(
-          "> 다시 시작하시겠습니까? (y/n) ",
+          "\n> 다시 시작하시겠습니까? (y/n) ",
         );
         return restartCommand;
       } catch (e) {

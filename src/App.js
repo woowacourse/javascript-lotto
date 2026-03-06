@@ -3,7 +3,6 @@ import OutputConsole from "./Console/OutputConsole.js";
 import LottoMachine from "./Domain/LottoMachine.js";
 import LuckyNumbers from "./Domain/LuckyNumbers.js";
 import LottoResult from "./Domain/LottoResult.js";
-import LuckyNumbers from "./Domain/LuckyNumbers.js";
 
 class App {
   async run() {
@@ -12,7 +11,8 @@ class App {
     const purchasePrice = await InputConsole.readPurchasePrice();
 
     // 발행된 로또 목록 출력하기
-    const lottos = new LottoMachine.issueLottos(purchasePrice);
+    const lottoMachine = new LottoMachine();
+    const lottos = lottoMachine.issueLottos(purchasePrice);
     OutputConsole.printLottoList(lottos);
 
     // 당첨 번호 입력받기
