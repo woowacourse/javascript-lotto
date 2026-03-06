@@ -8,6 +8,7 @@ import { getPurchaseAmount } from "../service/getPurchaseAmount.js";
 import { getWinningLotto } from "../service/getWinningLotto.js";
 import { getBonusNumber } from "../service/getBonusNumber.js";
 import { getRetry } from "../service/getRetry.js";
+import { RETRY_ANSWER } from "../constants/constant.js";
 
 class LottoController {
   async play() {
@@ -29,7 +30,7 @@ class LottoController {
     OutputView.outputWinningProfit(profit);
 
     const retry = await getRetry();
-    if (retry === "y" || retry === "Y") return this.play();
+    if (RETRY_ANSWER.YES.includes(retry)) return this.play();
   }
 }
 

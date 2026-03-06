@@ -1,15 +1,16 @@
 import { getRandomLotto, getLottos } from "../src/service/getRandomLotto.js";
+import { RANDOM_CONSTANT } from "../src/constants/constant.js";
 
 describe("getRandomLotto", () => {
   test("랜덤 로또 번호 6개를 반환한다.", () => {
     const result = getRandomLotto();
-    expect(result.length).toBe(6);
+    expect(result.length).toBe(RANDOM_CONSTANT.COUNT);
   });
 
   test("랜덤으로 발급한 로또 번호는 중복되지 않는다.", () => {
     const lottos = getRandomLotto();
     const lottoSet = new Set(lottos);
-    expect(lottoSet.size).toBe(6);
+    expect(lottoSet.size).toBe(RANDOM_CONSTANT.COUNT);
   });
 });
 

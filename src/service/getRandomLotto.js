@@ -1,10 +1,13 @@
 import Lotto from "../domain/Lotto.js";
+import { RANDOM_CONSTANT } from "../constants/constant.js";
 
 export function getRandomLotto() {
   const lottoSet = new Set();
 
-  while (lottoSet.size < 6) {
-    lottoSet.add(Math.floor(Math.random() * 45 + 1));
+  while (lottoSet.size < RANDOM_CONSTANT.COUNT) {
+    lottoSet.add(
+      Math.floor(Math.random() * RANDOM_CONSTANT.MAX + RANDOM_CONSTANT.MIN),
+    );
   }
 
   const lottoArray = Array.from(lottoSet);

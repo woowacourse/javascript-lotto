@@ -1,15 +1,16 @@
 import { checkNumberRange } from "../utils/checkNumberRange.js";
+import { ERROR_MESSAGE, RETRY_ANSWER } from "../constants/constant.js";
 
 export const Validator = {
   validatePurchaseMoney(money) {
     if (money < 1000) {
-      throw new Error("[ERROR] 구입 금액은 1000원 이상입니다.");
+      throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.MIN);
     }
     if (isNaN(money)) {
-      throw new Error("[ERROR] 구입 금액은 숫자만 입력해야 합니다.");
+      throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.NUMBER);
     }
     if (money % 1000 !== 0) {
-      throw new Error("[ERROR] 구입 금액은 1000원 단위입니다.");
+      throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.UNIT);
     }
   },
 
@@ -18,21 +19,21 @@ export const Validator = {
     const regex = /^[0-9,]+$/;
 
     if (winningNumberArray.length !== 6) {
-      throw new Error("[ERROR] 당첨 번호는 6개이어야 합니다.");
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER.LENGTH);
     }
     if (winningNumber.includes(",,")) {
-      throw new Error("[ERROR] 콤마(,) 사이에 숫자를 입력해야 합니다.");
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER.COMMA);
     }
     if (checkNumberRange(winningNumberArray).includes(false)) {
-      throw new Error("[ERROR] 당첨 번호는 1 ~ 45 사이어야 합니다.");
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER.RANGE);
     }
     if (!regex.test(winningNumber)) {
-      throw new Error("[ERROR] 당첨 번호 구분은 콤마(,) 입니다.");
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER.REGEX);
     }
 
     const set = new Set(winningNumberArray);
     if (set.size < 6) {
-      throw new Error("[ERROR] 당첨 번호가 중복입니다.");
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER.DUPLICATE);
     }
   },
 
@@ -40,19 +41,19 @@ export const Validator = {
     const winningNumberArray = winningNumber.split(",").map(Number);
 
     if (bonusNumber < 1 || bonusNumber > 45) {
-      throw new Error("[ERROR] 보너스 번호는 1 ~ 45 사이어야 합니다.");
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER.RANGE);
     }
     if (isNaN(bonusNumber)) {
-      throw new Error("[ERROR] 숫자를 입력해야 합니다.");
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER.NUMBER);
     }
     if (winningNumberArray.includes(bonusNumber)) {
-      throw new Error("[ERROR] 당첨 번호랑 중복입니다.");
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER.DUPLICATE);
     }
   },
 
   validateRetry(retry) {
-    if (retry !== "y" && retry !== "Y" && retry !== "n" && retry !== "N") {
-      throw new Error("[ERROR] 다시 입력해주세요.");
+    if (!RETRY_ANSWER.YES.includes(retry) && !RETRY_ANSWER.NO.includes(retry)) {
+      throw new Error(ERROR_MESSAGE.RETRY.INVALID);
     }
   },
 };

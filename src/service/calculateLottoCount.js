@@ -1,3 +1,5 @@
+import { MONEY_UNIT } from "../constants/constant.js";
+
 export function calculateLottoCount(money) {
-  return money / 1000;
+  return money / MONEY_UNIT;
 }

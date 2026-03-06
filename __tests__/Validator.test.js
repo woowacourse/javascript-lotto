@@ -1,19 +1,20 @@
 import { Validator } from "../src/validator/Validator.js";
+import { ERROR_MESSAGE } from "../src/constants/constant.js";
 
 describe("구입 금액", () => {
   test("구입 금액이 1000원 미만일 시 에러가 발생한다.", () => {
     expect(() => Validator.validatePurchaseMoney(900)).toThrow(
-      "[ERROR] 구입 금액은 1000원 이상입니다.",
+      ERROR_MESSAGE.PURCHASE_MONEY.MIN,
     );
   });
   test("구입 금액이 숫자가 아닐 시 에러가 발생한다.", () => {
     expect(() => Validator.validatePurchaseMoney("900a")).toThrow(
-      "[ERROR] 구입 금액은 숫자만 입력해야 합니다.",
+      ERROR_MESSAGE.PURCHASE_MONEY.NUMBER,
     );
   });
   test("구입 금액이 1000원 단위가 아닐 시 에러가 발생한다.", () => {
     expect(() => Validator.validatePurchaseMoney(1900)).toThrow(
-      "[ERROR] 구입 금액은 1000원 단위입니다.",
+      ERROR_MESSAGE.PURCHASE_MONEY.UNIT,
     );
   });
 });
@@ -21,27 +22,27 @@ describe("구입 금액", () => {
 describe("당첨 번호", () => {
   test("당첨 번호가 6개가 아닐 시 에러가 발생한다.", () => {
     expect(() => Validator.validateWinningNumber("1,2,3,4,5")).toThrow(
-      "[ERROR] 당첨 번호는 6개이어야 합니다.",
+      ERROR_MESSAGE.WINNING_NUMBER.LENGTH,
     );
   });
   test("당첨 번호 숫자가 1 ~ 45 사이가 아닐 시 에러가 발생한다.", () => {
     expect(() => Validator.validateWinningNumber("1,2,3,4,5,46")).toThrow(
-      "[ERROR] 당첨 번호는 1 ~ 45 사이어야 합니다.",
+      ERROR_MESSAGE.WINNING_NUMBER.RANGE,
     );
   });
   test("콤마(,) 이외의 문자를 입력 받을 시 에러가 발생한다.", () => {
     expect(() => Validator.validateWinningNumber("1,a,2,3,4,5")).toThrow(
-      "[ERROR] 당첨 번호 구분은 콤마(,) 입니다.",
+      ERROR_MESSAGE.WINNING_NUMBER.REGEX,
     );
   });
   test("콤마(,) 사이에 숫자가 없을 시 에러가 발생한다.", () => {
     expect(() => Validator.validateWinningNumber("1,,2,3,4,5")).toThrow(
-      "[ERROR] 콤마(,) 사이에 숫자를 입력해야 합니다.",
+      ERROR_MESSAGE.WINNING_NUMBER.COMMA,
     );
   });
   test("당첨 번호가 중복일 시 에러가 발생한다.", () => {
     expect(() => Validator.validateWinningNumber("1,1,2,3,4,5")).toThrow(
-      "[ERROR] 당첨 번호가 중복입니다.",
+      ERROR_MESSAGE.WINNING_NUMBER.DUPLICATE,
     );
   });
 });
@@ -49,17 +50,17 @@ describe("당첨 번호", () => {
 describe("보너스 번호", () => {
   test("당첨 번호 숫자가 1 ~ 45 사이가 아닐 시 에러가 발생한다.", () => {
     expect(() => Validator.validateBonusNumber("1,2,3,4,5,6", 46)).toThrow(
-      "[ERROR] 보너스 번호는 1 ~ 45 사이어야 합니다.",
+      ERROR_MESSAGE.BONUS_NUMBER.RANGE,
     );
   });
   test("숫자가 아닐 시 에러가 발생한다.", () => {
     expect(() => Validator.validateBonusNumber("1,2,3,4,5,6", "a")).toThrow(
-      "[ERROR] 숫자를 입력해야 합니다.",
+      ERROR_MESSAGE.BONUS_NUMBER.NUMBER,
     );
   });
   test("당첨 번호랑 중복일 시 에러가 발생한다.", () => {
     expect(() => Validator.validateBonusNumber("1,2,3,4,5,6", 6)).toThrow(
-      "[ERROR] 당첨 번호랑 중복입니다.",
+      ERROR_MESSAGE.BONUS_NUMBER.DUPLICATE,
     );
   });
 });
@@ -67,12 +68,12 @@ describe("보너스 번호", () => {
 describe("재시작", () => {
   test("y, Y, n, N 이외를 입력 시 에러가 발생한다.", () => {
     expect(() => Validator.validateRetry("a")).toThrow(
-      "[ERROR] 다시 입력해주세요.",
+      ERROR_MESSAGE.RETRY.INVALID,
     );
   });
   test("y, Y, n, N 이외를 입력 시 에러가 발생한다.", () => {
     expect(() => Validator.validateRetry("2")).toThrow(
-      "[ERROR] 다시 입력해주세요.",
+      ERROR_MESSAGE.RETRY.INVALID,
     );
   });
 });
