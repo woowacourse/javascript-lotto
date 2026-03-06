@@ -10,8 +10,8 @@ const RETURN_AMOUNT_BY_RANK = {
 class LottoReturnCalculator {
   static calculateReturnAmount(rank) {
     return Object.entries(rank).reduce((sum, [r, c]) => {
-      rank[r] = c * RETURN_AMOUNT_BY_RANK[r];
-      return sum + rank[r];
+      const returnAmount = c * RETURN_AMOUNT_BY_RANK[r];
+      return sum + returnAmount;
     }, 0);
   }
 
