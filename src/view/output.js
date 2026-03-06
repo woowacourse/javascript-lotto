@@ -24,4 +24,8 @@ export const OutputView = {
   outputWinningProfit(profit) {
     console.log(`총 수익률은 ${profit}%입니다.`);
   },
+
+  outputError(message) {
+    console.log(message);
+  },
 };

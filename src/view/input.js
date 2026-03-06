@@ -1,5 +1,6 @@
 import { readLine } from "../utils/readLine.js";
 import { Validator } from "../validator/Validator.js";
+import { OutputView } from "./output.js";
 
 export const InputView = {
   async inputPurchaseAmount() {
@@ -8,7 +9,7 @@ export const InputView = {
       Validator.validatePurchaseMoney(money);
       return Number(money);
     } catch (error) {
-      console.log(error.message);
+      OutputView.outputError(error.message);
       return this.inputPurchaseAmount();
     }
   },
@@ -19,7 +20,7 @@ export const InputView = {
       Validator.validateWinningNumber(winningNumber);
       return winningNumber;
     } catch (error) {
-      console.log(error.message);
+      OutputView.outputError(error.message);
       return this.inputWinningNumber();
     }
   },
@@ -30,7 +31,7 @@ export const InputView = {
       Validator.validateBonusNumber(winningNumber, Number(bonusNumber));
       return Number(bonusNumber);
     } catch (error) {
-      console.log(error.message);
+      OutputView.outputError(error.message);
       return this.inputBonusNumber(winningNumber);
     }
   },
@@ -41,7 +42,7 @@ export const InputView = {
       Validator.validateRetry(retry);
       return retry;
     } catch (error) {
-      console.log(error.message);
+      OutputView.outputError(error.message);
       return this.inputRetry();
     }
   },
