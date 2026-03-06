@@ -1,5 +1,5 @@
 class Rank {
-  static LOTTO_PRIZE = {
+  static PRIZE = {
     FIRST: 2_000_000_000,
     SECOND: 30_000_000,
     THIRD: 1_500_000,
@@ -8,36 +8,39 @@ class Rank {
     MISS: 0,
   };
 
-  static FIRST = new Rank(6, false);
-  static SECOND = new Rank(5, true);
-  static THIRD = new Rank(5, false);
-  static FOURTH = new Rank(4, false);
-  static FIFTH = new Rank(3, false);
-  static MISS = new Rank(0, false);
+  static FIRST = new Rank({ matchCount: 6, hasBonus: false });
+  static SECOND = new Rank({ matchCount: 5, hasBonus: true });
+  static THIRD = new Rank({ matchCount: 5, hasBonus: false });
+  static FOURTH = new Rank({ matchCount: 4, hasBonus: false });
+  static FIFTH = new Rank({ matchCount: 3, hasBonus: false });
 
-  static order = [Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH, Rank.FIFTH];
+  static order = [Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST];
 
-  constructor({ winning, hasBonus }) {
-    this.winning = winning;
+  constructor({ matchCount, hasBonus }) {
+    this.matchCount = matchCount;
     this.hasBonus = hasBonus;
   }
 
   getPrize() {
-    if (this === Rank.FIRST) return PRIZE.FIRST;
-    if (this === Rank.SECOND) return PRIZE.SECOND;
-    if (this === Rank.THIRD) return PRIZE.THIRD;
-    if (this === Rank.FOURTH) return PRIZE.FOURTH;
-    if (this === Rank.FIFTH) return PRIZE.FIFTH;
+    if (this === Rank.FIRST) return Rank.PRIZE.FIRST;
+    if (this === Rank.SECOND) return Rank.PRIZE.SECOND;
+    if (this === Rank.THIRD) return Rank.PRIZE.THIRD;
+    if (this === Rank.FOURTH) return Rank.PRIZE.FOURTH;
+    if (this === Rank.FIFTH) return Rank.PRIZE.FIFTH;
     return PRIZE.MISS;
   }
 
-  static getRank({ winning, hasBonus }) {
-    if (winning === 6) return Rank.FIRST;
-    if (winning === 5 && hasBonus) return Rank.SECOND;
-    if (winning === 5) return Rank.THIRD;
-    if (winning === 4) return Rank.FOURTH;
-    if (winning === 3) return Rank.FIFTH;
+  static getRank({ matchCount, hasBonus }) {
+    if (matchCount === 6) return Rank.FIRST;
+    if (matchCount === 5 && hasBonus) return Rank.SECOND;
+    if (matchCount === 5) return Rank.THIRD;
+    if (matchCount === 4) return Rank.FOURTH;
+    if (matchCount === 3) return Rank.FIFTH;
     return Rank.MISS;
+  }
+
+  getResult() {
+    return { matchCount: this.matchCount, hasBonus: this.hasBonus };
   }
 }
 
