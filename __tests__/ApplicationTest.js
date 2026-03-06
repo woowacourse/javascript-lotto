@@ -1,39 +1,68 @@
-import * as Console from "../src/input";
-import * as randomModule from "../src/generateRandomNumbers";
+import Lotto from "../src/Lotto";
+import {
+  printProfitRate,
+  printPurchaseCount,
+  printPurchasedLottoNumbers,
+  printWinStatistics,
+} from "../src/output";
 
-jest.mock("../src/input.js", () => ({
-  input: jest.fn(),
-  close: jest.fn(),
-}));
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(console, "log");
+  logSpy.mockClear();
+  return logSpy;
+};
 
-jest.mock("../src/generateRandomNumbers.js", () => ({
-  generateRandomNumbers: jest.fn(),
-}));
-
-describe("로또 통합 테스트", () => {
-  let logSpy;
-
+describe("출력 처리 테스트", () => {
   beforeEach(() => {
     logSpy = jest.spyOn(console, "log").mockClear();
   });
 
-  afterEach(() => {
-    logSpy.mockRestore();
-    jest.clearAllMocks();
+  test("구입 금액에 따른 로또 개수", () => {
+    const logSpy = getLogSpy();
+
+    printPurchaseCount(2);
+
+    const log = "2개를 구매했습니다.";
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });
 
-  test("8개 구매 3개 일치", async () => {
-    randomModule.generateRandomNumbers.mockReturnValue([1, 2, 3, 4, 5, 6]);
-    Console.input
-      .mockResolvedValueOnce("8000")
-      .mockResolvedValueOnce("1,2,3,4,5,6")
-      .mockResolvedValueOnce("7")
-      .mockResolvedValueOnce("n");
+  test("구매한 로또 개수에 따른 로또 번호 출력", () => {
+    const logSpy = getLogSpy();
 
-    await gameManger();
+    printPurchasedLottoNumbers([
+      new Lotto([8, 21, 23, 41, 42, 43]),
+      new Lotto([3, 5, 11, 16, 32, 38]),
+    ]);
+
+    const logs = ["[8, 21, 23, 41, 42, 43]", "[3, 5, 11, 16, 32, 38]"];
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("구매한 로또 개수에 따른 로또 번호 출력(예외 케이스)", () => {
+    expect(() =>
+      printPurchasedLottoNumbers(
+        new Lotto([8, 21, 23, 41, 42, 43]),
+        new Lotto([3, 5, 11, 16, 32, 38]),
+      ),
+    ).toThrow("[ERROR]");
+  });
+
+  test("구매한 로또 개수에 따른 로또 번호 출력(예외 케이스)", () => {
+    expect(() => printPurchasedLottoNumbers(3, 5, 11, 16, 32, 38)).toThrow(
+      "[ERROR]",
+    );
+  });
+
+  test("당첨 통계 출력", () => {
+    const logSpy = getLogSpy();
+
+    printWinStatistics([0, 0, 0, 0, 0, 1]);
 
     const logs = [
-      "8개를 구매했습니다.",
       "당첨 통계",
       "--------------------",
       "3개 일치 (5,000원) - 1개",
@@ -41,25 +70,29 @@ describe("로또 통합 테스트", () => {
       "5개 일치 (1,500,000원) - 0개",
       "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
       "6개 일치 (2,000,000,000원) - 0개",
-      "총 수익률은 62.5%입니다.",
     ];
-    logs.forEach((log) =>
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log)),
-    );
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 
-  test("1000원 구매, 전부 낙첨", async () => {
-    randomModule.generateRandomNumbers.mockReturnValue([7, 8, 9, 10, 11, 12]);
-    Console.input
-      .mockResolvedValueOnce("1000")
-      .mockResolvedValueOnce("1,2,3,4,5,6")
-      .mockResolvedValueOnce("7")
-      .mockResolvedValueOnce("n");
+  test("당첨 통계 출력(예외 케이스)", () => {
+    expect(() => printWinStatistics(0, 0, 0, 0, 0, 1)).toThrow("[ERROR]");
+  });
 
-    await gameManager();
+  test("수익률 출력", () => {
+    const logSpy = getLogSpy();
 
-    expect(logSpy).toHaveBeenCalledWith(
-      expect.stringContaining("총 수익률은 0%입니다."),
-    );
+    printProfitRate(62.5);
+
+    const log = "총 수익률은 62.5%입니다.";
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+  });
+
+  afterEach(() => {
+    const logSpy = getLogSpy();
+    logSpy.mockRestore();
   });
 });
