@@ -13,7 +13,7 @@ class Money {
     }
   }
 
-  purchaseLotto() {
+  getMaximumLottoCount() {
     return Math.floor(this.#amount / Money.UNIT);
   }
 }

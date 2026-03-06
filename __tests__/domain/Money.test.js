@@ -13,7 +13,7 @@ describe("Money class 테스트", () => {
   describe("method test", () => {
     test("머니가 살 수 있는 최대의 로또 갯수를 반환 Money.purchaseLotto()", () => {
       const money = new Money(2050);
-      expect(money.purchaseLotto()).toBe(2);
+      expect(money.getMaximumLottoCount()).toBe(2);
     });
   });
 });
