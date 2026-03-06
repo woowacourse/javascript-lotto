@@ -1,4 +1,5 @@
 import { Lotto, WinningLotto } from './Lotto.js';
+import { readLine } from './Utils.js';
 import Validator from './Validator.js';
 
 const Input = {
