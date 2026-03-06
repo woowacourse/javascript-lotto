@@ -1,7 +1,7 @@
 import Lotto from "../src/Domain/Lotto.js";
 import LottoMachine from "../src/Domain/LottoMachine.js";
 import LottoResult from "../src/Domain/LottoResult.js";
-import WinningNumbers from "../src/Domain/WinningNumbers.js";
+import WinningNumbers from "../src/Domain/LuckyNumbers.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 describe("로또 클래스 테스트", () => {
