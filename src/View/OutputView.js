@@ -33,6 +33,9 @@ export class OutputView {
   printRate(rate) {
     Console.print(`총 수익률은 ${rate}%입니다.`);
   }
+  printError(errorMessage) {
+    Console.print(`${errorMessage} 다시 입력해주세요.`);
+  }
 }
 
 export default OutputView;

@@ -29,7 +29,7 @@ class App {
 
         break;
       } catch (err) {
-        console.log(err);
+        this.#outputView.printError(err.message);
       }
     }
 
@@ -45,7 +45,7 @@ class App {
 
         break;
       } catch (err) {
-        console.log(err);
+        this.#outputView.printError(err.message);
       }
     }
 
@@ -59,7 +59,7 @@ class App {
 
         break;
       } catch (err) {
-        console.log(err);
+        this.#outputView.printError(err.message);
       }
     }
 
@@ -72,7 +72,7 @@ class App {
 
     const isRetry = await this.#inputView.readIsRetry();
     if (isRetry === "y") {
-      this.run();
+      await this.run();
     }
   }
 }
