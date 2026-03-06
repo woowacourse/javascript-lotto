@@ -14,6 +14,7 @@ import {
   restartInputHandler,
   winningNumberInputHandler,
 } from "./view/inputHandler";
+import { getPrizeList } from "./getPrizeList";
 
 export const gameManager = async () => {
   const validatedAmount = await purchaseAmountInputHandler();
@@ -37,7 +38,7 @@ export const gameManager = async () => {
     validatedBonusNumber,
   );
 
-  const prizeListArray = winningLotto.getPrizeList(generatedLottos);
+  const prizeListArray = getPrizeList(generatedLottos, winningLotto);
   printWinStatistics(prizeListArray);
 
   const profitRate = getReturnRate(prizeListArray, validatedAmount);

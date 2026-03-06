@@ -3,6 +3,7 @@ import WinningLotto from "../src/WinningLotto.js";
 import { LOTTO_INTO } from "../src/constants.js";
 import { generateLottos } from "../src/generateLottos.js";
 import { generateRandomNumbers } from "../src/generateRandomNumbers.js";
+import { getPrizeList } from "../src/getPrizeList.js";
 import { getReturnRate } from "../src/utils/getReturnRate.js";
 
 describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () => {
@@ -84,7 +85,7 @@ describe("당첨 내역 반환 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, 6]), // 1등
     ];
 
-    expect(winningLotto.getPrizeList(purchasedLottos)).toEqual([
+    expect(getPrizeList(purchasedLottos, winningLotto)).toEqual([
       0, 2, 1, 1, 1, 1,
     ]);
   });
@@ -96,7 +97,7 @@ describe("당첨 내역 반환 테스트", () => {
       new Lotto([7, 8, 9, 10, 11, 14]),
     ];
 
-    expect(winningLotto.getPrizeList(purchasedLottos)).toEqual([
+    expect(getPrizeList(purchasedLottos, winningLotto)).toEqual([
       0, 0, 0, 0, 0, 0,
     ]);
   });
@@ -155,7 +156,7 @@ describe("간이 도메인 로직 통합 테스트", () => {
   test("1개 구매, 5등 당첨", () => {
     const lottos = generateLottos([[1, 2, 3, 7, 8, 9]]);
     const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
-    const prizeResult = winningLotto.getPrizeList(lottos);
+    const prizeResult = getPrizeList(lottos, winningLotto);
     const returnRate = getReturnRate(prizeResult, 1000);
 
     expect(prizeResult).toEqual([0, 0, 0, 0, 0, 1]);
@@ -168,7 +169,7 @@ describe("간이 도메인 로직 통합 테스트", () => {
       [13, 14, 15, 16, 17, 18],
     ]);
     const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
-    const prizeResult = winningLotto.getPrizeList(lottos);
+    const prizeResult = getPrizeList(lottos, winningLotto);
     const returnRate = getReturnRate(prizeResult, 2000);
 
     expect(prizeResult).toEqual([0, 0, 0, 0, 0, 0]);
