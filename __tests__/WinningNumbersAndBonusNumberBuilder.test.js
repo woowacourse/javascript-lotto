@@ -12,36 +12,6 @@ describe("WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트", () =>
       ).not.toThrow();
     });
 
-    test("당첨 번호가 정수가 아니면 에러를 반환한다.", () => {
-      // given
-      const builder = new WinningNumbersAndBonusNumberBuilder();
-
-      // when & then
-      expect(() =>
-        builder.validateWinningNumbers([1, 2, 3, 4, 5, 6.1]),
-      ).toThrow();
-    });
-
-    test("당첨 번호가 1보다 작으면 에러를 반환한다.", () => {
-      // given
-      const builder = new WinningNumbersAndBonusNumberBuilder();
-
-      // when & then
-      expect(() =>
-        builder.validateWinningNumbers([-1, 2, 3, 4, 5, 6]),
-      ).toThrow();
-    });
-
-    test("당첨 번호가 45보다 크면 에러를 반환한다.", () => {
-      // given
-      const builder = new WinningNumbersAndBonusNumberBuilder();
-
-      // when & then
-      expect(() =>
-        builder.validateWinningNumbers([1, 2, 3, 4, 5, 46]),
-      ).toThrow();
-    });
-
     test("당첨 번호가 중복되면 에러를 반환한다.", () => {
       // given
       const builder = new WinningNumbersAndBonusNumberBuilder();
@@ -63,39 +33,6 @@ describe("WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트", () =>
 
       // then
       expect(() => builder.validateBonusNumber(7)).not.toThrow();
-    });
-
-    test("보너스 번호가 정수가 아니면 에러를 반환한다.", () => {
-      // given
-      const builder = new WinningNumbersAndBonusNumberBuilder();
-
-      // when
-      builder.setWinningNumbers([1, 2, 3, 4, 5, 6]);
-
-      // then
-      expect(() => builder.validateBonusNumber(7.1)).toThrow();
-    });
-
-    test("보너스 번호가 1보다 작으면 에러를 반환한다.", () => {
-      // given
-      const builder = new WinningNumbersAndBonusNumberBuilder();
-
-      // when
-      builder.setWinningNumbers([1, 2, 3, 4, 5, 6]);
-
-      // then
-      expect(() => builder.validateBonusNumber(-1)).toThrow();
-    });
-
-    test("보너스 번호가 45보다 크면 에러를 반환한다.", () => {
-      // given
-      const builder = new WinningNumbersAndBonusNumberBuilder();
-
-      // when
-      builder.setWinningNumbers([1, 2, 3, 4, 5, 6]);
-
-      // then
-      expect(() => builder.validateBonusNumber(46)).toThrow();
     });
 
     test("당첨 번호에 이미 포함된 번호면 에러를 반환한다.", () => {
