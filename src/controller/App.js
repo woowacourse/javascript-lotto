@@ -6,13 +6,13 @@ import retry from "../utils/retry.js";
 class App {
   async run() {
     while (true) {
-      const price = await retry(() => InputView.inputPrice());
+      const purchasedPrice = await retry(() => InputView.inputPrice());
 
-      const amount = price / 1000;
+      const lottoCount = purchasedPrice / 1000;
 
-      const lottoController = new LottoController(amount);
-      const lottos = lottoController.issueLottos();
-      OutPutView.printLotto(lottos);
+      const lottoController = new LottoController(lottoCount);
+      const purchasedLottos = lottoController.issueLottos();
+      OutPutView.printLotto(purchasedLottos);
 
       const winningLotto = await retry(() => InputView.inputWinningNums());
       const bonusNum = await retry(() => InputView.inputBonusNum(winningLotto));
