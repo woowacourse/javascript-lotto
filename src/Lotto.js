@@ -34,7 +34,7 @@ class Lotto {
 
   matchCount(winningNumbers) {
     const numbersSet = new Set([
-      ...winningNumbers,
+      ...winningNumbers.map(Number),
       ...this.#numbers.map(Number),
     ]);
     return this.#numbers.length + winningNumbers.length - numbersSet.size;

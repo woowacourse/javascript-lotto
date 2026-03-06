@@ -68,7 +68,7 @@ describe("Lotto 클래스 유닛 테스트", () => {
     test("전달받은 값이 로또 번호 안에 포함되면 true를 반환한다.", () => {
       // given
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-      const bonusNumber = 1;
+      const bonusNumber = new LottoNumber(1);
 
       // when
       const result = lotto.includes(bonusNumber);
@@ -80,7 +80,7 @@ describe("Lotto 클래스 유닛 테스트", () => {
     test("전달받은 값이 로또 번호 안에 포함되면 false를 반환한다.", () => {
       // given
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-      const bonusNumber = 7;
+      const bonusNumber = new LottoNumber(7);
 
       // when
       const result = lotto.includes(bonusNumber);
@@ -94,7 +94,14 @@ describe("Lotto 클래스 유닛 테스트", () => {
     test("로또 번호와 당첨 번호 사이에 일치하는 번호 개수를 반환한다.", () => {
       // given
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-      const winningNumbers = [1, 2, 3, 7, 8, 9];
+      const winningNumbers = [
+        new LottoNumber(1),
+        new LottoNumber(2),
+        new LottoNumber(3),
+        new LottoNumber(7),
+        new LottoNumber(8),
+        new LottoNumber(9),
+      ];
 
       // when
       const result = lotto.matchCount(winningNumbers);
