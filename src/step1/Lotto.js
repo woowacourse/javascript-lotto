@@ -3,7 +3,7 @@ export class Lotto {
 
     constructor(numbers) {
         this.#validate(numbers);
-        this.#numbers = numbers;
+        this.#numbers = numbers.map((lottoNumber) => Number(lottoNumber));
     }
 
     #validate(numbers) {
@@ -23,5 +23,33 @@ export class Lotto {
 
     getLottoNumber() {
         return [...this.#numbers];
+    }
+}
+
+
+export class WinningLotto extends Lotto {
+    #bonusNumber;
+
+    constructor(numbers, bonusNumber) {
+        super(numbers);
+        this.#validateBonusNumber(bonusNumber);
+        this.#bonusNumber = Number(bonusNumber)
+    }
+
+    #validateBonusNumber(bonusNumber) {
+        Number(bonusNumber);
+        if (!Number.isInteger(bonusNumber)) {
+            throw new Error('보너스 번호는 숫자여야 합니다.');
+        }
+        if (bonusNumber > 45 || number < 0) {
+            throw new Error('보너스 번호는 1 ~ 45 이내 숫자여야 합니다.');
+        }
+        if (new Set([...winningNumber, number]).size !== 7) {
+            throw new Error('보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+        }
+    }
+
+    getBonusNumber() {
+        return this.#bonusNumber;
     }
 }
