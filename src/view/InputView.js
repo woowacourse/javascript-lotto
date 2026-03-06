@@ -26,7 +26,7 @@ const InputView = {
     winningNums.forEach((num) => Validator.validateLottoNumRange(num));
     winningNums.forEach((num) => Validator.validateNumber(num));
     Validator.validateLottoCount(winningNums);
-    Validator.validateDuplicateWinningNum(winningNums);
+    Validator.validateDuplicateLottoNums(winningNums);
 
     return winningNums;
   },
