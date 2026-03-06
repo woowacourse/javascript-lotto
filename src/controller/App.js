@@ -4,7 +4,7 @@ import OutputView from "../console/ConsoleOutputView.js";
 import Lotto from "../domain/Lotto.js";
 import LottoManager from "../service/LottoManager.js";
 
-export class App {
+export default class App {
   #lottoManager;
 
   constructor() {
@@ -16,7 +16,6 @@ export class App {
       const lottos = await this.#processBuyLottos();
       const winningLotto = await this.#processWinning();
       await this.#processResult(lottos, winningLotto);
-      // TODO: 통계 출력
     } while (await this.#readIsRetry());
   }
 
