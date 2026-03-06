@@ -20,10 +20,10 @@ export const gameManager = async () => {
   const purchaseCount = parseInt(validatedAmount / 1000);
   printPurchaseCount(purchaseCount);
 
-  let purchasedLottoNumbers = [];
-  for (let i = 0; i < purchaseCount; i++) {
-    purchasedLottoNumbers.push(generateRandomNumbers());
-  }
+  const purchasedLottoNumbers = Array.from(
+    { length: purchaseCount },
+    generateRandomNumbers
+  );
   const generatedLottos = generateLottos(purchasedLottoNumbers);
   printPurchasedLottoNumbers(generatedLottos);
 
