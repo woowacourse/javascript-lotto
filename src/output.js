@@ -2,11 +2,17 @@ export const printPurchaseCount = (purchaseCount) => {
   console.log(`${purchaseCount}개를 구매했습니다.`);
 };
 export const printPurchasedLottoNumbers = (purchaseLottoLists) => {
+  if (
+    !Array.isArray(purchaseLottoLists) ||
+    !Array.isArray(purchaseLottoLists[0])
+  )
+    throw new Error("[ERROR]");
   purchaseLottoLists.forEach((lottoNumbers) =>
     console.log(`[${lottoNumbers.join(", ")}]`)
   );
 };
 export const printWinStatistics = (prizeList) => {
+  if (!Array.isArray(prizeList)) throw new Error("[ERROR]");
   console.log("당첨 통계");
   console.log("--------------------");
   console.log(`3개 일치 (5,000원) - ${prizeList[5]}개`);
