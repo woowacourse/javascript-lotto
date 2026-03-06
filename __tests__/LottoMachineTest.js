@@ -14,8 +14,9 @@ describe('로또 머신 테스트', () => {
     });
 
     test('로또 생성 개수 테스트', () =>{
+        pickNumberInRange.mockReturnValue([1, 4, 5, 6, 8, 9]);
         let lottoMachine = new LottoMachine(1000);
-        
+
         expect(lottoMachine.purchaseCount).toBe(1);
 
         lottoMachine = new LottoMachine(5000)
