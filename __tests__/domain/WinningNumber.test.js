@@ -1,5 +1,3 @@
-// 보너스 번호가 당첨번호랑 중복되면 안됨
-// 보너스 번호가 잘 나오는 지..
 import Lotto from "../../src/domain/Lotto.js";
 import WinningNumber from "../../src/domain/WinningNumber.js";
 
