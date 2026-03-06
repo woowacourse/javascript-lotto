@@ -8,10 +8,10 @@ export class InputView {
     return await Console.readLineAsync("> 당첨 번호를 입력해 주세요. ");
   }
   async readBonusNumber() {
-    return await Console.readLineAsync("> 보너스 번호를 입력해 주세요. ");
+    return await Console.readLineAsync("\n> 보너스 번호를 입력해 주세요. ");
   }
   async readIsRetry() {
-    return await Console.readLineAsync("> 다시 시작하시겠습니까? (y/n) ");
+    return await Console.readLineAsync("\n> 다시 시작하시겠습니까? (y/n) ");
   }
 }
 

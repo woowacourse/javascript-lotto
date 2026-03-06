@@ -10,8 +10,10 @@ export class OutputView {
     lottos.forEach((lotto) => {
       Console.print(lotto.toString());
     });
+    Console.print("");
   }
   printStatistics(statistics) {
+    Console.print("");
     Console.print("당첨 통계");
     Console.print("--------------------");
 
