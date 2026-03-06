@@ -13,11 +13,16 @@ import {
   printPurchasedLottoNumbers,
   printWinStatistics,
 } from "./output";
-import { parseStringToNumber, parseStringToNumberArray } from "./parser";
+import {
+  parseCapitalToSmall,
+  parseStringToNumber,
+  parseStringToNumberArray,
+} from "./parser";
 import {
   validateBonusNumber,
   validateLottoNumbers,
   validatePurchaseAmount,
+  validateRestartInput,
 } from "./validator";
 import WinningLotto from "./WinningLotto";
 
@@ -59,4 +64,7 @@ export const gameManager = async () => {
   printProfitRate(profitRate);
 
   const yn = await inputYesNo();
+  const parsedYn = parseCapitalToSmall(yn);
+  const validatedYn = validateRestartInput(parsedYn);
+  if (validatedYn === "y") await gameManager();
 };
