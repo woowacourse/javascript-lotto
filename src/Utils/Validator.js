@@ -16,18 +16,11 @@ const Validator = {
     if (!input.includes(","))
       throw new Error("[ERROR] 쉼표를 기준으로 구분하지 않았습니다!");
 
-    const winningNumbers = input
+    const nums = input
       .split(",")
       .map((numStr) => Number(numStr.trim()));
 
-    const hasNaN = winningNumbers.some((n) => Number.isNaN(n));
-    if (hasNaN) {
-      throw new Error("[ERROR] 각 번호가 숫자가 아닙니다!");
-    }
-
-    if (winningNumbers.length !== 6) {
-      throw new Error(`[ERROR] 당첨 번호는 6개여야 합니다!`);
-    }
+    const winningNumbers = this.validateCommonNumbers(nums);
 
     const isOutRange = winningNumbers.some((num) => num < 1 || num > 45);
     if (isOutRange) {
@@ -35,6 +28,23 @@ const Validator = {
     }
 
     return winningNumbers;
+  },
+
+  validateCommonNumbers(nums) {
+    const hasNaN = nums.some((n) => Number.isNaN(n));
+    if (hasNaN) {
+      throw new Error("[ERROR] 각 번호가 숫자가 아닙니다!");
+    }
+
+    if (nums.length !== 6) {
+      throw new Error(`[ERROR] 번호는 6개여야 합니다!`);
+    }
+
+    if (new Set(nums).size !== nums.length) {
+      throw new Error("[ERROR] 중복된 숫자가 있습니다.");
+    }
+
+    return nums;
   },
 
   validateBonusNumber(bonusNumber, winningNumbers) {
