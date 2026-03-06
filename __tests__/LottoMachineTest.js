@@ -1,7 +1,12 @@
 import { LottoMachine } from '../src/step1/LottoMachine';
 import { pickNumberInRange } from "../src/step1/Utils";
 
-jest.mock('../src/step1/Utils');
+jest.mock('../src/step1/Utils.js', () => ({
+    readLine: jest.fn(),
+    read: { close: jest.fn() },
+    pickNumberInRange: jest.fn(),
+}));
+
 
 describe('로또 머신 테스트', () => {
     test('로또 생성 테스트', () => {
