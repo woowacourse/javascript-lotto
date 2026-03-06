@@ -9,18 +9,18 @@ import readline from 'readline';
  * @returns {number[]}
  */
 export function pickNumberInRange(min, max, range) {
-    const minCeiled = Math.ceil(min);
-    const maxFloored = Math.floor(max);
-    const numbers = new Set();
-    while (true) {
-        if (numbers.size === range) {
-            break;
-        }
-        const randomNumber = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
-        numbers.add(randomNumber);
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  const numbers = new Set();
+  while (true) {
+    if (numbers.size === range) {
+      break;
     }
+    const randomNumber = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+    numbers.add(randomNumber);
+  }
 
-    return [...numbers];
+  return [...numbers];
 }
 
 export const read = readline.createInterface({
@@ -31,7 +31,7 @@ export const read = readline.createInterface({
 export function readLine(query) {
   return new Promise((resolve) => {
     read.question(query, (answer) => {
-        resolve(answer);
+      resolve(answer);
     });
   });
 }
