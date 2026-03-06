@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 
-export default class ConsoleOutView {
+export default class ConsoleOutputView {
   static printLottos(lottoList) {
     lottoList.forEach((lotto) => {
       Console.print(lotto);

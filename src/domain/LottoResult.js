@@ -8,7 +8,6 @@ class LottoResult {
   }
 
   #calculateRankCounts(lottos, winningNumber) {
-   
     const counts = new Map(Rank.order.map((rank) => [rank, 0]));
 
     lottos.forEach((lotto) => {
@@ -36,7 +35,6 @@ class LottoResult {
   }
 
   getProfitRate(purchaseAmount) {
-  
     const totalPrize = [...this.#rankCounts.entries()].reduce(
       (acc, [rank, count]) => acc + rank.getPrize() * count,
       0,
