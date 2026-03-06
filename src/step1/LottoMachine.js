@@ -58,6 +58,6 @@ export class LottoMachine {
     }
 
     createLotto() {
-        return new Lotto(pickNumberInRange(1, 45, 6));
+        return new Lotto(pickNumberInRange(1, 45, 6).sort((a, b) => a - b));
     }
 }
