@@ -2,13 +2,13 @@ import {
   parseCapitalToSmall,
   parseStringToNumber,
   parseStringToNumberArray,
-} from "../parser";
+} from "../utils/parser";
 import {
   validateBonusNumber,
   validateLottoNumbers,
   validatePurchaseAmount,
   validateRestartInput,
-} from "../validator";
+} from "../utils/validator";
 import {
   inputPurchaseAmount,
   inputWinningNumbers,

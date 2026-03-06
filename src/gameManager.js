@@ -1,6 +1,6 @@
 import { generateLottos } from "./generateLottos";
 import { generateRandomNumbers } from "./generateRandomNumbers";
-import { getReturnRate } from "./getReturnRate";
+import { getReturnRate } from "./utils/getReturnRate";
 import {
   printProfitRate,
   printPurchaseCount,

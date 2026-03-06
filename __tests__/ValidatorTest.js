@@ -11,7 +11,7 @@ import {
   validateRestartInput,
   validateUnit,
   validateYesNo,
-} from "../src/validator";
+} from "../src/utils/validator";
 
 describe("유효성 검증 테스트", () => {
   describe("공통 검증", () => {

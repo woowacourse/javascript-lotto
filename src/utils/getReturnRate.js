@@ -1,4 +1,4 @@
-import { PRIZE_PER_RANK } from "./constants";
+import { PRIZE_PER_RANK } from "../constants";
 
 export const getReturnRate = (prizeList, purchaseAmount) => {
   const totalPrize = prizeList.reduce((acc, count, index) => {
