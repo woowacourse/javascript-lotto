@@ -1,4 +1,4 @@
-import { RANDOM_CONSTANT } from "../constants/constant.js";
+import { LOTTO_RANGE } from "../constants/constant.js";
 
 export function checkNumberRange(winningNumberArray) {
   const booleanArray = winningNumberArray.map((element) => {
@@ -8,7 +8,6 @@ export function checkNumberRange(winningNumberArray) {
 }
 
 function getBooleanNumberRange(element) {
-  if (element < RANDOM_CONSTANT.MIN || element > RANDOM_CONSTANT.MAX)
-    return false;
+  if (element < LOTTO_RANGE.MIN || element > LOTTO_RANGE.MAX) return false;
   return true;
 }

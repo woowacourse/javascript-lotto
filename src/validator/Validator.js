@@ -1,15 +1,20 @@
 import { checkNumberRange } from "../utils/checkNumberRange.js";
-import { ERROR_MESSAGE, RETRY_ANSWER } from "../constants/constant.js";
+import {
+  ERROR_MESSAGE,
+  RETRY_ANSWER,
+  MONEY_UNIT,
+  LOTTO_RANGE,
+} from "../constants/constant.js";
 
 export const Validator = {
   validatePurchaseMoney(money) {
-    if (money < 1000) {
+    if (money < MONEY_UNIT) {
       throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.MIN);
     }
     if (isNaN(money)) {
       throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.NUMBER);
     }
-    if (money % 1000 !== 0) {
+    if (money % MONEY_UNIT !== 0) {
       throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.UNIT);
     }
   },
@@ -32,7 +37,7 @@ export const Validator = {
     }
 
     const set = new Set(winningNumberArray);
-    if (set.size < 6) {
+    if (set.size < LOTTO_RANGE.COUNT) {
       throw new Error(ERROR_MESSAGE.WINNING_NUMBER.DUPLICATE);
     }
   },
@@ -40,7 +45,7 @@ export const Validator = {
   validateBonusNumber(winningNumber, bonusNumber) {
     const winningNumberArray = winningNumber.split(",").map(Number);
 
-    if (bonusNumber < 1 || bonusNumber > 45) {
+    if (bonusNumber < LOTTO_RANGE.MIN || bonusNumber > LOTTO_RANGE.MAX) {
       throw new Error(ERROR_MESSAGE.BONUS_NUMBER.RANGE);
     }
     if (isNaN(bonusNumber)) {

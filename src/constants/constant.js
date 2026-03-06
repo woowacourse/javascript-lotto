@@ -8,7 +8,7 @@ export const PRIZE = {
 
 export const MONEY_UNIT = 1000;
 
-export const RANDOM_CONSTANT = {
+export const LOTTO_RANGE = {
   MAX: 45,
   MIN: 1,
   COUNT: 6,
