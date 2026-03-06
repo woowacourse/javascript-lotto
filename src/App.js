@@ -40,6 +40,7 @@ class App {
     while (true) {
       try {
         const lottoNumbers = await this.#inputView.readLottoNumbers();
+
         winningNumbers = parsingNumbers(lottoNumbers);
         this.#validator.validateLottoNumbers(winningNumbers);
 
