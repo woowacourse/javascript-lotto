@@ -1,3 +1,9 @@
+import {
+  validateCount,
+  validateNoDuplicate,
+  validateRange,
+} from "./utils/validator";
+
 class Lotto {
   constructor(lottoNumberList) {
     this.#validate(lottoNumberList);
@@ -5,12 +11,9 @@ class Lotto {
   }
 
   #validate(numbers) {
-    if (numbers.length !== 6)
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    if (new Set(numbers).size !== 6)
-      throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
-    if (numbers.some((n) => n < 1 || n > 45))
-      throw new Error("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+    validateCount(numbers);
+    validateNoDuplicate(numbers);
+    validateRange(numbers);
   }
 
   getNumbers() {
