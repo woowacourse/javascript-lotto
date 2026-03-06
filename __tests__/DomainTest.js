@@ -119,7 +119,13 @@ describe("LottoResult 동작 테스트", () => {
      const purchasePrice = 6000;
      const profitRate = lottoResult.calculateProfitRate(winningResult,purchasePrice);
 
-     expect(profitRate).toBe(33859250.0);
+     expect(profitRate).toBe(
+      ((5000 +
+      50000 +
+      1500000 +
+      30000000 +
+      2000000000) - purchasePrice) / purchasePrice * 100
+     );
   });
 });
 
