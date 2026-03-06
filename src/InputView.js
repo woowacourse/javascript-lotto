@@ -38,7 +38,7 @@ class InputView {
     const MESSAGE = "> 다시 시작하시겠습니까? (y/n) ";
     const input = await this.getUserInput(MESSAGE);
     this.validateRetry(input);
-    return await this.getUserInput(input);
+    return input;
   }
 
   validateAmount(userInput) {
