@@ -26,7 +26,7 @@ describe("출력 처리 테스트", () => {
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });
 
-  test("개수에 따른 로또 번호 오름차순 출력", () => {
+  test("구매한 로또 개수에 따른 로또 번호 출력", () => {
     const logSpy = getLogSpy();
 
     printPurchasedLottoNumbers([
@@ -39,6 +39,21 @@ describe("출력 처리 테스트", () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
+  });
+
+  test("구매한 로또 개수에 따른 로또 번호 출력(예외 케이스)", () => {
+    expect(
+      printPurchasedLottoNumbers(
+        [8, 21, 23, 41, 42, 43],
+        [3, 5, 11, 16, 32, 38],
+      ),
+    ).toThrow("[ERROR]");
+  });
+
+  test("구매한 로또 개수에 따른 로또 번호 출력(예외 케이스)", () => {
+    expect(printPurchasedLottoNumbers([3, 5, 11, 16, 32, 38])).toThrow(
+      "[ERROR]",
+    );
   });
 
   test("당첨 통계 출력", () => {
@@ -60,6 +75,11 @@ describe("출력 처리 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test("당첨 통계 출력(예외 케이스)", () => {
+    expect(printWinStatistics(0, 0, 0, 0, 0, 1)).toThrow("[ERROR]");
+  });
+
   test("수익률 출력", () => {
     const logSpy = getLogSpy();
 
