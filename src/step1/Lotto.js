@@ -3,7 +3,7 @@ export class Lotto {
 
     constructor(numbers) {
         this.#validate(numbers);
-        this.#numbers = numbers.map((lottoNumber) => Number(lottoNumber));
+        this.#numbers = numbers.map((lottoNumber) => Number(lottoNumber)).sort((a, b) => a - b);
     }
 
     #validate(numbers) {
