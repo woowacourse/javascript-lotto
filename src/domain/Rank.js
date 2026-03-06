@@ -27,7 +27,7 @@ class Rank {
     if (this === Rank.THIRD) return Rank.PRIZE.THIRD;
     if (this === Rank.FOURTH) return Rank.PRIZE.FOURTH;
     if (this === Rank.FIFTH) return Rank.PRIZE.FIFTH;
-    return PRIZE.MISS;
+    return Rank.PRIZE.MISS;
   }
 
   static getRank({ matchCount, hasBonus }) {
