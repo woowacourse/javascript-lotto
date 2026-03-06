@@ -1,4 +1,4 @@
-import { RANDOM_CONSTANT } from "../constants/constant";
+import { RANDOM_CONSTANT } from "../constants/constant.js";
 
 export function checkNumberRange(winningNumberArray) {
   const booleanArray = winningNumberArray.map((element) => {

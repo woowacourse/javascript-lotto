@@ -4,21 +4,18 @@ import { getLottos } from "../service/getRandomLotto.js";
 import WinningLotto from "../domain/WinningLotto.js";
 import { getCompareResult } from "../service/getCompareResult.js";
 import { getProfit } from "../service/getProfit.js";
-import { getPurchaseAmount } from "../service/getPurchaseAmount.js";
-import { getWinningLotto } from "../service/getWinningLotto.js";
-import { getBonusNumber } from "../service/getBonusNumber.js";
-import { getRetry } from "../service/getRetry.js";
+import { InputView } from "../view/input.js";
 import { RETRY_ANSWER } from "../constants/constant.js";
 
 class LottoController {
   async play() {
-    const money = await getPurchaseAmount();
+    const money = await InputView.inputPurchaseAmount();
     const count = calculateLottoCount(money);
     const randomLotto = getLottos(count);
     OutputView.outputLottoNumber(randomLotto);
 
-    const winningNumber = await getWinningLotto();
-    const bonusNumber = await getBonusNumber(winningNumber);
+    const winningNumber = await InputView.inputWinningNumber();
+    const bonusNumber = await InputView.inputBonusNumber(winningNumber);
 
     const winningLotto = new WinningLotto(winningNumber, bonusNumber);
 
@@ -29,7 +26,7 @@ class LottoController {
     OutputView.outputWinningStatics(result);
     OutputView.outputWinningProfit(profit);
 
-    const retry = await getRetry();
+    const retry = await InputView.inputRetry();
     if (RETRY_ANSWER.YES.includes(retry)) return this.play();
   }
 }
