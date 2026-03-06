@@ -3,7 +3,7 @@ import WinningLotto from "../src/WinningLotto.js";
 import { LOTTO_INTO } from "../src/constants.js";
 import { generateLottos } from "../src/generateLottos.js";
 import { generateRandomNumbers } from "../src/generateRandomNumbers.js";
-import { getReturnRate } from "../src/getReturnRate.js";
+import { getReturnRate } from "../src/utils/getReturnRate.js";
 
 describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () => {
   test.each([

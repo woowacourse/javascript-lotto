@@ -1,5 +1,5 @@
 import { input } from "./input.js";
-import { validateEmpty } from "../validator.js";
+import { validateEmpty } from "../utils/validator.js";
 
 export const inputPurchaseAmount = async () => {
   const userInput = await input("구입금액을 입력해주세요.");
