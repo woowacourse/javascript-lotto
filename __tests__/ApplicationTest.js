@@ -1,8 +1,8 @@
-import * as Console from "../src/input";
+import * as Console from "../src/view/input";
 import * as randomModule from "../src/generateRandomNumbers";
 import { gameManager } from "../src/gameManager";
 
-jest.mock("../src/input.js", () => ({
+jest.mock("../src/view/input.js", () => ({
   input: jest.fn(),
   close: jest.fn(),
 }));

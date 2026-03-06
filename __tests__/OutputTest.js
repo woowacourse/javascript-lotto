@@ -4,7 +4,7 @@ import {
   printPurchaseCount,
   printPurchasedLottoNumbers,
   printWinStatistics,
-} from "../src/output";
+} from "../src/view/outputView";
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(console, "log");

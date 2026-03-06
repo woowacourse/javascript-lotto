@@ -1,12 +1,12 @@
-import * as Console from "../src/input";
+import * as Console from "../src/view/input";
 import {
   inputBonusNumber,
   inputPurchaseAmount,
   inputWinningNumbers,
   inputYesNo,
-} from "../src/InputView";
+} from "../src/view/inputView";
 
-jest.mock("../src/input.js", () => ({
+jest.mock("../src/view/input.js", () => ({
   input: jest.fn(),
   close: jest.fn(),
 }));
