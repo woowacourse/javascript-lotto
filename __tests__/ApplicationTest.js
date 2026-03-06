@@ -24,6 +24,10 @@ const getLogSpy = () => {
 };
 
 describe("로또 앱 테스트", () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test("로또 리스트 객체는 로또 개수를 받아 그 개수만큼 로또 배열을 가진다.", async () => {
     mockQuestions(["8000", "1,2,3,4,5,6", "7"]);
     mockRandoms([
@@ -37,8 +41,10 @@ describe("로또 앱 테스트", () => {
       [1, 3, 5, 14, 22, 45],
     ]);
 
+    const logSpy = getLogSpy();
+
     const app = new App();
-    app.run();
+    await app.run();
 
     const logs = [
       "8개를 구매했습니다.",
@@ -58,10 +64,23 @@ describe("로또 앱 테스트", () => {
       "총 수익률은 62.5%입니다.",
     ];
 
-    const logSpy = getLogSpy();
-
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  // test("금액 입력 오류시 다시 금액을 받는다", async () => {
+  //   mockQuestions(["8500", "8000", "1,2,3,4,5,6", "7", "n"]);
+
+  //   const app = new App();
+  //   await app.run();
+
+  //   const logs = ["1000단위가 아닙니다"];
+
+  //   const logSpy = getLogSpy();
+
+  //   logs.forEach((log) => {
+  //     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+  //   });
+  // });
 });
