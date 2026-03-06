@@ -1,74 +1,70 @@
-import * as Console from "../src/input";
-import * as randomModule from "../src/generateRandomNumbers";
-import { gameManager } from "../src/gameManager";
+import { generateLottos } from "./generateLottos";
+import { generateRandomNumbers } from "./generateRandomNumbers";
+import { getReturnRate } from "./getReturnRate";
+import {
+  inputBonusNumber,
+  inputPurchaseAmount,
+  inputWinningNumbers,
+  inputYesNo,
+} from "./InputView";
+import {
+  printProfitRate,
+  printPurchaseCount,
+  printPurchasedLottoNumbers,
+  printWinStatistics,
+} from "./output";
+import {
+  parseCapitalToSmall,
+  parseStringToNumber,
+  parseStringToNumberArray,
+} from "./parser";
+import {
+  validateBonusNumber,
+  validateLottoNumbers,
+  validatePurchaseAmount,
+  validateRestartInput,
+} from "./validator";
+import WinningLotto from "./WinningLotto";
 
-jest.mock("../src/input.js", () => ({
-  input: jest.fn(),
-  close: jest.fn(),
-}));
+export const gameManager = async () => {
+  const purchaseAmount = await inputPurchaseAmount();
+  const parsedAmount = parseStringToNumber(purchaseAmount);
+  const validatedAmount = validatePurchaseAmount(parsedAmount);
+  const purchaseCount = parseInt(validatedAmount / 1000);
+  printPurchaseCount(purchaseCount);
 
-jest.mock("../src/generateRandomNumbers.js", () => ({
-  generateRandomNumbers: jest.fn(),
-}));
+  let purchasedLottoNumbers = [];
+  for (let i = 0; i < purchaseCount; i++) {
+    purchasedLottoNumbers.push(generateRandomNumbers());
+  }
+  const generatedLottos = generateLottos(purchasedLottoNumbers);
+  console.log(generatedLottos);
+  printPurchasedLottoNumbers(generatedLottos);
 
-describe("로또 통합 테스트", () => {
-  let logSpy;
+  const winningInput = await inputWinningNumbers();
+  const parsedWinningArray = parseStringToNumberArray(winningInput);
+  const validatedWinningArray = validateLottoNumbers(parsedWinningArray);
 
-  beforeEach(() => {
-    logSpy = jest.spyOn(console, "log").mockClear();
-  });
+  const bonusNumber = await inputBonusNumber();
+  const parsedBonusNumber = parseStringToNumber(bonusNumber);
+  const validatedBonusNumber = validateBonusNumber(
+    parsedBonusNumber,
+    validatedWinningArray,
+  );
 
-  afterEach(() => {
-    logSpy.mockRestore();
-    jest.clearAllMocks();
-  });
+  const winningLotto = new WinningLotto(
+    validatedWinningArray,
+    validatedBonusNumber,
+  );
 
-  test("8개 구매 3개 일치", async () => {
-    randomModule.generateRandomNumbers
-      .mockReturnValueOnce([8, 21, 23, 41, 42, 43])
-      .mockReturnValueOnce([3, 5, 11, 16, 32, 38])
-      .mockReturnValueOnce([7, 11, 16, 35, 36, 44])
-      .mockReturnValueOnce([1, 8, 11, 31, 41, 42])
-      .mockReturnValueOnce([13, 14, 16, 38, 42, 45])
-      .mockReturnValueOnce([7, 11, 30, 40, 42, 43])
-      .mockReturnValueOnce([2, 13, 22, 32, 38, 45])
-      .mockReturnValueOnce([1, 3, 5, 14, 22, 45]);
-    Console.input
-      .mockResolvedValueOnce("8000")
-      .mockResolvedValueOnce("1,2,3,4,5,6")
-      .mockResolvedValueOnce("7")
-      .mockResolvedValueOnce("n");
+  const prizeListArray = winningLotto.getPrizeList(generatedLottos);
+  printWinStatistics(prizeListArray);
 
-    await gameManager();
+  const profitRate = getReturnRate(prizeListArray, validatedAmount);
+  printProfitRate(profitRate);
 
-    const logs = [
-      "8개를 구매했습니다.",
-      "당첨 통계",
-      "--------------------",
-      "3개 일치 (5,000원) - 1개",
-      "4개 일치 (50,000원) - 0개",
-      "5개 일치 (1,500,000원) - 0개",
-      "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-      "6개 일치 (2,000,000,000원) - 0개",
-      "총 수익률은 62.5%입니다.",
-    ];
-    logs.forEach((log) =>
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log)),
-    );
-  });
-
-  test("1000원 구매, 전부 낙첨", async () => {
-    randomModule.generateRandomNumbers.mockReturnValue([7, 8, 9, 10, 11, 12]);
-    Console.input
-      .mockResolvedValueOnce("1000")
-      .mockResolvedValueOnce("1,2,3,4,5,6")
-      .mockResolvedValueOnce("7")
-      .mockResolvedValueOnce("n");
-
-    await gameManager();
-
-    expect(logSpy).toHaveBeenCalledWith(
-      expect.stringContaining("총 수익률은 0%입니다."),
-    );
-  });
-});
+  const yn = await inputYesNo();
+  const parsedYn = parseCapitalToSmall(yn);
+  const validatedYn = validateRestartInput(parsedYn);
+  if (validatedYn === "y") await gameManager();
+};
