@@ -3,7 +3,7 @@ export class Lotto {
 
     constructor(numbers) {
         this.#validate(numbers);
-        this.#numbers = numbers.map((lottoNumber) => Number(lottoNumber));
+        this.#numbers = numbers;
     }
 
     #validate(numbers) {
@@ -31,7 +31,7 @@ export class WinningLotto extends Lotto {
     #bonusNumber;
 
     constructor(numbers, bonusNumber) {
-        super(numbers);
+        super(numbers.map((lottoNumber) => Number(lottoNumber)));
         this.#validateBonusNumber(bonusNumber);
         this.#bonusNumber = Number(bonusNumber)
     }
