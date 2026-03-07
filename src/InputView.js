@@ -16,22 +16,19 @@ class InputView {
   async askAmount() {
     const MESSAGE = "> 구입금액을 입력해 주세요. ";
     const input = await this.getUserInput(MESSAGE);
-    // this.validateAmount(input);
-    return Number(input);
+    return input;
   }
 
   async askWinningNumbers() {
     const MESSAGE = "> 당첨 번호를 입력해 주세요. ";
     const input = await this.getUserInput(MESSAGE);
-    // this.validateWinningNumbers(input);
-    return input.split(",").map(Number);
+    return input;
   }
 
   async askBonusNumber() {
     const MESSAGE = "> 보너스 번호를 입력해 주세요. ";
     const input = await this.getUserInput(MESSAGE);
-    // this.validateBonusNumber(input);
-    return Number(input);
+    return input;
   }
 
   async askRetry() {
