@@ -29,7 +29,7 @@ export const validateCount = (lottoNumbers) => {
   return lottoNumbers;
 };
 export const validatePositive = (number) => {
-  if (number < 0) throw new Error("[ERROR] 양수만 입력해주세요");
+  if (number <= 0) throw new Error("[ERROR] 양수만 입력해주세요");
   return number;
 };
 export const validateUnit = (purchaseAmount) => {
