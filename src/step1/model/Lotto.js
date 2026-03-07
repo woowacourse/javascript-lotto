@@ -1,12 +1,12 @@
-import { LOTTO_ERROR_MESSAGE } from "../constant/message.js";
 import { LOTTO } from "../constant/index.js";
+import { LOTTO_ERROR_MESSAGE } from "../constant/message.js";
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.#validate(numbers);
-    numbers.sort((a, b) => a - b);
-    this.#numbers = numbers;
+    this.#numbers = numbers.toSorted((a, b) => a - b);
   }
 
   #validate(numbers) {
@@ -38,7 +38,7 @@ class Lotto {
   }
 
   getNumbers() {
-    return this.#numbers;
+    return [...this.#numbers];
   }
 }
 
