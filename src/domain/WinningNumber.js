@@ -1,6 +1,11 @@
 import Lotto from "./Lotto.js";
 
 class WinningNumber {
+  static ERROR = Object.freeze({
+    INVALID_RANGE: `[ERROR] 보너스 번호는 ${Lotto.MIN_RANGE}~${Lotto.MAX_RANGE} 사이의 숫자여야 합니다.`,
+    DUPLICATE: "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.",
+  });
+
   #winningLotto;
   #bonusNumber;
 
@@ -12,10 +17,10 @@ class WinningNumber {
 
   #validate(lotto, bonusNumber) {
     if (bonusNumber < Lotto.MIN_RANGE || bonusNumber > Lotto.MAX_RANGE) {
-      throw new Error(`[ERROR] 보너스 번호는 ${Lotto.MIN_RANGE}~${Lotto.MAX_RANGE} 사이의 숫자여야 합니다.`);
+      throw new Error(WinningNumber.ERROR.INVALID_RANGE);
     }
     if (lotto.hasNumber(bonusNumber)) {
-      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+      throw new Error(WinningNumber.ERROR.DUPLICATE);
     }
   }
 

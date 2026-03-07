@@ -1,5 +1,10 @@
 class Money {
   static UNIT = 1000;
+
+  static ERROR = Object.freeze({
+    INSUFFICIENT_AMOUNT: "[ERROR] 로또를 구매할 수 없습니다.",
+  });
+
   #amount;
 
   constructor(amount) {
@@ -9,7 +14,7 @@ class Money {
 
   #validate(amount) {
     if (amount < Money.UNIT) {
-      throw new Error("[ERROR] 로또를 구매할 수 없습니다");
+      throw new Error(Money.ERROR.INSUFFICIENT_AMOUNT);
     }
   }
 

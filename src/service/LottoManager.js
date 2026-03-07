@@ -1,4 +1,4 @@
-import generateLottos from "../domain/LottoMachine.js";
+import generateLottos from "../domain/generateLottos.js";
 import Money from "../domain/Money.js";
 import WinningNumber from "../domain/WinningNumber.js";
 import LottoResult from "../domain/LottoResult.js";
