@@ -9,20 +9,32 @@ async function main() {
   const inputView = new InputView();
   const outputView = new OutputView();
 
-  const purchaseAmount = await inputHandler(() => inputView.askAmount());
-  const lottos = LottoStore.purchaseLottos(purchaseAmount);
+  const lottos = await inputHandler(() => {
+    const purchaseAmount = inputView.askAmount();
+    return LottoStore.purchaseLottos(purchaseAmount);
+  });
 
   outputView.printLottos(lottos);
 
   const builder = new WinningNumbersAndBonusNumberBuilder();
 
   await inputHandler(async () => {
-    const winningNumbers = await inputView.askWinningNumbers();
+    const winningNumbersInput = await inputView.askWinningNumbers();
+    const winningNumbers = winningNumbersInput.split(",").map(Number);
+    //TODO: refactor. validator 추상화 필요함.
+    if (winningNumbers.some((number) => Number.isNaN(number))) {
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBERS.NUMBER);
+    }
     builder.setWinningNumbers(winningNumbers);
   });
 
   await inputHandler(async () => {
-    const bonusNumber = await inputView.askBonusNumber();
+    const bonusNumberInput = await inputView.askBonusNumber();
+    const bonusNumber = Number(bonusNumberInput);
+    //TODO: refactor. validator 추상화 필요함.
+    if (Number.isNaN(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER.NUMBER);
+    }
     builder.setBonusNumber(bonusNumber);
   });
 

@@ -77,7 +77,7 @@
 
 - [x] InputView 클래스 도메인을 다루는 로직 분리하기
 - [x] Lotto 클래스 validator가 Lotto 클래스의 책임과 역할에 맞도록 validateLotto 메서드 수정하기
-- [ ] purchaseLottos 에러핸들링 추가하기
+- [x] purchaseLottos 에러핸들링 추가하기
 - [ ] main 함수가 하는 일을 더욱 명확하게 작성하기
   - [ ] 함수가 하는 일 단위로 함수 분리하기
 - [ ]당첨 번호 개수 확인 로직 수정하기
