@@ -1,3 +1,7 @@
+export const LOTTO_MIN_NUM = 1;
+export const LOTTO_MAX_NUM = 45;
+export const LOTTO_LENGTH = 6;
+
 export class Lotto {
   #numbers;
 
@@ -7,7 +11,7 @@ export class Lotto {
   }
 
   #validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== LOTTO_LENGTH) {
       throw new Error('로또 번호는 6개여야 합니다.');
     }
     if (new Set(numbers).size !== numbers.length) {
@@ -18,7 +22,7 @@ export class Lotto {
       if (!Number.isInteger(number)) {
         throw new Error('로또 번호는 숫자여야 합니다.');
       }
-      if (number > 45 || number < 1) {
+      if (number > LOTTO_MAX_NUM || number < LOTTO_MIN_NUM) {
         throw new Error('로또 번호는 1 ~ 45 이내 숫자여야 합니다.');
       }
     });
@@ -44,10 +48,10 @@ export class WinningLotto extends Lotto {
     if (!Number.isInteger(bonusNumber)) {
       throw new Error('보너스 번호는 숫자여야 합니다.');
     }
-    if (bonusNumber > 45 || bonusNumber < 1) {
+    if (bonusNumber > LOTTO_MAX_NUM || bonusNumber < LOTTO_MIN_NUM) {
       throw new Error('보너스 번호는 1 ~ 45 이내 숫자여야 합니다.');
     }
-    if (new Set([...this.getLottoNumber(), bonusNumber]).size !== 7) {
+    if (new Set([...this.getLottoNumber(), bonusNumber]).size !== LOTTO_LENGTH + 1) {
       throw new Error('보너스 번호는 당첨 번호와 중복될 수 없습니다.');
     }
   }

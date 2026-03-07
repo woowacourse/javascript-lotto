@@ -1,5 +1,5 @@
 import { pickNumberInRange } from './Utils.js';
-import { Lotto } from './Lotto.js';
+import { Lotto, LOTTO_LENGTH, LOTTO_MIN_NUM, LOTTO_MAX_NUM } from './Lotto.js';
 
 const PRIZE_BY_RANK = {
   1: 2_000_000_000,
@@ -8,6 +8,7 @@ const PRIZE_BY_RANK = {
   4: 50_000,
   5: 5_000,
 };
+export const LOTTO_PRIZE = 1000;
 
 export class LottoMachine {
 
@@ -16,7 +17,7 @@ export class LottoMachine {
 
   constructor(amount) {
     this.#amount = amount;
-    this.purchaseCount = amount / 1000;
+    this.purchaseCount = amount / LOTTO_PRIZE;
     this.lottos = Array.from({ length: this.purchaseCount }, () => this.createLotto());
     this.#matchResult = new Map([
       [1, 0],
@@ -69,7 +70,7 @@ export class LottoMachine {
   }
 
   createLotto() {
-    return new Lotto(pickNumberInRange(1, 45, 6).sort((a, b) => a - b));
+    return new Lotto(pickNumberInRange(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_LENGTH).sort((a, b) => a - b));
   }
 
   getMatchResultSummary() {

@@ -1,15 +1,19 @@
+import { LOTTO_LENGTH, LOTTO_MIN_NUM, LOTTO_MAX_NUM } from './Lotto.js';
+import { LOTTO_PRIZE } from './LottoMachine.js';
+
+
 const Validator = {
   validatePurchaseAmount(value) {
     if (!Number.isInteger(Number(value))) {
       throw new Error('숫자만 입력해 주세요.');
     }
-    if (Number(value) % 1000 !== 0) {
+    if (Number(value) % LOTTO_PRIZE !== 0) {
       throw new Error('1000원 단위만 입력 가능합니다.');
     }
   },
 
   validateLottoNumber(LottoNumber) {
-    if (LottoNumber.length !== 6) {
+    if (LottoNumber.length !== LOTTO_LENGTH) {
       throw new Error('당첨 로또 번호는 숫자 6개여야 합니다.');
     }
     if (new Set(LottoNumber).size !== LottoNumber.length) {
@@ -20,7 +24,7 @@ const Validator = {
       if (!Number.isInteger(number)) {
         throw new Error('당첨 번호는 숫자만 입력 가능합니다.');
       }
-      if (number > 45 || number < 1) {
+      if (number > LOTTO_MAX_NUM || number < LOTTO_MIN_NUM) {
         throw new Error('당첨 번호는 1 ~ 45 이내 숫자만 입력 가능합니다.');
       }
     });
@@ -31,10 +35,10 @@ const Validator = {
     if (!Number.isInteger(num)) {
       throw new Error('보너스 번호는 숫자만 입력 가능합니다.');
     }
-    if (num > 45 || num < 1) {
+    if (num > LOTTO_MAX_NUM || num < LOTTO_MIN_NUM) {
       throw new Error('보너스 번호는 1 ~ 45 이내 숫자만 입력 가능합니다.');
     }
-    if (new Set([...winningLottoNumber, bonusNumber]).size !== 7) {
+    if (new Set([...winningLottoNumber, bonusNumber]).size !== LOTTO_LENGTH + 1) {
       throw new Error('보너스 번호는 당첨번호와 중복될 수 없습니다.');
     }
   },
