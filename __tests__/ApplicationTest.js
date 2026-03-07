@@ -15,7 +15,7 @@ describe("로또 통합 테스트", () => {
   let logSpy;
 
   beforeEach(() => {
-    logSpy = jest.spyOn(console, "log").mockClear();
+    logSpy = jest.spyOn(console, "log");
   });
 
   afterEach(() => {
