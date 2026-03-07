@@ -19,8 +19,7 @@ const runException = async (inputs, expectedMessage) => {
     });
   });
 
-  const app = new App();
-  await app.run();
+  await App.run();
 
   expect(logSpy).toHaveBeenCalledWith(expectedMessage);
 };

@@ -5,7 +5,7 @@ import { Output } from './Output.js';
 import { reReadUntilSuccess } from './Utils.js';
 import { WinningLotto } from './Lotto.js';
 
-class App {
+const App = {
   async run() {
     while (true) {
       const amount = await reReadUntilSuccess(Input.readPurchaseAmount);
