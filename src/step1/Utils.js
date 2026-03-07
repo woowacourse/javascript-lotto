@@ -9,6 +9,9 @@ import readline from 'readline';
  * @returns {number[]}
  */
 export function pickNumberInRange(min, max, range) {
+  if (max - min < range) {
+    throw new Error('반환할 난수의 갯수가 범위 내 숫자 수 보다 많습니다.');
+  }
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   const numbers = new Set();
