@@ -27,8 +27,8 @@ describe("출력 처리 테스트", () => {
 
   test("구매한 로또 개수에 따른 로또 번호 출력", () => {
     printPurchasedLottoNumbers([
-      new Lotto([8, 21, 23, 41, 42, 43]),
-      new Lotto([3, 5, 11, 16, 32, 38]),
+      [8, 21, 23, 41, 42, 43],
+      [3, 5, 11, 16, 32, 38],
     ]);
 
     const logs = ["[8, 21, 23, 41, 42, 43]", "[3, 5, 11, 16, 32, 38]"];
@@ -36,15 +36,6 @@ describe("출력 처리 테스트", () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
-  });
-
-  test("구매한 로또 개수에 따른 로또 번호 출력(예외 케이스)", () => {
-    expect(() =>
-      printPurchasedLottoNumbers(
-        new Lotto([8, 21, 23, 41, 42, 43]),
-        new Lotto([3, 5, 11, 16, 32, 38]),
-      ),
-    ).toThrow("[ERROR]");
   });
 
   test("구매한 로또 개수에 따른 로또 번호 출력(예외 케이스)", () => {

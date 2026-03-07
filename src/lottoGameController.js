@@ -27,7 +27,9 @@ export const lottoGameController = async () => {
     generateRandomNumbers,
   );
   const generatedLottos = generateLottos(purchasedLottoNumbers);
-  printPurchasedLottoNumbers(generatedLottos);
+  printPurchasedLottoNumbers(
+    generatedLottos.map((lotto) => lotto.getNumbers()),
+  );
 
   const validatedWinningArray = await winningNumberInputHandler();
   const validatedBonusNumber = await bonusNumberInputHandler(

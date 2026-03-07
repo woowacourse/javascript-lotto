@@ -1,15 +1,10 @@
 export const printPurchaseCount = (purchaseCount) => {
   console.log(`${purchaseCount}개를 구매했습니다.`);
 };
-export const printPurchasedLottoNumbers = (purchaseLottoLists) => {
-  if (
-    !Array.isArray(purchaseLottoLists) ||
-    !Array.isArray(purchaseLottoLists[0].getNumbers())
-  )
-    throw new Error("[ERROR] 2차원 배열 형태여야 합니다.");
-  purchaseLottoLists.forEach((lottoNumbers) =>
-    console.log(`[${lottoNumbers.getNumbers().join(", ")}]`),
-  );
+export const printPurchasedLottoNumbers = (lottoNumbersList) => {
+  if (!Array.isArray(lottoNumbersList))
+    throw new Error("[ERROR] 배열 형태여야 합니다.");
+  lottoNumbersList.forEach((numbers) => console.log(`[${numbers.join(", ")}]`));
 };
 export const printWinStatistics = (prizeList) => {
   if (!Array.isArray(prizeList))
