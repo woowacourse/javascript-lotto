@@ -176,3 +176,52 @@ describe("간이 도메인 로직 통합 테스트", () => {
     expect(returnRate).toBe(0);
   });
 });
+
+describe("generateLottos()를 통한 로또 생성자 테스트", () => {
+  test("Lotto 생성 시 번호가 6개인경우 -> 정상", () => {
+    const lottoNumbers = [[1, 2, 3, 4, 5, 6]];
+
+    expect(generateLottos(lottoNumbers)).toEqual([
+      new Lotto([1, 2, 3, 4, 5, 6]),
+    ]);
+  });
+  test("Lotto 생성 시 번호가 5개인경우 -> 에러", () => {
+    const lottoNumbers = [[1, 2, 3, 4, 5]];
+
+    expect(() => generateLottos(lottoNumbers)).toThrow("[ERROR]");
+  });
+  test("Lotto 생성 시 번호가 1개인경우 -> 에러", () => {
+    const lottoNumbers = [[1]];
+
+    expect(() => generateLottos(lottoNumbers)).toThrow("[ERROR]");
+  });
+  test("Lotto 생성 시 번호의 중복이 없는 경우 -> 정상", () => {
+    const lottoNumbers = [[1, 2, 3, 4, 5, 6]];
+
+    expect(generateLottos(lottoNumbers)).toEqual([
+      new Lotto([1, 2, 3, 4, 5, 6]),
+    ]);
+  });
+  test("Lotto 생성 시 번호의 중복이 2개인 경우 -> 에러", () => {
+    const lottoNumbers = [[1, 2, 3, 4, 5, 5]];
+
+    expect(() => generateLottos(lottoNumbers)).toThrow("[ERROR]");
+  });
+  test("Lotto 생성 시 번호들이 1-45의 경우 -> 정상", () => {
+    const lottoNumbers = [[1, 2, 3, 4, 5, 6]];
+
+    expect(generateLottos(lottoNumbers)).toEqual([
+      new Lotto([1, 2, 3, 4, 5, 6]),
+    ]);
+  });
+  test("Lotto 생성 시 번호가 0을 포함하는 경우 -> 에러", () => {
+    const lottoNumbers = [[1, 2, 3, 4, 5, 0]];
+
+    expect(() => generateLottos(lottoNumbers)).toThrow("[ERROR]");
+  });
+  test("Lotto 생성 시 번호가 46을 포함하는 경우 -> 에러", () => {
+    const lottoNumbers = [[1, 2, 3, 4, 5, 46]];
+
+    expect(() => generateLottos(lottoNumbers)).toThrow("[ERROR]");
+  });
+});
