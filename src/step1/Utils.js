@@ -9,7 +9,7 @@ import readline from 'readline';
  * @returns {number[]}
  */
 export function pickNumberInRange(min, max, range) {
-  if (max - min < range) {
+  if (max - min + 1 < range) {
     throw new Error('반환할 난수의 갯수가 범위 내 숫자 수 보다 많습니다.');
   }
   const minCeiled = Math.ceil(min);
@@ -19,7 +19,7 @@ export function pickNumberInRange(min, max, range) {
     if (numbers.size === range) {
       break;
     }
-    const randomNumber = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+    const randomNumber = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
     numbers.add(randomNumber);
   }
 
