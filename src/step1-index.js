@@ -7,13 +7,14 @@ import LottoReturnCalculator from "./LottoReturnCalculator.js";
 
 async function getPurchaseAmount() {
   const inputView = new InputView();
-  return await inputHandler(() => {
-    const purchaseAmount = inputView.askAmount();
+  const result = await inputHandler(async () => {
+    const purchaseAmount = Number(await inputView.askAmount());
     return {
       lottos: LottoStore.purchaseLottos(purchaseAmount),
       purchaseAmount,
     };
   });
+  return result;
 }
 
 async function getWinningNumbersAndBonusNumber() {
@@ -23,12 +24,14 @@ async function getWinningNumbersAndBonusNumber() {
   await inputHandler(async () => {
     const winningNumbersInput = await inputView.askWinningNumbers();
     const winningNumbers = winningNumbersInput.split(",").map(Number);
+
     builder.setWinningNumbers(winningNumbers);
   });
 
   await inputHandler(async () => {
     const bonusNumberInput = await inputView.askBonusNumber();
     const bonusNumber = Number(bonusNumberInput);
+
     builder.setBonusNumber(bonusNumber);
   });
 
