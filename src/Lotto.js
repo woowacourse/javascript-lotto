@@ -1,3 +1,5 @@
+import { LOTTO_RULES } from "./constants";
+
 class Lotto {
   #numbers;
 
@@ -7,11 +9,15 @@ class Lotto {
   }
 
   #validate(numbers) {
-    if (numbers.length !== 6)
+    if (numbers.length !== LOTTO_RULES.NUMBER_COUNT)
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    if (new Set(numbers).size !== 6)
+    if (new Set(numbers).size !== LOTTO_RULES.NUMBER_COUNT)
       throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
-    if (numbers.some((n) => n < 1 || n > 45))
+    if (
+      numbers.some(
+        (n) => n < LOTTO_RULES.MIN_NUMBER || n > LOTTO_RULES.MAX_NUMBER,
+      )
+    )
       throw new Error("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
   }
 

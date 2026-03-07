@@ -1,4 +1,4 @@
-import { LOTTO_INTO } from "../constants";
+import { LOTTO_RULES } from "../constants";
 
 export const validateEmpty = (userInput) => {
   const trimmed = userInput.trim();
@@ -12,9 +12,9 @@ export const validateNumber = (userInput) => {
   return userInput;
 };
 export const validateRange = (number) => {
-  if (number > LOTTO_INTO.LOTTO_MAX_NUMBER)
+  if (number > LOTTO_RULES.MAX_NUMBER)
     throw new Error("[ERROR] 로또 번호는 45이하의 숫자로 입력해주세요");
-  if (number < LOTTO_INTO.LOTTO_MIN_NUMBER)
+  if (number < LOTTO_RULES.MIN_NUMBER)
     throw new Error("[ERROR] 로또 번호는 1이상의 숫자로 입력해주세요");
   return number;
 };

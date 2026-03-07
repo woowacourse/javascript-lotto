@@ -1,6 +1,6 @@
 import Lotto from "../src/Lotto.js";
 import WinningLotto from "../src/WinningLotto.js";
-import { LOTTO_INTO } from "../src/constants.js";
+import { LOTTO_RULES } from "../src/constants.js";
 import { generateLottos } from "../src/generateLottos.js";
 import { generateRandomNumbers } from "../src/generateRandomNumbers.js";
 import { getPrizeList } from "../src/getPrizeList.js";
@@ -136,18 +136,18 @@ describe("로또 발행 테스트", () => {
 
 describe("랜덤 숫자 배열 반환 테스트", () => {
   test("반환된 결과물의 요소는 6개", () => {
-    expect(generateRandomNumbers()).toHaveLength(LOTTO_INTO.LOTTO_NUMBER_COUNT);
+    expect(generateRandomNumbers()).toHaveLength(LOTTO_RULES.NUMBER_COUNT);
   });
   test("반환된 결과물의 요소는 중복되지 않음", () => {
     expect(new Set(generateRandomNumbers()).size).toBe(
-      LOTTO_INTO.LOTTO_NUMBER_COUNT,
+      LOTTO_RULES.NUMBER_COUNT,
     );
   });
   test("1~45 사이의 숫자만 반환한다", () => {
     const numbers = generateRandomNumbers();
     numbers.forEach((n) => {
-      expect(n).toBeGreaterThanOrEqual(LOTTO_INTO.LOTTO_MIN_NUMBER);
-      expect(n).toBeLessThanOrEqual(LOTTO_INTO.LOTTO_MAX_NUMBER);
+      expect(n).toBeGreaterThanOrEqual(LOTTO_RULES.MIN_NUMBER);
+      expect(n).toBeLessThanOrEqual(LOTTO_RULES.MAX_NUMBER);
     });
   });
 });

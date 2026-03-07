@@ -1,7 +1,7 @@
-export const LOTTO_INTO = Object.freeze({
-  LOTTO_NUMBER_COUNT: 6,
-  LOTTO_MAX_NUMBER: 45,
-  LOTTO_MIN_NUMBER: 1,
+export const LOTTO_RULES = Object.freeze({
+  NUMBER_COUNT: 6,
+  MAX_NUMBER: 45,
+  MIN_NUMBER: 1,
 });
 
 export const PRIZE_PER_RANK = Object.freeze({
