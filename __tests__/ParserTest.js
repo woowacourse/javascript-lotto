@@ -2,7 +2,7 @@ import {
   parseCapitalToSmall,
   parseStringToNumber,
   parseStringToNumberArray,
-} from "../src/utils/parser";
+} from "../src/utils/parser.js";
 
 describe("사용자 입력 파싱 테스트", () => {
   test("유저 입력을 숫자로 파싱(구입 금액)", () => {

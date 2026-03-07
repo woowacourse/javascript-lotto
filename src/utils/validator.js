@@ -1,4 +1,4 @@
-import { LOTTO_RULES } from "../constants";
+import { LOTTO_RULES } from "../constants.js";
 
 export const validateEmpty = (userInput) => {
   const trimmed = userInput.trim();

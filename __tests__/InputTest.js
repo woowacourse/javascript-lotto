@@ -1,4 +1,4 @@
-import * as Console from "../src/view/input";
+import * as Console from "../src/view/input.js";
 import {
   inputBonusNumber,
   inputPurchaseAmount,

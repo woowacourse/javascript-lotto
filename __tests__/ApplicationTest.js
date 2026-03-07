@@ -1,6 +1,6 @@
 import * as Console from "../src/view/input";
 import * as randomModule from "../src/generateRandomNumbers";
-import { gameManager } from "../src/gameManager";
+import { lottoGameController } from "../src/lottoGameController";
 
 jest.mock("../src/view/input.js", () => ({
   input: jest.fn(),
@@ -39,7 +39,7 @@ describe("로또 통합 테스트", () => {
       .mockResolvedValueOnce("7")
       .mockResolvedValueOnce("n");
 
-    await gameManager();
+    await lottoGameController();
 
     const logs = [
       "8개를 구매했습니다.",
@@ -65,7 +65,7 @@ describe("로또 통합 테스트", () => {
       .mockResolvedValueOnce("7")
       .mockResolvedValueOnce("n");
 
-    await gameManager();
+    await lottoGameController();
 
     expect(logSpy).toHaveBeenCalledWith(
       expect.stringContaining("총 수익률은 0%입니다."),
@@ -87,7 +87,7 @@ describe("로또 통합 테스트", () => {
       .mockResolvedValueOnce("7")
       .mockResolvedValueOnce("n");
 
-    await gameManager();
+    await lottoGameController();
 
     expect(logSpy).toHaveBeenCalledWith(
       expect.stringContaining("총 수익률은 0%입니다."),

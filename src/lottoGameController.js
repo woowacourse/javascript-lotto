@@ -17,7 +17,7 @@ import {
 import { getPrizeList } from "./getPrizeList.js";
 import { close } from "./view/input.js";
 
-export const gameManager = async () => {
+export const lottoGameController = async () => {
   const validatedAmount = await purchaseAmountInputHandler();
   const purchaseCount = parseInt(validatedAmount / 1000);
   printPurchaseCount(purchaseCount);
@@ -47,7 +47,7 @@ export const gameManager = async () => {
 
   const validatedYn = await restartInputHandler();
   if (validatedYn === "y") {
-    await gameManager();
+    await lottoGameController();
   } else {
     close();
   }

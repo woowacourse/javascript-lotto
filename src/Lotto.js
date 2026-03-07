@@ -1,4 +1,4 @@
-import { LOTTO_RULES } from "./constants";
+import { LOTTO_RULES } from "./constants.js";
 
 class Lotto {
   #numbers;
