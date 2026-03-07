@@ -18,7 +18,7 @@ export class Lotto {
 			if (!Number.isInteger(number)) {
 				throw new Error('당첨 번호는 숫자만 입력 가능합니다.');
 			}
-			if (number > 45 || number < 0) {
+			if (number > 45 || number < 1) {
 				throw new Error('1 ~ 45 이내 숫자만 입력 가능합니다.');
 			}
 		});
@@ -44,7 +44,7 @@ export class WinningLotto extends Lotto {
 		if (!Number.isInteger(bonusNumber)) {
 			throw new Error('보너스 번호는 숫자여야 합니다.');
 		}
-		if (bonusNumber > 45 || bonusNumber < 0) {
+		if (bonusNumber > 45 || bonusNumber < 1) {
 			throw new Error('보너스 번호는 1 ~ 45 이내 숫자여야 합니다.');
 		}
 		if (new Set([...this.getLottoNumber(), bonusNumber]).size !== 7) {
