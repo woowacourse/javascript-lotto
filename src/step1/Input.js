@@ -22,9 +22,9 @@ const Input = {
   },
 
   async readRetry() {
-      const answer = await readLine('> 다시 시작하시겠습니까? (y/n) ');
-      Validator.retryValidator(answer);
-      return answer;
+    const answer = await readLine('> 다시 시작하시겠습니까? (y/n) ');
+    Validator.retryValidator(answer);
+    return answer;
   },
 }
 
