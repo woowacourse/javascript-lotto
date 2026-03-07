@@ -11,11 +11,13 @@ export const Output = {
   },
 
   printResult(matchResultSummaries, rateOfReturn) {
-    console.log('\n당첨 통계');
+    console.log();
+    console.log('당첨 통계');
     console.log('--------------------');
     matchResultSummaries.forEach((summary) => {
       console.log(`${summary.label} (${summary.prize}원) - ${summary.result}개`);
     })
-    console.log(`총 수익률은 ${rateOfReturn}%입니다.\n`);
+    console.log(`총 수익률은 ${rateOfReturn}%입니다.`);
+    console.log();
   },
 }

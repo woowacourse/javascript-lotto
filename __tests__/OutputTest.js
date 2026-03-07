@@ -59,5 +59,6 @@ describe('출력 테스트', () => {
     expect(logSpy).toHaveBeenCalledWith('5개 일치 (1,500,000원) - 2개');
     expect(logSpy).toHaveBeenCalledWith('5개 일치, 보너스 볼 일치 (30,000,000원) - 1개');
     expect(logSpy).toHaveBeenCalledWith('6개 일치 (2,000,000,000원) - 0개');
+    expect(logSpy).toHaveBeenCalledWith('총 수익률은 551000.0%입니다.');
   });
 });
