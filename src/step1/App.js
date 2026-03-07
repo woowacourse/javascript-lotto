@@ -10,8 +10,9 @@ const App = {
     while (true) {
       const amount = await reReadUntilSuccess(Input.readPurchaseAmount);
       const lottoMachine = new LottoMachine(amount);
-      Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
-      Output.printLottos(lottoMachine.lottos);
+      const purchaseLottos = lottoMachine.getLottos()
+      Output.printPurchaseLottoCount(purchaseLottos.length);
+      Output.printLottos(purchaseLottos);
       const winningLottoNumber = await reReadUntilSuccess(Input.readWinningLottoNumber);
       const bonusNumber = await reReadUntilSuccess(() => Input.readBonusNumber(winningLottoNumber));
       const winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);

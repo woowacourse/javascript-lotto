@@ -17,7 +17,7 @@ describe('출력 테스트', () => {
   test('구입한 로또 개수 출력 테스트', () => {
     const lottoMachine = new LottoMachine(8000);
 
-    Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
+    Output.printPurchaseLottoCount(lottoMachine.getLottos().length);
 
     expect(logSpy).toHaveBeenCalledWith('\n8개를 구매했습니다.\n');
   });
@@ -32,7 +32,7 @@ describe('출력 테스트', () => {
 
     const lottoMachine = new LottoMachine(5000);
 
-    Output.printLottos(lottoMachine.lottos);
+    Output.printLottos(lottoMachine.getLottos());
 
     expect(logSpy).toHaveBeenCalledWith('[1, 2, 3, 4, 5, 6]')
     expect(logSpy).toHaveBeenCalledWith('[10, 11, 12, 13, 14, 15]')

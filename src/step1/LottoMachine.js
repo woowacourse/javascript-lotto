@@ -15,12 +15,18 @@ export class LottoMachine {
 
   #amount;
   #matchResult;
+  #purchaseCount;
+  #lottos;
 
   constructor(amount) {
     this.#amount = amount;
-    this.purchaseCount = amount / LOTTO_PRIZE;
-    this.lottos = Array.from({ length: this.purchaseCount }, () => this.createLotto());
+    this.#purchaseCount = amount / LOTTO_PRIZE;
+    this.#lottos = Array.from({ length: this.#purchaseCount }, () => this.createLotto());
     this.#matchResult = new Map(LOTTO_CONFIG.map(({ rank }) => [rank, 0]));
+  }
+
+  getLottos() {
+    return [...this.#lottos];
   }
 
   getMatchResult() {
@@ -45,7 +51,7 @@ export class LottoMachine {
   }
 
   calculateMatchResult(winningNumber, bonusNumber) {
-    this.lottos.forEach((lotto) => {
+    this.#lottos.forEach((lotto) => {
       const lottoNumbers = lotto.getLottoNumber()
       const matchCount = new Set([...lottoNumbers]).intersection(new Set([...winningNumber])).size;
       const isMatchBonus = lottoNumbers.includes(Number(bonusNumber));
