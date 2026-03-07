@@ -35,3 +35,14 @@ export function readLine(query) {
     });
   });
 }
+
+export async function reReadUntilSuccess(read) {
+  while (true) {
+    try {
+      const answer = await read();
+      return answer;
+    } catch (err) {
+      console.log(`[ERROR] ${err.message}`);
+    }
+  }
+}

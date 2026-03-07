@@ -3,18 +3,6 @@ import { readLine } from './Utils.js';
 import Validator from './Validator.js';
 
 const Input = {
-
-  async reRead(func, funcArgs) {
-    while (true) {
-      try {
-        const answer = await func(funcArgs)
-        return answer;
-      } catch (err) {
-        console.log(`[ERROR] ${err.message}`);
-      }
-    }
-  },
-
   async readPurchaseAmount() {
     const answer = await readLine('> 구입금액을 입력해 주세요. ');
     Validator.purchaseAmountValidator(answer);

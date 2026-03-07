@@ -3,6 +3,7 @@ import { pickNumberInRange } from '../src/step1/Utils.js';
 import App from '../src/step1/App.js';
 
 jest.mock('../src/step1/Utils.js', () => ({
+  ...jest.requireActual('../src/step1/Utils.js'),
   readLine: jest.fn(),
   read: { close: jest.fn() },
   pickNumberInRange: jest.fn(),
