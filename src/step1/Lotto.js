@@ -34,13 +34,14 @@ export class Lotto {
 }
 
 
-export class WinningLotto extends Lotto {
+export class WinningLotto {
+  #lotto;
   #bonusNumber;
 
   constructor(numbers, bonusNumber) {
-    super(numbers.map((lottoNumber) => Number(lottoNumber)));
+    this.#lotto = new Lotto(numbers.map((lottoNumber) => Number(lottoNumber)));
     this.#validateBonusNumber(bonusNumber);
-    this.#bonusNumber = Number(bonusNumber)
+    this.#bonusNumber = Number(bonusNumber);
   }
 
   #validateBonusNumber(bonusNumber) {
@@ -51,9 +52,13 @@ export class WinningLotto extends Lotto {
     if (bonusNumber > LOTTO_MAX_NUM || bonusNumber < LOTTO_MIN_NUM) {
       throw new Error('보너스 번호는 1 ~ 45 이내 숫자여야 합니다.');
     }
-    if (new Set([...this.getLottoNumber(), bonusNumber]).size !== LOTTO_LENGTH + 1) {
+    if (new Set([...this.getWinningNumber(), bonusNumber]).size !== LOTTO_LENGTH + 1) {
       throw new Error('보너스 번호는 당첨 번호와 중복될 수 없습니다.');
     }
+  }
+
+  getWinningNumber() {
+    return [...this.#lotto.getLottoNumber()];
   }
 
   getBonusNumber() {

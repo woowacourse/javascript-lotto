@@ -16,7 +16,7 @@ class App {
       const bonusNumber = await reReadUntilSuccess(() => Input.readBonusNumber(winningLottoNumber));
       const winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
       lottoMachine.calculateMatchResult(
-        winningLotto.getLottoNumber(), winningLotto.getBonusNumber()
+        winningLotto.getWinningNumber(), winningLotto.getBonusNumber()
       );
       Output.printResult(lottoMachine.getMatchResultSummary(), lottoMachine.getRateOfReturn());
       const restart = await reReadUntilSuccess(Input.readRetry);
