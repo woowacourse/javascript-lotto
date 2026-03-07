@@ -13,7 +13,7 @@ class WinningLotto extends Lotto {
   getRank(lotto) {
     const matchingCount = lotto
       .getNumbers()
-      .filter((x) => this.numbers.includes(x)).length;
+      .filter((x) => this.getNumbers().includes(x)).length;
 
     const isBonus = lotto.getNumbers().includes(this.bonusNumber);
 
