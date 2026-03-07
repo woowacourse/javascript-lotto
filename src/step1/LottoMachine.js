@@ -1,13 +1,14 @@
 import { pickNumberInRange } from './Utils.js';
 import { Lotto, LOTTO_LENGTH, LOTTO_MIN_NUM, LOTTO_MAX_NUM } from './Lotto.js';
 
-const PRIZE_BY_RANK = {
-  1: 2_000_000_000,
-  2: 30_000_000,
-  3: 1_500_000,
-  4: 50_000,
-  5: 5_000,
-};
+const LOTTO_CONFIG = [
+  { rank: 1, matchCnt: 6, isBonus: false, prize: 2_000_000_000 },
+  { rank: 2, matchCnt: 5, isBonus: true,  prize: 30_000_000 },
+  { rank: 3, matchCnt: 5, isBonus: false, prize: 1_500_000 },
+  { rank: 4, matchCnt: 4, isBonus: false, prize: 50_000 },
+  { rank: 5, matchCnt: 3, isBonus: false, prize: 5_000 },
+];
+
 export const LOTTO_PRIZE = 1000;
 
 export class LottoMachine {
@@ -19,13 +20,7 @@ export class LottoMachine {
     this.#amount = amount;
     this.purchaseCount = amount / LOTTO_PRIZE;
     this.lottos = Array.from({ length: this.purchaseCount }, () => this.createLotto());
-    this.#matchResult = new Map([
-      [1, 0],
-      [2, 0],
-      [3, 0],
-      [4, 0],
-      [5, 0],
-    ]);
+    this.#matchResult = new Map(LOTTO_CONFIG.map(({ rank }) => [rank, 0]));
   }
 
   getMatchResult() {
@@ -40,11 +35,12 @@ export class LottoMachine {
   }
 
   getMatchRank(matchCount, isMatchBonus) {
-    if (matchCount === 6) return 1;
-    if (matchCount === 5 && isMatchBonus) return 2;
-    if (matchCount === 5) return 3;
-    if (matchCount === 4) return 4;
-    if (matchCount === 3) return 5;
+    const found = LOTTO_CONFIG.find(({ matchCnt, isBonus }) => {
+      return matchCount === matchCnt && (isBonus ? isMatchBonus : true)
+    });
+    if (found) {
+      return found.rank;
+    }
     return null;
   }
 
@@ -59,8 +55,8 @@ export class LottoMachine {
   }
 
   getTotalPrize() {
-    return this.#matchResult.keys().reduce(
-      (acc, rank) => acc + PRIZE_BY_RANK[rank] * this.#matchResult.get(rank), 0
+    return LOTTO_CONFIG.reduce(
+      (acc, { rank, prize }) => acc + (prize * this.#matchResult.get(rank)), 0
     );
   }
 
@@ -75,11 +71,11 @@ export class LottoMachine {
 
   getMatchResultSummary() {
     return [
-      { label: '3개 일치', prize: PRIZE_BY_RANK[5].toLocaleString('ko-KR'), result: this.#matchResult.get(5) },
-      { label: '4개 일치', prize: PRIZE_BY_RANK[4].toLocaleString('ko-KR'), result: this.#matchResult.get(4) },
-      { label: '5개 일치', prize: PRIZE_BY_RANK[3].toLocaleString('ko-KR'), result: this.#matchResult.get(3) },
-      { label: '5개 일치, 보너스 볼 일치', prize: PRIZE_BY_RANK[2].toLocaleString('ko-KR'), result: this.#matchResult.get(2) },
-      { label: '6개 일치', prize: PRIZE_BY_RANK[1].toLocaleString('ko-KR'), result: this.#matchResult.get(1) },
+      { label: '3개 일치', prize: LOTTO_CONFIG[4].prize.toLocaleString('ko-KR'), result: this.#matchResult.get(5) },
+      { label: '4개 일치', prize: LOTTO_CONFIG[3].prize.toLocaleString('ko-KR'), result: this.#matchResult.get(4) },
+      { label: '5개 일치', prize: LOTTO_CONFIG[2].prize.toLocaleString('ko-KR'), result: this.#matchResult.get(3) },
+      { label: '5개 일치, 보너스 볼 일치', prize: LOTTO_CONFIG[1].prize.toLocaleString('ko-KR'), result: this.#matchResult.get(2) },
+      { label: '6개 일치', prize: LOTTO_CONFIG[0].prize.toLocaleString('ko-KR'), result: this.#matchResult.get(1) },
     ]
   }
 }
