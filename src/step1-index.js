@@ -5,54 +5,38 @@ import WinningNumbersAndBonusNumberBuilder from "./WinningNumbersAndBonusNumberB
 import LottoRankCalculator from "./LottoRankCalculator.js";
 import LottoReturnCalculator from "./LottoReturnCalculator.js";
 
-async function main() {
+async function getPurchaseAmount() {
   const inputView = new InputView();
-  const outputView = new OutputView();
-
-  const lottos = await inputHandler(() => {
+  return await inputHandler(() => {
     const purchaseAmount = inputView.askAmount();
-    return LottoStore.purchaseLottos(purchaseAmount);
+    return {
+      lottos: LottoStore.purchaseLottos(purchaseAmount),
+      purchaseAmount,
+    };
   });
+}
 
-  outputView.printLottos(lottos);
-
+async function getWinningNumbersAndBonusNumber() {
+  const inputView = new InputView();
   const builder = new WinningNumbersAndBonusNumberBuilder();
 
   await inputHandler(async () => {
     const winningNumbersInput = await inputView.askWinningNumbers();
     const winningNumbers = winningNumbersInput.split(",").map(Number);
-    //TODO: refactor. validator 추상화 필요함.
-    if (winningNumbers.some((number) => Number.isNaN(number))) {
-      throw new Error(ERROR_MESSAGE.WINNING_NUMBERS.NUMBER);
-    }
     builder.setWinningNumbers(winningNumbers);
   });
 
   await inputHandler(async () => {
     const bonusNumberInput = await inputView.askBonusNumber();
     const bonusNumber = Number(bonusNumberInput);
-    //TODO: refactor. validator 추상화 필요함.
-    if (Number.isNaN(bonusNumber)) {
-      throw new Error(ERROR_MESSAGE.BONUS_NUMBER.NUMBER);
-    }
     builder.setBonusNumber(bonusNumber);
   });
 
-  const { winningNumbers, bonusNumber } = builder.build();
+  return { ...builder.build() };
+}
 
-  const rank = LottoRankCalculator.calculateLottoRanks({
-    lottos,
-    winningNumbers,
-    bonusNumber,
-  });
-  const returnAmount = LottoReturnCalculator.calculateReturnAmount(rank);
-  const returnRate = LottoReturnCalculator.calculateReturnRate(
-    returnAmount,
-    purchaseAmount,
-  );
-
-  outputView.printLottoResult(rank, returnRate);
-
+async function retry() {
+  const inputView = new InputView();
   await inputHandler(async () => {
     const userInput = await inputView.askRetry();
     if (userInput === "y") {
@@ -69,6 +53,32 @@ async function inputHandler(inputFn) {
       console.log(e.message);
     }
   }
+}
+
+async function main() {
+  const outputView = new OutputView();
+
+  const { lottos, purchaseAmount } = await getPurchaseAmount();
+
+  outputView.printLottos(lottos);
+
+  const { winningNumbers, bonusNumber } =
+    await getWinningNumbersAndBonusNumber();
+
+  const rank = LottoRankCalculator.calculateLottoRanks({
+    lottos,
+    winningNumbers,
+    bonusNumber,
+  });
+  const returnAmount = LottoReturnCalculator.calculateReturnAmount(rank);
+  const returnRate = LottoReturnCalculator.calculateReturnRate(
+    returnAmount,
+    purchaseAmount,
+  );
+
+  outputView.printLottoResult(rank, returnRate);
+
+  await retry();
 }
 
 main();
