@@ -4,3 +4,7 @@ export const INFO = {
   BONUS_NUMBER: "\n> 보너스 번호를 입력해 주세요. ",
   ASK_RETRY: "\n> 다시 시작하시겠습니까? (y/n) ",
 };
+
+export const ERROR = {
+  INVALID_YES_OR_NO: "[ERROR] y 또는 n을 입력해야 합니다.",
+};

@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { INFO } from "../constants/messages.js";
+import { INFO, ERROR } from "../constants/messages.js";
 import { ANSWER } from "../constants/rules.js";
 import { Validator } from "../utils/Validator.js";
 class ConsoleInputView {
@@ -22,7 +22,7 @@ class ConsoleInputView {
     const lowerAnswer = answer.toLowerCase().trim();
     if (ANSWER.YES === lowerAnswer) return true;
     if (ANSWER.NO === lowerAnswer) return false;
-    throw new Error("[ERROR] y 또는 n을 입력해야 합니다.");
+    throw new Error(ERROR.INVALID_YES_OR_NO);
   }
 
   static async readPurchaseAmount() {
