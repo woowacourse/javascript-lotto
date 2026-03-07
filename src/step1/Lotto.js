@@ -16,10 +16,10 @@ export class Lotto {
 		numbers.forEach(number => {
 			number = Number(number);
 			if (!Number.isInteger(number)) {
-				throw new Error('당첨 번호는 숫자만 입력 가능합니다.');
+				throw new Error('로또 번호는 숫자여야 합니다.');
 			}
 			if (number > 45 || number < 1) {
-				throw new Error('1 ~ 45 이내 숫자만 입력 가능합니다.');
+				throw new Error('로또 번호는 1 ~ 45 이내 숫자여야 합니다.');
 			}
 		});
 	}
