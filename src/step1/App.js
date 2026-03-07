@@ -3,6 +3,7 @@ import Input from './Input.js';
 import { LottoMachine } from './LottoMachine.js';
 import { Output } from './Output.js';
 import { reReadUntilSuccess } from './Utils.js';
+import { WinningLotto } from './Lotto.js';
 
 class App {
   async run() {
@@ -11,8 +12,9 @@ class App {
       const lottoMachine = new LottoMachine(amount);
       Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
       Output.printLottos(lottoMachine.lottos);
-      const winningLottoNumber = (await reReadUntilSuccess(Input.readWinningLottoNumber)).getLottoNumber();
-      const winningLotto = await reReadUntilSuccess(() => Input.readBonusNumber(winningLottoNumber));
+      const winningLottoNumber = await reReadUntilSuccess(Input.readWinningLottoNumber);
+      const bonusNumber = await reReadUntilSuccess(() => Input.readBonusNumber(winningLottoNumber));
+      const winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
       lottoMachine.calculateMatchResult(
         winningLotto.getLottoNumber(), winningLotto.getBonusNumber()
       );

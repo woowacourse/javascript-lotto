@@ -1,4 +1,3 @@
-import { Lotto, WinningLotto } from './Lotto.js';
 import { readLine } from './Utils.js';
 import Validator from './Validator.js';
 
@@ -11,14 +10,15 @@ const Input = {
 
   async readWinningLottoNumber() {
     const answer = await readLine('> 당첨 번호를 입력해 주세요. ');
-    const lotto = new Lotto(answer.split(','));
-    return lotto;
+    const numbers = answer.split(',');
+    Validator.validateLottoNumber(numbers);
+    return numbers;
   },
 
   async readBonusNumber(winningLottoNumber) {
-    const bonusNumber = await readLine('> 보너스 번호를 입력해 주세요. ');
-    const winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
-    return winningLotto;
+    const answer = await readLine('> 보너스 번호를 입력해 주세요. ');
+    Validator.validateBonusNumber(winningLottoNumber, answer);
+    return answer;
   },
 
   async readRetry() {
