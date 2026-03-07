@@ -18,6 +18,22 @@ class Lotto {
     if (uniqueNumbers.size !== numbers.length) {
       throw new Error(ERROR_MESSAGE.LOTTO.DUPLICATE);
     }
+
+    if (
+      numbers.some(
+        (number) => Number.isNaN(number) || !Number.isInteger(number),
+      )
+    ) {
+      throw new Error(ERROR_MESSAGE.LOTTO.INTEGER);
+    }
+
+    if (numbers.length !== 6) {
+      throw new Error(ERROR_MESSAGE.LOTTO.LENGTH);
+    }
+
+    if (numbers.some((number) => number < 1 || number > 45)) {
+      throw new Error(ERROR_MESSAGE.LOTTO.RANGE);
+    }
   }
 
   getNumbers() {

@@ -5,6 +5,10 @@ import { generateUniqueRandomNumbers } from "./utils.js";
 
 class LottoStore {
   static purchaseLottos(amount) {
+    if (Number.isNaN(amount) || amount <= 0) {
+      throw new Error(ERROR_MESSAGE.AMOUNT.POSITIVE);
+    }
+
     if (amount % LOTTO.UNIT !== 0) {
       throw new Error(ERROR_MESSAGE.AMOUNT.UNIT);
     }

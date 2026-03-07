@@ -62,6 +62,13 @@ describe("Lotto 클래스 유닛 테스트", () => {
       // when & then
       expect(() => new Lotto(numbers)).toThrow();
     });
+    test("당첨 번호가 6개가 아니면 에러를 반환한다.", () => {
+      // given
+      const numbers = [1, 2, 3, 4, 5];
+
+      // when & then
+      expect(() => new Lotto(numbers)).toThrow();
+    });
   });
 
   describe("includes", () => {
