@@ -71,4 +71,14 @@ export class LottoMachine {
   createLotto() {
     return new Lotto(pickNumberInRange(1, 45, 6).sort((a, b) => a - b));
   }
+
+  getMatchResultSummary() {
+    return [
+      { label: '3개 일치', prize: PRIZE_BY_RANK[5].toLocaleString('ko-KR'), result: this.#matchResult.get(5) },
+      { label: '4개 일치', prize: PRIZE_BY_RANK[4].toLocaleString('ko-KR'), result: this.#matchResult.get(4) },
+      { label: '5개 일치', prize: PRIZE_BY_RANK[3].toLocaleString('ko-KR'), result: this.#matchResult.get(3) },
+      { label: '5개 일치, 보너스 볼 일치', prize: PRIZE_BY_RANK[2].toLocaleString('ko-KR'), result: this.#matchResult.get(2) },
+      { label: '6개 일치', prize: PRIZE_BY_RANK[1].toLocaleString('ko-KR'), result: this.#matchResult.get(1) },
+    ]
+  }
 }

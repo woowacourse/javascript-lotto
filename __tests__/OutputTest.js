@@ -52,7 +52,7 @@ describe('출력 테스트', () => {
     const lottoMachine = new LottoMachine(6000);
     lottoMachine.calculateMatchResult([1, 2, 3, 4, 5, 6], 7);
 
-    Output.printResult(lottoMachine);
+    Output.printResult(lottoMachine.getMatchResultSummary(), lottoMachine.getRateOfReturn());
 
     expect(logSpy).toHaveBeenCalledWith('3개 일치 (5,000원) - 2개');
     expect(logSpy).toHaveBeenCalledWith('4개 일치 (50,000원) - 1개');

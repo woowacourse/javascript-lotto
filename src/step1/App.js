@@ -18,7 +18,7 @@ class App {
       lottoMachine.calculateMatchResult(
         winningLotto.getLottoNumber(), winningLotto.getBonusNumber()
       );
-      Output.printResult(lottoMachine);
+      Output.printResult(lottoMachine.getMatchResultSummary(), lottoMachine.getRateOfReturn());
       const restart = await reReadUntilSuccess(Input.readRetry);
       if (restart === 'n') {
         read.close();
