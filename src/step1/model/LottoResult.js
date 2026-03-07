@@ -1,4 +1,5 @@
 import { RANK_PRIZE } from "../constant/index.js";
+import { MONEY_ERROR_MESSAGE } from "../constant/message.js";
 
 class LottoResult {
   #counts;
@@ -19,6 +20,7 @@ class LottoResult {
   }
 
   getReturnOnInvestment(amount) {
+    if (amount === 0) throw new Error(MONEY_ERROR_MESSAGE.INPUT_NOT_INTEGER);
     return (this.getPrize() / amount) * 100;
   }
 }
