@@ -11,7 +11,7 @@ export const Output = {
   },
 
   printResult(lottoMachine) {
-    const matchResult = lottoMachine.matchResult;
+    const matchResult = lottoMachine.getMatchResult();
     console.log('\n당첨 통계');
     console.log('--------------------');
     console.log(`3개 일치 (5,000원) - ${matchResult.get(5)}개`);

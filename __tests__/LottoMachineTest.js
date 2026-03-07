@@ -44,42 +44,32 @@ describe('로또 머신 테스트', () => {
     expect(lottoMachine.lottos[2].getLottoNumber()).toEqual([35, 37, 39, 41, 42, 45]);
   });
 
-  test('당첨 결과 매칭 테스트', () => {
-    pickNumberInRange
-      .mockReturnValueOnce([1, 2, 3, 4, 5, 6])
-      .mockReturnValueOnce([4, 5, 6, 7, 8, 9])
-      .mockReturnValueOnce([2, 3, 4, 5, 6, 10])
-      .mockReturnValueOnce([2, 3, 4, 5, 6, 11]);
-
-    const lottoMachine = new LottoMachine(4000);
-    lottoMachine.calculateMatchResult([1, 2, 3, 4, 5, 6], 10);
-    expect(lottoMachine.matchResult).toEqual(
-      new Map([[1, 1], [2, 1], [3, 1], [4, 0], [5, 1]])
-    );
-  });
-
   test('총금액 계산 로직 테스트', () => {
-    const lottoMachine = new LottoMachine();
-    lottoMachine.matchResult = new Map(
-      [[1, 0], [2, 0], [3, 0], [4, 1], [5, 1]]
-    );
+    pickNumberInRange
+    .mockReturnValueOnce([1, 2, 3, 4, 5, 6])   // 1등
+    .mockReturnValueOnce([2, 3, 4, 5, 6, 7])   // 2등
+    .mockReturnValueOnce([2, 3, 4, 5, 6, 10])  // 3등
+    .mockReturnValueOnce([3, 4, 5, 6, 7, 8])   // 4등
+    .mockReturnValueOnce([4, 5, 6, 10, 11, 12]); // 5등
 
-    expect(lottoMachine.getTotalPrize()).toBe(55000)
+    const lottoMachine = new LottoMachine(5000);
+    lottoMachine.calculateMatchResult([1, 2, 3, 4, 5, 6], 7);
+    expect(lottoMachine.getTotalPrize()).toBe(2_031_555_000);
   });
 
   test('수익률 계산 로직 테스트', () => {
-    pickNumberInRange.mockReturnValue([1, 2, 3, 4, 5, 6]);
+    pickNumberInRange
+    .mockReturnValueOnce([10, 20, 30, 40, 41, 42])
+    .mockReturnValueOnce([1, 5, 6, 7, 8, 9])
+    .mockReturnValueOnce([1, 5, 6, 7, 8, 9])
+    .mockReturnValueOnce([1, 5, 6, 7, 8, 9])
+    .mockReturnValueOnce([1, 5, 6, 7, 8, 9])
+    .mockReturnValueOnce([1, 5, 6, 7, 8, 9])
+    .mockReturnValueOnce([1, 5, 6, 7, 8, 9])
+    .mockReturnValueOnce([1, 5, 6, 7, 8, 9]);
 
     const lottoMachine = new LottoMachine(8000);
-
-    lottoMachine.matchResult = new Map([
-      [1, 0],
-      [2, 0],
-      [3, 0],
-      [4, 0],
-      [5, 1],
-    ]);
-
-    expect(lottoMachine.getRateOfReturn()).toBe('62.5')
+    lottoMachine.calculateMatchResult([1, 2, 3, 10, 20, 30], 7);
+    expect(lottoMachine.getRateOfReturn()).toBe('62.5');
   });
 });

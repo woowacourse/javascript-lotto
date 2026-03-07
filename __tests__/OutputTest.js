@@ -42,21 +42,22 @@ describe('출력 테스트', () => {
   });
 
   test('최종 결과 출력 테스트', () => {
-    const lottoMachine = new LottoMachine(5000);
-    lottoMachine.matchResult = new Map([
-      [1, 6],
-      [2, 10],
-      [3, 3],
-      [4, 4],
-      [5, 5],
-    ]);
+    pickNumberInRange
+    .mockReturnValueOnce([4, 5, 6, 7, 8, 9])        // 5등
+    .mockReturnValueOnce([4, 5, 6, 30, 31, 32])     // 5등
+    .mockReturnValueOnce([3, 4, 5, 6, 30, 31])      // 4등
+    .mockReturnValueOnce([2, 3, 4, 5, 6, 30])       // 3등
+    .mockReturnValueOnce([2, 3, 4, 5, 6, 31])       // 3등
+    .mockReturnValueOnce([2, 3, 4, 5, 6, 7]);       // 2등
+    const lottoMachine = new LottoMachine(6000);
+    lottoMachine.calculateMatchResult([1, 2, 3, 4, 5, 6], 7);
 
     Output.printResult(lottoMachine);
 
-    expect(logSpy).toHaveBeenCalledWith('3개 일치 (5,000원) - 5개');
-    expect(logSpy).toHaveBeenCalledWith('4개 일치 (50,000원) - 4개');
-    expect(logSpy).toHaveBeenCalledWith('5개 일치 (1,500,000원) - 3개');
-    expect(logSpy).toHaveBeenCalledWith('5개 일치, 보너스 볼 일치 (30,000,000원) - 10개');
-    expect(logSpy).toHaveBeenCalledWith('6개 일치 (2,000,000,000원) - 6개');
+    expect(logSpy).toHaveBeenCalledWith('3개 일치 (5,000원) - 2개');
+    expect(logSpy).toHaveBeenCalledWith('4개 일치 (50,000원) - 1개');
+    expect(logSpy).toHaveBeenCalledWith('5개 일치 (1,500,000원) - 2개');
+    expect(logSpy).toHaveBeenCalledWith('5개 일치, 보너스 볼 일치 (30,000,000원) - 1개');
+    expect(logSpy).toHaveBeenCalledWith('6개 일치 (2,000,000,000원) - 0개');
   });
 });
