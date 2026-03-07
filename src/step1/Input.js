@@ -4,7 +4,7 @@ import Validator from './Validator.js';
 const Input = {
   async readPurchaseAmount() {
     const answer = await readLine('> 구입금액을 입력해 주세요. ');
-    Validator.purchaseAmountValidator(answer);
+    Validator.validatePurchaseAmount(answer);
     return answer;
   },
 
@@ -23,7 +23,7 @@ const Input = {
 
   async readRetry() {
     const answer = await readLine('> 다시 시작하시겠습니까? (y/n) ');
-    Validator.retryValidator(answer);
+    Validator.validateRetry(answer);
     return answer;
   },
 }

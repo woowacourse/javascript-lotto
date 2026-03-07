@@ -1,5 +1,5 @@
 const Validator = {
-  purchaseAmountValidator(value) {
+  validatePurchaseAmount(value) {
     if (!Number.isInteger(Number(value))) {
       throw new Error('숫자만 입력해 주세요.');
     }
@@ -39,7 +39,7 @@ const Validator = {
     }
   },
 
-  retryValidator(value) {
+  validateRetry(value) {
     if (!['y', 'n'].includes(value)) {
       throw new Error('다시시작 입력은 y 또는 n 만 입력 가능합니다.');
     }
