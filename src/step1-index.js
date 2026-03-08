@@ -1,9 +1,8 @@
-import InputView from "./InputView.js";
-import OutputView from "./OutputView.js";
-import LottoStore from "./LottoStore.js";
-import WinningNumbersAndBonusNumberBuilder from "./WinningNumbersAndBonusNumberBuilder.js";
-import LottoRankCalculator from "./LottoRankCalculator.js";
-import LottoReturnCalculator from "./LottoReturnCalculator.js";
+import InputView from './InputView.js';
+import OutputView from './OutputView.js';
+import LottoStore from './LottoStore.js';
+import WinningNumbersAndBonusNumberBuilder from './WinningNumbersAndBonusNumberBuilder.js';
+import LottoResultGenerator from './LottoResultGenerator.js';
 
 async function main() {
   const inputView = new InputView();
@@ -11,7 +10,6 @@ async function main() {
 
   const purchaseAmount = await inputHandler(() => inputView.askAmount());
   const lottos = LottoStore.purchaseLottos(purchaseAmount);
-
   outputView.printLottos(lottos);
 
   const builder = new WinningNumbersAndBonusNumberBuilder();
@@ -28,22 +26,12 @@ async function main() {
 
   const { winningNumbers, bonusNumber } = builder.build();
 
-  const rank = LottoRankCalculator.calculateLottoRanks({
-    lottos,
-    winningNumbers,
-    bonusNumber,
-  });
-  const returnAmount = LottoReturnCalculator.calculateReturnAmount(rank);
-  const returnRate = LottoReturnCalculator.calculateReturnRate(
-    returnAmount,
-    purchaseAmount,
-  );
-
-  outputView.printLottoResult(rank, returnRate);
+  const { ranks, returnRate } = LottoResultGenerator.generateResult({ lottos, winningNumbers, bonusNumber });
+  outputView.printLottoResult(ranks, returnRate);
 
   await inputHandler(async () => {
     const userInput = await inputView.askRetry();
-    if (userInput === "y") {
+    if (userInput === 'y') {
       main();
     }
   });
