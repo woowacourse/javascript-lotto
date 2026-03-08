@@ -36,7 +36,7 @@ describe('Lotto 클래스 유닛 테스트', () => {
       const numbers = [1, 2, 3, 4, 5];
 
       // when & then
-      expect(() => new Lotto(numbers)).toThrow();
+      expect(() => new Lotto(numbers)).toThrow('로또 번호는 6개여야 합니다.');
     });
 
     test('로또 번호가 6개 초과이면 에러를 반환한다.', () => {
@@ -44,7 +44,7 @@ describe('Lotto 클래스 유닛 테스트', () => {
       const numbers = [1, 2, 3, 4, 5, 6, 7];
 
       // when & then
-      expect(() => new Lotto(numbers)).toThrow();
+      expect(() => new Lotto(numbers)).toThrow('로또 번호는 6개여야 합니다.');
     });
 
     test('로또 번호가 중복되면 에러를 반환한다.', () => {
@@ -52,7 +52,7 @@ describe('Lotto 클래스 유닛 테스트', () => {
       const numbers = [1, 2, 3, 4, 5, 5];
 
       // when & then
-      expect(() => new Lotto(numbers)).toThrow();
+      expect(() => new Lotto(numbers)).toThrow('로또 번호는 중복될 수 없습니다.');
     });
   });
 
