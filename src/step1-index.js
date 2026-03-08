@@ -13,7 +13,7 @@ import WinningLotto from "./Model/WinningLotto.js";
 class App {
   static async run() {
     while (true) {
-      const money = await App.readMoneyUntilCorrect();
+      const money = await App.retry(InputView.readMoney);
       const buyLottoCount = money / LOTTO.PRICE;
       OutputView.printBuyLottoCount(buyLottoCount);
 
@@ -22,54 +22,21 @@ class App {
         OutputView.printLottoNumbers(lotto.getNumbers()),
       );
 
-      const winningNumbers = await App.readWinningNumbersUntilCorrect();
+      const winningNumbers = await App.retry(InputView.readWinningNumbers);
       const winningLotto = await App.getWinningLotto(winningNumbers);
 
       const allRankCount = ScoreBoard.makeAllRankCount(lottos, winningLotto);
       const profitRate = ScoreBoard.getProfitRate(allRankCount, money);
       OutputView.printLottoResult(allRankCount, profitRate);
 
-      const restartCommand = await App.readRestartCommandUntilCorrect();
+      const restartCommand = await App.retry(InputView.readRestartCommand);
       if (COMMAND.NO.includes(restartCommand)) break;
-    }
-  }
-
-  static async readMoneyUntilCorrect() {
-    try {
-      const input = await InputView.readMoney();
-
-      return input;
-    } catch (error) {
-      console.log(error.message);
-      return await App.readMoneyUntilCorrect();
-    }
-  }
-
-  static async readWinningNumbersUntilCorrect() {
-    try {
-      const winningNumbers = await InputView.readWinningNumbers();
-
-      return winningNumbers;
-    } catch (error) {
-      console.log(error.message);
-      return await App.readWinningNumbersUntilCorrect();
-    }
-  }
-
-  static async readBonusNumberUntilCorrect() {
-    try {
-      const bonusNumber = await InputView.readBonusNumber();
-
-      return bonusNumber;
-    } catch (error) {
-      console.log(error.message);
-      return await App.readBonusNumberUntilCorrect();
     }
   }
 
   static async getWinningLotto(winningNumbers) {
     try {
-      const bonusNumber = await App.readBonusNumberUntilCorrect();
+      const bonusNumber = await App.retry(InputView.readBonusNumber);
       const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
       return winningLotto;
@@ -79,14 +46,12 @@ class App {
     }
   }
 
-  static async readRestartCommandUntilCorrect() {
+  static async retry(inputFunction) {
     try {
-      const restartCommand = await InputView.readRestartCommand();
-
-      return restartCommand;
+      return await inputFunction();
     } catch (error) {
       console.log(error.message);
-      return await App.readRestartCommandUntilCorrect();
+      return await App.retry(inputFunction);
     }
   }
 }
