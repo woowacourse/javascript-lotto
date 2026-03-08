@@ -1,12 +1,12 @@
-export const generateRandomNumber = (to) => {
-  return Math.floor(Math.random() * to) + 1;
+export const generateRandomNumber = (max) => {
+  return Math.floor(Math.random() * max) + 1;
 };
 
-export const generateUniqueRandomNumbers = (to, length) => {
+export const generateUniqueRandomNumbers = (max, length) => {
   const result = new Set();
 
   while (result.size !== length) {
-    const randomNumber = generateRandomNumber(to);
+    const randomNumber = generateRandomNumber(max);
     result.add(randomNumber);
   }
 
