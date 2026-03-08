@@ -15,6 +15,7 @@ const ERROR_MESSAGE = {
     INTEGER: "당첨 번호는 정수여야 합니다.",
     RANGE: "당첨 번호는 1부터 45 사이여야 합니다.",
     DUPLICATE: "당첨 번호는 중복될 수 없습니다.",
+    LENGTH: "당첨 번호는 6개여야 합니다.",
   },
 
   BONUS_NUMBER: {
