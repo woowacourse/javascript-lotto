@@ -1,18 +1,6 @@
-import readline from "readline";
-
 class Input {
-  async readLineAsync(message) {
-    return new Promise((resolve) => {
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      });
-
-      rl.question(message ?? "", (line) => {
-        rl.close();
-        resolve(line);
-      });
-    });
+  async readLineAsync() {
+    throw new Error("readLineAsync 메서드가 구현되지 않았습니다.");
   }
 }
 

@@ -23,7 +23,10 @@
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest"
-    }
+    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/__tests__/utils/"
+    ]
   },
   "babel": {
     "presets": [
