@@ -1,3 +1,5 @@
+import Validator from "./Validator.js";
+
 export class Lotto {
   #numbers;
 
@@ -15,12 +17,10 @@ export class Lotto {
     }
     numbers.forEach((number) => {
       number = Number(number);
-      if (!Number.isInteger(number)) {
+      if (!Validator.isInteger(number)) {
         throw new Error("당첨 번호는 숫자만 입력 가능합니다.");
       }
-      const MIN = 1;
-      const MAX = 45;
-      if (number < MIN || number > MAX) {
+      if (!Validator.isLottoNumberInRange(number)) {
         throw new Error("1 ~ 45 이내 숫자만 입력 가능합니다.");
       }
     });
@@ -42,10 +42,10 @@ export class WinningLotto extends Lotto {
 
   #validateBonusNumber(bonusNumber) {
     bonusNumber = Number(bonusNumber);
-    if (!Number.isInteger(bonusNumber)) {
+    if (!Validator.isInteger(bonusNumber)) {
       throw new Error("보너스 번호는 숫자여야 합니다.");
     }
-    if (bonusNumber > 45 || bonusNumber < 0) {
+    if (!Validator.isLottoNumberInRange(bonusNumber)) {
       throw new Error("보너스 번호는 1 ~ 45 이내 숫자여야 합니다.");
     }
     if (new Set([...this.getLottoNumber(), bonusNumber]).size !== 7) {
