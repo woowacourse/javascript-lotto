@@ -7,7 +7,7 @@ class Lotto {
   constructor(numbers) {
     this.validateLotto(numbers);
     const lottoNumbers = numbers
-    .sort((a, b) => a - b)
+    .toSorted((a, b) => a - b)
     .map((number) => new LottoNumber(number));
     this.#numbers = lottoNumbers;
   }
