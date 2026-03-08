@@ -19,7 +19,7 @@ describe('WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트', () =>
       // when & then
       expect(() =>
         builder.validateWinningNumbers([1, 2, 3, 4, 5]),
-      ).toThrow();
+      ).toThrow('당첨 번호는 6개여야 합니다.');
     });
 
     test('당첨 번호가 6개 초과이면 에러를 반환한다.', () => {
@@ -29,7 +29,7 @@ describe('WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트', () =>
       // when & then
       expect(() =>
         builder.validateWinningNumbers([1, 2, 3, 4, 5, 6, 7]),
-      ).toThrow();
+      ).toThrow('당첨 번호는 6개여야 합니다.');
     });
 
     test('당첨 번호가 중복되면 에러를 반환한다.', () => {
@@ -39,7 +39,7 @@ describe('WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트', () =>
       // when & then
       expect(() =>
         builder.validateWinningNumbers([1, 2, 3, 4, 5, 5]),
-      ).toThrow();
+      ).toThrow('당첨 번호는 중복될 수 없습니다.');
     });
   });
 
@@ -59,7 +59,7 @@ describe('WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트', () =>
       builder.setWinningNumbers([1, 2, 3, 4, 5, 6]);
 
       // when & then
-      expect(() => builder.validateBonusNumber(6)).toThrow();
+      expect(() => builder.validateBonusNumber(6)).toThrow('당첨 번호와 보너스 번호는 중복될 수 없습니다.');
     });
   });
 });
