@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from "../constants.js";
 import Lotto from "./Lotto.js";
 
 class WinningLotto {
@@ -6,7 +7,9 @@ class WinningLotto {
 
   constructor(winningNumbers, bonusNumber) {
     this.#lotto = new Lotto(winningNumbers);
-    this.#lotto.checkDuplicate(bonusNumber);
+    if (this.#lotto.hasNumber(bonusNumber)) {
+      throw new Error(ERROR_MESSAGE.PREFIX);
+    }
     this.#bonusNumber = bonusNumber;
   }
 
