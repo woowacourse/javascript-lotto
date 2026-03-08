@@ -1,6 +1,15 @@
 import { Lotto, WinningLotto } from "../src/step1/Lotto.js";
 
 describe("로또 클래스 테스트", () => {
+  test.each([[[1, 2, 3, 4, 5]], [[1, 2, 3, 4, 5, 6, 7]]])(
+    "로또 번호가 6개가 아닐때",
+    (number) => {
+      expect(() => {
+        new Lotto(number);
+      }).toThrow("로또 번호는 6개여야 합니다.");
+    },
+  );
+
   test("로또 번호에 중복되는 번호가 존재할때", () => {
     expect(() => {
       new Lotto([1, 2, 2, 3, 4, 5]);
