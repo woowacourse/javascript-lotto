@@ -1,5 +1,5 @@
-import ERROR_MESSAGE from "./constants/errorMessage.js";
-import LottoNumber from "./LottoNumber.js";
+import ERROR_MESSAGE from './constants/errorMessage.js';
+import LottoNumber from './LottoNumber.js';
 
 class Lotto {
   #numbers;
@@ -7,12 +7,16 @@ class Lotto {
   constructor(numbers) {
     this.validateLotto(numbers);
     const lottoNumbers = numbers
-      .sort((a, b) => a - b)
-      .map((number) => new LottoNumber(number));
+    .sort((a, b) => a - b)
+    .map((number) => new LottoNumber(number));
     this.#numbers = lottoNumbers;
   }
 
   validateLotto(numbers) {
+    if (numbers.length !== 6) {
+      throw new Error(ERROR_MESSAGE.LOTTO.LENGTH);
+    }
+
     const uniqueNumbers = new Set(numbers);
 
     if (uniqueNumbers.size !== numbers.length) {
