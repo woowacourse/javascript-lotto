@@ -12,7 +12,10 @@ class Lotto {
   #validate(numbers) {
     this.#validateCount(numbers);
     this.#validateUniq(numbers);
-    this.#validateRange(numbers);
+    numbers.forEach((number) => {
+      this.#validateNumber(number);
+      this.#validateRange(number);
+    });
   }
 
   #validateCount(numbers) {
@@ -28,11 +31,14 @@ class Lotto {
     }
   }
 
-  #validateRange(numbers) {
-    const result = numbers.some(
-      (number) => number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER,
-    );
-    if (result) {
+  #validateNumber(number) {
+    if (typeof number !== 'number' || Number.isNaN(number)) {
+      throw new Error(LOTTO_ERROR_MESSAGE.INPUT_RANGE);
+    }
+  }
+
+  #validateRange(number) {
+    if (number < LOTTO.MIN_NUMBER || number > LOTTO.MAX_NUMBER) {
       throw new Error(LOTTO_ERROR_MESSAGE.INPUT_RANGE);
     }
   }

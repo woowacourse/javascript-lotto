@@ -11,18 +11,18 @@ class Money {
 
   #validate(amount) {
     this.#validateNumber(amount);
-    this.#validateInteger(amount);
+    this.#validatePositiveInteger(amount);
     this.#validateThousandUnit(amount);
   }
 
   #validateNumber(amount) {
-    if (Number.isNaN(amount)) {
+    if (typeof amount !== 'number' || Number.isNaN(amount)) {
       throw new Error(MONEY_ERROR_MESSAGE.INPUT_NOT_NUMBER);
     }
   }
 
-  #validateInteger(amount) {
-    if (amount % 1 !== 0) {
+  #validatePositiveInteger(amount) {
+    if (amount % 1 !== 0 || amount <= 0) {
       throw new Error(MONEY_ERROR_MESSAGE.INPUT_NOT_INTEGER);
     }
   }
