@@ -7,10 +7,15 @@ class WinningLotto {
 
   constructor(winningNumbers, bonusNumber) {
     this.#lotto = new Lotto(winningNumbers);
+    this.#validateBonusNumber(bonusNumber);
+
+    this.#bonusNumber = bonusNumber;
+  }
+
+  #validateBonusNumber(bonusNumber) {
     if (this.#lotto.hasNumber(bonusNumber)) {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
-    this.#bonusNumber = bonusNumber;
   }
 
   getMatchCount(lotto) {
