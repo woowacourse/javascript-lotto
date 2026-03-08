@@ -1,17 +1,19 @@
-import { pickNumberInRange } from './Utils.js';
-import { Lotto } from './Lotto.js';
+import { pickNumberInRange } from "./Utils.js";
+import { Lotto } from "./Lotto.js";
 
 const PRIZE_LIST = [0, 2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
 
 export class LottoMachine {
-
   #amount;
+  #lottos;
+  #matchResult;
 
   constructor(amount) {
     this.#amount = amount;
-    this.purchaseCount = amount / 1000;
-    this.lottos = Array.from({ length: this.purchaseCount }, () => this.createLotto());
-    this.matchResult = new Map([
+    this.#lottos = Array.from({ length: amount / 1000 }, () =>
+      this.createLotto(),
+    );
+    this.#matchResult = new Map([
       [1, 0],
       [2, 0],
       [3, 0],
@@ -20,10 +22,22 @@ export class LottoMachine {
     ]);
   }
 
+  getLottos() {
+    return this.#lottos;
+  }
+
+  getPurchaseCount() {
+    return this.#lottos.length;
+  }
+
+  getMatchResult() {
+    return this.#matchResult;
+  }
+
   updateMatchResult(rank) {
     if (rank !== null) {
-      const current = this.matchResult.get(rank);
-      this.matchResult.set(rank, current + 1);
+      const current = this.#matchResult.get(rank);
+      this.#matchResult.set(rank, current + 1);
     }
   }
 
@@ -37,9 +51,11 @@ export class LottoMachine {
   }
 
   calculateMatchResult(winningNumber, bonusNumber) {
-    this.lottos.forEach((lotto) => {
-      const lottoNumbers = lotto.getLottoNumber()
-      const matchCount = new Set([...lottoNumbers]).intersection(new Set([...winningNumber])).size;
+    this.#lottos.forEach((lotto) => {
+      const lottoNumbers = lotto.getLottoNumber();
+      const matchCount = new Set([...lottoNumbers]).intersection(
+        new Set([...winningNumber]),
+      ).size;
       const isMatchBonus = lottoNumbers.includes(Number(bonusNumber));
       const rank = this.getMatchRank(matchCount, isMatchBonus);
       this.updateMatchResult(rank);
@@ -47,9 +63,12 @@ export class LottoMachine {
   }
 
   getTotalPrize() {
-    return this.matchResult.keys().reduce(
-      (acc, rank) => acc + PRIZE_LIST[rank] * this.matchResult.get(rank), 0
-    );
+    return this.#matchResult
+      .keys()
+      .reduce(
+        (acc, rank) => acc + PRIZE_LIST[rank] * this.#matchResult.get(rank),
+        0,
+      );
   }
 
   getRateOfReturn() {

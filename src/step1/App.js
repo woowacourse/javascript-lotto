@@ -8,14 +8,14 @@ class App {
     while (true) {
       const amount = await Input.reRead(Input.readPurchaseAmount);
       const lottoMachine = new LottoMachine(amount);
-      Output.printPurchaseLottoCount(lottoMachine.purchaseCount);
-      Output.printLottos(lottoMachine.lottos);
+      Output.printPurchaseLottoCount(lottoMachine.getPurchaseCount());
+      Output.printLottos(lottoMachine.getLottos());
       const winningLottoNumber = (await Input.reRead(Input.readWinningLottoNumber)).getLottoNumber();
       const winningLotto = await Input.reRead(Input.readBonusNumber, winningLottoNumber);
       lottoMachine.calculateMatchResult(
         winningLotto.getLottoNumber(), winningLotto.getBonusNumber()
       );
-      Output.printResult(lottoMachine);
+      Output.printResult(lottoMachine.getMatchResult(), lottoMachine.getRateOfReturn());
       const restart = await Input.reRead(Input.readRetry);
       if (restart === 'n') {
         read.close();
