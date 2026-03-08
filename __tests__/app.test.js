@@ -1,7 +1,7 @@
 import App from "../src/step1/app.js";
 import MockInput from "./utils/MockInput.js";
 import LottoStore from "../src/step1/model/LottoStore.js";
-import { MockPickLottoNumbers } from "../src/step1/utils.js";
+import MockRandomUtil from "./utils/MockRandomUtil.js";
 import { ERROR_MESSAGE } from "../src/step1/constant/message.js";
 
 describe("App 통합 테스트", () => {
@@ -18,9 +18,12 @@ describe("App 통합 테스트", () => {
 
     const app = new App({
       input: new MockInput(["2000", "1,2,3,4,5,6", "7", "n"]),
-      lottoStore: new LottoStore(() =>
-        MockPickLottoNumbers([[1, 2, 3, 4, 5, 6]]),
-      ),
+      lottoStore: new LottoStore({
+        randomUtil: new MockRandomUtil([
+          [1, 2, 3, 4, 5, 6],
+          [1, 2, 3, 4, 5, 6],
+        ]),
+      }),
     });
 
     const expectedLogs = [

@@ -7,21 +7,20 @@ import Money from "./model/Money.js";
 import Lotto from "./model/Lotto.js";
 import WinningLotto from "./model/WinningLotto.js";
 import { INPUT_MESSAGE, ERROR_MESSAGE } from "./constant/message.js";
-import { parseNumbers } from "./utils.js";
 
 class App {
   #view;
   #lottoStore;
 
   constructor({ input, output, lottoStore } = {}) {
-    if(input) this.validateInput(input);
-    if(output) this.validateOutput(output);
+    if (input) this.validateInput(input);
+    if (output) this.validateOutput(output);
 
     this.#view = {
       input: input ?? new ConsoleInput(),
       output: output ?? new ConsoleOutput(),
     };
-    
+
     this.#lottoStore = lottoStore ?? new LottoStore();
   }
 
@@ -37,20 +36,23 @@ class App {
     const returnOnInvestment = lottoGameResult.getReturnOnInvestment(
       money.getMoney(),
     );
-    this.#view.output.printResult(lottoGameResult.getCounts(), returnOnInvestment);
+    this.#view.output.printResult(
+      lottoGameResult.getCounts(),
+      returnOnInvestment,
+    );
 
     await this.#askRetry();
     return;
   }
 
   validateInput(InputClass) {
-    if(!(InputClass instanceof Input)) {
+    if (!(InputClass instanceof Input)) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT);
     }
   }
 
   validateOutput(OutputClass) {
-    if(!(OutputClass instanceof Output)) {
+    if (!(OutputClass instanceof Output)) {
       throw new Error(ERROR_MESSAGE.INVALID_OUTPUT);
     }
   }
@@ -73,7 +75,9 @@ class App {
       const inputWinningNumber = await this.#view.input.readLineAsync(
         INPUT_MESSAGE.WINNING_NUMBER,
       );
-      const winningNumbers = parseNumbers(inputWinningNumber);
+
+      const winningNumbers = inputWinningNumber.split(",").map(Number);
+
       return new Lotto(winningNumbers);
     });
   }
@@ -92,7 +96,9 @@ class App {
 
   async #askRetry() {
     await this.#retry(async () => {
-      const askRetry = await this.#view.input.readLineAsync(INPUT_MESSAGE.ASK_RETRY);
+      const askRetry = await this.#view.input.readLineAsync(
+        INPUT_MESSAGE.ASK_RETRY,
+      );
       if (askRetry === "y" || askRetry === "Y") return await this.run();
       if (askRetry === "n" || askRetry === "N") return;
 

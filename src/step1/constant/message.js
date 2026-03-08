@@ -21,4 +21,5 @@ export const ERROR_MESSAGE = Object.freeze({
   NOT_INPUT_RETRY: "[ERROR] y 또는 n을 입력해주세요.\n",
   INVALID_INPUT: "[ERROR] 올바르지 않은 Input 인스턴스가 입력되었습니다.\n",
   INVALID_OUTPUT: "[ERROR] 올바르지 않은 Output 인스턴스가 입력되었습니다.\n",
+  NOT_FOUND_MOCK_DATA: "[ERROR] Mock 데이터가 없습니다.\n",
 });
