@@ -11,7 +11,7 @@ describe("로또 발행 테스트", () => {
     expect(LottoGenerator.calculateBuyLottoCount(money)).toEqual(10);
   });
 
-  test("로또를 생성한다.", () => {
+  test("올바른 로또를 1개 생성한다.", () => {
     // given
     const lotto = new Lotto([6, 5, 4, 3, 2, 1]);
 
@@ -63,6 +63,15 @@ describe("로또 발행 테스트", () => {
 
     // then
     expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+
+  test("자신이 가지고 있는 로또 번호인지 확인할 수 있어야 한다.", () => {
+    // given
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    // when & then
+    expect(lotto.hasNumber(5)).toEqual(true);
+    expect(lotto.hasNumber(7)).toEqual(false);
   });
 
   test("구입 수량만큼 로또를 발행해야 한다", () => {
