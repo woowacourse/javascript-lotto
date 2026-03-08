@@ -1,8 +1,8 @@
-import WinningNumbersAndBonusNumberBuilder from "../src/WinningNumbersAndBonusNumberBuilder";
+import WinningNumbersAndBonusNumberBuilder from '../src/WinningNumbersAndBonusNumberBuilder';
 
-describe("WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트", () => {
-  describe("validateWinningNumbers", () => {
-    test("당첨 번호는 1부터 45까지의 정수여야한다.", () => {
+describe('WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트', () => {
+  describe('validateWinningNumbers', () => {
+    test('당첨 번호는 1부터 45까지의 정수여야한다.', () => {
       // given
       const builder = new WinningNumbersAndBonusNumberBuilder();
 
@@ -12,7 +12,27 @@ describe("WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트", () =>
       ).not.toThrow();
     });
 
-    test("당첨 번호가 중복되면 에러를 반환한다.", () => {
+    test('당첨 번호가 6개 미만이면 에러를 반환한다.', () => {
+      // given
+      const builder = new WinningNumbersAndBonusNumberBuilder();
+
+      // when & then
+      expect(() =>
+        builder.validateWinningNumbers([1, 2, 3, 4, 5]),
+      ).toThrow();
+    });
+
+    test('당첨 번호가 6개 초과이면 에러를 반환한다.', () => {
+      // given
+      const builder = new WinningNumbersAndBonusNumberBuilder();
+
+      // when & then
+      expect(() =>
+        builder.validateWinningNumbers([1, 2, 3, 4, 5, 6, 7]),
+      ).toThrow();
+    });
+
+    test('당첨 번호가 중복되면 에러를 반환한다.', () => {
       // given
       const builder = new WinningNumbersAndBonusNumberBuilder();
 
@@ -23,8 +43,8 @@ describe("WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트", () =>
     });
   });
 
-  describe("validateBonusNumber", () => {
-    test("보너스 번호는 당첨 번호에 포함되지 않은 1부터 45까지의 정수여야한다.", () => {
+  describe('validateBonusNumber', () => {
+    test('보너스 번호는 당첨 번호에 포함되지 않은 1부터 45까지의 정수여야한다.', () => {
       // given
       const builder = new WinningNumbersAndBonusNumberBuilder();
 
@@ -35,7 +55,7 @@ describe("WinningNumbersAndBonusNumberBuilder 클래스 유닛 테스트", () =>
       expect(() => builder.validateBonusNumber(7)).not.toThrow();
     });
 
-    test("당첨 번호에 이미 포함된 번호면 에러를 반환한다.", () => {
+    test('당첨 번호에 이미 포함된 번호면 에러를 반환한다.', () => {
       // given
       const builder = new WinningNumbersAndBonusNumberBuilder();
 
