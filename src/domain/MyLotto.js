@@ -1,6 +1,6 @@
 class MyLotto {
   #money;
-  #randomLotto;
+  #randomLotto = [];
 
   constructor(money, randomLotto) {
     this.#money = money;
@@ -12,7 +12,7 @@ class MyLotto {
   }
 
   getRandomLotto() {
-    return this.#randomLotto;
+    return [...this.#randomLotto];
   }
 }
 
