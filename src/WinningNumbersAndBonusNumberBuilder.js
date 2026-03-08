@@ -1,5 +1,5 @@
-import ERROR_MESSAGE from "./constants/errorMessage.js";
-import LottoNumber from "./LottoNumber.js";
+import ERROR_MESSAGE from './constants/errorMessage.js';
+import LottoNumber from './LottoNumber.js';
 
 class WinningNumbersAndBonusNumberBuilder {
   #winningNumbers;
@@ -27,6 +27,10 @@ class WinningNumbersAndBonusNumberBuilder {
   }
 
   validateWinningNumbers(winningNumbers) {
+    if (winningNumbers.length !== 6) {
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBERS.LENGTH);
+    }
+
     const uniqueNumbers = new Set(winningNumbers);
 
     if (uniqueNumbers.size !== winningNumbers.length) {
