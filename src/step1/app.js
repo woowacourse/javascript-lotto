@@ -72,7 +72,7 @@ class App {
   async #askRetry() {
     await this.#retry(async () => {
       const askRetry = await this.#input.readLineAsync(INPUT_MESSAGE.ASK_RETRY);
-      if (askRetry === "y" || askRetry === "Y") await this.run();
+      if (askRetry === "y" || askRetry === "Y") return await this.run();
       if (askRetry === "n" || askRetry === "N") return;
 
       throw new Error(ERROR_MESSAGE.NOT_INPUT_RETRY);
