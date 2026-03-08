@@ -5,11 +5,11 @@ const InputConsole = {
   async readPurchasePrice() {
     while (true) {
       try {
-        const purchasePrice =
+        const input =
           await MissionUtils.Console.readLineAsync(
             "> 구입금액을 입력해 주세요.",
           );
-        return Validator.validatePurchasePrice(purchasePrice);
+        return Validator.validatePurchasePrice(input);
       } catch (e) {
         MissionUtils.Console.print(e.message);
       }
@@ -19,10 +19,10 @@ const InputConsole = {
   async readWinningNumbers() {
     while (true) {
       try {
-        const winningNumbers = await MissionUtils.Console.readLineAsync(
+        const inputs = await MissionUtils.Console.readLineAsync(
           "> 당첨 번호를 입력해 주세요. ",
         );
-        return Validator.validateWinningNumbers(winningNumbers);
+        return Validator.validateWinningNumbers(inputs);
       } catch (e) {
         MissionUtils.Console.print(e.message);
       }
@@ -32,10 +32,10 @@ const InputConsole = {
   async readBonusNumber(winningNumbers) {
     while (true) {
       try {
-        const bonusNumber = await MissionUtils.Console.readLineAsync(
+        const input = await MissionUtils.Console.readLineAsync(
           "\n> 보너스 번호를 입력해 주세요. ",
         );
-        return Validator.validateBonusNumber(bonusNumber, winningNumbers);
+        return Validator.validateBonusNumber(input, winningNumbers);
       } catch (e) {
         MissionUtils.Console.print(e.message);
       }
