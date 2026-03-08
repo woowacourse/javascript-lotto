@@ -6,21 +6,27 @@ describe("로또 테스트", () => {
     [[1, 2, 3, 4, 5], "5개"],
     [[1, 2, 3, 4, 5, 45, 6], "7개"],
     [[], "0개"],
-  ])("숫자가 6개 인가? (%s)", (numbers) => {
+  ])("로또 번호가 6개가 아닌 경우 예외가 발생한다. (%s)", (numbers) => {
     expect(() => {
       new Lotto(numbers);
     }).toThrow(LOTTO_ERROR_MESSAGE.INPUT_NOT_SIX_NUMBERS);
   });
 
-  test("중복되는 숫자가 없는가?", () => {
+  test("로또 번호 중 중복되는 숫자가 있는 경우 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow(LOTTO_ERROR_MESSAGE.INPUT_DUPLICATE);
   });
 
-  test("1에서 45 사이의 숫자로 구성되어 있는가?", () => {
+  test("로또 번호가 1에서 45 사이의 숫자가 아닌 경우 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 46]);
+    }).toThrow(LOTTO_ERROR_MESSAGE.INPUT_RANGE);
+  });
+
+  test("로또 번호에 NaN인 경우 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, NaN]);
     }).toThrow(LOTTO_ERROR_MESSAGE.INPUT_RANGE);
   });
 });
