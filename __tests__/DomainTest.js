@@ -128,5 +128,3 @@ describe("LottoResult 동작 테스트", () => {
      );
   });
 });
-
-
