@@ -22,7 +22,7 @@ const LottoGenerator = {
   makeLottos(buyLottoCount) {
     return Array.from(
       { length: buyLottoCount },
-      (v, i) => new Lotto(LottoGenerator.getRandomLottoNumbers()),
+      () => new Lotto(LottoGenerator.getRandomLottoNumbers()),
     );
   },
 };
