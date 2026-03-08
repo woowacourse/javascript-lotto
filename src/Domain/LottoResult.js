@@ -1,11 +1,11 @@
 import { PRIZE } from '../Utils/Constants.js';
 
 class LottoResult {
-  calculateWinningResult(lottos, LuckyNumbers) {
+  calculateWinningResult(lottos, luckyNumbers) {
     const result = { FIRST: 0, SECOND: 0, THIRD: 0, FOURTH: 0, FIFTH: 0 };
     for (const lotto of lottos) {
-      const match = lotto.countMatches(LuckyNumbers.winningNumbers());
-      const hasBonus = lotto.hasBonus(LuckyNumbers.bonusNumber());
+      const match = lotto.countMatches(luckyNumbers.winningNumbers);
+      const hasBonus = lotto.hasBonus(luckyNumbers.bonusNumber);
       if (match === 6) result["FIRST"]++;
       else if (match === 5 && hasBonus) result["SECOND"]++;
       else if (match === 5) result["THIRD"]++;

@@ -1,7 +1,6 @@
 import Lotto from "../src/Domain/Lotto.js";
 import LottoMachine from "../src/Domain/LottoMachine.js";
 import LottoResult from "../src/Domain/LottoResult.js";
-import WinningNumbers from "../src/Domain/LuckyNumbers.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 describe("로또 클래스 테스트", () => {
@@ -76,9 +75,10 @@ describe("LottoResult 동작 테스트", () => {
 
   // 1. 등수 집계 테스트
   test("등수 집계 테스트: 각 등수 카운팅", () => {
-    const winningNumbersObj = new WinningNumbers();
-    winningNumbersObj.setWinningNumbers([1, 2, 3, 4, 5, 6]);
-    winningNumbersObj.setBonusNumber(7);
+    const winningNumbersObj = {
+      winningNumbers: [1, 2, 3, 4, 5, 6],
+      bonusNumber: 7,
+    };
 
     const lottos = [
       new Lotto([1, 2, 3, 4, 5, 6]), // 1등
