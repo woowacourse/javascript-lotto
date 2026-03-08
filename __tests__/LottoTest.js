@@ -1,6 +1,11 @@
 import { Lotto, WinningLotto } from "../src/step1/Lotto.js";
 
 describe("로또 클래스 테스트", () => {
+  test("유효한 번호로 로또 생성 시 번호를 반환한다", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.getLottoNumber()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+
   test.each([[[1, 2, 3, 4, 5]], [[1, 2, 3, 4, 5, 6, 7]]])(
     "로또 번호가 6개가 아닐때",
     (number) => {
@@ -57,6 +62,11 @@ describe("당첨 로또 클래스 테스트", () => {
       }).toThrow("보너스 번호는 1 ~ 45 이내 숫자여야 합니다.");
     },
   );
+
+  test("유효한 번호와 보너스 번호로 WinningLotto 생성 시 보너스 번호를 반환한다", () => {
+    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
+    expect(winningLotto.getBonusNumber()).toBe(7);
+  });
 
   test("보너스 번호가 당첨번호와 중복될 때", () => {
     expect(() => {
