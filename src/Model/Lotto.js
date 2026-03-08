@@ -13,7 +13,7 @@ class Lotto {
 
     Validator.validateNotDuplicated(numbers);
     Validator.validateArrayLength(numbers, LOTTO.COUNT);
-    this.#numbers = numbers.sort((a, b) => a - b);
+    this.#numbers = numbers.toSorted((a, b) => a - b);
   }
 
   checkDuplicate(number) {
