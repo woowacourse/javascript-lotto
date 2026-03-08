@@ -4,22 +4,20 @@ import Validator from "../Validator.js";
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
-    numbers.forEach((number) => {
-      Validator.validatePositiveNumber(number);
-      Validator.validateNumberLower(LOTTO.LOWER, number);
-      Validator.validateNumberUpper(LOTTO.UPPER, number);
+  constructor(randomNumbers) {
+    randomNumbers.forEach((randomNumber) => {
+      Validator.validatePositiveNumber(randomNumber);
+      Validator.validateNumberLower(LOTTO.LOWER, randomNumber);
+      Validator.validateNumberUpper(LOTTO.UPPER, randomNumber);
     });
 
-    Validator.validateNotDuplicated(numbers);
-    Validator.validateArrayLength(numbers, LOTTO.COUNT);
-    this.#numbers = numbers.toSorted((a, b) => a - b);
+    Validator.validateNotDuplicated(randomNumbers);
+    Validator.validateArrayLength(randomNumbers, LOTTO.COUNT);
+    this.#numbers = randomNumbers.toSorted((a, b) => a - b);
   }
 
-  checkDuplicate(number) {
-    if (this.#numbers.includes(number)) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+  hasNumber(targetNumber) {
+    return this.#numbers.includes(targetNumber);
   }
 
   getNumbers() {
