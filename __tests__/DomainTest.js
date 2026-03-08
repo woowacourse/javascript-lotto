@@ -75,7 +75,7 @@ describe("LottoResult 동작 테스트", () => {
 
   // 1. 등수 집계 테스트
   test("등수 집계 테스트: 각 등수 카운팅", () => {
-    const winningNumbersObj = {
+    const luckyNumbers = {
       winningNumbers: [1, 2, 3, 4, 5, 6],
       bonusNumber: 7,
     };
@@ -89,12 +89,10 @@ describe("LottoResult 동작 테스트", () => {
       new Lotto([14, 15, 16, 17, 18, 19]), // 일치 없음
     ];
 
-    const result = new LottoResult();
+    const lottoResult = new LottoResult();
 
-    const winningResult = result.calculateWinningResult(
-      lottos,
-      winningNumbersObj,
-    );
+    const winningResult = lottoResult.calculateWinningResult(lottos,luckyNumbers);
+    
     expect(winningResult).toEqual({
       FIFTH: 1,
       FIRST: 1,
