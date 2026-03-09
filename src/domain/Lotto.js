@@ -1,12 +1,13 @@
 import { LOTTO_RANGE } from "../constants/constant.js";
 
 class Lotto {
-  #number;
+  #numbers;
 
   constructor() {
-    this.#getRandomLotto();
+    this.#numbers = this.getRandomLotto();
   }
-  #getRandomLotto() {
+
+  getRandomLotto() {
     const lottoSet = new Set();
 
     while (lottoSet.size < LOTTO_RANGE.COUNT) {
@@ -18,10 +19,22 @@ class Lotto {
     const lottoArray = Array.from(lottoSet);
     lottoArray.sort((a, b) => a - b);
 
-    this.#number = lottoArray;
+    return lottoArray;
   }
-  getNumber() {
-    return [...this.#number];
+
+  getRank(winningLotto) {
+    const matchCount = this.#countMatches(winningLotto);
+    const hasBonus = this.#numbers.some((n) => winningLotto.isBonus(n));
+
+    if (matchCount === 6) return "FIRST";
+    if (matchCount === 5 && hasBonus) return "SECOND";
+    if (matchCount === 5) return "THIRD";
+    if (matchCount === 4) return "FOURTH";
+    if (matchCount === 3) return "FIFTH";
+  }
+
+  #countMatches(winningLotto) {
+    return this.#numbers.filter((n) => winningLotto.hasNumber(n)).length;
   }
 }
 

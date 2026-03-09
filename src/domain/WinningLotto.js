@@ -4,19 +4,19 @@ class WinningLotto {
 
   constructor(winningNumber, bonusNumber) {
     this.#winningNumber = this.#splitWinnigNumber(winningNumber);
-    this.#bonusNumber = bonusNumber;
-  }
-
-  getWinningNumber() {
-    return this.#winningNumber;
-  }
-
-  getBonusNumber() {
-    return this.#bonusNumber;
+    this.#bonusNumber = Number(bonusNumber);
   }
 
   #splitWinnigNumber(winningNumber) {
     return winningNumber.split(",").map(Number);
+  }
+
+  hasNumber(number) {
+    return this.#winningNumber.includes(number);
+  }
+
+  isBonus(number) {
+    return this.#bonusNumber === number;
   }
 }
 
