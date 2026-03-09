@@ -1,5 +1,5 @@
-import retry from "../src/utils/retry";
-import InputView from "../src/view/InputView";
+import retry from "../src/utils/retry.js";
+import InputView from "../src/view/InputView.js";
 import { ERROR_MESSAGE } from "../src/constants/message.js";
 
 describe("재입력 테스트", () => {

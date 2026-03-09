@@ -1,7 +1,7 @@
 import {
   makeLottos,
   pickUniqueNumbersInRange,
-} from "../src/domain/LottoMachine";
+} from "../src/domain/LottoMachine.js";
 
 describe("로또 발행 테스트", () => {
   test("생성된 로또 번호는 1-45 사이 중복되지 않는 6개 숫자여야 한다", () => {

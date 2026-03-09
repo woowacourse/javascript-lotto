@@ -1,4 +1,4 @@
-import { calPrize, calProfitRate } from "../src/domain/WinningRate";
+import { calPrize, calProfitRate } from "../src/domain/WinningRate.js";
 
 describe("당첨 등수 계산 테스트", () => {
   test("당첨 번호 개수가 6개이면 1등", () => {

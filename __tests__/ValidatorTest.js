@@ -1,4 +1,4 @@
-import Validator from "../src/utils/Validator";
+import Validator from "../src/utils/Validator.js";
 
 describe("구매 금액 테스트", () => {
   test("구매 금액이 1,000원 단위가 아니면 에러 발생", () => {
