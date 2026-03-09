@@ -7,7 +7,7 @@ describe("구매 금액 테스트", () => {
     [-1000, "구매 금액이 음수일 때"],
   ])("%s - %s 에러 발생", (price) => {
     expect(() => {
-      Validator.validatePrice(price);
+      Validator.validatePurchaseUnit(price);
     }).toThrow("[ERROR]");
   });
 

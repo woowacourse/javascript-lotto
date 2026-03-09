@@ -12,7 +12,7 @@ const InputView = {
     const priceStr = await rl.question("> 구입금액을 입력해 주세요.\n");
     const price = Number(priceStr);
     Validator.validateNumber(price);
-    Validator.validatePrice(price);
+    Validator.validatePurchaseUnit(price);
 
     return price;
   },
