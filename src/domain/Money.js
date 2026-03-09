@@ -13,7 +13,7 @@ class Money {
   }
 
   #validate(amount) {
-    if (amount < Money.UNIT) {
+    if (Number.isNaN(amount) || amount < Money.UNIT) {
       throw new Error(Money.ERROR.INSUFFICIENT_AMOUNT);
     }
   }
