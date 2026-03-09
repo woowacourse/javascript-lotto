@@ -20,7 +20,7 @@ class Lotto {
 
   #validateCount(numbers) {
     if (numbers.length !== LOTTO.COUNT) {
-      throw new Error(LOTTO_ERROR_MESSAGE.INPUT_NOT_SIX_NUMBER);
+      throw new Error(LOTTO_ERROR_MESSAGE.INPUT_NOT_SIX_NUMBERS);
     }
   }
 

@@ -9,7 +9,7 @@ describe("로또 테스트", () => {
   ])("로또 번호가 6개가 아닌 경우 예외가 발생한다. (%s)", (numbers) => {
     expect(() => {
       new Lotto(numbers);
-    }).toThrow(LOTTO_ERROR_MESSAGE.INPUT_NOT_SIX_NUMBERS);
+    }).toThrow(LOTTO_ERROR_MESSAGE.INPUT_NOT_SIX_NUMBERSS);
   });
 
   test("로또 번호 중 중복되는 숫자가 있는 경우 예외가 발생한다.", () => {
