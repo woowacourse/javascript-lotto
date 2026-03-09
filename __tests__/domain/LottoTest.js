@@ -1,5 +1,5 @@
 import Lotto from "../../src/models/Lotto.js";
-import { resultAggregator } from "../../src/services/ResultAggregator.js";
+import { resultCalculator } from "../../src/services/ResultCalculator.js";
 
 const AGGREGATION_TEST_CASES = [
   { desc: "6개 번호 일치 1등", result: { matchCount: 6, hasBonus: false }, expectedIndex: 4 },
@@ -13,7 +13,7 @@ const AGGREGATION_TEST_CASES = [
 describe("로또와 당첨 번호를 비교한다.", () => {
   AGGREGATION_TEST_CASES.forEach(({ desc, result, expectedIndex, expectAllZero }) => {
     test(desc, () => {
-      const data = resultAggregator([result]);
+      const data = resultCalculator([result]);
       if (expectAllZero) {
         expect(data.every((r) => r.count === 0)).toBe(true);
       } else {
