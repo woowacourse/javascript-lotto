@@ -1,6 +1,6 @@
-import { PRIZE } from '../Utils/Constants.js';
+import { PRIZE } from "../Utils/Constants.js";
 
-class LottoResult {
+const LottoResult = {
   calculateWinningResult(lottos, LuckyNumbers) {
     const result = { FIRST: 0, SECOND: 0, THIRD: 0, FOURTH: 0, FIFTH: 0 };
     for (const lotto of lottos) {
@@ -13,21 +13,21 @@ class LottoResult {
       else if (match === 3) result["FIFTH"]++;
     }
     return result;
-  }
+  },
 
   calculateProfitRate(winningResult, purchasePrice) {
-    const totalPrize = this.calculateTotalPrize(winningResult);
+    const totalPrize = calculateTotalPrize(winningResult);
     const profitRate = ((totalPrize - purchasePrice) / purchasePrice) * 100;
 
     return Number(profitRate.toFixed(1));
-  }
+  },
+};
 
-  calculateTotalPrize(winningResult) {
-    return Object.entries(winningResult).reduce(
-      (sum, [key, count]) => sum + PRIZE[key] * count,
-      0,
-    );
-  }
-}
+const calculateTotalPrize = (winningResult) => {
+  return Object.entries(winningResult).reduce(
+    (sum, [key, count]) => sum + PRIZE[key] * count,
+    0,
+  );
+};
 
 export default LottoResult;

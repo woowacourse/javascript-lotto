@@ -21,13 +21,12 @@ class App {
     const luckyNumbers = await this.#getLuckyNumbersStep(winningNumbers);
 
     // 당첨 통계 출력하기
-    const lottoResult = new LottoResult();
-    const winningResult = lottoResult.calculateWinningResult(lottos, luckyNumbers);
+    const winningResult = LottoResult.calculateWinningResult(lottos, luckyNumbers);
     OutputConsole.printMatchResult(winningResult);
 
     // 총 수익률 출력하기
     const purchasePrice = lottos.length * 1000;
-    const profitRate = lottoResult.calculateProfitRate(winningResult,purchasePrice);
+    const profitRate = LottoResult.calculateProfitRate(winningResult, purchasePrice);
     OutputConsole.printProfitRate(profitRate);
 
     // 재시작 로직 출력
