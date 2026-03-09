@@ -1,6 +1,6 @@
 import { OutputView } from "../view/output.js";
 import { calculateLottoCount } from "../service/calculateLottoCount.js";
-import { getLottos } from "../service/getRandomLotto.js";
+import { lottoService } from "../service/lottoService.js";
 import WinningLotto from "../domain/WinningLotto.js";
 import { getCompareResult } from "../service/getCompareResult.js";
 import { getProfit } from "../service/getProfit.js";
@@ -11,7 +11,7 @@ class LottoController {
   async play() {
     const money = await InputView.inputPurchaseAmount();
     const count = calculateLottoCount(money);
-    const randomLotto = getLottos(count);
+    const randomLotto = lottoService(count);
     OutputView.outputLottoNumber(randomLotto);
 
     const winningNumber = await InputView.inputWinningNumber();
