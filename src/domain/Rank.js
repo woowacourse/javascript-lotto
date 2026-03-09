@@ -13,6 +13,7 @@ class Rank {
   static THIRD = new Rank({ matchCount: 5, hasBonus: false });
   static FOURTH = new Rank({ matchCount: 4, hasBonus: false });
   static FIFTH = new Rank({ matchCount: 3, hasBonus: false });
+  static MISS = new Rank({ matchCount: 0, hasBonus: false });
 
   static order = [Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST];
 
