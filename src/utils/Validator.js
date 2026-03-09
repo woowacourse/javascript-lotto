@@ -9,6 +9,9 @@ const Validator = {
     if (price % 1000 !== 0) {
       throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_UNIT);
     }
+    if (price < 0 || price === 0) {
+      throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_UNIT);
+    }
   },
   validateLottoNumRange(lottoNum) {
     if (lottoNum > 45 || lottoNum < 1) {

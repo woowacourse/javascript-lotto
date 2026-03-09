@@ -2,6 +2,7 @@ import LottoController from "./LottoController.js";
 import OutPutView from "../view/OutputView.js";
 import InputView from "../view/InputView.js";
 import retry from "../utils/retry.js";
+import Lotto from "../model/Lotto.js";
 
 class App {
   async run() {
@@ -14,8 +15,10 @@ class App {
       const purchasedLottos = lottoController.issueLottos();
       OutPutView.printLotto(purchasedLottos);
 
-      const winningLotto = await retry(() => InputView.inputWinningNums());
-      const bonusNum = await retry(() => InputView.inputBonusNum(winningLotto));
+      const winningNums = await retry(() => InputView.inputWinningNums());
+      const winningLotto = new Lotto(winningNums);
+
+      const bonusNum = await retry(() => InputView.inputBonusNum(winningLotto.getNumbers()));
       lottoController.updateWinningResult(winningLotto, bonusNum);
 
       const { rankCount, profitRate } = lottoController.getWinningResult();

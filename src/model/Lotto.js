@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from "../constants/message.js";
 import { matchWinningCount, matchBonus } from "../domain/MatchLottos.js";
 import { calPrize } from "../domain/WinningRate.js";
 import Validator from "../utils/Validator.js";
@@ -10,13 +11,17 @@ class Lotto {
     this.#numbers = numbers;
   }
   #validate(numbers) {
+    if (numbers.some(num => !Number.isInteger(Number(num)))) {
+      throw new Error(ERROR_MESSAGE.INVALID_POSITIVE_INTEGER);
+    }
     Validator.validateLottoCount(numbers);
     Validator.validateDuplicateLottoNums(numbers);
     numbers.forEach((number) => Validator.validateLottoNumRange(number));
   }
 
   getRank(winningLotto, bonusNum) {
-    const matchCount = matchWinningCount([...this.#numbers], winningLotto);
+    const winningNums = this.getNumbers(winningLotto);
+    const matchCount = matchWinningCount([...this.#numbers], winningNums);
     const hasBonus = matchBonus([...this.#numbers], bonusNum);
     const rank = calPrize(matchCount, hasBonus);
 
@@ -25,6 +30,10 @@ class Lotto {
 
   toString() {
     return `[${this.#numbers.join(", ")}]`;
+  }
+
+  getNumbers(){
+    return [...this.#numbers];
   }
 }
 

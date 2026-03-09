@@ -1,4 +1,5 @@
 export const ERROR_MESSAGE = Object.freeze({
+  INVALID_POSITIVE_INTEGER: "[ERROR] 입력값은 양의 정수여야합니다.",
   INVALID_PURCHASE_UNIT: "[ERROR] 구입 금액은 1,000원 단위여야 합니다.",
   INVALID_LOTTO_NUM_RANGE: "[ERROR] 로또 번호는 1-45 범위여야합니다.",
   DUPLICATE_LOTTO_NUMBERS: "[ERROR] 로또 번호에 중복된 숫자가 있습니다.",
