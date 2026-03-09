@@ -1,11 +1,10 @@
-import Validator from "../Utils/Validator.js";
-
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#validate(numbers);
-    this.#numbers = numbers;
+    const nums = numbers.map(Number);
+    this.#validate(nums);
+    this.#numbers = nums;
   }
 
   #validate(nums) {
