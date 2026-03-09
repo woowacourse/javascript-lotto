@@ -1,17 +1,4 @@
 const Validator = {
-  validatePurchasePrice(purchasePrice) {
-    const numPrice = Number(purchasePrice.trim());
-
-    if (Number.isNaN(numPrice)) {
-      throw new Error("[ERROR] 구입 금액이 숫자가 아닙니다!");
-    }
-    if (numPrice < 1000) {
-      throw new Error("[ERROR] 구입 최소 금액은 1000원 입니다!");
-    }
-
-    return numPrice;
-  },
-
   validateWinningNumbers(input) {
     if (!input.includes(","))
       throw new Error("[ERROR] 쉼표를 기준으로 구분하지 않았습니다!");

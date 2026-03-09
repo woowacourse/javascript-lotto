@@ -8,10 +8,8 @@ class App {
   async run() {
     while(true){
     // 구입할 로또 금액 입력받기
-    const purchasePrice = await InputConsole.readPurchasePrice();
-
     // 발행된 로또 목록 출력하기
-    const lottos = LottoMachine.issueLottos(purchasePrice);
+    const lottos = await this.#issueLottosStep();
     OutputConsole.printLottoList(lottos);
 
     // 당첨 번호 입력받기
@@ -27,12 +25,25 @@ class App {
     OutputConsole.printMatchResult(winningResult);
 
     // 총 수익률 출력하기
+    const purchasePrice = lottos.length * 1000;
     const profitRate = lottoResult.calculateProfitRate(winningResult,purchasePrice);
     OutputConsole.printProfitRate(profitRate);
 
     // 재시작 로직 출력
     const restartCommand = await InputConsole.readRestart();
     if(restartCommand==="n") break;
+    }
+  }
+
+  async #issueLottosStep() {
+    try {
+      const purchasePriceStr = await InputConsole.readPurchasePrice();
+
+      return LottoMachine.issueLottos(purchasePriceStr);
+    } catch (e) {
+      OutputConsole.printError(e.message);
+      
+      return await this.#issueLottosStep();
     }
   }
 }

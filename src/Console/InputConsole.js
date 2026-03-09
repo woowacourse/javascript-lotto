@@ -3,17 +3,7 @@ import Validator from "../Utils/Validator.js";
 
 const InputConsole = {
   async readPurchasePrice() {
-    while (true) {
-      try {
-        const purchasePrice =
-          await MissionUtils.Console.readLineAsync(
-            "> 구입금액을 입력해 주세요.",
-          );
-        return Validator.validatePurchasePrice(purchasePrice);
-      } catch (e) {
-        MissionUtils.Console.print(e.message);
-      }
-    }
+    return await MissionUtils.Console.readLineAsync('> 구입금액을 입력해 주세요.')
   },
 
   async readWinningNumbers() {
