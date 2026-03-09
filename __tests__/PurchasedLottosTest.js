@@ -1,3 +1,4 @@
+import PurchasedLotto from "../src/PurchasedLotto";
 import WinningLotto from "../src/WinningLotto";
 
 describe("구매한 lotto들을 관리하는 PurchasedLotto 테스트 코드", () => {
