@@ -26,7 +26,7 @@ class App {
         winningNumbers,
         bonusNumber,
       };
-      const lottoResult = new LottoResultCalculator();
+      const resultCalculator = new LottoResultCalculator();
       const winningResult = lottoResult.calculateWinningRank(
         lottos,
         luckyNumbers,
@@ -35,7 +35,7 @@ class App {
 
       // 총 수익률 출력하기
       const profitRate = lottoResult.calculateProfitRate(
-        winningResult,
+        resultCalculator,
         purchasePrice,
       );
       OutputConsole.printProfitRate(profitRate);
