@@ -7,6 +7,17 @@ export const LOTTO = {
 
 export const ERROR_MESSAGE = {
   PREFIX: "[ERROR]",
+  EMPTY_STRING: "빈 값을 입력할 수 없습니다.",
+  NOT_POSITIVE_NUMBER: "양의 정수만 입력 가능합니다.",
+  OVER_UPPER: "입력된 값이 유효범위보다 큽니다.",
+  UNDER_LOWER: "입력된 값이 유효범위보다 작습니다.",
+  NOT_NUMBER: "숫자만 입력 가능합니다.",
+  NOT_DIVIDED: "나누어 떨어져야 합니다",
+  DUPLICATED: "중복된 값이 존재합니다.",
+  INVALID_ARRAY_LENGTH: "유효하지 않은 개수입니다.",
+  NOT_INCLUDED: "유효하지 않은 입력입니다.",
+
+  BONUS_NUMBER_DUPLICATED: "보너스 번호가 당첨번호와 중복됩니다.",
 };
 
 export const RANK = {

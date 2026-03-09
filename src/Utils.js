@@ -1,9 +1,14 @@
 import readline from "readline";
+import { ERROR_MESSAGE } from "./constants.js";
 
 export const getRandomNumber = (min, max) => {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+};
+
+export const getErrorMessage = (errorMesasge) => {
+  return `${ERROR_MESSAGE.PREFIX} ${errorMesasge}`;
 };
 
 // arguments 객체 사용을 위해 function 사용

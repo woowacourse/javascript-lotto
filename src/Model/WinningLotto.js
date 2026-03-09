@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from "../constants.js";
+import { getErrorMessage } from "../Utils.js";
 import Lotto from "./Lotto.js";
 
 class WinningLotto {
@@ -14,7 +15,7 @@ class WinningLotto {
 
   #validateBonusNumber(bonusNumber) {
     if (this.#lotto.hasNumber(bonusNumber)) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
+      throw new Error(getErrorMessage(ERROR_MESSAGE.BONUS_NUMBER_DUPLICATED));
     }
   }
 

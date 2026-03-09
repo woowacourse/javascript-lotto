@@ -18,9 +18,7 @@ const InputView = {
 
   async readWinningNumbers() {
     const input = await readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
-    if (Validator.validateNotEmptyString(input)) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+    Validator.validateNotEmptyString(input);
     const splitInput = input.split(",");
     splitInput.forEach((string) => {
       Validator.validateStringIsNumber(string);
@@ -54,14 +52,9 @@ const InputView = {
 
   async readRestartCommand() {
     const restartCommand = await readLineAsync(INPUT_MESSAGE.COMMAND);
-    if (
-      !(
-        COMMAND.YES.includes(restartCommand) ||
-        COMMAND.NO.includes(restartCommand)
-      )
-    ) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
-    }
+    const validCommand = COMMAND.YES.concat(COMMAND.NO);
+    Validator.validateIncludeElement(restartCommand, validCommand);
+
     return restartCommand;
   },
 };
