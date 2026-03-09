@@ -7,6 +7,22 @@ class WinningLotto {
     this.#bonusNumber = bonusNumber;
   }
 
+  getRank(userLotto) {
+    const matchCount = userLotto
+      .getNumber()
+      .filter((item) => this.#winningNumber.includes(item)).length;
+
+    if (matchCount === 6) return "FIRST";
+    if (matchCount === 5 && this.hasBonusNumber(userLotto)) return "SECOND";
+    if (matchCount === 5) return "THIRD";
+    if (matchCount === 4) return "FOURTH";
+    if (matchCount === 3) return "FIFTH";  
+  }
+
+  hasBonusNumber(userLotto) {
+    return userLotto.getNumber().includes(Number(this.#bonusNumber));
+  }
+
   getWinningNumber() {
     return this.#winningNumber;
   }
