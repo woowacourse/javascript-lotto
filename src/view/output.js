@@ -1,11 +1,12 @@
 import { PRIZE } from "../constants/constant.js";
 
 export const OutputView = {
+  outputCount(count) {
+    console.log(count, "개를 구매했습니다.\n");
+  },
+
   outputLottoNumber(lottos) {
-    console.log(lottos.length, "개를 구매했습니다.");
-    for (let i = 0; i < lottos.length; i++) {
-      console.log(lottos[i].getNumber());
-    }
+    console.log(lottos);
   },
 
   outputWinningStatics(result) {

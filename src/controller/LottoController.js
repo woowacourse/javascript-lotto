@@ -11,15 +11,17 @@ class LottoController {
   async play() {
     const money = await InputView.inputPurchaseAmount();
     const count = calculateLottoCountService(money);
-    const randomLotto = lottoService(count);
-    OutputView.outputLottoNumber(randomLotto);
+    const randomLottos = lottoService(count);
+
+    OutputView.outputCount(count);
+    randomLottos.forEach((lotto) => lotto.printLottos());
 
     const winningNumber = await InputView.inputWinningNumber();
     const bonusNumber = await InputView.inputBonusNumber(winningNumber);
 
     const winningLotto = new WinningLotto(winningNumber, bonusNumber);
 
-    const result = compareResultService(randomLotto, winningLotto);
+    const result = compareResultService(randomLottos, winningLotto);
 
     const profit = profitService(money, result);
 
