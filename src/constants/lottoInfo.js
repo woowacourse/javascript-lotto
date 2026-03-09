@@ -1,4 +1,5 @@
 export const LOTTO_PRICE = 1000;
+export const LOTTO_SIZE = 6;
 
 export const RANK = {
   FIRST: 1,

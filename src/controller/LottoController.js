@@ -1,11 +1,11 @@
-import { LOTTO_PRICE, PRIZE } from "../constants/lottoInfo.js";
+import { LOTTO_PRICE, LOTTO_SIZE, PRIZE } from "../constants/lottoInfo.js";
 import { makeLottos } from "../domain/LottoMachine.js";
 import { calProfitRate } from "../domain/WinningRate.js";
 
 class LottoController {
   #lottoCount;
   #purchasedLottos;
-  #rankCount = Array(6).fill(0);
+  #rankCount = Array(LOTTO_SIZE).fill(0);
   #totalPrize = 0;
 
   constructor(lottoCount) {

@@ -1,4 +1,4 @@
-import { LOTTO_PRICE } from "../constants/lottoInfo.js";
+import { LOTTO_PRICE, LOTTO_SIZE } from "../constants/lottoInfo.js";
 import { ERROR_MESSAGE } from "../constants/message.js";
 
 const Validator = {
@@ -27,7 +27,7 @@ const Validator = {
     }
   },
   validateLottoCount(lotto) {
-    if (lotto.length !== 6) {
+    if (lotto.length !== LOTTO_SIZE) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_COUNT);
     }
   },
