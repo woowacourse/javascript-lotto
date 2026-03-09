@@ -1,4 +1,4 @@
-import { LOTTO_NUMBER_RANGE, LOTTO_PRICE, LOTTO_SIZE } from "./lottoInfo";
+import { LOTTO_NUMBER_RANGE, LOTTO_PRICE, LOTTO_SIZE } from "./lottoInfo.js";
 
 export const ERROR_MESSAGE = Object.freeze({
   INVALID_PURCHASE_UNIT: `[ERROR] 구입 금액은 ${LOTTO_PRICE}원 단위여야 합니다.`,

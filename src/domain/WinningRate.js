@@ -1,4 +1,4 @@
-import { RANK } from "../constants/lottoInfo";
+import { RANK } from "../constants/lottoInfo.js";
 
 export function calPrize(count, hasBonus) {
   if (count === 6) return RANK.FIRST;
