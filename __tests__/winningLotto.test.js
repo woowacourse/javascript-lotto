@@ -30,7 +30,7 @@ describe("보너스 번호 테스트", () => {
 
   test("보너스 번호가 NaN인 경우 예외가 발생한다.", () => {
     expect(() => {
-      new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), 46);
+      new WinningLotto(new Lotto([1, 2, 3, 4, 5, 6]), NaN);
     }).toThrow(LOTTO_ERROR_MESSAGE.INPUT_RANGE);
   });
 });
