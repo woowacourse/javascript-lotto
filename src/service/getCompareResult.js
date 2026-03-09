@@ -1,5 +1,5 @@
 export function getCompareResult(userLottos, winningLotto) {
-  const count = {
+  const rankResult = {
     FIRST: 0,
     SECOND: 0,
     THIRD: 0,
@@ -9,8 +9,8 @@ export function getCompareResult(userLottos, winningLotto) {
 
   userLottos.forEach((userLotto) => {
     const rank = winningLotto.getRank(userLotto);
-    if (rank) count[rank]++;
+    if (rank) rankResult[rank]++;
   });
 
-  return count;
+  return rankResult;
 }
