@@ -2,8 +2,8 @@ import Validator from "../src/Utils/Validator.js";
 
 describe("Validator 테스트", () => {
   test.each([
-    { input: "1000 ", expected: "1000" },
-    { input: "7500", expected: "7500" },
+    { input: "1000 ", expected: 1000 },
+    { input: "7500", expected: 7500 },
   ])("구입 금액 유효성 검증 테스트: ", ({ input, expected }) => {
     return expect(Validator.validatePurchasePrice(input)).toBe(expected);
   });

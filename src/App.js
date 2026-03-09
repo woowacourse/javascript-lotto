@@ -2,12 +2,13 @@ import InputConsole from "./Console/InputConsole.js";
 import OutputConsole from "./Console/OutputConsole.js";
 import LottoMachine from "./Domain/LottoMachine.js";
 import LottoResult from "./Domain/LottoResult.js";
+import Validator from "./Utils/Validator.js";
 
 class App {
   async run() {
     while(true){
     // 구입할 로또 금액 입력받기
-    const purchasePrice = await InputConsole.readPurchasePrice();
+    const purchasePrice = Validator.validatePurchasePrice(await InputConsole.readPurchasePrice());
 
     // 발행된 로또 목록 출력하기
     const lottoMachine = new LottoMachine();
