@@ -13,7 +13,7 @@ class MissionRandomUtil extends RandomUtil {
       );
   }
 
-  pickUniqNumbers() {
+  pickUniqueNumbers() {
     const lottoNumbers = new Set();
 
     do {

@@ -11,7 +11,7 @@ class Lotto {
 
   #validate(numbers) {
     this.#validateCount(numbers);
-    this.#validateUniq(numbers);
+    this.#validateUnique(numbers);
     numbers.forEach((number) => {
       this.#validateNumber(number);
       this.#validateRange(number);
@@ -24,7 +24,7 @@ class Lotto {
     }
   }
 
-  #validateUniq(numbers) {
+  #validateUnique(numbers) {
     const numbersSet = new Set(numbers);
     if (numbersSet.size !== numbers.length) {
       throw new Error(LOTTO_ERROR_MESSAGE.INPUT_DUPLICATE);

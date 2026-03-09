@@ -1,6 +1,6 @@
 class RandomUtil {
-  pickUniqNumbers() {
-    throw new Error("pickUniqNumbers 메서드가 구현되지 않았습니다.");
+  pickUniqueNumbers() {
+    throw new Error("pickUniqueNumbers 메서드가 구현되지 않았습니다.");
   }
 }
 

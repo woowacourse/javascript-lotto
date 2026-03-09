@@ -13,13 +13,13 @@ class WinningLotto {
   }
 
   #validate(numbers, bonus) {
-    this.#validateUniq(numbers.getNumbers(), bonus);
+    this.#validateUnique(numbers.getNumbers(), bonus);
     this.#validateRange(bonus);
   }
 
-  #validateUniq(numbers, bonus) {
-    const uniqueNumbers = new Set([...numbers, bonus]);
-    if (uniqueNumbers.size !== numbers.length + 1) {
+  #validateUnique(numbers, bonus) {
+    const UniqueueNumbers = new Set([...numbers, bonus]);
+    if (UniqueueNumbers.size !== numbers.length + 1) {
       throw new Error(LOTTO_ERROR_MESSAGE.INPUT_DUPLICATE);
     }
   }
@@ -35,13 +35,13 @@ class WinningLotto {
   }
 
   evaluateLotto(lotto) {
-    const uniqueNumbers = new Set([
+    const UniqueueNumbers = new Set([
       ...lotto.getNumbers(),
       ...this.#lottoNumbers.getNumbers(),
     ]);
 
     const matchedNumberCount =
-      lotto.getNumbers().length * 2 - uniqueNumbers.size;
+      lotto.getNumbers().length * 2 - UniqueueNumbers.size;
     const hasBonusNumber = lotto.getNumbers().includes(this.#bonus);
 
     return Object.entries(RANK_CONDITION).find(

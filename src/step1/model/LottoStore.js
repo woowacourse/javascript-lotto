@@ -23,7 +23,7 @@ class LottoStore {
     const lottos = [];
 
     for (let i = 0; i < count; i++) {
-      const lotto = new Lotto(this.#randomUtil.pickUniqNumbers());
+      const lotto = new Lotto(this.#randomUtil.pickUniqueNumbers());
       lottos.push(lotto);
     }
 

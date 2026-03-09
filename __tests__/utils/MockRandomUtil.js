@@ -11,7 +11,7 @@ class MockRandomUtil extends RandomUtil {
     this.#returnValues = [...returnValues];
   }
 
-  pickUniqNumbers() {
+  pickUniqueNumbers() {
     const index = Math.min(this.#index++, this.#returnValues.length - 1);
     const returnValue = this.#returnValues[index] ?? [];
     
