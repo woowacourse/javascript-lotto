@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from "../../src/constants/message";
 import { isRetryAnswerValid } from "../../src/validates/RetryAnswerValidator";
 
-describe("구매 금액 입력에 적용되는 검증", () => {
+describe("프로그램이 끝났을 때 재시도 입력(y/n) 유효성 검증", () => {
   test("y를 입력하면 true를 반환한다.", () => {
     expect(isRetryAnswerValid("y")).toBe(true);
   });
