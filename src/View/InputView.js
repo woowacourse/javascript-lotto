@@ -1,10 +1,10 @@
 import { COMMAND, ERROR_MESSAGE, INPUT_MESSAGE, LOTTO } from "../constants.js";
-import Utils from "../Utils.js";
+import { readLineAsync } from "../Utils.js";
 import Validator from "../Validator.js";
 
 const InputView = {
   async readMoney() {
-    const input = await Utils.readLineAsync(INPUT_MESSAGE.MONEY);
+    const input = await readLineAsync(INPUT_MESSAGE.MONEY);
     Validator.validateNotEmptyString(input);
     Validator.validateStringIsNumber(input);
 
@@ -17,7 +17,7 @@ const InputView = {
   },
 
   async readWinningNumbers() {
-    const input = await Utils.readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
+    const input = await readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
     if (Validator.validateNotEmptyString(input)) {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
@@ -40,7 +40,7 @@ const InputView = {
   },
 
   async readBonusNumber() {
-    const input = await Utils.readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
+    const input = await readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
     Validator.validateNotEmptyString(input);
     Validator.validateStringIsNumber(input);
     const bonusNumber = Number(input);
@@ -53,7 +53,7 @@ const InputView = {
   },
 
   async readRestartCommand() {
-    const restartCommand = await Utils.readLineAsync(INPUT_MESSAGE.COMMAND);
+    const restartCommand = await readLineAsync(INPUT_MESSAGE.COMMAND);
     if (
       !(
         COMMAND.YES.includes(restartCommand) ||

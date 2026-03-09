@@ -1,6 +1,6 @@
 import { LOTTO } from "./constants.js";
 import Lotto from "./Model/Lotto.js";
-import Utils from "./Utils.js";
+import { getRandomNumber } from "./Utils.js";
 
 const LottoGenerator = {
   calculateBuyLottoCount(money) {
@@ -10,7 +10,7 @@ const LottoGenerator = {
   getRandomLottoNumbers() {
     const randomNumbers = [];
     while (randomNumbers.length !== LOTTO.COUNT) {
-      const randomNumber = Utils.getRandomNumber(LOTTO.LOWER, LOTTO.UPPER);
+      const randomNumber = getRandomNumber(LOTTO.LOWER, LOTTO.UPPER);
       if (randomNumbers.includes(randomNumber)) continue;
 
       randomNumbers.push(randomNumber);
