@@ -15,6 +15,25 @@ describe("유효성 검사 테스트", () => {
     });
   });
 
+  describe("로또 번호 테스트", () => {
+    test.each([
+      ["숫자가 아닌 경우", "m", ERROR_MESSAGE.NOT_NUMBER],
+      ["정수가 아닌 경우", 1.2, ERROR_MESSAGE.MUST_BE_INTEGER],
+      [
+        "1에서 45 사이의 숫자가 아닌 경우",
+        50,
+        ERROR_MESSAGE.INVALID_NUMBER_RANGE,
+      ],
+    ])(
+      "%s, 예외가 발생해야 한다.",
+      (description, lottoNumber, errorMessage) => {
+        expect(() => validator.validateLottoNumber(lottoNumber)).toThrow(
+          errorMessage,
+        );
+      },
+    );
+  });
+
   describe("당첨 로또 테스트", () => {
     test.each([
       [
