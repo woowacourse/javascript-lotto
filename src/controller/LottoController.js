@@ -1,4 +1,4 @@
-import { PRIZE } from "../constants/lottoInfo.js";
+import { LOTTO_PRICE, PRIZE } from "../constants/lottoInfo.js";
 import { makeLottos } from "../domain/LottoMachine.js";
 import { calProfitRate } from "../domain/WinningRate.js";
 
@@ -26,7 +26,7 @@ class LottoController {
   }
 
   getWinningResult() {
-    const purchasedPrice = this.#lottoCount * 1000;
+    const purchasedPrice = this.#lottoCount * LOTTO_PRICE;
 
     return {
       rankCount: this.#rankCount,

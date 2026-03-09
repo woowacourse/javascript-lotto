@@ -1,3 +1,5 @@
+export const LOTTO_PRICE = 1000;
+
 export const PRIZE = {
   0: 0,
   1: 2000000000,

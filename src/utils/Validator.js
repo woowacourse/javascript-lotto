@@ -1,3 +1,4 @@
+import { LOTTO_PRICE } from "../constants/lottoInfo.js";
 import { ERROR_MESSAGE } from "../constants/message.js";
 
 const Validator = {
@@ -6,7 +7,7 @@ const Validator = {
   },
 
   validatePrice(price) {
-    if (price % 1000 !== 0) {
+    if (price % LOTTO_PRICE !== 0) {
       throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_UNIT);
     }
   },

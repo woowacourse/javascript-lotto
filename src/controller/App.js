@@ -2,13 +2,14 @@ import LottoController from "./LottoController.js";
 import OutPutView from "../view/OutputView.js";
 import InputView from "../view/InputView.js";
 import retry from "../utils/retry.js";
+import { LOTTO_PRICE } from "../constants/lottoInfo.js";
 
 class App {
   async run() {
     while (true) {
       const purchasedPrice = await retry(() => InputView.inputPrice());
 
-      const lottoCount = purchasedPrice / 1000;
+      const lottoCount = purchasedPrice / LOTTO_PRICE;
 
       const lottoController = new LottoController(lottoCount);
       const purchasedLottos = lottoController.issueLottos();
