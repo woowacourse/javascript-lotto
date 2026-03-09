@@ -1,5 +1,5 @@
-import LottoList from "../src/Model/LottoList.js";
-import Random from "../src/utils/Random.js";
+import LottoList from "../../src/Model/LottoList.js";
+import Random from "../../src/utils/Random.js";
 
 const mockRandoms = (numbers) => {
   Random.randomArray = jest.fn();

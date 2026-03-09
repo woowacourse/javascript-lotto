@@ -1,4 +1,4 @@
-import Rate from "../src/Model/Rate.js";
+import Rate from "../../src/Model/Rate.js";
 
 describe("수익률 계산 검사 테스트", () => {
   test.each([

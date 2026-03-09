@@ -3,7 +3,8 @@ const Random = {
     // 랜덤 숫자 뽑기
     let randomArray = [];
     for (let i = 0; i < count; i++) {
-      const randomNum = Math.floor(Math.random() * (endNum - startNum + 1));
+      const randomNum =
+        startNum + Math.floor(Math.random() * (endNum - startNum + 1));
       if (randomArray.indexOf(randomNum) === -1) randomArray.push(randomNum);
       else i--;
     }
