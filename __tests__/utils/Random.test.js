@@ -1,17 +1,17 @@
 import Random from "../../src/utils/Random.js";
 
-const mockRandoms = (numbers) => {
-  Random.randomArray = jest.fn();
+const mockMathRandom = (numbers) => {
+  const spyMath = jest.spyOn(Math, "random");
+
   numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, Random.randomArray);
+    acc.mockReturnValueOnce(number);
+    return acc;
+  }, spyMath);
 };
 
 describe("랜덤 숫자 뽑기 테스트", () => {
   test("시작 번호와 끝번호 사이에 숫자를 n가 만큼 뽑아서 배열로 반환하다", () => {
-    mockRandoms([
-      [1, 2, 3, 4, 5, 6], //
-    ]);
+    mockMathRandom([0.1, 0.2, 0.3, 0.4, 0.5, 0.6]);
 
     const start = 1,
       end = 45,
