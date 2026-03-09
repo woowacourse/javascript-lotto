@@ -26,4 +26,23 @@ describe("랜덤 숫자 뽑기 테스트", () => {
 
     expect(Random.randomArray(start, end, count)).toEqual([1, 2, 3, 4, 5, 6]);
   });
+
+  test("시작 번호로 시작하는 값을 뽑는다", () => {
+    mockMathRandom([
+      (1 - 1) / (45 - 11),
+      (2 - 1) / (45 - 11),
+      (3 - 1) / (45 - 11),
+      (4 - 1) / (45 - 11),
+      (5 - 1) / (45 - 11),
+      (6 - 1) / (45 - 11),
+    ]);
+
+    const start = 11,
+      end = 45,
+      count = 6;
+
+    expect(Random.randomArray(start, end, count)).toEqual([
+      11, 12, 13, 14, 15, 16,
+    ]);
+  });
 });
