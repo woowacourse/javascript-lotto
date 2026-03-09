@@ -14,7 +14,7 @@ class ConsoleInputView {
 
   static #readNumberList(input) {
     const parsedInputList = input.split(",").map((v) => Number(v.trim()));
-    parsedInputList.map(Validator.isNumber);
+    parsedInputList.forEach((v) => Validator.isNumber(v));
     return parsedInputList;
   }
 
