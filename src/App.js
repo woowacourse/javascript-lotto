@@ -35,8 +35,7 @@ class App {
     const statistics = lottoGame.getStatistics(lottoList);
     const rate = new Rate(statistics, price);
 
-    this.#outputView.printStatistics(statistics);
-    this.#outputView.printRate(rate.getRate());
+    this.#showResult(statistics, rate.getRate());
 
     const isRetry = await this.#inputView.readIsRetry();
     if (isRetry === "y") {
@@ -89,6 +88,10 @@ class App {
       }
     }
     return bonusNumber;
+  }
+  #showResult(satistics, rate) {
+    this.#outputView.printStatistics(satistics);
+    this.#outputView.printRate(rate);
   }
 }
 
