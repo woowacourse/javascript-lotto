@@ -20,14 +20,10 @@ class LottoStore {
 
   issuedLottos(amount) {
     const count = amount / LOTTO.PRICE;
-    const lottos = [];
 
-    for (let i = 0; i < count; i++) {
-      const lotto = new Lotto(this.#randomUtil.pickUniqueNumbers());
-      lottos.push(lotto);
-    }
-
-    return lottos;
+    return Array.from({ length: count }, () => 
+      new Lotto(this.#randomUtil.pickUniqueNumbers())
+    );
   }
 }
 
