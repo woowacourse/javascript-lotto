@@ -1,11 +1,22 @@
 import Lotto from "../src/domain/Lotto.js";
+import { LOTTO_RANGE } from "../src/constants/constant.js";
 
 describe("Lotto", () => {
-  test("발급 받은 번호로 로또 객체를 생성한다.", () => {
-    const numbers = [1, 2, 3, 4, 5, 6];
+  const lotto = new Lotto();
 
-    const lotto = new Lotto(numbers);
+  test("Lotto 객체 생성 시, 랜덤 번호 6개를 발급받아 저장한다", () => {
+    expect(lotto.getNumber().length).toBe(LOTTO_RANGE.COUNT);
+  });
 
-    expect(lotto.getNumber()).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  test("랜덤으로 발급한 로또 번호는 중복되지 않는다.", () => {
+    const lottoSet = new Set(lotto.getNumber());
+    expect(lottoSet.size).toBe(LOTTO_RANGE.COUNT);
+  });
+
+  test("랜덤으로 발급한 번호의 범위는 1 ~ 45이다.", () => {
+    lotto.getNumber().forEach((item) => {
+      expect(item).toBeGreaterThanOrEqual(1);
+      expect(item).toBeLessThanOrEqual(45);
+    });
   });
 });
