@@ -16,7 +16,7 @@ class App {
     OutputConsole.printLottoList(lottos);
 
     // 당첨 번호 입력받기
-    const winningNumbers = await InputConsole.readWinningNumbers();
+    const winningNumbers = Validator.validateWinningNumbers(await InputConsole.readWinningNumbers(),);
 
     // 보너스 번호 입력받기
     const bonusNumber = await InputConsole.readBonusNumber(winningNumbers);
