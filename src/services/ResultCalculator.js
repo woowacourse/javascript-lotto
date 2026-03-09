@@ -1,17 +1,13 @@
 import { LOTTO_RANK } from "../constants/config.js";
 
 export function resultCalculator(results) {
-  const resultData = Object.values(LOTTO_RANK).map((rank) => ({
-    ...rank,
-    count: 0,
-  }));
+  const resultData = Object.values(LOTTO_RANK)
+    .map((rank) => ({ ...rank, count: 0 }))
+    .sort((a, b) => a.matchCount - b.matchCount || Number(a.requireBonus) - Number(b.requireBonus));
 
   results.forEach(({ matchCount, hasBonus }) => {
-    if (matchCount === 6) resultData[4].count++;
-    if (matchCount === 5 && hasBonus) resultData[3].count++;
-    if (matchCount === 5 && !hasBonus) resultData[2].count++;
-    if (matchCount === 4) resultData[1].count++;
-    if (matchCount === 3) resultData[0].count++;
+    const rank = resultData.find((r) => r.matchCount === matchCount && r.requireBonus === hasBonus);
+    if (rank) rank.count++;
   });
 
   return resultData;
