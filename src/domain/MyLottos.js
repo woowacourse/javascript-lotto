@@ -26,7 +26,7 @@ class MyLotto {
       result.FOURTH * PRIZE.FOURTH +
       result.FIFTH * PRIZE.FIFTH;
     
-    const profit = ((totalPrize / this.#money) * 100).toFixed(1);
+    const profit = ((totalPrize / this.#money) * 100);
     
     return profit;
   }

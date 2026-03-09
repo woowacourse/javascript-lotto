@@ -23,7 +23,7 @@ describe("getProfit", () => {
 
     const money = 8000;
     const myLotto = new MyLotto(money, randomLottos);
-    const profit = myLotto.getProfit(result);
+    const profit = myLotto.getProfit(result).toFixed(1);
     expect(profit).toBe("62.5");
   });
 });
