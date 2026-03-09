@@ -17,9 +17,12 @@ class Rank {
 
   static order = [Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST];
 
+  #matchCount;
+  #hasBonus;
+
   constructor({ matchCount, hasBonus }) {
-    this.matchCount = matchCount;
-    this.hasBonus = hasBonus;
+    this.#matchCount = matchCount;
+    this.#hasBonus = hasBonus;
   }
 
   getPrize() {
@@ -41,7 +44,7 @@ class Rank {
   }
 
   getResult() {
-    return { matchCount: this.matchCount, hasBonus: this.hasBonus };
+    return { matchCount: this.#matchCount, hasBonus: this.#hasBonus };
   }
 }
 
