@@ -11,8 +11,7 @@ class App {
     const purchasePrice = await InputConsole.readPurchasePrice();
 
     // 발행된 로또 목록 출력하기
-    const lottoMachine = new LottoMachine();
-    const lottos = lottoMachine.issueLottos(purchasePrice);
+    const lottos = LottoMachine.issueLottos(purchasePrice);
     OutputConsole.printLottoList(lottos);
 
     // 당첨 번호 입력받기
