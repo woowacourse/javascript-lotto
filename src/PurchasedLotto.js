@@ -1,5 +1,5 @@
-import { PRIZE_PER_RANK } from "./constants";
-import Lotto from "./Lotto";
+import { PRIZE_PER_RANK } from "./constants.js";
+import Lotto from "./Lotto.js";
 
 class PurchasedLotto {
   #lottos;
@@ -14,6 +14,10 @@ class PurchasedLotto {
     this.#lottos = lottoNumbersList.map(
       (lottoNumbers) => new Lotto(lottoNumbers)
     );
+  }
+
+  getLottos() {
+    return this.#lottos;
   }
 
   getLottoCount() {

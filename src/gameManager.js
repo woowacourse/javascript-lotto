@@ -1,6 +1,4 @@
-import { generateLottos } from "./generateLottos.js";
 import { generateRandomNumbers } from "./generateRandomNumbers.js";
-import { getReturnRate } from "./utils/getReturnRate.js";
 import {
   printProfitRate,
   printPurchaseCount,
@@ -14,8 +12,8 @@ import {
   restartInputHandler,
   winningNumberInputHandler,
 } from "./view/inputHandler.js";
-import { getPrizeList } from "./getPrizeList.js";
 import { close } from "./view/input.js";
+import PurchasedLotto from "./PurchasedLotto.js";
 
 export const gameManager = async () => {
   const validatedAmount = await purchaseAmountInputHandler();
@@ -26,8 +24,10 @@ export const gameManager = async () => {
     { length: purchaseCount },
     generateRandomNumbers
   );
-  const generatedLottos = generateLottos(purchasedLottoNumbers);
-  printPurchasedLottoNumbers(generatedLottos);
+
+  const generatedLottos = new PurchasedLotto(purchasedLottoNumbers);
+
+  printPurchasedLottoNumbers(generatedLottos.getLottos());
 
   const validatedWinningArray = await winningNumberInputHandler();
   const validatedBonusNumber = await bonusNumberInputHandler(
@@ -39,11 +39,10 @@ export const gameManager = async () => {
     validatedBonusNumber
   );
 
-  const prizeListArray = getPrizeList(generatedLottos, winningLotto);
-  printWinStatistics(prizeListArray);
-
-  const profitRate = getReturnRate(prizeListArray, validatedAmount);
-  printProfitRate(profitRate);
+  printWinStatistics(generatedLottos.getPrizeList(winningLotto));
+  printProfitRate(
+    generatedLottos.calculateReturnRate(winningLotto, validatedAmount)
+  );
 
   const validatedYn = await restartInputHandler();
   if (validatedYn === "y") {

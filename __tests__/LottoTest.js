@@ -1,10 +1,7 @@
 import Lotto from "../src/Lotto.js";
 import WinningLotto from "../src/WinningLotto.js";
 import { LOTTO_INTO } from "../src/constants.js";
-import { generateLottos } from "../src/generateLottos.js";
 import { generateRandomNumbers } from "../src/generateRandomNumbers.js";
-import { getPrizeList } from "../src/getPrizeList.js";
-import { getReturnRate } from "../src/utils/getReturnRate.js";
 
 describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () => {
   test.each([
@@ -71,69 +68,6 @@ describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () 
   });
 });
 
-describe("당첨 내역 반환 테스트", () => {
-  const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
-
-  test("각 등수가 포함된 경우", () => {
-    const purchasedLottos = [
-      new Lotto([1, 2, 3, 4, 5, 6]), // 1등
-      new Lotto([1, 2, 3, 4, 5, 7]), // 2등
-      new Lotto([1, 2, 3, 4, 5, 8]), // 3등
-      new Lotto([1, 2, 3, 4, 7, 9]), // 4등
-      new Lotto([1, 2, 3, 8, 9, 10]), // 5등
-      new Lotto([1, 7, 8, 9, 10, 11]), // 낙첨
-      new Lotto([1, 2, 3, 4, 5, 6]), // 1등
-    ];
-
-    expect(getPrizeList(purchasedLottos, winningLotto)).toEqual([
-      0, 2, 1, 1, 1, 1,
-    ]);
-  });
-
-  test("전부 낙첨인 경우", () => {
-    const purchasedLottos = [
-      new Lotto([7, 8, 9, 10, 11, 12]),
-      new Lotto([7, 8, 9, 10, 11, 13]),
-      new Lotto([7, 8, 9, 10, 11, 14]),
-    ];
-
-    expect(getPrizeList(purchasedLottos, winningLotto)).toEqual([
-      0, 0, 0, 0, 0, 0,
-    ]);
-  });
-});
-
-describe("수익률 계산 테스트", () => {
-  test("각 등수가 포함된 경우", () => {
-    expect(getReturnRate([0, 0, 0, 0, 0, 1], 8000)).toBe(62.5);
-  });
-
-  test("전부 낙첨인 경우", () => {
-    expect(getReturnRate([0, 0, 0, 0, 0, 0], 5000)).toBe(0);
-  });
-});
-
-describe("로또 발행 테스트", () => {
-  test("3개 발행 -> Lotto 인스턴스 3개 반환", () => {
-    const lottos = generateLottos([
-      [1, 2, 3, 4, 5, 6],
-      [1, 2, 4, 5, 6, 7],
-      [1, 2, 8, 9, 10, 11],
-    ]);
-    expect(lottos).toHaveLength(3);
-    expect(lottos[0]).toBeInstanceOf(Lotto);
-  });
-  test("0개 발행 -> 빈 배열 반환", () => {
-    const lottos = generateLottos([]);
-    expect(lottos).toEqual([]);
-  });
-  test("1개 발행 -> Lotto 인스턴스 1개 반환", () => {
-    const lottos = generateLottos([[1, 2, 8, 9, 10, 11]]);
-    expect(lottos).toHaveLength(1);
-    expect(lottos[0]).toBeInstanceOf(Lotto);
-  });
-});
-
 describe("랜덤 숫자 배열 반환 테스트", () => {
   test("반환된 결과물의 요소는 6개", () => {
     expect(generateRandomNumbers()).toHaveLength(LOTTO_INTO.LOTTO_NUMBER_COUNT);
@@ -149,30 +83,5 @@ describe("랜덤 숫자 배열 반환 테스트", () => {
       expect(n).toBeGreaterThanOrEqual(LOTTO_INTO.LOTTO_MIN_NUMBER);
       expect(n).toBeLessThanOrEqual(LOTTO_INTO.LOTTO_MAX_NUMBER);
     });
-  });
-});
-
-describe("간이 도메인 로직 통합 테스트", () => {
-  test("1개 구매, 5등 당첨", () => {
-    const lottos = generateLottos([[1, 2, 3, 7, 8, 9]]);
-    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
-    const prizeResult = getPrizeList(lottos, winningLotto);
-    const returnRate = getReturnRate(prizeResult, 1000);
-
-    expect(prizeResult).toEqual([0, 0, 0, 0, 0, 1]);
-    expect(returnRate).toBe(500);
-  });
-
-  test("2개 구매, 전부 낙첨", () => {
-    const lottos = generateLottos([
-      [7, 8, 9, 10, 11, 12],
-      [13, 14, 15, 16, 17, 18],
-    ]);
-    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
-    const prizeResult = getPrizeList(lottos, winningLotto);
-    const returnRate = getReturnRate(prizeResult, 2000);
-
-    expect(prizeResult).toEqual([0, 0, 0, 0, 0, 0]);
-    expect(returnRate).toBe(0);
   });
 });

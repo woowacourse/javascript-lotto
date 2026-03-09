@@ -2,7 +2,7 @@ import {
   validateCount,
   validateNoDuplicate,
   validateRange,
-} from "./utils/validator";
+} from "./utils/validator.js";
 
 class Lotto {
   constructor(lottoNumberList) {
