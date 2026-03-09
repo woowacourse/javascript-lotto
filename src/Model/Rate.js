@@ -1,6 +1,8 @@
 import { PRIZE_MONEY } from "../constants/lottoConstants.js";
 
 class Rate {
+  #statistics;
+  #price;
   constructor(statistics, price) {
     this.#statistics = statistics;
     this.#price = price;
