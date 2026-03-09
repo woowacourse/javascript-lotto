@@ -1,4 +1,4 @@
-import { COMMAND, ERROR_MESSAGE, INPUT_MESSAGE, LOTTO } from "../constants.js";
+import { COMMAND, INPUT_MESSAGE, LOTTO } from "../constants.js";
 import { readLineAsync } from "../Utils.js";
 import Validator from "../Validator.js";
 
