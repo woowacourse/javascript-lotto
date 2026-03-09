@@ -27,15 +27,15 @@ class App {
         bonusNumber,
       };
       const resultCalculator = new LottoResultCalculator();
-      const winningResult = lottoResult.calculateWinningRank(
+      const winningResult = resultCalculator.calculateWinningRank(
         lottos,
         luckyNumbers,
       );
       OutputConsole.printMatchResult(winningResult);
 
       // 총 수익률 출력하기
-      const profitRate = lottoResult.calculateProfitRate(
-        resultCalculator,
+      const profitRate = resultCalculator.calculateProfitRate(
+        winningResult,
         purchasePrice,
       );
       OutputConsole.printProfitRate(profitRate);
