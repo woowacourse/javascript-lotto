@@ -9,7 +9,7 @@ class ConsoleOutput extends Output {
   printResult(countsObject, returnOnInvestment) {
     console.log("\n당첨 통계");
     console.log("--------------------");
-    Object.values(RANK).forEach((rank) => {
+    Object.values(RANK).toReversed().forEach((rank) => {
       console.log(
         [
           `${RANK_CONDITION[rank].count}개 일치`,
