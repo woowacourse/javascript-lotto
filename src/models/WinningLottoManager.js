@@ -10,10 +10,8 @@ class WinningLottoManager extends Lotto {
   #bonusNumber;
 
   constructor(winningLottosInput) {
-    const parsedWinningLottos = winningLottosInput.split(",").map(Number);
-
-    super(parsedWinningLottos);
-    this.#winningLottos = parsedWinningLottos;
+    super(winningLottosInput);
+    this.#winningLottos = winningLottosInput;
   }
 
   setBonusNumber(bonusNumberInput) {
