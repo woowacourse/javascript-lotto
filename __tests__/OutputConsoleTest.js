@@ -16,8 +16,8 @@ describe("OutputConsole 테스트", () => {
     const logSpy = getLogSpy();
 
     const lottos = [
-      { toString: () => "[1, 2, 3, 4, 5, 6]" },
-      { toString: () => "[40, 41, 42, 43, 44, 45]" },
+      { getFormattedNumbers: () => "[1, 2, 3, 4, 5, 6]" },
+      { getFormattedNumbers: () => "[40, 41, 42, 43, 44, 45]" },
     ];
 
     OutputConsole.printLottoList(lottos);
