@@ -25,6 +25,12 @@ class App {
   }
 
   async run() {
+    do {
+      await this.playLotto();
+    } while (await this.#askRetry());
+  }
+
+  async playLotto() {
     const money = await this.#askMoney();
     const lottos = this.#lottoStore.issuedLottos(money.getMoney());
     this.#view.output.printPurchasedLottos(lottos);
@@ -40,9 +46,6 @@ class App {
       lottoGameResult.getCounts(),
       returnOnInvestment,
     );
-
-    await this.#askRetry();
-    return;
   }
 
   validateInput(InputClass) {
@@ -62,6 +65,7 @@ class App {
       const inputBonus = await this.#view.input.readLineAsync(
         INPUT_MESSAGE.BONUS_NUMBER,
       );
+
       const bonusNumber = Number(inputBonus);
 
       const winningLotto = new WinningLotto(lotto, bonusNumber);
@@ -95,13 +99,13 @@ class App {
   }
 
   async #askRetry() {
-    await this.#retry(async () => {
+    return await this.#retry(async () => {
       const askRetry = await this.#view.input.readLineAsync(
         INPUT_MESSAGE.ASK_RETRY,
       );
-      if (askRetry === "y" || askRetry === "Y") return await this.run();
-      if (askRetry === "n" || askRetry === "N") return;
 
+      if (askRetry === "y" || askRetry === "Y") return true;
+      if (askRetry === "n" || askRetry === "N") return false;
       throw new Error(ERROR_MESSAGE.NOT_INPUT_RETRY);
     });
   }
