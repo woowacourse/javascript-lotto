@@ -21,9 +21,9 @@ describe("로또 클래스 테스트", () => {
       expect(new Lotto([1, 2, 3, 4, 5, 6])).toBeInstanceOf(Lotto);
     });
 
-    test("toString()이 올바른 문자열을 반환한다.", () => {
+    test("getFormattedNumbers()가 올바른 문자열을 반환한다.", () => {
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-      expect(lotto.toString()).toBe("[1, 2, 3, 4, 5, 6]");
+      expect(lotto.getFormattedNumbers()).toBe("[1, 2, 3, 4, 5, 6]");
     });
 
     test("당첨 번호와 일치하는 개수를 계산한다.", () => {
@@ -54,13 +54,10 @@ describe("LottoMachine 동작 테스트", () => {
 );
 
 describe("LottoResult 동작 테스트", () => {
-  beforeEach(() => {
-    jest.restoreAllMocks();
-  });
 
   // 1. 등수 집계 테스트
   test("등수 집계 테스트: 각 등수 카운팅", () => {
-    const luckyNumbers = new LuckyNumbers([1, 2, 3, 4, 5, 6], 7);
+    const luckyNumbers = new LuckyNumbers([1, 2, 3, 4, 5, 6], "7");
 
     const lottos = [
       new Lotto([1, 2, 3, 4, 5, 6]), // 1등
@@ -71,11 +68,9 @@ describe("LottoResult 동작 테스트", () => {
       new Lotto([14, 15, 16, 17, 18, 19]), // 일치 없음
     ];
 
-    const result = new LottoResult();
-
-    const winningResult = result.calculateWinningResult(
+    const winningResult = LottoResult.calculateWinningResult(
       lottos,
-      winningNumbersObj,
+      luckyNumbers,
     );
     expect(winningResult).toEqual({
       FIFTH: 1,
@@ -88,8 +83,6 @@ describe("LottoResult 동작 테스트", () => {
 
   // 2. 수익률 테스트
   test("수익률 테스트", () => {
-
-     const lottoResult = new LottoResult();
      const winningResult = {
        FIRST: 1,
        SECOND: 1,
@@ -99,15 +92,12 @@ describe("LottoResult 동작 테스트", () => {
      };
 
      const purchasePrice = 6000;
-     const profitRate = lottoResult.calculateProfitRate(winningResult,purchasePrice);
+     const profitRate = LottoResult.calculateProfitRate(winningResult,purchasePrice);
 
-     expect(profitRate).toBe(
-      ((5000 +
-      50000 +
-      1500000 +
-      30000000 +
-      2000000000) - purchasePrice) / purchasePrice * 100
-     );
+     const expectedTotalPrize = 5000 + 50000 + 1500000 + 30000000 + 2000000000;
+     const expectedRate = Number((((expectedTotalPrize - purchasePrice) / purchasePrice) * 100).toFixed(1));
+
+     expect(profitRate).toBe(expectedRate);
   });
 });
 
