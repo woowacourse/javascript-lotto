@@ -57,6 +57,16 @@ const Validator = {
 
     return bonusNumber;
   },
+
+  validateRestart(input) {
+    const command = input.trim().toLowerCase();
+
+    if (command !== "y" && command !== "n") {
+      throw new Error("[ERROR] y 또는 n을 입력해주세요!");
+    }
+
+    return command;
+  },
 };
 
 export default Validator;

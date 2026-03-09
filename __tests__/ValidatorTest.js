@@ -78,4 +78,24 @@ describe("Validator 테스트", () => {
       ).toThrow(/^\[ERROR\]/);
     },
   );
+
+  test.each([
+    { input: "y", expected: "y" },
+    { input: "n", expected: "n" },
+    { input: "Y", expected: "y" },
+    { input: "N", expected: "n" },
+  ])("재시작 명령 정상 테스트: $input", ({ input, expected }) => {
+    return expect(Validator.validateRestart(input)).toBe(expected);
+  });
+
+  test.each([
+    { input: "yes", message: "재시작 명령 유효하지 않음" },
+    { input: "no", message: "재시작 명령 유효하지 않음" },
+    { input: "1", message: "재시작 명령 숫자" },
+    { input: "", message: "빈 문자열" },
+  ])("재시작 명령 예외 테스트: $input, $message", ({ input }) => {
+    return expect(() => Validator.validateRestart(input)).toThrow(
+      /^\[ERROR\]/,
+    );
+  });
 });

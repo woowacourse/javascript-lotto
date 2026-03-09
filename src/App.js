@@ -41,7 +41,7 @@ class App {
       OutputConsole.printProfitRate(profitRate);
 
       // 재시작 로직 출력하기
-      const restartCommand = await InputConsole.readRestart();
+      const restartCommand = await this.#readRestart();
       if (restartCommand === "n") break;
     }
   }
@@ -73,6 +73,17 @@ class App {
       try {
         const input = await InputConsole.readBonusNumber();
         return Validator.validateBonusNumber(input, winningNumbers);
+      } catch (e) {
+        OutputConsole.printErrorMessage(e.message);
+      }
+    }
+  }
+
+  async #readRestart() {
+    while (true) {
+      try {
+        const input = await InputConsole.readRestart();
+        return Validator.validateRestart(input);
       } catch (e) {
         OutputConsole.printErrorMessage(e.message);
       }
