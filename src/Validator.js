@@ -10,13 +10,17 @@ class Validator {
     }
   }
   validateLottoNumber(number) {
-    if (number < 1 || number > 45)
-      throw new Error(ERROR_MESSAGE.INVALID_NUMBER_RANGE);
     if (isNaN(number)) throw new Error(ERROR_MESSAGE.NOT_NUMBER);
     if (!Number.isInteger(number))
       throw new Error(ERROR_MESSAGE.MUST_BE_INTEGER);
+    if (number < 1 || number > 45)
+      throw new Error(ERROR_MESSAGE.INVALID_NUMBER_RANGE);
   }
   validateLottoNumbers(numbers) {
+    numbers.forEach((number) => {
+      this.validateLottoNumber(number);
+    });
+
     if (numbers.length !== 6) {
       throw new Error(ERROR_MESSAGE.INVALID_NUMBER_LENGTH);
     }
@@ -26,10 +30,6 @@ class Validator {
     if (set.size !== numbers.length) {
       throw new Error(ERROR_MESSAGE.MUST_BE_NOT_DUPLICATE);
     }
-
-    numbers.forEach((number) => {
-      this.validateLottoNumber(number);
-    });
   }
 
   validateBonusNumber(lottoNumbers, bonusNumber) {
