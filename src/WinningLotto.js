@@ -11,11 +11,9 @@ class WinningLotto extends Lotto {
   }
 
   getRank(lotto) {
-    const matchingCount = lotto
-      .getNumbers()
-      .filter((x) => this.numbers.includes(x)).length;
+    const matchingCount = this.#countMatches(lotto);
 
-    const isBonus = lotto.getNumbers().includes(this.bonusNumber);
+    const isBonus = this.#isBonus(lotto);
 
     if (matchingCount === 6) return 1;
     if (matchingCount === 5 && isBonus) return 2;
@@ -23,6 +21,14 @@ class WinningLotto extends Lotto {
     if (matchingCount === 4) return 4;
     if (matchingCount === 3) return 5;
     return null;
+  }
+
+  #countMatches(lotto) {
+    return lotto.getNumbers().filter((x) => this.numbers.includes(x)).length;
+  }
+
+  #isBonus(lotto) {
+    return lotto.getNumbers().includes(this.bonusNumber);
   }
 }
 
