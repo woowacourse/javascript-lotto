@@ -4,6 +4,7 @@ import LottoMachine from "./Domain/LottoMachine.js";
 import LuckyNumbers from "./Domain/LuckyNumbers.js";
 import LottoResult from "./Domain/LottoResult.js";
 import Lotto from "./Domain/Lotto.js";
+import { MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -39,7 +40,9 @@ class App {
     try {
       const purchasePriceStr = await InputConsole.readPurchasePrice();
 
-      return LottoMachine.issueLottos(purchasePriceStr);
+      const generateRandomNumber = () => MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+
+      return LottoMachine.issueLottos(purchasePriceStr, generateRandomNumber);
     } catch (e) {
       OutputConsole.printError(e.message);
       

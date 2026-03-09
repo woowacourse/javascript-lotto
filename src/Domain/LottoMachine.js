@@ -1,12 +1,11 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
 import Lotto from "./Lotto.js";
 
 const LottoMachine = {
-  issueLottos(purchasePriceStr) {
+  issueLottos(purchasePriceStr, generateRandomNumber) {
     const purchasePrice = validatePurchasePrice(purchasePriceStr);
     const ticketsCount = purchasePrice / 1000;
 
-    return Array.from({ length: ticketsCount }, createLotto);
+    return Array.from({ length: ticketsCount }, () => createLotto(generateRandomNumber));
   },
 };
 
@@ -23,12 +22,8 @@ const validatePurchasePrice = (purchasePriceStr) => {
   return numPrice;
 };
 
-const createLotto = () => {
-  const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(
-    1,
-    45,
-    6,
-  ).toSorted((a, b) => a - b);
+const createLotto = (generateRandomNumber) => {
+  const lottoNumbers = generateRandomNumber().toSorted((a, b) => a - b);
 
   return new Lotto(lottoNumbers);
 };
