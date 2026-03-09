@@ -14,3 +14,9 @@ export const WINNING_DATA = {
   4: "4개 일치 (50,000원)",
   5: "3개 일치 (5,000원)",
 };
+
+export const RANDOM_RANGE = {
+  MIN : 1 ,
+  MAX : 45,
+  SIZE : 6
+}

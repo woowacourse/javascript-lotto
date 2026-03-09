@@ -1,4 +1,5 @@
 import Lotto from "../model/Lotto.js";
+import { RANDOM_RANGE } from "../constants/lottoInfo.js";
 
 export function pickUniqueNumbersInRange(min, max, size) {
   const uniqueNumbers = new Set();
@@ -11,7 +12,7 @@ export function pickUniqueNumbersInRange(min, max, size) {
 
 export function makeLottos(amount) {
   return Array.from({ length: amount }, () => {
-    const numbers = pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+    const numbers = pickUniqueNumbersInRange(RANDOM_RANGE.MIN, RANDOM_RANGE.MAX , RANDOM_RANGE.SIZE).sort((a, b) => a - b);
     return new Lotto(numbers);
   });
 }
