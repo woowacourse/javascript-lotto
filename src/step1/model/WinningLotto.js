@@ -13,8 +13,15 @@ class WinningLotto {
   }
 
   #validate(numbers, bonus) {
+    this.#validateNumber(bonus);
     this.#validateUnique(numbers.getNumbers(), bonus);
     this.#validateRange(bonus);
+  }
+
+  #validateNumber(number) {
+    if (typeof number !== "number" || Number.isNaN(number)) {
+      throw new Error(LOTTO_ERROR_MESSAGE.INPUT_RANGE);
+    }
   }
 
   #validateUnique(numbers, bonus) {
