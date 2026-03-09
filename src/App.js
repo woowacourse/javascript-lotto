@@ -24,7 +24,7 @@ class App {
 
       // 보너스 번호 입력받기
       const bonusNumber = Validator.validateBonusNumber(
-        await InputConsole.readBonusNumber(winningNumbers),
+        await InputConsole.readBonusNumber(),
         winningNumbers,
       );
 
