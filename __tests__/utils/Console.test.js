@@ -1,4 +1,4 @@
-import Console from "../src/utils/Console.js";
+import Console from "../../src/utils/Console.js";
 
 const mockQuestion = (input) => {
   Console.readLineAsync = jest.fn();
