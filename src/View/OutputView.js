@@ -38,6 +38,10 @@ export class OutputView {
   printError(errorMessage) {
     console.print(`${errorMessage} 다시 입력해주세요.`);
   }
+
+  printEndMessage() {
+    console.print("로또 게임을 종료합니다.");
+  }
 }
 
 export default OutputView;

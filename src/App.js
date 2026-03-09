@@ -24,6 +24,7 @@ class App {
       await this.#playGameOnce();
       isRetry = await this.#inputView.readIsRetry();
     }
+    this.#outputView.printEndMessage();
   }
 
   #playGameOnce = async () => {
