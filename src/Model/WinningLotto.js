@@ -21,16 +21,15 @@ class WinningLotto {
 
   getMatchCount(lotto) {
     const winningNumbers = this.#lotto.getNumbers();
-    const lottoNumbers = lotto.getNumbers();
+    const matchedNumbers = winningNumbers.filter((number) =>
+      lotto.hasNumber(number),
+    );
 
-    const numbers = [...winningNumbers, ...lottoNumbers];
-    return numbers.length - new Set(numbers).size;
+    return matchedNumbers.length;
   }
 
   hasBonus(lotto) {
-    const lottoNumbers = lotto.getNumbers();
-
-    return lottoNumbers.includes(this.#bonusNumber);
+    return lotto.hasNumber(this.#bonusNumber);
   }
 }
 
