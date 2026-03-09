@@ -1,6 +1,6 @@
 import Lotto from "../src/Domain/Lotto.js";
 import LottoMachine from "../src/Domain/LottoMachine.js";
-import LottoResult from "../src/Domain/LottoResult.js";
+import LottoResultCalculator from "../src/Domain/LottoResultCalculator .js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 describe("로또 클래스 테스트", () => {
@@ -67,7 +67,7 @@ describe("LottoMachine 동작 테스트", () => {
   });
 });
 
-describe("LottoResult 동작 테스트", () => {
+describe("LottoResultCalculator 동작 테스트", () => {
   beforeEach(() => {
     jest.restoreAllMocks();
   });
@@ -87,9 +87,9 @@ describe("LottoResult 동작 테스트", () => {
       new Lotto([14, 15, 16, 17, 18, 19]), // 일치 없음
     ];
 
-    const lottoResult = new LottoResult();
+    const lottoResult = new LottoResultCalculator();
 
-    const winningResult = lottoResult.calculateWinningResult(
+    const winningResult = lottoResult.calculateWinningRank(
       lottos,
       luckyNumbers,
     );
@@ -104,7 +104,7 @@ describe("LottoResult 동작 테스트", () => {
   });
 
   test("수익률 테스트", () => {
-    const lottoResult = new LottoResult();
+    const lottoResult = new LottoResultCalculator();
     const winningResult = {
       FIRST: 1,
       SECOND: 1,

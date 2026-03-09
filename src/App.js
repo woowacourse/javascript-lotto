@@ -1,8 +1,9 @@
 import InputConsole from "./Console/InputConsole.js";
 import OutputConsole from "./Console/OutputConsole.js";
 import LottoMachine from "./Domain/LottoMachine.js";
-import LottoResult from "./Domain/LottoResult.js";
+import LottoResultCalculator from "./Domain/LottoResultCalculator .js";
 import Validator from "./Utils/Validator.js";
+
 class App {
   async run() {
     while (true) {
@@ -25,8 +26,8 @@ class App {
         winningNumbers,
         bonusNumber,
       };
-      const lottoResult = new LottoResult();
-      const winningResult = lottoResult.calculateWinningResult(
+      const lottoResult = new LottoResultCalculator();
+      const winningResult = lottoResult.calculateWinningRank(
         lottos,
         luckyNumbers,
       );

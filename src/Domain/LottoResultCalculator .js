@@ -1,7 +1,7 @@
 import { PRIZE } from "../Utils/Constants.js";
 
-class LottoResult {
-  calculateWinningResult(lottos, luckyNumbers) {
+class LottoResultCalculator {
+  calculateWinningRank(lottos, luckyNumbers) {
     const result = { FIRST: 0, SECOND: 0, THIRD: 0, FOURTH: 0, FIFTH: 0 };
     for (const lotto of lottos) {
       const match = lotto.countMatches(luckyNumbers.winningNumbers);
@@ -30,4 +30,4 @@ class LottoResult {
   }
 }
 
-export default LottoResult;
+export default LottoResultCalculator;
