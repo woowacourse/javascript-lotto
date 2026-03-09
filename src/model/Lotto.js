@@ -9,10 +9,11 @@ class Lotto {
     this.#validate(numbers);
     this.#numbers = numbers;
   }
+
   #validate(numbers) {
     Validator.validateLottoCount(numbers);
-    Validator.validateDuplicateLottoNums(numbers);
     numbers.forEach((number) => Validator.validateLottoNumRange(number));
+    Validator.validateDuplicateLottoNums(numbers);
   }
 
   getRank(winningLotto, bonusNum) {
