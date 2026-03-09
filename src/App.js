@@ -1,7 +1,7 @@
 import InputConsole from "./Console/InputConsole.js";
 import OutputConsole from "./Console/OutputConsole.js";
 import LottoMachine from "./Domain/LottoMachine.js";
-import LottoResultCalculator from "./Domain/LottoResultCalculator .js";
+import LottoResultCalculator from "./Domain/LottoResultCalculator.js";
 import Validator from "./Utils/Validator.js";
 
 class App {

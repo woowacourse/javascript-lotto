@@ -1,6 +1,6 @@
 import Lotto from "../src/Domain/Lotto.js";
 import LottoMachine from "../src/Domain/LottoMachine.js";
-import LottoResultCalculator from "../src/Domain/LottoResultCalculator .js";
+import LottoResultCalculator from "../src/Domain/LottoResultCalculator.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 describe("로또 클래스 테스트", () => {
