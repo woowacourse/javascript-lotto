@@ -20,3 +20,11 @@ export const RANK_PRIZE = {
   [RANK.FOURTH]: 50_000,
   [RANK.FIFTH]: 5_000,
 };
+
+export const RANK_CONDITION = {
+  [RANK.FIRST]: { count: 6, hasBonus: false },
+  [RANK.SECOND]: { count: 5, hasBonus: true },
+  [RANK.THIRD]: { count: 5, hasBonus: false },
+  [RANK.FOURTH]: { count: 4, hasBonus: false },
+  [RANK.FIFTH]: { count: 3, hasBonus: false },
+};

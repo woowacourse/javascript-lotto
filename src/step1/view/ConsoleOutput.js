@@ -1,31 +1,33 @@
-import { RANK } from "../constant/index.js";
 import Output from "./Output.js";
+import { RANK, RANK_CONDITION, RANK_PRIZE } from "../constant/index.js";
 
 class ConsoleOutput extends Output {
   constructor() {
     super();
   }
-  
+
   printResult(countsObject, returnOnInvestment) {
-    console.log("");
-    console.log("당첨 통계");
+    console.log("\n당첨 통계");
     console.log("--------------------");
-    console.log(`3개 일치 (5,000원) - ${countsObject[RANK.FIFTH]}개`);
-    console.log(`4개 일치 (50,000원) - ${countsObject[RANK.FOURTH]}개`);
-    console.log(`5개 일치 (1,500,000원) - ${countsObject[RANK.THIRD]}개`);
-    console.log(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${countsObject[RANK.SECOND]}개`,
-    );
-    console.log(`6개 일치 (2,000,000,000원) - ${countsObject[RANK.FIRST]}개`);
+    Object.values(RANK).forEach((rank) => {
+      console.log(
+        [
+          `${RANK_CONDITION[rank].count}개 일치`,
+          ...(RANK_CONDITION[rank].hasBonus ? ["보너스 볼 일치"] : []),
+        ].join(", ")
+        + ` (${RANK_PRIZE[rank].toLocaleString("ko-KR")}원)`
+        + ` - ${countsObject[rank]}개`,
+      );
+    });
     console.log(`총 수익률은 ${returnOnInvestment.toFixed(1)}%입니다.`);
-  };
+  }
 
   printPurchasedLottos(lottos) {
     console.log(`${lottos.length}장을 구매했습니다.`);
     lottos.forEach((lotto) =>
       console.log(`[${lotto.getNumbers().join(", ")}]`),
     );
-  };
+  }
 }
 
 export default ConsoleOutput;

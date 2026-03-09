@@ -1,6 +1,5 @@
-import Lotto from "./Lotto.js";
 import LottoResult from "./LottoResult.js";
-import { LOTTO, RANK } from "../constant/index.js";
+import { LOTTO, RANK, RANK_CONDITION } from "../constant/index.js";
 import { LOTTO_ERROR_MESSAGE } from "../constant/message.js";
 
 class WinningLotto {
@@ -45,11 +44,11 @@ class WinningLotto {
       lotto.getNumbers().length * 2 - uniqueNumbers.size;
     const hasBonusNumber = lotto.getNumbers().includes(this.#bonus);
 
-    if (matchedNumberCount === 6) return RANK.FIRST;
-    if (matchedNumberCount === 5 && hasBonusNumber) return RANK.SECOND;
-    if (matchedNumberCount === 5 && !hasBonusNumber) return RANK.THIRD;
-    if (matchedNumberCount === 4) return RANK.FOURTH;
-    if (matchedNumberCount === 3) return RANK.FIFTH;
+    return Object.entries(RANK_CONDITION).find(
+      ([_, condition]) =>
+        matchedNumberCount === condition.count &&
+        hasBonusNumber === condition.hasBonus,
+    )?.[0];
   }
 
   evaluateLottos(lottos) {
