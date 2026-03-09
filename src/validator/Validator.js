@@ -8,11 +8,14 @@ import {
 
 export const Validator = {
   validatePurchaseMoney(money) {
-    if (money < MONEY_UNIT) {
-      throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.MIN);
+    if (!money) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.NONE);
     }
     if (isNaN(money)) {
       throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.NUMBER);
+    }
+    if (money < MONEY_UNIT) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.MIN);
     }
     if (money % MONEY_UNIT !== 0) {
       throw new Error(ERROR_MESSAGE.PURCHASE_MONEY.UNIT);

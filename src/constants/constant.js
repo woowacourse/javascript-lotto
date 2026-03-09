@@ -16,6 +16,7 @@ export const LOTTO_RANGE = {
 
 export const ERROR_MESSAGE = {
   PURCHASE_MONEY: {
+    NONE: "[ERROR] 구입 금액을 입력해주세요.",
     MIN: "[ERROR] 구입 금액은 1000원 이상입니다.",
     NUMBER: "[ERROR] 구입 금액은 숫자만 입력해야 합니다.",
     UNIT: "[ERROR] 구입 금액은 1000원 단위입니다.",
