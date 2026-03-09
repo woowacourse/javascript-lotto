@@ -11,7 +11,7 @@ const mockMathRandom = (numbers) => {
 
 describe("랜덤 숫자 뽑기 테스트", () => {
   test("시작 번호와 끝번호 사이에 숫자를 n가 만큼 뽑아서 배열로 반환하다", () => {
-    mockMathRandom([0.1, 0.2, 0.3, 0.4, 0.5, 0.6]);
+    mockMathRandom([1 / 45, 2 / 45, 3 / 45, 4 / 45, 5 / 45, 6 / 45]);
 
     const start = 1,
       end = 45,
