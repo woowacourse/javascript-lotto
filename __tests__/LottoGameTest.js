@@ -10,35 +10,55 @@ const mockRandoms = (numbers) => {
 };
 
 describe("로또게임 테스트", () => {
-  test("로또게임 객체는 당첨 로또를 가진다.", () => {
-    const lottoGame = new LottoGame([1, 2, 3, 4, 5, 6], 7);
-
-    expect(lottoGame.getWinningNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
-  });
-  test("로또게임 객체는 보너스 번호를 가진다.", () => {
-    const lottoGame = new LottoGame([1, 2, 3, 4, 5, 6], 7);
-
-    expect(lottoGame.getBonusNumber()).toBe(7);
-  });
-  test("로또게임 객체는 등수를 계산할 수 있다.", () => {
-    const amount = 2;
-    const randoms = [
+  test.each([
+    [
+      "6개 번호가 일치하면 1등",
       [1, 2, 3, 4, 5, 6],
-      [7, 8, 9, 10, 11, 12],
-    ];
+      7,
+      [[1, 2, 3, 4, 5, 6]],
+      { 1: 1, 2: 0, 3: 0, 4: 0, 5: 0, 0: 0 },
+    ],
+    [
+      "5개 번호와 보너스 번호가 일치하면 2등",
+      [1, 2, 3, 4, 5, 6],
+      7,
+      [[1, 2, 3, 4, 5, 7]],
+      { 1: 0, 2: 1, 3: 0, 4: 0, 5: 0, 0: 0 },
+    ],
+    [
+      "5개 번호만 일치하면 3등",
+      [1, 2, 3, 4, 5, 6],
+      7,
+      [[1, 2, 3, 4, 5, 8]],
+      { 1: 0, 2: 0, 3: 1, 4: 0, 5: 0, 0: 0 },
+    ],
+    [
+      "4개 번호가 일치하면 4등",
+      [1, 2, 3, 4, 5, 6],
+      7,
+      [[1, 2, 3, 4, 8, 9]],
+      { 1: 0, 2: 0, 3: 0, 4: 1, 5: 0, 0: 0 },
+    ],
+    [
+      "3개 번호가 일치하면 5등",
+      [1, 2, 3, 4, 5, 6],
+      7,
+      [[1, 2, 3, 8, 9, 10]],
+      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 1, 0: 0 },
+    ],
+    [
+      "3개 번호 미만이 일치하면 낙첨",
+      [1, 2, 3, 4, 5, 6],
+      7,
+      [[1, 2, 8, 9, 10, 11]],
+      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 0: 1 },
+    ],
+  ])("%s", (_, winningNumbers, bonusNumber, lottoNumbersList, expected) => {
+    mockRandoms(lottoNumbersList);
 
-    mockRandoms(randoms);
-    const lottoList = new LottoList(amount);
+    const lottoList = new LottoList(lottoNumbersList.length);
+    const lottoGame = new LottoGame(winningNumbers, bonusNumber);
 
-    const lottoGame = new LottoGame([1, 2, 3, 4, 5, 6], 7);
-
-    expect(lottoGame.calculateStatistics(lottoList)).toEqual({
-      1: 1,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
-      0: 1,
-    });
+    expect(lottoGame.calculateStatistics(lottoList)).toEqual(expected);
   });
 });
