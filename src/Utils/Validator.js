@@ -17,23 +17,6 @@ const Validator = {
     return winningNumbers;
   },
 
-  validateCommonNumbers(nums) {
-    const hasNaN = nums.some((n) => Number.isNaN(n));
-    if (hasNaN) {
-      throw new Error("[ERROR] 각 번호가 숫자가 아닙니다!");
-    }
-
-    if (nums.length !== 6) {
-      throw new Error(`[ERROR] 번호는 6개여야 합니다!`);
-    }
-
-    if (new Set(nums).size !== nums.length) {
-      throw new Error("[ERROR] 중복된 숫자가 있습니다.");
-    }
-
-    return nums;
-  },
-
   validateBonusNumber(bonusNumber, winningNumbers) {
     const bonus = Number(bonusNumber.trim());
 
