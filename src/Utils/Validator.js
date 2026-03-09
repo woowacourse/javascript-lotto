@@ -2,13 +2,12 @@ const Validator = {
   validatePurchasePrice(input) {
     const purchasePrice = Number(input.trim());
 
-    if (isNaN(purchasePrice)) {
+    if (Number.isNaN(purchasePrice)) {
       throw new Error("[ERROR] 구입 금액이 숫자가 아닙니다!");
     }
     if (Number(purchasePrice) < 1000) {
       throw new Error("[ERROR] 구입 최소 금액은 1000원 입니다!");
     }
-
 
     return purchasePrice;
   },
@@ -57,7 +56,7 @@ const Validator = {
     }
 
     return bonusNumber;
-  }
+  },
 };
 
 export default Validator;

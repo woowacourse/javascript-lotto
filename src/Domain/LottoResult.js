@@ -1,4 +1,4 @@
-import { PRIZE } from '../Utils/Constants.js';
+import { PRIZE } from "../Utils/Constants.js";
 
 class LottoResult {
   calculateWinningResult(lottos, luckyNumbers) {

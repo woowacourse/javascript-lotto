@@ -1,5 +1,5 @@
-import { Console } from '@woowacourse/mission-utils';
-import { PRIZE, RANK_MAP } from '../Utils/Constants.js';
+import { Console } from "@woowacourse/mission-utils";
+import { PRIZE, RANK_MAP } from "../Utils/Constants.js";
 
 const OutputConsole = {
   printLottoList(lottos) {
@@ -9,8 +9,8 @@ const OutputConsole = {
   },
 
   printMatchResult(result) {
-    Console.print('\n당첨 통계');
-    Console.print('--------------------');
+    Console.print("\n당첨 통계");
+    Console.print("--------------------");
 
     // 등수별 결과 출력
     for (const key in result) {
@@ -22,7 +22,7 @@ const OutputConsole = {
 
   printProfitRate(profitRate) {
     Console.print(`총 수익률은 ${profitRate}%입니다.`);
-  }
+  },
 };
 
 export default OutputConsole;

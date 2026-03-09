@@ -35,11 +35,16 @@ describe("InputConsole 검증 테스트", () => {
   test.each([
     { input: "1", winningNumbers: [2, 3, 4, 5, 6, 7], expected: "1" },
     { input: "45", winningNumbers: [1, 2, 3, 4, 5, 6], expected: "45" },
-  ])("보너스 번호 입력 테스트: $input", async ({ input, winningNumbers, expected }) => {
-    mockQuestions([input]);
-    await expect(InputConsole.readBonusNumber(winningNumbers)).resolves.toEqual(expected);
-  });
-  
+  ])(
+    "보너스 번호 입력 테스트: $input",
+    async ({ input, winningNumbers, expected }) => {
+      mockQuestions([input]);
+      await expect(
+        InputConsole.readBonusNumber(winningNumbers),
+      ).resolves.toEqual(expected);
+    },
+  );
+
   test.each([
     { input: "y", expected: "y" },
     { input: "n", expected: "n" },

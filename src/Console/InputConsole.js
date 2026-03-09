@@ -19,9 +19,10 @@ const InputConsole = {
   async readWinningNumbers() {
     while (true) {
       try {
-        const inputs = await MissionUtils.Console.readLineAsync(
-          "> 당첨 번호를 입력해 주세요. ",
-        );
+        const inputs =
+          await MissionUtils.Console.readLineAsync(
+            "> 당첨 번호를 입력해 주세요. ",
+          );
         return inputs;
       } catch (e) {
         MissionUtils.Console.print(e.message);
@@ -42,7 +43,7 @@ const InputConsole = {
     }
   },
 
-  async readRestart(){
+  async readRestart() {
     while (true) {
       try {
         const restartCommand = await MissionUtils.Console.readLineAsync(
@@ -53,7 +54,7 @@ const InputConsole = {
         MissionUtils.Console.print(e.message);
       }
     }
-  }
+  },
 };
 
 export default InputConsole;

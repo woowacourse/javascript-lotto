@@ -65,15 +65,13 @@ describe("LottoMachine 동작 테스트", () => {
     expect(lottos[0]).toBeInstanceOf(Lotto);
     expect(lottos[1]).toBeInstanceOf(Lotto);
   });
-}
-);
+});
 
 describe("LottoResult 동작 테스트", () => {
   beforeEach(() => {
     jest.restoreAllMocks();
   });
 
-  // 1. 등수 집계 테스트
   test("등수 집계 테스트: 각 등수 카운팅", () => {
     const luckyNumbers = {
       winningNumbers: [1, 2, 3, 4, 5, 6],
@@ -91,8 +89,11 @@ describe("LottoResult 동작 테스트", () => {
 
     const lottoResult = new LottoResult();
 
-    const winningResult = lottoResult.calculateWinningResult(lottos,luckyNumbers);
-    
+    const winningResult = lottoResult.calculateWinningResult(
+      lottos,
+      luckyNumbers,
+    );
+
     expect(winningResult).toEqual({
       FIFTH: 1,
       FIRST: 1,
@@ -102,27 +103,26 @@ describe("LottoResult 동작 테스트", () => {
     });
   });
 
-  // 2. 수익률 테스트
   test("수익률 테스트", () => {
+    const lottoResult = new LottoResult();
+    const winningResult = {
+      FIRST: 1,
+      SECOND: 1,
+      THIRD: 1,
+      FOURTH: 1,
+      FIFTH: 1,
+    };
 
-     const lottoResult = new LottoResult();
-     const winningResult = {
-       FIRST: 1,
-       SECOND: 1,
-       THIRD: 1,
-       FOURTH: 1,
-       FIFTH: 1,
-     };
+    const purchasePrice = 6000;
+    const profitRate = lottoResult.calculateProfitRate(
+      winningResult,
+      purchasePrice,
+    );
 
-     const purchasePrice = 6000;
-     const profitRate = lottoResult.calculateProfitRate(winningResult,purchasePrice);
-
-     expect(profitRate).toBe(
-      ((5000 +
-      50000 +
-      1500000 +
-      30000000 +
-      2000000000) - purchasePrice) / purchasePrice * 100
-     );
+    expect(profitRate).toBe(
+      ((5000 + 50000 + 1500000 + 30000000 + 2000000000 - purchasePrice) /
+        purchasePrice) *
+        100,
+    );
   });
 });

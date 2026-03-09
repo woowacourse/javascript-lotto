@@ -39,11 +39,11 @@ describe("OutputConsole 테스트", () => {
     expect(logSpy).toHaveBeenCalledWith("3개 일치 (5,000원) - 1개");
     expect(logSpy).toHaveBeenCalledWith("4개 일치 (50,000원) - 0개");
     expect(logSpy).toHaveBeenCalledWith("5개 일치 (1,500,000원) - 0개");
-    expect(logSpy).toHaveBeenCalledWith("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개");
+    expect(logSpy).toHaveBeenCalledWith(
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+    );
     expect(logSpy).toHaveBeenCalledWith("6개 일치 (2,000,000,000원) - 0개");
-
-    
-  })
+  });
 
   test("총 수익률 출력 테스트", () => {
     const logSpy = getLogSpy();
@@ -52,6 +52,8 @@ describe("OutputConsole 테스트", () => {
 
     OutputConsole.printProfitRate(totalProfitRate);
 
-    expect(logSpy).toHaveBeenCalledWith(`총 수익률은 ${totalProfitRate}%입니다.` )
-  })
+    expect(logSpy).toHaveBeenCalledWith(
+      `총 수익률은 ${totalProfitRate}%입니다.`,
+    );
+  });
 });
