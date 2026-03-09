@@ -23,7 +23,7 @@ class App {
       OutputView.printResult(rankCount, profitRate);
 
       const restartAnswer = await retry(() => InputView.inputRestartAnswer());
-      if (restartAnswer == "n") break;
+      if (restartAnswer === "n") break;
     }
 
     InputView.close();
