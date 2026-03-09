@@ -7,7 +7,7 @@ describe("유효성 검증 테스트", () => {
     const wrongInput = "";
 
     // when & then
-    expect(() => Validator.validateNotEmptyString(wrongInput)).toThrow(
+    expect(() => Validator.notEmptyString(wrongInput)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
@@ -16,7 +16,7 @@ describe("유효성 검증 테스트", () => {
     "[예외] 숫자가 양의 정수가 아니면 에러를 발생시켜야 한다 (%s)",
     (wrongNumber) => {
       // when & then
-      expect(() => Validator.validatePositiveNumber(wrongNumber)).toThrow(
+      expect(() => Validator.positiveNumber(wrongNumber)).toThrow(
         ERROR_MESSAGE.PREFIX,
       );
     },
@@ -28,7 +28,7 @@ describe("유효성 검증 테스트", () => {
     const wrongNumber = 46;
 
     // when & then
-    expect(() => Validator.validateNumberUpper(upper, wrongNumber)).toThrow(
+    expect(() => Validator.numberUpper(upper, wrongNumber)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
@@ -39,7 +39,7 @@ describe("유효성 검증 테스트", () => {
     const wrongNumber = 0;
 
     // when & then
-    expect(() => Validator.validateNumberLower(lower, wrongNumber)).toThrow(
+    expect(() => Validator.numberLower(lower, wrongNumber)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
@@ -49,7 +49,7 @@ describe("유효성 검증 테스트", () => {
     const wrongInput = "NoNumber";
 
     // when & then
-    expect(() => Validator.validateStringIsNumber(wrongInput)).toThrow(
+    expect(() => Validator.stringIsNumber(wrongInput)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
@@ -60,9 +60,9 @@ describe("유효성 검증 테스트", () => {
     const wrongInput = 1500;
 
     // when & then
-    expect(() =>
-      Validator.validateNumberDivided(wrongInput, divideNumber),
-    ).toThrow(ERROR_MESSAGE.PREFIX);
+    expect(() => Validator.numberDivided(wrongInput, divideNumber)).toThrow(
+      ERROR_MESSAGE.PREFIX,
+    );
   });
 
   test("[예외] 배열에 중복된 원소가 존재하면 에러를 발생시켜야 한다", () => {
@@ -70,7 +70,7 @@ describe("유효성 검증 테스트", () => {
     const wrongArray = [1, 1, 2, 3, 4, 5];
 
     // when & then
-    expect(() => Validator.validateNotDuplicated(wrongArray)).toThrow(
+    expect(() => Validator.notDuplicated(wrongArray)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
@@ -80,7 +80,7 @@ describe("유효성 검증 테스트", () => {
     const wrongArray = [1, 2, 3, 4, 5];
 
     // when & then
-    expect(() => Validator.validateArrayLength(wrongArray, 6)).toThrow(
+    expect(() => Validator.arrayLength(wrongArray, 6)).toThrow(
       ERROR_MESSAGE.PREFIX,
     );
   });
@@ -91,8 +91,8 @@ describe("유효성 검증 테스트", () => {
     const array = ["b", "c"];
 
     // when & then
-    expect(() =>
-      Validator.validateIncludeElement(targetElement, array),
-    ).toThrow(ERROR_MESSAGE.PREFIX);
+    expect(() => Validator.includeElement(targetElement, array)).toThrow(
+      ERROR_MESSAGE.PREFIX,
+    );
   });
 });

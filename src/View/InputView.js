@@ -5,47 +5,47 @@ import Validator from "../Validator.js";
 const InputView = {
   async readMoney() {
     const input = await readLineAsync(INPUT_MESSAGE.MONEY);
-    Validator.validateNotEmptyString(input);
-    Validator.validateStringIsNumber(input);
+    Validator.notEmptyString(input);
+    Validator.stringIsNumber(input);
 
     const money = Number(input);
 
-    Validator.validateNumberDivided(money, LOTTO.PRICE);
-    Validator.validatePositiveNumber(money);
+    Validator.numberDivided(money, LOTTO.PRICE);
+    Validator.positiveNumber(money);
 
     return money;
   },
 
   async readWinningNumbers() {
     const input = await readLineAsync(INPUT_MESSAGE.WINNING_NUMBERS);
-    Validator.validateNotEmptyString(input);
+    Validator.notEmptyString(input);
     const splitInput = input.split(",");
     splitInput.forEach((string) => {
-      Validator.validateStringIsNumber(string);
+      Validator.stringIsNumber(string);
     });
 
     const numbers = splitInput.map((string) => Number(string));
     numbers.forEach((number) => {
-      Validator.validatePositiveNumber(number);
-      Validator.validateNumberLower(LOTTO.LOWER, number);
-      Validator.validateNumberUpper(LOTTO.UPPER, number);
+      Validator.positiveNumber(number);
+      Validator.numberLower(LOTTO.LOWER, number);
+      Validator.numberUpper(LOTTO.UPPER, number);
     });
-    Validator.validateNotDuplicated(numbers);
+    Validator.notDuplicated(numbers);
 
-    Validator.validateArrayLength(numbers, LOTTO.COUNT);
+    Validator.arrayLength(numbers, LOTTO.COUNT);
 
     return numbers;
   },
 
   async readBonusNumber() {
     const input = await readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
-    Validator.validateNotEmptyString(input);
-    Validator.validateStringIsNumber(input);
+    Validator.notEmptyString(input);
+    Validator.stringIsNumber(input);
     const bonusNumber = Number(input);
 
-    Validator.validatePositiveNumber(bonusNumber);
-    Validator.validateNumberLower(LOTTO.LOWER, bonusNumber);
-    Validator.validateNumberUpper(LOTTO.UPPER, bonusNumber);
+    Validator.positiveNumber(bonusNumber);
+    Validator.numberLower(LOTTO.LOWER, bonusNumber);
+    Validator.numberUpper(LOTTO.UPPER, bonusNumber);
 
     return bonusNumber;
   },
@@ -53,7 +53,7 @@ const InputView = {
   async readRestartCommand() {
     const restartCommand = await readLineAsync(INPUT_MESSAGE.COMMAND);
     const validCommand = COMMAND.YES.concat(COMMAND.NO);
-    Validator.validateIncludeElement(restartCommand, validCommand);
+    Validator.includeElement(restartCommand, validCommand);
 
     return restartCommand;
   },
