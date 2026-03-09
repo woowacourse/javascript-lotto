@@ -1,25 +1,6 @@
-import { LOTTO } from "../constant/index.js";
-
 class RandomUtil {
-  #randomNumberGenerator;
-
-  constructor() {
-    this.#randomNumberGenerator = () =>
-      Math.floor(
-        Math.random() * (LOTTO.MAX_NUMBER - LOTTO.MIN_NUMBER) +
-          LOTTO.MIN_NUMBER,
-      );
-  }
-
-  pickUniqSixNumbers() {
-    const lottoNumbers = new Set();
-
-    do {
-      const randomNumber = this.#randomNumberGenerator();
-      lottoNumbers.add(randomNumber);
-    } while (lottoNumbers.size < LOTTO.COUNT);
-
-    return [...lottoNumbers.keys()];
+  pickUniqNumbers() {
+    throw new Error("pickUniqNumbers 메서드가 구현되지 않았습니다.");
   }
 }
 

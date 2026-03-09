@@ -1,12 +1,21 @@
 import Lotto from "./Lotto.js";
 import RandomUtil from "../util/RandomUtil.js";
+import MissionRandomUtil from "../util/MissionRandomUtil.js";
 import { LOTTO } from "../constant/index.js";
+import { ERROR_MESSAGE } from "../constant/message.js";
 
 class LottoStore {
   #randomUtil;
 
   constructor({ randomUtil } = {}) {
-    this.#randomUtil = randomUtil ?? new RandomUtil();
+    if (randomUtil) this.#validateRandomUtil(randomUtil);
+    this.#randomUtil = randomUtil ?? new MissionRandomUtil();
+  }
+
+  #validateRandomUtil(randomUtil) {
+    if (!(randomUtil instanceof RandomUtil)) {
+      throw new Error(ERROR_MESSAGE.INVALID_RANDOM_UTIL);
+    }
   }
 
   issuedLottos(amount) {
@@ -14,7 +23,7 @@ class LottoStore {
     const lottos = [];
 
     for (let i = 0; i < count; i++) {
-      const lotto = new Lotto(this.#randomUtil.pickUniqSixNumbers());
+      const lotto = new Lotto(this.#randomUtil.pickUniqNumbers());
       lottos.push(lotto);
     }
 
