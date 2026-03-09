@@ -1,6 +1,6 @@
 const Validator = {
   validatePurchasePrice(input) {
-    const purchasePrice = input.trim();
+    const purchasePrice = Number(input.trim());
 
     if (isNaN(purchasePrice)) {
       throw new Error("[ERROR] 구입 금액이 숫자가 아닙니다!");
@@ -10,7 +10,7 @@ const Validator = {
     }
 
 
-    return Number(purchasePrice);
+    return purchasePrice;
   },
 
   validateWinningNumbers(inputs) {
