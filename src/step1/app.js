@@ -61,7 +61,7 @@ class App {
   }
 
   async #askBonusNumber(lotto) {
-    return await this.#retry(async () => {
+    return await this.#retryUntilSuccess(async () => {
       const inputBonus = await this.#view.input.readLineAsync(
         INPUT_MESSAGE.BONUS_NUMBER,
       );
@@ -75,7 +75,7 @@ class App {
   }
 
   async #askWinningNumbers() {
-    return await this.#retry(async () => {
+    return await this.#retryUntilSuccess(async () => {
       const inputWinningNumber = await this.#view.input.readLineAsync(
         INPUT_MESSAGE.WINNING_NUMBER,
       );
@@ -87,7 +87,7 @@ class App {
   }
 
   async #askMoney() {
-    return await this.#retry(async () => {
+    return await this.#retryUntilSuccess(async () => {
       const inputMoney = await this.#view.input.readLineAsync(
         INPUT_MESSAGE.PURCHASE_AMOUNT,
       );
@@ -99,7 +99,7 @@ class App {
   }
 
   async #askRetry() {
-    return await this.#retry(async () => {
+    return await this.#retryUntilSuccess(async () => {
       const askRetry = await this.#view.input.readLineAsync(
         INPUT_MESSAGE.ASK_RETRY,
       );
@@ -110,7 +110,7 @@ class App {
     });
   }
 
-  async #retry(task) {
+  async #retryUntilSuccess(task) {
     while (true) {
       try {
         return await task();
