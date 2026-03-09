@@ -13,17 +13,15 @@ export default class App {
 
   async run() {
     do {
-      const lottos = await this.#processBuyLottos();
+      await this.#processBuyLottos();
       const winningLotto = await this.#processWinning();
-      await this.#processResult(lottos, winningLotto);
+      await this.#processResult(winningLotto);
     } while (await this.#readIsRetry());
   }
 
   async #processBuyLottos() {
-    const lottos = await this.#retryUntilSuccess(() => this.#buyLottos());
-    const lottosList = lottos.map((lotto) => lotto.getNumbers());
-    OutputView.printLottos(lottosList);
-    return lottos;
+    const lottoNumbers = await this.#retryUntilSuccess(() => this.#buyLottos());
+    OutputView.printLottos(lottoNumbers);
   }
 
   async #buyLottos() {
@@ -53,22 +51,9 @@ export default class App {
     });
   }
 
-  async #processResult(lottos, winningLotto) {
-    const { prizeList, profitRate } = this.#lottoManager.getLotteryResult(
-      lottos,
-      winningLotto,
-    );
-
-    const formatPrizeList = prizeList.map((stats) => {
-      const { matchCount, hasBonus } = stats.rank.getResult();
-      return {
-        matchCount,
-        hasBonus,
-        prize: stats.prize,
-        count: stats.count,
-      };
-    });
-    OutputView.printStatistics({ formatPrizeList, profitRate });
+  async #processResult(winningLotto) {
+    const { prizeList, profitRate } = this.#lottoManager.getLotteryResult(winningLotto);
+    OutputView.printStatistics({ prizeList, profitRate });
   }
 
   async #readIsRetry() {

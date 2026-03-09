@@ -1,16 +1,14 @@
 import { Console } from "@woowacourse/mission-utils";
 
 export default class ConsoleOutputView {
-  static printLottos(lottoList) {
-    lottoList.forEach((lotto) => {
-      Console.print(lotto);
-    });
+  static printLottos(lottoNumbers) {
+    lottoNumbers.forEach((numbers) => Console.print(`[${numbers.join(", ")}]`));
   }
 
-  static printStatistics({ formatPrizeList, profitRate }) {
+  static printStatistics({ prizeList, profitRate }) {
     Console.print("\n당첨 통계");
     Console.print("--------------------");
-    formatPrizeList.forEach((element) => {
+    prizeList.forEach((element) => {
       Console.print(this.#printRank(element));
     });
     Console.print(`총 수익률은 ${profitRate}%입니다.`);
