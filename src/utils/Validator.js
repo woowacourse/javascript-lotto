@@ -1,4 +1,8 @@
-import { LOTTO_PRICE, LOTTO_SIZE } from "../constants/lottoInfo.js";
+import {
+  LOTTO_NUMBER_RANGE,
+  LOTTO_PRICE,
+  LOTTO_SIZE,
+} from "../constants/lottoInfo.js";
 import { ERROR_MESSAGE } from "../constants/message.js";
 
 const Validator = {
@@ -12,7 +16,10 @@ const Validator = {
     }
   },
   validateLottoNumRange(lottoNum) {
-    if (lottoNum > 45 || lottoNum < 1) {
+    if (
+      lottoNum > LOTTO_NUMBER_RANGE.MAX ||
+      lottoNum < LOTTO_NUMBER_RANGE.MIN
+    ) {
       throw new Error(ERROR_MESSAGE.INVALID_LOTTO_NUM_RANGE);
     }
   },

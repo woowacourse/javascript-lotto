@@ -1,8 +1,8 @@
-import { LOTTO_PRICE, LOTTO_SIZE } from "./lottoInfo";
+import { LOTTO_NUMBER_RANGE, LOTTO_PRICE, LOTTO_SIZE } from "./lottoInfo";
 
 export const ERROR_MESSAGE = Object.freeze({
   INVALID_PURCHASE_UNIT: `[ERROR] 구입 금액은 ${LOTTO_PRICE}원 단위여야 합니다.`,
-  INVALID_LOTTO_NUM_RANGE: "[ERROR] 로또 번호는 1-45 범위여야합니다.",
+  INVALID_LOTTO_NUM_RANGE: `[ERROR] 로또 번호는 ${LOTTO_NUMBER_RANGE.MIN}-${LOTTO_NUMBER_RANGE.MAX} 범위여야합니다.`,
   DUPLICATE_LOTTO_NUMBERS: "[ERROR] 로또 번호에 중복된 숫자가 있습니다.",
   BONUS_IN_WINNING_NUMBERS:
     "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.",
