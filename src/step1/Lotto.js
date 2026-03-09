@@ -37,7 +37,7 @@ export class WinningLotto extends Lotto {
   constructor(numbers, bonusNumber) {
     super(numbers.map((lottoNumber) => Number(lottoNumber)));
     this.#validateBonusNumber(bonusNumber);
-    this.#bonusNumber = Number(bonusNumber);
+    this.#bonusNumber = bonusNumber;
   }
 
   #validateBonusNumber(bonusNumber) {

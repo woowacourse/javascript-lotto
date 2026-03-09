@@ -28,7 +28,10 @@ const Input = {
 
   async readBonusNumber(winningLottoNumber) {
     const bonusNumber = await readLine("> 보너스 번호를 입력해 주세요. ");
-    const winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
+    const winningLotto = new WinningLotto(
+      winningLottoNumber,
+      Number(bonusNumber),
+    );
     return winningLotto;
   },
 
