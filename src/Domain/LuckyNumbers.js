@@ -1,3 +1,5 @@
+import Lotto from "./Lotto.js";
+
 class LuckyNumbers {
   #winningLotto;
   #bonusNumber;
@@ -15,7 +17,9 @@ class LuckyNumbers {
     if (Number.isNaN(bonus) || bonus < 1 || bonus > 45) {
       throw new Error("[ERROR] 보너스 번호는 1~45 범위의 숫자여야 합니다!");
     }
-    if (this.#winningLotto.getNumbers().includes(bonus)) {
+
+    const winningNumbersNum = this.#winningLotto.getNumbers().map(Number);
+    if (winningNumbersNum.includes(bonus)) {
       throw new Error("[ERROR] 보너스 번호가 당첨번호와 중복됩니다!");
     }
 
