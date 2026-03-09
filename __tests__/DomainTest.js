@@ -2,7 +2,6 @@ import Lotto from "../src/Domain/Lotto.js";
 import LottoMachine from "../src/Domain/LottoMachine.js";
 import LottoResult from "../src/Domain/LottoResult.js";
 import LuckyNumbers from "../src/Domain/LuckyNumbers.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -43,28 +42,13 @@ describe("로또 클래스 테스트", () => {
   });
 });
 
-const mockRandoms = (arrays) => {
-  MissionUtils.Random.pickUniqueNumbersInRange = jest.fn();
-  arrays.reduce((acc, arr) => {
-    return acc.mockReturnValueOnce(arr);
-  }, MissionUtils.Random.pickUniqueNumbersInRange);
-};
-
 describe("LottoMachine 동작 테스트", () => {
-  beforeEach(() => {
-    jest.restoreAllMocks();
-  });
+  test("모킹 없이 고정된 번호로 로또가 발행되는지 테스트", () => {
+    const randomGenerator = () => [1, 2, 3, 4, 5, 6];
 
-  test("issueLottos 테스트: 구매 금액/1000만큼 로또 구매 - 2장", () => {
-    const machine = new LottoMachine();
-    mockRandoms([
-      [1, 2, 3, 4, 5, 6],
-      [40, 41, 42, 43, 44, 45],
-    ]);
-    const lottos = machine.issueLottos(2 * 1000);
-    expect(lottos).toHaveLength(2);
-    expect(lottos[0]).toBeInstanceOf(Lotto);
-    expect(lottos[1]).toBeInstanceOf(Lotto);
+    const lottos = LottoMachine.issueLottos("1000", randomGenerator);
+
+    expect(lottos[0].getFormattedNumbers()).toBe("[1, 2, 3, 4, 5, 6]");
   });
 }
 );
