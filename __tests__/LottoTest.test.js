@@ -33,12 +33,16 @@ describe("로또 발행 테스트", () => {
     expect(() => new Lotto(wrongNumbers)).toThrow(ERROR_MESSAGE.PREFIX);
   });
 
-  test("1~45 사이가 아닌 경우 에러를 발생시킨다", () => {
-    // given
-    const wrongNumbers = [1, 2, 3, 4, 5, 100];
-    // when & then
-    expect(() => new Lotto(wrongNumbers)).toThrow(ERROR_MESSAGE.PREFIX);
-  });
+  test.each([
+    [0, [0, 2, 3, 4, 5, 6]],
+    [46, [1, 2, 3, 4, 5, 46]],
+  ])(
+    "1~45 사이가 아닌 경계값(%s)이 포함된 경우 에러를 발생시킨다",
+    (wrongTarget, wrongNumbers) => {
+      // when & then
+      expect(() => new Lotto(wrongNumbers)).toThrow(ERROR_MESSAGE.PREFIX);
+    },
+  );
 
   test("번호가 중복되는 경우 에러를 발생시킨다", () => {
     // given
