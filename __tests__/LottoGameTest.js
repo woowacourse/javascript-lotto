@@ -32,7 +32,7 @@ describe("로또게임 테스트", () => {
 
     const lottoGame = new LottoGame([1, 2, 3, 4, 5, 6], 7);
 
-    expect(lottoGame.getStatistics(lottoList)).toEqual({
+    expect(lottoGame.calculateStatistics(lottoList)).toEqual({
       1: 1,
       2: 0,
       3: 0,

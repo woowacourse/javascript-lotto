@@ -7,7 +7,7 @@ class LottoGame {
     this.#bonusNumber = bonusNumber;
   }
 
-  getStatistics(lottoList) {
+  calculateStatistics(lottoList) {
     const grade = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 0: 0 };
 
     lottoList.getLottoList().forEach((lotto) => {
@@ -17,7 +17,7 @@ class LottoGame {
 
     return grade;
   }
-  #getMatchCount(lotto) {
+  #calculateMatchCount(lotto) {
     let matchingCount = 0;
     let hasBonus = false;
     lotto.getNumbers().forEach((number) => {
@@ -32,7 +32,7 @@ class LottoGame {
     };
   }
   #match(lotto) {
-    const { matchingCount, hasBonus } = this.#getMatchCount(lotto);
+    const { matchingCount, hasBonus } = this.#calculateMatchCount(lotto);
 
     // 1 등 6 개
     // 2 등 5 개, 보너스 O

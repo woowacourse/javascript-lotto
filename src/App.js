@@ -55,7 +55,7 @@ class App {
         bonusNumber = await this.#inputView.readBonusNumber();
         this.#validator.validateBonusNumber(
           winningNumbers,
-          stringToNumber(bonusNumber),
+          stringToNumber(bonusNumber)
         );
 
         break;
@@ -65,7 +65,7 @@ class App {
     }
 
     const lottoGame = new LottoGame(winningNumbers, bonusNumber);
-    const statistics = lottoGame.getStatistics(lottoList);
+    const statistics = lottoGame.calculateStatistics(lottoList);
     const rate = new Rate(statistics, price);
 
     this.#outputView.printStatistics(statistics);
