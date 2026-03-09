@@ -10,13 +10,13 @@ describe("랜덤 생성 유틸리티 테스트", () => {
     expect(typeof mockRandomUtil.pickUniqueNumbers).toBe("function");
   });
 
-  test("RandomUtil과 MockRandomUtil의 pickUniqueNumbers 메서드는 모두 동일하게 호출되어 6개의 숫자를 배열로 반환한다.", async () => {
+  test("RandomUtil과 MockRandomUtil의 pickUniqueNumbers 메서드는 모두 동일하게 호출되어 6개의 숫자를 배열로 반환한다.", () => {
     const mockRandomUtil = new MockRandomUtil([[1, 2, 3, 4, 5, 6]]);
-    const mockRandomUtilResult = await mockRandomUtil.pickUniqueNumbers();
+    const mockRandomUtilResult = mockRandomUtil.pickUniqueNumbers();
     expect(mockRandomUtilResult).toHaveLength(6)
 
     const randomUtil = new MissionRandomUtil();
-    const randomUtilResult = await randomUtil.pickUniqueNumbers();
+    const randomUtilResult = randomUtil.pickUniqueNumbers();
     expect(randomUtilResult).toHaveLength(6)
   });
 });
