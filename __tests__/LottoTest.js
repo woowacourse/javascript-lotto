@@ -85,3 +85,34 @@ describe("랜덤 숫자 배열 반환 테스트", () => {
     });
   });
 });
+
+describe("Lotto 생성 테스트", () => {
+  test("유효한 번호로 생성 -> 통과", () => {
+    expect(() => new Lotto([1, 2, 3, 4, 5, 6])).not.toThrow();
+  });
+
+  test("6개 미만 -> 에러", () => {
+    expect(() => new Lotto([1, 2, 3, 4, 5])).toThrow("[ERROR]");
+  });
+
+  test("6개 초과 -> 에러", () => {
+    expect(() => new Lotto([1, 2, 3, 4, 5, 6, 7])).toThrow("[ERROR]");
+  });
+
+  test("중복 번호 -> 에러", () => {
+    expect(() => new Lotto([1, 2, 3, 4, 5, 5])).toThrow("[ERROR]");
+  });
+
+  test("1 미만 번호 -> 에러", () => {
+    expect(() => new Lotto([0, 2, 3, 4, 5, 6])).toThrow("[ERROR]");
+  });
+
+  test("45 초과 번호 -> 에러", () => {
+    expect(() => new Lotto([1, 2, 3, 4, 5, 46])).toThrow("[ERROR]");
+  });
+
+  test("오름차순 정렬 -> 정렬된 배열 반환", () => {
+    const lotto = new Lotto([6, 5, 4, 3, 2, 1]);
+    expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+});
