@@ -29,13 +29,13 @@ const InputConsole = {
     }
   },
 
-  async readBonusNumber(winningNumbers) {
+  async readBonusNumber() {
     while (true) {
       try {
         const input = await MissionUtils.Console.readLineAsync(
           "\n> 보너스 번호를 입력해 주세요. ",
         );
-        return Validator.validateBonusNumber(input, winningNumbers);
+        return input;
       } catch (e) {
         MissionUtils.Console.print(e.message);
       }

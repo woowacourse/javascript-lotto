@@ -19,7 +19,7 @@ class App {
     const winningNumbers = Validator.validateWinningNumbers(await InputConsole.readWinningNumbers(),);
 
     // 보너스 번호 입력받기
-    const bonusNumber = await InputConsole.readBonusNumber(winningNumbers);
+    const bonusNumber = Validator.validateBonusNumber(await InputConsole.readBonusNumber(winningNumbers),winningNumbers);
 
     // 당첨 통계
     const luckyNumbers = {
