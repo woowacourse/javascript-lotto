@@ -1,5 +1,5 @@
 import LottoController from "./LottoController.js";
-import OutPutView from "../view/OutputView.js";
+import OutputView from "../view/OutputView.js";
 import InputView from "../view/InputView.js";
 import retry from "../utils/retry.js";
 import { LOTTO_PRICE } from "../constants/lottoInfo.js";
@@ -13,14 +13,14 @@ class App {
 
       const lottoController = new LottoController(lottoCount);
       const purchasedLottos = lottoController.issueLottos();
-      OutPutView.printLotto(purchasedLottos);
+      OutputView.printLotto(purchasedLottos);
 
       const winningLotto = await retry(() => InputView.inputWinningNums());
       const bonusNum = await retry(() => InputView.inputBonusNum(winningLotto));
       lottoController.updateWinningResult(winningLotto, bonusNum);
 
       const { rankCount, profitRate } = lottoController.getWinningResult();
-      OutPutView.printResult(rankCount, profitRate);
+      OutputView.printResult(rankCount, profitRate);
 
       const restartAnswer = await retry(() => InputView.inputRestartAnswer());
       if (restartAnswer == "n") break;

@@ -1,6 +1,6 @@
 import { WINNING_DATA } from "../constants/lottoInfo.js";
 
-const OutPutView = {
+const OutputView = {
   printLotto(lottos) {
     console.log(`${lottos.length}개를 구매했습니다.`);
     lottos.forEach((lotto) => {
@@ -22,4 +22,4 @@ const OutPutView = {
   },
 };
 
-export default OutPutView;
+export default OutputView;
