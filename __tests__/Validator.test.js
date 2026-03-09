@@ -2,6 +2,11 @@ import { Validator } from "../src/validator/Validator.js";
 import { ERROR_MESSAGE } from "../src/constants/constant.js";
 
 describe("구입 금액", () => {
+  test("구입 금액을 입력하지 않으면 에러가 발생한다.", () => {
+    expect(() => Validator.validatePurchaseMoney('').toThrow(
+      ERROR_MESSAGE.PURCHASE_MONEY.NONE,
+    ));
+  });
   test("구입 금액이 1000원 미만일 시 에러가 발생한다.", () => {
     expect(() => Validator.validatePurchaseMoney(900)).toThrow(
       ERROR_MESSAGE.PURCHASE_MONEY.MIN,
