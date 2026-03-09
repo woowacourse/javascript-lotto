@@ -2,7 +2,7 @@ import { ERROR_MESSAGE } from "./constants.js";
 
 const Validator = {
   validateNotEmptyString(string) {
-    if (string === "") {
+    if (string.trim() === "") {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
   },
@@ -26,7 +26,9 @@ const Validator = {
   },
 
   validateStringIsNumber(string) {
-    if (isNaN(string)) {
+    const parsedNumber = Number(string);
+
+    if (Number.isNaN(parsedNumber)) {
       throw new Error(ERROR_MESSAGE.PREFIX);
     }
   },
