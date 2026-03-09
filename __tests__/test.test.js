@@ -4,7 +4,7 @@ import ScoreBoard from "../src/ScoreBoard";
 import WinningLotto from "../src/Model/WinningLotto";
 
 describe("당첨 여부 테스트", () => {
-  test("구매한 로또 하나와 당첨로또를 비교해서 일치하는 번호의 개수를 반환해야한다", () => {
+  test("[기능] 구매한 로또 하나와 당첨로또를 비교해서 일치하는 번호의 개수를 반환해야한다", () => {
     // given
     const lotto = new Lotto([1, 2, 3, 4, 8, 9]);
     const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
@@ -16,7 +16,7 @@ describe("당첨 여부 테스트", () => {
     expect(matchCount).toEqual(4);
   });
 
-  test("구매한 로또 번호에 보너스 번호가 포함되어 있는지 확인해야 한다", () => {
+  test("[기능] 구매한 로또 번호에 보너스 번호가 포함되어 있는지 확인해야 한다", () => {
     // given
     const lotto = new Lotto([1, 2, 3, 4, 8, 9]);
     const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 9);
@@ -35,7 +35,7 @@ describe("당첨 여부 테스트", () => {
     [RANK.FOURTH.DISPLAY, RANK.FOURTH.MATCH_COUNT, true],
     [RANK.FIFTH.DISPLAY, RANK.FIFTH.MATCH_COUNT, true],
   ])(
-    "일치하는 번호 개수와 보너스 번호의 개수를 확인해 올바르게 등수를 계산해야 한다.(%s)",
+    "[기능] 일치하는 번호 개수와 보너스 번호의 개수를 확인해 올바르게 등수를 계산해야 한다.(%s)",
     (expectedRank, matchCount, hasBonus) => {
       // when
       const rank = ScoreBoard.getRank(matchCount, hasBonus);
@@ -44,7 +44,7 @@ describe("당첨 여부 테스트", () => {
     },
   );
 
-  test("구매한 모든 로또의 등수를 계산해 반환해야 한다 ", () => {
+  test("[기능] 구매한 모든 로또의 등수를 계산해 반환해야 한다 ", () => {
     // given
     const lottos = [
       new Lotto([1, 2, 3, 4, 5, 6]),
@@ -67,7 +67,7 @@ describe("당첨 여부 테스트", () => {
     });
   });
 
-  test("올바른 수익률을 계산해야 한다.", () => {
+  test("[기능] 올바른 수익률을 계산해야 한다.", () => {
     // given
     const money = 5_000;
     const result = 40_631_100;
