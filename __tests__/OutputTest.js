@@ -1,4 +1,4 @@
-import Lotto from "../src/Lotto";
+import Lotto from "../src/domain/Lotto.js";
 import {
   printProfitRate,
   printPurchaseCount,

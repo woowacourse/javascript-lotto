@@ -5,7 +5,7 @@ import {
   printPurchasedLottoNumbers,
   printWinStatistics,
 } from "./view/outputView.js";
-import WinningLotto from "./WinningLotto.js";
+import WinningLotto from "./domain/WinningLotto.js";
 import {
   bonusNumberInputHandler,
   purchaseAmountInputHandler,
@@ -13,8 +13,8 @@ import {
   winningNumberInputHandler,
 } from "./view/inputHandler.js";
 import { close } from "./view/input.js";
-import PurchasedLotto from "./PurchasedLotto.js";
-import { getReturnRate } from "./utils/getReturnRate";
+import PurchasedLotto from "./domain/PurchasedLotto.js";
+import { getReturnRate } from "./utils/getReturnRate.js";
 
 export const gameManager = async () => {
   const validatedAmount = await purchaseAmountInputHandler();

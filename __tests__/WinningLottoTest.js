@@ -1,5 +1,5 @@
-import Lotto from "../src/Lotto";
-import WinningLotto from "../src/WinningLotto";
+import Lotto from "../src/domain/Lotto.js";
+import WinningLotto from "../src/domain/WinningLotto.js";
 
 describe("구매한 로또 번호와 당첨 로또 번호 비교 테스트", () => {
   test.each([
