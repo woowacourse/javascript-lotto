@@ -41,7 +41,7 @@ class WinningLotto {
     return this.#lottoNumbers.getNumbers();
   }
 
-  evaluateLotto(lotto) {
+  #evaluateLotto(lotto) {
     const UniqueueNumbers = new Set([
       ...lotto.getNumbers(),
       ...this.#lottoNumbers.getNumbers(),
@@ -59,7 +59,7 @@ class WinningLotto {
   }
 
   evaluateLottos(lottos) {
-    const rankResults = lottos.map((lotto) => this.evaluateLotto(lotto));
+    const rankResults = lottos.map((lotto) => this.#evaluateLotto(lotto));
 
     const rankCounts = Object.values(RANK).reduce((acc, rank) => {
       acc[rank] = 0;
