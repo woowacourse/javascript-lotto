@@ -13,7 +13,7 @@ class Lotto {
   #validate(numbers) {
     validateCount(numbers);
     validateNoDuplicate(numbers);
-    validateRange(numbers);
+    numbers.forEach((number) => validateRange(number));
   }
 
   getNumbers() {
