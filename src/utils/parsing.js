@@ -9,7 +9,7 @@ export const parsingNumbers = (numberString) => {
   });
 
   const numberArray = numberStringArray.map((numberString) =>
-    parseInt(numberString, 10),
+    parseInt(numberString, 10)
   );
   return numberArray;
 };

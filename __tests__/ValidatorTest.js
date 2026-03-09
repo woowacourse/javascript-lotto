@@ -41,9 +41,9 @@ describe("유효성 검사 테스트", () => {
       "%s, 예외가 발생해야 한다.",
       (description, WinningNumbers, errorMessage) => {
         expect(() => validator.validateLottoNumbers(WinningNumbers)).toThrow(
-          errorMessage,
+          errorMessage
         );
-      },
+      }
     );
   });
 
@@ -71,9 +71,9 @@ describe("유효성 검사 테스트", () => {
       "%s, 예외가 발생해야 한다.",
       (description, lottoNumbers, bonusNumber, errorMessage) => {
         expect(() =>
-          validator.validateBonusNumber(lottoNumbers, bonusNumber),
+          validator.validateBonusNumber(lottoNumbers, bonusNumber)
         ).toThrow(errorMessage);
-      },
+      }
     );
   });
 });

@@ -1,24 +1,24 @@
-import Console from "../src/utils/Console.js";
-import Random from "../src/utils/Random.js";
+import console from "../src/utils/console.js";
+import random from "../src/utils/random.js";
 
 import App from "../src/App.js";
 
 const mockRandoms = (numbers) => {
-  Random.randomArray = jest.fn();
+  random.randomArray = jest.fn();
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
-  }, Random.randomArray);
+  }, random.randomArray);
 };
 
 export const mockQuestions = (inputs) => {
-  Console.readLineAsync = jest.fn();
-  Console.readLineAsync.mockImplementation(() => {
+  console.readLineAsync = jest.fn();
+  console.readLineAsync.mockImplementation(() => {
     const input = inputs.shift();
     return Promise.resolve(input);
   });
 };
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(Console, "print");
+  const logSpy = jest.spyOn(console, "print");
   logSpy.mockClear();
   return logSpy;
 };

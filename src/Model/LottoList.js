@@ -1,4 +1,4 @@
-import Random from "../utils/Random.js";
+import random from "../utils/random.js";
 import Lotto from "./Lotto.js";
 
 class LottoList {
@@ -18,7 +18,7 @@ class LottoList {
   }
 
   #createRandomArray() {
-    return Random.randomArray(1, 45, 6);
+    return random.randomArray(1, 45, 6);
   }
 
   getLottoList() {

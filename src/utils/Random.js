@@ -1,4 +1,4 @@
-const Random = {
+const random = {
   randomArray: (startNum, endNum, count) => {
     // 랜덤 숫자 뽑기
     let randomArray = [];
@@ -14,4 +14,4 @@ const Random = {
   },
 };
 
-export default Random;
+export default random;

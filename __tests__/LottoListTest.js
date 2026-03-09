@@ -1,11 +1,11 @@
 import LottoList from "../src/Model/LottoList.js";
-import Random from "../src/utils/Random.js";
+import random from "../src/utils/random.js";
 
 const mockRandoms = (numbers) => {
-  Random.randomArray = jest.fn();
+  random.randomArray = jest.fn();
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
-  }, Random.randomArray);
+  }, random.randomArray);
 };
 
 describe("로또 리스트 검사 테스트", () => {

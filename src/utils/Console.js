@@ -1,6 +1,6 @@
 import readline from "readline";
 
-const Console = {
+const console = {
   readLineAsync: async (inputMessage) => {
     return await new Promise((resolve) => {
       const r1 = readline.createInterface({
@@ -15,8 +15,8 @@ const Console = {
     });
   },
   print: (outputMessage) => {
-    console.log(outputMessage);
+    globalThis.console.log(outputMessage);
   },
 };
 
-export default Console;
+export default console;
