@@ -29,4 +29,9 @@ describe("로또 테스트", () => {
       new Lotto([1, 2, 3, 4, 5, NaN]);
     }).toThrow(LOTTO_ERROR_MESSAGE.INPUT_RANGE);
   });
+
+  test("로또 번호가 오름차순으로 정렬되어야 한다.", () => {
+    const lotto = new Lotto([6, 5, 4, 3, 2, 1]);
+    expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });

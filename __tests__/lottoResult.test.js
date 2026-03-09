@@ -12,4 +12,9 @@ describe("수익률 계산 테스트", () => {
     });
     expect(result.getReturnOnInvestment(5000)).toBe(80630100);
   });
+
+  test("수익률 계산 시 amount가 0인 경우 예외가 발생한다.", () => {
+  const result = new LottoResult({});
+  expect(() => result.getReturnOnInvestment(0)).toThrow();
+});
 });

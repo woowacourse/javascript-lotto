@@ -5,6 +5,14 @@ import MockRandomUtil from "./utils/MockRandomUtil.js";
 import { ERROR_MESSAGE } from "../src/step1/constant/message.js";
 
 describe("App 통합 테스트", () => {
+  test("잘못된 Input 인스턴스를 주입하면 예외가 발생한다.", () => {
+    expect(() => {
+      new App({
+        input: {}
+      });
+    }).toThrow(ERROR_MESSAGE.INVALID_INPUT);
+  });
+
   test("정상적인 사용자 입력이 들어오는 경우 예외 없이 종료된다.", async () => {
     const app = new App({
       input: new MockInput(["1000", "1,2,3,4,5,6", "7", "n"]),
