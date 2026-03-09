@@ -1,4 +1,3 @@
-import { PRIZE_PER_RANK } from "./constants.js";
 import Lotto from "./Lotto.js";
 
 class PurchasedLotto {
