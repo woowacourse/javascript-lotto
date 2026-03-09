@@ -14,6 +14,7 @@ import {
 } from "./view/inputHandler.js";
 import { close } from "./view/input.js";
 import PurchasedLotto from "./PurchasedLotto.js";
+import { getReturnRate } from "./utils/getReturnRate";
 
 export const gameManager = async () => {
   const validatedAmount = await purchaseAmountInputHandler();
@@ -39,10 +40,10 @@ export const gameManager = async () => {
     validatedBonusNumber
   );
 
-  printWinStatistics(generatedLottos.getPrizeList(winningLotto));
-  printProfitRate(
-    generatedLottos.calculateReturnRate(winningLotto, validatedAmount)
-  );
+  const prizeList = generatedLottos.getPrizeList(winningLotto);
+
+  printWinStatistics(prizeList);
+  printProfitRate(getReturnRate(prizeList, validatedAmount));
 
   const validatedYn = await restartInputHandler();
   if (validatedYn === "y") {

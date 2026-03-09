@@ -31,20 +31,4 @@ describe("구매한 lotto들을 관리하는 PurchasedLotto 테스트 코드", (
       0, 1, 1, 1, 1, 1,
     ]);
   });
-
-  test("PurchasedLotto가 구입 금액 대비 수익률을 정확히 계산", () => {
-    const purchasedLotto = new PurchasedLotto([
-      [7, 8, 9, 10, 11, 12],
-      [7, 8, 9, 10, 11, 12],
-      [7, 8, 9, 10, 11, 12],
-      [7, 8, 9, 10, 11, 12],
-      [7, 8, 9, 10, 11, 12],
-      [7, 8, 9, 10, 11, 12],
-      [7, 8, 9, 10, 11, 12],
-      [7, 8, 9, 10, 11, 12],
-      [1, 2, 3, 8, 9, 10],
-    ]);
-    const winningLotto = new WinningLotto([1, 2, 3, 4, 5, 6], 7);
-    expect(purchasedLotto.calculateReturnRate(winningLotto, 8000)).toBe(62.5);
-  });
 });

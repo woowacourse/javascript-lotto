@@ -33,16 +33,6 @@ class PurchasedLotto {
 
     return prizeList;
   }
-
-  calculateReturnRate(winningLotto, purchaseAmount) {
-    const prizeList = this.getPrizeList(winningLotto);
-    const totalPrize = prizeList.reduce((acc, count, rank) => {
-      const prizeMoney = PRIZE_PER_RANK[rank] || 0;
-      return acc + count * prizeMoney;
-    }, 0);
-
-    return Math.round((totalPrize / purchaseAmount) * 100 * 10) / 10;
-  }
 }
 
 export default PurchasedLotto;
