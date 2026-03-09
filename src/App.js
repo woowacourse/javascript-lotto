@@ -18,7 +18,7 @@ class App {
       const winningNumbers = await this.#readWinningNumbers();
 
       // 보너스 번호 입력받기
-      const bonusNumber = await this.#readBonusNumber();
+      const bonusNumber = await this.#readBonusNumber(winningNumbers);
 
       // 당첨 통계 출력하기
       const luckyNumbers = {
@@ -67,11 +67,11 @@ class App {
     }
   }
 
-  async #readBonusNumber() {
+  async #readBonusNumber(winningNumbers) {
     while (true) {
       try {
         const input = await InputConsole.readBonusNumber();
-        return Validator.validateBonusNumber(input);
+        return Validator.validateBonusNumber(input, winningNumbers);
       } catch (e) {
         OutputConsole.printErrorMessage(e.message);
       }
