@@ -1,4 +1,3 @@
-import { Console } from "@woowacourse/mission-utils";
 import InputConsole from "./Console/InputConsole.js";
 import OutputConsole from "./Console/OutputConsole.js";
 import LottoMachine from "./Domain/LottoMachine.js";
@@ -52,7 +51,7 @@ class App {
         const input = await InputConsole.readPurchasePrice();
         return Validator.validatePurchasePrice(input);
       } catch (e) {
-        Console.print(e.message);
+        OutputConsole.printErrorMessage(e.message);
       }
     }
   }
@@ -63,7 +62,7 @@ class App {
         const inputs = await InputConsole.readWinningNumbers();
         return Validator.validateWinningNumbers(inputs);
       } catch (e) {
-        Console.print(e.message);
+        OutputConsole.printErrorMessage(e.message);
       }
     }
   }
@@ -71,10 +70,10 @@ class App {
   async #readBonusNumber() {
     while (true) {
       try {
-        const inputs = await InputConsole.readBonusNumber();
-        return Validator.validateBonusNumber(inputs);
+        const input = await InputConsole.readBonusNumber();
+        return Validator.validateBonusNumber(input);
       } catch (e) {
-        Console.print(e.message);
+        OutputConsole.printErrorMessage(e.message);
       }
     }
   }
