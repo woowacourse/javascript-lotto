@@ -1,0 +1,32 @@
+export const LOTTO_PRICE = 1000;
+export const LOTTO_SIZE = 6;
+export const LOTTO_NUMBER_RANGE = {
+  MIN: 1,
+  MAX: 45,
+};
+
+export const RANK = {
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
+  FOURTH: 4,
+  FIFTH: 5,
+  NONE: 0,
+};
+
+export const PRIZE = {
+  0: 0,
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000,
+};
+
+export const WINNING_DATA = {
+  1: "6개 일치 (2,000,000,000원)",
+  2: "5개 일치, 보너스 볼 일치 (30,000,000원)",
+  3: "5개 일치 (1,500,000원)",
+  4: "4개 일치 (50,000원)",
+  5: "3개 일치 (5,000원)",
+};
