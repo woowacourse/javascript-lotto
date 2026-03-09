@@ -38,7 +38,7 @@ describe("로또 발행 테스트", () => {
     [46, [1, 2, 3, 4, 5, 46]],
   ])(
     "[예외] 1~45 사이가 아닌 경계값(%s)이 포함된 경우 에러를 발생시킨다",
-    (wrongTarget, wrongNumbers) => {
+    (_, wrongNumbers) => {
       // when & then
       expect(() => new Lotto(wrongNumbers)).toThrow(ERROR_MESSAGE.PREFIX);
     },
