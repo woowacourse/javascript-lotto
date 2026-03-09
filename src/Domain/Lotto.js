@@ -40,6 +40,10 @@ class Lotto {
     return this.#numbers.includes(bonusNumber);
   }
 
+  getNumbers() {
+    return this.#numbers;
+  }
+
   // 로또 번호 배열을 문자열 형태로 표현
   toString() {
     return `[${this.#numbers.join(", ")}]`;
