@@ -18,51 +18,35 @@ class App {
   }
 
   async run() {
-    let price;
-    let winningNumbers;
-    let bonusNumber;
+    let isRetry = "y";
 
-    while (true) {
-      try {
-        price = await this.#inputView.readPrice();
-        this.#validator.validatePrice(price);
-
-        break;
-      } catch (err) {
-        this.#outputView.printError(err.message);
-      }
+    while (isRetry === "y") {
+      await this.#playGameOnce();
+      isRetry = await this.#inputView.readIsRetry();
     }
+  }
+
+  #playGameOnce = async () => {
+    const price = await this.#retryReadValue(
+      () => this.#inputView.readPrice(),
+      (v) => this.#validator.validatePrice(v)
+    );
 
     const lottoList = new LottoList(price / 1000);
     this.#outputView.printAmount(price);
     this.#outputView.printLottos(lottoList.getLottoList());
 
-    while (true) {
-      try {
-        const lottoNumbers = await this.#inputView.readLottoNumbers();
+    const winningNumbers = await this.#retryReadValue(
+      () => this.#inputView.readLottoNumbers(),
+      (v) => this.#validator.validateLottoNumbers(v),
+      parsingNumbers
+    );
 
-        winningNumbers = parsingNumbers(lottoNumbers);
-        this.#validator.validateLottoNumbers(winningNumbers);
-
-        break;
-      } catch (err) {
-        this.#outputView.printError(err.message);
-      }
-    }
-
-    while (true) {
-      try {
-        bonusNumber = await this.#inputView.readBonusNumber();
-        this.#validator.validateBonusNumber(
-          winningNumbers,
-          stringToNumber(bonusNumber)
-        );
-
-        break;
-      } catch (err) {
-        this.#outputView.printError(err.message);
-      }
-    }
+    const bonusNumber = await this.#retryReadValue(
+      () => this.#inputView.readBonusNumber(),
+      (v) => this.#validator.validateBonusNumber(winningNumbers, v),
+      stringToNumber
+    );
 
     const lottoGame = new LottoGame(winningNumbers, bonusNumber);
     const statistics = lottoGame.calculateStatistics(lottoList);
@@ -70,12 +54,25 @@ class App {
 
     this.#outputView.printStatistics(statistics);
     this.#outputView.printRate(rate.getRate());
+  };
 
-    const isRetry = await this.#inputView.readIsRetry();
-    if (isRetry === "y") {
-      await this.run();
+  #retryReadValue = async (
+    readMethod,
+    validateMethod,
+    transformMethod = (v) => v
+  ) => {
+    try {
+      const raw = await readMethod();
+      const value = transformMethod(raw);
+
+      validateMethod(value);
+
+      return value;
+    } catch (err) {
+      this.#outputView.printError(err.message);
+      return this.#retryReadValue(readMethod, validateMethod, transformMethod);
     }
-  }
+  };
 }
 
 export default App;
