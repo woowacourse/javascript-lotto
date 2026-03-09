@@ -1,4 +1,5 @@
 import generateLottos from "../domain/generateLottos.js";
+import Lotto from "../domain/Lotto.js";
 import Money from "../domain/Money.js";
 import WinningNumber from "../domain/WinningNumber.js";
 import LottoResult from "../domain/LottoResult.js";
@@ -6,14 +7,19 @@ import LottoResult from "../domain/LottoResult.js";
 export default class LottoManager {
   #lottos = [];
 
-  buyLottos(amount) {
-    const money = new Money(amount);
+  buyLottosFromConsole(amountInput) {
+    const money = new Money(Number(amountInput));
     this.#lottos = generateLottos(money.getMaximumLottoCount());
     return this.#lottos.map((lotto) => lotto.getNumbers());
   }
 
-  createWinningNumber({ winningLotto, bonusNumber }) {
-    return new WinningNumber(winningLotto, bonusNumber);
+  createWinningLottoFromConsole(numbersInput) {
+    const numbers = numbersInput.split(",").map((v) => Number(v.trim()));
+    return new Lotto(numbers);
+  }
+
+  createWinningNumberFromConsole(winningLotto, bonusInput) {
+    return new WinningNumber(winningLotto, Number(bonusInput));
   }
 
   getLotteryResult(winningNumber) {

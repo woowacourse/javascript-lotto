@@ -1,21 +1,10 @@
 import { Console } from "@woowacourse/mission-utils";
 import { INFO, ERROR } from "../constants/messages.js";
 import { ANSWER } from "../constants/rules.js";
-import { Validator } from "../utils/Validator.js";
+
 class ConsoleInputView {
   static async #readLine(message) {
     return await Console.readLineAsync(message);
-  }
-
-  static #readNumber(input) {
-    Validator.isNumber(Number(input));
-    return Number(input);
-  }
-
-  static #readNumberList(input) {
-    const parsedInputList = input.split(",").map((v) => Number(v.trim()));
-    parsedInputList.forEach((v) => Validator.isNumber(v));
-    return parsedInputList;
   }
 
   static #readYesOrNo(answer) {
@@ -26,18 +15,15 @@ class ConsoleInputView {
   }
 
   static async readPurchaseAmount() {
-    const input = await this.#readLine(INFO.PURCHASE_AMOUNT);
-    return this.#readNumber(input);
+    return await this.#readLine(INFO.PURCHASE_AMOUNT);
   }
 
   static async readWinningNumbers() {
-    const input = await this.#readLine(INFO.WINNING_NUMBERS);
-    return this.#readNumberList(input);
+    return await this.#readLine(INFO.WINNING_NUMBERS);
   }
 
   static async readBonusNumber() {
-    const input = await this.#readLine(INFO.BONUS_NUMBER);
-    return this.#readNumber(input);
+    return await this.#readLine(INFO.BONUS_NUMBER);
   }
 
   static async readIsRetry() {

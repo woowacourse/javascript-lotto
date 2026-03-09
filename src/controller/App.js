@@ -1,7 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import InputView from "../console/ConsoleInputView.js";
 import OutputView from "../console/ConsoleOutputView.js";
-import Lotto from "../domain/Lotto.js";
 import LottoManager from "../service/LottoManager.js";
 
 export default class App {
@@ -25,8 +24,8 @@ export default class App {
   }
 
   async #buyLottos() {
-    const budget = await InputView.readPurchaseAmount();
-    return this.#lottoManager.buyLottos(budget);
+    const input = await InputView.readPurchaseAmount();
+    return this.#lottoManager.buyLottosFromConsole(input);
   }
 
   async #processWinning() {
@@ -39,16 +38,13 @@ export default class App {
   }
 
   async #readWinningLotto() {
-    const numbers = await InputView.readWinningNumbers();
-    return new Lotto(numbers);
+    const input = await InputView.readWinningNumbers();
+    return this.#lottoManager.createWinningLottoFromConsole(input);
   }
 
   async #getWinningNumber(winningLotto) {
-    const bonusNumber = await InputView.readBonusNumber();
-    return this.#lottoManager.createWinningNumber({
-      winningLotto,
-      bonusNumber,
-    });
+    const input = await InputView.readBonusNumber();
+    return this.#lottoManager.createWinningNumberFromConsole(winningLotto, input);
   }
 
   async #processResult(winningLotto) {
