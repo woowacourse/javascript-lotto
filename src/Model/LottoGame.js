@@ -17,7 +17,7 @@ class LottoGame {
 
     return grade;
   }
-  getMatchCount(lotto) {
+  #getMatchCount(lotto) {
     let matchingCount = 0;
     let hasBonus = false;
     lotto.getNumbers().forEach((number) => {
@@ -32,7 +32,7 @@ class LottoGame {
     };
   }
   #match(lotto) {
-    const { matchingCount, hasBonus } = this.getMatchCount(lotto);
+    const { matchingCount, hasBonus } = this.#getMatchCount(lotto);
 
     // 1 등 6 개
     // 2 등 5 개, 보너스 O
