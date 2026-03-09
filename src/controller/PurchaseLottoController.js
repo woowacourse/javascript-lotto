@@ -5,6 +5,6 @@ import MyLotto from "../domain/MyLottos.js";
 export async function PurchaseLottoController() {
   const money = await InputView.inputPurchaseAmount();
   const myLotto = MyLotto.createMyLotto(money);
-  OutputView.outputLottoNumber(randomLottos);
+  OutputView.outputLottoNumber(myLotto.getRandomLotto());
   return myLotto;
 }

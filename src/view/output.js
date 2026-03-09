@@ -1,10 +1,10 @@
 import { PRIZE } from "../constants/constant.js";
 
 export const OutputView = {
-  outputLottoNumber(randomLottos) {
-    console.log(randomLottos.length, "개를 구매했습니다.");
-    for (let i = 0; i < randomLottos.length; i++) {
-      console.log(randomLottos[i].getNumber());
+  outputLottoNumber(myLotto) {
+    console.log(myLotto.length, "개를 구매했습니다.");
+    for (let i = 0; i < myLotto.length; i++) {
+      console.log(myLotto[i].getNumber());
     }
   },
 
