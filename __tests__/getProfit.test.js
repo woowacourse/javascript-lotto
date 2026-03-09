@@ -1,6 +1,6 @@
-import { getProfit } from "../src/service/getProfit.js";
+import { profitService } from "../src/service/profitService.js";
 
-describe("getProfit", () => {
+describe("profitService", () => {
   test("로또 당첨 수익률을 계산한다", () => {
     const result = {
       FIRST: 0,
@@ -11,7 +11,7 @@ describe("getProfit", () => {
     };
 
     const money = 8000;
-    const profit = getProfit(money, result);
+    const profit = profitService(money, result);
     expect(profit).toBe("62.5");
   });
 });

@@ -1,6 +1,6 @@
 import { PRIZE } from "../constants/constant.js";
 
-export function getProfit(money, result) {
+export function profitService(money, result) {
   const totalPrize =
     result.FIRST * PRIZE.FIRST +
     result.SECOND * PRIZE.SECOND +
