@@ -22,6 +22,29 @@ class App {
     let winningNumbers;
     let bonusNumber;
 
+    price = await this.#inputPrice();
+
+    const lottoList = new LottoList(price / 1000);
+    this.#outputView.printAmount(price);
+    this.#outputView.printLottos(lottoList.getLottoList());
+
+    winningNumbers = await this.#inputWinningNumbers();
+    bonusNumber = await this.#inputBonusNumber(winningNumbers);
+
+    const lottoGame = new LottoGame(winningNumbers, bonusNumber);
+    const statistics = lottoGame.getStatistics(lottoList);
+    const rate = new Rate(statistics, price);
+
+    this.#outputView.printStatistics(statistics);
+    this.#outputView.printRate(rate.getRate());
+
+    const isRetry = await this.#inputView.readIsRetry();
+    if (isRetry === "y") {
+      await this.run();
+    }
+  }
+  async #inputPrice() {
+    let price;
     while (true) {
       try {
         price = await this.#inputView.readPrice();
@@ -32,11 +55,10 @@ class App {
         this.#outputView.printError(err.message);
       }
     }
-
-    const lottoList = new LottoList(price / 1000);
-    this.#outputView.printAmount(price);
-    this.#outputView.printLottos(lottoList.getLottoList());
-
+    return price;
+  }
+  async #inputWinningNumbers() {
+    let winningNumbers;
     while (true) {
       try {
         const lottoNumbers = await this.#inputView.readLottoNumbers();
@@ -49,7 +71,10 @@ class App {
         this.#outputView.printError(err.message);
       }
     }
-
+    return winningNumbers;
+  }
+  async #inputBonusNumber(winningNumbers) {
+    let bonusNumber;
     while (true) {
       try {
         bonusNumber = await this.#inputView.readBonusNumber();
@@ -63,18 +88,7 @@ class App {
         this.#outputView.printError(err.message);
       }
     }
-
-    const lottoGame = new LottoGame(winningNumbers, bonusNumber);
-    const statistics = lottoGame.getStatistics(lottoList);
-    const rate = new Rate(statistics, price);
-
-    this.#outputView.printStatistics(statistics);
-    this.#outputView.printRate(rate.getRate());
-
-    const isRetry = await this.#inputView.readIsRetry();
-    if (isRetry === "y") {
-      await this.run();
-    }
+    return bonusNumber;
   }
 }
 
