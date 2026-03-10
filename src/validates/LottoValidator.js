@@ -10,7 +10,3 @@ export function isArrayUnique(array) {
 export function isNumberInArray(number, array) {
   return array.includes(number);
 }
-
-export function isWinningNumbersExist(winningLottos) {
-  return winningLottos;
-}
