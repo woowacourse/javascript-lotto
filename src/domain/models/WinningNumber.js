@@ -1,0 +1,40 @@
+import Lotto from "./Lotto.js";
+
+export default class WinningNumber {
+  static ERROR = {
+    DUPLICATE: "보너스번호가 중복됐습니다",
+    INVALID_RANGE: "보너스번호가 1~45 범위를 벗어났습니다",
+  };
+
+  #lotto;
+  #bonusNumber;
+
+  constructor(numbers, bonusNumber) {
+    this.#validator(numbers, bonusNumber);
+    this.#lotto = new Lotto(numbers);
+    this.#bonusNumber = bonusNumber;
+  }
+
+  #validator(numbers, bonusNumber) {
+    if (bonusNumber < Lotto.MIN_RANGE || Lotto.MAX_RANGE < bonusNumber)
+      throw Error(WinningNumber.ERROR.INVALID_RANGE);
+
+    if (numbers.includes(bonusNumber))
+      throw Error(WinningNumber.ERROR.DUPLICATE);
+  }
+
+  getMatchCount(lotto) {
+    if (!(lotto instanceof Lotto))
+      throw Error("매개변수로 Lotto객체를 받아야합니다");
+
+    const winningNumbers = this.#lotto.getNumbers();
+    const matchWinning = winningNumbers.filter((n) =>
+      lotto.hasNumber(n),
+    ).length;
+    const matchBonus = lotto.hasNumber(this.#bonusNumber);
+    return {
+      matchWinning,
+      matchBonus,
+    };
+  }
+}
