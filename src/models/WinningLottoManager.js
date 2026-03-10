@@ -6,12 +6,11 @@ import { commonValidate } from "../validates/CommonValidator.js";
 import { isNumberInArray } from "../validates/LottoValidator.js";
 
 class WinningLottoManager extends Lotto {
-  #winningLottos;
   #bonusNumber;
 
   constructor(winningLottosInput) {
+    // 부모 클래스인 Lotto에 숫자 배열을 전달해 내부 상태를 초기화합니다.
     super(winningLottosInput);
-    this.#winningLottos = winningLottosInput;
   }
 
   setBonusNumber(bonusNumberInput) {
@@ -24,13 +23,14 @@ class WinningLottoManager extends Lotto {
       throw new Error(ERROR_MESSAGE.COMMON.INVALID_NUMBER);
     }
 
-    if (isNumberInArray(Number(bonusNumber), this.#winningLottos)) {
+    // 부모의 getNumbers()를 사용해 당첨 번호 배열을 조회합니다.
+    if (isNumberInArray(Number(bonusNumber), this.getNumbers())) {
       throw new Error(ERROR_MESSAGE.BONUS.DUPLICATE);
     }
   }
 
   compareWithWinningLotto(lottoNumbers) {
-    const winningLottos = this.#winningLottos;
+    const winningLottos = this.getNumbers();
     const matchCount = winningLottos.filter((number) => lottoNumbers.includes(number)).length;
     const hasBonus = lottoNumbers.includes(this.#bonusNumber);
 
