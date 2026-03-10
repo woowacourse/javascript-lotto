@@ -2,8 +2,8 @@ import LottoRankCalculator from './LottoRankCalculator.js';
 import LottoReturnCalculator from './LottoReturnCalculator.js';
 import LOTTO from './constants/lotto.js';
 
-class LottoResultGenerator {
-  static generateResult(lottos, winningLottoAndBonusNumber) {
+const LottoResultGenerator = {
+  generateResult(lottos, winningLottoAndBonusNumber) {
     const ranks = LottoRankCalculator.calculateLottoRanks(lottos, winningLottoAndBonusNumber);
 
     const returnAmount = LottoReturnCalculator.calculateReturnAmount(ranks);
@@ -13,7 +13,7 @@ class LottoResultGenerator {
     );
 
     return { ranks, returnRate };
-  }
-}
+  },
+};
 
 export default LottoResultGenerator;

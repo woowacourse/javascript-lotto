@@ -1,5 +1,5 @@
-class LottoRankCalculator {
-  static calculateLottoRanks(lottos, winningLottoAndBonusNumber) {
+const LottoRankCalculator = {
+  calculateLottoRanks(lottos, winningLottoAndBonusNumber) {
     const ranks = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
 
     lottos.forEach((lotto) => {
@@ -8,7 +8,7 @@ class LottoRankCalculator {
     });
 
     return ranks;
-  }
-}
+  },
+};
 
 export default LottoRankCalculator;
