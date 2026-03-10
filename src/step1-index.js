@@ -1,9 +1,9 @@
 import InputView from "./InputView.js";
+import LottoRankCalculator from "./Lotto/LottoRankCalculator.js";
+import LottoReturnCalculator from "./Lotto/LottoReturnCalculator.js";
+import LottoStore from "./Lotto/LottoStore.js";
+import WinningNumbersAndBonusNumberBuilder from "./Lotto/WinningNumbersAndBonusNumberBuilder.js";
 import OutputView from "./OutputView.js";
-import LottoStore from "./LottoStore.js";
-import WinningNumbersAndBonusNumberBuilder from "./WinningNumbersAndBonusNumberBuilder.js";
-import LottoRankCalculator from "./LottoRankCalculator.js";
-import LottoReturnCalculator from "./LottoReturnCalculator.js";
 
 async function getPurchaseAmount() {
   const inputView = new InputView();
