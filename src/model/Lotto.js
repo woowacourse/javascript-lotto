@@ -20,7 +20,7 @@ class Lotto {
   }
 
   getRank(winningLotto, bonusNum) {
-    const winningNums = this.getNumbers(winningLotto);
+    const winningNums = winningLotto.getNumbers(winningLotto);
     const matchCount = matchWinningCount([...this.#numbers], winningNums);
     const hasBonus = matchBonus([...this.#numbers], bonusNum);
     const rank = calRank(matchCount, hasBonus);
