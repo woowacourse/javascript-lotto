@@ -10,7 +10,33 @@
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header class="lotto-header">
+        <h1 class="lotto-header__title">🎱 행운의 로또</h1>
+      </header>
+
+      <main class="lotto-main">
+        <div class="lotto-content">
+          <div class="lotto-content-wrapper">
+            <h2 class="lotto-content-header__title">🎱 내 번호 당첨 확인 🎱</h2>
+          </div>
+
+          <p>구입할 금액을 입력하세요.</p>
+          <form action="" class="lotto-content-form">
+            <input
+              class="lotto-content-form__input"
+              type="number"
+              name="money"
+              id="money"
+              placeholder="금액"
+              min="0"
+              autofocus
+            />
+            <button class="lotto-content-form__button" type="submit">
+              구입
+            </button>
+          </form>
+        </div>
+      </main>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
