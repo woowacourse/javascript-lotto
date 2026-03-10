@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from "../../src/constants/message.js";
-import WinningLottoManager from "../../src/models/winningLottoManager.js";
+import WinningLottoManager from "../../src/models/WinningLottoManager.js";
 
 const INVALID_INPUT_CASES = [
   { desc: "숫자는 비어있을 수 없습니다.", input: "", expected: ERROR_MESSAGE.LOTTO.INVALID_NUMBER },
