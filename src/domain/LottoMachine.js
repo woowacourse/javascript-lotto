@@ -1,20 +1,15 @@
-// 카운트 만큼 로또 객체를 생성해서 배열로 반환해보자
-import { Random } from "@woowacourse/mission-utils";
-import Lotto from "./Lotto.js";
+export default class LottoMachine {
+  static UNIT = 1000;
 
-const generateLottos = (count) =>
-  Array.from(
-    { length: count },
-    () =>
-      new Lotto(
-        Random.pickUniqueNumbersInRange(
-          Lotto.MIN_RANGE,
-          Lotto.MAX_RANGE,
-          Lotto.SIZE,
-        ),
-      ),
-  );
+  static ERROR = {
+    NOT_ENOUGH: "돈이 너무 적습니다",
+  };
 
-export default generateLottos;
+  #picker;
 
-// 예시 buy: (money, generateLottos) => generateLottos(money.getLottoCount())
+  constructor(picker) {
+    this.#picker = picker;
+  }
+
+  buyLottos(money) {}
+}
