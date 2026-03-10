@@ -1,4 +1,4 @@
-export function calPrize(count, hasBonus) {
+export function calRank(count, hasBonus) {
   if (count === 6) return 1;
   else if (count === 5 && hasBonus) return 2;
   else if (count === 5) return 3;

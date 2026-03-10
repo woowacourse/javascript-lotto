@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE } from "../constants/message.js";
 import { matchWinningCount, matchBonus } from "../domain/MatchLottos.js";
-import { calPrize } from "../domain/WinningRate.js";
+import { calRank } from "../domain/WinningRate.js";
 import Validator from "../utils/Validator.js";
 
 class Lotto {
@@ -23,7 +23,7 @@ class Lotto {
     const winningNums = this.getNumbers(winningLotto);
     const matchCount = matchWinningCount([...this.#numbers], winningNums);
     const hasBonus = matchBonus([...this.#numbers], bonusNum);
-    const rank = calPrize(matchCount, hasBonus);
+    const rank = calRank(matchCount, hasBonus);
 
     return rank;
   }
