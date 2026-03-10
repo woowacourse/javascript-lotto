@@ -1,7 +1,7 @@
 import Lotto from '../src/Lotto.js';
-import WinningLotto from '../src/WinningLotto.js';
+import WinningLottoAndBonusNumber from '../src/WinningLottoAndBonusNumber.js';
 
-describe('WinningLotto 클래스 유닛 테스트', () => {
+describe('WinningLottoAndBonusNumber 클래스 유닛 테스트', () => {
   describe('생성자', () => {
     test('보너스 번호가 당첨 번호 안에 포함되면 예외를 반환한다.', () => {
       // given
@@ -9,7 +9,7 @@ describe('WinningLotto 클래스 유닛 테스트', () => {
       const bonusNumber = 6;
 
       // when & then
-      expect(() => new WinningLotto(winningLotto, bonusNumber)).toThrow('당첨 번호와 보너스 번호는 중복될 수 없습니다.');
+      expect(() => new WinningLottoAndBonusNumber(winningLotto, bonusNumber)).toThrow('당첨 번호와 보너스 번호는 중복될 수 없습니다.');
     });
   });
 
@@ -20,10 +20,10 @@ describe('WinningLotto 클래스 유닛 테스트', () => {
       const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
       const bonusNumber = 7;
 
-      const winningLottoInstance = new WinningLotto(winningLotto, bonusNumber);
+      const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(winningLotto, bonusNumber);
 
       // when
-      const rank = winningLottoInstance.calculateRank(userLotto);
+      const rank = winningLottoAndBonusNumber.calculateRank(userLotto);
 
       // then
       expect(rank).toBe(1);
@@ -35,10 +35,10 @@ describe('WinningLotto 클래스 유닛 테스트', () => {
       const winningLotto = new Lotto([1, 2, 3, 4, 5, 7]);
       const bonusNumber = 6;
 
-      const winningLottoInstance = new WinningLotto(winningLotto, bonusNumber);
+      const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(winningLotto, bonusNumber);
 
       // when
-      const rank = winningLottoInstance.calculateRank(userLotto);
+      const rank = winningLottoAndBonusNumber.calculateRank(userLotto);
 
       // then
       expect(rank).toBe(2);
@@ -50,10 +50,10 @@ describe('WinningLotto 클래스 유닛 테스트', () => {
       const winningLotto = new Lotto([1, 2, 3, 4, 5, 7]);
       const bonusNumber = 8;
 
-      const winningLottoInstance = new WinningLotto(winningLotto, bonusNumber);
+      const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(winningLotto, bonusNumber);
 
       // when
-      const rank = winningLottoInstance.calculateRank(userLotto);
+      const rank = winningLottoAndBonusNumber.calculateRank(userLotto);
 
       // then
       expect(rank).toBe(3);
@@ -65,10 +65,10 @@ describe('WinningLotto 클래스 유닛 테스트', () => {
       const winningLotto = new Lotto([1, 2, 3, 4, 7, 8]);
       const bonusNumber = 5;
 
-      const winningLottoInstance = new WinningLotto(winningLotto, bonusNumber);
+      const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(winningLotto, bonusNumber);
 
       // when
-      const rank = winningLottoInstance.calculateRank(userLotto);
+      const rank = winningLottoAndBonusNumber.calculateRank(userLotto);
 
       // then
       expect(rank).toBe(4);
@@ -80,10 +80,10 @@ describe('WinningLotto 클래스 유닛 테스트', () => {
       const winningLotto = new Lotto([1, 2, 3, 7, 8, 9]);
       const bonusNumber = 4;
 
-      const winningLottoInstance = new WinningLotto(winningLotto, bonusNumber);
+      const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(winningLotto, bonusNumber);
 
       // when
-      const rank = winningLottoInstance.calculateRank(userLotto);
+      const rank = winningLottoAndBonusNumber.calculateRank(userLotto);
 
       // then
       expect(rank).toBe(5);

@@ -3,7 +3,7 @@ import OutputView from './OutputView.js';
 import LottoStore from './LottoStore.js';
 import LottoResultGenerator from './LottoResultGenerator.js';
 import Lotto from './Lotto.js';
-import WinningLotto from './WinningLotto.js';
+import WinningLottoAndBonusNumber from './WinningLottoAndBonusNumber.js';
 
 async function main() {
   const inputView = new InputView();
@@ -20,7 +20,7 @@ async function main() {
 
   const winningLottoAndBonusNumber = await inputHandler(async () => {
     const bonusNumber = await inputView.askBonusNumber();
-    return new WinningLotto(winningLotto, bonusNumber);
+    return new WinningLottoAndBonusNumber(winningLotto, bonusNumber);
   });
 
   const { ranks, returnRate } = LottoResultGenerator.generateResult(lottos, winningLottoAndBonusNumber);

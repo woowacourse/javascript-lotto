@@ -1,6 +1,6 @@
 import LottoRankCalculator from '../src/LottoRankCalculator';
 import Lotto from '../src/Lotto';
-import WinningLotto from '../src/WinningLotto.js';
+import WinningLottoAndBonusNumber from '../src/WinningLottoAndBonusNumber.js';
 
 describe('LottoRankCalculator 클래스 유닛 테스트', () => {
   describe('calculateLottoRanks', () => {
@@ -10,7 +10,7 @@ describe('LottoRankCalculator 클래스 유닛 테스트', () => {
       const winningLotto = new Lotto([1, 2, 3, 4, 5, 6]);
       const bonusNumber = 7;
 
-      const winningLottoAndBonusNumber = new WinningLotto(winningLotto, bonusNumber);
+      const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(winningLotto, bonusNumber);
 
       // when
       const rank = LottoRankCalculator.calculateLottoRanks(lottos, winningLottoAndBonusNumber);

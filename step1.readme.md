@@ -63,7 +63,7 @@
 
 ## 추가
 
-1. 빌더 패턴 -> WinningLotto 사용
+1. 빌더 패턴 -> WinningLottoAndBonusNumber 사용
 2. validate 자체 검증 -> 생성자를 통한 검증
 3. valueOf 검토
 4. static 메서드만 있는 클래스 검토
