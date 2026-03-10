@@ -13,17 +13,27 @@ class Lotto {
 
   constructor(numbers) {
     this.#validate(numbers);
+    this.#numbers = numbers;
   }
 
-  #validate(numbers) {}
+  #validate(numbers) {
+    if (numbers.length !== Lotto.SIZE) {
+      throw Error(Lotto.ERROR.INVALID_SIZE);
+    }
+    if (numbers.some((n) => n < Lotto.MIN_RANGE || Lotto.MAX_RANGE < n)) {
+      throw Error(Lotto.ERROR.INVALID_RANGE);
+    }
+    if (numbers.length !== new Set(numbers).size) {
+      throw Error(Lotto.ERROR.DUPLICATE);
+    }
+  }
 
   hasNumber(number) {
-    if (3) return true;
-    if (0) return false;
+    return this.#numbers.includes(number);
   }
 
   getNumbers() {
-    return [1, 2, 3, 4, 5, 6];
+    return [...this.#numbers];
   }
 }
 
