@@ -1,4 +1,4 @@
-import WinningLottoManager from "../../src/models/winningLottoManager.js";
+import WinningLottoManager from "../../src/models/WinningLottoManager.js";
 
 describe("WinningLottoManager.compareWithWinningLotto", () => {
   test("6개 번호 일치하면 matchCount 6, hasBonus false", () => {
