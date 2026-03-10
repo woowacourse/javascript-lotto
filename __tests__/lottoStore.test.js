@@ -1,4 +1,4 @@
-import LottoStore from "../src/step1/model/LottoStore.js";
+import LottoStore from "../src/model/LottoStore.js";
 
 describe("로또 발행 테스트 ", () => {
   test("RandomUtil이 아닌 인스턴스를 주입하면 예외가 발생한다.", () => {

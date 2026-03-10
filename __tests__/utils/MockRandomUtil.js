@@ -1,6 +1,6 @@
-import RandomUtil from "../../src/step1/util/RandomUtil.js";
-import { LOTTO } from "../../src/step1/constant/index.js";
-import { ERROR_MESSAGE } from "../../src/step1/constant/message.js";
+import RandomUtil from "../../src/util/RandomUtil.js";
+import { LOTTO } from "../../src/constant/index.js";
+import { ERROR_MESSAGE } from "../../src/constant/message.js";
 
 class MockRandomUtil extends RandomUtil {
   #returnValues;

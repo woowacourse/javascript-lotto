@@ -1,5 +1,5 @@
-import Money from "../src/step1/model/Money.js";
-import { MONEY_ERROR_MESSAGE } from "../src/step1/constant/message.js";
+import Money from "../src/model/Money.js";
+import { MONEY_ERROR_MESSAGE } from "../src/constant/message.js";
 
 describe("구매 금액 입력 테스트", () => {
   test("입력 금액이 NaN인 경우 예외가 발생한다.", async () => {

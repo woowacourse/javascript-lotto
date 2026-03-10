@@ -1,4 +1,4 @@
-import ConsoleInput from "../src/step1/view/ConsoleInput.js";
+import ConsoleInput from "../src/view/ConsoleInput.js";
 import MockInput from "./utils/MockInput.js";
 
 describe("Input 테스트", () => {

@@ -1,5 +1,5 @@
-import Lotto from "../src/step1/model/Lotto.js";
-import { LOTTO_ERROR_MESSAGE } from "../src/step1/constant/message.js";
+import Lotto from "../src/model/Lotto.js";
+import { LOTTO_ERROR_MESSAGE } from "../src/constant/message.js";
 
 describe("로또 테스트", () => {
   test.each([

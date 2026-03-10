@@ -1,4 +1,4 @@
-import MissionRandomUtil from "../src/step1/util/MissionRandomUtil.js";
+import MissionRandomUtil from "../src/util/MissionRandomUtil.js";
 import MockRandomUtil from "./utils/MockRandomUtil.js";
 
 describe("랜덤 생성 유틸리티 테스트", () => {

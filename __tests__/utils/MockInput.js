@@ -1,4 +1,4 @@
-import Input from "../../src/step1/view/Input.js";
+import Input from "../../src/view/Input.js";
 
 class MockInput extends Input {
   #returnValues;
