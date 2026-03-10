@@ -1,0 +1,44 @@
+:root {
+  --lotto-primary: #4e5ba6;
+  --lotto-grayscale-5: #000000;
+  --lotto-grayscale-4: #8b8b8b;
+  --lotto-grayscale-3: #b4b4b4;
+  --lotto-grayscale-2: #fcfcfd;
+  --lotto-grayscale-1: #ffffff;
+}
+
+/* typography */
+
+.lotto-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.lotto-body {
+  font-family: Roboto;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.lotto-body {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.lotto-placeholder {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  vertical-align: bottom;
+}
