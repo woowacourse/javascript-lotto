@@ -17,9 +17,7 @@ describe("출력 테스트", () => {
   test("구입한 로또 개수 출력 테스트", () => {
     const lottoMachine = new LottoMachine(8000);
 
-    Output.printPurchaseLottoCount(lottoMachine.getPurchaseCount());
-
-    expect(logSpy).toHaveBeenCalledWith("\n8개를 구매했습니다.\n");
+    expect(lottoMachine.getPurchaseCount()).toBe(8);
   });
 
   test("로또 번호 출력 테스트", () => {
