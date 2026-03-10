@@ -1,5 +1,6 @@
 import ERROR_MESSAGE from './constants/errorMessage.js';
 import LottoNumber from './LottoNumber.js';
+import { RANK_RULES } from './constants/rank.js';
 
 class WinningLottoAndBonusNumber {
   #winningLotto;
@@ -19,18 +20,14 @@ class WinningLottoAndBonusNumber {
 
   calculateRank(userLotto) {
     const matchCount = userLotto.matchCount(this.#winningLotto);
-    if (matchCount === 6) {
-      return 1;
-    } else if (matchCount === 5 && userLotto.includes(this.#bonusNumber)) {
-      return 2;
-    } else if (matchCount === 5) {
-      return 3;
-    } else if (matchCount === 4) {
-      return 4;
-    } else if (matchCount === 3) {
-      return 5;
-    }
-    return 6;
+    const hasBonusNumber = userLotto.includes(this.#bonusNumber);
+
+    return RANK_RULES.find((rule) => {
+      if (rule.hasBonusNumber) {
+        return matchCount === rule.matchCount && hasBonusNumber;
+      }
+      return matchCount === rule.matchCount;
+    })?.rank;
   }
 }
 

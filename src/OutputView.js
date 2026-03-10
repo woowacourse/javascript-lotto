@@ -1,15 +1,17 @@
+import { RANK_RULES } from './constants/rank.js';
+
 class OutputView {
   printLottoResult(ranks, rate) {
-    const output = `당첨 통계
---------------------
-3개 일치 (5,000원) - ${ranks[5]}개
-4개 일치 (50,000원) - ${ranks[4]}개
-5개 일치 (1,500,000원) - ${ranks[3]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${ranks[2]}개
-6개 일치 (2,000,000,000원) - ${ranks[1]}개
-총 수익률은 ${rate.toFixed(1)}%입니다.`;
+    const rankOutput = RANK_RULES.map((rule) => (
+      `${rule.matchCount}개 일치 (${rule.prize.toLocaleString()}원) - ${ranks[rule.rank]}개`),
+    );
 
-    console.log(output);
+    const output = ['당첨 통계',
+      '--------------------',
+      rankOutput.join('\n'),
+      `총 수익률은 ${rate.toFixed(1)}%입니다.`];
+
+    console.log(output.join('\n'));
   }
 
   printLottos(lottos) {

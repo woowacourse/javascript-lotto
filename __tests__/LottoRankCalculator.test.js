@@ -16,7 +16,7 @@ describe('LottoRankCalculator 클래스 유닛 테스트', () => {
       const rank = LottoRankCalculator.calculateLottoRanks(lottos, winningLottoAndBonusNumber);
 
       // then
-      expect(rank).toEqual({ 1: 1, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 });
+      expect(rank).toEqual({ 1: 1, 2: 0, 3: 0, 4: 0, 5: 0 });
     });
   });
 });
