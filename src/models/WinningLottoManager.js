@@ -9,7 +9,6 @@ class WinningLottoManager extends Lotto {
   #bonusNumber;
 
   constructor(winningLottosInput) {
-    // 부모 클래스인 Lotto에 숫자 배열을 전달해 내부 상태를 초기화합니다.
     super(winningLottosInput);
   }
 
