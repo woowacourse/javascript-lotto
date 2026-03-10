@@ -83,23 +83,16 @@ describe('Lotto 클래스 유닛 테스트', () => {
   });
 
   describe('matchCount', () => {
-    test('로또 번호와 당첨 번호 사이에 일치하는 번호 개수를 반환한다.', () => {
+    test('두 로또 인스턴스 사이에 일치하는 번호 개수를 반환한다.', () => {
       // given
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
-      const winningNumbers = [
-        new LottoNumber(1),
-        new LottoNumber(2),
-        new LottoNumber(3),
-        new LottoNumber(7),
-        new LottoNumber(8),
-        new LottoNumber(9),
-      ];
+      const lotto2 = new Lotto([1, 2, 3, 4, 5, 7]);
 
       // when
-      const result = lotto.matchCount(winningNumbers);
+      const result = lotto.matchCount(lotto2);
 
       // then
-      expect(result).toBe(3);
+      expect(result).toBe(5);
     });
   });
 });

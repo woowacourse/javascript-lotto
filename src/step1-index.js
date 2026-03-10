@@ -1,8 +1,9 @@
 import InputView from './InputView.js';
 import OutputView from './OutputView.js';
 import LottoStore from './LottoStore.js';
-import WinningNumbersAndBonusNumberBuilder from './WinningNumbersAndBonusNumberBuilder.js';
 import LottoResultGenerator from './LottoResultGenerator.js';
+import Lotto from './Lotto.js';
+import WinningLotto from './WinningLotto.js';
 
 async function main() {
   const inputView = new InputView();
@@ -12,21 +13,17 @@ async function main() {
   const lottos = LottoStore.purchaseLottos(purchaseAmount);
   outputView.printLottos(lottos);
 
-  const builder = new WinningNumbersAndBonusNumberBuilder();
-
-  await inputHandler(async () => {
+  const winningLotto = await inputHandler(async () => {
     const winningNumbers = await inputView.askWinningNumbers();
-    builder.setWinningNumbers(winningNumbers);
+    return new Lotto(winningNumbers);
   });
 
-  await inputHandler(async () => {
+  const winningLottoAndBonusNumber = await inputHandler(async () => {
     const bonusNumber = await inputView.askBonusNumber();
-    builder.setBonusNumber(bonusNumber);
+    return new WinningLotto(winningLotto, bonusNumber);
   });
 
-  const { winningNumbers, bonusNumber } = builder.build();
-
-  const { ranks, returnRate } = LottoResultGenerator.generateResult({ lottos, winningNumbers, bonusNumber });
+  const { ranks, returnRate } = LottoResultGenerator.generateResult(lottos, winningLottoAndBonusNumber);
   outputView.printLottoResult(ranks, returnRate);
 
   await inputHandler(async () => {

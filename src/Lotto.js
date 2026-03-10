@@ -36,12 +36,10 @@ class Lotto {
     return this.#numbers.some((lottoNumber) => lottoNumber.equals(number));
   }
 
-  matchCount(winningNumbers) {
-    const numbersSet = new Set([
-      ...winningNumbers.map(Number),
-      ...this.#numbers.map(Number),
-    ]);
-    return this.#numbers.length + winningNumbers.length - numbersSet.size;
+  matchCount(other) {
+    const lottoSet = new Set(this.parseNumbers());
+    const winningLottoSet = new Set(other.parseNumbers());
+    return lottoSet.intersection(winningLottoSet).size;
   }
 }
 
