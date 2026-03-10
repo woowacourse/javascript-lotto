@@ -24,8 +24,8 @@ export default class App {
   }
 
   async #buyLottos() {
-    const input = await InputView.readPurchaseAmount();
-    return this.#lottoManager.buyLottosFromConsole(input);
+    const amount = await InputView.readPurchaseAmount();
+    return this.#lottoManager.buyLottos(amount);
   }
 
   async #processWinning() {
@@ -38,13 +38,13 @@ export default class App {
   }
 
   async #readWinningLotto() {
-    const input = await InputView.readWinningNumbers();
-    return this.#lottoManager.createWinningLottoFromConsole(input);
+    const numbers = await InputView.readWinningNumbers();
+    return this.#lottoManager.createWinningLotto(numbers);
   }
 
   async #getWinningNumber(winningLotto) {
-    const input = await InputView.readBonusNumber();
-    return this.#lottoManager.createWinningNumberFromConsole(winningLotto, input);
+    const bonus = await InputView.readBonusNumber();
+    return this.#lottoManager.createWinningNumber(winningLotto, bonus);
   }
 
   async #processResult(winningLotto) {
