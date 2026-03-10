@@ -17,15 +17,15 @@ export default class WinningNumber {
 
   #validator(numbers, bonusNumber) {
     if (bonusNumber < Lotto.MIN_RANGE || Lotto.MAX_RANGE < bonusNumber)
-      throw Error(WinningNumber.ERROR.INVALID_RANGE);
+      throw new Error(WinningNumber.ERROR.INVALID_RANGE);
 
     if (numbers.includes(bonusNumber))
-      throw Error(WinningNumber.ERROR.DUPLICATE);
+      throw new Error(WinningNumber.ERROR.DUPLICATE);
   }
 
   getMatchCount(lotto) {
     if (!(lotto instanceof Lotto))
-      throw Error("매개변수로 Lotto객체를 받아야합니다");
+      throw new Error("매개변수로 Lotto객체를 받아야합니다");
 
     const winningNumbers = this.#lotto.getNumbers();
     const matchWinning = winningNumbers.filter((n) =>

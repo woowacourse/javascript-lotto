@@ -18,13 +18,13 @@ class Lotto {
 
   #validate(numbers) {
     if (numbers.length !== Lotto.SIZE) {
-      throw Error(Lotto.ERROR.INVALID_SIZE);
+      throw new Error(Lotto.ERROR.INVALID_SIZE);
     }
     if (numbers.some((n) => n < Lotto.MIN_RANGE || Lotto.MAX_RANGE < n)) {
-      throw Error(Lotto.ERROR.INVALID_RANGE);
+      throw new Error(Lotto.ERROR.INVALID_RANGE);
     }
     if (numbers.length !== new Set(numbers).size) {
-      throw Error(Lotto.ERROR.DUPLICATE);
+      throw new Error(Lotto.ERROR.DUPLICATE);
     }
   }
 
