@@ -1,3 +1,5 @@
+import Lotto from "./models/Lotto.js";
+
 export default class LottoMachine {
   static UNIT = 1000;
 
@@ -11,5 +13,12 @@ export default class LottoMachine {
     this.#picker = picker;
   }
 
-  buyLottos(money) {}
+  buyLottos(money) {
+    if (money < LottoMachine.UNIT) {
+      throw new Error(LottoMachine.ERROR.NOT_ENOUGH);
+    }
+
+    const count = Math.floor(money / LottoMachine.UNIT);
+    return Array.from({ length: count }, () => new Lotto(this.#picker()));
+  }
 }
