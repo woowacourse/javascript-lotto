@@ -1,4 +1,4 @@
-import { COMMAND, INPUT_MESSAGE, LOTTO } from "../constants.js";
+import { INPUT_MESSAGE } from "../constants.js";
 import { readLineAsync } from "../Utils.js";
 import Validator from "../Validator.js";
 
@@ -9,10 +9,6 @@ const InputView = {
     Validator.stringIsNumber(input);
 
     const money = Number(input);
-
-    Validator.numberDivided(money, LOTTO.PRICE);
-    Validator.positiveNumber(money);
-
     return money;
   },
 
@@ -25,14 +21,6 @@ const InputView = {
     });
 
     const numbers = splitInput.map((string) => Number(string));
-    numbers.forEach((number) => {
-      Validator.positiveNumber(number);
-      Validator.numberLower(LOTTO.LOWER, number);
-      Validator.numberUpper(LOTTO.UPPER, number);
-    });
-    Validator.notDuplicated(numbers);
-
-    Validator.arrayLength(numbers, LOTTO.COUNT);
 
     return numbers;
   },
@@ -43,17 +31,11 @@ const InputView = {
     Validator.stringIsNumber(input);
     const bonusNumber = Number(input);
 
-    Validator.positiveNumber(bonusNumber);
-    Validator.numberLower(LOTTO.LOWER, bonusNumber);
-    Validator.numberUpper(LOTTO.UPPER, bonusNumber);
-
     return bonusNumber;
   },
 
   async readRestartCommand() {
     const restartCommand = await readLineAsync(INPUT_MESSAGE.COMMAND);
-    const validCommand = COMMAND.YES.concat(COMMAND.NO);
-    Validator.includeElement(restartCommand, validCommand);
 
     return restartCommand;
   },

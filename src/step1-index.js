@@ -9,11 +9,12 @@ import LottoGenerator from "./LottoGenerator.js";
 import OutputView from "./View/OutputView.js";
 import ScoreBoard from "./ScoreBoard.js";
 import WinningLotto from "./Model/WinningLotto.js";
+import Validator from "./Validator.js";
 
 class App {
   static async run() {
     while (true) {
-      const money = await App.retry(InputView.readMoney);
+      const money = await App.retry(InputView.readMoney, App.validateMoney);
       const buyLottoCount = money / LOTTO.PRICE;
       OutputView.printBuyLottoCount(buyLottoCount);
 
@@ -22,21 +23,30 @@ class App {
         OutputView.printLottoNumbers(lotto.getNumbers()),
       );
 
-      const winningNumbers = await App.retry(InputView.readWinningNumbers);
+      const winningNumbers = await App.retry(
+        InputView.readWinningNumbers,
+        App.validateWinningNumbers,
+      );
       const winningLotto = await App.getWinningLotto(winningNumbers);
 
       const allRankCount = ScoreBoard.makeAllRankCount(lottos, winningLotto);
       const profitRate = ScoreBoard.getProfitRate(allRankCount, money);
       OutputView.printLottoResult(allRankCount, profitRate);
 
-      const restartCommand = await App.retry(InputView.readRestartCommand);
+      const restartCommand = await App.retry(
+        InputView.readRestartCommand,
+        App.validateRestartCommand,
+      );
       if (COMMAND.NO.includes(restartCommand)) break;
     }
   }
 
   static async getWinningLotto(winningNumbers) {
     try {
-      const bonusNumber = await App.retry(InputView.readBonusNumber);
+      const bonusNumber = await App.retry(
+        InputView.readBonusNumber,
+        App.validateBonusNumber,
+      );
       const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
       return winningLotto;
@@ -46,12 +56,41 @@ class App {
     }
   }
 
-  static async retry(inputFunction) {
+  static validateMoney(money) {
+    Validator.numberDivided(money, LOTTO.PRICE);
+    Validator.positiveNumber(money);
+  }
+
+  static validateWinningNumbers(winningNumbers) {
+    winningNumbers.forEach((number) => {
+      Validator.positiveNumber(number);
+      Validator.numberLower(LOTTO.LOWER, number);
+      Validator.numberUpper(LOTTO.UPPER, number);
+    });
+    Validator.notDuplicated(winningNumbers);
+
+    Validator.arrayLength(winningNumbers, LOTTO.COUNT);
+  }
+
+  static validateBonusNumber(bonusNumber) {
+    Validator.positiveNumber(bonusNumber);
+    Validator.numberLower(LOTTO.LOWER, bonusNumber);
+    Validator.numberUpper(LOTTO.UPPER, bonusNumber);
+  }
+
+  static validateRestartCommand(restartCommand) {
+    const validCommand = COMMAND.YES.concat(COMMAND.NO);
+    Validator.includeElement(restartCommand, validCommand);
+  }
+
+  static async retry(inputFunction, validation) {
     try {
-      return await inputFunction();
+      const input = await inputFunction();
+      validation(input);
+      return input;
     } catch (error) {
       console.log(error.message);
-      return await App.retry(inputFunction);
+      return await App.retry(inputFunction, validation);
     }
   }
 }
