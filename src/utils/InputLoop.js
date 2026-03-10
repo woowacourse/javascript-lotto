@@ -1,10 +1,10 @@
-const retry = async (action) => {
+const inputloop = async (action) => {
   try {
     return await action();
   } catch (error) {
     console.log(error.message + "\n");
-    return await retry(action);
+    return await inputloop(action);
   }
 };
 
-export default retry;
+export default inputloop;

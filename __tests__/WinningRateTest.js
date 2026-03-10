@@ -1,10 +1,10 @@
-import { calPrize, calProfitRate } from "../src/domain/WinningRate.js";
+import { calRank, calProfitRate } from "../src/domain/WinningRate.js";
 
 describe("당첨 등수 계산 테스트", () => {
   test("당첨 번호 개수가 6개이면 1등", () => {
     const count = 6;
     const hasBonus = true;
-    const rank = calPrize(count, hasBonus);
+    const rank = calRank(count, hasBonus);
 
     expect(rank).toEqual(1);
   });
@@ -12,7 +12,7 @@ describe("당첨 등수 계산 테스트", () => {
   test("당첨 번호 개수가 5개이고 보너스 번호가 있으면 2등", () => {
     const count = 5;
     const hasBonus = true;
-    const rank = calPrize(count, hasBonus);
+    const rank = calRank(count, hasBonus);
 
     expect(rank).toEqual(2);
   });
@@ -20,7 +20,7 @@ describe("당첨 등수 계산 테스트", () => {
   test("당첨 번호 개수가 5개이고 보너스 번호가 없으면 3등", () => {
     const count = 5;
     const hasBonus = false;
-    const rank = calPrize(count, hasBonus);
+    const rank = calRank(count, hasBonus);
 
     expect(rank).toEqual(3);
   });
@@ -28,7 +28,7 @@ describe("당첨 등수 계산 테스트", () => {
   test("당첨되지 않은 경우에는 당첨목록에서 제외된다. ", () => {
     const count = 2;
     const hasBonus = true;
-    const rank = calPrize(count, hasBonus);
+    const rank = calRank(count, hasBonus);
 
     expect(rank).toEqual(0);
   });

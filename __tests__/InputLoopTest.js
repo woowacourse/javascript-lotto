@@ -1,4 +1,4 @@
-import retry from "../src/utils/retry.js";
+import inputloop from "../src/utils/InputLoop.js";
 import InputView from "../src/view/InputView.js";
 import { ERROR_MESSAGE } from "../src/constants/message.js";
 
@@ -11,7 +11,7 @@ describe("재입력 테스트", () => {
       .mockRejectedValueOnce(new Error(ERROR_MESSAGE.INVALID_PURCHASE_UNIT))
       .mockResolvedValueOnce("8000");
 
-    const result = await retry(() => InputView.inputPrice());
+    const result = await inputloop(() => InputView.inputPrice());
 
     expect(inputPriceSpy).toHaveBeenCalledTimes(3);
     expect(result).toBe("8000");
@@ -24,7 +24,7 @@ describe("재입력 테스트", () => {
       .mockRejectedValueOnce(new Error(ERROR_MESSAGE.DUPLICATE_WINNING_NUMBERS))
       .mockResolvedValueOnce([1, 2, 3, 4, 5, 6]);
 
-    const result = await retry(() => InputView.inputWinningNums());
+    const result = await inputloop(() => InputView.inputWinningNums());
 
     expect(inputWinningNumsSpy).toHaveBeenCalledTimes(2);
     expect(result).toEqual([1, 2, 3, 4, 5, 6]);
@@ -39,7 +39,7 @@ describe("재입력 테스트", () => {
       .mockRejectedValueOnce(new Error(ERROR_MESSAGE.INVALID_LOTTO_NUM_RANGE))
       .mockResolvedValueOnce(9);
 
-    const result = await retry(() => InputView.inputBonusNum());
+    const result = await inputloop(() => InputView.inputBonusNum());
 
     expect(inputBonusSpy).toHaveBeenCalledTimes(4);
     expect(result).toEqual(9);

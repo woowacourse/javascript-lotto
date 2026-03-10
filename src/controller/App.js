@@ -1,7 +1,7 @@
 import LottoController from "./LottoController.js";
 import OutPutView from "../view/OutputView.js";
 import InputView from "../view/InputView.js";
-import retry from "../utils/retry.js";
+import inputloop from "../utils/InputLoop.js";
 import Lotto from "../model/Lotto.js";
 
 class App {
@@ -19,7 +19,7 @@ class App {
   }
 
   async #prepareLottoGame() {
-    const purchasedPrice = await retry(() => InputView.inputPrice());
+    const purchasedPrice = await inputloop(() => InputView.inputPrice());
     const lottoCount = purchasedPrice / 1000;
     const lottoController = new LottoController(lottoCount);
 
@@ -30,10 +30,10 @@ class App {
   }
 
   async #playLottoGame(lottoController) {
-    const winningNums = await retry(() => InputView.inputWinningNums());
+    const winningNums = await inputloop(() => InputView.inputWinningNums());
     const winningLotto = new Lotto(winningNums);
 
-    const bonusNum = await retry(() => InputView.inputBonusNum(winningLotto.getNumbers()));
+    const bonusNum = await inputloop(() => InputView.inputBonusNum(winningLotto.getNumbers()));
     lottoController.updateWinningResult(winningLotto, bonusNum);
   }
 
@@ -43,7 +43,7 @@ class App {
   }
 
   async #retryGame() {
-    const restartAnswer = await retry(() => InputView.inputRestartAnswer());
+    const restartAnswer = await inputloop(() => InputView.inputRestartAnswer());
     return restartAnswer === "n"
   }
 }
