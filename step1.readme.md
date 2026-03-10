@@ -63,11 +63,6 @@
 
 ## 추가
 
-2. validate 자체 검증 -> 생성자를 통한 검증
-3. valueOf 검토
-4. static 메서드만 있는 클래스 검토
-5. rank rule 상수화
-
 - generateRandomNumber 유틸 함수에 유효성 검사
     - 정수 외 값을 반환해야하는 경우
     - 음수 값을 반환하는 경우
