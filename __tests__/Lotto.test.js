@@ -83,7 +83,19 @@ describe('Lotto 클래스 유닛 테스트', () => {
   });
 
   describe('matchCount', () => {
-    test('두 로또 인스턴스 사이에 일치하는 번호 개수를 반환한다.', () => {
+    test('두 로또 인스턴스 사이에 일치하는 번호 개수가 6이면 6을 반환한다.', () => {
+      // given
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      const lotto2 = new Lotto([1, 2, 3, 4, 5, 6]);
+
+      // when
+      const result = lotto.matchCount(lotto2);
+
+      // then
+      expect(result).toBe(6);
+    });
+
+    test('두 로또 인스턴스 사이에 일치하는 번호 개수가 5이면 5을 반환한다.', () => {
       // given
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
       const lotto2 = new Lotto([1, 2, 3, 4, 5, 7]);
@@ -93,6 +105,54 @@ describe('Lotto 클래스 유닛 테스트', () => {
 
       // then
       expect(result).toBe(5);
+    });
+    
+    test('두 로또 인스턴스 사이에 일치하는 번호 개수가 4이면 4을 반환한다.', () => {
+      // given
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      const lotto2 = new Lotto([1, 2, 3, 4, 8, 7]);
+
+      // when
+      const result = lotto.matchCount(lotto2);
+
+      // then
+      expect(result).toBe(4);
+    });
+
+    test('두 로또 인스턴스 사이에 일치하는 번호 개수가 3이면 3을 반환한다.', () => {
+      // given
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      const lotto2 = new Lotto([1, 2, 3, 9, 8, 7]);
+
+      // when
+      const result = lotto.matchCount(lotto2);
+
+      // then
+      expect(result).toBe(3);
+    });
+
+    test('두 로또 인스턴스 사이에 일치하는 번호 개수가 2이면 2을 반환한다.', () => {
+      // given
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      const lotto2 = new Lotto([1, 2, 10, 9, 8, 7]);
+
+      // when
+      const result = lotto.matchCount(lotto2);
+
+      // then
+      expect(result).toBe(2);
+    });
+
+    test('두 로또 인스턴스 사이에 일치하는 번호 개수가 1이면 1을 반환한다.', () => {
+      // given
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      const lotto2 = new Lotto([1, 11, 10, 9, 8, 7]);
+
+      // when
+      const result = lotto.matchCount(lotto2);
+
+      // then
+      expect(result).toBe(1);
     });
   });
 });
