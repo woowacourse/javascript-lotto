@@ -3,6 +3,7 @@
     --navbar-fg: #FFFFFF;
 
     --content-title-fg: #000000;
+    --content-border: #D9D9D9;
 
     --button-bg: #4E5BA6;
     --button-hover-bg: #404A87;
@@ -92,6 +93,8 @@ CONTENT
 #content {
     display: inline-block;
     padding: 40px 16px;
+    border: 1px solid var(--content-border);
+    border-radius: 4px;
 }
 
 #content-title {
