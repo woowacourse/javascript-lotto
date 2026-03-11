@@ -4,6 +4,12 @@ import { RANK_RULES } from '../constants/rank.js';
 
 const LottoResult = {
   render(container) {
+    this.init();
+
+    if (!userLottoStore.hasTrigger('lotto-info')) {
+      userLottoStore.appendTrigger('lotto-result', () => this.render(container));
+    }
+
     if (!winningLottoAndBonusNumberStore.hasTrigger('lotto-result')) {
       winningLottoAndBonusNumberStore.appendTrigger('lotto-result', () => this.render(container));
     }
@@ -33,6 +39,13 @@ const LottoResult = {
     const { winningLottoAndBonusNumber } = winningLottoAndBonusNumberStore.getState();
 
     return LottoResultGenerator.generateResult(lottos, winningLottoAndBonusNumber);
+  },
+
+  init() {
+    const lottoResultContainer = document.getElementById('lotto-result-container');
+    if (lottoResultContainer) {
+      lottoResultContainer.remove();
+    }
   },
 };
 

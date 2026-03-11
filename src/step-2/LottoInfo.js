@@ -3,13 +3,14 @@ import { userLottoStore } from './stores.js';
 
 const LottoInfo = {
   render(container) {
+    this.init();
+    
     if (!userLottoStore.hasTrigger('lotto-info')) {
       userLottoStore.appendTrigger(
         'lotto-info', () => this.render(container),
       );
     }
 
-    this.init();
     const lottoInfoContainer = document.createElement('div');
     lottoInfoContainer.id = 'lotto-info-container';
 

@@ -4,6 +4,8 @@ import Lotto from '../step-1/Lotto.js';
 
 const WinningNumbersAndBonusNumberForm = {
   render(container) {
+    this.init();
+    
     if (!userLottoStore.hasTrigger('winning-numbers-and-bonus-number')) {
       userLottoStore.appendTrigger(
         'winning-numbers-and-bonus-number', () => this.render(container),
@@ -49,6 +51,13 @@ const WinningNumbersAndBonusNumberForm = {
     const winningNumbers = [winningNumber1, winningNumber2, winningNumber3, winningNumber4, winningNumber5, winningNumber6].map(Number);
     const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(new Lotto(winningNumbers), Number(bonusNumber));
     winningLottoAndBonusNumberStore.setState({ winningLottoAndBonusNumber });
+  },
+
+  init() {
+    const winningLottoAndBonusNumberForm = document.getElementById('winning-lotto-and-bonus-number-form');
+    if (winningLottoAndBonusNumberForm) {
+      winningLottoAndBonusNumberForm.remove();
+    }
   },
 };
 
