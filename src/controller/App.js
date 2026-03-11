@@ -1,37 +1,41 @@
 import { Console } from "@woowacourse/mission-utils";
-import InputView from "../console/ConsoleInputView.js";
-import OutputView from "../console/ConsoleOutputView.js";
 import Lotto from "../domain/Lotto.js";
 import LottoManager from "../service/LottoManager.js";
+import VIEW_CONFIG from "../config/viewConfig.js";
 
 export default class App {
   #lottoManager;
+  #mode;
 
-  constructor() {
+  constructor({ mode = "console" } = {}) {
+    if (!VIEW_CONFIG[mode]) {
+      throw new Error(`[ERROR] 지원하지 않는 모드입니다: ${mode}`);
+    }
     this.#lottoManager = new LottoManager();
+    this.#mode = mode;
   }
 
   async run() {
     do {
       const lottos = await this.#processBuyLottos();
-      const winningLotto = await this.#processWinning();
-      await this.#processResult(lottos, winningLotto);
+      const winningNumber = await this.#processWinningNumber();
+      await this.#processResult(lottos, winningNumber);
     } while (await this.#readIsRetry());
   }
 
   async #processBuyLottos() {
     const lottos = await this.#retryUntilSuccess(() => this.#buyLottos());
     const lottosList = lottos.map((lotto) => lotto.getNumbers());
-    OutputView.printLottos(lottosList);
+    this.#outputView.printLottos(lottosList);
     return lottos;
   }
 
   async #buyLottos() {
-    const budget = await InputView.readPurchaseAmount();
+    const budget = await this.#inputView.readPurchaseAmount();
     return this.#lottoManager.buyLottos(budget);
   }
 
-  async #processWinning() {
+  async #processWinningNumber() {
     const winningLotto = await this.#retryUntilSuccess(() =>
       this.#readWinningLotto(),
     );
@@ -41,12 +45,12 @@ export default class App {
   }
 
   async #readWinningLotto() {
-    const numbers = await InputView.readWinningNumbers();
+    const numbers = await this.#inputView.readWinningNumbers();
     return new Lotto(numbers);
   }
 
   async #getWinningNumber(winningLotto) {
-    const bonusNumber = await InputView.readBonusNumber();
+    const bonusNumber = await this.#inputView.readBonusNumber();
     return this.#lottoManager.createWinningNumber({
       winningLotto,
       bonusNumber,
@@ -54,26 +58,13 @@ export default class App {
   }
 
   async #processResult(lottos, winningLotto) {
-    const { prizeList, profitRate } = this.#lottoManager.getLotteryResult(
-      lottos,
-      winningLotto,
-    );
-
-    const formatPrizeList = prizeList.map((stats) => {
-      const { matchCount, hasBonus } = stats.rank.getResult();
-      return {
-        matchCount,
-        hasBonus,
-        prize: stats.prize,
-        count: stats.count,
-      };
-    });
-    OutputView.printStatistics({ formatPrizeList, profitRate });
+    const result = this.#lottoManager.getLotteryResult(lottos, winningLotto);
+    this.#outputView.printStatistics(result);
   }
 
   async #readIsRetry() {
     return this.#retryUntilSuccess(async () => {
-      return InputView.readIsRetry();
+      return this.#inputView.readIsRetry();
     });
   }
 
@@ -85,5 +76,13 @@ export default class App {
         Console.print(e.message);
       }
     }
+  }
+
+  get #inputView() {
+    return VIEW_CONFIG[this.#mode].inputView;
+  }
+
+  get #outputView() {
+    return VIEW_CONFIG[this.#mode].outputView;
   }
 }
