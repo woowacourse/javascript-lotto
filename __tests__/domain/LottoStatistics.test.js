@@ -1,0 +1,20 @@
+import {
+  calculateYield,
+  statistics,
+} from "../../src/domain/LottoStatistics.js";
+import Lotto from "../../src/domain/models/Lotto.js";
+import Rank from "../../src/domain/models/Rank.js";
+import WinningNumber from "../../src/domain/models/WinningNumber.js";
+
+describe("8000원으로 로또 3등이 당첨됐을때", () => {
+  test("출력용 통계 객체(몇등인지랑 수량)", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const winningNumber = new WinningNumber([1, 2, 3, 4, 5, 7], 6);
+    const result = { rank: Rank.SECOND, count: 1 };
+    expect(statistics(lotto, winningNumber)).toEqual(result);
+  });
+
+  test("수익률 계산 8000원으로 5000원 벌면 62.5%", () => {
+    expect(calculateYield(8000), 5000).toBe(62.5);
+  });
+});
