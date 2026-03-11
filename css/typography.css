@@ -1,0 +1,48 @@
+:root {
+  --font--family-base: "Roboto", sans-serif;
+
+  --text-title-size: 24px;
+  --text-title-weight: 800;
+
+  --text-subtitle-size: 20px;
+  --text-subtitle-weight: 700;
+
+  --text-body-size: 15px;
+  --text-body-weight: 400;
+
+  --text-placeholder-size: 15px;
+  --text-placeholder-weight: 400;
+
+  --text-caption-size: 14px;
+  --text-caption-weight: 700;
+}
+
+body {
+  font-family: var(--font--family-base);
+}
+
+.text-title {
+  font-size: var(--text-title-size);
+  font-weight: var(--text-title-weight);
+}
+
+.text-subtitle {
+  font-size: var(--text-subtitle-size);
+  font-weight: var(--text-subtitle-weight);
+}
+
+.text-body {
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+}
+
+.text-placeholder {
+  font-size: var(--text-placeholder-size);
+  font-weight: var(--text-placeholder-weight);
+  color: var(--color-lotto-greyscale-4);
+}
+
+.text-caption {
+  font-size: var(--text-caption-size);
+  font-weight: var(--text-caption-weight);
+}
