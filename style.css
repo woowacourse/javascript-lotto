@@ -16,3 +16,40 @@
   --color-greyscale-4: #8b8b8b;
   --color-greyscale-5: #000000;
 }
+
+body {
+  background-color: var(--color-greyscale-2);
+  margin: 0;
+}
+
+header {
+  background-color: var(--color-primary);
+  width: 100%;
+  height: 64px;
+  align-content: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-greyscale-5);
+  line-height: 36px;
+  padding-left: 10%;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  width: 414px;
+  height: 727px;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: var(--color-greyscale-1);
+}
