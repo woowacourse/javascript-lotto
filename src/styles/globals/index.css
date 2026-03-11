@@ -2,6 +2,6 @@
 @import url("fonts.css");
 @import url("variables.css");
 
-body {
+body, input, textarea, select, button {
   font-family: 'roboto', sans-serif;
 }
