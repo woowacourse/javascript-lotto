@@ -1,4 +1,5 @@
 import { userLottoStore } from './stores.js';
+import LottoStore from '../step-1/LottoStore.js';
 
 const PurchaseAmountForm = {
   render(target) {
@@ -26,8 +27,9 @@ const PurchaseAmountForm = {
   handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    userLottoStore.setState(data);
+    const { purchaseAmount } = Object.fromEntries(formData.entries());
+    const lottos = LottoStore.purchaseLottos(Number(purchaseAmount));
+    userLottoStore.setState({ purchaseAmount, lottos });
   },
 };
 export default PurchaseAmountForm;

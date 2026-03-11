@@ -1,12 +1,18 @@
 import LottoItem from './LottoItem.js';
+import { userLottoStore } from './stores.js';
 
 const LottoInfo = {
-  render(target, lottos) {
+  render(target) {
+    userLottoStore.appendTrigger(() => LottoInfo.render(target));
+    console.log(userLottoStore.triggers);
+
     const lottoInfoContainer = document.createElement('div');
     lottoInfoContainer.id = 'lotto-info-container';
-    target.appendChild(lottoInfoContainer);
 
+    const { lottos } = userLottoStore.getState();
     lottos.forEach((lotto) => LottoItem.render(lottoInfoContainer, lotto));
+
+    target.appendChild(lottoInfoContainer);
   },
 };
 
