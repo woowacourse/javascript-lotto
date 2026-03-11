@@ -14,7 +14,7 @@ const LottoInfo = {
     lottoInfoContainer.id = 'lotto-info-container';
 
     const { lottos } = userLottoStore.getState();
-    lottos.forEach((lotto) => LottoItem.render(lottoInfoContainer, lotto));
+    lottos.forEach((lotto) => LottoItem.render(lottoInfoContainer, { lotto }));
 
     container.appendChild(lottoInfoContainer);
   },

@@ -9,7 +9,7 @@ const WinningNumbersAndBonusNumberForm = {
         'winning-numbers-and-bonus-number', () => this.render(container),
       );
     }
-    
+
     if (!userLottoStore.getState().purchaseAmount) return;
 
     const winningLottoAndBonusNumberForm = document.createElement('form');
