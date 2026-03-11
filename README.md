@@ -78,3 +78,21 @@
 - `다시 시작하기` 버튼을 누르면 모달이 닫힌다.
 - `다시 시작하기` 버튼을 누르면 입력 폼의 값이 비워진다.
 - `다시 시작하기` 버튼을 누르면 렌더링되었던 로또 아이콘과 당첨 번호와 보너스 번호 입력 폼이 사라진다.
+
+## 3. CSS 속성 작성 순서
+
+### 1. 레이아웃/정렬
+
+display, position, top, right, bottom, left, z-index, float, clear, flex, flex-direction, flex-wrap, flex-flow, flex-grow, flex-shrink, flex-basis, justify-content, align-items, align-content, align-self, gap, row-gap, column-gap, order, grid, grid-template, grid-template-rows, grid-template-columns, grid-template-areas, grid-auto-rows, grid-auto-columns, grid-auto-flow, grid-column, grid-row, place-items, place-content, place-self, overflow, overflow-x, overflow-y
+
+### 2. 박스모델
+
+box-sizing, width, min-width, max-width, height, min-height, max-height, margin, margin-top, margin-right, margin-bottom, margin-left, padding, padding-top, padding-right, padding-bottom, padding-left
+
+### 3. 비주얼
+
+background, background-color, background-image, background-size, background-position, background-repeat, border, border-width, border-style, border-color, border-radius, box-shadow, outline, outline-width, outline-style, outline-color, opacity, filter, transform
+
+### 4. 타이포
+
+font, font-family, font-size, font-weight, font-style, font-variant, line-height, letter-spacing, text-align, text-decoration, text-transform, text-shadow, color, white-space, word-break, word-spacing, text-overflow
