@@ -1,0 +1,65 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 84px;
+  margin-top: 154px;
+
+  background-color: var(--color-lotto-greyscale-2);
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 414px;
+  padding: 40px;
+  gap: 28px;
+
+  background-color: var(--color-lotto-greyscale-1);
+  border: 1px solid var(--color-lotto-greyscale-3);
+}
+.card-header {
+  font: var(--text-title);
+}
+
+.card-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 100%;
+  gap: 6px;
+
+  font: var(--text-body);
+}
+
+.input-container {
+  display: flex;
+
+  gap: 16px;
+}
+
+.input-line {
+  flex: 1;
+  padding: 8px;
+
+  border-radius: 4px;
+  border: 1px solid var(--color-lotto-greyscale-5);
+  font: var(--text-placeholder);
+}
+
+.input-button {
+  width: 56px;
+  padding: 8px;
+
+  border-radius: 4px;
+  background-color: var(--color-lotto-primary);
+  font: var(--text-caption);
+  color: var(--color-lotto-greyscale-1);
+
+  border: none;
+}
