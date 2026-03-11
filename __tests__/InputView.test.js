@@ -1,4 +1,4 @@
-import InputView from '../src/InputView.js';
+import InputView from '../src/step-1/InputView.js';
 
 describe('InputView 클래스 유닛 테스트', () => {
   describe('validateAmount 메서드 유닛 테스트', () => {

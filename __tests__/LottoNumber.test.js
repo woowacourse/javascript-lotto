@@ -1,4 +1,4 @@
-import LottoNumber from '../src/LottoNumber';
+import LottoNumber from '../src/step-1/LottoNumber.js';
 
 describe('LottoNumber 클래스 유닛테스트', () => {
   describe('validateNumber', () => {

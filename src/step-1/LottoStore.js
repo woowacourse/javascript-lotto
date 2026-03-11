@@ -1,7 +1,7 @@
-import ERROR_MESSAGE from "./constants/errorMessage.js";
-import LOTTO from "./constants/lotto.js";
-import Lotto from "./Lotto.js";
-import { generateUniqueRandomNumbers } from "./utils.js";
+import ERROR_MESSAGE from '../constants/errorMessage.js';
+import LOTTO from '../constants/lotto.js';
+import Lotto from './Lotto.js';
+import { generateUniqueRandomNumbers } from './utils.js';
 
 class LottoStore {
   static purchaseLottos(amount) {

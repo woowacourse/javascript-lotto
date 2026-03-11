@@ -1,4 +1,4 @@
-import { RANK_RULES } from './constants/rank.js';
+import { RANK_RULES } from '../constants/rank.js';
 
 const LottoRankCalculator = {
   calculateLottoRanks(lottos, winningLottoAndBonusNumber) {

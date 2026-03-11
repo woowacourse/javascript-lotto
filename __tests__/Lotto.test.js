@@ -1,5 +1,5 @@
-import Lotto from '../src/Lotto';
-import LottoNumber from '../src/LottoNumber';
+import Lotto from '../src/step-1/Lotto.js';
+import LottoNumber from '../src/step-1/LottoNumber.js';
 
 describe('Lotto 클래스 유닛 테스트', () => {
   describe('getNumbers', () => {
@@ -106,7 +106,7 @@ describe('Lotto 클래스 유닛 테스트', () => {
       // then
       expect(result).toBe(5);
     });
-    
+
     test('두 로또 인스턴스 사이에 일치하는 번호 개수가 4이면 4을 반환한다.', () => {
       // given
       const lotto = new Lotto([1, 2, 3, 4, 5, 6]);

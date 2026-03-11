@@ -1,6 +1,6 @@
-import ERROR_MESSAGE from './constants/errorMessage.js';
+import ERROR_MESSAGE from '../constants/errorMessage.js';
 import LottoNumber from './LottoNumber.js';
-import { RANK_RULES } from './constants/rank.js';
+import { RANK_RULES } from '../constants/rank.js';
 
 class WinningLottoAndBonusNumber {
   #winningLotto;

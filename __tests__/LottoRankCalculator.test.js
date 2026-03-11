@@ -1,6 +1,6 @@
-import LottoRankCalculator from '../src/LottoRankCalculator';
-import Lotto from '../src/Lotto';
-import WinningLottoAndBonusNumber from '../src/WinningLottoAndBonusNumber.js';
+import LottoRankCalculator from '../src/step-1/LottoRankCalculator.js';
+import Lotto from '../src/step-1/Lotto.js';
+import WinningLottoAndBonusNumber from '../src/step-1/WinningLottoAndBonusNumber.js';
 
 describe('LottoRankCalculator 클래스 유닛 테스트', () => {
   describe('calculateLottoRanks', () => {

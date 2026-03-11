@@ -1,6 +1,6 @@
 import LottoRankCalculator from './LottoRankCalculator.js';
 import LottoReturnCalculator from './LottoReturnCalculator.js';
-import LOTTO from './constants/lotto.js';
+import LOTTO from '../constants/lotto.js';
 
 const LottoResultGenerator = {
   generateResult(lottos, winningLottoAndBonusNumber) {
