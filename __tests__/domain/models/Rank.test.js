@@ -28,16 +28,16 @@ describe("Rank.getCondition() 메서드 테스트", () => {
   test("1등의 매칭 기준을 가져온다", () => {
     const rank = Rank.FIRST;
     expect(rank.getCondition()).toEqual({
-      winningMatchCondition: 6,
-      bonusMatchCondition: false,
+      winningCondition: 6,
+      bonusCondition: false,
     });
   });
 
   test("2등의 매칭 기준을 가져온다", () => {
     const rank = Rank.SECOND;
     expect(rank.getCondition()).toEqual({
-      winningMatchCondition: 5,
-      bonusMatchCondition: true,
+      winningCondition: 5,
+      bonusCondition: true,
     });
   });
 });

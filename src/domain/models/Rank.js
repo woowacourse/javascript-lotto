@@ -15,15 +15,39 @@ export default class Rank {
   static FIFTH = new Rank(3, false);
   static MISS = new Rank(0, false);
 
-  #winningMatchCondition;
-  #bonusMatchCondition;
+  static #RANK_LIST = [
+    Rank.FIRST,
+    Rank.SECOND,
+    Rank.THIRD,
+    Rank.FOURTH,
+    Rank.FIFTH,
+    Rank.MISS,
+  ];
 
-  constructor(winningMatchCondition, bonusMatchCondition) {
-    this.#winningMatchCondition = winningMatchCondition;
-    this.#bonusMatchCondition = bonusMatchCondition;
+  #winningCondition;
+  #bonusCondition;
+
+  constructor(winningCondition, bonusCondition) {
+    this.#winningCondition = winningCondition;
+    this.#bonusCondition = bonusCondition;
   }
 
-  findRank(winningMatch, bonusMatch) {}
-  getPrize() {}
-  getCondition() {}
+  static findRank(winningMatch, bonusMatch) {
+    const foundRank = Rank.#RANK_LIST.find((rank) => {
+      const { winningCondition, bonusCondition } = rank.getCondition();
+
+      return winningCondition === winningMatch && bonusCondition === bonusMatch;
+    });
+    return foundRank || Rank.MISS;
+  }
+
+  getPrize() {
+    return Rank.PRIZES[Object.keys(Rank).find((key) => Rank[key] === this)];
+  }
+
+  getCondition() {
+    const winningCondition = this.#winningCondition;
+    const bonusCondition = this.#bonusCondition;
+    return { winningCondition, bonusCondition };
+  }
 }
