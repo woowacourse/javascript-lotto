@@ -1,6 +1,7 @@
 import PurchaseAmountForm from './step-2/PurchaseAmountForm.js';
 import LottoInfo from './step-2/LottoInfo.js';
 import WinningNumbersAndBonusNumberForm from './step-2/WinningNumbersAndBonusNumberForm.js';
+import LottoResult from './step-2/LottoResult.js';
 
 function main() {
   const app = document.getElementById('app');
@@ -8,6 +9,7 @@ function main() {
   PurchaseAmountForm.render(app);
   LottoInfo.render(app);
   WinningNumbersAndBonusNumberForm.render(app);
+  LottoResult.render(app);
 }
 
 main();

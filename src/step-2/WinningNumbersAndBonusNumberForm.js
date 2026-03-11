@@ -49,7 +49,6 @@ const WinningNumbersAndBonusNumberForm = {
     const winningNumbers = [winningNumber1, winningNumber2, winningNumber3, winningNumber4, winningNumber5, winningNumber6].map(Number);
     const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(new Lotto(winningNumbers), Number(bonusNumber));
     winningLottoAndBonusNumberStore.setState({ winningLottoAndBonusNumber });
-    console.log(winningLottoAndBonusNumber);
   },
 };
 
