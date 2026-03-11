@@ -1,0 +1,12 @@
+.ui-content-box {
+  padding: 40px 16px 32px;
+}
+
+.ui-content-box.width-fixed{
+  width: 414px;
+  margin: 0 auto;
+}
+
+.ui-content-box.is-line {
+  border: 1px solid rgba(0,0,0,.12);
+}

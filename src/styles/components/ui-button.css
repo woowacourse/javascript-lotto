@@ -1,0 +1,20 @@
+.ui-button {
+  min-width: 56px;
+  font-size: var(--typo-caption-font-size);
+  font-weight: var(--typo-caption-font-weight);
+  line-height: var(--typo-caption-line-height);
+	letter-spacing: var(--typo-caption-letter-spacing);
+  height: 40px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.ui-button.variant-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--greyscale-1);
+}
+
+.ui-button.is-block {
+  width: 100%;
+}

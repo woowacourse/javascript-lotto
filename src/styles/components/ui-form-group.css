@@ -1,0 +1,39 @@
+.ui-form-group {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.ui-form-group .form-group-title {
+  font-size: var(--typo-body-font-size);
+  font-weight: var(--typo-body-font-weight);
+  line-height: var(--typo-body-line-height);
+	letter-spacing: var(--typo-body-letter-spacing);
+}
+
+.ui-form-group .form-group-content {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-bottom: 28px;
+
+  justify-content: space-between;
+  flex: 1;
+}
+
+.ui-form-group.align-right .form-group-title,
+.ui-form-group.align-right .form-group-content {
+  justify-content: flex-end;
+}
+
+.ui-form-cluster {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ui-form-cluster .ui-form-group {
+  width: auto;
+}
+
+

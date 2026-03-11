@@ -1,0 +1,30 @@
+.ui-input {
+  display: inline-block;
+}
+
+.ui-input input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--greyscale-3);
+  border-radius: 4px;
+  
+  padding: 8px 8px 4px;
+
+  font-size: var(--typo-body-font-size);
+  font-weight: var(--typo-body-font-weight);
+  line-height: var(--typo-body-line-height);
+	letter-spacing: var(--typo-body-letter-spacing);
+
+  color: var(--greyscale-5);
+}
+
+.ui-input input::placeholder {
+  font-size: var(--typo-placeholder-font-size);
+  font-weight: var(--typo-placeholder-font-weight);
+  line-height: var(--typo-placeholder-line-height);
+	letter-spacing: var(--typo-placeholder-letter-spacing);
+}
+
+.ui-input.is-block {
+  width: 100%;
+}

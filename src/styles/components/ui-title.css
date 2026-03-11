@@ -1,0 +1,25 @@
+.ui-title .title {
+  margin: 0;
+}
+
+.ui-title.shape-main .title {
+  font-size: var(--typo-title-font-size);
+  font-weight: var(--typo-title-font-weight);
+  line-height: var(--typo-title-line-height);
+	letter-spacing: var(--typo-title-letter-spacing);
+
+  margin-bottom: 28px;
+}
+
+.ui-title.shape-content .title {
+  font-size: var(--typo-body-font-size);
+  font-weight: var(--typo-body-font-weight);
+  line-height: var(--typo-body-line-height);
+	letter-spacing: var(--typo-body-letter-spacing);
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.ui-title.align-center .title {
+  text-align: center;
+}
