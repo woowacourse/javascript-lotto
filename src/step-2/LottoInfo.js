@@ -3,9 +3,12 @@ import { userLottoStore } from './stores.js';
 
 const LottoInfo = {
   render(target) {
-    userLottoStore.appendTrigger(() => LottoInfo.render(target));
-    console.log(userLottoStore.triggers);
-
+    if (!userLottoStore.hasTrigger('lotto-info')) {
+      userLottoStore.appendTrigger(
+        'lotto-info', () => LottoInfo.render(target),
+      );
+    }
+    
     const lottoInfoContainer = document.createElement('div');
     lottoInfoContainer.id = 'lotto-info-container';
 

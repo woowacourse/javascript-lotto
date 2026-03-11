@@ -1,15 +1,17 @@
 // state는 Record<string, any>
+// triggers는 Record<string, (state) => void>
 export const createStore = (initial = {}) => {
   let state = initial;
-  const triggers = [];
+  const triggers = {};
 
   return {
     triggers,
     getState: () => state,
     setState: (updated) => {
       state = { ...state, ...updated };
-      triggers.forEach((trigger) => trigger(state));
+      Object.values(triggers).forEach((trigger) => trigger(state));
     },
-    appendTrigger: (trigger) => triggers.push(trigger),
+    appendTrigger: (key, triggerFn) => triggers[key] = triggerFn,
+    hasTrigger: (key) => Boolean(triggers[key]),
   };
 };
