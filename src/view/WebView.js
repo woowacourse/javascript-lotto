@@ -10,7 +10,13 @@ class WebView {
 
         this.$winningSection = document.querySelector(".winningnum-bonusnum");
         this.$winningForm = document.querySelector(".winningnum-bonusnum-form");
+
+        this.$modalSection = document.querySelector(".modal-result-screen");
+        this.$rankCounts = document.querySelectorAll(".rank-count");
+
+        this.$profitRate = document.querySelector(".profitrate-view");
     }
+
 
     getPurchaseAmount() {
         return this.$purchaseInput.value;
@@ -45,7 +51,19 @@ class WebView {
         return Number(document.querySelector(".bonus-number").value);
     }
 
-    
-}
+    renderResultTable(rankCount, profitRate) {
+        this.$modalSection.classList.remove("hidden");
+
+        this.$rankCounts.forEach(($td) => {
+            const rank = $td.dataset.rank;
+            $td.innerText = `${rankCount[rank] || 0}개`;
+        });
+
+        if (this.$profitRate) {
+            this.$profitRate.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
+        }
+
+    }
+};
 
 export default WebView;
