@@ -14,7 +14,7 @@ class LottoController {
 
   issueLottos() {
     this.#purchasedLottos = makeLottos(this.#lottoCount);
-    return this.#purchasedLottos.map((lotto) => lotto.toString());
+    return this.#purchasedLottos.map((lotto) => lotto.getNumbers());
   }
 
   updateWinningResult(winningLotto, bonusNum) {
