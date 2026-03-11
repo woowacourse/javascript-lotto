@@ -2,14 +2,34 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>🎱 행운의 로또</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <div class="header-container">
+          <h1 class="lotto-title">🎱 행운의 로또</h1>
+        </div>
+      </header>
+
+      <main class="main-container">
+        <section class="purchase-section">
+          <div class="title-text">
+            <p>🎱 내 번호 당첨 확인 🎱</p>
+          </div>
+          <form class="purchase-form">
+            <span class="purchase-label">구입할 금액을 입력해주세요.</span>
+            <div class="input-group">
+              <input type="number" class="purchase-input" placeholder="금액" required />
+              <button type="submit" class="purchase-btn">구입</button>
+            </div>
+          </form>
+        </section>
+      </main>
+
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
