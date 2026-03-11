@@ -1,19 +1,32 @@
 import Money from "../../src/domain/Money.js";
+
 describe("Money class 테스트", () => {
   describe("생성자 테스트", () => {
-    test("구매 단위(1,000)보다 작을 수 없다", () => {
-      expect(() => new Money(900)).toThrow("[ERROR]");
+    test("숫자가 아닌 값은 에러를 던진다", () => {
+      expect(() => new Money("abc")).toThrow("[ERROR]");
     });
 
-    test("구매 금액은 구매 단위보다 같거나 크면 된다", () => {
+    test("음수는 에러를 던진다", () => {
+      expect(() => new Money(-1000)).toThrow("[ERROR]");
+    });
+
+    test("0은 에러를 던진다", () => {
+      expect(() => new Money(0)).toThrow("[ERROR]");
+    });
+
+    test("소수는 에러를 던진다", () => {
+      expect(() => new Money(1000.5)).toThrow("[ERROR]");
+    });
+
+    test("양의 정수는 정상 생성된다", () => {
       expect(() => new Money(1000)).not.toThrow();
     });
   });
 
-  describe("method test", () => {
-    test("머니가 살 수 있는 최대의 로또 갯수를 반환 Money.purchaseLotto()", () => {
+  describe("getAmount", () => {
+    test("입력한 금액을 반환한다", () => {
       const money = new Money(2050);
-      expect(money.getMaximumLottoCount()).toBe(2);
+      expect(money.getAmount()).toBe(2050);
     });
   });
 });
