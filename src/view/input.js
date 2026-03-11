@@ -6,6 +6,7 @@ export const InputView = {
   async inputPurchaseAmount() {
     try {
       const money = await readLine("구입금액을 입력해 주세요.");
+      Validator.validatePurchaseMoney(money);
       return Number(money);
     } catch (error) {
       OutputView.outputError(error.message);
@@ -16,6 +17,7 @@ export const InputView = {
   async inputWinningNumber() {
     try {
       const winningNumber = await readLine("\n당첨 번호를 입력해 주세요.");
+      Validator.validateWinningNumber(winningNumber);
       return winningNumber;
     } catch (error) {
       OutputView.outputError(error.message);
@@ -26,6 +28,7 @@ export const InputView = {
   async inputBonusNumber(winningNumber) {
     try {
       const bonusNumber = await readLine("\n보너스 번호를 입력해 주세요.");
+      Validator.validateBonusNumber(winningNumber, Number(bonusNumber));
       return Number(bonusNumber);
     } catch (error) {
       OutputView.outputError(error.message);

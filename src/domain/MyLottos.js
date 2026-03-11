@@ -1,14 +1,12 @@
 import { PRIZE } from "../constants/constant.js";
 import { calculateLottoCount } from "../service/calculateLottoCount.js";
 import { getLottos } from "../service/getRandomLotto.js";
-import { Validator } from "../validator/Validator.js";
 
 class MyLotto {
   #money;
   #randomLotto = [];
 
   constructor(money, randomLotto) {
-    Validator.validatePurchaseMoney(money);
     this.#money = money;
     this.#randomLotto = randomLotto;
   }
