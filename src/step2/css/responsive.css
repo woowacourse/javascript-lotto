@@ -1,0 +1,17 @@
+@media (max-width: 727px) {
+    header {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+    #app {
+        flex: 0;
+    }
+
+    #content {
+        border: none;
+    }
+}
