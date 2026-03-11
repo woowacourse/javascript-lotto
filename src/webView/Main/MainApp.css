@@ -63,3 +63,28 @@
 
   border: none;
 }
+
+.card-hidden-section {
+  width: 100%;
+}
+.lottos-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  padding: 10px;
+  gap: 4px;
+}
+
+.lotto-line {
+  display: flex;
+  gap: 8px;
+
+  align-items: center;
+
+  font: var(--text-body);
+}
+.lotto-line-icon {
+  font-size: 34px;
+  line-height: 36px;
+}
