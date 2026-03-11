@@ -1,5 +1,5 @@
 import readline from "readline/promises";
-import ERROR_MESSAGE from "./constants/errorMessage.js";
+import ERROR_MESSAGE from "../constants/errorMessage.js";
 
 class InputView {
   async getUserInput(message) {
