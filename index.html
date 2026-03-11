@@ -27,7 +27,7 @@
       </ul>
     </div>
 
-    <div id="winningDiv">
+    <div id="winningDiv" style="display: none;">
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
       <form>
         <label for="winningInput">당첨 번호</label>
@@ -38,7 +38,8 @@
         <input type="text" id="bonusInput"/>
       </form>
     </div>
-    <button type="submit">결과 확인하기</button>
+
+    <button type="submit" id="getResultButton" style="display: none;">결과 확인하기</button>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

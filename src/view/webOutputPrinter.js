@@ -13,5 +13,11 @@ export const webOutputPrinter = {
       newLi.textContent = `🎟️ ${lotto.getNumber().join()}`;
       myLottoLists.appendChild(newLi);
     }
+
+    const winningDiv = document.getElementById("winningDiv");
+    winningDiv.style.display = "block";
+
+    const getResultButton = document.getElementById("getResultButton");
+    getResultButton.style.display = "block";
   }
 }
