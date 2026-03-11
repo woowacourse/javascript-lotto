@@ -13,6 +13,12 @@
   box-sizing: border-box;
 }
 
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 body {
   background-color: rgb(var(--grayscale-2));
 }
@@ -53,7 +59,7 @@ body, #app {
   padding: 20px 15px;
   background-color: rgb(var(--grayscale-1));
   border: 1px solid rgba(var(--grayscale-5), 0.12);
-  border-radius:16px;
+  border-radius: 8px;
   margin: 84px auto;
 }
 
@@ -61,6 +67,7 @@ body, #app {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 25px 0;
 }
 
 .footer {
@@ -99,5 +106,5 @@ body, #app {
   width: 350px;
   padding: 15px 30px;
   background-color: rgb(var(--grayscale-1));
-  border-radius:16px;
+  border-radius: 8px;
 }

@@ -1,4 +1,5 @@
 import Input from "./Input.js";
+import { LOTTO } from "../constant/index.js";
 
 class WebInput extends Input {
   constructor() {
@@ -12,7 +13,7 @@ class WebInput extends Input {
       formEl.innerHTML = `
         <label>구입금액을 입력해 주세요.</label>
         <div>
-          <input type="number" id="money__input" name="money" min="1000" step="1000"/>
+          <input type="number" id="money__input" name="money" min="1000" step="1000" />
           <button id="money__submit">구입</button>
         </div>
       `;
@@ -24,6 +25,10 @@ class WebInput extends Input {
           e.preventDefault();
           const formData = new FormData(formEl);
           const data = Object.fromEntries(formData.entries());
+
+          this.diasbleElement("#money__input");
+          this.diasbleElement("#money__submit");
+
           resolve(data.money);
         });
       }
@@ -35,6 +40,14 @@ class WebInput extends Input {
       ".winning-number-and-bonus__container",
     );
 
+    const orders = ["first", "second", "third", "fourth", "fifth", "sixth"];
+
+    const inputSelectors = [
+      ...orders.map((order) => `#winning-number__${order}__input`),
+      "#bonus-number__input",
+      // "#winning-number-and-bonus__submit",
+    ];
+
     if (formEl) {
       formEl.innerHTML = `
         <label for="#winning-number-and-bonus__input">구입금액을 입력해 주세요.</label>
@@ -42,21 +55,22 @@ class WebInput extends Input {
           <div>
             <label for="winning-number__first__input">당첨 번호</label>
             <div>
-              <input type="number" id="winning-number__first__input" name="winning-number__first" min="1" max="45" step="1"/>
-              <input type="number" id="winning-number__second__input" name="winning-number__second" min="1" max="45" step="1"/>
-              <input type="number" id="winning-number__third__input" name="winning-number__third" min="1" max="45" step="1"/>
-              <input type="number" id="winning-number__fourth__input" name="winning-number__fourth" min="1" max="45" step="1"/>
-              <input type="number" id="winning-number__fifth__input" name="winning-number__fifth" min="1" max="45" step="1"/>
-              <input type="number" id="winning-number__sixth__input" name="winning-number__sixth" min="1" max="45" step="1"/>
+            ${orders
+              .map(
+                (order) => `
+                <input type="number" id="winning-number__${order}__input" name="winning-number__${order}" min="${LOTTO.MIN_NUMBER}" max="${LOTTO.MAX_NUMBER}" step="1"/>
+              `,
+              )
+              .join("")}
             </div>
           <div>
             <label for="bonus-number__input">보너스 번호</label>
             <div>
-              <input type="number" id="bonus-number__input" name="bonus-number" min="1" max="45" step="1"/>
+              <input type="number" id="bonus-number__input" name="bonus-number" min="${LOTTO.MIN_NUMBER}" max="${LOTTO.MAX_NUMBER}" step="1"/>
             </div>
           </div>
         </div>
-        <button id="winning-number-and-bonus__submit">구입</button>
+        <button id="winning-number-and-bonus__submit">결과 확인하기</button>
       `;
     }
 
@@ -64,6 +78,11 @@ class WebInput extends Input {
       formEl.addEventListener("submit", (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
+
+        inputSelectors.forEach((selector) => {
+          this.diasbleElement(selector);
+        });
+
         resolve({
           winningNumbersInput: [
             formData.get("winning-number__first"),
@@ -80,43 +99,65 @@ class WebInput extends Input {
   }
 
   async readRetryAsync() {
-    const formEl = document.querySelector(".retry__container");
+    const modalFooterEl = document.querySelector(".modal__footer");
 
-    if (formEl) {
-      formEl.innerHTML = `
-        <label>구입금액을 입력해 주세요.</label>
-        <div>
-          <input type="number" id="money__input" name="money" min="1000" step="1000"/>
-          <button id="money__submit">구입</button>
-        </div>
-      `;
+    if (modalFooterEl) {
+      modalFooterEl.innerHTML = '<button class="retry__button">다시 시작</button>';
     }
 
+    const retryButtonEl = document.querySelector(".retry__button");
+
     return new Promise((resolve) => {
-      if (formEl) {
-        formEl.addEventListener("submit", (e) => {
+      if (retryButtonEl) {
+        retryButtonEl.addEventListener("click", (e) => {
           e.preventDefault();
-          const formData = new FormData(formEl);
-          const data = Object.fromEntries(formData.entries());
-          resolve(data.money);
+          resolve("y");
+          this.hiddenOverlay();
+          this.clearMoneyContainer();
+          this.clearPurchasedLottosContainer();
+          this.clearWinningNumberAndBonusContainer();
+          this.clearShowResultButtonContainer();
         });
       }
     });
   }
 
-  // async #waitingForUserInputAsync(message) {
-  //   return new Promise((resolve) => {
-  //     const rl = readline.createInterface({
-  //       input: process.stdin,
-  //       output: process.stdout,
-  //     });
+  diasbleElement(selector) {
+    const element = document.querySelector(selector);
 
-  //     rl.question(message ?? "", (line) => {
-  //       rl.close();
-  //       resolve(line);
-  //     });
-  //   });
-  // }
+    if (element) {
+      element.disabled = true;
+    }
+  }
+
+  hiddenOverlay() {
+    document.querySelector(".overlay")?.classList.add("hidden");
+  }
+
+  clearMoneyContainer() {
+    if (document.querySelector(".money__container")) {
+      document.querySelector(".money__container").innerHTML = "";
+    }
+  }
+
+  clearPurchasedLottosContainer() {
+    if (document.querySelector(".purchased-lottos__container")) {
+      document.querySelector(".purchased-lottos__container").innerHTML = "";
+    }
+  }
+
+  clearWinningNumberAndBonusContainer() {
+    if (document.querySelector(".winning-number-and-bonus__container")) {
+      document.querySelector(".winning-number-and-bonus__container").innerHTML =
+        "";
+    }
+  }
+
+  clearShowResultButtonContainer() {
+    if (document.querySelector(".show-result__button__container")) {
+      document.querySelector(".show-result__button__container").innerHTML = "";
+    }
+  }
 }
 
 export default WebInput;

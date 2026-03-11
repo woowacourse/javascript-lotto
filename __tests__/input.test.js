@@ -4,11 +4,28 @@ import MockInput from "./utils/MockInput.js";
 
 beforeEach(() => {
   document.body.innerHTML = `
-    <div class="main">
-      <div class="main__container">
-        <form class="money__container"></form>
-        <ul class="purchased-lottos__container"></ul>
-        <form class="winning-number-and-bonus__container"></form>
+    <div id="app">
+      <header class="header">
+        <div class="header__wrap">
+        </div>
+      </header>
+      <div class="main">
+        <div class="main__container">
+          <header class="main__container__header">
+          </header>
+          <form class="money__container"></form>
+          <ul class="purchased-lottos__container"></ul>
+          <form class="winning-number-and-bonus__container"></form>
+        </div>
+      </div>
+      <footer class="footer">
+      </footer>
+      <div class="overlay hidden">
+        <div class="modal">
+          <header class="modal__header"></header>
+          <div class="modal__body"></div>
+          <footer class="modal__footer"></footer>
+        </div>
       </div>
     </div>
   `;
@@ -105,18 +122,17 @@ describe("Input 테스트", () => {
     const webInput = new WebInput();
     const webResultPromise = webInput.readRetryAsync();
     await new Promise(resolve => setTimeout(resolve, 0));
-    document.querySelector("#retry__input").value = testInput;
-    document.querySelector("#retry__submit").click();
+    document.querySelector(".retry__button").click();
     const webResult = await webResultPromise;
-    expect(webResult).toBe(true);
+    expect(webResult).toBe(testInput);
 
     const consoleInput = new ConsoleInput();
     process.stdin.push(testInput + "\n");
     const consoleResult = await consoleInput.readRetryAsync();
-    expect(consoleResult).toBe(true);
+    expect(consoleResult).toBe(testInput);
 
     const mockInput = new MockInput([testInput]);
     const mockResult = await mockInput.readRetryAsync();
-    expect(mockResult).toBe(true);
+    expect(mockResult).toBe(testInput);
   });
 });
