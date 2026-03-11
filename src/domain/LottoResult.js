@@ -1,54 +1,59 @@
-import Rank from "./Rank.js";
+const PRIZE_RULES = Object.freeze([
+  Object.freeze({ matchCount: 3, hasBonus: false, prize: 5_000 }),
+  Object.freeze({ matchCount: 4, hasBonus: false, prize: 50_000 }),
+  Object.freeze({ matchCount: 5, hasBonus: false, prize: 1_500_000 }),
+  Object.freeze({ matchCount: 5, hasBonus: true, prize: 30_000_000 }),
+  Object.freeze({ matchCount: 6, hasBonus: false, prize: 2_000_000_000 }),
+]);
+
+function findRule({ matchCount, hasBonus }) {
+  return PRIZE_RULES.find(
+    (rule) => rule.matchCount === matchCount && rule.hasBonus === hasBonus,
+  );
+}
 
 class LottoResult {
-  #rankCounts;
+  #prizeCounts;
 
   constructor(lottos, winningNumber) {
-    this.#rankCounts = this.#calculateRankCounts(lottos, winningNumber);
+    this.#prizeCounts = this.#calculatePrizeCounts(lottos, winningNumber);
   }
 
-  #calculateRankCounts(lottos, winningNumber) {
-    //MISS는 따로 집계 안함
-    const counts = new Map(Rank.order.map((rank) => [rank, 0]));
-
-    lottos.forEach((lotto) => {
-      const result = winningNumber.getResult(lotto);
-      const rank = Rank.getRank(result);
-
-      //MISS는 Map에 없으니까 has()로 체크해서 카운트 증가
-      if (counts.has(rank)) {
-        counts.set(rank, counts.get(rank) + 1);
-      }
-    });
-
+  #calculatePrizeCounts(lottos, winningNumber) {
+    const counts = new Map(PRIZE_RULES.map((rule) => [rule, 0]));
+    lottos.forEach((lotto) => this.#countPrize(counts, lotto, winningNumber));
     return counts;
   }
 
-  getRankCount(rank) {
-    return this.#rankCounts.get(rank) ?? 0;
+  #countPrize(counts, lotto, winningNumber) {
+    const winningLotto = winningNumber.getNumbers();
+    const bonusNumber = winningNumber.getBonusNumber();
+    const matchCount = winningLotto.filter((num) =>
+      lotto.hasNumber(num),
+    ).length;
+    const hasBonus = lotto.hasNumber(bonusNumber);
+    const rule = findRule({ matchCount, hasBonus });
+
+    if (!rule) return;
+    counts.set(rule, counts.get(rule) + 1);
   }
 
   getPrizeList() {
-    return Rank.order.map((rank) => ({
-      rank,
-      count: this.#rankCounts.get(rank) ?? 0,
-      prize: rank.getPrize(),
+    return PRIZE_RULES.map((rule) => ({
+      matchCount: rule.matchCount,
+      hasBonus: rule.hasBonus,
+      prize: rule.prize,
+      count: this.#prizeCounts.get(rule),
     }));
   }
 
   getProfitRate(purchaseAmount) {
-    //let totalPrize = 0 을 지우려다보니
-    const totalPrize = [...this.#rankCounts.entries()].reduce(
-      (acc, [rank, count]) => acc + rank.getPrize() * count,
+    const totalPrize = [...this.#prizeCounts.entries()].reduce(
+      (acc, [rule, count]) => acc + rule.prize * count,
       0,
     );
     return ((totalPrize / purchaseAmount) * 100).toFixed(1);
   }
 }
-
-// 목표
-// - getRankCount(rank) → 특정 등수의 당첨 개수 (number)
-// - getPrizeList() → 등수별 { rank, count, prize } 배열
-// - getProfitRate(purchaseAmount) → 수익률 문자열
 
 export default LottoResult;
