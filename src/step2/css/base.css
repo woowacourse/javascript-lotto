@@ -1,0 +1,21 @@
+:root {
+    --navbar-bg: #4E5BA6;
+    --navbar-fg: #FFFFFF;
+}
+
+body {
+    margin: 0;
+}
+
+#header nav {
+    background-color: var(--navbar-bg);
+}
+
+#header nav h1 {
+    margin: 0;
+    padding: 14px 0 14px 130px;
+    font-size: 24px;
+    font-weight: 800;
+    font-family: "Roboto", sans-serif;
+    color: var(--navbar-fg);
+}
