@@ -1,6 +1,8 @@
 :root {
     --navbar-bg: #4E5BA6;
     --navbar-fg: #FFFFFF;
+
+    --content-title-fg: #000000;
 }
 
 body {
@@ -14,9 +16,6 @@ body {
 #header nav h1 {
     margin: 0;
     padding: 14px 0 14px 130px;
-    font-size: 24px;
-    font-weight: 800;
-    font-family: "Roboto", sans-serif;
     color: var(--navbar-fg);
 }
 
@@ -34,4 +33,15 @@ CONTENT
 
 #content {
     display: inline-block;
+    padding: 40px 16px;
+}
+
+#content-title {
+    color: var(--content-title-fg);
+}
+
+.lotto-title {
+    font-size: 24px;
+    font-weight: 800;
+    font-family: "Roboto", sans-serif;
 }
