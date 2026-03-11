@@ -6,3 +6,6 @@
 import "./webView/global.css";
 import "./webView/Header/Header.js";
 import "./webView/Header/Header.css";
+
+import "./webView/Footer/Footer.js";
+import "./webView/Footer/Footer.css";
