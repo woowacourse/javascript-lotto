@@ -1,20 +1,25 @@
+import { Validator } from "../utils/Validator.js";
+
 class Money {
-  static UNIT = 1000;
   #amount;
 
   constructor(amount) {
-    this.#validate(Number(amount));
-    this.#amount = Number(amount);
+    const parsed = Validator.isNumber(amount);
+    this.#validate(parsed);
+    this.#amount = parsed;
   }
 
   #validate(amount) {
-    if (amount < Money.UNIT) {
-      throw new Error("[ERROR] 로또를 구매할 수 없습니다");
+    if (!Number.isInteger(amount)) {
+      throw new Error("[ERROR] 금액은 정수여야 합니다.");
+    }
+    if (amount <= 0) {
+      throw new Error("[ERROR] 금액은 양수여야 합니다.");
     }
   }
 
-  getMaximumLottoCount() {
-    return Math.floor(this.#amount / Money.UNIT);
+  getAmount() {
+    return this.#amount;
   }
 }
 
