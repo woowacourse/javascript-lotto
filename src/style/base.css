@@ -1,0 +1,67 @@
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  background-color: var(--bg);
+  color: var(--black);
+}
+
+input {
+  border: 1px solid var(--gray-1);
+  border-radius: 4px;
+  outline: none;
+  font-size: 15px;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+dialog {
+  border: none;
+  padding: 0;
+  border-radius: 4px;
+}
+
+dialog::backdrop {
+  background: var(--black-50);
+}
+
+/* typography */
+.title {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.caption {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.25px;
+}
+
+.error-message {
+  font-size: 13px;
+  color: #d32f2f;
+}
