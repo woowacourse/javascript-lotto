@@ -35,8 +35,7 @@ class App {
     const lottos = this.#lottoStore.issuedLottos(money.getMoney());
     this.#view.output.printPurchasedLottos(lottos);
 
-    const winningNumbers = await this.#askWinningNumbers();
-    const winningLotto = await this.#askBonusNumber(winningNumbers);
+    const winningLotto = await this.#askWinningNumberAndBonus();
 
     const lottoGameResult = winningLotto.evaluateLottos(lottos);
     const returnOnInvestment = lottoGameResult.getReturnOnInvestment(
@@ -60,37 +59,19 @@ class App {
     }
   }
 
-  async #askBonusNumber(lotto) {
+  async #askWinningNumberAndBonus() {
     return await this.#retryUntilSuccess(async () => {
-      const inputBonus = await this.#view.input.readLineAsync(
-        INPUT_MESSAGE.BONUS_NUMBER,
-      );
-
-      const bonusNumber = Number(inputBonus);
-
-      const winningLotto = new WinningLotto(lotto, bonusNumber);
-
-      return winningLotto;
-    });
-  }
-
-  async #askWinningNumbers() {
-    return await this.#retryUntilSuccess(async () => {
-      const inputWinningNumber = await this.#view.input.readLineAsync(
-        INPUT_MESSAGE.WINNING_NUMBER,
-      );
-
-      const winningNumbers = inputWinningNumber.split(",").map(Number);
-
-      return new Lotto(winningNumbers);
+      const { winningNumbersInput, bonusNumberInput } = await this.#view.input.readWinningNumberAndBonusAsync();
+      const winningNumbers = winningNumbersInput.split(',').map(Number);
+      const bonusNumber = Number(bonusNumberInput);
+      
+      return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
     });
   }
 
   async #askMoney() {
     return await this.#retryUntilSuccess(async () => {
-      const inputMoney = await this.#view.input.readLineAsync(
-        INPUT_MESSAGE.PURCHASE_AMOUNT,
-      );
+      const inputMoney = await this.#view.input.readMoneyAsync();
 
       const money = new Money(Number(inputMoney));
 
@@ -100,9 +81,7 @@ class App {
 
   async #askRetry() {
     return await this.#retryUntilSuccess(async () => {
-      const askRetry = await this.#view.input.readLineAsync(
-        INPUT_MESSAGE.ASK_RETRY,
-      );
+      const askRetry = await this.#view.input.readRetryAsync();
 
       if (askRetry === "y" || askRetry === "Y") return true;
       if (askRetry === "n" || askRetry === "N") return false;
