@@ -37,6 +37,17 @@ input {
     outline: none;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 0;
+  margin: 0;
+}
+
 #header nav {
     background-color: var(--navbar-bg);
 }
@@ -85,19 +96,30 @@ CONTENT
     width: 100%;
 }
 
-#purchase-amount-form > div label {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 24px;
-    letter-spacing: 0.5px;
-}
-
 #purchase-amount {
     padding: 8px;
     border-radius: 4px;
     width: 80%;
     height: 36px;
+}
+
+#lotto-content > p {
+    margin-top: 28px;
+}
+
+#lotto-content ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#lotto-content ul li {
+    display: flex;
+    gap: 8px;
+}
+
+#lotto-content ul li span {
+    font-size: 32px;
 }
 
 .lotto-title {
@@ -109,4 +131,12 @@ CONTENT
 .row-line-between {
     display: flex;
     justify-content: space-between;
+}
+
+.text-base {
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 24px;
 }
