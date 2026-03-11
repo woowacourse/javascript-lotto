@@ -20,7 +20,7 @@ describe("Rank.findRank(winningMatch,bonusMatch) 메서드 테스트", () => {
 describe("Rank.getPrize() 메서드 테스트", () => {
   test("자신의 등수에 해당하는 상금을 가져온다", () => {
     const rank = Rank.FIRST;
-    expect(rank.getPrize()).toBe(Rank.PRIZES.FIRST);
+    expect(rank.getPrize()).toEqual({ order: 1, prize: 2_000_000_000 });
   });
 });
 

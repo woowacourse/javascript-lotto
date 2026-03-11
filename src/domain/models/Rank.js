@@ -1,13 +1,4 @@
 export default class Rank {
-  static PRIZES = Object.freeze({
-    FIRST: 2_000_000_000,
-    SECOND: 30_000_000,
-    THIRD: 1_500_000,
-    FOURTH: 50_000,
-    FIFTH: 5_000,
-    MISS: 0,
-  });
-
   static FIRST = new Rank(6, false);
   static SECOND = new Rank(5, true);
   static THIRD = new Rank(5, false);
@@ -15,14 +6,14 @@ export default class Rank {
   static FIFTH = new Rank(3, false);
   static MISS = new Rank(0, false);
 
-  static #RANK_LIST = [
-    Rank.FIRST,
-    Rank.SECOND,
-    Rank.THIRD,
-    Rank.FOURTH,
-    Rank.FIFTH,
-    Rank.MISS,
-  ];
+  static #RULE_MAP = new Map([
+    [Rank.FIRST, { prize: 2_000_000_000, order: 1 }],
+    [Rank.SECOND, { prize: 30_000_000, order: 2 }],
+    [Rank.THIRD, { prize: 1_500_000, order: 3 }],
+    [Rank.FOURTH, { prize: 50_000, order: 4 }],
+    [Rank.FIFTH, { prize: 5_000, order: 5 }],
+    [Rank.MISS, { prize: 0, order: 6 }],
+  ]);
 
   #winningCondition;
   #bonusCondition;
@@ -33,16 +24,15 @@ export default class Rank {
   }
 
   static findRank(winningMatch, bonusMatch) {
-    const foundRank = Rank.#RANK_LIST.find((rank) => {
+    const foundRank = [...Rank.#RULE_MAP.keys()].find((rank) => {
       const { winningCondition, bonusCondition } = rank.getCondition();
-
       return winningCondition === winningMatch && bonusCondition === bonusMatch;
     });
     return foundRank || Rank.MISS;
   }
 
   getPrize() {
-    return Rank.PRIZES[Object.keys(Rank).find((key) => Rank[key] === this)];
+    return Rank.#RULE_MAP.get(this);
   }
 
   getCondition() {
