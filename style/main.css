@@ -3,8 +3,23 @@
 header {
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
   padding: 0 0 0 130px;
   background-color: var(--lotto-primary);
   color: var(--lotto-greyscale-1);
-  height: 64px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  border-top: 1px solid #4e5ba633;
+  color: var(--lotto-primary);
 }
