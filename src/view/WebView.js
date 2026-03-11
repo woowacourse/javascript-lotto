@@ -7,6 +7,9 @@ class WebView {
 
         this.$purchasedLottoSection = document.querySelector(".purchased-lotto");
         this.$purchasedLottoContainer = document.querySelector(".purchased-lotto-container");
+
+        this.$winningSection = document.querySelector(".winningnum-bonusnum");
+        this.$winningForm = document.querySelector(".winningnum-bonusnum-form");
     }
 
     getPurchaseAmount() {
@@ -16,25 +19,33 @@ class WebView {
     renderLottoCount(count) {
         this.$lottoCount.innerText = count;
         this.$purchasedLottoSection.classList.remove("hidden");
+        this.$winningSection.classList.remove("hidden");
     }
 
     renderLottosContainer(purchasedLottos) {
         this.$lottoCount.innerText = purchasedLottos.length;
-        this.$purchasedLottoSection.classList.remove("hidden");
-
         const lottoHTML = purchasedLottos
-      .map((lotto) => `
+            .map((lotto) => `
         <div class="lotto-item">
           <span>🎟️</span>
           <span class="lotto-numbers">${lotto.toString()}</span>
         </div>
       `)
-      .join(""); 
-
-
+            .join("");
 
         this.$purchasedLottoContainer.innerHTML = lottoHTML;
     }
+
+    getWinningNumbers() {
+        const $winningInputs = document.querySelectorAll(".winning-number");
+        return Array.from($winningInputs).map(input => Number(input.value));
+    }
+
+    getBonusNumber() {
+        return Number(document.querySelector(".bonus-number").value);
+    }
+
+    
 }
 
 export default WebView;

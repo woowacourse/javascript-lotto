@@ -29,14 +29,43 @@
           </form>
         </section>
 
-        <section class = "purchased-lotto hidden">
+        <section class= "purchased-lotto hidden">
           <form class="purchased-lotto-form">
             <span class="purchased-lotto-label">총 <span class="lotto-count">0</span>개를 구입하였습니다.</span>
             <div class="purchased-lotto-container"></div>
           </form>
         </section>
-      </main>
+        <section class="winningnum-bonusnum hidden">
+          <form class="winningnum-bonusnum-form">
+            <p class="input-guide">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            
+            <div class="flex-container">
+              <div class="winningnum-group">
+                <label class="input-label">당첨 번호</label>
+                <div class="winningnum-inputs">
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                </div>
+              </div>
 
+              <div class="bonusnum-group">
+                <label class="input-label">보너스 번호</label>
+                <div class="bonusnum-inputs">
+                  <input type="number" class="bonus-number" max="45" min="1" required>
+                </div>
+              </div>
+            </div>
+            <div class="check-result">
+              <button type="submit" class="result-btn">결과 확인하기</button>
+            </div>
+          </form>
+        </section>       
+      </main>
+      
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
