@@ -14,8 +14,8 @@ test.describe('로또 구입 금액 입력 테스트하기', () => {
     const testList = [
       page.getByText('총 3개를 구매하였습니다.'),
       page.getByText('지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.'),
-      page.getByText('당첨 번호'),
-      page.getByText('보너스 번호'),
+      page.getByText('당첨 번호', { exact: true }),
+      page.getByText('보너스 번호', { exact: true }),
       page.getByRole('button', { name: '결과 확인하기' }),
     ];
 
