@@ -1,0 +1,7 @@
+@import url("./reset.css");
+@import url("./variables.css");
+@import url("./base.css");
+@import url("./layouts/header.css");
+@import url("./layouts/footer.css");
+@import url("./layouts/lotto-game.css");
+@import url("./layouts/lotto-result.css");
