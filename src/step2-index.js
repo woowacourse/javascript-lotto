@@ -1,4 +1,19 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import Validator from "./utils/Validator";
+
+const purchaseForm = document.querySelector("form");
+const priceInput = document.querySelector("#purchase-price");
+
+purchaseForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  try {
+    const price = Number(priceInput.value);
+
+    Validator.validateNumber(price);
+    Validator.validatePurchaseUnit(price);
+
+    purchaseForm.reset();
+  } catch (error) {
+    alert(error.message);
+  }
+});
