@@ -1,12 +1,13 @@
 class Lotto {
+  static PRICE = 1000;
   static MIN_RANGE = 1;
   static MAX_RANGE = 45;
   static SIZE = 6;
 
   static ERROR = {
     DUPLICATE: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
-    INVALID_RANGE: "[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.",
-    INVALID_SIZE: "[ERROR] 로또 번호는 6개여야 합니다.",
+    INVALID_RANGE: `[ERROR] 로또 번호는 ${Lotto.MIN_RANGE}~${Lotto.MAX_RANGE} 사이의 숫자여야 합니다.`,
+    INVALID_SIZE: `[ERROR] 로또 번호는 ${Lotto.SIZE}개여야 합니다.`,
   };
 
   #numbers;
