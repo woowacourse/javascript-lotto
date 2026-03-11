@@ -5,11 +5,11 @@ const LottoInfo = {
   render(target) {
     if (!userLottoStore.hasTrigger('lotto-info')) {
       userLottoStore.appendTrigger(
-        'lotto-info', () => LottoInfo.render(target),
+        'lotto-info', () => this.render(target),
       );
     }
 
-    LottoInfo.init();
+    this.init();
     const lottoInfoContainer = document.createElement('div');
     lottoInfoContainer.id = 'lotto-info-container';
 
