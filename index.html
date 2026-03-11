@@ -18,14 +18,16 @@
           <h1>🎱 내 번호 당첨 확인 🎱</h1>
           <form id="purchase-price-form">
             <label for="purchase-price">구입할 금액을 입력해주세요.</label>
+
             <div class="price-price-input-box">
               <input type="number" id="purchase-price" placeholder="금액" min="1000" step="1000" required>
               <button type="submit">구입</button>
             </div>
+            
             <p id="purchase-price-error-msg" class="error-msg">오류메시지 출력창</p>
           </form>
         </section>
-        
+
         <section id="lotto-list-section" class="hidden">
           <h3 id="lotto-count-text">총 n개를 구입하셨습니다.</h3>
 
@@ -34,6 +36,29 @@
           </div>
 
         </section>
+
+        <form id="lucky-numbers-form">
+          <h3>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h3>
+          <div class="lucky-numbers-input-box">
+
+            <div class="winning-numbers">
+              <h3>당첨 번호</h3>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+            </div>
+
+            <div class="bonus-number">
+              <h3>보너스 번호</h3>
+              <input type="number" class="bonus-number" min="1" max="45" required>
+            </div>
+
+          </div>
+          <button type="submit" class="result-button">결과 확인하기</button>
+        </form>
       </main>
 
       <footer>
