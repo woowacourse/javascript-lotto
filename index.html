@@ -11,6 +11,47 @@
     <div id="app">
       <h1>🎱 행운의 로또</h1>
     </div>
+
+    <div>
+      <h1>내 번호 당첨 확인</h1>
+    </div>
+
+    <div>
+      <label for="purchaseInput">구입할 금액을 입력해주세요.</label>
+      <input type="text" id="purchaseInput" placeholder="구입" />
+      <button type="submit">구입</button>
+    </div>
+
+    <div>
+      <p>총 3개를 구매하였습니다.</p>
+      <ul>
+        <li>
+          <span>🎟️</span>
+          <span>1,2,3,4,5,6</span>
+        </li>
+        <li>
+          <span>🎟️</span>
+          <span>11,12,13,14,15,16</span>
+        </li>
+        <li>
+          <span>🎟️</span>
+          <span>21,22,23,24,25,26</span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+      <div>
+        <label for="winningInput">당첨 번호</label>
+        <input type="text" id="winningInput"/>
+      </div>
+      <div>
+        <label for="bonusInput">보너스 번호</label>
+        <input type="text" id="bonusInput"/>
+      </div>
+    </div>
+    <button type="submit">결과 확인하기</button>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
