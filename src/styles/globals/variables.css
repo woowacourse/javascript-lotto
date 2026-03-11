@@ -1,3 +1,37 @@
 :root {
+	/* color */
 	--primary: #4E5BA6;
+
+	--greyscale-1: #FFFFFF;
+	--greyscale-2: #FCFCFD;
+	--greyscale-3: #B4B4B4;
+	--greyscale-4: #8B8B8B;
+	--greyscale-5: #000000;
+
+	/* typos */
+	--typo-title-font-size: 24px;
+	--typo-title-font-weight: 800;
+	--typo-title-line-height: 1.5;
+	--typo-title-letter-spacing: 0;
+
+	--typo-subtitle-font-size: 20px;
+	--typo-subtitle-font-weight: 600;
+	--typo-subtitle-line-height: 1.4;
+	--typo-subtitle-letter-spacing: 0.15px;
+
+	--typo-body-font-size: 15px;
+	--typo-body-font-weight: 400;
+	--typo-body-line-height: 1.6;
+	--typo-body-letter-spacing: 0.5px;
+
+	--typo-placeholder-font-size: 15px;
+	--typo-placeholder-font-weight: 400;
+	--typo-placeholder-line-height: 1.6;
+	--typo-placeholder-letter-spacing: 0.5px;
+
+	--typo-caption-font-size: 14px;
+	--typo-caption-font-weight: 700;
+	--typo-caption-line-height: 1.14;
+	--typo-caption-letter-spacing: 0.125px;
+
 }
