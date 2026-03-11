@@ -14,7 +14,17 @@
 
       <!--로또 main content box를 만들 틀 -->
       <main>
-
+        <section class="purchase-price-section">
+          <h1>🎱 내 번호 당첨 확인 🎱</h1>
+          <form id="purchase-price-form">
+            <label for="purchase-price">구입할 금액을 입력해주세요.</label>
+            <div class="price-price-input-box">
+              <input type="number" id="purchase-price" placeholder="금액" min="1000" step="1000" required>
+              <button type="submit">구입</button>
+            </div>
+            <p id="purchase-price-error-msg" class="error-msg">오류메시지 출력창</p>
+          </form>
+        </section>
       </main>
 
       <footer>
