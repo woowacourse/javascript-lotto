@@ -1,0 +1,10 @@
+@import url(reset.css);
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 130px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  height: 64px;
+}
