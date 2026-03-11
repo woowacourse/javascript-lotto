@@ -1,4 +1,4 @@
-import App from "./controller/webApp.js";
+import webApp from "./controller/webApp.js";
 
-const lottoApp = new App();
-lottoApp.init(); 
+const webapp = new webApp();
+webapp.init(); 
