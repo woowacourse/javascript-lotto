@@ -5,6 +5,11 @@ import MockInput from "./utils/MockInput.js";
 beforeEach(() => {
   document.body.innerHTML = `
     <div class="main">
+      <div class="main__container">
+        <form class="money__container"></form>
+        <ul class="purchased-lottos__container"></ul>
+        <form class="winning-number-and-bonus__container"></form>
+      </div>
     </div>
   `;
 });
@@ -32,9 +37,11 @@ describe("Input 테스트", () => {
     const testInputs = ["1000"];
 
     const webInput = new WebInput();
-    const webResult = await webInput.readMoneyAsync();
+    const webResultPromise = webInput.readMoneyAsync();
+    await new Promise(resolve => setTimeout(resolve, 0));
     document.querySelector("#money__input").value = testInputs[0];
     document.querySelector("#money__submit").click();
+    const webResult = await webResultPromise;
     expect(webResult).toBe(testInputs[0]);
 
     const consoleInput = new ConsoleInput();
@@ -53,7 +60,8 @@ describe("Input 테스트", () => {
     const bonusNumberString = "7";
 
     const webInput = new WebInput();
-    const webResult = await webInput.readWinningNumberAndBonusAsync();
+    const webResultPromise = webInput.readWinningNumberAndBonusAsync();
+    await new Promise(resolve => setTimeout(resolve, 0));
     document.querySelector("#winning-number__first__input").value =
       winningNumbers[0];
     document.querySelector("#winning-number__second__input").value =
@@ -67,7 +75,8 @@ describe("Input 테스트", () => {
     document.querySelector("#winning-number__sixth__input").value =
       winningNumbers[5];
     document.querySelector("#bonus-number__input").value = bonusNumberString;
-    document.querySelector("#winning-number_and_bonus__submit").click();
+    document.querySelector("#winning-number-and-bonus__submit").click();
+    const webResult = await webResultPromise;
     expect(webResult).toEqual({
       winningNumbersInput: winningNumbersString,
       bonusNumberInput: bonusNumberString,
@@ -94,9 +103,11 @@ describe("Input 테스트", () => {
     const testInput = "y";
 
     const webInput = new WebInput();
-    const webResult = await webInput.readRetryAsync();
+    const webResultPromise = webInput.readRetryAsync();
+    await new Promise(resolve => setTimeout(resolve, 0));
     document.querySelector("#retry__input").value = testInput;
     document.querySelector("#retry__submit").click();
+    const webResult = await webResultPromise;
     expect(webResult).toBe(true);
 
     const consoleInput = new ConsoleInput();
