@@ -2,15 +2,15 @@ import { Validator } from "../validator/Validator.js";
 import { OutputView } from "./output.js";
 
 export const InputView = {
-  reader: null,
+  readerObject: null,
 
-  setReader(readerFunction) {
-    this.reader = readerFunction;
+  setReader(reader) {
+    this.readerObject = reader;
   },
 
   async inputPurchaseAmount() {
     try {
-      const money = await this.reader("구입금액을 입력해 주세요.");
+      const money = await this.readerObject.readPurchaseMoney();
       Validator.validatePurchaseMoney(money);
       return Number(money);
     } catch (error) {
@@ -21,7 +21,7 @@ export const InputView = {
 
   async inputWinningNumber() {
     try {
-      const winningNumber = await this.reader("\n당첨 번호를 입력해 주세요.");
+      const winningNumber = await this.readerObject.readWinningNumber();
       Validator.validateWinningNumber(winningNumber);
       return winningNumber;
     } catch (error) {
@@ -32,7 +32,7 @@ export const InputView = {
 
   async inputBonusNumber(winningNumber) {
     try {
-      const bonusNumber = await this.reader("\n보너스 번호를 입력해 주세요.");
+      const bonusNumber = await this.readerObject.readBonusNumber();
       Validator.validateBonusNumber(winningNumber, Number(bonusNumber));
       return Number(bonusNumber);
     } catch (error) {
@@ -43,7 +43,7 @@ export const InputView = {
 
   async inputRetry() {
     try {
-      const retry = await this.reader("\n다시 시작하시겠습니까? (y/n)");
+      const retry = await this.readerObject.readRetry();
       Validator.validateRetry(retry);
       return retry;
     } catch (error) {

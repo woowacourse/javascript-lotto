@@ -10,7 +10,7 @@ export const webOutputPrinter = {
 
     for (const lotto of randomLottos) {
       const newLi = document.createElement('li');
-      newLi.textContent = `🎟️ ${lotto.getNumber().join()}`;
+      newLi.textContent = `🎟️ ${lotto.getNumber().join(', ')}`;
       myLottoLists.appendChild(newLi);
     }
 
