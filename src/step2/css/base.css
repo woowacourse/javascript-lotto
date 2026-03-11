@@ -10,6 +10,9 @@
     --button-fg: #FFFFFF;
 
     --input-border: #B4B4B4;
+
+    --footer-fg: #4E5BA6;
+    --footer-border: #D9D9D9;
 }
 
 * {
@@ -50,6 +53,10 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+p {
+    margin: 0;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -66,6 +73,22 @@ fieldset {
     min-width: 0;
     padding: 0;
     border: none;
+}
+
+footer {
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--footer-border);
+}
+
+footer p {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--footer-fg);
+    text-align: center;
+    margin: 0;
 }
 
 #header nav {
