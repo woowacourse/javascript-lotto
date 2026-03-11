@@ -5,6 +5,7 @@
     --content-title-fg: #000000;
 
     --button-bg: #4E5BA6;
+    --button-hover-bg: #404A87;
     --button-fg: #FFFFFF;
 
     --input-border: #B4B4B4;
@@ -28,6 +29,12 @@ button {
     font-size: 14px;
     letter-spacing: 1.25px;
     border-radius: 4px;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+    cursor: pointer;
+    transition: background-color 300ms ease-out;
 }
 
 input {
