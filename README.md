@@ -118,8 +118,8 @@
 
 ### UI 구현 목록
 
-- [ ] **header 구현**
-- [ ] **footer 구현**
+- [x] **header 구현**
+- [x] **footer 구현**
 - **body**
   - [ ] title 구현
   - [ ] 금액 입력 input 구현
