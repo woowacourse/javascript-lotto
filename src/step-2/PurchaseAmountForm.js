@@ -2,7 +2,7 @@ import { userLottoStore } from './stores.js';
 import LottoStore from '../step-1/LottoStore.js';
 
 const PurchaseAmountForm = {
-  render(target) {
+  render(container) {
     const purchaseAmountForm = document.createElement('form');
     const purchaseAmountInput = document.createElement('input');
     const purchaseButton = document.createElement('button');
@@ -21,7 +21,7 @@ const PurchaseAmountForm = {
     purchaseAmountForm.appendChild(purchaseAmountInput);
     purchaseAmountForm.appendChild(purchaseButton);
 
-    target.appendChild(purchaseAmountForm);
+    container.appendChild(purchaseAmountForm);
   },
 
   handleSubmit(e) {

@@ -1,5 +1,5 @@
 const LottoItem = {
-  render(target, lotto) {
+  render(container, lotto) {
     const lottoItemContainer = document.createElement('div');
     const lottoNumbersContainer = document.createElement('div');
 
@@ -9,7 +9,7 @@ const LottoItem = {
     lottoNumbersContainer.innerText = lotto.parseNumbers().toString();
 
     lottoItemContainer.appendChild(lottoNumbersContainer);
-    target.appendChild(lottoItemContainer);
+    container.appendChild(lottoItemContainer);
   },
 };
 
