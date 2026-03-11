@@ -16,13 +16,13 @@
       <h1>내 번호 당첨 확인</h1>
     </div>
 
-    <div>
+    <form>
       <label for="purchaseInput">구입할 금액을 입력해주세요.</label>
-      <input type="text" id="purchaseInput" placeholder="구입" />
-      <button type="submit">구입</button>
-    </div>
+      <input type="number" id="purchaseInput" placeholder="구입" />
+      <button type="button" id="purchaseButton">구입</button>
+    </form>
 
-    <div>
+    <div id="myLotto">
       <p>총 3개를 구매하였습니다.</p>
       <ul>
         <li>
@@ -42,14 +42,14 @@
 
     <div>
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-      <div>
+      <form>
         <label for="winningInput">당첨 번호</label>
         <input type="text" id="winningInput"/>
-      </div>
-      <div>
+      </form>
+      <form>
         <label for="bonusInput">보너스 번호</label>
         <input type="text" id="bonusInput"/>
-      </div>
+      </form>
     </div>
     <button type="submit">결과 확인하기</button>
     <script type="module" src="./src/step2-index.js"></script>
