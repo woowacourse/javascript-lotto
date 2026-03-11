@@ -7,18 +7,18 @@ export default class ConsoleOutView {
     });
   }
 
-  static printStatistics({ formatPrizeList, profitRate }) {
+  static printStatistics({ statistics, profitRate }) {
     Console.print("\n당첨 통계");
     Console.print("--------------------");
-    formatPrizeList.forEach((element) => {
-      Console.print(this.#printRank(element));
+    statistics.forEach((stat) => {
+      Console.print(this.#formatPrizeDetail(stat));
     });
     Console.print(`총 수익률은 ${profitRate}%입니다.`);
     Console.print("");
   }
 
-  static #printRank(element) {
-    const { matchCount, hasBonus, count, prize } = element;
+  static #formatPrizeDetail(prizeDetail) {
+    const { matchCount, hasBonus, count, prize } = prizeDetail;
     const formatPrize = prize.toLocaleString();
 
     if (hasBonus) {
