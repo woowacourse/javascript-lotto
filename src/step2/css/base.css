@@ -19,3 +19,19 @@ body {
     font-family: "Roboto", sans-serif;
     color: var(--navbar-fg);
 }
+
+/*
+-------
+CONTENT
+-------
+*/
+
+#content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#content {
+    display: inline-block;
+}
