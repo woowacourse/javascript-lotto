@@ -1,7 +1,9 @@
 import { PRIZE } from "../constants/constant.js";
+import { webOutputPrinter } from "./webOutputPrinter.js";
 
 export const OutputView = {
   outputLottoNumber(randomLottos) {
+    webOutputPrinter.printMyLottoLists(randomLottos);
     console.log(randomLottos.length, "개를 구매했습니다.");
     for (let i = 0; i < randomLottos.length; i++) {
       console.log(randomLottos[i].getNumber());

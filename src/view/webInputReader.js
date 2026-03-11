@@ -1,4 +1,4 @@
-export const webReader = {
+export const webInputReader = {
   inputPurchaseMoney() {
     return new Promise((resolve) => {
       const purchaseInput = document.getElementById('purchaseInput')
