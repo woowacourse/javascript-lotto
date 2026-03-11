@@ -8,7 +8,8 @@ const LottoInfo = {
         'lotto-info', () => LottoInfo.render(target),
       );
     }
-    
+
+    LottoInfo.init();
     const lottoInfoContainer = document.createElement('div');
     lottoInfoContainer.id = 'lotto-info-container';
 
@@ -16,6 +17,13 @@ const LottoInfo = {
     lottos.forEach((lotto) => LottoItem.render(lottoInfoContainer, lotto));
 
     target.appendChild(lottoInfoContainer);
+  },
+
+  init() {
+    const lottoInfoContainer = document.getElementById('lotto-info-container');
+    if (lottoInfoContainer) {
+      lottoInfoContainer.remove();
+    }
   },
 };
 
