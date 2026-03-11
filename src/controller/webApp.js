@@ -18,12 +18,13 @@ class webApp {
     const purchasedPrice = Number(this.view.getPurchaseAmount());
     
     const lottoCount = purchasedPrice / 1000;
-    console.log(lottoCount)
+
     this.view.renderLottoCount(lottoCount);
     const lottoController = new LottoController(lottoCount);
     const purchasedLottos = lottoController.issueLottos();
+
+    this.view.renderLottosContainer(purchasedLottos);
     
-    console.log(purchasedLottos)
   }
 }
 
