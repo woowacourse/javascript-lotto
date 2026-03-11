@@ -13,6 +13,19 @@
 - [] CSS 속성은 가능한 한 축약형(shorthand)을 사용한다.
 - [] flexbox를 활용해 레이아웃을 구성한다.
 
+## CSS 속성 선언 순서
+
+1. `display` - 표시(관련 속성: visibility)
+2. `overflow` - 넘침
+3. `float` - 흐름(관련 속성: clear)
+4. `position` - 위치(관련 속성: top, right, bottom, left, z-index)
+5. `width & height` - 크기
+6. `margin & padding` - 간격
+7. `border` - 테두리
+8. `background` - 배경
+9. `font` - 폰트(관련 속성: color, letter-spacing, text-align, text-decoration, text-indent vertical-align, white-space 등)
+10. `animation` - 동작(관련 속성: animation, transform, transition, marquee 등)
+
 ## 기능 목록
 
 ### [로또 구매]
@@ -91,5 +104,6 @@
 
 ## TODO
 
-- [] 폰트, 색상 상수화 하기
+- [x] 폰트, 색상 상수화 하기
 - [] 시맨틱 태그로 화면 분리하기
+- [] 화면 흐름 그림으로 그려보기
