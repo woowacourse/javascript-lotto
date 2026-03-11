@@ -1,6 +1,8 @@
 import LottoController from "./LottoController.js";
 import WebView from "../view/WebView.js";
 import Lotto from "../model/Lotto.js"; 
+import Validator from "../utils/Validator.js";
+
 class webApp {
   #lottoController;
   constructor() {
@@ -21,6 +23,22 @@ class webApp {
 
   #handlePurchase() {
     const purchasedPrice = Number(this.view.getPurchaseAmount());
+    try {
+      Validator.validateNumber(purchasedPrice);
+      Validator.validatePrice(purchasedPrice);
+
+      const lottoCount = purchasedPrice / 1000;
+      this.#lottoController = new LottoController(lottoCount);
+      const purchasedLottos = this.#lottoController.issueLottos();
+
+      this.view.renderLottoCount(lottoCount);
+      this.view.renderLottosContainer(purchasedLottos);
+
+    } catch (error) {
+    
+      alert(error.message);
+      return;
+    }
 
     const lottoCount = purchasedPrice / 1000;
 
@@ -36,13 +54,27 @@ class webApp {
     const winningNumbers = this.view.getWinningNumbers();
     const bonusNumber = this.view.getBonusNumber();
 
-    const winningLotto = new Lotto(winningNumbers);
+    try {
+      Validator.validateLottoCount(winningNumbers);
+      Validator.validateDuplicateLottoNums(winningNumbers);
+      winningNumbers.forEach(num => {
+        Validator.validateNumber(num);
+        Validator.validateLottoNumRange(num);
+      });
 
-    this.#lottoController.updateWinningResult(winningLotto, bonusNumber);
+      Validator.validateNumber(bonusNumber);
+      Validator.validateLottoNumRange(bonusNumber);
+      Validator.validateDuplicateBonusNum(winningNumbers, bonusNumber);
 
-    const {rankCount,profitRate}= this.#lottoController.getWinningResult();
+      const winningLotto = new Lotto(winningNumbers);
+      this.#lottoController.updateWinningResult(winningLotto, bonusNumber);
 
-    this.view.renderResultTable(rankCount,profitRate);
+      const { rankCount, profitRate } = this.#lottoController.getWinningResult();
+      this.view.renderResultTable(rankCount, profitRate);
+    } catch (error) {
+      alert(error.message);
+      return;
+    }
   }
 }
 
