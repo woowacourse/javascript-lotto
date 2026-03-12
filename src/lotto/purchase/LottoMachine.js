@@ -30,7 +30,7 @@ export default class LottoMachine {
       () => new Lotto(this.#pickLottoNumbers()),
     );
 
-    return { lottos, money };
+    return { lottos, purchasedMoney: money };
   }
 
   #pickLottoNumbers() {
