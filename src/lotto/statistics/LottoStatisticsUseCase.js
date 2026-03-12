@@ -12,13 +12,19 @@ export default class LottoStatisticsUseCase {
     }
 
     const rankMap = Rank.getRankMap();
-
     lottos.forEach((lotto) => {
       const rank = statistics(lotto, winningNumber);
       rankMap.set(rank, { count: rankMap.get(rank).count + 1 });
     });
 
-    const lottosResult = [...rankMap.entries()]
+    const lottosResult = this.#formatRankMap(rankMap);
+    const totalPrize = this.#sumPrize(lottosResult);
+
+    return { lottosResult, totalPrize };
+  }
+
+  #formatRankMap(rankMap) {
+    return [...rankMap.entries()]
       .filter(([rank]) => rank !== Rank.MISS)
       .map(([rank, stat]) => ({
         ...rank.getPrize(),
@@ -26,11 +32,12 @@ export default class LottoStatisticsUseCase {
         count: stat.count,
       }))
       .sort((a, b) => b.order - a.order);
+  }
 
-    const totalPrize = lottosResult.reduce(
+  #sumPrize(lottosResult) {
+    return lottosResult.reduce(
       (sum, { prize, count }) => sum + prize * count,
       0,
     );
-    return { lottosResult, totalPrize };
   }
 }

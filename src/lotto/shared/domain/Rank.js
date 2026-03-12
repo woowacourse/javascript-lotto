@@ -41,4 +41,10 @@ export default class Rank {
     const bonusCondition = this.#bonusCondition;
     return { winningCondition, bonusCondition };
   }
+
+  static getRankMap() {
+    return new Map(
+      [...Rank.#RULE_MAP.keys()].map((rank) => [rank, { count: 0 }]),
+    );
+  }
 }
