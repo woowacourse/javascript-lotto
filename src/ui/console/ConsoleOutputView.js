@@ -9,24 +9,27 @@ export default class ConsoleOutView {
     });
   }
 
-  static printStatistics({ formatPrizeList, profitRate }) {
+  static printStatistics(prizeStats) {
     Console.print("\n당첨 통계");
     Console.print("--------------------");
-    formatPrizeList.forEach((element) => {
-      Console.print(this.#printRank(element));
+    prizeStats.forEach((stats) => {
+      Console.print(this.printRank(stats));
     });
-    Console.print(`총 수익률은 ${profitRate}%입니다.`);
+  }
+
+  static printProfit(profit) {
+    Console.print(`총 수익률은 ${profit}%입니다.`);
     Console.print("");
   }
 
-  static #printRank(element) {
-    const { matchCount, hasBonus, count, prize } = element;
+  static printRank(stats) {
+    const { winningCondition, bonusCondition, count, prize } = stats;
     const formatPrize = prize.toLocaleString();
 
-    if (hasBonus) {
-      return `${matchCount}개 일치, 보너스 볼 일치 (${formatPrize}원) - ${count}개`;
+    if (bonusCondition) {
+      return `${winningCondition}개 일치, 보너스 볼 일치 (${formatPrize}원) - ${count}개`;
     }
-    return `${matchCount}개 일치 (${formatPrize}원) - ${count}개`;
+    return `${winningCondition}개 일치 (${formatPrize}원) - ${count}개`;
   }
 
   static printError(error) {

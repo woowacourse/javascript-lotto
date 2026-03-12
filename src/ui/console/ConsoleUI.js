@@ -26,8 +26,12 @@ export default class ConsoleUI {
     this.#outputView.printLottos(lottos);
   }
 
-  printResult(result, prize) {
-    this.#outputView.printResult(result, prize);
+  printStatistics(stats) {
+    this.#outputView.printStatistics(stats);
+  }
+
+  printProfit(profit) {
+    this.#outputView.printProfit(profit);
   }
 
   printError(error) {
