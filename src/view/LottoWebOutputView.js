@@ -4,6 +4,11 @@ const moneyError = document.querySelector("#money-error");
 const winningBonusError = document.querySelector("#winning-bonus-error");
 const modal = document.querySelector(".modal");
 const profitText = document.querySelector("#profit");
+const fifthCount = document.querySelector("#fifth-count");
+const fourthCount = document.querySelector("#fourth-count");
+const thirdCount = document.querySelector("#third-count");
+const secondCount = document.querySelector("#second-count");
+const firstCount = document.querySelector("#first-count");
 
 export const LottoWebOutputView = {
   renderLottoCount(count) {
@@ -31,7 +36,13 @@ export const LottoWebOutputView = {
     modal.classList.add("hidden");
   },
 
-  renderResult(result) {},
+  renderResult(result) {
+    fifthCount.textContent = `${result.FIFTH}개`;
+    fourthCount.textContent = `${result.FOURTH}개`;
+    thirdCount.textContent = `${result.THIRD}개`;
+    secondCount.textContent = `${result.SECOND}개`;
+    firstCount.textContent = `${result.FIRST}개`;
+  },
 
   renderProfit(profit) {
     profitText.textContent = `총 수익률은 ${profit}%입니다.`;
