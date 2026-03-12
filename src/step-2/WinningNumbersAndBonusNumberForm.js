@@ -16,19 +16,41 @@ const WinningNumbersAndBonusNumberForm = {
     if (!userLottoStore.getState().purchaseAmount) return;
 
     const winningLottoAndBonusNumberForm = document.createElement('form');
+    const descriptionDiv = document.createElement('div');
+    const winningLottoAndBonusNumberWrapper = document.createElement('div');
+
+    const winningNumbersWrapper = document.createElement('div');
+    const winningNumbersCaption = document.createElement('div');
+    const winningNumbersInputWrapper = document.createElement('div');
     const winningNumberInputs = Array.from({ length: 6 }).map(() => document.createElement('input'));
+
+    const bonusNumberWrapper = document.createElement('div');
+    const bonusNumberCaption = document.createElement('label');
     const bonusNumberInput = document.createElement('input');
+
     const errorMessageDiv = document.createElement('div');
     const resultCheckButton = document.createElement('button');
 
     winningLottoAndBonusNumberForm.id = 'winning-lotto-and-bonus-number-form';
     winningLottoAndBonusNumberForm.addEventListener('submit', this.handleSubmit);
 
+    descriptionDiv.innerText = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
+    winningLottoAndBonusNumberWrapper.classList.add('winning-numbers-and-bonus-number-wrapper');
+    winningNumbersWrapper.classList.add('winning-numbers-wrapper');
+    winningNumbersInputWrapper.classList.add('winning-numbers-input-wrapper');
+    bonusNumberWrapper.classList.add('bonus-number-wrapper');
+
+    winningNumbersCaption.innerText = '당첨 번호';
+
+    bonusNumberCaption.innerText = '보너스 번호';
+    bonusNumberCaption.htmlFor = 'bonus-number';
+
     winningNumberInputs.forEach((input, i) => {
       input.id = `winning-number-input-${i + 1}`;
-      input.className = 'winning-number-input';
       input.type = 'number';
       input.name = `winningNumber${i + 1}`;
+      input.ariaLabel = `${i + 1}번째 당첨 번호`;
+      input.classList.add('winning-number-input');
       input.addEventListener('input', this.handleWinningNumberInput);
     });
 
@@ -44,8 +66,17 @@ const WinningNumbersAndBonusNumberForm = {
     resultCheckButton.innerText = '결과 확인하기';
     resultCheckButton.disabled = true;
 
-    winningNumberInputs.forEach((input) => winningLottoAndBonusNumberForm.appendChild(input));
-    winningLottoAndBonusNumberForm.appendChild(bonusNumberInput);
+    winningNumberInputs.forEach((input) => winningNumbersInputWrapper.appendChild(input));
+    winningNumbersWrapper.appendChild(winningNumbersCaption);
+    winningNumbersWrapper.appendChild(winningNumbersInputWrapper);
+    bonusNumberWrapper.appendChild(bonusNumberCaption);
+    bonusNumberWrapper.appendChild(bonusNumberInput);
+
+    winningLottoAndBonusNumberWrapper.appendChild(winningNumbersWrapper);
+    winningLottoAndBonusNumberWrapper.appendChild(bonusNumberWrapper);
+
+    winningLottoAndBonusNumberForm.appendChild(descriptionDiv);
+    winningLottoAndBonusNumberForm.appendChild(winningLottoAndBonusNumberWrapper);
     winningLottoAndBonusNumberForm.appendChild(errorMessageDiv);
     winningLottoAndBonusNumberForm.appendChild(resultCheckButton);
 
