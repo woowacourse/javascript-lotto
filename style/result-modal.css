@@ -1,6 +1,10 @@
 .result-modal {
   border: none;
-  border-radius: 10px;
+  border-radius: 4px;
+}
+
+.result-modal::backdrop {
+  background-color: #00000080;
 }
 
 .result-modal__content {
