@@ -4,32 +4,32 @@
     <meta charset="UTF-8" />
     <title>로또 게임</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <div id="app">
       <header>
-        <h1>🎱 행운의 로또</h1>
+        <p>🎱 행운의 로또</p>
       </header>
 
       <!--로또 main content box를 만들 틀 -->
-      <main>
+      <main class="main-container">
+        <p class="lotto-subtitle">🎱 내 번호 당첨 확인 🎱</p>
         <section class="purchase-price-section">
-          <h1>🎱 내 번호 당첨 확인 🎱</h1>
           <form id="purchase-price-form">
             <label for="purchase-price">구입할 금액을 입력해주세요.</label>
 
-            <div class="price-price-input-box">
+            <div class="purchase-price-input-box">
               <input type="number" id="purchase-price" placeholder="금액" min="1000" step="1000" required>
-              <button type="submit">구입</button>
+              <button type="submit" class="purchase-button">구입</button>
             </div>
 
-            <p id="purchase-price-error-msg" class="error-msg">오류메시지 출력창</p>
           </form>
         </section>
 
         <section id="lotto-list-section" class="hidden">
-          <h3 id="lotto-count-text">총 n개를 구입하셨습니다.</h3>
+          <p id="lotto-count-text">총 n개를 구입하셨습니다.</p>
 
           <div id="lotto-list" class="lotto-scroll-box">
 

@@ -1,0 +1,120 @@
+:root {
+  /* 색 기본 지정 */
+  --color-primary: #4e5ba6;
+  --color-white: #ffffff;
+  --color-greyscale-2: #fcfcfd;
+  --color-greyscale-3: #b4b4b4;
+  --color-greyscale-4: #8b8b8b;
+  --color-black: #000000;
+  --color-error: #ec4141;
+
+  /* 폰트 기본 지정 */
+  --font-title: 800 24px/36px sans-serif;
+  --font-subtitle: 600 20px/24px sans-serif;
+  --font-body: 400 15px/24px sans-serif;
+  --font-placeholder: 400 15px/24px sans-serif;
+  --font-button: 700 14px/16px sans-serif;
+}
+
+/* 기본 초기화 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-greyscale-2);
+  color: var(--color-black);
+  font: var(--font-body);
+}
+
+/* header 스타일 지정 */
+header {
+  background-color: var(--color-primary);
+
+  padding: 0.8rem 4rem;
+
+  color: var(--color-white);
+  font: var(--font-title);
+}
+
+
+
+.hidden {
+  display: none !important;
+}
+
+.main-container {
+  max-width: 414px;
+  margin: 2rem auto;
+  padding: 16px;
+
+  background-color: var(--color-white);
+
+  border: 1px solid #0000001f;
+  border-radius: 4px;
+}
+
+.lotto-subtitle {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font: var(--font-title);
+}
+
+section {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.purchase-price-input-box {
+    display: flex;
+}
+
+#purchase-price {
+  flex-grow: 1;
+  margin-right: 8px;
+  padding: 4px;
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  font: var(--font-body);
+}
+
+.purchase-button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font: var(--font-button);
+  cursor: pointer;
+}
+
+#lotto-count-text {
+    margin-bottom: 0.5rem;
+}
+
+.lotto-scroll-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+
+  color: var(--color-primary);
+  font: var(--font-button);
+
+  border-top: 1px solid #4e5ba633;
+}
