@@ -51,6 +51,8 @@ loadComponent("main", `${BASE_URL}src/ui/html/main.html`).then(() => {
 
         renderPurchaseCount(purchaseCount);
         renderLottoList(generatedLottos);
+        document.getElementById("purchase-result-section").style.display = "flex";
+        document.getElementById("winning-input-section").style.display = "flex";
       } catch (e) {
         alert(e.message);
       }
