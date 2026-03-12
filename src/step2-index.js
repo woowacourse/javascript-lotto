@@ -26,9 +26,12 @@ import WinningLotto from "./WinningLotto";
 import { getReturnRate } from "./utils/getReturnRate.js";
 import { getPrizeList } from "./getPrizeList.js";
 
-loadComponent("main", "./src/ui/html/main.html").then(() => {
+const BASE_URL = import.meta.env.BASE_URL;
+
+loadComponent("main", `${BASE_URL}src/ui/html/main.html`).then(() => {
   const modalContainer = document.getElementById("modal-container");
   const modalCloseButton = document.getElementById("modal-close-button");
+  document.querySelector("#modal-close-button img").src = `${BASE_URL}close-button.svg`;
   let purchaseAmount = 0;
   let generatedLottos = [];
 
