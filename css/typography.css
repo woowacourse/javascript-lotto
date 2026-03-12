@@ -41,3 +41,11 @@ body {
   letter-spacing: var(--text-caption-letter-spacing);
   color: var(--text-caption-color);
 }
+
+.text-button {
+  font-size: var(--text-caption-size);
+  font-weight: var(--text-caption-weight);
+  line-height: var(--text-caption-line-height);
+  letter-spacing: var(--text-caption-letter-spacing);
+  color: var(--color-greyscale-1);
+}
