@@ -5,9 +5,6 @@ class WebApp {
     // DOM 요소 가져오기
     const purchaseForm = document.querySelector("#purchase-price-form");
     const purchaseInput = document.querySelector("#purchase-price");
-    const purchaseErrorMsg = document.querySelector(
-      "#purchase-price-error-msg",
-    );
 
     const lottoListSection = document.querySelector("#lotto-list-section");
     const lottoCountText = document.querySelector("#lotto-count-text");
@@ -27,9 +24,6 @@ class WebApp {
     purchaseForm.addEventListener("submit", (event) => {
       // 브라우저 새로고침 차단
       event.preventDefault();
-
-      // 초기 오류 메시지 비우기
-      purchaseErrorMsg.innerText = "";
 
       try {
         // 로또 가격 읽어오기
@@ -56,9 +50,11 @@ class WebApp {
           .join("");
         lottoList.innerHTML = lottosHTML;
       } catch (e) {
-        purchaseErrorMsg.innerText = e.message;
+        alert(e.message);
       }
     });
+
+    
   }
 }
 
