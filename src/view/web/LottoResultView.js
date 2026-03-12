@@ -5,7 +5,6 @@ export const renderLottoResult = (rankCount, profitRate) => {
   const resultModal = document.querySelector("#result-modal");
   const ranks = [5, 4, 3, 2, 1];
   const profitRateStr = profitRate.toLocaleString("ko-KR", {
-    minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   });
 
