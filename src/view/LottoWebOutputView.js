@@ -1,5 +1,6 @@
 const lottoList = document.querySelector(".lotto-list");
 const lottoCount = document.querySelector("#lotto-count");
+const moneyError = document.querySelector("#money-error");
 
 export const LottoWebOutputView = {
   renderLottoCount(count) {
@@ -17,5 +18,15 @@ export const LottoWebOutputView = {
       `,
       )
       .join("");
+  },
+
+  showMoneyError(message) {
+    moneyError.textContent = message;
+    moneyError.classList.remove("hidden");
+  },
+
+  clearMoneyError() {
+    moneyError.textContent = "";
+    moneyError.classList.add("hidden");
   },
 };

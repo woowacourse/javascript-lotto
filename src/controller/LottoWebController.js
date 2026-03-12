@@ -17,6 +17,8 @@ class LottoWebController {
 
   handlePurchase() {
     try {
+      LottoWebOutputView.clearMoneyError();
+
       const money = LottoWebInputView.getPurchaseMoney();
       Validator.validatePurchaseMoney(money);
 
@@ -30,7 +32,7 @@ class LottoWebController {
       LottoWebOutputView.renderLottoCount(count);
       LottoWebOutputView.renderLottos(randomLottos);
     } catch (error) {
-      alert(error.message);
+      LottoWebOutputView.showMoneyError(error.message);
     }
   }
 }
