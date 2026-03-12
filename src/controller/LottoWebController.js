@@ -9,10 +9,12 @@ const winningInputSection = document.querySelector(
   ".winning-bonus-input-section",
 );
 const submitButton = document.querySelector("#submit");
+const modal = document.querySelector(".modal");
 
 class LottoWebController {
   play() {
     LottoWebInputView.bindPurchase(() => this.handlePurchase());
+    LottoWebInputView.bindSubmit(() => this.handleSubmit());
   }
 
   handlePurchase() {
@@ -33,6 +35,20 @@ class LottoWebController {
       LottoWebOutputView.renderLottos(randomLottos);
     } catch (error) {
       LottoWebOutputView.showMoneyError(error.message);
+    }
+  }
+
+  handleSubmit() {
+    try {
+      const winningNumbers = LottoWebInputView.getWinningNumbers();
+      Validator.validateWinningNumber(winningNumbers);
+
+      const bonusNumber = LottoWebInputView.getBonusNumber();
+      Validator.validateBonusNumber(winningNumbers, bonusNumber);
+
+      modal.classList.remove("hidden");
+    } catch (error) {
+      alert(error.message);
     }
   }
 }
