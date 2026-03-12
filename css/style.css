@@ -82,6 +82,23 @@ section {
   cursor: pointer;
   font-weight: bold;
 }
+
+.purchased-lotto-container.collapsed .lotto-item:nth-child(n+11) {
+    display: none;
+}
+
+.display-more-lottos-btn, 
+.hide-lottos-btn{
+  margin-top: 1rem;
+  padding: 0.4rem 1rem;
+  background-color: #4E5BA6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .winningnum-bonusnum-form{
   width: 100%;           
   display: flex;

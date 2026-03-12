@@ -8,6 +8,9 @@ class WebView {
         this.$purchasedLottoSection = document.querySelector(".purchased-lotto");
         this.$purchasedLottoContainer = document.querySelector(".purchased-lotto-container");
 
+        this.$displayMoreBtn = document.querySelector(".display-more-lottos-btn"); 
+        this.$hideBtn = document.querySelector(".hide-lottos-btn");
+
         this.$winningSection = document.querySelector(".winningnum-bonusnum");
         this.$winningForm = document.querySelector(".winningnum-bonusnum-form");
 
@@ -36,10 +39,17 @@ class WebView {
           <span>🎟️</span>
           <span class="lotto-numbers">${lotto.toString()}</span>
         </div>
-      `)
-            .join("");
-
+      `).join("");
         this.$purchasedLottoContainer.innerHTML = lottoHTML;
+        const lottoItemCount = this.$purchasedLottoContainer.querySelectorAll('.lotto-item').length;
+
+        if (lottoItemCount > 10) {
+            this.$displayMoreBtn.classList.remove('hidden');
+            this.$purchasedLottoContainer.classList.add('collapsed');
+        } else {
+            this.$displayMoreBtn.classList.add('hidden');
+            this.$hideBtn.classList.add('hidden');
+        }
     }
 
     getWinningNumbers() {

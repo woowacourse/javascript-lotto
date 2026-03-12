@@ -29,6 +29,18 @@ class WebApp {
       }
     });
 
+    this.view.$displayMoreBtn.addEventListener('click', () => {
+      this.view.$purchasedLottoContainer.classList.remove('collapsed');
+      this.view.$displayMoreBtn.classList.add('hidden');
+      this.view.$hideBtn.classList.remove('hidden');
+    });
+
+    this.view.$hideBtn.addEventListener('click', () => {
+      this.view.$purchasedLottoContainer.classList.add('collapsed');
+      this.view.$displayMoreBtn.classList.remove('hidden');
+      this.view.$hideBtn.classList.add('hidden');
+    });
+
   }
 
   #validatePurchase(price) {
