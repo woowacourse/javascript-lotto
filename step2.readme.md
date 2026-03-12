@@ -20,6 +20,8 @@
 8. id/class 상수화
 9. 스타일링
 10. input type number -> text 로 변경
+11. -container 등 과도한 접미사 제거
+12. id / class 사용 검토
 
 ## 프로그래밍 요구 사항
 

@@ -1,0 +1,15 @@
+.lotto-info-container {
+}
+
+.lotto-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px
+}
+
+.lotto-item-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
