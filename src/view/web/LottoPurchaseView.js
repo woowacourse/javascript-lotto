@@ -1,4 +1,4 @@
-import { LottoTicket } from "../../components/llottoTicket";
+import { LottoTicket } from "../../components/LottoTicket";
 
 export const renderLottoTicket = (lottos) => {
   const lottoTicketContainer = document.querySelector(

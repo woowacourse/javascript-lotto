@@ -48,6 +48,24 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.INVALID_RESTART_ANSWER);
     }
   },
+
+  validatePrice(price) {
+    this.validateNumber(price);
+    this.validatePurchaseUnit(price);
+  },
+
+  validateWinningNums(winningNums) {
+    winningNums.forEach((num) => this.validateNumber(num));
+    this.validateLottoCount(winningNums);
+    winningNums.forEach((num) => this.validateLottoNumRange(num));
+    this.validateDuplicateLottoNums(winningNums);
+  },
+
+  validateBonusNum(winningNums, bonusNum) {
+    this.validateNumber(bonusNum);
+    this.validateLottoNumRange(bonusNum);
+    this.validateDuplicateBonusNum(winningNums, bonusNum);
+  },
 };
 
 export default Validator;

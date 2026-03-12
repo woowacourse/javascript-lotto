@@ -13,6 +13,8 @@ export const renderWinningInput = () => {
    <form id="winning-form">
        ${WinningNumberGroup()} 
        ${BonusNumberGroup()}
+       <button type="submit">결과 확인하기</button>
    </form>
+   
   `;
 };
