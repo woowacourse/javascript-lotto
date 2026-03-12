@@ -3,6 +3,8 @@ import path from "path";
 
 import Random from "../../src/utils/Random.js";
 
+import App from "../../src/App/WebApp.js";
+
 const mockRandoms = (numbers) => {
   Random.randomArray = jest.fn();
   numbers.reduce((acc, number) => {
@@ -15,6 +17,9 @@ const html = fs.readFileSync(path.resolve(__dirname, "../../index.html"));
 describe("웹 로또 앱 테스트", () => {
   beforeEach(() => {
     document.documentElement.innerHTML = html;
+
+    const app = new App();
+    app.run();
   });
 
   test("jsdom 테스트", async () => {
