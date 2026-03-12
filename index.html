@@ -48,7 +48,7 @@
           </button>
         </div>
         <!-- 구입 로또 표시 섹션 -->
-        <div class="lotto-section">
+        <div class="lotto-section hidden">
           <p class="text-body">총 7개를 구매하였습니다.</p>
           <ul class="lotto-list">
             <li class="text-body">
@@ -75,7 +75,7 @@
           </ul>
         </div>
         <!-- 당첨 번호, 보너스 번호 입력 세션 -->
-        <div class="winning-bonus-input-section">
+        <div class="winning-bonus-input-section hidden">
           <p class="text-body">
             지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
           </p>
@@ -88,31 +88,11 @@
                   id="winning-number"
                   class="winning-input text-body"
                 />
-                <input
-                  type="number"
-                  id="winning-number"
-                  class="winning-input text-body"
-                />
-                <input
-                  type="number"
-                  id="winning-number"
-                  class="winning-input text-body"
-                />
-                <input
-                  type="number"
-                  id="winning-number"
-                  class="winning-input text-body"
-                />
-                <input
-                  type="number"
-                  id="winning-number"
-                  class="winning-input text-body"
-                />
-                <input
-                  type="number"
-                  id="winning-number"
-                  class="winning-input text-body"
-                />
+                <input type="number" class="winning-input text-body" />
+                <input type="number" class="winning-input text-body" />
+                <input type="number" class="winning-input text-body" />
+                <input type="number" class="winning-input text-body" />
+                <input type="number" class="winning-input text-body" />
               </div>
             </div>
             <div class="bonus-input-info">
@@ -126,7 +106,11 @@
           </div>
         </div>
         <!-- 결과 확인 버튼 -->
-        <button type="button" class="submit-button base-button" id="submit">
+        <button
+          type="button"
+          class="submit-button base-button hidden"
+          id="submit"
+        >
           <span class="text-button">결과 확인하기</span>
         </button>
       </div>
@@ -136,7 +120,7 @@
     <section class="modal hidden">
       <div class="modal-card">
         <div class="modal-header">
-          <button type="button" class="modal-close">X</button>
+          <button type="button" class="modal-close" id="close">X</button>
 
           <h2 class="text-subtitle">🏆 당첨 통계 🏆</h2>
         </div>
