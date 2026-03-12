@@ -1,21 +1,8 @@
 import Validator from "../../Validator.js";
+import LottoList from "../../Model/LottoList.js";
 
 const html = String.raw;
 
-const mockLottos = [
-  [1, 2, 3, 4, 5, 6],
-  [7, 8, 9, 10, 11, 12],
-  [13, 14, 15, 16, 17, 18],
-  [1, 2, 3, 4, 5, 6],
-  [7, 8, 9, 10, 11, 12],
-  [13, 14, 15, 16, 17, 18],
-  [1, 2, 3, 4, 5, 6],
-  [7, 8, 9, 10, 11, 12],
-  [13, 14, 15, 16, 17, 18],
-  [1, 2, 3, 4, 5, 6],
-  [7, 8, 9, 10, 11, 12],
-  [13, 14, 15, 16, 17, 18],
-];
 const mockPrize = [
   ["3개", 5_000, 1],
   ["4개", 50_000, 0],
@@ -31,8 +18,11 @@ class MainApp extends HTMLElement {
   #isShowLottos;
   #isOpenModal;
 
-  #purchase;
+  #purchaseAmount;
   #purchaseError;
+
+  #lottoList;
+  #lottos;
 
   constructor() {
     super();
@@ -42,7 +32,7 @@ class MainApp extends HTMLElement {
     this.#isShowLottos = false;
     this.#isOpenModal = false;
 
-    this.#purchase = 0;
+    this.#purchaseAmount = 0;
     this.#purchaseError = "";
   }
 
@@ -61,24 +51,8 @@ class MainApp extends HTMLElement {
 
         <div class="card-hidden-section" ${this.#isShowLottos ? "" : "hidden"}>
           <!-- 3. 구입 로또 -->
-          <div class="lottos-container">
-            <div class="lottos-container-header">
-              총 ${this.#purchase}개를 구매하셨습니다. <br />
-              (로또 수가 많은 경우 스크롤을 내리세요.)
-            </div>
-            <div class="lottos-table">
-              ${mockLottos
-                .map(
-                  (lotto) =>
-                    // <!-- 하나의 로또 라인 -->
-                    html`<div class="lotto-line">
-                      <div class="lotto-line-icon">🎟️</div>
-                      ${lotto.join(", ")}
-                    </div>`
-                )
-                .join("")}
-            </div>
-          </div>
+          <lotto-lottos></lotto-lottos>
+
           <!-- 당첨 번호 & 보너스 번호 입력 폼 -->
           <div class="userLotto-container">
             <label class="userLotto-header" for="winningNumber">
@@ -159,6 +133,11 @@ class MainApp extends HTMLElement {
       </div>
     </div>`;
 
+    const lottosEl = this.querySelector("lotto-lottos");
+    if (lottosEl && this.#lottoList) {
+      lottosEl.lottoList = this.#lottoList;
+    }
+
     this.querySelector("lotto-purchase").addEventListener(
       "purchase",
       (event) => {
@@ -168,8 +147,10 @@ class MainApp extends HTMLElement {
           const { purchase } = event.detail;
 
           this.#validator.validatePrice(purchase);
-          this.#purchase = purchase / 1000;
+          this.#purchaseAmount = purchase / 1000;
           this.#purchaseError = "";
+
+          this.#lottoList = new LottoList(this.#purchaseAmount);
 
           this.#isShowLottos = true;
         } catch (error) {

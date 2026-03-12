@@ -11,6 +11,8 @@ import "./webView/Main/MainApp.js";
 import "./webView/Main/MainApp.css";
 import "./webView/Main/Purchase.js";
 import "./webView/Main/Purchase.css";
+import "./webView/Main/Lottos.js";
+import "./webView/Main/Lottos.css";
 
 import "./webView/Footer/Footer.js";
 import "./webView/Footer/Footer.css";
