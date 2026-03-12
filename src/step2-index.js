@@ -6,7 +6,11 @@ import Validator from './step1/Validator.js';
 import NodeRenderer from './step2/NodeRenderer.js';
 import { clearState } from './step2/NodeUtils.js';
 import { LottoMachine } from './step1/LottoMachine.js';
+import { showNode } from './step2/NodeUtils.js';
 import { WinningLotto } from './step1/Lotto.js';
+
+
+const HIDE_CONTENT_SELECTORS = ['#purchase-lotto-content', '#winning-lotto-content'];
 
 let lottoMachine = null;
 
@@ -25,6 +29,7 @@ let lottoMachine = null;
       const purchaseLottoContentContainer = document.getElementById('purchase-lotto-content');
       NodeRenderer.renderPurchaseLottoCount(purchaseLottoContentContainer, lottoMachine.getLottos().length);
       NodeRenderer.renderPurchaseLottoList(purchaseLottoContentContainer, lottoMachine.getLottos().map((lotto) => lotto.getLottoNumber()));
+      showNode(HIDE_CONTENT_SELECTORS);
     } catch (err) {
       NodeRenderer.renderError(purchaseAmountContainer, err.message);
     }

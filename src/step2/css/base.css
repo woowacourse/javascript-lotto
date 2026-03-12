@@ -248,3 +248,7 @@ input#purchase-amount {
 .success input {
     border-color: var(--success-border);
 }
+
+.hidden {
+    opacity: 0;
+}
