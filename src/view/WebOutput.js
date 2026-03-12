@@ -8,14 +8,19 @@ class ConsoleOutput extends Output {
     super();
 
     this.#elements = {
-      mainContainer: document.querySelector(".main__container"),
+      mainContainerBody: document.querySelector(".main__container__body"),
+      mainContainerFooter: document.querySelector(".main__container__footer"),
       overlay: document.querySelector(".overlay"),
       modalHeader: document.querySelector(".modal__header"),
       modalBody: document.querySelector(".modal__body"),
     };
 
-    if (!this.#elements.mainContainer) {
-      throw new Error("main__container를 찾을 수 없습니다.");
+    if (!this.#elements.mainContainerBody) {
+      throw new Error("main__container__body를 찾을 수 없습니다.");
+    }
+
+    if (!this.#elements.mainContainerFooter) {
+      throw new Error("main__container__footer를 찾을 수 없습니다.");
     }
 
     if (!this.#elements.overlay) {
@@ -46,7 +51,7 @@ class ConsoleOutput extends Output {
     });
 
     this.#elements.modalBody.innerHTML = `
-      <table>
+      <table class="result__table">
         <thead>
           <tr>
             <th>일치 갯수</th>
@@ -74,28 +79,33 @@ class ConsoleOutput extends Output {
             .join("")}
         </tbody>
       </table>
-      <p>당신의 총 수익률은 ${returnOnInvestment.toFixed(1)}%입니다.</p>
+      <p class="return-on-investment">당신의 총 수익률은 ${returnOnInvestment.toFixed(1)}%입니다.</p>
     `;
 
     this.#elements.overlay.classList.remove("hidden");
 
-    const winningNumberAndBonusFormEl = document.querySelector(
-      ".winning-number-and-bonus__container",
-    );
+    const showResultButtonEl = document.querySelector(".show-result__button");
 
-    winningNumberAndBonusFormEl?.addEventListener("submit", (event) => {
-      event.preventDefault();
+    showResultButtonEl?.addEventListener("click", () => {
       this.#elements.overlay.classList.remove("hidden");
     });
   }
 
   printPurchasedLottos(lottos) {
+    const containerEl = document.createElement("div");
+    containerEl.className = "purchased-lottos__container";
+    this.#elements.mainContainerBody.appendChild(containerEl);
+
+    const paragraphEl = document.createElement("p");
+    paragraphEl.className = "purchased-lottos-count";
+    paragraphEl.textContent = `총 ${lottos.length}개를 구매했습니다.`;
+    containerEl.appendChild(paragraphEl);
+
     const listEl = document.createElement("ul");
-    listEl.className = "purchased-lottos__container";
-    this.#elements.mainContainer.appendChild(listEl);
+    listEl.className = "purchased-lottos__list";
+    containerEl.appendChild(listEl);
 
     listEl.innerHTML = `
-      <li>총 ${lottos.length}개를 구매했습니다.</li>
       ${lottos
         .map(
           (lotto) => `

@@ -8,13 +8,18 @@ class WebInput extends Input {
     super();
 
     this.#elements = {
-      mainContainer: document.querySelector(".main__container"),
+      mainContainerBody: document.querySelector(".main__container__body"),
+      mainContainerFooter: document.querySelector(".main__container__footer"),
       modalFooter: document.querySelector(".modal__footer"),
       overlay: document.querySelector(".overlay"),
     };
 
-    if (!this.#elements.mainContainer) {
-      throw new Error("main__container를 찾을 수 없습니다.");
+    if (!this.#elements.mainContainerBody) {
+      throw new Error("main__container__body를 찾을 수 없습니다.");
+    }
+
+    if (!this.#elements.mainContainerFooter) {
+      throw new Error("main__container__footer를 찾을 수 없습니다.");
     }
 
     if (!this.#elements.modalFooter) {
@@ -27,15 +32,17 @@ class WebInput extends Input {
   }
 
   async readMoneyAsync() {
+    this.removeElement(".money__container");
+
     const formEl = document.createElement("form");
     formEl.className = "money__container";
-    this.#elements.mainContainer.appendChild(formEl);
+    this.#elements.mainContainerBody.appendChild(formEl);
 
     formEl.innerHTML = `
-      <label>구입금액을 입력해 주세요.</label>
-      <div>
-        <input type="number" id="money__input" name="money" />
-        <button id="money__submit">구입</button>
+      <p>구입금액을 입력해 주세요.</p>
+      <div class="money__inputs">
+        <input type="number" class="money__input" name="money" min="1000" step="1000" placeholder="금액" />
+        <button class="money__submit">구입</button>
       </div>
     `;
 
@@ -45,8 +52,8 @@ class WebInput extends Input {
         const formData = new FormData(formEl);
         const data = Object.fromEntries(formData.entries());
 
-        this.diasbleElement("#money__input");
-        this.diasbleElement("#money__submit");
+        this.diasbleElement(".money__input");
+        this.diasbleElement(".money__submit");
 
         resolve(data.money);
       });
@@ -54,52 +61,78 @@ class WebInput extends Input {
   }
 
   async readWinningNumberAndBonusAsync() {
+    this.removeElement(".winning-number-and-bonus__container");
+
     const formEl = document.createElement("form");
     formEl.className = "winning-number-and-bonus__container";
-    this.#elements.mainContainer.appendChild(formEl);
+    this.#elements.mainContainerBody.appendChild(formEl);
 
     const orders = ["first", "second", "third", "fourth", "fifth", "sixth"];
 
     const inputSelectors = [
-      ...orders.map((order) => `#winning-number__${order}__input`),
-      "#bonus-number__input",
+      ...orders.map((order) => `.winning-number__${order}__input`),
+      ".bonus-number__input",
     ];
 
     formEl.innerHTML = `
-      <label for="#winning-number-and-bonus__input">구입금액을 입력해 주세요.</label>
-      <div>
+      <p >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p
+      >
+      <div class="winning-number-and-bonus__inputs">
         <div>
-          <label for="winning-number__first__input">당첨 번호</label>
-          <div>
+          <p>당첨 번호</p>
+          <div  class="winning-number__inputs">
           ${orders
             .map(
               (order) => `
-              <input type="number" id="winning-number__${order}__input" name="winning-number__${order}" min="${LOTTO.MIN_NUMBER}" max="${LOTTO.MAX_NUMBER}" step="1"/>
+            <input
+              type="number"
+              class="winning-number__${order}__input"
+              name="winning-number__${order}"
+              min="${LOTTO.MIN_NUMBER}"
+              max="${LOTTO.MAX_NUMBER}"
+              step="1"
+            />
             `,
             )
             .join("")}
           </div>
+        </div>
         <div>
-          <label for="bonus-number__input">보너스 번호</label>
-          <div>
-            <input type="number" id="bonus-number__input" name="bonus-number" min="${LOTTO.MIN_NUMBER}" max="${LOTTO.MAX_NUMBER}" step="1"/>
+          <p>보너스 번호</p>
+          <div class="bonus__inputs">
+            <input
+              type="number"
+              class="bonus-number__input"
+              name="bonus-number"
+              min="${LOTTO.MIN_NUMBER}"
+              max="${LOTTO.MAX_NUMBER}"
+              step="1"
+            />
           </div>
         </div>
       </div>
-      <button id="winning-number-and-bonus__submit">결과 확인하기</button>
     `;
 
+    const resultButtonEl = document.createElement("button");
+    resultButtonEl.className = "show-result__button";
+    resultButtonEl.textContent = "결과 확인하기";
+
+    this.#elements.mainContainerFooter.innerHTML = "";
+    this.#elements.mainContainerFooter.appendChild(resultButtonEl);
+
+
     return new Promise((resolve) => {
-      formEl.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
+      resultButtonEl.addEventListener("click", (e) => {
+        const formData = new FormData(formEl);
 
         inputSelectors.forEach((selector) => {
           this.diasbleElement(selector);
         });
 
         resolve({
-          winningNumbersInput: orders.map((order) => formData.get(`winning-number__${order}`)).join(","),
+          winningNumbersInput: orders
+            .map((order) => formData.get(`winning-number__${order}`))
+            .join(","),
           bonusNumberInput: formData.get("bonus-number"),
         });
       });
@@ -107,6 +140,8 @@ class WebInput extends Input {
   }
 
   async readRetryAsync() {
+    this.#elements.modalFooter.innerHTML = "";
+
     const buttonEl = document.createElement("button");
     buttonEl.className = "retry__button";
     buttonEl.textContent = "다시 시작";
@@ -117,10 +152,10 @@ class WebInput extends Input {
         e.preventDefault();
         resolve("y");
         this.hiddenOverlay();
-        this.clearMoneyContainer();
-        this.clearPurchasedLottosContainer();
-        this.clearWinningNumberAndBonusContainer();
-        this.clearShowResultButtonContainer();
+        this.removeElement(".money__container");
+        this.removeElement(".purchased-lottos__container");
+        this.removeElement(".winning-number-and-bonus__container");
+        this.removeElement(".show-result__button");
       });
     });
   }
@@ -133,43 +168,24 @@ class WebInput extends Input {
     }
   }
 
+  clearElement(selector) {
+    const element = document.querySelector(selector);
+
+    if (element) {
+      element.innerHTML = "";
+    }
+  }
+
+  removeElement(selector) {
+    const element = document.querySelector(selector);
+
+    if (element) {
+      element.remove()
+    }
+  }
+
   hiddenOverlay() {
     this.#elements.overlay.classList.add("hidden");
-  }
-
-  clearMoneyContainer() {
-    const moneyContainer = document.querySelector(".money__container");
-
-    if (moneyContainer) {
-      moneyContainer.innerHTML = "";
-    }
-  }
-
-  clearPurchasedLottosContainer() {
-    const purchasedLottosContainer = document.querySelector(
-      ".purchased-lottos__container",
-    );
-    if (purchasedLottosContainer) {
-      purchasedLottosContainer.innerHTML = "";
-    }
-  }
-
-  clearWinningNumberAndBonusContainer() {
-    const winningNumberAndBonusContainer = document.querySelector(
-      ".winning-number-and-bonus__container",
-    );
-    if (winningNumberAndBonusContainer) {
-      winningNumberAndBonusContainer.innerHTML = "";
-    }
-  }
-
-  clearShowResultButtonContainer() {
-    const showResultButtonContainer = document.querySelector(
-      ".show-result__button__container",
-    );
-    if (showResultButtonContainer) {
-      showResultButtonContainer.innerHTML = "";
-    }
   }
 }
 

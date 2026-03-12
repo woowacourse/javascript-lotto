@@ -13,6 +13,10 @@ beforeEach(() => {
         <div class="main__container">
           <header class="main__container__header">
           </header>
+          <div class="main__container__body">
+          </div>
+          <footer class="main__container__footer">
+          </footer>
         </div>
       </div>
       <footer class="footer">
@@ -53,8 +57,8 @@ describe("Input 테스트", () => {
     const webInput = new WebInput();
     const webResultPromise = webInput.readMoneyAsync();
     await new Promise(resolve => setTimeout(resolve, 0));
-    document.querySelector("#money__input").value = testInputs[0];
-    document.querySelector("#money__submit").click();
+    document.querySelector(".money__input").value = testInputs[0];
+    document.querySelector(".money__submit").click();
     const webResult = await webResultPromise;
     expect(webResult).toBe(testInputs[0]);
 
@@ -76,20 +80,20 @@ describe("Input 테스트", () => {
     const webInput = new WebInput();
     const webResultPromise = webInput.readWinningNumberAndBonusAsync();
     await new Promise(resolve => setTimeout(resolve, 0));
-    document.querySelector("#winning-number__first__input").value =
+    document.querySelector(".winning-number__first__input").value =
       winningNumbers[0];
-    document.querySelector("#winning-number__second__input").value =
+    document.querySelector(".winning-number__second__input").value =
       winningNumbers[1];
-    document.querySelector("#winning-number__third__input").value =
+    document.querySelector(".winning-number__third__input").value =
       winningNumbers[2];
-    document.querySelector("#winning-number__fourth__input").value =
+    document.querySelector(".winning-number__fourth__input").value =
       winningNumbers[3];
-    document.querySelector("#winning-number__fifth__input").value =
+    document.querySelector(".winning-number__fifth__input").value =
       winningNumbers[4];
-    document.querySelector("#winning-number__sixth__input").value =
+    document.querySelector(".winning-number__sixth__input").value =
       winningNumbers[5];
-    document.querySelector("#bonus-number__input").value = bonusNumberString;
-    document.querySelector("#winning-number-and-bonus__submit").click();
+    document.querySelector(".bonus-number__input").value = bonusNumberString;
+    document.querySelector(".show-result__button").click();
     const webResult = await webResultPromise;
     expect(webResult).toEqual({
       winningNumbersInput: winningNumbersString,
