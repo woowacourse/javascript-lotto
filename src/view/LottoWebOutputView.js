@@ -2,6 +2,7 @@ const lottoList = document.querySelector(".lotto-list");
 const lottoCount = document.querySelector("#lotto-count");
 const moneyError = document.querySelector("#money-error");
 const winningBonusError = document.querySelector("#winning-bonus-error");
+const modal = document.querySelector(".modal");
 
 export const LottoWebOutputView = {
   renderLottoCount(count) {
@@ -19,6 +20,10 @@ export const LottoWebOutputView = {
       `,
       )
       .join("");
+  },
+
+  hideModal() {
+    modal.classList.add("hidden");
   },
 
   showMoneyError(message) {

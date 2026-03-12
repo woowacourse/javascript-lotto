@@ -15,6 +15,7 @@ class LottoWebController {
   play() {
     LottoWebInputView.bindPurchase(() => this.handlePurchase());
     LottoWebInputView.bindSubmit(() => this.handleSubmit());
+    LottoWebInputView.bindCloseModal(() => this.handleCloseModal());
   }
 
   handlePurchase() {
@@ -52,6 +53,10 @@ class LottoWebController {
     } catch (error) {
       LottoWebOutputView.showWinningBonusError(error.message);
     }
+  }
+
+  handleCloseModal() {
+    LottoWebOutputView.hideModal();
   }
 }
 

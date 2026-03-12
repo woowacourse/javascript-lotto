@@ -6,6 +6,7 @@ const winningInputs = document.querySelectorAll(
 );
 const bonusInput = document.querySelector("#bonus-number");
 const submitButton = document.querySelector("#submit");
+const closeButton = document.querySelector("#close");
 
 export const LottoWebInputView = {
   bindPurchase(handler) {
@@ -19,6 +20,10 @@ export const LottoWebInputView = {
 
   bindSubmit(handler) {
     submitButton.addEventListener("click", handler);
+  },
+
+  bindCloseModal(handler) {
+    closeButton.addEventListener("click", handler);
   },
 
   getPurchaseMoney() {
