@@ -6,6 +6,7 @@ import Validator from './step1/Validator.js';
 import NodeRenderer from './step2/NodeRenderer.js';
 import { clearState } from './step2/NodeUtils.js';
 import { LottoMachine } from './step1/LottoMachine.js';
+import { WinningLotto } from './step1/Lotto.js';
 
 let lottoMachine = null;
 
@@ -29,3 +30,23 @@ let lottoMachine = null;
     }
   });
 })();
+
+(function() {
+  const winningLottoForm = document.getElementById('winning-lotto-form');
+  winningLottoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const winningLottoNumbersNode = document.getElementById('winning-lotto-numbers');
+    const bonusNumber = document.getElementById('winning-lotto-bonus-number').value;
+    const winningLottoNumber = [];
+    [...winningLottoNumbersNode.elements].forEach((input) => {
+      winningLottoNumber.push(input.value);
+    });
+    const winningLottoInputContainer = document.getElementById('winning-lotto-inputs-container');
+    try {
+      Validator.validateLottoNumber(winningLottoNumber);
+      Validator.validateBonusNumber(winningLottoNumber, bonusNumber);
+    } catch (err) {
+      NodeRenderer.renderError(winningLottoInputContainer, err.message);
+    }
+  });
+}());

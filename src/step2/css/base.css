@@ -203,7 +203,7 @@ input#purchase-amount {
     margin: 24px 0;
 }
 
-#bonus-number-container {
+#winning-lotto-bonus-number-container {
     display: flex;
     flex-direction: column;
     align-items: end;
