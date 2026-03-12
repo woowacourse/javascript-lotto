@@ -5,7 +5,7 @@ class Purchase extends HTMLElement {
     return ["error"];
   }
 
-  attributeChangedCallBack() {
+  attributeChangedCallback() {
     this.render();
   }
 
