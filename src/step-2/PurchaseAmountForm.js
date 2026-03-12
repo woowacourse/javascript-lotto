@@ -5,28 +5,40 @@ import { validatePurchaseAmountInput } from './validates.js';
 const PurchaseAmountForm = {
   render(container) {
     const purchaseAmountForm = document.createElement('form');
+    const purchaseAmountCaptionDiv = document.createElement('div');
+    const purchaseAmountInputWrapper = document.createElement('div');
     const purchaseAmountInput = document.createElement('input');
     const errorMessageDiv = document.createElement('div');
     const purchaseButton = document.createElement('button');
 
     purchaseAmountForm.id = 'purchase-amount-form';
+    purchaseAmountForm.classList.add('purchase-amount-form');
     purchaseAmountForm.addEventListener('submit', this.handleSubmit);
+
+    purchaseAmountCaptionDiv.innerText = '구입할 금액을 입력해주세요.';
+
+    purchaseAmountInputWrapper.classList.add('purchase-amount-input-wrapper');
 
     purchaseAmountInput.id = 'purchase-amount-input';
     purchaseAmountInput.type = 'number';
     purchaseAmountInput.name = 'purchaseAmount';
+    purchaseAmountInput.classList.add('purchase-amount-input');
     purchaseAmountInput.addEventListener('input', this.handlePurchaseAmountInput);
 
     errorMessageDiv.id = 'purchase-amount-error-message';
+    errorMessageDiv.classList.add('error-message');
 
     purchaseButton.id = 'purchase-button';
     purchaseButton.type = 'submit';
     purchaseButton.innerText = '구입';
     purchaseButton.disabled = true;
 
-    purchaseAmountForm.appendChild(purchaseAmountInput);
+    purchaseAmountInputWrapper.appendChild(purchaseAmountInput);
+    purchaseAmountInputWrapper.appendChild(purchaseButton);
+
+    purchaseAmountForm.appendChild(purchaseAmountCaptionDiv);
+    purchaseAmountForm.appendChild(purchaseAmountInputWrapper);
     purchaseAmountForm.appendChild(errorMessageDiv);
-    purchaseAmountForm.appendChild(purchaseButton);
 
     container.appendChild(purchaseAmountForm);
   },
@@ -42,15 +54,19 @@ const PurchaseAmountForm = {
   },
 
   handlePurchaseAmountInput(e) {
+    const input = document.getElementById('purchase-amount-input');
     const submitButton = document.getElementById('purchase-button');
     const errorMessageDiv = document.getElementById('purchase-amount-error-message');
 
     try {
       const purchaseAmount = e.target.value;
       validatePurchaseAmountInput(purchaseAmount);
+
+      input.classList.remove('invalid');
       submitButton.disabled = false;
       errorMessageDiv.innerText = '';
     } catch (e) {
+      input.classList.add('invalid');
       submitButton.disabled = true;
       errorMessageDiv.innerText = e.message;
     }

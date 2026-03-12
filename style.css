@@ -5,6 +5,7 @@
   --color-lotto-grayscale-3: #B4B4B4;
   --color-lotto-grayscale-2: #FCFCFD;
   --color-lotto-grayscale-1: #FFFFFF;
+  --color-lotto-negative: #E30800
 }
 
 body {
@@ -19,11 +20,13 @@ body {
 }
 
 button {
-  cursor: pointer;
-  padding: 6px;
+  width: auto;
+  height: 36px;
+  padding: 6px 16px;
   border-radius: 4px;
   background-color: var(--color-lotto-primary);
   color: var(--color-lotto-grayscale-1);
+  cursor: pointer;
 
   /* text lotto caption */
   font-weight: 700;
@@ -39,9 +42,17 @@ button:disabled {
 }
 
 input {
-  padding: 8px;
+  width: auto;
+  height: 36px;
+  padding: 0 8px;
   border: 1px solid var(--color-lotto-grayscale-3);
   border-radius: 4px;
+
+  /* text lotto body */
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 input::placeholder {
@@ -53,6 +64,10 @@ input::placeholder {
   line-height: 24px;
   letter-spacing: 0.5px;
   vertical-align: bottom;
+}
+
+input.invalid {
+  border-color: var(--color-lotto-negative);
 }
 
 .text-lotto-title {
@@ -90,4 +105,13 @@ input::placeholder {
   line-height: 16px;
   letter-spacing: 1.25px;
   vertical-align: middle;
+}
+
+.error-message {
+  margin-top: 4px;
+  color: var(--color-lotto-negative);
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
 }

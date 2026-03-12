@@ -1,0 +1,27 @@
+.lotto-game-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 414px;
+  height: 727px;
+  margin: auto;
+  padding: 40px 16px 36px 16px;
+  border: 1px solid #00000012;
+  border-radius: 4px;
+  background-color: var(--color-lotto-grayscale-1);
+}
+
+.lotto-game-card-header {
+  text-align: center;
+}
+
+.purchase-amount-input-wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.purchase-amount-input {
+  width: 100%;
+}
