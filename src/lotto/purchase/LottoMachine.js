@@ -14,11 +14,12 @@ export default class LottoMachine {
   }
 
   buyLottos(money) {
-    if (money < LottoMachine.UNIT) {
+    const amount = money.getAmount();
+    if (amount < LottoMachine.UNIT) {
       throw new Error(LottoMachine.ERROR.NOT_ENOUGH);
     }
 
-    const count = Math.floor(money / LottoMachine.UNIT);
+    const count = Math.floor(amount / LottoMachine.UNIT);
     return Array.from({ length: count }, () => new Lotto(this.#picker()));
   }
 }
