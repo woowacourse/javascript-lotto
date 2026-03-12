@@ -1,10 +1,10 @@
 import {
   calculateYield,
   statistics,
-} from "../../src/domain/LottoStatistics.js";
-import Lotto from "../../src/domain/models/Lotto.js";
-import Rank from "../../src/domain/models/Rank.js";
-import WinningNumber from "../../src/domain/models/WinningNumber.js";
+} from "../../../src/lotto/statistics/LottoStatistics.js";
+import Lotto from "../../../src/lotto/shared/domain/Lotto.js";
+import Rank from "../../../src/lotto/shared/domain/Rank.js";
+import WinningNumber from "../../../src/lotto/shared/domain/WinningNumber.js";
 
 describe("8000원으로 로또 3등이 당첨됐을때", () => {
   test("출력용 통계 객체(몇등인지랑 수량)", () => {

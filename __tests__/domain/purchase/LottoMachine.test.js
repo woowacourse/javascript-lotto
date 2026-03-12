@@ -1,5 +1,5 @@
-import LottoMachine from "../../src/domain/LottoMachine.js";
-import Lotto from "../../src/domain/models/Lotto.js";
+import Lotto from "../../../src/lotto/shared/domain/Lotto.js";
+import LottoMachine from "../../../src/lotto/purchase/LottoMachine.js";
 
 describe("LottoMachine method test", () => {
   const fixed = () => [1, 2, 3, 4, 5, 6];

@@ -1,4 +1,4 @@
-import Lotto from "./models/Lotto.js";
+import Lotto from "../shared/domain/Lotto.js";
 
 export default class LottoMachine {
   static UNIT = 1000;

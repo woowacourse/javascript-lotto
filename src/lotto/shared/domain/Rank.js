@@ -32,7 +32,8 @@ export default class Rank {
   }
 
   getPrize() {
-    return Rank.#RULE_MAP.get(this);
+    const { prize, order } = Rank.#RULE_MAP.get(this);
+    return { prize, order };
   }
 
   getCondition() {

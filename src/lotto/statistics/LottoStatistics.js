@@ -1,8 +1,8 @@
-import Rank from "./models/Rank.js";
+import Rank from "../shared/domain/Rank.js";
+
 export const statistics = (lotto, winningNumber) => {
   const { matchWinning, matchBonus } = winningNumber.getMatchCount(lotto);
   const rank = Rank.findRank(matchWinning, matchBonus);
-
   return { rank };
 };
 export const calculateYield = (purchaseAmount, totalWinningAmount) => {

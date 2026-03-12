@@ -1,5 +1,5 @@
-import Lotto from "../../../src/domain/models/Lotto.js";
-import WinningNumber from "../../../src/domain/models/WinningNumber.js";
+import Lotto from "../../../../src/lotto/shared/domain/Lotto.js";
+import WinningNumber from "../../../../src/lotto/shared/domain/WinningNumber.js";
 
 describe("WinningNumber 생성 성공테스트", () => {
   test("로또 번호는 중복 될 수 없다", () => {

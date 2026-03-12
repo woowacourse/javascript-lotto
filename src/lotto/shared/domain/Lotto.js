@@ -1,4 +1,4 @@
-class Lotto {
+export default class Lotto {
   static MIN_RANGE = 1;
   static MAX_RANGE = 45;
   static SIZE = 6;
@@ -36,5 +36,3 @@ class Lotto {
     return [...this.#numbers];
   }
 }
-
-export default Lotto;
