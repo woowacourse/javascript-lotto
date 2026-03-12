@@ -3,17 +3,12 @@ import { makeLottos } from "../domain/LottoMachine.js";
 import { calProfitRate } from "../domain/WinningRate.js";
 
 class LottoController {
-  #lottoCount;
   #purchasedLottos;
   #rankCount = Array(LOTTO_SIZE).fill(0);
   #totalPrize = 0;
 
-  constructor(lottoCount) {
-    this.#lottoCount = lottoCount;
-  }
-
-  issueLottos() {
-    this.#purchasedLottos = makeLottos(this.#lottoCount);
+  issueLottos(lottoCount) {
+    this.#purchasedLottos = makeLottos(lottoCount);
     return this.#purchasedLottos.map((lotto) => lotto.getNumbers());
   }
 
@@ -26,7 +21,7 @@ class LottoController {
   }
 
   getWinningResult() {
-    const purchasedPrice = this.#lottoCount * LOTTO_PRICE;
+    const purchasedPrice = this.#purchasedLottos.length * LOTTO_PRICE;
 
     return {
       rankCount: this.#rankCount,
