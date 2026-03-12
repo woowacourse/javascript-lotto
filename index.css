@@ -10,9 +10,11 @@
 }
 
 #app {
-  background-color: var(--lotto-grayscale-1);
+  display: flex;
   width: 100vw;
   height: 100vh;
+  flex-direction: column;
+  background-color: var(--lotto-grayscale-1);
 }
 
 .lotto-header__title {
@@ -28,42 +30,106 @@
 }
 
 .lotto-main {
-  width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lotto-content {
-  max-width: 540px;
-  margin: 0 auto;
-  width: 100%;
+  padding: 2rem 1rem;
   border: 1px solid var(--lotto-border);
 }
 
-.lotto-content-wrapper {
-  padding: 2rem;
-}
-
 .lotto-content-header__title {
+  font-weight: 800;
+  font-style: ExtraBold;
+  font-size: 1.5rem;
   text-align: center;
 }
 
-.lotto-content-form {
+.lotto-purchase-form {
   display: flex;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
-.lotto-content-form__input {
+.lotto-purchase-form__input {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--lotto-border);
   border-radius: 4px;
 }
 
-.lotto-content-form__button {
+.lotto-purchase-form__button {
   padding: 0.75rem 1.5rem;
   background-color: var(--lotto-primary);
   color: white;
   border: none;
   border-radius: 4px;
   flex-shrink: 0;
+}
+
+.lotto-list {
+  margin-top: 2rem;
+}
+
+.lotto-list__info {
+  color: var(--lotto-grayscale-5);
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 15px;
+}
+
+.lotto-list__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex-direction: column;
+
+  margin-top: 1rem;
+}
+
+.lotto-list__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lotto-winning-bonus-number {
+  margin-top: 2rem;
+}
+
+.lotto-winning-bonus-number__winning {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.lotto-winning-bonus-number__winning-inputs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lotto-winning-bonus-number__input {
+  width: 2rem;
+  height: 2rem;
+}
+
+.lotto-winning-bonus-number__inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.lotto-winning-bonus-number__bonus {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 0.5rem;
+}
+
+.lotto-purchase {
+  margin-top: 2rem;
 }

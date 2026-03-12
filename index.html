@@ -5,10 +5,119 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./index.css" />
   </head>
-
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header class="lotto-header">
+        <h1 class="lotto-header__title">🎱 행운의 로또</h1>
+      </header>
+      <main class="lotto-main">
+        <div class="lotto-content">
+          <div class="lotto-content-header">
+            <h2 class="lotto-content-header__title">🎱 내 번호 당첨 확인 🎱</h2>
+          </div>
+
+          <div class="lotto-purchase">
+            <p>구입할 금액을 입력해주세요.</p>
+            <form action="" class="lotto-purchase-form">
+              <input
+                type="number"
+                name="money"
+                placeholder="금액"
+                class="lotto-purchase-form__input"
+              />
+              <button type="submit" class="lotto-purchase-form__button">
+                확인
+              </button>
+            </form>
+          </div>
+
+          <div class="lotto-list">
+            <p class="lotto-list__info">총 7개를 구매하였습니다.</p>
+            <ul class="lotto-list__items">
+              <li class="lotto-list__item">
+                <img src="/assets/Lotto.png" alt="로또" width="34px" />
+                12, 28, 22, 37, 19, 23
+              </li>
+              <li class="lotto-list__item">
+                <img src="/assets/Lotto.png" alt="로또" width="34px" />
+                12, 28, 22, 37, 19, 23
+              </li>
+              <li class="lotto-list__item">
+                <img src="/assets/Lotto.png" alt="로또" width="34px" />
+                12, 28, 22, 37, 19, 23
+              </li>
+              <li class="lotto-list__item">
+                <img src="/assets/Lotto.png" alt="로또" width="34px" />
+                12, 28, 22, 37, 19, 23
+              </li>
+              <li class="lotto-list__item">
+                <img src="/assets/Lotto.png" alt="로또" width="34px" />
+                12, 28, 22, 37, 19, 23
+              </li>
+              <li class="lotto-list__item">
+                <img src="/assets/Lotto.png" alt="로또" width="34px" />
+                12, 28, 22, 37, 19, 23
+              </li>
+            </ul>
+          </div>
+
+          <div class="lotto-winning-bonus-number">
+            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <div class="lotto-winning-bonus-number__inputs">
+              <div class="lotto-winning-bonus-number__winning">
+                <label for="">당첨 번호</label>
+                <div class="lotto-winning-bonus-number__winning-inputs">
+                  <input
+                    type="number"
+                    name="winning-number"
+                    class="lotto-winning-bonus-number__input"
+                  />
+                  <input
+                    type="number"
+                    name="bonus-number"
+                    class="lotto-winning-bonus-number__input"
+                  />
+                  <input
+                    type="number"
+                    name="bonus-number"
+                    class="lotto-winning-bonus-number__input"
+                  />
+                  <input
+                    type="number"
+                    name="bonus-number"
+                    class="lotto-winning-bonus-number__input"
+                  />
+                  <input
+                    type="number"
+                    name="bonus-number"
+                    class="lotto-winning-bonus-number__input"
+                  />
+                  <input
+                    type="number"
+                    name="bonus-number"
+                    class="lotto-winning-bonus-number__input"
+                  />
+                </div>
+              </div>
+              <div class="lotto-winning-bonus-number__bonus">
+                <label for="">보너스 번호</label>
+                <input
+                  type="number"
+                  name="bonus-number"
+                  class="lotto-winning-bonus-number__input"
+                />
+              </div>
+            </div>
+          </div>
+          <!--  -->
+        </div>
+      </main>
+      <footer class="lotto-footer">
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
+    </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
