@@ -1,3 +1,5 @@
+import Money from "../shared/domain/Money.js";
+
 export default class PurchaseLottoUseCase {
   #lottoMachine;
 
@@ -5,7 +7,13 @@ export default class PurchaseLottoUseCase {
     this.#lottoMachine = lottoMachine;
   }
 
-  execute(money) {
-    return this.#lottoMachine.buyLottos(money);
+  execute(amount) {
+    const money = new Money(amount);
+    const { lottos, purchasedMoney } = this.#lottoMachine.buyLottos(money);
+
+    return {
+      lottoNumbers: lottos.map((lotto) => lotto.getNumbers()),
+      purchasedAmount: purchasedMoney.getAmount(),
+    };
   }
 }

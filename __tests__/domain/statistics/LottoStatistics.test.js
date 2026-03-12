@@ -1,7 +1,7 @@
 import {
   calculateYield,
   statistics,
-} from "../../../src/lotto/statistics/LottoStatistics.js";
+} from "../../../src/lotto/statistics/lottoStatistics.js";
 import Lotto from "../../../src/lotto/shared/domain/Lotto.js";
 import Rank from "../../../src/lotto/shared/domain/Rank.js";
 import WinningNumber from "../../../src/lotto/shared/domain/WinningNumber.js";

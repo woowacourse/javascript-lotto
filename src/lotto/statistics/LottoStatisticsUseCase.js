@@ -1,5 +1,5 @@
 import Rank from "../shared/domain/Rank.js";
-import { statistics } from "./LottoStatistics.js";
+import { statistics } from "./lottoStatistics.js";
 
 export default class LottoStatisticsUseCase {
   static ERROR = {

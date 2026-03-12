@@ -21,9 +21,9 @@ describe("LottoMachine method test", () => {
 
   test("5000원으로 5장 구매 성공", () => {
     const userMoney = new Money(5000);
-    const { lottos, money } = testingLottoMachine.buyLottos(userMoney);
+    const { lottos, purchasedMoney } = testingLottoMachine.buyLottos(userMoney);
     expect(lottos[0]).toBeInstanceOf(Lotto);
     expect(lottos).toHaveLength(5);
-    expect(money.getAmount()).toBe(5000);
+    expect(purchasedMoney.getAmount()).toBe(5000);
   });
 });
