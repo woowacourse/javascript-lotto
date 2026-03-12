@@ -21,6 +21,11 @@
 
     --footer-fg: #4E5BA6;
     --footer-border: #D9D9D9;
+
+    --error-border: #F73711;
+    --error-fg: #ED360E;
+
+    --success-border: #2BBD57;
 }
 
 * {
@@ -229,4 +234,17 @@ input#purchase-amount {
 .row-line-between {
     display: flex;
     justify-content: space-between;
+}
+
+.error input {
+    border-color: var(--error-border);
+}
+
+.error p {
+    margin-top: 8px;
+    color: var(--error-border);
+}
+
+.success input {
+    border-color: var(--success-border);
 }

@@ -1,4 +1,4 @@
-import readline from 'readline';
+// import readline from 'readline';
 
 /**
  * 
@@ -26,18 +26,18 @@ export function pickNumberInRange(min, max, range) {
   return [...numbers];
 }
 
-export const read = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+// export const read = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout
+// });
 
-export function readLine(query) {
-  return new Promise((resolve) => {
-    read.question(query, (answer) => {
-      resolve(answer);
-    });
-  });
-}
+// export function readLine(query) {
+//   return new Promise((resolve) => {
+//     read.question(query, (answer) => {
+//       resolve(answer);
+//     });
+//   });
+// }
 
 export async function reReadUntilSuccess(read) {
   while (true) {
