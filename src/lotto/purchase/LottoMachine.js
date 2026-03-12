@@ -27,9 +27,17 @@ export default class LottoMachine {
     const count = Math.floor(amount / LottoMachine.UNIT);
     const lottos = Array.from(
       { length: count },
-      () => new Lotto(this.#picker()),
+      () => new Lotto(this.#pickLottoNumbers()),
     );
 
     return { lottos, money };
+  }
+
+  #pickLottoNumbers() {
+    const numbers = new Set();
+    while (numbers.size < Lotto.POLICY.SIZE) {
+      numbers.add(this.#picker(Lotto.POLICY.MIN_RANGE, Lotto.POLICY.MAX_RANGE));
+    }
+    return [...numbers].sort((a, b) => a - b);
   }
 }
