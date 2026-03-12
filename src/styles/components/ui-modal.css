@@ -1,0 +1,34 @@
+.ui-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+
+.modal-container {
+  position: relative;
+  display: inline-block;
+  width: 350px;
+  height: auto;
+  background-color: var(--greyscale-1);
+  border-radius: 4px;
+
+  align-self: center;
+}
+
+.modal-container .modal-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 14px;
+  height: 14px;
+  background: url("./imgs/icon-modal-close.svg") no-repeat;
+  border: none;
+  text-indent: -9000px;
+}

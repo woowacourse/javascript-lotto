@@ -1,0 +1,10 @@
+.ui-info.shape-data {
+  font-size : var(--typo-body-font-size);
+  font-weight : 700;
+  line-height : var(--typo-body-line-height);
+	letter-spacing: var(--typo-body-letter-spacing);
+}
+
+.ui-info.align-center {
+  text-align: center;
+}

@@ -1,0 +1,41 @@
+.layout .header {
+  padding-left: 40px;
+  height: 64px;
+  background: var(--primary);
+}
+.layout .header .logo {
+  margin: 0;
+  padding: 16px 0 10px;
+  font-size: var(--typo-title-font-size);
+  font-weight: var(--typo-title-font-weight);
+  line-height: var(--typo-title-line-height);
+	letter-spacing: var(--typo-title-letter-spacing);
+}
+.layout .header .logo a {
+  text-decoration: none;
+  color: var(--greyscale-1);
+}
+
+.layout .main {
+  margin: 0 auto;
+  padding-top: 84px;
+  padding-bottom: 69px;
+}
+
+.layout .footer {
+  height: 80px;
+  border-top: 1px solid #4E5BA633;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.layout .footer {
+  color: var(--primary);
+
+  font-size: var(--typo-caption-font-size);
+  font-weight: 700;
+  line-height: var(--typo-caption-line-height);
+	letter-spacing: var(--typo-caption-letter-spacing);
+}

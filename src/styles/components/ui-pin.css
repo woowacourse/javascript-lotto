@@ -1,0 +1,38 @@
+.ui-pin {
+  display: inline-block;
+}
+
+.ui-pin input {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--greyscale-3);
+  border-radius: 4px;
+  
+  padding: 8px 12px 4px;
+
+  font-size: var(--typo-body-font-size);
+  font-weight: var(--typo-body-font-weight);
+  line-height: var(--typo-body-line-height);
+	letter-spacing: var(--typo-body-letter-spacing);
+
+  color: var(--greyscale-5);
+}
+
+.ui-pin input::placeholder {
+  font-size: var(--typo-placeholder-font-size);
+  font-weight: var(--typo-placeholder-font-weight);
+  line-height: var(--typo-placeholder-line-height);
+	letter-spacing: var(--typo-placeholder-letter-spacing);
+}
+
+.ui-pin-root {
+  font-size: 0;
+}
+
+.ui-pin-root .ui-pin {
+  margin-left: 8px;
+}
+
+.ui-pin-root .ui-pin:first-child {
+  margin-left: 0;
+}
