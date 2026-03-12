@@ -40,6 +40,8 @@ class LottoWebController {
 
   handleSubmit() {
     try {
+      LottoWebOutputView.clearWinningBonusError();
+
       const winningNumbers = LottoWebInputView.getWinningNumbers();
       Validator.validateWinningNumber(winningNumbers);
 
@@ -48,7 +50,7 @@ class LottoWebController {
 
       modal.classList.remove("hidden");
     } catch (error) {
-      alert(error.message);
+      LottoWebOutputView.showWinningBonusError(error.message);
     }
   }
 }
