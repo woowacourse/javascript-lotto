@@ -1,9 +1,9 @@
 import { LOTTO_PRICE } from "../constants/lottoInfo";
 import LottoController from "./LottoController";
 import Validator from "../utils/Validator";
-import { renderLottoTicket } from "../view/web/LottoPurchaseView";
+import { renderPurchasedLottos } from "../view/web/PurchasedLottoView";
 import { renderLottoResult } from "../view/web/LottoResultView";
-import { renderWinningInput } from "../view/web/LottoWinningView";
+import { renderWinningNumInput } from "../view/web/WinningNumInputView";
 
 class WebApp {
   #lottoController;
@@ -19,21 +19,19 @@ class WebApp {
     this.#resultModal = document.querySelector("#result-modal");
   }
 
-  initEvents() {
+  bindEvents() {
     this.#purchaseForm.addEventListener("submit", (e) =>
-      this.#handlePurchase(e),
+      this.#purchaseLottos(e),
     );
 
     this.#winningWrapper.addEventListener("submit", (e) =>
-      this.#handleWinningResult(e),
+      this.#showLottoResult(e),
     );
 
-    this.#resultModal.addEventListener("click", (e) =>
-      this.#handleModalClick(e),
-    );
+    this.#resultModal.addEventListener("click", (e) => this.#onModalClick(e));
   }
 
-  #handlePurchase(event) {
+  #purchaseLottos(event) {
     event.preventDefault();
     try {
       const $purchasePriceInput = document.querySelector("#purchase-price");
@@ -44,8 +42,8 @@ class WebApp {
       const lottoCount = purchasedPrice / LOTTO_PRICE;
       const purchasedLottos = this.#lottoController.issueLottos(lottoCount);
 
-      renderLottoTicket(purchasedLottos);
-      renderWinningInput();
+      renderPurchasedLottos(purchasedLottos);
+      renderWinningNumInput();
 
       this.#purchaseForm.reset();
     } catch (error) {
@@ -53,7 +51,7 @@ class WebApp {
     }
   }
 
-  #handleWinningResult(event) {
+  #showLottoResult(event) {
     event.preventDefault();
     const winningForm = event.target;
 
@@ -76,7 +74,7 @@ class WebApp {
     }
   }
 
-  #handleModalClick(event) {
+  #onModalClick(event) {
     const { id } = event.target;
 
     if (id === "modal-close-btn") {
@@ -84,13 +82,11 @@ class WebApp {
     }
 
     if (id === "restart-button") {
-      this.#handleRestart();
+      this.#restartGame();
     }
   }
 
-  #handleRestart() {
-    this.#lottoController.reset();
-
+  #restartGame() {
     document.querySelector("#lotto-count-text").textContent = "";
     document.querySelector("#lotto-list").innerHTML = "";
 

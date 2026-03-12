@@ -6,7 +6,7 @@ const NumberInput = (name) => `
   />
 `;
 
-export const WinningNumberGroup = () => `
+export const WinningNumberInput = () => `
   <div class="winning-numbers-container">
     <label>당첨 번호</label>
     <div class="winning-number-wrapper">
@@ -17,7 +17,7 @@ export const WinningNumberGroup = () => `
   </div>
 `;
 
-export const BonusNumberGroup = () => `
+export const BonusNumberInput = () => `
   <div class="bonus-number-container">
     <label for="bonus-number">보너스 번호</label>
     ${NumberInput("bonus-number")}

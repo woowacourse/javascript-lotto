@@ -1,4 +1,4 @@
 import WebApp from "./controller/WebApp";
 
 const webApp = new WebApp();
-webApp.initEvents();
+webApp.bindEvents();

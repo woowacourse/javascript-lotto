@@ -1,9 +1,9 @@
 import {
-  BonusNumberGroup,
-  WinningNumberGroup,
+  BonusNumberInput,
+  WinningNumberInput,
 } from "../../components/LottoWinningForm";
 
-export const renderWinningInput = () => {
+export const renderWinningNumInput = () => {
   const winningInputWrapper = document.querySelector("#winning-input-wrapper");
   const winningNumbersContainer = document.querySelector(
     "#winning-numbers-container",
@@ -12,8 +12,8 @@ export const renderWinningInput = () => {
     "#bonus-number-container",
   );
 
-  winningNumbersContainer.innerHTML = WinningNumberGroup();
-  bonusNumberContainer.innerHTML = BonusNumberGroup();
+  winningNumbersContainer.innerHTML = WinningNumberInput();
+  bonusNumberContainer.innerHTML = BonusNumberInput();
 
   winningInputWrapper.classList.remove("hidden");
 };

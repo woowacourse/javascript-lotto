@@ -1,6 +1,6 @@
 import { LottoTicket } from "../../components/LottoTicket";
 
-export const renderLottoTicket = (lottos) => {
+export const renderPurchasedLottos = (lottos) => {
   const countText = document.querySelector("#lotto-count-text");
   const lottoList = document.querySelector("#lotto-list");
 
