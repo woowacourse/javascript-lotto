@@ -12,10 +12,18 @@ describe("LottoMachine method test", () => {
     );
   });
 
+  test("구매단위와 맞아야 계산가능", () => {
+    const money = new Money(1050);
+    expect(() => testingLottoMachine.buyLottos(money)).toThrow(
+      LottoMachine.ERROR.INVALID_UNIT,
+    );
+  });
+
   test("5000원으로 5장 구매 성공", () => {
-    const money = new Money(5000);
-    const lottos = testingLottoMachine.buyLottos(money);
+    const userMoney = new Money(5000);
+    const { lottos, money } = testingLottoMachine.buyLottos(userMoney);
     expect(lottos[0]).toBeInstanceOf(Lotto);
     expect(lottos).toHaveLength(5);
+    expect(money.getAmount()).toBe(5000);
   });
 });

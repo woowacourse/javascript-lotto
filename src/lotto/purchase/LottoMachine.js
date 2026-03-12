@@ -5,6 +5,7 @@ export default class LottoMachine {
 
   static ERROR = {
     NOT_ENOUGH: "돈이 너무 적습니다",
+    INVALID_UNIT: "구매 단위로 구매 가능합니다",
   };
 
   #picker;
@@ -19,7 +20,16 @@ export default class LottoMachine {
       throw new Error(LottoMachine.ERROR.NOT_ENOUGH);
     }
 
+    if (amount % LottoMachine.UNIT !== 0) {
+      throw new Error(LottoMachine.ERROR.INVALID_UNIT);
+    }
+
     const count = Math.floor(amount / LottoMachine.UNIT);
-    return Array.from({ length: count }, () => new Lotto(this.#picker()));
+    const lottos = Array.from(
+      { length: count },
+      () => new Lotto(this.#picker()),
+    );
+
+    return { lottos, money };
   }
 }

@@ -10,7 +10,7 @@ describe("PurchaseLottoUseCase", () => {
 
   test("5000원으로 5장 구매", () => {
     const money = new Money(5000);
-    const lottos = purchaseLottoUseCase.execute(money);
+    const { lottos } = purchaseLottoUseCase.execute(money);
     expect(lottos).toHaveLength(5);
     expect(lottos[0]).toBeInstanceOf(Lotto);
   });
