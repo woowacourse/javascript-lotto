@@ -1,3 +1,5 @@
+import WebLottoManager from "../src/WebLottoManager";
+
 describe("WebLottoManager 테스트", () => {
   const mockGenerator = () => [1, 2, 3, 4, 5, 6];
 
