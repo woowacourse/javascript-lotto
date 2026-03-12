@@ -40,7 +40,35 @@ export const webInputReader = {
 
   readRetry() {
     return new Promise((resolve) => {
-      return;
+      const myLotto = document.getElementById("myLotto");
+      const winningDiv = document.getElementById("winningDiv");
+      const getResultButton = document.getElementById("getResultButton");
+      const resultModal = document.getElementById("resultModal");
+
+      const purchaseInput = document.getElementById('purchaseInput').value;
+      const winningInput = document.getElementsByClassName('winningInput').value;
+      const bonusInput = document.getElementById("bonusInput").value;
+
+      const retryButton = document.getElementById("retryButton");
+
+      const onClick = () => {
+        myLotto.style.display = 'none';
+        winningDiv.style.display = 'none';
+        getResultButton.style.display = 'none';
+        resultModal.style.display = 'none';
+
+        document.querySelectorAll("input[type=number]").forEach((item) => {
+          item.value = "";
+        })
+
+        document.querySelectorAll('.myLottoListLi').forEach((element) => {
+          element.remove();
+        })
+
+        resolve('y');
+      }
+
+      retryButton.addEventListener('click', onClick);
     })
   }
 }

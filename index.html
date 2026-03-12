@@ -16,13 +16,14 @@
       <h1>내 번호 당첨 확인</h1>
     </div>
 
-    <form>
+    <form id="purchaseForm">
       <label for="purchaseInput">구입할 금액을 입력해주세요.</label>
       <input type="number" id="purchaseInput" placeholder="금액" />
       <button type="button" id="purchaseButton">구입</button>
     </form>
 
-    <div id="myLotto">
+    <div id="myLotto" style="display: none;">
+      <p id="myLottoP"></p>
       <ul id="myLottoLists">
       </ul>
     </div>
