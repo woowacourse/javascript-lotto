@@ -10,6 +10,18 @@ export default class ConsoleUI {
     return this.#inputView.readPurchaseAmount();
   }
 
+  async readWinningLottoNumber() {
+    return this.#inputView.readWinningLottoNumber();
+  }
+
+  async readBonusNumber() {
+    return this.#inputView.readWinningBonusNumber();
+  }
+
+  async readAskRetry() {
+    return this.#inputView.readAskRetry();
+  }
+
   printLottos(lottos) {
     this.#outputView.printLottos(lottos);
   }

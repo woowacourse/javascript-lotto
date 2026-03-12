@@ -1,6 +1,6 @@
 import { randomPicker } from "./infra/randomPicker.js";
-import LottoMachine from "./lotto/purchase/LottoMachine.js";
-import PurchaseLottoUseCase from "./lotto/purchase/PurchaseLottoUseCase.js";
+import LottoMachine from "./features/purchase/LottoMachine.js";
+import PurchaseLottoUseCase from "./features/purchase/PurchaseLottoUseCase.js";
 
 import inputView from "./ui/console/ConsoleInputView.js";
 import outputView from "./ui/console/ConsoleOutputView.js";
