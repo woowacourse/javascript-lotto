@@ -1,16 +1,254 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Lotto</title>
+    <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+    <div class="page-shell" aria-hidden="true">
+      <header class="site-header">
+        <div class="site-header-inner">
+          <p class="site-brand">🎱 행운의 로또</p>
+        </div>
+      </header>
+
+      <main class="site-main">
+        <div id="app">
+          <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
+
+          <section class="purchase-section">
+            <h2>구입할 금액을 입력해주세요.</h2>
+            <form class="purchase-form">
+              <fieldset class="purchase-fieldset">
+                <legend class="sr-only">구입 정보</legend>
+                <label class="sr-only" for="purchase-amount">구입 금액</label>
+                <input
+                  id="purchase-amount"
+                  type="number"
+                  class="purchase-input"
+                  placeholder="금액"
+                  min="1000"
+                  required
+                />
+                <button type="submit" class="purchase-button">구입</button>
+              </fieldset>
+            </form>
+          </section>
+
+          <section class="lotto-section">
+            <div class="section-label-row">
+              <h2>구매한 로또 목록</h2>
+              <p class="section-caption">총 20개를 구매하였습니다.</p>
+            </div>
+            <ul class="lotto-list">
+              <li>12, 28, 22, 37, 19, 23</li>
+              <li>03, 09, 11, 17, 35, 42</li>
+              <li>01, 07, 14, 26, 31, 44</li>
+              <li>05, 08, 21, 24, 33, 40</li>
+              <li>06, 13, 18, 27, 34, 41</li>
+              <li>02, 10, 16, 25, 32, 45</li>
+              <li>04, 15, 20, 29, 36, 43</li>
+              <li>07, 12, 18, 23, 30, 39</li>
+              <li>08, 11, 19, 22, 34, 38</li>
+              <li>09, 14, 21, 28, 35, 42</li>
+              <li>01, 05, 17, 24, 31, 44</li>
+              <li>02, 06, 13, 26, 33, 41</li>
+              <li>03, 10, 16, 27, 32, 45</li>
+              <li>04, 08, 20, 25, 36, 43</li>
+              <li>05, 09, 15, 29, 37, 40</li>
+              <li>06, 11, 18, 23, 34, 42</li>
+              <li>07, 12, 19, 28, 35, 44</li>
+              <li>08, 13, 21, 24, 33, 41</li>
+              <li>09, 14, 20, 27, 32, 45</li>
+              <li>10, 15, 22, 30, 36, 43</li>
+            </ul>
+          </section>
+
+          <section class="winning-section">
+            <h2>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h2>
+            <form class="winning-form">
+              <fieldset class="winning-field-group">
+                <legend class="field-label">당첨 번호</legend>
+                <div class="winning-numbers-group">
+                  <label class="sr-only" for="winning-number-1"
+                    >당첨 번호 1</label
+                  >
+                  <input
+                    id="winning-number-1"
+                    type="number"
+                    class="winning-input"
+                    min="1"
+                    max="45"
+                    required
+                    aria-label="당첨 번호 1"
+                  />
+                  <label class="sr-only" for="winning-number-2"
+                    >당첨 번호 2</label
+                  >
+                  <input
+                    id="winning-number-2"
+                    type="number"
+                    class="winning-input"
+                    min="1"
+                    max="45"
+                    required
+                    aria-label="당첨 번호 2"
+                  />
+                  <label class="sr-only" for="winning-number-3"
+                    >당첨 번호 3</label
+                  >
+                  <input
+                    id="winning-number-3"
+                    type="number"
+                    class="winning-input"
+                    min="1"
+                    max="45"
+                    required
+                    aria-label="당첨 번호 3"
+                  />
+                  <label class="sr-only" for="winning-number-4"
+                    >당첨 번호 4</label
+                  >
+                  <input
+                    id="winning-number-4"
+                    type="number"
+                    class="winning-input"
+                    min="1"
+                    max="45"
+                    required
+                    aria-label="당첨 번호 4"
+                  />
+                  <label class="sr-only" for="winning-number-5"
+                    >당첨 번호 5</label
+                  >
+                  <input
+                    id="winning-number-5"
+                    type="number"
+                    class="winning-input"
+                    min="1"
+                    max="45"
+                    required
+                    aria-label="당첨 번호 5"
+                  />
+                  <label class="sr-only" for="winning-number-6"
+                    >당첨 번호 6</label
+                  >
+                  <input
+                    id="winning-number-6"
+                    type="number"
+                    class="winning-input"
+                    min="1"
+                    max="45"
+                    required
+                    aria-label="당첨 번호 6"
+                  />
+                </div>
+              </fieldset>
+
+              <fieldset class="bonus-number-group">
+                <legend class="field-label">보너스 번호</legend>
+                <label class="sr-only" for="bonus-number">보너스 번호</label>
+                <input
+                  id="bonus-number"
+                  type="number"
+                  class="bonus-input"
+                  min="1"
+                  max="45"
+                  required
+                />
+              </fieldset>
+
+              <button type="submit" class="winning-button">
+                결과 확인하기
+              </button>
+            </form>
+          </section>
+
+          <section class="result-section hidden">
+            <h2>당첨 통계</h2>
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th>일치 개수</th>
+                  <th>당첨금</th>
+                  <th>당첨 개수</th>
+                </tr>
+              </thead>
+              <tbody class="result-body"></tbody>
+            </table>
+            <p class="profit-rate"></p>
+            <button type="button" class="retry-button">다시 시작하기</button>
+          </section>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer-inner">
+          <p class="site-footer-label">Copyright 2023. woowacourse</p>
+        </div>
+      </footer>
     </div>
+
+    <!-- <div class="modal-overlay" role="presentation">
+      <section
+        class="result-modal"
+        aria-modal="true"
+        aria-labelledby="result-modal-title"
+        role="dialog"
+      >
+        <button class="modal-close-button" type="button" aria-label="모달 닫기">
+          &times;
+        </button>
+        <h2 id="result-modal-title" class="result-modal-title">
+          🏆 당첨 통계 🏆
+        </h2>
+
+        <table class="modal-result-table">
+          <caption class="sr-only">당첨 통계 표</caption>
+          <thead>
+            <tr>
+              <th>일치 갯수</th>
+              <th>당첨금</th>
+              <th>당첨 갯수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td>n개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td>n개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td>n개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td>n개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td>n개</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="modal-profit-text">당신의 총 수익률은 %입니다.</p>
+        <button class="modal-retry-button" type="button">다시 시작하기</button>
+      </section>
+    </div> -->
+
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
