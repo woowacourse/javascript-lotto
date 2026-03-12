@@ -22,6 +22,8 @@
     --footer-fg: #4E5BA6;
     --footer-border: #D9D9D9;
 
+    --dialog-closer-fg: #000000;
+
     --error-border: #F73711;
     --error-fg: #ED360E;
 
@@ -94,6 +96,10 @@ footer p {
     font-weight: 700;
     color: var(--footer-fg);
     text-align: center;
+}
+
+dialog {
+    padding: 16px;
 }
 
 #header nav {
@@ -255,4 +261,19 @@ input#purchase-amount {
 
 .fade-in {
     transition: opacity 300ms ease-in;
+}
+
+.dialog-closer {
+    display: block;
+    width: 100%;
+    background: none;
+    font-size: 24px;
+    font-weight: 100;
+    padding: 0;
+    color: var(--dialog-closer-fg);
+    text-align: right;
+}
+
+.dialog-closer:hover {
+    background: none;
 }
