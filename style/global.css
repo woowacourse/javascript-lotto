@@ -1,0 +1,53 @@
+:root {
+  --lotto-primary: #4e5ba6;
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b4b4b4;
+  --lotto-greyscale-4: #8b8b8b;
+  --lotto-greyscale-5: #000000;
+
+  --font-size-title: 24px;
+  --font-size-subtitle: 20px;
+  --font-size-body: 15px;
+  --font-size-caption: 14px;
+
+  --font-weight-extrabold: 800;
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-regular: 400;
+}
+
+.title {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 36px;
+  letter-spacing: 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-semibold);
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.body {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.placeholder {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.caption {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  line-height: 16px;
+  letter-spacing: 1.25px;
+}

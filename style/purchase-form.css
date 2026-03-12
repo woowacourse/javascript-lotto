@@ -1,0 +1,18 @@
+.purchase-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.purchase-form__input-group {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.purchase-form__input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 8px;
+}
