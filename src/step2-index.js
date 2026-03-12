@@ -50,6 +50,8 @@ let lottoMachine = null;
     try {
       Validator.validateLottoNumber(winningLottoNumber);
       Validator.validateBonusNumber(winningLottoNumber, bonusNumber);
+      const matchResultDialog = document.getElementById('lotto-match-result-content');
+      matchResultDialog.showModal();
     } catch (err) {
       NodeRenderer.renderError(winningLottoInputContainer, err.message);
     }
