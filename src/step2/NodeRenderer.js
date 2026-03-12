@@ -28,6 +28,14 @@ const NodeRenderer = {
     node.id = 'puchase-lotto-count-message';
     target.appendChild(node);
   },
+
+  renderPurchaseLottoList(target, lottos) {
+    const alreadyExist = document.getElementById('purchase-lotto-list');
+    if (alreadyExist) return;
+    const node = NodeFactory.createListNode(lottos);
+    node.id = 'purchase-lotto-list';
+    target.appendChild(node);
+  }
 }
 
 export default NodeRenderer;

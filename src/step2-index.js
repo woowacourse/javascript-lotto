@@ -23,6 +23,7 @@ let lottoMachine = null;
       lottoMachine = new LottoMachine(purchaseAmount);
       const purchaseLottoContentContainer = document.getElementById('purchase-lotto-content');
       NodeRenderer.renderPurchaseLottoCount(purchaseLottoContentContainer, lottoMachine.getLottos().length);
+      NodeRenderer.renderPurchaseLottoList(purchaseLottoContentContainer, lottoMachine.getLottos().map((lotto) => lotto.getLottoNumber()));
     } catch (err) {
       NodeRenderer.renderError(purchaseAmountContainer, err.message);
     }

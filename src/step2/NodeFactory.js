@@ -11,6 +11,17 @@ const NodeFactory = {
     node.innerHTML = message;
     node.classList.add('text-body');
     return node;
+  },
+
+  createListNode(items) {
+    const node = document.createElement('ul');
+    node.classList.add('text-body');
+    items.forEach((item) => {
+      const childNode = document.createElement('li');
+      childNode.innerHTML = `<span>🎟️</span> ${item.join(', ')}`;
+      node.appendChild(childNode);
+    });
+    return node;
   }
 }
 
