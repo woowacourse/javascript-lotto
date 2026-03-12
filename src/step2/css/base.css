@@ -1,4 +1,15 @@
 :root {
+
+    --font-system: "Roboto" system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, sans-serif;
+    --font-title: 800 24px/1.2 var(--font-system);
+    --font-subtitle: 600 20px/1.2 var(--font-system);
+    --font-body: 400 15px/1.4 var(--font-system);
+    --font-placeholder: 400 15px/1.4 var(--font-system);
+    --font-button-caption: 700 14px/1.2 var(--font-system);
+
+    --font-system: system-ui;
+    --font-title: 800 24px/1.2 var(--font-system);
+
     --navbar-bg: #4E5BA6;
     --navbar-fg: #FFFFFF;
 
@@ -17,7 +28,6 @@
 
 * {
     box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -163,12 +173,13 @@ CONTENT
 #lotto-content ul {
     display: flex;
     flex-direction: column;
-    gap: 12px;
 }
 
 #lotto-content ul li {
     display: flex;
     gap: 8px;
+    line-height: 1.2;
+    align-items: center;
 }
 
 #lotto-content ul li span {
@@ -201,19 +212,29 @@ CONTENT
     align-items: end;
 }
 
-.lotto-title {
-    font-size: 24px;
-    font-weight: 800;
+/* Utils */
+
+.text-title {
+    font: var(--font-title);
+}
+
+.text-subtitle {
+    font: var(--font-subtitle);
+}
+
+.text-body {
+    font: var(--font-body);
+}
+
+.text-placeholder {
+    font: var(--font-placeholder);
+}
+
+.text-caption {
+    font: var(--font-button-caption);
 }
 
 .row-line-between {
     display: flex;
     justify-content: space-between;
-}
-
-.text-base {
-    font-size: 15px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    line-height: 24px;
 }
