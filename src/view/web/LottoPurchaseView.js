@@ -1,4 +1,4 @@
-import { lottoTicket } from "../../components/lottoTicket";
+import { LottoTicket } from "../../components/llottoTicket";
 
 export const renderLottoTicket = (lottos) => {
   const lottoTicketContainer = document.querySelector(
@@ -8,6 +8,6 @@ export const renderLottoTicket = (lottos) => {
   lottoTicketContainer.innerHTML = `
   <p>총 ${lottos.length}개를 구매하였습니다.</p>
   <ul>
-    ${lottos.map((lotto) => lottoTicket(lotto)).join("")}
+    ${lottos.map((lotto) => LottoTicket(lotto)).join("")}
   </ul>`;
 };

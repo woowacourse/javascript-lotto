@@ -2,6 +2,7 @@ import { LOTTO_PRICE } from "./constants/lottoInfo";
 import LottoController from "./controller/LottoController";
 import Validator from "./utils/Validator";
 import { renderLottoTicket } from "./view/web/LottoPurchaseView";
+import { renderWinningInput } from "./view/web/LottoWinningView";
 
 const lottoController = new LottoController();
 
@@ -21,6 +22,7 @@ const handlePurchase = (event) => {
     const lottoCount = purchasedPrice / LOTTO_PRICE;
     const purchasedLottos = lottoController.issueLottos(lottoCount);
     renderLottoTicket(purchasedLottos);
+    renderWinningInput();
   } catch (error) {
     alert(error.message);
   }

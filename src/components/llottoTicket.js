@@ -1,4 +1,4 @@
-export const lottoTicket = (lotto) => {
+export const LottoTicket = (lotto) => {
   const numbers = lotto.join(", ");
 
   return `

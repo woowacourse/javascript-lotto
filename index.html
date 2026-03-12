@@ -14,13 +14,19 @@
       <main>
         <h2>🎱 내 번호 당첨 확인 🎱</h2>
 
-        <form>
-          <label for="purchase-price">구입할 금액을 입력해주세요.</label>
-          <input type="text" id="purchase-price" placeholder="금액" />
-          <button type="submit">구입</button>
-        </form>
+        <div id="purchase-input-wrapper">
+          <p class="form-title">구입할 금액을 입력해주세요.</p>
+
+          <form id="purchase-form">
+            <label for="purchase-price">구입 금액</label>
+            <input type="text" id="purchase-price" placeholder="금액" />
+            <button type="submit">구입</button>
+          </form>
+        </div>
 
         <div class="lotto-ticket-container"></div>
+
+        <div id="winning-input-wrapper"></div>
       </main>
 
       <footer><small>Copyright 2023. woowacourse</small></footer>
