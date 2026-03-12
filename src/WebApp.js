@@ -1,6 +1,12 @@
 import LottoMachine from "./Domain/LottoMachine.js";
+import LottoResult from "./Domain/LottoResult.js";
+import LuckyNumbers from "./Domain/LuckyNumbers.js";
 
 class WebApp {
+  constructor() {
+    this.lottos = [];
+  }
+
   run() {
     // DOM 요소 가져오기
     const purchaseForm = document.querySelector("#purchase-price-form");
@@ -13,7 +19,7 @@ class WebApp {
     // 콘솔관련 유틸을 제거하기 위한 재정의
     const generateRandomNumber = () => {
       const nums = new Set();
-      while(nums.size < 6) {
+      while (nums.size < 6) {
         nums.add(Math.floor(Math.random() * 45) + 1);
       }
 
@@ -35,6 +41,8 @@ class WebApp {
           generateRandomNumber,
         );
 
+        this.lottos = lottos;
+
         // 불러온 로또를 기반으로 로또 목록 출력 필요
         // 구입금액 입력 전 숨겨져 있던 창 숨김해제
         lottoListSection.classList.remove("hidden");
@@ -54,7 +62,51 @@ class WebApp {
       }
     });
 
-    
+    // luckyNumbers 폼 제출 이벤트
+    const luckyNumbersForm = document.querySelector("#lucky-numbers-form");
+    const winningNumbersInputs = document.querySelectorAll(".winning-number");
+    const bonusNumberInput = document.querySelector("input.bonus-number");
+
+    const resultModal = document.querySelector("#result-modal");
+    const resultTableBody = document.querySelector("#result-table-body");
+    const profitRateText = document.querySelector("#profit-rate-text");
+
+    luckyNumbersForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      try {
+        const winningNumbers = Array.from(winningNumbersInputs).map((input) =>
+          Number(input.value),
+        );
+        const bonusNumber = bonusNumberInput.value;
+
+        const luckyNumbers = new LuckyNumbers(winningNumbers, bonusNumber);
+        const winningResult = LottoResult.calculateWinningResult(
+          this.lottos,
+          luckyNumbers,
+        );
+
+        const purchasePrice = Number(purchaseInput.value);
+        const profitRate = LottoResult.calculateProfitRate(
+          winningResult,
+          purchasePrice,
+        );
+
+        const resultHTML = `
+          <tr><td>3개</td><td>5,000</td><td>${winningResult.FIFTH}개</td></tr>
+          <tr><td>4개</td><td>50,000</td><td>${winningResult.FOURTH}개</td></tr>
+          <tr><td>5개</td><td>1,500,000</td><td>${winningResult.THIRD}개</td></tr>
+          <tr><td>5개+보너스볼</td><td>30,000,000</td><td>${winningResult.SECOND}개</td></tr>
+          <tr><td>6개</td><td>2,000,000,000</td><td>${winningResult.FIRST}개</td></tr>
+        `;
+        resultTableBody.innerHTML = resultHTML;
+        profitRateText.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
+
+        resultModal.classList.remove("hidden");
+      } catch (e) {
+        alert(e.message);
+      }
+    });
   }
 }
 
