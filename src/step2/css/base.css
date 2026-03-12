@@ -119,7 +119,7 @@ CONTENT
 
 #content {
     display: inline-block;
-    padding: 40px 16px;
+    padding: 0 16px;
     border: 1px solid var(--content-border);
     border-radius: 4px;
 }
@@ -127,6 +127,7 @@ CONTENT
 #content-title {
     color: var(--content-title-fg);
     text-align: center;
+    margin: 32px 0;
 }
 
 #purchase-amount-container {
@@ -137,6 +138,10 @@ CONTENT
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+}
+
+#purchase-amount-form label {
+    margin: 8px 0;
 }
 
 #purchase-amount-form > div {
@@ -152,8 +157,8 @@ input#purchase-amount {
     height: 36px;
 }
 
-#lotto-content > p {
-    margin-top: 28px;
+#lotto-content p {
+    margin: 24px 0 6px 0;
 }
 
 #lotto-content ul {
@@ -172,12 +177,17 @@ input#purchase-amount {
     font-size: 32px;
 }
 
-#winning-lotto-container {
+#winning-lotto-inputs {
     display: flex;
     justify-content: space-between;
 }
 
-#winning-lotto-container input[type="number"]{
+#winning-lotto-inputs label,
+#winning-lotto-inputs legend {
+    margin-bottom: 8px;
+}
+
+#winning-lotto-inputs input[type="number"]{
     width: 34px;
     height: 36px;
     border-radius: 4px;
@@ -186,7 +196,11 @@ input#purchase-amount {
     padding: 0 4px;
 }
 
-#winning-lotto button {
+#winning-lotto-content p {
+    margin: 12px 0;
+}
+
+#winning-lotto-content button {
     width: 100%;
     padding: 10px 0;
     margin: 24px 0;
