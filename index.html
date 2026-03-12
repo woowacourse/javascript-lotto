@@ -48,6 +48,43 @@
     </div>
 
     <button type="submit" id="getResultButton" style="display: none;">결과 확인하기</button>
+    
+    <div id="resultModal">
+      <h1>🏆 당첨 통계 🏆</h1>
+      <table>
+        <th>일치 갯수</th>
+        <th>당첨금</th>
+        <th>당첨 갯수</th>
+        <tr>
+          <td>3개</td>
+          <td class="prizeMoney" id="5thPrizeMoney"></td>
+          <td class="winningCount" id="5thWinningCount"></td>
+        </tr>
+        <tr>
+          <td>4개</td>
+          <td class="prizeMoney" id="4thPrizeMoney"></td>
+          <td class="winningCount" id="4thWinningCount"></td>
+        </tr>
+        <tr>
+          <td>5개</td>
+          <td class="prizeMoney" id="3rdPrizeMoney"></td>
+          <td class="winningCount" id="3rdWinningCount"></td>
+        </tr>
+        <tr>
+          <td>5개+보너스볼</td>
+          <td class="prizeMoney" id="2ndPrizeMoney"></td>
+          <td class="winningCount" id="2ndWinningCount"></td>
+        </tr>
+        <tr>
+          <td>6개</td>
+          <td class="prizeMoney" id="1stPrizeMoney"></td>
+          <td class="winningCount" id="1stWinningCount"></td>
+        </tr>
+      </table>
+      <p id="profitP"></p>
+      <button type="button" id="retryButton">다시 시작하기</button>
+    </div>
+    
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

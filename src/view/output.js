@@ -18,6 +18,7 @@ export const OutputView = {
   },
 
   outputWinningStatics(result) {
+    if (this.isWeb) webOutputPrinter.printLottoResult(result);
     const output = [
       "\n당첨 통계",
       "---------------",
@@ -31,6 +32,7 @@ export const OutputView = {
   },
 
   outputWinningProfit(profit) {
+    if (this.isWeb) webOutputPrinter.printProfit(profit);
     console.log(`총 수익률은 ${profit.toFixed(1)}%입니다.`);
   },
 

@@ -41,6 +41,8 @@ export const webInputReader = {
   },
 
   readRetry() {
-
+    return new Promise((resolve) => {
+      return;
+    })
   }
 }
