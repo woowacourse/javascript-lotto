@@ -138,3 +138,50 @@ footer {
   align-items: end;
   gap: 8px;
 }
+
+dialog {
+  border: none;
+  border-radius: 10px;
+}
+
+.close-icon {
+  display: block;
+  margin: 0 0 0 auto;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+table tr {
+  border-top: 1px solid #0000001f;
+  border-bottom: 1px solid #0000001f;
+}
+
+table th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+table th {
+  font-weight: 600;
+}
+
+.lotto-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 24px;
+  max-width: 400px;
+  padding: 16px;
+
+  background-color: var(--lotto-greyscale-1);
+}
+
+.lotto-result > h2 {
+  text-align: center;
+}
+
+.lotto-result > h3 {
+  text-align: center;
+}
