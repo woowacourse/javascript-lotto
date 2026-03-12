@@ -6,7 +6,7 @@ export const OutputView = {
   },
 
   outputLottoNumber(lottos) {
-    console.log(lottos);
+    lottos.forEach((lotto) => console.log(lotto.getNumbers()));
   },
 
   outputWinningStatics(result) {

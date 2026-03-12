@@ -1,6 +1,5 @@
 import { LOTTO_RANGE } from "../constants/constant.js";
 import { OutputView } from "../view/output.js";
-import { LottoWebOutputView } from "../view/LottoWebOutputView.js";
 
 class Lotto {
   #numbers;
@@ -37,10 +36,6 @@ class Lotto {
 
   #countMatches(winningLotto) {
     return this.#numbers.filter((n) => winningLotto.hasNumber(n)).length;
-  }
-
-  printLottos() {
-    OutputView.outputLottoNumber(this.#numbers);
   }
 
   getNumbers() {

@@ -14,7 +14,7 @@ class LottoController {
     const randomLottos = lottoService(count);
 
     OutputView.outputCount(count);
-    randomLottos.forEach((lotto) => lotto.printLottos());
+    OutputView.outputLottoNumber(randomLottos);
 
     const winningNumber = await InputView.inputWinningNumber();
     const bonusNumber = await InputView.inputBonusNumber(winningNumber);
