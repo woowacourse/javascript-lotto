@@ -1,6 +1,7 @@
-import { userLottoStore, winningLottoAndBonusNumberStore } from './stores.js';
+import { userLottoStore, winningLottoAndBonusNumberStore, winningNumbersAndBonusNumberFormStore } from './stores.js';
 import WinningLottoAndBonusNumber from '../step-1/WinningLottoAndBonusNumber.js';
 import Lotto from '../step-1/Lotto.js';
+import { validateBonusNumber, validateWinningNumber } from './validates.js';
 
 const WinningNumbersAndBonusNumberForm = {
   render(container) {
@@ -17,6 +18,7 @@ const WinningNumbersAndBonusNumberForm = {
     const winningLottoAndBonusNumberForm = document.createElement('form');
     const winningNumberInputs = Array.from({ length: 6 }).map(() => document.createElement('input'));
     const bonusNumberInput = document.createElement('input');
+    const errorMessageDiv = document.createElement('div');
     const resultCheckButton = document.createElement('button');
 
     winningLottoAndBonusNumberForm.id = 'winning-lotto-and-bonus-number-form';
@@ -27,18 +29,24 @@ const WinningNumbersAndBonusNumberForm = {
       input.className = 'winning-number-input';
       input.type = 'number';
       input.name = `winningNumber${i + 1}`;
+      input.addEventListener('input', this.handleWinningNumberInput);
     });
 
     bonusNumberInput.id = 'bonus-number-input';
     bonusNumberInput.type = 'number';
     bonusNumberInput.name = 'bonusNumber';
+    bonusNumberInput.addEventListener('input', this.handleBonusNumberInput);
+
+    errorMessageDiv.id = 'winning-numbers-and-bonus-number-error-message';
 
     resultCheckButton.id = 'result-check-button';
     resultCheckButton.type = 'submit';
     resultCheckButton.innerText = '결과 확인하기';
+    resultCheckButton.disabled = true;
 
     winningNumberInputs.forEach((input) => winningLottoAndBonusNumberForm.appendChild(input));
     winningLottoAndBonusNumberForm.appendChild(bonusNumberInput);
+    winningLottoAndBonusNumberForm.appendChild(errorMessageDiv);
     winningLottoAndBonusNumberForm.appendChild(resultCheckButton);
 
     container.appendChild(winningLottoAndBonusNumberForm);
@@ -51,6 +59,49 @@ const WinningNumbersAndBonusNumberForm = {
     const winningNumbers = [winningNumber1, winningNumber2, winningNumber3, winningNumber4, winningNumber5, winningNumber6].map(Number);
     const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(new Lotto(winningNumbers), Number(bonusNumber));
     winningLottoAndBonusNumberStore.setState({ winningLottoAndBonusNumber });
+  },
+
+  handleWinningNumberInput() {
+    const submitButton = document.getElementById('result-check-button');
+    const errorMessageDiv = document.getElementById('winning-numbers-and-bonus-number-error-message');
+
+    try {
+      const winningNumberInputs = document.querySelectorAll('.winning-number-input');
+      const winningNumbers = [...winningNumberInputs].map((input) => input.value);
+      winningNumbers.forEach((number) => validateWinningNumber(number));
+
+      winningNumbersAndBonusNumberFormStore.setState({ isValidWinningNumbers: true });
+      const { isValidBonusNumber } = winningNumbersAndBonusNumberFormStore.getState();
+      if (isValidBonusNumber) {
+        submitButton.disabled = false;
+      }
+      errorMessageDiv.innerText = '';
+    } catch (e) {
+      winningNumbersAndBonusNumberFormStore.setState({ isValidWinningNumbers: false });
+      submitButton.disabled = true;
+      errorMessageDiv.innerText = e.message;
+    }
+  },
+
+  handleBonusNumberInput(e) {
+    const submitButton = document.getElementById('result-check-button');
+    const errorMessageDiv = document.getElementById('winning-numbers-and-bonus-number-error-message');
+
+    try {
+      const bonusNumber = e.target.value;
+      validateBonusNumber(bonusNumber);
+
+      winningNumbersAndBonusNumberFormStore.setState({ isValidBonusNumber: true });
+      const { isValidWinningNumbers } = winningNumbersAndBonusNumberFormStore.getState();
+      if (isValidWinningNumbers) {
+        submitButton.disabled = false;
+      }
+      errorMessageDiv.innerText = '';
+    } catch (e) {
+      winningNumbersAndBonusNumberFormStore.setState({ isValidBonusNumber: false });
+      submitButton.disabled = true;
+      errorMessageDiv.innerText = e.message;
+    }
   },
 
   init() {

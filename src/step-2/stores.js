@@ -15,6 +15,11 @@ export const lottoResultStore = createStore({
   returnRate: null,
 });
 
+export const winningNumbersAndBonusNumberFormStore = createStore({
+  isValidWinningNumbers: false,
+  isValidBonusNumber: false,
+});
+
 userLottoStore.appendTrigger('winning-lotto-and-bonus-number-store', () => {
   winningLottoAndBonusNumberStore.setState({ winningLottoAndBonusNumber: null });
 });
