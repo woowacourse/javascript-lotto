@@ -4,11 +4,26 @@
  */
 import loadComponent from "./ui/loadComponent.js";
 import { parseStringToNumber } from "./utils/parser";
-import { validatePurchaseAmount } from "./utils/validator.js";
-import { getPurchaseAmountInput } from "./view/webInputView.js";
+import {
+  validateBonusNumber,
+  validateLottoNumbers,
+  validatePurchaseAmount,
+} from "./utils/validator.js";
+import {
+  getBonusNumberInput,
+  getPurchaseAmountInput,
+  getWinningNumbersInput,
+} from "./view/webInputView.js";
 import { generateLottos } from "./generateLottos";
 import { generateRandomNumbers } from "./generateRandomNumbers.js";
-import { renderLottoList, renderPurchaseCount } from "./view/webOutputView";
+import {
+  renderLottoList,
+  renderPurchaseCount,
+  renderStatistics,
+} from "./view/webOutputView";
+import WinningLotto from "./WinningLotto";
+import { getReturnRate } from "./utils/getReturnRate.js";
+import { getPrizeList } from "./getPrizeList.js";
 
 loadComponent("main", "./src/ui/html/main.html").then(() => {
   const modalContainer = document.getElementById("modal-container");
@@ -41,7 +56,22 @@ loadComponent("main", "./src/ui/html/main.html").then(() => {
   document
     .querySelector("#winning-input-section button")
     .addEventListener("click", () => {
-      document.getElementById("modal-container").style.display = "flex";
+      try {
+        const winningNumbers = getWinningNumbersInput().map((number) =>
+          parseStringToNumber(number),
+        );
+        const bonusNumber = parseStringToNumber(getBonusNumberInput());
+        validateLottoNumbers(winningNumbers);
+        validateBonusNumber(bonusNumber, winningNumbers);
+
+        const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        const prizeList = getPrizeList(generatedLottos, winningLotto);
+        const profitRate = getReturnRate(prizeList, purchaseAmount);
+        renderStatistics(prizeList, profitRate);
+        modalContainer.style.display = "flex";
+      } catch (e) {
+        alert(e.message);
+      }
     });
 
   // 모달이 열려있을 때 모달 바깥영역을 눌렀을 떄 이벤트
