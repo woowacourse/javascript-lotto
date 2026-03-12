@@ -36,8 +36,8 @@ class MainApp extends HTMLElement {
           </div>
         </div>
 
-        <!-- 3. 로또 및 로또 번호 & 보너스 번호 입력 폼 -->
         <div class="card-hidden-section" ${this.#isShowLottos ? "" : "hidden"}>
+          <!-- 3. 구입 로또 -->
           <div class="lottos-container">
             <div class="lottos-container-header">
               총 ${mockLottoCount}개를 구매하셨습니다.
@@ -53,6 +53,38 @@ class MainApp extends HTMLElement {
               )
               .join("")}
           </div>
+          <!-- 당첨 번호 & 보너스 번호 입력 폼 -->
+          <div class="userLotto-container">
+            <label class="userLotto-header" for="">
+              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+            </label>
+            <div class="input-container">
+              <!-- 당첨 번호 -->
+              <div class="winningNumber-container">
+                <label class="winningNumber-container-header" for="">
+                  당첨 번호
+                </label>
+                <div class="winningNumber-input-container">
+                  <input type="text" class="winningNumber-line" />
+                  <input type="text" class="winningNumber-line" />
+                  <input type="text" class="winningNumber-line" />
+                  <input type="text" class="winningNumber-line" />
+                  <input type="text" class="winningNumber-line" />
+                  <input type="text" class="winningNumber-line" />
+                </div>
+              </div>
+              <div class="bonusNumber-container">
+                <label class="bonusNumber-container-header" for="">
+                  당첨 번호
+                </label>
+
+                <input type="text" class="bonusNumber-line" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 결과 확인하기 버튼 -->
+          <button class="result-button">결과 확인하기</button>
         </div>
       </div>
     </div>`;
