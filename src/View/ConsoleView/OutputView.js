@@ -1,5 +1,5 @@
-import Console from "../utils/Console.js";
-import { AMOUNT_PRICE } from "../constants/lottoConstants.js";
+import Console from "../../utils/Console.js";
+import { AMOUNT_PRICE } from "../../constants/lottoConstants.js";
 
 export class OutputView {
   printAmount(price) {
