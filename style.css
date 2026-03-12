@@ -47,6 +47,8 @@ main {
 }
 
 .card {
+  box-sizing: border-box;
+  padding: 0 16px 0 16px;
   display: flex;
   width: 414px;
   min-height: 727px;
@@ -60,9 +62,7 @@ main {
 }
 
 .purchase-section {
-  box-sizing: border-box;
   width: 100%;
-  padding: 0 16px 0 16px;
 }
 
 .purchase-amount-form {
@@ -92,4 +92,27 @@ main {
   align-self: flex-end;
   border-radius: 4px;
   border: none;
+}
+
+.purchased-lotto-section {
+  width: 100%;
+}
+
+.lotto-number-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+}
+
+.lotto-emoji {
+  font-size: 34px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-greyscale-5);
+}
+
+.lotto-numbers {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-greyscale-5);
 }
