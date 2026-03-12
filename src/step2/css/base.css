@@ -27,8 +27,12 @@
     box-sizing: border-box;
 }
 
-body {
+body, h1, h2, h3, h4, h5, h6, p, ul, li, fieldset {
     margin: 0;
+    padding: 0;
+}
+
+body {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -63,25 +67,12 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-p {
-    margin: 0;
-}
-
 ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  padding: 0;
-  margin: 0;
 }
 
 fieldset {
-    margin: 0;
     min-width: 0;
-    padding: 0;
     border: none;
 }
 
@@ -98,7 +89,6 @@ footer p {
     font-weight: 700;
     color: var(--footer-fg);
     text-align: center;
-    margin: 0;
 }
 
 #header nav {
@@ -106,7 +96,6 @@ footer p {
 }
 
 #header nav h1 {
-    margin: 0;
     padding: 14px 0 14px 130px;
     color: var(--navbar-fg);
 }
