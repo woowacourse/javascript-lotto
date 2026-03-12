@@ -1,6 +1,6 @@
 import LottoController from "./LottoController.js";
 import WebView from "../view/WebView.js";
-import Lotto from "../model/Lotto.js"; 
+import Lotto from "../model/Lotto.js";
 import Validator from "../utils/Validator.js";
 
 class webApp {
@@ -19,6 +19,16 @@ class webApp {
       e.preventDefault();
       this.#handleResult();
     });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        if (!this.view.$modalSection.classList.contains("hidden")) {
+          e.preventDefault(); 
+          location.reload();  
+        }
+      }
+    });
+
   }
 
   #handlePurchase() {
@@ -35,7 +45,7 @@ class webApp {
       this.view.renderLottosContainer(purchasedLottos);
 
     } catch (error) {
-    
+
       alert(error.message);
       return;
     }
