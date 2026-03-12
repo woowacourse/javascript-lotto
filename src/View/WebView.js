@@ -47,6 +47,10 @@ const WebView = {
     Validator.stringIsNumber(bonusNumberInput);
 
     const bonusNumber = Number(bonusNumberInput);
+
+    Validator.positiveNumber(bonusNumber);
+    Validator.numberLower(LOTTO.LOWER, bonusNumber);
+    Validator.numberUpper(LOTTO.UPPER, bonusNumber);
     return bonusNumber;
   },
 };
