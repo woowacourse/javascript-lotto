@@ -1,4 +1,4 @@
-import { userLottoStore, winningLottoAndBonusNumberStore } from './stores.js';
+import { lottoResultStore, userLottoStore, winningLottoAndBonusNumberStore } from './stores.js';
 import LottoResultGenerator from '../step-1/LottoResultGenerator.js';
 import { RANK_RULES } from '../constants/rank.js';
 
@@ -6,15 +6,11 @@ const LottoResult = {
   render(container) {
     this.init();
 
-    if (!userLottoStore.hasTrigger('lotto-info')) {
-      userLottoStore.appendTrigger('lotto-result', () => this.render(container));
+    if (!lottoResultStore.hasTrigger('lotto-result')) {
+      lottoResultStore.appendTrigger('lotto-result', () => this.render(container));
     }
 
-    if (!winningLottoAndBonusNumberStore.hasTrigger('lotto-result')) {
-      winningLottoAndBonusNumberStore.appendTrigger('lotto-result', () => this.render(container));
-    }
-
-    if (!winningLottoAndBonusNumberStore.getState().winningLottoAndBonusNumber) return;
+    if (!lottoResultStore.getState().ranks) return;
 
     const { ranks, returnRate } = this.generateLottoResult();
 

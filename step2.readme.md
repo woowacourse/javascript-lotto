@@ -14,8 +14,6 @@
 
 ## 03.11 18:54
 
-1. store끼리 의존성 추가 -> userLotto가 수정되면 winning도 초기화되게
-2. 1이 성공하면 lottoResultStore 추가 -> LottoResult에서 lottoResultStore만 신경쓰면 되게
 3. input 유효성검사
 4. input 파싱? store에 언제 객체를 생성해서 넣을 건지 고민
 5. 1-2 해결되면 초기화 이슈 없을 것으로 예상... 아니라면 수정

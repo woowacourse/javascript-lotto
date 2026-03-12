@@ -5,10 +5,10 @@ import Lotto from '../step-1/Lotto.js';
 const WinningNumbersAndBonusNumberForm = {
   render(container) {
     this.init();
-    
-    if (!userLottoStore.hasTrigger('winning-numbers-and-bonus-number')) {
+
+    if (!userLottoStore.hasTrigger('winning-numbers-and-bonus-number-form')) {
       userLottoStore.appendTrigger(
-        'winning-numbers-and-bonus-number', () => this.render(container),
+        'winning-numbers-and-bonus-number-form', () => this.render(container),
       );
     }
 
