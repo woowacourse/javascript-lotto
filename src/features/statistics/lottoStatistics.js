@@ -6,7 +6,7 @@ export const statistics = (lotto, winningNumber) => {
   return rank;
 };
 
-export const calculateYield = (purchaseAmount, totalWinningAmount) => {
+export const calculateProfit = (purchaseAmount, totalWinningAmount) => {
   const yieldRate = (totalWinningAmount / purchaseAmount) * 100;
   return Number(yieldRate.toFixed(1));
 };

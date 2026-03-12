@@ -1,5 +1,5 @@
 import {
-  calculateYield,
+  calculateProfit,
   statistics,
 } from "../../../../src/features/statistics/lottoStatistics.js";
 
@@ -16,6 +16,6 @@ describe("8000원으로 로또 3등이 당첨됐을때", () => {
   });
 
   test("수익률 계산 8000원으로 5000원 벌면 62.5%", () => {
-    expect(calculateYield(8000, 5000)).toBe(62.5);
+    expect(calculateProfit(8000, 5000)).toBe(62.5);
   });
 });
