@@ -6,7 +6,7 @@ import LottoStore from "./model/LottoStore.js";
 import Money from "./model/Money.js";
 import Lotto from "./model/Lotto.js";
 import WinningLotto from "./model/WinningLotto.js";
-import { INPUT_MESSAGE, ERROR_MESSAGE } from "./constant/message.js";
+import { ERROR_MESSAGE } from "./constant/message.js";
 
 class App {
   #view;
@@ -25,6 +25,14 @@ class App {
   }
 
   async run() {
+    await this.playLotto();
+
+    while (await this.#askRetry()) {
+      await this.playLotto();
+    }
+  }
+
+  async playLoop() {
     do {
       await this.playLotto();
     } while (await this.#askRetry());
@@ -94,7 +102,7 @@ class App {
       try {
         return await task();
       } catch (e) {
-        console.log(e.message);
+        this.#view.output.printError(e.message);
       }
     }
   }

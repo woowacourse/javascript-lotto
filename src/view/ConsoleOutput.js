@@ -6,6 +6,10 @@ class ConsoleOutput extends Output {
     super();
   }
 
+  printError(message) {
+    console.log(message)
+  }
+
   printResult(countsObject, returnOnInvestment) {
     console.log("\n당첨 통계");
     console.log("--------------------");

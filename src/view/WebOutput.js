@@ -36,6 +36,10 @@ class ConsoleOutput extends Output {
     }
   }
 
+  printError(message) {
+    alert(message);
+  }
+
   printResult(countsObject, returnOnInvestment) {
     this.#elements.modalHeader.innerHTML = `
       <button class="close__button">
