@@ -57,3 +57,11 @@ let lottoMachine = null;
     }
   });
 }());
+
+(function() {
+  const matchResultDialog = document.getElementById('lotto-match-result-content');
+  const dialogCloser = matchResultDialog.querySelector('button.dialog-closer');
+  dialogCloser.addEventListener('click', (e) => {
+    matchResultDialog.close();
+  });
+}());
