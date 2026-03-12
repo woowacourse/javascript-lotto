@@ -6,7 +6,7 @@ export default class LottoStatisticsUseCase {
     ARRAY_EMPTY: "로또를 구매하셔야합니다",
   };
 
-  statisticsLottos(lottos, winningNumber) {
+  static statisticsLottos(lottos, winningNumber) {
     if (!lottos?.length) {
       throw new Error(LottoStatisticsUseCase.ERROR.ARRAY_EMPTY);
     }
@@ -23,7 +23,7 @@ export default class LottoStatisticsUseCase {
     return { lottosResult, totalPrize };
   }
 
-  #formatRankMap(rankMap) {
+  static #formatRankMap(rankMap) {
     return [...rankMap.entries()]
       .filter(([rank]) => rank !== Rank.MISS)
       .map(([rank, stat]) => ({
@@ -34,7 +34,7 @@ export default class LottoStatisticsUseCase {
       .sort((a, b) => b.order - a.order);
   }
 
-  #sumPrize(lottosResult) {
+  static #sumPrize(lottosResult) {
     return lottosResult.reduce(
       (sum, { prize, count }) => sum + prize * count,
       0,

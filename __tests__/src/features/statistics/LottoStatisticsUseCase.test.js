@@ -3,22 +3,18 @@ import WinningNumber from "../../../../src/domain/WinningNumber.js";
 import LottoStatisticsUseCase from "../../../../src/features/statistics/LottoStatisticsUseCase.js";
 
 describe("LottoStatisticsUseCase", () => {
-  const useCase = new LottoStatisticsUseCase();
-
   test("로또 배열 없으면 에러", () => {
     const winningNumber = new WinningNumber([1, 2, 3, 4, 5, 6], 7);
-    expect(() => useCase.statisticsLottos([], winningNumber)).toThrow(
-      LottoStatisticsUseCase.ERROR.ARRAY_EMPTY,
-    );
+    expect(() =>
+      LottoStatisticsUseCase.statisticsLottos([], winningNumber),
+    ).toThrow(LottoStatisticsUseCase.ERROR.ARRAY_EMPTY);
   });
 
   test("5등 1개 당첨 통계", () => {
     const lottos = [new Lotto([1, 2, 3, 10, 11, 12])];
     const winningNumber = new WinningNumber([1, 2, 3, 4, 5, 6], 7);
-    const { lottosResult, totalPrize } = useCase.statisticsLottos(
-      lottos,
-      winningNumber,
-    );
+    const { lottosResult, totalPrize } =
+      LottoStatisticsUseCase.statisticsLottos(lottos, winningNumber);
     const fifth = lottosResult.find(({ order }) => order === 5);
 
     const equal = {
