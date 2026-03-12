@@ -1,4 +1,4 @@
-import Lotto from "../../../../src/lotto/shared/domain/Lotto";
+import Lotto from "../../../src/domain/Lotto.js";
 
 describe("Lotto 생성 성공테스트", () => {
   test("로또번호 성공 테스트", () => {

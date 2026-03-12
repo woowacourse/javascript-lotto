@@ -1,5 +1,5 @@
-import PurchaseLottoUseCase from "../../../src/lotto/purchase/PurchaseLottoUseCase.js";
-import LottoMachine from "../../../src/lotto/purchase/LottoMachine.js";
+import LottoMachine from "../../../../src/features/purchase/LottoMachine.js";
+import PurchaseLottoUseCase from "../../../../src/features/purchase/PurchaseLottoUseCase.js";
 
 describe("PurchaseLottoUseCase", () => {
   const fixed = () => [1, 2, 3, 4, 5, 6];

@@ -1,4 +1,4 @@
-import Rank from "../../../../src/lotto/shared/domain/Rank.js";
+import Rank from "../../../src/domain/Rank.js";
 
 describe("Rank.findRank(winningMatch,bonusMatch) 메서드 테스트", () => {
   test("당첨번호가 6개 다맞춘 사람은 1등", () => {

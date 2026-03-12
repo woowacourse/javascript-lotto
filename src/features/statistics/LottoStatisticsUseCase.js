@@ -1,4 +1,4 @@
-import Rank from "../shared/domain/Rank.js";
+import Rank from "../../domain/Rank.js";
 import { statistics } from "./lottoStatistics.js";
 
 export default class LottoStatisticsUseCase {

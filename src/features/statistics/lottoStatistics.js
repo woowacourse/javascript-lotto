@@ -1,4 +1,4 @@
-import Rank from "../shared/domain/Rank.js";
+import Rank from "../../domain/Rank.js";
 
 export const statistics = (lotto, winningNumber) => {
   const { matchWinning, matchBonus } = winningNumber.getMatchCount(lotto);

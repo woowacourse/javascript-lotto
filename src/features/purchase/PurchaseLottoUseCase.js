@@ -1,4 +1,4 @@
-import Money from "../shared/domain/Money.js";
+import Money from "../../domain/Money.js";
 
 export default class PurchaseLottoUseCase {
   #lottoMachine;

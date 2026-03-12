@@ -1,4 +1,4 @@
-import Money from "../../../../src/lotto/shared/domain/Money.js";
+import Money from "../../../src/domain/Money.js";
 
 describe("Money 생성 실패 테스트(유효성검사)", () => {
   test("돈은 음수가 될 수없다", () => {

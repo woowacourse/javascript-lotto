@@ -1,6 +1,6 @@
-import LottoStatisticsUseCase from "../../../src/lotto/statistics/LottoStatisticsUseCase.js";
-import Lotto from "../../../src/lotto/shared/domain/Lotto.js";
-import WinningNumber from "../../../src/lotto/shared/domain/WinningNumber.js";
+import Lotto from "../../../../src/domain/Lotto.js";
+import WinningNumber from "../../../../src/domain/WinningNumber.js";
+import LottoStatisticsUseCase from "../../../../src/features/statistics/LottoStatisticsUseCase.js";
 
 describe("LottoStatisticsUseCase", () => {
   const useCase = new LottoStatisticsUseCase();
