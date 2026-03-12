@@ -13,9 +13,6 @@ beforeEach(() => {
         <div class="main__container">
           <header class="main__container__header">
           </header>
-          <form class="money__container"></form>
-          <ul class="purchased-lottos__container"></ul>
-          <form class="winning-number-and-bonus__container"></form>
         </div>
       </div>
       <footer class="footer">

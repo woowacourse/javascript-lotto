@@ -2,77 +2,92 @@ import Input from "./Input.js";
 import { LOTTO } from "../constant/index.js";
 
 class WebInput extends Input {
+  #elements;
+
   constructor() {
     super();
+
+    this.#elements = {
+      mainContainer: document.querySelector(".main__container"),
+      modalFooter: document.querySelector(".modal__footer"),
+      overlay: document.querySelector(".overlay"),
+    };
+
+    if (!this.#elements.mainContainer) {
+      throw new Error("main__container를 찾을 수 없습니다.");
+    }
+
+    if (!this.#elements.modalFooter) {
+      throw new Error("modal__footer를 찾을 수 없습니다.");
+    }
+
+    if (!this.#elements.overlay) {
+      throw new Error("overlay를 찾을 수 없습니다.");
+    }
   }
 
   async readMoneyAsync() {
-    const formEl = document.querySelector(".money__container");
+    const formEl = document.createElement("form");
+    formEl.className = "money__container";
+    this.#elements.mainContainer.appendChild(formEl);
 
-    if (formEl) {
-      formEl.innerHTML = `
-        <label>구입금액을 입력해 주세요.</label>
-        <div>
-          <input type="number" id="money__input" name="money" min="1000" step="1000" />
-          <button id="money__submit">구입</button>
-        </div>
-      `;
-    }
+    formEl.innerHTML = `
+      <label>구입금액을 입력해 주세요.</label>
+      <div>
+        <input type="number" id="money__input" name="money" />
+        <button id="money__submit">구입</button>
+      </div>
+    `;
 
     return new Promise((resolve) => {
-      if (formEl) {
-        formEl.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const formData = new FormData(formEl);
-          const data = Object.fromEntries(formData.entries());
+      formEl.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(formEl);
+        const data = Object.fromEntries(formData.entries());
 
-          this.diasbleElement("#money__input");
-          this.diasbleElement("#money__submit");
+        this.diasbleElement("#money__input");
+        this.diasbleElement("#money__submit");
 
-          resolve(data.money);
-        });
-      }
+        resolve(data.money);
+      });
     });
   }
 
   async readWinningNumberAndBonusAsync() {
-    const formEl = document.querySelector(
-      ".winning-number-and-bonus__container",
-    );
+    const formEl = document.createElement("form");
+    formEl.className = "winning-number-and-bonus__container";
+    this.#elements.mainContainer.appendChild(formEl);
 
     const orders = ["first", "second", "third", "fourth", "fifth", "sixth"];
 
     const inputSelectors = [
       ...orders.map((order) => `#winning-number__${order}__input`),
       "#bonus-number__input",
-      // "#winning-number-and-bonus__submit",
     ];
 
-    if (formEl) {
-      formEl.innerHTML = `
-        <label for="#winning-number-and-bonus__input">구입금액을 입력해 주세요.</label>
+    formEl.innerHTML = `
+      <label for="#winning-number-and-bonus__input">구입금액을 입력해 주세요.</label>
+      <div>
         <div>
+          <label for="winning-number__first__input">당첨 번호</label>
           <div>
-            <label for="winning-number__first__input">당첨 번호</label>
-            <div>
-            ${orders
-              .map(
-                (order) => `
-                <input type="number" id="winning-number__${order}__input" name="winning-number__${order}" min="${LOTTO.MIN_NUMBER}" max="${LOTTO.MAX_NUMBER}" step="1"/>
-              `,
-              )
-              .join("")}
-            </div>
+          ${orders
+            .map(
+              (order) => `
+              <input type="number" id="winning-number__${order}__input" name="winning-number__${order}" min="${LOTTO.MIN_NUMBER}" max="${LOTTO.MAX_NUMBER}" step="1"/>
+            `,
+            )
+            .join("")}
+          </div>
+        <div>
+          <label for="bonus-number__input">보너스 번호</label>
           <div>
-            <label for="bonus-number__input">보너스 번호</label>
-            <div>
-              <input type="number" id="bonus-number__input" name="bonus-number" min="${LOTTO.MIN_NUMBER}" max="${LOTTO.MAX_NUMBER}" step="1"/>
-            </div>
+            <input type="number" id="bonus-number__input" name="bonus-number" min="${LOTTO.MIN_NUMBER}" max="${LOTTO.MAX_NUMBER}" step="1"/>
           </div>
         </div>
-        <button id="winning-number-and-bonus__submit">결과 확인하기</button>
-      `;
-    }
+      </div>
+      <button id="winning-number-and-bonus__submit">결과 확인하기</button>
+    `;
 
     return new Promise((resolve) => {
       formEl.addEventListener("submit", (e) => {
@@ -84,14 +99,7 @@ class WebInput extends Input {
         });
 
         resolve({
-          winningNumbersInput: [
-            formData.get("winning-number__first"),
-            formData.get("winning-number__second"),
-            formData.get("winning-number__third"),
-            formData.get("winning-number__fourth"),
-            formData.get("winning-number__fifth"),
-            formData.get("winning-number__sixth"),
-          ].join(","),
+          winningNumbersInput: orders.map((order) => formData.get(`winning-number__${order}`)).join(","),
           bonusNumberInput: formData.get("bonus-number"),
         });
       });
@@ -99,26 +107,21 @@ class WebInput extends Input {
   }
 
   async readRetryAsync() {
-    const modalFooterEl = document.querySelector(".modal__footer");
-
-    if (modalFooterEl) {
-      modalFooterEl.innerHTML = '<button class="retry__button">다시 시작</button>';
-    }
-
-    const retryButtonEl = document.querySelector(".retry__button");
+    const buttonEl = document.createElement("button");
+    buttonEl.className = "retry__button";
+    buttonEl.textContent = "다시 시작";
+    this.#elements.modalFooter.appendChild(buttonEl);
 
     return new Promise((resolve) => {
-      if (retryButtonEl) {
-        retryButtonEl.addEventListener("click", (e) => {
-          e.preventDefault();
-          resolve("y");
-          this.hiddenOverlay();
-          this.clearMoneyContainer();
-          this.clearPurchasedLottosContainer();
-          this.clearWinningNumberAndBonusContainer();
-          this.clearShowResultButtonContainer();
-        });
-      }
+      buttonEl.addEventListener("click", (e) => {
+        e.preventDefault();
+        resolve("y");
+        this.hiddenOverlay();
+        this.clearMoneyContainer();
+        this.clearPurchasedLottosContainer();
+        this.clearWinningNumberAndBonusContainer();
+        this.clearShowResultButtonContainer();
+      });
     });
   }
 
@@ -131,31 +134,41 @@ class WebInput extends Input {
   }
 
   hiddenOverlay() {
-    document.querySelector(".overlay")?.classList.add("hidden");
+    this.#elements.overlay.classList.add("hidden");
   }
 
   clearMoneyContainer() {
-    if (document.querySelector(".money__container")) {
-      document.querySelector(".money__container").innerHTML = "";
+    const moneyContainer = document.querySelector(".money__container");
+
+    if (moneyContainer) {
+      moneyContainer.innerHTML = "";
     }
   }
 
   clearPurchasedLottosContainer() {
-    if (document.querySelector(".purchased-lottos__container")) {
-      document.querySelector(".purchased-lottos__container").innerHTML = "";
+    const purchasedLottosContainer = document.querySelector(
+      ".purchased-lottos__container",
+    );
+    if (purchasedLottosContainer) {
+      purchasedLottosContainer.innerHTML = "";
     }
   }
 
   clearWinningNumberAndBonusContainer() {
-    if (document.querySelector(".winning-number-and-bonus__container")) {
-      document.querySelector(".winning-number-and-bonus__container").innerHTML =
-        "";
+    const winningNumberAndBonusContainer = document.querySelector(
+      ".winning-number-and-bonus__container",
+    );
+    if (winningNumberAndBonusContainer) {
+      winningNumberAndBonusContainer.innerHTML = "";
     }
   }
 
   clearShowResultButtonContainer() {
-    if (document.querySelector(".show-result__button__container")) {
-      document.querySelector(".show-result__button__container").innerHTML = "";
+    const showResultButtonContainer = document.querySelector(
+      ".show-result__button__container",
+    );
+    if (showResultButtonContainer) {
+      showResultButtonContainer.innerHTML = "";
     }
   }
 }
