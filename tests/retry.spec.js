@@ -22,7 +22,7 @@ test.describe('재시작 버튼 테스트하기', () => {
 
     await page.getByRole('button', { name: '다시 시작하기'}).click();
 
-    const visible = page.locator("purchaseForm");
+    const visible = page.locator("#purchaseForm");
 
     const hidden = [
       page.locator("#myLotto"),
