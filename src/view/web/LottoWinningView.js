@@ -18,3 +18,5 @@ export const renderWinningInput = () => {
    
   `;
 };
+
+export const renderWinningResult = () => {};

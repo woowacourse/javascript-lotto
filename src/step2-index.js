@@ -2,6 +2,7 @@ import { LOTTO_PRICE } from "./constants/lottoInfo";
 import LottoController from "./controller/LottoController";
 import Validator from "./utils/Validator";
 import { renderLottoTicket } from "./view/web/LottoPurchaseView";
+import { renderLottoResult } from "./view/web/LottoResultView";
 import { renderWinningInput } from "./view/web/LottoWinningView";
 
 const lottoController = new LottoController();
@@ -45,6 +46,10 @@ const handleWinningResult = (event) => {
     Validator.validateBonusNum(winningNumbers, bonusNumber);
 
     lottoController.updateWinningResult(winningNumbers, bonusNumber);
+    const { rankCount, profitRate } = lottoController.getWinningResult();
+    renderLottoResult(rankCount, profitRate);
+
+    winningForm.reset();
   } catch (error) {
     alert(error.message);
   }
@@ -52,4 +57,12 @@ const handleWinningResult = (event) => {
 
 winningWrapper.addEventListener("submit", (e) => {
   handleWinningResult(e);
+});
+
+const resultModal = document.querySelector("#result-modal");
+
+resultModal.addEventListener("click", (e) => {
+  if (e.target.id === "modal-close-btn") {
+    resultModal.close();
+  }
 });
