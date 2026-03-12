@@ -39,7 +39,7 @@ class WebInput extends Input {
     this.#elements.mainContainerBody.appendChild(formEl);
 
     formEl.innerHTML = `
-      <p>구입금액을 입력해 주세요.</p>
+      <p>구입할 금액을 입력해주세요.</p>
       <div class="money__inputs">
         <input type="number" class="money__input" name="money" min="1000" step="1000" placeholder="금액" />
         <button class="money__submit">구입</button>
@@ -79,7 +79,7 @@ class WebInput extends Input {
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p
       >
       <div class="winning-number-and-bonus__inputs">
-        <div>
+        <div class="winning-number__container">
           <p>당첨 번호</p>
           <div  class="winning-number__inputs">
           ${orders
@@ -98,7 +98,7 @@ class WebInput extends Input {
             .join("")}
           </div>
         </div>
-        <div>
+        <div class="bonus__container">
           <p>보너스 번호</p>
           <div class="bonus__inputs">
             <input

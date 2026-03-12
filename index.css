@@ -1,4 +1,5 @@
 /* 전역 색상 변수 */
+
 :root {
   --primary: 78, 91, 166;
   --grayscale-1: 255, 255, 255;
@@ -21,15 +22,15 @@
 input {
   border: 1px solid rgb(var(--grayscale-3));
   border-radius: 4px;
-  height: 36px;
-  padding: 8px;
   font-size: 15px;
+  height: 36px;
+  letter-spacing: 0.5px;
+  padding: 8px;
 }
 
 input:disabled {
   cursor: not-allowed;
 }
-
 
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
@@ -42,24 +43,25 @@ button {
   border: 0;
   border-radius: 4px;
   color: rgb(var(--grayscale-1));
+  cursor: pointer;
   display: flex;
-  height: 36px;
-  justify-content: center;
-  padding: 16px;
   font-size: 15px;
   font-weight: 700;
-  cursor: pointer;
+  height: 36px;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  padding: 0 15px;
 }
 
 button:disabled {
-  cursor: not-allowed;
   background-color: rgba(var(--primary), 0.8);
+  cursor: not-allowed;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 10px;
 }
 
 ol, ul {
@@ -73,6 +75,7 @@ body {
   color: rgb(var(--grayscale-5));
   font-size: 15px;
   font-weight: 400;
+  letter-spacing: 0.5px;
   line-height: 1.6;
 }
 
@@ -113,7 +116,7 @@ body, #app {
 .main__container {
   background-color: rgb(var(--grayscale-1));
   border: 1px solid rgba(var(--grayscale-5), 0.12);
-  border-radius: 8px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -127,7 +130,12 @@ body, #app {
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: 20px;
+}
+
+.main__container__header h2 {
+  font-size: 24px;
+  font-weight: 800;
 }
 
 .main__container__body {
@@ -172,7 +180,7 @@ body, #app {
 
 .modal {
   background-color: rgb(var(--grayscale-1));
-  border-radius: 8px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -196,6 +204,8 @@ body, #app {
 /* 금액 입력 컨테이너 스타일 */
 
 .money__container {
+  display: flex;
+  flex-direction: column;
   gap: 4px;
 }
 
@@ -210,7 +220,16 @@ body, #app {
 
 /* 구매한 로또 목록 스타일 */
 
+.purchased-lottos__container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .purchased-lottos__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   max-height: 300px;
   overflow-y: scroll;
 }
@@ -222,20 +241,31 @@ body, #app {
 }
 
 .purchased-lotto img {
-  height: 34px;
-  width: 36px;
+  width: 34px;
 }
 
 /* 당첨 번호 입력 스타일 */
 
 .winning-number-and-bonus__container input {
+  text-align: center;
   width: 34px;
-  text-align: center
 }
 
 .winning-number-and-bonus__inputs {
   display: flex;
   justify-content: space-between;
+}
+
+.winning-number__container,
+.bonus__container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.winning-number__inputs {
+  display: flex;
+  gap: 8px;
 }
 
 .bonus__inputs {
@@ -244,10 +274,7 @@ body, #app {
 
 /* 결과창 스타일 */
 
-.show-result__button {
-  width: 100%;
-}
-
+.show-result__button,
 .retry__button {
   width: 100%;
 }
@@ -256,12 +283,12 @@ body, #app {
   align-self: flex-end;
   background: none;
   border: none;
-  width: 14px;
   height: 14px;
   padding: 0;
   position: absolute;
   right: 16px;
   top: 16px;
+  width: 14px;
 }
 
 .result__table {

@@ -102,7 +102,7 @@ class ConsoleOutput extends Output {
 
     const paragraphEl = document.createElement("p");
     paragraphEl.className = "purchased-lottos-count";
-    paragraphEl.textContent = `총 ${lottos.length}개를 구매했습니다.`;
+    paragraphEl.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
     containerEl.appendChild(paragraphEl);
 
     const listEl = document.createElement("ul");
