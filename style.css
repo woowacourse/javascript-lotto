@@ -36,6 +36,7 @@ header h1 {
   color: var(--color-greyscale-5);
   line-height: 36px;
   padding-left: 10%;
+  color: var(--color-greyscale-1);
 }
 
 main {
@@ -58,24 +59,24 @@ main {
   gap: 28px;
 }
 
-#purchase-section {
+.purchase-section {
   box-sizing: border-box;
   width: 100%;
   padding: 0 16px 0 16px;
 }
 
-#purchase-amount-form {
+.purchase-amount-form {
   display: flex;
   gap: 16px;
 }
 
-#input-title {
+.input-title {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-#purchase-amount-input {
+.purchase-amount-input {
   box-sizing: border-box;
   width: 310px;
   height: 36px;
@@ -83,7 +84,7 @@ main {
   padding: 8px;
 }
 
-#purchase-amount-button {
+.purchase-amount-button {
   width: 56px;
   height: 36px;
   background-color: var(--color-primary);
