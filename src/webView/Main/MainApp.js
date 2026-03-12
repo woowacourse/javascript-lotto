@@ -6,13 +6,23 @@ const mockLottos = [
   [7, 8, 9, 10, 11, 12],
   [13, 14, 15, 16, 17, 18],
 ];
+const mockPrize = [
+  ["3개", 5_000, 1],
+  ["4개", 50_000, 0],
+  ["5개", 1_500_000, 0],
+  ["5개+보너스볼", 30_000_000, 1],
+  ["6개", 2_000_000_000, 0],
+];
+const mockBenefitRate = 62.5;
 
 class MainApp extends HTMLElement {
   #isShowLottos;
+  #isOpenModal;
 
   constructor() {
     super();
     this.#isShowLottos = false;
+    this.#isOpenModal = false;
   }
 
   connectedCallback() {
@@ -87,10 +97,56 @@ class MainApp extends HTMLElement {
           <button class="result-button">결과 확인하기</button>
         </div>
       </div>
+
+      <!-- 결과 모달 -->
+      <div class="result-modal-overlay" ${this.#isOpenModal ? "" : "hidden"}>
+        <div class="modal">
+          <button class="modal-close" aria-label="닫기">×</button>
+
+          <div class="modal-header">🏆 당첨 통계 🏆</div>
+
+          <div class="modal-table">
+            <div class="row-header">
+              <div>일치 갯수</div>
+              <div>당첨금</div>
+              <div>당첨 갯수</div>
+            </div>
+            <!-- 표 영역 -->
+            ${mockPrize
+              .map(
+                (prize) =>
+                  html`<div class="row">
+                    <div class="row-item">${prize[0]}</div>
+                    <div class="row-item">
+                      ${prize[1].toLocaleString("ko-KR")}
+                    </div>
+                    <div class="row-item">${prize[2]}개</div>
+                  </div>`
+              )
+              .join("")}
+          </div>
+
+          <!-- 수익률 -->
+          <div class="benefit-messege">
+            당신의 총 수익률은 ${mockBenefitRate}%입니다.
+          </div>
+
+          <button class="modal-restart">다시 시작하기</button>
+        </div>
+      </div>
     </div>`;
 
     this.querySelector(".input-button").addEventListener("click", () => {
       this.#isShowLottos = true;
+      this.render();
+    });
+
+    this.querySelector(".result-button").addEventListener("click", () => {
+      this.#isOpenModal = true;
+      this.render();
+    });
+    this.querySelector(".modal-close").addEventListener("click", () => {
+      this.#isOpenModal = false;
       this.render();
     });
   }

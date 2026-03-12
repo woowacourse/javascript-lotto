@@ -128,7 +128,8 @@
   border-width: 1px;
 }
 
-.result-button {
+.result-button,
+.modal-restart {
   margin-top: 27px;
   width: 100%;
 
@@ -139,4 +140,86 @@
   font: var(--text-caption);
   color: var(--color-lotto-greyscale-1);
   border: none;
+}
+
+.result-modal-overlay[hidden] {
+  display: none;
+}
+.result-modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  /* width: 360px; */
+  border-radius: 8px;
+  padding: 20px;
+
+  background: #fff;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+
+  background: none;
+  border: none;
+  font-size: 36px;
+}
+
+.modal-header {
+  font: var(--text-title);
+  margin: 30px 0;
+}
+
+.modal-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 2px solid #e5e5e5;
+}
+
+.row-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  padding: 16px 0;
+  text-align: center;
+
+  border-bottom: 2px solid #e5e5e5;
+  font: var(--text-subtitle);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  padding: 14px 0;
+  text-align: center;
+
+  border-bottom: 2px solid #e5e5e5;
+  font: var(--text-body);
+}
+
+.row-item {
+  padding: 0 16px;
+}
+
+.benefit-messege {
+  font: var(--text-subtitle);
+  margin-top: 40px;
+  margin-bottom: 14px;
 }
