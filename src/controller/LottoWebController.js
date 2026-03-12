@@ -12,7 +12,6 @@ const winningInputSection = document.querySelector(
   ".winning-bonus-input-section",
 );
 const submitButton = document.querySelector("#submit");
-const modal = document.querySelector(".modal");
 
 class LottoWebController {
   constructor() {
@@ -24,6 +23,7 @@ class LottoWebController {
     LottoWebInputView.bindPurchase(() => this.handlePurchase());
     LottoWebInputView.bindSubmit(() => this.handleSubmit());
     LottoWebInputView.bindCloseModal(() => this.handleCloseModal());
+    LottoWebInputView.bindRestart(() => this.handleRestart());
   }
 
   handlePurchase() {
@@ -71,6 +71,17 @@ class LottoWebController {
   }
 
   handleCloseModal() {
+    LottoWebOutputView.hideModal();
+  }
+
+  handleRestart() {
+    this.money = 0;
+    this.randomLottos = [];
+    lottoSection.classList.add("hidden");
+    winningInputSection.classList.add("hidden");
+    submitButton.classList.add("hidden");
+
+    LottoWebInputView.reset();
     LottoWebOutputView.hideModal();
   }
 }
