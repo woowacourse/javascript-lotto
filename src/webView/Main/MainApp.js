@@ -1,6 +1,7 @@
+import Validator from "../../Validator.js";
+
 const html = String.raw;
 
-const mockLottoCount = 12;
 const mockLottos = [
   [1, 2, 3, 4, 5, 6],
   [7, 8, 9, 10, 11, 12],
@@ -25,13 +26,21 @@ const mockPrize = [
 const mockBenefitRate = 62.5;
 
 class MainApp extends HTMLElement {
+  #validator;
+
   #isShowLottos;
   #isOpenModal;
 
+  #purchase;
+
   constructor() {
     super();
+
+    this.#validator = new Validator();
+
     this.#isShowLottos = false;
     this.#isOpenModal = false;
+    this.#purchase = 0;
   }
 
   connectedCallback() {
@@ -45,21 +54,13 @@ class MainApp extends HTMLElement {
         <div class="card-header">🎱 내 번호 당첨 확인 🎱</div>
 
         <!--  2. 구입 금액 입력 폼 -->
-        <div class="card-input-container">
-          <label class="input-label" for="purchase-amount">
-            구입할 금액을 입력해주세요.
-          </label>
-          <div class="input-container">
-            <input class="input-line" id="purchase-amount" placeholder="금액" />
-            <button class="input-button">구입</button>
-          </div>
-        </div>
+        <lotto-purchase></lotto-purchase>
 
         <div class="card-hidden-section" ${this.#isShowLottos ? "" : "hidden"}>
           <!-- 3. 구입 로또 -->
           <div class="lottos-container">
             <div class="lottos-container-header">
-              총 ${mockLottoCount}개를 구매하셨습니다. <br />
+              총 ${this.#purchase}개를 구매하셨습니다. <br />
               (로또 수가 많은 경우 스크롤을 내리세요.)
             </div>
             <div class="lottos-table">
@@ -148,10 +149,18 @@ class MainApp extends HTMLElement {
       </div>
     </div>`;
 
-    this.querySelector(".input-button").addEventListener("click", () => {
-      this.#isShowLottos = true;
-      this.render();
-    });
+    this.querySelector("lotto-purchase").addEventListener(
+      "purchase",
+      (event) => {
+        const { purchase } = event.detail;
+
+        this.#validator.validatePrice(purchase);
+        this.#purchase = purchase / 1000;
+
+        this.#isShowLottos = true;
+        this.render();
+      }
+    );
 
     this.querySelector(".result-button").addEventListener("click", () => {
       this.#isOpenModal = true;
