@@ -32,9 +32,6 @@ export default class WinningNumber {
       lotto.hasNumber(n),
     ).length;
     const matchBonus = lotto.hasNumber(this.#bonusNumber);
-    return {
-      matchWinning,
-      matchBonus,
-    };
+    return { matchWinning, matchBonus };
   }
 }
