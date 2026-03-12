@@ -61,8 +61,18 @@ winningWrapper.addEventListener("submit", (e) => {
 
 const resultModal = document.querySelector("#result-modal");
 
+const handleRestart = () => {
+  document.querySelector(".lotto-ticket-container").innerHTML = "";
+  document.querySelector("#winning-input-wrapper").innerHTML = "";
+
+  resultModal.close();
+};
+
 resultModal.addEventListener("click", (e) => {
   if (e.target.id === "modal-close-btn") {
     resultModal.close();
+  }
+  if (e.target.id === "restart-button") {
+    handleRestart();
   }
 });

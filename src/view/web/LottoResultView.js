@@ -31,6 +31,7 @@ export const renderLottoResult = (rankCount, profitRate) => {
         </tbody>
       </table>
       <p class="profit-text">당신의 총 수익률은 ${profitRateStr}%입니다.</p>
+      <button id="restart-button" class="restart-button">다시 시작하기</button>
     </div>
   `;
 
