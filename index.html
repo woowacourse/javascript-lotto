@@ -14,108 +14,129 @@
     </header>
 
     <main>
-      <section>
-        <h2 class="title">🎱 내 당첨 번호 확인 🎱</h2>
-        <form class="money" action="#">
-          <label>구입할 금액을 입력해주세요.</label>
-          <div class="money__input">
-            <input placeholder="금액" />
-            <button class="button caption">구입</button>
+      <section class="lotto-section">
+        <h2 class="lotto-section__title title">🎱 내 당첨 번호 확인 🎱</h2>
+
+        <form class="purchase-form" action="#">
+          <label class="purchase-form__label body">
+            구입할 금액을 입력해주세요.
+          </label>
+          <div class="purchase-form__input-group">
+            <input class="purchase-form__input" placeholder="금액" />
+            <button class="purchase-form__submit-btn button caption">
+              구입
+            </button>
           </div>
         </form>
 
-        <div class="lotto">
-          <span>총 2개를 구매하였습니다.</span>
-          <div class="lotto__number">
-            <div class="lotto_number__item">
-              <img src="./assets//lotto_ticket.png" />
-              <span>1,2,3,4,5,6</span>
+        <div class="ticket-list">
+          <div class="ticket-list__summary body">총 2개를 구매하였습니다.</div>
+
+          <div class="ticket-list__container">
+            <div class="ticket-list__item">
+              <img class="ticket-list__icon" src="./assets//lotto_ticket.png" />
+              <span class="ticket-list__numbers">1, 2, 3, 4, 5, 6</span>
             </div>
-            <div class="lotto_number__item">
-              <img src="./assets//lotto_ticket.png" />
-              <span>1,2,3,4,42,43</span>
+            <div class="ticket-list__item">
+              <img class="ticket-list__icon" src="./assets//lotto_ticket.png" />
+              <span class="ticket-list__numbers">7, 8, 9, 10, 11, 12</span>
             </div>
           </div>
         </div>
 
-        <form class="winning-lotto" action="#">
-          <div>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</div>
-          <div class="winning-lotto__container">
-            <div class="winning-number">
-              <label>당첨 번호</label>
-              <div>
-                <input />
-                <input />
-                <input />
-                <input />
-                <input />
+        <form class="winning-form" action="#">
+          <div class="winning-form__summary body">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+          </div>
+
+          <div class="winning-form__container">
+            <div class="winning-form__input-group">
+              <label class="winning-form__label">당첨 번호</label>
+              <div class="winning-form__input-list">
+                <input class="winning-form__input" />
+                <input class="winning-form__input" />
+                <input class="winning-form__input" />
+                <input class="winning-form__input" />
+                <input class="winning-form__input" />
+                <input class="winning-form__input" />
               </div>
             </div>
-            <div class="bonus-number">
+
+            <div
+              class="winning-form__input-group winning-form__input-group--bonus"
+            >
               <label>보너스 번호</label>
-              <input class="winning-lotto__input" />
+              <div class="winning-form__input-list">
+                <input class="winning-form__input" />
+              </div>
             </div>
           </div>
 
-          <button class="button caption" onclick="window.myDialog.showModal()">
+          <button
+            class="winning-form__submit-btn button caption"
+            onclick="window.myDialog.showModal()"
+          >
             결과 확인하기
           </button>
         </form>
       </section>
 
-      <dialog id="myDialog">
-        <div class="lotto-result">
+      <dialog class="result-modal" id="myDialog">
+        <div class="result-modal__content">
           <img
-            class="close-icon"
+            class="result-modal__close-btn"
             src="assets/modal_close_icon.png"
             onclick="window.myDialog.close()"
           />
-          <h2 class="title">🏆 당첨 통계 🏆</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>일치 개수</th>
-                <th>당첨금</th>
-                <th>당첨 개수</th>
+          <h2 class="result-modal__title title">🏆 당첨 통계 🏆</h2>
+          <table class="result-modal__table">
+            <thead class="result-modal__thead">
+              <tr class="result-modal__tr">
+                <th class="result-modal__th">일치 개수</th>
+                <th class="result-modal__th">당첨금</th>
+                <th class="result-modal__th">당첨 개수</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="body">
-                <td>3개</td>
-                <td>5,000</td>
-                <td>n개</td>
+              <tr class="result-modal__tr body">
+                <td class="result-modal__td">3개</td>
+                <td class="result-modal__td">5,000</td>
+                <td class="result-modal__td">n개</td>
               </tr>
-              <tr class="body">
-                <td>4개</td>
-                <td>50,000</td>
-                <td>n개</td>
+              <tr class="result-modal__tr body">
+                <td class="result-modal__td">4개</td>
+                <td class="result-modal__td">50,000</td>
+                <td class="result-modal__td">n개</td>
               </tr>
-              <tr class="body">
-                <td>5개</td>
-                <td>1,500,000</td>
-                <td>n개</td>
+              <tr class="result-modal__tr body">
+                <td class="result-modal__td">5개</td>
+                <td class="result-modal__td">1,500,000</td>
+                <td class="result-modal__td">n개</td>
               </tr>
-              <tr class="body">
-                <td>5개+보너스볼</td>
-                <td>30,000,000</td>
-                <td>n개</td>
+              <tr class="result-modal__tr body">
+                <td class="result-modal__td">5개+보너스볼</td>
+                <td class="result-modal__td">30,000,000</td>
+                <td class="result-modal__td">n개</td>
               </tr>
-              <tr class="body">
-                <td>6개</td>
-                <td>2,000,000,000</td>
-                <td>n개</td>
+              <tr class="result-modal__tr body">
+                <td class="result-modal__td">6개</td>
+                <td class="result-modal__td">2,000,000,000</td>
+                <td class="result-modal__td">n개</td>
               </tr>
             </tbody>
           </table>
-          <h3 class="caption">당신의 총 수익률은 %입니다.</h3>
-          <button class="button caption">다시 시작하기</button>
+          <h3 class="result-modal__profit caption">
+            당신의 총 수익률은 %입니다.
+          </h3>
+          <button class="result-modal__submit-btn button caption">
+            다시 시작하기
+          </button>
         </div>
       </dialog>
     </main>
     <footer>
       <div class="caption">Copyright 2023. woowacourse</div>
     </footer>
-    <div id="app"></div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

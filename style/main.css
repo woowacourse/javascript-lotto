@@ -25,7 +25,7 @@ main {
   background-color: var(--lotto-greyscale-2);
 }
 
-section {
+.lotto-section {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -36,7 +36,7 @@ section {
   background-color: var(--lotto-greyscale-1);
 }
 
-section > h2 {
+.lotto-section__title {
   text-align: center;
 }
 
@@ -64,55 +64,61 @@ footer {
   cursor: pointer;
 }
 
-.money {
+.purchase-form {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.money__input {
+.purchase-form__input-group {
   display: flex;
   gap: 16px;
   width: 100%;
 }
 
-.money__input > input {
+.purchase-form__input {
   flex: 1;
   padding: 8px;
   border: 1px solid var(--lotto-greyscale-3);
   border-radius: 8px;
 }
 
-.lotto {
+.ticket-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.lotto__number {
+.ticket-list__container {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.lotto_number__item {
+.ticket-list__item {
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 8px;
 }
 
-.winning-lotto {
+.winning-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.winning-lotto > button {
+.winning-form__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.winning-form__submit-btn {
   margin: 15px 0 0 0;
 }
 
-.winning-lotto input {
+.winning-form__input {
   width: 34px;
   height: 36px;
   border: 1px solid var(--lotto-greyscale-3);
@@ -120,54 +126,29 @@ footer {
   text-align: center;
 }
 
-.winning-lotto__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.winning-number {
+.winning-form__input-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.bonus-number {
-  display: flex;
-  flex-direction: column;
+.winning-form__input-group--bonus {
   align-items: end;
+}
+
+.winning-form__input-list {
+  display: flex;
+  justify-content: start;
+  align-items: center;
   gap: 8px;
 }
 
-dialog {
+.result-modal {
   border: none;
   border-radius: 10px;
 }
 
-.close-icon {
-  display: block;
-  margin: 0 0 0 auto;
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
-}
-
-table tr {
-  border-top: 1px solid #0000001f;
-  border-bottom: 1px solid #0000001f;
-}
-
-table th,
-td {
-  padding: 10px;
-  text-align: center;
-}
-
-table th {
-  font-weight: 600;
-}
-
-.lotto-result {
+.result-modal__content {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -178,10 +159,32 @@ table th {
   background-color: var(--lotto-greyscale-1);
 }
 
-.lotto-result > h2 {
+.result-modal__close-btn {
+  display: block;
+  margin: 0 0 0 auto;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.result-modal__title {
   text-align: center;
 }
 
-.lotto-result > h3 {
+.result-modal__tr {
+  border-top: 1px solid #0000001f;
+  border-bottom: 1px solid #0000001f;
+}
+.result-modal__td,
+.result-modal__th {
+  padding: 10px;
+  text-align: center;
+}
+
+.result-modal__th {
+  font-weight: 600;
+}
+
+.result-modal__profit {
   text-align: center;
 }
