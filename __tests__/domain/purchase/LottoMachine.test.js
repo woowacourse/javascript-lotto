@@ -16,6 +16,6 @@ describe("LottoMachine method test", () => {
     const money = new Money(5000);
     const lottos = testingLottoMachine.buyLottos(money);
     expect(lottos[0]).toBeInstanceOf(Lotto);
-    expect(lottos.length).toBe(5);
+    expect(lottos).toHaveLength(5);
   });
 });
