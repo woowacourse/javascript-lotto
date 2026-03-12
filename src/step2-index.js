@@ -1,13 +1,16 @@
+import LottoRankCalculator from "./Lotto/LottoRankCalculator.js";
+import LottoReturnCalculator from "./Lotto/LottoReturnCalculator.js";
 import LottoStore from "./Lotto/LottoStore.js";
 
 const purchaseForm = document.querySelector(".lotto-purchase-form");
 
 let lottos = [];
+let purchaseAmount = 0;
 
 purchaseForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(purchaseForm);
-  const purchaseAmount = parseInt(formData.get("purchase-amount"), 10); // TODO: 상수화 하기
+  purchaseAmount = parseInt(formData.get("purchase-amount"), 10); // TODO: 상수화 하기
   lottos = LottoStore.purchaseLottos(purchaseAmount);
 
   drawLottoList();
@@ -46,12 +49,12 @@ function drawWinningNumbersAndBonusNumber() {
     winningNumbersAndBonusNumberInfo,
   );
 
-  const winningNumbersAndBonusNumberInputs = document.createElement("div");
-  winningNumbersAndBonusNumberInputs.classList.add(
-    "lotto-winning-bonus-number__inputs",
+  const winningNumbersAndBonusNumberForm = document.createElement("form");
+  winningNumbersAndBonusNumberForm.classList.add(
+    "lotto-winning-bonus-number__form",
   );
   winningNumbersAndBonusNumberBlock.appendChild(
-    winningNumbersAndBonusNumberInputs,
+    winningNumbersAndBonusNumberForm,
   );
 
   const winningNumbersInput = document.createElement("div");
@@ -91,7 +94,7 @@ function drawWinningNumbersAndBonusNumber() {
       />
     </div>
   `;
-  winningNumbersAndBonusNumberInputs.appendChild(winningNumbersInput);
+  winningNumbersAndBonusNumberForm.appendChild(winningNumbersInput);
 
   const bonusNumberInput = document.createElement("div");
   bonusNumberInput.classList.add("lotto-winning-bonus-number__bonus");
@@ -103,5 +106,32 @@ function drawWinningNumbersAndBonusNumber() {
       class="lotto-winning-bonus-number__input"
     />
   `;
-  winningNumbersAndBonusNumberInputs.appendChild(bonusNumberInput);
+  winningNumbersAndBonusNumberForm.appendChild(bonusNumberInput);
+
+  const submitButton = document.createElement("button");
+  submitButton.classList.add("lotto-winning-bonus-number__button");
+  submitButton.innerText = "결과 확인하기";
+  winningNumbersAndBonusNumberBlock.appendChild(submitButton);
+
+  submitButton.addEventListener("click", () => {
+    const form = new FormData(winningNumbersAndBonusNumberForm);
+    const winningNumbers = form.getAll("winning-number");
+    const bonusNumber = form.get("bonus-number");
+
+    const rank = LottoRankCalculator.calculateLottoRanks({
+      lottos,
+      winningNumbers,
+      bonusNumber,
+    });
+
+    const returnAmount = LottoReturnCalculator.calculateReturnAmount(rank);
+    const returnRate = LottoReturnCalculator.calculateReturnRate(
+      returnAmount,
+      purchaseAmount,
+    );
+
+    // drawLottoResult(rank, returnRate);
+  });
 }
+
+// function drawLottoResult(rank, returnRate) {}

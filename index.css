@@ -117,7 +117,7 @@
   height: 2rem;
 }
 
-.lotto-winning-bonus-number__inputs {
+.lotto-winning-bonus-number__form {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
@@ -132,4 +132,14 @@
 
 .lotto-purchase {
   margin-top: 2rem;
+}
+
+.lotto-winning-bonus-number__button {
+  background-color: var(--lotto-primary);
+  width: 100%;
+  padding: 0.75rem;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  margin-top: 1rem;
 }
