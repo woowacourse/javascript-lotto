@@ -126,10 +126,6 @@ footer p {
     margin: 32px 0;
 }
 
-#purchase-amount-container {
-    width: 382px;
-}
-
 #purchase-amount-form {
     display: flex;
     justify-content: space-between;
@@ -153,23 +149,23 @@ input#purchase-amount {
     height: 36px;
 }
 
-#lotto-content p {
+#purchase-lotto-content p {
     margin: 24px 0 6px 0;
 }
 
-#lotto-content ul {
+#purchase-lotto-content ul {
     display: flex;
     flex-direction: column;
 }
 
-#lotto-content ul li {
+#purchase-lotto-content ul li {
     display: flex;
     gap: 8px;
     line-height: 1.2;
     align-items: center;
 }
 
-#lotto-content ul li span {
+#purchase-lotto-content ul li span {
     font-size: 32px;
 }
 
