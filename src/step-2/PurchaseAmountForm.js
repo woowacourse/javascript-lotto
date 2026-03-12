@@ -54,7 +54,7 @@ const PurchaseAmountForm = {
   },
 
   handlePurchaseAmountInput(e) {
-    const input = document.getElementById('purchase-amount-input');
+    const input = e.target;
     const submitButton = document.getElementById('purchase-button');
     const errorMessageDiv = document.getElementById('purchase-amount-error-message');
 

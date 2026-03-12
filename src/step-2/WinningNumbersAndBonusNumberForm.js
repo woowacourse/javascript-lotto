@@ -61,6 +61,7 @@ const WinningNumbersAndBonusNumberForm = {
     bonusNumberInput.addEventListener('input', this.handleBonusNumberInput);
 
     errorMessageDiv.id = 'winning-numbers-and-bonus-number-error-message';
+    errorMessageDiv.classList.add('error-message');
 
     resultCheckButton.id = 'result-check-button';
     resultCheckButton.type = 'submit';
@@ -94,7 +95,8 @@ const WinningNumbersAndBonusNumberForm = {
     winningLottoAndBonusNumberStore.setState({ winningLottoAndBonusNumber });
   },
 
-  handleWinningNumberInput() {
+  handleWinningNumberInput(e) {
+    const inputWrapper = e.target.parentElement;
     const submitButton = document.getElementById('result-check-button');
     const errorMessageDiv = document.getElementById('winning-numbers-and-bonus-number-error-message');
 
@@ -109,14 +111,17 @@ const WinningNumbersAndBonusNumberForm = {
         submitButton.disabled = false;
       }
       errorMessageDiv.innerText = '';
+      inputWrapper.classList.remove('invalid');
     } catch (e) {
       winningNumbersAndBonusNumberFormStore.setState({ isValidWinningNumbers: false });
       submitButton.disabled = true;
       errorMessageDiv.innerText = e.message;
+      inputWrapper.classList.add('invalid');
     }
   },
 
   handleBonusNumberInput(e) {
+    const input = e.target;
     const submitButton = document.getElementById('result-check-button');
     const errorMessageDiv = document.getElementById('winning-numbers-and-bonus-number-error-message');
 
@@ -130,10 +135,12 @@ const WinningNumbersAndBonusNumberForm = {
         submitButton.disabled = false;
       }
       errorMessageDiv.innerText = '';
+      input.classList.remove('invalid');
     } catch (e) {
       winningNumbersAndBonusNumberFormStore.setState({ isValidBonusNumber: false });
       submitButton.disabled = true;
       errorMessageDiv.innerText = e.message;
+      input.classList.add('invalid');
     }
   },
 
