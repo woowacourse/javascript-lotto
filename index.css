@@ -33,3 +33,41 @@ body {
   line-height: 36px;
   text-align: center;
 }
+
+.lottobox .purchaseBox {
+  width: 382px;
+  margin: 28px 16px 0;
+}
+
+.lottobox .purchaseBox #priceText {
+  margin: 0 0 10px 0;
+}
+
+.lottobox .purchaseBox .purchase-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.lottobox .purchaseBox #inputPrice {
+  width: 310px;
+  height: 36px;
+  padding: 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+.lottobox .purchaseBox #purchaseButton {
+  margin-left: 8px;
+  background-color: #4e5ba6;
+  font-size: 14;
+  font-weight: bolder;
+  width: 56px;
+  height: 36px;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  letter-spacing: 1.25px;
+}
