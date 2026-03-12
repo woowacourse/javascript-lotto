@@ -44,7 +44,8 @@ lotto-purchase {
 }
 
 .lottos-table {
-  max-height: 216px;
+  height: 216px;
+
   overflow-y: auto;
 }
 
