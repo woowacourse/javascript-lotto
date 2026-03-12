@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+}
+
+.header {
+  height: 64px;
+  background-color: #4e5ba6;
+  align-items: center;
+  padding-left: 130px;
+  display: flex;
+}
+
+.header h1 {
+  color: #ffffff;
+  height: 36px;
+  font-size: 24px;
+}
