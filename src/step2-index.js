@@ -15,6 +15,8 @@ import "./webView/Main/Lottos.js";
 import "./webView/Main/Lottos.css";
 import "./webView/Main/UserLotto.js";
 import "./webView/Main/UserLotto.css";
+import "./webView/Main/StatisticsModal.js";
+import "./webView/Main/StatisticsModal.css";
 
 import "./webView/Footer/Footer.js";
 import "./webView/Footer/Footer.css";

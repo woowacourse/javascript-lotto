@@ -5,14 +5,6 @@ import Rate from "../../Model/Rate.js";
 
 const html = String.raw;
 
-const prizeTable = [
-  { label: "3개", prize: 5_000, grade: 5 },
-  { label: "4개", prize: 50_000, grade: 4 },
-  { label: "5개", prize: 1_500_000, grade: 3 },
-  { label: "5개+보너스볼", prize: 30_000_000, grade: 2 },
-  { label: "6개", prize: 2_000_000_000, grade: 1 },
-];
-
 class MainApp extends HTMLElement {
   #validator;
 
@@ -64,50 +56,19 @@ class MainApp extends HTMLElement {
         </div>
 
         <!-- 결과 모달 -->
-        <div class="result-modal-overlay" ${this.#isOpenModal ? "" : "hidden"}>
-          <div class="modal">
-            <button class="modal-close" aria-label="닫기">×</button>
-
-            <div class="modal-header">🏆 당첨 통계 🏆</div>
-
-            <div class="modal-table">
-              <div class="row-header">
-                <div>일치 갯수</div>
-                <div>당첨금</div>
-                <div>당첨 갯수</div>
-              </div>
-              <!-- 표 영역 -->
-              ${prizeTable
-                .map(
-                  (row) =>
-                    html`<div class="row">
-                      <div class="row-item">${row.label}</div>
-                      <div class="row-item">
-                        ${row.prize.toLocaleString("ko-KR")}
-                      </div>
-                      <div class="row-item">
-                        ${this.#statistics ? this.#statistics[row.grade] : 0}개
-                      </div>
-                    </div>`
-                )
-                .join("")}
-            </div>
-
-            <!-- 수익률 -->
-            <div class="benefit-messege">
-              당신의 총 수익률은
-              ${this.#rate ? this.#rate.getRate() : 0}%입니다.
-            </div>
-
-            <button class="modal-restart">다시 시작하기</button>
-          </div>
-        </div>
+        <lotto-statistics-modal></lotto-statistics-modal>
       </div>
     </div>`;
 
     const lottosEl = this.querySelector("lotto-lottos");
     if (lottosEl && this.#lottoList) {
       lottosEl.lottoList = this.#lottoList;
+    }
+    const modalEl = this.querySelector("lotto-statistics-modal");
+    if (modalEl) {
+      modalEl.open = this.#isOpenModal;
+      modalEl.statistics = this.#statistics;
+      modalEl.rate = this.#rate;
     }
 
     this.querySelector("lotto-purchase").addEventListener(
@@ -160,11 +121,21 @@ class MainApp extends HTMLElement {
         this.render();
       }
     );
-    this.querySelector(".modal-close").addEventListener("click", () => {
-      this.#isOpenModal = false;
-      this.#isShowLottos = false;
-      this.render();
-    });
+    this.querySelector("lotto-statistics-modal").addEventListener(
+      "close",
+      () => {
+        this.#isOpenModal = false;
+        this.render();
+      }
+    );
+    this.querySelector("lotto-statistics-modal").addEventListener(
+      "restart",
+      () => {
+        this.#isShowLottos = false;
+        this.#isOpenModal = false;
+        this.render();
+      }
+    );
   }
 }
 
