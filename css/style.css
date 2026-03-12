@@ -190,6 +190,10 @@
   align-items: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .modal-card {
   width: 350px;
   height: 500px;
