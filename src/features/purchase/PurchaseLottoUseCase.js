@@ -12,6 +12,7 @@ export default class PurchaseLottoUseCase {
     const { lottos, purchasedMoney } = this.#lottoMachine.buyLottos(money);
 
     return {
+      lottos,
       lottoNumbers: lottos.map((lotto) => lotto.getNumbers()),
       purchasedAmount: purchasedMoney.getAmount(),
     };
