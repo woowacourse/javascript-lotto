@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
+    <link rel="stylesheet" href="./style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
 
   <body>
@@ -24,11 +24,49 @@
           </form>
         </div>
 
-        <div class="lotto-ticket-container"></div>
+        <div class="lotto-ticket-container">
+          <p id="lotto-count-text"></p>
 
-        <div id="winning-input-wrapper"></div>
+          <ul id="lotto-list"></ul>
+        </div>
 
-        <dialog id="result-modal"></dialog>
+        <div id="winning-input-wrapper" class="hidden">
+          <p class="form-title">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+          </p>
+          <form id="winning-form">
+            <div id="winning-numbers-container"></div>
+            <div id="bonus-number-container"></div>
+
+            <button type="submit" class="submit-btn">결과 확인하기</button>
+          </form>
+        </div>
+
+        <dialog id="result-modal">
+          <div class="modal-inner">
+            <button type="button" id="modal-close-btn" class="modal-close-btn">
+              X
+            </button>
+            <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
+
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th>일치 갯수</th>
+                  <th>당첨금</th>
+                  <th>당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody id="result-tbody"></tbody>
+            </table>
+
+            <p class="profit-text" id="profit-text"></p>
+
+            <button id="restart-button" class="restart-button">
+              다시 시작하기
+            </button>
+          </div>
+        </dialog>
       </main>
 
       <footer><small>Copyright 2023. woowacourse</small></footer>

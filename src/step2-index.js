@@ -8,6 +8,9 @@ import { renderWinningInput } from "./view/web/LottoWinningView";
 const lottoController = new LottoController();
 
 const purchaseForm = document.querySelector("#purchase-form");
+const winningWrapper = document.querySelector("#winning-input-wrapper");
+const winningForm = document.querySelector("#winning-form");
+const resultModal = document.querySelector("#result-modal");
 
 const handlePurchase = (event) => {
   event.preventDefault();
@@ -20,6 +23,7 @@ const handlePurchase = (event) => {
 
     const lottoCount = purchasedPrice / LOTTO_PRICE;
     const purchasedLottos = lottoController.issueLottos(lottoCount);
+
     renderLottoTicket(purchasedLottos);
     renderWinningInput();
 
@@ -29,13 +33,8 @@ const handlePurchase = (event) => {
   }
 };
 
-purchaseForm.addEventListener("submit", handlePurchase);
-
-const winningWrapper = document.querySelector("#winning-input-wrapper");
-
 const handleWinningResult = (event) => {
   event.preventDefault();
-  const winningForm = event.target;
 
   try {
     const formData = new FormData(winningForm);
@@ -55,18 +54,19 @@ const handleWinningResult = (event) => {
   }
 };
 
-winningWrapper.addEventListener("submit", (e) => {
-  handleWinningResult(e);
-});
-
-const resultModal = document.querySelector("#result-modal");
-
 const handleRestart = () => {
-  document.querySelector(".lotto-ticket-container").innerHTML = "";
-  document.querySelector("#winning-input-wrapper").innerHTML = "";
+  document.querySelector("#lotto-count-text").innerHTML = "";
+  document.querySelector("#lotto-list").innerHTML = "";
+  winningWrapper.classList.add("hidden");
 
   resultModal.close();
 };
+
+purchaseForm.addEventListener("submit", handlePurchase);
+
+winningForm.addEventListener("submit", (e) => {
+  handleWinningResult(e);
+});
 
 resultModal.addEventListener("click", (e) => {
   if (e.target.id === "modal-close-btn") {
