@@ -62,6 +62,7 @@ class WebInput extends Input {
 
   async readWinningNumberAndBonusAsync() {
     this.removeElement(".winning-number-and-bonus__container");
+    this.removeElement(".show-result__button");
 
     const formEl = document.createElement("form");
     formEl.className = "winning-number-and-bonus__container";
@@ -75,7 +76,7 @@ class WebInput extends Input {
     ];
 
     formEl.innerHTML = `
-      <p >지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p
+      <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p
       >
       <div class="winning-number-and-bonus__inputs">
         <div>
@@ -113,17 +114,25 @@ class WebInput extends Input {
       </div>
     `;
 
+    const submitButtonEl = document.createElement("button");
+    submitButtonEl.type = "submit";
+    submitButtonEl.className = "winning-number-and-bonus__submit hidden";
+    submitButtonEl.textContent = "확인";
+    formEl.appendChild(submitButtonEl);
+
     const resultButtonEl = document.createElement("button");
     resultButtonEl.className = "show-result__button";
     resultButtonEl.textContent = "결과 확인하기";
-
-    this.#elements.mainContainerFooter.innerHTML = "";
+    resultButtonEl.addEventListener("click", () => {
+      submitButtonEl.click();
+    });
     this.#elements.mainContainerFooter.appendChild(resultButtonEl);
 
-
     return new Promise((resolve) => {
-      resultButtonEl.addEventListener("click", (e) => {
-        const formData = new FormData(formEl);
+      formEl.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
 
         inputSelectors.forEach((selector) => {
           this.diasbleElement(selector);
@@ -168,19 +177,11 @@ class WebInput extends Input {
     }
   }
 
-  clearElement(selector) {
-    const element = document.querySelector(selector);
-
-    if (element) {
-      element.innerHTML = "";
-    }
-  }
-
   removeElement(selector) {
     const element = document.querySelector(selector);
 
     if (element) {
-      element.remove()
+      element.remove();
     }
   }
 
