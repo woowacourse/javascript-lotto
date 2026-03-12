@@ -1,13 +1,15 @@
 export default class Lotto {
-  static MIN_RANGE = 1;
-  static MAX_RANGE = 45;
-  static SIZE = 6;
+  static POLICY = Object.freeze({
+    MIN_RANGE: 1,
+    MAX_RANGE: 45,
+    SIZE: 6,
+  });
 
-  static ERROR = {
+  static ERROR = Object.freeze({
     DUPLICATE: "로또번호가 중복됐습니다",
-    INVALID_RANGE: "로또번호가 1~45 범위를 벗어났습니다",
-    INVALID_SIZE: "로또 갯수는 6개여야 합니다",
-  };
+    INVALID_RANGE: `로또번호가 ${Lotto.POLICY.MIN_RANGE}~${Lotto.POLICY.MAX_RANGE} 범위를 벗어났습니다`,
+    INVALID_SIZE: `로또 갯수는 ${Lotto.POLICY.SIZE}개여야 합니다`,
+  });
 
   #numbers;
 
@@ -17,10 +19,11 @@ export default class Lotto {
   }
 
   #validate(numbers) {
-    if (numbers.length !== Lotto.SIZE) {
+    const { SIZE, MIN_RANGE, MAX_RANGE } = Lotto.POLICY;
+    if (numbers.length !== SIZE) {
       throw new Error(Lotto.ERROR.INVALID_SIZE);
     }
-    if (numbers.some((n) => n < Lotto.MIN_RANGE || Lotto.MAX_RANGE < n)) {
+    if (numbers.some((n) => n < MIN_RANGE || MAX_RANGE < n)) {
       throw new Error(Lotto.ERROR.INVALID_RANGE);
     }
     if (numbers.length !== new Set(numbers).size) {

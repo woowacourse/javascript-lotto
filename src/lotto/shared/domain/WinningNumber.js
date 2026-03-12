@@ -3,7 +3,7 @@ import Lotto from "./Lotto.js";
 export default class WinningNumber {
   static ERROR = {
     DUPLICATE: "보너스번호가 중복됐습니다",
-    INVALID_RANGE: "보너스번호가 1~45 범위를 벗어났습니다",
+    INVALID_RANGE: `로또번호가 ${Lotto.POLICY.MIN_RANGE}~${Lotto.POLICY.MAX_RANGE} 범위를 벗어났습니다`,
   };
 
   #lotto;
@@ -16,7 +16,8 @@ export default class WinningNumber {
   }
 
   #validator(numbers, bonusNumber) {
-    if (bonusNumber < Lotto.MIN_RANGE || Lotto.MAX_RANGE < bonusNumber)
+    const { MIN_RANGE, MAX_RANGE } = Lotto.POLICY;
+    if (bonusNumber < MIN_RANGE || MAX_RANGE < bonusNumber)
       throw new Error(WinningNumber.ERROR.INVALID_RANGE);
 
     if (numbers.includes(bonusNumber))

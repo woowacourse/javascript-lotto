@@ -1,5 +1,4 @@
 import Lotto from "../../../../src/lotto/shared/domain/Lotto";
-import WinningNumber from "../../../../src/lotto/shared/domain/WinningNumber";
 
 describe("Lotto 생성 성공테스트", () => {
   test("로또번호 성공 테스트", () => {
