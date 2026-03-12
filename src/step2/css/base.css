@@ -100,11 +100,7 @@ footer p {
     color: var(--navbar-fg);
 }
 
-/*
--------
-CONTENT
--------
-*/
+/* Content */
 
 #app {
     flex: 1;
