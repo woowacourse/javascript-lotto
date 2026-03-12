@@ -1,11 +1,9 @@
-import { LottoMachine } from "../src/step1/LottoMachine.js";
-import { Output } from "../src/step1/Output.js";
-import { pickNumberInRange } from "../src/step1/Utils.js";
+import { LottoMachine } from "../src/LottoMachine.js";
+import { Output } from "../src/Output.js";
+import { pickNumberInRange } from "../src/Utils.js";
 
 const logSpy = jest.spyOn(console, "log");
-jest.mock("../src/step1/Utils.js", () => ({
-  readLine: jest.fn(),
-  read: { close: jest.fn() },
+jest.mock("../src/Utils.js", () => ({
   pickNumberInRange: jest.fn(),
 }));
 

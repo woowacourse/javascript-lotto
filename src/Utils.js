@@ -1,5 +1,3 @@
-import readline from "readline";
-
 /**
  *
  * 두 수를 포함하는 두 수 사이의 정수 난수 배열 반환.
@@ -21,17 +19,4 @@ export function pickNumberInRange(min, max, range) {
   }
 
   return [...numbers];
-}
-
-export const read = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-export function readLine(query) {
-  return new Promise((resolve) => {
-    read.question(query, (answer) => {
-      resolve(answer);
-    });
-  });
 }

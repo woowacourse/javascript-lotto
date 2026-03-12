@@ -1,9 +1,7 @@
-import { LottoMachine } from "../src/step1/LottoMachine.js";
-import { pickNumberInRange } from "../src/step1/Utils.js";
+import { LottoMachine } from "../src/LottoMachine.js";
+import { pickNumberInRange } from "../src/Utils.js";
 
-jest.mock("../src/step1/Utils.js", () => ({
-  readLine: jest.fn(),
-  read: { close: jest.fn() },
+jest.mock("../src/Utils.js", () => ({
   pickNumberInRange: jest.fn(),
 }));
 

@@ -1,4 +1,4 @@
-import { Lotto, WinningLotto } from "../src/step1/Lotto.js";
+import { Lotto, WinningLotto } from "../src/Lotto.js";
 
 describe("로또 클래스 테스트", () => {
   test("유효한 번호로 로또 생성 시 번호를 반환한다", () => {
