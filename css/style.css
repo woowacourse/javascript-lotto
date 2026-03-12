@@ -216,6 +216,7 @@
   border: none;
   background-color: transparent;
   margin-left: auto;
+  cursor: pointer;
 }
 
 .text-bold {
