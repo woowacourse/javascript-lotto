@@ -21,3 +21,5 @@ const loadNestedComponents = (root) => {
   });
   return Promise.all(promises);
 };
+
+export default loadComponent;
