@@ -64,6 +64,10 @@ form {
   gap: 10px;
 }
 
+fieldset {
+  border: 0;
+}
+
 ol, ul {
   list-style: none;
 }
