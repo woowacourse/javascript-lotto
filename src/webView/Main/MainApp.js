@@ -81,17 +81,24 @@ class MainApp extends HTMLElement {
           </div>
           <!-- 당첨 번호 & 보너스 번호 입력 폼 -->
           <div class="userLotto-container">
-            <label class="userLotto-header" for="">
+            <label class="userLotto-header" for="winningNumber">
               지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
             </label>
             <div class="input-container">
               <!-- 당첨 번호 -->
               <div class="winningNumber-container">
-                <label class="winningNumber-container-header" for="">
+                <label
+                  class="winningNumber-container-header"
+                  for="winningNumber"
+                >
                   당첨 번호
                 </label>
                 <div class="winningNumber-input-container">
-                  <input type="text" class="winningNumber-line" />
+                  <input
+                    type="text"
+                    id="winningNumber"
+                    class="winningNumber-line"
+                  />
                   <input type="text" class="winningNumber-line" />
                   <input type="text" class="winningNumber-line" />
                   <input type="text" class="winningNumber-line" />
@@ -100,11 +107,11 @@ class MainApp extends HTMLElement {
                 </div>
               </div>
               <div class="bonusNumber-container">
-                <label class="bonusNumber-container-header" for="">
-                  당첨 번호
+                <label class="bonusNumber-container-header" for="bonusNumber">
+                  보너스 번호
                 </label>
 
-                <input type="text" class="bonusNumber-line" />
+                <input type="text" id="bonusNumber" class="bonusNumber-line" />
               </div>
             </div>
           </div>
