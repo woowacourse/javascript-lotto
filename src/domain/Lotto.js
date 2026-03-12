@@ -1,5 +1,6 @@
 import { LOTTO_RANGE } from "../constants/constant.js";
 import { OutputView } from "../view/output.js";
+import { LottoWebOutputView } from "../view/LottoWebOutputView.js";
 
 class Lotto {
   #numbers;
@@ -40,6 +41,10 @@ class Lotto {
 
   printLottos() {
     OutputView.outputLottoNumber(this.#numbers);
+  }
+
+  getNumbers() {
+    return [...this.#numbers];
   }
 }
 
