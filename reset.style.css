@@ -1,0 +1,51 @@
+/* 1. 박스 모델을 border-box로 고정 (패딩이 너비에 포함되도록) */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. 브라우저 기본 마진, 패딩 제거 */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. 리스트 스타일 제거 */
+ul, ol {
+  list-style: none;
+}
+
+/* 4. 본문 기본 설정 */
+body {
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased; /* 글자를 더 매끄럽게 */
+  word-break: keep-all; /* 한글 줄바꿈을 단어 단위로 */
+}
+
+/* 5. 폼 요소 스타일 통일 (매우 중요!) */
+input, button, textarea, select {
+  font: inherit; /* 폰트 상속 */
+  color: inherit; /* 글자색 상속 */
+  appearance: none; /* 브라우저 기본 UI 제거 */
+  border: none;
+  background: transparent;
+  outline: none; /* 포커스 라인은 필요 시 별도 작업 */
+}
+
+/* 6. 이미지 및 미디어 최적화 */
+img, picture, video, canvas, svg {
+  display: block; /* 하단 미세 공백 제거 */
+  max-width: 100%; /* 부모 밖으로 나가지 않게 */
+  height: auto;
+}
+
+/* 7. 링크 초기화 */
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 8. 버튼 포인터 설정 */
+button {
+  cursor: pointer;
+}
