@@ -1,10 +1,10 @@
-import LottoGame from "./Model/LottoGame.js";
-import LottoList from "./Model/LottoList.js";
-import Rate from "./Model/Rate.js";
-import { parsingNumbers, stringToNumber } from "./utils/parsing.js";
-import Validator from "./Validator.js";
-import InputView from "./View/InputView.js";
-import OutputView from "./View/OutputView.js";
+import LottoGame from "../Model/LottoGame.js";
+import LottoList from "../Model/LottoList.js";
+import Rate from "../Model/Rate.js";
+import { parsingNumbers, stringToNumber } from "../utils/parsing.js";
+import Validator from "../Validator.js";
+import InputView from "../View/ConsoleView/InputView.js";
+import OutputView from "../View/ConsoleView/OutputView.js";
 
 class App {
   #validator;
