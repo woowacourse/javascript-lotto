@@ -6,6 +6,7 @@ import loadComponent from "./ui/loadComponent.js";
 
 loadComponent("main", "./src/ui/html/main.html").then(() => {
   const modalContainer = document.getElementById("modal-container");
+  const modalCloseButton = document.getElementById("modal-close-button");
 
   document
     .querySelector("#winning-input-section button")
@@ -17,5 +18,9 @@ loadComponent("main", "./src/ui/html/main.html").then(() => {
     if (e.target === modalContainer) {
       modalContainer.style.display = "none";
     }
+  });
+
+  modalCloseButton.addEventListener("click", () => {
+    modalContainer.style.display = "none";
   });
 });
