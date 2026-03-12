@@ -1,17 +1,17 @@
 import Validator from "../../Validator.js";
 import LottoList from "../../Model/LottoList.js";
 import LottoGame from "../../Model/LottoGame.js";
+import Rate from "../../Model/Rate.js";
 
 const html = String.raw;
 
-const mockPrize = [
-  ["3개", 5_000, 1],
-  ["4개", 50_000, 0],
-  ["5개", 1_500_000, 0],
-  ["5개+보너스볼", 30_000_000, 1],
-  ["6개", 2_000_000_000, 0],
+const prizeTable = [
+  { label: "3개", prize: 5_000, grade: 5 },
+  { label: "4개", prize: 50_000, grade: 4 },
+  { label: "5개", prize: 1_500_000, grade: 3 },
+  { label: "5개+보너스볼", prize: 30_000_000, grade: 2 },
+  { label: "6개", prize: 2_000_000_000, grade: 1 },
 ];
-const mockBenefitRate = 62.5;
 
 class MainApp extends HTMLElement {
   #validator;
@@ -27,6 +27,7 @@ class MainApp extends HTMLElement {
   #winningError;
 
   #statistics;
+  #rate;
 
   constructor() {
     super();
@@ -76,15 +77,17 @@ class MainApp extends HTMLElement {
                 <div>당첨 갯수</div>
               </div>
               <!-- 표 영역 -->
-              ${mockPrize
+              ${prizeTable
                 .map(
-                  (prize) =>
+                  (row) =>
                     html`<div class="row">
-                      <div class="row-item">${prize[0]}</div>
+                      <div class="row-item">${row.label}</div>
                       <div class="row-item">
-                        ${prize[1].toLocaleString("ko-KR")}
+                        ${row.prize.toLocaleString("ko-KR")}
                       </div>
-                      <div class="row-item">${prize[2]}개</div>
+                      <div class="row-item">
+                        ${this.#statistics ? this.#statistics[row.grade] : 0}개
+                      </div>
                     </div>`
                 )
                 .join("")}
@@ -92,7 +95,8 @@ class MainApp extends HTMLElement {
 
             <!-- 수익률 -->
             <div class="benefit-messege">
-              당신의 총 수익률은 ${mockBenefitRate}%입니다.
+              당신의 총 수익률은
+              ${this.#rate ? this.#rate.getRate() : 0}%입니다.
             </div>
 
             <button class="modal-restart">다시 시작하기</button>
@@ -146,6 +150,8 @@ class MainApp extends HTMLElement {
           this.#statistics = this.#lottoGame.calculateStatistics(
             this.#lottoList
           );
+
+          this.#rate = new Rate(this.#statistics, this.#purchaseAmount * 1000);
 
           this.#isOpenModal = true;
         } catch (error) {
