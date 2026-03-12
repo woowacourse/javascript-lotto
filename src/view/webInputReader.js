@@ -12,12 +12,16 @@ export const webInputReader = {
     })
   },
 
+  savedBonusNumber: null,
+
   readWinningNumber() {
     return new Promise((resolve) => {
       const getResultButton = document.getElementById('getResultButton');
       const winningInput = document.querySelectorAll('input.winningInput');
+      const bonusInput = document.getElementById('bonusInput');
       
       const onClick = () => {
+        this.savedBonusNumber = bonusInput.value;
         const winningNumberArray = Array.from(winningInput).map(item => item.value);
         const winningNumberString = winningNumberArray.join(',');
         resolve(winningNumberString);
@@ -29,14 +33,8 @@ export const webInputReader = {
 
   readBonusNumber() {
     return new Promise((resolve) => {
-      const getResultButton = document.getElementById('getResultButton');
-      const bonusInput = document.getElementById('bonusInput');
-
-      const onClick = () => {
-        resolve(bonusInput.value);
-      }
-
-      getResultButton.addEventListener('click', onClick);
+      resolve(this.savedBonusNumber);
+      this.savedBonusNumber = null;
     })
   },
 
