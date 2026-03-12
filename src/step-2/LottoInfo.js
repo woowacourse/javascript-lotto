@@ -26,8 +26,9 @@ const LottoInfo = {
     lottoListContainer.id = 'lotto-list-container';
     lottoListContainer.classList.add('lotto-list-container');
 
+    lottos.forEach((lotto) => LottoItem.render(lottoListContainer, { lotto }));
     lottoInfoContainer.appendChild(purchaseCountDiv);
-    lottos.forEach((lotto) => LottoItem.render(lottoInfoContainer, { lotto }));
+    lottoInfoContainer.appendChild(lottoListContainer);
 
     container.appendChild(lottoInfoContainer);
   },
