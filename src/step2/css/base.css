@@ -1,6 +1,6 @@
 :root {
 
-    --font-system: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, sans-serif;
+    --font-system: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, sans-serif;
     --font-title: 800 24px/1.2 var(--font-system);
     --font-subtitle: 600 20px/1.2 var(--font-system);
     --font-body: 400 15px/1.4 var(--font-system);
