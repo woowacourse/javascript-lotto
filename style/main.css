@@ -1,10 +1,15 @@
-@import url(reset.css);
+@import url("reset.css");
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
 
 header {
   display: flex;
   align-items: center;
-  position: fixed;
-  top: 0;
   width: 100%;
   height: 64px;
   padding: 0 0 0 130px;
@@ -12,14 +17,124 @@ header {
   color: var(--lotto-greyscale-1);
 }
 
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: var(--lotto-greyscale-2);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 24px;
+  max-width: 400px;
+  padding: 32px 16px;
+  border: 1px solid #0000001f;
+  background-color: var(--lotto-greyscale-1);
+}
+
+section > h2 {
+  text-align: center;
+}
+
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  bottom: 0;
+
   width: 100%;
   height: 80px;
   border-top: 1px solid #4e5ba633;
   color: var(--lotto-primary);
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  padding: 10px;
+  border: 1px solid var(--lotto-primary);
+  border-radius: 8px;
+  background-color: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  cursor: pointer;
+}
+
+.money {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.money__input {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.money__input > input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 8px;
+}
+
+.lotto {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lotto__number {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lotto_number__item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+}
+
+.winning-lotto {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.winning-lotto > button {
+  margin: 15px 0 0 0;
+}
+
+.winning-lotto input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.winning-lotto__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.winning-number {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 8px;
 }
