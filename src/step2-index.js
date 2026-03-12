@@ -5,14 +5,23 @@
 
 import { LOTTO } from "./constants";
 import LottoGenerator from "./LottoGenerator";
+import WinningLotto from "./Model/WinningLotto";
 import Validator from "./Validator";
 import WebView from "./View/WebView";
 
 const purchaseForm = document.querySelector(".purchase-form");
 const purchaseInput = document.querySelector(".purchase-form__input");
+const purchaseSubmitButton = document.querySelector(
+  ".purchase-form__submit-btn",
+);
 
 const ticketList = document.querySelector(".ticket-list");
+
 const winningForm = document.querySelector(".winning-form");
+const resultModal = document.querySelector(".result-modal");
+const resultModalCloseButton = document.querySelector(
+  ".result-modal__close-btn",
+);
 
 const validateMoney = (money) => {
   Validator.numberDivided(money, LOTTO.PRICE);
@@ -21,7 +30,6 @@ const validateMoney = (money) => {
 
 const setPurchaseLottoCount = (purchaseLottoCount) => {
   const ticketListSummary = document.querySelector(".ticket-list__summary");
-  console.log(ticketListSummary);
   ticketListSummary.innerText = `총 ${purchaseLottoCount}개를 구매하였습니다.`;
 };
 
@@ -44,6 +52,8 @@ const getTicket = (lottoNumbers) => {
   return ticket;
 };
 
+const lottos = [];
+
 // 이벤트 달기
 purchaseForm.addEventListener("submit", (e) => {
   e.preventDefault(); // 폼 새로고침 방지
@@ -52,11 +62,15 @@ purchaseForm.addEventListener("submit", (e) => {
     validateMoney(money);
 
     // 구입 성공한 이후
+    purchaseInput.disabled = true;
+    purchaseInput.style.cursor = "not-allowed";
+    purchaseSubmitButton.disabled = true;
+    purchaseSubmitButton.style.cursor = "not-allowed";
     const purchaseLottoCount = money / LOTTO.PRICE;
     setPurchaseLottoCount(purchaseLottoCount);
 
     // 로또 객체 생성
-    const lottos = LottoGenerator.makeLottos(purchaseLottoCount);
+    lottos.push(...LottoGenerator.makeLottos(purchaseLottoCount));
     const ticketListContainer = document.querySelector(
       ".ticket-list__container",
     );
@@ -73,4 +87,27 @@ purchaseForm.addEventListener("submit", (e) => {
   } finally {
     purchaseInput.value = "";
   }
+});
+
+winningForm.addEventListener("submit", (e) => {
+  try {
+    const winningNumbers = WebView.readWinningNumbers();
+    const bonusNumber = WebView.readBonusNumber();
+    const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    const winningNumberInputNodes = document.querySelectorAll(
+      ".winning-form__input ",
+    );
+    winningNumberInputNodes.forEach((node) => {
+      node.disabled = true;
+      node.style.cursor = "not-allowed";
+    });
+
+    resultModal.showModal();
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+resultModalCloseButton.addEventListener("click", (e) => {
+  resultModal.close();
 });
