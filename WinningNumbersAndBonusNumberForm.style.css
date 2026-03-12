@@ -1,3 +1,10 @@
+.winning-lotto-and-bonus-number-form {
+  position: absolute;
+  bottom: 36px;
+  left: 16px;
+  right: 16px;
+}
+
 .winning-numbers-and-bonus-number-wrapper {
   display: flex;
   justify-content: space-between;
@@ -30,4 +37,9 @@
 .bonus-number-input-wrapper {
   display: flex;
   gap: 8px;
+}
+
+.result-check-button {
+  width: 100%;
+  margin-top: 24px;
 }
