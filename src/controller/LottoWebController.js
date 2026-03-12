@@ -3,6 +3,9 @@ import { LottoWebOutputView } from "../view/LottoWebOutputView.js";
 import { Validator } from "../validator/Validator.js";
 import { calculateLottoCountService } from "../service/calculateLottoCountService.js";
 import { lottoService } from "../service/lottoService.js";
+import WinningLotto from "../domain/WinningLotto.js";
+import { compareResultService } from "../service/compareResultService.js";
+import { profitService } from "../service/profitService.js";
 
 const lottoSection = document.querySelector(".lotto-section");
 const winningInputSection = document.querySelector(
@@ -12,6 +15,11 @@ const submitButton = document.querySelector("#submit");
 const modal = document.querySelector(".modal");
 
 class LottoWebController {
+  constructor() {
+    this.money = 0;
+    this.randomLottos = [];
+  }
+
   play() {
     LottoWebInputView.bindPurchase(() => this.handlePurchase());
     LottoWebInputView.bindSubmit(() => this.handleSubmit());
@@ -24,16 +32,17 @@ class LottoWebController {
 
       const money = LottoWebInputView.getPurchaseMoney();
       Validator.validatePurchaseMoney(money);
+      this.money = money;
 
       const count = calculateLottoCountService(money);
-      const randomLottos = lottoService(count);
+      this.randomLottos = lottoService(count);
 
       lottoSection.classList.remove("hidden");
       winningInputSection.classList.remove("hidden");
       submitButton.classList.remove("hidden");
 
       LottoWebOutputView.renderLottoCount(count);
-      LottoWebOutputView.renderLottos(randomLottos);
+      LottoWebOutputView.renderLottos(this.randomLottos);
     } catch (error) {
       LottoWebOutputView.showMoneyError(error.message);
     }
@@ -49,7 +58,13 @@ class LottoWebController {
       const bonusNumber = LottoWebInputView.getBonusNumber();
       Validator.validateBonusNumber(winningNumbers, bonusNumber);
 
-      modal.classList.remove("hidden");
+      const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+      const result = compareResultService(this.randomLottos, winningLotto);
+      const profit = profitService(this.money, result);
+
+      LottoWebOutputView.renderResult(result);
+      LottoWebOutputView.renderProfit(profit);
+      LottoWebOutputView.showModal();
     } catch (error) {
       LottoWebOutputView.showWinningBonusError(error.message);
     }

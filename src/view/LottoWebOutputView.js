@@ -3,10 +3,11 @@ const lottoCount = document.querySelector("#lotto-count");
 const moneyError = document.querySelector("#money-error");
 const winningBonusError = document.querySelector("#winning-bonus-error");
 const modal = document.querySelector(".modal");
+const profitText = document.querySelector("#profit");
 
 export const LottoWebOutputView = {
   renderLottoCount(count) {
-    lottoCount.innerText = `총 ${count}개를 구매했습니다.`;
+    lottoCount.textContent = `총 ${count}개를 구매했습니다.`;
   },
 
   renderLottos(lottos) {
@@ -22,8 +23,18 @@ export const LottoWebOutputView = {
       .join("");
   },
 
+  showModal() {
+    modal.classList.remove("hidden");
+  },
+
   hideModal() {
     modal.classList.add("hidden");
+  },
+
+  renderResult(result) {},
+
+  renderProfit(profit) {
+    profitText.textContent = `총 수익률은 ${profit}%입니다.`;
   },
 
   showMoneyError(message) {
