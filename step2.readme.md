@@ -19,7 +19,7 @@
 7. 분리 가능한 컴포넌트 분리 -> 스타일링을 컴포넌트에 따라 설정할지 클래스로 할당할지 결정
 8. id/class 상수화
 9. 스타일링
-10. input type number -> text 로 변경
+10. input type number -> 마우스휠 제한
 11. -container 등 과도한 접미사 제거
 12. id / class 사용 검토
 13. input label? 암튼 접근성

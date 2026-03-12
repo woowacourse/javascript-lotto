@@ -66,6 +66,16 @@ input::placeholder {
   vertical-align: bottom;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 input.invalid {
   border-color: var(--color-lotto-negative);
 }
