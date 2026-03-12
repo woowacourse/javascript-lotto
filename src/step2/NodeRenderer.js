@@ -19,7 +19,15 @@ const NodeRenderer = {
     if (errorNode) {
       errorNode.remove();
     }
-  }
+  },
+
+  renderPurchaseLottoCount(target, count) {
+    const alreadyExist = document.getElementById('purchase-lotto-count-message');
+    if (alreadyExist) return;
+    const node = NodeFactory.createMessageNode('p', `총 ${count}개를 구매했습니다.`);
+    node.id = 'puchase-lotto-count-message';
+    target.appendChild(node);
+  },
 }
 
 export default NodeRenderer;

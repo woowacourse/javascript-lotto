@@ -5,7 +5,9 @@
 import Validator from './step1/Validator.js';
 import NodeRenderer from './step2/NodeRenderer.js';
 import { clearState } from './step2/NodeUtils.js';
+import { LottoMachine } from './step1/LottoMachine.js';
 
+let lottoMachine = null;
 
 (function() {
   const purchaseAmountForm = document.getElementById('purchase-amount-form');
@@ -13,13 +15,16 @@ import { clearState } from './step2/NodeUtils.js';
     e.preventDefault();
     const purchaseAmountInput = document.getElementById('purchase-amount');
     const purchaseAmount = purchaseAmountInput.value;
-    const container = document.getElementById('purchase-amount-input-container');
-    clearState(container);
+    const purchaseAmountContainer = document.getElementById('purchase-amount-input-container');
+    clearState(purchaseAmountContainer);
     try {
       Validator.validatePurchaseAmount(purchaseAmount);
-      NodeRenderer.renderSuccess(container);
+      NodeRenderer.renderSuccess(purchaseAmountContainer);
+      lottoMachine = new LottoMachine(purchaseAmount);
+      const purchaseLottoContentContainer = document.getElementById('purchase-lotto-content');
+      NodeRenderer.renderPurchaseLottoCount(purchaseLottoContentContainer, lottoMachine.getLottos().length);
     } catch (err) {
-      NodeRenderer.renderError(container, err.message);
+      NodeRenderer.renderError(purchaseAmountContainer, err.message);
     }
   });
 })();
