@@ -15,3 +15,21 @@ body {
   height: 36px;
   font-size: 24px;
 }
+
+.lottobox {
+  border: 1px solid #b4b4b4;
+  width: 414px;
+  height: 712px;
+  margin: 64px auto;
+  background-color: white;
+}
+
+.lottobox #lotto-title {
+  width: 382px;
+  height: 36px;
+  margin: 40px 16px 0;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+}
