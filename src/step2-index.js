@@ -20,6 +20,7 @@ import {
   renderLottoList,
   renderPurchaseCount,
   renderStatistics,
+  resetGame,
 } from "./view/webOutputView";
 import WinningLotto from "./WinningLotto";
 import { getReturnRate } from "./utils/getReturnRate.js";
@@ -85,4 +86,14 @@ loadComponent("main", "./src/ui/html/main.html").then(() => {
   modalCloseButton.addEventListener("click", () => {
     modalContainer.style.display = "none";
   });
+
+  // 다시 시작하기 버튼 눌렀을 때 이벤트
+  document
+    .querySelector("#modal-statistics-section button")
+    .addEventListener("click", () => {
+      resetGame();
+      purchaseAmount = 0;
+      generatedLottos = [];
+      modalContainer.style.display = "none";
+    });
 });
