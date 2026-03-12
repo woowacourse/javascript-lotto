@@ -1,10 +1,9 @@
-.lotto-info-container {
-}
-
 .lotto-list-container {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  max-height: 285px;
+  overflow-y: scroll;
   margin-top: 8px
 }
 
