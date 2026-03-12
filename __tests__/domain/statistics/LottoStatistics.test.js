@@ -10,7 +10,7 @@ describe("8000원으로 로또 3등이 당첨됐을때", () => {
   test("출력용 통계 객체(몇등인지랑 수량)", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const winningNumber = new WinningNumber([1, 2, 3, 4, 5, 7], 6);
-    const result = { rank: Rank.SECOND };
+    const result = Rank.SECOND;
     expect(statistics(lotto, winningNumber)).toEqual(result);
   });
 
