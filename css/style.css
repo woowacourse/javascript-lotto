@@ -39,9 +39,9 @@ header {
 
 .main-container {
   max-width: 450px;
-  min-height: 700px;
+  min-height: 600px;
   margin: 3rem auto;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1rem;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -106,17 +106,26 @@ section {
   padding: 0.5rem 0;
 }
 
+.input-label {
+  margin-top:1rem ;
+  font-size:15px;
+  display: flex;
+  flex-direction:row; 
+  justify-content:space-between; 
+
+}
+
 .flex-container {
   display: flex;
-  justify-content: space-between; 
+  justify-content:space-between; 
   align-items: flex-start;
-  margin-top: 1rem;
+  margin-top: 0.2rem;
   width: 100%;
 }
 
 .winningnum-inputs, .bonusnum-inputs {
   display: flex;
-  gap: 8px; 
+  gap: 7px; 
   margin-top: 8px;
 }
 
@@ -217,3 +226,14 @@ section {
   font-weight: bold;
   text-align: center;
 }
+
+.footer{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding:2rem;
+  font-size: 14px;
+  font-weight: bold;
+  color: #4E5BA6;
+  border-top: 1px solid #4E5BA633;
+} 

@@ -40,10 +40,14 @@
         <section class="winningnum-bonusnum hidden">
           <form class="winningnum-bonusnum-form">
             <p class="input-guide">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-            
+            <div class="input-label">
+              <span>당첨 번호</span>
+              <span>보너스 번호</span>
+            </div>
+              
             <div class="flex-container">
+              
               <div class="winningnum-group">
-                <label class="input-label">당첨 번호</label>
                 <div class="winningnum-inputs">
                   <input type="number" class="winning-number" max="45" min="1" required>
                   <input type="number" class="winning-number" max="45" min="1" required>
@@ -53,9 +57,8 @@
                   <input type="number" class="winning-number" max="45" min="1" required>
                 </div>
               </div>
-
+              
               <div class="bonusnum-group">
-                <label class="input-label">보너스 번호</label>
                 <div class="bonusnum-inputs">
                   <input type="number" class="bonus-number" max="45" min="1" required>
                 </div>
@@ -115,7 +118,9 @@
         </div>
 
       </section>
-      
+      <footer>
+        <div class = footer>Copyright 2023. woowacourse</div>
+      </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
