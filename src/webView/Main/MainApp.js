@@ -1,7 +1,16 @@
 const html = String.raw;
 
-const mockLottoCount = 3;
+const mockLottoCount = 12;
 const mockLottos = [
+  [1, 2, 3, 4, 5, 6],
+  [7, 8, 9, 10, 11, 12],
+  [13, 14, 15, 16, 17, 18],
+  [1, 2, 3, 4, 5, 6],
+  [7, 8, 9, 10, 11, 12],
+  [13, 14, 15, 16, 17, 18],
+  [1, 2, 3, 4, 5, 6],
+  [7, 8, 9, 10, 11, 12],
+  [13, 14, 15, 16, 17, 18],
   [1, 2, 3, 4, 5, 6],
   [7, 8, 9, 10, 11, 12],
   [13, 14, 15, 16, 17, 18],
@@ -50,18 +59,21 @@ class MainApp extends HTMLElement {
           <!-- 3. 구입 로또 -->
           <div class="lottos-container">
             <div class="lottos-container-header">
-              총 ${mockLottoCount}개를 구매하셨습니다.
+              총 ${mockLottoCount}개를 구매하셨습니다. <br />
+              (로또 수가 많은 경우 스크롤을 내리세요.)
             </div>
-            ${mockLottos
-              .map(
-                (lotto) =>
-                  // <!-- 하나의 로또 라인 -->
-                  html`<div class="lotto-line">
-                    <div class="lotto-line-icon">🎟️</div>
-                    ${lotto.join(", ")}
-                  </div>`
-              )
-              .join("")}
+            <div class="lottos-table">
+              ${mockLottos
+                .map(
+                  (lotto) =>
+                    // <!-- 하나의 로또 라인 -->
+                    html`<div class="lotto-line">
+                      <div class="lotto-line-icon">🎟️</div>
+                      ${lotto.join(", ")}
+                    </div>`
+                )
+                .join("")}
+            </div>
           </div>
           <!-- 당첨 번호 & 보너스 번호 입력 폼 -->
           <div class="userLotto-container">
