@@ -1,3 +1,5 @@
+import Lotto from "../../domain/Lotto.js";
+
 export default class ConsoleApp {
   #purchaseLottoUseCase;
   #ui;
@@ -14,11 +16,21 @@ export default class ConsoleApp {
   async #lottoGame() {
     do {
       await this.#retry(() => this.#processPurchase());
+      await this.#retry(() => this.#processPurchase());
     } while (false);
   }
 
   async #processPurchase() {
     const amount = await this.#ui.readAmount();
+    const { lottoNumbers, lottos } = this.#purchaseLottoUseCase.execute(amount);
+    this.#ui.printLottos(lottoNumbers);
+    return lottos;
+  }
+
+  async #processWinningNumber() {
+    const inputNumbers = await this.#ui.readWinningLottoNumber();
+    Lotto.validate(inputNumbers);
+
     const { lottoNumbers, lottos } = this.#purchaseLottoUseCase.execute(amount);
     this.#ui.printLottos(lottoNumbers);
     return lottos;

@@ -14,11 +14,11 @@ export default class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#validate(numbers);
+    Lotto.validate(numbers);
     this.#numbers = numbers;
   }
 
-  #validate(numbers) {
+  static validate(numbers) {
     const { SIZE, MIN_RANGE, MAX_RANGE } = Lotto.POLICY;
     if (numbers.length !== SIZE) {
       throw new Error(Lotto.ERROR.INVALID_SIZE);

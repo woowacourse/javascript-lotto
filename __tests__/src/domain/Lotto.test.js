@@ -6,23 +6,24 @@ describe("Lotto 생성 성공테스트", () => {
     expect(new Lotto(valid)).toBeInstanceOf(Lotto);
   });
 });
-describe("Lotto 생성 실패 테스트(유효성검사)", () => {
+
+describe("Lotto 유효성검사 테스트", () => {
   test("로또 번호는 중복 될 수 없다", () => {
     const inValid = [1, 1, 3, 4, 5, 6];
-    expect(() => new Lotto(inValid)).toThrow(Lotto.ERROR.DUPLICATE);
+    expect(() => Lotto.validate(inValid)).toThrow(Lotto.ERROR.DUPLICATE);
   });
 
   test.each([[[0, 2, 3, 4, 5, 6]], [[1, 2, 3, 4, 5, 46]]])(
     "로또 번호는 1~45 범위여야한다 %s",
     (numbers) => {
-      expect(() => new Lotto(numbers)).toThrow(Lotto.ERROR.INVALID_RANGE);
+      expect(() => Lotto.validate(numbers)).toThrow(Lotto.ERROR.INVALID_RANGE);
     },
   );
 
   test.each([[[2, 3, 4, 5, 6]], [[1, 2, 3, 4, 5, 6, 7]]])(
     "로또 개수는 6개여야한다",
     (numbers) => {
-      expect(() => new Lotto(numbers)).toThrow(Lotto.ERROR.INVALID_SIZE);
+      expect(() => Lotto.validate(numbers)).toThrow(Lotto.ERROR.INVALID_SIZE);
     },
   );
 });
