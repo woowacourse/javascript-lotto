@@ -145,7 +145,7 @@ CONTENT
     width: 100%;
 }
 
-#purchase-amount {
+input#purchase-amount {
     padding: 8px;
     border-radius: 4px;
     width: 80%;
