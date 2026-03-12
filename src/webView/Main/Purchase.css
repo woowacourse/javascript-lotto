@@ -35,3 +35,8 @@
 
   border: none;
 }
+
+.input-error {
+  font: var(--text-body);
+  color: red;
+}

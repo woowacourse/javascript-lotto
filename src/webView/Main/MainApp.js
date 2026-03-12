@@ -32,6 +32,7 @@ class MainApp extends HTMLElement {
   #isOpenModal;
 
   #purchase;
+  #purchaseError;
 
   constructor() {
     super();
@@ -40,7 +41,9 @@ class MainApp extends HTMLElement {
 
     this.#isShowLottos = false;
     this.#isOpenModal = false;
+
     this.#purchase = 0;
+    this.#purchaseError = "";
   }
 
   connectedCallback() {
@@ -54,7 +57,7 @@ class MainApp extends HTMLElement {
         <div class="card-header">🎱 내 번호 당첨 확인 🎱</div>
 
         <!--  2. 구입 금액 입력 폼 -->
-        <lotto-purchase></lotto-purchase>
+        <lotto-purchase error="${this.#purchaseError}"></lotto-purchase>
 
         <div class="card-hidden-section" ${this.#isShowLottos ? "" : "hidden"}>
           <!-- 3. 구입 로또 -->
@@ -152,12 +155,20 @@ class MainApp extends HTMLElement {
     this.querySelector("lotto-purchase").addEventListener(
       "purchase",
       (event) => {
-        const { purchase } = event.detail;
+        this.#isShowLottos = false;
 
-        this.#validator.validatePrice(purchase);
-        this.#purchase = purchase / 1000;
+        try {
+          const { purchase } = event.detail;
 
-        this.#isShowLottos = true;
+          this.#validator.validatePrice(purchase);
+          this.#purchase = purchase / 1000;
+          this.#purchaseError = "";
+
+          this.#isShowLottos = true;
+        } catch (error) {
+          this.#purchaseError = error.message;
+        }
+
         this.render();
       }
     );
