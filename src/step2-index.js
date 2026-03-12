@@ -22,13 +22,14 @@ purchaseBtn.addEventListener("click", (e) => {
   const { count, lottos } = webLottoManager.purchase(amount);
   purchasedLottoSection.innerHTML = `
   <p>총 ${count}개를 구매하였습니다.</p>
+  <div class='lotto-numbers-container'>
   ${lottos
     .map(
       (lotto) =>
-        `<p class='lotto-number-container'><span class='lotto-emoji'>🎟️</span><span class='lotto-numbers'>${lotto
+        `<p class='lotto-number-line'><span class='lotto-emoji'>🎟️</span><span class='lotto-numbers'>${lotto
           .getNumbers()
           .join(", ")}</span></p>`
     )
     .join("")}
-  `;
+  </div>`;
 });

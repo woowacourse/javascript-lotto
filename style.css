@@ -94,15 +94,22 @@ main {
   border: none;
 }
 
+.lotto-numbers-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .purchased-lotto-section {
   width: 100%;
 }
 
-.lotto-number-container {
+.lotto-number-line {
   display: flex;
   align-items: center;
   justify-content: start;
   gap: 8px;
+  margin: 0px;
 }
 
 .lotto-emoji {
