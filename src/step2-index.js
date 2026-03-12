@@ -1,4 +1,4 @@
-import webApp from "./controller/webApp.js";
+import WebApp from "./controller/webApp.js";
 
-const webapp = new webApp();
-webapp.init(); 
+const App = new WebApp();
+App.init(); 

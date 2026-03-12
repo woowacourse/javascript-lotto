@@ -3,7 +3,7 @@ import WebView from "../view/WebView.js";
 import Lotto from "../model/Lotto.js";
 import Validator from "../utils/Validator.js";
 
-class webApp {
+class WebApp {
   #lottoController;
   constructor() {
     this.view = new WebView();
@@ -22,20 +22,37 @@ class webApp {
 
     window.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
-        if (!this.view.$modalSection.classList.contains("hidden")) {
-          e.preventDefault(); 
-          location.reload();  
+        if (this.view.isModalVisible()) {
+          e.preventDefault();
+          location.reload();
         }
       }
     });
 
   }
 
+  #validatePurchase(price) {
+    Validator.validateNumber(price);
+    Validator.validatePrice(price);
+  }
+
+  #validateWinningNum(winningNumbers) {
+    Validator.validateLottoCount(winningNumbers);
+    Validator.validateDuplicateLottoNums(winningNumbers);
+  }
+
+  #validateBonusNum(winningNumbers, bonusNumber) {
+    Validator.validateNumber(bonusNumber);
+    Validator.validateLottoNumRange(bonusNumber);
+    Validator.validateDuplicateBonusNum(winningNumbers, bonusNumber);
+
+  }
+
   #handlePurchase() {
-    const purchasedPrice = Number(this.view.getPurchaseAmount());
     try {
-      Validator.validateNumber(purchasedPrice);
-      Validator.validatePrice(purchasedPrice);
+      const purchasedPrice = Number(this.view.getPurchaseAmount());
+
+      this.#validatePurchase(purchasedPrice);
 
       const lottoCount = purchasedPrice / 1000;
       this.#lottoController = new LottoController(lottoCount);
@@ -49,33 +66,21 @@ class webApp {
       alert(error.message);
       return;
     }
-
-    const lottoCount = purchasedPrice / 1000;
-
-    this.view.renderLottoCount(lottoCount);
-    this.#lottoController = new LottoController(lottoCount);
-    const purchasedLottos = this.#lottoController.issueLottos();
-
-    this.view.renderLottoCount(lottoCount);
-    this.view.renderLottosContainer(purchasedLottos);
   }
 
-  #handleResult() {
-    const winningNumbers = this.view.getWinningNumbers();
-    const bonusNumber = this.view.getBonusNumber();
 
+  #handleResult() {
     try {
-      Validator.validateLottoCount(winningNumbers);
-      Validator.validateDuplicateLottoNums(winningNumbers);
+      const winningNumbers = this.view.getWinningNumbers();
+      const bonusNumber = this.view.getBonusNumber();
+      this.#validateWinningNum(winningNumbers);
+      this.#validateBonusNum(winningNumbers, bonusNumber)
+
       winningNumbers.forEach(num => {
         Validator.validateNumber(num);
         Validator.validateLottoNumRange(num);
+
       });
-
-      Validator.validateNumber(bonusNumber);
-      Validator.validateLottoNumRange(bonusNumber);
-      Validator.validateDuplicateBonusNum(winningNumbers, bonusNumber);
-
       const winningLotto = new Lotto(winningNumbers);
       this.#lottoController.updateWinningResult(winningLotto, bonusNumber);
 
@@ -88,4 +93,4 @@ class webApp {
   }
 }
 
-export default webApp;
+export default WebApp;
