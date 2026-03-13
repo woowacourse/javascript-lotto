@@ -1,4 +1,4 @@
-.lotto-list-container {
+.lotto-info-container ul {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -7,7 +7,7 @@
   margin-top: 8px
 }
 
-.lotto-item-container {
+.lotto-info-container li {
   display: flex;
   gap: 8px;
   align-items: center;

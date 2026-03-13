@@ -30,7 +30,6 @@ const PurchaseAmountForm = {
     purchaseAmountInput.id = 'purchase-amount-input';
     purchaseAmountInput.type = 'number';
     purchaseAmountInput.name = 'purchaseAmount';
-    purchaseAmountInput.classList.add('purchase-amount-input');
     purchaseAmountInput.addEventListener('input', this.handlePurchaseAmountInput);
 
     errorMessageDiv.id = 'purchase-amount-error-message';

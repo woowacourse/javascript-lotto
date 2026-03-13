@@ -12,7 +12,7 @@
   background-color: var(--color-lotto-grayscale-1);
 }
 
-.lotto-game-card-header {
+.lotto-game-card header {
   text-align: center;
 }
 
@@ -23,6 +23,6 @@
   margin-top: 4px;
 }
 
-.purchase-amount-input {
+.purchase-amount-input-wrapper input {
   width: 100%;
 }

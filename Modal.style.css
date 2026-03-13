@@ -8,7 +8,7 @@
   background-color: color-mix(in srgb, var(--color-lotto-grayscale-5), transparent 50%);
 }
 
-.modal-container {
+.modal-wrapper > div {
   position: relative;
   border-radius: 4px;
   background-color: var(--color-lotto-grayscale-1);

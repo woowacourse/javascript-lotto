@@ -11,7 +11,7 @@ const LottoGameCard = {
     lottoGameCard.classList.add('lotto-game-card');
 
     lottoGameCardHeader.innerText = '🎱 내 번호 당첨 확인 🎱';
-    lottoGameCardHeader.classList.add('lotto-game-card-header', 'text-lotto-title');
+    lottoGameCardHeader.classList.add('text-lotto-title');
 
     lottoGameCard.appendChild(lottoGameCardHeader);
     PurchaseAmountForm.render(lottoGameCard);

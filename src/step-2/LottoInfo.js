@@ -16,16 +16,13 @@ const LottoInfo = {
 
     const lottoInfoContainer = document.createElement('div');
     const purchaseCountDiv = document.createElement('div');
-    const lottoListContainer = document.createElement('div');
+    const lottoListContainer = document.createElement('ul');
 
     lottoInfoContainer.id = 'lotto-info-container';
     lottoInfoContainer.classList.add('lotto-info-container');
 
     purchaseCountDiv.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
-
-    lottoListContainer.id = 'lotto-list-container';
-    lottoListContainer.classList.add('lotto-list-container');
-
+    
     lottos.forEach((lotto) => LottoItem.render(lottoListContainer, { lotto }));
     lottoInfoContainer.appendChild(purchaseCountDiv);
     lottoInfoContainer.appendChild(lottoListContainer);

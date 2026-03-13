@@ -8,8 +8,6 @@ const Modal = {
     modalWrapper.classList.add('modal-wrapper');
     modalWrapper.addEventListener('click', this.handleOutsideClick);
 
-    modalContainer.classList.add('modal-container');
-
     closeButton.classList.add('close-button');
     closeButton.addEventListener('click', this.handleClose);
 
@@ -25,7 +23,7 @@ const Modal = {
   },
 
   handleOutsideClick(e) {
-    if (!e.target.closest('.modal-container')) {
+    if (!e.target.closest('.modal-wrapper')) {
       e.target.remove();
     }
   },
