@@ -1,7 +1,7 @@
 import Lotto from "../../domain/Lotto.js";
 import WinningUseCase from "../../features/winning/WinningUseCase.js";
-import LottoStatisticsUseCase from "../../features/statistics/LottoStatisticsUseCase.js";
-import { calculateProfit } from "../../features/statistics/lottoStatistics.js";
+import statisticsUseCase from "../../features/statistics/statisticsUseCase.js";
+import { calculateProfit } from "../../features/statistics/statisticsUtils.js";
 import { isNumber, isNumberArray } from "../../utils/inputValidator.js";
 import { toSplitComma, toNumber } from "../../utils/parser.js";
 export default class ConsoleApp {
@@ -57,7 +57,7 @@ export default class ConsoleApp {
   }
 
   async #processStatistics(lottosNumbers, winningNumber) {
-    const lottoStatsDto = LottoStatisticsUseCase.statisticsLottos(
+    const lottoStatsDto = statisticsUseCase.statisticsLottos(
       lottosNumbers,
       winningNumber,
     );

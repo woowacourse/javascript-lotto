@@ -1,8 +1,9 @@
 import Lotto from "../../domain/Lotto.js";
 import Rank from "../../domain/Rank.js";
-import { statistics } from "./lottoStatistics.js";
-import LottoStatisticsMapper from "./LottoStatisticsMapper.js";
-export default class LottoStatisticsUseCase {
+import statisticsMapper from "./statisticsMapper.js";
+import { statistics } from "./statisticsUtils.js";
+
+export default class statisticsUseCase {
   static ERROR = {
     ARRAY_EMPTY: "로또를 구매하셔야 합니다",
   };
@@ -19,12 +20,12 @@ export default class LottoStatisticsUseCase {
       rankMap.set(rank, { count: currentStat.count + 1 });
     });
 
-    return LottoStatisticsMapper.toResponseDto(rankMap);
+    return statisticsMapper.toResponseDto(rankMap);
   }
 
   static #validate(lottosNumbers) {
     if (!lottosNumbers?.length) {
-      throw new Error(LottoStatisticsUseCase.ERROR.ARRAY_EMPTY);
+      throw new Error(statisticsUseCase.ERROR.ARRAY_EMPTY);
     }
   }
 }

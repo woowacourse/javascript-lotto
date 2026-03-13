@@ -1,4 +1,4 @@
-export default class WinningNumberResponseDto {
+export default class WinningResponseDto {
   #numbers;
   #bonusNumber;
 

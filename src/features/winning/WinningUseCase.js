@@ -1,11 +1,10 @@
 import WinningNumber from "../../domain/WinningNumber.js";
-import WinningNumberResponseDto from "../dto/WinningNumberResponseDto.js";
-
+import WinningResponseDto from "./WinningResponseDto.js";
 export default class WinningUseCase {
   static execute(numbers, bonus) {
     const winningNumber = new WinningNumber(numbers, bonus);
 
-    return new WinningNumberResponseDto(
+    return new WinningResponseDto(
       winningNumber.getNumbers(),
       winningNumber.getBonusNumber(),
     );

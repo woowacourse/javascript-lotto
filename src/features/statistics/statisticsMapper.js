@@ -1,6 +1,6 @@
-import LottoStatisticsResponseDto from "./LottoStatisticsResponseDto.js";
+import LottoStatisticsResponseDto from "./statisticsResponseDto.js";
 
-export default class LottoStatisticsMapper {
+export default class statisticsMapper {
   static toResponseDto(rankMap) {
     let totalPrize = 0;
 

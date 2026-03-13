@@ -1,20 +1,20 @@
 import WinningNumber from "../../../../src/domain/WinningNumber.js";
-import LottoStatisticsUseCase from "../../../../src/features/statistics/LottoStatisticsUseCase.js";
+import statisticsUseCase from "../../../../src/features/statistics/statisticsUseCase.js";
 
 describe("LottoStatisticsUseCase", () => {
   test("로또 배열 없으면 에러", () => {
     const winningNumber = new WinningNumber([1, 2, 3, 4, 5, 6], 7);
 
-    expect(() =>
-      LottoStatisticsUseCase.statisticsLottos([], winningNumber),
-    ).toThrow(LottoStatisticsUseCase.ERROR.ARRAY_EMPTY);
+    expect(() => statisticsUseCase.statisticsLottos([], winningNumber)).toThrow(
+      statisticsUseCase.ERROR.ARRAY_EMPTY,
+    );
   });
 
   test("5등 1개 당첨 통계", () => {
     const lottosNumbers = [[1, 2, 3, 10, 11, 12]];
     const winningNumber = new WinningNumber([1, 2, 3, 4, 5, 6], 7);
 
-    const statisticsDto = LottoStatisticsUseCase.statisticsLottos(
+    const statisticsDto = statisticsUseCase.statisticsLottos(
       lottosNumbers,
       winningNumber,
     );

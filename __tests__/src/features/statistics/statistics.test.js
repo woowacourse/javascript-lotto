@@ -1,7 +1,7 @@
 import {
   calculateProfit,
   statistics,
-} from "../../../../src/features/statistics/lottoStatistics.js";
+} from "../../../../src/features/statistics/statisticsUtils.js";
 
 import Lotto from "../../../../src/domain/Lotto.js";
 import Rank from "../../../../src/domain/Rank.js";

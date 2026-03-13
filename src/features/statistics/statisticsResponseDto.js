@@ -1,4 +1,4 @@
-export default class LottoStatisticsResponseDto {
+export default class statisticsResponseDto {
   #lottosResult;
   #totalPrize;
 
