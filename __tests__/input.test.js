@@ -1,35 +1,18 @@
+import fs from "fs";
+import path from "path";
 import WebInput from "../src/view/WebInput.js";
 import ConsoleInput from "../src/view/ConsoleInput.js";
 import MockInput from "./utils/MockInput.js";
 
+const html = fs.readFileSync(
+  path.resolve(__dirname, "./../index.html"),
+  "utf8",
+);
+const tempEl = document.createElement("div");
+tempEl.innerHTML = html.toString();
+
 beforeEach(() => {
-  document.body.innerHTML = `
-    <div id="app">
-      <header class="header">
-        <div class="header__wrap">
-        </div>
-      </header>
-      <div class="main">
-        <div class="main__container">
-          <header class="main__container__header">
-          </header>
-          <div class="main__container__body">
-          </div>
-          <footer class="main__container__footer">
-          </footer>
-        </div>
-      </div>
-      <footer class="footer">
-      </footer>
-      <div class="overlay hidden">
-        <div class="modal">
-          <header class="modal__header"></header>
-          <div class="modal__body"></div>
-          <footer class="modal__footer"></footer>
-        </div>
-      </div>
-    </div>
-  `;
+  document.body.innerHTML = tempEl.outerHTML;
 });
 
 describe("Input 테스트", () => {
@@ -56,7 +39,7 @@ describe("Input 테스트", () => {
 
     const webInput = new WebInput();
     const webResultPromise = webInput.readMoneyAsync();
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await new Promise((resolve) => setTimeout(resolve, 0));
     document.querySelector(".money__input").value = testInputs[0];
     document.querySelector(".money__submit").click();
     const webResult = await webResultPromise;
@@ -79,7 +62,7 @@ describe("Input 테스트", () => {
 
     const webInput = new WebInput();
     const webResultPromise = webInput.readWinningNumberAndBonusAsync();
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await new Promise((resolve) => setTimeout(resolve, 0));
     document.querySelector(".winning-number__first__input").value =
       winningNumbers[0];
     document.querySelector(".winning-number__second__input").value =
@@ -122,7 +105,7 @@ describe("Input 테스트", () => {
 
     const webInput = new WebInput();
     const webResultPromise = webInput.readRetryAsync();
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await new Promise((resolve) => setTimeout(resolve, 0));
     document.querySelector(".retry__button").click();
     const webResult = await webResultPromise;
     expect(webResult).toBe(testInput);
