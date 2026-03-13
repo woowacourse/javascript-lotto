@@ -1,4 +1,5 @@
 import Lotto from "../../domain/Lotto.js";
+
 export default class LottoMachine {
   static UNIT = 1000;
 
@@ -15,13 +16,7 @@ export default class LottoMachine {
 
   buyLottos(money) {
     const amount = money.getAmount();
-    if (amount < LottoMachine.UNIT) {
-      throw new Error(LottoMachine.ERROR.NOT_ENOUGH);
-    }
-
-    if (amount % LottoMachine.UNIT !== 0) {
-      throw new Error(LottoMachine.ERROR.INVALID_UNIT);
-    }
+    this.#validate(amount);
 
     const count = Math.floor(amount / LottoMachine.UNIT);
     const lottos = Array.from(
@@ -32,11 +27,17 @@ export default class LottoMachine {
     return { lottos, purchasedMoney: money };
   }
 
-  #pickLottoNumbers() {
-    const numbers = new Set();
-    while (numbers.size < Lotto.POLICY.SIZE) {
-      numbers.add(this.#picker(Lotto.POLICY.MIN_RANGE, Lotto.POLICY.MAX_RANGE));
+  #validate(amount) {
+    if (amount < LottoMachine.UNIT) {
+      throw new Error(LottoMachine.ERROR.NOT_ENOUGH);
     }
+    if (amount % LottoMachine.UNIT !== 0) {
+      throw new Error(LottoMachine.ERROR.INVALID_UNIT);
+    }
+  }
+
+  #pickLottoNumbers() {
+    const numbers = this.#picker();
     return [...numbers].sort((a, b) => a - b);
   }
 }
