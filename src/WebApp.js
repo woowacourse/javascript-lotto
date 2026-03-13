@@ -1,20 +1,15 @@
 import LottoMachine from "./Domain/LottoMachine.js";
 import LottoResult from "./Domain/LottoResult.js";
 import LuckyNumbers from "./Domain/LuckyNumbers.js";
+import LottoWebView from "./WebView/LottoWebView.js";
 
 class WebApp {
   constructor() {
     this.lottos = [];
+    this.view = new LottoWebView();
   }
 
   run() {
-    // DOM 요소 가져오기
-    const purchaseForm = document.querySelector("#purchase-price-form");
-    const purchaseInput = document.querySelector("#purchase-price");
-
-    const lottoListSection = document.querySelector("#lotto-list-section");
-    const lottoCountText = document.querySelector("#lotto-count-text");
-    const lottoList = document.querySelector("#lotto-list");
 
     // 콘솔관련 유틸을 제거하기 위한 재정의
     const generateRandomNumber = () => {
@@ -27,13 +22,13 @@ class WebApp {
     };
 
     // 이벤트 리스너 작성
-    purchaseForm.addEventListener("submit", (event) => {
+    this.view.purchaseForm.addEventListener("submit", (event) => {
       // 브라우저 새로고침 차단
       event.preventDefault();
 
       try {
         // 로또 가격 읽어오기
-        const purchasePriceStr = purchaseInput.value;
+        const purchasePriceStr = this.view.purchaseInput.value;
 
         // 가격에 맞추어 로또 발행
         const lottos = LottoMachine.issueLottos(
@@ -45,11 +40,11 @@ class WebApp {
 
         // 불러온 로또를 기반으로 로또 목록 출력 필요
         // 구입금액 입력 전 숨겨져 있던 창 숨김해제
-        lottoListSection.classList.remove("hidden");
-        luckyNumbersForm.classList.remove("hidden");
+        this.view.lottoListSection.classList.remove("hidden");
+        this.view.luckyNumbersForm.classList.remove("hidden");
 
         // 총 구입 갯수 문구 업데이트
-        lottoCountText.innerText = `총 ${lottos.length}개를 구입하셨습니다.`;
+        this.view.lottoCountText.innerText = `총 ${lottos.length}개를 구입하셨습니다.`;
 
         // 로또 목록 출력 형태에 맞춰 HTML 파일에 업데이트
         const lottosHTML = lottos
@@ -57,29 +52,21 @@ class WebApp {
             return `<div class="lotto-ticket">🎟️ ${lotto.getNumbers().join(", ")} </div>`;
           })
           .join("");
-        lottoList.innerHTML = lottosHTML;
+        this.view.lottoList.innerHTML = lottosHTML;
       } catch (e) {
         alert(e.message);
       }
     });
 
-    // luckyNumbers 폼 제출 이벤트
-    const luckyNumbersForm = document.querySelector("#lucky-numbers-form");
-    const winningNumbersInputs = document.querySelectorAll(".winning-number");
-    const bonusNumberInput = document.querySelector("input.bonus-number");
-
-    const resultModal = document.querySelector("#result-modal");
-    const resultTableBody = document.querySelector("#result-table-body");
-    const profitRateText = document.querySelector("#profit-rate-text");
-
-    luckyNumbersForm.addEventListener("submit", (event) => {
+    
+    this.view.luckyNumbersForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
       try {
-        const winningNumbers = Array.from(winningNumbersInputs).map((input) =>
+        const winningNumbers = Array.from(this.view.winningNumbersInputs).map((input) =>
           Number(input.value),
         );
-        const bonusNumber = bonusNumberInput.value;
+        const bonusNumber = this.view.bonusNumberInput.value;
 
         const luckyNumbers = new LuckyNumbers(winningNumbers, bonusNumber);
         const winningResult = LottoResult.calculateWinningResult(
@@ -87,7 +74,7 @@ class WebApp {
           luckyNumbers,
         );
 
-        const purchasePrice = Number(purchaseInput.value);
+        const purchasePrice = Number(this.view.purchaseInput.value);
         const profitRate = LottoResult.calculateProfitRate(
           winningResult,
           purchasePrice,
@@ -100,36 +87,33 @@ class WebApp {
           <tr><td>5개+보너스볼</td><td>30,000,000</td><td>${winningResult.SECOND}개</td></tr>
           <tr><td>6개</td><td>2,000,000,000</td><td>${winningResult.FIRST}개</td></tr>
         `;
-        resultTableBody.innerHTML = resultHTML;
-        profitRateText.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
+        this.view.resultTableBody.innerHTML = resultHTML;
+        this.view.profitRateText.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
 
-        resultModal.classList.remove("hidden");
+        this.view.resultModal.classList.remove("hidden");
       } catch (e) {
         alert(e.message);
       }
     });
 
-    const modalCloseButton = document.querySelector("#modal-close-button");
-    const restartButton = document.querySelector("#restart-button");
-
     // 모달 창 닫기 버튼
-    modalCloseButton.addEventListener("click", () => {
-      resultModal.classList.add("hidden");
+    this.view.modalCloseButton.addEventListener("click", () => {
+      this.view.resultModal.classList.add("hidden");
     });
 
     // 재시작 버튼
-    restartButton.addEventListener("click", () => {
-      resultModal.classList.add("hidden");
-      luckyNumbersForm.classList.add("hidden");
-      lottoListSection.classList.add("hidden");
+    this.view.restartButton.addEventListener("click", () => {
+      this.view.resultModal.classList.add("hidden");
+      this.view.luckyNumbersForm.classList.add("hidden");
+      this.view.lottoListSection.classList.add("hidden");
       document.querySelector("#lotto-list").innerHTML = "";
 
       this.lottos = [];
-      purchaseInput.value = "";
-      winningNumbersInputs.forEach(input => {
+      this.view.purchaseInput.value = "";
+      this.view.winningNumbersInputs.forEach(input => {
         input.value = "";
       });
-      bonusNumberInput.value = "";
+      this.view.bonusNumberInput.value = "";
     });
   }
 }
