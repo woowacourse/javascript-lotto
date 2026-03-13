@@ -1,5 +1,7 @@
 import Output from "./Output.js";
 import { RANK, RANK_CONDITION, RANK_PRIZE } from "../constant/index.js";
+import lottoImg from "./../../public/lotto.png";
+import closeImg from "./../../public/close.svg" ;
 
 class ConsoleOutput extends Output {
   #elements;
@@ -43,7 +45,7 @@ class ConsoleOutput extends Output {
   printResult(countsObject, returnOnInvestment) {
     this.#elements.modalHeader.innerHTML = `
       <button class="close__button">
-        <img src="/close.svg" alt="닫기" />
+        <img src="${closeImg}" alt="닫기" />
       </button>
       <h2>🏆 당첨 통계 🏆</h2>
     `;
@@ -114,7 +116,7 @@ class ConsoleOutput extends Output {
         .map(
           (lotto) => `
         <li class="purchased-lotto">
-          <img src='./public/lotto.png' alt='로또' />
+          <img src="${lottoImg}" alt="로또" />
           <span>${lotto.getNumbers().join(", ")}</span>
         </li>
       `,
