@@ -38,4 +38,8 @@ export default class Lotto {
   getNumbers() {
     return [...this.#numbers];
   }
+
+  static fromList(numbersList) {
+    return numbersList.map((numbers) => new Lotto(numbers));
+  }
 }

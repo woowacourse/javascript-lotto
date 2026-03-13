@@ -1,4 +1,5 @@
 import Money from "../../domain/Money.js";
+import PurchaseLottoMapper from "./PurchaseLottoMapper.js";
 
 export default class PurchaseLottoUseCase {
   #lottoMachine;
@@ -11,9 +12,6 @@ export default class PurchaseLottoUseCase {
     const money = new Money(amount);
     const { lottos, purchasedMoney } = this.#lottoMachine.buyLottos(money);
 
-    return {
-      lottos,
-      purchasedAmount: purchasedMoney.getAmount(),
-    };
+    return PurchaseLottoMapper.toDto(lottos, purchasedMoney);
   }
 }

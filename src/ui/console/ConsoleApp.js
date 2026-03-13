@@ -21,15 +21,16 @@ export default class ConsoleApp {
 
   async #lottoGame() {
     do {
-      const { lottos, purchasedAmount } = await this.#retry(() =>
-        this.#processPurchase(),
-      );
+      const purchaseDto = await this.#retry(() => this.#processPurchase());
       const numbers = await this.#retry(() => this.#processWinningNumber());
       const winningNumber = await this.#retry(() =>
         this.#processWinningBonus(numbers),
       );
-      const totalPrize = await this.#processStatistics(lottos, winningNumber);
-      this.#processProfit(purchasedAmount, totalPrize);
+      const totalPrize = await this.#processStatistics(
+        purchaseDto.lottos,
+        winningNumber,
+      );
+      this.#processProfit(purchaseDto.purchasedAmount, totalPrize);
     } while (await this.#retry(() => this.#processAskRetry()));
   }
 
@@ -37,11 +38,10 @@ export default class ConsoleApp {
     const rawAmount = await this.#ui.readAmount();
     const amount = isNumber(toNumber(rawAmount));
 
-    const { lottos, purchasedAmount } =
-      this.#purchaseLottoUseCase.execute(amount);
-    const lottoNumbersList = lottos.map((lotto) => lotto.getNumbers());
-    this.#ui.printLottos(lottoNumbersList);
-    return { lottos, purchasedAmount };
+    const purchaseDto = this.#purchaseLottoUseCase.execute(amount);
+    this.#ui.printLottos(purchaseDto.lottos);
+
+    return purchaseDto;
   }
 
   async #processWinningNumber() {
@@ -57,9 +57,10 @@ export default class ConsoleApp {
     return WinningUseCase.execute(numbers, bonus);
   }
 
-  async #processStatistics(lottos, winningNumber) {
+  async #processStatistics(lottosNumbers, winningNumber) {
     const { lottosResult, totalPrize } =
-      LottoStatisticsUseCase.statisticsLottos(lottos, winningNumber);
+      LottoStatisticsUseCase.statisticsLottos(lottosNumbers, winningNumber);
+
     this.#ui.printStatistics(lottosResult);
     return totalPrize;
   }

@@ -7,7 +7,9 @@ describe("PurchaseLottoUseCase", () => {
   const purchaseLottoUseCase = new PurchaseLottoUseCase(lottoMachine);
 
   test("5000원으로 5장 구매", () => {
-    const { lottoNumbers } = purchaseLottoUseCase.execute(5000);
-    expect(lottoNumbers).toHaveLength(5);
+    const purchaseDto = purchaseLottoUseCase.execute(5000);
+    expect(purchaseDto.lottos).toHaveLength(5);
+    expect(purchaseDto.purchaseAmount).toBe(5000);
+    expect(purchaseDto.lottos[0]).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });

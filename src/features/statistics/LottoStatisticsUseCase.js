@@ -1,3 +1,4 @@
+import Lotto from "../../domain/Lotto.js";
 import Rank from "../../domain/Rank.js";
 import { statistics } from "./lottoStatistics.js";
 
@@ -6,12 +7,14 @@ export default class LottoStatisticsUseCase {
     ARRAY_EMPTY: "로또를 구매하셔야합니다",
   };
 
-  static statisticsLottos(lottos, winningNumber) {
-    if (!lottos?.length) {
+  static statisticsLottos(lottosNumbers, winningNumber) {
+    if (!lottosNumbers?.length) {
       throw new Error(LottoStatisticsUseCase.ERROR.ARRAY_EMPTY);
     }
 
     const rankMap = Rank.getRankMap();
+
+    const lottos = Lotto.fromList(lottosNumbers);
     lottos.forEach((lotto) => {
       const rank = statistics(lotto, winningNumber);
       rankMap.set(rank, { count: rankMap.get(rank).count + 1 });
