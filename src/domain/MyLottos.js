@@ -11,6 +11,10 @@ class MyLotto {
     this.#randomLotto = randomLotto;
   }
 
+  resetRandomLotto() {
+    this.#randomLotto = [];
+  }
+
   static createMyLotto(money) {
     const count = calculateLottoCount(money);
     const randomLottos = getLottos(count);

@@ -23,6 +23,7 @@ export const Validator = {
   },
 
   validateWinningNumber(winningNumber) {
+    if (winningNumber === "RESTART") return;
     const winningNumberArray = winningNumber.split(",");
     const regex = /^[0-9,]+$/;
 

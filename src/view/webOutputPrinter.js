@@ -6,6 +6,8 @@ export const webOutputPrinter = {
     const myLottoP = document.getElementById("myLottoP");
     const myLottoLists = document.getElementById("myLottoLists");
 
+    myLottoLists.innerHTML = "";
+
     myLottoP.innerHTML = `총 ${randomLottos.length}개를 구매하였습니다.`;
 
     for (const lotto of randomLottos) {

@@ -1,8 +1,15 @@
 export const webInputReader = {
+  isRestarting: false,
+
   readPurchaseMoney() {
     return new Promise((resolve) => {
       const purchaseInput = document.getElementById("purchaseInput");
       const purchaseButton = document.getElementById("purchaseButton");
+
+      if (this.isRestarting) {
+        this.isRestarting = false;
+        return resolve(purchaseInput.value);
+      }
 
       const onClick = () => {
         resolve(purchaseInput.value);
@@ -20,6 +27,11 @@ export const webInputReader = {
       const winningInput = document.querySelectorAll("input.winningInput");
       const bonusInput = document.getElementById("bonusInput");
       const resultModal = document.getElementById("resultModal");
+      const purchaseButton = document.getElementById("purchaseButton");
+      purchaseButton.addEventListener('click', () => {
+        this.isRestarting = true;
+        resolve("RESTART");
+      })
 
       const onClick = () => {
         resultModal.classList.add("active");

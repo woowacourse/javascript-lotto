@@ -8,6 +8,10 @@ class LottoController {
   async play() {
     const myLotto = await PurchaseLottoController();
     const winningLotto = await WinningLottoController();
+    if (winningLotto === "RESTART") {
+      myLotto.resetRandomLotto();
+      return this.play();
+    }
     ResultController(myLotto, winningLotto);
     const retry = await InputView.inputRetry();
     if (RETRY_ANSWER.YES.includes(retry)) return this.play();

@@ -1,3 +1,4 @@
+import LottoController from "../controller/LottoController.js";
 import { Validator } from "../validator/Validator.js";
 import { OutputView } from "./output.js";
 
