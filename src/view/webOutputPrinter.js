@@ -35,7 +35,7 @@ export const webOutputPrinter = {
     }
 
     const resultModal = document.getElementById("resultModal");
-    resultModal.style.display = "block";
+    resultModal.style.display = "flex";
   },
 
   printProfit(profit) {

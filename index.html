@@ -1,91 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <div id="app">
+    <header id="header">
       <h1>🎱 행운의 로또</h1>
-    </div>
+    </header>
 
-    <div>
-      <h1>내 번호 당첨 확인</h1>
-    </div>
+    <main>
+      <div id="main-header-div">
+        <h1 id="main-header">🎱 내 번호 당첨 확인 🎱</h1>
+      </div>
 
-    <form id="purchaseForm">
-      <label for="purchaseInput">구입할 금액을 입력해주세요.</label>
-      <input type="number" id="purchaseInput" placeholder="금액" />
-      <button type="button" id="purchaseButton">구입</button>
-    </form>
-
-    <div id="myLotto" style="display: none;">
-      <p id="myLottoP"></p>
-      <ul id="myLottoLists">
-      </ul>
-    </div>
-
-    <div id="winningDiv" style="display: none;">
-      <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-      <form>
-        <label for="winningInput">당첨 번호</label>
-        <div>
-          <input type="number" class="winningInput"/>
-          <input type="number" class="winningInput"/>
-          <input type="number" class="winningInput"/>
-          <input type="number" class="winningInput"/>
-          <input type="number" class="winningInput"/>
-          <input type="number" class="winningInput"/>
+      <form id="purchaseForm">
+        <label for="purchaseInput" id="purchase-label"
+          >구입할 금액을 입력해주세요.</label
+        >
+        <div id="purchase-input-div">
+          <input type="number" id="purchaseInput" placeholder="금액" />
+          <button type="button" id="purchaseButton">구입</button>
         </div>
-        
       </form>
-      <form>
-        <label for="bonusInput">보너스 번호</label>
-        <input type="number" id="bonusInput"/>
-      </form>
-    </div>
 
-    <button type="submit" id="getResultButton" style="display: none;">결과 확인하기</button>
-    
-    <div id="resultModal" style="display: none;">
-      <h1>🏆 당첨 통계 🏆</h1>
-      <table>
-        <th>일치 갯수</th>
-        <th>당첨금</th>
-        <th>당첨 갯수</th>
-        <tr>
-          <td>3개</td>
-          <td class="prizeMoney" id="5thPrizeMoney"></td>
-          <td class="winningCount" id="5thWinningCount"></td>
-        </tr>
-        <tr>
-          <td>4개</td>
-          <td class="prizeMoney" id="4thPrizeMoney"></td>
-          <td class="winningCount" id="4thWinningCount"></td>
-        </tr>
-        <tr>
-          <td>5개</td>
-          <td class="prizeMoney" id="3rdPrizeMoney"></td>
-          <td class="winningCount" id="3rdWinningCount"></td>
-        </tr>
-        <tr>
-          <td>5개+보너스볼</td>
-          <td class="prizeMoney" id="2ndPrizeMoney"></td>
-          <td class="winningCount" id="2ndWinningCount"></td>
-        </tr>
-        <tr>
-          <td>6개</td>
-          <td class="prizeMoney" id="1stPrizeMoney"></td>
-          <td class="winningCount" id="1stWinningCount"></td>
-        </tr>
-      </table>
-      <p id="profitP"></p>
-      <button type="button" id="retryButton">다시 시작하기</button>
-    </div>
-    
+      <div id="myLotto">
+        <p id="myLottoP"></p>
+        <ul id="myLottoLists"></ul>
+      </div>
+
+      <div id="winningDiv" style="display: none">
+        <p id="winning-p">
+          지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+        </p>
+        <div id="winning-bonus">
+          <form id="winning-form">
+            <label id="winning-label" for="winningInput">당첨 번호</label>
+            <div id="winning-input-lists">
+              <input type="number" class="winningInput" />
+              <input type="number" class="winningInput" />
+              <input type="number" class="winningInput" />
+              <input type="number" class="winningInput" />
+              <input type="number" class="winningInput" />
+              <input type="number" class="winningInput" />
+            </div>
+          </form>
+          <form id="bonus-form">
+            <label id="bonus-label" for="bonusInput">보너스 번호</label>
+            <input type="number" id="bonusInput" />
+          </form>
+        </div>
+      </div>
+
+      <button type="submit" id="getResultButton" style="display: none">
+        결과 확인하기
+      </button>
+
+      <div id="resultModal">
+        <div id="result-modal-main">
+          <span id="result-modal-close">X</span>
+          <h1 id="result-modal-h1">🏆 당첨 통계 🏆</h1>
+          <table id="result-modal-table">
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
+            <tr>
+              <td>3개</td>
+              <td class="prizeMoney" id="5thPrizeMoney"></td>
+              <td class="winningCount" id="5thWinningCount"></td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td class="prizeMoney" id="4thPrizeMoney"></td>
+              <td class="winningCount" id="4thWinningCount"></td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td class="prizeMoney" id="3rdPrizeMoney"></td>
+              <td class="winningCount" id="3rdWinningCount"></td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td class="prizeMoney" id="2ndPrizeMoney"></td>
+              <td class="winningCount" id="2ndWinningCount"></td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td class="prizeMoney" id="1stPrizeMoney"></td>
+              <td class="winningCount" id="1stWinningCount"></td>
+            </tr>
+          </table>
+          <p id="profitP"></p>
+          <button type="button" id="retryButton">다시 시작하기</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p id="lotto-caption">Copyright 2023. woowacourse</p>
+    </footer>
+
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>
