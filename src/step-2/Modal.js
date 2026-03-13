@@ -24,10 +24,15 @@ const Modal = {
     container.appendChild(modalWrapper);
   },
 
-  handleOutsideClick() {
+  handleOutsideClick(e) {
+    if (!e.target.closest('.modal-container')) {
+      e.target.remove();
+    }
   },
 
   handleClose() {
+    const modalWrapper = document.querySelector('.modal-wrapper');
+    modalWrapper.remove();
   },
 };
 
