@@ -71,3 +71,10 @@ body {
   border: none;
   letter-spacing: 1.25px;
 }
+
+.lottobox #lotto-count {
+  width: 310px;
+  height: 24px;
+  margin-left: 16px;
+  margin-top: 28px;
+}
