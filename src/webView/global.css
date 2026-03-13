@@ -15,7 +15,15 @@
   --text-caption: 700 14px/20px var(--font-family);
 }
 
+html,
 body {
+  height: 100%;
   margin: 0;
+
   font-family: var(--font-family);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }

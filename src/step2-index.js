@@ -3,20 +3,7 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import "./webView/global.css";
-import "./webView/Header/Header.js";
-import "./webView/Header/Header.css";
+import WebController from "./Controller/WebController";
 
-import "./webView/Main/MainApp.js";
-import "./webView/Main/MainApp.css";
-import "./webView/Main/Purchase.js";
-import "./webView/Main/Purchase.css";
-import "./webView/Main/Lottos.js";
-import "./webView/Main/Lottos.css";
-import "./webView/Main/UserLotto.js";
-import "./webView/Main/UserLotto.css";
-import "./webView/Main/StatisticsModal.js";
-import "./webView/Main/StatisticsModal.css";
-
-import "./webView/Footer/Footer.js";
-import "./webView/Footer/Footer.css";
+const webController = new WebController();
+webController.init();

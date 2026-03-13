@@ -5,12 +5,124 @@
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <link rel="stylesheet" href="./src/webView/global.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./src/webView/PurchaseView/PurchaseView.css" />
+    <link rel="stylesheet" href="./src/webView/LottoView/LottoView.css" />
+    <link
+      rel="stylesheet"
+      href="./src/webView/UserLottoView/UserLottoView.css"
+    />
+    <link rel="stylesheet" href="./src/webView/ModalView/ModalView.css" />
+    <link rel="stylesheet" href="./src/webView/Header/Header.css" />
+    <link rel="stylesheet" href="./src/webView/Footer/Footer.css" />
   </head>
 
   <body>
+    <header class="header-container">
+      <div class="header-text-box">🎱 행운의 로또</div>
+    </header>
+
+    <div class="main-container">
+      <section class="card-container">
+        <!-- 1. 헤더 -->
+        <div class="card-header">🎱 내 번호 당첨 확인 🎱</div>
+
+        <!--  2. 구입 금액 입력 폼 -->
+        <section class="card-input-container">
+          <label class="input-label" for="purchase-amount">
+            구입할 금액을 입력해주세요.
+          </label>
+          <form class="input-container" id="purchase-form">
+            <input class="input-line" id="purchase-amount" placeholder="금액" />
+            <button class="input-button">구입</button>
+          </form>
+          <p class="input-error" id="purchase-error" hidden></p>
+        </section>
+
+        <div class="card-hidden-section" id="lotto-section" hidden>
+          <!-- 3. 구입 로또 -->
+          <section class="lottos-container">
+            <div class="lottos-container-header" id="purchase-summary"></div>
+            <div class="lottos-table" id="ticket-container">
+              <div class="lotto-line">
+                <div class="lotto-line-icon">🎟️</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. 당첨 번호 & 보너스 번호 입력 폼 -->
+          <form class="userLotto-container" id="user-form">
+            <label class="userLotto-header" for="winningNumber">
+              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+            </label>
+            <div class="input-container">
+              <div class="winningNumber-container">
+                <label
+                  class="winningNumber-container-header"
+                  for="winningNumber"
+                >
+                  당첨 번호
+                </label>
+                <div class="winningNumber-input-container">
+                  <input
+                    type="text"
+                    id="winningNumber"
+                    class="winningNumber-line"
+                  />
+                  <input type="text" class="winningNumber-line" />
+                  <input type="text" class="winningNumber-line" />
+                  <input type="text" class="winningNumber-line" />
+                  <input type="text" class="winningNumber-line" />
+                  <input type="text" class="winningNumber-line" />
+                </div>
+              </div>
+              <div class="bonusNumber-container">
+                <label class="bonusNumber-container-header" for="bonusNumber">
+                  보너스 번호
+                </label>
+
+                <input type="text" id="bonusNumber" class="bonusNumber-line" />
+              </div>
+            </div>
+
+            <p class="input-error" id="user-lotto-error" hidden></p>
+
+            <button class="result-button">결과 확인하기</button>
+          </form>
+        </div>
+
+        <!-- 결과 모달 -->
+        <section class="result-modal-overlay" id="result-modal" hidden>
+          <div class="modal">
+            <button class="modal-close" aria-label="닫기">×</button>
+
+            <div class="modal-header">🏆 당첨 통계 🏆</div>
+
+            <div class="modal-table">
+              <div class="row-header">
+                <div>일치 갯수</div>
+                <div>당첨금</div>
+                <div>당첨 갯수</div>
+              </div>
+              <div class="row-container" id="result-rows"></div>
+            </div>
+
+            <div class="benefit-messege"></div>
+
+            <button class="modal-restart" id="restart-btn">
+              다시 시작하기
+            </button>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <footer class="footer-container">
+      <div class="footer-text-box">Copyright 2023. woowacourse</div>
+    </footer>
+
     <script type="module" src="./src/step2-index.js"></script>
-    <lotto-header></lotto-header>
-    <lotto-main></lotto-main>
-    <lotto-footer></lotto-footer>
   </body>
 </html>
