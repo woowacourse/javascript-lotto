@@ -17,6 +17,10 @@ export default class ConsoleOutView {
     Console.print("");
   }
 
+  static printError(error) {
+    Console.print(error.message);
+  }
+
   static #formatPrizeDetail(prizeDetail) {
     const { matchCount, hasBonus, count, prize } = prizeDetail;
     const formatPrize = prize.toLocaleString();
