@@ -23,7 +23,16 @@ const resultBtn = document.getElementById("result-btn");
 
 const modalOverlay = document.getElementById("modal-overlay");
 
+const restartBtn = document.getElementById("restart-btn");
+
 const webLottoManager = new WebLottoManager(generateRandomNumbers);
+
+const resetDOM = () => {
+  purchasedLottoSection.innerHTML = "";
+  winningSection.classList.add("hidden");
+  modalOverlay.classList.add("hidden");
+  purchaseInput.value = "";
+};
 
 purchaseBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -65,4 +74,9 @@ resultBtn.addEventListener("click", () => {
   ).textContent = `당신의 총 수익률은 ${roi}%입니다.`;
 
   modalOverlay.classList.remove("hidden");
+});
+
+restartBtn.addEventListener("click", () => {
+  webLottoManager.reset();
+  resetDOM();
 });
