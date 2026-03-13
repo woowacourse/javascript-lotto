@@ -42,14 +42,74 @@
             <!-- 구매한 로또 목록 -->
           </section>
 
-          <section class="winning-section">
-            <!-- 당첨번호 + 보너스번호 입력 -->
-            <button class="result-btn">결과 확인하기</button>
+          <section class="winning-section hidden" id="winning-section">
+            <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <div class="winning-lotto-container">
+              <div class="winning-numbers-container">
+                <p>당첨 번호</p>
+                <div class="winning-number-input-container">
+                  <input class="number-each" />
+                  <input class="number-each" />
+                  <input class="number-each" />
+                  <input class="number-each" />
+                  <input class="number-each" />
+                  <input class="number-each" />
+                </div>
+              </div>
+              <div class="bonus">
+                <p>보너스 번호</p>
+                <input class="number-each" id="bonus-number" />
+              </div>
+            </div>
+            <button class="result-btn" id="result-btn">결과 확인하기</button>
           </section>
         </div>
       </main>
-      <div>
+      <div class="modal-overlay hidden" id="moddal-overlay">
         <!-- 모달 -->
+        <div class="modal-container">
+          <table class="stats-table">
+            <caption>
+              🏆 당첨 통계 🏆
+            </caption>
+            <thead>
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td id="stat-5">n개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td id="stat-4">n개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td id="stat-3">n개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td id="stat-2">n개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td id="stat-1">n개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p id="roi-text" class="roi-text">당신의총수익율어쩌구</p>
+          <button class="restart-btn" id="restart-btn">다시 시작하기</button>
+        </div>
       </div>
       <footer>
         <!-- 푸터 -->

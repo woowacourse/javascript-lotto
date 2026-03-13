@@ -102,6 +102,7 @@ main {
 
 .purchased-lotto-section {
   width: 100%;
+  min-height: 308px;
 }
 
 .lotto-number-line {
@@ -122,4 +123,122 @@ main {
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-regular);
   color: var(--color-greyscale-5);
+}
+
+.winning-lotto-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-section {
+  width: 100%;
+}
+
+.winning-number-input-container {
+  display: flex;
+  gap: 8px;
+}
+
+.number-each {
+  width: 34px;
+  height: 36px;
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+}
+
+.bonus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.result-btn {
+  width: 100%;
+  border: none;
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  height: 36px;
+  color: var(--color-greyscale-1);
+  margin-top: 27px;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+}
+
+.modal-container {
+  width: 350px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px 0 15px;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--color-greyscale-1);
+  border-radius: 4px;
+  gap: 32px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats-table thead {
+  border-top: 1px solid var(--color-greyscale-3);
+}
+
+.stats-table th,
+.stats-table td {
+  padding: 12px 8px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-greyscale-3);
+  font-size: var(--font-size-body);
+}
+
+.stats-table th {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-greyscale-4);
+}
+
+.stats-table td {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-greyscale-5);
+}
+
+.stats-table caption {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 16px;
+}
+
+.roi-text {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-body);
+  columns: var(--color-greyscale-5);
+  margin: 0;
+}
+
+.restart-btn {
+  background-color: var(--color-primary);
+  width: 318px;
+  height: 36px;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-greyscale-1);
+  border: none;
+  border-radius: 4px;
+}
+
+.hidden {
+  display: none;
 }
