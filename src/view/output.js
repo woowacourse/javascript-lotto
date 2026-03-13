@@ -37,6 +37,7 @@ export const OutputView = {
   },
 
   outputError(message) {
+    if (this.isWeb) alert(message);
     console.log(message);
   },
 };

@@ -20,6 +20,7 @@ export const webInputReader = {
   },
 
   savedBonusNumber: null,
+  checkedBonusNumber: false,
 
   readWinningNumber() {
     return new Promise((resolve) => {
@@ -28,17 +29,17 @@ export const webInputReader = {
       const bonusInput = document.getElementById("bonusInput");
       const resultModal = document.getElementById("resultModal");
       const purchaseButton = document.getElementById("purchaseButton");
-      purchaseButton.addEventListener('click', () => {
+      purchaseButton.addEventListener("click", () => {
         this.isRestarting = true;
         resolve("RESTART");
-      })
+      });
 
       const onClick = () => {
         resultModal.classList.add("active");
         this.savedBonusNumber = bonusInput.value;
-        const winningNumberArray = Array.from(winningInput).map(
-          (item) => item.value,
-        );
+        const winningNumberArray = Array.from(winningInput)
+          .map((item) => item.value)
+          .filter(Boolean);
         const winningNumberString = winningNumberArray.join(",");
         resolve(winningNumberString);
       };
@@ -49,8 +50,21 @@ export const webInputReader = {
 
   readBonusNumber() {
     return new Promise((resolve) => {
-      resolve(this.savedBonusNumber);
-      this.savedBonusNumber = null;
+      if (this.checkedBonusNumber) {
+        const getResultButton = document.getElementById("getResultButton");
+        const bonusInput = document.getElementById("bonusInput");
+
+        const onClick = () => {
+          resolve(bonusInput.value);
+          return;
+        };
+
+        getResultButton.addEventListener("click", onClick);
+      } else {
+        this.checkedBonusNumber = true;
+        resolve(this.savedBonusNumber);
+        this.savedBonusNumber = null;
+      }
     });
   },
 
@@ -64,6 +78,9 @@ export const webInputReader = {
       const retryButton = document.getElementById("retryButton");
 
       const onClick = () => {
+        this.isRestarting = false;
+        this.checkedBonusNumber = false;
+        
         resultModal.classList.remove("active");
         myLotto.style.display = "none";
         winningDiv.style.display = "none";
