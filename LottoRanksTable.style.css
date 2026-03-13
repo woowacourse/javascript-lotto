@@ -1,0 +1,20 @@
+.lotto-ranks-table {
+  border-spacing: 8px 0;
+}
+
+.lotto-ranks-table caption {
+  margin-bottom: 32px;
+}
+
+.lotto-ranks-table td, th {
+  padding: 8px 6px;
+  text-align: center;
+}
+
+.lotto-ranks-table th {
+  border-block: 1px solid #00000012;
+}
+
+.lotto-ranks-table td {
+  border-bottom: 1px solid #00000012;
+}

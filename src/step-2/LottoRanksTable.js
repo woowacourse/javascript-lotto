@@ -12,6 +12,7 @@ const LottoRanksTable = {
     table.classList.add('lotto-ranks-table');
 
     caption.innerText = '🏆 당첨 통계 🏆';
+    caption.classList.add('text-lotto-subtitle');
 
     const ths = ['일치 갯수', '당첨금', '당첨 갯수'].map((header) => {
       const th = document.createElement('th');
@@ -29,7 +30,9 @@ const LottoRanksTable = {
       const td2 = document.createElement('td');
       const td3 = document.createElement('td');
 
-      td1.innerText = `${rule.matchCount}개`;
+      const bonusNumberText = rule.hasBonusNumber ? '+보너스볼' : '';
+
+      td1.innerText = `${rule.matchCount}개${bonusNumberText}`;
       td2.innerText = rule.prize.toLocaleString();
       td3.innerText = `${ranks[rule.rank]}개`;
 
