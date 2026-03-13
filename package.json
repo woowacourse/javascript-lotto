@@ -30,8 +30,12 @@
       "^.+\\.js$": "babel-jest"
     },
     "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/utils/"
-    ]
+      "<rootDir>/__tests__/utils/",
+      "<rootDir>/__tests__/mocks/"
+    ],
+    "moduleNameMapper": {
+      "\\.(png|svg|jpg|jpeg|gif)$": "<rootDir>/__tests__/mocks/fileMock.js"
+    }
   },
   "babel": {
     "presets": [
