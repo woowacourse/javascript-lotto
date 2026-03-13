@@ -76,7 +76,7 @@ class WebApp {
 
     // 모달 창 닫기 버튼
     this.view.modalCloseButton.addEventListener("click", () => {
-      this.view.resultModal.classList.add("hidden");
+      this.view.closeModal();
     });
 
     // 재시작 버튼

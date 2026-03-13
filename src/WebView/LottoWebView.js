@@ -55,6 +55,10 @@ class LottoWebView {
 
     this.view.resultModal.classList.remove("hidden");
   }
+
+  closeModal() {
+    this.resultModal.classList.add("hidden");
+  }
 }
 
 export default LottoWebView;
