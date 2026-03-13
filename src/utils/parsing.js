@@ -15,7 +15,7 @@ export const parsingNumbers = (numberString) => {
 };
 
 export const stringToNumber = (string) => {
-  if (isNaN(Number(numberString))) throw new Error(ERROR_MESSAGE.NOT_NUMBER);
+  if (isNaN(Number(string))) throw new Error(ERROR_MESSAGE.NOT_NUMBER);
   const number = parseInt(string, 10);
   return number;
 };
