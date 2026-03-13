@@ -39,20 +39,8 @@ class WebApp {
         this.lottos = lottos;
 
         // 불러온 로또를 기반으로 로또 목록 출력 필요
-        // 구입금액 입력 전 숨겨져 있던 창 숨김해제
-        this.view.lottoListSection.classList.remove("hidden");
-        this.view.luckyNumbersForm.classList.remove("hidden");
-
-        // 총 구입 갯수 문구 업데이트
-        this.view.lottoCountText.innerText = `총 ${lottos.length}개를 구입하셨습니다.`;
-
-        // 로또 목록 출력 형태에 맞춰 HTML 파일에 업데이트
-        const lottosHTML = lottos
-          .map((lotto) => {
-            return `<div class="lotto-ticket">🎟️ ${lotto.getNumbers().join(", ")} </div>`;
-          })
-          .join("");
-        this.view.lottoList.innerHTML = lottosHTML;
+        this.view.renderLottos(lottos);
+        
       } catch (e) {
         alert(e.message);
       }

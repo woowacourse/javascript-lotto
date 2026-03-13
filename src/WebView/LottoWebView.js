@@ -22,6 +22,23 @@ class LottoWebView {
     this.modalCloseButton = document.querySelector("#modal-close-button");
     this.restartButton = document.querySelector("#restart-button");
   }
+
+  renderLottos(lottos) {
+    // 구입금액 입력 전 숨겨져 있던 창 숨김해제
+    this.lottoListSection.classList.remove("hidden");
+    this.luckyNumbersForm.classList.remove("hidden");
+
+    // 총 구입 갯수 문구 업데이트
+    this.lottoCountText.innerText = `총 ${lottos.length}개를 구입하셨습니다.`;
+
+    // 로또 목록 출력 형태에 맞춰 HTML 파일에 업데이트
+    const lottosHTML = lottos
+      .map((lotto) => {
+        return `<div class="lotto-ticket">🎟️ ${lotto.getNumbers().join(", ")} </div>`;
+      })
+      .join("");
+    this.lottoList.innerHTML = lottosHTML;
+  }
 }
 
 export default LottoWebView;
