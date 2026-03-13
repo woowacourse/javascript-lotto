@@ -1,3 +1,5 @@
+import { RESTART } from "../constants/constant";
+
 export const webInputReader = {
   isRestarting: false,
 
@@ -31,7 +33,7 @@ export const webInputReader = {
       const purchaseButton = document.getElementById("purchaseButton");
       purchaseButton.addEventListener("click", () => {
         this.isRestarting = true;
-        resolve("RESTART");
+        resolve(RESTART);
       });
 
       const onClick = () => {
@@ -80,7 +82,7 @@ export const webInputReader = {
       const onClick = () => {
         this.isRestarting = false;
         this.checkedBonusNumber = false;
-        
+
         resultModal.classList.remove("active");
         myLotto.style.display = "none";
         winningDiv.style.display = "none";

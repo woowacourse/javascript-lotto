@@ -5,6 +5,7 @@ import {
   MONEY_UNIT,
   LOTTO_RANGE,
 } from "../constants/constant.js";
+import { RESTART } from "../constants/constant.js";
 
 export const Validator = {
   validatePurchaseMoney(money) {
@@ -23,7 +24,7 @@ export const Validator = {
   },
 
   validateWinningNumber(winningNumber) {
-    if (winningNumber === "RESTART") return;
+    if (winningNumber === RESTART) return;
     const winningNumberArray = winningNumber.split(",");
     const regex = /^[0-9,]+$/;
 

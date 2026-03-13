@@ -3,12 +3,13 @@ import { RETRY_ANSWER } from "../constants/constant.js";
 import { PurchaseLottoController } from "./PurchaseLottoController.js";
 import { WinningLottoController } from "./WinningLottoController.js";
 import { ResultController } from "./ResultController.js";
+import { RESTART } from "../constants/constant.js";
 
 class LottoController {
   async play() {
     const myLotto = await PurchaseLottoController();
     const winningLotto = await WinningLottoController();
-    if (winningLotto === "RESTART") {
+    if (winningLotto === RESTART) {
       myLotto.resetRandomLotto();
       return this.play();
     }

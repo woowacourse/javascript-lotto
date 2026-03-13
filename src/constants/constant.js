@@ -14,6 +14,8 @@ export const LOTTO_RANGE = {
   COUNT: 6,
 };
 
+export const RESTART = "RESTART";
+
 export const ERROR_MESSAGE = {
   PURCHASE_MONEY: {
     NONE: "[ERROR] 구입 금액을 입력해주세요.",
