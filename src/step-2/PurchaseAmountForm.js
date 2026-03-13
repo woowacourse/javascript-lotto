@@ -32,6 +32,7 @@ const PurchaseAmountForm = {
     purchaseButton.type = 'submit';
     purchaseButton.innerText = '구입';
     purchaseButton.disabled = true;
+    purchaseButton.classList.add('button-primary');
 
     purchaseAmountInputWrapper.appendChild(purchaseAmountInput);
     purchaseAmountInputWrapper.appendChild(purchaseButton);

@@ -20,12 +20,6 @@ body {
 }
 
 button {
-  width: auto;
-  height: 36px;
-  padding: 6px 16px;
-  border-radius: 4px;
-  background-color: var(--color-lotto-primary);
-  color: var(--color-lotto-grayscale-1);
   cursor: pointer;
 
   /* text lotto caption */
@@ -115,6 +109,15 @@ input.invalid {
   line-height: 16px;
   letter-spacing: 1.25px;
   vertical-align: middle;
+}
+
+.button-primary {
+  width: auto;
+  height: 36px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background-color: var(--color-lotto-primary);
+  color: var(--color-lotto-grayscale-1);
 }
 
 .error-message {

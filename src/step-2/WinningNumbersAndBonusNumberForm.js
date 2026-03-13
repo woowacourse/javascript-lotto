@@ -67,7 +67,7 @@ const WinningNumbersAndBonusNumberForm = {
     resultCheckButton.type = 'submit';
     resultCheckButton.innerText = '결과 확인하기';
     resultCheckButton.disabled = true;
-    resultCheckButton.classList.add('result-check-button');
+    resultCheckButton.classList.add('button-primary', 'result-check-button');
 
     winningNumberInputs.forEach((input) => winningNumbersInputWrapper.appendChild(input));
     winningNumbersWrapper.appendChild(winningNumbersCaption);
