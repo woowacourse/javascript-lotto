@@ -81,17 +81,8 @@ class WebApp {
 
     // 재시작 버튼
     this.view.restartButton.addEventListener("click", () => {
-      this.view.resultModal.classList.add("hidden");
-      this.view.luckyNumbersForm.classList.add("hidden");
-      this.view.lottoListSection.classList.add("hidden");
-      document.querySelector("#lotto-list").innerHTML = "";
-
       this.lottos = [];
-      this.view.purchaseInput.value = "";
-      this.view.winningNumbersInputs.forEach(input => {
-        input.value = "";
-      });
-      this.view.bonusNumberInput.value = "";
+      this.view.resetView();
     });
   }
 }

@@ -50,14 +50,29 @@ class LottoWebView {
           <tr><td>5개+보너스볼</td><td>30,000,000</td><td>${winningResult.SECOND}개</td></tr>
           <tr><td>6개</td><td>2,000,000,000</td><td>${winningResult.FIRST}개</td></tr>
         `;
-    this.view.resultTableBody.innerHTML = resultHTML;
-    this.view.profitRateText.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
+    this.resultTableBody.innerHTML = resultHTML;
+    this.profitRateText.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
 
-    this.view.resultModal.classList.remove("hidden");
+    this.resultModal.classList.remove("hidden");
   }
 
+  // 모달 창을 닫는 기능
   closeModal() {
     this.resultModal.classList.add("hidden");
+  }
+
+  // 로또 다시 시작 기능
+  resetView() {
+    this.resultModal.classList.add("hidden");
+    this.luckyNumbersForm.classList.add("hidden");
+    this.lottoListSection.classList.add("hidden");
+    this.lottoList.innerHTML = "";
+
+    this.view.purchaseInput.value = "";
+    this.view.winningNumbersInputs.forEach((input) => {
+      input.value = "";
+    });
+    this.view.bonusNumberInput.value = "";
   }
 }
 
