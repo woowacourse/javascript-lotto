@@ -43,10 +43,17 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   background: var(--color-lotto-greyscale-2);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 h1,

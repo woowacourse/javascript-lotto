@@ -25,11 +25,12 @@
       <div class="main-card">
         <!-- title -->
         <h2 class="text-title card-title">🎱 내 번호 당첨 확인 🎱</h2>
+
         <!-- 구입 금액 입력 섹션 -->
         <form class="money-input-section" id="purchase-form" novalidate>
           <div class="money-input-info">
             <label for="money" class="text-body"
-              >구입할 금액을 입력햐세요</label
+              >구입할 금액을 입력하세요</label
             >
             <input
               type="number"
@@ -48,47 +49,23 @@
             <span class="text-button">구입</span>
           </button>
         </form>
+
         <!-- 구입 로또 표시 섹션 -->
         <div class="lotto-section hidden">
-          <p class="text-body" id="lotto-count">총 7개를 구매하였습니다.</p>
-          <ul class="lotto-list">
-            <li class="text-body">
-              <span class="lotto-image">🎟️</span> 12, 28, 22, 37, 19, 23
-            </li>
-            <li class="text-body">
-              <span class="lotto-image">🎟️</span> 12, 28, 22, 37, 19, 23
-            </li>
-            <li class="text-body">
-              <span class="lotto-image">🎟️</span> 12, 28, 22, 37, 19, 23
-            </li>
-            <li class="text-body">
-              <span class="lotto-image">🎟️</span> 12, 28, 22, 37, 19, 23
-            </li>
-            <li class="text-body">
-              <span class="lotto-image">🎟️</span> 12, 28, 22, 37, 19, 23
-            </li>
-            <li class="text-body">
-              <span class="lotto-image">🎟️</span> 12, 28, 22, 37, 19, 23
-            </li>
-            <li class="text-body">
-              <span class="lotto-image">🎟️</span> 12, 28, 22, 37, 19, 23
-            </li>
-          </ul>
+          <p class="text-body" id="lotto-count"></p>
+          <ul class="lotto-list"></ul>
         </div>
+
         <!-- 당첨 번호, 보너스 번호 입력 세션 -->
         <div class="winning-bonus-input-section hidden">
           <p class="text-body">
             지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
           </p>
           <div class="number-input-section">
-            <div class="winning-input-info">
-              <label for="winning-number" class="text-body">당첨 번호</label>
+            <fieldset class="winning-input-info">
+              <legend class="text-body">당첨 번호</legend>
               <div class="winning-input-group">
-                <input
-                  type="number"
-                  id="winning-number"
-                  class="winning-input text-body"
-                />
+                <input type="number" class="winning-input text-body" />
                 <input type="number" class="winning-input text-body" />
                 <input type="number" class="winning-input text-body" />
                 <input type="number" class="winning-input text-body" />
@@ -96,7 +73,7 @@
                 <input type="number" class="winning-input text-body" />
               </div>
               <p id="winning-bonus-error" class="input-error hidden"></p>
-            </div>
+            </fieldset>
             <div class="bonus-input-info">
               <label for="bonus-number" class="text-body">보너스 번호</label>
               <input
@@ -107,6 +84,7 @@
             </div>
           </div>
         </div>
+
         <!-- 결과 확인 버튼 -->
         <button
           type="button"
@@ -127,6 +105,7 @@
           <h2 class="text-subtitle">🏆 당첨 통계 🏆</h2>
         </div>
 
+        <!-- 통계 표 -->
         <table class="result-table text-body">
           <thead>
             <tr>
@@ -163,10 +142,11 @@
             </tr>
           </tbody>
         </table>
-        <p class="text-body text-bold" id="profit">
-          당신의 총 수익률은 %입니다.
-        </p>
 
+        <!-- 수익률 -->
+        <p class="text-body text-bold" id="profit"></p>
+
+        <!-- 재시작 버튼 -->
         <button type="button" class="base-button submit-button" id="restart">
           <span class="text-button">다시 시작하기</span>
         </button>
