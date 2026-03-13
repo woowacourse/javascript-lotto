@@ -9,8 +9,10 @@ const LottoResult = {
     const returnRateDiv = document.createElement('div');
 
     lottoResultContainer.id = 'lotto-result-container';
+    lottoResultContainer.classList.add('lotto-result-container');
 
     returnRateDiv.innerText = `총 수익률은 ${returnRate.toFixed(1)}%입니다.`;
+    returnRateDiv.classList.add('return-rate');
 
     LottoRanksTable.render(lottoResultContainer, { ranks });
     lottoResultContainer.appendChild(returnRateDiv);
