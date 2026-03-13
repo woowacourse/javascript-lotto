@@ -15,7 +15,10 @@ describe("LottoStatisticsUseCase", () => {
     const winningNumber = new WinningNumber([1, 2, 3, 4, 5, 6], 7);
     const { lottosResult, totalPrize } =
       LottoStatisticsUseCase.statisticsLottos(lottos, winningNumber);
-    const fifth = lottosResult.find(({ order }) => order === 5);
+    const fifth = lottosResult.find(
+      ({ winningCondition, bonusCondition }) =>
+        winningCondition === 3 && !bonusCondition,
+    );
 
     const equal = {
       prize: 5000,

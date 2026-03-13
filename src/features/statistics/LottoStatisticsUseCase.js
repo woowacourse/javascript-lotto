@@ -25,10 +25,9 @@ export default class LottoStatisticsUseCase {
 
   static #formatRankMap(rankMap) {
     return [...rankMap.entries()]
-      .filter(([rank]) => rank !== Rank.MISS)
+      .filter(([rank]) => rank !== Rank.CONFIG.MISS)
       .map(([rank, stat]) => ({
-        ...rank.getPrize(),
-        ...rank.getCondition(),
+        ...rank,
         count: stat.count,
       }))
       .sort((a, b) => b.order - a.order);

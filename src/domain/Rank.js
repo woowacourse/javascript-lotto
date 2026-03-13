@@ -1,50 +1,52 @@
 export default class Rank {
-  static FIRST = new Rank(6, false);
-  static SECOND = new Rank(5, true);
-  static THIRD = new Rank(5, false);
-  static FOURTH = new Rank(4, false);
-  static FIFTH = new Rank(3, false);
-  static MISS = new Rank(0, false);
-
-  static #RULE_MAP = new Map([
-    [Rank.FIRST, { prize: 2_000_000_000, order: 1 }],
-    [Rank.SECOND, { prize: 30_000_000, order: 2 }],
-    [Rank.THIRD, { prize: 1_500_000, order: 3 }],
-    [Rank.FOURTH, { prize: 50_000, order: 4 }],
-    [Rank.FIFTH, { prize: 5_000, order: 5 }],
-    [Rank.MISS, { prize: 0, order: 6 }],
-  ]);
-
-  #winningCondition;
-  #bonusCondition;
-
-  constructor(winningCondition, bonusCondition) {
-    this.#winningCondition = winningCondition;
-    this.#bonusCondition = bonusCondition;
-  }
+  static CONFIG = Object.freeze({
+    FIRST: {
+      winningCondition: 6,
+      bonusCondition: false,
+      prize: 2_000_000_000,
+      order: 1,
+    },
+    SECOND: {
+      winningCondition: 5,
+      bonusCondition: true,
+      prize: 30_000_000,
+      order: 2,
+    },
+    THIRD: {
+      winningCondition: 5,
+      bonusCondition: false,
+      prize: 1_500_000,
+      order: 3,
+    },
+    FOURTH: {
+      winningCondition: 4,
+      bonusCondition: false,
+      prize: 50_000,
+      order: 4,
+    },
+    FIFTH: {
+      winningCondition: 3,
+      bonusCondition: false,
+      prize: 5_000,
+      order: 5,
+    },
+    MISS: { winningCondition: 0, bonusCondition: false, prize: 0, order: 6 },
+  });
 
   static findRank(winningMatch, bonusMatch) {
-    const foundRank = [...Rank.#RULE_MAP.keys()].find((rank) => {
-      const { winningCondition, bonusCondition } = rank.getCondition();
-      return winningCondition === winningMatch && bonusCondition === bonusMatch;
-    });
-    return foundRank || Rank.MISS;
-  }
-
-  getPrize() {
-    const { prize, order } = Rank.#RULE_MAP.get(this);
-    return { prize, order };
-  }
-
-  getCondition() {
-    const winningCondition = this.#winningCondition;
-    const bonusCondition = this.#bonusCondition;
-    return { winningCondition, bonusCondition };
+    const found = Object.values(Rank.CONFIG).find(
+      ({ winningCondition, bonusCondition }) => {
+        if (winningCondition !== winningMatch) return false;
+        if (winningCondition === 5) return bonusCondition === bonusMatch;
+        return true;
+      },
+    );
+    return found || Rank.CONFIG.MISS;
   }
 
   static getRankMap() {
     return new Map(
-      [...Rank.#RULE_MAP.keys()].map((rank) => [rank, { count: 0 }]),
+      Object.values(Rank.CONFIG).map((rank) => [rank, { count: 0 }]),
     );
   }
 }
