@@ -22,6 +22,25 @@ const NodeFactory = {
       node.appendChild(childNode);
     });
     return node;
+  },
+
+  createTableNode(headerData, bodyData) {
+    const node = document.createElement('table');
+    const thead = node.createTHead();
+    const tbody = node.createTBody();
+    headerData.forEach((header) => {
+      const th = document.createElement('th');
+      th.innerHTML = header;
+      thead.appendChild(th);
+    });
+    bodyData.forEach((rowData) => {
+      const row = tbody.insertRow();
+      Object.values(rowData).forEach((cellData) => {
+        const cell = row.insertCell();
+        cell.textContent = cellData;
+      });
+    });
+    return node;
   }
 }
 

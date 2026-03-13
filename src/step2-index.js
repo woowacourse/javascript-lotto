@@ -50,9 +50,15 @@ let lottoMachine = null;
     try {
       Validator.validateLottoNumber(winningLottoNumber);
       Validator.validateBonusNumber(winningLottoNumber, bonusNumber);
-      const matchResultDialog = document.getElementById('lotto-match-result-content');
+      const matchResultDialog = document.getElementById('lotto-match-result-dialog');
       matchResultDialog.showModal();
       const winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
+      lottoMachine.calculateMatchResult(
+        winningLotto.getWinningNumber(), winningLotto.getBonusNumber()
+      );
+      const matchResultSummary = lottoMachine.getMatchResultSummary();
+      const matchResultContentNode = document.getElementById('lotto-match-result-content');
+      NodeRenderer.renderCalculateResultTable(matchResultContentNode, matchResultSummary);
     } catch (err) {
       NodeRenderer.renderError(winningLottoInputContainer, err.message);
     }

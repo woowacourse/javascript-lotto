@@ -35,6 +35,14 @@ const NodeRenderer = {
     const node = NodeFactory.createListNode(lottos);
     node.id = 'purchase-lotto-list';
     target.appendChild(node);
+  },
+
+  renderCalculateResultTable(target, matchResultSummary) {
+    const alreadyExist = document.getElementById('lotto-match-result');
+    if (alreadyExist) return;
+    const node = NodeFactory.createTableNode(['일치 갯수', '당첨금', '당첨 갯수'], matchResultSummary.values());
+    node.id = 'lotto-match-result';
+    target.appendChild(node);
   }
 }
 

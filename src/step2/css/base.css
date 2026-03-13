@@ -221,39 +221,40 @@ input#purchase-amount {
 
 /* Dialog */
 
-#lotto-match-result-content {
+#lotto-match-result-dialog {
     border: 10px solid var(--dialog-border);
     border-radius: 4px;
     text-align: center;
 }
 
-#lotto-match-result-content::backdrop {
+#lotto-match-result-dialog::backdrop {
     background-color: var(--dialog-backdrop-bg);
 }
 
-#lotto-match-result-content h3 {
+#lotto-match-result-dialog h3 {
     margin-bottom: 32px;
     margin-top: 8px;
 }
 
-#lotto-match-result-content table {
+#lotto-match-result {
     border-collapse: collapse;
 }
 
-#lotto-match-result-content table tr {
+#lotto-match-result tr {
     border-bottom: 1px solid var(--table-border);
 }
 
-#lotto-match-result-content table thead tr {
+#lotto-match-result thead th {
     border-top: 1px solid var(--table-border);
+    border-bottom: 1px solid var(--table-border);
 }
 
-#lotto-match-result-content table thead th,
-#lotto-match-result-content table tbody tr td {
+#lotto-match-result thead th,
+#lotto-match-result tbody tr td {
     padding: 8px 12px;
 }
 
-#lotto-match-result-content button {
+#lotto-match-result-dialog button {
     width: 100%;
 }
 
