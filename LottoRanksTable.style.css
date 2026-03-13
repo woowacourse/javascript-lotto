@@ -1,14 +1,21 @@
 .lotto-ranks-table {
-  border-spacing: 8px 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .lotto-ranks-table caption {
   margin-bottom: 32px;
 }
 
-.lotto-ranks-table td, th {
+.lotto-ranks-table th,
+.lotto-ranks-table td {
   padding: 8px 6px;
   text-align: center;
+}
+
+.lotto-ranks-table th:nth-child(2),
+.lotto-ranks-table td:nth-child(2) {
+  padding: 8px 26px;
 }
 
 .lotto-ranks-table th {
