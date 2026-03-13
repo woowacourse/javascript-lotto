@@ -77,7 +77,7 @@ label {
 #purchase-price {
   flex-grow: 1;
   margin-right: 8px;
-  padding: 4px;
+  padding: 4px 8px;
   border: 1px solid var(--color-greyscale-3);
   border-radius: 4px;
   font: var(--font-body);
@@ -154,6 +154,88 @@ button {
 .result-button {
   width: 100%;
   margin: 0.5rem 0;
+  padding: 12px;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: #00000080;
+}
+
+.modal-box {
+  position: relative;
+
+  width: 90%;
+  max-width: 350px;
+  max-height: 500px;
+  padding: 40px 16px;
+
+  border-radius: 4px;
+  background-color: var(--color-white);
+
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+  padding: 0;
+
+  background: transparent;
+  cursor: pointer;
+
+  color: var(--color-black);
+  font-size: 14px;
+}
+
+.result-text {
+  font: var(--font-subtitle);
+  margin-bottom: 1rem;
+}
+
+.result-table {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.result-table th {
+  padding: 8px 0;
+  border-bottom: 1px solid #0000001F;
+  border-top: 1px solid #0000001F;
+
+  font: var(--font-body);
+  font-weight: 600;
+}
+
+.result-table td {
+  padding: 8px 0;
+  border-bottom: 1px solid #0000001F;
+
+  font: var(--font-body);
+}
+
+#profit-rate-text {
+  margin-bottom: 1rem;
+
+  font: var(--font-body);
+  font-weight: 700;
+  text-align: center;
+}
+
+#restart-button {
+  width: 100%;
   padding: 12px;
 }
 
