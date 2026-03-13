@@ -13,7 +13,6 @@ export default class PurchaseLottoUseCase {
 
     return {
       lottos,
-      lottoNumbers: lottos.map((lotto) => lotto.getNumbers()),
       purchasedAmount: purchasedMoney.getAmount(),
     };
   }

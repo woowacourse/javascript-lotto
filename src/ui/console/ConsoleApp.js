@@ -37,9 +37,10 @@ export default class ConsoleApp {
     const rawAmount = await this.#ui.readAmount();
     const amount = isNumber(toNumber(rawAmount));
 
-    const { lottos, lottoNumbers, purchasedAmount } =
+    const { lottos, purchasedAmount } =
       this.#purchaseLottoUseCase.execute(amount);
-    this.#ui.printLottos(lottoNumbers);
+    const lottoNumbersList = lottos.map((lotto) => lotto.getNumbers());
+    this.#ui.printLottos(lottoNumbersList);
     return { lottos, purchasedAmount };
   }
 
