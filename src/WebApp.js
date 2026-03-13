@@ -108,6 +108,29 @@ class WebApp {
         alert(e.message);
       }
     });
+
+    const modalCloseButton = document.querySelector("#modal-close-button");
+    const restartButton = document.querySelector("#restart-button");
+
+    // 모달 창 닫기 버튼
+    modalCloseButton.addEventListener("click", () => {
+      resultModal.classList.add("hidden");
+    });
+
+    // 재시작 버튼
+    restartButton.addEventListener("click", () => {
+      resultModal.classList.add("hidden");
+      luckyNumbersForm.classList.add("hidden");
+      lottoListSection.classList.add("hidden");
+      document.querySelector("#lotto-list").innerHTML = "";
+
+      this.lottos = [];
+      purchaseInput.value = "";
+      winningNumbersInputs.forEach(input => {
+        input.value = "";
+      });
+      bonusNumberInput.value = "";
+    });
   }
 }
 
