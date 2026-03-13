@@ -40,7 +40,7 @@ class WebApp {
 
         // 불러온 로또를 기반으로 로또 목록 출력 필요
         this.view.renderLottos(lottos);
-        
+
       } catch (e) {
         alert(e.message);
       }
@@ -68,17 +68,7 @@ class WebApp {
           purchasePrice,
         );
 
-        const resultHTML = `
-          <tr><td>3개</td><td>5,000</td><td>${winningResult.FIFTH}개</td></tr>
-          <tr><td>4개</td><td>50,000</td><td>${winningResult.FOURTH}개</td></tr>
-          <tr><td>5개</td><td>1,500,000</td><td>${winningResult.THIRD}개</td></tr>
-          <tr><td>5개+보너스볼</td><td>30,000,000</td><td>${winningResult.SECOND}개</td></tr>
-          <tr><td>6개</td><td>2,000,000,000</td><td>${winningResult.FIRST}개</td></tr>
-        `;
-        this.view.resultTableBody.innerHTML = resultHTML;
-        this.view.profitRateText.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
-
-        this.view.resultModal.classList.remove("hidden");
+        this.view.renderResultModal(winningResult, profitRate);
       } catch (e) {
         alert(e.message);
       }

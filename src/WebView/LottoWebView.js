@@ -23,6 +23,7 @@ class LottoWebView {
     this.restartButton = document.querySelector("#restart-button");
   }
 
+  // 구입한 로또 목록 렌더링 및 luckyNumbers 입력창 표시
   renderLottos(lottos) {
     // 구입금액 입력 전 숨겨져 있던 창 숨김해제
     this.lottoListSection.classList.remove("hidden");
@@ -38,6 +39,21 @@ class LottoWebView {
       })
       .join("");
     this.lottoList.innerHTML = lottosHTML;
+  }
+
+  // 당첨 결과 모달창을 렌더링
+  renderResultModal(winningResult, profitRate) {
+    const resultHTML = `
+          <tr><td>3개</td><td>5,000</td><td>${winningResult.FIFTH}개</td></tr>
+          <tr><td>4개</td><td>50,000</td><td>${winningResult.FOURTH}개</td></tr>
+          <tr><td>5개</td><td>1,500,000</td><td>${winningResult.THIRD}개</td></tr>
+          <tr><td>5개+보너스볼</td><td>30,000,000</td><td>${winningResult.SECOND}개</td></tr>
+          <tr><td>6개</td><td>2,000,000,000</td><td>${winningResult.FIRST}개</td></tr>
+        `;
+    this.view.resultTableBody.innerHTML = resultHTML;
+    this.view.profitRateText.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
+
+    this.view.resultModal.classList.remove("hidden");
   }
 }
 
