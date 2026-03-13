@@ -21,45 +21,42 @@
         <label for="purchaseInput" id="purchase-label"
           >구입할 금액을 입력해주세요.</label
         >
-        <div id="purchase-input-div">
+        <section id="purchase-input-div">
           <input type="number" id="purchaseInput" placeholder="금액" />
           <button type="button" id="purchaseButton">구입</button>
-        </div>
+        </section>
       </form>
 
-      <div id="myLotto">
+      <section id="myLotto">
         <p id="myLottoP"></p>
         <ul id="myLottoLists"></ul>
-      </div>
+      </section>
 
-      <div id="winningDiv">
+      <section id="winningDiv">
         <p id="winning-p">
           지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
         </p>
         <div id="winning-bonus">
-          <form id="winning-form">
-            <label id="winning-label" for="winningInput">당첨 번호</label>
-            <div id="winning-input-lists">
-              <input type="number" class="winningInput" />
-              <input type="number" class="winningInput" />
-              <input type="number" class="winningInput" />
-              <input type="number" class="winningInput" />
-              <input type="number" class="winningInput" />
-              <input type="number" class="winningInput" />
-            </div>
-          </form>
-          <form id="bonus-form">
-            <label id="bonus-label" for="bonusInput">보너스 번호</label>
+          <fieldset id="winning-input-lists">
+            <legend id="winning-label">당첨 번호</legend>
+            <input type="number" class="winningInput" />
+            <input type="number" class="winningInput" />
+            <input type="number" class="winningInput" />
+            <input type="number" class="winningInput" />
+            <input type="number" class="winningInput" />
+            <input type="number" class="winningInput" />
+          </fieldset>
+
+          <fieldset id="bonus-form">
+            <legend id="bonus-legend">보너스 번호</legend>
             <input type="number" id="bonusInput" />
-          </form>
+          </fieldset>
         </div>
-      </div>
+      </section>
 
-      <button type="submit" id="getResultButton">
-        결과 확인하기
-      </button>
+      <button type="button" id="getResultButton">결과 확인하기</button>
 
-      <div id="resultModal">
+      <dialog id="resultModal">
         <div id="result-modal-main">
           <span id="result-modal-close">X</span>
           <h1 id="result-modal-h1">🏆 당첨 통계 🏆</h1>
@@ -96,7 +93,7 @@
           <p id="profitP"></p>
           <button type="button" id="retryButton">다시 시작하기</button>
         </div>
-      </div>
+      </dialog>
     </main>
 
     <footer>

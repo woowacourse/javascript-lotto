@@ -170,13 +170,6 @@ main {
   justify-content: space-between;
 }
 
-#winning-form {
-  display: flex;
-  flex-direction: column;
-  width: 15rem;
-  gap: 0.25rem;
-}
-
 #winning-label {
   height: 1.5rem;
   font-weight: 400;
@@ -184,39 +177,48 @@ main {
   line-height: 1.5rem;
   letter-spacing: 0.031rem;
   color: rgba(0, 0, 0, 1);
+  margin: 0.2rem 0;
 }
 
 #winning-input-lists {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 
 .winningInput {
   width: 2rem;
   height: 1.5rem;
+  margin: 0.2rem 0;
 }
 
 #bonus-form {
   display: flex;
   flex-direction: column;
-  width: 5rem;
-  gap: 0.25rem;
+  gap: 0.5rem;
   align-items: flex-end;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 
-#bonus-label {
+#bonus-legend {
   height: 1.5rem;
   font-weight: 400;
   font-size: 0.938rem;
   line-height: 1.5rem;
   letter-spacing: 0.031rem;
   color: rgba(0, 0, 0, 1);
+  margin: 0.2rem 0;
 }
 
 #bonusInput {
   width: 2rem;
   height: 1.5rem;
+  margin: 0.2rem 0;
 }
 
 #getResultButton {
