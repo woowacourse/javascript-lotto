@@ -41,7 +41,7 @@ class WebInput extends Input {
     formEl.innerHTML = `
       <p>구입할 금액을 입력해주세요.</p>
       <fieldset class="money__inputs">
-        <label for="money" class="hidden">금액</label>
+        <label class="hidden">금액</label>
         <input type="number" class="money__input" name="money" min="1000" step="1000" placeholder="금액" />
         <button type="submit" class="money__submit">구입</button>
       </fieldset>
@@ -87,7 +87,7 @@ class WebInput extends Input {
           ${orders
             .map(
               (order, index) => `
-            <label for="winning-number__${order}" class="hidden">
+            <label class="hidden">
               당첨 번호 ${index + 1}번째 자리
             </label>
             <input
@@ -106,7 +106,7 @@ class WebInput extends Input {
         <div class="bonus__container">
           <p>보너스 번호</p>
           <fieldset class="bonus__inputs">
-            <label for="bonus-number" class="hidden">보너스 번호</label>
+            <label class="hidden">보너스 번호</label>
             <input
               type="number"
               class="bonus-number__input"
