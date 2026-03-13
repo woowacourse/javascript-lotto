@@ -1,7 +1,7 @@
 import App from "../src/app.js";
-import MockInput from "./utils/MockInput.js";
+import MockInput from "./mocks/MockInput.js";
 import LottoStore from "../src/model/LottoStore.js";
-import MockRandomUtil from "./utils/MockRandomUtil.js";
+import MockRandomUtil from "./mocks/MockRandomUtil.js";
 import { ERROR_MESSAGE } from "../src/constant/message.js";
 
 describe("App 통합 테스트", () => {

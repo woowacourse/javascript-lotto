@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import WebInput from "../src/view/WebInput.js";
 import ConsoleInput from "../src/view/ConsoleInput.js";
-import MockInput from "./utils/MockInput.js";
+import MockInput from "./mocks/MockInput.js";
 
 const html = fs.readFileSync(
   path.resolve(__dirname, "./../index.html"),

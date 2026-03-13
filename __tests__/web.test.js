@@ -5,7 +5,7 @@ import App from "../src/app.js";
 import WebInput from "../src/view/WebInput.js";
 import WebOutput from "../src/view/WebOutput.js";
 import LottoStore from "../src/model/LottoStore.js";
-import MockRandomUtil from "./utils/MockRandomUtil.js";
+import MockRandomUtil from "./mocks/MockRandomUtil.js";
 
 const html = fs.readFileSync(
   path.resolve(__dirname, "./../index.html"),

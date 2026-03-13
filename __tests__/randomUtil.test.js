@@ -1,5 +1,5 @@
 import MissionRandomUtil from "../src/util/MissionRandomUtil.js";
-import MockRandomUtil from "./utils/MockRandomUtil.js";
+import MockRandomUtil from "./mocks/MockRandomUtil.js";
 
 describe("랜덤 생성 유틸리티 테스트", () => {
   test("RandomUtil과 MockRandomUtil은 pickUniqueNumbers 인스턴스 메서드를 가진다.", () => {
