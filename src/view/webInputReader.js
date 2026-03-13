@@ -77,6 +77,7 @@ export const webInputReader = {
       const getResultButton = document.getElementById("getResultButton");
       const resultModal = document.getElementById("resultModal");
 
+      const resultModalClose = document.getElementById("result-modal-close");
       const retryButton = document.getElementById("retryButton");
 
       const onClick = () => {
@@ -101,6 +102,7 @@ export const webInputReader = {
       };
 
       retryButton.addEventListener("click", onClick);
+      resultModalClose.addEventListener('click', onClick);
     });
   },
 };
