@@ -4,6 +4,14 @@ import { validatePurchaseAmountInput } from './validates.js';
 
 const PurchaseAmountForm = {
   render(container) {
+    this.init();
+
+    if (!userLottoStore.hasTrigger('purchase-amount-form')) {
+      userLottoStore.appendTrigger('purchase-amount-form', (state) => {
+        if (state.purchaseAmount === null) this.render(container);
+      });
+    }
+
     const purchaseAmountForm = document.createElement('form');
     const purchaseAmountCaptionDiv = document.createElement('div');
     const purchaseAmountInputWrapper = document.createElement('div');
@@ -70,6 +78,13 @@ const PurchaseAmountForm = {
       input.classList.add('invalid');
       submitButton.disabled = true;
       errorMessageDiv.innerText = e.message;
+    }
+  },
+
+  init() {
+    const purchaseAmountForm = document.getElementById('purchase-amount-form');
+    if (purchaseAmountForm) {
+      purchaseAmountForm.remove();
     }
   },
 };

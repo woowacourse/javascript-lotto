@@ -1,6 +1,6 @@
 import Modal from './Modal.js';
 import LottoResult from './LottoResult.js';
-import { lottoResultStore } from './stores.js';
+import { lottoResultStore, userLottoStore } from './stores.js';
 
 const LottoResultModal = {
   render(container) {
@@ -25,6 +25,12 @@ const LottoResultModal = {
   },
 
   handleRetryClick() {
+    userLottoStore.setState({ purchaseAmount: null, lottos: [] });
+
+    const modalWrapper = document.querySelector('.modal-wrapper');
+    if (modalWrapper) {
+      modalWrapper.remove();
+    }
   },
 };
 

@@ -32,7 +32,9 @@ const Modal = {
 
   handleClose() {
     const modalWrapper = document.querySelector('.modal-wrapper');
-    modalWrapper.remove();
+    if (modalWrapper) {
+      modalWrapper.remove();
+    }
   },
 };
 
