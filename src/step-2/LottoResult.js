@@ -1,5 +1,4 @@
-import { lottoResultStore, userLottoStore, winningLottoAndBonusNumberStore } from './stores.js';
-import LottoResultGenerator from '../step-1/LottoResultGenerator.js';
+import { lottoResultStore } from './stores.js';
 import { RANK_RULES } from '../constants/rank.js';
 
 const LottoResult = {
@@ -12,7 +11,7 @@ const LottoResult = {
 
     if (!lottoResultStore.getState().ranks) return;
 
-    const { ranks, returnRate } = this.generateLottoResult();
+    const { ranks, returnRate } = lottoResultStore.getState();
 
     const lottoResultContainer = document.createElement('div');
     const rankDiv = document.createElement('div');
@@ -28,13 +27,6 @@ const LottoResult = {
     lottoResultContainer.appendChild(rankDiv);
     lottoResultContainer.appendChild(returnRateDiv);
     container.appendChild(lottoResultContainer);
-  },
-
-  generateLottoResult() {
-    const { lottos } = userLottoStore.getState();
-    const { winningLottoAndBonusNumber } = winningLottoAndBonusNumberStore.getState();
-
-    return LottoResultGenerator.generateResult(lottos, winningLottoAndBonusNumber);
   },
 
   init() {
