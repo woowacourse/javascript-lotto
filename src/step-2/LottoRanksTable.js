@@ -5,8 +5,11 @@ const LottoRanksTable = {
     const table = document.createElement('table');
     const caption = document.createElement('caption');
     const thead = document.createElement('thead');
-    const tbody = document.createElement('tbody');
     const tr = document.createElement('tr');
+    const tbody = document.createElement('tbody');
+
+    const ths = this.createThs();
+    const bodyRows = this.createBodyRows(ranks);
 
     table.id = 'lotto-ranks-table';
     table.classList.add('lotto-ranks-table');
@@ -14,17 +17,28 @@ const LottoRanksTable = {
     caption.innerText = '🏆 당첨 통계 🏆';
     caption.classList.add('text-lotto-subtitle');
 
-    const ths = ['일치 갯수', '당첨금', '당첨 갯수'].map((header) => {
+    ths.forEach((th) => tr.appendChild(th));
+    thead.appendChild(tr);
+
+    bodyRows.forEach((row) => tbody.appendChild(row));
+
+    table.appendChild(caption);
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    container.appendChild(table);
+  },
+
+  createThs() {
+    return ['일치 갯수', '당첨금', '당첨 갯수'].map((header) => {
       const th = document.createElement('th');
       th.innerText = header;
       th.scope = 'col';
       return th;
     });
+  },
 
-    ths.forEach((th) => tr.appendChild(th));
-    thead.appendChild(tr);
-
-    const bodyRows = RANK_RULES.map((rule) => {
+  createBodyRows(ranks) {
+    return RANK_RULES.map((rule) => {
       const tr = document.createElement('tr');
       const td1 = document.createElement('td');
       const td2 = document.createElement('td');
@@ -42,13 +56,6 @@ const LottoRanksTable = {
 
       return tr;
     }).reverse();
-
-    bodyRows.forEach((row) => tbody.appendChild(row));
-
-    table.appendChild(caption);
-    table.appendChild(thead);
-    table.appendChild(tbody);
-    container.appendChild(table);
   },
 };
 
