@@ -59,6 +59,7 @@ let lottoMachine = null;
       const matchResultSummary = lottoMachine.getMatchResultSummary();
       const matchResultContentNode = document.getElementById('lotto-match-result-content');
       NodeRenderer.renderCalculateResultTable(matchResultContentNode, matchResultSummary);
+      NodeRenderer.renderRateOfReturn(matchResultContentNode, lottoMachine.getRateOfReturn());
     } catch (err) {
       NodeRenderer.renderError(winningLottoInputContainer, err.message);
     }
