@@ -23,12 +23,12 @@ export default class ConsoleApp {
     do {
       const purchaseDto = await this.#retry(() => this.#processPurchase());
       const numbers = await this.#retry(() => this.#processWinningNumber());
-      const winningNumber = await this.#retry(() =>
+      const winningDto = await this.#retry(() =>
         this.#processWinningBonus(numbers),
       );
       const { totalPrize } = await this.#processStatistics(
         purchaseDto.lottos,
-        winningNumber,
+        winningDto.winningNumber,
       );
       this.#processProfit(purchaseDto.purchasedAmount, totalPrize);
     } while (await this.#retry(() => this.#processAskRetry()));
