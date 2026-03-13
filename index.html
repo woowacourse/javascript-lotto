@@ -11,69 +11,54 @@
     <div class="page-shell">
       <header class="site-header">
         <div class="site-header-inner">
-          <p class="site-brand">🎱 행운의 로또</p>
+          <p class="site-brand lotto-title">🎱 행운의 로또</p>
         </div>
       </header>
 
       <main class="site-main">
         <div id="app">
-          <h1 class="title">🎱 내 번호 당첨 확인 🎱</h1>
+          <h1 class="title lotto-title">🎱 내 번호 당첨 확인 🎱</h1>
 
           <section class="purchase-section">
-            <h2>구입할 금액을 입력해주세요.</h2>
+            <p class="lotto-body">구입할 금액을 입력해주세요.</p>
             <form class="purchase-form">
-              <fieldset class="purchase-fieldset">
+              <fieldset class="purchase-fieldset lotto-fieldset">
                 <legend class="sr-only">구입 정보</legend>
                 <label class="sr-only" for="purchase-amount">구입 금액</label>
                 <input
                   id="purchase-amount"
                   name="purchase-amount"
                   type="number"
-                  class="purchase-input"
+                  class="purchase-input lotto-input lotto-body"
                   placeholder="금액"
+                  max="9007199254740991"
                   required
                 />
-                <button type="submit" class="purchase-button">구입</button>
+                <button
+                  type="submit"
+                  class="purchase-button lotto-button lotto-caption"
+                >
+                  구입
+                </button>
               </fieldset>
             </form>
           </section>
 
           <section class="lotto-section" hidden>
-            <div class="section-label-row">
-              <h2>구매한 로또 목록</h2>
-              <p class="section-caption">
-                총 <span class="lotto-count">20</span>개를 구매하였습니다.
-              </p>
-            </div>
-            <ul class="lotto-list">
-              <li>12, 28, 22, 37, 19, 23</li>
-              <li>03, 09, 11, 17, 35, 42</li>
-              <li>01, 07, 14, 26, 31, 44</li>
-              <li>05, 08, 21, 24, 33, 40</li>
-              <li>06, 13, 18, 27, 34, 41</li>
-              <li>02, 10, 16, 25, 32, 45</li>
-              <li>04, 15, 20, 29, 36, 43</li>
-              <li>07, 12, 18, 23, 30, 39</li>
-              <li>08, 11, 19, 22, 34, 38</li>
-              <li>09, 14, 21, 28, 35, 42</li>
-              <li>01, 05, 17, 24, 31, 44</li>
-              <li>02, 06, 13, 26, 33, 41</li>
-              <li>03, 10, 16, 27, 32, 45</li>
-              <li>04, 08, 20, 25, 36, 43</li>
-              <li>05, 09, 15, 29, 37, 40</li>
-              <li>06, 11, 18, 23, 34, 42</li>
-              <li>07, 12, 19, 28, 35, 44</li>
-              <li>08, 13, 21, 24, 33, 41</li>
-              <li>09, 14, 20, 27, 32, 45</li>
-              <li>10, 15, 22, 30, 36, 43</li>
-            </ul>
+            <h2 class="sr-only lotto-body">구매한 로또 목록</h2>
+            <p class="section-caption lotto-body">
+              총 <span class="lotto-count"></span>개를 구매하였습니다.
+            </p>
+            <ul class="lotto-list lotto-body"></ul>
           </section>
 
           <section class="winning-section" hidden>
-            <h2>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</h2>
+            <p class="lotto-body">
+              지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+            </p>
             <form class="winning-form">
-              <fieldset class="winning-field-group">
-                <legend class="field-label">당첨 번호</legend>
+              <fieldset class="winning-field-group lotto-fieldset">
+                <legend class="field-label lotto-body">당첨 번호</legend>
                 <div class="winning-numbers-group">
                   <label class="sr-only" for="winning-lotto-1"
                     >당첨 번호 1</label
@@ -82,9 +67,7 @@
                     id="winning-lotto-1"
                     name="winning-lotto"
                     type="number"
-                    class="winning-input"
-                    min="1"
-                    max="45"
+                    class="winning-input lotto-input lotto-body"
                     required
                     aria-label="당첨 번호 1"
                   />
@@ -95,9 +78,7 @@
                     id="winning-lotto-2"
                     name="winning-lotto"
                     type="number"
-                    class="winning-input"
-                    min="1"
-                    max="45"
+                    class="winning-input lotto-input lotto-body"
                     required
                     aria-label="당첨 번호 2"
                   />
@@ -108,9 +89,7 @@
                     id="winning-lotto-3"
                     name="winning-lotto"
                     type="number"
-                    class="winning-input"
-                    min="1"
-                    max="45"
+                    class="winning-input lotto-input lotto-body"
                     required
                     aria-label="당첨 번호 3"
                   />
@@ -121,9 +100,7 @@
                     id="winning-lotto-4"
                     name="winning-lotto"
                     type="number"
-                    class="winning-input"
-                    min="1"
-                    max="45"
+                    class="winning-input lotto-input lotto-body"
                     required
                     aria-label="당첨 번호 4"
                   />
@@ -134,9 +111,7 @@
                     id="winning-lotto-5"
                     name="winning-lotto"
                     type="number"
-                    class="winning-input"
-                    min="1"
-                    max="45"
+                    class="winning-input lotto-input lotto-body"
                     required
                     aria-label="당첨 번호 5"
                   />
@@ -147,56 +122,41 @@
                     id="winning-lotto-6"
                     name="winning-lotto"
                     type="number"
-                    class="winning-input"
-                    min="1"
-                    max="45"
+                    class="winning-input lotto-input lotto-body"
                     required
                     aria-label="당첨 번호 6"
                   />
                 </div>
               </fieldset>
 
-              <fieldset class="bonus-number-group">
-                <legend class="field-label">보너스 번호</legend>
+              <fieldset class="bonus-number-group lotto-fieldset">
+                <legend class="field-label lotto-body">보너스 번호</legend>
                 <label class="sr-only" for="bonus-number">보너스 번호</label>
                 <input
                   id="bonus-number"
                   name="bonus-number"
                   type="number"
-                  class="bonus-input"
-                  min="1"
-                  max="45"
+                  class="bonus-input lotto-input lotto-body"
                   required
                 />
               </fieldset>
 
-              <button type="submit" class="winning-button">
+              <button
+                type="submit"
+                class="winning-button lotto-button lotto-caption"
+              >
                 결과 확인하기
               </button>
             </form>
-          </section>
-
-          <section class="result-section" hidden>
-            <h2>당첨 통계</h2>
-            <table class="result-table">
-              <thead>
-                <tr>
-                  <th>일치 개수</th>
-                  <th>당첨금</th>
-                  <th>당첨 개수</th>
-                </tr>
-              </thead>
-              <tbody class="result-body"></tbody>
-            </table>
-            <p class="profit-rate"></p>
-            <button type="button" class="retry-button">다시 시작하기</button>
           </section>
         </div>
       </main>
 
       <footer class="site-footer">
         <div class="site-footer-inner">
-          <p class="site-footer-label">Copyright 2023. woowacourse</p>
+          <p class="site-footer-label lotto-caption">
+            Copyright 2023. woowacourse
+          </p>
         </div>
       </footer>
     </div>
@@ -211,7 +171,7 @@
         <button class="modal-close-button" type="button" aria-label="모달 닫기">
           &times;
         </button>
-        <h2 id="result-modal-title" class="result-modal-title">
+        <h2 id="result-modal-title" class="result-modal-title lotto-subtitle">
           🏆 당첨 통계 🏆
         </h2>
 
@@ -219,46 +179,25 @@
           <caption class="sr-only">
             당첨 통계 표
           </caption>
-          <thead>
+          <thead class="lotto-body">
             <tr>
               <th>일치 갯수</th>
               <th>당첨금</th>
               <th>당첨 갯수</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>3개</td>
-              <td>5,000</td>
-              <td>n개</td>
-            </tr>
-            <tr>
-              <td>4개</td>
-              <td>50,000</td>
-              <td>n개</td>
-            </tr>
-            <tr>
-              <td>5개</td>
-              <td>1,500,000</td>
-              <td>n개</td>
-            </tr>
-            <tr>
-              <td>5개+보너스볼</td>
-              <td>30,000,000</td>
-              <td>n개</td>
-            </tr>
-            <tr>
-              <td>6개</td>
-              <td>2,000,000,000</td>
-              <td>n개</td>
-            </tr>
-          </tbody>
+          <tbody class="lotto-body"></tbody>
         </table>
 
-        <p class="modal-profit-text">
+        <p class="modal-profit-text lotto-body">
           당신의 총 수익률은 <span class="modal-profit-value"></span>%입니다.
         </p>
-        <button class="modal-retry-button" type="button">다시 시작하기</button>
+        <button
+          class="modal-retry-button lotto-button lotto-caption"
+          type="button"
+        >
+          다시 시작하기
+        </button>
       </section>
     </div>
 

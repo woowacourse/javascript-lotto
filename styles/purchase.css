@@ -1,0 +1,15 @@
+.purchase-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.purchase-fieldset {
+  display: grid;
+  grid-template-columns: 1fr 56px;
+  gap: 16px;
+}
+
+.purchase-input::placeholder {
+  color: var(--color-text-placeholder);
+}

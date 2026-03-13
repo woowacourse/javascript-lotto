@@ -1,0 +1,59 @@
+.winning-section > p {
+  margin: 0 0 12px;
+}
+
+.winning-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 24px;
+  row-gap: 16px;
+  align-items: end;
+}
+
+.winning-field-group {
+  display: grid;
+  gap: 8px;
+}
+
+.winning-numbers-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.winning-input,
+.bonus-input {
+  width: 34px;
+  padding: 0;
+  text-align: center;
+}
+
+.bonus-number-group {
+  display: grid;
+  min-width: 88px;
+  gap: 12px;
+  grid-template-columns: 1fr;
+  align-content: end;
+  justify-items: end;
+  text-align: right;
+}
+
+.winning-button {
+  width: 100%;
+  grid-column: 1 / -1;
+  margin-top: 12px;
+}
+
+@media (max-width: 414px) {
+  .winning-form {
+    grid-template-columns: 1fr auto;
+    column-gap: 12px;
+    row-gap: 16px;
+  }
+
+  .bonus-number-group {
+    min-width: 76px;
+    grid-template-columns: 1fr;
+    justify-items: end;
+  }
+}
