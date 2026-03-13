@@ -148,7 +148,7 @@ main {
 }
 
 #winningDiv {
-  display: flex;
+  display: none;
   flex-direction: column;
   margin-top: 2rem;
 }
@@ -220,6 +220,7 @@ main {
 }
 
 #getResultButton {
+  display: none;
   height: 2.25rem;
   margin-top: 1rem;
   padding-top: 0.375rem;
