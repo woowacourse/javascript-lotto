@@ -1,5 +1,3 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
-
 const InputView = {
   async readPurchasePrice() {
     const input =
