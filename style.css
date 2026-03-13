@@ -43,7 +43,14 @@ header {
   display: none !important;
 }
 
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .main-container {
+  width: 100%;
   max-width: 414px;
   margin: 2rem auto;
   padding: 16px;
@@ -52,6 +59,8 @@ header {
 
   border: 1px solid #0000001f;
   border-radius: 4px;
+
+  flex-grow: 1;
 }
 
 .lotto-subtitle {
