@@ -1,5 +1,5 @@
 const Modal = {
-  render(container, children) {
+  render(container, { children }) {
     const modalWrapper = document.createElement('div');
     const modalContainer = document.createElement('div');
     const closeButton = document.createElement('button');

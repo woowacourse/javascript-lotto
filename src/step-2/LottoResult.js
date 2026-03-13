@@ -5,12 +5,6 @@ const LottoResult = {
   render(container) {
     this.init();
 
-    if (!lottoResultStore.hasTrigger('lotto-result')) {
-      lottoResultStore.appendTrigger('lotto-result', () => this.render(container));
-    }
-
-    if (!lottoResultStore.getState().ranks) return;
-
     const { ranks, returnRate } = lottoResultStore.getState();
 
     const lottoResultContainer = document.createElement('div');
