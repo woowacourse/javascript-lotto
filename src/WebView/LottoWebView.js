@@ -74,6 +74,10 @@ class LottoWebView {
     });
     this.view.bonusNumberInput.value = "";
   }
+
+  showError(message) {
+    alert(message);
+  }
 }
 
 export default LottoWebView;

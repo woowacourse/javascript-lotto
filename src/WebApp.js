@@ -42,7 +42,7 @@ class WebApp {
         this.view.renderLottos(lottos);
 
       } catch (e) {
-        alert(e.message);
+        this.view.showError(e.message);
       }
     });
 
@@ -70,7 +70,7 @@ class WebApp {
 
         this.view.renderResultModal(winningResult, profitRate);
       } catch (e) {
-        alert(e.message);
+        this.view.showError(e.message);
       }
     });
 
