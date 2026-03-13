@@ -30,7 +30,7 @@ class LottoController {
 
     return {
       rankCount: this.#rankCount,
-      profitRate: calProfitRate(purchasedPrice, this.#totalPrize),
+      profitRate: calProfitRate(purchasedPrice, this.#totalPrize).toFixed(2),
     };
   }
 }

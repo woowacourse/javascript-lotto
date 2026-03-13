@@ -5,33 +5,17 @@ import Validator from "../utils/Validator.js";
 
 class WebApp {
   #lottoController;
-
   constructor() {
     this.view = new WebView();
   }
 
   init() {
-    this.view.purchase.$form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      this.#handlePurchase();
-    });
-
-    this.view.winning.$form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      this.#handleResult();
-    });
-
-    this.view.lotto.$displayMoreBtn.addEventListener('click', () => {
-      this.view.lotto.$container.classList.remove('collapsed');
-      this.view.lotto.$displayMoreBtn.classList.add('hidden');
-      this.view.lotto.$hideBtn.classList.remove('hidden');
-    });
-
-    this.view.lotto.$hideBtn.addEventListener('click', () => {
-      this.view.lotto.$container.classList.add('collapsed');
-      this.view.lotto.$displayMoreBtn.classList.remove('hidden');
-      this.view.lotto.$hideBtn.classList.add('hidden');
-    });
+    this.view.bindPurchase(this.#handlePurchase.bind(this));
+    this.view.bindSaveResult(this.#handleResult.bind(this));
+    
+    this.view.displayMoreBtn();
+    this.view.hideMoreBtn();
+    
 
     window.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && this.view.isModalVisible()) {

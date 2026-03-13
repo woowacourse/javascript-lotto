@@ -27,6 +27,20 @@ class WebView {
     };
   }
 
+  bindPurchase(handler){
+    this.purchase.$form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      handler(Number(this.purchase.$input.value));
+    });
+  }
+
+  bindSaveResult(handler){
+    this.winning.$form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      handler(this.getWinningNumbers(), this.getBonusNumber());
+    });
+  }
+
   getPurchaseAmount() {
     return this.purchase.$input.value;
   }
@@ -53,6 +67,22 @@ class WebView {
     const isOverTen = purchasedLottos.length > 10;
     this.lotto.$displayMoreBtn.classList.toggle('hidden', !isOverTen);
     this.lotto.$container.classList.toggle('collapsed', isOverTen);
+  }
+
+  displayMoreBtn(){
+    this.lotto.$displayMoreBtn.addEventListener('click', () => {
+      this.lotto.$container.classList.remove('collapsed');
+      this.lotto.$displayMoreBtn.classList.add('hidden');
+      this.lotto.$hideBtn.classList.remove('hidden');
+    });
+  }
+
+  hideMoreBtn(){
+    this.lotto.$hideBtn.addEventListener('click', () => {
+      this.lotto.$container.classList.add('collapsed');
+      this.lotto.$displayMoreBtn.classList.remove('hidden');
+      this.lotto.$hideBtn.classList.add('hidden');
+    });
   }
 
   getWinningNumbers() {
