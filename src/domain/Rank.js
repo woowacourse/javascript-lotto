@@ -30,7 +30,7 @@ export default class Rank {
       prize: 5_000,
       order: 5,
     },
-    MISS: { winningCondition: 0, bonusCondition: false, prize: 0, order: 6 },
+    MISS: { winningCondition: 0, bonusCondition: false, prize: 0, order: 0 },
   });
 
   static findRank(winningMatch, bonusMatch) {

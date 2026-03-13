@@ -14,23 +14,26 @@ describe("LottoStatisticsUseCase", () => {
     const lottosNumbers = [[1, 2, 3, 10, 11, 12]];
     const winningNumber = new WinningNumber([1, 2, 3, 4, 5, 6], 7);
 
-    const { lottosResult, totalPrize } =
-      LottoStatisticsUseCase.statisticsLottos(lottosNumbers, winningNumber);
+    const statisticsDto = LottoStatisticsUseCase.statisticsLottos(
+      lottosNumbers,
+      winningNumber,
+    );
+
+    const { lottosResult, totalPrize } = statisticsDto;
 
     const fifth = lottosResult.find(
-      ({ winningCondition, bonusCondition }) =>
-        winningCondition === 3 && !bonusCondition,
+      ({ matchCount, hasBonus }) => matchCount === 3 && !hasBonus,
     );
 
     const expected = {
       prize: 5000,
       order: 5,
-      winningCondition: 3,
-      bonusCondition: false,
+      matchCount: 3,
+      hasBonus: false,
       count: 1,
     };
 
-    expect(fifth).toMatchObject(expected);
+    expect(fifth).toEqual(expected);
     expect(totalPrize).toBe(5000);
   });
 });

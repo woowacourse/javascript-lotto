@@ -26,7 +26,7 @@ export default class ConsoleApp {
       const winningNumber = await this.#retry(() =>
         this.#processWinningBonus(numbers),
       );
-      const totalPrize = await this.#processStatistics(
+      const { totalPrize } = await this.#processStatistics(
         purchaseDto.lottos,
         winningNumber,
       );
@@ -40,7 +40,6 @@ export default class ConsoleApp {
 
     const purchaseDto = this.#purchaseLottoUseCase.execute(amount);
     this.#ui.printLottos(purchaseDto.lottos);
-
     return purchaseDto;
   }
 
@@ -58,11 +57,13 @@ export default class ConsoleApp {
   }
 
   async #processStatistics(lottosNumbers, winningNumber) {
-    const { lottosResult, totalPrize } =
-      LottoStatisticsUseCase.statisticsLottos(lottosNumbers, winningNumber);
+    const lottoStatsDto = LottoStatisticsUseCase.statisticsLottos(
+      lottosNumbers,
+      winningNumber,
+    );
 
-    this.#ui.printStatistics(lottosResult);
-    return totalPrize;
+    this.#ui.printStatistics(lottoStatsDto.lottosResult);
+    return lottoStatsDto;
   }
 
   async #processProfit(purchasedAmount, totalPrize) {

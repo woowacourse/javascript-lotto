@@ -23,13 +23,13 @@ export default class ConsoleOutView {
   }
 
   static printRank(stats) {
-    const { winningCondition, bonusCondition, count, prize } = stats;
+    const { matchCount, hasBonus, count, prize } = stats;
     const formatPrize = prize.toLocaleString();
 
-    if (bonusCondition) {
-      return `${winningCondition}개 일치, 보너스 볼 일치 (${formatPrize}원) - ${count}개`;
+    if (hasBonus) {
+      return `${matchCount}개 일치, 보너스 볼 일치 (${formatPrize}원) - ${count}개`;
     }
-    return `${winningCondition}개 일치 (${formatPrize}원) - ${count}개`;
+    return `${matchCount}개 일치 (${formatPrize}원) - ${count}개`;
   }
 
   static printError(error) {
