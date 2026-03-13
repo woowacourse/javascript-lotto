@@ -25,6 +25,14 @@ const disablePurchaseForm = (disabled) => {
   purchaseFormFieldset.disabled = disabled;
 };
 
+const disableWinningForm = (disabled) => {
+  const winningForm = document.querySelector("form.winning-form");
+  const winningFormControls = winningForm.querySelectorAll("fieldset, button");
+  winningFormControls.forEach((control) => {
+    control.disabled = disabled;
+  });
+};
+
 const showModalOverlay = (visible) => {
   const modalOverlay = document.querySelector("div.modal-overlay");
   modalOverlay.hidden = !visible;
@@ -36,5 +44,6 @@ export {
   resetPurchaseForm,
   resetWinningForm,
   disablePurchaseForm,
+  disableWinningForm,
   showModalOverlay,
 };

@@ -3,6 +3,7 @@ import {
   showLottoSection,
   showWinningSection,
   disablePurchaseForm,
+  disableWinningForm,
   resetPurchaseForm,
   resetWinningForm,
   showModalOverlay,
@@ -14,9 +15,10 @@ class WebInputView {
   static async readIsRetry() {
     return new Promise((resolve) => {
       const retryButton = document.querySelector("button.modal-retry-button");
-      retryButton.addEventListener("click", this.#handleRetry(resolve), {
-        once: true,
-      });
+      const closeButton = document.querySelector("button.modal-close-button");
+      const handler = this.#handleRetry(resolve);
+      retryButton.addEventListener("click", handler, { once: true });
+      closeButton.addEventListener("click", handler, { once: true });
     });
   }
 
@@ -49,6 +51,7 @@ class WebInputView {
   static #handleRetry(resolve) {
     return (e) => {
       e.preventDefault();
+      e.stopPropagation();
       this.#resetAll();
       resolve(true);
     };
@@ -93,6 +96,7 @@ class WebInputView {
     showLottoSection(false);
     showWinningSection(false);
     disablePurchaseForm(false);
+    disableWinningForm(false);
     resetPurchaseForm();
     resetWinningForm();
     showModalOverlay(false);
