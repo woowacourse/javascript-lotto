@@ -1,0 +1,22 @@
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: color-mix(in srgb, var(--color-lotto-grayscale-5), transparent 50%);
+}
+
+.modal-container {
+  position: relative;
+  border-radius: 4px;
+  background-color: var(--color-lotto-grayscale-1);
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 16px 16px 0 0;
+}
