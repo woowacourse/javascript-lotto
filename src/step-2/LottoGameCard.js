@@ -1,4 +1,6 @@
 import PurchaseAmountForm from './PurchaseAmountForm.js';
+import LottoInfo from './LottoInfo.js';
+import WinningNumbersAndBonusNumberForm from './WinningNumbersAndBonusNumberForm.js';
 
 const LottoGameCard = {
   render(container) {
@@ -13,12 +15,10 @@ const LottoGameCard = {
 
     lottoGameCard.appendChild(lottoGameCardHeader);
     PurchaseAmountForm.render(lottoGameCard);
+    LottoInfo.render(lottoGameCard);
+    WinningNumbersAndBonusNumberForm.render(lottoGameCard);
 
     container.appendChild(lottoGameCard);
-  },
-
-  getElement() {
-    return document.getElementById('lotto-game-card');
   },
 };
 
