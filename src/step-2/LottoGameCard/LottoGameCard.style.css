@@ -4,8 +4,8 @@
   flex-direction: column;
   gap: 24px;
   width: 414px;
-  height: 727px;
-  margin: auto;
+  aspect-ratio: 14/25;
+  margin: 84px auto;
   padding: 40px 16px 36px 16px;
   border: 1px solid #00000012;
   border-radius: 4px;
@@ -14,4 +14,11 @@
 
 .lotto-game-card header {
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .lotto-game-card {
+    width: auto;
+    margin: 12px 24px;
+  }
 }
