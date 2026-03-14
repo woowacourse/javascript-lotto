@@ -5,6 +5,13 @@ const View = {
     const purchaseCountComponent = Component.purchaseLottoCount(lottos.length);
     const purchaseLottoListComponent = Component.lottoList(lottos.map((lotto) => lotto.getLottoNumber()));
     target.innerHTML = purchaseCountComponent + purchaseLottoListComponent;
+  },
+
+  renderMatchResultModal(target, matchResultSummary, rateOfReturn) {
+    const table = Component.lottoMatchResultTable(matchResultSummary);
+    const rateOfReturnMessage = Component.rateOfReturnMessage(rateOfReturn);
+    const restartButton = Component.restartButton();
+    target.innerHTML = table + rateOfReturnMessage + restartButton;
   }
 }
 

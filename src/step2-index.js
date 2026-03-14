@@ -58,9 +58,7 @@ let lottoMachine = null;
       );
       const matchResultSummary = lottoMachine.getMatchResultSummary();
       const matchResultContentNode = document.getElementById('lotto-match-result-content');
-      NodeRenderer.renderCalculateResultTable(matchResultContentNode, matchResultSummary);
-      NodeRenderer.renderRateOfReturn(matchResultContentNode, lottoMachine.getRateOfReturn());
-      NodeRenderer.renderRestartButton(matchResultContentNode);
+      View.renderMatchResultModal(matchResultContentNode, matchResultSummary, lottoMachine.getRateOfReturn());
     } catch (err) {
       NodeRenderer.renderError(winningLottoInputContainer, err.message);
     }
@@ -78,12 +76,10 @@ let lottoMachine = null;
     purchaseAmountInput.value = '';
     const purchaseAmountContainer = document.getElementById('purchase-amount-input-container');
     clearState(purchaseAmountContainer);
-    const purchaseLottoContent = document.getElementById('purchase-lotto-content');
-    purchaseLottoContent.innerHTML = '';
+    document.getElementById('purchase-lotto-content').innerHTML = '';
+    document.getElementById('lotto-match-result-content').innerHTML = '';
     document.getElementById('winning-lotto-form').reset();
     hideNode(HIDE_CONTENT_SELECTORS);
-    document.getElementById('lotto-match-result').remove();
-    document.getElementById('lotto-rate-of-return').remove();
   });
 
   const dialogCloser = matchResultDialog.querySelector('button.dialog-closer');

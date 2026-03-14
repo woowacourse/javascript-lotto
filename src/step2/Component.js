@@ -9,6 +9,29 @@ const Component = {
     });
     return `<ul id="purchase-lotto-list">${listItems.join('')}</ul>`;
   },
+
+  lottoMatchResultTable(matchResultSummary) {
+    const tableHeaders = ['일치 갯수', '당첨금', '당첨 갯수'].map((content) => {
+      return `<th>${content}</th>`;
+    });
+
+    const tableRows = matchResultSummary.map((rowData) => {
+      const cell = Object.values(rowData).map((cellData) => {
+        return `<td>${cellData}</td>`;
+      });
+      return `<tr>${cell.join('')}</tr>`;
+    });
+    
+    return `<table id="lotto-match-result"><thead>${tableHeaders.join('')}</thead><tbody>${tableRows.join('')}</tbody></table>`;
+  },
+
+  rateOfReturnMessage(rateOfReturn) {
+    return `<p id="lotto-rate-of-return">당신의 총 수익률은 ${rateOfReturn}%입니다.</p>`;
+  },
+
+  restartButton() {
+    return '<button type="button" id="restart-button">다시 시작하기</button>';
+  }
 }
 
 export default Component
