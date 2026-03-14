@@ -1,12 +1,11 @@
 import { AMOUNT_PRICE } from "../../constants/lottoConstants.js";
 import LottoGame from "../../Model/LottoGame.js";
 import Rate from "../../Model/Rate.js";
+import StatisticsResultView from "../../View/WebView/StatisticsResultView.js";
 
 class StatisticsResultController {
-  view;
-  model;
-  constructor(view, model) {
-    this.view = view;
+  constructor() {
+    this.view = new StatisticsResultView();
     this.model = {};
   }
   run(winningNumbers, bonusNumber, lottoList) {
@@ -20,15 +19,16 @@ class StatisticsResultController {
     );
     this.model.rate = rate;
 
-    this.view.outputView.renderStatisticsResult({
+    this.view.render({
       statistics,
       rate: rate.getRate(),
+      lottoList,
     });
     this.#inputIsReady();
   }
   #inputIsReady() {
-    this.view.inputView.readIsRetry(() => {
-      this.view.outputView.printReset();
+    this.view.readIsRetry(() => {
+      this.view.printReset();
     });
   }
 }

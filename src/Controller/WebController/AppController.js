@@ -1,25 +1,25 @@
+import AppView from "../../View/WebView/AppView.js";
+
 import LottoResultController from "./LottoResultController.js";
 
 import { AMOUNT_PRICE } from "../../constants/lottoConstants.js";
 
 class AppController {
   view;
-  model;
-  constructor(view, model) {
-    this.view = view;
-    this.model = {};
+  constructor() {
+    this.view = new AppView();
   }
   run() {
-    this.view.outputView.renderApp({});
-    this.#inputPrice();
-  }
-  #inputPrice() {
-    this.view.inputView.readPrice((price) => {
-      const amount = price / AMOUNT_PRICE;
-
-      const lottoResultController = new LottoResultController(this.view);
-      lottoResultController.run(amount);
+    this.view.render({});
+    this.view.readPrice((price) => {
+      this.#inputPrice(price);
     });
+  }
+  #inputPrice(price) {
+    const amount = price / AMOUNT_PRICE;
+
+    const lottoResultController = new LottoResultController(this.view);
+    lottoResultController.run(amount);
   }
 }
 
