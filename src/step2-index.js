@@ -55,7 +55,7 @@ class App {
 
       this.#money = money;
       this.#purchaseView.disableForm();
-      this.#setTickets();
+      this.#renderPurchasedLottos();
 
       this.#ticketListView.show();
       this.#winningLottoView.show();
@@ -81,14 +81,14 @@ class App {
       this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
       this.#winningLottoView.disableInputs();
 
-      this.#setLottoResult();
+      this.#renderLottoResult();
       this.#resultModalView.open();
     } catch (error) {
       alert(error.message);
     }
   };
 
-  #setTickets() {
+  #renderPurchasedLottos() {
     const purchaseLottoCount = this.#money / LOTTO.PRICE;
     this.#ticketListView.setPurchaseLottoCount(purchaseLottoCount);
 
@@ -97,7 +97,7 @@ class App {
     this.#ticketListView.setAllTickets(allLottoNumbers);
   }
 
-  #setLottoResult() {
+  #renderLottoResult() {
     const allRankCount = ScoreBoard.makeAllRankCount(
       this.#lottos,
       this.#winningLotto,
