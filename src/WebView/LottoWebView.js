@@ -89,6 +89,20 @@ class LottoWebView {
       handler(this.purchaseInput.value);
     });
   }
+
+  // luckyNumbers 폼 제출
+  bindLuckyNumbersForm(handler) {
+    this.luckyNumbersForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const winningNumbers = Array.from(this.winningNumbersInputs).map(
+        (input) => Number(input.value),
+      );
+      const bonusNumber = this.bonusNumberInput.value;
+
+      handler(winningNumbers, bonusNumber);
+    });
+  }
 }
 
 export default LottoWebView;
