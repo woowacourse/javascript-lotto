@@ -4,7 +4,6 @@ import LottoStore from "./Lotto/LottoStore.js";
 
 const purchaseForm = document.querySelector(".lotto-purchase-form");
 
-let lottos = [];
 let purchaseAmount = 0;
 
 purchaseForm.addEventListener("submit", (event) => {
@@ -12,16 +11,25 @@ purchaseForm.addEventListener("submit", (event) => {
   try {
     const formData = new FormData(purchaseForm);
     purchaseAmount = parseInt(formData.get("purchase-amount"), 10); // TODO: 상수화 하기
-    lottos = LottoStore.purchaseLottos(purchaseAmount);
+    const lottos = LottoStore.purchaseLottos(purchaseAmount);
 
-    drawLottoList();
-    drawWinningNumbersAndBonusNumber();
+    drawLottoList(lottos);
+    drawWinningNumbersAndBonusNumber(lottos);
+
+    const purchaseAmountInput = purchaseForm.querySelector(
+      ".lotto-purchase-form__input",
+    );
+    purchaseAmountInput.disabled = true;
+    const purchaseAmountButton = purchaseForm.querySelector(
+      ".lotto-purchase-form__button",
+    );
+    purchaseAmountButton.disabled = true;
   } catch (error) {
     alert(error.message);
   }
 });
 
-function drawLottoList() {
+function drawLottoList(lottos) {
   const lottoListBlock = document.querySelector(".lotto-list");
 
   const lottoListInfo = document.createElement("p");
@@ -41,7 +49,7 @@ function drawLottoList() {
   });
 }
 
-function drawWinningNumbersAndBonusNumber() {
+function drawWinningNumbersAndBonusNumber(lottos) {
   const winningNumbersAndBonusNumberBlock = document.querySelector(
     ".lotto-winning-bonus-number",
   );
@@ -195,32 +203,42 @@ function drawLottoResult(rank, returnRate) {
           <tr>
             <td>3개</td>
             <td>5,000</td>
-            <td>${rank[5] || 0}</td>
+            <td>${rank[5] || 0}개</td>
           </tr>
           <tr>
             <td>4개</td>
             <td>50,000</td>
-            <td>${rank[4] || 0}</td>
+            <td>${rank[4] || 0}개</td>
           </tr>
           <tr>
             <td>5개</td>
             <td>1,500,000</td>
-            <td>${rank[3] || 0}</td>
+            <td>${rank[3] || 0}개</td>
           </tr>
           <tr>
             <td>5개+보너스볼</td>
             <td>30,000,000</td>
-            <td>${rank[2] || 0}</td>
+            <td>${rank[2] || 0}개</td>
           </tr>
           <tr>
             <td>6개</td>
             <td>2,000,000,000</td>
-            <td>${rank[1] || 0}</td>
+            <td>${rank[1] || 0}개</td>
           </tr>
         </tbody>`;
 
   const returnRateInfo = document.createElement("p");
   returnRateInfo.classList.add("lotto-result__return-rate");
-  returnRateInfo.innerText = `총 수익률은 ${returnRate}%입니다.`;
+  returnRateInfo.innerText = `당신의 총 수익률은 ${returnRate}%입니다.`;
   lottoResultContent.appendChild(returnRateInfo);
+
+  const retryButton = document.createElement("button");
+  retryButton.classList.add("lotto-result__retry-button");
+  retryButton.innerText = "다시 시작하기";
+  lottoResultContent.appendChild(retryButton);
+
+  retryButton.addEventListener("click", () => {
+    lottoResultBlock.remove();
+    location.reload();
+  });
 }

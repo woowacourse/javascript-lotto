@@ -144,6 +144,9 @@
   border-radius: 4px;
   border: none;
   margin-top: 1rem;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 14px;
 }
 
 .lotto-result {
@@ -178,7 +181,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--lotto-grayscale-1);
-  padding: 2rem;
+  padding: 2rem 1rem;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -193,11 +196,11 @@
 
 .lotto-result__table td {
   border-top: 1px solid var(--lotto-border);
-  padding-block: 0.5rem;
+  padding: 1rem;
 }
 
 .lotto-result__table th {
-  padding-block: 0.5rem;
+  padding: 1rem;
 }
 
 .lotto-result__table-header {
@@ -210,4 +213,26 @@
   right: 0.5rem;
   background-color: transparent;
   border: none;
+}
+
+.lotto-result__return-rate {
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.lotto-result__retry-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--lotto-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: 1.5rem;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 14px;
 }
