@@ -22,26 +22,31 @@
       </header>
 
       <main>
-        <h2>🎱 내 번호 당첨 확인 🎱</h2>
+        <h2 class="main-title">🎱 내 번호 당첨 확인 🎱</h2>
 
         <section id="purchase-input-wrapper">
-          <h3 class="form-title">구입할 금액을 입력해주세요.</h3>
+          <h3 class="section-title">구입할 금액을 입력해주세요.</h3>
 
           <form id="purchase-form">
-            <label for="purchase-price">구입 금액</label>
-            <input type="number" id="purchase-price" placeholder="금액" />
-            <button type="submit">구입</button>
+            <label for="purchase-price" class="v-hidden">구입 금액</label>
+            <input
+              type="number"
+              id="purchase-price"
+              class="input-purchase"
+              placeholder="금액"
+            />
+            <button type="submit" class="btn btn-purchase">구입</button>
           </form>
         </section>
 
         <section class="lotto-ticket-container">
-          <h3 id="lotto-count-text"></h3>
+          <h3 id="lotto-count-text" class="section-title"></h3>
 
           <ul id="lotto-list"></ul>
         </section>
 
         <section id="winning-input-wrapper" class="hidden">
-          <h3 class="form-title">
+          <h3 class="section-title">
             지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
           </h3>
           <form id="winning-form">

@@ -1,3 +1,4 @@
+/* 변수 및 초기화 */
 :root {
   --lotto-greyscale-1: #ffffff;
   --lotto-greyscale-2: #fcfcfd;
@@ -16,8 +17,10 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+/* 전체 레이아웃*/
 body {
   font-family: var(--system-font);
   color: var(--lotto-greyscale-5);
@@ -43,6 +46,10 @@ main {
   background: var(--lotto-greyscale-1);
 }
 
+main section {
+  padding: 10px 15px;
+}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -52,11 +59,69 @@ footer {
     color-mix(in srgb, var(--lotto-primary), transparent 80%);
 }
 
+/* 공통 컴포넌트 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .lotto-title {
   padding: 14px 130px;
   color: var(--logo-color);
   font-weight: 800;
   font-size: 24px;
+}
+
+.main-title {
+  padding: 30px 0 10px 0;
+  font-weight: 800;
+  font-size: 24px;
+  text-align: center;
+}
+
+.section-title {
+  padding: 4px 0;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.btn {
+  border: none;
+  border-radius: 4px;
+  background: var(--lotto-primary);
+  color: var(--lotto-greyscale-1);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 1.25px;
+}
+
+/* 각 섹션별 스타일 */
+.btn-purchase {
+  width: 56px;
+  height: 30px;
+}
+
+.input-purchase {
+  width: 308px;
+  height: 30px;
+  padding: 0 0 0 8px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+#purchase-form {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .copyright {
@@ -65,6 +130,14 @@ footer {
   font-weight: 700;
   font-size: 14px;
   text-align: center;
+}
+
+.v-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
 }
 
 .hidden {
