@@ -34,6 +34,8 @@
     --success-border: #2BBD57;
 }
 
+/* Base */
+
 * {
     box-sizing: border-box;
 }
@@ -105,6 +107,8 @@ footer p {
 dialog {
     padding: 16px;
 }
+
+/* Header */
 
 #header nav {
     background-color: var(--navbar-bg);
