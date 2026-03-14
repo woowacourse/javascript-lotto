@@ -26,11 +26,12 @@ class App {
       const priceInput = document.querySelector("#price input");
       const price = priceInput.value;
 
-      const lottoList = new LottoList(price / AMOUNT_PRICE);
+      const amount = price / AMOUNT_PRICE;
+
+      const lottoList = new LottoList(amount);
       this.#model.lottoList = lottoList;
 
-      this.#outputView.printAmount(price);
-      this.#outputView.printLottos(lottoList);
+      this.#outputView.renderLottoResult(price, lottoList);
     });
 
     const resultButton = document.querySelector("#result-button");
