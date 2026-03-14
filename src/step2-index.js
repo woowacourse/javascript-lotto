@@ -3,6 +3,8 @@ import { generateRandomNumbers } from "./generateRandomNumbers.js";
 import WebLottoManager from "./WebLottoManager.js";
 import { dom } from "./view/ui/dom.js";
 import {
+  modalHiddenByBtn,
+  modalHiddenByOverlay,
   removeErrorMessage,
   renderErrorMessage,
   renderPurchaseLottos,
@@ -16,6 +18,14 @@ import {
  */
 
 const webLottoManager = new WebLottoManager(generateRandomNumbers);
+
+dom.modalCloseBtn.addEventListener("click", () => {
+  modalHiddenByBtn();
+});
+
+dom.modalOverlay.addEventListener("click", (e) => {
+  modalHiddenByOverlay(e);
+});
 
 dom.purchaseBtn.addEventListener("click", (e) => {
   e.preventDefault();

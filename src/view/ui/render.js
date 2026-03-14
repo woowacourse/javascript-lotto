@@ -27,7 +27,7 @@ export const renderResultModal = (prizeList, roi) => {
 export const resetDOM = () => {
   dom.purchasedLottoSection.innerHTML = "";
   dom.winningSection.classList.add("hidden");
-  dom.modalOverlay.classList.add("hidden");
+  modalHiddenByBtn();
   dom.purchaseInput.value = "";
   dom.winningNumberInputs.forEach((input) => (input.value = ""));
   dom.bonusNumberInput.value = "";
@@ -39,4 +39,14 @@ export const renderErrorMessage = (errorEle, errorMsg) => {
 
 export const removeErrorMessage = (errorEle) => {
   errorEle.textContent = "";
+};
+
+export const modalHiddenByBtn = () => {
+  dom.modalOverlay.classList.add("hidden");
+};
+
+export const modalHiddenByOverlay = (e) => {
+  if (e.target === dom.modalOverlay) {
+    dom.modalOverlay.classList.add("hidden");
+  }
 };

@@ -9,6 +9,7 @@ export const dom = {
   bonusNumberInput: document.getElementById("bonus-number"),
   resultBtn: document.getElementById("result-btn"),
   modalOverlay: document.getElementById("modal-overlay"),
+  modalCloseBtn: document.getElementById("modal-close-btn"),
   restartBtn: document.getElementById("restart-btn"),
   stats: {
     1: document.getElementById("stat-1"),
