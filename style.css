@@ -44,7 +44,7 @@ header {
 
 main {
   width: 414px;
-  height: 70vh;
+  height: 75vh;
   margin: auto;
   border: 1px solid
     color-mix(in srgb, var(--lotto-greyscale-5), transparent 88%);
@@ -142,7 +142,7 @@ input::-webkit-inner-spin-button {
 }
 
 .lotto-section {
-  height: calc(70vh - 320px);
+  height: calc(75vh - 320px);
   overflow-y: auto;
 }
 
