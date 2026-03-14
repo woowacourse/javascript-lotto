@@ -17,15 +17,23 @@ const View = {
     target.innerHTML = '';
   },
 
+  renderPurchaseAmountErrorMessage(message) {
+    const target = document.getElementById('purchase-amount-error-message-container');
+    const errorMessageComponent = Component.errorMessage(message);
+    target.innerHTML = errorMessageComponent;
+  },
+
   renderErrorMessage(target, message) {
     const errorMessageComponent = Component.errorMessage(message);
     target.innerHTML = errorMessageComponent;
   },
 
-  renderPurchaseLotto(target, lottos) {
+  renderPurchaseLotto(lottos) {
+    document.getElementById('purchase-amount-error-message-container').innerHTML = '';
+    const purchaseLottoContentContainer = document.getElementById('purchase-lotto-content');
     const purchaseCountComponent = Component.purchaseLottoCount(lottos.length);
     const purchaseLottoListComponent = Component.lottoList(lottos.map((lotto) => lotto.getLottoNumber()));
-    target.innerHTML = purchaseCountComponent + purchaseLottoListComponent;
+    purchaseLottoContentContainer.innerHTML = purchaseCountComponent + purchaseLottoListComponent;
   },
 
   renderMatchResultModal(target, matchResultSummary, rateOfReturn) {

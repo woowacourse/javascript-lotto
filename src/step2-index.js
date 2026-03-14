@@ -6,6 +6,7 @@ import Validator from './step1/Validator.js';
 import View from './step2/View.js';
 import { LottoMachine } from './step1/LottoMachine.js';
 import { WinningLotto } from './step1/Lotto.js';
+import Controller from './step2/Controller.js';
 
 
 const HIDE_CONTENT_SELECTORS = [
@@ -21,17 +22,7 @@ let lottoMachine = null;
     e.preventDefault();
     const purchaseAmountInput = document.getElementById('purchase-amount');
     const purchaseAmount = purchaseAmountInput.value;
-    const purchaseAmountErrorMessageContainer = document.getElementById('purchase-amount-error-message-container');
-    try {
-      View.clearErrorMessage(purchaseAmountErrorMessageContainer);
-      Validator.validatePurchaseAmount(purchaseAmount);
-      lottoMachine = new LottoMachine(purchaseAmount);
-      const purchaseLottoContentContainer = document.getElementById('purchase-lotto-content');
-      View.renderPurchaseLotto(purchaseLottoContentContainer, lottoMachine.getLottos());
-      View.convertHiddenState(HIDE_CONTENT_SELECTORS);
-    } catch (err) {
-      View.renderErrorMessage(purchaseAmountErrorMessageContainer, err.message);
-    }
+    Controller.submitPurchaseAmount(purchaseAmount);
   });
 })();
 
