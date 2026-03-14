@@ -1,3 +1,5 @@
+import { PRIZE, RANK_MAP_WEB } from "../Utils/Constants";
+
 class LottoWebView {
   constructor() {
     // DOM 요소 가져오기
@@ -43,13 +45,19 @@ class LottoWebView {
 
   // 당첨 결과 모달창을 렌더링
   renderResultModal(winningResult, profitRate) {
-    const resultHTML = `
-          <tr><td>3개</td><td>5,000</td><td>${winningResult.FIFTH}개</td></tr>
-          <tr><td>4개</td><td>50,000</td><td>${winningResult.FOURTH}개</td></tr>
-          <tr><td>5개</td><td>1,500,000</td><td>${winningResult.THIRD}개</td></tr>
-          <tr><td>5개+보너스볼</td><td>30,000,000</td><td>${winningResult.SECOND}개</td></tr>
-          <tr><td>6개</td><td>2,000,000,000</td><td>${winningResult.FIRST}개</td></tr>
-        `;
+    // 출력할 등수 순서
+    const rankOrder = ["FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST"];
+
+    const resultHTML = rankOrder
+      .map((rank) => {
+        const matchText = RANK_MAP_WEB[rank];
+        const prizeMoney = PRIZE[rank].toLocaleString();
+        const count = winningResult[rank];
+
+        return `<tr><td>${matchText}</td><td>${prizeMoney}</td><td>${count}개</td></tr>`;
+      })
+      .join("");
+
     this.resultTableBody.innerHTML = resultHTML;
     this.profitRateText.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
 
@@ -120,7 +128,7 @@ class LottoWebView {
 
   // hidden 속성을 가진 박스를 화면에 표시
   #show(element) {
-    element.classList.remove("hidden")
+    element.classList.remove("hidden");
   }
 
   // hidden 속성을 가진 박스를 화면에서 숨김
