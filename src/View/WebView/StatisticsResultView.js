@@ -71,7 +71,7 @@ class StatisticsResultView {
     `;
     modal.innerHTML = html;
   }
-  readIsRetry(handler) {
+  bindEvent(handler) {
     const restartButton = document.querySelector("#restart-button");
     restartButton.addEventListener("click", () => {
       handler();
@@ -82,7 +82,7 @@ class StatisticsResultView {
       handler();
     });
   }
-  printReset() {
+  renderReset() {
     const lottoResultBox = document.querySelector("#lotto-result-box");
     lottoResultBox.innerHTML = "";
 

@@ -11,14 +11,14 @@ class AppController {
   }
   run() {
     this.view.render({});
-    this.view.readPrice((price) => {
+    this.view.bindEvent((price) => {
       this.#inputPrice(price);
     });
   }
   #inputPrice(price) {
     const amount = price / AMOUNT_PRICE;
 
-    const lottoResultController = new LottoResultController(this.view);
+    const lottoResultController = new LottoResultController();
     lottoResultController.run(amount);
   }
 }

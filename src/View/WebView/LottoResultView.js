@@ -77,7 +77,7 @@ class LottoResultView {
     `;
     lottoResultBox.innerHTML = html;
   }
-  readLottoNumber(handler) {
+  bindEvent(handler) {
     const resultButton = document.querySelector("#result-button");
     resultButton.addEventListener("click", () => {
       const winningNumbers = [

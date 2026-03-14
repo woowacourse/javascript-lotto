@@ -42,7 +42,7 @@ class AppView {
 
     app.innerHTML = html;
   }
-  readPrice(handler) {
+  bindEvent(handler) {
     const buyButton = document.querySelector("#buy-button");
     buyButton.addEventListener("click", () => {
       const priceInput = document.querySelector("#price input");

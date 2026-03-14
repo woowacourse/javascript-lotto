@@ -24,12 +24,12 @@ class StatisticsResultController {
       rate: rate.getRate(),
       lottoList,
     });
-    this.#inputIsReady();
+    this.view.bindEvent(() => {
+      this.#inputIsReady();
+    });
   }
   #inputIsReady() {
-    this.view.readIsRetry(() => {
-      this.view.printReset();
-    });
+    this.view.renderReset();
   }
 }
 

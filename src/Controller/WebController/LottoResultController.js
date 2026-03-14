@@ -17,18 +17,18 @@ class LottoResultController {
     this.model.lottoList = lottoList;
 
     this.view.render({ amount, lottoList });
-    this.#inputLottoNumber();
-  }
-  #inputLottoNumber() {
-    this.view.readLottoNumber((winningNumbers, bonusNumber) => {
-      const statisticsResultController = new StatisticsResultController();
-
-      statisticsResultController.run(
-        winningNumbers,
-        bonusNumber,
-        this.model.lottoList,
-      );
+    this.view.bindEvent((winningNumbers, bonusNumber) => {
+      this.#inputLottoNumbers(winningNumbers, bonusNumber);
     });
+  }
+  #inputLottoNumbers(winningNumbers, bonusNumber) {
+    const statisticsResultController = new StatisticsResultController();
+
+    statisticsResultController.run(
+      winningNumbers,
+      bonusNumber,
+      this.model.lottoList,
+    );
   }
 }
 
