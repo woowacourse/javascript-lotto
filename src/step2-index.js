@@ -3,9 +3,8 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 import Validator from './step1/Validator.js';
-import NodeRenderer from './step2/NodeRenderer.js';
 import View from './step2/View.js';
-import { clearState, hideNode } from './step2/NodeUtils.js';
+import { hideNode } from './step2/NodeUtils.js';
 import { LottoMachine } from './step1/LottoMachine.js';
 import { showNode } from './step2/NodeUtils.js';
 import { WinningLotto } from './step1/Lotto.js';
@@ -22,10 +21,9 @@ let lottoMachine = null;
     const purchaseAmountInput = document.getElementById('purchase-amount');
     const purchaseAmount = purchaseAmountInput.value;
     const purchaseAmountErrorMessageContainer = document.getElementById('purchase-amount-error-message-container');
-    clearState(purchaseAmountErrorMessageContainer);
     try {
+      View.clearErrorMessage(purchaseAmountErrorMessageContainer);
       Validator.validatePurchaseAmount(purchaseAmount);
-      NodeRenderer.renderSuccess(purchaseAmountErrorMessageContainer);
       lottoMachine = new LottoMachine(purchaseAmount);
       const purchaseLottoContentContainer = document.getElementById('purchase-lotto-content');
       View.renderPurchaseLotto(purchaseLottoContentContainer, lottoMachine.getLottos());
@@ -74,14 +72,11 @@ let lottoMachine = null;
     lottoMachine = null;
     const purchaseAmountInput = document.getElementById('purchase-amount');
     purchaseAmountInput.value = '';
-    const purchaseAmountContainer = document.getElementById('purchase-amount-input-container');
-    clearState(purchaseAmountContainer);
     document.getElementById('purchase-lotto-content').innerHTML = '';
     document.getElementById('lotto-match-result-content').innerHTML = '';
     document.getElementById('winning-lotto-form').reset();
     hideNode(HIDE_CONTENT_SELECTORS);
   });
-
   const dialogCloser = matchResultDialog.querySelector('button.dialog-closer');
   dialogCloser.addEventListener('click', () => {
     matchResultDialog.close();

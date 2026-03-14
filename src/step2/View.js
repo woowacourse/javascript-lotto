@@ -1,6 +1,10 @@
 import Component from './Component.js';
 
 const View = {
+  clearErrorMessage(target) {
+    target.innerHTML = '';
+  },
+
   renderErrorMessage(target, message) {
     const errorMessageComponent = Component.errorMessage(message);
     target.innerHTML = errorMessageComponent;
