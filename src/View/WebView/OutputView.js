@@ -153,20 +153,14 @@ export class OutputView {
     modal.innerHTML = html;
   }
   printReset() {
-    const uiModal = document.querySelector("#modal .ui-modal");
-    uiModal.style.display = "none";
+    const lottoResultBox = document.querySelector("#lotto-result-box");
+    lottoResultBox.innerHTML = "";
 
-    document
-      .querySelectorAll("#winning-lottos .ui-pin")
-      .forEach((pinElement) => {
-        pinElement.querySelector("input").value = "";
-      });
+    const uiModal = document.querySelector("#modal");
+    uiModal.innerHTML = "";
 
     const priceInput = document.querySelector("#price input");
     priceInput.value = "";
-
-    const bonusNumberInput = document.querySelector("#bonus-lotto input");
-    bonusNumberInput.value = "";
   }
   printError(errorMessage) {
     Console.print(`${errorMessage} 다시 입력해주세요.`);
