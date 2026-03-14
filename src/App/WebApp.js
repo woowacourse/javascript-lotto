@@ -21,7 +21,7 @@ class App {
   }
 
   async run() {
-    this.#outputView.renderApp(() => {
+    this.#outputView.renderApp({}, () => {
       this.#inputPrice();
     });
   }
@@ -31,7 +31,7 @@ class App {
       const lottoList = new LottoList(amount);
       this.#model.lottoList = lottoList;
 
-      this.#outputView.renderLottoResult(amount, lottoList, () => {
+      this.#outputView.renderLottoResult({ amount, lottoList }, () => {
         this.#inputLottoNumber();
       });
     });
@@ -49,8 +49,10 @@ class App {
       this.#model.rate = rate;
 
       this.#outputView.renderStatisticsResult(
-        statistics,
-        rate.getRate(),
+        {
+          statistics,
+          rate: rate.getRate(),
+        },
         () => {
           this.#inputIsReady();
         },
