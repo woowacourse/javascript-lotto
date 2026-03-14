@@ -2,7 +2,7 @@ import { dom } from "./dom.js";
 
 export const renderPurchaseLottos = (count, lottos) => {
   dom.purchasedLottoSection.innerHTML = `
-  <p>총 ${count}개를 구매하였습니다.</p>
+  <p class="body-text">총 ${count}개를 구매하였습니다.</p>
   <div class='lotto-numbers-container'>
   ${lottos
     .map(
