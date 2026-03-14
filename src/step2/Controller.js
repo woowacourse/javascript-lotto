@@ -10,7 +10,7 @@ const HIDE_CONTENT_SELECTORS = [
 
 
 const Controller = {
-  lottoMacine: null,
+  lottoMachine: null,
 
   submitPurchaseAmount(amount) {
     try {
