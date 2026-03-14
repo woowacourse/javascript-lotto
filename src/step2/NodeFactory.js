@@ -41,7 +41,15 @@ const NodeFactory = {
       });
     });
     return node;
-  }
+  },
+
+  createRestartButtonNode() {
+    const node = document.createElement('button');
+    node.id = 'restart-button';
+    node.type = 'button';
+    node.textContent = '다시 시작하기';
+    return node;
+  },
 }
 
 export default NodeFactory;

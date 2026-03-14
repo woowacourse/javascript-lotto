@@ -4,7 +4,7 @@
  */
 import Validator from './step1/Validator.js';
 import NodeRenderer from './step2/NodeRenderer.js';
-import { clearState } from './step2/NodeUtils.js';
+import { clearState, hideNode } from './step2/NodeUtils.js';
 import { LottoMachine } from './step1/LottoMachine.js';
 import { showNode } from './step2/NodeUtils.js';
 import { WinningLotto } from './step1/Lotto.js';
@@ -60,6 +60,7 @@ let lottoMachine = null;
       const matchResultContentNode = document.getElementById('lotto-match-result-content');
       NodeRenderer.renderCalculateResultTable(matchResultContentNode, matchResultSummary);
       NodeRenderer.renderRateOfReturn(matchResultContentNode, lottoMachine.getRateOfReturn());
+      NodeRenderer.renderRestartButton(matchResultContentNode);
     } catch (err) {
       NodeRenderer.renderError(winningLottoInputContainer, err.message);
     }
@@ -67,9 +68,26 @@ let lottoMachine = null;
 }());
 
 (function() {
-  const matchResultDialog = document.getElementById('lotto-match-result-content');
+  const matchResultDialog = document.getElementById('lotto-match-result-dialog');
+  const matchResultContentNode = document.getElementById('lotto-match-result-content');
+  matchResultContentNode.addEventListener('click', (e) => {
+    if (!e.target.matches('#restart-button')) return;
+    matchResultDialog.close();
+    lottoMachine = null;
+    const purchaseAmountInput = document.getElementById('purchase-amount');
+    purchaseAmountInput.value = '';
+    const purchaseAmountContainer = document.getElementById('purchase-amount-input-container');
+    clearState(purchaseAmountContainer);
+    const purchaseLottoContent = document.getElementById('purchase-lotto-content');
+    purchaseLottoContent.innerHTML = '';
+    document.getElementById('winning-lotto-form').reset();
+    hideNode(HIDE_CONTENT_SELECTORS);
+    document.getElementById('lotto-match-result').remove();
+    document.getElementById('lotto-rate-of-return').remove();
+  });
+
   const dialogCloser = matchResultDialog.querySelector('button.dialog-closer');
-  dialogCloser.addEventListener('click', (e) => {
+  dialogCloser.addEventListener('click', () => {
     matchResultDialog.close();
   });
 }());

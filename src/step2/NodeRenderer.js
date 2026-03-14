@@ -45,6 +45,13 @@ const NodeRenderer = {
     target.appendChild(node);
   },
 
+  renderRestartButton(target) {
+    const alreadyExist = document.getElementById('restart-button');
+    if (alreadyExist) return;
+    const node = NodeFactory.createRestartButtonNode();
+    target.appendChild(node);
+  },
+
   renderRateOfReturn(target, rateOfReturn) {
     const alreadyExist = document.getElementById('lotto-rate-of-return');
     if (alreadyExist) return;
