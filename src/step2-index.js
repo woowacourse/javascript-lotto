@@ -1,6 +1,7 @@
 import LottoRankCalculator from "./Lotto/LottoRankCalculator.js";
 import LottoReturnCalculator from "./Lotto/LottoReturnCalculator.js";
 import LottoStore from "./Lotto/LottoStore.js";
+import WinningNumbersAndBonusNumberBuilder from "./Lotto/WinningNumbersAndBonusNumberBuilder.js";
 
 const purchaseForm = document.querySelector(".lotto-purchase-form");
 
@@ -126,23 +127,33 @@ function drawWinningNumbersAndBonusNumber(lottos) {
   winningNumbersAndBonusNumberBlock.appendChild(submitButton);
 
   submitButton.addEventListener("click", () => {
-    const form = new FormData(winningNumbersAndBonusNumberForm);
-    const winningNumbers = form.getAll("winning-number");
-    const bonusNumber = form.get("bonus-number");
+    try {
+      const form = new FormData(winningNumbersAndBonusNumberForm);
+      const winningNumbersInput = form.getAll("winning-number");
+      const bonusNumberInput = form.get("bonus-number");
 
-    const rank = LottoRankCalculator.calculateLottoRanks({
-      lottos,
-      winningNumbers,
-      bonusNumber,
-    });
+      const builder = new WinningNumbersAndBonusNumberBuilder();
+      builder.setWinningNumbers(winningNumbersInput.map(Number));
+      builder.setBonusNumber(Number(bonusNumberInput));
 
-    const returnAmount = LottoReturnCalculator.calculateReturnAmount(rank);
-    const returnRate = LottoReturnCalculator.calculateReturnRate(
-      returnAmount,
-      purchaseAmount,
-    );
+      const { winningNumbers, bonusNumber } = builder.build();
 
-    drawLottoResult(rank, returnRate);
+      const rank = LottoRankCalculator.calculateLottoRanks({
+        lottos,
+        winningNumbers,
+        bonusNumber,
+      });
+
+      const returnAmount = LottoReturnCalculator.calculateReturnAmount(rank);
+      const returnRate = LottoReturnCalculator.calculateReturnRate(
+        returnAmount,
+        purchaseAmount,
+      );
+
+      drawLottoResult(rank, returnRate);
+    } catch (error) {
+      alert(error.message);
+    }
   });
 }
 
