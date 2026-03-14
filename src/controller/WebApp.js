@@ -1,65 +1,44 @@
 import { LOTTO_PRICE } from "../constants/lottoInfo";
 import LottoController from "./LottoController";
 import Validator from "../utils/Validator";
-import { renderPurchasedLottos } from "../view/web/PurchasedLottoView";
-import { renderLottoResult } from "../view/web/LottoResultView";
-import { renderWinningNumInput } from "../view/web/WinningNumInputView";
+import PurchaseView from "../view/web/PurchaseView";
+import WinningInputView from "../view/web/WinningInputView";
+import LottoResultView from "../view/web/LottoResultView";
 
 class WebApp {
   #lottoController;
-  #purchaseForm;
-  #winningSection;
-  #resultModal;
 
   constructor() {
     this.#lottoController = new LottoController();
-
-    this.#purchaseForm = document.querySelector("#purchase-form");
-    this.#winningSection = document.querySelector("#winning-section");
-    this.#resultModal = document.querySelector("#result-modal");
   }
 
   bindEvents() {
-    this.#purchaseForm.addEventListener("submit", (e) =>
-      this.#purchaseLottos(e),
+    PurchaseView.onPurchase((price) => this.#handlePurchase(price));
+
+    WinningInputView.onSubmitNumbers((winningNumbers, bonusNumber) =>
+      this.#handleWinningResult(winningNumbers, bonusNumber),
     );
 
-    this.#winningSection.addEventListener("submit", (e) =>
-      this.#showLottoResult(e),
-    );
-
-    this.#resultModal.addEventListener("click", (e) => this.#onModalClick(e));
+    LottoResultView.onClose();
+    LottoResultView.onRestart(() => this.#restartGame());
   }
 
-  #purchaseLottos(event) {
-    event.preventDefault();
+  #handlePurchase(purchasedPrice) {
     try {
-      const $purchasePriceInput = document.querySelector("#purchase-price");
-      const purchasedPrice = Number($purchasePriceInput.value);
-
       Validator.validatePrice(purchasedPrice);
 
       const lottoCount = purchasedPrice / LOTTO_PRICE;
       const purchasedLottos = this.#lottoController.issueLottos(lottoCount);
 
-      renderPurchasedLottos(purchasedLottos);
-      renderWinningNumInput();
-
-      this.#purchaseForm.reset();
+      PurchaseView.renderPurchasedLottos(purchasedLottos);
+      WinningInputView.renderInput();
     } catch (error) {
       alert(error.message);
     }
   }
 
-  #showLottoResult(event) {
-    event.preventDefault();
-    const winningForm = event.target;
-
+  #handleWinningResult(winningNumbers, bonusNumber) {
     try {
-      const formData = new FormData(winningForm);
-      const winningNumbers = formData.getAll("winning-number").map(Number);
-      const bonusNumber = Number(formData.get("bonus-number"));
-
       Validator.validateWinningNums(winningNumbers);
       Validator.validateBonusNum(winningNumbers, bonusNumber);
 
@@ -67,31 +46,15 @@ class WebApp {
       const { rankCount, profitRate } =
         this.#lottoController.getWinningResult();
 
-      renderLottoResult(rankCount, profitRate);
-      winningForm.reset();
+      LottoResultView.renderResult(rankCount, profitRate);
     } catch (error) {
       alert(error.message);
     }
   }
 
-  #onModalClick(event) {
-    const { id } = event.target;
-
-    if (id === "modal-close-btn") {
-      this.#resultModal.close();
-    }
-
-    if (id === "restart-btn") {
-      this.#restartGame();
-    }
-  }
-
   #restartGame() {
-    document.querySelector("#lotto-count-text").textContent = "";
-    document.querySelector("#lotto-list").innerHTML = "";
-
-    this.#winningSection.classList.add("hidden");
-    this.#resultModal.close();
+    PurchaseView.reset();
+    WinningInputView.reset();
   }
 }
 

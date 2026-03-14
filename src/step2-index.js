@@ -1,4 +1,6 @@
 import WebApp from "./controller/WebApp";
 
-const webApp = new WebApp();
-webApp.bindEvents();
+window.addEventListener("DOMContentLoaded", () => {
+  const webApp = new WebApp();
+  webApp.bindEvents();
+});
