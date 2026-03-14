@@ -31,15 +31,17 @@ const BASE_URL = import.meta.env.BASE_URL;
 loadComponent("main", `${BASE_URL}src/ui/html/main.html`).then(() => {
   const modalContainer = document.getElementById("modal-container");
   const modalCloseButton = document.getElementById("modal-close-button");
-  document.querySelector("#modal-close-button img").src = `${BASE_URL}close-button.svg`;
+  document.querySelector("#modal-close-button img").src =
+    `${BASE_URL}close-button.svg`;
   let purchaseAmount = 0;
   let generatedLottos = [];
 
   // 구입 버튼 눌렀을 때 이벤트
   document
-    .querySelector("#purchase-input-section button")
-    .addEventListener("click", () => {
+    .querySelector("#purchase-input-section")
+    .addEventListener("submit", (e) => {
       try {
+        e.preventDefault();
         const amount = parseStringToNumber(getPurchaseAmountInput());
         validatePurchaseAmount(amount);
         purchaseAmount = amount;
@@ -51,7 +53,8 @@ loadComponent("main", `${BASE_URL}src/ui/html/main.html`).then(() => {
 
         renderPurchaseCount(purchaseCount);
         renderLottoList(generatedLottos);
-        document.getElementById("purchase-result-section").style.display = "flex";
+        document.getElementById("purchase-result-section").style.display =
+          "flex";
         document.getElementById("winning-input-section").style.display = "flex";
       } catch (e) {
         alert(e.message);
@@ -60,9 +63,10 @@ loadComponent("main", `${BASE_URL}src/ui/html/main.html`).then(() => {
 
   // 결과 확인버튼 눌렀을 때 이벤트
   document
-    .querySelector("#winning-input-section button")
-    .addEventListener("click", () => {
+    .querySelector("#winning-input-section")
+    .addEventListener("submit", (e) => {
       try {
+        e.preventDefault();
         const winningNumbers = getWinningNumbersInput().map((number) =>
           parseStringToNumber(number),
         );
