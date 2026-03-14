@@ -18,7 +18,7 @@
   <body>
     <div id="app">
       <header>
-        <h1 class="lotto-title">🎱 행운의 로또</h1>
+        <h1 class="logo-title">🎱 행운의 로또</h1>
       </header>
 
       <main>
@@ -27,7 +27,7 @@
         <section id="purchase-input-wrapper">
           <h3 class="section-title">구입할 금액을 입력해주세요.</h3>
 
-          <form id="purchase-form">
+          <form id="purchase-form" class="flex-between">
             <label for="purchase-price" class="v-hidden">구입 금액</label>
             <input
               type="number"
@@ -50,10 +50,12 @@
             지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
           </h3>
           <form id="winning-form">
-            <div id="winning-numbers-container"></div>
-            <div id="bonus-number-container"></div>
+            <div class="flex-between">
+              <div id="winning-numbers-container" class="flex-col"></div>
+              <div id="bonus-number-container" class="flex-col"></div>
+            </div>
 
-            <button type="submit" class="submit-btn">결과 확인하기</button>
+            <button type="submit" class="btn btn-submit">결과 확인하기</button>
           </form>
         </section>
 

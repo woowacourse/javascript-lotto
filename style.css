@@ -27,8 +27,8 @@ ul {
 /* 전체 레이아웃*/
 body {
   font-family: var(--system-font);
-  color: var(--lotto-greyscale-5);
-  background: var(--lotto-greyscale-2);
+  color: var(--main-text);
+  background: var(--main-bg);
 }
 
 #app {
@@ -48,6 +48,11 @@ main {
     color-mix(in srgb, var(--lotto-greyscale-5), transparent 88%);
   border-radius: 4px;
   background: var(--lotto-greyscale-1);
+
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 main section {
@@ -64,15 +69,22 @@ footer {
 }
 
 /* 공통 컴포넌트 */
+input[type="number"] {
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.lotto-title {
+.logo-title {
   padding: 14px 130px;
-  color: var(--logo-color);
+  color: var(--lotto-greyscale-1);
   font-weight: 800;
   font-size: 24px;
 }
@@ -105,25 +117,32 @@ input::-webkit-inner-spin-button {
   letter-spacing: 1.25px;
 }
 
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 /* 각 섹션별 스타일 */
 .btn-purchase {
   width: 56px;
-  height: 30px;
+  height: 34px;
 }
 
 .input-purchase {
   width: 308px;
-  height: 30px;
+  height: 34px;
   padding: 0 0 0 8px;
-  border: 1px solid var(--lotto-greyscale-3);
-  border-radius: 4px;
-  font-size: 15px;
-  letter-spacing: 0.5px;
 }
 
-#purchase-form {
-  display: flex;
-  gap: 16px;
+.lotto-ticket-container {
+  min-height: calc(70vh - 320px);
 }
 
 .lotto-ticket {
@@ -138,10 +157,21 @@ input::-webkit-inner-spin-button {
   line-height: 36px;
 }
 
-.lotto-numbers {
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 0.5px;
+.input-number {
+  width: 32px;
+  height: 34px;
+  text-align: center;
+}
+
+.winning-number-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-submit {
+  width: 100%;
+  height: 34px;
+  margin: 25px 0 15px;
 }
 
 .copyright {
