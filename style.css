@@ -142,7 +142,8 @@ input::-webkit-inner-spin-button {
 }
 
 .lotto-section {
-  min-height: calc(70vh - 320px);
+  height: calc(70vh - 320px);
+  overflow-y: auto;
 }
 
 .lotto-ticket {
