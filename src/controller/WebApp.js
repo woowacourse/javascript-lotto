@@ -81,7 +81,7 @@ class WebApp {
       this.#resultModal.close();
     }
 
-    if (id === "restart-button") {
+    if (id === "restart-btn") {
       this.#restartGame();
     }
   }

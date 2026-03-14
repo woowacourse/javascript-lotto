@@ -32,10 +32,10 @@
             <input
               type="number"
               id="purchase-price"
-              class="input-purchase"
+              class="purchase-input"
               placeholder="금액"
             />
-            <button type="submit" class="btn btn-purchase">구입</button>
+            <button type="submit" class="btn purchase-btn">구입</button>
           </form>
         </section>
 
@@ -55,14 +55,14 @@
               <div id="bonus-number-container" class="flex-col"></div>
             </div>
 
-            <button type="submit" class="btn btn-submit">결과 확인하기</button>
+            <button type="submit" class="btn result-btn">결과 확인하기</button>
           </form>
         </section>
 
         <dialog id="result-modal">
           <div class="modal-inner">
             <button type="button" id="modal-close-btn" class="modal-close-btn">
-              X
+              <img src="./assets/icon-close.png" alt="닫기" />
             </button>
             <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
 
@@ -77,9 +77,9 @@
               <tbody id="result-tbody"></tbody>
             </table>
 
-            <p class="profit-text" id="profit-text"></p>
+            <p id="profit-text" class="profit-text"></p>
 
-            <button id="restart-button" class="restart-button">
+            <button id="restart-btn" class="btn restart-btn">
               다시 시작하기
             </button>
           </div>
