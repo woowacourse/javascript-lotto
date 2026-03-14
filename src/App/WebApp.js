@@ -7,12 +7,12 @@ import InputView from "../View/WebView/InputView.js";
 import OutputView from "../View/WebView/OutputView.js";
 import { AMOUNT_PRICE } from "../constants/lottoConstants.js";
 
+import AppController from "../Controller/WebController/AppController.js";
+
 class App {
   #validator;
   #inputView;
   #outputView;
-
-  #model = {};
 
   constructor() {
     this.#validator = new Validator();
@@ -21,41 +21,14 @@ class App {
   }
 
   async run() {
-    this.#outputView.renderApp({});
-    this.#inputPrice();
-  }
-  #inputPrice() {
-    this.#inputView.readPrice((price) => {
-      const amount = price / AMOUNT_PRICE;
-      const lottoList = new LottoList(amount);
-      this.#model.lottoList = lottoList;
-
-      this.#outputView.renderLottoResult({ amount, lottoList });
-      this.#inputLottoNumber();
+    const appController = new AppController({
+      inputView: this.#inputView,
+      outputView: this.#outputView,
     });
-  }
-  #inputLottoNumber() {
-    this.#inputView.readLottoNumber((winningNumbers, bonusNumber) => {
-      const lottoGame = new LottoGame(winningNumbers, bonusNumber);
-      this.#model.lottoGame = lottoGame;
-      const statistics = lottoGame.getStatistics(this.#model.lottoList);
 
-      const rate = new Rate(
-        statistics,
-        this.#model.lottoList.getLottoList().length * AMOUNT_PRICE,
-      );
-      this.#model.rate = rate;
-
-      this.#outputView.renderStatisticsResult({
-        statistics,
-        rate: rate.getRate(),
-      });
-      this.#inputIsReady();
-    });
-  }
-  #inputIsReady() {
-    this.#inputView.readIsRetry(() => {
-      this.#outputView.printReset();
+    appController.run({
+      input: this.#inputView,
+      output: this.#outputView,
     });
   }
 }
