@@ -56,6 +56,11 @@ class App {
     restartButton.addEventListener("click", () => {
       this.#outputView.printReset();
     });
+
+    const modalCloseButton = document.querySelector("#modal-close-button");
+    modalCloseButton.addEventListener("click", () => {
+      this.#outputView.printReset();
+    });
   }
   async #inputPrice() {
     let price;
