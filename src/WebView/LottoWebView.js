@@ -26,8 +26,8 @@ class LottoWebView {
   // 구입한 로또 목록 렌더링 및 luckyNumbers 입력창 표시
   renderLottos(lottos) {
     // 구입금액 입력 전 숨겨져 있던 창 숨김해제
-    this.lottoListSection.classList.remove("hidden");
-    this.luckyNumbersForm.classList.remove("hidden");
+    this.#show(this.lottoListSection);
+    this.#show(this.luckyNumbersForm);
 
     // 총 구입 갯수 문구 업데이트
     this.lottoCountText.innerText = `총 ${lottos.length}개를 구입하셨습니다.`;
@@ -53,21 +53,21 @@ class LottoWebView {
     this.resultTableBody.innerHTML = resultHTML;
     this.profitRateText.innerText = `당신의 총 수익률은 ${profitRate}%입니다.`;
 
-    this.resultModal.classList.remove("hidden");
+    this.#show(this.resultModal);
   }
 
   // 모달 창을 닫는 기능
   closeModal() {
-    this.resultModal.classList.add("hidden");
+    this.#hide(this.resultModal);
   }
 
   // 로또 다시 시작 기능
   resetView() {
-    this.resultModal.classList.add("hidden");
-    this.luckyNumbersForm.classList.add("hidden");
-    this.lottoListSection.classList.add("hidden");
-    this.lottoList.innerHTML = "";
+    this.#hide(this.resultModal);
+    this.#hide(this.luckyNumbersForm);
+    this.#hide(this.lottoListSection);
 
+    this.lottoList.innerHTML = "";
     this.purchaseInput.value = "";
     this.winningNumbersInputs.forEach((input) => {
       input.value = "";
@@ -111,10 +111,21 @@ class LottoWebView {
     });
   }
 
+  // 재시작 버튼
   bindRestartButton(handler) {
     this.restartButton.addEventListener("click", () => {
       handler();
     });
+  }
+
+  // hidden 속성을 가진 박스를 화면에 표시
+  #show(element) {
+    element.classList.remove("hidden")
+  }
+
+  // hidden 속성을 가진 박스를 화면에서 숨김
+  #hide(element) {
+    element.classList.add("hidden");
   }
 }
 

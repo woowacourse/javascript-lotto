@@ -48,6 +48,7 @@ class WebApp {
     }
   }
 
+  // luckyNumbers 폼 관련
   #handleLuckyNumbersForm(winningNumbers, bonusNumber) {
     try {
       const luckyNumbers = new LuckyNumbers(winningNumbers, bonusNumber);
@@ -68,10 +69,12 @@ class WebApp {
     }
   }
 
+  // 모달 창 닫기 버튼 관련
   #handleModalCloseButton() {
     this.view.closeModal();
   }
 
+  // 재시작 버튼 관련
   #handleRestartButton() {
     this.lottos = [];
     this.view.resetView();
