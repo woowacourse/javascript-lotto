@@ -22,7 +22,7 @@
             구입할 금액을 입력해주세요.
           </label>
           <div class="purchase-form__input-group">
-            <input class="purchase-form__input" placeholder="금액" />
+            <input class="purchase-form__input" placeholder="금액" required />
             <button class="purchase-form__submit-btn button caption">
               구입
             </button>
@@ -44,12 +44,12 @@
             <div class="winning-form__input-group">
               <label class="winning-form__label">당첨 번호</label>
               <div class="winning-form__input-list">
-                <input class="winning-form__input" />
-                <input class="winning-form__input" />
-                <input class="winning-form__input" />
-                <input class="winning-form__input" />
-                <input class="winning-form__input" />
-                <input class="winning-form__input" />
+                <input class="winning-form__input" min="1" max="45" required />
+                <input class="winning-form__input" min="1" max="45" required />
+                <input class="winning-form__input" min="1" max="45" required />
+                <input class="winning-form__input" min="1" max="45" required />
+                <input class="winning-form__input" min="1" max="45" required />
+                <input class="winning-form__input" min="1" max="45" required />
               </div>
             </div>
 
@@ -58,7 +58,12 @@
             >
               <label class="winning-form__label">보너스 번호</label>
               <div class="winning-form__input-list">
-                <input class="winning-form__input winning-form__input--bonus" />
+                <input
+                  class="winning-form__input winning-form__input--bonus"
+                  min="1"
+                  max="45"
+                  required
+                />
               </div>
             </div>
           </div>
