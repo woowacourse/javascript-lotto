@@ -68,15 +68,26 @@ class LottoWebView {
     this.lottoListSection.classList.add("hidden");
     this.lottoList.innerHTML = "";
 
-    this.view.purchaseInput.value = "";
-    this.view.winningNumbersInputs.forEach((input) => {
+    this.purchaseInput.value = "";
+    this.winningNumbersInputs.forEach((input) => {
       input.value = "";
     });
-    this.view.bonusNumberInput.value = "";
+    this.bonusNumberInput.value = "";
   }
 
   showError(message) {
     alert(message);
+  }
+
+  // 이벤트 바인딩 관련
+  // 구입 폼 제출
+  bindPurchaseForm(handler) {
+    this.purchaseForm.addEventListener("submit", (event) => {
+      // 브라우저 새로고침 차단
+      event.preventDefault();
+
+      handler(this.purchaseInput.value);
+    });
   }
 }
 
