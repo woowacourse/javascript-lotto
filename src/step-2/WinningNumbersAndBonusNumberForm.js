@@ -22,7 +22,7 @@ const WinningNumbersAndBonusNumberForm = {
     const winningNumbersWrapper = document.createElement('div');
     const winningNumbersCaption = document.createElement('div');
     const winningNumbersInputWrapper = document.createElement('div');
-    const winningNumberInputs = Array.from({ length: 6 }).map(() => document.createElement('input'));
+    const winningNumberInputs = this.createWinningNumberInputs();
 
     const bonusNumberWrapper = document.createElement('div');
     const bonusNumberCaption = document.createElement('label');
@@ -45,15 +45,6 @@ const WinningNumbersAndBonusNumberForm = {
 
     bonusNumberCaption.innerText = '보너스 번호';
     bonusNumberCaption.htmlFor = 'bonus-number';
-
-    winningNumberInputs.forEach((input, i) => {
-      input.id = `winning-number-input-${i + 1}`;
-      input.type = 'number';
-      input.name = `winningNumber${i + 1}`;
-      input.ariaLabel = `${i + 1}번째 당첨 번호`;
-      input.classList.add('winning-number-input');
-      input.addEventListener('input', this.handleWinningNumberInput);
-    });
 
     bonusNumberInput.id = 'bonus-number-input';
     bonusNumberInput.type = 'number';
@@ -93,6 +84,21 @@ const WinningNumbersAndBonusNumberForm = {
     const winningNumbers = [winningNumber1, winningNumber2, winningNumber3, winningNumber4, winningNumber5, winningNumber6].map(Number);
     const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(new Lotto(winningNumbers), Number(bonusNumber));
     winningLottoAndBonusNumberStore.setState({ winningLottoAndBonusNumber });
+  },
+
+  createWinningNumberInputs() {
+    return Array.from({ length: 6 }).map((_, i) => {
+      const input = document.createElement('input');
+
+      input.id = `winning-number-input-${i + 1}`;
+      input.type = 'number';
+      input.name = `winningNumber${i + 1}`;
+      input.ariaLabel = `${i + 1}번째 당첨 번호`;
+      input.classList.add('winning-number-input');
+      input.addEventListener('input', this.handleWinningNumberInput);
+
+      return input;
+    });
   },
 
   handleWinningNumberInput(e) {
