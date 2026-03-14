@@ -1,22 +1,29 @@
-const lottoList = document.querySelector(".lotto-list");
-const lottoCount = document.querySelector("#lotto-count");
-const moneyError = document.querySelector("#money-error");
-const winningBonusError = document.querySelector("#winning-bonus-error");
-const modal = document.querySelector(".modal");
-const profitText = document.querySelector("#profit");
-const fifthCount = document.querySelector("#fifth-count");
-const fourthCount = document.querySelector("#fourth-count");
-const thirdCount = document.querySelector("#third-count");
-const secondCount = document.querySelector("#second-count");
-const firstCount = document.querySelector("#first-count");
+class LottoWebOutputView {
+  constructor() {
+    this.lottoList = document.querySelector(".lotto-list");
+    this.lottoCount = document.querySelector("#lotto-count");
+    this.moneyError = document.querySelector("#money-error");
+    this.winningBonusError = document.querySelector("#winning-bonus-error");
+    this.modal = document.querySelector(".modal");
+    this.profitText = document.querySelector("#profit");
+    this.fifthCount = document.querySelector("#fifth-count");
+    this.fourthCount = document.querySelector("#fourth-count");
+    this.thirdCount = document.querySelector("#third-count");
+    this.secondCount = document.querySelector("#second-count");
+    this.firstCount = document.querySelector("#first-count");
+    this.lottoSection = document.querySelector(".lotto-section");
+    this.winningInputSection = document.querySelector(
+      ".winning-bonus-input-section",
+    );
+    this.submitButton = document.querySelector("#submit");
+  }
 
-export const LottoWebOutputView = {
   renderLottoCount(count) {
-    lottoCount.textContent = `총 ${count}개를 구매했습니다.`;
-  },
+    this.lottoCount.textContent = `총 ${count}개를 구매했습니다.`;
+  }
 
   renderLottos(lottos) {
-    lottoList.innerHTML = lottos
+    this.lottoList.innerHTML = lottos
       .map(
         (lotto) => `
         <li class="text-body">
@@ -26,45 +33,59 @@ export const LottoWebOutputView = {
       `,
       )
       .join("");
-  },
+  }
 
   showModal() {
-    modal.classList.remove("hidden");
-  },
+    this.modal.classList.remove("hidden");
+  }
 
   hideModal() {
-    modal.classList.add("hidden");
-  },
+    this.modal.classList.add("hidden");
+  }
 
   renderResult(result) {
-    fifthCount.textContent = `${result.FIFTH}개`;
-    fourthCount.textContent = `${result.FOURTH}개`;
-    thirdCount.textContent = `${result.THIRD}개`;
-    secondCount.textContent = `${result.SECOND}개`;
-    firstCount.textContent = `${result.FIRST}개`;
-  },
+    this.fifthCount.textContent = `${result.FIFTH}개`;
+    this.fourthCount.textContent = `${result.FOURTH}개`;
+    this.thirdCount.textContent = `${result.THIRD}개`;
+    this.secondCount.textContent = `${result.SECOND}개`;
+    this.firstCount.textContent = `${result.FIRST}개`;
+  }
 
   renderProfit(profit) {
-    profitText.textContent = `총 수익률은 ${profit}%입니다.`;
-  },
+    this.profitText.textContent = `총 수익률은 ${profit}%입니다.`;
+  }
 
   showMoneyError(message) {
-    moneyError.textContent = message;
-    moneyError.classList.remove("hidden");
-  },
+    this.moneyError.textContent = message;
+    this.moneyError.classList.remove("hidden");
+  }
 
   clearMoneyError() {
-    moneyError.textContent = "";
-    moneyError.classList.add("hidden");
-  },
+    this.moneyError.textContent = "";
+    this.moneyError.classList.add("hidden");
+  }
 
   showWinningBonusError(message) {
-    winningBonusError.textContent = message;
-    winningBonusError.classList.remove("hidden");
-  },
+    this.winningBonusError.textContent = message;
+    this.winningBonusError.classList.remove("hidden");
+  }
 
   clearWinningBonusError() {
-    winningBonusError.textContent = "";
-    winningBonusError.classList.add("hidden");
-  },
-};
+    this.winningBonusError.textContent = "";
+    this.winningBonusError.classList.add("hidden");
+  }
+
+  showPurchaseSection() {
+    this.lottoSection.classList.remove("hidden");
+    this.winningInputSection.classList.remove("hidden");
+    this.submitButton.classList.remove("hidden");
+  }
+
+  hidePurchaseSection() {
+    this.lottoSection.classList.add("hidden");
+    this.winningInputSection.classList.add("hidden");
+    this.submitButton.classList.add("hidden");
+  }
+}
+
+export default LottoWebOutputView;

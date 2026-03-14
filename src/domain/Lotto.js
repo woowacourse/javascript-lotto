@@ -1,5 +1,4 @@
 import { LOTTO_RANGE } from "../constants/constant.js";
-import { OutputView } from "../view/output.js";
 
 class Lotto {
   #numbers;

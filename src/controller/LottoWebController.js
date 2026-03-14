@@ -1,5 +1,5 @@
-import { LottoWebInputView } from "../view/LottoWebInputView.js";
-import { LottoWebOutputView } from "../view/LottoWebOutputView.js";
+import LottoWebInputView from "../view/LottoWebInputView.js";
+import LottoWebOutputView from "../view/LottoWebOutputView.js";
 import { Validator } from "../validator/Validator.js";
 import { calculateLottoCountService } from "../service/calculateLottoCountService.js";
 import { lottoService } from "../service/lottoService.js";
@@ -7,82 +7,74 @@ import WinningLotto from "../domain/WinningLotto.js";
 import { compareResultService } from "../service/compareResultService.js";
 import { profitService } from "../service/profitService.js";
 
-const lottoSection = document.querySelector(".lotto-section");
-const winningInputSection = document.querySelector(
-  ".winning-bonus-input-section",
-);
-const submitButton = document.querySelector("#submit");
-
 class LottoWebController {
   constructor() {
     this.money = 0;
     this.randomLottos = [];
+    this.inputView = new LottoWebInputView();
+    this.outputView = new LottoWebOutputView();
   }
 
   play() {
-    LottoWebInputView.bindPurchase(() => this.handlePurchase());
-    LottoWebInputView.bindSubmit(() => this.handleSubmit());
-    LottoWebInputView.bindCloseModal(() => this.handleCloseModal());
-    LottoWebInputView.bindRestart(() => this.handleRestart());
+    this.inputView.bindPurchase(() => this.handlePurchase());
+    this.inputView.bindSubmit(() => this.handleSubmit());
+    this.inputView.bindCloseModal(() => this.handleCloseModal());
+    this.inputView.bindRestart(() => this.handleRestart());
   }
 
   handlePurchase() {
     try {
-      LottoWebOutputView.clearMoneyError();
+      this.outputView.clearMoneyError();
 
-      const money = LottoWebInputView.getPurchaseMoney();
+      const money = this.inputView.getPurchaseMoney();
       Validator.validatePurchaseMoney(money);
       this.money = money;
 
       const count = calculateLottoCountService(money);
       this.randomLottos = lottoService(count);
 
-      lottoSection.classList.remove("hidden");
-      winningInputSection.classList.remove("hidden");
-      submitButton.classList.remove("hidden");
+      this.outputView.showPurchaseSection();
 
-      LottoWebOutputView.renderLottoCount(count);
-      LottoWebOutputView.renderLottos(this.randomLottos);
+      this.outputView.renderLottoCount(count);
+      this.outputView.renderLottos(this.randomLottos);
     } catch (error) {
-      LottoWebOutputView.showMoneyError(error.message);
+      this.outputView.showMoneyError(error.message);
     }
   }
 
   handleSubmit() {
     try {
-      LottoWebOutputView.clearWinningBonusError();
+      this.outputView.clearWinningBonusError();
 
-      const winningNumbers = LottoWebInputView.getWinningNumbers();
+      const winningNumbers = this.inputView.getWinningNumbers();
       Validator.validateWinningNumber(winningNumbers);
 
-      const bonusNumber = LottoWebInputView.getBonusNumber();
+      const bonusNumber = this.inputView.getBonusNumber();
       Validator.validateBonusNumber(winningNumbers, bonusNumber);
 
       const winningLotto = new WinningLotto(winningNumbers, bonusNumber);
       const result = compareResultService(this.randomLottos, winningLotto);
       const profit = profitService(this.money, result);
 
-      LottoWebOutputView.renderResult(result);
-      LottoWebOutputView.renderProfit(profit);
-      LottoWebOutputView.showModal();
+      this.outputView.renderResult(result);
+      this.outputView.renderProfit(profit);
+      this.outputView.showModal();
     } catch (error) {
-      LottoWebOutputView.showWinningBonusError(error.message);
+      this.outputView.showWinningBonusError(error.message);
     }
   }
 
   handleCloseModal() {
-    LottoWebOutputView.hideModal();
+    this.outputView.hideModal();
   }
 
   handleRestart() {
     this.money = 0;
     this.randomLottos = [];
-    lottoSection.classList.add("hidden");
-    winningInputSection.classList.add("hidden");
-    submitButton.classList.add("hidden");
+    this.outputView.hidePurchaseSection();
 
-    LottoWebInputView.reset();
-    LottoWebOutputView.hideModal();
+    this.inputView.reset();
+    this.outputView.hideModal();
   }
 }
 
