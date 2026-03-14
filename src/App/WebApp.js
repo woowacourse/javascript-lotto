@@ -40,16 +40,16 @@ class App {
         this.#model.rate = rate;
 
         this.#outputView.renderStatisticsResult(statistics, rate.getRate());
-      });
 
-      const restartButton = document.querySelector("#restart-button");
-      restartButton.addEventListener("click", () => {
-        this.#outputView.printReset();
-      });
+        const restartButton = document.querySelector("#restart-button");
+        restartButton.addEventListener("click", () => {
+          this.#outputView.printReset();
+        });
 
-      const modalCloseButton = document.querySelector("#modal-close-button");
-      modalCloseButton.addEventListener("click", () => {
-        this.#outputView.printReset();
+        const modalCloseButton = document.querySelector("#modal-close-button");
+        modalCloseButton.addEventListener("click", () => {
+          this.#outputView.printReset();
+        });
       });
     });
   }
