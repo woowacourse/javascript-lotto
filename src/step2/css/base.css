@@ -290,6 +290,11 @@ input#purchase-amount {
     justify-content: space-between;
 }
 
+.error-message {
+    margin-top: 8px;
+    color: var(--error-fg);
+}
+
 .error input {
     border-color: var(--error-border);
 }

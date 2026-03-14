@@ -2,6 +2,12 @@ import Component from '../src/step2/Component.js';
 
 
 describe('컴포넌트 테스트', () => {
+  test('에러메시지 컴포넌트', () => {
+    const errorMessageComponent = Component.errorMessage('잘못된 입력입니다!');
+
+    expect(errorMessageComponent).toEqual('<p class="text-body error-message">잘못된 입력입니다!</p>');
+  });
+
   test('lottos 배열로 로또 리스트 컴포넌트 반한', () => {
     const lottoListComponent = Component.lottoList([[1, 2, 3, 4, 5, 6], [10, 11, 12, 13, 14, 15]]);
     const expected = '<ul id="purchase-lotto-list">'

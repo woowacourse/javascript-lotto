@@ -1,6 +1,11 @@
 import Component from './Component.js';
 
 const View = {
+  renderErrorMessage(target, message) {
+    const errorMessageComponent = Component.errorMessage(message);
+    target.innerHTML = errorMessageComponent;
+  },
+
   renderPurchaseLotto(target, lottos) {
     const purchaseCountComponent = Component.purchaseLottoCount(lottos.length);
     const purchaseLottoListComponent = Component.lottoList(lottos.map((lotto) => lotto.getLottoNumber()));

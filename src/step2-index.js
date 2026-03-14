@@ -21,17 +21,17 @@ let lottoMachine = null;
     e.preventDefault();
     const purchaseAmountInput = document.getElementById('purchase-amount');
     const purchaseAmount = purchaseAmountInput.value;
-    const purchaseAmountContainer = document.getElementById('purchase-amount-input-container');
-    clearState(purchaseAmountContainer);
+    const purchaseAmountErrorMessageContainer = document.getElementById('purchase-amount-error-message-container');
+    clearState(purchaseAmountErrorMessageContainer);
     try {
       Validator.validatePurchaseAmount(purchaseAmount);
-      NodeRenderer.renderSuccess(purchaseAmountContainer);
+      NodeRenderer.renderSuccess(purchaseAmountErrorMessageContainer);
       lottoMachine = new LottoMachine(purchaseAmount);
       const purchaseLottoContentContainer = document.getElementById('purchase-lotto-content');
       View.renderPurchaseLotto(purchaseLottoContentContainer, lottoMachine.getLottos());
       showNode(HIDE_CONTENT_SELECTORS);
     } catch (err) {
-      NodeRenderer.renderError(purchaseAmountContainer, err.message);
+      View.renderErrorMessage(purchaseAmountErrorMessageContainer, err.message);
     }
   });
 })();
@@ -60,7 +60,7 @@ let lottoMachine = null;
       const matchResultContentNode = document.getElementById('lotto-match-result-content');
       View.renderMatchResultModal(matchResultContentNode, matchResultSummary, lottoMachine.getRateOfReturn());
     } catch (err) {
-      NodeRenderer.renderError(winningLottoInputContainer, err.message);
+      View.renderErrorMessage(winningLottoInputContainer, err.message);
     }
   });
 }());

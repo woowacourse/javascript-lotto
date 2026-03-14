@@ -1,4 +1,8 @@
 const Component = {
+  errorMessage(message) {
+    return `<p class="text-body error-message">${message}</p>`
+  },
+
   purchaseLottoCount(count) {
     return `<p id="purchase-lotto-count-message">총 ${count}개를 구매했습니다.</p>`;
   },
