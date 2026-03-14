@@ -3,15 +3,15 @@
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
 
-import { LOTTO, RANK } from "./constants";
-import LottoGenerator from "./LottoGenerator";
-import WinningLotto from "./Model/WinningLotto";
-import ScoreBoard from "./ScoreBoard";
-import Validator from "./Validator";
-import PurchaseView from "./WebView/PurchaseView";
-import ResultModalView from "./WebView/ResultModalView";
-import TicketListView from "./WebView/TicketListView";
-import WinningLottoView from "./WebView/WinningLottoView";
+import { LOTTO, RANK } from "./constants.js";
+import LottoGenerator from "./LottoGenerator.js";
+import WinningLotto from "./Model/WinningLotto.js";
+import ScoreBoard from "./ScoreBoard.js";
+import Validator from "./Validator.js";
+import PurchaseView from "./WebView/PurchaseView.js";
+import ResultModalView from "./WebView/ResultModalView.js";
+import TicketListView from "./WebView/TicketListView.js";
+import WinningLottoView from "./WebView/WinningLottoView.js";
 
 class App {
   #lottos;
