@@ -5,14 +5,6 @@
 import View from './step2/View.js';
 import Controller from './step2/Controller.js';
 
-
-const HIDE_CONTENT_SELECTORS = [
-  document.querySelector('#purchase-lotto-content'),
-  document.querySelector('#winning-lotto-content'),
-];
-
-let lottoMachine = null;
-
 (function() {
   const purchaseAmountForm = document.getElementById('purchase-amount-form');
   purchaseAmountForm.addEventListener('submit', (e) => {
@@ -38,14 +30,7 @@ let lottoMachine = null;
   const matchResultContentNode = document.getElementById('lotto-match-result-content');
   matchResultContentNode.addEventListener('click', (e) => {
     if (!e.target.matches('#restart-button')) return;
-    View.closeModal();
-    lottoMachine = null;
-    const purchaseAmountInput = document.getElementById('purchase-amount');
-    purchaseAmountInput.value = '';
-    document.getElementById('purchase-lotto-content').innerHTML = '';
-    document.getElementById('lotto-match-result-content').innerHTML = '';
-    document.getElementById('winning-lotto-form').reset();
-    View.convertHiddenState(HIDE_CONTENT_SELECTORS);
+    Controller.restart();
   });
   const matchResultDialog = document.getElementById('lotto-match-result-dialog');
   const dialogCloser = matchResultDialog.querySelector('button.dialog-closer');

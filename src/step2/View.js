@@ -43,6 +43,13 @@ const View = {
     const rateOfReturnMessage = Component.rateOfReturnMessage(rateOfReturn);
     const restartButton = Component.restartButton();
     target.innerHTML = table + rateOfReturnMessage + restartButton;
+  },
+
+  clearAllInput() {
+    document.getElementById('purchase-amount').value = '';
+    document.getElementById('purchase-lotto-content').innerHTML = '';
+    document.getElementById('lotto-match-result-content').innerHTML = '';
+    document.getElementById('winning-lotto-form').reset();
   }
 }
 

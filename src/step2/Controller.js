@@ -40,6 +40,13 @@ const Controller = {
       View.renderWinningLottoNumberErrorMessage(err.message);
     }
   },
+
+  restart() {
+    View.closeModal();
+    this.lottoMachine = null;
+    View.clearAllInput();
+    View.convertHiddenState(HIDE_CONTENT_SELECTORS);
+  }
 }
 
 export default Controller;
