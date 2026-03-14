@@ -50,6 +50,7 @@ const WinningNumbersAndBonusNumberForm = {
     bonusNumberInput.type = 'number';
     bonusNumberInput.name = 'bonusNumber';
     bonusNumberInput.addEventListener('input', this.handleBonusNumberInput);
+    bonusNumberInput.addEventListener('keydown', this.handleKeydown);
 
     errorMessageDiv.id = 'winning-numbers-and-bonus-number-error-message';
     errorMessageDiv.classList.add('error-message');
@@ -100,6 +101,7 @@ const WinningNumbersAndBonusNumberForm = {
       input.ariaLabel = `${i + 1}번째 당첨 번호`;
       input.classList.add('winning-number-input');
       input.addEventListener('input', this.handleWinningNumberInput);
+      input.addEventListener('keydown', this.handleKeydown);
 
       return input;
     });
@@ -151,6 +153,26 @@ const WinningNumbersAndBonusNumberForm = {
       submitButton.disabled = true;
       errorMessageDiv.innerText = e.message;
       input.classList.add('invalid');
+    }
+  },
+
+  handleKeydown(e) {
+    const inputs = document.querySelectorAll(':scope #winning-lotto-and-bonus-number-form input');
+
+    if (e.key === 'ArrowLeft') {
+      inputs.forEach((input, i) => {
+        if (input === e.target) {
+          inputs[i - 1]?.focus();
+        }
+      });
+    }
+
+    if (e.key === 'ArrowRight') {
+      inputs.forEach((input, i) => {
+        if (input === e.target) {
+          inputs[i + 1]?.focus();
+        }
+      });
     }
   },
 
