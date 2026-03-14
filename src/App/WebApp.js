@@ -37,13 +37,15 @@ class App {
     resultButton.addEventListener("click", () => {
       const winningNumbers = [
         ...document.querySelectorAll("#winning-lottos .ui-pin"),
-      ].map((pinElement) => {
-        return pinElement.querySelector("input").value;
-      });
+      ]
+        .map((pinElement) => {
+          return pinElement.querySelector("input").value;
+        })
+        .map(Number);
 
       const bonusNumber = document.querySelector("#bonus-lotto input").value;
 
-      const lottoGame = new LottoGame(winningNumbers, bonusNumber);
+      const lottoGame = new LottoGame(winningNumbers, Number(bonusNumber));
       this.#model.lottoGame = lottoGame;
       const statistics = lottoGame.getStatistics(this.#model.lottoList);
       const rate = new Rate(statistics, price);
