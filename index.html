@@ -18,11 +18,16 @@
         <h2 class="lotto-section__title title">🎱 내 당첨 번호 확인 🎱</h2>
 
         <form class="purchase-form" action="#">
-          <label class="purchase-form__label body">
+          <label class="purchase-form__label body" for="purchase-amount">
             구입할 금액을 입력해주세요.
           </label>
           <div class="purchase-form__input-group">
-            <input class="purchase-form__input" placeholder="금액" required />
+            <input
+              class="purchase-form__input"
+              id="purchase-amount"
+              placeholder="금액"
+              required
+            />
             <button class="purchase-form__submit-btn button caption">
               구입
             </button>
@@ -42,9 +47,17 @@
 
           <div class="winning-form__container">
             <div class="winning-form__input-group">
-              <label class="winning-form__label">당첨 번호</label>
+              <label class="winning-form__label" for="winning-number-first"
+                >당첨 번호</label
+              >
               <div class="winning-form__input-list">
-                <input class="winning-form__input" min="1" max="45" required />
+                <input
+                  class="winning-form__input"
+                  id="winning-number-first"
+                  min="1"
+                  max="45"
+                  required
+                />
                 <input class="winning-form__input" min="1" max="45" required />
                 <input class="winning-form__input" min="1" max="45" required />
                 <input class="winning-form__input" min="1" max="45" required />
@@ -56,10 +69,13 @@
             <div
               class="winning-form__input-group winning-form__input-group--bonus"
             >
-              <label class="winning-form__label">보너스 번호</label>
+              <label class="winning-form__label" for="bonus-number"
+                >보너스 번호</label
+              >
               <div class="winning-form__input-list">
                 <input
                   class="winning-form__input winning-form__input--bonus"
+                  id="bonus-number"
                   min="1"
                   max="45"
                   required
