@@ -11,6 +11,8 @@ class App {
   #inputView;
   #outputView;
 
+  #model = {};
+
   constructor() {
     this.#validator = new Validator();
     this.#inputView = new InputView();
@@ -18,29 +20,34 @@ class App {
   }
 
   async run() {
-    let price;
     let winningNumbers;
     let bonusNumber;
 
-    price = await this.#inputPrice();
+    const buyButton = document.querySelector("#buy-button");
+    buyButton.addEventListener("click", () => {
+      const priceInput = document.querySelector("#price input");
+      const price = priceInput.value;
 
-    const lottoList = new LottoList(price / 1000);
-    this.#outputView.printAmount(price);
-    this.#outputView.printLottos(lottoList.getLottoList());
+      const lottoList = new LottoList(price / 1000);
+      this.#model.lottoList = lottoList;
 
-    winningNumbers = await this.#inputWinningNumbers();
-    bonusNumber = await this.#inputBonusNumber(winningNumbers);
+      this.#outputView.printAmount(price);
+      this.#outputView.printLottos(lottoList);
+    });
 
-    const lottoGame = new LottoGame(winningNumbers, bonusNumber);
-    const statistics = lottoGame.getStatistics(lottoList);
-    const rate = new Rate(statistics, price);
+    // winningNumbers = await this.#inputWinningNumbers();
+    // bonusNumber = await this.#inputBonusNumber(winningNumbers);
 
-    this.#showResult(statistics, rate.getRate());
+    // const lottoGame = new LottoGame(winningNumbers, bonusNumber);
+    // const statistics = lottoGame.getStatistics(lottoList);
+    // const rate = new Rate(statistics, price);
 
-    const isRetry = await this.#inputView.readIsRetry();
-    if (isRetry === "y") {
-      await this.run();
-    }
+    // this.#showResult(statistics, rate.getRate());
+
+    // const isRetry = await this.#inputView.readIsRetry();
+    // if (isRetry === "y") {
+    //   await this.run();
+    // }
   }
   async #inputPrice() {
     let price;

@@ -3,14 +3,20 @@ import { AMOUNT_PRICE } from "../../constants/lottoConstants.js";
 
 export class OutputView {
   printAmount(price) {
+    const amountText = document.querySelector("#amount-text");
     const amount = price / AMOUNT_PRICE;
-    return Console.print(`${amount}개를 구매했습니다.`);
+    amountText.innerHTML = `총 ${amount}개를 구매하였습니다.`;
   }
   printLottos(lottos) {
-    lottos.forEach((lotto) => {
-      Console.print(lotto.toString());
-    });
-    Console.print("");
+    const lottoListUL = document.querySelector("#lotto-list");
+    const html = lottos
+      .getLottoList()
+      .map((lotto) => {
+        const lottoNumbers = lotto.getNumbers();
+        return `<li>🎟️ ${lottoNumbers.join(", ")}</li>`;
+      })
+      .join("");
+    lottoListUL.innerHTML = html;
   }
   printStatistics(statistics) {
     Console.print("");
