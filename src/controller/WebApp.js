@@ -32,6 +32,8 @@ class WebApp {
 
       PurchaseView.renderPurchasedLottos(purchasedLottos);
       WinningInputView.renderInput();
+
+      PurchaseView.clearPriceInput();
     } catch (error) {
       alert(error.message);
     }
@@ -53,8 +55,9 @@ class WebApp {
   }
 
   #restartGame() {
-    PurchaseView.reset();
-    WinningInputView.reset();
+    PurchaseView.clearPurchasedLottos();
+    WinningInputView.clearInput();
+    WinningInputView.hideInput();
   }
 }
 

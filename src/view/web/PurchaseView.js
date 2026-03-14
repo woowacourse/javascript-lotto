@@ -12,8 +12,6 @@ const PurchaseView = {
 
       const purchasedPrice = Number(this.purchasePriceInput.value);
       handler(purchasedPrice);
-
-      this.purchaseForm.reset();
     });
   },
 
@@ -24,9 +22,13 @@ const PurchaseView = {
       .join("");
   },
 
-  reset() {
+  clearPurchasedLottos() {
     this.countText.textContent = "";
     this.lottoList.innerHTML = "";
+  },
+
+  clearPriceInput() {
+    this.purchaseForm.reset();
   },
 };
 
