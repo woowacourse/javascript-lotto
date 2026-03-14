@@ -1,3 +1,5 @@
+import { LOTTO_RULES } from "../Utils/Constants";
+
 class Lotto {
   #numbers;
 
@@ -13,13 +15,13 @@ class Lotto {
       throw new Error("[ERROR] 각 번호가 숫자가 아닙니다!");
     }
 
-    const isOutRange = nums.some((n) => n < 1 || n > 45);
+    const isOutRange = nums.some((n) => n < LOTTO_RULES.MIN_NUMBER || n > LOTTO_RULES.MAX_NUMBER);
     if (isOutRange) {
-      throw new Error(`[ERROR] 당첨 번호는 1~45 범위여야 합니다!`);
+      throw new Error(`[ERROR] 당첨 번호는 ${LOTTO_RULES.MIN_NUMBER}~${LOTTO_RULES.MAX_NUMBER} 범위여야 합니다!`);
     }
 
-    if (nums.length !== 6) {
-      throw new Error(`[ERROR] 번호는 6개여야 합니다!`);
+    if (nums.length !== LOTTO_RULES.LENGTH) {
+      throw new Error(`[ERROR] 번호는 ${LOTTO_RULES.LENGTH}개여야 합니다!`);
     }
 
     if (new Set(nums).size !== nums.length) {

@@ -2,6 +2,7 @@ import LottoMachine from "./Domain/LottoMachine.js";
 import LottoResult from "./Domain/LottoResult.js";
 import LuckyNumbers from "./Domain/LuckyNumbers.js";
 import LottoWebView from "./WebView/LottoWebView.js";
+import { LOTTO_RULES } from "./Utils/Constants.js";
 
 class WebApp {
   constructor() {
@@ -23,8 +24,8 @@ class WebApp {
   // 랜덤 숫자 생성기
   #generateRandomNumber() {
     const nums = new Set();
-    while (nums.size < 6) {
-      nums.add(Math.floor(Math.random() * 45) + 1);
+    while (nums.size < LOTTO_RULES.LENGTH) {
+      nums.add(Math.floor(Math.random() * LOTTO_RULES.MAX_NUMBER) + LOTTO_RULES.MIN_NUMBER);
     }
 
     return [...nums];
@@ -57,7 +58,7 @@ class WebApp {
         luckyNumbers,
       );
 
-      const purchasePrice = this.lottos.length * 1000;
+      const purchasePrice = this.lottos.length * LOTTO_RULES.PRICE;
       const profitRate = LottoResult.calculateProfitRate(
         winningResult,
         purchasePrice,

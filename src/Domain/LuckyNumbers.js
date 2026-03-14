@@ -1,4 +1,5 @@
 import Lotto from "./Lotto.js";
+import { LOTTO_RULES } from "../Utils/Constants.js";
 
 class LuckyNumbers {
   #winningLotto;
@@ -12,8 +13,8 @@ class LuckyNumbers {
   #validateBonusNumber(bonusNumber) {
     const bonus = Number(bonusNumber.trim());
 
-    if (Number.isNaN(bonus) || bonus < 1 || bonus > 45) {
-      throw new Error("[ERROR] 보너스 번호는 1~45 범위의 숫자여야 합니다!");
+    if (Number.isNaN(bonus) || bonus < LOTTO_RULES.MIN_NUMBER || bonus > LOTTO_RULES.MAX_NUMBER) {
+      throw new Error(`[ERROR] 보너스 번호는 ${LOTTO_RULES.MIN_NUMBER}~${LOTTO_RULES.MAX_NUMBER} 범위의 숫자여야 합니다!`);
     }
 
     const winningNumbersNum = this.#winningLotto.getNumbers().map(Number);
