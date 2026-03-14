@@ -1,0 +1,72 @@
+:root {
+  --lotto-greyscale-1: #ffffff;
+  --lotto-greyscale-2: #fcfcfd;
+  --lotto-greyscale-3: #b0b0b0;
+  --lotto-greyscale-4: #808080;
+  --lotto-greyscale-5: #000000;
+
+  --lotto-primary: #4e5ba6;
+
+  --main-bg: var(--lotto-greyscale-2);
+  --main-text: var(--lotto-greyscale-5);
+
+  --system-font: "Roboto", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--system-font);
+  color: var(--lotto-greyscale-5);
+}
+
+#app {
+  min-height: 100vh;
+  background: var(--lotto-greyscale-2);
+}
+
+header {
+  background: var(--lotto-primary);
+}
+
+main {
+  width: 90%;
+  max-width: 414px;
+  min-height: 70vh;
+  margin: 7vh auto;
+  border: 1px solid
+    color-mix(in srgb, var(--lotto-greyscale-5), transparent 88%);
+  border-radius: 4px;
+  background: var(--lotto-greyscale-1);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 30px 0;
+  border-top: 1px solid
+    color-mix(in srgb, var(--lotto-primary), transparent 80%);
+}
+
+.lotto-title {
+  padding: 14px 130px;
+  color: var(--logo-color);
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.copyright {
+  display: block;
+  color: var(--lotto-primary);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
