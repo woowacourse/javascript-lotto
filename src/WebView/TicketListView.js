@@ -1,3 +1,4 @@
+import ticketImage from "../../assets/lotto_ticket.png";
 class TicketListView {
   #list;
   #summary;
@@ -38,7 +39,7 @@ class TicketListView {
 
     const ticketIcon = document.createElement("img");
     ticketIcon.className = "ticket-list__icon";
-    ticketIcon.src = "./assets/lotto_ticket.png";
+    ticketIcon.src = ticketImage;
 
     const lottoNumberSpan = document.createElement("span");
     lottoNumberSpan.className = "ticket-list__numbers";
