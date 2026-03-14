@@ -31,6 +31,14 @@ class WinningLottoView {
     });
   }
 
+  show() {
+    this.#form.style.visibility = "visible";
+  }
+
+  hide() {
+    this.#form.style.visibility = "hidden";
+  }
+
   disableInputs() {
     this.#allNumbersInput.forEach((node) => {
       node.disabled = true;
@@ -68,14 +76,6 @@ class WinningLottoView {
       e.preventDefault();
       successSubmit();
     });
-  }
-
-  show() {
-    this.#form.style.visibility = "visible";
-  }
-
-  hide() {
-    this.#form.style.visibility = "hidden";
   }
 }
 
