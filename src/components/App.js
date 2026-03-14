@@ -45,6 +45,8 @@ const App = () => {
               name="purchase-amount"
               placeholder="금액"
               class="lotto-purchase-form__input"
+              min="1000"
+              step="1000"
             />
             <button type="submit" class="lotto-purchase-form__button">
               구입

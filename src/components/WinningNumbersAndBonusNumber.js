@@ -53,17 +53,17 @@ function WinningNumbersAndBonusNumber(lottos, purchaseAmount) {
       <div class="lotto-winning-bonus-number__winning">
         <label for="">당첨 번호</label>
         <div class="lotto-winning-bonus-number__winning-inputs">
-          <input type="number" name="winning-number" class="lotto-winning-bonus-number__input" />
-          <input type="number" name="winning-number" class="lotto-winning-bonus-number__input" />
-          <input type="number" name="winning-number" class="lotto-winning-bonus-number__input" />
-          <input type="number" name="winning-number" class="lotto-winning-bonus-number__input" />
-          <input type="number" name="winning-number" class="lotto-winning-bonus-number__input" />
-          <input type="number" name="winning-number" class="lotto-winning-bonus-number__input" />
+          <input type="number" name="winning-number" min="1" max="45" class="lotto-winning-bonus-number__input" />
+          <input type="number" name="winning-number" min="1" max="45" class="lotto-winning-bonus-number__input" />
+          <input type="number" name="winning-number" min="1" max="45" class="lotto-winning-bonus-number__input" />
+          <input type="number" name="winning-number" min="1" max="45" class="lotto-winning-bonus-number__input" />
+          <input type="number" name="winning-number" min="1" max="45" class="lotto-winning-bonus-number__input" />
+          <input type="number" name="winning-number" min="1" max="45" class="lotto-winning-bonus-number__input" />
         </div>
       </div>
       <div class="lotto-winning-bonus-number__bonus">
         <label for="">보너스 번호</label>
-        <input type="number" name="bonus-number" class="lotto-winning-bonus-number__input" />
+        <input type="number" name="bonus-number" min="1" max="45" class="lotto-winning-bonus-number__input" />
       </div>
       </div>
       <button class="lotto-winning-bonus-number__button">결과 확인하기</button>
