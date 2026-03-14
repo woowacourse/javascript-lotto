@@ -4,13 +4,14 @@
  */
 import Validator from './step1/Validator.js';
 import View from './step2/View.js';
-import { hideNode } from './step2/NodeUtils.js';
 import { LottoMachine } from './step1/LottoMachine.js';
-import { showNode } from './step2/NodeUtils.js';
 import { WinningLotto } from './step1/Lotto.js';
 
 
-const HIDE_CONTENT_SELECTORS = ['#purchase-lotto-content', '#winning-lotto-content'];
+const HIDE_CONTENT_SELECTORS = [
+  document.querySelector('#purchase-lotto-content'),
+  document.querySelector('#winning-lotto-content'),
+];
 
 let lottoMachine = null;
 
@@ -27,7 +28,7 @@ let lottoMachine = null;
       lottoMachine = new LottoMachine(purchaseAmount);
       const purchaseLottoContentContainer = document.getElementById('purchase-lotto-content');
       View.renderPurchaseLotto(purchaseLottoContentContainer, lottoMachine.getLottos());
-      showNode(HIDE_CONTENT_SELECTORS);
+      View.convertHiddenState(HIDE_CONTENT_SELECTORS);
     } catch (err) {
       View.renderErrorMessage(purchaseAmountErrorMessageContainer, err.message);
     }
@@ -75,7 +76,7 @@ let lottoMachine = null;
     document.getElementById('purchase-lotto-content').innerHTML = '';
     document.getElementById('lotto-match-result-content').innerHTML = '';
     document.getElementById('winning-lotto-form').reset();
-    hideNode(HIDE_CONTENT_SELECTORS);
+    View.convertHiddenState(HIDE_CONTENT_SELECTORS);
   });
   const dialogCloser = matchResultDialog.querySelector('button.dialog-closer');
   dialogCloser.addEventListener('click', () => {

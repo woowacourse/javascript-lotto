@@ -1,6 +1,10 @@
 import Component from './Component.js';
 
 const View = {
+  convertHiddenState(targets) {
+    targets.forEach((target) => target.classList.toggle('hidden'));
+  },
+
   clearErrorMessage(target) {
     target.innerHTML = '';
   },
