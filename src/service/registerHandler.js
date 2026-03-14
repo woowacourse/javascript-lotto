@@ -1,6 +1,6 @@
 function registerHandler(selector, eventType, handler) {
   document.addEventListener(eventType, (event) => {
-    if (event.target.matches(selector)) {
+    if (event.target.closest(selector)) {
       handler(event);
     }
   });
