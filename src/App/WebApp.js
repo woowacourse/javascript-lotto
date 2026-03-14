@@ -27,30 +27,30 @@ class App {
       this.#model.lottoList = lottoList;
 
       this.#outputView.renderLottoResult(amount, lottoList);
-    });
 
-    const resultButton = document.querySelector("#result-button");
-    resultButton.addEventListener("click", () => {
-      const winningNumbers = [
-        ...document.querySelectorAll("#winning-lottos .ui-pin"),
-      ]
-        .map((pinElement) => {
-          return pinElement.querySelector("input").value;
-        })
-        .map(Number);
+      const resultButton = document.querySelector("#result-button");
+      resultButton.addEventListener("click", () => {
+        const winningNumbers = [
+          ...document.querySelectorAll("#winning-lottos .ui-pin"),
+        ]
+          .map((pinElement) => {
+            return pinElement.querySelector("input").value;
+          })
+          .map(Number);
 
-      const bonusNumber = document.querySelector("#bonus-lotto input").value;
+        const bonusNumber = document.querySelector("#bonus-lotto input").value;
 
-      const lottoGame = new LottoGame(winningNumbers, Number(bonusNumber));
-      this.#model.lottoGame = lottoGame;
-      const statistics = lottoGame.getStatistics(this.#model.lottoList);
-      const rate = new Rate(
-        statistics,
-        this.#model.lottoList.getLottoList().length * AMOUNT_PRICE,
-      );
-      this.#model.rate = rate;
+        const lottoGame = new LottoGame(winningNumbers, Number(bonusNumber));
+        this.#model.lottoGame = lottoGame;
+        const statistics = lottoGame.getStatistics(this.#model.lottoList);
+        const rate = new Rate(
+          statistics,
+          this.#model.lottoList.getLottoList().length * AMOUNT_PRICE,
+        );
+        this.#model.rate = rate;
 
-      this.#showResult(statistics, rate.getRate());
+        this.#showResult(statistics, rate.getRate());
+      });
     });
 
     const restartButton = document.querySelector("#restart-button");
