@@ -312,10 +312,6 @@ input#purchase-amount {
     opacity: 0;
 }
 
-.fade-in {
-    transition: opacity 300ms ease-in;
-}
-
 .dialog-closer {
     display: block;
     width: 100%;
