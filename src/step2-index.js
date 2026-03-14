@@ -55,10 +55,7 @@ class App {
 
       this.#money = money;
       this.#purchaseView.disableForm();
-      this.#renderPurchasedLottos();
-
-      this.#ticketListView.show();
-      this.#winningLottoView.show();
+      this.#calculateAndShowPurchasedLottos();
     } catch (error) {
       alert(error.message);
       this.#purchaseView.removeInputValue();
@@ -81,23 +78,25 @@ class App {
       this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
       this.#winningLottoView.disableInputs();
 
-      this.#renderLottoResult();
-      this.#resultModalView.open();
+      this.#calculateAndSowLottoResult();
     } catch (error) {
       alert(error.message);
     }
   };
 
-  #renderPurchasedLottos() {
+  #calculateAndShowPurchasedLottos() {
     const purchaseLottoCount = this.#money / LOTTO.PRICE;
-    this.#ticketListView.setPurchaseLottoCount(purchaseLottoCount);
+    this.#ticketListView.renderPurchaseLottoCount(purchaseLottoCount);
 
     this.#lottos.push(...LottoGenerator.makeLottos(purchaseLottoCount));
     const allLottoNumbers = this.#lottos.map((lotto) => lotto.getNumbers());
-    this.#ticketListView.setAllTickets(allLottoNumbers);
+    this.#ticketListView.renderAllTickets(allLottoNumbers);
+
+    this.#ticketListView.show();
+    this.#winningLottoView.show();
   }
 
-  #renderLottoResult() {
+  #calculateAndSowLottoResult() {
     const allRankCount = ScoreBoard.makeAllRankCount(
       this.#lottos,
       this.#winningLotto,
@@ -110,9 +109,11 @@ class App {
         winCount: allRankCount[rank.DISPLAY],
       };
     });
-    this.#resultModalView.setScore(scoreData);
+    this.#resultModalView.renderScore(scoreData);
     const profitRate = ScoreBoard.getProfitRate(allRankCount, this.#money);
-    this.#resultModalView.setProfitRate(profitRate);
+    this.#resultModalView.renderProfitRate(profitRate);
+
+    this.#resultModalView.open();
   }
 
   #validateLottoNumber(number) {
