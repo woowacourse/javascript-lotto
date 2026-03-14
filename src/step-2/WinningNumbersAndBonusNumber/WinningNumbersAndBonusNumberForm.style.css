@@ -1,8 +1,4 @@
 .winning-lotto-and-bonus-number-form {
-  position: absolute;
-  bottom: 36px;
-  left: 16px;
-  right: 16px;
   padding-top: 10px;
   background-color: var(--color-lotto-grayscale-1);
 }

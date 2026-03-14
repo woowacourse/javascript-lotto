@@ -1,7 +1,7 @@
 .lotto-game-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
   gap: 24px;
   width: 414px;
   aspect-ratio: 14/25;
