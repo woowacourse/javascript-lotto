@@ -20,15 +20,19 @@
   box-sizing: border-box;
 }
 
+ul {
+  list-style: none;
+}
+
 /* 전체 레이아웃*/
 body {
   font-family: var(--system-font);
   color: var(--lotto-greyscale-5);
+  background: var(--lotto-greyscale-2);
 }
 
 #app {
   min-height: 100vh;
-  background: var(--lotto-greyscale-2);
 }
 
 header {
@@ -47,7 +51,7 @@ main {
 }
 
 main section {
-  padding: 10px 15px;
+  padding: 8px 15px;
 }
 
 footer {
@@ -113,15 +117,31 @@ input::-webkit-inner-spin-button {
   padding: 0 0 0 8px;
   border: 1px solid var(--lotto-greyscale-3);
   border-radius: 4px;
-  font-weight: 400;
   font-size: 15px;
   letter-spacing: 0.5px;
 }
 
 #purchase-form {
   display: flex;
-  align-items: center;
   gap: 16px;
+}
+
+.lotto-ticket {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lotto-icon {
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+}
+
+.lotto-numbers {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }
 
 .copyright {
