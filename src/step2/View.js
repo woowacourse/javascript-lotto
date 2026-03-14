@@ -23,7 +23,8 @@ const View = {
     target.innerHTML = errorMessageComponent;
   },
 
-  renderErrorMessage(target, message) {
+  renderWinningLottoNumberErrorMessage(message) {
+    const target = document.getElementById('winning-lotto-inputs-container');
     const errorMessageComponent = Component.errorMessage(message);
     target.innerHTML = errorMessageComponent;
   },
@@ -36,7 +37,8 @@ const View = {
     purchaseLottoContentContainer.innerHTML = purchaseCountComponent + purchaseLottoListComponent;
   },
 
-  renderMatchResultModal(target, matchResultSummary, rateOfReturn) {
+  renderMatchResultModal(matchResultSummary, rateOfReturn) {
+    const target = document.getElementById('lotto-match-result-content');
     const table = Component.lottoMatchResultTable(matchResultSummary);
     const rateOfReturnMessage = Component.rateOfReturnMessage(rateOfReturn);
     const restartButton = Component.restartButton();
