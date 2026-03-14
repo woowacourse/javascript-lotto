@@ -2,7 +2,6 @@
  * step 2의 시작점이 되는 파일입니다.
  * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
  */
-import View from './step2/View.js';
 import Controller from './step2/Controller.js';
 
 (function() {
@@ -31,10 +30,5 @@ import Controller from './step2/Controller.js';
   matchResultContentNode.addEventListener('click', (e) => {
     if (!e.target.matches('#restart-button')) return;
     Controller.restart();
-  });
-  const matchResultDialog = document.getElementById('lotto-match-result-dialog');
-  const dialogCloser = matchResultDialog.querySelector('button.dialog-closer');
-  dialogCloser.addEventListener('click', () => {
-    View.closeModal();
   });
 }());
