@@ -4,31 +4,25 @@
  */
 import Controller from './step2/Controller.js';
 
-(function() {
-  const purchaseAmountForm = document.getElementById('purchase-amount-form');
-  purchaseAmountForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const purchaseAmountInput = document.getElementById('purchase-amount');
-    const purchaseAmount = purchaseAmountInput.value;
-    Controller.submitPurchaseAmount(purchaseAmount);
-  });
-})();
+const purchaseAmountForm = document.getElementById('purchase-amount-form');
+purchaseAmountForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const purchaseAmountInput = document.getElementById('purchase-amount');
+  const purchaseAmount = purchaseAmountInput.value;
+  Controller.submitPurchaseAmount(purchaseAmount);
+});
 
-(function() {
-  const winningLottoForm = document.getElementById('winning-lotto-form');
-  winningLottoForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const winningLottoNumbersNode = document.getElementById('winning-lotto-numbers');
-    const bonusNumber = document.getElementById('winning-lotto-bonus-number').value;
-    const winningLottoNumber = [...winningLottoNumbersNode.elements].map((input) => input.value);
-    Controller.submitWinningNumbers(winningLottoNumber, bonusNumber);
-  });
-}());
+const winningLottoForm = document.getElementById('winning-lotto-form');
+winningLottoForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const winningLottoNumbersNode = document.getElementById('winning-lotto-numbers');
+  const bonusNumber = document.getElementById('winning-lotto-bonus-number').value;
+  const winningLottoNumber = [...winningLottoNumbersNode.elements].map((input) => input.value);
+  Controller.submitWinningNumbers(winningLottoNumber, bonusNumber);
+});
 
-(function() {
-  const matchResultContentNode = document.getElementById('lotto-match-result-content');
-  matchResultContentNode.addEventListener('click', (e) => {
-    if (!e.target.matches('#restart-button')) return;
-    Controller.restart();
-  });
-}());
+const matchResultContentNode = document.getElementById('lotto-match-result-content');
+matchResultContentNode.addEventListener('click', (e) => {
+  if (!e.target.matches('#restart-button')) return;
+  Controller.restart();
+});
