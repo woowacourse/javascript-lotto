@@ -3,8 +3,8 @@ const LottoItem = {
     const lottoItemContainer = document.createElement('li');
     const lottoTicketIcon = document.createElement('img');
     const lottoNumbersContainer = document.createElement('div');
-    
-    lottoTicketIcon.src = '/ticket.png';
+
+    lottoTicketIcon.src = `./ticket.png`;
     lottoTicketIcon.alt = '';
 
     lottoNumbersContainer.innerText = lotto.parseNumbers().join(', ');

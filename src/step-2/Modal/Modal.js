@@ -14,7 +14,7 @@ const Modal = {
     closeButton.classList.add('close-button');
     closeButton.addEventListener('click', this.handleClose);
 
-    closeButtonIcon.src = '/close.svg';
+    closeButtonIcon.src = './close.svg';
     closeButtonIcon.alt = '닫기';
 
     closeButton.appendChild(closeButtonIcon);
