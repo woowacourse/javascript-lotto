@@ -6,9 +6,3 @@
   overflow-y: scroll;
   margin-top: 8px
 }
-
-.lotto-info-container li {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}

@@ -1,0 +1,5 @@
+.lotto-info-container li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
