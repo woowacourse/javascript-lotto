@@ -14,13 +14,15 @@ const Controller = {
   lottoMachine: null,
 
   submitPurchaseAmount(amount) {
-    try {
-      Validator.validatePurchaseAmount(amount);
-      this.lottoMachine = new LottoMachine(amount);
-      View.renderPurchaseLotto(this.lottoMachine.getLottos());
-      View.convertHiddenState(HIDE_CONTENT_SELECTORS);
-    } catch (err) {
-      View.renderPurchaseAmountErrorMessage(err.message);
+    if (!this.lottoMachine) {
+      try {
+        Validator.validatePurchaseAmount(amount);
+        this.lottoMachine = new LottoMachine(amount);
+        View.renderPurchaseLotto(this.lottoMachine.getLottos());
+        View.convertHiddenState(HIDE_CONTENT_SELECTORS);
+      } catch (err) {
+        View.renderPurchaseAmountErrorMessage(err.message);
+      }
     }
   },
 
