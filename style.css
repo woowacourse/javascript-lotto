@@ -20,16 +20,30 @@
   box-sizing: border-box;
 }
 
-ul {
-  list-style: none;
-}
-
-/* 전체 레이아웃*/
 body {
   font-family: var(--system-font);
   color: var(--main-text);
   background: var(--main-bg);
 }
+
+ul {
+  list-style: none;
+}
+
+input[type="number"] {
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* 레이아웃*/
 
 #app {
   display: grid;
@@ -68,20 +82,7 @@ footer {
     color-mix(in srgb, var(--lotto-primary), transparent 80%);
 }
 
-/* 공통 컴포넌트 */
-input[type="number"] {
-  border: 1px solid var(--lotto-greyscale-3);
-  border-radius: 4px;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
+/* 공통 스타일 */
 .logo-title {
   padding: 14px 130px;
   color: var(--lotto-greyscale-1);
@@ -115,18 +116,6 @@ input::-webkit-inner-spin-button {
   font-size: 14px;
   text-align: center;
   letter-spacing: 1.25px;
-}
-
-.flex-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 /* 각 섹션별 스타일 */
@@ -252,6 +241,19 @@ input::-webkit-inner-spin-button {
   font-weight: 700;
   font-size: 14px;
   text-align: center;
+}
+
+/* 유틸리티 */
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .v-hidden {
