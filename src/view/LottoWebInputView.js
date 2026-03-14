@@ -1,6 +1,5 @@
 class LottoWebInputView {
   constructor() {
-    this.purchaseButton = document.querySelector("#purchase");
     this.moneyInput = document.querySelector("#money");
     this.purchaseForm = document.querySelector("#purchase-form");
     this.winningInputs = document.querySelectorAll(
@@ -13,8 +12,6 @@ class LottoWebInputView {
   }
 
   bindPurchase(handler) {
-    this.purchaseButton.addEventListener("click", handler);
-
     this.purchaseForm.addEventListener("submit", (event) => {
       event.preventDefault();
       handler();
