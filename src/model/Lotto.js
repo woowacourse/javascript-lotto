@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from "../constants/message.js";
 import { matchWinningCount, matchBonus } from "../domain/MatchLottos.js";
 import { calRank } from "../domain/WinningRate.js";
-import Validator from "../utils/Validator.js";
+import Validator from "../utils/WebValidator.js";
 
 class Lotto {
   #numbers;
