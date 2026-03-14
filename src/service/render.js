@@ -1,5 +1,6 @@
-const render = (parent, element) => {
-  parent.appendChild(element);
+const render = (selector, content) => {
+  const element = document.querySelector(selector);
+  element.innerHTML = content;
 };
 
 export default render;
