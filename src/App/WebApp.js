@@ -49,7 +49,7 @@ class App {
         );
         this.#model.rate = rate;
 
-        this.#showResult(statistics, rate.getRate());
+        this.#outputView.renderStatisticsResult(statistics, rate.getRate());
       });
     });
 
@@ -95,10 +95,6 @@ class App {
       }
     }
     return bonusNumber;
-  }
-  #showResult(satistics, rate) {
-    this.#outputView.printStatistics(satistics);
-    this.#outputView.printRate(rate);
   }
 }
 

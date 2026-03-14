@@ -80,15 +80,31 @@ export class OutputView {
     `;
     lottoResultBox.innerHTML = html;
   }
-  printStatistics(statistics) {
-    const uiModal = document.querySelector("#modal .ui-modal");
-    uiModal.style.display = "flex";
-
-    const resultStaticsticTbody = document.querySelector(
-      "#result-staticstic tbody",
-    );
-
+  renderStatisticsResult(statistics, rate) {
+    const modal = document.querySelector("#modal");
     const html = `
+      <div class="ui-modal">
+        <div class="modal-container">
+          <button class="modal-button" id="modal-close-button">close</button>
+          <div class="modal-content">
+            <section id="lotto-game-result">
+              <div class="ui-content-box">
+                <div class="ui-title shape-main align-center">
+                  <h1 class="title">🏆 당첨 통계 🏆</h1>
+                </div>
+
+                <!-- 당첨 통계 -->
+                <div class="ui-table" id="result-staticstic">
+                  <table>
+                    <summary>당첨 통계</summary>
+                    <thead>
+                      <tr>
+                        <th scope="col" class="align-center">일치 갯수</th>
+                        <th scope="col" class="align-center">당첨금</th>
+                        <th scope="col" class="align-center">당첨 갯수</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                       <tr>
                         <td class="align-center">3개</td>
                         <td class="align-center">5,000</td>
@@ -114,14 +130,27 @@ export class OutputView {
                         <td class="align-center">2,000,000,000</td>
                         <td class="align-center">${statistics[1]}개</td>
                       </tr>
-    `;
+                    </tbody>
+                  </table>
+                </div>
 
-    resultStaticsticTbody.innerHTML = html;
-  }
-  printRate(rate) {
-    const rateText = document.querySelector("#rate-text");
-    const html = `당신의 총 수익률은 ${rate}%입니다.`;
-    rateText.innerHTML = html;
+                <!-- 수익률 -->
+                <p class="ui-info shape-data align-center" id="rate-text">
+                  당신의 총 수익률은 ${rate}%입니다.
+                </p>
+
+                <div class="ui-button-box">
+                  <button class="ui-button variant-primary is-block" id="restart-button">
+                    다시 시작하기
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    `;
+    modal.innerHTML = html;
   }
   printReset() {
     const uiModal = document.querySelector("#modal .ui-modal");
