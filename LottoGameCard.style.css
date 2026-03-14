@@ -15,14 +15,3 @@
 .lotto-game-card header {
   text-align: center;
 }
-
-.purchase-amount-input-wrapper {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  margin-top: 4px;
-}
-
-.purchase-amount-input-wrapper input {
-  width: 100%;
-}
