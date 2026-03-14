@@ -26,6 +26,9 @@
               class="purchase-form__input"
               id="purchase-amount"
               placeholder="금액"
+              type="number"
+              min="1000"
+              step="1000"
               required
             />
             <button class="purchase-form__submit-btn button caption">
@@ -54,15 +57,57 @@
                 <input
                   class="winning-form__input"
                   id="winning-number-first"
+                  type="number"
                   min="1"
                   max="45"
+                  maxlength="2"
                   required
                 />
-                <input class="winning-form__input" min="1" max="45" required />
-                <input class="winning-form__input" min="1" max="45" required />
-                <input class="winning-form__input" min="1" max="45" required />
-                <input class="winning-form__input" min="1" max="45" required />
-                <input class="winning-form__input" min="1" max="45" required />
+                <input
+                  class="winning-form__input"
+                  id="winning-number-second"
+                  type="number"
+                  min="1"
+                  max="45"
+                  maxlength="2"
+                  required
+                />
+                <input
+                  class="winning-form__input"
+                  id="winning-number-third"
+                  type="number"
+                  min="1"
+                  max="45"
+                  maxlength="2"
+                  required
+                />
+                <input
+                  class="winning-form__input"
+                  id="winning-number-fourth"
+                  type="number"
+                  min="1"
+                  max="45"
+                  maxlength="2"
+                  required
+                />
+                <input
+                  class="winning-form__input"
+                  id="winning-number-fifth"
+                  type="number"
+                  min="1"
+                  max="45"
+                  maxlength="2"
+                  required
+                />
+                <input
+                  class="winning-form__input"
+                  id="winning-number-sixth"
+                  type="number"
+                  min="1"
+                  max="45"
+                  maxlength="2"
+                  required
+                />
               </div>
             </div>
 
@@ -76,8 +121,10 @@
                 <input
                   class="winning-form__input winning-form__input--bonus"
                   id="bonus-number"
+                  type="number"
                   min="1"
                   max="45"
+                  maxlength="2"
                   required
                 />
               </div>
