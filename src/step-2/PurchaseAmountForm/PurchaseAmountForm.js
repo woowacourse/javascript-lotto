@@ -30,6 +30,7 @@ const PurchaseAmountForm = {
     purchaseAmountInput.id = 'purchase-amount-input';
     purchaseAmountInput.type = 'number';
     purchaseAmountInput.name = 'purchaseAmount';
+    purchaseAmountInput.autofocus = true;
     purchaseAmountInput.addEventListener('input', this.handlePurchaseAmountInput);
 
     errorMessageDiv.id = 'purchase-amount-error-message';
