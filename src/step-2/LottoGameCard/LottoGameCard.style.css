@@ -19,6 +19,6 @@
 @media (max-width: 480px) {
   .lotto-game-card {
     width: auto;
-    margin: 12px 24px;
+    margin: 12px 24px 40px 24px;
   }
 }

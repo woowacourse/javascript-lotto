@@ -19,6 +19,12 @@ body {
   letter-spacing: 0.5px;
 }
 
+body > div {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 button {
   cursor: pointer;
 

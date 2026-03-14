@@ -1,4 +1,5 @@
 .lotto-header {
+  position: sticky;
   padding: 14px 130px;
   background-color: var(--color-lotto-primary);
   color: var(--color-lotto-grayscale-1)
