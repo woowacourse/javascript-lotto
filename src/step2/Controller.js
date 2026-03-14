@@ -2,6 +2,7 @@ import Validator from '../step1/Validator.js';
 import View from './View.js';
 import { LottoMachine } from '../step1/LottoMachine.js';
 import { WinningLotto } from '../step1/Lotto.js';
+import Converter from './Converter.js';
 
 const HIDE_CONTENT_SELECTORS = [
   document.querySelector('#purchase-lotto-content'),
@@ -33,8 +34,8 @@ const Controller = {
       );
       View.openModal();
       View.renderMatchResultModal(
-        this.lottoMachine.getMatchResultSummary(),
-        this.lottoMachine.getRateOfReturn()
+        Converter.matchResultSummary(this.lottoMachine.getMatchResultSummary()),
+        this.lottoMachine.getRateOfReturn(),
       );
     } catch (err) {
       View.renderWinningLottoNumberErrorMessage(err.message);
