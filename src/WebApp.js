@@ -14,11 +14,8 @@ class WebApp {
     this.view.bindPurchaseForm(this.#handlePurchaseForm.bind(this));
     // luckyNumbers 폼 관련
     this.view.bindLuckyNumbersForm(this.#handleLuckyNumbersForm.bind(this));
-
     // 모달 창 닫기 버튼
-    this.view.modalCloseButton.addEventListener("click", () => {
-      this.view.closeModal();
-    });
+    this.view.bindModalCloseButton(this.#handleModalCloseButton.bind(this));
 
     // 재시작 버튼
     this.view.restartButton.addEventListener("click", () => {
@@ -73,6 +70,10 @@ class WebApp {
     } catch (e) {
       this.view.showError(e.message);
     }
+  }
+
+  #handleModalCloseButton() {
+    this.view.closeModal();
   }
 }
 

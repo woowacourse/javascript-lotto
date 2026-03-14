@@ -103,6 +103,13 @@ class LottoWebView {
       handler(winningNumbers, bonusNumber);
     });
   }
+
+  // 모달 창 닫기 버튼
+  bindModalCloseButton(handler) {
+    this.modalCloseButton.addEventListener("click", () => {
+      handler();
+    });
+  }
 }
 
 export default LottoWebView;
