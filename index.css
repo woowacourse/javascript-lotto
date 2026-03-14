@@ -9,6 +9,11 @@
   --lotto-border: #e0e0e0;
 }
 
+body {
+  /* Roboto */
+  font-family: "Roboto", sans-serif;
+}
+
 #app {
   display: flex;
   width: 100vw;
@@ -119,7 +124,7 @@
   height: 2rem;
 }
 
-.lotto-winning-bonus-number__form {
+.lotto-winning-bonus-number__inputs {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
@@ -149,7 +154,7 @@
   font-size: 14px;
 }
 
-.lotto-result {
+.lotto-result-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -232,6 +237,16 @@
   flex-shrink: 0;
   width: 100%;
   margin-top: 1.5rem;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 14px;
+}
+
+.lotto-footer {
+  padding-block: 2rem;
+  border-top: 1px solid var(--lotto-border);
+  text-align: center;
+  color: var(--lotto-primary);
   font-weight: 700;
   font-style: Bold;
   font-size: 14px;
