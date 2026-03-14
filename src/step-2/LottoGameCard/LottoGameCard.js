@@ -1,6 +1,6 @@
-import PurchaseAmountForm from './PurchaseAmountForm.js';
-import LottoInfo from './LottoInfo.js';
-import WinningNumbersAndBonusNumberForm from './WinningNumbersAndBonusNumberForm.js';
+import PurchaseAmountForm from '../PurchaseAmountForm/PurchaseAmountForm.js';
+import LottoInfo from '../LottoInfo/LottoInfo.js';
+import WinningNumbersAndBonusNumberForm from '../WinningNumbersAndBonusNumber/WinningNumbersAndBonusNumberForm.js';
 
 const LottoGameCard = {
   render(container) {

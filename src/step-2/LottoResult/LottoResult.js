@@ -1,5 +1,5 @@
-import { lottoResultStore } from './stores.js';
-import LottoRanksTable from './LottoRanksTable.js';
+import { lottoResultStore } from '../stores.js';
+import LottoRanksTable from '../LottoRanksTable/LottoRanksTable.js';
 
 const LottoResult = {
   render(container) {

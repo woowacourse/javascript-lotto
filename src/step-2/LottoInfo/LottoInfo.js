@@ -1,5 +1,5 @@
-import LottoItem from './LottoItem.js';
-import { userLottoStore } from './stores.js';
+import LottoItem from '../LottoItem/LottoItem.js';
+import { userLottoStore } from '../stores.js';
 
 const LottoInfo = {
   render(container) {
@@ -22,7 +22,7 @@ const LottoInfo = {
     lottoInfoContainer.classList.add('lotto-info-container');
 
     purchaseCountDiv.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
-    
+
     lottos.forEach((lotto) => LottoItem.render(lottoListContainer, { lotto }));
     lottoInfoContainer.appendChild(purchaseCountDiv);
     lottoInfoContainer.appendChild(lottoListContainer);

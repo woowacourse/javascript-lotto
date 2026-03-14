@@ -1,7 +1,7 @@
-import { userLottoStore, winningLottoAndBonusNumberStore, winningNumbersAndBonusNumberFormStore } from './stores.js';
-import WinningLottoAndBonusNumber from '../step-1/WinningLottoAndBonusNumber.js';
-import Lotto from '../step-1/Lotto.js';
-import { validateBonusNumber, validateWinningNumber } from './validates.js';
+import { userLottoStore, winningLottoAndBonusNumberStore, winningNumbersAndBonusNumberFormStore } from '../stores.js';
+import WinningLottoAndBonusNumber from '../../step-1/WinningLottoAndBonusNumber.js';
+import Lotto from '../../step-1/Lotto.js';
+import { validateBonusNumber, validateWinningNumber } from '../validates.js';
 
 const WinningNumbersAndBonusNumberForm = {
   render(container) {

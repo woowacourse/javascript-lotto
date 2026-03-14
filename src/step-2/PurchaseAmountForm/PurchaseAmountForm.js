@@ -1,6 +1,6 @@
-import { userLottoStore } from './stores.js';
-import LottoStore from '../step-1/LottoStore.js';
-import { validatePurchaseAmountInput } from './validates.js';
+import { userLottoStore } from '../stores.js';
+import LottoStore from '../../step-1/LottoStore.js';
+import { validatePurchaseAmountInput } from '../validates.js';
 
 const PurchaseAmountForm = {
   render(container) {

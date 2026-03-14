@@ -1,6 +1,6 @@
-import Modal from './Modal.js';
-import LottoResult from './LottoResult.js';
-import { lottoResultStore, userLottoStore } from './stores.js';
+import Modal from '../Modal/Modal.js';
+import LottoResult from '../LottoResult/LottoResult.js';
+import { lottoResultStore, userLottoStore } from '../stores.js';
 
 const LottoResultModal = {
   render(container) {
