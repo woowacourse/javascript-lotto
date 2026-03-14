@@ -44,7 +44,7 @@ const WinningNumbersAndBonusNumberForm = {
     winningNumbersCaption.innerText = '당첨 번호';
 
     bonusNumberCaption.innerText = '보너스 번호';
-    bonusNumberCaption.htmlFor = 'bonus-number';
+    bonusNumberCaption.htmlFor = 'bonus-number-input';
 
     bonusNumberInput.id = 'bonus-number-input';
     bonusNumberInput.type = 'number';
