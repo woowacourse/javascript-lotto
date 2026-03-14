@@ -54,8 +54,10 @@ class App {
       Validator.positiveNumber(money);
 
       this.#money = money;
+
       this.#purchaseView.disableForm();
       this.#calculateAndShowPurchasedLottos();
+      this.#winningLottoView.focusInput(0);
     } catch (error) {
       alert(error.message);
       this.#purchaseView.removeInputValue();
@@ -78,7 +80,7 @@ class App {
       this.#winningLotto = new WinningLotto(winningNumbers, bonusNumber);
       this.#winningLottoView.disableInputs();
 
-      this.#calculateAndSowLottoResult();
+      this.#calculateAndShowLottoResult();
     } catch (error) {
       alert(error.message);
     }
@@ -96,7 +98,7 @@ class App {
     this.#winningLottoView.show();
   }
 
-  #calculateAndSowLottoResult() {
+  #calculateAndShowLottoResult() {
     const allRankCount = ScoreBoard.makeAllRankCount(
       this.#lottos,
       this.#winningLotto,

@@ -39,6 +39,14 @@ class WinningLottoView {
     this.#form.style.visibility = "hidden";
   }
 
+  focusInput(index) {
+    const targetInputNode = this.#allNumbersInput.find(
+      (_, idx) => index === idx,
+    );
+
+    targetInputNode.focus();
+  }
+
   disableInputs() {
     this.#allNumbersInput.forEach((node) => {
       node.disabled = true;
