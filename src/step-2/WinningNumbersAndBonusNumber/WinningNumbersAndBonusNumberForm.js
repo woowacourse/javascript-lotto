@@ -79,11 +79,15 @@ const WinningNumbersAndBonusNumberForm = {
 
   handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const { winningNumber1, winningNumber2, winningNumber3, winningNumber4, winningNumber5, winningNumber6, bonusNumber } = Object.fromEntries(formData.entries());
-    const winningNumbers = [winningNumber1, winningNumber2, winningNumber3, winningNumber4, winningNumber5, winningNumber6].map(Number);
-    const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(new Lotto(winningNumbers), Number(bonusNumber));
-    winningLottoAndBonusNumberStore.setState({ winningLottoAndBonusNumber });
+    try {
+      const formData = new FormData(e.target);
+      const { winningNumber1, winningNumber2, winningNumber3, winningNumber4, winningNumber5, winningNumber6, bonusNumber } = Object.fromEntries(formData.entries());
+      const winningNumbers = [winningNumber1, winningNumber2, winningNumber3, winningNumber4, winningNumber5, winningNumber6].map(Number);
+      const winningLottoAndBonusNumber = new WinningLottoAndBonusNumber(new Lotto(winningNumbers), Number(bonusNumber));
+      winningLottoAndBonusNumberStore.setState({ winningLottoAndBonusNumber });
+    } catch (error) {
+      alert(error.message);
+    }
   },
 
   createWinningNumberInputs() {

@@ -53,12 +53,16 @@ const PurchaseAmountForm = {
 
   handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const { purchaseAmount: purchaseAmountInput } = Object.fromEntries(formData.entries());
-    const purchaseAmount = Number(purchaseAmountInput);
+    try {
+      const formData = new FormData(e.target);
+      const { purchaseAmount: purchaseAmountInput } = Object.fromEntries(formData.entries());
+      const purchaseAmount = Number(purchaseAmountInput);
 
-    const lottos = LottoStore.purchaseLottos(purchaseAmount);
-    userLottoStore.setState({ purchaseAmount, lottos });
+      const lottos = LottoStore.purchaseLottos(purchaseAmount);
+      userLottoStore.setState({ purchaseAmount, lottos });
+    } catch (error) {
+      alert(error.message);
+    }
   },
 
   handlePurchaseAmountInput(e) {

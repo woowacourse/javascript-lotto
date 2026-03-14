@@ -23,7 +23,7 @@
 
 ## 수정 및 기능 추가
 
-1. input type number -> 마우스휠 제한
+1. input type number -> 마우스휠 제한?
 2. 당첨 번호 입력 시 키보드 조작(화살표로 다음 넘어가게)
 3. 전체 예외 잡아서 alert 또는 각 입력의 errorMessage로
 
