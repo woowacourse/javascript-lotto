@@ -28,21 +28,11 @@ class App {
 
       this.#outputView.renderLottoResult(amount, lottoList);
 
-      const resultButton = document.querySelector("#result-button");
-      resultButton.addEventListener("click", () => {
-        const winningNumbers = [
-          ...document.querySelectorAll("#winning-lottos .ui-pin"),
-        ]
-          .map((pinElement) => {
-            return pinElement.querySelector("input").value;
-          })
-          .map(Number);
-
-        const bonusNumber = document.querySelector("#bonus-lotto input").value;
-
-        const lottoGame = new LottoGame(winningNumbers, Number(bonusNumber));
+      this.#inputView.readLottoNumber((winningNumbers, bonusNumber) => {
+        const lottoGame = new LottoGame(winningNumbers, bonusNumber);
         this.#model.lottoGame = lottoGame;
         const statistics = lottoGame.getStatistics(this.#model.lottoList);
+
         const rate = new Rate(
           statistics,
           this.#model.lottoList.getLottoList().length * AMOUNT_PRICE,
@@ -51,50 +41,17 @@ class App {
 
         this.#outputView.renderStatisticsResult(statistics, rate.getRate());
       });
+
+      const restartButton = document.querySelector("#restart-button");
+      restartButton.addEventListener("click", () => {
+        this.#outputView.printReset();
+      });
+
+      const modalCloseButton = document.querySelector("#modal-close-button");
+      modalCloseButton.addEventListener("click", () => {
+        this.#outputView.printReset();
+      });
     });
-
-    const restartButton = document.querySelector("#restart-button");
-    restartButton.addEventListener("click", () => {
-      this.#outputView.printReset();
-    });
-
-    const modalCloseButton = document.querySelector("#modal-close-button");
-    modalCloseButton.addEventListener("click", () => {
-      this.#outputView.printReset();
-    });
-  }
-  async #inputWinningNumbers() {
-    let winningNumbers;
-    while (true) {
-      try {
-        const lottoNumbers = await this.#inputView.readLottoNumbers();
-
-        winningNumbers = parsingNumbers(lottoNumbers);
-        this.#validator.validateLottoNumbers(winningNumbers);
-
-        break;
-      } catch (err) {
-        this.#outputView.printError(err.message);
-      }
-    }
-    return winningNumbers;
-  }
-  async #inputBonusNumber(winningNumbers) {
-    let bonusNumber;
-    while (true) {
-      try {
-        bonusNumber = await this.#inputView.readBonusNumber();
-        this.#validator.validateBonusNumber(
-          winningNumbers,
-          stringToNumber(bonusNumber),
-        );
-
-        break;
-      } catch (err) {
-        this.#outputView.printError(err.message);
-      }
-    }
-    return bonusNumber;
   }
 }
 
