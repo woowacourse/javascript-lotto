@@ -8,8 +8,8 @@ export const renderLottoList = (lottos) => {
   section.innerHTML = "";
   lottos.forEach((lotto) => {
     const row = document.createElement("div");
-    row.id = "purchase-lottos";
-    row.innerHTML = `<span id="lotto-icon">🎟️</span><span class="game-container-span">${lotto.getNumbers().join(", ")}</span>`;
+    row.className = "purchase-lottos";
+    row.innerHTML = `<span class="lotto-icon">🎟️</span><span class="game-container-span">${lotto.getNumbers().join(", ")}</span>`;
     section.appendChild(row);
   });
 };
