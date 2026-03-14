@@ -20,13 +20,11 @@ class App {
   }
 
   async run() {
-    let winningNumbers;
-    let bonusNumber;
-
+    let price;
     const buyButton = document.querySelector("#buy-button");
     buyButton.addEventListener("click", () => {
       const priceInput = document.querySelector("#price input");
-      const price = priceInput.value;
+      price = priceInput.value;
 
       const lottoList = new LottoList(price / 1000);
       this.#model.lottoList = lottoList;
@@ -35,14 +33,24 @@ class App {
       this.#outputView.printLottos(lottoList);
     });
 
-    // winningNumbers = await this.#inputWinningNumbers();
-    // bonusNumber = await this.#inputBonusNumber(winningNumbers);
+    const resultButton = document.querySelector("#result-button");
+    resultButton.addEventListener("click", () => {
+      const winningNumbers = [
+        ...document.querySelectorAll("#winning-lottos .ui-pin"),
+      ].map((pinElement) => {
+        return pinElement.querySelector("input").value;
+      });
 
-    // const lottoGame = new LottoGame(winningNumbers, bonusNumber);
-    // const statistics = lottoGame.getStatistics(lottoList);
-    // const rate = new Rate(statistics, price);
+      const bonusNumber = document.querySelector("#bonus-lotto input").value;
 
-    // this.#showResult(statistics, rate.getRate());
+      const lottoGame = new LottoGame(winningNumbers, bonusNumber);
+      this.#model.lottoGame = lottoGame;
+      const statistics = lottoGame.getStatistics(this.#model.lottoList);
+      const rate = new Rate(statistics, price);
+      this.#model.rate = rate;
+
+      this.#showResult(statistics, rate.getRate());
+    });
 
     // const isRetry = await this.#inputView.readIsRetry();
     // if (isRetry === "y") {

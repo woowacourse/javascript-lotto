@@ -19,27 +19,47 @@ export class OutputView {
     lottoListUL.innerHTML = html;
   }
   printStatistics(statistics) {
-    Console.print("");
-    Console.print("당첨 통계");
-    Console.print("--------------------");
+    const uiModal = document.querySelector("#modal .ui-modal");
+    uiModal.style.display = "flex";
 
-    // (0원) - 1개 // 꼴등
-    // 3개 일치 (5,000원) - 1개 // 5등
-    // 4개 일치 (50,000원) - 0개 // 4등
-    // 5개 일치 (1,500,000원) - 0개 // 3등
-    // 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개 // 2등
-    // 6개 일치 (2,000,000,000원) - 0개 // 1등
+    const resultStaticsticTbody = document.querySelector(
+      "#result-staticstic tbody",
+    );
 
-    Console.print(`3개 일치 (5,000원) - ${statistics["5"]}개`); // 5등
-    Console.print(`4개 일치 (50,000원) - ${statistics["4"]}개`); // 4등
-    Console.print(`5개 일치 (1,500,000원) - ${statistics["3"]}개`); // 3등
-    Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${statistics["2"]}개`,
-    ); // 2등
-    Console.print(`6개 일치 (2,000,000,000원) - ${statistics["1"]}개`); // 1등
+    const html = `
+                      <tr>
+                        <td class="align-center">3개</td>
+                        <td class="align-center">5,000</td>
+                        <td class="align-center">${statistics[5]}개</td>
+                      </tr>
+                      <tr>
+                        <td class="align-center">4개</td>
+                        <td class="align-center">50,000</td>
+                        <td class="align-center">${statistics[4]}개</td>
+                      </tr>
+                      <tr>
+                        <td class="align-center">5개</td>
+                        <td class="align-center">1,500,000</td>
+                        <td class="align-center">${statistics[3]}개</td>
+                      </tr>
+                      <tr>
+                        <td class="align-center">5개+보너스볼</td>
+                        <td class="align-center">30000,000</td>
+                        <td class="align-center">${statistics[2]}개</td>
+                      </tr>
+                      <tr>
+                        <td class="align-center">6개</td>
+                        <td class="align-center">2,000,000,000</td>
+                        <td class="align-center">${statistics[1]}개</td>
+                      </tr>
+    `;
+
+    resultStaticsticTbody.innerHTML = html;
   }
   printRate(rate) {
-    Console.print(`총 수익률은 ${rate}%입니다.`);
+    const rateText = document.querySelector("#rate-text");
+    const html = `당신의 총 수익률은 ${rate}%입니다.`;
+    rateText.innerHTML = html;
   }
   printError(errorMessage) {
     Console.print(`${errorMessage} 다시 입력해주세요.`);
