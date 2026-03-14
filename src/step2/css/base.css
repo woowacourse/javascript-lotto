@@ -295,19 +295,6 @@ input#purchase-amount {
     color: var(--error-fg);
 }
 
-.error input {
-    border-color: var(--error-border);
-}
-
-.error p {
-    margin-top: 8px;
-    color: var(--error-border);
-}
-
-.success input {
-    border-color: var(--success-border);
-}
-
 .hidden {
     opacity: 0;
 }
