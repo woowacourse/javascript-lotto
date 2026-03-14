@@ -34,7 +34,7 @@ class WebView {
   bindPurchase(handler){
     this.purchase.$form.addEventListener("submit", (e) => {
       e.preventDefault();
-      handler(Number(this.purchase.$input.value));
+      handler(this.getPurchaseAmount());
     });
   }
 
@@ -46,7 +46,7 @@ class WebView {
   }
 
   getPurchaseAmount() {
-    return this.purchase.$input.value;
+    return Number(this.purchase.$input.value);
   }
 
   renderLottoCount(count) {
