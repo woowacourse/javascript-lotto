@@ -3,6 +3,8 @@ import { generateRandomNumbers } from "./generateRandomNumbers.js";
 import WebLottoManager from "./WebLottoManager.js";
 import { dom } from "./view/ui/dom.js";
 import {
+  removeErrorMessage,
+  renderErrorMessage,
   renderPurchaseLottos,
   renderResultModal,
   resetDOM,
@@ -21,8 +23,9 @@ dom.purchaseBtn.addEventListener("click", (e) => {
     const amount = parseStringToNumber(dom.purchaseInput.value);
     const { count, lottos } = webLottoManager.purchase(amount);
     renderPurchaseLottos(count, lottos);
+    removeErrorMessage(dom.purchaseError);
   } catch (error) {
-    alert(error);
+    renderErrorMessage(dom.purchaseError, error.message);
   }
 });
 
@@ -37,8 +40,9 @@ dom.resultBtn.addEventListener("click", () => {
       bonusNumber
     );
     renderResultModal(prizeList, roi);
+    removeErrorMessage(dom.winningError);
   } catch (error) {
-    alert(error);
+    renderErrorMessage(dom.winningError, error.message);
   }
 });
 

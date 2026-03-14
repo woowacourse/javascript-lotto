@@ -18,4 +18,6 @@ export const dom = {
     5: document.getElementById("stat-5"),
   },
   roiText: document.getElementById("roi-text"),
+  purchaseError: document.getElementById("purchase-error"),
+  winningError: document.getElementById("winning-error"),
 };

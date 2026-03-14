@@ -15,8 +15,8 @@
       <main>
         <div class="card">
           <h2>🎱 내 번호 당첨 확인 🎱</h2>
-
           <section class="purchase-section">
+            <!-- 구입 금액 입력 -->
             <form class="purchase-amount-form">
               <div class="input-title">
                 <p>구입할 금액을 입력해주세요.</p>
@@ -35,7 +35,7 @@
                 구입
               </button>
             </form>
-            <!-- 구입 금액 입력 -->
+            <p id="purchase-error" class="error-msg"></p>
           </section>
 
           <section class="purchased-lotto-section" id="purchased-lotto-section">
@@ -61,6 +61,7 @@
                 <input class="number-each" id="bonus-number" />
               </div>
             </div>
+            <p id="winning-error" class="error-msg"></p>
             <button class="result-btn" id="result-btn">결과 확인하기</button>
           </section>
         </div>

@@ -32,3 +32,11 @@ export const resetDOM = () => {
   dom.winningNumberInputs.forEach((input) => (input.value = ""));
   dom.bonusNumberInput.value = "";
 };
+
+export const renderErrorMessage = (errorEle, errorMsg) => {
+  errorEle.textContent = errorMsg;
+};
+
+export const removeErrorMessage = (errorEle) => {
+  errorEle.textContent = "";
+};
