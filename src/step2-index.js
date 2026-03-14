@@ -49,8 +49,7 @@ let lottoMachine = null;
     try {
       Validator.validateLottoNumber(winningLottoNumber);
       Validator.validateBonusNumber(winningLottoNumber, bonusNumber);
-      const matchResultDialog = document.getElementById('lotto-match-result-dialog');
-      matchResultDialog.showModal();
+      View.openModal();
       const winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
       lottoMachine.calculateMatchResult(
         winningLotto.getWinningNumber(), winningLotto.getBonusNumber()
@@ -65,11 +64,10 @@ let lottoMachine = null;
 }());
 
 (function() {
-  const matchResultDialog = document.getElementById('lotto-match-result-dialog');
   const matchResultContentNode = document.getElementById('lotto-match-result-content');
   matchResultContentNode.addEventListener('click', (e) => {
     if (!e.target.matches('#restart-button')) return;
-    matchResultDialog.close();
+    View.closeModal();
     lottoMachine = null;
     const purchaseAmountInput = document.getElementById('purchase-amount');
     purchaseAmountInput.value = '';
@@ -78,8 +76,9 @@ let lottoMachine = null;
     document.getElementById('winning-lotto-form').reset();
     View.convertHiddenState(HIDE_CONTENT_SELECTORS);
   });
+  const matchResultDialog = document.getElementById('lotto-match-result-dialog');
   const dialogCloser = matchResultDialog.querySelector('button.dialog-closer');
   dialogCloser.addEventListener('click', () => {
-    matchResultDialog.close();
+    View.closeModal();
   });
 }());

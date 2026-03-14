@@ -1,6 +1,14 @@
 import Component from './Component.js';
 
 const View = {
+  openModal() {
+    document.getElementById('lotto-match-result-dialog').showModal();
+  },
+
+  closeModal() {
+    document.getElementById('lotto-match-result-dialog').close();
+  },
+
   convertHiddenState(targets) {
     targets.forEach((target) => target.classList.toggle('hidden'));
   },

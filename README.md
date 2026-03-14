@@ -76,7 +76,7 @@
   - [x] 결과 테이블, 수익률, 재시작 -> 모달 렌더링
   - [x] 에러 메시지 렌더링
   - [x] hidden 유틸
-  - [] 모달 close/open
+  - [x] 모달 close/open
   - [] 재시작
 
 - controller
