@@ -21,9 +21,8 @@ class App {
   }
 
   async run() {
-    this.#outputView.renderApp({}, () => {
-      this.#inputPrice();
-    });
+    this.#outputView.renderApp({});
+    this.#inputPrice();
   }
   #inputPrice() {
     this.#inputView.readPrice((price) => {
@@ -31,9 +30,8 @@ class App {
       const lottoList = new LottoList(amount);
       this.#model.lottoList = lottoList;
 
-      this.#outputView.renderLottoResult({ amount, lottoList }, () => {
-        this.#inputLottoNumber();
-      });
+      this.#outputView.renderLottoResult({ amount, lottoList });
+      this.#inputLottoNumber();
     });
   }
   #inputLottoNumber() {
@@ -48,15 +46,11 @@ class App {
       );
       this.#model.rate = rate;
 
-      this.#outputView.renderStatisticsResult(
-        {
-          statistics,
-          rate: rate.getRate(),
-        },
-        () => {
-          this.#inputIsReady();
-        },
-      );
+      this.#outputView.renderStatisticsResult({
+        statistics,
+        rate: rate.getRate(),
+      });
+      this.#inputIsReady();
     });
   }
   #inputIsReady() {
