@@ -110,6 +110,12 @@ class LottoWebView {
       handler();
     });
   }
+
+  bindRestartButton(handler) {
+    this.restartButton.addEventListener("click", () => {
+      handler();
+    });
+  }
 }
 
 export default LottoWebView;

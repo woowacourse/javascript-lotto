@@ -16,12 +16,8 @@ class WebApp {
     this.view.bindLuckyNumbersForm(this.#handleLuckyNumbersForm.bind(this));
     // 모달 창 닫기 버튼
     this.view.bindModalCloseButton(this.#handleModalCloseButton.bind(this));
-
     // 재시작 버튼
-    this.view.restartButton.addEventListener("click", () => {
-      this.lottos = [];
-      this.view.resetView();
-    });
+    this.view.bindRestartButton(this.#handleRestartButton.bind(this));
   }
 
   // 랜덤 숫자 생성기
@@ -74,6 +70,11 @@ class WebApp {
 
   #handleModalCloseButton() {
     this.view.closeModal();
+  }
+
+  #handleRestartButton() {
+    this.lottos = [];
+    this.view.resetView();
   }
 }
 
