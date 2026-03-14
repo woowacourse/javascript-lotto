@@ -17,9 +17,13 @@ const webLottoManager = new WebLottoManager(generateRandomNumbers);
 
 dom.purchaseBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  const amount = parseStringToNumber(dom.purchaseInput.value);
-  const { count, lottos } = webLottoManager.purchase(amount);
-  renderPurchaseLottos(count, lottos);
+  try {
+    const amount = parseStringToNumber(dom.purchaseInput.value);
+    const { count, lottos } = webLottoManager.purchase(amount);
+    renderPurchaseLottos(count, lottos);
+  } catch (error) {
+    alert(error);
+  }
 });
 
 dom.resultBtn.addEventListener("click", () => {
@@ -27,11 +31,15 @@ dom.resultBtn.addEventListener("click", () => {
     parseStringToNumber(input.value)
   );
   const bonusNumber = parseStringToNumber(dom.bonusNumberInput.value);
-  const { prizeList, roi } = webLottoManager.getResult(
-    winningNumbers,
-    bonusNumber
-  );
-  renderResultModal(prizeList, roi);
+  try {
+    const { prizeList, roi } = webLottoManager.getResult(
+      winningNumbers,
+      bonusNumber
+    );
+    renderResultModal(prizeList, roi);
+  } catch (error) {
+    alert(error);
+  }
 });
 
 dom.restartBtn.addEventListener("click", () => {
