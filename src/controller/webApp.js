@@ -1,7 +1,7 @@
 import LottoController from "./LottoController.js";
 import WebView from "../view/WebView.js";
 import Lotto from "../model/Lotto.js";
-import Validator from "../utils/Validator.js";
+import Validator from "../utils/WebValidator.js";
 
 class WebApp {
   #lottoController;
