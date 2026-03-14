@@ -21,17 +21,12 @@ class App {
   }
 
   async run() {
-    const buyButton = document.querySelector("#buy-button");
-    buyButton.addEventListener("click", () => {
-      const priceInput = document.querySelector("#price input");
-      const price = priceInput.value;
-
+    this.#inputView.readPrice((price) => {
       const amount = price / AMOUNT_PRICE;
-
       const lottoList = new LottoList(amount);
       this.#model.lottoList = lottoList;
 
-      this.#outputView.renderLottoResult(price, lottoList);
+      this.#outputView.renderLottoResult(amount, lottoList);
     });
 
     const resultButton = document.querySelector("#result-button");
@@ -67,20 +62,6 @@ class App {
     modalCloseButton.addEventListener("click", () => {
       this.#outputView.printReset();
     });
-  }
-  async #inputPrice() {
-    let price;
-    while (true) {
-      try {
-        price = await this.#inputView.readPrice();
-        this.#validator.validatePrice(price);
-
-        break;
-      } catch (err) {
-        this.#outputView.printError(err.message);
-      }
-    }
-    return price;
   }
   async #inputWinningNumbers() {
     let winningNumbers;

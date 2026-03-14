@@ -1,8 +1,14 @@
 import Console from "../../utils/Console.js";
 
 export class InputView {
-  async readPrice() {
-    return await Console.readLineAsync("> 구입금액을 입력해 주세요.");
+  readPrice(handler) {
+    const buyButton = document.querySelector("#buy-button");
+    buyButton.addEventListener("click", () => {
+      const priceInput = document.querySelector("#price input");
+      const price = priceInput.value;
+
+      handler(price);
+    });
   }
   async readLottoNumbers() {
     return await Console.readLineAsync("> 당첨 번호를 입력해 주세요. ");
