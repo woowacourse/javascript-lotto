@@ -13,6 +13,14 @@ class ResultModalView {
     this.#submitButton = document.querySelector(".result-modal__submit-btn");
   }
 
+  open() {
+    this.#modal.showModal();
+  }
+
+  close() {
+    this.#modal.close();
+  }
+
   bindCloseButton() {
     this.#closeButton.addEventListener("click", (e) => {
       this.#modal.close();
@@ -26,11 +34,7 @@ class ResultModalView {
     });
   }
 
-  setProfitRate(profitRate) {
-    this.#profit.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
-  }
-
-  setScore(scoreData) {
+  renderScore(scoreData) {
     this.#tbody.innerHTML = "";
     const fragment = new DocumentFragment();
 
@@ -63,12 +67,8 @@ class ResultModalView {
     this.#tbody.append(fragment);
   }
 
-  open() {
-    this.#modal.showModal();
-  }
-
-  close() {
-    this.#modal.close();
+  renderProfitRate(profitRate) {
+    this.#profit.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
   }
 }
 
