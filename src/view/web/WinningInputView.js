@@ -9,6 +9,23 @@ const WinningInputView = {
   winningNumbersContainer: document.querySelector("#winning-numbers-container"),
   bonusNumberContainer: document.querySelector("#bonus-number-container"),
 
+  limitInputLength() {
+    this.winningSection.addEventListener("keydown", (e) => {
+      if (!e.target.classList.contains("number-input")) return;
+
+      const target = e.target;
+      const allowKeys = ["Backspace", "Delete", "Tab"];
+
+      if (
+        target.value.length >= 2 &&
+        !allowKeys.includes(e.key) &&
+        !e.key.includes("Arrow")
+      ) {
+        e.preventDefault();
+      }
+    });
+  },
+
   onSubmitNumbers(handler) {
     this.winningForm.addEventListener("submit", (e) => {
       e.preventDefault();

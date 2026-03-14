@@ -15,6 +15,7 @@ class WebApp {
   bindEvents() {
     PurchaseView.onPurchase((price) => this.#handlePurchase(price));
 
+    WinningInputView.limitInputLength();
     WinningInputView.onSubmitNumbers((winningNumbers, bonusNumber) =>
       this.#handleWinningResult(winningNumbers, bonusNumber),
     );
