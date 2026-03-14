@@ -23,14 +23,15 @@ class WebApp {
     window.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && this.view.isModalVisible()) {
         e.preventDefault();
-        location.reload();
+        this.view.resetUI();
+        this.#lottoController = null;
       }
     });
   }
 
   #handlePurchase() {
     try {
-      const purchasedPrice = Number(this.view.getPurchaseAmount());
+      const purchasedPrice = this.view.getPurchaseAmount();
       this.#validatePurchase(purchasedPrice);
 
       const lottoCount = purchasedPrice / 1000;
