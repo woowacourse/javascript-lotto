@@ -27,7 +27,6 @@ class WebLottoManager {
   }
 
   getResult(winningNumbers, bonusNumber) {
-    // TODO 보너스 번호 중복 검증
     if (this.#purchaseAmount === 0 || this.#purchasedLotto === null)
       throw new Error("[ERROR]");
     const winningLotto = new WinningLotto(winningNumbers, bonusNumber);

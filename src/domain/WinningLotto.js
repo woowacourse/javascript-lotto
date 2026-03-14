@@ -1,8 +1,14 @@
+import {
+  validateBonusNumber,
+  validateLottoNumbers,
+} from "../utils/validator.js";
 import Lotto from "./Lotto.js";
 
 class WinningLotto extends Lotto {
   constructor(numbers, bonus) {
     super(numbers);
+    validateLottoNumbers(numbers);
+    validateBonusNumber(bonus, numbers);
     this.bonusNumber = bonus;
   }
 
