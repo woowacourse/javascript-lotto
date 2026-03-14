@@ -9,12 +9,16 @@ let purchaseAmount = 0;
 
 purchaseForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const formData = new FormData(purchaseForm);
-  purchaseAmount = parseInt(formData.get("purchase-amount"), 10); // TODO: 상수화 하기
-  lottos = LottoStore.purchaseLottos(purchaseAmount);
+  try {
+    const formData = new FormData(purchaseForm);
+    purchaseAmount = parseInt(formData.get("purchase-amount"), 10); // TODO: 상수화 하기
+    lottos = LottoStore.purchaseLottos(purchaseAmount);
 
-  drawLottoList();
-  drawWinningNumbersAndBonusNumber();
+    drawLottoList();
+    drawWinningNumbersAndBonusNumber();
+  } catch (error) {
+    alert(error.message);
+  }
 });
 
 function drawLottoList() {
@@ -130,8 +134,93 @@ function drawWinningNumbersAndBonusNumber() {
       purchaseAmount,
     );
 
-    // drawLottoResult(rank, returnRate);
+    drawLottoResult(rank, returnRate);
   });
 }
 
-// function drawLottoResult(rank, returnRate) {}
+function drawLottoResult(rank, returnRate) {
+  const lottoResultBlock = document.createElement("div");
+  lottoResultBlock.classList.add("lotto-result");
+  document.body.appendChild(lottoResultBlock);
+
+  const lottoResultDimmed = document.createElement("div");
+  lottoResultDimmed.classList.add("lotto-result__dimmed");
+  lottoResultBlock.appendChild(lottoResultDimmed);
+
+  const lottoResultContent = document.createElement("div");
+  lottoResultContent.classList.add("lotto-result__content");
+  lottoResultBlock.appendChild(lottoResultContent);
+
+  const lottoResultCloseButton = document.createElement("button");
+  lottoResultCloseButton.classList.add("lotto-result__close-button");
+  lottoResultCloseButton.innerHTML = `<img src="/assets/Close.png" alt="닫기" width="14px" />`;
+  lottoResultContent.appendChild(lottoResultCloseButton);
+
+  lottoResultCloseButton.addEventListener("click", () => {
+    lottoResultBlock.remove();
+  });
+
+  const lottoResultTitleWrapper = document.createElement("div");
+  lottoResultTitleWrapper.classList.add("lotto-result__title-wrapper");
+  lottoResultContent.appendChild(lottoResultTitleWrapper);
+
+  const lottoResultTitle = document.createElement("h2");
+  lottoResultTitle.classList.add("lotto-result__title");
+  lottoResultTitle.innerText = "🏆 당첨 통계 🏆";
+  lottoResultTitleWrapper.appendChild(lottoResultTitle);
+
+  const lottoResultTable = document.createElement("table");
+  lottoResultTable.classList.add("lotto-result__table");
+  lottoResultContent.appendChild(lottoResultTable);
+
+  const lottoResultTableHeader = document.createElement("thead");
+  lottoResultTableHeader.classList.add("lotto-result__table-header");
+  lottoResultTable.appendChild(lottoResultTableHeader);
+
+  const lottoResultTableHeaderRow = document.createElement("tr");
+  lottoResultTableHeader.appendChild(lottoResultTableHeaderRow);
+
+  // TODO: 상수화 하기
+  ["일치 갯수", "당첨금", "당첨 갯수"].forEach((header) => {
+    const th = document.createElement("th");
+    th.innerText = header;
+    lottoResultTableHeaderRow.appendChild(th);
+  });
+
+  const lottoResultTableBody = document.createElement("tbody");
+  lottoResultTableBody.classList.add("lotto-result__table-body");
+  lottoResultTable.appendChild(lottoResultTableBody);
+
+  lottoResultTableBody.innerHTML = `<tbody class="lotto-result__table-body">
+          <tr>
+            <td>3개</td>
+            <td>5,000</td>
+            <td>${rank[5] || 0}</td>
+          </tr>
+          <tr>
+            <td>4개</td>
+            <td>50,000</td>
+            <td>${rank[4] || 0}</td>
+          </tr>
+          <tr>
+            <td>5개</td>
+            <td>1,500,000</td>
+            <td>${rank[3] || 0}</td>
+          </tr>
+          <tr>
+            <td>5개+보너스볼</td>
+            <td>30,000,000</td>
+            <td>${rank[2] || 0}</td>
+          </tr>
+          <tr>
+            <td>6개</td>
+            <td>2,000,000,000</td>
+            <td>${rank[1] || 0}</td>
+          </tr>
+        </tbody>`;
+
+  const returnRateInfo = document.createElement("p");
+  returnRateInfo.classList.add("lotto-result__return-rate");
+  returnRateInfo.innerText = `총 수익률은 ${returnRate}%입니다.`;
+  lottoResultContent.appendChild(returnRateInfo);
+}
