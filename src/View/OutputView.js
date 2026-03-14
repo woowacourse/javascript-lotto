@@ -5,6 +5,20 @@ const OutputView = {
     const lottoCount = document.querySelector("#lotto-count");
 
     lottoCount.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
+
+    let lottosHtml = "";
+
+    const lottoList = document.getElementById("lotto-list");
+
+    lottos.forEach((lotto) => {
+      lottosHtml += `
+      <li class="lotto-item">
+          <span class="emoji">🎟️</span>
+          <span id = "lotto">${lotto.toString().replace(/^\[|\]$/g, "")}</span>
+        </li>`;
+    });
+
+    lottoList.innerHTML = lottosHtml;
   },
 
   printMatchResult(result) {

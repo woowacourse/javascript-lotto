@@ -41,6 +41,7 @@ body {
 
 .lottobox .purchaseBox #priceText {
   margin: 0 0 10px 0;
+  font-size: 15px;
 }
 
 .lottobox .purchaseBox .purchase-row {
@@ -62,7 +63,7 @@ body {
 .lottobox .purchaseBox #purchaseButton {
   margin-left: 8px;
   background-color: #4e5ba6;
-  font-size: 14;
+  font-size: 14px;
   font-weight: bolder;
   width: 56px;
   height: 36px;
@@ -77,4 +78,41 @@ body {
   height: 24px;
   margin-left: 16px;
   margin-top: 28px;
+  font-size: 15px;
+}
+
+.lottos-print {
+  width: 238px;
+  height: 276px;
+  margin-left: 16px;
+  margin-bottom: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#lotto-list {
+  width: 238px;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.lotto-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 36px;
+  font-size: 34px;
+}
+
+.lotto {
+  font-size: 15px;
 }
