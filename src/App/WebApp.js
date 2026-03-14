@@ -21,6 +21,7 @@ class App {
   }
 
   async run() {
+    this.#outputView.renderApp();
     this.#inputView.readPrice((price) => {
       const amount = price / AMOUNT_PRICE;
       const lottoList = new LottoList(amount);
