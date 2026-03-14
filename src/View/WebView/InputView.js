@@ -26,8 +26,16 @@ export class InputView {
       handler(winningNumbers, Number(bonusNumber));
     });
   }
-  async readIsRetry() {
-    return await Console.readLineAsync("\n> 다시 시작하시겠습니까? (y/n) ");
+  async readIsRetry(handler) {
+    const restartButton = document.querySelector("#restart-button");
+    restartButton.addEventListener("click", () => {
+      handler();
+    });
+
+    const modalCloseButton = document.querySelector("#modal-close-button");
+    modalCloseButton.addEventListener("click", () => {
+      handler();
+    });
   }
 }
 
