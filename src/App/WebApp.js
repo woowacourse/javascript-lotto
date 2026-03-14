@@ -21,31 +21,45 @@ class App {
   }
 
   async run() {
-    this.#outputView.renderApp();
+    this.#outputView.renderApp(() => {
+      this.#inputPrice();
+    });
+  }
+  #inputPrice() {
     this.#inputView.readPrice((price) => {
       const amount = price / AMOUNT_PRICE;
       const lottoList = new LottoList(amount);
       this.#model.lottoList = lottoList;
 
-      this.#outputView.renderLottoResult(amount, lottoList);
-
-      this.#inputView.readLottoNumber((winningNumbers, bonusNumber) => {
-        const lottoGame = new LottoGame(winningNumbers, bonusNumber);
-        this.#model.lottoGame = lottoGame;
-        const statistics = lottoGame.getStatistics(this.#model.lottoList);
-
-        const rate = new Rate(
-          statistics,
-          this.#model.lottoList.getLottoList().length * AMOUNT_PRICE,
-        );
-        this.#model.rate = rate;
-
-        this.#outputView.renderStatisticsResult(statistics, rate.getRate());
-
-        this.#inputView.readIsRetry(() => {
-          this.#outputView.printReset();
-        });
+      this.#outputView.renderLottoResult(amount, lottoList, () => {
+        this.#inputLottoNumber();
       });
+    });
+  }
+  #inputLottoNumber() {
+    this.#inputView.readLottoNumber((winningNumbers, bonusNumber) => {
+      const lottoGame = new LottoGame(winningNumbers, bonusNumber);
+      this.#model.lottoGame = lottoGame;
+      const statistics = lottoGame.getStatistics(this.#model.lottoList);
+
+      const rate = new Rate(
+        statistics,
+        this.#model.lottoList.getLottoList().length * AMOUNT_PRICE,
+      );
+      this.#model.rate = rate;
+
+      this.#outputView.renderStatisticsResult(
+        statistics,
+        rate.getRate(),
+        () => {
+          this.#inputIsReady();
+        },
+      );
+    });
+  }
+  #inputIsReady() {
+    this.#inputView.readIsRetry(() => {
+      this.#outputView.printReset();
     });
   }
 }

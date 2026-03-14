@@ -2,7 +2,7 @@ import Console from "../../utils/Console.js";
 import { AMOUNT_PRICE } from "../../constants/lottoConstants.js";
 
 export class OutputView {
-  renderApp() {
+  renderApp(callback) {
     const app = document.querySelector("#app");
     const html = `
       <div class="layout">
@@ -44,8 +44,10 @@ export class OutputView {
     `;
 
     app.innerHTML = html;
+
+    callback();
   }
-  renderLottoResult(amount, lottoList) {
+  renderLottoResult(amount, lottoList, callback) {
     const lottoResultBox = document.querySelector("#lotto-result-box");
     const html = `
             <!-- 구매한 로또 -->
@@ -122,8 +124,10 @@ export class OutputView {
             </div>
     `;
     lottoResultBox.innerHTML = html;
+
+    callback();
   }
-  renderStatisticsResult(statistics, rate) {
+  renderStatisticsResult(statistics, rate, callback) {
     const modal = document.querySelector("#modal");
     const html = `
       <div class="ui-modal">
@@ -194,6 +198,8 @@ export class OutputView {
       </div>
     `;
     modal.innerHTML = html;
+
+    callback();
   }
   printReset() {
     const lottoResultBox = document.querySelector("#lotto-result-box");
