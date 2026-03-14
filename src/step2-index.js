@@ -210,7 +210,7 @@ function drawLottoResult(rank, returnRate) {
   lottoResultTableBody.classList.add("lotto-result__table-body");
   lottoResultTable.appendChild(lottoResultTableBody);
 
-  lottoResultTableBody.innerHTML = `<tbody class="lotto-result__table-body">
+  lottoResultTableBody.innerHTML = `
           <tr>
             <td>3개</td>
             <td>5,000</td>
@@ -235,8 +235,7 @@ function drawLottoResult(rank, returnRate) {
             <td>6개</td>
             <td>2,000,000,000</td>
             <td>${rank[1] || 0}개</td>
-          </tr>
-        </tbody>`;
+          </tr>`;
 
   const returnRateInfo = document.createElement("p");
   returnRateInfo.classList.add("lotto-result__return-rate");
