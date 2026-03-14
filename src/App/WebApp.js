@@ -5,6 +5,7 @@ import { parsingNumbers, stringToNumber } from "../utils/parsing.js";
 import Validator from "../Validator.js";
 import InputView from "../View/WebView/InputView.js";
 import OutputView from "../View/WebView/OutputView.js";
+import { AMOUNT_PRICE } from "../constants/lottoConstants.js";
 
 class App {
   #validator;
@@ -20,13 +21,12 @@ class App {
   }
 
   async run() {
-    let price;
     const buyButton = document.querySelector("#buy-button");
     buyButton.addEventListener("click", () => {
       const priceInput = document.querySelector("#price input");
-      price = priceInput.value;
+      const price = priceInput.value;
 
-      const lottoList = new LottoList(price / 1000);
+      const lottoList = new LottoList(price / AMOUNT_PRICE);
       this.#model.lottoList = lottoList;
 
       this.#outputView.printAmount(price);
@@ -48,7 +48,10 @@ class App {
       const lottoGame = new LottoGame(winningNumbers, Number(bonusNumber));
       this.#model.lottoGame = lottoGame;
       const statistics = lottoGame.getStatistics(this.#model.lottoList);
-      const rate = new Rate(statistics, price);
+      const rate = new Rate(
+        statistics,
+        this.#model.lottoList.getLottoList().length * AMOUNT_PRICE,
+      );
       this.#model.rate = rate;
 
       this.#showResult(statistics, rate.getRate());
