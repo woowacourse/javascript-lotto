@@ -25,15 +25,16 @@
 
 body {
   background-color: var(--color-greyscale-2);
+
   color: var(--color-black);
   font: var(--font-body);
 }
 
 /* header 스타일 지정 */
 header {
-  background-color: var(--color-primary);
-
   padding: 0.8rem 4rem;
+
+  background-color: var(--color-primary);
 
   color: var(--color-white);
   font: var(--font-title);
@@ -46,25 +47,26 @@ header {
 #app {
   display: flex;
   flex-direction: column;
+
   min-height: 100vh;
 }
 
 .main-container {
+  flex-grow: 1;
+
   width: 100%;
   max-width: 414px;
   margin: 2rem auto;
   padding: 16px;
 
   background-color: var(--color-white);
-
   border: 1px solid #0000001f;
   border-radius: 4px;
-
-  flex-grow: 1;
 }
 
 .lotto-subtitle {
   margin-bottom: 0.5rem;
+
   text-align: center;
   font: var(--font-title);
 }
@@ -76,6 +78,7 @@ section {
 
 label {
   display: block;
+
   margin-bottom: 4px;
 }
 
@@ -85,20 +88,24 @@ label {
 
 #purchase-price {
   flex-grow: 1;
+
   margin-right: 8px;
   padding: 4px 8px;
+
   border: 1px solid var(--color-greyscale-3);
   border-radius: 4px;
+
   font: var(--font-body);
 }
 
 button {
   background-color: var(--color-primary);
-  color: var(--color-white);
   border: none;
   border-radius: 4px;
-  font: var(--font-button);
   cursor: pointer;
+
+  color: var(--color-white);
+  font: var(--font-button);
 }
 
 .purchase-button {
@@ -113,18 +120,21 @@ button {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
   max-height: 200px;
   overflow-y: auto;
 }
 
 .lucky-numbers-input-text {
-  font: var(--font-body);
   margin-bottom: 0.5rem;
+
+  font: var(--font-body);
 }
 
 .lucky-numbers-input-box {
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 0.5rem;
 }
 
@@ -149,11 +159,13 @@ button {
 .bonus-number input {
   width: 2.5rem;
   height: 2.5rem;
-  text-align: center;
   padding-left: 8px;
-  font: var(--font-body);
+
   border: 1px solid var(--color-greyscale-3);
   border-radius: 4px;
+
+  text-align: center;
+  font: var(--font-body);
 }
 
 .bonus-number {
@@ -167,14 +179,14 @@ button {
 }
 
 .modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
   height: 100%;
 
@@ -189,17 +201,17 @@ button {
   max-height: 500px;
   padding: 40px 16px;
 
-  border-radius: 4px;
   background-color: var(--color-white);
+  border-radius: 4px;
 
   text-align: center;
 }
 
 .close-button {
   position: absolute;
-
   top: 16px;
   right: 16px;
+
   padding: 0;
 
   background: transparent;
@@ -210,8 +222,9 @@ button {
 }
 
 .result-text {
-  font: var(--font-subtitle);
   margin-bottom: 1rem;
+
+  font: var(--font-subtitle);
 }
 
 .result-table {
@@ -221,8 +234,9 @@ button {
 
 .result-table th {
   padding: 8px 0;
-  border-bottom: 1px solid #0000001F;
-  border-top: 1px solid #0000001F;
+
+  border-top: 1px solid #0000001f;
+  border-bottom: 1px solid #0000001f;
 
   font: var(--font-body);
   font-weight: 600;
@@ -230,7 +244,8 @@ button {
 
 .result-table td {
   padding: 8px 0;
-  border-bottom: 1px solid #0000001F;
+
+  border-bottom: 1px solid #0000001f;
 
   font: var(--font-body);
 }
@@ -252,10 +267,11 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 80px;
+
+  border-top: 1px solid #4e5ba633;
 
   color: var(--color-primary);
   font: var(--font-button);
-
-  border-top: 1px solid #4e5ba633;
 }
