@@ -32,18 +32,20 @@ body {
 }
 
 #app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
 
 header {
+  height: 64px;
   background: var(--lotto-primary);
 }
 
 main {
-  width: 90%;
-  max-width: 414px;
-  min-height: 70vh;
-  margin: 7vh auto;
+  width: 414px;
+  height: 70vh;
+  margin: auto;
   border: 1px solid
     color-mix(in srgb, var(--lotto-greyscale-5), transparent 88%);
   border-radius: 4px;
@@ -60,8 +62,6 @@ main section {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   padding: 30px 0;
   border-top: 1px solid
@@ -177,7 +177,7 @@ input::-webkit-inner-spin-button {
 }
 
 #result-modal {
-  width: 70%;
+  width: 80%;
   max-width: 350px;
   position: fixed;
   top: 52%;
