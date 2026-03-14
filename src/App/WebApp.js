@@ -52,10 +52,10 @@ class App {
       this.#showResult(statistics, rate.getRate());
     });
 
-    // const isRetry = await this.#inputView.readIsRetry();
-    // if (isRetry === "y") {
-    //   await this.run();
-    // }
+    const restartButton = document.querySelector("#restart-button");
+    restartButton.addEventListener("click", () => {
+      this.#outputView.printReset();
+    });
   }
   async #inputPrice() {
     let price;

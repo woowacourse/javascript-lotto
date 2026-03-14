@@ -61,6 +61,22 @@ export class OutputView {
     const html = `당신의 총 수익률은 ${rate}%입니다.`;
     rateText.innerHTML = html;
   }
+  printReset() {
+    const uiModal = document.querySelector("#modal .ui-modal");
+    uiModal.style.display = "none";
+
+    document
+      .querySelectorAll("#winning-lottos .ui-pin")
+      .forEach((pinElement) => {
+        pinElement.querySelector("input").value = "";
+      });
+
+    const priceInput = document.querySelector("#price input");
+    priceInput.value = "";
+
+    const bonusNumberInput = document.querySelector("#bonus-lotto input");
+    bonusNumberInput.value = "";
+  }
   printError(errorMessage) {
     Console.print(`${errorMessage} 다시 입력해주세요.`);
   }
