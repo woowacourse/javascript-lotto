@@ -1,4 +1,3 @@
-import { LOTTO } from "../constants";
 import Validator from "../Validator";
 
 class WinningLottoView {
@@ -32,6 +31,13 @@ class WinningLottoView {
     });
   }
 
+  disableInputs() {
+    this.#allNumbersInput.forEach((node) => {
+      node.disabled = true;
+      node.style.cursor = "not-allowed";
+    });
+  }
+
   readWinningNumbers() {
     const rawWinningNumbers = Array.from(
       this.#winningNumberInputs,
@@ -44,15 +50,6 @@ class WinningLottoView {
       return Number(string);
     });
 
-    winningNumbers.forEach((number) => {
-      Validator.positiveNumber(number);
-      Validator.numberLower(LOTTO.LOWER, number);
-      Validator.numberUpper(LOTTO.UPPER, number);
-    });
-    Validator.notDuplicated(winningNumbers);
-
-    Validator.arrayLength(winningNumbers, LOTTO.COUNT);
-
     return winningNumbers;
   }
 
@@ -63,28 +60,13 @@ class WinningLottoView {
 
     const bonusNumber = Number(rawBonusNumber);
 
-    // 도메인 검증 분리하기
-    Validator.positiveNumber(bonusNumber);
-    Validator.numberLower(LOTTO.LOWER, bonusNumber);
-    Validator.numberUpper(LOTTO.UPPER, bonusNumber);
     return bonusNumber;
   }
 
   bindSubmitButton(successSubmit) {
     this.#form.addEventListener("submit", (e) => {
-      try {
-        const winningNumbers = this.readWinningNumbers();
-        const bonusNumber = this.readBonusNumber();
-
-        successSubmit(winningNumbers, bonusNumber);
-
-        this.#allNumbersInput.forEach((node) => {
-          node.disabled = true;
-          node.style.cursor = "not-allowed";
-        });
-      } catch (error) {
-        alert(error.message);
-      }
+      e.preventDefault();
+      successSubmit();
     });
   }
 
