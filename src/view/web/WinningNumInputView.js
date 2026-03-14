@@ -4,7 +4,7 @@ import {
 } from "../../components/LottoWinningForm";
 
 export const renderWinningNumInput = () => {
-  const winningInputWrapper = document.querySelector("#winning-input-wrapper");
+  const winningSection = document.querySelector("#winning-section");
   const winningNumbersContainer = document.querySelector(
     "#winning-numbers-container",
   );
@@ -15,5 +15,5 @@ export const renderWinningNumInput = () => {
   winningNumbersContainer.innerHTML = WinningNumberInput();
   bonusNumberContainer.innerHTML = BonusNumberInput();
 
-  winningInputWrapper.classList.remove("hidden");
+  winningSection.classList.remove("hidden");
 };

@@ -8,14 +8,14 @@ import { renderWinningNumInput } from "../view/web/WinningNumInputView";
 class WebApp {
   #lottoController;
   #purchaseForm;
-  #winningWrapper;
+  #winningSection;
   #resultModal;
 
   constructor() {
     this.#lottoController = new LottoController();
 
     this.#purchaseForm = document.querySelector("#purchase-form");
-    this.#winningWrapper = document.querySelector("#winning-input-wrapper");
+    this.#winningSection = document.querySelector("#winning-section");
     this.#resultModal = document.querySelector("#result-modal");
   }
 
@@ -24,7 +24,7 @@ class WebApp {
       this.#purchaseLottos(e),
     );
 
-    this.#winningWrapper.addEventListener("submit", (e) =>
+    this.#winningSection.addEventListener("submit", (e) =>
       this.#showLottoResult(e),
     );
 
@@ -90,7 +90,7 @@ class WebApp {
     document.querySelector("#lotto-count-text").textContent = "";
     document.querySelector("#lotto-list").innerHTML = "";
 
-    this.#winningWrapper.classList.add("hidden");
+    this.#winningSection.classList.add("hidden");
     this.#resultModal.close();
   }
 }

@@ -141,7 +141,7 @@ input::-webkit-inner-spin-button {
   padding: 0 0 0 8px;
 }
 
-.lotto-ticket-container {
+.lotto-section {
   min-height: calc(70vh - 320px);
 }
 
