@@ -5,8 +5,11 @@ const Modal = {
     const closeButton = document.createElement('button');
     const closeButtonIcon = document.createElement('img');
 
+    modalWrapper.id = 'modal-wrapper';
     modalWrapper.classList.add('modal-wrapper');
     modalWrapper.addEventListener('click', this.handleOutsideClick);
+
+    modalContainer.id = 'modal-container';
 
     closeButton.classList.add('close-button');
     closeButton.addEventListener('click', this.handleClose);
@@ -23,13 +26,13 @@ const Modal = {
   },
 
   handleOutsideClick(e) {
-    if (!e.target.closest('.modal-wrapper')) {
+    if (!e.target.closest('#modal-container')) {
       e.target.remove();
     }
   },
 
   handleClose() {
-    const modalWrapper = document.querySelector('.modal-wrapper');
+    const modalWrapper = document.querySelector('#modal-wrapper');
     if (modalWrapper) {
       modalWrapper.remove();
     }
