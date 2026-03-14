@@ -10,7 +10,7 @@ import ScoreBoard from "./ScoreBoard";
 import Validator from "./Validator";
 import PurchaseView from "./WebView/PurchaseView";
 import ResultModalView from "./WebView/ResultModalView";
-import TicketListView from "./WebView/TicketList";
+import TicketListView from "./WebView/TicketListView";
 import WinningLottoView from "./WebView/WinningLottoView";
 
 class App {
