@@ -25,6 +25,10 @@ class WebView {
       $rankCounts: document.querySelectorAll(".rank-count"),
       $profitRate: document.querySelector(".profitrate-view"),
     };
+
+    this.restart = {
+      $restartBtn: document.querySelector(".restart-btn"),
+    }
   }
 
   bindPurchase(handler){
@@ -108,6 +112,21 @@ class WebView {
 
   isModalVisible() {
     return !this.modal.$section.classList.contains("hidden");
+  }
+
+  resetUI() {
+    this.modal.$section.classList.add("hidden");
+    this.lotto.$section.classList.add("hidden");
+    this.winning.$section.classList.add("hidden");
+    this.purchase.$form.reset();
+    this.winning.$form.reset();
+  }
+
+  bindRestart(handler){
+    this.restart.$restartBtn.addEventListener("click", () => {
+      this.resetUI();
+      handler();
+    });
   }
 }
 

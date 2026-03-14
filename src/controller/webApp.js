@@ -16,6 +16,9 @@ class WebApp {
     this.view.displayMoreBtn();
     this.view.hideMoreBtn();
     
+    this.view.bindRestart(() => {
+      this.#lottoController = null;
+    })
 
     window.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && this.view.isModalVisible()) {
