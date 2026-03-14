@@ -24,7 +24,7 @@ const View = {
   },
 
   renderWinningLottoNumberErrorMessage(message) {
-    const target = document.getElementById('winning-lotto-inputs-container');
+    const target = document.getElementById('winning-lotto-error-message-container');
     const errorMessageComponent = Component.errorMessage(message);
     target.innerHTML = errorMessageComponent;
   },
