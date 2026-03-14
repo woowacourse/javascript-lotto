@@ -48,16 +48,10 @@ class WebApp {
     try {
       const winningNumbers = this.view.getWinningNumbers();
       const bonusNumber = this.view.getBonusNumber();
-
-      this.#validateWinningNum(winningNumbers);
-      this.#validateBonusNum(winningNumbers, bonusNumber);
-
-      winningNumbers.forEach(num => {
-        Validator.validateNumber(num);
-        Validator.validateLottoNumRange(num);
-      });
+      Validator.validateNumber(bonusNumber);
 
       const winningLotto = new Lotto(winningNumbers);
+
       this.#lottoController.updateWinningResult(winningLotto, bonusNumber);
 
       const { rankCount, profitRate } = this.#lottoController.getWinningResult();
@@ -70,17 +64,6 @@ class WebApp {
   #validatePurchase(price) {
     Validator.validateNumber(price);
     Validator.validatePrice(price);
-  }
-
-  #validateWinningNum(winningNumbers) {
-    Validator.validateLottoCount(winningNumbers);
-    Validator.validateDuplicateLottoNums(winningNumbers);
-  }
-
-  #validateBonusNum(winningNumbers, bonusNumber) {
-    Validator.validateNumber(bonusNumber);
-    Validator.validateLottoNumRange(bonusNumber);
-    Validator.validateDuplicateBonusNum(winningNumbers, bonusNumber);
   }
 }
 
