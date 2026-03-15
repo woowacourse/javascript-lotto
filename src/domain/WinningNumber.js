@@ -10,12 +10,12 @@ export default class WinningNumber {
   #bonusNumber;
 
   constructor(numbers, bonusNumber) {
-    this.#validator(numbers, bonusNumber);
-    this.#lotto = new Lotto(numbers);
+    WinningNumber.validate(numbers, bonusNumber);
+    this.#lotto = new Lotto([...numbers]);
     this.#bonusNumber = bonusNumber;
   }
 
-  #validator(numbers, bonusNumber) {
+  static validate(numbers, bonusNumber) {
     const { MIN_RANGE, MAX_RANGE } = Lotto.POLICY;
     if (bonusNumber < MIN_RANGE || MAX_RANGE < bonusNumber)
       throw new Error(WinningNumber.ERROR.INVALID_RANGE);
@@ -34,5 +34,13 @@ export default class WinningNumber {
     ).length;
     const matchBonus = lotto.hasNumber(this.#bonusNumber);
     return { matchWinning, matchBonus };
+  }
+
+  get lotto() {
+    return this.#lotto;
+  }
+
+  get bonusNumber() {
+    return this.#bonusNumber;
   }
 }

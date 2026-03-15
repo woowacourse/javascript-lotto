@@ -1,4 +1,5 @@
 import Lotto from "../../domain/Lotto.js";
+import WinningNumber from "../../domain/WinningNumber.js";
 import WinningUseCase from "../../features/winning/WinningUseCase.js";
 import statisticsUseCase from "../../features/statistics/statisticsUseCase.js";
 import { calculateProfit } from "../../features/statistics/statisticsUtils.js";
@@ -22,14 +23,16 @@ export default class ConsoleApp {
   async #lottoGame() {
     do {
       const purchaseDto = await this.#retry(() => this.#processPurchase());
-      const numbers = await this.#retry(() => this.#processWinningNumber());
-      const winningDto = await this.#retry(() =>
-        this.#processWinningBonus(numbers),
+      const winningNumber = await this.#retry(() =>
+        this.#processWinningNumber(),
       );
-      const { totalPrize } = await this.#processStatistics(
-        purchaseDto.lottos,
-        winningDto.winningNumber,
+      const bonusNumber = await this.#retry(() =>
+        this.#processWinningBonus(winningNumber),
       );
+      const { totalPrize } = await this.#processStatistics(purchaseDto.lottos, {
+        winningNumber,
+        bonusNumber,
+      });
       this.#processProfit(purchaseDto.purchasedAmount, totalPrize);
     } while (await this.#retry(() => this.#processAskRetry()));
   }
@@ -52,14 +55,17 @@ export default class ConsoleApp {
 
   async #processWinningBonus(numbers) {
     const rawBonus = await this.#ui.readBonusNumber();
-    const bonus = isNumber(toNumber(rawBonus));
-    return WinningUseCase.execute(numbers, bonus);
+    const bonusNumber = isNumber(toNumber(rawBonus));
+    WinningNumber.validate(numbers, bonusNumber);
+
+    return bonusNumber;
   }
 
-  async #processStatistics(lottosNumbers, winningNumber) {
+  async #processStatistics(lottosNumbers, { winningNumber, bonusNumber }) {
+    const winningLotto = WinningUseCase.execute(winningNumber, bonusNumber);
     const lottoStatsDto = statisticsUseCase.statisticsLottos(
       lottosNumbers,
-      winningNumber,
+      winningLotto,
     );
 
     this.#ui.printStatistics(lottoStatsDto.lottosResult);
