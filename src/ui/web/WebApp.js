@@ -1,5 +1,7 @@
 import { create } from "./core/dom.js";
 
+import { Header } from "./components/Header.js";
+import { Footer } from "./components/Footer.js";
 import { PurchaseForm } from "./components/PurchaseForm.js";
 import { WinningForm } from "./components/WinningForm.js";
 import { LottoList } from "./components/LottoList.js";
@@ -13,27 +15,28 @@ export const App = ($app, { lottoService }) => {
     profitRate: null,
   };
 
-  const $main = create("main");
-  const $purchaseSection = create("section");
-  const $lottoSection = create("section");
-  const $winningSection = create("section");
-  const $resultSection = create("section");
+  const $header = create("header", { class: "app-header" });
+  const $main = create("main", { class: "app-main" });
+  const $footer = create("footer", { class: "app-footer" });
 
+  const sections = {
+    $purchase: create("section"),
+    $lotto: create("section"),
+    $winning: create("section"),
+    $result: create("section"),
+  };
   const setState = (newState) => {
     state = { ...state, ...newState };
     render();
   };
 
   const init = () => {
-    $main.append(
-      $purchaseSection,
-      $lottoSection,
-      $winningSection,
-      $resultSection,
-    );
-    $app.append($main);
+    $main.append(...Object.values(sections));
+    $app.append($header, $main, $footer);
 
-    PurchaseForm($purchaseSection, { onPurchase });
+    Header($header);
+    PurchaseForm(sections.$purchase, { onPurchase });
+    Footer($footer);
   };
 
   const render = () => {
