@@ -1,0 +1,283 @@
+/* ========================
+   Reset
+======================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ========================
+   공통
+======================== */
+button {
+  background-color: #4e5ba6;
+  color: #ffffff;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#purchase-amount-input,
+.winning-number {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+/* ========================
+   Header
+======================== */
+header {
+  background-color: #4e5ba6;
+  padding: 0.875rem 0rem 0.875rem 8.125rem;
+}
+
+header h1 {
+  line-height: 36px;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* ========================
+   Main / Section
+======================== */
+main {
+  height: calc(100vh - 9rem);
+  width: 100vw;
+  display: grid;
+  place-content: center;
+}
+
+section {
+  border: 1px solid #0000001f;
+  width: 414px;
+  height: 45.4375rem;
+  padding: 2.5rem 1rem 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+section title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 100%;
+}
+
+/* ========================
+   Purchase Amount Area
+======================== */
+#purchase-amount-area {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+#purchase-amount-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  width: 100%;
+}
+
+#purchase-amount-field label {
+  line-height: 24px;
+  font-size: 15px;
+}
+
+#purchase-amount-field #purchase-amount-input {
+  height: 36px;
+  width: 100%;
+  padding: 8px;
+}
+
+#purchase-amount-area #button-purchase {
+  width: 56px;
+  height: 36px;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+/* ========================
+   Lotto Container
+======================== */
+#lotto-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 28px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+#lotto-list {
+  margin-top: 8px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+#lottos li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#lottos li span {
+  font-size: 36px;
+}
+#lottos li output {
+  margin-left: 8px;
+}
+
+/* ========================
+   Winning Number Area
+======================== */
+#winning-number-area {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#winning-number-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 12px;
+}
+
+#winning-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#winning-number-fields {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.winning-number,
+#bonus-number-input {
+  width: 34px;
+  height: 36px;
+  text-align: center;
+}
+#bonus-number-input {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#bonus-number {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+#result-button {
+  margin-top: 27px;
+  width: 100%;
+  height: 44px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ========================
+   Modal
+======================== */
+#result-modal {
+  width: 200px;
+  border: none;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+#result-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+#modal-header h2 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#modal-close-button {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+#result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+#result-table th,
+#result-table td {
+  border: 1px solid #e0e0e0;
+  padding: 8px;
+  text-align: center;
+}
+
+#result-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+#rate-of-return-text {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+#restart-button {
+  width: 100%;
+  height: 44px;
+  cursor: pointer;
+}
+
+/* ========================
+   Footer
+======================== */
+footer {
+  border-top: 1px solid #4e5ba633;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #4e5ba6;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 1.75rem;
+  padding-bottom: 2.25rem;
+}
