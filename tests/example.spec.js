@@ -14,4 +14,22 @@ test("금액 입력 후 구매 시 로또 리스트와 당첨 번호 입력창�
 
   const winningSection = page.locator(".winning-section");
   await expect(winningSection).toBeVisible();
+
+  const winningInputs = page.locator(".winning-number-input");
+  const winningNumbers = ["1", "2", "3", "4", "5", "6"];
+
+  for (let i = 0; i < winningNumbers.length; i++) {
+    await winningInputs.nth(i).fill(winningNumbers[i]);
+  }
+
+  const bonusInput = page.locator(".bonus-number-input");
+  await bonusInput.fill("7");
+
+  await page.click(".open-result-button");
+
+  const lottoResult = page.locator(".lotto-result");
+  await expect(lottoResult.first()).toBeVisible();
+
+  const profitRate = page.locator(".lotto-profitRate");
+  await expect(profitRate).toContainText("수익률");
 });
