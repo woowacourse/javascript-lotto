@@ -5,9 +5,9 @@ test("금액 입력 후 구매 시 로또 리스트와 당첨 번호 입력창�
 }) => {
   await page.goto("/");
 
-  const $input = page.locator(".purchase-amount-input");
+  const $input = page.locator(".purchase-form-input");
   await $input.fill("3000");
-  await page.click(".purchase-button");
+  await page.click(".purchase-form-button");
 
   const lottoItems = page.locator(".lotto-item");
   await expect(lottoItems).toHaveCount(3);
@@ -27,9 +27,15 @@ test("금액 입력 후 구매 시 로또 리스트와 당첨 번호 입력창�
 
   await page.click(".open-result-button");
 
-  const lottoResult = page.locator(".lotto-result");
-  await expect(lottoResult.first()).toBeVisible();
+  // 모달이 열렸는지 확인
+  const modal = page.locator(".modal-overlay");
+  await expect(modal).toHaveClass(/active/);
 
-  const profitRate = page.locator(".lotto-profitRate");
+  // 모달 안에 테이블 확인
+  const statisticsTable = page.locator(".statistics-table");
+  await expect(statisticsTable).toBeVisible();
+
+  // 수익률 확인
+  const profitRate = page.locator(".profit-rate");
   await expect(profitRate).toContainText("수익률");
 });
