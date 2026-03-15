@@ -248,7 +248,6 @@ body {
   height: 25px;
   opacity: 1;
   margin-top: 12px;
-  margin-bottom: 6px;
 }
 
 #bonus-number-input {
@@ -256,6 +255,22 @@ body {
   height: 32px;
   border-radius: 4px;
   border: 1px solid #b4b4b4;
-
   margin-top: 0px;
+}
+
+#result-button {
+  width: 382px;
+  height: 36px;
+  display: none;
+  margin-top: 20px;
+  margin-left: 15px;
+  background-color: #4e5ba6;
+  border-radius: 4px;
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.result-button.show {
+  display: block;
 }

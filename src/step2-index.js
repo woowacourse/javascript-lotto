@@ -8,8 +8,8 @@ import OutputView from "./View/OutputView.js";
 
 const inputPrice = document.querySelector("#inputPrice");
 const purchaseButton = document.querySelector("#purchaseButton");
-const resultButton = document.querySelector("#resultButton");
 const winningLottoSection = document.querySelector(".winning-lotto");
+const resultButton = document.querySelector("#result-button");
 
 purchaseButton.addEventListener("click", () => {
   try {
@@ -27,6 +27,8 @@ purchaseButton.addEventListener("click", () => {
 
     winningText.textContent = "당첨 번호";
     bonusText.textContent = "보너스 번호";
+
+    resultButton.style.display = "block";
   } catch (e) {
     window.alert(e.message);
   }
