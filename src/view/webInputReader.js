@@ -3,7 +3,7 @@ import { RESTART } from "../constants/constant";
 export const webInputReader = {
   isRestarting: false,
 
-  readPurchaseMoney() {
+  determinePurchaseMoney() {
     return new Promise((resolve) => {
       const purchaseInput = document.getElementById("purchase-input");
       const purchaseButton = document.getElementById("purchase-button");
@@ -24,7 +24,7 @@ export const webInputReader = {
   savedBonusNumber: null,
   checkedBonusNumber: false,
 
-  readWinningNumber() {
+  determineWinningNumber() {
     return new Promise((resolve) => {
       const resultButton = document.getElementById("result-button");
       const winningNumbersInput = document.querySelectorAll("input.winning-numbers-input");
@@ -49,7 +49,7 @@ export const webInputReader = {
     });
   },
 
-  readBonusNumber() {
+  determineBonusNumber() {
     return new Promise((resolve) => {
       if (this.checkedBonusNumber) {
         const resultButton = document.getElementById("result-button");
@@ -69,7 +69,7 @@ export const webInputReader = {
     });
   },
 
-  readRetry() {
+  determineRetry() {
     return new Promise((resolve) => {
       const myLotto = document.getElementById("myLotto-section");
       const winningBonusSection = document.getElementById("winning-bonus-section");

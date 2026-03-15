@@ -10,7 +10,7 @@ export const InputView = {
 
   async inputPurchaseAmount() {
     try {
-      const money = await this.readerObject.readPurchaseMoney();
+      const money = await this.readerObject.determinePurchaseMoney();
       Validator.validatePurchaseMoney(money);
       return Number(money);
     } catch (error) {
@@ -21,7 +21,7 @@ export const InputView = {
 
   async inputWinningNumber() {
     try {
-      const winningNumber = await this.readerObject.readWinningNumber();
+      const winningNumber = await this.readerObject.determineWinningNumber();
       Validator.validateWinningNumber(winningNumber);
       return winningNumber;
     } catch (error) {
@@ -32,7 +32,7 @@ export const InputView = {
 
   async inputBonusNumber(winningNumber) {
     try {
-      const bonusNumber = await this.readerObject.readBonusNumber();
+      const bonusNumber = await this.readerObject.determineBonusNumber();
       Validator.validateBonusNumber(winningNumber, Number(bonusNumber));
       return Number(bonusNumber);
     } catch (error) {
@@ -43,7 +43,7 @@ export const InputView = {
 
   async inputRetry() {
     try {
-      const retry = await this.readerObject.readRetry();
+      const retry = await this.readerObject.determineRetry();
       Validator.validateRetry(retry);
       return retry;
     } catch (error) {
