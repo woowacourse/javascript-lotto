@@ -6,7 +6,8 @@ const loadComponent = (id, path) => {
     .then((data) => {
       document.getElementById(id).insertAdjacentHTML("beforeend", data);
       return loadNestedComponents(document.getElementById(id));
-    });
+    })
+    .catch((error) => console.error(`컴포넌트 로드 실패: ${path}`, error));
 };
 
 const loadNestedComponents = (root) => {
@@ -19,7 +20,10 @@ const loadNestedComponents = (root) => {
       .then((html) => {
         element.insertAdjacentHTML("beforeend", html);
         return loadNestedComponents(element);
-      });
+      })
+      .catch((error) =>
+        console.error(`컴포넌트 로드 실패: ${elementPath}`, error),
+      );
   });
   return Promise.all(promises);
 };
