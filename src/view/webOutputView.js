@@ -1,3 +1,5 @@
+import { PRIZE_PER_RANK } from "../constants.js";
+
 export const renderPurchaseCount = (count) => {
   document.getElementById("purchase-count-span").textContent =
     `총 ${count}개를 구매하였습니다.`;
@@ -18,7 +20,9 @@ export const renderStatistics = (prizeList, profitRate) => {
   const rows = document.querySelectorAll("#statistics-table tbody tr");
   const order = [5, 4, 3, 2, 1];
   rows.forEach((row, index) => {
-    row.cells[2].textContent = `${prizeList[order[index]]}개`;
+    const rank = order[index];
+    row.cells[1].textContent = PRIZE_PER_RANK[rank].toLocaleString();
+    row.cells[2].textContent = `${prizeList[rank]}개`;
   });
   document.getElementById("profit-div").textContent =
     `당신의 총 수익률은 ${profitRate}%입니다.`;
