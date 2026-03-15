@@ -5,21 +5,24 @@ import retry from "../utils/retry.js";
 import { LOTTO_PRICE } from "../constants/lottoInfo.js";
 
 class App {
+  constructor() {
+    this.lottoController = new LottoController();
+  }
+
   async run() {
     while (true) {
       const purchasedPrice = await retry(() => InputView.inputPrice());
 
       const lottoCount = purchasedPrice / LOTTO_PRICE;
 
-      const lottoController = new LottoController(lottoCount);
-      const purchasedLottos = lottoController.issueLottos();
+      const purchasedLottos = this.lottoController.issueLottos(lottoCount);
       OutputView.printLotto(purchasedLottos);
 
       const winningLotto = await retry(() => InputView.inputWinningNums());
       const bonusNum = await retry(() => InputView.inputBonusNum(winningLotto));
-      lottoController.updateWinningResult(winningLotto, bonusNum);
+      this.lottoController.updateWinningResult(winningLotto, bonusNum);
 
-      const { rankCount, profitRate } = lottoController.getWinningResult();
+      const { rankCount, profitRate } = this.lottoController.getWinningResult();
       OutputView.printResult(rankCount, profitRate);
 
       const restartAnswer = await retry(() => InputView.inputRestartAnswer());

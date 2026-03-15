@@ -24,8 +24,8 @@ class Lotto {
     return rank;
   }
 
-  toString() {
-    return `[${this.#numbers.join(", ")}]`;
+  getNumbers() {
+    return [...this.#numbers];
   }
 }
 

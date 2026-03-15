@@ -1,15 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <h1 class="logo-title">🎱 행운의 로또</h1>
+      </header>
+
+      <main>
+        <h2 class="main-title">🎱 내 번호 당첨 확인 🎱</h2>
+
+        <section id="purchase-section" class="purchase-section">
+          <h3 class="section-title">구입할 금액을 입력해주세요.</h3>
+
+          <form id="purchase-form" class="flex-between">
+            <label for="purchase-price" class="v-hidden">구입 금액</label>
+            <input
+              type="number"
+              id="purchase-price"
+              class="purchase-input"
+              placeholder="금액"
+            />
+            <button type="submit" class="btn purchase-btn">구입</button>
+          </form>
+        </section>
+
+        <section id="lotto-section" class="lotto-section">
+          <h3 id="lotto-count-text" class="section-title"></h3>
+
+          <ul id="lotto-list"></ul>
+        </section>
+
+        <section id="winning-section" class="hidden">
+          <h3 class="section-title">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+          </h3>
+          <form id="winning-form">
+            <div class="flex-between">
+              <div id="winning-numbers-container" class="flex-col"></div>
+              <div id="bonus-number-container" class="flex-col"></div>
+            </div>
+
+            <button type="submit" class="btn result-btn">결과 확인하기</button>
+          </form>
+        </section>
+
+        <dialog id="result-modal">
+          <div class="modal-inner">
+            <button type="button" id="modal-close-btn" class="modal-close-btn">
+              <img src="./assets/icon-close.png" alt="닫기" />
+            </button>
+            <h2 class="modal-title">🏆 당첨 통계 🏆</h2>
+
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th>일치 갯수</th>
+                  <th>당첨금</th>
+                  <th>당첨 갯수</th>
+                </tr>
+              </thead>
+              <tbody id="result-tbody"></tbody>
+            </table>
+
+            <p id="profit-text" class="profit-text"></p>
+
+            <button id="restart-btn" class="btn restart-btn">
+              다시 시작하기
+            </button>
+          </div>
+        </dialog>
+      </main>
+
+      <footer>
+        <small class="copyright">Copyright 2023. woowacourse</small>
+      </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
