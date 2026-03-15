@@ -27,10 +27,10 @@ purchaseButton.addEventListener("click", () => {
 
     OutputView.printLottoList(lottos);
 
+    winningLottoSection.classList.add("show");
+
     const winningText = document.getElementById("winning-numbers-text");
     const bonusText = document.getElementById("bonus-number-text");
-
-    winningLottoSection.classList.add("show");
 
     winningText.textContent = "당첨 번호";
     bonusText.textContent = "보너스 번호";
@@ -38,19 +38,22 @@ purchaseButton.addEventListener("click", () => {
     resultButton.style.display = "block";
   } catch (e) {
     window.alert(e.message);
+    inputPrice.value = "";
+    inputPrice.focus();
   }
 });
 
 resultButton.addEventListener("click", () => {
+  const number1 = document.getElementById("winning-number-input-1");
+  const number2 = document.getElementById("winning-number-input-2");
+  const number3 = document.getElementById("winning-number-input-3");
+  const number4 = document.getElementById("winning-number-input-4");
+  const number5 = document.getElementById("winning-number-input-5");
+  const number6 = document.getElementById("winning-number-input-6");
+  const bonusNumberInput = document.getElementById("bonus-number-input");
+
   try {
     modalOverLay.classList.add("show");
-
-    const number1 = document.getElementById("winning-number-input-1");
-    const number2 = document.getElementById("winning-number-input-2");
-    const number3 = document.getElementById("winning-number-input-3");
-    const number4 = document.getElementById("winning-number-input-4");
-    const number5 = document.getElementById("winning-number-input-5");
-    const number6 = document.getElementById("winning-number-input-6");
 
     const winningNumbers = Validator.validateWinningNumbers([
       number1.value,
@@ -62,7 +65,7 @@ resultButton.addEventListener("click", () => {
     ]);
 
     const bonusNumber = Validator.validateBonusNumber(
-      document.getElementById("bonus-number-input").value,
+      bonusNumberInput.value,
       winningNumbers,
     );
 
@@ -87,6 +90,21 @@ resultButton.addEventListener("click", () => {
     OutputView.printProfitRate(profitRate);
   } catch (e) {
     window.alert(e.message);
+    modalOverLay.classList.remove("show");
+
+    const firstInput = document.getElementById("winning-number-input-1");
+
+    number1.value = "";
+    number2.value = "";
+    number3.value = "";
+    number4.value = "";
+    number5.value = "";
+    number6.value = "";
+    bonusNumberInput.value = "";
+
+    if (firstInput) {
+      firstInput.focus();
+    }
   }
 });
 
