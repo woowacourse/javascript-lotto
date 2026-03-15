@@ -1,7 +1,9 @@
-// import { Lotto, WinningLotto } from "./Lotto.js";
 import Validator from "./Validator.js";
+import { Lotto, WinningLotto } from "./Lotto.js";
 
 export const DOMInput = {
+  winningLotto: null,
+
   async reRead(func, funcArgs) {
     while (true) {
       try {
@@ -49,20 +51,48 @@ export const DOMInput = {
     );
   },
 
-  // async readWinningLottoNumber() {
-  //   const answer = await readLine("> 당첨 번호를 입력해 주세요. ");
-  //   const lotto = new Lotto(answer.split(","));
-  //   return lotto;
-  // },
+  getWinningNumbers() {
+    return [...document.querySelectorAll(".winning-number")].map(
+      (input) => input.value,
+    );
+  },
 
-  // async readBonusNumber(winningLottoNumber) {
-  //   const bonusNumber = await readLine("> 보너스 번호를 입력해 주세요. ");
-  //   const winningLotto = new WinningLotto(
-  //     winningLottoNumber,
-  //     Number(bonusNumber),
-  //   );
-  //   return winningLotto;
-  // },
+  getBonusInputValue() {
+    return document.querySelector("#bonus-number-input").value;
+  },
+
+  handleWinningSubmit(e, resolve) {
+    e.preventDefault();
+    const numbers = this.getWinningNumbers();
+    const bonus = this.getBonusInputValue();
+    const winningLotto = new WinningLotto(numbers, Number(bonus));
+    this._winningLotto = winningLotto;
+    resolve(new Lotto(numbers));
+  },
+
+  registerWinningSubmitHandler(resolve, reject) {
+    document.querySelector("#winning-number-area").addEventListener(
+      "submit",
+      (e) => {
+        try {
+          this.handleWinningSubmit(e, resolve);
+        } catch (err) {
+          reject(err);
+        }
+      },
+      { once: true },
+    );
+  },
+
+  async readWinningLottoNumber() {
+    return new Promise((resolve, reject) =>
+      this.registerWinningSubmitHandler(resolve, reject),
+    );
+  },
+
+  async readBonusNumber() {
+    return this.winningLotto;
+  },
 
   // async readRetry() {
   //   const answer = await readLine("> 다시 시작하시겠습니까? (y/n) ");
