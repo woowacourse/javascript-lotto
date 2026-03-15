@@ -1,7 +1,7 @@
-import Console from "../src/utils/Console.js";
-import Random from "../src/utils/Random.js";
+import Console from "../../src/utils/Console.js";
+import Random from "../../src/utils/Random.js";
 
-import App from "../src/App.js";
+import App from "../../src/App/ConsoleApp.js";
 
 const mockRandoms = (numbers) => {
   Random.randomArray = jest.fn();

@@ -1,0 +1,42 @@
+.ui-table table {
+  width: 100%;
+}
+
+.ui-table summary {
+  font: 1px;
+  position: absolute;
+  top: -1000px;
+}
+
+.ui-table table th {
+  text-align: left;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  border-top: 1px solid rgba(0,0,0,.12);
+  border-bottom: 1px solid rgba(0,0,0,.12);
+
+  font-size: var(--typo-body-font-size);
+  font-weight: 600;
+  line-height: var(--typo-body-line-height);
+	letter-spacing: var(--typo-body-letter-spacing);
+}
+
+.ui-table table td {
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+
+  border-bottom: 1px solid rgba(0,0,0,.12);
+
+  font-size: var(--typo-body-font-size);
+  font-weight: var(--typo-body-font-weight);;
+  line-height: var(--typo-body-line-height);
+	letter-spacing: var(--typo-body-letter-spacing);
+}
+
+.ui-table table th.align-center,
+.ui-table table td.align-center {
+  text-align: center;
+}

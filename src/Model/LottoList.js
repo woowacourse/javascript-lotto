@@ -3,10 +3,8 @@ import Lotto from "./Lotto.js";
 
 class LottoList {
   #lottos;
-  #amount;
 
   constructor(amount) {
-    this.#amount = amount;
     this.#lottos = this.#createLottoList(amount);
   }
   #createLottoList(amount) {

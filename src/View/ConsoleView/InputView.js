@@ -1,4 +1,4 @@
-import Console from "../utils/Console.js";
+import Console from "../../utils/Console.js";
 
 export class InputView {
   async readPrice() {
