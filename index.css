@@ -248,6 +248,7 @@ body {
   height: 25px;
   opacity: 1;
   margin-top: 12px;
+  margin-bottom: 8px;
 }
 
 #bonus-number-input {
@@ -255,6 +256,7 @@ body {
   height: 32px;
   border-radius: 4px;
   border: 1px solid #b4b4b4;
+  margin-right: 4px;
   margin-top: 0px;
 }
 
