@@ -5,18 +5,23 @@
 import Validator from "./Utils/Validator.js";
 import LottoMachine from "./Domain/LottoMachine.js";
 import OutputView from "./View/OutputView.js";
+import LottoResultCalculator from "./Domain/LottoResultCalculator.js";
+
+let lottos = [];
+let purchasePrice = 0;
 
 const inputPrice = document.querySelector("#inputPrice");
 const purchaseButton = document.querySelector("#purchaseButton");
 const winningLottoSection = document.querySelector(".winning-lotto");
 const resultButton = document.querySelector("#result-button");
+const modalOverLay = document.querySelector(".modal-overlay");
 
 purchaseButton.addEventListener("click", () => {
   try {
-    const purchasePrice = Validator.validatePurchasePrice(inputPrice.value);
+    purchasePrice = Validator.validatePurchasePrice(inputPrice.value);
 
     const lottoMachine = new LottoMachine();
-    const lottos = lottoMachine.issueLottos(purchasePrice);
+    lottos = lottoMachine.issueLottos(purchasePrice);
 
     OutputView.printLottoList(lottos);
 
@@ -36,6 +41,8 @@ purchaseButton.addEventListener("click", () => {
 
 resultButton.addEventListener("click", () => {
   try {
+    modalOverLay.classList.add("show");
+
     const number1 = document.getElementById("winning-number-input-1");
     const number2 = document.getElementById("winning-number-input-2");
     const number3 = document.getElementById("winning-number-input-3");
@@ -56,6 +63,19 @@ resultButton.addEventListener("click", () => {
       document.getElementById("bonus-number-input").value,
       winningNumbers,
     );
+
+    const luckyNumbers = {
+      winningNumbers,
+      bonusNumber,
+    };
+
+    const resultCalculator = new LottoResultCalculator();
+    const winningResult = resultCalculator.calculateWinningRank(
+      lottos,
+      luckyNumbers,
+    );
+
+    OutputView.printMatchResult(winningResult);
   } catch (e) {
     window.alert(e.message);
   }
