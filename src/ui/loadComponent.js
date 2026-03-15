@@ -1,9 +1,4 @@
-const BASE_URL = import.meta.env.BASE_URL;
-
-const resolvePath = (path) => {
-  if (path.startsWith("./")) return BASE_URL + path.slice(2);
-  return path;
-};
+const resolvePath = (path) => new URL(path, document.baseURI).href;
 
 const loadComponent = (id, path) => {
   return fetch(path)
