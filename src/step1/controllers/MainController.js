@@ -1,13 +1,13 @@
-import { INPUT_MESSAGE } from "../constants/message.js";
+import { INPUT_MESSAGE } from "../../constants/message.js";
 
 import InputView from "../views/InputView.js";
 import OutputView from "../views/OutputView.js";
 
-import Purchase from "../models/Purchase.js";
-import WinningLottoManager from "../models/WinningLottoManager.js";
+import Purchase from "../../models/Purchase.js";
+import WinningLottoManager from "../../models/WinningLottoManager.js";
 
-import LottoMachine from "../services/LottoMachine.js";
-import LottoResult from "../services/LottoResult.js";
+import LottoMachine from "../../services/LottoMachine.js";
+import LottoResult from "../../services/LottoResult.js";
 
 class MainController {
   async run() {

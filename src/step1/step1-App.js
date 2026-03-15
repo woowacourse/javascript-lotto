@@ -1,4 +1,4 @@
-import { INPUT_MESSAGE } from "./constants/message.js";
+import { INPUT_MESSAGE } from "../constants/message.js";
 import { isRetryAnswerValid } from "./validates/RetryAnswerValidator.js";
 
 import MainController from "./controllers/MainController.js";

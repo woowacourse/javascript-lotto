@@ -1,5 +1,5 @@
-import { RETRY_ANSWER } from "../constants/config.js";
-import { ERROR_MESSAGE } from "../constants/message.js";
+import { RETRY_ANSWER } from "../../constants/config.js";
+import { ERROR_MESSAGE } from "../../constants/message.js";
 
 export function isRetryAnswerValid(answer) {
   if (answer !== RETRY_ANSWER.YES && answer !== RETRY_ANSWER.NO) {
