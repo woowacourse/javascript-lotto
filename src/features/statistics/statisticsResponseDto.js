@@ -1,10 +1,10 @@
-export default class statisticsResponseDto {
+export default class StatisticsResponseDto {
   #lottosResult;
-  #totalPrize;
+  #profitRate;
 
-  constructor(lottosResult, totalPrize) {
+  constructor(lottosResult, profitRate) {
     this.#lottosResult = Object.freeze(lottosResult);
-    this.#totalPrize = totalPrize;
+    this.#profitRate = profitRate;
     Object.freeze(this);
   }
 
@@ -12,7 +12,7 @@ export default class statisticsResponseDto {
     return this.#lottosResult;
   }
 
-  get totalPrize() {
-    return this.#totalPrize;
+  get profitRate() {
+    return this.#profitRate;
   }
 }

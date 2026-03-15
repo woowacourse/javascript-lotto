@@ -1,56 +1,43 @@
-import statisticsMapper from "../../../../src/features/statistics/statisticsMapper.js";
-import LottoStatisticsResponseDto from "../../../../src/features/statistics/statisticsResponseDto.js";
+import StatisticsMapper from "../../../../src/features/statistics/StatisticsMapper.js";
+import StatisticsResponseDto from "../../../../src/features/statistics/StatisticsResponseDto.js";
 
-describe("statisticsMapper 테스트", () => {
-  const STAT_5TH = {
-    matchCount: 3,
-    hasBonus: false,
-    prize: 5000,
-    count: 2,
-  };
-  const STAT_4TH = {
-    matchCount: 4,
-    hasBonus: false,
-    prize: 50000,
-    count: 1,
-  };
-  const STAT_MISS = {
-    matchCount: 0,
-    hasBonus: false,
-    prize: 0,
-    count: 10,
-  };
+describe("StatisticsMapper", () => {
+  test("RankMap 데이터를 DTO로 변환한다", () => {
+    const rankMap = new Map([
+      [5, { matchCount: 3, hasBonus: false, prize: 5000, count: 1 }],
+      [4, { matchCount: 4, hasBonus: false, prize: 50000, count: 0 }],
+    ]);
+    const profitRate = 500.0;
 
-  test("RankMap을 받아서 상금 계산 및 정렬된 DTO를 반환한다", () => {
-    const rankMap = new Map();
-    rankMap.set(5, STAT_5TH);
-    rankMap.set(4, STAT_4TH);
+    const result = StatisticsMapper.toResponseDto(rankMap, profitRate);
 
-    const dto = statisticsMapper.toResponseDto(rankMap);
-
-    expect(dto).toBeInstanceOf(LottoStatisticsResponseDto);
-    expect(dto.totalPrize).toBe(60000);
-
-    expect(dto.lottosResult[0].order).toBe(5);
-    expect(dto.lottosResult[1].order).toBe(4);
-
-    expect(dto.lottosResult[0]).toEqual({
-      matchCount: 3,
-      hasBonus: false,
-      prize: 5000,
-      count: 2,
-      order: 5,
-    });
+    expect(result).toBeInstanceOf(StatisticsResponseDto);
+    expect(result.profitRate).toBe(500.0);
+    expect(result.lottosResult).toHaveLength(2);
   });
 
-  test("낙첨 데이터만 있을 경우 (상금이 0원인 경우) 처리", () => {
-    const rankMap = new Map();
-    rankMap.set(0, STAT_MISS);
+  test("낙첨(order 0) 데이터는 결과에서 제외한다", () => {
+    const rankMap = new Map([
+      [0, { matchCount: 0, hasBonus: false, prize: 0, count: 5 }],
+      [5, { matchCount: 3, hasBonus: false, prize: 5000, count: 1 }],
+    ]);
 
-    const dto = statisticsMapper.toResponseDto(rankMap);
+    const result = StatisticsMapper.toResponseDto(rankMap, 0);
 
-    const filteredResults = dto.lottosResult.filter((r) => r.order !== 0);
-    expect(filteredResults).toHaveLength(0);
-    expect(dto.totalPrize).toBe(0);
+    const hasOrderZero = result.lottosResult.some((item) => item.order === 0);
+    expect(hasOrderZero).toBe(false);
+    expect(result.lottosResult).toHaveLength(1);
+  });
+
+  test("order 필드를 기준으로 내림차순 정렬한다", () => {
+    const rankMap = new Map([
+      [4, { order: 4 }],
+      [5, { order: 5 }],
+    ]);
+
+    const result = StatisticsMapper.toResponseDto(rankMap, 0);
+
+    expect(result.lottosResult[0].order).toBe(5);
+    expect(result.lottosResult[1].order).toBe(4);
   });
 });

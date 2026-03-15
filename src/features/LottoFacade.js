@@ -1,4 +1,5 @@
 import Lotto from "../domain/Lotto.js";
+import Money from "../domain/Money.js";
 
 export default class LottoFacade {
   #purchaseUseCase;
@@ -15,21 +16,22 @@ export default class LottoFacade {
     return this.#purchaseUseCase.execute(amount);
   }
 
-  getStatistics(lottosRaw, { winningNumbers, bonusNumber }) {
+  getStatistics({ lottosRaw, purchasedRaw, winningNumbers, bonusNumber }) {
     if (!lottosRaw || lottosRaw.length === 0) {
       throw new Error("구매한 로또가 없습니다.");
     }
 
     const lottos = Lotto.fromList(lottosRaw);
-    const winningLotto = this.#winningUseCase.execute(
+    const winningNumber = this.#winningUseCase.execute(
       winningNumbers,
       bonusNumber,
     );
-
-    const lottoStatsDto = this.#statisticsUseCase.statisticsLottos(
+    const purchasedMoney = new Money(purchasedRaw);
+    const lottoStatsDto = this.#statisticsUseCase.statisticsLottos({
       lottos,
-      winningLotto,
-    );
+      winningNumber,
+      purchasedMoney,
+    });
 
     return lottoStatsDto;
   }

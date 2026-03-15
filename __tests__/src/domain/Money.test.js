@@ -12,3 +12,10 @@ describe("Money getter test", () => {
     expect(money.getAmount()).toBe(1000);
   });
 });
+
+describe("Money 객체 수익률 테스트", () => {
+  test("수익률 계산 8000원으로 5000원 벌면 62.5%", () => {
+    const money = new Money(8000);
+    expect(money.calculateProfitRate(5000)).toBe(62.5);
+  });
+});

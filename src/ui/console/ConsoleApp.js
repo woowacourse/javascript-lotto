@@ -1,6 +1,5 @@
 import Lotto from "../../domain/Lotto.js";
 import WinningNumber from "../../domain/WinningNumber.js";
-import { calculateProfit } from "../../features/statistics/statisticsUtils.js";
 import { isNumber, isNumberArray } from "../../utils/inputValidator.js";
 import { toSplitComma, toNumber } from "../../utils/parser.js";
 
@@ -30,11 +29,7 @@ export default class ConsoleApp {
         this.#processWinningBonus(winningNumbers),
       );
 
-      const statsDto = this.#processStatistics(purchaseDto, {
-        winningNumbers,
-        bonusNumber,
-      });
-      this.#processProfit(purchaseDto.purchasedAmount, statsDto.totalPrize);
+      this.#processStatistics({ purchaseDto, winningNumbers, bonusNumber });
     } while (await this.#retry(() => this.#processAskRetry()));
   }
 
@@ -61,18 +56,16 @@ export default class ConsoleApp {
     return bonusNumber;
   }
 
-  #processStatistics(purchaseDto, { winningNumbers, bonusNumber }) {
-    const statsDto = this.#lottoService.getStatistics(purchaseDto.lottos, {
+  #processStatistics({ purchaseDto, winningNumbers, bonusNumber }) {
+    const { lottos, purchasedAmount } = purchaseDto;
+    const statsDto = this.#lottoService.getStatistics({
+      lottosRaw: lottos,
+      purchasedRaw: purchasedAmount,
       winningNumbers,
       bonusNumber,
     });
     this.#ui.printStatistics(statsDto.lottosResult);
-    return statsDto;
-  }
-
-  #processProfit(purchasedAmount, totalPrize) {
-    const profit = calculateProfit(purchasedAmount, totalPrize);
-    this.#ui.printProfit(profit);
+    this.#ui.printProfit(statsDto.profitRate);
   }
 
   async #processAskRetry() {

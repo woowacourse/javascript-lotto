@@ -1,23 +1,12 @@
-import StatisticsResponseDto from "./statisticsResponseDto.js";
+import StatisticsResponseDto from "./StatisticsResponseDto.js";
 
 export default class StatisticsMapper {
-  static toResponseDto(rankMap) {
-    const { results, totalPrize } = [...rankMap.entries()].reduce(
-      (acc, [order, { matchCount, hasBonus, prize, count }]) => {
-        if (order === 0) return acc;
+  static toResponseDto(rankMap, profitRate) {
+    const results = [...rankMap.entries()]
+      .filter(([order]) => order !== 0)
+      .map(([order, stat]) => ({ ...stat, order }))
+      .sort((a, b) => b.order - a.order);
 
-        return {
-          results: [
-            ...acc.results,
-            { matchCount, hasBonus, prize, count, order },
-          ],
-          totalPrize: acc.totalPrize + prize * count,
-        };
-      },
-      { results: [], totalPrize: 0 },
-    );
-
-    const sortedResults = results.sort((a, b) => b.order - a.order);
-    return new StatisticsResponseDto(sortedResults, totalPrize);
+    return new StatisticsResponseDto(results, profitRate);
   }
 }

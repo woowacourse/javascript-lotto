@@ -5,7 +5,7 @@ import LottoFacade from "./features/LottoFacade.js";
 
 import PurchaseLottoUseCase from "./features/purchase/PurchaseLottoUseCase.js";
 import WinningUseCase from "./features/winning/WinningUseCase.js";
-import StatisticsUseCase from "./features/statistics/statisticsUseCase.js";
+import StatisticsUseCase from "./features/statistics/StatisticsUseCase.js";
 
 import inputView from "./ui/console/ConsoleInputView.js";
 import outputView from "./ui/console/ConsoleOutputView.js";
