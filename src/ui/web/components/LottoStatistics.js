@@ -15,4 +15,11 @@ export const LottoStatistics = ($target, { lottoResult, profitRate }) => {
   });
 
   $target.append($profitRate);
+
+  const $askRetry = create("button", {
+    type: "submit",
+    className: "retry-button",
+    text: "다시 하시겠습니까",
+  });
+  $target.append($askRetry);
 };
