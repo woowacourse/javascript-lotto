@@ -391,3 +391,16 @@ h6 {
   font-weight: 700;
   cursor: pointer;
 }
+
+#close-button {
+  position: absolute;
+  border: none;
+  background: none;
+  font-size: 35px;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  opacity: 1;
+  margin-top: 5px;
+  margin-left: 300px;
+}

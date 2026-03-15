@@ -16,6 +16,7 @@ const winningLottoSection = document.querySelector(".winning-lotto");
 const resultButton = document.querySelector("#result-button");
 const modalOverLay = document.querySelector(".modal-overlay");
 const restartButton = document.querySelector("#restart-button");
+const closeButton = document.querySelector("#close-button");
 
 purchaseButton.addEventListener("click", () => {
   try {
@@ -91,4 +92,8 @@ resultButton.addEventListener("click", () => {
 
 restartButton.addEventListener("click", () => {
   window.location.reload();
+});
+
+closeButton.addEventListener("click", () => {
+  modalOverLay.classList.remove("show");
 });
