@@ -45,10 +45,6 @@ export const DOMInput = {
     );
   },
 
-  hideLottoContainer() {
-    document.querySelector("#lotto-container").style.display = "none";
-  },
-
   async readPurchaseAmount() {
     return new Promise((resolve, reject) =>
       this.registerPurchaseSubmitHandler(resolve, reject),
