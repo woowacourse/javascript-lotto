@@ -116,3 +116,146 @@ body {
 .lotto {
   font-size: 15px;
 }
+
+.winning-lotto {
+  width: 382px;
+  height: 104px;
+  top: 524px;
+  margin-left: 16px;
+  display: none;
+  margin-top: 24px;
+}
+
+.winning-lotto.show {
+  width: 382px;
+  height: 104px;
+  top: 524px;
+  display: block;
+}
+
+.winning-numbers-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.input-numbers-text {
+  margin-top: 0px;
+}
+
+#winning-input-text {
+  font-size: 15px;
+  width: 382px;
+  height: 104px;
+}
+
+.input-numbers-text {
+  font-size: 15px;
+  width: 382px;
+  height: 24px;
+}
+
+#winning-input-text {
+  font-size: 15px;
+  width: 382px;
+  height: 104px;
+}
+
+.input-numbers-text {
+  font-size: 15px;
+  width: 382px;
+  height: 24px;
+}
+
+.winning-numbers {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  height: 68px;
+  opacity: 1;
+  border-radius: 4px;
+}
+
+#winning-numbers-text {
+  width: 65px;
+  height: 25px;
+  opacity: 1;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+#winning-number-input-1 {
+  width: 30px;
+  height: 32px;
+  left: 16px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  margin-right: 4px;
+}
+
+#winning-number-input-2 {
+  width: 30px;
+  height: 32px;
+  left: 16px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  margin-right: 4px;
+}
+
+#winning-number-input-3 {
+  width: 30px;
+  height: 32px;
+  left: 16px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  margin-right: 4px;
+}
+
+#winning-number-input-4 {
+  width: 30px;
+  height: 32px;
+  left: 16px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  margin-right: 4px;
+}
+
+#winning-number-input-5 {
+  width: 30px;
+  height: 32px;
+  left: 16px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  margin-right: 4px;
+}
+
+#winning-number-input-6 {
+  width: 30px;
+  height: 32px;
+  left: 16px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+}
+
+.bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#bonus-number-text {
+  width: 80px;
+  height: 25px;
+  opacity: 1;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+#bonus-number-input {
+  width: 30px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+
+  margin-top: 0px;
+}
