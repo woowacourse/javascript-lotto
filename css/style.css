@@ -1,0 +1,239 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* input박스에 up down 화살표 없애기 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body {
+  font-family: sans-serif;
+  color: #333;
+  background-color: #f4f5f7; 
+}
+
+.hidden {
+  display: none !important;
+}
+
+header {
+  width: 100%;
+  height: 60px;
+  background-color: #4E5BA6;
+  display: flex;
+  justify-content: flex-start; 
+  align-items:center;
+  padding-left: 4rem;
+}
+
+.lotto-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.main-container {
+  max-width: 450px;
+  min-height: 600px;
+  margin: 3rem auto;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+}
+
+section {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.title-text {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.purchase-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.purchase-btn {
+  padding: 0 15px;
+  background-color: #4E5BA6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.purchased-lotto-container.collapsed .lotto-item:nth-child(n+11) {
+    display: none;
+}
+
+.display-more-lottos-btn, 
+.hide-lottos-btn{
+  margin-top: 1rem;
+  padding: 0.4rem 1rem;
+  background-color: #4E5BA6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.winningnum-bonusnum-form{
+  width: 100%;           
+  display: flex;
+  flex-direction: column; 
+  padding: 0.5rem 0;
+}
+
+.input-label {
+  margin-top:1rem ;
+  font-size:15px;
+  display: flex;
+  flex-direction:row; 
+  justify-content:space-between; 
+
+}
+
+.flex-container {
+  display: flex;
+  justify-content:space-between; 
+  align-items: flex-start;
+  margin-top: 0.2rem;
+  width: 100%;
+}
+
+.winningnum-inputs, .bonusnum-inputs {
+  display: flex;
+  gap: 7px; 
+  margin-top: 8px;
+}
+
+.winning-number, .bonus-number {
+  width: 2.7rem;
+  height: 3rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+
+.check-result {
+  display: flex;
+  width:100%;
+  justify-content: center; 
+  margin-top: 2rem;
+}
+
+.result-btn{
+  width: 100%;
+  height:2rem;
+  padding: 0 15px;
+  background-color: #4E5BA6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-result-screen {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-result-screen.hidden {
+  display: none;
+}
+
+.result-view {
+  background-color: white;
+  padding: 2.5rem;      
+  border-radius: 10px;
+  max-width: 400px;  
+  max-height:500px;   
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-title-text {
+  margin-bottom: 1.5rem; 
+  font-size: 1.5rem;
+}
+
+.result-table {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.table-titles tr {
+  font-weight: bold;
+}
+
+.result-table th, 
+.result-table td {
+  padding: 12px 15px;    
+  text-align: center;
+  border-bottom: 1px solid #eee; 
+  font-size: 12px;
+}
+
+.restart-btn{
+  width: 100%;
+  height:2rem;
+  padding: 0 15px;
+  background-color: #4E5BA6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.profitrate-view {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.footer{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding:2rem;
+  font-size: 14px;
+  font-weight: bold;
+  color: #4E5BA6;
+  border-top: 1px solid #4E5BA633;
+} 

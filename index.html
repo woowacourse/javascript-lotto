@@ -2,14 +2,125 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>🎱 행운의 로또</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <div class="header-container">
+          <h1 class="lotto-title">🎱 행운의 로또</h1>
+        </div>
+      </header>
+
+      <main class="main-container">
+        <section class="purchase-section">
+          <div class="title-text">
+            <p>🎱 내 번호 당첨 확인 🎱</p>
+          </div>
+          <form class="purchase-form">
+            <label for="purchase-label">구입할 금액을 입력해주세요.</label>
+            <div class="input-group">
+              <input type="number" class="purchase-input" placeholder="금액" required />
+              <button type="submit" class="purchase-btn">구입</button>
+            </div>
+          </form>
+        </section>
+
+        <section class= "purchased-lotto hidden">
+          <form class="purchased-lotto-form">
+            <span class="purchased-lotto-label">총 <span class="lotto-count">0</span>개를 구입하였습니다.</span>
+            <div class="purchased-lotto-container"></div>
+            <button type="button" class ="display-more-lottos-btn hidden">더보기</button>
+            <button type="button" class="hide-lottos-btn hidden">접기</button>
+          </form>
+        </section>
+        <section class="winningnum-bonusnum hidden">
+          <form class="winningnum-bonusnum-form">
+            <p class="input-guide">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+            <div class="input-label">
+              <span>당첨 번호</span>
+              <span>보너스 번호</span>
+            </div>
+              
+            <div class="flex-container">
+              
+              <div class="winningnum-group">
+                <div class="winningnum-inputs">
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                  <input type="number" class="winning-number" max="45" min="1" required>
+                </div>
+              </div>
+              
+              <div class="bonusnum-group">
+                <div class="bonusnum-inputs">
+                  <input type="number" class="bonus-number" max="45" min="1" required>
+                </div>
+              </div>
+            </div>
+            <div class="check-result">
+              <button type="submit" class="result-btn">결과 확인하기</button>
+            </div>
+          </form>
+        </section>       
+      </main>
+      <section class="modal-result-screen hidden">
+        <div class="result-view">
+          <h2 class="result-title-text">🏆 당첨 통계 🏆</h2>
+
+          <table class="result-table">
+            <thead class="table-titles">
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody class="table-contents">
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td class="rank-count" data-rank="5"></td> </tr>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td class="rank-count" data-rank="4"></td> </tr>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td class="rank-count" data-rank="3"></td> </tr>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td class="rank-count" data-rank="2"></td> </tr>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td class="rank-count" data-rank="1"></td> </tr>
+              </tr>
+            </tbody>
+          </table>
+          <div class="profitrate-view"></div>
+
+          <div class="check-result">
+            <button type="button" class="restart-btn">다시 시작하기</button>
+          </div>
+        </div>
+
+      </section>
+      <footer>
+        <div class = footer>Copyright 2023. woowacourse</div>
+      </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
