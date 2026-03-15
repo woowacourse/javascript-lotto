@@ -16,8 +16,8 @@ class App {
       this.#showPurchaseLotto(lottoMachine);
       const winningLotto = await this.#getWinningLotto();
       this.#showMatchResult(lottoMachine, winningLotto);
-      // const restart = await this.#input.reRead(this.#input.readRetry);
-      // if (restart === "n") break;
+      const restart = await this.#input.reRead(this.#input.readRetry);
+      if (restart === "n") break;
     }
   }
 
