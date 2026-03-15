@@ -40,6 +40,7 @@ const View = {
   },
 
   renderPurchaseLotto(lottos) {
+    this.clearErrorMessage(this.purchaseAmountErrorMessageContainer);
     this.purchaseAmountErrorMessageContainer= '';
     const purchaseCountComponent = Component.purchaseLottoCount(lottos.length);
     const purchaseLottoListComponent = Component.lottoList(lottos.map((lotto) => lotto.getLottoNumber()));
@@ -47,6 +48,7 @@ const View = {
   },
 
   renderMatchResultModal(matchResultSummary, rateOfReturn) {
+    this.clearErrorMessage(this.winningLottoNumberErrorMessageContainer);
     const table = Component.lottoMatchResultTable(matchResultSummary);
     const rateOfReturnMessage = Component.rateOfReturnMessage(rateOfReturn);
     const restartButton = Component.restartButton();
