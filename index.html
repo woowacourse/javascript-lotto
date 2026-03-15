@@ -1,15 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <p id="header-text">🎱 행운의 로또</p>
+      </header>
+      <main id="contents-container">
+        <h1 id="contents-title">🎱 내 번호 당첨 확인 🎱</h1>
+        <section>
+          <form id="purchase-money-form" novalidate>
+            <label for="purchase-money-input">구입할 금액을 입력해주세요.</label>
+            <div id="input-section">
+              <input id="purchase-money-input" type="number" placeholder="금액" autofocus="true" required />
+              <button id="purchase-money-button" type="submit">구입</button>
+            </div>
+          </form>
+        </section>
+        <section id="result-section" hidden>
+          <p id="result-text"></p>
+          <div id="result-container"></div>
+        </section>
+        <section id="winning-section" hidden>
+          <form id="winning-form" novalidate>
+            <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+            <div id="winning-text-container">
+              <label>당첨 번호</label>
+              <label>보너스 번호</label>
+            </div>
+            <div id="number-input-container">
+              <div>
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+              </div>
+              <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+            </div>
+            <button id="show-result-button" type="submit">결과 확인하기</button>
+          </form>
+        </section>
+        <div id="result-modal-container" hidden>
+          <section id="result-modal-section">
+            <button id="modal-close">x</button>
+            <h2 id="modal-title">🏆 당첨 통계 🏆</h2>
+            <div id="result-text-container">
+              <div id="result-table">
+                <div class="grid table-title"><span>일치 갯수</span><span>당첨금</span><span>당첨 갯수</span></div>
+                <div class="grid"><span>3개</span><span>5,000</span><span id="match-3-count"></span></div>
+                <div class="grid"><span>4개</span><span>50,000</span><span id="match-4-count"></span></div>
+                <div class="grid"><span>5개</span><span>1,500,000</span><span id="match-5-count"></span></div>
+                <div class="grid"><span>5개+보너스볼</span><span>30,000,000</span><span id="match-5-bonus-count"></span></div>
+                <div class="grid"><span>6개</span><span>2,000,000,000</span><span id="match-6-count"></span></div>
+              </div>
+              <span id="result-profit-rate"></span>
+            </div>
+            <button id="restart">다시 시작하기</button>
+          </section>
+        </div>
+      </main>
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>

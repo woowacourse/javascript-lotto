@@ -1,0 +1,17 @@
+:root {
+  /* font style */
+  --font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-title: 800 24px/1.2 var(--font-system);
+  --font-subtitle: 600 20px/1.2 var(--font-system);
+  --font-body: 400 15px/1.4 var(--font-system);
+  --font-placeholder: 400 15px/1.4 var(--font-system);
+  --font-button-caption: 700 14px/1.2 var(--font-system);
+
+  /* font color */
+  --color-main: #4e5ba6;
+  --color-greyscale-1: #fff;
+  --color-greyscale-2: #fcfcfd;
+  --color-greyscale-3: #b4b4b4;
+  --color-greyscale-4: #8b8b8b;
+  --color-greyscale-5: #000;
+}

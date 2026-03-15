@@ -1,0 +1,60 @@
+input {
+  transition: box-shadow 0.18s ease;
+}
+
+button {
+  cursor: pointer;
+  transition:
+    box-shadow 0.18s ease,
+    filter 0.18s ease,
+    transform 0.18s ease;
+}
+
+button:not(:disabled):hover {
+  box-shadow: 0 8px 18px rgba(78, 91, 166, 0.2);
+  filter: brightness(0.96);
+  transform: translateY(-2px);
+}
+
+button:not(:disabled):active {
+  box-shadow: 0 4px 10px rgba(78, 91, 166, 0.16);
+  filter: brightness(0.9);
+  transform: translateY(0);
+}
+
+button:focus-visible,
+input:focus-visible {
+  box-shadow: 0 0 0 3px rgba(78, 91, 166, 0.18);
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
