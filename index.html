@@ -8,90 +8,90 @@
   </head>
 
   <body>
-    <header id="header">
+    <header id="page-header">
       <h1>🎱 행운의 로또</h1>
     </header>
 
     <main>
-      <div id="main-header-div">
-        <h1 id="main-header">🎱 내 번호 당첨 확인 🎱</h1>
+      <div id="main-title-container">
+        <h1 id="main-title">🎱 내 번호 당첨 확인 🎱</h1>
       </div>
 
-      <form id="purchaseForm">
-        <label for="purchaseInput" id="purchase-label"
+      <form id="purchase-form">
+        <label for="purchase-input" id="purchase-label"
           >구입할 금액을 입력해주세요.</label
         >
-        <section id="purchase-input-div">
-          <input type="number" id="purchaseInput" placeholder="금액" />
-          <button type="button" id="purchaseButton">구입</button>
+        <section id="purchase-input-button-section">
+          <input type="number" id="purchase-input" placeholder="금액" />
+          <button type="button" id="purchase-button">구입</button>
         </section>
       </form>
 
-      <section id="myLotto">
-        <p id="myLottoP"></p>
-        <ul id="myLottoLists"></ul>
+      <section id="myLotto-section">
+        <p id="myLotto-count-text"></p>
+        <ul id="myLotto-list"></ul>
       </section>
 
-      <section id="winningDiv">
-        <p id="winning-p">
+      <section id="winning-bonus-section">
+        <p id="winning-bonus-description">
           지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
         </p>
-        <div id="winning-bonus">
-          <fieldset id="winning-input-lists">
-            <legend id="winning-label">당첨 번호</legend>
-            <input type="number" class="winningInput" />
-            <input type="number" class="winningInput" />
-            <input type="number" class="winningInput" />
-            <input type="number" class="winningInput" />
-            <input type="number" class="winningInput" />
-            <input type="number" class="winningInput" />
+        <div id="winning-bonus-container">
+          <fieldset id="winning-numbers">
+            <legend id="winning-numbers-title">당첨 번호</legend>
+            <input type="number" class="winning-numbers-input" />
+            <input type="number" class="winning-numbers-input" />
+            <input type="number" class="winning-numbers-input" />
+            <input type="number" class="winning-numbers-input" />
+            <input type="number" class="winning-numbers-input" />
+            <input type="number" class="winning-numbers-input" />
           </fieldset>
 
-          <fieldset id="bonus-form">
-            <legend id="bonus-legend">보너스 번호</legend>
-            <input type="number" id="bonusInput" />
+          <fieldset id="bonus-number">
+            <legend id="bonus-number-title">보너스 번호</legend>
+            <input type="number" id="bonus-number-input" />
           </fieldset>
         </div>
       </section>
 
-      <button type="button" id="getResultButton">결과 확인하기</button>
+      <button type="button" id="result-button">결과 확인하기</button>
 
-      <dialog id="resultModal">
-        <div id="result-modal-main">
+      <dialog id="result-modal">
+        <div id="result-modal-container">
           <span id="result-modal-close">X</span>
-          <h1 id="result-modal-h1">🏆 당첨 통계 🏆</h1>
+          <h1 id="result-modal-title">🏆 당첨 통계 🏆</h1>
           <table id="result-modal-table">
             <th>일치 갯수</th>
             <th>당첨금</th>
             <th>당첨 갯수</th>
             <tr>
               <td>3개</td>
-              <td class="prizeMoney" id="5thPrizeMoney"></td>
-              <td class="winningCount" id="5thWinningCount"></td>
+              <td class="prizeMoney" id="prize-5th"></td>
+              <td class="winningCount" id="prize-5th-count"></td>
             </tr>
             <tr>
               <td>4개</td>
-              <td class="prizeMoney" id="4thPrizeMoney"></td>
-              <td class="winningCount" id="4thWinningCount"></td>
+              <td class="prizeMoney" id="prize-4th"></td>
+              <td class="winningCount" id="prize-4th-count"></td>
             </tr>
             <tr>
               <td>5개</td>
-              <td class="prizeMoney" id="3rdPrizeMoney"></td>
-              <td class="winningCount" id="3rdWinningCount"></td>
+              <td class="prizeMoney" id="prize-3rd"></td>
+              <td class="winningCount" id="prize-3rd-count"></td>
             </tr>
             <tr>
               <td>5개+보너스볼</td>
-              <td class="prizeMoney" id="2ndPrizeMoney"></td>
-              <td class="winningCount" id="2ndWinningCount"></td>
+              <td class="prizeMoney" id="prize-2nd"></td>
+              <td class="winningCount" id="prize-2nd-count"></td>
             </tr>
             <tr>
               <td>6개</td>
-              <td class="prizeMoney" id="1stPrizeMoney"></td>
-              <td class="winningCount" id="1stWinningCount"></td>
+              <td class="prizeMoney" id="prize-1st"></td>
+              <td class="winningCount" id="prize-1st-count"></td>
             </tr>
           </table>
-          <p id="profitP"></p>
-          <button type="button" id="retryButton">다시 시작하기</button>
+          <p id="profit-ratio-text"></p>
+          <button type="button" id="retry-button">다시 시작하기</button>
         </div>
       </dialog>
     </main>

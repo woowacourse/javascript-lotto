@@ -9,7 +9,7 @@ body {
   justify-content: center;
 }
 
-#header {
+#page-header {
   width: 100%;
   height: 4rem;
   padding: 0;
@@ -22,7 +22,7 @@ body {
   top: 0;
 }
 
-#header h1 {
+#page-header h1 {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 800;
@@ -38,20 +38,20 @@ main {
   padding: 1rem;
 }
 
-#main-header-div {
+#main-title-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 2.25rem;
-
-  h1 {
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: rgba(0, 0, 0, 1);
-  }
 }
 
-#purchaseForm {
+#main-title {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 1);
+}
+
+#purchase-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,14 +70,14 @@ main {
     letter-spacing: 0.031rem;
   }
 
-  #purchase-input-div {
+  #purchase-input-button-section {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 2.25em;
     justify-content: space-between;
 
-    #purchaseInput {
+    #purchase-input {
       width: 20rem;
       border: 0.063rem solid rgba(180, 180, 180, 1);
       border-radius: 0.25rem;
@@ -96,7 +96,7 @@ main {
     }
   }
 
-  #purchaseButton {
+  #purchase-button {
     width: 3.5rem;
     padding: 0.375rem 0.375rem 0.375rem 0.5rem;
     background-color: rgba(78, 91, 166, 1);
@@ -111,16 +111,16 @@ main {
     line-height: 1rem;
   }
 
-  #purchaseButton:hover {
+  #purchase-button:hover {
     background-color: rgb(56, 67, 132);
   }
 }
 
-#myLotto {
+#myLotto-section {
   display: none;
   height: 17.25rem;
 
-  #myLottoP {
+  #myLotto-count-text {
     height: 1.5rem;
     font-weight: 400;
     font-size: 0.938rem;
@@ -131,7 +131,7 @@ main {
     margin-bottom: 0.5rem;
   }
 
-  #myLottoLists {
+  #myLotto-list {
     height: 16rem;
     list-style: none;
     padding-left: 0;
@@ -147,13 +147,13 @@ main {
   }
 }
 
-#winningDiv {
+#winning-bonus-section {
   display: none;
   flex-direction: column;
   margin-top: 2rem;
 }
 
-#winning-p {
+#winning-bonus-description {
   height: 1.5rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -164,13 +164,13 @@ main {
   color: rgba(0, 0, 0, 1);
 }
 
-#winning-bonus {
+#winning-bonus-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-#winning-label {
+#winning-numbers-title {
   height: 1.5rem;
   font-weight: 400;
   font-size: 0.938rem;
@@ -180,7 +180,7 @@ main {
   margin: 0.2rem 0;
 }
 
-#winning-input-lists {
+#winning-numbers {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
@@ -189,13 +189,13 @@ main {
   margin: 0;
 }
 
-.winningInput {
+.winning-numbers-input {
   width: 2rem;
   height: 1.5rem;
   margin: 0.2rem 0;
 }
 
-#bonus-form {
+#bonus-number {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -205,7 +205,7 @@ main {
   margin: 0;
 }
 
-#bonus-legend {
+#bonus-number-title {
   height: 1.5rem;
   font-weight: 400;
   font-size: 0.938rem;
@@ -215,13 +215,13 @@ main {
   margin: 0.2rem 0;
 }
 
-#bonusInput {
+#bonus-number-input {
   width: 2rem;
   height: 1.5rem;
   margin: 0.2rem 0;
 }
 
-#getResultButton {
+#result-button {
   display: none;
   height: 2.25rem;
   margin-top: 1rem;
@@ -239,7 +239,7 @@ main {
   color: rgba(255, 255, 255, 1);
 }
 
-#getResultButton:hover {
+#result-button:hover {
   background-color: rgb(56, 67, 132);
 }
 
@@ -262,7 +262,7 @@ footer {
   padding-bottom: 0.5em;
 }
 
-#resultModal {
+#result-modal {
   display: none;
   position: fixed;
   top: 0;
@@ -272,12 +272,12 @@ footer {
   background-color: rgba(0,0,0,0.5);
 }
 
-#resultModal.active {
+#result-modal.active {
   align-items: center;
   justify-content: center;
 }
 
-#result-modal-main {
+#result-modal-container {
   width: 21.875rem;
   height: 31.25rem;
   border: none;
@@ -299,7 +299,7 @@ footer {
   cursor: pointer;
 }
 
-#result-modal-h1 {
+#result-modal-title {
   height: 1.5rem;
   margin-top: 1.25rem;
 
@@ -342,7 +342,7 @@ footer {
   }
 }
 
-#profitP {
+#profit-ratio-text {
   font-weight: 700;
   font-size: 0.938rem;
   line-height: 1.5rem;
@@ -351,7 +351,7 @@ footer {
   margin-top: 2rem;
 }
 
-#retryButton {
+#retry-button {
   width: 100%;
   height: 2.25rem;
   padding: 0.375rem 0.375rem 0.375rem 0.5rem;
@@ -369,6 +369,6 @@ footer {
   text-transform: uppercase;
 }
 
-#retryButton:hover {
+#retry-button:hover {
   background-color: rgb(56, 67, 132);
 }

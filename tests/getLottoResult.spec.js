@@ -10,13 +10,13 @@ test.describe('로또 결과 테스트하기', () => {
     
     await page.getByRole('button', { name: '구입' }).click();
 
-    const winningInputs = page.locator(".winningInput");
-    const allWinningInputs = await winningInputs.all();
+    const winningNumbersInput = page.locator(".winning-numbers-input");
+    const allWinningInputs = await winningNumbersInput.all();
     for (let i = 0; i < allWinningInputs.length; i++) {
       await allWinningInputs[i].fill(`${i + 1}`);
     }
 
-    await page.locator('#bonusInput').fill('7');
+    await page.locator('#bonus-number-input').fill('7');
 
     await page.getByRole('button', { name: '결과 확인하기'}).click();
 

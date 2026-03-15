@@ -2,26 +2,26 @@ import { PRIZE } from "../constants/constant.js";
 
 export const webOutputPrinter = {
   printMyLottoLists(randomLottos) {
-    const myLotto = document.getElementById("myLotto");
-    const myLottoP = document.getElementById("myLottoP");
-    const myLottoLists = document.getElementById("myLottoLists");
+    const myLotto = document.getElementById("myLotto-section");
+    const myLottoCountText = document.getElementById("myLotto-count-text");
+    const myLottoList = document.getElementById("myLotto-list");
 
-    myLottoLists.innerHTML = "";
+    myLottoList.textContent = "";
 
-    myLottoP.innerHTML = `총 ${randomLottos.length}개를 구매하였습니다.`;
+    myLottoCountText.textContent = `총 ${randomLottos.length}개를 구매하였습니다.`;
 
     for (const lotto of randomLottos) {
       const newLi = document.createElement('li');
-      newLi.className = "myLottoListLi";
+      newLi.className = "myLotto-ticket";
       newLi.textContent = `🎟️ ${lotto.getNumber().join(', ')}`;
-      myLottoLists.appendChild(newLi);
+      myLottoList.appendChild(newLi);
     }
 
-    const winningDiv = document.getElementById("winningDiv");
-    winningDiv.style.display = "block";
+    const winningBonusSection = document.getElementById("winning-bonus-section");
+    winningBonusSection.style.display = "block";
 
-    const getResultButton = document.getElementById("getResultButton");
-    getResultButton.style.display = "block";
+    const resultButton = document.getElementById("result-button");
+    resultButton.style.display = "block";
 
     myLotto.style.display = 'block';
   },
@@ -32,16 +32,16 @@ export const webOutputPrinter = {
     const winningCount = document.querySelectorAll(".winningCount");
 
     for (let i = 0; i < prizeMoney.length; i++) {
-      prizeMoney[i].innerText = `${PRIZE[arrayKey[i]].toLocaleString()}`;
-      winningCount[i].innerText = `${result[arrayKey[i]]}개`;
+      prizeMoney[i].textContent = `${PRIZE[arrayKey[i]].toLocaleString()}`;
+      winningCount[i].textContent = `${result[arrayKey[i]]}개`;
     }
 
-    const resultModal = document.getElementById("resultModal");
+    const resultModal = document.getElementById("result-modal");
     resultModal.style.display = "flex";
   },
 
   printProfit(profit) {
-    const profitP = document.getElementById("profitP");
-    profitP.innerText = `당신의 총 수익률은 ${profit.toFixed(1)}%입니다.`
+    const profitRatioText = document.getElementById("profit-ratio-text");
+    profitRatioText.textContent = `당신의 총 수익률은 ${profit.toFixed(1)}%입니다.`
   }
 }

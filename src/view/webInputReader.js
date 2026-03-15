@@ -5,8 +5,8 @@ export const webInputReader = {
 
   readPurchaseMoney() {
     return new Promise((resolve) => {
-      const purchaseInput = document.getElementById("purchaseInput");
-      const purchaseButton = document.getElementById("purchaseButton");
+      const purchaseInput = document.getElementById("purchase-input");
+      const purchaseButton = document.getElementById("purchase-button");
 
       if (this.isRestarting) {
         this.isRestarting = false;
@@ -26,11 +26,11 @@ export const webInputReader = {
 
   readWinningNumber() {
     return new Promise((resolve) => {
-      const getResultButton = document.getElementById("getResultButton");
-      const winningInput = document.querySelectorAll("input.winningInput");
-      const bonusInput = document.getElementById("bonusInput");
-      const resultModal = document.getElementById("resultModal");
-      const purchaseButton = document.getElementById("purchaseButton");
+      const resultButton = document.getElementById("result-button");
+      const winningNumbersInput = document.querySelectorAll("input.winning-numbers-input");
+      const bonusNumberInput = document.getElementById("bonus-number-input");
+      const resultModal = document.getElementById("result-modal");
+      const purchaseButton = document.getElementById("purchase-button");
       purchaseButton.addEventListener("click", () => {
         this.isRestarting = true;
         resolve(RESTART);
@@ -38,30 +38,30 @@ export const webInputReader = {
 
       const onClick = () => {
         resultModal.classList.add("active");
-        this.savedBonusNumber = bonusInput.value;
-        const winningNumberArray = Array.from(winningInput)
+        this.savedBonusNumber = bonusNumberInput.value;
+        const winningNumberArray = Array.from(winningNumbersInput)
           .map((item) => item.value)
           .filter(Boolean);
         const winningNumberString = winningNumberArray.join(",");
         resolve(winningNumberString);
       };
 
-      getResultButton.addEventListener("click", onClick);
+      resultButton.addEventListener("click", onClick);
     });
   },
 
   readBonusNumber() {
     return new Promise((resolve) => {
       if (this.checkedBonusNumber) {
-        const getResultButton = document.getElementById("getResultButton");
-        const bonusInput = document.getElementById("bonusInput");
+        const resultButton = document.getElementById("result-button");
+        const bonusNumberInput = document.getElementById("bonus-number-input");
 
         const onClick = () => {
-          resolve(bonusInput.value);
+          resolve(bonusNumberInput.value);
           return;
         };
 
-        getResultButton.addEventListener("click", onClick);
+        resultButton.addEventListener("click", onClick);
       } else {
         this.checkedBonusNumber = true;
         resolve(this.savedBonusNumber);
@@ -72,13 +72,13 @@ export const webInputReader = {
 
   readRetry() {
     return new Promise((resolve) => {
-      const myLotto = document.getElementById("myLotto");
-      const winningDiv = document.getElementById("winningDiv");
-      const getResultButton = document.getElementById("getResultButton");
-      const resultModal = document.getElementById("resultModal");
+      const myLotto = document.getElementById("myLotto-section");
+      const winningBonusSection = document.getElementById("winning-bonus-section");
+      const resultButton = document.getElementById("result-button");
+      const resultModal = document.getElementById("result-modal");
 
       const resultModalClose = document.getElementById("result-modal-close");
-      const retryButton = document.getElementById("retryButton");
+      const retryButton = document.getElementById("retry-button");
 
       const onClick = () => {
         this.isRestarting = false;
@@ -86,15 +86,15 @@ export const webInputReader = {
 
         resultModal.classList.remove("active");
         myLotto.style.display = "none";
-        winningDiv.style.display = "none";
-        getResultButton.style.display = "none";
+        winningBonusSection.style.display = "none";
+        resultButton.style.display = "none";
         resultModal.style.display = "none";
 
         document.querySelectorAll("input[type=number]").forEach((item) => {
           item.value = "";
         });
 
-        document.querySelectorAll(".myLottoListLi").forEach((element) => {
+        document.querySelectorAll(".myLotto-ticket").forEach((element) => {
           element.remove();
         });
 
