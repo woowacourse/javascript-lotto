@@ -1,21 +1,24 @@
 import { Header } from "./components/Header.js";
 import { Footer } from "./components/Footer.js";
 import { Main } from "./components/Main.js";
+import { Modal } from "./common/Modal.js";
+import { LottoStatistics } from "./components/LottoStatistics.js";
 
 export const App = ($app, { lottoService }) => {
   let state = {
     purchasedAmount: "",
     lottos: [],
-    lottoResult: [],
-    profitRate: null,
   };
 
-  const main = Main({ onPurchase, onShowResult, onRetry });
-  $app.append(Header(), main.$main, Footer());
+  const statistics = LottoStatistics({ onRetry });
+  const modal = Modal({ onClose, children: statistics.$section });
+  const { $main, render } = Main({ onPurchase, onShowResult });
+
+  $app.append(Header(), $main, modal.$overlay, Footer());
 
   const setState = (newState) => {
     state = { ...state, ...newState };
-    main.render(state);
+    render(state);
   };
 
   function onPurchase(amount) {
@@ -30,18 +33,22 @@ export const App = ($app, { lottoService }) => {
       winningNumbers,
       bonusNumber,
     });
-    setState({
+    statistics.render({
       lottoResult: result.lottosResult,
       profitRate: result.profitRate,
     });
+    modal.open();
+  }
+
+  function onClose() {
+    modal.close();
   }
 
   function onRetry() {
     setState({
       purchasedAmount: 0,
       lottos: [],
-      lottoResult: [],
-      profitRate: null,
     });
+    modal.close();
   }
 };
