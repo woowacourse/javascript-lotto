@@ -66,7 +66,7 @@ export const DOMInput = {
     const numbers = this.getWinningNumbers();
     const bonus = this.getBonusInputValue();
     const winningLotto = new WinningLotto(numbers, Number(bonus));
-    this._winningLotto = winningLotto;
+    this.winningLotto = winningLotto;
     resolve(new Lotto(numbers));
   },
 
