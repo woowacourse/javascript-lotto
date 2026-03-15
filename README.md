@@ -54,9 +54,9 @@
 
 ## Input
 
-- [ ] `readPurchaseAmount` — 구입금액 제출 이벤트를 Promise로 래핑
-- [ ] `readWinningLottoNumber` — 당첨 번호 제출 이벤트를 Promise로 래핑
-- [ ] `readBonusNumber` — 보너스 번호 제출 이벤트를 Promise로 래핑
+- [x] `readPurchaseAmount` — 구입금액 제출 이벤트를 Promise로 래핑
+- [x] `readWinningLottoNumber` — 당첨 번호 제출 이벤트를 Promise로 래핑
+- [x] `readBonusNumber` — 보너스 번호 제출 이벤트를 Promise로 래핑
 - [ ] `readRetry` — 재시작 버튼 클릭 이벤트를 Promise로 래핑
 - [ ] `reRead` — 에러 발생 시 에러 메시지 표시 후 재입력 유도
 
@@ -64,8 +64,8 @@
 
 ## Output
 
-- [ ] `printPurchaseLottoCount` — 구매 장수 DOM 렌더링
-- [ ] `printLottos` — 로또 번호 목록 DOM 렌더링
+- [x] `printPurchaseLottoCount` — 구매 장수 DOM 렌더링
+- [x] `printLottos` — 로또 번호 목록 DOM 렌더링
 - [ ] `printResult` — 당첨 통계 DOM 렌더링
 - [ ] `printError` — 에러 메시지 DOM 렌더링
 - [ ] `reset` — 전체 DOM 초기 상태로 리셋
@@ -74,4 +74,4 @@
 
 ## css
 
-- [] css구현
+- [x] css구현
