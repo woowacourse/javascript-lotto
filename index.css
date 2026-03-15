@@ -276,3 +276,24 @@ body {
 .result-button.show {
   display: block;
 }
+
+.footer {
+  margin-top: 30px;
+  padding-top: 28px;
+  padding-bottom: 36px;
+}
+
+#copyrignt-line {
+  border: none;
+  border-top: 1px solid #4e5ba633;
+  margin: 0;
+}
+
+#copyright-text {
+  margin: 24px 0 0 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #4e5ba6;
+  letter-spacing: 1.25px;
+}
