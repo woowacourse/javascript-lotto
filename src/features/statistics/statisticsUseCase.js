@@ -1,5 +1,5 @@
 import Rank from "../../domain/Rank.js";
-import statisticsMapper from "./statisticsMapper.js";
+import StatisticsMapper from "./statisticsMapper.js";
 import { statistics } from "./statisticsUtils.js";
 
 export default class statisticsUseCase {
@@ -7,7 +7,7 @@ export default class statisticsUseCase {
     ARRAY_EMPTY: "로또를 구매하셔야 합니다",
   };
 
-  static statisticsLottos(lottos, winningNumber) {
+  statisticsLottos(lottos, winningNumber) {
     this.#validate(lottos);
     const rankMap = Rank.getRankMap();
 
@@ -24,10 +24,10 @@ export default class statisticsUseCase {
       }
     });
 
-    return statisticsMapper.toResponseDto(rankMap);
+    return StatisticsMapper.toResponseDto(rankMap);
   }
 
-  static #validate(lottos) {
+  #validate(lottos) {
     if (!lottos?.length) {
       throw new Error(statisticsUseCase.ERROR.ARRAY_EMPTY);
     }

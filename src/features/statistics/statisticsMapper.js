@@ -1,4 +1,4 @@
-import LottoStatisticsResponseDto from "./statisticsResponseDto.js";
+import StatisticsResponseDto from "./statisticsResponseDto.js";
 
 export default class StatisticsMapper {
   static toResponseDto(rankMap) {
@@ -18,7 +18,6 @@ export default class StatisticsMapper {
     );
 
     const sortedResults = results.sort((a, b) => b.order - a.order);
-
-    return new LottoStatisticsResponseDto(sortedResults, totalPrize);
+    return new StatisticsResponseDto(sortedResults, totalPrize);
   }
 }

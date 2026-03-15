@@ -1,18 +1,17 @@
 import Lotto from "../../domain/Lotto.js";
 import WinningNumber from "../../domain/WinningNumber.js";
-import WinningUseCase from "../../features/winning/WinningUseCase.js";
-import statisticsUseCase from "../../features/statistics/statisticsUseCase.js";
 import { calculateProfit } from "../../features/statistics/statisticsUtils.js";
 import { isNumber, isNumberArray } from "../../utils/inputValidator.js";
 import { toSplitComma, toNumber } from "../../utils/parser.js";
+
 export default class ConsoleApp {
   static ANSWER = { YES: "y", NO: "n" };
 
-  #purchaseLottoUseCase;
+  #lottoService;
   #ui;
 
-  constructor({ purchaseLottoUseCase, ui }) {
-    this.#purchaseLottoUseCase = purchaseLottoUseCase;
+  constructor({ lottoService, ui }) {
+    this.#lottoService = lottoService;
     this.#ui = ui;
   }
 
@@ -23,17 +22,19 @@ export default class ConsoleApp {
   async #lottoGame() {
     do {
       const purchaseDto = await this.#retry(() => this.#processPurchase());
-      const winningNumber = await this.#retry(() =>
+
+      const winningNumbers = await this.#retry(() =>
         this.#processWinningNumber(),
       );
       const bonusNumber = await this.#retry(() =>
-        this.#processWinningBonus(winningNumber),
+        this.#processWinningBonus(winningNumbers),
       );
-      const { totalPrize } = await this.#processStatistics(purchaseDto.lottos, {
-        winningNumber,
+
+      const statsDto = this.#processStatistics(purchaseDto, {
+        winningNumbers,
         bonusNumber,
       });
-      this.#processProfit(purchaseDto.purchasedAmount, totalPrize);
+      this.#processProfit(purchaseDto.purchasedAmount, statsDto.totalPrize);
     } while (await this.#retry(() => this.#processAskRetry()));
   }
 
@@ -41,7 +42,7 @@ export default class ConsoleApp {
     const rawAmount = await this.#ui.readAmount();
     const amount = isNumber(toNumber(rawAmount));
 
-    const purchaseDto = this.#purchaseLottoUseCase.execute(amount);
+    const purchaseDto = this.#lottoService.purchase(amount);
     this.#ui.printLottos(purchaseDto.lottos);
     return purchaseDto;
   }
@@ -57,22 +58,19 @@ export default class ConsoleApp {
     const rawBonus = await this.#ui.readBonusNumber();
     const bonusNumber = isNumber(toNumber(rawBonus));
     WinningNumber.validate(numbers, bonusNumber);
-
     return bonusNumber;
   }
 
-  async #processStatistics(lottosNumbers, { winningNumber, bonusNumber }) {
-    const winningLotto = WinningUseCase.execute(winningNumber, bonusNumber);
-    const lottoStatsDto = statisticsUseCase.statisticsLottos(
-      lottosNumbers,
-      winningLotto,
-    );
-
-    this.#ui.printStatistics(lottoStatsDto.lottosResult);
-    return lottoStatsDto;
+  #processStatistics(purchaseDto, { winningNumbers, bonusNumber }) {
+    const statsDto = this.#lottoService.getStatistics(purchaseDto.lottos, {
+      winningNumbers,
+      bonusNumber,
+    });
+    this.#ui.printStatistics(statsDto.lottosResult);
+    return statsDto;
   }
 
-  async #processProfit(purchasedAmount, totalPrize) {
+  #processProfit(purchasedAmount, totalPrize) {
     const profit = calculateProfit(purchasedAmount, totalPrize);
     this.#ui.printProfit(profit);
   }
@@ -81,9 +79,10 @@ export default class ConsoleApp {
     const { YES, NO } = ConsoleApp.ANSWER;
     const rawAnswer = await this.#ui.readAskRetry();
     const answer = rawAnswer.toLowerCase();
+
     if (answer === YES) return true;
     if (answer === NO) return false;
-    throw new Error("y나 n을 입력해주세요");
+    throw new Error("y나 n을 입력해주세요.");
   }
 
   async #retry(fn) {
