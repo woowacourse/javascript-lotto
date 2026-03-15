@@ -14,7 +14,7 @@ class App {
       const amount = await this.#input.reRead(this.#input.readPurchaseAmount);
       const lottoMachine = new LottoMachine(amount);
       this.#showPurchaseLotto(lottoMachine);
-      // const winningLotto = await this.#getWinningLotto();
+      const winningLotto = await this.#getWinningLotto();
       // this.#showMatchResult(lottoMachine, winningLotto);
       // const restart = await this.#input.reRead(this.#input.readRetry);
       // if (restart === "n") break;
@@ -37,17 +37,17 @@ class App {
   //   );
   // }
 
-  // async #getWinningLotto() {
-  //   const winningLottoNumber = (
-  //     await this.#input.reRead(this.#input.readWinningLottoNumber)
-  //   ).getLottoNumber();
-  //   const winningLotto = await this.#input.reRead(
-  //     this.#input.readBonusNumber,
-  //     winningLottoNumber,
-  //   );
+  async #getWinningLotto() {
+    const winningLottoNumber = (
+      await this.#input.reRead(this.#input.readWinningLottoNumber)
+    ).getLottoNumber();
+    const winningLotto = await this.#input.reRead(
+      this.#input.readBonusNumber,
+      winningLottoNumber,
+    );
 
-  //   return winningLotto;
-  // }
+    return winningLotto;
+  }
 }
 
 export default App;
