@@ -8,6 +8,8 @@ import OutputView from "./View/OutputView.js";
 
 const inputPrice = document.querySelector("#inputPrice");
 const purchaseButton = document.querySelector("#purchaseButton");
+const resultButton = document.querySelector("#resultButton");
+const winningLottoSection = document.querySelector(".winning-lotto");
 
 purchaseButton.addEventListener("click", () => {
   try {
@@ -17,6 +19,41 @@ purchaseButton.addEventListener("click", () => {
     const lottos = lottoMachine.issueLottos(purchasePrice);
 
     OutputView.printLottoList(lottos);
+
+    const winningText = document.getElementById("winning-numbers-text");
+    const bonusText = document.getElementById("bonus-number-text");
+
+    winningLottoSection.classList.add("show");
+
+    winningText.textContent = "당첨 번호";
+    bonusText.textContent = "보너스 번호";
+  } catch (e) {
+    window.alert(e.message);
+  }
+});
+
+resultButton.addEventListener("click", () => {
+  try {
+    const number1 = document.getElementById("winning-number-input-1");
+    const number2 = document.getElementById("winning-number-input-2");
+    const number3 = document.getElementById("winning-number-input-3");
+    const number4 = document.getElementById("winning-number-input-4");
+    const number5 = document.getElementById("winning-number-input-5");
+    const number6 = document.getElementById("winning-number-input-6");
+
+    const winningNumbers = Validator.validateWinningNumbers([
+      number1.value,
+      number2.value,
+      number3.value,
+      number4.value,
+      number5.value,
+      number6.value,
+    ]);
+
+    const bonusNumber = Validator.validateBonusNumber(
+      document.getElementById("bonus-number-input").value,
+      winningNumbers,
+    );
   } catch (e) {
     window.alert(e.message);
   }
