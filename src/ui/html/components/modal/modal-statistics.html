@@ -1,5 +1,5 @@
 <style>
-  #modal-statistics-section {
+  .modal-statistics-section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,11 +24,11 @@
     text-align: center;
   }
 
-  #profit-span {
+  .profit-span {
     font: 700 15px/24px "Roboto", sans-serif;
   }
 
-  #modal-statistics-section button {
+  #restart-button {
     width: 100%;
     box-sizing: border-box;
     margin-left: 1rem;
@@ -44,7 +44,7 @@
   }
 </style>
 
-<div id="modal-statistics-section">
+<div class="modal-statistics-section">
   <table id="statistics-table">
     <thead>
       <tr>
@@ -82,5 +82,5 @@
     </tbody>
   </table>
   <div id="profit-div"></div>
-  <button>다시 시작하기</button>
+  <button id="restart-button">다시 시작하기</button>
 </div>
