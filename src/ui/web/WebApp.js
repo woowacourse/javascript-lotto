@@ -15,6 +15,7 @@ export const App = ($app, { lottoService }) => {
   const { $main, render } = Main({ onPurchase, onShowResult });
 
   $app.append(Header(), $main, modal.$overlay, Footer());
+  render(state);
 
   const setState = (newState) => {
     state = { ...state, ...newState };
@@ -22,22 +23,31 @@ export const App = ($app, { lottoService }) => {
   };
 
   function onPurchase(amount) {
-    const { lottos, purchasedAmount } = lottoService.purchase(amount);
-    setState({ lottos, purchasedAmount });
+    try {
+      const { lottos, purchasedAmount } = lottoService.purchase(amount);
+      setState({ lottos, purchasedAmount });
+    } catch (e) {
+      alert(e.message);
+    }
   }
 
   function onShowResult({ winningNumbers, bonusNumber }) {
-    const result = lottoService.getStatistics({
-      lottosRaw: state.lottos,
-      purchasedRaw: state.purchasedAmount,
-      winningNumbers,
-      bonusNumber,
-    });
-    statistics.render({
-      lottoResult: result.lottosResult,
-      profitRate: result.profitRate,
-    });
-    modal.open();
+    try {
+      const stats = lottoService.getStatistics({
+        lottosRaw: state.lottos,
+        purchasedRaw: state.purchasedAmount,
+        winningNumbers,
+        bonusNumber,
+      });
+
+      statistics.render({
+        lottoResult: stats.lottosResult,
+        profitRate: stats.profitRate,
+      });
+      modal.open();
+    } catch (e) {
+      alert(e.message);
+    }
   }
 
   function onClose() {

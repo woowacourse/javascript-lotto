@@ -6,24 +6,50 @@ export const LottoStatistics = ({ onRetry }) => {
   const render = ({ lottoResult, profitRate }) => {
     $section.replaceChildren();
 
-    lottoResult.forEach(({ count }) => {
-      const $count = create("div", { text: count, className: "lotto-result" });
-      $section.append($count);
+    const $title = create("h2", {
+      text: "🏆 당첨 통계 🏆",
+      className: "statistics-title lotto-subtitle",
     });
 
-    const $profitRate = create("div", {
-      text: `총 수익률은 ${profitRate}%입니다.`,
-      className: "lotto-profitRate",
+    const $table = create("table", { className: "statistics-table" });
+    const $thead = create("thead");
+    const $headerRow = create("tr");
+
+    ["일치 갯수", "당첨금", "당첨 갯수"].forEach((text) => {
+      $headerRow.append(create("th", { text }));
+    });
+    $thead.append($headerRow);
+
+    const $tbody = create("tbody", { className: "lotto-body" });
+    lottoResult.forEach(({ matchCount, hasBonus, count, prize }) => {
+      const $row = create("tr");
+      const matchText = hasBonus
+        ? `${matchCount}개 + 보너스볼`
+        : `${matchCount}개`;
+      const prizeText = prize.toLocaleString();
+      const countText = `${count}개`;
+
+      [matchText, prizeText, countText].forEach((text) => {
+        $row.append(create("td", { text }));
+      });
+      $tbody.append($row);
     });
 
-    const $askRetry = create("button", {
+    $table.append($thead, $tbody);
+
+    const $profitRate = create("p", {
+      text: `당신의 총 수익률은 ${profitRate}%입니다.`,
+      className: "profit-rate",
+    });
+
+    const $retryButton = create("button", {
       type: "button",
-      className: "retry-button",
-      text: "다시 하시겠습니까",
+      className: "retry-button lotto-button",
+      text: "다시 시작하기",
     });
 
-    $askRetry.addEventListener("click", onRetry);
-    $section.append($profitRate, $askRetry);
+    $retryButton.addEventListener("click", onRetry);
+    $section.append($title, $table, $profitRate, $retryButton);
   };
 
   return { $section, render };

@@ -2,24 +2,28 @@ import { create } from "../core/dom.js";
 
 export const WinningForm = ({ onShowResult }) => {
   const $section = create("section", { className: "winning-section" });
-  const $title = create("h3", { text: "지난 주 당첨 번호를 입력해 주세요." });
   const $form = create("form", { className: "winning-input-form" });
 
-  const $winningFieldset = create("fieldset", {
-    className: "winning-number-inputs",
+  const $fieldset = create("fieldset", { className: "winning-fieldset" });
+  const $legend = create("legend", {
+    text: "지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.",
   });
 
-  const $winningLegend = create("legend", {
-    text: "지난 주 당첨 번호를 입력해 주세요.",
+  const $labelRow = create("div", { className: "winning-label-row" });
+  const $winningLabel = create("span", {
+    text: "당첨 번호",
+    className: "winning-label",
+  });
+  const $bonusLabel = create("label", {
+    text: "보너스 번호",
+    className: "bonus-label",
+    htmlFor: "bonus-number",
   });
 
-  $winningFieldset.append($winningLegend);
+  $labelRow.append($winningLabel, $bonusLabel);
 
-  const $numbersContainer = create("div", {
-    className: "winning-numbers-container",
-  });
-
-  const $numberInputs = Array.from({ length: 6 }, (_, i) =>
+  const $inputRow = create("div", { className: "winning-input-row" });
+  const $numberInputs = Array.from({ length: 6 }, () =>
     create("input", {
       name: "winning-number",
       type: "number",
@@ -28,20 +32,18 @@ export const WinningForm = ({ onShowResult }) => {
     }),
   );
 
-  $numbersContainer.append(...$numberInputs);
-
-  const $bonusLabel = create("label", { text: "보너스 번호" });
   const $bonusInput = create("input", {
     type: "number",
-    name: "bonus-number",
+    id: "bonus-number",
     className: "bonus-number-input",
-    placeholder: "번호",
     required: true,
   });
 
+  $inputRow.append(...$numberInputs, $bonusInput);
+
   const $submitButton = create("button", {
     type: "submit",
-    className: "open-result-button",
+    className: "open-result-button lotto-button",
     text: "결과 확인하기",
   });
 
@@ -49,19 +51,12 @@ export const WinningForm = ({ onShowResult }) => {
     e.preventDefault();
     const winningNumbers = $numberInputs.map(($input) => Number($input.value));
     const bonusNumber = Number($bonusInput.value);
-
     onShowResult({ winningNumbers, bonusNumber });
   });
 
-  $winningFieldset.append(
-    $winningLegend,
-    $numbersContainer,
-    $bonusLabel,
-    $bonusInput,
-    $submitButton,
-  );
-  $form.append($winningFieldset);
-  $section.append($title, $form);
+  $fieldset.append($legend, $labelRow, $inputRow);
+  $form.append($fieldset, $submitButton);
+  $section.append($form);
 
   return $section;
 };

@@ -5,22 +5,23 @@ export const PurchaseForm = ({ onPurchase }) => {
   const $form = create("form", { className: "purchase-form" });
 
   const $label = create("label", {
-    className: "purchase-label",
+    className: "purchase-form-label lotto-body",
     text: "구입할 금액을 입력해주세요. ",
+    htmlFor: "purchase-amount",
   });
 
+  const $layout = create("div", { className: "purchase-layout" });
+
   const $input = create("input", {
-    name: "purchase-amount",
+    id: "purchase-amount",
     type: "number",
-    className: "purchase-amount-input",
+    className: "purchase-form-input",
     placeholder: "금액",
   });
 
-  $label.append($input);
-
   const $button = create("button", {
     type: "submit",
-    className: "purchase-button",
+    className: "purchase-form-button lotto-cation",
     text: "구입",
   });
 
@@ -30,7 +31,8 @@ export const PurchaseForm = ({ onPurchase }) => {
     onPurchase(amount);
   });
 
-  $form.append($label, $button);
+  $layout.append($input, $button);
+  $form.append($label, $layout);
   $section.append($form);
 
   return $section;
