@@ -9,7 +9,7 @@ export const create = (tag, attrs = {}) => {
   const { className, text, value, disabled, ...rest } = attrs;
 
   if (className) $el.className = className;
-  if (text) $el.textContent = text;
+  if (text !== undefined && text !== null) $el.textContent = text;
   if (value !== undefined) $el.value = value;
   if (disabled !== undefined) $el.disabled = disabled;
 
