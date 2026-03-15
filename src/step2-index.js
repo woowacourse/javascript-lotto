@@ -15,6 +15,7 @@ const purchaseButton = document.querySelector("#purchaseButton");
 const winningLottoSection = document.querySelector(".winning-lotto");
 const resultButton = document.querySelector("#result-button");
 const modalOverLay = document.querySelector(".modal-overlay");
+const restartButton = document.querySelector("#restart-button");
 
 purchaseButton.addEventListener("click", () => {
   try {
