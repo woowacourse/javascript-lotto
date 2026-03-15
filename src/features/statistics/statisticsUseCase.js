@@ -1,4 +1,7 @@
+import Lotto from "../../domain/Lotto.js";
 import Rank from "../../domain/Rank.js";
+import Money from "../../domain/Money.js";
+import WinningNumber from "../../domain/WinningNumber.js";
 import StatisticsMapper from "./StatisticsMapper.js";
 export default class StatisticsUseCase {
   static ERROR = {
@@ -11,7 +14,16 @@ export default class StatisticsUseCase {
     return rank;
   }
 
-  statisticsLottos({ lottos, winningNumber, purchasedMoney }) {
+  statisticsLottos({
+    lottosRaw,
+    purchasedRaw,
+    winningNumbersRaw,
+    bonusNumberRaw,
+  }) {
+    const lottos = Lotto.fromList(lottosRaw);
+    const purchasedMoney = new Money(purchasedRaw);
+    const winningNumber = new WinningNumber(winningNumbersRaw, bonusNumberRaw);
+
     this.#validate(lottos);
     const rankMap = Rank.getRankMap();
 

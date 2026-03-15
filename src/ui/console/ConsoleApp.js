@@ -6,11 +6,11 @@ import { toSplitComma, toNumber } from "../../utils/parser.js";
 export default class ConsoleApp {
   static ANSWER = { YES: "y", NO: "n" };
 
-  #lottoService;
+  #lottoFacade;
   #ui;
 
-  constructor({ lottoService, ui }) {
-    this.#lottoService = lottoService;
+  constructor({ lottoFacade, ui }) {
+    this.#lottoFacade = lottoFacade;
     this.#ui = ui;
   }
 
@@ -22,22 +22,26 @@ export default class ConsoleApp {
     do {
       const purchaseDto = await this.#retry(() => this.#processPurchase());
 
-      const winningNumbers = await this.#retry(() =>
+      const winningNumbersRaw = await this.#retry(() =>
         this.#processWinningNumber(),
       );
-      const bonusNumber = await this.#retry(() =>
-        this.#processWinningBonus(winningNumbers),
+      const bonusNumberRaw = await this.#retry(() =>
+        this.#processWinningBonus(winningNumbersRaw),
       );
 
-      this.#processStatistics({ purchaseDto, winningNumbers, bonusNumber });
+      this.#processStatistics({
+        purchaseDto,
+        winningNumbersRaw,
+        bonusNumberRaw,
+      });
     } while (await this.#retry(() => this.#processAskRetry()));
   }
 
   async #processPurchase() {
-    const rawAmount = await this.#ui.readAmount();
-    const amount = isNumber(toNumber(rawAmount));
+    const inputAmount = await this.#ui.readAmount();
+    const amountRaw = isNumber(toNumber(inputAmount));
 
-    const purchaseDto = this.#lottoService.purchase(amount);
+    const purchaseDto = this.#lottoFacade.purchase({ amountRaw });
     this.#ui.printLottos(purchaseDto.lottos);
     return purchaseDto;
   }
@@ -56,13 +60,13 @@ export default class ConsoleApp {
     return bonusNumber;
   }
 
-  #processStatistics({ purchaseDto, winningNumbers, bonusNumber }) {
+  #processStatistics({ purchaseDto, winningNumbersRaw, bonusNumberRaw }) {
     const { lottos, purchasedAmount } = purchaseDto;
-    const statsDto = this.#lottoService.getStatistics({
+    const statsDto = this.#lottoFacade.getStatistics({
       lottosRaw: lottos,
       purchasedRaw: purchasedAmount,
-      winningNumbers,
-      bonusNumber,
+      winningNumbersRaw,
+      bonusNumberRaw,
     });
     this.#ui.printStatistics(statsDto.lottosResult);
     this.#ui.printProfit(statsDto.profitRate);

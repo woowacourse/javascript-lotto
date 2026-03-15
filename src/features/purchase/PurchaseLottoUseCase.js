@@ -8,8 +8,8 @@ export default class PurchaseLottoUseCase {
     this.#lottoMachine = lottoMachine;
   }
 
-  execute(amount) {
-    const money = new Money(amount);
+  execute({ amountRaw }) {
+    const money = new Money(amountRaw);
     const { lottos, purchasedMoney } = this.#lottoMachine.buyLottos(money);
 
     return PurchaseLottoMapper.toDto(lottos, purchasedMoney);
