@@ -201,6 +201,7 @@ h6 {
   border-radius: 4px;
   border: 1px solid #b4b4b4;
   margin-right: 4px;
+  text-align: center;
 }
 
 #winning-number-input-2 {
@@ -210,6 +211,7 @@ h6 {
   border-radius: 4px;
   border: 1px solid #b4b4b4;
   margin-right: 4px;
+  text-align: center;
 }
 
 #winning-number-input-3 {
@@ -219,6 +221,7 @@ h6 {
   border-radius: 4px;
   border: 1px solid #b4b4b4;
   margin-right: 4px;
+  text-align: center;
 }
 
 #winning-number-input-4 {
@@ -228,6 +231,7 @@ h6 {
   border-radius: 4px;
   border: 1px solid #b4b4b4;
   margin-right: 4px;
+  text-align: center;
 }
 
 #winning-number-input-5 {
@@ -237,6 +241,7 @@ h6 {
   border-radius: 4px;
   border: 1px solid #b4b4b4;
   margin-right: 4px;
+  text-align: center;
 }
 
 #winning-number-input-6 {
@@ -245,6 +250,7 @@ h6 {
   left: 16px;
   border-radius: 4px;
   border: 1px solid #b4b4b4;
+  text-align: center;
 }
 
 .bonus-number {
@@ -268,6 +274,7 @@ h6 {
   border: 1px solid #b4b4b4;
   margin-right: 4px;
   margin-top: 0px;
+  text-align: center;
 }
 
 #result-button {
@@ -365,4 +372,22 @@ h6 {
   font-weight: bold;
   padding-bottom: 8px;
   padding-top: 8px;
+}
+
+#profitRate-print {
+  text-align: center;
+  font-weight: bold;
+  margin-right: 1px;
+}
+
+#restart-button {
+  width: 318px;
+  height: 36px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4e5ba6;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
 }

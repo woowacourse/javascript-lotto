@@ -76,7 +76,18 @@ resultButton.addEventListener("click", () => {
     );
 
     OutputView.printMatchResult(winningResult);
+
+    const profitRate = resultCalculator.calculateProfitRate(
+      winningResult,
+      purchasePrice,
+    );
+
+    OutputView.printProfitRate(profitRate);
   } catch (e) {
     window.alert(e.message);
   }
+});
+
+restartButton.addEventListener("click", () => {
+  window.location.reload();
 });
