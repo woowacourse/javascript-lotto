@@ -1,7 +1,7 @@
 import { create } from "../core/dom.js";
 
-export const WinningForm = ($target, { onShowResult }) => {
-  const $container = create("section", { className: "winning-section" });
+export const WinningForm = ({ onShowResult }) => {
+  const $section = create("section", { className: "winning-section" });
   const $title = create("h3", { text: "지난 주 당첨 번호를 입력해 주세요." });
   const $form = create("form", { className: "winning-input-form" });
 
@@ -21,6 +21,7 @@ export const WinningForm = ($target, { onShowResult }) => {
 
   const $numberInputs = Array.from({ length: 6 }, (_, i) =>
     create("input", {
+      name: "winning-number",
       type: "number",
       className: "winning-number-input",
       required: true,
@@ -32,6 +33,7 @@ export const WinningForm = ($target, { onShowResult }) => {
   const $bonusLabel = create("label", { text: "보너스 번호" });
   const $bonusInput = create("input", {
     type: "number",
+    name: "bonus-number",
     className: "bonus-number-input",
     placeholder: "번호",
     required: true,
@@ -59,6 +61,7 @@ export const WinningForm = ($target, { onShowResult }) => {
     $submitButton,
   );
   $form.append($winningFieldset);
-  $container.append($title, $form);
-  $target.append($container);
+  $section.append($title, $form);
+
+  return $section;
 };

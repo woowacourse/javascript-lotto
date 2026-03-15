@@ -1,7 +1,7 @@
 import { create } from "../core/dom.js";
 
-export const PurchaseForm = ($target, { onPurchase }) => {
-  const $container = create("section", { className: "purchase-section" });
+export const PurchaseForm = ({ onPurchase }) => {
+  const $section = create("section", { className: "purchase-section" });
   const $form = create("form", { className: "purchase-form" });
 
   const $label = create("label", {
@@ -10,6 +10,7 @@ export const PurchaseForm = ($target, { onPurchase }) => {
   });
 
   const $input = create("input", {
+    name: "purchase-amount",
     type: "number",
     className: "purchase-amount-input",
     placeholder: "금액",
@@ -30,6 +31,7 @@ export const PurchaseForm = ($target, { onPurchase }) => {
   });
 
   $form.append($label, $button);
-  $container.append($form);
-  $target.append($container);
+  $section.append($form);
+
+  return $section;
 };

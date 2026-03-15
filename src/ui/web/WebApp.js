@@ -1,61 +1,21 @@
-import { create } from "./core/dom.js";
-
 import { Header } from "./components/Header.js";
 import { Footer } from "./components/Footer.js";
-import { PurchaseForm } from "./components/PurchaseForm.js";
-import { WinningForm } from "./components/WinningForm.js";
-import { LottoList } from "./components/LottoList.js";
-import { LottoStatistics } from "./components/LottoStatistics.js";
+import { Main } from "./components/Main.js";
 
 export const App = ($app, { lottoService }) => {
   let state = {
-    purchasedAmount: 0,
+    purchasedAmount: "",
     lottos: [],
     lottoResult: [],
     profitRate: null,
   };
 
-  const $header = create("header", { class: "app-header" });
-  const $main = create("main", { class: "app-main" });
-  const $footer = create("footer", { class: "app-footer" });
+  const main = Main({ onPurchase, onShowResult, onRetry });
+  $app.append(Header(), main.$main, Footer());
 
-  const sections = {
-    $purchase: create("section"),
-    $lotto: create("section"),
-    $winning: create("section"),
-    $result: create("section"),
-  };
   const setState = (newState) => {
     state = { ...state, ...newState };
-    render();
-  };
-
-  const init = () => {
-    $main.append(...Object.values(sections));
-    $app.append($header, $main, $footer);
-
-    Header($header);
-    PurchaseForm(sections.$purchase, { onPurchase });
-    Footer($footer);
-  };
-
-  const render = () => {
-    if (state.lottos.length > 0) {
-      $lottoSection.replaceChildren();
-      LottoList($lottoSection, { lottos: state.lottos });
-
-      if (!$winningSection.firstChild) {
-        WinningForm($winningSection, { onShowResult });
-      }
-    }
-
-    if (state.lottoResult.length > 0) {
-      $resultSection.replaceChildren();
-      LottoStatistics($resultSection, {
-        lottoResult: state.lottoResult,
-        profitRate: state.profitRate,
-      });
-    }
+    main.render(state);
   };
 
   function onPurchase(amount) {
@@ -76,6 +36,12 @@ export const App = ($app, { lottoService }) => {
     });
   }
 
-  init();
-  render();
+  function onRetry() {
+    setState({
+      purchasedAmount: 0,
+      lottos: [],
+      lottoResult: [],
+      profitRate: null,
+    });
+  }
 };

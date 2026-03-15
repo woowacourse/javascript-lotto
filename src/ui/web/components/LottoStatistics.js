@@ -1,12 +1,14 @@
 import { create } from "../core/dom.js";
 
-export const LottoStatistics = ($target, { lottoResult, profitRate }) => {
+export const LottoStatistics = ({ lottoResult, profitRate, onRetry }) => {
+  const $section = create("section", { className: "lotto-statistics-section" });
+
   lottoResult.forEach(({ count }) => {
     const $count = create("div", {
       text: count,
       class: "lotto-result",
     });
-    $target.append($count);
+    $section.append($count);
   });
 
   const $profitRate = create("div", {
@@ -14,12 +16,19 @@ export const LottoStatistics = ($target, { lottoResult, profitRate }) => {
     class: "lotto-profitRate",
   });
 
-  $target.append($profitRate);
+  $section.append($profitRate);
 
   const $askRetry = create("button", {
     type: "submit",
     className: "retry-button",
     text: "다시 하시겠습니까",
   });
-  $target.append($askRetry);
+
+  $askRetry.addEventListener("click", (e) => {
+    e.preventDefault();
+    onRetry();
+  });
+
+  $section.append($askRetry);
+  return $section;
 };
