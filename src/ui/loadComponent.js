@@ -4,8 +4,9 @@ const loadComponent = (id, path) => {
   return fetch(path)
     .then((response) => response.text())
     .then((data) => {
-      document.getElementById(id).insertAdjacentHTML("beforeend", data);
-      return loadNestedComponents(document.getElementById(id));
+      const nodeElement = document.getElementById(id);
+      nodeElement.insertAdjacentHTML("beforeend", data);
+      return loadNestedComponents(nodeElement);
     })
     .catch((error) => console.error(`컴포넌트 로드 실패: ${path}`, error));
 };
