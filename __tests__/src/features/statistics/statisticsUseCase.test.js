@@ -1,3 +1,4 @@
+import Lotto from "../../../../src/domain/Lotto.js";
 import WinningNumber from "../../../../src/domain/WinningNumber.js";
 import statisticsUseCase from "../../../../src/features/statistics/statisticsUseCase.js";
 
@@ -11,14 +12,13 @@ describe("LottoStatisticsUseCase", () => {
   });
 
   test("5등 1개 당첨 통계", () => {
-    const lottosNumbers = [[1, 2, 3, 10, 11, 12]];
+    const lottos = [new Lotto([1, 2, 3, 10, 11, 12])];
     const winningNumber = new WinningNumber([1, 2, 3, 4, 5, 6], 7);
 
     const statisticsDto = statisticsUseCase.statisticsLottos(
-      lottosNumbers,
+      lottos,
       winningNumber,
     );
-
     const { lottosResult, totalPrize } = statisticsDto;
 
     const fifth = lottosResult.find(

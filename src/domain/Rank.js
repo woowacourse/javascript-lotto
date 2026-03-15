@@ -46,7 +46,15 @@ export default class Rank {
 
   static getRankMap() {
     return new Map(
-      Object.values(Rank.CONFIG).map((rank) => [rank, { count: 0 }]),
+      Object.values(Rank.CONFIG).map((rank) => [
+        rank.order,
+        {
+          count: 0,
+          prize: rank.prize,
+          matchCount: rank.winningCondition,
+          hasBonus: rank.bonusCondition,
+        },
+      ]),
     );
   }
 }

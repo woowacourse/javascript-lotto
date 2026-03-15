@@ -1,23 +1,24 @@
 import LottoStatisticsResponseDto from "./statisticsResponseDto.js";
 
-export default class statisticsMapper {
+export default class StatisticsMapper {
   static toResponseDto(rankMap) {
-    let totalPrize = 0;
+    const { results, totalPrize } = [...rankMap.entries()].reduce(
+      (acc, [order, { matchCount, hasBonus, prize, count }]) => {
+        if (order === 0) return acc;
 
-    const lottosResult = [...rankMap.entries()]
-      .filter(([rank]) => rank.order !== 0)
-      .map(([rank, stat]) => {
-        totalPrize += rank.prize * stat.count;
         return {
-          matchCount: rank.winningCondition,
-          hasBonus: rank.bonusCondition,
-          prize: rank.prize,
-          count: stat.count,
-          order: rank.order,
+          results: [
+            ...acc.results,
+            { matchCount, hasBonus, prize, count, order },
+          ],
+          totalPrize: acc.totalPrize + prize * count,
         };
-      })
-      .sort((a, b) => b.order - a.order);
+      },
+      { results: [], totalPrize: 0 },
+    );
 
-    return new LottoStatisticsResponseDto(lottosResult, totalPrize);
+    const sortedResults = results.sort((a, b) => b.order - a.order);
+
+    return new LottoStatisticsResponseDto(sortedResults, totalPrize);
   }
 }
