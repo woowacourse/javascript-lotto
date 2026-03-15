@@ -35,9 +35,8 @@ export const webInputReader = {
         this.isRestarting = true;
         resolve(RESTART);
       });
-
       const onClick = () => {
-        resultModal.classList.add("active");
+        resultModal.showModal();
         this.savedBonusNumber = bonusNumberInput.value;
         const winningNumberArray = Array.from(winningNumbersInput)
           .map((item) => item.value)
@@ -83,12 +82,10 @@ export const webInputReader = {
       const onClick = () => {
         this.isRestarting = false;
         this.checkedBonusNumber = false;
-
-        resultModal.classList.remove("active");
+        resultModal.close();
         myLotto.style.display = "none";
         winningBonusSection.style.display = "none";
         resultButton.style.display = "none";
-        resultModal.style.display = "none";
 
         document.querySelectorAll("input[type=number]").forEach((item) => {
           item.value = "";

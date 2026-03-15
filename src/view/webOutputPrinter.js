@@ -35,9 +35,6 @@ export const webOutputPrinter = {
       prizeMoney[i].textContent = `${PRIZE[arrayKey[i]].toLocaleString()}`;
       winningCount[i].textContent = `${result[arrayKey[i]]}개`;
     }
-
-    const resultModal = document.getElementById("result-modal");
-    resultModal.style.display = "flex";
   },
 
   printProfit(profit) {

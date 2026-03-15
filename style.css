@@ -263,32 +263,22 @@ footer {
 }
 
 #result-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.5);
-}
-
-#result-modal.active {
-  align-items: center;
-  justify-content: center;
-}
-
-#result-modal-container {
   width: 21.875rem;
   height: 31.25rem;
   border: none;
   border-radius: 0.25rem;
   background-color: rgba(255, 255, 255, 1);
   padding: 16px;
+}
 
+#result-modal[open] {
   display: flex;
   align-items: center;
   flex-direction: column;
-  position: relative;
+}
+
+#result-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #result-modal-close {
