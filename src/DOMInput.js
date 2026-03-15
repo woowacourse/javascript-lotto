@@ -45,6 +45,10 @@ export const DOMInput = {
     );
   },
 
+  hideLottoContainer() {
+    document.querySelector("#lotto-container").style.display = "none";
+  },
+
   async readPurchaseAmount() {
     return new Promise((resolve, reject) =>
       this.registerPurchaseSubmitHandler(resolve, reject),
@@ -94,9 +98,37 @@ export const DOMInput = {
     return this.winningLotto;
   },
 
-  // async readRetry() {
-  //   const answer = await readLine("> 다시 시작하시겠습니까? (y/n) ");
-  //   Validator.retryValidator(answer);
-  //   return answer;
-  // },
+  closeModal() {
+    document.querySelector("#result-modal").close();
+  },
+
+  registerRetryHandlers(resolve) {
+    document.querySelector("#modal-close-button").addEventListener(
+      "click",
+      () => {
+        this.closeModal();
+        this.registerReShowHandler(resolve);
+      },
+      { once: true },
+    );
+    document
+      .querySelector("#restart-button")
+      .addEventListener("click", () => location.reload(), { once: true });
+  },
+
+  registerReShowHandler(resolve) {
+    document.querySelector("#winning-number-area").addEventListener(
+      "submit",
+      (e) => {
+        e.preventDefault();
+        document.querySelector("#result-modal").showModal();
+        this.registerRetryHandlers(resolve);
+      },
+      { once: true },
+    );
+  },
+
+  async readRetry() {
+    return new Promise((resolve) => this.registerRetryHandlers(resolve));
+  },
 };
