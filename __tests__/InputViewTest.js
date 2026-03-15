@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES, TERMS } from "../src/constants.js";
-import InputView from "../src/InputView.js";
+import { ERROR_MESSAGES, TERMS } from "../src/utils/constants.js";
+import InputView from "../src/view/InputView.js";
 import { InputValidator } from "../src/utils/InputValidator.js";
 
 describe("입력 기능 test", () => {

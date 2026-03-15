@@ -4,13 +4,120 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/reset.css" />
+    <link rel="stylesheet" href="./src/styles/global.css" />
+    <link rel="stylesheet" href="./src/styles/styles.css" />
+    <link rel="stylesheet" href="./src/styles/modal.css" />
     <title>Document</title>
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header class="app-header">
+        <h1 class="text-title">🎱 행운의 로또</h1>
+      </header>
+
+      <main>
+        <section class="container">
+          <h2 class="text-title">🎱 내 번호 당첨 확인 🎱</h2>
+
+          <!-- 구입 금액 입력 -->
+          <form class="purchase__form">
+            <div class="purchase__input-wrapper">
+              <label for="puchase">구입할 금액을 입력해주세요.</label>
+              <input
+                id="puchase"
+                class="input purchase__input"
+                type="number"
+                placeholder="금액"
+              />
+            </div>
+            <button class="button text-caption">구입</button>
+          </form>
+
+          <!-- 발행된 로또 -->
+          <div class="issued-lotto__wrapper"></div>
+
+          <!-- 당첨 번호 및 보너스 번호 입력 -->
+          <form class="winning-bonus__form hidden">
+            <p class="winning-bonus__title text-body">
+              지난 주 당첨 번호 6개와 보너스 번호 1개를 입력해주세요.
+            </p>
+
+            <div class="winning-bonus__wrapper">
+              <div class="winning__wrapper">
+                <label class="text-body" for="winning-number">당첨 번호</label>
+
+                <div class="winning-bonus__input-wrapper">
+                  <input
+                    id="winning-number"
+                    class="input winning__input"
+                    type="text"
+                  />
+                  <input class="input winning__input" type="text" />
+                  <input class="input winning__input" type="text" />
+                  <input class="input winning__input" type="text" />
+                  <input class="input winning__input" type="text" />
+                  <input class="input winning__input" type="text" />
+                </div>
+              </div>
+
+              <div class="bonus__wrapper">
+                <label class="text-body" for="bonus-number">보너스 번호</label>
+
+                <div class="bonus__input-wrapper">
+                  <input
+                    id="bonus-number"
+                    class="input bonus__input"
+                    type="text"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="button text-caption winning-bonus__button"
+              type="button"
+            >
+              결과 확인하기
+            </button>
+          </form>
+        </section>
+      </main>
+
+      <footer class="text-caption">Copyright 2023. woowacourse</footer>
     </div>
+
+    <!-- 당첨 통계 모달 -->
+    <dialog class="modal-root">
+      <header class="modal-header">
+        <button class="modal__icon-wrapper">
+          <img src="./src/assets/close.svg" alt="close-icon" />
+        </button>
+      </header>
+
+      <div class="modal-content__wrapper">
+        <h2 class="winning-stats__title text-subtitle">🏆 당첨 통계 🏆</h2>
+
+        <table class="modal-table__wrapper">
+          <thead>
+            <tr class="modal-table__row">
+              <th>일치 개수</th>
+              <th>당첨금</th>
+              <th>당첨 개수</th>
+            </tr>
+          </thead>
+          <tbody class="modal-table__body winning-result"></tbody>
+        </table>
+
+        <strong class="profit-rate"></strong>
+
+        <button class="button restart-button" type="button">
+          다시 시작하기
+        </button>
+      </div>
+    </dialog>
+
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

@@ -45,7 +45,7 @@ export const LOTTO_RULE = Object.freeze({
   "3_MATCH": 3,
   "4_MATCH": 4,
   "5_MATCH": 5,
-  "5_BONUS_MATCH": "5개 번호 + 보너스 번호 일치",
+  "5_BONUS_MATCH": "5개+보너스볼",
   "6_MATCH": 6,
 
   RESTART: "y",

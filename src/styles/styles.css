@@ -1,0 +1,156 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header.app-header {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 64px;
+  padding-left: 9%;
+  color: var(--grey-1);
+  background-color: var(--primary) !important;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 64px;
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  color: var(--primary);
+}
+
+.winning-bonus__form.hidden {
+  display: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 414px;
+  height: 727px;
+  padding: 40px 16px 32px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+
+  h2 {
+    margin-bottom: 28px;
+    color: var(--grey-5);
+  }
+}
+
+.purchase__form {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 28px;
+
+  .purchase__input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 310px;
+  }
+}
+
+.issued-lotto__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  margin-bottom: 24px;
+
+  .issued-lotto__count {
+    color: var(--grey-5);
+  }
+
+  .issued-lotto__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 276px;
+    overflow: auto;
+
+    .issued-lotto {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 36px;
+
+      .issued-lotto__icon-wrapper {
+        font-size: 34px;
+      }
+    }
+  }
+}
+
+.winning-bonus__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .winning-bonus__title {
+    margin-bottom: 12px;
+    color: var(--grey-5);
+  }
+
+  .winning__input,
+  .bonus__input {
+    padding: 5px;
+    text-align: center;
+  }
+}
+
+.winning-bonus__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 27px;
+
+  label {
+    color: var(--grey-5);
+  }
+
+  .winning__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 244px;
+
+    .winning-bonus__input-wrapper {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  .bonus__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .bonus__input-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+
+      .bonus__input {
+        width: 34px;
+      }
+    }
+  }
+}

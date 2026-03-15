@@ -1,4 +1,4 @@
-import Lotto from "../src/Lotto.js";
+import Lotto from "../src/model/Lotto.js";
 
 describe("당첨 번호 비교 test", () => {
   test("일치 개수가 3개일 때", () => {

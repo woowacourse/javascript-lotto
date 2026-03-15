@@ -1,4 +1,4 @@
-import Lotto from "../src/Lotto.js";
+import Lotto from "../src//model/Lotto.js";
 import WinningStatistics from "../src/model/WinningStatistics.js";
 import { getLogSpy } from "../src/utils/testUtils.js";
 import OutputView from "../src/view/OutputView.js";

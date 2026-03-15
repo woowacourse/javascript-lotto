@@ -4,37 +4,29 @@
  */
 
 import InputView from "./view/InputView.js";
-import WinningStatistics from "./model/WinningStatistics.js";
 import OutputView from "./view/OutputView.js";
-import calculateProfitRate from "./model/calculateProfit.js";
-import LottoMachine from "./model/LottoMachine.js";
 import { LOTTO_RULE } from "./utils/constants.js";
+import LottoService from "./service/LottoService.js";
 
 class App {
   async run() {
+    const lottoService = new LottoService();
+
     const purchasedAmount = await InputView.readPurchaseAmount();
+    const lottos = lottoService.purchaseLottos(purchasedAmount);
 
-    const lottoMachine = new LottoMachine(purchasedAmount);
-    OutputView.printLottoCount(lottoMachine.lottoCount);
-
-    const lottos = lottoMachine.issuedLottos();
+    OutputView.printLottoCount(lottos.length);
     OutputView.printIssuedLottos(lottos);
 
     const winningNumbers = await InputView.readWinningNumbers();
     const bonusNumber = await InputView.readBonusNumber();
 
-    const winningStatistics = new WinningStatistics(
-      lottos,
+    const { stats, profitRate } = lottoService.calculateWinningResult(
       winningNumbers,
       bonusNumber
     );
-    winningStatistics.calculateStats();
-    OutputView.printStats(winningStatistics.getStats());
 
-    const profitRate = calculateProfitRate(
-      purchasedAmount,
-      winningStatistics.getStats()
-    );
+    OutputView.printStats(stats);
     OutputView.printProfitRate(profitRate);
 
     this.checkRestart();

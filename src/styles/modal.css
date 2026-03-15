@@ -1,0 +1,68 @@
+.modal-root {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: fit-content;
+  padding: 16px 16px 32px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--grey-1);
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 10px;
+
+    .modal__icon-wrapper {
+      background-color: transparent;
+    }
+  }
+
+  .winning-stats__title {
+    color: var(--grey-5);
+  }
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.modal-table__wrapper {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-left: none;
+  border-right: none;
+
+  .modal-table__row {
+    height: 42px;
+  }
+  .modal-table__data {
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+}
+
+.profit-rate {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--grey-5);
+}
+
+.restart-button {
+  font-size: 14px;
+  font-weight: 700;
+}

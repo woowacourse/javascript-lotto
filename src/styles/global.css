@@ -1,0 +1,94 @@
+:root {
+  /* Colors */
+  --primary: #4e5ba6 !important;
+  --grey-1: #ffffff;
+  --grey-2: #fcfcfd;
+  --grey-3: #b4b4b4;
+  --grey-4: #8b8b8b;
+  --grey-5: #000000;
+
+  /* Typography */
+  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --font-size-caption: 14px;
+  --font-size-placeholder: 15px;
+  --font-size-body: 15px;
+  --font-size-subtitle: 20px;
+  --font-size-title: 24px;
+}
+
+* {
+  font-family: var(--font-family-base);
+}
+
+html,
+body {
+  font-family: var(--font-family-base);
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+}
+
+.text-title {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-extrabold);
+}
+
+.text-subtitle {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-body {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+}
+
+.text-placeholder {
+  font-size: var(--font-size-placeholder);
+  font-weight: var(--font-weight-regular);
+}
+
+.text-caption {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+}
+
+/* button 공통 컴포넌트 */
+.button {
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  color: var(--grey-1);
+  background-color: var(--primary);
+  cursor: pointer;
+}
+
+/* input 공통 컴포넌트 */
+.input {
+  width: 100%;
+  height: 36px;
+  padding: 8px 8px 4px 8px;
+  border: 1px solid var(--grey-3);
+  border-radius: 4px;
+  color: var(--grey-5);
+  background-color: var(--grey-1);
+
+  &::placeholder {
+    font-size: var(--font-size-placeholder);
+    font-weight: var(--font-weight-regular);
+    color: var(--grey-4);
+  }
+}

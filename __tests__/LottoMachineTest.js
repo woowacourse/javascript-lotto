@@ -1,4 +1,4 @@
-import LottoMachine from "../src/LottoMachine.js";
+import LottoMachine from "../src/model/LottoMachine.js";
 
 test("로또 발행 test", () => {
   const purchaseAmount = 3000;
