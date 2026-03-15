@@ -1,8 +1,11 @@
-import { PurchaseForm } from "./components/PurchaseForm.js";
-import { WinningForm } from "./components/WinningFrom.js";
 import { create } from "./core/dom.js";
 
-export const App = ($target, { lottoService }) => {
+import { PurchaseForm } from "./components/PurchaseForm.js";
+import { WinningForm } from "./components/WinningForm.js";
+import { LottoList } from "./components/LottoList.js";
+import { LottoStatistics } from "./components/LottoStatistics.js";
+
+export const App = ($app, { lottoService }) => {
   let state = {
     purchasedAmount: 0,
     lottos: [],
@@ -10,92 +13,66 @@ export const App = ($target, { lottoService }) => {
     profitRate: null,
   };
 
+  const $main = create("main");
+  const $purchaseSection = create("section");
+  const $lottoSection = create("section");
+  const $winningSection = create("section");
+  const $resultSection = create("section");
+
   const setState = (newState) => {
     state = { ...state, ...newState };
-    renderLayout();
+    render();
   };
 
-  const renderLayout = () => {
-    $target.replaceChildren();
-    const $main = create("main", { id: "main-container" });
-    $target.append($main);
-    renderPurchaseForm($main);
+  const init = () => {
+    $main.append(
+      $purchaseSection,
+      $lottoSection,
+      $winningSection,
+      $resultSection,
+    );
+    $app.append($main);
 
-    if (state.lottos.length !== 0) {
-      renderLottoList($main);
-      renderWinningForm($main);
+    PurchaseForm($purchaseSection, { onPurchase });
+  };
+
+  const render = () => {
+    if (state.lottos.length > 0) {
+      $lottoSection.replaceChildren();
+      LottoList($lottoSection, { lottos: state.lottos });
+
+      if (!$winningSection.firstChild) {
+        WinningForm($winningSection, { onShowResult });
+      }
     }
 
     if (state.lottoResult.length > 0) {
-      renderLottoStatistics($main, {
+      $resultSection.replaceChildren();
+      LottoStatistics($resultSection, {
         lottoResult: state.lottoResult,
         profitRate: state.profitRate,
       });
     }
   };
 
-  const renderPurchaseForm = ($main) => {
-    PurchaseForm($main, {
-      onPurchase: (amount) => {
-        purchaseLotto($main, { amount });
-      },
-    });
-  };
-
-  const purchaseLotto = ($main, { amount }) => {
-    const purchaseDto = lottoService.purchase(amount);
-    const { lottos, purchasedAmount } = purchaseDto;
-
+  function onPurchase(amount) {
+    const { lottos, purchasedAmount } = lottoService.purchase(amount);
     setState({ lottos, purchasedAmount });
-  };
+  }
 
-  const renderLottoList = ($main) => {
-    state.lottos.forEach((lotto) => {
-      const $lotto = create("div", { text: lotto, class: "lotto-item" });
-      $main.append($lotto);
-    });
-  };
-
-  const renderWinningForm = ($main) => {
-    WinningForm($main, {
-      onShowResult: ({ winningNumbers, bonusNumber }) => {
-        handleWinningSubmit({ winningNumbers, bonusNumber });
-      },
-    });
-  };
-
-  // getStatistics({ lottosRaw, purchasedRaw, winningNumbers, bonusNumber }) {
-  const handleWinningSubmit = ({ winningNumbers, bonusNumber }) => {
-    const lottoResult = lottoService.getStatistics({
+  function onShowResult({ winningNumbers, bonusNumber }) {
+    const result = lottoService.getStatistics({
       lottosRaw: state.lottos,
       purchasedRaw: state.purchasedAmount,
       winningNumbers,
       bonusNumber,
     });
     setState({
-      lottoResult: lottoResult.lottosResult,
-      profitRate: lottoResult.profitRate,
+      lottoResult: result.lottosResult,
+      profitRate: result.profitRate,
     });
-  };
+  }
 
-  const renderLottoStatistics = ($target, { lottoResult, profitRate }) => {
-    lottoResult.forEach((result) => {
-      console.log(result);
-      const { count } = result;
-      const $count = create("div", {
-        text: count,
-        class: "lotto-result",
-      });
-      $target.append($count);
-    });
-
-    const $profitRate = create("div", {
-      text: "수익률" + profitRate,
-      class: "lotto-profitRate",
-    });
-
-    $target.append($profitRate);
-  };
-
-  renderLayout();
+  init();
+  render();
 };
