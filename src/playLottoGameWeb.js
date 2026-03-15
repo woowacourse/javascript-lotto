@@ -48,9 +48,12 @@ export const playLottoGameWeb = () => {
 
       renderPurchaseCount(purchaseCount);
       renderLottoList(generatedLottos);
-      document.getElementById("purchase-result-section").style.display =
-        "flex";
-      document.getElementById("winning-input-section").style.display = "flex";
+      document
+        .getElementById("purchase-result-section")
+        .classList.add("visible-flex");
+      document
+        .getElementById("winning-input-section")
+        .classList.add("visible-flex");
     } catch (e) {
       alert(e.message);
     }
@@ -71,7 +74,7 @@ export const playLottoGameWeb = () => {
       const prizeList = getPrizeList(generatedLottos, winningLotto);
       const profitRate = getReturnRate(prizeList, purchaseAmount);
       renderStatistics(prizeList, profitRate);
-      modalContainer.style.display = "flex";
+      modalContainer.classList.add("visible-flex");
     } catch (e) {
       alert(e.message);
     }
@@ -80,13 +83,13 @@ export const playLottoGameWeb = () => {
   // 모달이 열려있을 때 모달 바깥영역을 눌렀을 떄 이벤트
   const handleModalBackdrop = (e) => {
     if (e.target === modalContainer) {
-      modalContainer.style.display = "none";
+      modalContainer.classList.remove("visible-flex");
     }
   };
 
   // 모달이 열려있을 때 X버튼 눌렀을 때 이벤트
   const handleModalClose = () => {
-    modalContainer.style.display = "none";
+    modalContainer.classList.remove("visible-flex");
   };
 
   // 다시 시작하기 버튼 눌렀을 때 이벤트
@@ -94,7 +97,7 @@ export const playLottoGameWeb = () => {
     resetGame();
     purchaseAmount = 0;
     generatedLottos = [];
-    modalContainer.style.display = "none";
+    modalContainer.classList.remove("visible-flex");
   };
 
   bindPurchaseEvent(handlePurchase);

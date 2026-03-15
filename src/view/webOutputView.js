@@ -32,6 +32,10 @@ export const resetGame = () => {
     element.value = "";
   });
   document.querySelector("#winning-bonus-div input").value = "";
-  document.getElementById("purchase-result-section").style.display = "none";
-  document.getElementById("winning-input-section").style.display = "none";
+  document
+    .getElementById("purchase-result-section")
+    .classList.remove("visible-flex");
+  document
+    .getElementById("winning-input-section")
+    .classList.remove("visible-flex");
 };
