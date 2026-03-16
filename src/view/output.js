@@ -9,8 +9,11 @@ export const OutputView = {
   },
 
   outputLottoNumber(randomLottos) {
-    if (this.isWeb) webOutputPrinter.printMyLottoLists(randomLottos);
-  
+    if (this.isWeb) {
+      const lottoNumberArray = randomLottos.map(lotto => lotto.getNumber());
+      webOutputPrinter.printMyLottoLists(lottoNumberArray);
+    }
+
     console.log(randomLottos.length, "개를 구매했습니다.");
     for (let i = 0; i < randomLottos.length; i++) {
       console.log(randomLottos[i].getNumber());
@@ -18,7 +21,17 @@ export const OutputView = {
   },
 
   outputWinningStatics(result) {
-    if (this.isWeb) webOutputPrinter.printLottoResult(result);
+    if (this.isWeb) {
+      const arrayKey = ["FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST"];
+
+      const formattedResult = arrayKey.map(key => ({
+        prize: PRIZE[key].toLocaleString(),
+        count: result[key]
+      }));
+
+      webOutputPrinter.printLottoResult(formattedResult);
+    }
+
     const output = [
       "\n당첨 통계",
       "---------------",

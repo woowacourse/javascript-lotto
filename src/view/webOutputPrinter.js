@@ -1,19 +1,17 @@
-import { PRIZE } from "../constants/constant.js";
-
 export const webOutputPrinter = {
-  printMyLottoLists(randomLottos) {
+  printMyLottoLists(lottoNumberArray) {
     const myLotto = document.getElementById("myLotto-section");
     const myLottoCountText = document.getElementById("myLotto-count-text");
     const myLottoList = document.getElementById("myLotto-list");
 
     myLottoList.textContent = "";
 
-    myLottoCountText.textContent = `총 ${randomLottos.length}개를 구매하였습니다.`;
+    myLottoCountText.textContent = `총 ${lottoNumberArray.length}개를 구매하였습니다.`;
 
-    for (const lotto of randomLottos) {
+    for (const lotto of lottoNumberArray) {
       const newLi = document.createElement("li");
       newLi.className = "myLotto-ticket";
-      newLi.textContent = `🎟️ ${lotto.getNumber().join(", ")}`;
+      newLi.textContent = `🎟️ ${lotto.join(", ")}`;
       myLottoList.appendChild(newLi);
     }
 
@@ -29,7 +27,6 @@ export const webOutputPrinter = {
   },
 
   printLottoResult(result) {
-    const arrayKey = ["FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST"];
     const prizeMoney = document.querySelectorAll(".prizeMoney");
     const winningCount = document.querySelectorAll(".winningCount");
     const resultModal = document.getElementById("result-modal");
@@ -37,8 +34,8 @@ export const webOutputPrinter = {
     resultModal.showModal();
 
     for (let i = 0; i < prizeMoney.length; i++) {
-      prizeMoney[i].textContent = `${PRIZE[arrayKey[i]].toLocaleString()}`;
-      winningCount[i].textContent = `${result[arrayKey[i]]}개`;
+      prizeMoney[i].textContent = `${result[i].prize}`;
+      winningCount[i].textContent = `${result[i].count}개`;
     }
   },
 
