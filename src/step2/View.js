@@ -21,8 +21,12 @@ const View = {
     this.matchResultDialog.close();
   },
 
-  convertHiddenState(targets) {
-    targets.forEach((target) => target.classList.toggle('hidden'));
+  show(targets) {
+    targets.forEach((target) => target.classList.remove('hidden'));
+  },
+
+  hide(targets) {
+    targets.forEach((target) => target.classList.add('hidden'));
   },
 
   clearErrorMessage(target) {

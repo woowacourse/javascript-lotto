@@ -19,7 +19,7 @@ const Controller = {
         Validator.validatePurchaseAmount(amount);
         this.lottoMachine = new LottoMachine(amount);
         View.renderPurchaseLotto(this.lottoMachine.getLottos());
-        View.convertHiddenState(HIDE_CONTENT_SELECTORS);
+        View.show(HIDE_CONTENT_SELECTORS);
       } catch (err) {
         View.renderPurchaseAmountErrorMessage(err.message);
       }
@@ -51,7 +51,7 @@ const Controller = {
     View.closeModal();
     this.lottoMachine = null;
     View.clearAllInput();
-    View.convertHiddenState(HIDE_CONTENT_SELECTORS);
+    View.hide(HIDE_CONTENT_SELECTORS);
   }
 }
 
