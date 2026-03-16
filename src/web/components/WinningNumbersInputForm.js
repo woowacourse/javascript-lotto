@@ -7,9 +7,9 @@ export default class WinningNumbersInputForm {
   }
 
   mount(container) {
-    const { section, winningInputs, bonusInput, errorMessage, button } = this.#createElement();
+    const { section, form, winningInputs, bonusInput, errorMessage } = this.#createElement();
     this.#elements = { section, winningInputs, bonusInput, errorMessage };
-    button.addEventListener('click', this.#handleSubmit.bind(this));
+    form.addEventListener('submit', this.#handleSubmit.bind(this));
     container.appendChild(section);
   }
 
@@ -25,7 +25,8 @@ export default class WinningNumbersInputForm {
     this.#elements.errorMessage.textContent = '';
   }
 
-  #handleSubmit() {
+  #handleSubmit(event) {
+    event.preventDefault();
     const { winningInputs, bonusInput } = this.#elements;
     const winningNumbers = winningInputs.map((input) => Number(input.value));
     const bonusNumber = Number(bonusInput.value);
@@ -78,7 +79,11 @@ export default class WinningNumbersInputForm {
     const bonusGroup = this.#createNumberGroup('보너스 번호', [bonusInput]);
     bonusGroup.classList.add('number-group--bonus');
 
+    const form = document.createElement('form');
+    form.className = 'winning-section__form';
+
     const button = document.createElement('button');
+    button.type = 'submit';
     button.className = 'result-btn caption';
     button.textContent = '결과 확인하기';
 
@@ -89,7 +94,8 @@ export default class WinningNumbersInputForm {
     description.textContent = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
 
     inputsRow.append(winningGroup, bonusGroup);
-    section.append(description, inputsRow, button, errorMessage);
-    return { section, winningInputs, bonusInput, errorMessage, button };
+    form.append(inputsRow, button, errorMessage);
+    section.append(description, form);
+    return { section, form, winningInputs, bonusInput, errorMessage };
   }
 }
