@@ -1,0 +1,43 @@
+<style>
+  #purchase-input-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    margin: 1.75rem 1rem 1.75rem 1rem;
+  }
+
+  #purchase-input-section div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  #purchase-input-section input {
+    flex: 1;
+    border-radius: 4px;
+    width: 310px;
+    border: 1px solid var(--color-greyscale-3);
+    padding-left: 0.5rem;
+  }
+
+  #purchase-input-section input::placeholder {
+    font: var(--text-placeholder);
+    color: var(--color-greyscale-4);
+  }
+
+  #purchase-input-section button {
+    width: 56px;
+    height: 36px;
+    background-color: var(--color-primary);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font: var(--text-caption);
+    color: var(--color-greyscale-1)
+  }
+</style>
+
+<form id="purchase-input-section"><span class="game-container-span">구입할 금액을 입력해주세요.</span>
+  <div><input type="text" placeholder="금액" minlength="4"><button>구입</button></div>
+</form>

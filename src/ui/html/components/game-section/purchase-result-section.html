@@ -1,0 +1,39 @@
+<style>
+  #purchase-result-section {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1.5rem;
+    height: 308px;
+  }
+
+  #purchase-lotto-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-start;
+    max-height: 276px;
+    overflow-y: auto;
+  }
+
+  .purchase-lottos {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .lotto-icon {
+    font: var(--text-icon);
+  }
+</style>
+
+<div id="purchase-result-section">
+  <span id="purchase-count-span" class="game-container-span"></span>
+  <div id="purchase-lotto-section"></div>
+</div>

@@ -1,0 +1,31 @@
+<style>
+  .wrapper {
+    min-height: 86.66vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .game-container {
+    display: flex;
+    flex-direction: column;
+    width: 414px;
+    height: 727px;
+    border: 1px solid #0000001F;
+  }
+
+  .game-container-span {
+    font: var(--text-body);
+    color: var(--color-greyscale-5)
+  }
+</style>
+
+<div class="wrapper">
+  <div class="game-container">
+    <div data-component="./src/ui/html/components/game-section/title-section.html"></div>
+    <div data-component="./src/ui/html/components/game-section/purchase-input-section.html"></div>
+    <div data-component="./src/ui/html/components/game-section/purchase-result-section.html"></div>
+    <div data-component="./src/ui/html/components/game-section/winning-input-section.html"></div>
+  </div>
+</div>

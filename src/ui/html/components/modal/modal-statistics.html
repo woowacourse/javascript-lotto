@@ -1,0 +1,86 @@
+<style>
+  .modal-statistics-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #statistics-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  #statistics-table th,
+  #statistics-table td {
+    border: 1px solid #0000001F;
+    border-left: none;
+    border-right: none;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .profit-span {
+    font: 700 15px/24px "Roboto", sans-serif;
+  }
+
+  #restart-button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    height: 36px;
+    margin-top: 2rem;
+    background-color: var(--color-primary);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font: 700 14px/16px "Roboto", sans-serif;
+    color: var(--color-greyscale-1)
+  }
+</style>
+
+<div class="modal-statistics-section">
+  <table id="statistics-table">
+    <thead>
+      <tr>
+        <th>일치 갯수</th>
+        <th>당첨금</th>
+        <th>당첨 갯수</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>3개</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>4개</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>5개</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>5개 + 보너스볼</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>6개</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="profit-div"></div>
+  <button id="restart-button">다시 시작하기</button>
+</div>
