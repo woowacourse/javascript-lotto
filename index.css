@@ -81,6 +81,12 @@ h6 {
   color: white;
   border: none;
   letter-spacing: 1.25px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.lottobox .purchaseBox #purchaseButton:hover {
+  background-color: #3f4a8c;
 }
 
 .lottobox #lotto-count {
@@ -293,6 +299,12 @@ h6 {
   font-weight: bolder;
   letter-spacing: 1.25px;
   font-style: Bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#result-button:hover {
+  background-color: #3f4a8c;
 }
 
 .result-button.show {
@@ -395,6 +407,12 @@ h6 {
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
+  background-color: #4e5ba6;
+  transition: background-color 0.2s;
+}
+
+#restart-button:hover {
+  background-color: #4e5ba6;
 }
 
 #close-button {
@@ -402,10 +420,16 @@ h6 {
   border: none;
   background: none;
   font-size: 35px;
-  cursor: pointer;
   width: 14px;
   height: 14px;
   opacity: 1;
   margin-top: 5px;
   margin-left: 300px;
+
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#close-button:hover {
+  opacity: 0.7;
 }
