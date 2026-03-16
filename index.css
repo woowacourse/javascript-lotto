@@ -92,7 +92,7 @@ h6 {
 }
 
 .lottos-print {
-  width: 238px;
+  width: 380px;
   height: 276px;
   margin-left: 16px;
   margin-bottom: 8px;
@@ -112,6 +112,8 @@ h6 {
   align-items: center;
   gap: 8px;
   margin-bottom: 14px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
 }
 
 .emoji {
