@@ -2,6 +2,10 @@
 
 > 1단계에서 구현한 도메인 로직을 재사용하며, UI만 웹으로 전환한다.
 
+## 배포 링크
+
+https://lee-eojin.github.io/javascript-lotto
+
 ## 구현할 기능 목록
 
 ### 구매
@@ -42,7 +46,6 @@ src/
 │   └── WebApp.js                         # 이벤트 핸들러, 도메인 - 뷰 연결
 │
 ├── web/
-│   ├── WebView.js                        # 컴포넌트 DOM 마운트/언마운트 관리
 │   └── components/
 │       ├── PriceInputForm.js             # 구입 금액 입력 폼
 │       ├── LottoList.js                  # 구매한 로또 목록 표시
