@@ -1,6 +1,7 @@
 .lotto-result-dialog {
   width: 350px;
-  height: 500px;
+  min-height: 500px;
+  margin: auto;
 }
 
 .lotto-result-dialog__inner {
