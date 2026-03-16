@@ -1,59 +1,53 @@
 export default class Rank {
   static CONFIG = Object.freeze({
     FIRST: {
-      winningCondition: 6,
-      bonusCondition: false,
+      matchCount: 6,
+      hasBonus: false,
       prize: 2_000_000_000,
       order: 1,
     },
     SECOND: {
-      winningCondition: 5,
-      bonusCondition: true,
+      matchCount: 5,
+      hasBonus: true,
       prize: 30_000_000,
       order: 2,
     },
     THIRD: {
-      winningCondition: 5,
-      bonusCondition: false,
+      matchCount: 5,
+      hasBonus: false,
       prize: 1_500_000,
       order: 3,
     },
     FOURTH: {
-      winningCondition: 4,
-      bonusCondition: false,
+      matchCount: 4,
+      hasBonus: false,
       prize: 50_000,
       order: 4,
     },
     FIFTH: {
-      winningCondition: 3,
-      bonusCondition: false,
+      matchCount: 3,
+      hasBonus: false,
       prize: 5_000,
       order: 5,
     },
-    MISS: { winningCondition: 0, bonusCondition: false, prize: 0, order: 0 },
   });
 
   static findRank(winningMatch, bonusMatch) {
     const found = Object.values(Rank.CONFIG).find(
-      ({ winningCondition, bonusCondition }) => {
-        if (winningCondition !== winningMatch) return false;
-        if (winningCondition === 5) return bonusCondition === bonusMatch;
+      ({ matchCount, hasBonus }) => {
+        if (matchCount !== winningMatch) return false;
+        if (matchCount === 5) return hasBonus === bonusMatch;
         return true;
       },
     );
-    return found || Rank.CONFIG.MISS;
+    return found ?? null;
   }
 
   static getRankMap() {
     return new Map(
       Object.values(Rank.CONFIG).map((rank) => [
         rank.order,
-        {
-          count: 0,
-          prize: rank.prize,
-          matchCount: rank.winningCondition,
-          hasBonus: rank.bonusCondition,
-        },
+        { ...rank, count: 0 },
       ]),
     );
   }
