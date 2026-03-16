@@ -3,6 +3,10 @@ body {
   position: relative;
 }
 
+#app {
+  background-color: #fcfcfd;
+}
+
 h1,
 h2,
 h3,
@@ -27,11 +31,12 @@ h6 {
 }
 
 .lottobox {
-  border: 1px solid #b4b4b4;
+  border: 1px solid #0000001f;
   width: 414px;
   height: 712px;
   margin: 64px auto;
   background-color: white;
+  border-radius: 4px;
 }
 
 .lottobox #lotto-title {
