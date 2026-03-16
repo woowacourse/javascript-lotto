@@ -1,26 +1,36 @@
+import LOTTO from "../constants/lotto.js";
+import { disableForm, getFormData } from "../dom/index.js";
+import LottoStore from "../Lotto/LottoStore.js";
+import registerHandler from "../service/registerHandler.js";
+import render from "../service/render.js";
 import LottoList from "./LottoList.js";
 import WinningNumbersAndBonusNumber from "./WinningNumbersAndBonusNumber.js";
-import registerHandler from "../service/registerHandler.js";
-import LottoStore from "../Lotto/LottoStore.js";
-import render from "../service/render.js";
+
+function disablePurchaseForm() {
+  const purchaseForm = document.querySelector(".lotto-purchase-form");
+  disableForm(purchaseForm);
+}
 
 export function withEventHandlers(WrappedComponent) {
   return (props) => {
     registerHandler(".lotto-purchase-form", "submit", (event) => {
       event.preventDefault();
       try {
-        const formData = new FormData(event.target);
-        const purchaseAmount = parseInt(formData.get("purchase-amount"), 10);
-        const lottos = LottoStore.purchaseLottos(purchaseAmount);
+        const { "purchase-amount": purchaseFromData } = getFormData(
+          event.target,
+          "purchase-amount",
+        );
+        const purchaseAmount = Number(purchaseFromData[0]);
 
-        event.target.querySelector(".lotto-purchase-form__input").disabled = true;
-        event.target.querySelector(".lotto-purchase-form__button").disabled = true;
+        const lottos = LottoStore.purchaseLottos(purchaseAmount);
 
         render(".lotto-list", LottoList({ lottos }));
         render(
           ".lotto-winning-bonus-number",
           WinningNumbersAndBonusNumber({ lottos, purchaseAmount }),
         );
+
+        disablePurchaseForm();
       } catch (error) {
         alert(error.message);
       }
@@ -48,8 +58,8 @@ const App = () => {
                 id="purchase-amount"
                 placeholder="금액"
                 class="lotto-purchase-form__input"
-                min="1000"
-                step="1000"
+                min="${LOTTO.UNIT}"
+                step="${LOTTO.UNIT}"
               />
               <button type="submit" class="lotto-purchase-form__button">
                 구입

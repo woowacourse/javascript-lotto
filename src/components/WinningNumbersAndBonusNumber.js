@@ -1,3 +1,4 @@
+import { disableForm, getFormData } from "../dom/index.js";
 import WinningNumbersAndBonusNumberBuilder from "../Lotto/WinningNumbersAndBonusNumberBuilder.js";
 import registerHandler from "../service/registerHandler.js";
 import render from "../service/render.js";
@@ -5,26 +6,26 @@ import LottoResult, { withCalcLottoResult } from "./LottoResult.js";
 
 export function withEventHandlers(WrappedComponent) {
   return ({ lottos, purchaseAmount }) => {
-    const disableWinningBonusForm = (form) => {
-      const inputs = form.querySelectorAll("input");
-      inputs.forEach((input) => (input.disabled = true));
-
-      const button = form.querySelector("button");
-      button.disabled = true;
+    const disableWinningBonusForm = () => {
+      const form = document.querySelector(".lotto-winning-bonus-number__form");
+      disableForm(form);
     };
 
     registerHandler(".lotto-winning-bonus-number__form", "submit", (event) => {
       event.preventDefault();
       try {
-        const form = new FormData(event.target);
+        const {
+          "winning-number": winningNumbersInput,
+          "bonus-number": bonusNumberInput,
+        } = getFormData(event.target, "winning-number", "bonus-number");
 
         const builder = new WinningNumbersAndBonusNumberBuilder();
-        builder.setWinningNumbers(form.getAll("winning-number").map(Number));
-        builder.setBonusNumber(Number(form.get("bonus-number")));
+        builder.setWinningNumbers(winningNumbersInput.map(Number));
+        builder.setBonusNumber(Number(bonusNumberInput[0]));
 
         const { winningNumbers, bonusNumber } = builder.build();
 
-        disableWinningBonusForm(event.target);
+        disableWinningBonusForm();
 
         render(
           ".lotto-result",
