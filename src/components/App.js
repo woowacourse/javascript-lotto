@@ -5,7 +5,7 @@ import LottoStore from "../Lotto/LottoStore.js";
 import render from "../service/render.js";
 
 const App = () => {
-  const disableForm = (form) => {
+  const disablePurchaseForm = (form) => {
     form.querySelector(".lotto-purchase-form__input").disabled = true;
     form.querySelector(".lotto-purchase-form__button").disabled = true;
   };
@@ -17,7 +17,7 @@ const App = () => {
       const purchaseAmount = parseInt(formData.get("purchase-amount"), 10);
       const lottos = LottoStore.purchaseLottos(purchaseAmount);
 
-      disableForm(event.target);
+      disablePurchaseForm(event.target);
       render(".lotto-list", LottoList(lottos));
       render(
         ".lotto-winning-bonus-number",
