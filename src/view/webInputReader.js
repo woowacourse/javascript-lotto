@@ -27,20 +27,23 @@ export const webInputReader = {
   determineWinningNumber() {
     return new Promise((resolve) => {
       const resultButton = document.getElementById("result-button");
-      const winningNumbersInput = document.querySelectorAll("input.winning-numbers-input");
+      const winningNumbersInput = document.querySelectorAll(
+        "input.winning-numbers-input",
+      );
       const bonusNumberInput = document.getElementById("bonus-number-input");
+      
       const purchaseButton = document.getElementById("purchase-button");
       purchaseButton.addEventListener("click", () => {
         this.isRestarting = true;
         resolve(RESTART);
       });
+
       const onClick = () => {
         this.savedBonusNumber = bonusNumberInput.value;
-        const winningNumberArray = Array.from(winningNumbersInput)
-          .map((item) => item.value)
-          .filter(Boolean);
-        const winningNumberString = winningNumberArray.join(",");
-        resolve(winningNumberString);
+        const winningNumberArray = Array.from(winningNumbersInput).map(
+          (item) => item.value
+        );
+        resolve(winningNumberArray);
       };
 
       resultButton.addEventListener("click", onClick);
@@ -75,12 +78,12 @@ export const webInputReader = {
       const onClick = () => {
         this.isRestarting = false;
         this.checkedBonusNumber = false;
-        
+
         resolve("y");
       };
 
       retryButton.addEventListener("click", onClick);
-      resultModalClose.addEventListener('click', onClick);
+      resultModalClose.addEventListener("click", onClick);
     });
   },
 };

@@ -1,3 +1,4 @@
+import { RESTART } from "../constants/constant.js";
 import { Validator } from "../validator/Validator.js";
 import { OutputView } from "./output.js";
 
@@ -21,7 +22,14 @@ export const InputView = {
 
   async inputWinningNumber() {
     try {
-      const winningNumber = await this.readerObject.determineWinningNumber();
+      const rawWinningNumber = await this.readerObject.determineWinningNumber();
+
+      if (rawWinningNumber === RESTART) return rawWinningNumber;
+
+      const winningNumber = Array.isArray(rawWinningNumber)
+        ? rawWinningNumber.filter(Boolean).join(',')
+        : rawWinningNumber;
+
       Validator.validateWinningNumber(winningNumber);
       return winningNumber;
     } catch (error) {
