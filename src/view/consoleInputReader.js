@@ -1,4 +1,4 @@
-import { readLine } from "./utils/readLine.js";
+import { readLine } from "../utils/readLine.js";
 
 export const consoleInputReader = {
   determinePurchaseMoney: () => readLine("구입금액을 입력해 주세요."),

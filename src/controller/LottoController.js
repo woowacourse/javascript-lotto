@@ -4,6 +4,8 @@ import { PurchaseLottoController } from "./PurchaseLottoController.js";
 import { WinningLottoController } from "./WinningLottoController.js";
 import { ResultController } from "./ResultController.js";
 import { RESTART } from "../constants/constant.js";
+import { webOutputPrinter } from "../view/webOutputPrinter.js";
+import { OutputView } from "../view/output.js";
 
 class LottoController {
   async play() {
@@ -15,7 +17,10 @@ class LottoController {
     }
     ResultController(myLotto, winningLotto);
     const retry = await InputView.inputRetry();
-    if (RETRY_ANSWER.YES.includes(retry)) return this.play();
+    if (RETRY_ANSWER.YES.includes(retry)) {
+      if (OutputView.isWeb) webOutputPrinter.clearLottoScreen();
+      return this.play()
+    };
   }
 }
 

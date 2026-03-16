@@ -29,14 +29,12 @@ export const webInputReader = {
       const resultButton = document.getElementById("result-button");
       const winningNumbersInput = document.querySelectorAll("input.winning-numbers-input");
       const bonusNumberInput = document.getElementById("bonus-number-input");
-      const resultModal = document.getElementById("result-modal");
       const purchaseButton = document.getElementById("purchase-button");
       purchaseButton.addEventListener("click", () => {
         this.isRestarting = true;
         resolve(RESTART);
       });
       const onClick = () => {
-        resultModal.showModal();
         this.savedBonusNumber = bonusNumberInput.value;
         const winningNumberArray = Array.from(winningNumbersInput)
           .map((item) => item.value)
@@ -71,30 +69,13 @@ export const webInputReader = {
 
   determineRetry() {
     return new Promise((resolve) => {
-      const myLotto = document.getElementById("myLotto-section");
-      const winningBonusSection = document.getElementById("winning-bonus-section");
-      const resultButton = document.getElementById("result-button");
-      const resultModal = document.getElementById("result-modal");
-
       const resultModalClose = document.getElementById("result-modal-close");
       const retryButton = document.getElementById("retry-button");
 
       const onClick = () => {
         this.isRestarting = false;
         this.checkedBonusNumber = false;
-        resultModal.close();
-        myLotto.style.display = "none";
-        winningBonusSection.style.display = "none";
-        resultButton.style.display = "none";
-
-        document.querySelectorAll("input[type=number]").forEach((item) => {
-          item.value = "";
-        });
-
-        document.querySelectorAll(".myLotto-ticket").forEach((element) => {
-          element.remove();
-        });
-
+        
         resolve("y");
       };
 
