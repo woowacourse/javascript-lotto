@@ -1,5 +1,6 @@
 .lotto-card {
   width: 414px;
+  min-height: 727px;
   margin: 84px auto 69px;
   padding: 40px 16px 32px;
   border: 1px solid var(--black-12);
@@ -86,6 +87,10 @@
 .number-group__fields {
   display: flex;
   gap: 4px;
+}
+
+.number-group--bonus .number-group__fields {
+  justify-content: flex-end;
 }
 
 .number-input {
