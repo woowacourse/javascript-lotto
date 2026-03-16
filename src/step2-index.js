@@ -8,7 +8,8 @@ import StatisticsUseCase from "./features/statistics/StatisticsUseCase.js";
 
 import { App } from "./ui/web/WebApp.js";
 
-const lottoMachine = new LottoMachine(lottoPicker);
+const picker = window.__MOCK_PICKER__ || lottoPicker;
+const lottoMachine = new LottoMachine(picker);
 
 const purchaseUseCase = new PurchaseLottoUseCase(lottoMachine);
 const statisticsUseCase = new StatisticsUseCase();
