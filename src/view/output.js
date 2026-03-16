@@ -23,7 +23,6 @@ export const OutputView = {
   outputWinningStatics(result) {
     if (this.isWeb) {
       const arrayKey = Object.keys(PRIZE).reverse();
-      console.log(arrayKey)
       const formattedResult = arrayKey.map(key => ({
         prize: PRIZE[key].toLocaleString(),
         count: result[key]
