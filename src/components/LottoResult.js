@@ -15,7 +15,7 @@ const LottoResult = (rank, returnRate) => {
       <div class="lotto-result__dimmed"></div>
       <div class="lotto-result__content">
         <button class="lotto-result__close-button">
-          <img src="/assets/Close.png" alt="닫기" width="14px" />
+          <img src="${import.meta.env.BASE_URL}assets/Close.png" alt="닫기" width="14px" />
         </button>
         <div class="lotto-result__title-wrapper">
           <h2 class="lotto-result__title">🏆 당첨 통계 🏆</h2>
