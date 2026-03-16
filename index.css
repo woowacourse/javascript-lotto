@@ -54,7 +54,7 @@ body {
   text-align: center;
 }
 
-.lotto-purchase-form {
+.lotto-purchase-form__input-group {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;

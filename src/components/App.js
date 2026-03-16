@@ -34,28 +34,29 @@ const App = () => {
     </header>
     <main class="lotto-main">
       <div class="lotto-content">
-        <div class="lotto-content-header">
-          <h2 class="lotto-content-header__title">🎱 내 번호 당첨 확인 🎱</h2>
-        </div>
-        <div class="lotto-purchase">
-          <p>구입할 금액을 입력해주세요.</p>
+        <h2 class="lotto-content-header__title">🎱 내 번호 당첨 확인 🎱</h2>
+        <section class="lotto-purchase">
           <form class="lotto-purchase-form">
-            <input
-              type="number"
-              name="purchase-amount"
-              placeholder="금액"
-              class="lotto-purchase-form__input"
-              min="1000"
-              step="1000"
-            />
-            <button type="submit" class="lotto-purchase-form__button">
-              구입
-            </button>
+            <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
+            <div class="lotto-purchase-form__input-group">
+              <input
+                type="number"
+                name="purchase-amount"
+                id="purchase-amount"
+                placeholder="금액"
+                class="lotto-purchase-form__input"
+                min="1000"
+                step="1000"
+              />
+              <button type="submit" class="lotto-purchase-form__button">
+                구입
+              </button>
+            </div>
           </form>
-        </div>
-        <div class="lotto-list"></div>
-        <div class="lotto-winning-bonus-number"></div>
-        <div class="lotto-result"></div>
+        </section>
+        <section class="lotto-list"></section>
+        <section class="lotto-winning-bonus-number"></section>
+        <section class="lotto-result"></section>
       </div>
     </main>
     <footer class="lotto-footer">
