@@ -302,7 +302,7 @@ input#purchase-amount {
 }
 
 .hidden {
-    opacity: 0;
+    visibility: hidden;
 }
 
 .dialog-closer {
