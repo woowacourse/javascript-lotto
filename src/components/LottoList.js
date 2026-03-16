@@ -1,4 +1,4 @@
-const LottoList = (lottos) => {
+const LottoList = ({ lottos }) => {
   return `
     <p class="lotto-list__info">총 ${lottos.length}개를 구매하였습니다.</p>
     <ul class="lotto-list__items">

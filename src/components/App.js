@@ -4,30 +4,33 @@ import registerHandler from "../service/registerHandler.js";
 import LottoStore from "../Lotto/LottoStore.js";
 import render from "../service/render.js";
 
-const App = () => {
-  const disablePurchaseForm = (form) => {
-    form.querySelector(".lotto-purchase-form__input").disabled = true;
-    form.querySelector(".lotto-purchase-form__button").disabled = true;
+export function withEventHandlers(WrappedComponent) {
+  return (props) => {
+    registerHandler(".lotto-purchase-form", "submit", (event) => {
+      event.preventDefault();
+      try {
+        const formData = new FormData(event.target);
+        const purchaseAmount = parseInt(formData.get("purchase-amount"), 10);
+        const lottos = LottoStore.purchaseLottos(purchaseAmount);
+
+        event.target.querySelector(".lotto-purchase-form__input").disabled = true;
+        event.target.querySelector(".lotto-purchase-form__button").disabled = true;
+
+        render(".lotto-list", LottoList({ lottos }));
+        render(
+          ".lotto-winning-bonus-number",
+          WinningNumbersAndBonusNumber({ lottos, purchaseAmount }),
+        );
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+
+    return WrappedComponent(props);
   };
+}
 
-  registerHandler(".lotto-purchase-form", "submit", (event) => {
-    event.preventDefault();
-    try {
-      const formData = new FormData(event.target);
-      const purchaseAmount = parseInt(formData.get("purchase-amount"), 10);
-      const lottos = LottoStore.purchaseLottos(purchaseAmount);
-
-      disablePurchaseForm(event.target);
-      render(".lotto-list", LottoList(lottos));
-      render(
-        ".lotto-winning-bonus-number",
-        WinningNumbersAndBonusNumber(lottos, purchaseAmount),
-      );
-    } catch (error) {
-      alert(error.message);
-    }
-  });
-
+const App = () => {
   return `
     <header class="lotto-header">
       <h1 class="lotto-header__title">🎱 행운의 로또</h1>
@@ -65,4 +68,4 @@ const App = () => {
   `;
 };
 
-export default App;
+export default withEventHandlers(App);

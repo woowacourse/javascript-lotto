@@ -3,42 +3,48 @@ import registerHandler from "../service/registerHandler.js";
 import render from "../service/render.js";
 import LottoResult, { withCalcLottoResult } from "./LottoResult.js";
 
-const WinningNumbersAndBonusNumber = ({ lottos, purchaseAmount }) => {
-  const disableWinningBonusForm = (form) => {
-    const inputs = form.querySelectorAll("input");
-    inputs.forEach((input) => (input.disabled = true));
+export function withEventHandlers(WrappedComponent) {
+  return ({ lottos, purchaseAmount }) => {
+    const disableWinningBonusForm = (form) => {
+      const inputs = form.querySelectorAll("input");
+      inputs.forEach((input) => (input.disabled = true));
 
-    const button = form.querySelector("button");
-    button.disabled = true;
+      const button = form.querySelector("button");
+      button.disabled = true;
+    };
+
+    registerHandler(".lotto-winning-bonus-number__form", "submit", (event) => {
+      event.preventDefault();
+      try {
+        const form = new FormData(event.target);
+
+        const builder = new WinningNumbersAndBonusNumberBuilder();
+        builder.setWinningNumbers(form.getAll("winning-number").map(Number));
+        builder.setBonusNumber(Number(form.get("bonus-number")));
+
+        const { winningNumbers, bonusNumber } = builder.build();
+
+        disableWinningBonusForm(event.target);
+
+        render(
+          ".lotto-result",
+          withCalcLottoResult(LottoResult)({
+            lottos,
+            winningNumbers,
+            bonusNumber,
+            purchaseAmount,
+          }),
+        );
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+
+    return WrappedComponent({ lottos, purchaseAmount });
   };
+}
 
-  registerHandler(".lotto-winning-bonus-number__form", "submit", (event) => {
-    event.preventDefault();
-    try {
-      const form = new FormData(event.target);
-
-      const builder = new WinningNumbersAndBonusNumberBuilder();
-      builder.setWinningNumbers(form.getAll("winning-number").map(Number));
-      builder.setBonusNumber(Number(form.get("bonus-number")));
-
-      const { winningNumbers, bonusNumber } = builder.build();
-
-      disableWinningBonusForm(event.target);
-
-      render(
-        ".lotto-result",
-        withCalcLottoResult(LottoResult)({
-          lottos,
-          winningNumbers,
-          bonusNumber,
-          purchaseAmount,
-        }),
-      );
-    } catch (error) {
-      alert(error.message);
-    }
-  });
-
+const WinningNumbersAndBonusNumber = () => {
   return `
   <section>
     <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
@@ -66,4 +72,4 @@ const WinningNumbersAndBonusNumber = ({ lottos, purchaseAmount }) => {
   `;
 };
 
-export default WinningNumbersAndBonusNumber;
+export default withEventHandlers(WinningNumbersAndBonusNumber);
