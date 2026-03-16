@@ -1,12 +1,10 @@
-import LottoRankCalculator from "../Lotto/LottoRankCalculator.js";
-import LottoReturnCalculator from "../Lotto/LottoReturnCalculator.js";
 import WinningNumbersAndBonusNumberBuilder from "../Lotto/WinningNumbersAndBonusNumberBuilder.js";
 import registerHandler from "../service/registerHandler.js";
 import render from "../service/render.js";
-import LottoResult from "./LottoResult.js";
+import LottoResult, { withCalcLottoResult } from "./LottoResult.js";
 
-function WinningNumbersAndBonusNumber(lottos, purchaseAmount) {
-  const disableForm = (form) => {
+const WinningNumbersAndBonusNumber = ({ lottos, purchaseAmount }) => {
+  const disableWinningBonusForm = (form) => {
     const inputs = form.querySelectorAll("input");
     inputs.forEach((input) => (input.disabled = true));
 
@@ -25,21 +23,17 @@ function WinningNumbersAndBonusNumber(lottos, purchaseAmount) {
 
       const { winningNumbers, bonusNumber } = builder.build();
 
-      const rank = LottoRankCalculator.calculateLottoRanks({
-        lottos,
-        winningNumbers,
-        bonusNumber,
-      });
+      disableWinningBonusForm(event.target);
 
-      const returnAmount = LottoReturnCalculator.calculateReturnAmount(rank);
-      const returnRate = LottoReturnCalculator.calculateReturnRate(
-        returnAmount,
-        purchaseAmount,
+      render(
+        ".lotto-result",
+        withCalcLottoResult(LottoResult)({
+          lottos,
+          winningNumbers,
+          bonusNumber,
+          purchaseAmount,
+        }),
       );
-
-      disableForm(event.target);
-
-      render(".lotto-result", LottoResult(rank, returnRate));
     } catch (error) {
       alert(error.message);
     }
@@ -70,6 +64,6 @@ function WinningNumbersAndBonusNumber(lottos, purchaseAmount) {
     </form>
     </section>
   `;
-}
+};
 
 export default WinningNumbersAndBonusNumber;

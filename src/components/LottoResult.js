@@ -1,15 +1,41 @@
+import LottoRankCalculator from "../Lotto/LottoRankCalculator.js";
+import LottoReturnCalculator from "../Lotto/LottoReturnCalculator.js";
 import registerHandler from "../service/registerHandler.js";
 
-const LottoResult = (rank, returnRate) => {
-  registerHandler(".lotto-result__close-button", "click", () => {
-    document.querySelector(".lotto-result").remove();
-  });
+export function withCalcLottoResult(WrappedComponent) {
+  return ({ lottos, winningNumbers, bonusNumber, purchaseAmount }) => {
+    const rank = LottoRankCalculator.calculateLottoRanks({
+      lottos,
+      winningNumbers,
+      bonusNumber,
+    });
 
-  registerHandler(".lotto-result__retry-button", "click", () => {
-    document.querySelector(".lotto-result").remove();
-    location.reload();
-  });
+    const returnAmount = LottoReturnCalculator.calculateReturnAmount(rank);
+    const returnRate = LottoReturnCalculator.calculateReturnRate(
+      returnAmount,
+      purchaseAmount,
+    );
 
+    return WrappedComponent({ rank, returnRate });
+  };
+}
+
+export function withEventHandlers(WrappedComponent) {
+  return (props) => {
+    registerHandler(".lotto-result__close-button", "click", () => {
+      document.querySelector(".lotto-result").remove();
+    });
+
+    registerHandler(".lotto-result__retry-button", "click", () => {
+      document.querySelector(".lotto-result").remove();
+      location.reload();
+    });
+
+    return WrappedComponent(props);
+  };
+}
+
+const LottoResult = ({ rank, returnRate }) => {
   return `
     <div class="lotto-result-container">
       <div class="lotto-result__dimmed"></div>
@@ -63,4 +89,4 @@ const LottoResult = (rank, returnRate) => {
   `;
 };
 
-export default LottoResult;
+export default withEventHandlers(LottoResult);
