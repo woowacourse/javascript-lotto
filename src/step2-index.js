@@ -11,6 +11,7 @@ import {
   renderResultModal,
   resetDOM,
 } from "./view/ui/render.js";
+import { formatLottoNumbers } from "./utils/formatter.js";
 
 /**
  * step 2의 시작점이 되는 파일입니다.
@@ -32,7 +33,8 @@ dom.purchaseBtn.addEventListener("click", (e) => {
   try {
     const amount = parseStringToNumber(dom.purchaseInput.value);
     const { count, lottos } = webLottoManager.purchase(amount);
-    renderPurchaseLottos(count, lottos);
+    const formattedLottos = lottos.map((lotto) => formatLottoNumbers(lotto));
+    renderPurchaseLottos(count, formattedLottos);
     removeErrorMessage(dom.purchaseError);
   } catch (error) {
     renderErrorMessage(dom.purchaseError, error.message);

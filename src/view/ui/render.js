@@ -7,9 +7,7 @@ export const renderPurchaseLottos = (count, lottos) => {
   ${lottos
     .map(
       (lotto) =>
-        `<p class='lotto-number-line'><span class='lotto-emoji'>🎟️</span><span class='lotto-numbers'>${lotto
-          .getNumbers()
-          .join(", ")}</span></p>`
+        `<p class='lotto-number-line'><span class='lotto-emoji'>🎟️</span><span class='lotto-numbers'>${lotto}</span></p>`
     )
     .join("")}
   </div>`;
