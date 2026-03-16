@@ -144,6 +144,7 @@ body {
 /* Winning */
 .winning-section {
   width: 100%;
+  max-width: 414px;
 }
 
 .winning-input-form {
@@ -188,4 +189,26 @@ body {
   width: 100%;
   height: 36px;
   border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .app-main {
+    padding: 0;
+    background-color: var(--color-lotto-greyscale-1);
+  }
+
+  .layout-container {
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 20px 16px;
+  }
+
+  .app-header,
+  .app-footer {
+    display: none;
+  }
 }
