@@ -13,12 +13,12 @@ const LottoResult = (rank, returnRate) => {
   return `
     <div class="lotto-result-container">
       <div class="lotto-result__dimmed"></div>
-      <div class="lotto-result__content">
+      <div class="lotto-result__content" role="dialog" aria-modal="true" aria-labelledby="lotto-result-title">
         <button class="lotto-result__close-button">
           <img src="${import.meta.env.BASE_URL}assets/Close.png" alt="닫기" width="14px" />
         </button>
         <div class="lotto-result__title-wrapper">
-          <h2 class="lotto-result__title">🏆 당첨 통계 🏆</h2>
+          <h2 id="lotto-result-title" class="lotto-result__title">🏆 당첨 통계 🏆</h2>
         </div>
         <table class="lotto-result__table">
           <thead class="lotto-result__table-header">
