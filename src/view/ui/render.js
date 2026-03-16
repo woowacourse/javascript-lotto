@@ -22,13 +22,25 @@ export const renderResultModal = (prizeList, roi) => {
   dom.modalOverlay.classList.remove("hidden");
 };
 
-export const resetDOM = () => {
-  dom.purchasedLottoSection.innerHTML = "";
-  dom.winningSection.classList.add("hidden");
-  modalHiddenByBtn();
+export const resetPurchaseSection = () => {
   dom.purchaseInput.value = "";
+  dom.purchasedLottoSection.innerHTML = "";
+};
+
+export const resetWinningSection = () => {
+  dom.winningSection.classList.add("hidden");
   dom.winningNumberInputs.forEach((input) => (input.value = ""));
   dom.bonusNumberInput.value = "";
+};
+
+export const resetModal = () => {
+  modalHiddenByBtn();
+};
+
+export const resetDOM = () => {
+  resetPurchaseSection();
+  resetWinningSection();
+  resetModal();
 };
 
 export const renderErrorMessage = (errorEle, errorMsg) => {
