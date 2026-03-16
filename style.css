@@ -274,7 +274,7 @@ main {
 .roi-text {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-body);
-  columns: var(--color-greyscale-5);
+  color: var(--color-greyscale-5);
   margin: 0;
 }
 
