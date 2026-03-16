@@ -1,7 +1,7 @@
-import PurchasedLotto from "./domain/PurchasedLotto.js";
-import WinningLotto from "./domain/WinningLotto.js";
-import { validatePurchaseAmount } from "./utils/validator.js";
-import { getReturnRate } from "./utils/getReturnRate.js";
+import PurchasedLotto from "../domain/PurchasedLotto.js";
+import WinningLotto from "../domain/WinningLotto.js";
+import { validatePurchaseAmount } from "../utils/validator.js";
+import { getReturnRate } from "../utils/getReturnRate.js";
 
 class WebLottoManager {
   #purchasedLotto = null;

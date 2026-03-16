@@ -1,5 +1,5 @@
 import { generateRandomNumbers } from "../generateRandomNumbers.js";
-import WebLottoManager from "../WebLottoManager.js";
+import WebLottoManager from "../service/WebLottoManager.js";
 import { formatLottoNumbers } from "../utils/formatter.js";
 import {
   renderPurchaseLottos,
