@@ -411,13 +411,13 @@ h6 {
   color: white;
   font-size: 14px;
   font-weight: 700;
+
   cursor: pointer;
-  background-color: #4e5ba6;
   transition: background-color 0.2s;
 }
 
 #restart-button:hover {
-  background-color: #4e5ba6;
+  background-color: #3f4a8c;
 }
 
 #close-button {
