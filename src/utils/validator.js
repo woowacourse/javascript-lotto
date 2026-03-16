@@ -32,6 +32,11 @@ export const validatePositive = (number) => {
   if (number < 0) throw new Error("[ERROR] 양수만 입력해주세요");
   return number;
 };
+export const validateZero = (number) => {
+  if (number === 0)
+    throw new Error("[ERROR] 0원으로는 로또를 구매할 수 없습니다.");
+  return number;
+};
 export const validateUnit = (purchaseAmount) => {
   if (purchaseAmount % 1000 !== 0)
     throw new Error("[ERROR] 1000 단위의 숫자로 입력해주세요");
@@ -45,6 +50,7 @@ export const validateYesNo = (string) => {
 export const validatePurchaseAmount = (number) => {
   validateNumber(number);
   validatePositive(number);
+  validateZero(number);
   validateUnit(number);
   return number;
 };
