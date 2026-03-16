@@ -4,7 +4,7 @@ import { Main } from "./components/Main.js";
 import { Modal } from "./common/Modal.js";
 import { LottoStatistics } from "./components/LottoStatistics.js";
 
-export const App = ($app, { lottoService }) => {
+export const App = ($app, { lottoFacade }) => {
   let state = {
     purchasedAmount: "",
     lottos: [],
@@ -22,9 +22,9 @@ export const App = ($app, { lottoService }) => {
     render(state);
   };
 
-  function onPurchase(amount) {
+  function onPurchase(amountRaw) {
     try {
-      const { lottos, purchasedAmount } = lottoService.purchase(amount);
+      const { lottos, purchasedAmount } = lottoFacade.purchase({ amountRaw });
       setState({ lottos, purchasedAmount });
     } catch (e) {
       alert(e.message);
@@ -33,11 +33,11 @@ export const App = ($app, { lottoService }) => {
 
   function onShowResult({ winningNumbers, bonusNumber }) {
     try {
-      const stats = lottoService.getStatistics({
+      const stats = lottoFacade.getStatistics({
         lottosRaw: state.lottos,
         purchasedRaw: state.purchasedAmount,
-        winningNumbers,
-        bonusNumber,
+        winningNumbersRaw: winningNumbers,
+        bonusNumberRaw: bonusNumber,
       });
 
       statistics.render({
