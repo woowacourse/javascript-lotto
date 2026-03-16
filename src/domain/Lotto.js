@@ -1,32 +1,33 @@
-class Lotto {
-  static MIN_RANGE = 1;
-  static MAX_RANGE = 45;
-  static SIZE = 6;
+export default class Lotto {
+  static POLICY = Object.freeze({
+    MIN_RANGE: 1,
+    MAX_RANGE: 45,
+    SIZE: 6,
+  });
 
-  static ERROR = {
-    DUPLICATE: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
-    INVALID_RANGE: "[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.",
-    INVALID_SIZE: "[ERROR] 로또 번호는 6개여야 합니다.",
-  };
+  static ERROR = Object.freeze({
+    DUPLICATE: "로또번호가 중복됐습니다",
+    INVALID_RANGE: `로또번호가 ${Lotto.POLICY.MIN_RANGE}~${Lotto.POLICY.MAX_RANGE} 범위를 벗어났습니다`,
+    INVALID_SIZE: `로또 갯수는 ${Lotto.POLICY.SIZE}개여야 합니다`,
+  });
 
   #numbers;
 
   constructor(numbers) {
-    this.#validate(numbers);
-    this.#numbers = [...numbers].sort((a, b) => a - b);
+    Lotto.validate(numbers);
+    this.#numbers = numbers;
   }
 
-  #validate(numbers) {
-    if (numbers.length !== Lotto.SIZE) {
+  static validate(numbers) {
+    const { SIZE, MIN_RANGE, MAX_RANGE } = Lotto.POLICY;
+    if (numbers.length !== SIZE) {
       throw new Error(Lotto.ERROR.INVALID_SIZE);
     }
-
-    if (new Set(numbers).size !== numbers.length) {
-      throw new Error(Lotto.ERROR.DUPLICATE);
-    }
-
-    if (numbers.some((n) => n < Lotto.MIN_RANGE || n > Lotto.MAX_RANGE)) {
+    if (numbers.some((n) => n < MIN_RANGE || MAX_RANGE < n)) {
       throw new Error(Lotto.ERROR.INVALID_RANGE);
+    }
+    if (numbers.length !== new Set(numbers).size) {
+      throw new Error(Lotto.ERROR.DUPLICATE);
     }
   }
 
@@ -37,6 +38,8 @@ class Lotto {
   getNumbers() {
     return [...this.#numbers];
   }
-}
 
-export default Lotto;
+  static fromList(numbersList) {
+    return numbersList.map((numbers) => new Lotto(numbers));
+  }
+}

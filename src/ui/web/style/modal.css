@@ -1,0 +1,80 @@
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+
+  background: var(--color-lotto-greyscale-1);
+  border-radius: 4px;
+  padding: 24px;
+  max-width: 350px;
+  max-height: 500px;
+  position: relative;
+}
+
+.modal-close-button {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.statistics-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.statistics-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.statistics-table th,
+.statistics-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.match-count {
+  color: var(--color-primary);
+}
+
+.profit-rate {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.retry-button {
+  width: 100%;
+  padding: 14px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}

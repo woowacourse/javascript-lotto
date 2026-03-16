@@ -1,21 +1,29 @@
-class Money {
-  static UNIT = 1000;
+export default class Money {
+  static ERROR = {
+    NEGATIVE: "돈은 음수가 될 수 없습니다",
+  };
+
   #amount;
 
   constructor(amount) {
-    this.#validate(Number(amount));
-    this.#amount = Number(amount);
+    this.#validate(amount);
+    this.#amount = amount;
   }
 
   #validate(amount) {
-    if (amount < Money.UNIT) {
-      throw new Error("[ERROR] 로또를 구매할 수 없습니다");
+    if (amount < 0) {
+      throw new Error(Money.ERROR.NEGATIVE);
     }
   }
 
-  getMaximumLottoCount() {
-    return Math.floor(this.#amount / Money.UNIT);
+  calculateProfitRate(totalPrize) {
+    if (this.#amount === 0) return 0;
+
+    const profitRate = (totalPrize / this.#amount) * 100;
+    return profitRate.toFixed(1);
+  }
+
+  getAmount() {
+    return this.#amount;
   }
 }
-
-export default Money;
