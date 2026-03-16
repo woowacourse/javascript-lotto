@@ -28,6 +28,9 @@ const Controller = {
 
   submitWinningNumbers(winningLottoNumber, bonusNumber) {
     try {
+      if (!this.lottoMachine) {
+        throw new Error('먼저 구매액을 입력해야합니다.');
+      }
       Validator.validateLottoNumber(winningLottoNumber);
       Validator.validateBonusNumber(winningLottoNumber, bonusNumber);
       const winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
