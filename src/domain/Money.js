@@ -20,7 +20,7 @@ export default class Money {
     if (this.#amount === 0) return 0;
 
     const profitRate = (totalPrize / this.#amount) * 100;
-    return Number(profitRate.toFixed(1));
+    return profitRate.toFixed(1);
   }
 
   getAmount() {

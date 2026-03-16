@@ -21,22 +21,26 @@ export const LottoStatistics = ({ onRetry }) => {
     $thead.append($headerRow);
 
     const $tbody = create("tbody", { className: "lotto-body" });
-    lottoResult.forEach(({ matchCount, hasBonus, count, prize }) => {
-      const $row = create("tr");
+    lottoResult.forEach(({ matchCount, hasBonus, count, prize, order }) => {
+      const $row = create("tr", { "data-rank": order });
+
       const matchText = hasBonus
         ? `${matchCount}개 + 보너스볼`
         : `${matchCount}개`;
       const prizeText = prize.toLocaleString();
       const countText = `${count}개`;
 
-      [matchText, prizeText, countText].forEach((text) => {
-        $row.append(create("td", { text }));
-      });
+      const $matchTd = create("td", { text: matchText, "data-field": "match" });
+      const $prizeTd = create("td", { text: prizeText, "data-field": "prize" });
+      const $countTd = create("td", { text: countText, "data-field": "count" });
+
+      $row.append($matchTd, $prizeTd, $countTd);
       $tbody.append($row);
     });
 
     $table.append($thead, $tbody);
 
+    console.log(profitRate);
     const $profitRate = create("p", {
       text: `당신의 총 수익률은 ${profitRate}%입니다.`,
       className: "profit-rate",

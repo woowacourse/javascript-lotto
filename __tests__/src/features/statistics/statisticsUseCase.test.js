@@ -35,6 +35,6 @@ describe("LottoStatisticsUseCase", () => {
       hasBonus: false,
       count: 1,
     });
-    expect(profitRate).toBe(500.0);
+    expect(profitRate).toBe("500.0");
   });
 });
