@@ -1,29 +1,20 @@
-import {
-  createTicketsHTML,
-  findRankCount,
-  getWinningFocusTarget,
-  getWinningFormValues,
-  normalizeWinningInputValue,
-} from "../../src/step2/js/views/LottoViewUtils.js";
+import { createTicketsHTML, findRankCount, getWinningFocusTarget, getWinningFormValues, normalizeWinningInputValue } from "../../src/step2/js/views/LottoViewUtils.js";
 
 describe("LottoViewUtils", () => {
-  test("당첨 번호 입력값을 숫자 2자리 이내로 정제한다.", () => {
-    expect(normalizeWinningInputValue("a046")).toBe("4");
-    expect(normalizeWinningInputValue("99")).toBe("45");
-    expect(normalizeWinningInputValue("0")).toBe("");
-    expect(normalizeWinningInputValue("")).toBe("");
+  test.each([
+    ["a046", "4"],
+    ["99", "45"],
+    ["0", ""],
+    ["", ""],
+    ["1", "1"],
+    ["45", "45"],
+    ["46", "45"],
+  ])("당첨 번호 입력값 %p를 %p로 정제한다.", (input, expected) => {
+    expect(normalizeWinningInputValue(input)).toBe(expected);
   });
 
   test("당첨 번호 입력값에서 마지막 번호를 보너스 번호로 분리한다.", () => {
-    const winningInputs = [
-      { value: "1" },
-      { value: "2" },
-      { value: "3" },
-      { value: "4" },
-      { value: "5" },
-      { value: "6" },
-      { value: "7" },
-    ];
+    const winningInputs = [{ value: "1" }, { value: "2" }, { value: "3" }, { value: "4" }, { value: "5" }, { value: "6" }, { value: "7" }];
 
     expect(getWinningFormValues(winningInputs)).toEqual({
       winningNumbers: ["1", "2", "3", "4", "5", "6"],
