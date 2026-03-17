@@ -23,16 +23,19 @@ class LottoWebOutputView {
   }
 
   renderLottos(lottos) {
-    this.lottoList.innerHTML = lottos
-      .map(
-        (lotto) => `
-        <li class="text-body">
-          <span class="lotto-image">🎟️</span>
-          ${lotto.getNumbers().join(", ")}
-        </li>
-      `,
-      )
-      .join("");
+    this.lottoList.innerHTML = "";
+
+    lottos.forEach((lotto) => {
+      const li = document.createElement("li");
+      li.className = "text-body";
+
+      const span = document.createElement("span");
+      span.className = "lotto-image";
+      span.textContent = "🎟️";
+
+      li.append(span, ` ${lotto.getNumbers().join(", ")}`);
+      this.lottoList.append(li);
+    });
   }
 
   showModal() {
