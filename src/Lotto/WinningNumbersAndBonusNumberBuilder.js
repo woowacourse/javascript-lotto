@@ -1,5 +1,5 @@
-import ERROR_MESSAGE from "./constants/errorMessage.js";
-import LOTTO from "./constants/lotto.js";
+import ERROR_MESSAGE from "../constants/errorMessage.js";
+import LOTTO from "../constants/lotto.js";
 import LottoNumber from "./LottoNumber.js";
 
 class WinningNumbersAndBonusNumberBuilder {

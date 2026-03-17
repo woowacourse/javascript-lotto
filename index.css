@@ -1,0 +1,253 @@
+:root {
+  --lotto-primary: #4e5ba6;
+  --lotto-grayscale-5: #000000;
+  --lotto-grayscale-4: #8b8b8b;
+  --lotto-grayscale-3: #b4b4b4;
+  --lotto-grayscale-2: #fcfcfd;
+  --lotto-grayscale-1: #ffffff;
+
+  --lotto-border: #e0e0e0;
+}
+
+body {
+  /* Roboto */
+  font-family: "Roboto", sans-serif;
+}
+
+#app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  background-color: var(--lotto-grayscale-1);
+}
+
+.lotto-header__title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.lotto-header {
+  background-color: var(--lotto-primary);
+  padding-block: 1rem;
+  padding-inline: 2rem;
+}
+
+.lotto-main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lotto-content {
+  padding: 2rem 1rem;
+  border: 1px solid var(--lotto-border);
+  border-radius: 4px;
+}
+
+.lotto-content-header__title {
+  font-weight: 800;
+  font-style: ExtraBold;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.lotto-purchase-form__input-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.lotto-purchase-form__input {
+  width: 100%;
+  min-width: 310px;
+  padding: 0.75rem;
+  border: 1px solid var(--lotto-border);
+  border-radius: 4px;
+}
+
+.lotto-purchase-form__button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--lotto-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.lotto-list {
+  margin-top: 2rem;
+}
+
+.lotto-list__info {
+  color: var(--lotto-grayscale-5);
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 15px;
+}
+
+.lotto-list__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex-direction: column;
+
+  margin-top: 1rem;
+}
+
+.lotto-list__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lotto-winning-bonus-number {
+  margin-top: 2rem;
+}
+
+.lotto-winning-bonus-number__winning {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.lotto-winning-bonus-number__winning-inputs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lotto-winning-bonus-number__input {
+  width: 2rem;
+  height: 2rem;
+}
+
+.lotto-winning-bonus-number__inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.lotto-winning-bonus-number__bonus {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 0.5rem;
+}
+
+.lotto-purchase {
+  margin-top: 2rem;
+}
+
+.lotto-winning-bonus-number__button {
+  background-color: var(--lotto-primary);
+  width: 100%;
+  padding: 0.75rem;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  margin-top: 1rem;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 14px;
+}
+
+.lotto-result-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
+
+.lotto-result__dimmed {
+  background-color: var(--lotto-grayscale-5);
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+}
+
+.lotto-result__title-wrapper {
+  padding-block: 1rem;
+}
+
+.lotto-result__title {
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+}
+
+.lotto-result__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--lotto-grayscale-1);
+  padding: 2rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lotto-result__table {
+  text-align: center;
+  border-block: 1px solid var(--lotto-border);
+}
+
+.lotto-result__table td {
+  border-top: 1px solid var(--lotto-border);
+  padding: 1rem;
+}
+
+.lotto-result__table th {
+  padding: 1rem;
+}
+
+.lotto-result__table-header {
+  font-weight: 800;
+}
+
+.lotto-result__close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: transparent;
+  border: none;
+}
+
+.lotto-result__return-rate {
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.lotto-result__retry-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--lotto-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: 1.5rem;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 14px;
+}
+
+.lotto-footer {
+  padding-block: 2rem;
+  border-top: 1px solid var(--lotto-border);
+  text-align: center;
+  color: var(--lotto-primary);
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 14px;
+}
