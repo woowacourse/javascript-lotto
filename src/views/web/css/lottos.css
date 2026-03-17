@@ -1,0 +1,31 @@
+/* 로또 출력 섹션 */
+
+.lottos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--lotto-greyscale-5);
+  font: var(--text-body);
+  overflow: hidden;
+}
+
+.lottos__list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.lottos__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lottos__item-icon {
+  font-size: 32px;
+  line-height: 32px;
+}
+
+.lottos__item-numbers {
+  letter-spacing: 2px;
+}

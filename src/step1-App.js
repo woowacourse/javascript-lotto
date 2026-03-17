@@ -1,10 +1,10 @@
 import { INPUT_MESSAGE } from "./constants/message.js";
 import { isRetryAnswerValid } from "./validates/RetryAnswerValidator.js";
 
-import MainController from "./controllers/MainController.js";
+import MainController from "./controllers/console/MainController.js";
 
-import OutputView from "./views/OutputView.js";
-import InputView from "./views/InputView.js";
+import OutputView from "./views/console/OutputView.js";
+import InputView from "./views/console/InputView.js";
 
 class App {
   #mainController;

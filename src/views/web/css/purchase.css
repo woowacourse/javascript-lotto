@@ -1,0 +1,43 @@
+/* 구매 입력 섹션 */
+
+.purchase__form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--lotto-greyscale-5);
+  font: var(--text-body);
+}
+
+.purchase__input-group {
+  height: 36px;
+  display: flex;
+  gap: 16px;
+}
+
+.purchase__input {
+  flex: 1;
+  padding: 8px 8px 4px 8px;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+}
+
+.purchase__input::placeholder {
+  color: var(--lotto-greyscale-4);
+  font: var(--text-body);
+}
+
+.purchase__button {
+  padding: 0 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--lotto-primary);
+  cursor: pointer;
+  color: var(--lotto-greyscale-1);
+  font: var(--text-caption);
+}
+
+.purchase__error {
+  color: var(--lotto-error);
+  font: var(--text-error);
+  visibility: hidden;
+}

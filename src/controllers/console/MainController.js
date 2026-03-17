@@ -1,14 +1,12 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
-import { INPUT_MESSAGE } from "../constants/message.js";
+import { INPUT_MESSAGE } from "../../constants/message.js";
 
-import InputView from "../views/InputView.js";
-import OutputView from "../views/OutputView.js";
+import Purchase from "../../models/Purchase.js";
+import WinningLottoManager from "../../models/winningLottoManager.js";
 
-import Purchase from "../models/Purchase.js";
-import WinningLottoManager from "../models/winningLottoManager.js";
-
-import LottoMachine from "../services/LottoMachine.js";
-import LottoResult from "../services/LottoResult.js";
+import LottoMachine from "../../services/LottoMachine.js";
+import LottoResult from "../../services/LottoResult.js";
+import InputView from "../../views/console/InputView.js";
+import OutputView from "../../views/console/OutputView.js";
 
 class MainController {
   async run() {

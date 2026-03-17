@@ -1,0 +1,65 @@
+/* 레이아웃 */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  height: 64px;
+  padding: 0 128px;
+  display: flex;
+  align-items: center;
+  background-color: var(--lotto-primary);
+}
+
+.header__title {
+  color: var(--lotto-greyscale-1);
+  font: var(--text-title);
+}
+
+.main {
+  padding: 64px 10px;
+  flex: 1;
+  background-color: var(--lotto-greyscale-2);
+  overflow: hidden;
+}
+
+.container {
+  width: 380px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--lotto-greyscale-1);
+  border: 1px solid var(--lotto-greyscale-3);
+}
+
+.container__title {
+  margin: 8px 0;
+  color: var(--lotto-greyscale-5);
+  font: var(--text-title);
+  text-align: center;
+}
+
+.footer {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lotto-greyscale-2);
+  border-top: 1px solid var(--lotto-primary);
+}
+
+.footer__text {
+  color: var(--lotto-primary);
+  font: var(--text-caption);
+}

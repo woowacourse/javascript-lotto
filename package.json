@@ -10,7 +10,7 @@
     "start-step2": "vite",
     "deploy": "vite build --base=/javascript-lotto/ --minify=false && npx gh-pages -d dist"
   },
-  "homepage": "https://{username}.github.io/javascript-lotto",
+  "homepage": "https://yundol777.github.io/javascript-lotto",
   "devDependencies": {
     "@babel/cli": "^7.28.6",
     "@babel/core": "^7.29.0",

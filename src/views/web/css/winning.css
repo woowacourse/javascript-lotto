@@ -1,0 +1,66 @@
+/* 당첨 번호 입력 섹션 */
+
+.winning {
+  display: none;
+}
+
+.winning__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.winning__title {
+  color: var(--lotto-greyscale-5);
+  font: var(--text-body);
+}
+
+.winning__input-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning__lotto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.winning__bonus {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.winning__lotto-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+.winning__input-title {
+  color: var(--lotto-greyscale-5);
+  font: var(--text-body);
+}
+
+.winning__input {
+  max-width: 28px;
+  height: 32px;
+  text-align: center;
+  border: 1px solid var(--lotto-greyscale-3);
+  border-radius: 4px;
+  color: var(--lotto-greyscale-5);
+  font: var(--text-caption);
+}
+
+.winning__button {
+  width: 100%;
+  height: 36px;
+  margin: 20px 0 8px 0;
+  background-color: var(--lotto-primary);
+  border: none;
+  border-radius: 4px;
+  color: var(--lotto-greyscale-1);
+  font: var(--text-caption);
+  cursor: pointer;
+}

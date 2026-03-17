@@ -1,8 +1,8 @@
-import MainController from "../src/controllers/MainController";
-import InputView from "../src/views/InputView";
+import MainController from "../src/controllers/console/MainController.js";
+import InputView from "../src/views/console/InputView.js";
 import App from "../src/step1-App";
 
-jest.mock("../src/views/InputView.js");
+jest.mock("../src/views/console/InputView.js");
 
 describe("예외가 발생했을 때 그 부분부터 다시 입력이 잘 되어야 한다.", () => {
   test("보너스 번호에서 에러가 나면 보너스 번호만 다시 입력받는다.", async () => {

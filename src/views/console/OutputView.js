@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
-import { OUTPUT_MESSAGE } from "../constants/message.js";
-import { formatNumber } from "../utils/FormatNumber.js";
+import { OUTPUT_MESSAGE } from "../../constants/message.js";
+import { formatNumber } from "../../utils/FormatNumber.js";
 
 const OutputView = {
   printPurchasedLottoTickets(lottoCount, lottoNumberArrays) {

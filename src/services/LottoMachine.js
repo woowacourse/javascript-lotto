@@ -1,5 +1,5 @@
-import { Random } from "@woowacourse/mission-utils";
 import Lotto from "../models/Lotto.js";
+import pickUniqueNumbersInRange from "../utils/Random.js";
 
 class LottoMachine {
   #generatedLottos;
@@ -19,7 +19,7 @@ class LottoMachine {
   #generateLottos(lottoCount) {
     const lottos = [];
     for (let _ = 0; _ < lottoCount; _++) {
-      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+      const numbers = pickUniqueNumbersInRange(1, 45, 6);
       lottos.push(new Lotto(numbers));
     }
 
