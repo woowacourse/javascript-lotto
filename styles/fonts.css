@@ -1,0 +1,15 @@
+:root {
+    /* Font size */
+    --font-size-button: 14px;
+    --font-size-caption: 14px;
+    --font-size-palceholder: 15px;
+    --font-size-body: 15px;
+    --font-size-subtitle: 20px;
+    --font-size-title: 24px;
+
+    /* Font weight */
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+}

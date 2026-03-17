@@ -18,7 +18,7 @@ export const InputValidator = {
       throw new Error(ERROR_MESSAGES.PURCHASE_AMOUNT.NOT_THOUSAND_UNIT);
     }
   },
-  
+
   validateWinningNumbers(input) {
     if (!input || input.trim() === "") {
       throw new Error(ERROR_MESSAGES.WINNING_NUMBERS.EMPTY);

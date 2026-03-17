@@ -1,0 +1,244 @@
+@import "./fonts.css";
+@import "./colors.css";
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-extrabold);
+}
+
+.title.header {
+    margin: 0;
+    background-color: var(--color-primary);
+    color: var(--color-gray-scale-1);
+    padding: 14px 0 14px 140px;
+}
+
+.title.main {
+    align-self: center;
+}
+
+.subtitle {
+    font-size: var(--font-size-subtitle);
+    font-weight: var(--font-weight-semibold);
+}
+
+.body {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+}
+
+.placeholder {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-gray-scale-4);
+}
+
+.caption {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+}
+
+.button {
+    font-size: var(--font-size-button);
+    font-weight: var(--font-weight-bold);
+}
+
+.button.result {
+    width: 100%;
+    height: 36px;
+    margin: 10px 0;
+    border-radius: 4px;
+    color: var(--color-gray-scale-1);
+    background-color: var(--color-primary);
+}
+
+.is-hidden {
+    display: none;
+}
+
+.error {
+    color: #d92d20;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    width: 414px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+footer {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(78, 91, 166, 0.20);
+}
+
+.lottoBody {
+    width: 100%;
+}
+
+.purchase-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#purchaseinput {
+    width: 310px;
+    height: 22px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--lotto-greyscale-3, #B4B4B4);
+    color: var(--color-gray-scale-5);
+}
+
+#purchaseinput::placeholder {
+  color: var(--color-gray-scale-4);
+}
+
+#purchasebutton {
+    width: 56px;
+    height: 36px;
+    margin-left: auto;
+    border-radius: 4px;
+    background-color: var(--color-primary);
+    color: var(--color-gray-scale-1);
+}
+
+#lottoCount {
+    margin-top: 10px;
+}
+
+#lottoCount.error {
+    color: #d92d20;
+}
+
+.number-label-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.number-input-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.winning-numbers {
+    display: flex;
+    gap: 5px;
+}
+
+.bonus-number {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.number-input {
+    width: 34px;
+    height: 36px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.is-hidden {
+    display: none;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.modal-dialog {
+    position: relative;
+    width: 360px;
+    max-width: calc(100% - 32px);
+    background: var(--color-gray-scale-1);
+    border-radius: 6px;
+    padding: 24px 20px 18px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+    text-align: center;
+}
+
+.modal-title {
+    margin: 0 0 24px;
+    font-size: var(--font-size-subtitle);
+    font-weight: var(--font-weight-semibold);
+}
+
+.modal-close {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: var(--font-size-body);
+}
+
+.stats-table th,
+.stats-table td {
+    padding: 8px 4px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.stats-table th {
+    font-weight: var(--font-weight-semibold);
+}
+
+.profit-text {
+    margin: 30px 0;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-bold);
+}
+
+.button.restart {
+    width: 100%;
+    height: 36px;
+    border-radius: 4px;
+    color: var(--color-gray-scale-1);
+    background-color: var(--color-primary);
+}
