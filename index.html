@@ -4,12 +4,123 @@
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
-    <div id="app">
-      <h1>🎱 행운의 로또</h1>
+    <div class="app">
+      <header>
+        <h1>🎱 행운의 로또</h1>
+      </header>
+      <main>
+        <div class="card">
+          <h2>🎱 내 번호 당첨 확인 🎱</h2>
+          <div class="section-container">
+            <section class="purchase-section">
+              <!-- 구입 금액 입력 -->
+              <form class="purchase-amount-form">
+                <div class="input-title">
+                  <p class="body-text">구입할 금액을 입력해주세요.</p>
+                  <input
+                    placeholder="금액"
+                    class="purchase-amount-input"
+                    id="purchase-amount-input"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  class="purchase-amount-button"
+                  id="purchase-amount-button"
+                >
+                  구입
+                </button>
+              </form>
+              <p id="purchase-error" class="error-msg"></p>
+            </section>
+
+            <section
+              class="purchased-lotto-section"
+              id="purchased-lotto-section"
+            >
+              <!-- 구매한 로또 목록 -->
+            </section>
+
+            <section class="winning-section hidden" id="winning-section">
+              <p class="body-text">
+                지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+              </p>
+              <div class="winning-lotto-container">
+                <div class="winning-numbers-container">
+                  <p class="body-text">당첨 번호</p>
+                  <div class="winning-number-input-container">
+                    <input class="number-each" />
+                    <input class="number-each" />
+                    <input class="number-each" />
+                    <input class="number-each" />
+                    <input class="number-each" />
+                    <input class="number-each" />
+                  </div>
+                </div>
+                <div class="bonus">
+                  <p class="body-text">보너스 번호</p>
+                  <input class="number-each" id="bonus-number" />
+                </div>
+              </div>
+              <p id="winning-error" class="error-msg"></p>
+              <button class="result-btn" id="result-btn">결과 확인하기</button>
+            </section>
+          </div>
+        </div>
+      </main>
+      <div class="modal-overlay hidden" id="modal-overlay">
+        <!-- 모달 -->
+        <div class="modal-container">
+          <button class="modal-close-btn" id="modal-close-btn">✕</button>
+          <table class="stats-table">
+            <caption>
+              🏆 당첨 통계 🏆
+            </caption>
+            <thead>
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td id="stat-5"></td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td id="stat-4"></td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td id="stat-3"></td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td id="stat-2"></td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td id="stat-1"></td>
+              </tr>
+            </tbody>
+          </table>
+          <p id="roi-text" class="roi-text"></p>
+          <button class="restart-btn" id="restart-btn">다시 시작하기</button>
+        </div>
+      </div>
+      <footer>Copyright 2026. woowacourse</footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>

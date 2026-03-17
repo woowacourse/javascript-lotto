@@ -11,6 +11,7 @@ import {
   validateRestartInput,
   validateUnit,
   validateYesNo,
+  validateZero,
 } from "../src/utils/validator";
 
 describe("유효성 검증 테스트", () => {
@@ -86,6 +87,16 @@ describe("유효성 검증 테스트", () => {
 
       test("양수 -> 통과", () => {
         expect(() => validatePositive(1000)).not.toThrow();
+      });
+    });
+
+    describe("0원 검증", () => {
+      test("0원 -> 에러", () => {
+        expect(() => validateZero(0)).toThrow("[ERROR]");
+      });
+
+      test("0 아닌 값 -> 통과", () => {
+        expect(() => validateZero(1000)).not.toThrow();
       });
     });
 

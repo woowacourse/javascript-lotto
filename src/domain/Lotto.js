@@ -1,8 +1,4 @@
-import {
-  validateCount,
-  validateNoDuplicate,
-  validateRange,
-} from "../utils/validator.js";
+import { validateLottoNumbers } from "../utils/validator.js";
 
 class Lotto {
   constructor(lottoNumberList) {
@@ -11,9 +7,7 @@ class Lotto {
   }
 
   #validate(numbers) {
-    validateCount(numbers);
-    validateNoDuplicate(numbers);
-    numbers.forEach((number) => validateRange(number));
+    validateLottoNumbers(numbers);
   }
 
   getNumbers() {
