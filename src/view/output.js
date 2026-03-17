@@ -1,7 +1,19 @@
 import { PRIZE } from "../constants/constant.js";
+import { webOutputPrinter } from "./webOutputPrinter.js";
 
 export const OutputView = {
+  isWeb: false,
+
+  setIsWeb(boolean) {
+    this.isWeb = boolean;
+  },
+
   outputLottoNumber(randomLottos) {
+    if (this.isWeb) {
+      const lottoNumberArray = randomLottos.map(lotto => lotto.getNumber());
+      webOutputPrinter.printMyLottoLists(lottoNumberArray);
+    }
+
     console.log(randomLottos.length, "개를 구매했습니다.");
     for (let i = 0; i < randomLottos.length; i++) {
       console.log(randomLottos[i].getNumber());
@@ -9,6 +21,16 @@ export const OutputView = {
   },
 
   outputWinningStatics(result) {
+    if (this.isWeb) {
+      const arrayKey = Object.keys(PRIZE).reverse();
+      const formattedResult = arrayKey.map(key => ({
+        prize: PRIZE[key].toLocaleString(),
+        count: result[key]
+      }));
+
+      webOutputPrinter.printLottoResult(formattedResult);
+    }
+
     const output = [
       "\n당첨 통계",
       "---------------",
@@ -22,10 +44,12 @@ export const OutputView = {
   },
 
   outputWinningProfit(profit) {
+    if (this.isWeb) webOutputPrinter.printProfit(profit);
     console.log(`총 수익률은 ${profit.toFixed(1)}%입니다.`);
   },
 
   outputError(message) {
+    if (this.isWeb) alert(message);
     console.log(message);
   },
 };

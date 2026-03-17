@@ -10,12 +10,14 @@
     "start-step2": "vite",
     "deploy": "vite build --base=/javascript-lotto/ --minify=false && npx gh-pages -d dist"
   },
-  "homepage": "https://{username}.github.io/javascript-lotto",
+  "homepage": "https://JuHyeong424.github.io/javascript-lotto",
   "devDependencies": {
     "@babel/cli": "^7.28.6",
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.0",
+    "@playwright/test": "^1.58.2",
     "@types/jest": "^30.0.0",
+    "@types/node": "^25.4.0",
     "babel-jest": "^30.2.0",
     "jest": "^30.2.0",
     "vite": "^7.3.1"
@@ -23,7 +25,11 @@
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest"
-    }
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/" 
+    ]
   },
   "babel": {
     "presets": [

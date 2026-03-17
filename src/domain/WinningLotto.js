@@ -1,12 +1,8 @@
-import { Validator } from "../validator/Validator.js";
-
 class WinningLotto {
   #winningNumber;
   #bonusNumber;
 
   constructor(winningNumber, bonusNumber) {
-    Validator.validateWinningNumber(winningNumber);
-    Validator.validateBonusNumber(winningNumber, Number(bonusNumber));
     this.#winningNumber = this.#splitWinnigNumber(winningNumber);
     this.#bonusNumber = bonusNumber;
   }
