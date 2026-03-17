@@ -37,8 +37,8 @@ class Lotto {
     return this.#numbers.filter((n) => winningLotto.hasNumber(n)).length;
   }
 
-  getNumbers() {
-    return [...this.#numbers];
+  getNumbersString() {
+    return this.#numbers.join(", ");
   }
 }
 

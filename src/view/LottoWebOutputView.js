@@ -33,7 +33,7 @@ class LottoWebOutputView {
       span.className = "lotto-image";
       span.textContent = "🎟️";
 
-      li.append(span, ` ${lotto.getNumbers().join(", ")}`);
+      li.append(span, ` ${lotto.getNumbersString()}`);
       this.lottoList.append(li);
     });
   }
