@@ -4,7 +4,7 @@
 }
 
 /* 2. 브라우저 기본 마진, 패딩 제거 */
-body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, button, figure, figcaption, blockquote, dl, dd {
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, button, figure, figcaption, blockquote, dl, dd, fieldset, legend {
   margin: 0;
   padding: 0;
 }
@@ -48,4 +48,8 @@ a {
 /* 8. 버튼 포인터 설정 */
 button {
   cursor: pointer;
+}
+
+fieldset {
+  border: none;
 }

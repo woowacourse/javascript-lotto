@@ -19,8 +19,8 @@ const WinningNumbersAndBonusNumberForm = {
     const descriptionDiv = document.createElement('div');
     const winningLottoAndBonusNumberWrapper = document.createElement('div');
 
-    const winningNumbersWrapper = document.createElement('div');
-    const winningNumbersCaption = document.createElement('div');
+    const winningNumbersWrapper = document.createElement('fieldset');
+    const winningNumbersCaption = document.createElement('legend');
     const winningNumbersInputWrapper = document.createElement('div');
     const winningNumberInputs = this.createWinningNumberInputs();
 
