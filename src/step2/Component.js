@@ -26,7 +26,7 @@ const Component = {
       return `<tr>${cell.join('')}</tr>`;
     });
     
-    return `<table id="lotto-match-result"><thead>${tableHeaders.join('')}</thead><tbody>${tableRows.join('')}</tbody></table>`;
+    return `<table id="lotto-match-result"><thead><tr>${tableHeaders.join('')}</tr></thead><tbody>${tableRows.join('')}</tbody></table>`;
   },
 
   rateOfReturnMessage(rateOfReturn) {

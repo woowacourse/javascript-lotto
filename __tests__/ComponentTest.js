@@ -26,7 +26,7 @@ describe('컴포넌트 테스트', () => {
 
     const lottoMatchResultComponent = Component.lottoMatchResultTable(summary);
     const expected = '<table id="lotto-match-result">'
-    + '<thead><th>일치 갯수</th><th>당첨금</th><th>당첨 갯수</th></thead>'
+    + '<thead><tr><th>일치 갯수</th><th>당첨금</th><th>당첨 갯수</th></tr></thead>'
     + '<tbody><tr><td>3개 일치</td><td>500</td><td>3</td></tr>'
     + '<tr><td>4개 일치</td><td>1,000</td><td>100</td></tr>'
     + '</tbody></table>'
