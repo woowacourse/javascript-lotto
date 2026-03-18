@@ -8,6 +8,7 @@ const html = fs.readFileSync(
   path.resolve(__dirname, "./../index.html"),
   "utf8",
 );
+
 const tempEl = document.createElement("div");
 tempEl.innerHTML = html.toString();
 

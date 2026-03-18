@@ -26,10 +26,6 @@ beforeEach(() => {
   app.run();
 });
 
-afterEach(() => {
-  jest.restoreAllMocks();
-});
-
 describe("Web 통합 테스트", () => {
   test("금액 입력 폼이 정상적으로 출력된다.", () => {
     const element = screen.getByText("구입할 금액을 입력해주세요.");

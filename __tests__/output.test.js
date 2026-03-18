@@ -8,16 +8,13 @@ const html = fs.readFileSync(
   path.resolve(__dirname, "./../index.html"),
   "utf8",
 );
+
 const tempEl = document.createElement("div");
 tempEl.innerHTML = html.toString();
 
 beforeEach(() => {
   document.body.innerHTML = tempEl.outerHTML;
 });
-
-afterEach(() => {
-  jest.clearAllMocks();
-})
 
 describe("Output 테스트", () => {
   test("WebOutput, ConsoleOutput은 모두 공통된 인스턴스 메서드를 가진다.", () => {

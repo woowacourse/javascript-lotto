@@ -10,8 +10,8 @@ class WebInput extends Input {
     this.#elements = {
       mainContainerBody: document.querySelector(".main__container__body"),
       mainContainerFooter: document.querySelector(".main__container__footer"),
-      modalFooter: document.querySelector(".modal__footer"),
-      overlay: document.querySelector(".overlay"),
+      dialog: document.querySelector("dialog"),
+      dialogFooter: document.querySelector(".dialog__footer"),
     };
 
     if (!this.#elements.mainContainerBody) {
@@ -22,12 +22,12 @@ class WebInput extends Input {
       throw new Error("main__container__footer를 찾을 수 없습니다.");
     }
 
-    if (!this.#elements.modalFooter) {
-      throw new Error("modal__footer를 찾을 수 없습니다.");
+    if (!this.#elements.dialogFooter) {
+      throw new Error("dialog__footer를 찾을 수 없습니다.");
     }
-
-    if (!this.#elements.overlay) {
-      throw new Error("overlay를 찾을 수 없습니다.");
+    
+    if (!this.#elements.dialog) {
+      throw new Error("dialog를 찾을 수 없습니다.");
     }
   }
 
@@ -156,13 +156,13 @@ class WebInput extends Input {
   }
 
   async readRetryAsync() {
-    this.#elements.modalFooter.innerHTML = "";
+    this.#elements.dialogFooter.innerHTML = "";
 
     const buttonEl = document.createElement("button");
     buttonEl.type = "button";
     buttonEl.className = "retry__button";
     buttonEl.textContent = "다시 시작";
-    this.#elements.modalFooter.appendChild(buttonEl);
+    this.#elements.dialogFooter.appendChild(buttonEl);
 
     return new Promise((resolve) => {
       buttonEl.addEventListener("click", (e) => {
@@ -194,7 +194,7 @@ class WebInput extends Input {
   }
 
   hiddenOverlay() {
-    this.#elements.overlay.classList.add("hidden");
+    this.#elements.dialog.close();
   }
 }
 

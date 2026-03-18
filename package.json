@@ -25,7 +25,7 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["@testing-library/jest-dom"],
+    "setupFilesAfterEnv": ["<rootDir>/setupTests.js", "@testing-library/jest-dom"],
     "transform": {
       "^.+\\.js$": "babel-jest"
     },

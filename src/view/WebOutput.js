@@ -3,7 +3,7 @@ import { RANK, RANK_CONDITION, RANK_PRIZE } from "../constant/index.js";
 import lottoImg from "./../../public/lotto.png";
 import closeImg from "./../../public/close.svg" ;
 
-class ConsoleOutput extends Output {
+class WebOutput extends Output {
   #elements;
 
   constructor() {
@@ -12,9 +12,9 @@ class ConsoleOutput extends Output {
     this.#elements = {
       mainContainerBody: document.querySelector(".main__container__body"),
       mainContainerFooter: document.querySelector(".main__container__footer"),
-      overlay: document.querySelector(".overlay"),
-      modalHeader: document.querySelector(".modal__header"),
-      modalBody: document.querySelector(".modal__body"),
+      dialog: document.querySelector("dialog"),
+      dialogHeader: document.querySelector(".dialog__header"),
+      dialogBody: document.querySelector(".dialog__body"),
     };
 
     if (!this.#elements.mainContainerBody) {
@@ -25,16 +25,16 @@ class ConsoleOutput extends Output {
       throw new Error("main__container__footer를 찾을 수 없습니다.");
     }
 
-    if (!this.#elements.overlay) {
-      throw new Error("overlay를 찾을 수 없습니다.");
+    if (!this.#elements.dialog) {
+      throw new Error("dialog를 찾을 수 없습니다.");
     }
 
-    if (!this.#elements.modalHeader) {
-      throw new Error("modal__header를 찾을 수 없습니다.");
+    if (!this.#elements.dialogHeader) {
+      throw new Error("dialog__header를 찾을 수 없습니다.");
     }
 
-    if (!this.#elements.modalBody) {
-      throw new Error("modal__body를 찾을 수 없습니다.");
+    if (!this.#elements.dialogBody) {
+      throw new Error("dialog__body를 찾을 수 없습니다.");
     }
   }
 
@@ -43,20 +43,16 @@ class ConsoleOutput extends Output {
   }
 
   printResult(countsObject, returnOnInvestment) {
-    this.#elements.modalHeader.innerHTML = `
-      <button class="close__button">
-        <img src="${closeImg}" alt="닫기" />
-      </button>
+    this.#elements.dialogHeader.innerHTML = `
+      <form method="dialog">
+        <button class="close__button">
+          <img src="${closeImg}" alt="닫기" />
+        </button>
+      </form>
       <h2>🏆 당첨 통계 🏆</h2>
     `;
 
-    const closeButtonEl = document.querySelector(".close__button");
-
-    closeButtonEl?.addEventListener("click", () => {
-      this.#elements.overlay.classList.add("hidden");
-    });
-
-    this.#elements.modalBody.innerHTML = `
+    this.#elements.dialogBody.innerHTML = `
       <table class="result__table">
         <thead>
           <tr>
@@ -88,12 +84,12 @@ class ConsoleOutput extends Output {
       <p class="return-on-investment">당신의 총 수익률은 ${returnOnInvestment.toFixed(1)}%입니다.</p>
     `;
 
-    this.#elements.overlay.classList.remove("hidden");
+    this.#elements.dialog.showModal();
 
     const showResultButtonEl = document.querySelector(".show-result__button");
 
     showResultButtonEl?.addEventListener("click", () => {
-      this.#elements.overlay.classList.remove("hidden");
+      this.#elements.dialog.showModal();
     });
   }
 
@@ -126,4 +122,4 @@ class ConsoleOutput extends Output {
   }
 }
 
-export default ConsoleOutput;
+export default WebOutput;
