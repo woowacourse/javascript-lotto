@@ -157,7 +157,7 @@ const WinningNumbersAndBonusNumberForm = {
   },
 
   handleKeydown(e) {
-    const inputs = document.querySelectorAll(':scope #winning-lotto-and-bonus-number-form input');
+    const inputs = document.querySelectorAll('#winning-lotto-and-bonus-number-form input');
 
     if (e.key === 'ArrowLeft') {
       inputs.forEach((input, i) => {
