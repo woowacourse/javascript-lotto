@@ -1,0 +1,24 @@
+.lotto-game-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 24px;
+  width: 414px;
+  aspect-ratio: 14/25;
+  margin: 84px auto;
+  padding: 40px 16px 36px 16px;
+  border: 1px solid #00000012;
+  border-radius: 4px;
+  background-color: var(--color-lotto-grayscale-1);
+}
+
+.lotto-game-card header {
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .lotto-game-card {
+    width: auto;
+    margin: 12px 24px 40px 24px;
+  }
+}

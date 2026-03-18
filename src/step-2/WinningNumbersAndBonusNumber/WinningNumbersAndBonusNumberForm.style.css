@@ -1,0 +1,47 @@
+.winning-lotto-and-bonus-number-form {
+  padding-top: 10px;
+  background-color: var(--color-lotto-grayscale-1);
+}
+
+.winning-numbers-and-bonus-number-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.winning-numbers-and-bonus-number-wrapper input {
+  width: 34px;
+  text-align: center;
+}
+
+.winning-numbers-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bonus-number-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: end;
+}
+
+.winning-numbers-input-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.winning-numbers-input-wrapper.invalid input {
+  border-color: var(--color-lotto-negative);
+}
+
+.bonus-number-input-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.result-check-button {
+  width: 100%;
+  margin-top: 24px;
+}

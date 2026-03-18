@@ -1,9 +1,9 @@
-import InputView from './InputView.js';
-import OutputView from './OutputView.js';
-import LottoStore from './LottoStore.js';
-import Lotto from './Lotto.js';
-import WinningLottoAndBonusNumber from './WinningLottoAndBonusNumber.js';
-import LottoResultGenerator from './LottoResultGenerator.js';
+import InputView from './step-1/InputView.js';
+import OutputView from './step-1/OutputView.js';
+import LottoStore from './step-1/LottoStore.js';
+import Lotto from './step-1/Lotto.js';
+import WinningLottoAndBonusNumber from './step-1/WinningLottoAndBonusNumber.js';
+import LottoResultGenerator from './step-1/LottoResultGenerator.js';
 
 async function main() {
   const inputView = new InputView();

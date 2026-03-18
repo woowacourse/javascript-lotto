@@ -1,4 +1,16 @@
-/**
- * step 2의 시작점이 되는 파일입니다.
- * 노드 환경에서 사용하는 readline 등을 불러올 경우 정상적으로 빌드할 수 없습니다.
- */
+import LottoGameCard from './step-2/LottoGameCard/LottoGameCard.js';
+import LottoResultModal from './step-2/LottoResultModal/LottoResultModal.js';
+import LottoHeader from './step-2/LottoHeader/LottoHeader.js';
+import LottoFooter from './step-2/LottoFooter/LottoFooter.js';
+
+function main() {
+  const app = document.getElementById('app');
+
+  LottoHeader.render(app);
+  LottoGameCard.render(app);
+  LottoFooter.render(app);
+  
+  LottoResultModal.render(app);
+}
+
+main();

@@ -1,0 +1,41 @@
+import LottoItem from '../LottoItem/LottoItem.js';
+import { userLottoStore } from '../stores.js';
+
+const LottoInfo = {
+  render(container) {
+    this.init();
+
+    if (!userLottoStore.hasTrigger('lotto-info')) {
+      userLottoStore.appendTrigger(
+        'lotto-info', () => this.render(container),
+      );
+    }
+
+    const { lottos } = userLottoStore.getState();
+    if (lottos.length === 0) return;
+
+    const lottoInfoContainer = document.createElement('div');
+    const purchaseCountDiv = document.createElement('div');
+    const lottoListContainer = document.createElement('ul');
+
+    lottoInfoContainer.id = 'lotto-info-container';
+    lottoInfoContainer.classList.add('lotto-info-container');
+
+    purchaseCountDiv.innerText = `총 ${lottos.length}개를 구매하였습니다.`;
+
+    lottos.forEach((lotto) => LottoItem.render(lottoListContainer, { lotto }));
+    lottoInfoContainer.appendChild(purchaseCountDiv);
+    lottoInfoContainer.appendChild(lottoListContainer);
+
+    container.appendChild(lottoInfoContainer);
+  },
+
+  init() {
+    const lottoInfoContainer = document.getElementById('lotto-info-container');
+    if (lottoInfoContainer) {
+      lottoInfoContainer.remove();
+    }
+  },
+};
+
+export default LottoInfo;

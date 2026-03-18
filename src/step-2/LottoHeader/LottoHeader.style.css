@@ -1,0 +1,12 @@
+.lotto-header {
+  position: sticky;
+  padding: 14px 130px;
+  background-color: var(--color-lotto-primary);
+  color: var(--color-lotto-grayscale-1);
+}
+
+@media (max-width: 640px) {
+  .lotto-header {
+    padding: 14px 24px;
+  }
+}

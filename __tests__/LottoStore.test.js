@@ -1,5 +1,5 @@
-import LottoStore from '../src/LottoStore.js';
-import Lotto from '../src/Lotto.js';
+import LottoStore from '../src/step-1/LottoStore.js';
+import Lotto from '../src/step-1/Lotto.js';
 
 describe('LottoStore 클래스 유닛 테스트', () => {
   describe('purchaseLotto', () => {

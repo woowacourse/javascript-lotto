@@ -1,0 +1,136 @@
+:root {
+  --color-lotto-primary: #4E5BA6;
+  --color-lotto-grayscale-5: #000000;
+  --color-lotto-grayscale-4: #8B8B8B;
+  --color-lotto-grayscale-3: #B4B4B4;
+  --color-lotto-grayscale-2: #FCFCFD;
+  --color-lotto-grayscale-1: #FFFFFF;
+  --color-lotto-negative: #E30800
+}
+
+body {
+  color: var(--color-lotto-grayscale-5);
+  background-color: var(--color-lotto-grayscale-2);
+
+  /* default - text lotto body */
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+body > div {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+button {
+  cursor: pointer;
+
+  /* text lotto caption */
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  vertical-align: middle;
+}
+
+button:disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+input {
+  width: auto;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid var(--color-lotto-grayscale-3);
+  border-radius: 4px;
+
+  /* text lotto body */
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+input::placeholder {
+  color: var(--color-lotto-grayscale-4);
+
+  /* text lotto placeholder */
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  vertical-align: bottom;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input.invalid {
+  border-color: var(--color-lotto-negative);
+}
+
+.text-lotto-title {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0;
+}
+
+.text-lotto-subtitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.text-lotto-body {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.text-lotto-placeholder {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  vertical-align: bottom;
+}
+
+.text-lotto-caption {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  vertical-align: middle;
+}
+
+.button-primary {
+  width: auto;
+  height: 36px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background-color: var(--color-lotto-primary);
+  color: var(--color-lotto-grayscale-1);
+}
+
+.error-message {
+  margin-top: 4px;
+  color: var(--color-lotto-negative);
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}

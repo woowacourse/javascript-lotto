@@ -1,0 +1,7 @@
+.lotto-footer {
+  margin-top: auto;
+  padding: 28px 0 26px 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-lotto-primary), transparent 80%);
+  color: var(--color-lotto-primary);
+  text-align: center;
+}

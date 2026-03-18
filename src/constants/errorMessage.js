@@ -1,5 +1,6 @@
 const ERROR_MESSAGE = {
   AMOUNT: {
+    REQUIRED: '구입 금액은 필수 입력값입니다.',
     POSITIVE: '구입 금액은 양수여야 합니다.',
     UNIT: '구입 금액은 1,000원 단위여야 합니다.',
   },
@@ -12,6 +13,7 @@ const ERROR_MESSAGE = {
   },
 
   WINNING_NUMBERS: {
+    REQUIRED: '당첨 번호는 필수 입력값입니다.',
     NUMBER: '당첨 번호는 숫자여야 합니다.',
     INTEGER: '당첨 번호는 정수여야 합니다.',
     RANGE: '당첨 번호는 1부터 45 사이여야 합니다.',
@@ -20,6 +22,7 @@ const ERROR_MESSAGE = {
   },
 
   BONUS_NUMBER: {
+    REQUIRED: '보너스 번호는 필수 입력값입니다.',
     NUMBER: '보너스 번호는 숫자여야 합니다.',
     INTEGER: '보너스 번호는 정수여야 합니다.',
     RANGE: '보너스 번호는 1부터 45 사이여야 합니다.',

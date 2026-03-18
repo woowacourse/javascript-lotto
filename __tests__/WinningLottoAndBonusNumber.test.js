@@ -1,5 +1,5 @@
-import Lotto from '../src/Lotto.js';
-import WinningLottoAndBonusNumber from '../src/WinningLottoAndBonusNumber.js';
+import Lotto from '../src/step-1/Lotto.js';
+import WinningLottoAndBonusNumber from '../src/step-1/WinningLottoAndBonusNumber.js';
 
 describe('WinningLottoAndBonusNumber 클래스 유닛 테스트', () => {
   describe('생성자', () => {
