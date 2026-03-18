@@ -47,7 +47,6 @@ describe("step2 MainController 전체 흐름 테스트", () => {
     mockViewInstance = {
       bindPurchase: jest.fn(),
       bindResult: jest.fn(),
-      bindModalClose: jest.fn(),
       bindRestart: jest.fn(),
       renderLottoTickets: jest.fn(),
       renderResultModal: jest.fn(),
@@ -94,7 +93,6 @@ describe("step2 MainController 전체 흐름 테스트", () => {
     expect(LottoView).toHaveBeenCalledTimes(1);
     expect(mockViewInstance.bindPurchase).toHaveBeenCalledTimes(1);
     expect(mockViewInstance.bindResult).toHaveBeenCalledTimes(1);
-    expect(mockViewInstance.bindModalClose).toHaveBeenCalledTimes(1);
     expect(mockViewInstance.bindRestart).toHaveBeenCalledTimes(1);
   });
 

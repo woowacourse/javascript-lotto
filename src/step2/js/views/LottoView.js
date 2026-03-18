@@ -5,6 +5,8 @@ class LottoView {
   constructor() {
     // 뷰가 반복해서 쓰는 DOM 참조를 먼저 수집합니다.
     this.#cacheElements();
+    // 모달 닫기처럼 뷰 내부에서 끝나는 이벤트는 뷰가 직접 바인딩합니다.
+    this.bindModalClose();
     // 당첨 번호 입력값은 뷰 레벨에서 즉시 정제합니다.
     this.bindWinningInputConstraints();
   }

@@ -20,7 +20,6 @@ class MainController {
   #bindEvents() {
     this.#view.bindPurchase(this.#handlePurchase.bind(this));
     this.#view.bindResult(this.#handleResult.bind(this));
-    this.#view.bindModalClose();
     this.#view.bindRestart(this.#handleRestart.bind(this));
   }
 
