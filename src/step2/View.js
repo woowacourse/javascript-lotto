@@ -1,17 +1,19 @@
 import Component from './Component.js';
 
 const View = {
-  purchaseAmountInput: document.getElementById('purchase-amount'),
-  purchaseLottoContent: document.getElementById('purchase-lotto-content'),
-  purchaseAmountErrorMessageContainer: document.getElementById(
+  init() {
+  this.purchaseAmountInput = document.getElementById('purchase-amount');
+  this.purchaseLottoContent = document.getElementById('purchase-lotto-content');
+  this.purchaseAmountErrorMessageContainer = document.getElementById(
     'purchase-amount-error-message-container'
-  ),
-  winningLottoNumberErrorMessageContainer: document.getElementById(
+  );
+  this.winningLottoNumberErrorMessageContainer = document.getElementById(
     'winning-lotto-error-message-container'
-  ),
-  winningLottoForm: document.getElementById('winning-lotto-form'),
-  matchResultDialog: document.getElementById('lotto-match-result-dialog'),
-  matchResultContent: document.getElementById('lotto-match-result-content'),
+  );
+  this.winningLottoForm = document.getElementById('winning-lotto-form');
+  this.matchResultDialog = document.getElementById('lotto-match-result-dialog');
+  this.matchResultContent = document.getElementById('lotto-match-result-content');
+  },
 
   openModal() {
     this.matchResultDialog.showModal();
