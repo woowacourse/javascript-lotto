@@ -142,11 +142,26 @@ describe("step2 MainController 전체 흐름 테스트", () => {
     expect(mockViewInstance.renderResultModal).not.toHaveBeenCalled();
   });
 
-  test("다시 시작 시 상태를 초기화한다.", () => {
+  test("다시 시작 후에는 이전 구매 상태로 결과를 확인할 수 없다.", () => {
+    const winningNumbers = ["1", "2", "3", "4", "5", "6"];
+    const bonusNumber = "7";
+
     createController();
 
+    getPurchaseHandler()("2000");
+
+    global.alert.mockClear();
+    mockViewInstance.focusWinningInput.mockClear();
+    mockViewInstance.renderResultModal.mockClear();
+    LottoResult.mockClear();
+
     getRestartHandler()();
+    getResultHandler()(winningNumbers, bonusNumber);
 
     expect(mockViewInstance.resetUI).toHaveBeenCalledTimes(1);
+    expect(global.alert).toHaveBeenCalledTimes(1);
+    expect(mockViewInstance.focusWinningInput).toHaveBeenCalledTimes(1);
+    expect(mockViewInstance.renderResultModal).not.toHaveBeenCalled();
+    expect(LottoResult).not.toHaveBeenCalled();
   });
 });
