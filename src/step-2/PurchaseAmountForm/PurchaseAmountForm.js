@@ -78,10 +78,10 @@ const PurchaseAmountForm = {
       input.classList.remove('invalid');
       submitButton.disabled = false;
       errorMessageDiv.innerText = '';
-    } catch (e) {
+    } catch (error) {
       input.classList.add('invalid');
       submitButton.disabled = true;
-      errorMessageDiv.innerText = e.message;
+      errorMessageDiv.innerText = error.message;
     }
   },
 

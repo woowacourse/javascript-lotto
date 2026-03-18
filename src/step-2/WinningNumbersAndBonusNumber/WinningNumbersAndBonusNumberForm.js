@@ -124,10 +124,10 @@ const WinningNumbersAndBonusNumberForm = {
       }
       errorMessageDiv.innerText = '';
       inputWrapper.classList.remove('invalid');
-    } catch (e) {
+    } catch (error) {
       winningNumbersAndBonusNumberFormStore.setState({ isValidWinningNumbers: false });
       submitButton.disabled = true;
-      errorMessageDiv.innerText = e.message;
+      errorMessageDiv.innerText = error.message;
       inputWrapper.classList.add('invalid');
     }
   },
@@ -148,10 +148,10 @@ const WinningNumbersAndBonusNumberForm = {
       }
       errorMessageDiv.innerText = '';
       input.classList.remove('invalid');
-    } catch (e) {
+    } catch (error) {
       winningNumbersAndBonusNumberFormStore.setState({ isValidBonusNumber: false });
       submitButton.disabled = true;
-      errorMessageDiv.innerText = e.message;
+      errorMessageDiv.innerText = error.message;
       input.classList.add('invalid');
     }
   },
