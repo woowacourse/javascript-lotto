@@ -158,21 +158,14 @@ const WinningNumbersAndBonusNumberForm = {
 
   handleKeydown(e) {
     const inputs = document.querySelectorAll('#winning-lotto-and-bonus-number-form input');
+    const targetIndex = Array.from(inputs).indexOf(e.target);
 
     if (e.key === 'ArrowLeft') {
-      inputs.forEach((input, i) => {
-        if (input === e.target) {
-          inputs[i - 1]?.focus();
-        }
-      });
+      inputs[targetIndex - 1]?.focus();
     }
 
     if (e.key === 'ArrowRight') {
-      inputs.forEach((input, i) => {
-        if (input === e.target) {
-          inputs[i + 1]?.focus();
-        }
-      });
+      inputs[targetIndex + 1]?.focus();
     }
   },
 
