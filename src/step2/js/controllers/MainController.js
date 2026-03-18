@@ -31,7 +31,7 @@ class MainController {
       this.#lottoMachine = lottoMachine;
       this.#view.renderLottoTickets(tickets, ticketCount);
     } catch (error) {
-      alert(error.message);
+      this.#view.showError(error.message);
       this.#view.focusPurchaseInput();
     }
   }
@@ -41,7 +41,7 @@ class MainController {
       const { resultData, profitRate } = this.#calculateResult(winningNumbersInput, bonusNumberInput);
       this.#view.renderResultModal(resultData, profitRate);
     } catch (error) {
-      alert(error.message);
+      this.#view.showError(error.message);
       this.#view.focusWinningInput();
     }
   }

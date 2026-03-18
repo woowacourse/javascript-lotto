@@ -51,6 +51,7 @@ describe("step2 MainController 전체 흐름 테스트", () => {
       renderLottoTickets: jest.fn(),
       renderResultModal: jest.fn(),
       resetUI: jest.fn(),
+      showError: jest.fn(),
       focusPurchaseInput: jest.fn(),
       focusWinningInput: jest.fn(),
     };
@@ -62,11 +63,6 @@ describe("step2 MainController 전체 흐름 테스트", () => {
     LottoMachine.mockClear();
     LottoResult.mockClear();
 
-    global.alert = jest.fn();
-  });
-
-  afterEach(() => {
-    delete global.alert;
   });
 
   /* 테스트 helper */
@@ -104,7 +100,7 @@ describe("step2 MainController 전체 흐름 테스트", () => {
     expect(LottoMachine).toHaveBeenCalledWith(2);
     expect(mockLottoMachineGetLottoTickets).toHaveBeenCalledTimes(1);
     expect(mockViewInstance.renderLottoTickets).toHaveBeenCalledWith(mockTickets, 2);
-    expect(global.alert).not.toHaveBeenCalled();
+    expect(mockViewInstance.showError).not.toHaveBeenCalled();
   });
 
   test("구매 실패 시 alert를 띄우고 구매 입력칸으로 포커스한다.", () => {
@@ -112,7 +108,7 @@ describe("step2 MainController 전체 흐름 테스트", () => {
 
     getPurchaseHandler()("1500");
 
-    expect(global.alert).toHaveBeenCalledWith(ERROR_MESSAGE.PURCHASE.INVALID_UNIT);
+    expect(mockViewInstance.showError).toHaveBeenCalledWith(ERROR_MESSAGE.PURCHASE.INVALID_UNIT);
     expect(mockViewInstance.focusPurchaseInput).toHaveBeenCalledTimes(1);
     expect(mockViewInstance.renderLottoTickets).not.toHaveBeenCalled();
   });
@@ -126,7 +122,7 @@ describe("step2 MainController 전체 흐름 테스트", () => {
     expect(LottoResult).toHaveBeenCalledTimes(1);
     expect(mockLottoResultGetResult).toHaveBeenCalledWith(2);
     expect(mockViewInstance.renderResultModal).toHaveBeenCalledWith(mockResult.resultData, mockResult.profitRate);
-    expect(global.alert).not.toHaveBeenCalled();
+    expect(mockViewInstance.showError).not.toHaveBeenCalled();
   });
 
   test("결과 계산 실패 시 alert를 띄우고 당첨 번호 입력칸으로 포커스한다.", () => {
@@ -135,7 +131,7 @@ describe("step2 MainController 전체 흐름 테스트", () => {
 
     getResultHandler()(["1", "2", "3", "4", "5", "6"], "1");
 
-    expect(global.alert).toHaveBeenCalledWith(ERROR_MESSAGE.BONUS.DUPLICATE);
+    expect(mockViewInstance.showError).toHaveBeenCalledWith(ERROR_MESSAGE.BONUS.DUPLICATE);
     expect(mockViewInstance.focusWinningInput).toHaveBeenCalledTimes(1);
     expect(mockViewInstance.renderResultModal).not.toHaveBeenCalled();
   });
@@ -148,7 +144,7 @@ describe("step2 MainController 전체 흐름 테스트", () => {
 
     getPurchaseHandler()("2000");
 
-    global.alert.mockClear();
+    mockViewInstance.showError.mockClear();
     mockViewInstance.focusWinningInput.mockClear();
     mockViewInstance.renderResultModal.mockClear();
     LottoResult.mockClear();
@@ -157,7 +153,7 @@ describe("step2 MainController 전체 흐름 테스트", () => {
     getResultHandler()(winningNumbers, bonusNumber);
 
     expect(mockViewInstance.resetUI).toHaveBeenCalledTimes(1);
-    expect(global.alert).toHaveBeenCalledTimes(1);
+    expect(mockViewInstance.showError).toHaveBeenCalledTimes(1);
     expect(mockViewInstance.focusWinningInput).toHaveBeenCalledTimes(1);
     expect(mockViewInstance.renderResultModal).not.toHaveBeenCalled();
     expect(LottoResult).not.toHaveBeenCalled();

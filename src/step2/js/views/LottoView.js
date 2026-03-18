@@ -35,6 +35,11 @@ class LottoView {
     this.$restartBtn.addEventListener("click", () => handler());
   }
 
+  /* UI 표현 */
+  showError(message) {
+    alert(message);
+  }
+
   /* 입력 포커스와 제약 */
   focusPurchaseInput() {
     this.$purchaseInput.focus();
