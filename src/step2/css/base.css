@@ -165,7 +165,7 @@ input#purchase-amount {
     height: 36px;
 }
 
-#purchase-lotto-content {
+#purchase-lotto-list {
     height: 250px;
     overflow: scroll;
 }
