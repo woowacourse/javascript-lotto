@@ -1,16 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
 
   <body>
-    <div id="app">
+    <!-- 헤더 -->
+    <header class="header">
       <h1>🎱 행운의 로또</h1>
-    </div>
+    </header>
+
+    <!-- 게임 섹션 -->
+    <section class="main-container">
+      <div class="main-card">
+        <!-- title -->
+        <h2 class="text-title card-title">🎱 내 번호 당첨 확인 🎱</h2>
+
+        <!-- 구입 금액 입력 섹션 -->
+        <form class="money-input-section" id="purchase-form" novalidate>
+          <div class="money-input-info">
+            <label for="money" class="text-body"
+              >구입할 금액을 입력하세요</label
+            >
+            <input
+              type="number"
+              id="money"
+              placeholder="금액"
+              class="money-input text-body"
+              step="1000"
+            />
+            <p id="money-error" class="input-error hidden"></p>
+          </div>
+          <button
+            type="submit"
+            class="purchase-button base-button"
+            id="purchase"
+          >
+            <span class="text-button">구입</span>
+          </button>
+        </form>
+
+        <!-- 구입 로또 표시 섹션 -->
+        <div class="lotto-section hidden">
+          <p class="text-body" id="lotto-count"></p>
+          <ul class="lotto-list"></ul>
+        </div>
+
+        <!-- 당첨 번호, 보너스 번호 입력 세션 -->
+        <div class="winning-bonus-input-section hidden">
+          <p class="text-body">
+            지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.
+          </p>
+          <div class="number-input-section">
+            <fieldset class="winning-input-info">
+              <legend class="text-body">당첨 번호</legend>
+              <div class="winning-input-group">
+                <input type="number" class="winning-input text-body" />
+                <input type="number" class="winning-input text-body" />
+                <input type="number" class="winning-input text-body" />
+                <input type="number" class="winning-input text-body" />
+                <input type="number" class="winning-input text-body" />
+                <input type="number" class="winning-input text-body" />
+              </div>
+              <p id="winning-bonus-error" class="input-error hidden"></p>
+            </fieldset>
+            <div class="bonus-input-info">
+              <label for="bonus-number" class="text-body">보너스 번호</label>
+              <input
+                type="number"
+                id="bonus-number"
+                class="winning-input text-body"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 결과 확인 버튼 -->
+        <button
+          type="button"
+          class="submit-button base-button hidden"
+          id="submit"
+        >
+          <span class="text-button">결과 확인하기</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 통계 모달 -->
+    <section class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <button type="button" class="modal-close" id="close">X</button>
+
+          <h2 class="text-subtitle">🏆 당첨 통계 🏆</h2>
+        </div>
+
+        <!-- 통계 표 -->
+        <table class="result-table text-body">
+          <thead>
+            <tr>
+              <th scope="col" class="text-bold">일치 갯수</th>
+              <th scope="col" class="text-bold">당첨금</th>
+              <th scope="col" class="text-bold">당첨 갯수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3개</td>
+              <td>5,000</td>
+              <td id="fifth-count">n개</td>
+            </tr>
+            <tr>
+              <td>4개</td>
+              <td>50,000</td>
+              <td id="fourth-count">n개</td>
+            </tr>
+            <tr>
+              <td>5개</td>
+              <td>1,500,000</td>
+              <td id="third-count">n개</td>
+            </tr>
+            <tr>
+              <td>5개+보너스볼</td>
+              <td>30,000,000</td>
+              <td id="second-count">n개</td>
+            </tr>
+            <tr>
+              <td>6개</td>
+              <td>2,000,000,000</td>
+              <td id="first-count">n개</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 수익률 -->
+        <p class="text-body text-bold" id="profit"></p>
+
+        <!-- 재시작 버튼 -->
+        <button type="button" class="base-button submit-button" id="restart">
+          <span class="text-button">다시 시작하기</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+      <span>Copyright 2023. woowacourse</span>
+    </footer>
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

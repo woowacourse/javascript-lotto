@@ -1,0 +1,245 @@
+.base-button {
+  cursor: pointer;
+  border: none;
+  padding: 6px 8px 6px 6px;
+  background-color: var(--color-lotto-primary);
+  color: var(--color-lotto-greyscale-1) !important;
+  height: 36px;
+}
+
+.header {
+  width: 100%;
+  height: 64px;
+  background-color: var(--color-lotto-primary);
+  top: 0;
+  display: flex;
+  padding-left: 130px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-shrink: 0;
+}
+
+.header h1 {
+  font-weight: var(--text-title-weight);
+  font-size: var(--text-title-size);
+  line-height: var(--text-title-line-height);
+  letter-spacing: var(--text-title-letter-spacing);
+  color: var(--color-lotto-greyscale-1);
+}
+
+.footer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--text-caption-weight);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-line-height);
+  letter-spacing: var(--text-caption-letter-spacing);
+  color: var(--color-lotto-primary);
+  border-top: 1px solid #4e5ba633;
+  margin-top: 40px;
+  flex-shrink: 0;
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-card {
+  border: 1px solid #0000001f;
+  border-radius: 4px;
+  width: 414px;
+  height: 727px;
+  color: var(--color-lotto-greyscale-1);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 40px 16px 0 16px;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.money-input-section {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+}
+
+.money-input-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.money-input {
+  width: 310px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--color-lotto-greyscale-3);
+  padding: 8px 8px 0 8px;
+}
+
+.money-input::placeholder {
+  font-size: var(--text-placeholder-size);
+  font-weight: var(--text-placeholder-weight);
+  line-height: var(--text-placeholder-line-height);
+  letter-spacing: var(--text-placeholder-letter-spacing);
+  color: var(--text-placeholder-color);
+}
+
+.purchase-button {
+  width: 56px;
+  height: 36px;
+}
+
+.lotto-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.lotto-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow-y: auto;
+  width: 100%;
+  height: 276px;
+}
+
+.lotto-image {
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  letter-spacing: 0px;
+}
+
+.lotto-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.winning-bonus-input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.number-input-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-input-info {
+  position: relative;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.winning-input-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.winning-input {
+  width: 34px;
+  height: 36px;
+  border: 1px solid var(--color-lotto-greyscale-3);
+  text-align: center;
+}
+
+.bonus-input-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.submit-button {
+  width: 100%;
+}
+
+/* 모달 CSS */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: #00000080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-card {
+  width: 350px;
+  height: 500px;
+  background-color: var(--color-lotto-greyscale-1);
+  padding: 16px 16px 0 16px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.modal-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-close {
+  border: none;
+  background-color: transparent;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.text-bold {
+  font-weight: 700 !important;
+}
+
+.result-table {
+  width: 100%;
+  height: 247px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.result-table th,
+.result-table td {
+  border-top: 1px solid #0000001f;
+  border-bottom: 1px solid #0000001f;
+  height: 40px;
+}
+
+.input-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  color: #d92d20;
+  font-size: 12px;
+  line-height: 16px;
+}

@@ -26,6 +26,9 @@ export const Validator = {
     if (winningNumberArray.length !== 6) {
       throw new Error(ERROR_MESSAGE.WINNING_NUMBER.LENGTH);
     }
+    if (winningNumberArray.some((number) => number === "")) {
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER.LENGTH);
+    }
     if (winningNumber.includes(",,")) {
       throw new Error(ERROR_MESSAGE.WINNING_NUMBER.COMMA);
     }

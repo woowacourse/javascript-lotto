@@ -1,5 +1,4 @@
 import { LOTTO_RANGE } from "../constants/constant.js";
-import { OutputView } from "../view/output.js";
 
 class Lotto {
   #numbers;
@@ -38,8 +37,8 @@ class Lotto {
     return this.#numbers.filter((n) => winningLotto.hasNumber(n)).length;
   }
 
-  printLottos() {
-    OutputView.outputLottoNumber(this.#numbers);
+  getNumbersString() {
+    return this.#numbers.join(", ");
   }
 }
 
