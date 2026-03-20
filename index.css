@@ -199,7 +199,7 @@ dialog::backdrop {
 
 /* 금액 입력 컨테이너 스타일 */
 
-.money__container {
+.money__form {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -242,7 +242,7 @@ dialog::backdrop {
 
 /* 당첨 번호 입력 스타일 */
 
-.winning-number-and-bonus__container input {
+.winning-number-and-bonus__form input {
   text-align: center;
   width: 34px;
 }

@@ -25,159 +25,147 @@ class WebInput extends Input {
     if (!this.#elements.dialogFooter) {
       throw new Error("dialog__footer를 찾을 수 없습니다.");
     }
-    
+
     if (!this.#elements.dialog) {
       throw new Error("dialog를 찾을 수 없습니다.");
     }
   }
 
   async readMoneyAsync() {
-    this.removeElement(".money__container");
+    const moneyFormElement = this.#renderForm({
+      parentElement: this.#elements.mainContainerBody,
+      className: "money__form",
+      html: `
+        <p>구입할 금액을 입력해주세요.</p>
+        <fieldset class="money__inputs">
+          <label class="hidden">금액</label>
+          <input type="number" class="money__input" name="money" min="1000" step="1000" placeholder="금액" />
+          <button type="submit" class="money__submit">구입</button>
+        </fieldset>
+      `,
+    });
 
-    const formEl = document.createElement("form");
-    formEl.className = "money__container";
-    this.#elements.mainContainerBody.appendChild(formEl);
-
-    formEl.innerHTML = `
-      <p>구입할 금액을 입력해주세요.</p>
-      <fieldset class="money__inputs">
-        <label class="hidden">금액</label>
-        <input type="number" class="money__input" name="money" min="1000" step="1000" placeholder="금액" />
-        <button type="submit" class="money__submit">구입</button>
-      </fieldset>
-    `;
-
-    return new Promise((resolve) => {
-      formEl.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-
-        this.diasbleElement(".money__input");
-        this.diasbleElement(".money__submit");
-
-        resolve(data.money);
-      });
+    return this.#handleFormSubmitAsync({
+      formElement: moneyFormElement,
+      extractFormData: (formData) => formData.get("money"),
+      cleanupHandler: () => {
+        this.#diasbleElement(".money__input");
+        this.#diasbleElement(".money__submit");
+      },
     });
   }
 
   async readWinningNumberAndBonusAsync() {
-    this.removeElement(".winning-number-and-bonus__container");
-    this.removeElement(".show-result__button");
-
-    const formEl = document.createElement("form");
-    formEl.className = "winning-number-and-bonus__container";
-    this.#elements.mainContainerBody.appendChild(formEl);
-
     const orders = ["first", "second", "third", "fourth", "fifth", "sixth"];
 
-    const inputSelectors = [
-      ...orders.map((order) => `.winning-number__${order}__input`),
-      ".bonus-number__input",
-    ];
-
-    formEl.innerHTML = `
-      <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p
-      >
-      <div class="winning-number-and-bonus__inputs">
-        <div class="winning-number__container">
-          <p>당첨 번호</p>
-          <fieldset class="winning-number__inputs">
-          ${orders
-            .map(
-              (order, index) => `
-            <label class="hidden">
-              당첨 번호 ${index + 1}번째 자리
-            </label>
-            <input
-              type="number"
-              class="winning-number__${order}__input"
-              name="winning-number__${order}"
-              min="${LOTTO.MIN_NUMBER}"
-              max="${LOTTO.MAX_NUMBER}"
-              step="1"
-            />
-            `,
-            )
-            .join("")}
-          </fieldset>
+    const formElement = this.#renderForm({
+      parentElement: this.#elements.mainContainerBody,
+      className: "winning-number-and-bonus__form",
+      html: `
+        <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+        <div class="winning-number-and-bonus__inputs">
+          <div class="winning-number__container">
+            <p>당첨 번호</p>
+            <fieldset class="winning-number__inputs">
+            ${orders
+              .map(
+                (order, index) => `
+              <label class="hidden">
+                당첨 번호 ${index + 1}번째 자리
+              </label>
+              <input
+                type="number"
+                class="winning-number__${order}__input"
+                name="winning-number__${order}"
+                min="${LOTTO.MIN_NUMBER}"
+                max="${LOTTO.MAX_NUMBER}"
+                step="1"
+              />
+              `,
+              )
+              .join("")}
+            </fieldset>
+          </div>
+          <div class="bonus__container">
+            <p>보너스 번호</p>
+            <fieldset class="bonus__inputs">
+              <label class="hidden">보너스 번호</label>
+              <input
+                type="number"
+                class="bonus-number__input"
+                name="bonus-number"
+                min="${LOTTO.MIN_NUMBER}"
+                max="${LOTTO.MAX_NUMBER}"
+                step="1"
+              />
+            </fieldset>
+          </div>
         </div>
-        <div class="bonus__container">
-          <p>보너스 번호</p>
-          <fieldset class="bonus__inputs">
-            <label class="hidden">보너스 번호</label>
-            <input
-              type="number"
-              class="bonus-number__input"
-              name="bonus-number"
-              min="${LOTTO.MIN_NUMBER}"
-              max="${LOTTO.MAX_NUMBER}"
-              step="1"
-            />
-          </fieldset>
-        </div>
-      </div>
-    `;
-
-    const submitButtonEl = document.createElement("button");
-    submitButtonEl.type = "submit";
-    submitButtonEl.className = "winning-number-and-bonus__submit hidden";
-    submitButtonEl.textContent = "확인";
-    formEl.appendChild(submitButtonEl);
-
-    const resultButtonEl = document.createElement("button");
-    resultButtonEl.type = "button";
-    resultButtonEl.className = "show-result__button";
-    resultButtonEl.textContent = "결과 확인하기";
-    resultButtonEl.addEventListener("click", () => {
-      submitButtonEl.click();
+        <button type="submit" class="winning-number-and-bonus__submit hidden">확인</button>
+      `,
     });
-    this.#elements.mainContainerFooter.appendChild(resultButtonEl);
 
-    return new Promise((resolve) => {
-      formEl.addEventListener("submit", (e) => {
-        e.preventDefault();
+    const showResultFormElement = this.#renderForm({
+      parentElement: this.#elements.mainContainerFooter,
+      className: "show-result__form",
+      html: `
+        <button type="submit">결과 확인하기</button>
+      `,
+    });
 
-        const formData = new FormData(e.target);
+    this.#handleFormSubmitAsync({
+      formElement: showResultFormElement,
+      extractFormData: () => {},
+      cleanupHandler: () => {
+        formElement.dispatchEvent(new Event("submit"));
+      },
+    });
 
-        inputSelectors.forEach((selector) => {
-          this.diasbleElement(selector);
-        });
-
-        resolve({
+    return this.#handleFormSubmitAsync({
+      formElement,
+      extractFormData: (formData) => {
+        return {
           winningNumbersInput: orders
             .map((order) => formData.get(`winning-number__${order}`))
             .join(","),
           bonusNumberInput: formData.get("bonus-number"),
+        };
+      },
+      cleanupHandler: () => {
+        [
+          ...orders.map((order) => `.winning-number__${order}__input`),
+          ".bonus-number__input",
+        ].forEach((selector) => {
+          this.#diasbleElement(selector);
         });
-      });
+      },
     });
   }
 
   async readRetryAsync() {
-    this.#elements.dialogFooter.innerHTML = "";
+    const formElement = this.#renderForm({
+      parentElement: this.#elements.dialogFooter,
+      className: "retry-form",
+      html: `
+        <input type="hidden" name="retry" value="y" />
+        <button type="submit" class="retry__button">다시 시작</button>
+      `,
+    });
 
-    const buttonEl = document.createElement("button");
-    buttonEl.type = "button";
-    buttonEl.className = "retry__button";
-    buttonEl.textContent = "다시 시작";
-    this.#elements.dialogFooter.appendChild(buttonEl);
-
-    return new Promise((resolve) => {
-      buttonEl.addEventListener("click", (e) => {
-        e.preventDefault();
-        resolve("y");
-        this.hiddenOverlay();
-        this.removeElement(".money__container");
-        this.removeElement(".purchased-lottos__container");
-        this.removeElement(".winning-number-and-bonus__container");
-        this.removeElement(".show-result__button");
-      });
+    return this.#handleFormSubmitAsync({
+      formElement,
+      extractFormData: (formData) => formData.get("retry"),
+      cleanupHandler: () => {
+        this.#hiddenOverlay();
+        this.#removeElement(".money__form");
+        this.#removeElement(".purchased-lottos__container");
+        this.#removeElement(".winning-number-and-bonus__form");
+        this.#removeElement(".show-result__button");
+      },
     });
   }
 
-  diasbleElement(selector) {
+  #diasbleElement(selector) {
     const element = document.querySelector(selector);
 
     if (element) {
@@ -185,7 +173,7 @@ class WebInput extends Input {
     }
   }
 
-  removeElement(selector) {
+  #removeElement(selector) {
     const element = document.querySelector(selector);
 
     if (element) {
@@ -193,8 +181,31 @@ class WebInput extends Input {
     }
   }
 
-  hiddenOverlay() {
+  #hiddenOverlay() {
     this.#elements.dialog.close();
+  }
+
+  #renderForm({ parentElement, className, html }) {
+    this.#removeElement(`.${className}`);
+
+    const formEl = document.createElement("form");
+    formEl.className = className;
+    parentElement.appendChild(formEl);
+
+    formEl.insertAdjacentHTML("afterbegin", html);
+
+    return formEl;
+  }
+
+  #handleFormSubmitAsync({ formElement, extractFormData, cleanupHandler }) {
+    return new Promise((resolve) => {
+      formElement.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        cleanupHandler();
+        resolve(extractFormData(formData));
+      });
+    });
   }
 }
 
