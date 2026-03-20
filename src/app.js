@@ -32,12 +32,6 @@ class App {
     }
   }
 
-  async playLoop() {
-    do {
-      await this.playLotto();
-    } while (await this.#askRetry());
-  }
-
   async playLotto() {
     const money = await this.#askMoney();
     const lottos = this.#lottoStore.issuedLottos(money.getMoney());
