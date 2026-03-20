@@ -1,3 +1,5 @@
+import { createEl } from '../utils/dom.js';
+
 export default class WinningNumbersInputForm {
   #onSubmit;
   #elements;
@@ -34,38 +36,19 @@ export default class WinningNumbersInputForm {
   }
 
   #createNumberInputs(count) {
-    return Array.from({ length: count }, () => {
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.className = 'number-input';
-      input.maxLength = 2;
-      return input;
-    });
+    return Array.from({ length: count }, () =>
+      createEl('input', { type: 'text', className: 'number-input', maxLength: '2' }),
+    );
   }
 
   #createNumberGroup(labelText, inputs) {
-    const fieldset = document.createElement('fieldset');
-    fieldset.className = 'number-group';
-
-    const legend = document.createElement('legend');
-    legend.className = 'number-group__label';
-    legend.textContent = labelText;
-
-    const fields = document.createElement('div');
-    fields.className = 'number-group__fields';
-    fields.append(...inputs);
-
-    fieldset.append(legend, fields);
-    return fieldset;
+    return createEl('fieldset', { className: 'number-group' },
+      createEl('legend', { className: 'number-group__label' }, labelText),
+      createEl('div', { className: 'number-group__fields' }, ...inputs),
+    );
   }
 
   #createElement() {
-    const section = document.createElement('div');
-    section.className = 'winning-section';
-
-    const inputsRow = document.createElement('div');
-    inputsRow.className = 'winning-section__inputs';
-
     const winningInputs = this.#createNumberInputs(6);
     const [bonusInput] = this.#createNumberInputs(1);
 
@@ -73,23 +56,16 @@ export default class WinningNumbersInputForm {
     const bonusGroup = this.#createNumberGroup('보너스 번호', [bonusInput]);
     bonusGroup.classList.add('number-group--bonus');
 
-    const form = document.createElement('form');
-    form.className = 'winning-section__form';
-
-    const button = document.createElement('button');
-    button.type = 'submit';
-    button.className = 'result-btn caption';
-    button.textContent = '결과 확인하기';
-
-    const errorMessage = document.createElement('p');
-    errorMessage.className = 'error-message';
-
-    const description = document.createElement('p');
-    description.textContent = '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.';
-
-    inputsRow.append(winningGroup, bonusGroup);
-    form.append(inputsRow, button, errorMessage);
-    section.append(description, form);
+    const errorMessage = createEl('p', { className: 'error-message' });
+    const form = createEl('form', { className: 'winning-section__form' },
+      createEl('div', { className: 'winning-section__inputs' }, winningGroup, bonusGroup),
+      createEl('button', { type: 'submit', className: 'result-btn caption' }, '결과 확인하기'),
+      errorMessage,
+    );
+    const section = createEl('div', { className: 'winning-section' },
+      createEl('p', {}, '지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.'),
+      form,
+    );
     return { section, form, winningInputs, bonusInput, errorMessage };
   }
 }

@@ -1,3 +1,5 @@
+import { createEl } from '../utils/dom.js';
+
 export default class GameResultDialog {
   #onRestart;
   #elements;
@@ -28,70 +30,46 @@ export default class GameResultDialog {
   }
 
   #renderTable(prizeList) {
-    const { tbody } = this.#elements;
     const fragment = document.createDocumentFragment();
     prizeList.forEach(({ matchCount, hasBonus, prize, count }) => {
-      const row = document.createElement('tr');
-
-      const matchCell = document.createElement('td');
-      matchCell.textContent = hasBonus ? `${matchCount}개+보너스볼` : `${matchCount}개`;
-
-      const prizeCell = document.createElement('td');
-      prizeCell.textContent = prize.toLocaleString();
-
-      const countCell = document.createElement('td');
-      countCell.textContent = `${count}개`;
-
-      row.append(matchCell, prizeCell, countCell);
-      fragment.appendChild(row);
+      fragment.appendChild(
+        createEl('tr', {},
+          createEl('td', {}, hasBonus ? `${matchCount}개+보너스볼` : `${matchCount}개`),
+          createEl('td', {}, prize.toLocaleString()),
+          createEl('td', {}, `${count}개`),
+        ),
+      );
     });
-    tbody.replaceChildren(fragment);
+    this.#elements.tbody.replaceChildren(fragment);
   }
 
   #createTable() {
-    const table = document.createElement('table');
-    table.className = 'result-table';
-
-    const thead = document.createElement('thead');
-    const headerRow = document.createElement('tr');
-    ['일치 갯수', '당첨금', '당첨 갯수'].forEach((text) => {
-      const th = document.createElement('th');
-      th.textContent = text;
-      headerRow.appendChild(th);
-    });
-    thead.appendChild(headerRow);
-
-    const tbody = document.createElement('tbody');
-    table.append(thead, tbody);
+    const tbody = createEl('tbody');
+    const table = createEl('table', { className: 'result-table' },
+      createEl('thead', {},
+        createEl('tr', {},
+          ...['일치 갯수', '당첨금', '당첨 갯수'].map((text) => createEl('th', {}, text)),
+        ),
+      ),
+      tbody,
+    );
     return { table, tbody };
   }
 
   #createElement() {
-    const dialog = document.createElement('dialog');
-    dialog.className = 'lotto-result-dialog';
-
-    const inner = document.createElement('div');
-    inner.className = 'lotto-result-dialog__inner';
-
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'lotto-result-dialog__close';
-    closeBtn.textContent = '✕';
-
-    const title = document.createElement('h2');
-    title.className = 'lotto-result-dialog__title';
-    title.textContent = '🏆 당첨 통계 🏆';
-
     const { table, tbody } = this.#createTable();
-
-    const profitRate = document.createElement('p');
-    profitRate.className = 'lotto-result-dialog__profit-rate';
-
-    const restartBtn = document.createElement('button');
-    restartBtn.className = 'restart-btn caption';
-    restartBtn.textContent = '다시 시작하기';
-
-    inner.append(closeBtn, title, table, profitRate, restartBtn);
-    dialog.appendChild(inner);
+    const closeBtn = createEl('button', { className: 'lotto-result-dialog__close' }, '✕');
+    const profitRate = createEl('p', { className: 'lotto-result-dialog__profit-rate' });
+    const restartBtn = createEl('button', { className: 'restart-btn caption' }, '다시 시작하기');
+    const dialog = createEl('dialog', { className: 'lotto-result-dialog' },
+      createEl('div', { className: 'lotto-result-dialog__inner' },
+        closeBtn,
+        createEl('h2', { className: 'lotto-result-dialog__title' }, '🏆 당첨 통계 🏆'),
+        table,
+        profitRate,
+        restartBtn,
+      ),
+    );
     return { dialog, tbody, profitRate, closeBtn, restartBtn };
   }
 }

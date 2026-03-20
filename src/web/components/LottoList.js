@@ -1,3 +1,5 @@
+import { createEl } from '../utils/dom.js';
+
 export default class LottoList {
   #elements;
 
@@ -22,31 +24,16 @@ export default class LottoList {
   }
 
   #createLottoItem(numbers) {
-    const item = document.createElement('li');
-    item.className = 'lotto-item';
-
-    const icon = document.createElement('span');
-    icon.className = 'lotto-item__icon';
-    icon.textContent = '🎟️';
-
-    const numbersText = document.createElement('span');
-    numbersText.textContent = numbers.join(', ');
-
-    item.append(icon, numbersText);
-    return item;
+    return createEl('li', { className: 'lotto-item' },
+      createEl('span', { className: 'lotto-item__icon' }, '🎟️'),
+      createEl('span', {}, numbers.join(', ')),
+    );
   }
 
   #createElement() {
-    const section = document.createElement('div');
-    section.className = 'lotto-list';
-
-    const count = document.createElement('p');
-    count.className = 'lotto-list__count';
-
-    const items = document.createElement('ul');
-    items.className = 'lotto-list__items';
-
-    section.append(count, items);
+    const count = createEl('p', { className: 'lotto-list__count' });
+    const items = createEl('ul', { className: 'lotto-list__items' });
+    const section = createEl('div', { className: 'lotto-list' }, count, items);
     return { section, count, items };
   }
 }

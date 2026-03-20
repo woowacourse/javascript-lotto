@@ -1,3 +1,5 @@
+import { createEl } from '../utils/dom.js';
+
 export default class PriceInputForm {
   #onSubmit;
   #elements;
@@ -35,27 +37,13 @@ export default class PriceInputForm {
   }
 
   #createElement() {
-    const section = document.createElement('div');
-    section.className = 'purchase-section';
-
-    const form = document.createElement('form');
-    form.className = 'purchase-section__form';
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.className = 'purchase-section__input';
-    input.placeholder = '구입할 금액을 입력해주세요.';
-
-    const button = document.createElement('button');
-    button.type = 'submit';
-    button.className = 'purchase-section__btn caption';
-    button.textContent = '구입';
-
-    const errorMessage = document.createElement('p');
-    errorMessage.className = 'error-message';
-
-    form.append(input, button);
-    section.append(form, errorMessage);
+    const input = createEl('input', { type: 'text', className: 'purchase-section__input', placeholder: '구입할 금액을 입력해주세요.' });
+    const errorMessage = createEl('p', { className: 'error-message' });
+    const form = createEl('form', { className: 'purchase-section__form' },
+      input,
+      createEl('button', { type: 'submit', className: 'purchase-section__btn caption' }, '구입'),
+    );
+    const section = createEl('div', { className: 'purchase-section' }, form, errorMessage);
     return { section, form, input, errorMessage };
   }
 }
