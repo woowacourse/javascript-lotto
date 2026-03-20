@@ -1,0 +1,15 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  background-color: var(--color-lotto-primary);
+}
+
+.header-text-box {
+  margin: 14px;
+  margin-left: 130px;
+
+  font: var(--text-title);
+  color: var(--color-lotto-greyscale-1);
+}

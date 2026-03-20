@@ -1,0 +1,27 @@
+.lottos-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.lottos-table {
+  height: 216px;
+
+  overflow-y: auto;
+}
+
+.lotto-line {
+  display: flex;
+  gap: 8px;
+
+  align-items: center;
+
+  font: var(--text-body);
+}
+.lotto-line-icon {
+  font-size: 34px;
+  line-height: 36px;
+}

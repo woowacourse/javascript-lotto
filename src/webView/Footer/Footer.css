@@ -1,0 +1,18 @@
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  padding: 20px 0;
+
+  border-top: 1px solid var(--color-lotto-greyscale-3);
+
+  background-color: var(--color-lotto-greyscale-1);
+}
+
+.footer-text-box {
+  margin: 16px;
+
+  font: var(--text-caption);
+  color: var(--color-lotto-primary);
+}

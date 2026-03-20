@@ -1,0 +1,36 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 84px;
+  margin-top: 154px;
+
+  background-color: var(--color-lotto-greyscale-2);
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 414px;
+  padding: 40px;
+  gap: 28px;
+
+  background-color: var(--color-lotto-greyscale-1);
+  border: 1px solid var(--color-lotto-greyscale-3);
+}
+.card-header {
+  font: var(--text-title);
+}
+
+lotto-purchase {
+  display: block;
+  width: 100%;
+}
+
+.card-hidden-section {
+  width: 100%;
+}

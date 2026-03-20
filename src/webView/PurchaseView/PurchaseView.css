@@ -1,0 +1,42 @@
+.card-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 100%;
+  gap: 6px;
+
+  font: var(--text-body);
+}
+
+.input-container {
+  display: flex;
+
+  gap: 16px;
+}
+
+.input-line {
+  flex: 1;
+  padding: 8px;
+
+  border-radius: 4px;
+  border: 1px solid var(--color-lotto-greyscale-5);
+  font: var(--text-placeholder);
+}
+
+.input-button {
+  width: 56px;
+  padding: 8px;
+
+  border-radius: 4px;
+  background-color: var(--color-lotto-primary);
+  font: var(--text-caption);
+  color: var(--color-lotto-greyscale-1);
+
+  border: none;
+}
+
+.input-error {
+  font: var(--text-body);
+  color: red;
+}

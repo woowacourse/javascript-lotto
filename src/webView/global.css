@@ -1,0 +1,29 @@
+:root {
+  --color-lotto-primary: #4e5ba6;
+  --color-lotto-greyscale-1: #ffffff;
+  --color-lotto-greyscale-2: #fcfcfd;
+  --color-lotto-greyscale-3: #b4b4b4;
+  --color-lotto-greyscale-4: #8b8b8b;
+  --color-lotto-greyscale-5: #000000;
+
+  --font-family: "Roboto", "Noto Sans KR", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --text-title: 800 24px/36px var(--font-family);
+  --text-subtitle: 600 20px/28px var(--font-family);
+  --text-body: 400 15px/22px var(--font-family);
+  --text-placeholder: 400 15px/22px var(--font-family);
+  --text-caption: 700 14px/20px var(--font-family);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+
+  font-family: var(--font-family);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
