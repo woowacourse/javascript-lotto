@@ -30,12 +30,6 @@ export default class WinningNumbersInputForm {
     const { winningInputs, bonusInput } = this.#elements;
     const winningNumbers = winningInputs.map((input) => Number(input.value));
     const bonusNumber = Number(bonusInput.value);
-
-    if ([...winningNumbers, bonusNumber].some(isNaN)) {
-      this.showError('[ERROR] 숫자를 입력해주세요.');
-      return;
-    }
-
     this.#onSubmit({ winningNumbers, bonusNumber });
   }
 

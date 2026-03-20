@@ -39,12 +39,20 @@ export default class App {
 
   async #readWinningLotto() {
     const numbers = await InputView.readWinningNumbers();
+    this.#validateNumbers(numbers);
     return this.#lottoManager.createWinningLotto(numbers);
   }
 
   async #getWinningNumber(winningLotto) {
     const bonus = await InputView.readBonusNumber();
+    this.#validateNumbers([bonus]);
     return this.#lottoManager.createWinningNumber(winningLotto, bonus);
+  }
+
+  #validateNumbers(numbers) {
+    if (numbers.some((n) => !Number.isInteger(n))) {
+      throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
+    }
   }
 
   async #processResult(winningLotto) {

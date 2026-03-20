@@ -46,6 +46,7 @@ export default class WebApp {
 
   #handleWinningSubmit({ winningNumbers, bonusNumber }) {
     try {
+      this.#validateNumbers([...winningNumbers, bonusNumber]);
       const winningLotto = this.#manager.createWinningLotto(winningNumbers);
       const winningNumber = this.#manager.createWinningNumber(winningLotto, bonusNumber);
       const { prizeList, profitRate } = this.#manager.getLotteryResult(winningNumber);
@@ -53,6 +54,12 @@ export default class WebApp {
       this.#resultDialog.open(prizeList, profitRate);
     } catch (error) {
       this.#winningForm.showError(error.message);
+    }
+  }
+
+  #validateNumbers(numbers) {
+    if (numbers.some((n) => !Number.isInteger(n))) {
+      throw new Error("[ERROR] 로또 번호는 숫자여야 합니다.");
     }
   }
 
