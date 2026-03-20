@@ -4,14 +4,22 @@ export const DOMOutput = {
       `총 ${count}개를 구매하였습니다.`;
   },
 
-  lottoToHTML(lotto) {
-    return `<li><span>🎟️ </span><output>${lotto.getLottoNumber().join(", ")}</output></li>`;
-  },
-
   printLottos(lottos) {
-    document.querySelector("#lottos").innerHTML = lottos
-      .map((lotto) => this.lottoToHTML(lotto))
-      .join("");
+    const list = document.querySelector("#lottos");
+    list.replaceChildren();
+
+    lottos.forEach((lotto) => {
+      const li = document.createElement("li");
+
+      const span = document.createElement("span");
+      span.textContent = "🎟️ ";
+
+      const output = document.createElement("output");
+      output.textContent = lotto.getLottoNumber().join(", ");
+
+      li.append(span, output);
+      list.append(li);
+    });
   },
   updateMatchCounts(matchResult) {
     document.querySelectorAll(".match-count").forEach((el, index) => {
