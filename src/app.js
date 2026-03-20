@@ -13,8 +13,8 @@ class App {
   #lottoStore;
 
   constructor({ input, output, lottoStore } = {}) {
-    if (input) this.validateInput(input);
-    if (output) this.validateOutput(output);
+    if (input) this.#validateInput(input);
+    if (output) this.#validateOutput(output);
 
     this.#view = {
       input: input ?? new ConsoleInput(),
@@ -49,13 +49,13 @@ class App {
     );
   }
 
-  validateInput(InputClass) {
+  #validateInput(InputClass) {
     if (!(InputClass instanceof Input)) {
       throw new Error(ERROR_MESSAGE.INVALID_INPUT);
     }
   }
 
-  validateOutput(OutputClass) {
+  #validateOutput(OutputClass) {
     if (!(OutputClass instanceof Output)) {
       throw new Error(ERROR_MESSAGE.INVALID_OUTPUT);
     }
