@@ -1,10 +1,14 @@
+import { LOTTO_RANK } from "../../../constants/config.js";
+import { RESULT_TABLE_ROWS } from "../../constants/config.js";
 import { getLottoViewElements } from "./LottoViewElements.js";
-import { createTicketsHTML, findRankCount, getWinningFocusTarget, getWinningFormValues, normalizeWinningInputValue } from "./LottoViewUtils.js";
+import { createResultTableRowsHTML, createTicketsHTML, findRankCount, getWinningFocusTarget, getWinningFormValues, normalizeWinningInputValue } from "./LottoViewUtils.js";
 
 class LottoView {
   constructor() {
     // 뷰가 반복해서 쓰는 DOM 참조를 먼저 수집합니다.
     this.#cacheElements();
+    this.#renderResultTableRows();
+    this.#cacheMatchCountElements();
     // 모달 닫기처럼 뷰 내부에서 끝나는 이벤트는 뷰가 직접 바인딩합니다.
     this.bindModalClose();
     // 당첨 번호 입력값은 뷰 레벨에서 즉시 정제합니다.
@@ -110,6 +114,18 @@ class LottoView {
 
   #renderPurchaseCount(count) {
     this.$resultText.textContent = `총 ${count}개를 구매하였습니다.`;
+  }
+
+  #renderResultTableRows() {
+    this.$resultTableBody.innerHTML = createResultTableRowsHTML(RESULT_TABLE_ROWS);
+  }
+
+  #cacheMatchCountElements() {
+    this.$matchCountElements = RESULT_TABLE_ROWS.map(({ rankKey }) => ({
+      element: this.$resultTableBody.querySelector(`[data-rank-key="${rankKey}"] [data-role="match-count"]`),
+      matchCount: LOTTO_RANK[rankKey].matchCount,
+      requireBonus: LOTTO_RANK[rankKey].requireBonus,
+    }));
   }
 
   #renderTicketList(tickets) {

@@ -55,14 +55,24 @@
             <button id="modal-close">x</button>
             <h2 id="modal-title">🏆 당첨 통계 🏆</h2>
             <div id="result-text-container">
-              <div id="result-table">
-                <div class="grid table-title"><span>일치 갯수</span><span>당첨금</span><span>당첨 갯수</span></div>
-                <div class="grid"><span>3개</span><span>5,000</span><span id="match-3-count"></span></div>
-                <div class="grid"><span>4개</span><span>50,000</span><span id="match-4-count"></span></div>
-                <div class="grid"><span>5개</span><span>1,500,000</span><span id="match-5-count"></span></div>
-                <div class="grid"><span>5개+보너스볼</span><span>30,000,000</span><span id="match-5-bonus-count"></span></div>
-                <div class="grid"><span>6개</span><span>2,000,000,000</span><span id="match-6-count"></span></div>
-              </div>
+              <table id="result-table">
+                <caption class="visually-hidden">
+                  로또 당첨 통계
+                </caption>
+                <colgroup>
+                  <col style="width: 34%" />
+                  <col style="width: 38%" />
+                  <col style="width: 28%" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">일치 갯수</th>
+                    <th scope="col">당첨금</th>
+                    <th scope="col">당첨 갯수</th>
+                  </tr>
+                </thead>
+                <tbody id="result-table-body"></tbody>
+              </table>
               <span id="result-profit-rate"></span>
             </div>
             <button id="restart">다시 시작하기</button>

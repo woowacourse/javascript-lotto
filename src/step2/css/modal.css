@@ -76,30 +76,30 @@
 }
 
 #result-table {
+  width: 100%;
+  table-layout: fixed;
+
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-#result-table .grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1.3fr 1fr;
-
-  min-height: 46px;
-
-  align-items: center;
-
+#result-table th,
+#result-table td {
+  padding: 14px 6px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-#result-table .grid span {
   text-align: center;
+  vertical-align: middle;
 
   font: var(--font-body);
   color: var(--color-greyscale-5);
 }
 
-#result-table .table-title span {
+#result-table thead th {
   font: var(--font-body);
   font-weight: 700;
+}
+
+#result-table tbody th {
+  font-weight: 400;
 }
 
 #result-profit-rate {

@@ -1,4 +1,4 @@
-import { createTicketsHTML, findRankCount, getWinningFocusTarget, getWinningFormValues, normalizeWinningInputValue } from "../../src/step2/js/views/LottoViewUtils.js";
+import { createResultTableRowsHTML, createTicketsHTML, findRankCount, getWinningFocusTarget, getWinningFormValues, normalizeWinningInputValue } from "../../src/step2/js/views/LottoViewUtils.js";
 
 describe("LottoViewUtils", () => {
   test.each([
@@ -55,5 +55,17 @@ describe("LottoViewUtils", () => {
     expect(html).toContain("1, 2, 3, 4, 5, 6");
     expect(html).toContain("7, 8, 9, 10, 11, 12");
     expect(html.match(/lotto-result-line/g)).toHaveLength(2);
+  });
+
+  test("결과 표 행 HTML을 설정값으로 만든다.", () => {
+    const html = createResultTableRowsHTML([
+      { rankKey: "5th", label: "3개" },
+      { rankKey: "2nd", label: "5개+보너스볼" },
+    ]);
+
+    expect(html).toContain('data-rank-key="5th"');
+    expect(html).toContain("<th scope=\"row\">3개</th>");
+    expect(html).toContain("<td>5,000</td>");
+    expect(html).toContain("<td>30,000,000</td>");
   });
 });

@@ -1,9 +1,9 @@
-const MATCH_ROW_CONFIGS = [
-  { rankKey: "5th", selector: "#match-3-count" },
-  { rankKey: "4th", selector: "#match-4-count" },
-  { rankKey: "3rd", selector: "#match-5-count" },
-  { rankKey: "2nd", selector: "#match-5-bonus-count" },
-  { rankKey: "1st", selector: "#match-6-count" },
+export const RESULT_TABLE_ROWS = [
+  { rankKey: "5th", label: "3개" },
+  { rankKey: "4th", label: "4개" },
+  { rankKey: "3rd", label: "5개" },
+  { rankKey: "2nd", label: "5개+보너스볼" },
+  { rankKey: "1st", label: "6개" },
 ];
 
 export const SELECTORS = {
@@ -27,7 +27,7 @@ export const SELECTORS = {
     CONTAINER: "#result-modal-container",
     CLOSE_BUTTON: "#modal-close",
     RESTART_BUTTON: "#restart",
+    TABLE_BODY: "#result-table-body",
     PROFIT_RATE: "#result-profit-rate",
-    MATCH_ROWS: MATCH_ROW_CONFIGS,
   },
 };

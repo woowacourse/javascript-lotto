@@ -1,4 +1,5 @@
-import { LOTTO_MAX_NUMBER } from "../../../constants/config.js";
+import { LOTTO_MAX_NUMBER, LOTTO_RANK } from "../../../constants/config.js";
+import { formatNumber } from "../../../utils/FormatNumber.js";
 
 export function createTicketsHTML(tickets) {
   return tickets
@@ -10,6 +11,22 @@ export function createTicketsHTML(tickets) {
       </div>
     `,
     )
+    .join("");
+}
+
+export function createResultTableRowsHTML(rows) {
+  return rows
+    .map(({ rankKey, label }) => {
+      const { money } = LOTTO_RANK[rankKey];
+
+      return `
+        <tr data-rank-key="${rankKey}">
+          <th scope="row">${label}</th>
+          <td>${formatNumber(money)}</td>
+          <td data-role="match-count"></td>
+        </tr>
+      `;
+    })
     .join("");
 }
 
