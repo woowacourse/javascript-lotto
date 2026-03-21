@@ -1,3 +1,5 @@
+import { LOTTO_MAX_NUMBER } from "../../../constants/config.js";
+
 export function createTicketsHTML(tickets) {
   return tickets
     .map(
@@ -23,10 +25,9 @@ export function getWinningFocusTarget(winningInputs) {
   return firstEmptyInput ?? inputs[inputs.length - 1] ?? inputs[0];
 }
 
-export function getWinningFormValues(winningInputs) {
-  const numbers = Array.from(winningInputs, (input) => input.value);
-  const winningNumbers = numbers.slice(0, numbers.length - 1);
-  const bonusNumber = numbers[numbers.length - 1];
+export function getWinningFormValues(winningNumberInputs, bonusInput) {
+  const winningNumbers = Array.from(winningNumberInputs, (input) => input.value);
+  const bonusNumber = bonusInput.value;
 
   return { winningNumbers, bonusNumber };
 }
@@ -45,5 +46,5 @@ export function normalizeWinningInputValue(value) {
     return "";
   }
 
-  return parsedValue > 45 ? "45" : String(parsedValue);
+  return parsedValue > LOTTO_MAX_NUMBER ? String(LOTTO_MAX_NUMBER) : String(parsedValue);
 }

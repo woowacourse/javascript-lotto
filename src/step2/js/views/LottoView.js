@@ -93,7 +93,7 @@ class LottoView {
   }
 
   #getWinningFormValues() {
-    return getWinningFormValues(this.$winningInputs);
+    return getWinningFormValues(this.$winningNumberInputs, this.$bonusInput);
   }
 
   #renderPurchaseCount(count) {

@@ -19,6 +19,8 @@ export const SELECTORS = {
   WINNING: {
     SECTION: "#winning-section",
     FORM: "#winning-form",
+    NUMBER_INPUTS: "#winning-number-inputs .winning-number-input",
+    BONUS_INPUT: "#bonus-number-input",
     INPUTS: ".winning-number-input",
   },
   MODAL: {

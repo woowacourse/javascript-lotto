@@ -14,9 +14,10 @@ describe("LottoViewUtils", () => {
   });
 
   test("당첨 번호 입력값에서 마지막 번호를 보너스 번호로 분리한다.", () => {
-    const winningInputs = [{ value: "1" }, { value: "2" }, { value: "3" }, { value: "4" }, { value: "5" }, { value: "6" }, { value: "7" }];
+    const winningNumberInputs = [{ value: "1" }, { value: "2" }, { value: "3" }, { value: "4" }, { value: "5" }, { value: "6" }];
+    const bonusInput = { value: "7" };
 
-    expect(getWinningFormValues(winningInputs)).toEqual({
+    expect(getWinningFormValues(winningNumberInputs, bonusInput)).toEqual({
       winningNumbers: ["1", "2", "3", "4", "5", "6"],
       bonusNumber: "7",
     });

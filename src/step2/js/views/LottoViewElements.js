@@ -4,6 +4,9 @@ import { SELECTORS } from "../../constants/config.js";
 import { $, $All } from "../utils/utils";
 
 export function getLottoViewElements() {
+  const winningNumberInputs = Array.from($All(SELECTORS.WINNING.NUMBER_INPUTS));
+  const bonusInput = $(SELECTORS.WINNING.BONUS_INPUT);
+
   return {
     $purchaseForm: $(SELECTORS.PURCHASE.FORM),
     $purchaseInput: $(SELECTORS.PURCHASE.INPUT),
@@ -12,7 +15,9 @@ export function getLottoViewElements() {
     $resultContainer: $(SELECTORS.RESULT.CONTAINER),
     $winningSection: $(SELECTORS.WINNING.SECTION),
     $winningForm: $(SELECTORS.WINNING.FORM),
-    $winningInputs: $All(SELECTORS.WINNING.INPUTS),
+    $winningNumberInputs: winningNumberInputs,
+    $bonusInput: bonusInput,
+    $winningInputs: [...winningNumberInputs, bonusInput],
     $modalContainer: $(SELECTORS.MODAL.CONTAINER),
     $modalCloseBtn: $(SELECTORS.MODAL.CLOSE_BUTTON),
     $restartBtn: $(SELECTORS.MODAL.RESTART_BUTTON),

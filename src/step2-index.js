@@ -5,6 +5,6 @@ import "./step2/css/interaction.css";
 import "./step2/css/lotto.css";
 import "./step2/css/modal.css";
 
-import App from "./step2/step2-App.js";
+import MainController from "./step2/js/controllers/MainController.js";
 
-App();
+new MainController();
