@@ -114,7 +114,7 @@ class WebOutput extends Output {
       parentElement: this.#elements.dialogBody,
       tagName: "p",
       className: "return-on-investment",
-      html: `당신의 총 수익률은 ${returnOnInvestment.toFixed(1)}%입니다.`,
+      textContent: `당신의 총 수익률은 ${returnOnInvestment.toFixed(1)}%입니다.`,
     });
 
     this.#openDialog();
@@ -146,7 +146,7 @@ class WebOutput extends Output {
       parentElement: containerEl,
       tagName: "p",
       className: "purchased-lottos-count",
-      html: `총 ${lottos.length}개를 구매하였습니다.`,
+      textContent: `총 ${lottos.length}개를 구매하였습니다.`,
     });
 
     this.#webUtil.renderElement({
