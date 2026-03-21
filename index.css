@@ -129,9 +129,16 @@ body, #app {
   flex-direction: column;
   gap: 25px;
   margin: 84px auto;
+  max-width: 414px;
   min-height: 727px;
   padding: 20px 15px;
-  width: 414px;
+  width: 100%;
+}
+
+@media (width <= 640px) {
+  .main__container {
+    margin: 10px auto;
+  }
 }
 
 .main__container__header {
