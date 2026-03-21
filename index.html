@@ -13,20 +13,23 @@
       </header>
       <main id="contents-container">
         <h1 id="contents-title">🎱 내 번호 당첨 확인 🎱</h1>
-        <section>
+        <section aria-labelledby="purchase-section-title">
+          <h2 id="purchase-section-title" class="visually-hidden">로또 구매</h2>
           <form id="purchase-money-form" novalidate>
             <label for="purchase-money-input">구입할 금액을 입력해주세요.</label>
             <div id="input-section">
-              <input id="purchase-money-input" type="number" placeholder="금액" autofocus="true" required />
+              <input id="purchase-money-input" type="number" placeholder="금액" autofocus required />
               <button id="purchase-money-button" type="submit">구입</button>
             </div>
           </form>
         </section>
-        <section id="result-section" hidden>
+        <section id="result-section" hidden aria-labelledby="result-section-title">
+          <h2 id="result-section-title" class="visually-hidden">구매 결과</h2>
           <p id="result-text"></p>
           <div id="result-container"></div>
         </section>
-        <section id="winning-section" hidden>
+        <section id="winning-section" hidden aria-labelledby="winning-section-title">
+          <h2 id="winning-section-title" class="visually-hidden">당첨 번호 입력</h2>
           <form id="winning-form" novalidate>
             <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
             <div id="winning-text-container">
@@ -47,7 +50,7 @@
             <button id="show-result-button" type="submit">결과 확인하기</button>
           </form>
         </section>
-        <div id="result-modal-container" hidden>
+        <dialog id="result-modal-container" aria-labelledby="modal-title">
           <section id="result-modal-section">
             <button id="modal-close">x</button>
             <h2 id="modal-title">🏆 당첨 통계 🏆</h2>
@@ -64,7 +67,7 @@
             </div>
             <button id="restart">다시 시작하기</button>
           </section>
-        </div>
+        </dialog>
       </main>
       <footer>
         <p>Copyright 2023. woowacourse</p>

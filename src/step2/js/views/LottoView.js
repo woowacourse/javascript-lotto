@@ -29,6 +29,11 @@ class LottoView {
 
   bindModalClose() {
     this.$modalCloseBtn.addEventListener("click", () => this.closeModal());
+    this.$modalContainer.addEventListener("click", ({ target }) => {
+      if (target === this.$modalContainer) {
+        this.closeModal();
+      }
+    });
   }
 
   bindRestart(handler) {
@@ -67,11 +72,18 @@ class LottoView {
   renderResultModal(resultData, profitRate) {
     this.#renderMatchCounts(resultData);
     this.$resultProfitRate.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
-    this.$modalContainer.hidden = false;
+    this.#openModal();
   }
 
   closeModal() {
-    this.$modalContainer.hidden = true;
+    if (typeof this.$modalContainer.close === "function") {
+      if (this.$modalContainer.open) {
+        this.$modalContainer.close();
+      }
+      return;
+    }
+
+    this.$modalContainer.open = false;
   }
 
   /* 화면 초기화 */
@@ -118,6 +130,17 @@ class LottoView {
     this.$matchCountElements.forEach(({ element, matchCount, requireBonus }) => {
       element.textContent = `${findRankCount(resultData, matchCount, requireBonus)}개`;
     });
+  }
+
+  #openModal() {
+    if (typeof this.$modalContainer.showModal === "function") {
+      if (!this.$modalContainer.open) {
+        this.$modalContainer.showModal();
+      }
+      return;
+    }
+
+    this.$modalContainer.open = true;
   }
 
   #resetPurchaseInput() {

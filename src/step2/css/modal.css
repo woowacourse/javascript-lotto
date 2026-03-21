@@ -1,25 +1,24 @@
 /* result modal */
 #result-modal-container {
-  display: flex;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-
-  align-items: center;
-  justify-content: center;
-
-  background-color: rgba(0, 0, 0, 0.7);
+  width: min(350px, calc(100% - 32px));
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
-#result-modal-container:not([hidden]) {
+#result-modal-container[open] {
   animation: fade-in 0.18s ease-out;
+}
+
+#result-modal-container::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 #result-modal-section {
   display: flex;
   flex-direction: column;
 
-  width: min(350px, 100%);
+  width: 100%;
   min-height: 480px;
 
   padding: 16px;
@@ -31,7 +30,7 @@
   background-color: var(--color-greyscale-1);
 }
 
-#result-modal-container:not([hidden]) #result-modal-section {
+#result-modal-container[open] #result-modal-section {
   animation: fade-slide-up 0.22s ease-out;
 }
 
