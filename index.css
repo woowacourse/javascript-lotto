@@ -188,6 +188,10 @@ dialog {
   width: 350px;
 }
 
+dialog:not([open]) {
+  display: none;
+}
+
 dialog::backdrop {
   background-color: rgba(var(--grayscale-5), 0.5);
 }
