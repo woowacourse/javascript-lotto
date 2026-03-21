@@ -1,12 +1,15 @@
 import Input from "./Input.js";
 import { LOTTO } from "../constant/index.js";
+import WebUtil from "../util/WebUtil.js";
 
 class WebInput extends Input {
+  #webUtil;
   #elements;
 
   constructor() {
     super();
 
+    this.#webUtil = new WebUtil();
     this.#elements = {
       mainContainerBody: document.querySelector(".main__container__body"),
       mainContainerFooter: document.querySelector(".main__container__footer"),
@@ -32,8 +35,9 @@ class WebInput extends Input {
   }
 
   async readMoneyAsync() {
-    const moneyFormElement = this.#renderForm({
+    const moneyFormElement = this.#webUtil.renderElement({
       parentElement: this.#elements.mainContainerBody,
+      tagName: "form",
       className: "money__form",
       html: `
         <p>구입할 금액을 입력해주세요.</p>
@@ -45,12 +49,17 @@ class WebInput extends Input {
       `,
     });
 
-    return this.#handleFormSubmitAsync({
-      formElement: moneyFormElement,
-      extractFormData: (formData) => formData.get("money"),
+    return this.#webUtil.handleEventAsync({
+      element: moneyFormElement,
+      eventName: "submit",
+      eventHandler: (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        return formData.get("money");
+      },
       cleanupHandler: () => {
-        this.#diasbleElement(".money__input");
-        this.#diasbleElement(".money__submit");
+        this.#disableElement(".money__input");
+        this.#disableElement(".money__submit");
       },
     });
   }
@@ -58,8 +67,9 @@ class WebInput extends Input {
   async readWinningNumberAndBonusAsync() {
     const orders = ["first", "second", "third", "fourth", "fifth", "sixth"];
 
-    const formElement = this.#renderForm({
+    const formElement = this.#webUtil.renderElement({
       parentElement: this.#elements.mainContainerBody,
+      tagName: "form",
       className: "winning-number-and-bonus__form",
       html: `
         <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
@@ -105,25 +115,30 @@ class WebInput extends Input {
       `,
     });
 
-    const showResultFormElement = this.#renderForm({
+    const showResultFormElement = this.#webUtil.renderElement({
       parentElement: this.#elements.mainContainerFooter,
+      tagName: "form",
       className: "show-result__form",
       html: `
         <button type="submit">결과 확인하기</button>
       `,
     });
 
-    this.#handleFormSubmitAsync({
-      formElement: showResultFormElement,
-      extractFormData: () => {},
-      cleanupHandler: () => {
+    this.#webUtil.handleEventAsync({
+      element: showResultFormElement,
+      eventName: "submit",
+      eventHandler: (e) => {
+        e.preventDefault();
         formElement.dispatchEvent(new Event("submit"));
       },
     });
 
-    return this.#handleFormSubmitAsync({
-      formElement,
-      extractFormData: (formData) => {
+    return this.#webUtil.handleEventAsync({
+      element: formElement,
+      eventName: "submit",
+      eventHandler: (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
         return {
           winningNumbersInput: orders
             .map((order) => formData.get(`winning-number__${order}`))
@@ -136,15 +151,16 @@ class WebInput extends Input {
           ...orders.map((order) => `.winning-number__${order}__input`),
           ".bonus-number__input",
         ].forEach((selector) => {
-          this.#diasbleElement(selector);
+          this.#disableElement(selector);
         });
       },
     });
   }
 
   async readRetryAsync() {
-    const formElement = this.#renderForm({
+    const formElement = this.#webUtil.renderElement({
       parentElement: this.#elements.dialogFooter,
+      tagName: "form",
       className: "retry-form",
       html: `
         <input type="hidden" name="retry" value="y" />
@@ -152,20 +168,26 @@ class WebInput extends Input {
       `,
     });
 
-    return this.#handleFormSubmitAsync({
-      formElement,
-      extractFormData: (formData) => formData.get("retry"),
+    return this.#webUtil.handleEventAsync({
+      element: formElement,
+      eventName: "submit",
+      eventHandler: (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        return formData.get("retry");
+      },
       cleanupHandler: () => {
-        this.#hiddenOverlay();
+        this.#closeDialog();
         this.#removeElement(".money__form");
         this.#removeElement(".purchased-lottos__container");
         this.#removeElement(".winning-number-and-bonus__form");
-        this.#removeElement(".show-result__button");
+        this.#removeElement(".show-result__form");
+        this.#removeElement(".retry-form");
       },
     });
   }
 
-  #diasbleElement(selector) {
+  #disableElement(selector) {
     const element = document.querySelector(selector);
 
     if (element) {
@@ -181,31 +203,8 @@ class WebInput extends Input {
     }
   }
 
-  #hiddenOverlay() {
+  #closeDialog() {
     this.#elements.dialog.close();
-  }
-
-  #renderForm({ parentElement, className, html }) {
-    this.#removeElement(`.${className}`);
-
-    const formEl = document.createElement("form");
-    formEl.className = className;
-    parentElement.appendChild(formEl);
-
-    formEl.insertAdjacentHTML("afterbegin", html);
-
-    return formEl;
-  }
-
-  #handleFormSubmitAsync({ formElement, extractFormData, cleanupHandler }) {
-    return new Promise((resolve) => {
-      formElement.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        cleanupHandler();
-        resolve(extractFormData(formData));
-      });
-    });
   }
 }
 
