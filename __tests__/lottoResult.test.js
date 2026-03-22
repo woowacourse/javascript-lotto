@@ -1,5 +1,5 @@
-import LottoResult from "../src/step1/model/LottoResult.js";
-import { RANK } from "../src/step1/constant/index.js";
+import LottoResult from "../src/model/LottoResult.js";
+import { RANK } from "../src/constant/index.js";
 
 describe("수익률 계산 테스트", () => {
   test("1등이 2개, 2등이 1개, 3등이 1개, 4등이 0개, 5등이 1개 인 경우 80630100를 반환한다.", () => {

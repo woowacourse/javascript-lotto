@@ -1,7 +1,7 @@
-import Lotto from "../src/step1/model/Lotto.js";
-import WinningLotto from "../src/step1/model/WinningLotto.js";
-import { RANK } from "../src/step1/constant/index.js";
-import { LOTTO_ERROR_MESSAGE } from "../src/step1/constant/message.js";
+import Lotto from "../src/model/Lotto.js";
+import WinningLotto from "../src/model/WinningLotto.js";
+import { RANK } from "../src/constant/index.js";
+import { LOTTO_ERROR_MESSAGE } from "../src/constant/message.js";
 
 describe("보너스 번호 테스트", () => {
   test("보너스 번호가 NaN인 경우 예외가 발생한다.", () => {

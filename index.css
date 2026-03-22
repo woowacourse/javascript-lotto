@@ -1,0 +1,320 @@
+/* 전역 색상 변수 */
+
+:root {
+  --primary: 78, 91, 166;
+  --grayscale-1: 255, 255, 255;
+  --grayscale-2: 252, 252, 253;
+  --grayscale-3: 180, 180, 180;
+  --grayscale-4: 139, 139, 139;
+  --grayscale-5: 0, 0, 0;
+}
+
+/* 초기화 */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 공통 스타일 */
+
+input {
+  border: 1px solid rgb(var(--grayscale-3));
+  border-radius: 4px;
+  font-size: 15px;
+  height: 36px;
+  letter-spacing: 0.5px;
+  padding: 8px;
+}
+
+input:disabled {
+  cursor: not-allowed;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+button {
+  align-items: center;
+  background-color: rgb(var(--primary));
+  border: 0;
+  border-radius: 4px;
+  color: rgb(var(--grayscale-1));
+  cursor: pointer;
+  display: flex;
+  font-size: 15px;
+  font-weight: 700;
+  height: 36px;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  padding: 0 15px;
+}
+
+button:disabled {
+  background-color: rgba(var(--primary), 0.8);
+  cursor: not-allowed;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+fieldset {
+  border: 0;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 바디 스타일 */
+
+body {
+  background-color: rgb(var(--grayscale-2));
+  color: rgb(var(--grayscale-5));
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+}
+
+body, #app {
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 헤더 스타일 */
+
+.header {
+  align-items: center;
+  background-color: rgb(var(--primary));
+  color: rgb(var(--grayscale-1));
+  display: flex;
+  height: 64px;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.header__wrap {
+  max-width: 1160px;
+  width: 100%;
+}
+
+/* 메인 컨텐츠 스타일 */
+
+.main {
+  flex-grow: 1;
+}
+
+.main__container {
+  background-color: rgb(var(--grayscale-1));
+  border: 1px solid rgba(var(--grayscale-5), 0.12);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 84px auto;
+  max-width: 414px;
+  min-height: 727px;
+  padding: 20px 15px;
+  width: 100%;
+}
+
+@media (width <= 640px) {
+  .main__container {
+    margin: 10px auto;
+  }
+}
+
+.main__container__header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.main__container__header h2 {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.main__container__body {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.footer {
+  align-items: center;
+  border-top: 1px solid rgba(var(--primary), 0.2);
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  width: 100%;
+}
+
+.footer__text {
+  color: rgb(var(--primary));
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* 오버레이, 모달 스타일 */
+dialog {
+  background-color: rgb(var(--grayscale-1));
+  border: 0;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: auto;
+  padding: 32px 15px;
+  position: relative;
+  width: 350px;
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+dialog::backdrop {
+  background-color: rgba(var(--grayscale-5), 0.5);
+}
+
+.dialog__header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog__body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* 금액 입력 컨테이너 스타일 */
+
+.money__form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.money__inputs {
+  display: flex;
+  gap: 16px;
+}
+
+.money__input {
+  flex: 1;
+}
+
+/* 구매한 로또 목록 스타일 */
+
+.purchased-lottos__container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.purchased-lottos__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.purchased-lotto {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.purchased-lotto img {
+  width: 34px;
+}
+
+/* 당첨 번호 입력 스타일 */
+
+.winning-number-and-bonus__form input {
+  text-align: center;
+  width: 34px;
+}
+
+.winning-number-and-bonus__inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-number__container,
+.bonus__container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.winning-number__inputs {
+  display: flex;
+  gap: 8px;
+}
+
+.bonus__inputs {
+  text-align: right;
+}
+
+/* 결과창 스타일 */
+
+.show-result__button,
+.retry__button {
+  width: 100%;
+}
+
+.close__button {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  height: 14px;
+  padding: 0;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 14px;
+}
+
+.result__table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.result__table th {
+  border-top: 1px solid rgba(var(--grayscale-5), 0.12);
+}
+
+.result__table td,
+.result__table th {
+  border-bottom: 1px solid rgba(var(--grayscale-5), 0.12);
+  padding: 8px;
+  text-align: center;
+}
+
+.return-on-investment {
+  font-weight: 700;
+  text-align: center;
+}
