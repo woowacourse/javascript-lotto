@@ -176,6 +176,10 @@ input#purchase-amount {
     overflow: scroll;
 }
 
+#purchase-lotto-content.hidden {
+    height: 250px;
+}
+
 #purchase-lotto-content p {
     margin: 24px 0 6px 0;
 }
