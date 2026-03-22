@@ -1,0 +1,107 @@
+.lotto-card {
+  width: 414px;
+  min-height: 727px;
+  margin: 84px auto 69px;
+  padding: 40px 16px 32px;
+  border: 1px solid var(--black-12);
+  border-radius: 4px;
+  background-color: var(--white);
+}
+
+.lotto-card__title {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+/* 구매 폼 */
+.purchase-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.purchase-section__form {
+  display: flex;
+  gap: 16px;
+  height: 36px;
+}
+
+.purchase-section__input {
+  flex: 1;
+  height: 36px;
+  padding: 8px;
+}
+
+.purchase-section__btn {
+  width: 56px;
+  height: 36px;
+  padding: 6px 6px 6px 8px;
+}
+
+/* 로또 목록 */
+.lotto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.lotto-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 276px;
+  overflow-y: scroll;
+}
+
+.lotto-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+}
+
+.lotto-item__icon {
+  font-size: 20px;
+}
+
+/* 당첨번호 입력 */
+.winning-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.winning-section__inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.number-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.number-group__fields {
+  display: flex;
+  gap: 4px;
+}
+
+.number-group--bonus .number-group__fields {
+  justify-content: flex-end;
+}
+
+.number-input {
+  width: 34px;
+  height: 36px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.result-btn {
+  width: 100%;
+  margin-top: 27px;
+  padding: 10px 0;
+}
