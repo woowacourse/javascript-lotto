@@ -56,7 +56,6 @@ const View = {
 
   renderPurchaseLotto(lottos) {
     this.clearErrorMessage(this.purchaseAmountErrorMessageContainer);
-    this.purchaseAmountErrorMessageContainer= '';
     const purchaseCountComponent = Component.purchaseLottoCount(lottos.length);
     const purchaseLottoListComponent = Component.lottoList(lottos.map((lotto) => lotto.getLottoNumber()));
     this.purchaseLottoContent.innerHTML = purchaseCountComponent + purchaseLottoListComponent;
