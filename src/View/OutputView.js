@@ -3,22 +3,31 @@ import { PRIZE, RANK_MAP } from "../Utils/Constants.js";
 const OutputView = {
   printLottoList(lottos) {
     const lottoCount = document.querySelector("#lotto-count");
+    const lottoList = document.getElementById("lotto-list");
 
     lottoCount.textContent = `총 ${lottos.length}개를 구매하였습니다.`;
 
-    let lottosHtml = "";
+    lottoList.replaceChildren();
 
-    const lottoList = document.getElementById("lotto-list");
+    const fragment = document.createDocumentFragment();
 
     lottos.forEach((lotto) => {
-      lottosHtml += `
-      <li class="lotto-item">
-          <span class="emoji">🎟️</span>
-          <span class = "lotto">${lotto.toString().replace(/^\[|\]$/g, "")}</span>
-        </li>`;
+      const li = document.createElement("li");
+      li.className = "lotto-item";
+
+      const emojiSpan = document.createElement("span");
+      emojiSpan.className = "emoji";
+      emojiSpan.textContent = "🎟️";
+
+      const lottoSpan = document.createElement("span");
+      lottoSpan.className = "lotto";
+      lottoSpan.textContent = lotto.toString().replace(/^\[|\]$/g, "");
+
+      li.append(emojiSpan, lottoSpan);
+      fragment.appendChild(li);
     });
 
-    lottoList.innerHTML = lottosHtml;
+    lottoList.appendChild(fragment);
   },
 
   printMatchResult(result) {
