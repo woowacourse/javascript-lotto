@@ -14,7 +14,7 @@ const OutputView = {
       lottosHtml += `
       <li class="lotto-item">
           <span class="emoji">🎟️</span>
-          <span id = "lotto">${lotto.toString().replace(/^\[|\]$/g, "")}</span>
+          <span class = "lotto">${lotto.toString().replace(/^\[|\]$/g, "")}</span>
         </li>`;
     });
 
@@ -36,9 +36,7 @@ const OutputView = {
         <td>${RANK_MAP[key]}</td>
         <td>${prize}</td>
         <td>${count}개</td>
-      </tr>
-
-      `;
+      </tr>`;
     }
 
     winningRowResult.innerHTML = winnigResultHtml;
