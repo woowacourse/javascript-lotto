@@ -20,6 +20,7 @@ const Controller = {
         this.lottoMachine = new LottoMachine(amount);
         View.renderPurchaseLotto(this.lottoMachine.getLottos());
         View.show(HIDE_CONTENT_SELECTORS);
+        View.disabled([View.purchaseAmountInput, View.purchaseAmountSubmitButton]);
       } catch (err) {
         View.renderPurchaseAmountErrorMessage(err.message);
       }
@@ -37,6 +38,7 @@ const Controller = {
       this.lottoMachine.calculateMatchResult(
         winningLotto.getWinningNumber(), winningLotto.getBonusNumber()
       );
+      View.disabled([...View.winningLottoForm.querySelectorAll('input')]);
       View.openModal();
       View.renderMatchResultModal(
         Converter.matchResultSummary(this.lottoMachine.getMatchResultSummary()),
@@ -50,6 +52,11 @@ const Controller = {
   restart() {
     View.closeModal();
     this.lottoMachine = null;
+    View.enabled([
+      View.purchaseAmountInput,
+      View.purchaseAmountSubmitButton,
+      ...View.winningLottoForm.querySelectorAll('input')
+    ]);
     View.clearAllInput();
     View.hide(HIDE_CONTENT_SELECTORS);
   }

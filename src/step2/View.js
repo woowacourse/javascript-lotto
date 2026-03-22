@@ -3,6 +3,7 @@ import Component from './Component.js';
 const View = {
   init() {
   this.purchaseAmountInput = document.getElementById('purchase-amount');
+  this.purchaseAmountSubmitButton = document.querySelector('#purchase-amount-form button');
   this.purchaseLottoContent = document.getElementById('purchase-lotto-content');
   this.purchaseAmountErrorMessageContainer = document.getElementById(
     'purchase-amount-error-message-container'
@@ -29,6 +30,14 @@ const View = {
 
   hide(targets) {
     targets.forEach((target) => target.classList.add('hidden'));
+  },
+
+  disabled(targets) {
+    targets.forEach((target) => (target.disabled = true));
+  },
+
+  enabled(targets) {
+    targets.forEach((target) => (target.disabled = false));
   },
 
   clearErrorMessage(target) {

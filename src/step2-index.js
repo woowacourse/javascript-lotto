@@ -27,4 +27,5 @@ const matchResultContentNode = document.getElementById('lotto-match-result-conte
 matchResultContentNode.addEventListener('click', (e) => {
   if (!e.target.matches('#restart-button')) return;
   Controller.restart();
+  View.init();
 });
