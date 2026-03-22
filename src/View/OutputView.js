@@ -56,10 +56,6 @@ const OutputView = {
 
     lottoCount.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
   },
-
-  printErrorMessage(errorMessage) {
-    Console.print(errorMessage);
-  },
 };
 
 export default OutputView;
