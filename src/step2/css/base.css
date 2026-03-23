@@ -1,0 +1,330 @@
+:root {
+
+    --font-system: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, sans-serif;
+    --font-title: 800 24px/1.2 var(--font-system);
+    --font-subtitle: 600 20px/1.2 var(--font-system);
+    --font-body: 400 15px/1.4 var(--font-system);
+    --font-placeholder: 400 15px/1.4 var(--font-system);
+    --font-button-caption: 700 14px/1.2 var(--font-system);
+
+    --navbar-bg: #4E5BA6;
+    --navbar-fg: #FFFFFF;
+
+    --content-title-fg: #000000;
+    --content-border: #D9D9D9;
+
+    --button-bg: #4E5BA6;
+    --button-disabled-bg: #CECEDB;
+    --button-hover-bg: #404A87;
+    --button-fg: #FFFFFF;
+
+    --input-border: #B4B4B4;
+
+    --table-border: #0000001F;
+
+    --footer-fg: #4E5BA6;
+    --footer-border: #D9D9D9;
+
+    --dialog-border: #FCFCFD;
+    --dialog-closer-fg: #000000;
+    --dialog-backdrop-bg: #00000080;
+
+    --error-fg: #ED360E;
+}
+
+/* Base */
+
+* {
+    box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, li, fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+button {
+    padding: 8px 14px;
+    border: none;
+    background-color: var(--button-bg);
+    color: var(--button-fg);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+    cursor: pointer;
+    transition: background-color 300ms ease-out;
+}
+
+button:disabled {
+    background-color: var(--button-disabled-bg);
+    cursor: default;
+}
+
+input {
+    box-shadow: none;
+    border: 1px solid var(--input-border);
+    outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+fieldset {
+    min-width: 0;
+    border: none;
+}
+
+footer {
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--footer-border);
+}
+
+footer p {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--footer-fg);
+    text-align: center;
+}
+
+dialog {
+    padding: 16px;
+}
+
+/* Header */
+
+#header nav {
+    background-color: var(--navbar-bg);
+}
+
+#header nav h1 {
+    padding: 14px 0 14px 130px;
+    color: var(--navbar-fg);
+}
+
+/* Content */
+
+#app {
+    flex: 1;
+}
+
+#content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#content {
+    display: inline-block;
+    padding: 0 16px;
+    border: 1px solid var(--content-border);
+    border-radius: 4px;
+}
+
+#content-title {
+    color: var(--content-title-fg);
+    text-align: center;
+    margin: 32px 0;
+}
+
+#purchase-amount-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#purchase-amount-form label {
+    margin: 8px 0;
+}
+
+#purchase-amount-form > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input#purchase-amount {
+    padding: 8px;
+    border-radius: 4px;
+    width: 80%;
+    height: 36px;
+}
+
+#purchase-lotto-list {
+    height: 250px;
+    overflow: scroll;
+}
+
+#purchase-lotto-content.hidden {
+    height: 250px;
+}
+
+#purchase-lotto-content p {
+    margin: 24px 0 6px 0;
+}
+
+#purchase-lotto-content ul {
+    display: flex;
+    flex-direction: column;
+}
+
+#purchase-lotto-content ul li {
+    display: flex;
+    gap: 8px;
+    line-height: 1.2;
+    align-items: center;
+}
+
+#purchase-lotto-content ul li span {
+    font-size: 32px;
+}
+
+#winning-lotto-inputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+#winning-lotto-inputs label,
+#winning-lotto-inputs legend {
+    margin-bottom: 8px;
+}
+
+#winning-lotto-inputs input[type="number"]{
+    width: 34px;
+    height: 36px;
+    border-radius: 4px;
+    border-width: 2px;
+    font-size: 18px;
+    padding: 0 4px;
+}
+
+#winning-lotto-content p {
+    margin: 12px 0;
+}
+
+#winning-lotto-content button {
+    width: 100%;
+    padding: 10px 0;
+    margin: 24px 0;
+}
+
+#winning-lotto-bonus-number-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+/* Dialog */
+
+#lotto-match-result-dialog {
+    border: 10px solid var(--dialog-border);
+    border-radius: 4px;
+    text-align: center;
+}
+
+#lotto-match-result-dialog::backdrop {
+    background-color: var(--dialog-backdrop-bg);
+}
+
+#lotto-match-result-dialog h3 {
+    margin-bottom: 32px;
+    margin-top: 8px;
+}
+
+#lotto-match-result {
+    border-collapse: collapse;
+}
+
+#lotto-match-result tr {
+    border-bottom: 1px solid var(--table-border);
+}
+
+#lotto-match-result thead th {
+    border-top: 1px solid var(--table-border);
+}
+
+#lotto-match-result thead th,
+#lotto-match-result tbody tr td {
+    padding: 8px 12px;
+}
+
+#lotto-match-result-dialog button {
+    width: 100%;
+}
+
+#lotto-rate-of-return {
+    font-weight: 700;
+    margin: 36px 0;
+}
+
+/* Utils */
+
+.text-title {
+    font: var(--font-title);
+}
+
+.text-subtitle {
+    font: var(--font-subtitle);
+}
+
+.text-body {
+    font: var(--font-body);
+}
+
+.text-placeholder {
+    font: var(--font-placeholder);
+}
+
+.text-caption {
+    font: var(--font-button-caption);
+}
+
+.row-line-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.error-message {
+    margin-top: 8px;
+    color: var(--error-fg);
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.dialog-closer {
+    display: block;
+    width: 100%;
+    background: none;
+    font-size: 24px;
+    font-weight: 100;
+    padding: 0;
+    color: var(--dialog-closer-fg);
+    text-align: right;
+}
+
+.dialog-closer:hover {
+    background: none;
+}

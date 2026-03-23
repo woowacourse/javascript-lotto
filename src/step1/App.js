@@ -1,4 +1,4 @@
-import { read } from './Utils.js';
+import { read } from './Readline.js';
 import Input from './Input.js';
 import { LottoMachine } from './LottoMachine.js';
 import { Output } from './Output.js';
