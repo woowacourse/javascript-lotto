@@ -52,9 +52,27 @@ const OutputView = {
   },
 
   printProfitRate(profitRate) {
-    const lottoCount = document.querySelector("#profitRate-print");
+    const profitRatePrint = document.querySelector("#profitRate-print");
+    profitRatePrint.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
+  },
 
-    lottoCount.textContent = `당신의 총 수익률은 ${profitRate}%입니다.`;
+  showWinningSection() {
+    const winningLottoSection = document.querySelector(".winning-lotto");
+    winningLottoSection.classList.add("show");
+  },
+
+  showModal() {
+    const modalOverlay = document.querySelector(".modal-overlay");
+    modalOverlay.classList.add("show");
+  },
+
+  hideModal() {
+    const modalOverlay = document.querySelector(".modal-overlay");
+    modalOverlay.classList.remove("show");
+  },
+
+  showAlert(message) {
+    window.alert(message);
   },
 };
 

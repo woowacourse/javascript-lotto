@@ -1,28 +1,39 @@
 const InputView = {
-  async readPurchasePrice() {
-    const input =
-      await MissionUtils.Console.readLineAsync("> 구입금액을 입력해 주세요.");
-    return input;
+  getPurchasePrice() {
+    return document.querySelector("#inputPrice").value;
   },
 
-  async readWinningNumbers() {
-    const inputs =
-      await MissionUtils.Console.readLineAsync("> 당첨 번호를 입력해 주세요. ");
-    return inputs;
+  getWinningNumbers() {
+    return [
+      document.getElementById("winning-number-input-1").value,
+      document.getElementById("winning-number-input-2").value,
+      document.getElementById("winning-number-input-3").value,
+      document.getElementById("winning-number-input-4").value,
+      document.getElementById("winning-number-input-5").value,
+      document.getElementById("winning-number-input-6").value,
+    ];
   },
 
-  async readBonusNumber() {
-    const input = await MissionUtils.Console.readLineAsync(
-      "\n> 보너스 번호를 입력해 주세요. ",
-    );
-    return input;
+  getBonusNumber() {
+    return document.getElementById("bonus-number-input").value;
   },
 
-  async readRestart() {
-    const restartCommand = await MissionUtils.Console.readLineAsync(
-      "\n> 다시 시작하시겠습니까? (y/n) ",
-    );
-    return restartCommand;
+  clearPurchasePrice() {
+    document.querySelector("#inputPrice").value = "";
+  },
+
+  clearWinningNumbers() {
+    const inputs = document.querySelectorAll(".winning-number-input");
+    inputs.forEach((input) => (input.value = ""));
+    document.getElementById("bonus-number-input").value = "";
+  },
+
+  focusPurchasePrice() {
+    document.querySelector("#inputPrice").focus();
+  },
+
+  focusFirstWinningNumber() {
+    document.getElementById("winning-number-input-1").focus();
   },
 };
 
