@@ -10,13 +10,14 @@
     "start-step2": "vite",
     "deploy": "vite build --base=/javascript-lotto/ --minify=false && npx gh-pages -d dist"
   },
-  "homepage": "https://{username}.github.io/javascript-lotto",
+  "homepage": "https://janghw0126.github.io/javascript-lotto",
   "devDependencies": {
     "@babel/cli": "^7.28.6",
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.0",
     "@types/jest": "^30.0.0",
     "babel-jest": "^30.2.0",
+    "gh-pages": "^6.3.0",
     "jest": "^30.2.0",
     "vite": "^7.3.1"
   },

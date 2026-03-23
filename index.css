@@ -1,0 +1,405 @@
+body {
+  margin: 0;
+  position: relative;
+}
+
+#app {
+  background-color: #fcfcfd;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.header {
+  height: 64px;
+  background-color: #4e5ba6;
+  align-items: center;
+  padding-left: 130px;
+  display: flex;
+}
+
+.header h1 {
+  color: #ffffff;
+  height: 36px;
+  font-size: 24px;
+}
+
+.lottobox {
+  border: 1px solid #0000001f;
+  width: 414px;
+  height: 712px;
+  margin: 64px auto;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.lottobox #lotto-title {
+  width: 382px;
+  height: 36px;
+  margin: 40px 16px 0;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.lottobox .purchaseBox {
+  width: 382px;
+  margin: 28px 16px 0;
+}
+
+.lottobox .purchaseBox #priceText {
+  margin: 0 0 10px 0;
+  font-size: 15px;
+}
+
+.lottobox .purchaseBox .purchase-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.lottobox .purchaseBox #inputPrice {
+  width: 310px;
+  height: 36px;
+  padding: 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+.lottobox .purchaseBox #purchaseButton {
+  margin-left: 8px;
+  background-color: #4e5ba6;
+  font-size: 14px;
+  font-weight: bolder;
+  width: 56px;
+  height: 36px;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  letter-spacing: 1.25px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.lottobox .purchaseBox #purchaseButton:hover {
+  background-color: #3f4a8c;
+}
+
+.lottobox #lotto-count {
+  width: 310px;
+  height: 24px;
+  margin-left: 16px;
+  margin-top: 28px;
+  font-size: 15px;
+}
+
+.lottos-print {
+  width: 380px;
+  height: 276px;
+  margin-left: 16px;
+  margin-bottom: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#lotto-list {
+  width: 238px;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.lotto-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 36px;
+  font-size: 34px;
+}
+
+#lotto {
+  font-size: 15px;
+}
+
+.winning-lotto {
+  width: 382px;
+  height: 104px;
+  top: 524px;
+  margin-left: 16px;
+  display: none;
+  margin-top: 24px;
+}
+
+.winning-lotto.show {
+  width: 382px;
+  height: 104px;
+  top: 524px;
+  display: block;
+}
+
+.winning-numbers-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.input-numbers-text {
+  margin-top: 0px;
+}
+
+#winning-input-text {
+  font-size: 15px;
+  width: 382px;
+  height: 104px;
+}
+
+.input-numbers-text {
+  font-size: 15px;
+  width: 382px;
+  height: 24px;
+}
+
+#winning-input-text {
+  font-size: 15px;
+  width: 382px;
+  height: 104px;
+}
+
+.input-numbers-text {
+  font-size: 15px;
+  width: 382px;
+  height: 24px;
+}
+
+.winning-numbers {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  height: 68px;
+  opacity: 1;
+  border-radius: 4px;
+}
+
+#winning-numbers-text {
+  width: 65px;
+  height: 25px;
+  opacity: 1;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.winning-number-input {
+  width: 30px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  margin-right: 4px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.bonus-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#bonus-number-text {
+  text-align: center;
+  width: 80px;
+  height: 25px;
+  opacity: 1;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+#bonus-number-input {
+  width: 30px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+  margin-right: 4px;
+  text-align: center;
+  font-size: 15px;
+}
+
+#result-button {
+  width: 382px;
+  height: 36px;
+  display: none;
+  margin-top: 20px;
+  margin-left: 15px;
+  background-color: #4e5ba6;
+  border-radius: 4px;
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bolder;
+  letter-spacing: 1.25px;
+  font-style: Bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#result-button:hover {
+  background-color: #3f4a8c;
+}
+
+.result-button.show {
+  display: block;
+}
+
+.footer {
+  margin-top: 30px;
+  padding-top: 28px;
+  padding-bottom: 36px;
+}
+
+#copyrignt-line {
+  border: none;
+  border-top: 1px solid #4e5ba633;
+  margin: 0;
+}
+
+#copyright-text {
+  margin: 24px 0 0 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #4e5ba6;
+  letter-spacing: 1.25px;
+}
+
+.modal-overlay {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: #00000080;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 370px;
+  height: 500px;
+  opacity: 1;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 4px;
+  gap: 32px;
+}
+
+.modal h2 {
+  margin-top: 40px;
+}
+
+.result-table {
+  width: 319px;
+  height: 247px;
+  opacity: 1;
+  top: 97px;
+  left: 16px;
+}
+
+.result-table th,
+.result-table td {
+  text-align: center;
+  border-bottom: 1px solid #0000001f;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+}
+
+.result-table th {
+  border-top: 1px solid #0000001f;
+  font-weight: bold;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+#profitRate-print {
+  text-align: center;
+  font-weight: bold;
+  margin-right: 1px;
+}
+
+#restart-button {
+  width: 318px;
+  height: 36px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4e5ba6;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#restart-button:hover {
+  background-color: #3f4a8c;
+}
+
+#close-button {
+  position: absolute;
+  border: none;
+  background: none;
+  font-size: 35px;
+  width: 14px;
+  height: 14px;
+  opacity: 1;
+  margin-top: 5px;
+  margin-left: 300px;
+
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#close-button:hover {
+  opacity: 0.7;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}

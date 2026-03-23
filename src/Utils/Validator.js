@@ -13,10 +13,7 @@ const Validator = {
   },
 
   validateWinningNumbers(inputs) {
-    if (!inputs.includes(","))
-      throw new Error("[ERROR] 쉼표를 기준으로 구분하지 않았습니다!");
-
-    const numbers = inputs.split(",").map((numStr) => Number(numStr.trim()));
+    const numbers = inputs.map((numStr) => Number(numStr));
 
     const winningNumbers = this.validateCommonNumbers(numbers);
 
