@@ -1,0 +1,20 @@
+.hidden {
+  display: none !important;
+}
+
+.lotto-button {
+  background: #4e5ba6;
+  width: 100%;
+  height: 36px;
+  border: none;
+  border-radius: 4px;
+
+  color: var(--color-lotto-greyscale-1);
+}
+
+.lotto-number-input {
+  width: 34px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #b4b4b4;
+}

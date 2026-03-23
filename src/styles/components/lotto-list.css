@@ -1,0 +1,25 @@
+.lotto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lotto-list__item {
+  display: flex;
+  gap: 7px;
+}
+
+.lotto-list__icon {
+  width: 34px;
+  height: 36px;
+}
+
+.lotto-list__numbers {
+  display: flex;
+  align-items: center;
+}
+
+.lotto-list__container {
+  max-height: 276px;
+  overflow-y: auto;
+}

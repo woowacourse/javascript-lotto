@@ -1,0 +1,66 @@
+.result-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.result-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.result-modal__content {
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 350px;
+  height: 500px;
+  text-align: center;
+}
+
+.result-modal__close-button {
+  border: none;
+  background: none;
+}
+
+.result-modal__close-button-area {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.result-modal__table {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result-modal__table th,
+.result-modal__table td {
+  padding: 7px;
+  border-bottom: 1px solid black;
+  border-color: #0000001f;
+
+  text-align: center;
+}
+
+.result-modal__table thead {
+  border-top: 1px solid black;
+  border-color: #0000001f;
+}
+
+.result-modal__profit-rate {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

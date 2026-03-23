@@ -1,0 +1,34 @@
+.money-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.money-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.money-form__input {
+  border: 1px solid #b4b4b4;
+  width: 310px;
+  height: 36px;
+  border-radius: 4px;
+
+  opacity: 1;
+  padding: 8px;
+}
+
+.money-form__button {
+  width: 56px;
+  height: 36px;
+  border-radius: 4px;
+
+  opacity: 1;
+  padding-top: 6px 6px 8px;
+
+  background: #4e5ba6;
+
+  border: none;
+  color: #ffffff;
+}

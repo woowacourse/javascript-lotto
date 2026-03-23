@@ -1,16 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./src/styles/main.css" />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header class="header">
+        <h1 class="text-lotto-title">🎱 행운의 로또</h1>
+      </header>
+
+      <main class="app-container">
+        <section class="lotto-container">
+          <h2 class="text-lotto-title lotto-container__title">
+            🎱 내 번호 당첨 확인 🎱
+          </h2>
+          <section class="money-container">
+            <form class="money-form">
+              <label for="money-form__input" class="text-lotto-body"
+                >구입할 금액을 입력해주세요.</label
+              >
+              <div class="money-form__wrapper">
+                <input
+                  id="money-form__input"
+                  class="money-form__input"
+                  type="number"
+                  placeholder="금액"
+                  required
+                />
+                <button class="money-form__button text-lotto-caption">
+                  구입
+                </button>
+              </div>
+            </form>
+          </section>
+          <section class="lotto-list"></section>
+          <section class="hidden winning-section">
+            <h2 class="text-lotto-body winning-section__title">
+              지난 주 당첨 번호 6개와 보너스 번호 1개를 입력해 주세요.
+            </h2>
+            <form class="winning-section__form">
+              <div class="winning-section__container">
+                <fieldset class="winning-section__fieldset">
+                  <legend class="text-lotto-body winning-section__legend">
+                    당첨 번호
+                  </legend>
+                  <div class="winning-section__input-list">
+                    <input
+                      type="number"
+                      id="winning-number-1"
+                      class="winning-section__input lotto-number-input"
+                      aria-label="첫 번째 당첨 번호"
+                    />
+                    <input
+                      type="number"
+                      id="winning-number-2"
+                      class="winning-section__input lotto-number-input"
+                      aria-label="두 번째 당첨 번호"
+                    />
+                    <input
+                      type="number"
+                      id="winning-number-3"
+                      class="winning-section__input lotto-number-input"
+                      aria-label="세 번째 당첨 번호"
+                    />
+                    <input
+                      type="number"
+                      id="winning-number-4"
+                      class="winning-section__input lotto-number-input"
+                      aria-label="네 번째 당첨 번호"
+                    />
+                    <input
+                      type="number"
+                      id="winning-number-5"
+                      class="winning-section__input lotto-number-input"
+                      aria-label="다섯 번째 당첨 번호"
+                    />
+                    <input
+                      type="number"
+                      id="winning-number-6"
+                      class="winning-section__input lotto-number-input"
+                      aria-label="여섯 번째 당첨 번호"
+                    />
+                  </div>
+                </fieldset>
+
+                <div class="winning-section__bonus-area">
+                  <label for="bonus-number" class="text-lotto-body"
+                    >보너스 번호</label
+                  >
+                  <input
+                    type="number"
+                    id="bonus-number"
+                    class="winning-section__input--bonus lotto-number-input"
+                  />
+                </div>
+              </div>
+
+              <button type="submit" class="lotto-button text-lotto-caption">
+                결과 확인하기
+              </button>
+            </form>
+          </section>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p class="text-lotto-caption">Copyright 2023. woowacourse</p>
+      </footer>
     </div>
+    <div class="hidden result-modal">
+      <div class="result-modal__overlay"></div>
+      <div class="result-modal__content">
+        <div class="result-modal__close-button-area">
+          <button class="result-modal__close-button" type="button"></button>
+        </div>
+
+        <h2 class="text-lotto-subtitle">🏆 당첨 통계 🏆</h2>
+
+        <table class="result-modal__table">
+          <thead>
+            <tr>
+              <th>일치 갯수</th>
+              <th>당첨금</th>
+              <th>당첨 갯수</th>
+            </tr>
+          </thead>
+          <tbody class="result-modal__table-body"></tbody>
+        </table>
+
+        <p class="text-lotto-body result-modal__profit-rate">
+          당신의 총 수익률은 0%입니다.
+        </p>
+
+        <button class="lotto-button result-modal__reset-button" type="button">
+          다시 시작하기
+        </button>
+      </div>
+    </div>
+
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

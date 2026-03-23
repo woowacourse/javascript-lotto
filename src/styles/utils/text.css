@@ -1,0 +1,35 @@
+.text-lotto-title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-extra-bold);
+  line-height: 36px;
+}
+
+.text-lotto-subtitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: 24px;
+}
+
+.text-lotto-body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
+}
+
+.text-lotto-placeholder {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
+  color: #8b8b8b;
+}
+
+.text-lotto-caption {
+  font-family: var(--font-family);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  line-height: 24px;
+}

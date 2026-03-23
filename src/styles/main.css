@@ -1,0 +1,36 @@
+/* 파일 통합 */
+@import "./base/reset.css";
+@import "./constants/theme.css";
+@import "./base/common.css";
+@import "./utils/text.css";
+
+/* 컴포넌트 */
+@import "./components/header.css";
+@import "./components/lotto-container.css";
+@import "./components/money-form.css";
+@import "./components/lotto-list.css";
+@import "./components/winning-section.css";
+@import "./components/modal.css";
+@import "./components/footer.css";
+
+/* 전역 레이아웃 및 타이포그래피 */
+body {
+  background-color: var(--color-lotto-greyscale-2);
+  color: var(--color-lotto-greyscale-6);
+
+  font-family:
+    "Pretendard",
+    -apple-system,
+    sans-serif;
+  line-height: 1.5;
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

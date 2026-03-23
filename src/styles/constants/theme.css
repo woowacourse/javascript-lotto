@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;800&display=swap");
+
+:root {
+  --font-family:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Font Sizes  */
+  --font-size-title: 24px;
+  --font-size-subtitle: 20px;
+  --font-size-body: 15px;
+  --font-size-caption: 14px;
+
+  /* Line Heights */
+  --line-height-title: 36px;
+  --line-height-default: 24px;
+
+  /* Font Weights */
+  --font-weight-extra-bold: 800;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-regular: 400;
+
+  /* Color Palette */
+  --color-lotto-primary: #4e5ba6;
+  --color-lotto-greyscale-1: #ffffff;
+  --color-lotto-greyscale-2: #fcfcfd;
+  --color-lotto-greyscale-3: #b4b4b4;
+  --color-lotto-greyscale-4: #8b8b8b;
+  --color-lotto-greyscale-5: #000000;
+}

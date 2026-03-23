@@ -1,0 +1,33 @@
+.app-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-lotto-greyscale-2);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.lotto-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 414px;
+
+  height: 100%;
+  max-height: 727px;
+
+  padding: 0 16px 20px 16px;
+
+  background-color: var(--color-lotto-greyscale-1);
+  border: 1px solid #0000001f;
+  border-radius: 4px;
+  overflow-y: auto;
+}
+
+.lotto-container__title {
+  margin: 0 auto;
+  padding-top: 40px;
+  flex-shrink: 0;
+}
