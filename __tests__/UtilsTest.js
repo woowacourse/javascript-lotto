@@ -1,4 +1,4 @@
-import { pickNumberInRange } from "../src/step1/Utils.js";
+import { pickNumberInRange } from "../src/Utils.js";
 
 describe("유틸 함수 테스트", () => {
   test("반환된 배열의 길이가 range와 일치한다", () => {

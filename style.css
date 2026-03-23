@@ -1,0 +1,299 @@
+/* ========================
+   Reset
+======================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ========================
+   공통
+======================== */
+button {
+  background-color: #4e5ba6;
+  color: #ffffff;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#purchase-amount-input,
+.winning-number {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+/* ========================
+   Header
+======================== */
+header {
+  background-color: #4e5ba6;
+  padding: 0.875rem 0rem 0.875rem 8.125rem;
+}
+
+header h1 {
+  line-height: 36px;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* ========================
+   Main / Section
+======================== */
+main {
+  height: calc(100vh - 9rem);
+  width: 100vw;
+  display: grid;
+  place-content: center;
+}
+
+section {
+  border: 1px solid #0000001f;
+  width: 414px;
+  height: 45.4375rem;
+  padding: 2.5rem 1rem 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+section title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 100%;
+}
+
+/* ========================
+   Purchase Amount Area
+======================== */
+#purchase-amount-area {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+#purchase-amount-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  width: 100%;
+}
+
+#purchase-amount-field label {
+  line-height: 24px;
+  font-size: 15px;
+}
+
+#purchase-amount-field #purchase-amount-input {
+  height: 36px;
+  width: 100%;
+  padding: 8px;
+}
+
+#purchase-amount-area #button-purchase {
+  width: 56px;
+  height: 36px;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+/* ========================
+   Lotto Container
+======================== */
+#lotto-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 28px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+#lotto-list {
+  margin-top: 8px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+#lottos li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#lottos li span {
+  font-size: 36px;
+}
+#lottos li output {
+  margin-left: 8px;
+}
+
+/* ========================
+   Winning Number Area
+======================== */
+#winning-number-area {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#winning-number-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 12px;
+}
+
+#winning-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#winning-number-fields {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.winning-number,
+#bonus-number-input {
+  width: 34px;
+  height: 36px;
+  text-align: center;
+}
+#bonus-number-input {
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+}
+
+#bonus-number {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+#result-button {
+  margin-top: 27px;
+  width: 100%;
+  height: 44px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ========================
+   Modal
+======================== */
+#result-modal {
+  width: 350px;
+  height: 460px;
+  padding: 16px 16px 32px 16px;
+  margin: auto;
+  border: none;
+  border-radius: 4px;
+}
+
+#result-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-header h2 {
+  font-weight: bold;
+  width: 130px;
+  height: 24px;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+#modal-close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #000000;
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+#result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 33px;
+}
+
+#result-table th,
+#result-table td {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px;
+  text-align: center;
+}
+
+#result-table th {
+  font-weight: 600;
+}
+
+#rate-of-return-text {
+  text-align: center;
+  margin-top: 32px;
+  font-weight: 700;
+}
+
+#restart-button {
+  font-size: 14px;
+  width: 100%;
+  height: 36px;
+  cursor: pointer;
+  margin-top: 32px;
+  padding: 4px 107.5px 4px 107.5px;
+}
+
+/* ========================
+   Footer
+======================== */
+footer {
+  border-top: 1px solid #4e5ba633;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #4e5ba6;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 1.75rem;
+  padding-bottom: 2.25rem;
+}

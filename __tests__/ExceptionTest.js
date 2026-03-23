@@ -1,10 +1,15 @@
-import { readLine } from "../src/step1/Utils.js";
-import { pickNumberInRange } from "../src/step1/Utils.js";
-import App from "../src/step1/App.js";
+import { readLine } from "../src/Console.js";
+import { pickNumberInRange } from "../src/Utils.js";
+import App from "../src/App.js";
+import Input from "../src/Input.js";
+import { Output } from "../src/Output.js";
 
-jest.mock("../src/step1/Utils.js", () => ({
+jest.mock("../src/Console.js", () => ({
   readLine: jest.fn(),
   read: { close: jest.fn() },
+}));
+
+jest.mock("../src/Utils.js", () => ({
   pickNumberInRange: jest.fn(),
 }));
 
@@ -17,7 +22,7 @@ const runException = async (inputs) => {
     });
   });
 
-  const app = new App();
+  const app = new App(Input, Output);
   await app.run();
 
   expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("[ERROR]"));
