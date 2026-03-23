@@ -1,15 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🎱 행운의 로또</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <p id="header-text">🎱 행운의 로또</p>
+      </header>
+      <main id="contents-container">
+        <h1 id="contents-title">🎱 내 번호 당첨 확인 🎱</h1>
+        <section aria-labelledby="purchase-section-title">
+          <h2 id="purchase-section-title" class="visually-hidden">로또 구매</h2>
+          <form id="purchase-money-form" novalidate>
+            <label for="purchase-money-input">구입할 금액을 입력해주세요.</label>
+            <div id="input-section">
+              <input id="purchase-money-input" type="number" placeholder="금액" autofocus required />
+              <button id="purchase-money-button" type="submit">구입</button>
+            </div>
+          </form>
+        </section>
+        <section id="result-section" hidden aria-labelledby="result-section-title">
+          <h2 id="result-section-title" class="visually-hidden">구매 결과</h2>
+          <p id="result-text"></p>
+          <div id="result-container"></div>
+        </section>
+        <section id="winning-section" hidden aria-labelledby="winning-section-title">
+          <h2 id="winning-section-title" class="visually-hidden">당첨 번호 입력</h2>
+          <form id="winning-form" novalidate>
+            <label>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</label>
+            <div id="winning-text-container">
+              <label>당첨 번호</label>
+              <label>보너스 번호</label>
+            </div>
+            <div id="number-input-container">
+              <div id="winning-number-inputs">
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+                <input class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+              </div>
+              <input id="bonus-number-input" class="winning-number-input" type="text" inputmode="numeric" maxlength="2" required />
+            </div>
+            <button id="show-result-button" type="submit">결과 확인하기</button>
+          </form>
+        </section>
+        <dialog id="result-modal-container" aria-labelledby="modal-title">
+          <section id="result-modal-section">
+            <button id="modal-close">x</button>
+            <h2 id="modal-title">🏆 당첨 통계 🏆</h2>
+            <div id="result-text-container">
+              <table id="result-table">
+                <caption class="visually-hidden">
+                  로또 당첨 통계
+                </caption>
+                <colgroup>
+                  <col style="width: 34%" />
+                  <col style="width: 38%" />
+                  <col style="width: 28%" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">일치 갯수</th>
+                    <th scope="col">당첨금</th>
+                    <th scope="col">당첨 갯수</th>
+                  </tr>
+                </thead>
+                <tbody id="result-table-body"></tbody>
+              </table>
+              <span id="result-profit-rate"></span>
+            </div>
+            <button id="restart">다시 시작하기</button>
+          </section>
+        </dialog>
+      </main>
+      <footer>
+        <p>Copyright 2023. woowacourse</p>
+      </footer>
     </div>
     <script type="module" src="./src/step2-index.js"></script>
   </body>

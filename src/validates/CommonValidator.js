@@ -1,3 +1,5 @@
+import { LOTTO_MAX_NUMBER, LOTTO_MIN_NUMBER } from "../constants/config.js";
+
 export function commonValidate(input) {
   if (isInputEmpty(input)) return false;
   if (!isPositiveInteger(input)) return false;
@@ -14,5 +16,5 @@ export function isPositiveInteger(input) {
 }
 
 function isNumberInRange(input) {
-  return Number(input) >= 1 && Number(input) <= 45;
+  return Number(input) >= LOTTO_MIN_NUMBER && Number(input) <= LOTTO_MAX_NUMBER;
 }

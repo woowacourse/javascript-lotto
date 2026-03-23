@@ -1,0 +1,145 @@
+/* purchase section */
+#purchase-money-form {
+  width: 100%;
+}
+
+#purchase-money-form > label,
+#winning-form > label,
+#winning-text-container label,
+#result-text,
+.generated-lotto-num {
+  font: var(--font-body);
+  color: var(--color-greyscale-5);
+}
+
+#input-section {
+  display: flex;
+
+  margin-top: 2px;
+}
+
+#purchase-money-input {
+  flex: 1;
+  height: 36px;
+
+  padding: 0 10px;
+
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  background-color: var(--color-greyscale-1);
+}
+
+#purchase-money-input::placeholder {
+  font: var(--font-placeholder);
+  color: var(--color-greyscale-4);
+}
+
+#purchase-money-button {
+  width: 56px;
+  height: 36px;
+
+  margin-left: 18px;
+
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-main);
+
+  font: var(--font-button-caption);
+  color: var(--color-greyscale-1);
+}
+
+/* result section */
+#result-section {
+  display: flex;
+  flex-direction: column;
+
+  height: 51%;
+}
+
+#result-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 0;
+
+  margin-top: 8px;
+
+  overflow-y: auto;
+}
+
+.lotto-result-line {
+  display: flex;
+
+  align-items: center;
+}
+
+.lotto-ticket-img {
+  display: flex;
+
+  margin-right: 8px;
+
+  align-items: center;
+
+  font-size: 34px;
+  line-height: normal;
+}
+
+.generated-lotto-num {
+  line-height: 1;
+}
+
+/* winning section */
+#winning-form {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+#winning-text-container {
+  display: flex;
+
+  margin-top: 10px;
+
+  justify-content: space-between;
+}
+
+#number-input-container {
+  display: flex;
+
+  margin-top: 10px;
+
+  justify-content: space-between;
+}
+
+.winning-number-input {
+  width: 34px;
+  height: 36px;
+
+  margin: 0 1px;
+
+  text-align: center;
+
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+  background-color: var(--color-greyscale-1);
+}
+
+#show-result-button {
+  height: 34px;
+
+  margin-top: 20px;
+
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-main);
+
+  font: var(--font-button-caption);
+  color: var(--color-greyscale-1);
+}
+
+#result-section:not([hidden]),
+#winning-section:not([hidden]) {
+  animation: fade-slide-up 0.22s ease-out;
+}
