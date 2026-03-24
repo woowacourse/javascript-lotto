@@ -17,6 +17,7 @@ const ScoreBoard = {
     if (matchCount === RANK.FIFTH.MATCH_COUNT) {
       return RANK.FIFTH.DISPLAY;
     }
+    return RANK.NONE.DISPLAY;
   },
 
   makeAllRankCount(lottos, winningLotto) {
@@ -26,6 +27,7 @@ const ScoreBoard = {
       THIRD: 0,
       FOURTH: 0,
       FIFTH: 0,
+      NONE: 0,
     };
 
     lottos.forEach((lotto) => {

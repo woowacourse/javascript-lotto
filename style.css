@@ -1,0 +1,218 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 130px;
+  background: #4e5ba6;
+}
+
+.header-title {
+  color: #ffffff;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 84px 0;
+}
+
+.card {
+  width: 414px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  padding: 40px 16px;
+}
+
+.card-title {
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+.money-form {
+  margin: 0 0 24px;
+}
+
+.label {
+  display: block;
+  margin: 0 0 4px;
+}
+
+.input-row {
+  display: flex;
+  gap: 16px;
+}
+
+.input {
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.input::placeholder {
+  color: #8b8b8b;
+}
+
+.input-row .input {
+  flex: 1;
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.btn {
+  border: none;
+  border-radius: 4px;
+  background: #4e5ba6;
+  color: #ffffff;
+  letter-spacing: 1.25px;
+  cursor: pointer;
+  font: 700 14px/16px "";
+}
+
+.btn-small {
+  width: 56px;
+  height: 36px;
+}
+
+.lotto-section {
+  margin: 24px 0 0;
+}
+
+.buy-count {
+  margin: 0 0 12px;
+}
+
+.lotto-list {
+  list-style: none;
+}
+
+.lotto-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+}
+
+.lotto-icon {
+  font-size: 34px;
+  line-height: 36px;
+}
+
+.winning-section {
+  margin: 24px 0 0;
+  padding: 24px 0 0;
+}
+
+.winning-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+.number-inputs {
+  display: flex;
+  gap: 8px;
+  margin: 4px 0 0;
+}
+
+.btn-full {
+  width: 100%;
+  height: 36px;
+  padding: 6px 8px;
+  margin: 12px 0 0;
+}
+
+.input-small {
+  width: 34px;
+  text-align: center;
+}
+
+.bonus-number .number-inputs {
+  justify-content: flex-end;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  color: #4e5ba6;
+  font: 600 14px/16px "";
+}
+
+.modal-overlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  position: relative;
+  width: 350px;
+  padding: 40px 16px;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-title {
+  margin: 0 0 24px;
+  font: 600 20px/24px "";
+  text-align: center;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result-table thead {
+  border-top: 1px solid #b4b4b4;
+}
+
+.result-table th {
+  font-weight: 600;
+}
+
+.result-table th,
+.result-table td {
+  padding: 8px 0;
+  border-bottom: 1px solid #b4b4b4;
+  font-size: 15px;
+  text-align: center;
+}
+
+.profit-text {
+  margin: 24px 0;
+  font: 600 15px/18px "";
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}

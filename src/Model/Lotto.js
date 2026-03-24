@@ -24,7 +24,7 @@ class Lotto {
 
   checkDuplicate(number) {
     if (this.#numbers.includes(number)) {
-      throw new Error(ERROR_MESSAGE.PREFIX);
+      throw new Error(ERROR_MESSAGE.BONUS_DUPLICATED);
     }
   }
 

@@ -40,6 +40,7 @@ describe("스코어보드 테스트", () => {
       THIRD: 0,
       FOURTH: 0,
       FIFTH: 0,
+      NONE: 0,
     });
   });
 
