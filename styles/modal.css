@@ -1,0 +1,93 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.result-modal {
+  position: relative;
+  width: min(350px, 100%);
+  padding: 20px 16px 16px;
+  border-radius: 4px;
+  background: var(--color-surface-input);
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-close-button:focus-visible,
+.modal-retry-button:focus-visible {
+  outline: 2px solid var(--color-action-primary);
+  outline-offset: 2px;
+}
+
+.result-modal-title {
+  margin: 18px 0 26px;
+  text-align: center;
+}
+
+.modal-result-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-result-table th {
+  font-weight: var(--font-weight-semibold);
+}
+
+.modal-result-table th,
+.modal-result-table td {
+  padding: 10px 6px;
+  text-align: center;
+}
+
+.modal-result-table th {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.modal-result-table td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.modal-profit-text.lotto-body {
+  margin: 32px 0;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+.modal-retry-button {
+  width: 100%;
+}
+
+@media (max-width: 414px) {
+  .modal-overlay {
+    padding: 0;
+  }
+
+  .result-modal {
+    width: min(350px, 100%);
+  }
+}
+
+@media (max-height: 560px) {
+  .result-modal {
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+  }
+}

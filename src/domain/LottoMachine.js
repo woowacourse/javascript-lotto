@@ -1,4 +1,4 @@
-import { Random } from "@woowacourse/mission-utils";
+import Random from "../utils/Random.js";
 import Lotto from "./Lotto.js";
 
 const generateLottos = (count) =>

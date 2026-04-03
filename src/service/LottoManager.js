@@ -18,8 +18,8 @@ export default class LottoManager {
     return new WinningNumber(winningLotto, bonusNumber);
   }
 
-  getLotteryResult(lottos, winningNumber) {
-    const result = new LottoResult(lottos, winningNumber);
+  getLotteryResult(lottos, winningNumbers) {
+    const result = new LottoResult(lottos, winningNumbers);
     return {
       statistics: result.getPrizeList(),
       profitRate: result.getProfitRate(Lotto.PRICE * lottos.length),
