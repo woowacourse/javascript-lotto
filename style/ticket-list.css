@@ -1,0 +1,21 @@
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  visibility: hidden;
+}
+
+.ticket-list__container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 250px;
+  overflow: auto;
+}
+
+.ticket-list__item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+}

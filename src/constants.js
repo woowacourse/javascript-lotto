@@ -24,16 +24,33 @@ export const RANK = {
   FIRST: {
     DISPLAY: "FIRST",
     MATCH_COUNT: 6,
+    MUST_HAVE_BONUS: false,
     PRICE: 2_000_000_000,
   },
   SECOND: {
     DISPLAY: "SECOND",
     MATCH_COUNT: 5,
+    MUST_HAVE_BONUS: true,
     PRICE: 30_000_000,
   },
-  THIRD: { DISPLAY: "THIRD", MATCH_COUNT: 5, PRICE: 1_500_000 },
-  FOURTH: { DISPLAY: "FOURTH", MATCH_COUNT: 4, PRICE: 50_000 },
-  FIFTH: { DISPLAY: "FIFTH", MATCH_COUNT: 3, PRICE: 5_000 },
+  THIRD: {
+    DISPLAY: "THIRD",
+    MATCH_COUNT: 5,
+    MUST_HAVE_BONUS: false,
+    PRICE: 1_500_000,
+  },
+  FOURTH: {
+    DISPLAY: "FOURTH",
+    MATCH_COUNT: 4,
+    MUST_HAVE_BONUS: false,
+    PRICE: 50_000,
+  },
+  FIFTH: {
+    DISPLAY: "FIFTH",
+    MATCH_COUNT: 3,
+    MUST_HAVE_BONUS: false,
+    PRICE: 5_000,
+  },
 };
 
 export const COMMAND = {

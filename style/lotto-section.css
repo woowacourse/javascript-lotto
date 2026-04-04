@@ -1,0 +1,15 @@
+.lotto-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 24px;
+  width: 400px;
+  margin: 20px 0;
+  padding: 32px 16px;
+  border: 1px solid #0000001f;
+  background-color: var(--lotto-greyscale-1);
+}
+
+.lotto-section__title {
+  text-align: center;
+}
