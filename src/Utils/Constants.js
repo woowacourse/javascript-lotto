@@ -13,3 +13,18 @@ export const RANK_MAP = {
   FOURTH: '4개 일치',
   FIFTH: '3개 일치',
 };
+
+export const LOTTO_RULES = {
+  PRICE: 1000,
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
+  LENGTH: 6,
+};
+
+export const RANK_MAP_WEB = {
+  FIRST: '6개',
+  SECOND: '5개+보너스 볼',
+  THIRD: '5개',
+  FOURTH: '4개',
+  FIFTH: '3개',
+};

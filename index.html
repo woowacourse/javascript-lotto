@@ -1,16 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>🎱 행운의 로또</title>
+    <title>로또 게임</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <div id="app">
-      <h1>🎱 행운의 로또</h1>
+      <header>
+        <p>🎱 행운의 로또</p>
+      </header>
+
+      <!--로또 main content box를 만들 틀 -->
+      <main class="main-container">
+        <p class="lotto-subtitle">🎱 내 번호 당첨 확인 🎱</p>
+        <section class="purchase-price-section">
+          <form id="purchase-price-form">
+            <label for="purchase-price">구입할 금액을 입력해주세요.</label>
+
+            <div class="purchase-price-input-box">
+              <input type="number" id="purchase-price" placeholder="금액" min="1000" step="1000" required>
+              <button type="submit" class="purchase-button">구입</button>
+            </div>
+
+          </form>
+        </section>
+
+        <section id="lotto-list-section" class="hidden">
+          <p id="lotto-count-text">총 n개를 구입하셨습니다.</p>
+
+          <div id="lotto-list" class="lotto-scroll-box">
+
+          </div>
+
+        </section>
+
+        <form id="lucky-numbers-form" class="hidden">
+          <p class="lucky-numbers-input-text">지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div class="lucky-numbers-input-box">
+
+            <div class="winning-numbers">
+              <p class="winning-numbers-text">당첨 번호</p>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+              <input type="number" class="winning-number" min="1" max="45" required>
+            </div>
+
+            <div class="bonus-number">
+              <p class="bonus-number-text">보너스 번호</p>
+              <input type="number" class="bonus-number" min="1" max="45" required>
+            </div>
+
+          </div>
+          <button type="submit" class="result-button">결과 확인하기</button>
+        </form>
+      </main>
+
+      <div id="result-modal" class="modal hidden">
+        <div class="modal-box">
+          <button id="modal-close-button" class="close-button">&times;</button>
+          <p class="result-text">🏆 당첨 통계 🏆</p>
+
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>일치 갯수</th>
+                <th>당첨금</th>
+                <th>당첨 갯수</th>
+              </tr>
+            </thead>
+
+            <tbody id="result-table-body">
+
+            </tbody>
+          </table>
+
+          <h3 id="profit-rate-text">당신의 총 수익률은 n%입니다.</h3>
+          <button id="restart-button">다시 시작하기</button>
+        </div>
+      </div>
+
+      <footer>
+        <p>Copyright 2026. woowacourse</p>
+      </footer>
     </div>
+
     <script type="module" src="./src/step2-index.js"></script>
   </body>
 </html>

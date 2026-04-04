@@ -1,0 +1,282 @@
+:root {
+  /* 색 기본 지정 */
+  --color-primary: #4e5ba6;
+  --color-white: #ffffff;
+  --color-greyscale-2: #fcfcfd;
+  --color-greyscale-3: #b4b4b4;
+  --color-greyscale-4: #8b8b8b;
+  --color-black: #000000;
+  --color-error: #ec4141;
+
+  /* 폰트 기본 지정 */
+  --font-title: 800 24px/36px sans-serif;
+  --font-subtitle: 600 20px/24px sans-serif;
+  --font-body: 400 15px/24px sans-serif;
+  --font-placeholder: 400 15px/24px sans-serif;
+  --font-button: 700 14px/16px sans-serif;
+}
+
+/* 기본 초기화 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-greyscale-2);
+
+  color: var(--color-black);
+  font: var(--font-body);
+}
+
+/* header 스타일 지정 */
+header {
+  padding: 0.8rem 4rem;
+
+  background-color: var(--color-primary);
+
+  color: var(--color-white);
+  font: var(--font-title);
+}
+
+.hidden {
+  display: none !important;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+}
+
+.main-container {
+  flex-grow: 1;
+
+  width: 100%;
+  max-width: 414px;
+  margin: 2rem auto;
+  padding: 16px;
+
+  background-color: var(--color-white);
+  border: 1px solid #0000001f;
+  border-radius: 4px;
+}
+
+.lotto-subtitle {
+  margin-bottom: 0.5rem;
+
+  text-align: center;
+  font: var(--font-title);
+}
+
+section {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+label {
+  display: block;
+
+  margin-bottom: 4px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.purchase-price-input-box {
+  display: flex;
+}
+
+#purchase-price {
+  flex-grow: 1;
+
+  margin-right: 8px;
+  padding: 4px 8px;
+
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+
+  font: var(--font-body);
+}
+
+button {
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  color: var(--color-white);
+  font: var(--font-button);
+}
+
+.purchase-button {
+  padding: 4px 12px;
+}
+
+#lotto-count-text {
+  margin-bottom: 0.5rem;
+}
+
+.lotto-scroll-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.lucky-numbers-input-text {
+  margin-bottom: 0.5rem;
+
+  font: var(--font-body);
+}
+
+.lucky-numbers-input-box {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 0.5rem;
+}
+
+.winning-numbers,
+.bonus-number {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.winning-numbers-text,
+.bonus-number-text {
+  width: 100%;
+  margin-bottom: 0.2rem;
+}
+
+.bonus-number-text {
+  text-align: right;
+}
+
+.winning-number,
+.bonus-number input {
+  width: 2.5rem;
+  height: 2.5rem;
+
+  border: 1px solid var(--color-greyscale-3);
+  border-radius: 4px;
+
+  text-align: center;
+  font: var(--font-body);
+}
+
+.bonus-number {
+  margin-left: auto;
+}
+
+.result-button {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 12px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #00000080;
+}
+
+.modal-box {
+  position: relative;
+
+  width: 90%;
+  max-width: 350px;
+  max-height: 500px;
+  padding: 40px 16px;
+
+  background-color: var(--color-white);
+  border-radius: 4px;
+
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  padding: 0;
+
+  background: transparent;
+  cursor: pointer;
+
+  color: var(--color-black);
+  font-size: 14px;
+}
+
+.result-text {
+  margin-bottom: 1rem;
+
+  font: var(--font-subtitle);
+}
+
+.result-table {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.result-table th {
+  padding: 8px 0;
+
+  border-top: 1px solid #0000001f;
+  border-bottom: 1px solid #0000001f;
+
+  font: var(--font-body);
+  font-weight: 600;
+}
+
+.result-table td {
+  padding: 8px 0;
+
+  border-bottom: 1px solid #0000001f;
+
+  font: var(--font-body);
+}
+
+#profit-rate-text {
+  margin-bottom: 1rem;
+
+  font: var(--font-body);
+  font-weight: 700;
+  text-align: center;
+}
+
+#restart-button {
+  width: 100%;
+  padding: 12px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 80px;
+
+  border-top: 1px solid #4e5ba633;
+
+  color: var(--color-primary);
+  font: var(--font-button);
+}
